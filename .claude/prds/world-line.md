@@ -4,14 +4,16 @@ feature_id: world-line
 feature_name: World Line — 歷史地圖 GIS 平台
 status: draft
 owner: jack755051@gmail.com
-last_updated: 2026-08-24
+last_updated: 2026-08-25
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
 
 # PRD: World Line — 歷史地圖 GIS 平台
 
-> ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md`（frontmatter `status: draft`，**尚未由業務 owner 拍板為 `active`**）產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據，但憲法 §10 列出的 4 條開放問題尚未拍板，本 PRD 對應段落一律標記 TODO，不代為假設。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
+> ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md`（frontmatter `status: draft`，**尚未由業務 owner 拍板為 `active`**）產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據，但憲法 §10 列出的 4 條開放問題尚未全部拍板，本 PRD 對應段落一律標記 TODO，不代為假設。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
+>
+> **2026-08-25 更新**：透過 `/grill-me` 對本 PRD 逐項壓力測試，拍板了 12 項技術選型與資料模型決策（PostGIS 安裝方式、正式朝代分類、政權互動建模、事件多維度拆分、地圖引擎、資料供應策略、狀態機函式庫、紀年轉換、EDTF 解析、多重視角觀察者、斜線網底、開源資料授權），內容已回填至 §5/§6/§9/§12。尚未拍板：Auth 機制、Figma 同步模式、開發者/使用者角色職責細節、技術效能目標數字，仍在 §12 保留。
 
 ## 1. 背景 (Background)
 
@@ -75,7 +77,7 @@ related_adrs: []
 **Acceptance Criteria**:
 - [ ] Given 使用者點擊地圖上的唐朝疆域，when 觸發聚焦模式，then 地圖應高亮唐朝疆域並列出同時期周邊政權清單
 - [ ] Given 已進入聚焦模式，when 使用者拖動時間拉桿，then 聚焦政權的存續區間應被高亮標示，超出存續區間時應提示「此政權於該時間點尚未建立/已不存在」
-- [ ] Given 聚焦政權與周邊政權之間存在已建檔的互動事件（如貿易、戰爭），when 顯示互動清單，then 應列出可點擊追溯至對應 `historical_events` 記錄的入口（TODO：互動清單的完整互動類型定義，見 §12 Open Questions，對應憲法 §10 R3 相關術語缺口）
+- [ ] Given 聚焦政權與周邊政權之間存在已建檔的離散互動事件（如戰爭、條約），when 顯示互動清單，then 應列出可點擊追溯至對應 `historical_events` 記錄的入口；若是持續性關係（如貿易、朝貢），則列出對應 `regime_relations` 記錄的入口（已拍板，見 §6）
 
 ### Story 3: 觀察視角切換與名稱可追溯性（對應憲法 §6 命名機制、I4）
 
@@ -97,7 +99,7 @@ related_adrs: []
 **Acceptance Criteria**:
 - [ ] Given 時間拉桿拖到政權分裂年份，when 地圖渲染，then 應同時顯示分裂後的多個新政權疆域（例：漢朝→曹魏／蜀漢／東吳三個獨立疆域區塊）
 - [ ] Given 某政權以「被取代（禪讓）」方式終止（例：曹魏→西晉），when 顯示該政權狀態，then UI 呈現方式須與「被滅亡」（例：蜀漢被曹魏滅亡）在視覺/文字上明確區分為兩種不同狀態，不可合併呈現（憲法原話：「取代跟消滅應該是兩種不同的定義」）
-- [ ] Given 「正式朝代」與「子朝代/分裂政權」的分類定義（TODO，憲法 §10 未拍板），when 系統呈現政權列表，then 暫以憲法已確認案例（漢→晉為正式傳承主線，三國期間政權為分裂期政權）作為顯示邏輯基礎，精確分類規則待補（見 §12）
+- [ ] Given 系統呈現政權列表的預設「主線」視圖，when 使用者未指定特定史觀，then 依 `lineage_presets` 中的預設 preset（例：「傳統教科書史觀」，內含漢→曹魏→西晉序列）顯示主線；蜀漢/東吳等分裂期政權仍完整存在於資料庫，可在細節模式中查看（方案 D，已拍板，見 §6）
 
 ### Story 5: 模糊／爭議年份的呈現與查詢（對應憲法 §9、notes EDTF 設計）
 
@@ -120,32 +122,43 @@ related_adrs: []
 |---|---|---|
 | Frontend | Angular ^22.1.0 | 既有專案偵測（`app/package.json`），CLI scaffold 已存在，沿用 |
 | Backend | .NET 10 Web API（`net10.0`） | 既有專案偵測（`api/WorldLine.Api.csproj`），CLI scaffold 已存在，沿用 |
-| DB | PostgreSQL 16-alpine | 既有專案偵測（`docker-compose.yml`）。**⚠️ 需改用 `postgis/postgis` 映像檔或於現有 `postgres:16-alpine` 容器內手動安裝 PostGIS extension**——目前 compose 用的是純 postgres image，不含 PostGIS，GIS 幾何欄位（`GEOMETRY`/`GEOGRAPHY`）與空間索引無法直接運作，需列入 M1 前置工作 |
+| DB | PostgreSQL 16（`postgis/postgis:16-3.4` 映像檔） | **已拍板（grill-me 2026-08-25）**：`docker-compose.yml` 的 postgres image 由純 `postgres:16-alpine` 改為 `postgis/postgis:16-3.4`，一行改動即取得 PostGIS extension，維護成本低於自建 init script，列入 M1 前置工作 |
 | Cache | Redis 7-alpine | 既有專案偵測（`docker-compose.yml`），已備妥容器 |
 | Auth | TODO | 憲法與 notes 均未提及認證機制，第一階段僅開發者自用，是否需要 JWT/Session 待確認（見 §12） |
 | Deploy | Docker Compose | 既有專案偵測，frontend（Nginx，4200→80）/ backend（8080→5000）/ postgres（5432）/ redis（6379）四 service 已編排完成 |
 | 監控 | TODO | 尚未評估，憲法/notes 未提及 |
 
-### B. GIS 領域專屬技術（候選，待選型，來自 notes）
+### B. GIS 領域專屬技術
 
-| 層 | 候選 | 對應需求 | 狀態 |
+> 以下標「**已拍板**」的項目，均經 2026-08-25 `/grill-me` 逐項壓力測試後確認；標「候選」者未在本輪討論，維持待評估狀態。
+
+| 層 | 選型 | 對應需求 | 狀態 |
 |---|---|---|---|
-| 地圖引擎 | MapLibre GL JS | 全球政權圖層渲染、時間過濾器（Filter Expressions） | 候選（notes §一.3、§十一 checklist 第 1 項待決） |
-| 高階視覺化 | Deck.gl（搭配 MapLibre） | 貿易路線/行軍路線/傳播軌跡等進階圖層 | 候選，是否第一階段就導入待決 |
-| 圖資壓縮與形變 | TopoJSON + Flubber.js | 疆域邊界共享壓縮、連續變化過渡動畫（對應憲法 §9） | 候選 |
-| 空間幾何分析 | Turf.js | 政權標籤置中點計算、邊界簡化 | 候選 |
-| 政權狀態機 | XState（或簡單 enum + 應用層邏輯） | 存續/分裂/被取代/被滅亡狀態防呆（對應憲法 §4） | 候選，notes §十一 checklist 第 3 項待決是否第一階段導入 |
-| 紀年轉換 | `lunar-javascript` / `cnlunar` / 自建年號對照表 | 西元 ↔ 年號/廟號（武德、開元等）雙向映射（對應憲法 §9 多重紀年） | 候選，涵蓋範圍待確認（notes §十一 checklist 第 4 項） |
-| 時間格式化 | Dayjs/Luxon + 自訂 BCE 擴充 | 處理無西元 0 年、負數年份 | 候選 |
-| 向量切片服務 | Martin（Rust）或 Tegola | 直連 PostGIS 動態切 MVT，避免巨量 GeoJSON 卡頓 | 候選，資料供應策略待定（notes §十一 checklist 第 2 項） |
-| 靜態離線切片 | PMTiles | 單檔金字塔圖磚，適合離線/靜態主機 | 候選，與 MVT 動態方案分階段導入策略待定 |
-| EDTF 時間解析 | npm `edtf` 或自建 parser | 精確到日/月/年/模糊區間的人類語意時間格式（對應憲法 §9、notes §五） | 候選 |
-| GIS 資料庫擴充 | PostGIS extension | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | 候選但高確定性——技術上為必要擴充，僅安裝方式（映像檔 vs 手動裝）待確認 |
-| 歷史地理原始資料 | CHGIS / CShapes / OpenHistoricalMap / GeaCron | 繪製政權疆域 GeoJSON 骨幹的資料來源 | 候選，授權條款待確認（notes §十一 checklist） |
+| 地圖引擎 | MapLibre GL JS | 全球政權圖層渲染、時間過濾器（Filter Expressions） | **已拍板：Phase 1 單獨使用**。Deck.gl 保留為後續可疊加選項，待動畫流動效果（絲路貿易路線、傳播視覺化等）出現實際需求時再加，兩者設計上可疊加不衝突 |
+| 高階視覺化 | Deck.gl（搭配 MapLibre） | 貿易路線/行軍路線/傳播軌跡等進階圖層 | **已拍板：Phase 1 不導入**，明確保留為後續疊加選項（見上） |
+| 圖資壓縮與形變 | TopoJSON + Flubber.js | 疆域邊界共享壓縮、連續變化過渡動畫（對應憲法 §9） | 候選，未在本輪討論，維持待評估 |
+| 空間幾何分析 | Turf.js | 政權標籤置中點計算、邊界簡化 | 候選，未在本輪討論，維持待評估 |
+| 政權狀態機 | XState | 存續/分裂/被取代/被滅亡狀態防呆（對應憲法 §4） | **已拍板：Phase 1 就導入**（使用者選擇一步到位，非採用建議的簡單 enum 方案，理由：避免後續遷移成本） |
+| 紀年轉換 | 自建 `reign_eras` 查詢表 | 西元 ↔ 年號/廟號（武德、開元、日本昭和、民國年等）雙向映射（對應憲法 §9 多重紀年） | **已拍板：自建查詢表，不使用 `lunar-javascript`/`cnlunar`**——這兩個套件處理的是農曆換算，跟「年號查詢」是不同問題；憲法 §9 需求本質是一張「年號-政權-起訖年」查詢表，不是曆法計算 |
+| 時間格式化 | Dayjs/Luxon + 自訂 BCE 擴充 | 處理無西元 0 年、負數年份；EDTF decimal 計算時用來正確處理閏年天數 | 候選，未在本輪討論，維持待評估 |
+| 向量切片服務 | Martin（Rust）或 Tegola | 直連 PostGIS 動態切 MVT，避免巨量 GeoJSON 卡頓 | **已拍板：Phase 1 不導入**，Phase 1 用純 GeoJSON（見下），Phase 2 若遇全球渲染效能瓶頸再評估導入 |
+| 靜態離線切片 | PMTiles | 單檔金字塔圖磚，適合離線/靜態主機 | **已拍板：Phase 1 不導入**，待出現具體離線/純靜態部署需求再評估 |
+| 資料供應策略 | 純 GeoJSON | 後端直接回傳幾何資料，前端直接渲染 | **已拍板：Phase 1 採用**。理由：R1 範圍（中國史、朝代/國家層級）政權數量與疆域幾何複雜度可控，純 GeoJSON 已足夠，不需額外架設 Martin/Tegola 增加維運負擔；Phase 2「世界史」需同時渲染全球大量政權疆域，若遇效能瓶頸再回頭導入 MVT 動態切片；PMTiles 待「離線/純靜態部署」具體需求出現再評估 |
+| EDTF 時間解析 | npm `edtf` | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已拍板：使用現成套件**，不自建正則解析器（EDTF 規格邊界情況多，如不確定標記 `?`、約略標記 `~`、開放區間、負數西元前年份，自建風險大於收益）；寫入時後端強制驗證格式；`start_decimal`/`end_decimal` 由後端寫入當下自動推算（EDTF 字串為 single source of truth，不手動分別填兩欄；閏年天數由標準日期函式庫正確處理，不需另外設計誤差公式） |
+| GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已拍板**，見上方 DB 列 |
+| 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
+| 斜線網底配色 | 集中共用常數檔（非正式 Design Token 系統） | 爭議控制區（notes §十）視覺呈現一致性 | **已拍板：Phase 1 用單一共用常數檔**（如 `neutral-map-colors.ts`）集中管理顏色/間距，不建置正式 Design Token pipeline；待深色模式或多人協作需求出現再升級 |
 
 ## 6. 資料模型 (Data Model)
 
-> 依憲法 I1-I5 設計政權/疆域 schema 骨幹，並整合 notes `historical_events` / `historical_event_perspectives` / `historical_event_controversies` 作為事件圖層。憲法 §10 尚未拍板的「正式朝代 vs 子朝代/分裂政權」分類與傳承鏈結構，本節保留為 TODO 欄位，不代為拍板定義。
+> 依憲法 I1-I5 設計政權/疆域 schema 骨幹，並整合 notes `historical_events` / `historical_event_perspectives` / `historical_event_controversies` 作為事件圖層。**2026-08-25 grill-me 更新**：憲法 §10「正式朝代 vs 子朝代/分裂政權」分類問題已拍板解法（非直接分類欄位，見下方方案 D 說明），政權互動、事件多維度拆分、多重視角觀察者等 schema 設計也一併定案，取代原本的 TODO 留白。
+
+### 設計原則（grill-me 拍板摘要）
+
+- **政權轉換邊是客觀事實，「正式朝代」標籤是史觀立場**：`regimes` 表只記錄禪讓/滅亡/分裂這些客觀發生過的轉換動作，不判斷誰是「正統」。「主線敘事」（例如傳統教科書史觀的漢→魏→晉→⋯⋯序列）改用獨立的 `lineage_presets` 表承載，明確標註是哪一種史觀，可並存多個 preset，核心政權圖保持中立（方案 D）
+- **政權互動依「離散事件」vs「持續關係」拆兩張表**：戰爭/條約/會戰這類有明確起訖的事件進 `historical_events`；絲路貿易、朝貢、和親這類沒有單一時間點、更像持續狀態的關係進 `regime_relations`
+- **事件本身有三個獨立維度**：時間長短由既有 EDTF 區間表達（不需新欄位）；類型（戰爭/貿易/革命/改革）用多對多標籤（不用單一 enum，因為像明治維新這種事件常同時橫跨多個類型）；組成關係（大戰爭包含小戰役）用 `parent_event_id` 自我參照，這個父子結構同時也是 notes §六語意縮放（Semantic Zooming）的資料基礎——年級尺度只顯示頂層事件，日/月級尺度才展開子事件
+- **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
 
 ### Schema 變動
 
@@ -155,11 +168,42 @@ CREATE TABLE regimes (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   self_name VARCHAR(128) NOT NULL,              -- 自稱名稱（I2 硬約束，例："唐"、"阿拔斯王朝"）
   status VARCHAR(32) NOT NULL,                  -- 存續 / 分裂 / 被取代(禪讓) / 被滅亡（憲法 §4 狀態機）
-  -- TODO：「正式朝代」vs「子朝代/分裂政權」分類欄位定義未拍板，憲法 §10 開放問題，暫不建欄位，待確認後補
-  -- TODO：分裂/傳承關係鏈（如曹魏/蜀漢/東吳與漢朝的傳承關係）是否需要 parent_regime_id 或獨立的 regime_lineage 表，憲法 §10 開放問題，暫留白
+
+  -- 轉換邊（客觀事實層，方案 D：不判斷正統，只記錄發生過的轉換動作）
+  predecessor_regime_id UUID REFERENCES regimes(id),  -- 因「分裂」或「被取代(禪讓)」而來的前身政權；獨立建國則為 NULL
+  origin_transition_type VARCHAR(16),                 -- '分裂' | '被取代禪讓' | NULL（獨立建國，無前身）
+  destroyed_by_regime_id UUID REFERENCES regimes(id), -- 若 status='被滅亡'，記錄消滅方政權；其餘狀態為 NULL
+
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW(),
   version INT DEFAULT 0                          -- 樂觀併發
+);
+
+-- 史觀主線 preset（方案 D：把「正式朝代」這種立場判斷從核心政權圖移出來，變成明確標註來源的獨立呈現層）
+CREATE TABLE lineage_presets (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  preset_name VARCHAR(128) NOT NULL,            -- 例："傳統教科書史觀"、"蜀漢正統論史觀"
+  description TEXT,                             -- 這個 preset 代表哪一種史觀立場、由誰／依據什麼提出
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE lineage_preset_members (
+  preset_id UUID NOT NULL REFERENCES lineage_presets(id),
+  regime_id UUID NOT NULL REFERENCES regimes(id),
+  sort_order INT NOT NULL,                      -- 在這個 preset 顯示序列中的順序
+  PRIMARY KEY (preset_id, regime_id)
+);
+
+-- 政權間持續性關係（絲路貿易、朝貢、和親、同盟、敵對等，跟「離散事件」性質不同）
+CREATE TABLE regime_relations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  regime_a_id UUID NOT NULL REFERENCES regimes(id),
+  regime_b_id UUID NOT NULL REFERENCES regimes(id),
+  relation_type VARCHAR(32) NOT NULL,           -- 貿易 / 朝貢 / 和親 / 同盟 / 敵對 ...
+  valid_period INT4RANGE NOT NULL,              -- 關係存續的時間區間（同 I1 精神，時間區間必填）
+  route GEOMETRY(MultiLineString, 4326),        -- 可選：關係對應的路線（例：絲路貿易路線）
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- 政權他稱代稱（I4：必須可追溯回自稱本體，不可為孤兒資料）
@@ -200,10 +244,10 @@ CREATE TABLE place_names (
 CREATE TABLE historical_events (
     id VARCHAR(64) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    event_type VARCHAR(32) NOT NULL,               -- rebellion / war / treaty ...
-    start_edtf VARCHAR(32) NOT NULL,                -- EDTF 人類語意時間（對應憲法 §9）
+    parent_event_id VARCHAR(64) REFERENCES historical_events(id), -- 組成關係：大事件（二戰/明治維新）底下的子事件（戰役/具體改革），同時驅動語意縮放（notes §六）顯示層級——年級尺度只顯示頂層事件，日/月級尺度展開子事件
+    start_edtf VARCHAR(32) NOT NULL,                -- EDTF 人類語意時間（對應憲法 §9），時間長短由區間本身表達，不需額外欄位
     end_edtf VARCHAR(32) NOT NULL,
-    start_decimal NUMERIC(8,3) NOT NULL,            -- 電腦計算用小數年份（notes §五）
+    start_decimal NUMERIC(8,3) NOT NULL,            -- 電腦計算用小數年份（notes §五），寫入時由後端自動從 EDTF 推算
     end_decimal NUMERIC(8,3) NOT NULL,
     origin_point GEOMETRY(Point, 4326),
     influence_area GEOMETRY(MultiPolygon, 4326),
@@ -213,16 +257,36 @@ CREATE TABLE historical_events (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- 事件類型標籤（多對多，取代單一 event_type 欄位——同一事件常橫跨多類型，例：明治維新同時是政治改革+社會現代化+外交重整）
+CREATE TABLE event_tags (
+    id SERIAL PRIMARY KEY,
+    tag_name VARCHAR(32) NOT NULL UNIQUE           -- 例："war"、"trade"、"reform"、"revolution"、"treaty"
+);
+
+CREATE TABLE historical_event_tag_map (
+    event_id VARCHAR(64) NOT NULL REFERENCES historical_events(id),
+    tag_id INT NOT NULL REFERENCES event_tags(id),
+    PRIMARY KEY (event_id, tag_id)
+);
+
+-- 非政權觀察者的受控類別（取代自由文字，避免同一概念打出不同拼法）
+CREATE TABLE observer_categories (
+    id SERIAL PRIMARY KEY,
+    category_name VARCHAR(64) NOT NULL UNIQUE      -- 種子資料至少含："國際第三者（當代旁觀）"、"後世史學界（事後回顧）"，可隨時擴充新類別
+);
+
 -- 各方主觀敘事層（來自 notes §十.2，對應憲法多重視角/中立呈現原則）
 CREATE TABLE historical_event_perspectives (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     event_id VARCHAR(64) REFERENCES historical_events(id),
-    regime_id UUID REFERENCES regimes(id),           -- TODO：是否強制對應已建檔政權，或允許自由文字主體（如"國際第三者"），notes §十一 checklist 未決
+    regime_id UUID REFERENCES regimes(id),           -- 當事政權視角；非政權主體則留 NULL
+    observer_category_id INT REFERENCES observer_categories(id), -- regime_id 為 NULL 時應指向此表（國際第三者/後世史學界等），不允許自由文字
     local_name VARCHAR(128) NOT NULL,
     narrative_summary TEXT NOT NULL,
     official_justification TEXT,
     primary_sources JSONB,
     claimed_casualties JSONB
+    -- 應用層驗證：regime_id 與 observer_category_id 至少擇一非 NULL
 );
 
 -- 爭議點層（來自 notes §十.2）
@@ -239,17 +303,22 @@ CREATE TABLE historical_event_controversies (
 
 - `regimes` 1 --- N `regime_aliases`（I4 FK 約束，代稱不可孤兒）
 - `regimes` 1 --- N `regime_territories`（I1 時間區間必填，I5 版本鏈以 `superseded_by` 自我參照而非覆蓋刪除）
-- `regimes` 1 --- N `historical_event_perspectives`（TODO：是否強制 FK，見上）
+- `regimes` 自我參照 `predecessor_regime_id` / `destroyed_by_regime_id`（分裂/禪讓/滅亡轉換邊，客觀事實層，方案 D）
+- `regimes` N --- N `regimes`（透過 `regime_relations`，持續性關係如貿易/朝貢/和親）
+- `lineage_presets` 1 --- N `lineage_preset_members` N --- 1 `regimes`（史觀主線呈現層，與核心政權圖解耦）
+- `regimes` 1 --- N `historical_event_perspectives`（nullable，非政權主體改連 `observer_categories`）
+- `observer_categories` 1 --- N `historical_event_perspectives`
+- `historical_events` 自我參照 `parent_event_id`（大事件/子事件組成關係，同時驅動語意縮放）
+- `historical_events` N --- N `event_tags`（透過 `historical_event_tag_map`，取代單一 `event_type`）
 - `historical_events` 1 --- N `historical_event_perspectives`
 - `historical_events` 1 --- N `historical_event_controversies`
-- `regimes` 之間的分裂/傳承關係：TODO，憲法 §10 開放問題，暫無 schema 表達方式
 
 ### DDD 邊界
 
-- **Aggregate Root**: `Regime`（政權）、`HistoricalEvent`（歷史事件）——兩者為平行的獨立聚合根，對應 notes §七「疆域圖層 vs 事件圖層」解耦設計
-- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）
-- **Value Object**: `valid_period`（int4range）、EDTF 時間字串、`geom` 幾何值
-- **跨 Aggregate 連結**: `historical_event_perspectives.regime_id` 以識別碼 FK 連結至 `Regime` 聚合，**不直接持有** `Regime` 實體引用
+- **Aggregate Root**: `Regime`（政權）、`HistoricalEvent`（歷史事件）、`LineagePreset`（史觀主線 preset）——三者為平行的獨立聚合根，對應 notes §七「疆域圖層 vs 事件圖層」解耦設計，`LineagePreset` 額外把「呈現用史觀立場」跟「客觀政權圖」解耦（方案 D）
+- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）
+- **Value Object**: `valid_period`（int4range）、EDTF 時間字串、`geom` 幾何值、`origin_transition_type`（分裂/被取代禪讓）
+- **跨 Aggregate 連結**: `historical_event_perspectives.regime_id`、`lineage_preset_members.regime_id`、`regime_relations.regime_a_id/regime_b_id` 均以識別碼 FK 連結至 `Regime` 聚合，**不直接持有** `Regime` 實體引用
 
 ## 7. API 契約 (API Contract)
 
@@ -260,7 +329,7 @@ CREATE TABLE historical_event_controversies (
 | GET | /api/v1/regimes | 依時間區間查詢政權清單（支援 `?year=` 或 `?period=` 過濾） | TODO（見 §5 Auth 待確認） |
 | GET | /api/v1/regimes/:id | 取得單一政權詳情（含自稱名稱、狀態、代稱清單） | TODO |
 | POST | /api/v1/regimes | 新增政權（I2 校驗自稱名稱必填） | TODO |
-| PATCH | /api/v1/regimes/:id | 更新政權（狀態轉換須符合憲法 §4 合法轉換規則，TODO：後端是否需實作狀態機防呆邏輯，或交由前端 XState 候選方案處理，見 §12） | TODO + 樂觀併發 |
+| PATCH | /api/v1/regimes/:id | 更新政權（狀態轉換須符合憲法 §4 合法轉換規則；前端用 XState 做 UI 層防呆，已拍板見 §5——後端是否需共用同一份狀態機定義仍待確認，見 §12） | TODO + 樂觀併發 |
 | GET | /api/v1/regimes/:id/territories | 取得政權疆域歷史（含版本鏈，I5） | TODO |
 | POST | /api/v1/regimes/:id/territories | 新增疆域記錄（I1 校驗時間區間必填） | TODO |
 | PATCH | /api/v1/territories/:id/correct | 史料修正端點（I5：產生新版本並保留原版本，非覆蓋更新，對應憲法 §8） | TODO + 樂觀併發 |
@@ -268,6 +337,9 @@ CREATE TABLE historical_event_controversies (
 | GET | /api/v1/events?year={y} | 查詢某時間點/區間的歷史事件（對應 notes §七 事件圖層） | TODO |
 | GET | /api/v1/events/:id/perspectives | 取得事件的多重視角敘事（對應 Story 3、notes §十） | TODO |
 | GET | /api/v1/events/:id/controversies | 取得事件爭議點列表 | TODO |
+| GET | /api/v1/lineage-presets | 取得可用史觀主線 preset 清單（方案 D，§6） | TODO |
+| GET | /api/v1/lineage-presets/:id/regimes | 取得某 preset 底下依序排列的政權序列 | TODO |
+| GET | /api/v1/regimes/:id/relations?year={y} | 取得政權在某時間點的持續性關係（貿易/朝貢/同盟等，`regime_relations`） | TODO |
 
 詳細 request / response schema 見 OpenAPI `TODO`（尚未產出，待 M1 階段補上）。
 
@@ -308,13 +380,14 @@ CREATE TABLE historical_event_controversies (
 
 | 風險 | 影響 | 緩解 |
 |---|---|---|
-| `docker-compose.yml` 目前用純 `postgres:16-alpine` 而非 `postgis/postgis` 映像檔，GIS 幾何欄位/空間索引無法直接運作 | high | M1 前置工作：改用 `postgis/postgis` 映像檔，或於現有容器內以初始化腳本安裝 PostGIS extension |
-| 開源歷史地理資料（CHGIS/OHM/CShapes/GeaCron）授權條款未確認是否符合本專案使用情境（含未來教育用途） | high | 待使用者確認各資料源授權條款，見 §12 |
+| ~~`docker-compose.yml` 用純 `postgres:16-alpine`，GIS 幾何欄位/空間索引無法運作~~ | ~~high~~ | **已解決（2026-08-25）**：拍板改用 `postgis/postgis:16-3.4` 映像檔，列入 M1 前置工作 |
+| CHGIS／CShapes 授權為非商業限定（CC BY-NC-SA / 學術限定），若專案未來出現贊助或政府投資等資金來源，需重新確認授權相容性 | med | 使用者已確認目前無商業化/收費計畫，OHM（CC0）作主要資料來源可完全規避此風險；CHGIS/CShapes 僅輔助使用，若未來有資金來源介入，啟動前需重新查證或改用純 OHM 資料，詳見 §5 |
 | 多重視角史料考據工作量大（notes §十設計要求「客觀骨幹 + 各方主觀敘事 + 爭議點」三層結構，每個跨國事件都需多方史料） | high | 第一階段（中國史）先聚焦內部政權疆域資料，多重視角功能可延後至世界史階段跨國事件出現時再逐步建置 |
-| 政權「正式朝代 vs 子朝代/分裂政權」分類與傳承鏈定義未拍板（憲法 §10），可能影響 schema 設計方向 | med | 待憲法 owner 拍板後再定案 `regimes` 表的傳承關係欄位，目前 schema 保留 TODO 空白，不預先假設結構 |
-| EDTF + decimal year 雙欄位模型的轉換精度（平閏年誤差）與計算時機（寫入時後端自動推算 vs 離線批次）未定 | med | notes §十一已列為待決問題，待選型階段確認，見 §12 |
-| 斜線網底（爭議控制區）Shader 方案在大量爭議區同時繪製時的效能瓶頸 | low | notes 已建議 MVP 階段採 Canvas Pattern 方案規避，成熟階段再升級 WebGL Shader |
-| GIS 專屬技術棧（MapLibre/Deck.gl/Martin/PMTiles 等）均為候選狀態，尚未拍板，可能影響前端資料供應架構設計方向 | med | 待 §12 選型問題確認後定案，避免提前深度綁定候選技術 |
+| ~~政權「正式朝代 vs 子朝代/分裂政權」分類與傳承鏈定義未拍板~~ | ~~med~~ | **已解決（2026-08-25）**：不做分類欄位，改用 `regimes` 轉換邊（客觀事實）+ 獨立 `lineage_presets` 表（史觀主線呈現層），詳見 §6 方案 D |
+| ~~EDTF + decimal year 轉換精度與計算時機未定~~ | ~~med~~ | **已解決（2026-08-25）**：用 npm `edtf` 套件解析＋寫入時驗證＋後端自動算 decimal，閏年天數交給標準日期函式庫處理 |
+| 斜線網底（爭議控制區）Shader 方案在大量爭議區同時繪製時的效能瓶頸 | low | Phase 1 採 Canvas Pattern 方案規避（已拍板，見 §5），成熟階段再評估升級 WebGL Shader |
+| ~~GIS 專屬技術棧均為候選狀態~~ | ~~med~~ | **大部分已解決（2026-08-25）**：地圖引擎、資料供應策略、狀態機、紀年轉換、EDTF 解析、歷史資料授權均已拍板，詳見 §5；剩餘候選（TopoJSON+Flubber、Turf.js、Dayjs/Luxon）尚未深入討論，維持待評估 |
+| XState 引入後，前端狀態機定義與後端業務規則驗證邏輯需要保持同步，若各自實作一套規則容易產生分歧 | med | 實作階段需明確定義「前端 XState 負責 UI 層防呆」還是「後端也要共用同一份狀態機定義」，避免規則漂移，此為新增風險（使用者選擇 Phase 1 即導入 XState 後產生） |
 
 ### 相依
 
@@ -337,31 +410,34 @@ CREATE TABLE historical_event_controversies (
 
 - 上線後 1 週：review 使用者（開發者自身）實際使用回饋，是否符合「縱覽世界」的核心體驗目標
 - 30 天：檢視中國史階段資料完整度與正確性，決定是否啟動世界史階段擴充
-- 90 天：檢視是否需要針對「正式朝代 vs 子朝代/分裂政權」分類（憲法 §10）、GIS 技術選型候選（§12）等 open questions 開立對應 ADR
+- 90 天：檢視 §12 剩餘開放問題（Auth 機制、Figma 同步模式、角色職責細節、技術效能目標）是否需要開立對應 ADR；已拍板的 12 項技術決策（方案 D 史觀 preset、事件三維度拆分等）視實作回饋決定是否需要正式 ADR 留存決策紀錄
 
 ## 12. 開放問題 (Open Questions)
 
-> 完整帶入憲法 §10 的 4 條 TODO，以及 notes §十一 checklist 中尚未解決的關鍵選型問題。**憲法本體開放問題與 notes 未拍板技術選型問題性質不同**，前者需業務 owner 拍板、後者需技術選型會議確認，禁止 AI 代為假設。
+> **2026-08-25 更新**：以下 16 條原始開放問題中，12 條已透過 `/grill-me` 拍板（決策內容回填至 §5/§6/§9，此處不重複列出，僅標記已解決）。剩餘未拍板項目維持 TODO，禁止 AI 代為假設。
 
-**來自憲法 §10（業務規則層，需業務 owner 拍板）**：
+**已解決（詳見 §5/§6/§9）**：
+- [x] 正式朝代/子朝代分類定義 → 方案 D（`lineage_presets` 獨立表，§6）
+- [x] 分裂政權傳承關係鏈 → `predecessor_regime_id`/`destroyed_by_regime_id` 轉換邊（§6）
+- [x] 政權間互動（R3）建模方式 → 離散事件用 `historical_events`、持續關係用 `regime_relations`（§6）
+- [x] 事件的時間長短/類型/組成關係如何拆分 → EDTF 區間／多標籤／`parent_event_id`（§6）
+- [x] 地圖引擎選型 → MapLibre GL JS 單獨，Deck.gl 留待後續疊加（§5）
+- [x] 資料供應策略 → Phase 1 純 GeoJSON（§5）
+- [x] XState 導入時機 → Phase 1 即導入（§5）
+- [x] 紀年轉換庫涵蓋範圍 → 自建 `reign_eras` 表，不用 `lunar-javascript`/`cnlunar`（§5）
+- [x] 斜線網底 Design Token 化 → 先用共用常數檔（§5）
+- [x] 開源歷史地理資料授權 → OHM 為主，CHGIS/CShapes 限非商業，GeaCron 僅作 UX 參考（§5、§9）
+- [x] `historical_event_perspectives.regime_id` 是否強制 FK → nullable FK + `observer_categories` 受控對照表（§6）
+- [x] EDTF parser 選型與 decimal 計算時機 → npm `edtf` + 寫入時後端自動推算（§5）
 
-- [ ] TODO：「正式朝代」與「子朝代/分裂政權」的精確分類定義（例：判定條件是什麼？子朝代是否有獨立疆域規則？）——使用者已提出概念雛形（漢→晉為正式傳承，三國期間政權為子朝代/分裂政權），但尚未拍板精確定義。
-- [ ] TODO：分裂產生的政權（如曹魏/蜀漢/東吳）是否需記錄與原政權的正式傳承關係鏈，或視為獨立政權——待與上一題一併細化，本 PRD §6 schema 已預留空白，待確認後補欄位設計。
+**尚未拍板（業務規則層，需業務 owner 拍板）**：
+
 - [ ] TODO：憲法 §2 領域角色中「開發者」「使用者」兩個角色的具體業務職責尚未展開描述。
-- [ ] TODO：憲法 R3 提及的「政權間互動」（例如貿易/戰爭/外交）目前沒有對應的憲法 §6 術語定義，未來可能需要補充，本 PRD Story 2 的互動清單完整類型定義因此暫留白。
 
-**來自 notes §十一（GIS 技術選型層，需技術選型確認，至少列出關鍵項目）**：
-
-- [ ] TODO：地圖引擎最終選型——MapLibre GL JS 單獨使用，還是搭配 Deck.gl？
-- [ ] TODO：資料供應策略——純 GeoJSON vs MVT（Martin/Tegola）vs PMTiles 靜態，三者是否分階段導入？
-- [ ] TODO：是否現階段就導入 XState 管理政權狀態機，或先用簡單 enum + 應用層邏輯？
-- [ ] TODO：紀年轉換庫涵蓋範圍——`lunar-javascript` 是否涵蓋非中國紀年（日本昭和、民國年等），或需自建年號對照表？
-- [ ] TODO：斜線網底（爭議控制區）的顏色/間距參數是否需做成可設定的「中立配色 Design Token」？
-- [ ] TODO：開源歷史地理資料（CHGIS/OHM/CShapes）授權條款是否符合本專案使用情境（含未來教育用途）？
-- [ ] TODO：`historical_event_perspectives.regime_id` 是否強制對應已建檔政權實體，還是允許「國際第三者」等非政權主體的自由文字？
-- [ ] TODO：EDTF 字串是否用現成 parser（npm `edtf`）解析，`start_decimal`/`end_decimal` 由後端寫入時自動推算還是離線批次計算，平閏年誤差是否需要更精確公式？
-
-**其他 PRD 產出過程中發現的待確認事項**：
+**尚未拍板（其他 PRD 產出過程中發現的待確認事項）**：
 
 - [ ] TODO：Auth 機制（§5）——第一階段僅開發者自用，是否仍需 JWT/Session？
 - [ ] TODO：設計交付模式（`design_output_mode`）與是否需要 Figma 同步（`figma_sync_mode`/`figma_target`）尚未確認，見下方「使用者待確認事項」。
+- [ ] TODO：技術目標的量化指標（§2，p95 latency、併發使用者數等）憲法與 notes 均未提供，需使用者補充或明確表示「暫不設定」。
+- [ ] TODO：XState 前端狀態機定義是否需要跟後端業務規則驗證邏輯共用同一份定義，避免規則漂移（新增風險，見 §9）。
+- [ ] TODO：若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（見 §9），暫不需現在處理。

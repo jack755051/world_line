@@ -11,7 +11,9 @@ related_adrs: []
 
 # PRD: World Line — 歷史地圖 GIS 平台
 
-> ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md`（frontmatter `status: draft`，**尚未由業務 owner 拍板為 `active`**）產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據，但憲法 §10 列出的 4 條開放問題尚未全部拍板，本 PRD 對應段落一律標記 TODO，不代為假設。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
+> ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md` 產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
+>
+> **2026-08-25 更新（第三輪，delta 比對）**：憲法 frontmatter `status` 已由 `draft` 拍板為 `active`，§10 原始 4 條開放問題全數解決（回填至憲法 §2 角色職責、§4 傳承關係鏈、§6 正式朝代/政權間互動術語）。經逐項比對，這些內容與本 PRD 既有的角色權限說明（§2）、方案 D lineage_presets 設計（§6）、historical_events/regime_relations 拆分（§6）**完全一致，無需修改對應段落**——本輪僅同步移除過時的「憲法尚未拍板」警語。
 >
 > **2026-08-25 更新（第一輪）**：透過 `/grill-me` 對本 PRD 逐項壓力測試，拍板了 12 項技術選型與資料模型決策（PostGIS 安裝方式、正式朝代分類、政權互動建模、事件多維度拆分、地圖引擎、資料供應策略、狀態機函式庫、紀年轉換、EDTF 解析、多重視角觀察者、斜線網底、開源資料授權），內容已回填至 §5/§6/§9/§12。
 >
@@ -395,7 +397,7 @@ CREATE TABLE historical_event_controversies (
 
 ### 相依
 
-- **上游**：憲法 `.claude/constitutions/world-line.md` 需由業務 owner 確認並將 `status` 改為 `active`（目前為 `draft`）；PostGIS extension 安裝需先於資料庫層完成；歷史地理原始資料（CHGIS 等）授權確認需先於資料建置階段完成。
+- **上游**：憲法 `.claude/constitutions/world-line.md`（已於 2026-08-25 拍板為 `status: active`）；PostGIS extension 安裝需先於資料庫層完成；歷史地理原始資料（CHGIS 等）授權確認需先於資料建置階段完成。
 - **下游**：TODO——目前專案無其他下游依賴本 feature 的 team/service（單一專案，無已知下游影響範圍）。
 
 ## 10. 里程碑 (Milestones)

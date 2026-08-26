@@ -22,6 +22,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    using var seedScope = app.Services.CreateScope();
+    var seedDb = seedScope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+    await SeedData.SeedAsync(seedDb);
 }
 
 app.UseHttpsRedirection();

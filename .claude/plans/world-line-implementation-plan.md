@@ -44,15 +44,15 @@ related_constitution: .claude/constitutions/world-line.md
 
 ### 任務清單
 
-| # | 任務 | 產出 | Commit 建議 |
-|---|---|---|---|
-| 1.1 | `docker-compose.yml` postgres image 換成 `postgis/postgis:16-3.4` | 容器可跑，`SELECT postgis_version();` 有回應 | 1 個 commit |
-| 1.2 | `api/` 加入 `Npgsql.EntityFrameworkCore.PostgreSQL` + `Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite` NuGet 套件 | `WorldLine.Api.csproj` 依賴更新 | 併入 1.3 |
-| 1.3 | 建立 `WorldLineDbContext` | 空 DbContext 可注入、可連線 | 1 個 commit |
-| 1.4 | 依 PRD §6 建立 **14 個** Entity 類別（`Regime`/`RegimeAlias`/`RegimeTerritory`/`ReignEra`/`PlaceName`/`LineagePreset`/`LineagePresetMember`/`RegimeRelation`/`HistoricalEvent`/`EventTag`/`HistoricalEventTagMap`/`ObserverCategory`/`HistoricalEventPerspective`/`HistoricalEventControversy`）——**⚠️ `ReignEra` 是 2026-08-26 grill-me 補回的，先前 §5 拍板要用但漏掉沒進 schema，見 PRD §6 更新紀錄** | Entity 類別 + Fluent API 設定（FK、`INT4RANGE`、`GEOMETRY` 型別對應） | 拆 3 個 commit：①政權群組（Regime/RegimeAlias/RegimeTerritory/ReignEra/PlaceName）②史觀與關係群組（LineagePreset/LineagePresetMember/RegimeRelation）③事件群組（HistoricalEvent/EventTag/HistoricalEventTagMap/ObserverCategory/HistoricalEventPerspective/HistoricalEventControversy） |
-| 1.5 | 產出並套用第一份 EF Core migration | `dotnet ef database update` 成功，**14 張表**都建起來 | 1 個 commit |
-| 1.6 | 驗證 I1-I5 約束在 schema 層可行 | 手動測試：漏填時間區間會被擋（I1）、漏填自稱名稱會被擋（I2）、`regime_aliases.regime_id` FK 擋孤兒代稱（I4）——寫成簡短驗證筆記，不必是正式測試套件 | 不需額外 commit，併入 1.5 |
-| 1.7 | 種子資料（seed data）：**上限＝5-8 筆政權**（建議：漢、曹魏、蜀漢、東吳、西晉），涵蓋分裂/禪讓/滅亡三種轉換邊都至少出現一次，外加 1 個 `lineage_presets`（「傳統教科書史觀」）示範。**`regime_territories` 每個政權至少 2-3 筆快照**（不可一個政權只放一筆涵蓋全存續期間的疆域），建議蜀漢/東吳各自針對荊州易手（208/215/219 年前後）多放 1-2 筆快照，用來驗證「事件驅動快照密度」在同一區域可以比穩定期政權密集。**外加每個政權至少 1-2 筆 `reign_eras`**（例：蜀漢「章武」「建興」）、**外加至少 1 筆 `regime_relations`**（例：赤壁之戰前孫劉聯盟關係，用來驗證這張表也能查得到） | 一份可重複執行的 seed script | 1 個 commit |
+| 狀態 | # | 任務 | 產出 | Commit 建議 |
+|---|---|---|---|---|
+| [x] | 1.1 | `docker-compose.yml` postgres image 換成 `postgis/postgis:16-3.4` | 容器可跑，`SELECT postgis_version();` 有回應 | 1 個 commit |
+| [x] | 1.2 | `api/` 加入 `Npgsql.EntityFrameworkCore.PostgreSQL` + `Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite` NuGet 套件 | `WorldLine.Api.csproj` 依賴更新 | 併入 1.3 |
+| [x] | 1.3 | 建立 `WorldLineDbContext` | 空 DbContext 可注入、可連線 | 1 個 commit |
+| [ ] | 1.4 | 依 PRD §6 建立 **14 個** Entity 類別（`Regime`/`RegimeAlias`/`RegimeTerritory`/`ReignEra`/`PlaceName`/`LineagePreset`/`LineagePresetMember`/`RegimeRelation`/`HistoricalEvent`/`EventTag`/`HistoricalEventTagMap`/`ObserverCategory`/`HistoricalEventPerspective`/`HistoricalEventControversy`）——**⚠️ `ReignEra` 是 2026-08-26 grill-me 補回的，先前 §5 拍板要用但漏掉沒進 schema，見 PRD §6 更新紀錄** | Entity 類別 + Fluent API 設定（FK、`INT4RANGE`、`GEOMETRY` 型別對應） | 拆 3 個 commit：①政權群組（Regime/RegimeAlias/RegimeTerritory/ReignEra/PlaceName）②史觀與關係群組（LineagePreset/LineagePresetMember/RegimeRelation）③事件群組（HistoricalEvent/EventTag/HistoricalEventTagMap/ObserverCategory/HistoricalEventPerspective/HistoricalEventControversy） |
+| [ ] | 1.5 | 產出並套用第一份 EF Core migration | `dotnet ef database update` 成功，**14 張表**都建起來 | 1 個 commit |
+| [ ] | 1.6 | 驗證 I1-I5 約束在 schema 層可行 | 手動測試：漏填時間區間會被擋（I1）、漏填自稱名稱會被擋（I2）、`regime_aliases.regime_id` FK 擋孤兒代稱（I4）——寫成簡短驗證筆記，不必是正式測試套件 | 不需額外 commit，併入 1.5 |
+| [ ] | 1.7 | 種子資料（seed data）：**上限＝5-8 筆政權**（建議：漢、曹魏、蜀漢、東吳、西晉），涵蓋分裂/禪讓/滅亡三種轉換邊都至少出現一次，外加 1 個 `lineage_presets`（「傳統教科書史觀」）示範。**`regime_territories` 每個政權至少 2-3 筆快照**（不可一個政權只放一筆涵蓋全存續期間的疆域），建議蜀漢/東吳各自針對荊州易手（208/215/219 年前後）多放 1-2 筆快照，用來驗證「事件驅動快照密度」在同一區域可以比穩定期政權密集。**外加每個政權至少 1-2 筆 `reign_eras`**（例：蜀漢「章武」「建興」）、**外加至少 1 筆 `regime_relations`**（例：赤壁之戰前孫劉聯盟關係，用來驗證這張表也能查得到） | 一份可重複執行的 seed script | 1 個 commit |
 
 ### 範圍上限（本階段不做）
 
@@ -82,23 +82,23 @@ related_constitution: .claude/constitutions/world-line.md
 
 ### 任務清單
 
-| # | 任務 | 產出 | 對應 PRD | Commit 建議 |
-|---|---|---|---|---|
-| 2.1 | 後端政權狀態機合法轉換驗證器（C#，唯一信任來源） | `RegimeTransitionValidator` 服務，依憲法 §4 規則表判斷「存續→分裂／存續→被取代禪讓／存續→被滅亡」是否合法 | §5 XState 驗證分工 | 1 個 |
-| 2.2 | EDTF 套件整合 | 選定 .NET 生態的 EDTF 套件（若無成熟套件，見下方停止條件），封裝一個 `EdtfService`：格式驗證 + 換算 `start_decimal`/`end_decimal`（含閏年天數正確處理） | §5 EDTF 拍板 | 1 個 |
-| 2.3 | `reign_eras` 查詢端點 | `GET /api/v1/reign-eras?year={y}`（依年份查年號）、`GET /api/v1/regimes/:id/reign-eras`（依政權查所有年號） | §5 紀年轉換 | 1 個 |
-| 2.4 | 政權查詢端點（唯讀） | `GET /api/v1/regimes`（支援 `?year=`/`?period=` 過濾）、`GET /api/v1/regimes/:id` | §7 | 1 個 |
-| 2.5 | 政權寫入端點 | `POST /api/v1/regimes`（I2 校驗自稱名稱必填）、`PATCH /api/v1/regimes/:id`（呼叫 2.1 驗證器擋非法轉換） | §7 | 1 個 |
-| 2.6 | 疆域查詢端點（唯讀） | `GET /api/v1/regimes/:id/territories`、`GET /api/v1/territories?year={y}`（R2/Story 1 核心查詢） | §7 | 1 個 |
-| 2.7 | 疆域寫入 + 修正端點 | `POST /api/v1/regimes/:id/territories`（I1 校驗時間區間必填）、`PATCH /api/v1/territories/:id/correct`（I5 版本鏈：新增新版本、`superseded_by` 指回、不覆蓋刪除原記錄） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
-| 2.8 | 史觀主線 preset 查詢端點 | `GET /api/v1/lineage-presets`、`GET /api/v1/lineage-presets/:id/regimes` | §7 | 1 個 |
-| 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
-| 2.10 | 事件骨幹 CRUD | `GET /api/v1/events?year={y}`、`GET /api/v1/events/:id`、`POST /api/v1/events`（寫入時呼叫 2.2 EdtfService，含 `parent_event_id` 組成關係） | §7 | 1 個 |
-| 2.11 | 事件類型標籤 | `GET /api/v1/event-tags`（列出可用標籤）、事件寫入端點（2.10）支援帶 `tag_ids` 陣列建立 `historical_event_tag_map` | §6 事件三維度 | 1 個 |
-| 2.12 | 觀察者類別 + 多重視角敘事 | `GET /api/v1/observer-categories`、`GET /api/v1/events/:id/perspectives`、`POST .../perspectives`（應用層驗證 `regime_id`/`observer_category_id` 至少擇一非 NULL） | §6、Story 3 | 1 個 |
-| 2.13 | 事件爭議點 | `GET /api/v1/events/:id/controversies`、`POST .../controversies` | §6 notes §十.2 | 1 個 |
-| 2.14 | 最小 Auth middleware | **已拍板（2026-08-26）**：`.env` 存單一固定 `API_WRITE_KEY`，middleware 檢查所有 POST/PATCH request header（例：`X-API-Key`）是否相符，不符回 401；GET 端點不掛此 middleware | §5 Auth 拍板 | 1 個 |
-| 2.15 | 測試 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13 主要端點 | PRD M2 驗收門檻 | 1 個 |
+| 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
+|---|---|---|---|---|---|
+| [ ] | 2.1 | 後端政權狀態機合法轉換驗證器（C#，唯一信任來源） | `RegimeTransitionValidator` 服務，依憲法 §4 規則表判斷「存續→分裂／存續→被取代禪讓／存續→被滅亡」是否合法 | §5 XState 驗證分工 | 1 個 |
+| [ ] | 2.2 | EDTF 套件整合 | 選定 .NET 生態的 EDTF 套件（若無成熟套件，見下方停止條件），封裝一個 `EdtfService`：格式驗證 + 換算 `start_decimal`/`end_decimal`（含閏年天數正確處理） | §5 EDTF 拍板 | 1 個 |
+| [ ] | 2.3 | `reign_eras` 查詢端點 | `GET /api/v1/reign-eras?year={y}`（依年份查年號）、`GET /api/v1/regimes/:id/reign-eras`（依政權查所有年號） | §5 紀年轉換 | 1 個 |
+| [ ] | 2.4 | 政權查詢端點（唯讀） | `GET /api/v1/regimes`（支援 `?year=`/`?period=` 過濾）、`GET /api/v1/regimes/:id` | §7 | 1 個 |
+| [ ] | 2.5 | 政權寫入端點 | `POST /api/v1/regimes`（I2 校驗自稱名稱必填）、`PATCH /api/v1/regimes/:id`（呼叫 2.1 驗證器擋非法轉換） | §7 | 1 個 |
+| [ ] | 2.6 | 疆域查詢端點（唯讀） | `GET /api/v1/regimes/:id/territories`、`GET /api/v1/territories?year={y}`（R2/Story 1 核心查詢） | §7 | 1 個 |
+| [ ] | 2.7 | 疆域寫入 + 修正端點 | `POST /api/v1/regimes/:id/territories`（I1 校驗時間區間必填）、`PATCH /api/v1/territories/:id/correct`（I5 版本鏈：新增新版本、`superseded_by` 指回、不覆蓋刪除原記錄） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
+| [ ] | 2.8 | 史觀主線 preset 查詢端點 | `GET /api/v1/lineage-presets`、`GET /api/v1/lineage-presets/:id/regimes` | §7 | 1 個 |
+| [ ] | 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
+| [ ] | 2.10 | 事件骨幹 CRUD | `GET /api/v1/events?year={y}`、`GET /api/v1/events/:id`、`POST /api/v1/events`（寫入時呼叫 2.2 EdtfService，含 `parent_event_id` 組成關係） | §7 | 1 個 |
+| [ ] | 2.11 | 事件類型標籤 | `GET /api/v1/event-tags`（列出可用標籤）、事件寫入端點（2.10）支援帶 `tag_ids` 陣列建立 `historical_event_tag_map` | §6 事件三維度 | 1 個 |
+| [ ] | 2.12 | 觀察者類別 + 多重視角敘事 | `GET /api/v1/observer-categories`、`GET /api/v1/events/:id/perspectives`、`POST .../perspectives`（應用層驗證 `regime_id`/`observer_category_id` 至少擇一非 NULL） | §6、Story 3 | 1 個 |
+| [ ] | 2.13 | 事件爭議點 | `GET /api/v1/events/:id/controversies`、`POST .../controversies` | §6 notes §十.2 | 1 個 |
+| [ ] | 2.14 | 最小 Auth middleware | **已拍板（2026-08-26）**：`.env` 存單一固定 `API_WRITE_KEY`，middleware 檢查所有 POST/PATCH request header（例：`X-API-Key`）是否相符，不符回 401；GET 端點不掛此 middleware | §5 Auth 拍板 | 1 個 |
+| [ ] | 2.15 | 測試 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13 主要端點 | PRD M2 驗收門檻 | 1 個 |
 
 ### 範圍上限（本階段不做）
 
@@ -130,24 +130,24 @@ related_constitution: .claude/constitutions/world-line.md
 
 ### 任務清單
 
-| # | 任務 | 產出 | 對應 PRD | Commit 建議 |
-|---|---|---|---|---|
-| 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
-| 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
-| 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |
-| 3.4 | 時間軸 Scrubber 副軸（月/日展開） | 聚焦近代事件時下方展開精細軸 | §8 notes §六 | 1 個（依賴 3.3） |
-| 3.5 | 政權疆域圖層渲染（基礎版，GeoJSON + MapLibre filter expressions） | 拖動時間拉桿時，依快照篩出當下應顯示的疆域（尚未做形變，見 3.6） | Story 1 | 1 個 |
-| 3.6 | **疆域快照間形變過渡動畫（TopoJSON + Flubber.js）** | 拖動拉桿時，兩筆快照之間的疆域邊界真正連續變形，不是切換/淡入淡出——對應憲法 §9「疆域必須連續變化呈現，非離散跳轉」核心要求（2026-08-26 拍板：從 Backlog 移入本階段，非候選） | Story 1、§9 | 1-2 個（拓撲前處理 1 個、Flubber 整合+播放時機控制 1 個） |
-| 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
-| 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
-| 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
-| 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |
-| 3.11 | reign_eras 年號標籤顯示（對應時間拉桿位置顯示年號） | UI 顯示「貞觀元年」等 | §5 紀年轉換 | 1 個 |
-| 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
-| 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
-| 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
-| 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |
-| 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
+| 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
+|---|---|---|---|---|---|
+| [ ] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
+| [ ] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
+| [ ] | 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |
+| [ ] | 3.4 | 時間軸 Scrubber 副軸（月/日展開） | 聚焦近代事件時下方展開精細軸 | §8 notes §六 | 1 個（依賴 3.3） |
+| [ ] | 3.5 | 政權疆域圖層渲染（基礎版，GeoJSON + MapLibre filter expressions） | 拖動時間拉桿時，依快照篩出當下應顯示的疆域（尚未做形變，見 3.6） | Story 1 | 1 個 |
+| [ ] | 3.6 | **疆域快照間形變過渡動畫（TopoJSON + Flubber.js）** | 拖動拉桿時，兩筆快照之間的疆域邊界真正連續變形，不是切換/淡入淡出——對應憲法 §9「疆域必須連續變化呈現，非離散跳轉」核心要求（2026-08-26 拍板：從 Backlog 移入本階段，非候選） | Story 1、§9 | 1-2 個（拓撲前處理 1 個、Flubber 整合+播放時機控制 1 個） |
+| [ ] | 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
+| [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
+| [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
+| [ ] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |
+| [ ] | 3.11 | reign_eras 年號標籤顯示（對應時間拉桿位置顯示年號） | UI 顯示「貞觀元年」等 | §5 紀年轉換 | 1 個 |
+| [ ] | 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
+| [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
+| [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
+| [ ] | 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |
+| [ ] | 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
 
 ### 範圍上限（本階段不做）
 

@@ -4,7 +4,7 @@ feature_id: world-line
 feature_name: World Line — 歷史地圖 GIS 平台
 status: draft
 owner: jack755051@gmail.com
-last_updated: 2026-08-25
+last_updated: 2026-08-26
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
@@ -18,6 +18,8 @@ related_adrs: []
 > **2026-08-25 更新（第一輪）**：透過 `/grill-me` 對本 PRD 逐項壓力測試，拍板了 12 項技術選型與資料模型決策（PostGIS 安裝方式、正式朝代分類、政權互動建模、事件多維度拆分、地圖引擎、資料供應策略、狀態機函式庫、紀年轉換、EDTF 解析、多重視角觀察者、斜線網底、開源資料授權），內容已回填至 §5/§6/§9/§12。
 >
 > **2026-08-25 更新（第二輪）**：延續 grill-me 訪談，再拍板 5 項：開發者/使用者角色職責、Auth 機制、設計交付模式、技術效能量化指標處理方式、XState 前後端狀態機驗證分工，內容已回填至 §2/§5/§7/§8/§9/§12。剩餘未拍板：僅剩「CHGIS/CShapes 授權於資金來源變動時需重新確認」一項（低優先，見 §9/§12），其餘全數定案。
+>
+> **2026-08-26 更新**：實作前重新檢視 `regime_territories` 發現既有 SQL 註解範例（`'[618, 907]'`）誤導成「一個政權一筆疆域記錄」，與憲法 §9「疆域連續變化」牴觸。已拍板修正：(1) 疆域快照密度採**事件驅動**（有史料佐證的變動才建快照，不強制固定週期，也不假裝逐年精確）；(2) 快照密度（資料儲存）與時間拉桿的拖動粒度（UI 互動）是兩回事，拉桿本身依憲法 §9 維持連續拖動，不可卡固定年份格；(3) `regime_territories.valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal——疆域史料常態以年為單位記載，精確到日的疆域轉移（如條約割地）由對應的 `historical_events` 記錄承載日期精度即可，不需要疊加進疆域表。詳見 §6。
 
 ## 1. 背景 (Background)
 
@@ -141,7 +143,7 @@ related_adrs: []
 |---|---|---|---|
 | 地圖引擎 | MapLibre GL JS | 全球政權圖層渲染、時間過濾器（Filter Expressions） | **已拍板：Phase 1 單獨使用**。Deck.gl 保留為後續可疊加選項，待動畫流動效果（絲路貿易路線、傳播視覺化等）出現實際需求時再加，兩者設計上可疊加不衝突 |
 | 高階視覺化 | Deck.gl（搭配 MapLibre） | 貿易路線/行軍路線/傳播軌跡等進階圖層 | **已拍板：Phase 1 不導入**，明確保留為後續疊加選項（見上） |
-| 圖資壓縮與形變 | TopoJSON + Flubber.js | 疆域邊界共享壓縮、連續變化過渡動畫（對應憲法 §9） | 候選，未在本輪討論，維持待評估 |
+| 圖資壓縮與形變 | TopoJSON + Flubber.js | 疆域邊界共享壓縮、連續變化過渡動畫（對應憲法 §9） | **已拍板（2026-08-26 grill-me on implementation plan）：Phase 1（M3）就導入，非候選延後**。理由：憲法 §9 業務規則本體是「疆域必須連續變化呈現，非離散跳轉」（非僅拉桿操作連續），使用者明確要求「類似衛星雲圖」的真實形變效果，淡入淡出等簡化方案無法達到，纳入 M3 範圍，見 `.claude/plans/world-line-implementation-plan.md` Phase 3 |
 | 空間幾何分析 | Turf.js | 政權標籤置中點計算、邊界簡化 | 候選，未在本輪討論，維持待評估 |
 | 政權狀態機 | XState | 存續/分裂/被取代/被滅亡狀態防呆（對應憲法 §4） | **已拍板：Phase 1 就導入**（使用者選擇一步到位，非採用建議的簡單 enum 方案，理由：避免後續遷移成本）。**驗證分工（grill-me 2026-08-25 第二輪追加拍板）**：前端 XState 僅負責 UI 層防呆與進度圖顯示；後端 C#（.NET，與 XState 不同語言無法直接共用同一份 library）獨立實作同一套合法轉換規則作為唯一信任來源，防止 API 被繞過前端直接呼叫寫入非法狀態轉換。雙方均以憲法 §4 列出的合法轉換規則（存續→分裂／存續→被取代禪讓／存續→被滅亡）作為 SSOT 文件依據，日後憲法 §4 若修訂需同步更新前後端兩份實作，避免規則飄移 |
 | 紀年轉換 | 自建 `reign_eras` 查詢表 | 西元 ↔ 年號/廟號（武德、開元、日本昭和、民國年等）雙向映射（對應憲法 §9 多重紀年） | **已拍板：自建查詢表，不使用 `lunar-javascript`/`cnlunar`**——這兩個套件處理的是農曆換算，跟「年號查詢」是不同問題；憲法 §9 需求本質是一張「年號-政權-起訖年」查詢表，不是曆法計算 |
@@ -164,6 +166,7 @@ related_adrs: []
 - **政權互動依「離散事件」vs「持續關係」拆兩張表**：戰爭/條約/會戰這類有明確起訖的事件進 `historical_events`；絲路貿易、朝貢、和親這類沒有單一時間點、更像持續狀態的關係進 `regime_relations`
 - **事件本身有三個獨立維度**：時間長短由既有 EDTF 區間表達（不需新欄位）；類型（戰爭/貿易/革命/改革）用多對多標籤（不用單一 enum，因為像明治維新這種事件常同時橫跨多個類型）；組成關係（大戰爭包含小戰役）用 `parent_event_id` 自我參照，這個父子結構同時也是 notes §六語意縮放（Semantic Zooming）的資料基礎——年級尺度只顯示頂層事件，日/月級尺度才展開子事件
 - **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
+- **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
 
 ### Schema 變動
 
@@ -221,11 +224,16 @@ CREATE TABLE regime_aliases (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 政權疆域（I1：時間區間必填才能存在；I5：修正保留版本歷史不可覆蓋刪除）
+-- 政權疆域快照表（I1：時間區間必填才能存在；I5：修正保留版本歷史不可覆蓋刪除）
+-- ⚠️ 一個 regime_id 通常對應多筆記錄，不是一筆涵蓋整個政權存續期間！
+-- 例：唐朝（regime 存續 618-907）不會只有一筆 valid_period='[618,907]'，
+-- 而是依史料佐證的疆域變動事件驅動建多筆，例如 '[618,626]'、'[626,649]'、'[649,690]' ...
+-- 快照密度事件驅動，不強制固定週期；時間拉桿的連續拖動由前端在快照間做形變插值處理，
+-- 不等於資料庫要逐年存一筆（見 §6 設計原則）
 CREATE TABLE regime_territories (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   regime_id UUID NOT NULL REFERENCES regimes(id),
-  valid_period INT4RANGE NOT NULL,                -- I1 硬約束，例：'[618, 907]'
+  valid_period INT4RANGE NOT NULL,                -- I1 硬約束，年精度（維持 INT4RANGE，不跟隨 historical_events 升級 EDTF，見上方設計原則）
   geom GEOMETRY(MultiPolygon, 4326) NOT NULL,      -- 需 PostGIS extension（見 §5 風險）
   is_disputed BOOLEAN DEFAULT FALSE,               -- 對應 I3：爭議並存標記
   superseded_by UUID REFERENCES regime_territories(id), -- I5：指向修正後的新版本，本列不刪除、不覆蓋
@@ -233,6 +241,16 @@ CREATE TABLE regime_territories (
   corrected_at TIMESTAMPTZ,                        -- I5：修改時間戳
   created_at TIMESTAMPTZ DEFAULT NOW(),
   version INT DEFAULT 0
+);
+
+-- 紀年年號查詢表（§5 已拍板：自建查詢表，不用農曆函式庫；2026-08-26 補：先前遺漏未加入本 schema）
+CREATE TABLE reign_eras (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  regime_id UUID NOT NULL REFERENCES regimes(id),
+  era_name VARCHAR(64) NOT NULL,          -- 例："貞觀"、"開元"、"昭和"、"民國"
+  start_year INT NOT NULL,                -- 西元年，例：627
+  end_year INT,                           -- 西元年，NULL 表示持續使用中／尚未確定結束年
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- 地名雙軌顯示（憲法 §6 術語表：古地名為主，括號附現代地名）
@@ -308,6 +326,7 @@ CREATE TABLE historical_event_controversies (
 
 - `regimes` 1 --- N `regime_aliases`（I4 FK 約束，代稱不可孤兒）
 - `regimes` 1 --- N `regime_territories`（I1 時間區間必填，I5 版本鏈以 `superseded_by` 自我參照而非覆蓋刪除）
+- `regimes` 1 --- N `reign_eras`（年號查詢，§5 已拍板）
 - `regimes` 自我參照 `predecessor_regime_id` / `destroyed_by_regime_id`（分裂/禪讓/滅亡轉換邊，客觀事實層，方案 D）
 - `regimes` N --- N `regimes`（透過 `regime_relations`，持續性關係如貿易/朝貢/和親）
 - `lineage_presets` 1 --- N `lineage_preset_members` N --- 1 `regimes`（史觀主線呈現層，與核心政權圖解耦）
@@ -321,7 +340,7 @@ CREATE TABLE historical_event_controversies (
 ### DDD 邊界
 
 - **Aggregate Root**: `Regime`（政權）、`HistoricalEvent`（歷史事件）、`LineagePreset`（史觀主線 preset）——三者為平行的獨立聚合根，對應 notes §七「疆域圖層 vs 事件圖層」解耦設計，`LineagePreset` 額外把「呈現用史觀立場」跟「客觀政權圖」解耦（方案 D）
-- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）
+- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`ReignEra`（年號查詢資料）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）
 - **Value Object**: `valid_period`（int4range）、EDTF 時間字串、`geom` 幾何值、`origin_transition_type`（分裂/被取代禪讓）
 - **跨 Aggregate 連結**: `historical_event_perspectives.regime_id`、`lineage_preset_members.regime_id`、`regime_relations.regime_a_id/regime_b_id` 均以識別碼 FK 連結至 `Regime` 聚合，**不直接持有** `Regime` 實體引用
 

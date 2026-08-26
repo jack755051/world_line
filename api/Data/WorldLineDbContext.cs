@@ -15,6 +15,13 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<LineagePresetMember> LineagePresetMembers => Set<LineagePresetMember>();
     public DbSet<RegimeRelation> RegimeRelations => Set<RegimeRelation>();
 
+    public DbSet<HistoricalEvent> HistoricalEvents => Set<HistoricalEvent>();
+    public DbSet<EventTag> EventTags => Set<EventTag>();
+    public DbSet<HistoricalEventTagMap> HistoricalEventTagMaps => Set<HistoricalEventTagMap>();
+    public DbSet<ObserverCategory> ObserverCategories => Set<ObserverCategory>();
+    public DbSet<HistoricalEventPerspective> HistoricalEventPerspectives => Set<HistoricalEventPerspective>();
+    public DbSet<HistoricalEventControversy> HistoricalEventControversies => Set<HistoricalEventControversy>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorldLineDbContext).Assembly);

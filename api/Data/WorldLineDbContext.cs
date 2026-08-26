@@ -11,6 +11,10 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<ReignEra> ReignEras => Set<ReignEra>();
     public DbSet<PlaceName> PlaceNames => Set<PlaceName>();
 
+    public DbSet<LineagePreset> LineagePresets => Set<LineagePreset>();
+    public DbSet<LineagePresetMember> LineagePresetMembers => Set<LineagePresetMember>();
+    public DbSet<RegimeRelation> RegimeRelations => Set<RegimeRelation>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorldLineDbContext).Assembly);

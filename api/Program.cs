@@ -25,6 +25,7 @@ if (app.Environment.IsDevelopment())
 
     using var seedScope = app.Services.CreateScope();
     var seedDb = seedScope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+    await seedDb.Database.MigrateAsync();
     await SeedData.SeedAsync(seedDb);
 }
 

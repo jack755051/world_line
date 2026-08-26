@@ -81,6 +81,8 @@ related_constitution: .claude/constitutions/world-line.md
 - **I4**（他稱代稱不可孤兒）：`INSERT INTO regime_aliases` 的 `regime_id` 指向不存在的政權 → FK constraint `fk_regime_aliases_regimes_regime_id` 擋下 ✅
 - **I3**（爭議並存標記）與 **I5**（修正保留版本歷史）：這兩條不是單純 NOT NULL/FK 能表達的約束（I3 需要「同期間不可有兩筆互相矛盾的非爭議記錄」這種跨列邏輯，I5 是「用 API 產生新版本而非直接 UPDATE/DELETE」的操作流程約束），schema 層只能提供必要欄位（`is_disputed`、`superseded_by`/`correction_reason`/`corrected_at`），實際約束邏輯留到 Phase 2 應用層（2.7 疆域修正端點）強制執行，不在本階段（Phase 1）驗證範圍內。
 
+**⚠️ 事後補充（2026-08-26，真正跑 `docker compose up` 時發現）**：1.5-1.7 一開始只在臨時起的驗證容器上跑過 migration/seed，沒套用到 `docker-compose.yml` 真正在用的 `app_postgres`。使用者自己跑 `docker compose up` 後，`app_backend` 因為 `regimes` 表不存在（migration 沒套用過）而 crash loop。修法：`Program.cs` 在 seed 之前補上 `await seedDb.Database.MigrateAsync();`，讓 Development 環境啟動時自動套用 migration，重建 image 後 `app_backend` 穩定啟動，`app_postgres` 裡也確認查得到 5 筆政權資料。**這提醒了一件事：驗證用臨時容器測過，不等於真正的 docker-compose 流程測過**，之後每個 phase 收尾前應該找機會用真正的 `docker compose up` 走一次，不能只信任臨時容器的驗證結果。
+
 ---
 
 ## 3. Phase 2（M2）：後端 MVP

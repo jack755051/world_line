@@ -83,6 +83,8 @@ related_constitution: .claude/constitutions/world-line.md
 
 **⚠️ 事後補充（2026-08-26，真正跑 `docker compose up` 時發現）**：1.5-1.7 一開始只在臨時起的驗證容器上跑過 migration/seed，沒套用到 `docker-compose.yml` 真正在用的 `app_postgres`。使用者自己跑 `docker compose up` 後，`app_backend` 因為 `regimes` 表不存在（migration 沒套用過）而 crash loop。修法：`Program.cs` 在 seed 之前補上 `await seedDb.Database.MigrateAsync();`，讓 Development 環境啟動時自動套用 migration，重建 image 後 `app_backend` 穩定啟動，`app_postgres` 裡也確認查得到 5 筆政權資料。**這提醒了一件事：驗證用臨時容器測過，不等於真正的 docker-compose 流程測過**，之後每個 phase 收尾前應該找機會用真正的 `docker compose up` 走一次，不能只信任臨時容器的驗證結果。
 
+**⚠️ 事後補充（2026-08-27）**：討論政權轉換邊（分裂/禪讓/滅亡）跟 `historical_events` 的關係時，發現兩者原本沒有因果連結——`regimes` 只記錄「發生過什麼轉換」，查不出「是哪個事件導致的」。拍板新增第 15 張表 `regime_transition_events`（多對多，`transition_kind` 區分 origin/destruction），已建立並套用 EF Core migration `AddRegimeTransitionEvents`。**PRD §6 已同步更新為 15 張表**，本文件 1.4 的「14 個 Entity 類別」文字保留原樣（不回溯改寫已完成任務的敘述），新增的 entity 視為 Phase 1 之後的一次獨立 schema 演進，不補記 commit 編號到 1.4。
+
 ---
 
 ## 3. Phase 2（M2）：後端 MVP

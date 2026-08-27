@@ -20,6 +20,8 @@ related_adrs: []
 > **2026-08-25 更新（第二輪）**：延續 grill-me 訪談，再拍板 5 項：開發者/使用者角色職責、Auth 機制、設計交付模式、技術效能量化指標處理方式、XState 前後端狀態機驗證分工，內容已回填至 §2/§5/§7/§8/§9/§12。剩餘未拍板：僅剩「CHGIS/CShapes 授權於資金來源變動時需重新確認」一項（低優先，見 §9/§12），其餘全數定案。
 >
 > **2026-08-26 更新**：實作前重新檢視 `regime_territories` 發現既有 SQL 註解範例（`'[618, 907]'`）誤導成「一個政權一筆疆域記錄」，與憲法 §9「疆域連續變化」牴觸。已拍板修正：(1) 疆域快照密度採**事件驅動**（有史料佐證的變動才建快照，不強制固定週期，也不假裝逐年精確）；(2) 快照密度（資料儲存）與時間拉桿的拖動粒度（UI 互動）是兩回事，拉桿本身依憲法 §9 維持連續拖動，不可卡固定年份格；(3) `regime_territories.valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal——疆域史料常態以年為單位記載，精確到日的疆域轉移（如條約割地）由對應的 `historical_events` 記錄承載日期精度即可，不需要疊加進疆域表。詳見 §6。
+>
+> **2026-08-27 更新**：發現 `regimes` 的轉換邊（`predecessor_regime_id`/`origin_transition_type`/`destroyed_by_regime_id`）只記錄「發生過什麼轉換」，沒有連到「是哪個 `historical_events` 導致的」。已拍板新增 `regime_transition_events` 多對多 join 表補上這個因果連結（`transition_kind` 區分起源/終止轉換），並已建立 EF Core migration `AddRegimeTransitionEvents` 套用到資料庫。詳見 §6。
 
 ## 1. 背景 (Background)
 
@@ -167,6 +169,7 @@ related_adrs: []
 - **事件本身有三個獨立維度**：時間長短由既有 EDTF 區間表達（不需新欄位）；類型（戰爭/貿易/革命/改革）用多對多標籤（不用單一 enum，因為像明治維新這種事件常同時橫跨多個類型）；組成關係（大戰爭包含小戰役）用 `parent_event_id` 自我參照，這個父子結構同時也是 notes §六語意縮放（Semantic Zooming）的資料基礎——年級尺度只顯示頂層事件，日/月級尺度才展開子事件
 - **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
 - **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
+- **政權轉換邊需要能追溯回導致它的具體事件**（2026-08-27 拍板）：`regimes.predecessor_regime_id`/`origin_transition_type`（起源轉換）與 `regimes.destroyed_by_regime_id`（終止轉換）原本只記錄「發生過什麼轉換」，沒有連到「是哪個事件導致的」。新增 `regime_transition_events` 多對多 join 表，用 `transition_kind`（`'origin'` | `'destruction'`）區分同一個政權可能同時掛著起源與終止兩種轉換各自的觸發事件；多對多是因為一次轉換可能由多個事件共同促成（例：一連串戰役才逼成禪讓），一個事件也可能同時觸發多個政權的轉換（例：一場戰役同時導致多個分裂政權誕生）
 
 ### Schema 變動
 
@@ -320,6 +323,14 @@ CREATE TABLE historical_event_controversies (
     neutral_description TEXT NOT NULL,
     viewpoints JSONB                                  -- TODO：是否需標準化 schema（強制附學者/文獻來源），notes §十一 checklist 未決
 );
+
+-- 政權轉換邊 ↔ 導致它的事件（多對多，2026-08-27 拍板，見上方設計原則）
+CREATE TABLE regime_transition_events (
+    regime_id UUID NOT NULL REFERENCES regimes(id) ON DELETE CASCADE,
+    event_id VARCHAR(64) NOT NULL REFERENCES historical_events(id) ON DELETE CASCADE,
+    transition_kind VARCHAR(16) NOT NULL,            -- 'origin'（對應 predecessor_regime_id 起源轉換）| 'destruction'（對應 destroyed_by_regime_id 終止轉換）
+    PRIMARY KEY (regime_id, event_id, transition_kind)
+);
 ```
 
 ### 主要實體與關係
@@ -336,11 +347,12 @@ CREATE TABLE historical_event_controversies (
 - `historical_events` N --- N `event_tags`（透過 `historical_event_tag_map`，取代單一 `event_type`）
 - `historical_events` 1 --- N `historical_event_perspectives`
 - `historical_events` 1 --- N `historical_event_controversies`
+- `regimes` N --- N `historical_events`（透過 `regime_transition_events`，`transition_kind` 區分是起源轉換還是終止轉換的觸發事件，2026-08-27 拍板）
 
 ### DDD 邊界
 
 - **Aggregate Root**: `Regime`（政權）、`HistoricalEvent`（歷史事件）、`LineagePreset`（史觀主線 preset）——三者為平行的獨立聚合根，對應 notes §七「疆域圖層 vs 事件圖層」解耦設計，`LineagePreset` 額外把「呈現用史觀立場」跟「客觀政權圖」解耦（方案 D）
-- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`ReignEra`（年號查詢資料）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）
+- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`ReignEra`（年號查詢資料）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）、`RegimeTransitionEvent`（政權轉換邊與觸發事件的連接記錄）
 - **Value Object**: `valid_period`（int4range）、EDTF 時間字串、`geom` 幾何值、`origin_transition_type`（分裂/被取代禪讓）
 - **跨 Aggregate 連結**: `historical_event_perspectives.regime_id`、`lineage_preset_members.regime_id`、`regime_relations.regime_a_id/regime_b_id` 均以識別碼 FK 連結至 `Regime` 聚合，**不直接持有** `Regime` 實體引用
 

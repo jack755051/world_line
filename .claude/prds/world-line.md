@@ -2,14 +2,18 @@
 schema_version: 1
 feature_id: world-line
 feature_name: World Line — 歷史地圖 GIS 平台
-status: draft
+status: active
 owner: jack755051@gmail.com
-last_updated: 2026-08-26
+last_updated: 2026-08-27
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
 
 # PRD: World Line — 歷史地圖 GIS 平台
+
+> **文件狀態**：本 PRD 是目前有效的產品與技術基線。`active` 代表內容可作為實作依據，不代表功能已全部完成。實作進度以 `.claude/plans/world-line-implementation-plan.md` 的核取方塊為準：截至 2026-08-27，M1 資料層完成，M2 後端 MVP 與 M3 前端整合尚未開始。
+>
+> **狀態用語**：本文的「已拍板」表示決策已確認；「已實作」表示 repository 中已有對應程式碼與 migration；「待評估／TODO」不得被當成已承諾的行為。若敘述與可執行程式碼不一致，先視為文件漂移並修正，不以過時文字覆蓋實際行為。
 
 > ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md` 產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
 >
@@ -17,17 +21,19 @@ related_adrs: []
 >
 > **2026-08-25 更新（第一輪）**：透過 `/grill-me` 對本 PRD 逐項壓力測試，拍板了 12 項技術選型與資料模型決策（PostGIS 安裝方式、正式朝代分類、政權互動建模、事件多維度拆分、地圖引擎、資料供應策略、狀態機函式庫、紀年轉換、EDTF 解析、多重視角觀察者、斜線網底、開源資料授權），內容已回填至 §5/§6/§9/§12。
 >
-> **2026-08-25 更新（第二輪）**：延續 grill-me 訪談，再拍板 5 項：開發者/使用者角色職責、Auth 機制、設計交付模式、技術效能量化指標處理方式、XState 前後端狀態機驗證分工，內容已回填至 §2/§5/§7/§8/§9/§12。剩餘未拍板：僅剩「CHGIS/CShapes 授權於資金來源變動時需重新確認」一項（低優先，見 §9/§12），其餘全數定案。
+> **2026-08-25 更新（第二輪）**：延續 grill-me 訪談，再拍板 5 項：開發者/使用者角色職責、Auth 機制、設計交付模式、技術效能量化指標處理方式、XState 前後端狀態機驗證分工，內容已回填至 §2/§5/§7/§8/§9/§12。該輪訪談結束時只保留 CHGIS/CShapes 授權問題；2026-08-27 的一致性檢查另辨識出 EDTF 套件、API 格式與正式資料 citation 等 implementation blockers，見現行 §12。
 >
 > **2026-08-26 更新**：實作前重新檢視 `regime_territories` 發現既有 SQL 註解範例（`'[618, 907]'`）誤導成「一個政權一筆疆域記錄」，與憲法 §9「疆域連續變化」牴觸。已拍板修正：(1) 疆域快照密度採**事件驅動**（有史料佐證的變動才建快照，不強制固定週期，也不假裝逐年精確）；(2) 快照密度（資料儲存）與時間拉桿的拖動粒度（UI 互動）是兩回事，拉桿本身依憲法 §9 維持連續拖動，不可卡固定年份格；(3) `regime_territories.valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal——疆域史料常態以年為單位記載，精確到日的疆域轉移（如條約割地）由對應的 `historical_events` 記錄承載日期精度即可，不需要疊加進疆域表。詳見 §6。
 >
 > **2026-08-27 更新**：發現 `regimes` 的轉換邊（`predecessor_regime_id`/`origin_transition_type`/`destroyed_by_regime_id`）只記錄「發生過什麼轉換」，沒有連到「是哪個 `historical_events` 導致的」。已拍板新增 `regime_transition_events` 多對多 join 表補上這個因果連結（`transition_kind` 區分起源/終止轉換），並已建立 EF Core migration `AddRegimeTransitionEvents` 套用到資料庫。詳見 §6。
+>
+> **2026-08-27 文件一致性更新**：依 repository 實況更新 M1 完成狀態；將 Auth 統一為固定 API Key；釐清 EDTF 已拍板的是「後端驗證與使用現成 parser」而非 npm 套件，具體 .NET 套件留給 M2.2 spike；OpenAPI 完整性移至 M2 驗收；補上 `docs/` 架構、開發、API 與資料治理入口。
 
 ## 1. 背景 (Background)
 
 傳統歷史知識透過書本傳遞時，是依「單一視角、按時間軸拆解」的方式敘述——例如以中國視角敘述唐朝歷史，便難以同步呈現同一時期阿拉伯帝國（大食）、歐洲政權的並行發展與互動關係。World Line 的核心動機（對應憲法 §1 業務目的、§7 Decision 1）是以 GIS／地圖取代這種單一視角敘事，讓使用者能夠「縱覽世界」：在同一個時間點上同時看到多個文明/政權的疆域與互動，並在需要時聚焦到單一政權觀察其與同時期周邊政權的關係（憲法 R2、R3）。
 
-專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1），尚未有任何業務程式碼——`app/`（Angular 22 scaffold）與 `api/`（.NET 10 Web API scaffold，僅 `WeatherForecast` 預設 controller）都是 CLI 預設輸出，`docker-compose.yml` 已備妥 frontend/backend/postgres/redis 四個 service 的容器編排骨架。本 PRD 是本專案第一份正式功能規格文件，銜接憲法與後續實作。
+專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1）。M1 資料層已完成：`api/` 已有 15 個領域 Entity、EF Core configurations、兩份 migration、開發環境自動 migration 與中國史示範 seed；`regime_transition_events` 已補上政權轉換與歷史事件的因果連結。HTTP API 仍只有 scaffold 的 `WeatherForecast` controller，M2 業務端點尚未實作；`app/` 仍是 Angular 22 scaffold，M3 地圖與時間軸尚未實作。`docker-compose.yml` 已具備 frontend/backend/PostGIS/Redis 四個 service。可執行現況與啟動方式以 repository 根目錄 `README.md` 為準。
 
 ## 2. 目標 (Goals)
 
@@ -123,7 +129,7 @@ related_adrs: []
 
 ## 5. 技術選型 (Tech Stack)
 
-> 分兩類：**A. 既有專案技術棧（已定案沿用）**——依 4 層優先級偵測，`app/package.json`、`api/WorldLine.Api.csproj`、`docker-compose.yml` 已有明確版本鎖定，優先權高於 sanring 通用預設。**B. GIS 領域專屬技術（候選，待選型）**——來自 `.claude/notes/world-line-tech-candidates.md`，屬於「非正式輸入素材」，尚未經使用者拍板，僅供本階段規劃參考，最終選型須於 §12 Open Questions 對應項目確認後定案。
+> 分兩類：**A. 既有專案技術棧（已定案沿用）**——`app/package.json`、`api/WorldLine.Api.csproj`、`docker-compose.yml` 的實際版本為準。**B. GIS 領域專屬技術**——最初來自 `.claude/notes/world-line-tech-candidates.md`；目前大部分已拍板，個別尚未決定的項目會明確標成「候選／待評估」，不得把 notes 中的舊候選文字當成現行決策。
 
 ### A. 既有技術棧（已定案沿用）
 
@@ -133,7 +139,7 @@ related_adrs: []
 | Backend | .NET 10 Web API（`net10.0`） | 既有專案偵測（`api/WorldLine.Api.csproj`），CLI scaffold 已存在，沿用 |
 | DB | PostgreSQL 16（`postgis/postgis:16-3.4` 映像檔） | **已拍板（grill-me 2026-08-25）**：`docker-compose.yml` 的 postgres image 由純 `postgres:16-alpine` 改為 `postgis/postgis:16-3.4`，一行改動即取得 PostGIS extension，維護成本低於自建 init script，列入 M1 前置工作 |
 | Cache | Redis 7-alpine | 既有專案偵測（`docker-compose.yml`），已備妥容器 |
-| Auth | 單一 API Key/JWT（僅保護寫入端點） | **已拍板（grill-me 2026-08-25 第二輪）**：讀取端點（GET）第一階段不加限制；寫入端點（POST/PATCH）加最小驗證，避免 `docker-compose.yml` 已備妥容器隨時可能部署到內網/雲端後，寫入端點完全裸露被任意竄改/刪除史料（違反 I5 版本保留精神）。日後開放多使用者/教育對象時，讀取端點是否也要驗證再重新評估 |
+| Auth | 單一固定 API Key（僅保護寫入端點） | **已拍板（grill-me 2026-08-25 第二輪；2026-08-26 implementation plan 細化）**：讀取端點（GET）第一階段不驗證；寫入端點（POST/PATCH）由 middleware 驗證環境變數 `API_WRITE_KEY` 與 request header `X-API-Key`。M2 尚未實作。JWT 與多使用者帳號不在第一階段範圍，待教育對象開放時再評估 |
 | Deploy | Docker Compose | 既有專案偵測，frontend（Nginx，4200→80）/ backend（8080→5000）/ postgres（5432）/ redis（6379）四 service 已編排完成 |
 | 監控 | TODO | 尚未評估，憲法/notes 未提及 |
 
@@ -153,7 +159,7 @@ related_adrs: []
 | 向量切片服務 | Martin（Rust）或 Tegola | 直連 PostGIS 動態切 MVT，避免巨量 GeoJSON 卡頓 | **已拍板：Phase 1 不導入**，Phase 1 用純 GeoJSON（見下），Phase 2 若遇全球渲染效能瓶頸再評估導入 |
 | 靜態離線切片 | PMTiles | 單檔金字塔圖磚，適合離線/靜態主機 | **已拍板：Phase 1 不導入**，待出現具體離線/純靜態部署需求再評估 |
 | 資料供應策略 | 純 GeoJSON | 後端直接回傳幾何資料，前端直接渲染 | **已拍板：Phase 1 採用**。理由：R1 範圍（中國史、朝代/國家層級）政權數量與疆域幾何複雜度可控，純 GeoJSON 已足夠，不需額外架設 Martin/Tegola 增加維運負擔；Phase 2「世界史」需同時渲染全球大量政權疆域，若遇效能瓶頸再回頭導入 MVT 動態切片；PMTiles 待「離線/純靜態部署」具體需求出現再評估 |
-| EDTF 時間解析 | npm `edtf` | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已拍板：使用現成套件**，不自建正則解析器（EDTF 規格邊界情況多，如不確定標記 `?`、約略標記 `~`、開放區間、負數西元前年份，自建風險大於收益）；寫入時後端強制驗證格式；`start_decimal`/`end_decimal` 由後端寫入當下自動推算（EDTF 字串為 single source of truth，不手動分別填兩欄；閏年天數由標準日期函式庫正確處理，不需另外設計誤差公式） |
+| EDTF 時間解析 | 後端 `.NET` 相容的現成 EDTF parser（具體套件待 M2.2 spike） | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已拍板的是邊界與原則**：解析、驗證與 decimal year 推算都在後端完成；EDTF 字串是 single source of truth；優先採成熟現成套件，不先自建完整 parser。先前 notes 提到的 npm `edtf` 不適用於 .NET 後端信任邊界，因此不再視為後端定案套件。M2.2 必須先驗證 .NET 套件對 `?`、`~`、區間、BCE 與閏年的支援；若沒有合格套件，依 implementation plan 停止條件回報，不自行擴張成完整 parser 專案 |
 | GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已拍板**，見上方 DB 列 |
 | 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
 | 斜線網底配色 | 集中共用常數檔（非正式 Design Token 系統） | 爭議控制區（notes §十）視覺呈現一致性 | **已拍板：Phase 1 用單一共用常數檔**（如 `neutral-map-colors.ts`）集中管理顏色/間距，不建置正式 Design Token pipeline；待深色模式或多人協作需求出現再升級 |
@@ -223,7 +229,7 @@ CREATE TABLE regime_aliases (
   regime_id UUID NOT NULL REFERENCES regimes(id), -- FK 強制約束，落實 I4
   observer_regime_id UUID REFERENCES regimes(id),  -- 給予此代稱的觀察視角主體（例：唐朝視角下稱阿拉伯帝國為"大食"），可為 NULL 代表通用他稱
   alias_name VARCHAR(128) NOT NULL,               -- 例："大食"、"拂菻"
-  alias_type VARCHAR(32),                         -- TODO：朝代/帝國/國家三種觀察視角標籤如何落地成欄位值，憲法 §6 術語表定義為「觀察視角產物」而非固定屬性，schema 設計方式待 PRD 下一輪或實作階段細化
+  alias_type VARCHAR(32),                         -- nullable 保留欄位；允許值／是否保留須在 M2 alias API 前拍板，見 §12
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -321,7 +327,7 @@ CREATE TABLE historical_event_controversies (
     event_id VARCHAR(64) REFERENCES historical_events(id),
     topic VARCHAR(128) NOT NULL,
     neutral_description TEXT NOT NULL,
-    viewpoints JSONB                                  -- TODO：是否需標準化 schema（強制附學者/文獻來源），notes §十一 checklist 未決
+    viewpoints JSONB                                  -- request JSON schema 與 citation 要求須在 M2.13 前定義，見 §12 與 docs/data-governance.md
 );
 
 -- 政權轉換邊 ↔ 導致它的事件（多對多，2026-08-27 拍板，見上方設計原則）
@@ -358,17 +364,17 @@ CREATE TABLE regime_transition_events (
 
 ## 7. API 契約 (API Contract)
 
-> 僅列核心 resource 的基本 CRUD 端點草案，query 參數細節與完整 request/response schema 待補（TODO）。認證欄位已依 §5 拍板結果回填：GET（讀取）第一階段公開不驗證；POST/PATCH（寫入）需 API Key/JWT。
+> 以下是 M2 的目標契約，不代表端點已實作。認證欄位已依 §5 拍板結果回填：GET（讀取）第一階段公開不驗證；POST/PATCH（寫入）需固定 API Key。可執行 API 現況與 OpenAPI 使用方式見 `docs/api.md`。
 
 | Method | Path | 用途 | 認證 |
 |---|---|---|---|
 | GET | /api/v1/regimes | 依時間區間查詢政權清單（支援 `?year=` 或 `?period=` 過濾） | 公開（唯讀，見 §5） |
 | GET | /api/v1/regimes/:id | 取得單一政權詳情（含自稱名稱、狀態、代稱清單） | 公開（唯讀） |
-| POST | /api/v1/regimes | 新增政權（I2 校驗自稱名稱必填） | API Key/JWT（見 §5） |
-| PATCH | /api/v1/regimes/:id | 更新政權（狀態轉換須符合憲法 §4 合法轉換規則；前端 XState 做 UI 層防呆，後端獨立驗證為唯一信任來源，已拍板見 §5） | API Key/JWT + 樂觀併發 |
+| POST | /api/v1/regimes | 新增政權（I2 校驗自稱名稱必填） | `X-API-Key`（見 §5） |
+| PATCH | /api/v1/regimes/:id | 更新政權（狀態轉換須符合憲法 §4 合法轉換規則；前端 XState 做 UI 層防呆，後端獨立驗證為唯一信任來源，已拍板見 §5） | `X-API-Key` + 樂觀併發 |
 | GET | /api/v1/regimes/:id/territories | 取得政權疆域歷史（含版本鏈，I5） | 公開（唯讀） |
-| POST | /api/v1/regimes/:id/territories | 新增疆域記錄（I1 校驗時間區間必填） | API Key/JWT |
-| PATCH | /api/v1/territories/:id/correct | 史料修正端點（I5：產生新版本並保留原版本，非覆蓋更新，對應憲法 §8） | API Key/JWT + 樂觀併發 |
+| POST | /api/v1/regimes/:id/territories | 新增疆域記錄（I1 校驗時間區間必填） | `X-API-Key` |
+| PATCH | /api/v1/territories/:id/correct | 史料修正端點（I5：產生新版本並保留原版本，非覆蓋更新，對應憲法 §8） | `X-API-Key` + 樂觀併發 |
 | GET | /api/v1/territories?year={y} | 查詢某年份所有政權疆域並存快照（對應 R2、Story 1） | 公開（唯讀） |
 | GET | /api/v1/events?year={y} | 查詢某時間點/區間的歷史事件（對應 notes §七 事件圖層） | 公開（唯讀） |
 | GET | /api/v1/events/:id/perspectives | 取得事件的多重視角敘事（對應 Story 3、notes §十） | 公開（唯讀） |
@@ -377,9 +383,9 @@ CREATE TABLE regime_transition_events (
 | GET | /api/v1/lineage-presets/:id/regimes | 取得某 preset 底下依序排列的政權序列 | 公開（唯讀） |
 | GET | /api/v1/regimes/:id/relations?year={y} | 取得政權在某時間點的持續性關係（貿易/朝貢/同盟等，`regime_relations`） | 公開（唯讀） |
 
-詳細 request / response schema 見 OpenAPI `TODO`（尚未產出，待 M1 階段補上）。
+M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包含 request/response schema、成功狀態碼與主要 4xx 回應。正式的文字精修與範例補強可延後，但不得讓已實作端點缺席於產生出的契約。目前僅有 scaffold endpoint，詳見 `docs/api.md`。
 
-統一回應格式：TODO——沿用 sanring 慣例 `{ statusCode, message, data: T }` / 列表用 `PaginatedResponse<T>`，待實作階段於 `api/` 專案確認是否套用。
+統一回應格式尚未拍板。M2 實作第一個業務端點前，需在「直接回傳 resource/problem details」與包裝格式 `{ statusCode, message, data }` 之間做一次決策並記錄；在此之前不得把 sanring 慣例視為既定契約。
 
 ## 8. UI 流程 (UI Flow)
 
@@ -397,18 +403,18 @@ CREATE TABLE regime_transition_events (
   - success：地圖高亮聚焦政權疆域 + 周邊政權互動清單側欄
 - **事件詳情抽屜（Event Detail Drawer）** — 對應 notes §八毛玻璃側邊抽屜、Story 5：
   - loading：抽屜展開動畫 + 內容骨架
-  - empty：TODO（事件無 sections 內容時如何呈現，notes 未定義，待補）
+  - empty：事件無 `sections` 時的文案與可用動作須在 M3.12 前拍板（見 §12）
   - error：事件詳情載入失敗
   - success：`backdrop-filter: blur(16px)` 毛玻璃抽屜 + 三層手風琴（背景起因/關鍵轉折時間點/歷史影響），點擊「關鍵轉折時間點」觸發地圖 `flyTo` + 時間軸雙向連動
 - **多重視角分頁（Perspective Tabs）** — 對應 notes §十、Story 3：
   - loading：各視角敘事載入中
-  - empty：TODO（若某事件僅有客觀骨幹、無任一方視角資料時如何呈現，待補）
+  - empty：事件只有客觀骨幹、沒有視角資料時的文案與 fallback 須在 M3.13 前拍板（見 §12）
   - error：視角資料載入失敗
-  - success：客觀經過概要 + 各當事方視角分頁 + 爭議點區塊並列呈現，預設開啟分頁邏輯 TODO（見 §12）
+  - success：客觀經過概要 + 各當事方視角分頁 + 爭議點區塊並列呈現；預設開啟哪個分頁須在 M3.13 前拍板（見 §12）
 
 對應 Figma / design assets：**已拍板（grill-me 2026-08-25 第二輪）**——`design_output_mode: assets_only`，不引入 Figma 同步流程。理由：專案目前無設計稿、無 UI 元件庫選型，屬單人自用階段，先直接以既有 UI 元件庫（待選型）+ MapLibre 拼介面；待有明確視覺規範需求或設計師/多人協作介入時再評估升級。
 
-關鍵互動的 `data-testid` 預埋清單：TODO——待前端實作階段依實際元件結構補上。
+關鍵互動的 `data-testid` 不在 PRD 預先臆測名稱；M3 實作元件時依 3.16 E2E 主流程同步定義，並由測試 review 確認穩定性。
 
 ## 9. 風險與相依 (Risks & Dependencies)
 
@@ -420,25 +426,25 @@ CREATE TABLE regime_transition_events (
 | CHGIS／CShapes 授權為非商業限定（CC BY-NC-SA / 學術限定），若專案未來出現贊助或政府投資等資金來源，需重新確認授權相容性 | med | 使用者已確認目前無商業化/收費計畫，OHM（CC0）作主要資料來源可完全規避此風險；CHGIS/CShapes 僅輔助使用，若未來有資金來源介入，啟動前需重新查證或改用純 OHM 資料，詳見 §5 |
 | 多重視角史料考據工作量大（notes §十設計要求「客觀骨幹 + 各方主觀敘事 + 爭議點」三層結構，每個跨國事件都需多方史料） | high | 第一階段（中國史）先聚焦內部政權疆域資料，多重視角功能可延後至世界史階段跨國事件出現時再逐步建置 |
 | ~~政權「正式朝代 vs 子朝代/分裂政權」分類與傳承鏈定義未拍板~~ | ~~med~~ | **已解決（2026-08-25）**：不做分類欄位，改用 `regimes` 轉換邊（客觀事實）+ 獨立 `lineage_presets` 表（史觀主線呈現層），詳見 §6 方案 D |
-| ~~EDTF + decimal year 轉換精度與計算時機未定~~ | ~~med~~ | **已解決（2026-08-25）**：用 npm `edtf` 套件解析＋寫入時驗證＋後端自動算 decimal，閏年天數交給標準日期函式庫處理 |
+| EDTF + decimal year 的責任邊界已定，但 .NET 套件能力尚未驗證 | med | 寫入時由後端驗證並自動計算 decimal；M2.2 先做套件 spike，驗證 `?`、`~`、區間、BCE、閏年案例。找不到成熟套件時依 implementation plan 停止並回報，不直接自建完整規格 |
 | 斜線網底（爭議控制區）Shader 方案在大量爭議區同時繪製時的效能瓶頸 | low | Phase 1 採 Canvas Pattern 方案規避（已拍板，見 §5），成熟階段再評估升級 WebGL Shader |
-| ~~GIS 專屬技術棧均為候選狀態~~ | ~~med~~ | **大部分已解決（2026-08-25）**：地圖引擎、資料供應策略、狀態機、紀年轉換、EDTF 解析、歷史資料授權均已拍板，詳見 §5；剩餘候選（TopoJSON+Flubber、Turf.js、Dayjs/Luxon）尚未深入討論，維持待評估 |
+| ~~GIS 專屬技術棧均為候選狀態~~ | ~~med~~ | **大部分已解決（2026-08-26）**：MapLibre、純 GeoJSON、XState、`reign_eras`、TopoJSON+Flubber 與資料授權均已拍板；剩餘候選為 Turf.js、Dayjs/Luxon，以及 EDTF 的具體 .NET 套件 |
 | ~~XState 引入後，前端狀態機定義與後端業務規則驗證邏輯需要保持同步，若各自實作一套規則容易產生分歧~~ | ~~med~~ | **已解決（2026-08-25 第二輪）**：前端 XState 僅做 UI 防呆，後端 C# 獨立實作為唯一信任來源，兩邊皆以憲法 §4 合法轉換規則為 SSOT，見 §5 |
-| 寫入端點加了最小 API Key/JWT，但金鑰/密鑰的產生、儲存與輪替方式尚未定義 | low | 實作階段需補：單人自用階段可先用環境變數存放單一固定 key，待多使用者需求出現時再升級為正式使用者/金鑰管理機制（新增風險，因 §5 拍板最小 Auth 而產生） |
+| 寫入端點預定使用固定 API Key，但金鑰產生與輪替方式尚未定義 | low | M2 先以環境變數 `API_WRITE_KEY` 保存單人開發 key，文件與 `.http` 範例不得寫入真實值；待多使用者需求出現時再升級正式金鑰／帳號管理 |
 
 ### 相依
 
 - **上游**：憲法 `.claude/constitutions/world-line.md`（已於 2026-08-25 拍板為 `status: active`）；PostGIS extension 安裝需先於資料庫層完成；歷史地理原始資料（CHGIS 等）授權確認需先於資料建置階段完成。
-- **下游**：TODO——目前專案無其他下游依賴本 feature 的 team/service（單一專案，無已知下游影響範圍）。
+- **下游**：目前無其他 team/service 依賴本 feature（單一專案，無已知下游影響範圍）。
 
 ## 10. 里程碑 (Milestones)
 
-> 依憲法 §1 階段實施順序（中國史 → 世界史 → 單一國家史）給出粗略里程碑，**所有日期一律標 TODO**，憲法與 notes 均未提供時程資訊，禁止腦補。
+> 依憲法 §1 階段實施順序（中國史 → 世界史 → 單一國家史）給出粗略里程碑。M1 使用實際完成日期；尚未排程的未來里程碑維持 TODO，不自行腦補承諾日期。
 
 | Milestone | 預計完成 | 內容 | 驗收門檻 |
 |---|---|---|---|
-| M1 | TODO | Schema + API 定案（政權/疆域/事件模型），PostGIS extension 安裝完成 | OpenAPI signed off；I1-I5 約束於 schema 層可驗證 |
-| M2 | TODO | 後端 MVP（中國史階段政權/疆域 CRUD + 時間區間查詢） | 單元測試 + integration test 綠 |
+| M1 | 2026-08-27 完成 | 資料層定案：15 張領域表、PostGIS、migration、seed 與 schema 可表達性驗證 | migration 可套用；I1/I2/I4 由 schema 擋下；I3/I5 所需欄位就緒並明確交由 M2 應用層強制 |
+| M2 | TODO | 後端 MVP（中國史階段政權/疆域 CRUD + 時間區間查詢） | 單元測試 + integration test 綠；所有已實作端點出現在 ASP.NET OpenAPI |
 | M3 | TODO | 前端整合（時間拉桿 + 地圖渲染 + 中國史資料上線，對應 Story 1、4） | 四態齊備、E2E 主流程綠 |
 | M4 | TODO | 世界史階段擴充（多文明並存渲染，對應 R2；事件圖層與多重視角初版，對應 Story 3、5） | 品質門禁全綠 |
 | M5 | TODO | 單一國家史深化階段（如台灣史）+ 教育對象開放評估（對應憲法 §1 未來擴充意圖） | Production smoke test 通過 |
@@ -447,11 +453,11 @@ CREATE TABLE regime_transition_events (
 
 - 上線後 1 週：review 使用者（開發者自身）實際使用回饋，是否符合「縱覽世界」的核心體驗目標
 - 30 天：檢視中國史階段資料完整度與正確性，決定是否啟動世界史階段擴充
-- 90 天：檢視已拍板的 17 項技術決策（方案 D 史觀 preset、事件三維度拆分、Auth、角色權限、狀態機驗證分工等）視實作回饋決定是否需要正式 ADR 留存決策紀錄；§12 僅剩 CHGIS/CShapes 授權（資金來源變動時）一項待觀察
+- 90 天：檢視已拍板的技術決策（方案 D 史觀 preset、事件三維度拆分、Auth、角色權限、狀態機驗證分工等），依實作回饋決定是否需要正式 ADR 留存；尚未拍板事項以 §12 現行分類為準
 
 ## 12. 開放問題 (Open Questions)
 
-> **2026-08-25 更新（第二輪）**：原始 16 條開放問題中，17 條已透過兩輪 `/grill-me` 拍板（決策內容回填至 §2/§5/§6/§7/§8/§9，此處不重複列出，僅標記已解決；第二輪新增的 5 項亦計入）。僅剩 1 條未拍板，且性質為「未來若情境變化才需處理」，非本階段阻塞項。
+> **2026-08-27 更新**：大部分產品與架構決策已拍板。以下保留已解決事項供追溯；尚未拍板事項分成「M2 前必須處理」與「情境觸發才處理」，避免低優先問題掩蓋真正的 implementation blocker。
 
 **已解決（詳見 §2/§5/§6/§7/§8/§9）**：
 - [x] 正式朝代/子朝代分類定義 → 方案 D（`lineage_presets` 獨立表，§6）
@@ -465,13 +471,28 @@ CREATE TABLE regime_transition_events (
 - [x] 斜線網底 Design Token 化 → 先用共用常數檔（§5）
 - [x] 開源歷史地理資料授權 → OHM 為主，CHGIS/CShapes 限非商業，GeaCron 僅作 UX 參考（§5、§9）
 - [x] `historical_event_perspectives.regime_id` 是否強制 FK → nullable FK + `observer_categories` 受控對照表（§6）
-- [x] EDTF parser 選型與 decimal 計算時機 → npm `edtf` + 寫入時後端自動推算（§5）
-- [x] 憲法 §2 開發者/使用者角色職責 → 開發者可寫可讀、使用者純唯讀（§2）——⚠️ 此為 PRD 實作層級的暫定解讀，供 §7 API 權限設計使用；憲法本體 §10 仍將此列為未拍板事項，若業務 owner 日後於憲法正式拍板此職責定義，需依 `prd-from-constitution` delta 流程重新比對本 PRD 是否一致
-- [x] Auth 機制 → 寫入端點（POST/PATCH）加最小 API Key/JWT，讀取端點（GET）第一階段公開不驗證（§5、§7）
+- [x] EDTF parser 責任邊界與 decimal 計算時機 → 後端寫入時驗證並自動推算；具體 .NET 套件列為 M2.2 spike（§5）
+- [x] 憲法 §2 開發者/使用者角色職責 → 憲法已正式拍板為開發者可寫可讀、使用者純唯讀（§2）
+- [x] Auth 機制 → 寫入端點（POST/PATCH）使用單一固定 API Key；讀取端點（GET）第一階段公開（§5、§7）
 - [x] 設計交付模式與 Figma 同步 → `assets_only`，不引入 Figma 同步流程（§8）
 - [x] 技術效能量化指標 → 暫不設定具體數字，改採質化驗收標準，待實測後回填（§2）
 - [x] XState 前後端狀態機驗證分工 → 前端僅做 UI 防呆，後端 C# 獨立實作為唯一信任來源，兩邊以憲法 §4 為 SSOT（§5、§9）
 
-**尚未拍板（低優先，情境觸發才需處理）**：
+**M2 前必須處理**：
+
+- [ ] TODO：M2.2 驗證可用的 .NET EDTF 套件與支援範圍；若不合格，依 implementation plan 停止條件回報並縮小支援子集。
+- [ ] TODO：第一個業務 endpoint 實作前拍板統一回應格式與錯誤格式，並反映到 OpenAPI。
+- [ ] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。
+- [ ] TODO：M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位。
+
+**正式史料匯入前必須處理**：
+
+- [ ] TODO：新增可重用的 source/citation model，讓政權、疆域、年號、關係與事件都能逐筆追溯來源、版本、locator 與授權；最低要求見 `docs/data-governance.md`。
+
+**M3 前必須處理**：
+
+- [ ] TODO：拍板事件詳情無 `sections`、事件無視角資料時的 empty state，以及 Perspective Tabs 預設分頁規則。
+
+**低優先，情境觸發才需處理**：
 
 - [ ] TODO：若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（見 §9），暫不需現在處理。

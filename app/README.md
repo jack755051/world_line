@@ -1,59 +1,62 @@
-# App
+# World Line Web App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.5.
+這是 World Line 的 Angular 22 前端。完整專案狀態、Docker 啟動方式與文件導覽請先看 repository 根目錄的 [README](../README.md)。
 
-## Development server
+## 目前狀態
 
-To start a local development server, run:
+前端仍是 Angular CLI scaffold，尚未實作 PRD 中的 MapLibre 地圖、時間軸、政權聚焦、多重視角與事件抽屜。現有 unit test 只驗證 scaffold component，不代表業務功能已完成。
 
-```bash
-ng serve
-```
+## 前置需求
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Node.js 22
+- npm 11（實際版本以 `package.json` 的 `packageManager` 為準）
 
-## Code scaffolding
+## 安裝與啟動
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+在 `app/` 目錄執行：
 
 ```bash
-ng generate --help
+npm ci
+npm start
 ```
 
-## Building
+開發伺服器位於 http://localhost:4200，修改檔案後會自動重新編譯。
 
-To build the project run:
+目前尚未設定 Angular dev-server 的 `/api` proxy；在前端開始串接後端前，需新增 proxy configuration 或使用明確的開發環境 API base URL。Docker/Nginx build 已把 `/api/` 反向代理到 backend container，但這不會套用到 `npm start`。
+
+## 常用指令
 
 ```bash
-ng build
+# Development server
+npm start
+
+# Production build
+npm run build
+
+# 單次執行 unit tests
+npm test -- --watch=false
+
+# 持續監看 build
+npm run watch
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+建置輸出位於 `dist/app/browser/`，Dockerfile 會把它複製到 Nginx runtime image。
 
-## Running unit tests
+## 測試狀態
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- Unit test runner：Vitest，由 Angular build system 執行。
+- 目前測試：`src/app/app.spec.ts` 的 scaffold smoke tests。
+- E2E：尚未選擇或設定 runner，`angular.json` 沒有 `e2e` target，因此目前不要使用 `ng e2e` 作為驗證指令。
+
+M3 預計加入時間軸、疆域形變、政權聚焦與事件詳情的主要 E2E 流程；進度以 [實作計畫](../.claude/plans/world-line-implementation-plan.md) 為準。
+
+## 程式碼產生
+
+需要 Angular schematic 時，使用專案鎖定的 CLI：
 
 ```bash
-ng test
+npx ng generate component component-name
+npx ng generate --help
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+新增功能時，同步補上 unit test；新增可互動的主要流程時，待 E2E runner 建立後補上 E2E coverage。

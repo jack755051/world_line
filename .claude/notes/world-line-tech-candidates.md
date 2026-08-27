@@ -1,6 +1,8 @@
 # World Line — 技術選型候選清單（PRD 訪談用暫存筆記）
 
 > 用途：`/supervisor:prd world-line` 訪談時的候選技術輸入素材。
+>
+> **文件狀態（2026-08-27）**：本檔保留訪談前的候選與探索脈絡，不是現行技術決策 SSOT。凡是「候選／待選型／checklist」文字都可能已過時；現行決策以 `.claude/prds/world-line.md` 為準，實作進度以 `.claude/plans/world-line-implementation-plan.md` 為準。尤其 npm `edtf` 只保留為早期候選，不代表 .NET 後端的定案套件。
 > 非正式文件（不是憲法、不是 ADR、不是 PRD），不寫入 `.claude/constitutions/world-line.md`。
 > 來源：使用者 2026-08-24 查閱整理。
 

@@ -4,7 +4,7 @@ constitution_id: world-line
 constitution_name: World Line — 歷史地圖 GIS 業務憲法
 status: active
 owner: jack755051@gmail.com
-last_updated: 2026-08-25
+last_updated: 2026-08-27
 scope: historical-gis-mapping
 related_prds: [".claude/prds/world-line.md"]
 supersedes: null
@@ -120,8 +120,11 @@ supersedes: null
 
 ---
 
-## 寫完後該做什麼
+## 維護方式
 
-1. §10 原始 4 條 Open Questions 已於 2026-08-25 全數拍板完畢，業務 owner（使用者本人）可複查 §2/§4/§6 回填內容是否符合預期。
-2. 確認無誤後，把 frontmatter `status` 從 `draft` 改為 `active`（**由使用者親自拍板，AI 不代為變更**）。
-3. `constitution-changed.py` hook 會偵測本檔案變動並提醒走 `/supervisor:prd world-line` 的 delta 比對流程，確認 `.claude/prds/world-line.md` 是否需要同步更新（本次 §2/§4/§6 回填內容與既有 PRD 方案 D、角色權限章節一致，理論上僅需交叉確認，不需大改）。
+本憲法已由業務 owner 拍板為 `active`，§10 原始問題也已全部解決。後續維護遵守：
+
+1. 新的業務規則、術語或不可變約束先在本文件拍板，不直接只改 PRD 或程式碼。
+2. 本文件內容改變後，執行 PRD delta review，確認 `.claude/prds/world-line.md`、implementation plan、schema 與測試是否需要同步。
+3. 只有工程實作細節改變、業務含義不變時，不回寫本憲法；改到 PRD、架構文件或 implementation plan 即可。
+4. 尚未拍板的業務問題必須放回 §10，不可由實作者在程式碼中默默選擇。

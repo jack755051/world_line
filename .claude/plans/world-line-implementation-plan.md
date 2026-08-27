@@ -2,14 +2,16 @@
 schema_version: 1
 plan_id: world-line-implementation-plan
 plan_name: World Line — 實作執行計畫（M1-M3 顆粒化）
-status: draft
+status: active
 owner: jack755051@gmail.com
-date: 2026-08-26
+date: 2026-08-27
 related_prd: .claude/prds/world-line.md
 related_constitution: .claude/constitutions/world-line.md
 ---
 
 # World Line — 實作執行計畫
+
+> **文件狀態**：本計畫是目前有效的執行清單。`active` 不代表所有工作完成；核取方塊才是進度來源。截至 2026-08-27，Phase 1 已完成（含後續補上的第 15 張 `regime_transition_events`），Phase 2 與 Phase 3 尚未開始。
 
 > 這份文件**不是 PRD**（不重複寫 user story / tech stack 理由，那些定案內容都在 `.claude/prds/world-line.md`）。
 > 它只回答：**PRD §10 里程碑（M1-M5）具體要怎麼拆成可執行的任務、每個階段做到哪裡就該停、以及還沒排進任何階段但已知要做的事放哪裡。**
@@ -24,9 +26,9 @@ related_constitution: .claude/constitutions/world-line.md
 
 | 階段 | 對應 PRD 里程碑 | 這份文件的顆粒化狀態 |
 |---|---|---|
-| Phase 1 | M1：Schema + API 定案，PostGIS extension 安裝完成 | ✅ 已顆粒化（見 §2） |
-| Phase 2 | M2：後端 MVP（中國史階段政權/疆域 CRUD + 時間區間查詢） | ✅ 已顆粒化（見 §3） |
-| Phase 3 | M3：前端整合（時間拉桿 + 地圖渲染 + 中國史資料上線） | ✅ 已顆粒化（見 §4） |
+| Phase 1 | M1：資料層定案，PostGIS extension 安裝完成 | ✅ 已完成（見 §2） |
+| Phase 2 | M2：後端 MVP（中國史階段政權/疆域 CRUD + 時間區間查詢） | ⏳ 尚未開始，已顆粒化（見 §3） |
+| Phase 3 | M3：前端整合（時間拉桿 + 地圖渲染 + 中國史資料上線） | ⏳ 尚未開始，已顆粒化（見 §4） |
 | Phase 4 | M4：世界史階段擴充（多文明並存渲染、事件圖層與多重視角初版） | ⏸ 維持 PRD 原描述，M3 完成後再展開 |
 | Phase 5 | M5：單一國家史深化（如台灣史）+ 教育對象開放評估 | ⏸ 維持 PRD 原描述，M4 完成後再展開 |
 
@@ -40,7 +42,7 @@ related_constitution: .claude/constitutions/world-line.md
 
 ## 2. Phase 1（M1）：資料層定案
 
-**目標**：把 PRD §6 的 14 張表從紙上設計變成可以真的建表、真的能驗證 I1-I5 約束的資料庫。
+**目標**：把 PRD §6 的資料模型變成可 migration、可 seed、可驗證的 PostGIS 資料庫。初版建立 14 張領域表，2026-08-27 再以第二份 migration 補上第 15 張 `regime_transition_events`。I1/I2/I4 由 schema 直接強制；I3/I5 在本階段只驗證 schema 具備必要欄位，完整行為約束交由 Phase 2 應用層完成。
 
 ### 任務清單
 
@@ -111,7 +113,7 @@ related_constitution: .claude/constitutions/world-line.md
 | [ ] | 2.12 | 觀察者類別 + 多重視角敘事 | `GET /api/v1/observer-categories`、`GET /api/v1/events/:id/perspectives`、`POST .../perspectives`（應用層驗證 `regime_id`/`observer_category_id` 至少擇一非 NULL） | §6、Story 3 | 1 個 |
 | [ ] | 2.13 | 事件爭議點 | `GET /api/v1/events/:id/controversies`、`POST .../controversies` | §6 notes §十.2 | 1 個 |
 | [ ] | 2.14 | 最小 Auth middleware | **已拍板（2026-08-26）**：`.env` 存單一固定 `API_WRITE_KEY`，middleware 檢查所有 POST/PATCH request header（例：`X-API-Key`）是否相符，不符回 401；GET 端點不掛此 middleware | §5 Auth 拍板 | 1 個 |
-| [ ] | 2.15 | 測試 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13 主要端點 | PRD M2 驗收門檻 | 1 個 |
+| [ ] | 2.15 | 測試與契約驗證 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13 主要端點；ASP.NET 產生的 OpenAPI 必須包含所有已實作端點、request/response schema 與主要狀態碼 | PRD M2 驗收門檻 | 1 個 |
 
 ### 範圍上限（本階段不做）
 
@@ -129,7 +131,7 @@ related_constitution: .claude/constitutions/world-line.md
 
 ### 驗證標準
 
-- 所有端點可用 Postman/`*.http` 檔案手動打通
+- 所有端點可用 `api/*.http` 檔案手動打通，且同一組端點可從 Development 環境的 `/openapi/v1.json` 查到契約
 - 單元測試涵蓋 I1-I5 約束在 API 層的攔截行為
 - 種子資料（Phase 1 的漢/魏/蜀/吳/晉，含 `reign_eras` 與 1 筆 `regime_relations`）能透過 API 完整查出，包含轉換邊與 lineage_preset
 
@@ -214,5 +216,5 @@ related_constitution: .claude/constitutions/world-line.md
 
 ## 7. 開放問題
 
-- [ ] TODO：Phase 1-3 沒有時程估計（PRD 本身日期也全標 TODO），若使用者需要粗略工時預估，需另外討論
-- [ ] TODO：種子資料（Phase 1 §2 任務 1.7）的「漢/魏/蜀/吳/晉」是否為使用者認可的最小驗證樣本，或有其他偏好的測試資料集
+- [ ] TODO：Phase 2-3 尚無時程估計；若使用者需要粗略工時預估，需另外討論，不從任務數直接推導承諾日期
+- [x] Phase 1 最小驗證樣本採漢／魏／蜀漢／吳／晉；它只用來驗證 schema 與轉換關係，疆域矩形和簡化年份不是正式史料。正式資料匯入前仍須遵守 `docs/data-governance.md`。

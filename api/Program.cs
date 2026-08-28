@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WorldLine.Api.Data;
+using WorldLine.Api.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// 憲法 §4 政權狀態機驗證（task 2.1）：無狀態、無外部相依，singleton 即可。
+builder.Services.AddSingleton<IRegimeTransitionValidator, RegimeTransitionValidator>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");

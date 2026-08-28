@@ -123,7 +123,7 @@ related_constitution: .claude/constitutions/world-line.md
 
 | 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
 |---|---|---|---|---|---|
-| [ ] | 2.0 | 統一回應格式與錯誤格式拍板 | 決定「直接回傳 resource/problem details」vs 包裝格式 `{ statusCode, message, data }`，並反映到 §7；後續所有端點依此格式實作 | §7、§12 TODO | 1 個（純文件決策，無程式碼） |
+| [x] | 2.0 | 統一回應格式與錯誤格式拍板 | **已拍板（2026-08-28）**：包裝格式 `{ statusCode, message, data }`，沿用 sanring 慣例，不用 ASP.NET `ProblemDetails`；具體契約形狀已寫入 §7。實作方式（共用 `ApiResponse<T>` + 全域 exception handler/result filter）留給第一個真正動工的端點決定，本任務只定案契約形狀 | §7、§12 TODO | 1 個（純文件決策，無程式碼） |
 | [ ] | 2.1 | 後端政權狀態機合法轉換驗證器（C#，唯一信任來源） | `RegimeTransitionValidator` 服務，依憲法 §4 規則表判斷「存續→分裂／存續→被取代禪讓／存續→被滅亡」是否合法 | §5 XState 驗證分工 | 1 個 |
 | [ ] | 2.2 | EDTF 套件整合 | 選定 .NET 生態的 EDTF 套件（若無成熟套件，見下方停止條件），封裝一個 `EdtfService`：格式驗證 + 換算 `start_decimal`/`end_decimal`（含閏年天數正確處理） | §5 EDTF 拍板 | 1 個 |
 | [ ] | 2.3 | `reign_eras` 查詢端點 | `GET /api/v1/reign-eras?year={y}`（依年份查年號）、`GET /api/v1/regimes/:id/reign-eras`（依政權查所有年號） | §5 紀年轉換 | 1 個 |

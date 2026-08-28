@@ -391,7 +391,19 @@ CREATE TABLE regime_transition_events (
 
 M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包含 request/response schema、成功狀態碼與主要 4xx 回應。正式的文字精修與範例補強可延後，但不得讓已實作端點缺席於產生出的契約。目前僅有 scaffold endpoint，詳見 `docs/api.md`。
 
-統一回應格式尚未拍板。M2 實作第一個業務端點前，需在「直接回傳 resource/problem details」與包裝格式 `{ statusCode, message, data }` 之間做一次決策並記錄；在此之前不得把 sanring 慣例視為既定契約。
+**統一回應格式（已拍板，2026-08-28，task 2.0）**：採包裝格式，沿用 sanring 慣例，不用 ASP.NET 內建 `ProblemDetails`。
+
+```json
+// 成功
+{ "statusCode": 200, "message": "OK", "data": { /* resource 或陣列，query 無結果時為 [] 或 null，視端點語意 */ } }
+
+// 失敗（驗證錯誤、找不到資源、狀態轉換不合法等）
+{ "statusCode": 400, "message": "人類可讀的錯誤說明", "data": null }
+```
+
+- 三欄固定：`statusCode`（對應 HTTP status code）、`message`（成功可為固定字串或 null；失敗必須是人類可讀說明）、`data`（成功時放 resource，失敗時固定 `null`）。
+- 多筆欄位驗證錯誤（例如 400 時有多個欄位不合法）不新增第 4 個欄位，統一併入 `message`（用分號或換行串接多筆說明），維持三欄不變的封包形狀。
+- 實作方式留給第一個真正動工的端點（依 §3 任務順序會是 2.3 或 2.4）決定：共用 `ApiResponse<T>` 包裝型別 + 全域 exception handler／result filter，讓所有端點（含 `[ApiController]` 預設觸發的 model validation 400）都經過同一層包裝，不需要每個端點各自組裝。這個決策本身（task 2.0）不含程式碼，只定義契約形狀。
 
 ## 8. UI 流程 (UI Flow)
 
@@ -483,11 +495,11 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] 設計交付模式與 Figma 同步 → `assets_only`，不引入 Figma 同步流程（§8）
 - [x] 技術效能量化指標 → 暫不設定具體數字，改採質化驗收標準，待實測後回填（§2）
 - [x] XState 前後端狀態機驗證分工 → 前端僅做 UI 防呆，後端 C# 獨立實作為唯一信任來源，兩邊以憲法 §4 為 SSOT（§5、§9）
+- [x] 統一回應格式與錯誤格式 → 包裝格式 `{ statusCode, message, data }`，沿用 sanring 慣例（§7，task 2.0）
 
 **M2 前必須處理**：
 
 - [ ] TODO：M2.2 驗證可用的 .NET EDTF 套件與支援範圍；若不合格，依 implementation plan 停止條件回報並縮小支援子集。
-- [ ] TODO：第一個業務 endpoint 實作前拍板統一回應格式與錯誤格式，並反映到 OpenAPI。
 - [ ] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。
 - [ ] TODO：M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位。
 

@@ -87,6 +87,19 @@ related_constitution: .claude/constitutions/world-line.md
 
 **⚠️ 事後補充（2026-08-27）**：討論政權轉換邊（分裂/禪讓/滅亡）跟 `historical_events` 的關係時，發現兩者原本沒有因果連結——`regimes` 只記錄「發生過什麼轉換」，查不出「是哪個事件導致的」。拍板新增第 15 張表 `regime_transition_events`（多對多，`transition_kind` 區分 origin/destruction），已建立並套用 EF Core migration `AddRegimeTransitionEvents`。**PRD §6 已同步更新為 15 張表**，本文件 1.4 的「14 個 Entity 類別」文字保留原樣（不回溯改寫已完成任務的敘述），新增的 entity 視為 Phase 1 之後的一次獨立 schema 演進，不補記 commit 編號到 1.4。
 
+**⚠️ 事後補充（2026-08-28）**：盤點發現 1.7 的種子資料只涵蓋 15 張表中的 6 張，`RegimeAlias`、`PlaceName`、`HistoricalEvent` 全家族（含 tags/perspectives/controversies）、`RegimeTransitionEvent` 這 9 張完全沒有測試資料；另外 I3（爭議並存）也沒被真正驗證到——原本 208-215 荊州區間只有單一政權各自標 `IsDisputed=true`，不是「同一政權、同一時間點、兩筆互相矛盾記錄」的真實情境。`api/Data/SeedData.cs` 已補上：(1) 蜀漢 208-215 年第二筆衝突疆域記錄，構成真正的 I3 測試組；(2) 2 筆 `RegimeAlias`（魏被蜀漢稱「賊」、吳被後世稱「孫吳」，`AliasType` 刻意留 null，等 §12 TODO 拍板受控值）；(3) 赤壁之戰（多重視角＋爭議點示範）與魏滅蜀/晉滅吳兩場戰事（`RegimeTransitionEvent` 連結既有轉換邊示範）。已在拋棄式 PostGIS 容器上跑過完整 migration + seed 驗證無誤（見下方驗證記錄），但**尚未套用到 `docker-compose.yml` 實際在跑的 `app_postgres`**——seed 邏輯是 idempotent-skip（`regimes` 表非空就跳過），現有 `app_postgres` 裡仍是舊種子資料快照，需要清空 `regimes` 系列表或重建 volume 才會套用新資料，此步驟需使用者確認後才執行（見 §7 開放問題）。
+
+**2026-08-28 種子資料驗證記錄**：在拋棄式 PostGIS 容器（非 `docker-compose.yml` 的 `app_postgres`）上跑 `dotnet ef database update` + 啟動 API（觸發 `SeedAsync`），無任何 FK/約束錯誤；`psql` 確認 `regime_aliases`=2 筆、`historical_events`=3 筆、`historical_event_perspectives`=2 筆、`historical_event_controversies`=1 筆、`historical_event_tag_map`=5 筆、`regime_transition_events`=2 筆、`event_tags`=2 筆、`observer_categories`=1 筆；I3 測試組確認同一 `regime_id`（蜀漢）在 `[208,215)` 有兩筆 `is_disputed=true` 的記錄。
+
+**⚠️ 事後補充（2026-08-28 第二次，回應「M1/M2 還缺什麼」的檢視）**：上一輪盤點漏了兩個缺口，本次一併補上：(1) `place_names` 仍是 0 筆，且 Phase 2 任務清單完全沒有排它的 API（見下方新增 2.9b）；(2) `regime_transition_events` 先前只驗證過 `transition_kind='destruction'`，`'origin'` 分支（分裂/禪讓觸發的建國）完全沒有種子資料測過。順帶把「三國正統之爭」這個史學史真實案例落地成資料，直接驗證方案 D（`lineage_presets` 解耦設計）到底能不能承載多重史觀並存，而不只是文件裡宣稱可以：
+
+- `place_names` 補 4 筆：雒陽（東漢，避水德諱）／洛陽（魏晉，改回洛字，`ValidPeriod` 相接示範同地點改名）／成都（蜀漢，古今同名示範）／建業-南京（東吳）。
+- 新增 `event-han-abdicates-wei-220`、`event-wei-abdicates-jin-265` 兩筆 `historical_events`，各掛一筆 `transition_kind='origin'` 的 `regime_transition_events`，補齊 origin 分支覆蓋；兩者只標「政權更替」標籤、不標「戰爭」，跟滅蜀/滅吳形成對照，示範多對多標籤能區分和平轉移與武力消滅。
+- 新增第二個 `lineage_preset`「蜀漢正統論史觀」（漢→蜀漢→晉，晉的收錄理由跟傳統教科書史觀不同，寫在 `description`），刻意讓蜀漢（`regimes.status='被滅亡'`，不是「被取代(禪讓)」）進入某個 preset 的主線並跳過魏，驗證 preset 成員資格不需要遵循客觀轉換邊。
+- 在 `event-han-abdicates-wei-220` 上掛一筆 `historical_event_controversies`：陳壽《三國志》（西晉）尊魏、習鑿齒《漢晉春秋》（東晉）與朱熹《資治通鑑綱目》（南宋）尊蜀漢，並在 `neutral_description` 點出三派分歧跟各自成書朝代的政治處境相關，不是純史料判斷。
+
+驗證方式同上（拋棄式容器 `dotnet ef database update` + 觸發 `SeedAsync`），`dotnet build` 0 錯誤 0 警告；`psql` 確認 `place_names`=4、`historical_events`=5、`historical_event_controversies`=2、`lineage_presets`=2、`lineage_preset_members`=6、`regime_transition_events`=4（origin 2 + destruction 2）。**同樣尚未套用到 `docker-compose.yml` 的 `app_postgres`**，累積成同一個待你決策的動作，見 §7。
+
 ---
 
 ## 3. Phase 2（M2）：後端 MVP
@@ -95,10 +108,15 @@ related_constitution: .claude/constitutions/world-line.md
 
 > 任務順序**依相依關係排列**（不是隨意編號）：驗證/解析類的基礎工具（2.1-2.3）要先做，因為後面的寫入端點（2.5、2.10）會呼叫它們；純查詢端點（無依賴）可以穿插先做。
 
+> **2026-08-28 更新**：對照 PRD §12「M2 前必須處理」清單，發現原任務清單有兩個缺口——(1) PRD §7/§12 已預期會有「M2 政權代稱 API」，但 2.1-2.15 沒有對應任務；(2) 統一回應格式決策沒有掛在任何任務上，容易被第一個實作的端點順手定案而非刻意拍板。新增 2.0（決策）與 2.9a（alias API），並把 2.12/2.13 的 JSON schema 前置決策明確寫進任務描述，避免這些 TODO 在實作時被忽略。編號沿用既有任務（2.4/2.10/2.12/2.13 等）不變動，避免打亂 PRD 裡對這些編號的既有引用。
+>
+> **2026-08-28 更新（第二次）**：`place_names`（憲法 §6 地名雙軌顯示）有 Entity、有 migration、現在也有 seed 資料，卻是唯一沒有任何 API 任務的領域表——不是刻意延後，是規劃時漏掉。新增 2.9b，緊跟在 2.9a alias API 之後（兩者都是查詢用的「辭典型」輔助資料，性質相近）。
+
 ### 任務清單
 
 | 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
 |---|---|---|---|---|---|
+| [ ] | 2.0 | 統一回應格式與錯誤格式拍板 | 決定「直接回傳 resource/problem details」vs 包裝格式 `{ statusCode, message, data }`，並反映到 §7；後續所有端點依此格式實作 | §7、§12 TODO | 1 個（純文件決策，無程式碼） |
 | [ ] | 2.1 | 後端政權狀態機合法轉換驗證器（C#，唯一信任來源） | `RegimeTransitionValidator` 服務，依憲法 §4 規則表判斷「存續→分裂／存續→被取代禪讓／存續→被滅亡」是否合法 | §5 XState 驗證分工 | 1 個 |
 | [ ] | 2.2 | EDTF 套件整合 | 選定 .NET 生態的 EDTF 套件（若無成熟套件，見下方停止條件），封裝一個 `EdtfService`：格式驗證 + 換算 `start_decimal`/`end_decimal`（含閏年天數正確處理） | §5 EDTF 拍板 | 1 個 |
 | [ ] | 2.3 | `reign_eras` 查詢端點 | `GET /api/v1/reign-eras?year={y}`（依年份查年號）、`GET /api/v1/regimes/:id/reign-eras`（依政權查所有年號） | §5 紀年轉換 | 1 個 |
@@ -108,12 +126,14 @@ related_constitution: .claude/constitutions/world-line.md
 | [ ] | 2.7 | 疆域寫入 + 修正端點 | `POST /api/v1/regimes/:id/territories`（I1 校驗時間區間必填）、`PATCH /api/v1/territories/:id/correct`（I5 版本鏈：新增新版本、`superseded_by` 指回、不覆蓋刪除原記錄） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
 | [ ] | 2.8 | 史觀主線 preset 查詢端點 | `GET /api/v1/lineage-presets`、`GET /api/v1/lineage-presets/:id/regimes` | §7 | 1 個 |
 | [ ] | 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
+| [ ] | 2.9a | 政權代稱（Alias）CRUD | 先拍板 `alias_type` 受控值（若提不出比 observer relationship 更清楚的語意就直接移除該欄位，§12 TODO）；`GET /api/v1/regimes/:id/aliases`、`POST /api/v1/regimes/:id/aliases`（I4 校驗 `regime_id` FK 必存在） | §6、§7、§12 TODO | 1 個 |
+| [ ] | 2.9b | 地名雙軌查詢端點 | `GET /api/v1/place-names?year={y}`（依年份查當時使用中的地名，`valid_period` 區間匹配）、`GET /api/v1/place-names/:id`；回傳含 `historical_name`/`modern_name`（可為 NULL）雙欄位，不做寫入端點（seed 已覆蓋首都示範，正式匯入前的來源治理見 `docs/data-governance.md`） | 憲法 §6、§7 | 1 個 |
 | [ ] | 2.10 | 事件骨幹 CRUD | `GET /api/v1/events?year={y}`、`GET /api/v1/events/:id`、`POST /api/v1/events`（寫入時呼叫 2.2 EdtfService，含 `parent_event_id` 組成關係） | §7 | 1 個 |
 | [ ] | 2.11 | 事件類型標籤 | `GET /api/v1/event-tags`（列出可用標籤）、事件寫入端點（2.10）支援帶 `tag_ids` 陣列建立 `historical_event_tag_map` | §6 事件三維度 | 1 個 |
-| [ ] | 2.12 | 觀察者類別 + 多重視角敘事 | `GET /api/v1/observer-categories`、`GET /api/v1/events/:id/perspectives`、`POST .../perspectives`（應用層驗證 `regime_id`/`observer_category_id` 至少擇一非 NULL） | §6、Story 3 | 1 個 |
-| [ ] | 2.13 | 事件爭議點 | `GET /api/v1/events/:id/controversies`、`POST .../controversies` | §6 notes §十.2 | 1 個 |
+| [ ] | 2.12 | 觀察者類別 + 多重視角敘事 | **寫入端點實作前先定義 `primary_sources`/`claimed_casualties` 的 JSON schema 與最小 citation 欄位（§12 TODO）**；`GET /api/v1/observer-categories`、`GET /api/v1/events/:id/perspectives`、`POST .../perspectives`（應用層驗證 `regime_id`/`observer_category_id` 至少擇一非 NULL） | §6、Story 3、§12 TODO | 1 個 |
+| [ ] | 2.13 | 事件爭議點 | **寫入端點實作前先定義 `viewpoints` 的 JSON schema 與最小 citation 欄位（§12 TODO，可與 2.12 併案決定）**；`GET /api/v1/events/:id/controversies`、`POST .../controversies` | §6 notes §十.2、§12 TODO | 1 個 |
 | [ ] | 2.14 | 最小 Auth middleware | **已拍板（2026-08-26）**：`.env` 存單一固定 `API_WRITE_KEY`，middleware 檢查所有 POST/PATCH request header（例：`X-API-Key`）是否相符，不符回 401；GET 端點不掛此 middleware | §5 Auth 拍板 | 1 個 |
-| [ ] | 2.15 | 測試與契約驗證 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13 主要端點；ASP.NET 產生的 OpenAPI 必須包含所有已實作端點、request/response schema 與主要狀態碼 | PRD M2 驗收門檻 | 1 個 |
+| [ ] | 2.15 | 測試與契約驗證 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13、2.9a 主要端點；ASP.NET 產生的 OpenAPI 必須包含所有已實作端點、request/response schema 與主要狀態碼 | PRD M2 驗收門檻 | 1 個 |
 
 ### 範圍上限（本階段不做）
 
@@ -132,8 +152,8 @@ related_constitution: .claude/constitutions/world-line.md
 ### 驗證標準
 
 - 所有端點可用 `api/*.http` 檔案手動打通，且同一組端點可從 Development 環境的 `/openapi/v1.json` 查到契約
-- 單元測試涵蓋 I1-I5 約束在 API 層的攔截行為
-- 種子資料（Phase 1 的漢/魏/蜀/吳/晉，含 `reign_eras` 與 1 筆 `regime_relations`）能透過 API 完整查出，包含轉換邊與 lineage_preset
+- 單元測試涵蓋 I1-I5 約束在 API 層的攔截行為，其中 I3（爭議並存）用 2026-08-28 補入的種子資料驗證：蜀漢 208-215 年有兩筆互相矛盾、皆標 `is_disputed=true` 的疆域記錄，API 查詢須能兩筆並列回傳，不可只回一筆或報錯
+- 種子資料（Phase 1 的漢/魏/蜀/吳/晉，含 `reign_eras`、1 筆 `regime_relations`、2 筆 `regime_aliases`、4 筆 `place_names`、5 筆 `historical_events` 含多重視角/爭議點/`origin`+`destruction` 兩種轉換邊連結，見 2026-08-28 兩輪補充）能透過 API 完整查出；`GET /api/v1/lineage-presets` 須能同時查到「傳統教科書史觀」與「蜀漢正統論史觀」兩個並存的 preset，驗證方案 D 的多史觀承載能力不是只有文件宣稱
 
 ---
 
@@ -143,10 +163,13 @@ related_constitution: .claude/constitutions/world-line.md
 
 > **明確範圍決定（2026-08-26 grill-me）**：本階段**只做唯讀/瀏覽功能**，不含任何政權/疆域/事件的新增或編輯表單 UI。Phase 1-3 期間資料寫入一律透過 Phase 2 的 API 直接打（Postman/`*.http`/script），不做圖形化編輯介面。這是刻意決定，不是遺漏——理由見 §5 Backlog「管理後台/編輯 UI」條目。
 
+> **2026-08-28 更新**：拍板 UI 元件庫選型——採用 **Sanring UI**（`https://ui.sanring.dev/`，source-first Angular headless primitives，`@sanring/cli` 把元件原始碼複製進 `app/`，非傳統 npm 依賴）。需求 Angular 22.x / TypeScript >=6.0.0 <6.1.0，與現有 `app/package.json` 相符；唯一新增依賴是 **Tailwind CSS v4**（目前專案尚未安裝）。已解決 notes §十一「毛玻璃側邊抽屜／手風琴要不要用 headless component library」開放問題，見 PRD §5 B。新增任務 3.0 作為 Phase 3 前置工作。
+
 ### 任務清單
 
 | 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
 |---|---|---|---|---|---|
+| [ ] | 3.0 | 引入 Sanring UI + Tailwind CSS v4（`app/` 前端樣式基礎建設） | `npx @sanring/cli init` 設定完成、Tailwind v4 安裝並接上 `sanring-theme.css`、以 Button 元件驗證 hover/focus 樣式與 Angular standalone import 皆正常 | §5 UI 元件庫 | 1 個 |
 | [ ] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
 | [ ] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
 | [ ] | 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |
@@ -218,3 +241,4 @@ related_constitution: .claude/constitutions/world-line.md
 
 - [ ] TODO：Phase 2-3 尚無時程估計；若使用者需要粗略工時預估，需另外討論，不從任務數直接推導承諾日期
 - [x] Phase 1 最小驗證樣本採漢／魏／蜀漢／吳／晉；它只用來驗證 schema 與轉換關係，疆域矩形和簡化年份不是正式史料。正式資料匯入前仍須遵守 `docs/data-governance.md`。
+- [ ] TODO：2026-08-28 兩輪補充的種子資料（I3 衝突組/alias/events/place_names/第二個 lineage_preset/origin 轉換邊/正統性爭議點）都只驗證於拋棄式容器，尚未套用到 `docker-compose.yml` 的 `app_postgres`（現有資料是最初 1.7 的舊快照）。需要使用者確認要清空 `regimes` 系列表重新種入，還是重建 postgres volume，再由開發者執行。

@@ -312,7 +312,7 @@ CREATE TABLE historical_event_controversies (
 - [ ] EDTF 字串是否用現成 parser（如 npm `edtf`）解析，或自建正則/欄位驗證？後端要不要在寫入時強制校驗格式？
 - [ ] `start_decimal`/`end_decimal` 的計算時機：寫入時由後端從 EDTF 自動推算，還是留給資料建置腳本離線批次算好？平閏年造成的誤差是否需要更精確的公式？
 - [ ] 事件圖層與疆域圖層在前端的疊圖管理（z-index、圖層開關 UI）要怎麼設計？是否需要圖層控制面板？
-- [ ] 毛玻璃側邊抽屜／手風琴的 UI 元件要自建 CSS，還是用 Radix/shadcn 之類的 headless component library？
+- [x] ~~毛玻璃側邊抽屜／手風琴的 UI 元件要自建 CSS，還是用 Radix/shadcn 之類的 headless component library？~~ → 已拍板（2026-08-28）：採用 Sanring UI（`https://ui.sanring.dev/`，source-first Angular headless primitives），見 PRD §5 B「UI 元件庫」與 implementation plan Phase 3 任務 3.0
 - [ ] `influence_area`/`routes` 幾何資料的繪製精度取捨：走嚴謹史學考據（可能大量缺資料）還是先用示意性/近似路線滿足視覺呈現，未來再逐步精修？
 - [ ] 「爆發原點」座標的史料來源與標準：由誰考據、如何標註不確定性（例如座標本身也可能有模糊區間）？
 - [ ] `historical_event_perspectives` 的 `regime_id` 要不要強制對應到已建檔的政權實體，還是允許自由文字（例如「國際第三者」這種非政權主體）？

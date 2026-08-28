@@ -28,12 +28,14 @@ related_adrs: []
 > **2026-08-27 更新**：發現 `regimes` 的轉換邊（`predecessor_regime_id`/`origin_transition_type`/`destroyed_by_regime_id`）只記錄「發生過什麼轉換」，沒有連到「是哪個 `historical_events` 導致的」。已拍板新增 `regime_transition_events` 多對多 join 表補上這個因果連結（`transition_kind` 區分起源/終止轉換），並已建立 EF Core migration `AddRegimeTransitionEvents` 套用到資料庫。詳見 §6。
 >
 > **2026-08-27 文件一致性更新**：依 repository 實況更新 M1 完成狀態；將 Auth 統一為固定 API Key；釐清 EDTF 已拍板的是「後端驗證與使用現成 parser」而非 npm 套件，具體 .NET 套件留給 M2.2 spike；OpenAPI 完整性移至 M2 驗收；補上 `docs/` 架構、開發、API 與資料治理入口。
+>
+> **2026-08-28 種子資料補強（第二輪）**：盤點 M1/M2 缺口發現兩件事：(1) `place_names` 表有 schema 卻完全沒有 seed 資料，且 Phase 2 任務清單漏排它的 API（已補 implementation plan 2.9b，見 §7）；(2) `regime_transition_events` 只驗證過 `transition_kind='destruction'`，`'origin'` 分支從未有種子資料測過。順帶把「三國正統之爭」這個真實史學史案例落地成資料，具體驗證方案 D（`lineage_presets` 解耦設計）真的能承載多史觀並存：新增第二個 preset「蜀漢正統論史觀」（漢→蜀漢→晉，晉的收錄理由跟傳統教科書史觀不同）、兩筆禪讓事件（漢禪魏/魏禪晉，補上 origin 轉換邊）、一筆引用陳壽《三國志》／習鑿齒《漢晉春秋》／朱熹《資治通鑑綱目》三方史觀的 `historical_event_controversies`，以及 4 筆 `place_names`（雒陽→洛陽示範同地點隨政權更迭改名、成都、建業-南京）。已在拋棄式 PostGIS 容器驗證無誤，尚未套用到 `docker-compose.yml` 的 `app_postgres`，見 implementation plan §7。
 
 ## 1. 背景 (Background)
 
 傳統歷史知識透過書本傳遞時，是依「單一視角、按時間軸拆解」的方式敘述——例如以中國視角敘述唐朝歷史，便難以同步呈現同一時期阿拉伯帝國（大食）、歐洲政權的並行發展與互動關係。World Line 的核心動機（對應憲法 §1 業務目的、§7 Decision 1）是以 GIS／地圖取代這種單一視角敘事，讓使用者能夠「縱覽世界」：在同一個時間點上同時看到多個文明/政權的疆域與互動，並在需要時聚焦到單一政權觀察其與同時期周邊政權的關係（憲法 R2、R3）。
 
-專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1）。M1 資料層已完成：`api/` 已有 15 個領域 Entity、EF Core configurations、兩份 migration、開發環境自動 migration 與中國史示範 seed；`regime_transition_events` 已補上政權轉換與歷史事件的因果連結。HTTP API 仍只有 scaffold 的 `WeatherForecast` controller，M2 業務端點尚未實作；`app/` 仍是 Angular 22 scaffold，M3 地圖與時間軸尚未實作。`docker-compose.yml` 已具備 frontend/backend/PostGIS/Redis 四個 service。可執行現況與啟動方式以 repository 根目錄 `README.md` 為準。
+專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1）。M1 資料層已完成：`api/` 已有 15 個領域 Entity、EF Core configurations、兩份 migration、開發環境自動 migration 與中國史示範 seed；`regime_transition_events` 已補上政權轉換與歷史事件的因果連結，seed 資料現已覆蓋全部 15 張表（含先前缺漏的 `place_names`），並用兩個並存的 `lineage_presets` 示範方案 D 的多史觀解耦設計。HTTP API 仍只有 scaffold 的 `WeatherForecast` controller，M2 業務端點尚未實作；`app/` 仍是 Angular 22 scaffold，M3 地圖與時間軸尚未實作。`docker-compose.yml` 已具備 frontend/backend/PostGIS/Redis 四個 service。可執行現況與啟動方式以 repository 根目錄 `README.md` 為準。
 
 ## 2. 目標 (Goals)
 
@@ -160,6 +162,7 @@ related_adrs: []
 | 靜態離線切片 | PMTiles | 單檔金字塔圖磚，適合離線/靜態主機 | **已拍板：Phase 1 不導入**，待出現具體離線/純靜態部署需求再評估 |
 | 資料供應策略 | 純 GeoJSON | 後端直接回傳幾何資料，前端直接渲染 | **已拍板：Phase 1 採用**。理由：R1 範圍（中國史、朝代/國家層級）政權數量與疆域幾何複雜度可控，純 GeoJSON 已足夠，不需額外架設 Martin/Tegola 增加維運負擔；Phase 2「世界史」需同時渲染全球大量政權疆域，若遇效能瓶頸再回頭導入 MVT 動態切片；PMTiles 待「離線/純靜態部署」具體需求出現再評估 |
 | EDTF 時間解析 | 後端 `.NET` 相容的現成 EDTF parser（具體套件待 M2.2 spike） | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已拍板的是邊界與原則**：解析、驗證與 decimal year 推算都在後端完成；EDTF 字串是 single source of truth；優先採成熟現成套件，不先自建完整 parser。先前 notes 提到的 npm `edtf` 不適用於 .NET 後端信任邊界，因此不再視為後端定案套件。M2.2 必須先驗證 .NET 套件對 `?`、`~`、區間、BCE 與閏年的支援；若沒有合格套件，依 implementation plan 停止條件回報，不自行擴張成完整 parser 專案 |
+| UI 元件庫 | Sanring UI（`@sanring/cli`）+ Tailwind CSS v4 | 毛玻璃側邊抽屜／手風琴／多重視角分頁等 headless 元件（notes §十一原開放問題） | **已拍板（2026-08-28）**：source-first、非傳統 npm 依賴——CLI 把元件原始碼複製進 `app/` 原始碼樹，團隊自行維護。既有 `app/package.json`（Angular ^22.1.0、TypeScript ~6.0.2）與其需求（Angular 22.x、TypeScript >=6.0.0 <6.1.0）相符，僅需新增 Tailwind CSS v4 依賴。納入 Phase 3 前置任務，見 `.claude/plans/world-line-implementation-plan.md` Phase 3 任務 3.0 |
 | GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已拍板**，見上方 DB 列 |
 | 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
 | 斜線網底配色 | 集中共用常數檔（非正式 Design Token 系統） | 爭議控制區（notes §十）視覺呈現一致性 | **已拍板：Phase 1 用單一共用常數檔**（如 `neutral-map-colors.ts`）集中管理顏色/間距，不建置正式 Design Token pipeline；待深色模式或多人協作需求出現再升級 |
@@ -170,7 +173,7 @@ related_adrs: []
 
 ### 設計原則（grill-me 拍板摘要）
 
-- **政權轉換邊是客觀事實，「正式朝代」標籤是史觀立場**：`regimes` 表只記錄禪讓/滅亡/分裂這些客觀發生過的轉換動作，不判斷誰是「正統」。「主線敘事」（例如傳統教科書史觀的漢→魏→晉→⋯⋯序列）改用獨立的 `lineage_presets` 表承載，明確標註是哪一種史觀，可並存多個 preset，核心政權圖保持中立（方案 D）
+- **政權轉換邊是客觀事實，「正式朝代」標籤是史觀立場**：`regimes` 表只記錄禪讓/滅亡/分裂這些客觀發生過的轉換動作，不判斷誰是「正統」。「主線敘事」（例如傳統教科書史觀的漢→魏→晉→⋯⋯序列）改用獨立的 `lineage_presets` 表承載，明確標註是哪一種史觀，可並存多個 preset，核心政權圖保持中立（方案 D）。**已用種子資料驗證（2026-08-28）**：除「傳統教科書史觀」外，新增「蜀漢正統論史觀」（漢→蜀漢→晉，對應史學史真實存在的習鑿齒《漢晉春秋》/朱熹《資治通鑑綱目》尊蜀漢說），蜀漢在 `regimes.status` 是「被滅亡」而非「被取代(禪讓)」，這個 preset 仍把它放進主線並跳過魏，證明 preset 成員資格確實不需要遵循 `predecessor_regime_id` 那條客觀邊——解耦不只是文件宣稱，schema 真的撐得住
 - **政權互動依「離散事件」vs「持續關係」拆兩張表**：戰爭/條約/會戰這類有明確起訖的事件進 `historical_events`；絲路貿易、朝貢、和親這類沒有單一時間點、更像持續狀態的關係進 `regime_relations`
 - **事件本身有三個獨立維度**：時間長短由既有 EDTF 區間表達（不需新欄位）；類型（戰爭/貿易/革命/改革）用多對多標籤（不用單一 enum，因為像明治維新這種事件常同時橫跨多個類型）；組成關係（大戰爭包含小戰役）用 `parent_event_id` 自我參照，這個父子結構同時也是 notes §六語意縮放（Semantic Zooming）的資料基礎——年級尺度只顯示頂層事件，日/月級尺度才展開子事件
 - **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
@@ -382,6 +385,8 @@ CREATE TABLE regime_transition_events (
 | GET | /api/v1/lineage-presets | 取得可用史觀主線 preset 清單（方案 D，§6） | 公開（唯讀） |
 | GET | /api/v1/lineage-presets/:id/regimes | 取得某 preset 底下依序排列的政權序列 | 公開（唯讀） |
 | GET | /api/v1/regimes/:id/relations?year={y} | 取得政權在某時間點的持續性關係（貿易/朝貢/同盟等，`regime_relations`） | 公開（唯讀） |
+| GET | /api/v1/place-names?year={y} | 依年份查詢當時使用中的地名（憲法 §6 古地名為主、現代地名括號對照） | 公開（唯讀） |
+| GET | /api/v1/place-names/:id | 取得單一地名詳情（含 `historical_name`/`modern_name`） | 公開（唯讀） |
 
 M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包含 request/response schema、成功狀態碼與主要 4xx 回應。正式的文字精修與範例補強可延後，但不得讓已實作端點缺席於產生出的契約。目前僅有 scaffold endpoint，詳見 `docs/api.md`。
 
@@ -412,7 +417,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
   - error：視角資料載入失敗
   - success：客觀經過概要 + 各當事方視角分頁 + 爭議點區塊並列呈現；預設開啟哪個分頁須在 M3.13 前拍板（見 §12）
 
-對應 Figma / design assets：**已拍板（grill-me 2026-08-25 第二輪）**——`design_output_mode: assets_only`，不引入 Figma 同步流程。理由：專案目前無設計稿、無 UI 元件庫選型，屬單人自用階段，先直接以既有 UI 元件庫（待選型）+ MapLibre 拼介面；待有明確視覺規範需求或設計師/多人協作介入時再評估升級。
+對應 Figma / design assets：**已拍板（grill-me 2026-08-25 第二輪）**——`design_output_mode: assets_only`，不引入 Figma 同步流程。理由：專案目前無設計稿，屬單人自用階段，先直接以 UI 元件庫（**2026-08-28 已選定 Sanring UI**，見 §5 B）+ MapLibre 拼介面；待有明確視覺規範需求或設計師/多人協作介入時再評估升級。
 
 關鍵互動的 `data-testid` 不在 PRD 預先臆測名稱；M3 實作元件時依 3.16 E2E 主流程同步定義，並由測試 review 確認穩定性。
 

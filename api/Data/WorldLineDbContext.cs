@@ -25,6 +25,11 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Required so a GiST index can cover a plain (non-range/geometry) column like regime_id
+        // alongside an int4range column — see RegimeTerritoryConfiguration's composite GiST index
+        // (PRD §5: "int4range 時間區間索引（GiST 複合索引）").
+        modelBuilder.HasPostgresExtension("btree_gist");
+
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(WorldLineDbContext).Assembly);
     }
 }

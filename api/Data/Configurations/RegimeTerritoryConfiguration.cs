@@ -29,5 +29,12 @@ public class RegimeTerritoryConfiguration : IEntityTypeConfiguration<RegimeTerri
             .WithMany()
             .HasForeignKey(t => t.SupersededBy)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // PRD §5 "已拍板": composite GiST index on (regime_id, valid_period) — the core query
+        // shape is "this regime's territory as of year Y" (Story 1/R2) and "all regimes' territory
+        // as of year Y". Requires the btree_gist extension (declared on the DbContext) so a plain
+        // uuid column can share a GiST index with an int4range column.
+        builder.HasIndex(t => new { t.RegimeId, t.ValidPeriod })
+            .HasMethod("gist");
     }
 }

@@ -181,6 +181,43 @@ related_adrs: []
 - **I5 版本鏈（`superseded_by`）已有種子資料機械驗證過**（2026-08-28）：先前 `superseded_by`/`correction_reason`/`corrected_at` 只有 schema 欄位，從沒被任何 seed row 真正賦值過，等於這條 FK 路徑連「能不能正常 insert/查詢」都沒驗證。已補一組漢朝 `[25,189)` 的原始版＋修正版，原始列的 `superseded_by` 指向修正列。跟既有的蜀漢 I3 衝突組（同區間兩筆皆 `is_disputed=true`、互不 supersede）刻意做對照：I3 是「同期並存的兩種史觀」，I5 是「新版本取代舊版本」，語意不同。M2 應用層的修正端點行為（2.7：擋直接 UPDATE/DELETE、強制走新增新版本流程）仍待實作，這裡只驗證 schema 層的資料形狀正確
 - **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
 - **政權轉換邊需要能追溯回導致它的具體事件**（2026-08-27 拍板）：`regimes.predecessor_regime_id`/`origin_transition_type`（起源轉換）與 `regimes.destroyed_by_regime_id`（終止轉換）原本只記錄「發生過什麼轉換」，沒有連到「是哪個事件導致的」。新增 `regime_transition_events` 多對多 join 表，用 `transition_kind`（`'origin'` | `'destruction'`）區分同一個政權可能同時掛著起源與終止兩種轉換各自的觸發事件；多對多是因為一次轉換可能由多個事件共同促成（例：一連串戰役才逼成禪讓），一個事件也可能同時觸發多個政權的轉換（例：一場戰役同時導致多個分裂政權誕生）
+- **領域內容雙語支援用獨立翻譯表，不用語言後綴欄位**（2026-08-29 拍板，對應憲法 R4）：詳見下方「多語言內容設計」小節。選翻譯表而非 `self_name_en` 這種語言後綴欄位，理由跟 `civilization_sphere` 那次討論一樣——這個專案已經反覆撞到「寫死小範圍的設計後來都不夠用」，語言後綴只能撐兩種語言，M4 若要收阿拉伯文原文之類的第三種語言就得整組重練；翻譯表加語言只要多插資料列，不用改 schema
+
+### 多語言內容設計（憲法 R4，2026-08-29 拍板）
+
+**核心模式**：每個需要雙語呈現的父表，新增一張同名 `_translations` companion 表，不修改父表既有欄位。父表欄位維持「原始語言」（現階段中國史資料的原始語言就是中文，語意上等同這筆內容最初被記載/建檔時用的語言，跟未來 M4 記錄「原始史料是阿拉伯文」的精神一致，見 notes 曆法章節的類似討論）；translations 表用 `(parent_id, locale)` 複合唯一鍵，`locale` 用 ISO 639-1（`'en'`，未來若要地區變體可延伸 `'en-US'`）。查詢時指定 locale 若有翻譯列則回傳翻譯內容，沒有則 fallback 回父表原始語言欄位——**加這張表不會讓既有內容自動變雙語，仍需要有人實際寫英文翻譯內容，schema 只是讓這件事變得可行、可漸進式補**。
+
+```sql
+-- 範例（其餘表比照同一 pattern，見下方清單）
+CREATE TABLE regime_translations (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  regime_id UUID NOT NULL REFERENCES regimes(id) ON DELETE CASCADE,
+  locale VARCHAR(5) NOT NULL,
+  self_name VARCHAR(128) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE (regime_id, locale)
+);
+```
+
+**範圍分兩層，不是 9 張表一次到位**——第一層是使用者切換語言時最容易感受到「內容還停在中文」的核心顯示內容，第二層是次要/輔助資訊，優先權明顯較低：
+
+| 優先層 | 父表 | 需要翻譯的欄位 | 對應 companion 表 |
+|---|---|---|---|
+| 第一層 | `regimes` | `self_name` | `regime_translations` |
+| 第一層 | `historical_events` | `name`（`sections` JSONB 內嵌文字另計，見下方風險） | `historical_event_translations` |
+| 第一層 | `historical_event_perspectives` | `local_name`／`narrative_summary`／`official_justification` | `historical_event_perspective_translations` |
+| 第一層 | `historical_event_controversies` | `topic`／`neutral_description` | `historical_event_controversy_translations` |
+| 第一層 | `lineage_presets` | `preset_name`／`description` | `lineage_preset_translations` |
+| 第二層 | `regime_aliases` | `alias_name` | 待評估——他稱代稱本身是特定觀察者視角的用語（例：「大食」是唐朝視角的中文用語），「翻譯成英文」語意上比較像另開一筆新代稱而非單純翻譯，M4 實際遇到需求時再設計，不現在套用同一個 pattern |
+| 第二層 | `reign_eras` | `era_name` | `reign_era_translations` |
+| 第二層 | `place_names` | `historical_name`／`modern_name` | `place_name_translations` |
+| 第二層 | `regime_relations` | `relation_type`／`description` | `regime_relation_translations` |
+| 第二層 | `event_tags` | `tag_name` | `event_tag_translations` |
+| 第二層 | `observer_categories` | `category_name` | `observer_category_translations` |
+
+**已知風險，寫進去但不現在解**：`historical_events.sections` 是 JSONB（三層手風琴內容），內嵌的 `background`/`turning_points`/`impact` 等值本身也是要翻譯的中文文字，不是「一個欄位一個翻譯列」能處理的——要嘛 `historical_event_translations` 也複製一份對應的 `sections` JSONB，要嘛把 `sections` 整個改成 `{"zh": {...}, "en": {...}}` 的語言鍵結構（後者會動到既有 `sections` 的既有形狀跟既有 seed 資料，影響更大）。這個決策留到真的要實作 `historical_event_translations` 時再拍板，不在這裡先選。
+
+**API 層影響**：唯讀端點需要能接受 `?locale=` 查詢參數（省略時預設回原始語言），例如 `GET /api/v1/regimes?locale=en`。已實作的 2.3（`reign_eras` 查詢）目前不支援，因為 `reign_eras` 排在第二層——之後真的要做時再補，不用現在回頭改。
 
 ### Schema 變動
 
@@ -444,6 +481,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 | 風險 | 影響 | 緩解 |
 |---|---|---|
 | ~~`docker-compose.yml` 用純 `postgres:16-alpine`，GIS 幾何欄位/空間索引無法運作~~ | ~~high~~ | **已解決（2026-08-25）**：拍板改用 `postgis/postgis:16-3.4` 映像檔，列入 M1 前置工作 |
+| 憲法 R4（2026-08-29 新增）要求雙語內容，但既有 15 張表全部是單一語言欄位，且現有 seed 資料完全沒有英文版本——加 5 張第一層 `_translations` 表（§6）本身是新增，不影響現有資料，但要讓雙語「真的有內容」還需要實際撰寫英文翻譯（內容產出工作，不是純工程工作），且 `historical_events.sections` JSONB 內嵌文字的翻譯結構還沒拍板 | high（範圍大，觸及 9 張表其中 5 張優先） | schema 分兩層先做第一層（§6 已排序）；英文內容撰寫留給實際導入時再排期，不擋 schema 本身先就位；`sections` JSONB 翻譯結構待真的實作 `historical_event_translations` 時才拍板 |
 | CHGIS／CShapes 授權為非商業限定（CC BY-NC-SA / 學術限定），若專案未來出現贊助或政府投資等資金來源，需重新確認授權相容性 | med | 使用者已確認目前無商業化/收費計畫，OHM（CC0）作主要資料來源可完全規避此風險；CHGIS/CShapes 僅輔助使用，若未來有資金來源介入，啟動前需重新查證或改用純 OHM 資料，詳見 §5 |
 | 多重視角史料考據工作量大（notes §十設計要求「客觀骨幹 + 各方主觀敘事 + 爭議點」三層結構，每個跨國事件都需多方史料） | high | 第一階段（中國史）先聚焦內部政權疆域資料，多重視角功能可延後至世界史階段跨國事件出現時再逐步建置 |
 | `regimes.predecessor_regime_id` 是單一 FK，只能表達「一對多分裂」，無法表達「多對一合併」（例如英格蘭+蘇格蘭→大不列顛）——中國史很少出現此類轉換，三國案例未觸發此缺口（2026-08-28 檢視發現） | med（會擋住 M4 世界史需要的歐洲政權資料） | M1/M2 現有資料不受影響，純新增（例如加一張 `regime_merge_sources` join table），不動現有欄位。列為 M4 世界史前必須處理，詳見 §12 |
@@ -504,9 +542,10 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 
 **M2 前必須處理**：
 
-- [ ] TODO：M2.2 驗證可用的 .NET EDTF 套件與支援範圍；若不合格，依 implementation plan 停止條件回報並縮小支援子集。
+- [x] M2.2 驗證可用的 .NET EDTF 套件與支援範圍 → 無合格套件，改採自訂子集解析器 + NodaTime 曆法引擎，見 §5、implementation plan 2.2（2026-08-29 完成）
 - [ ] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。
 - [ ] TODO：M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位。
+- [ ] TODO（2026-08-29 新增，憲法 R4）：implementation plan 2.16 建立雙語內容第一層 5 張 `_translations` 表，2.17 補既有 seed 資料英文翻譯；2.4/2.8/2.10/2.12/2.13 這些尚未動工的查詢端點都要支援 `?locale=`，見 §6「多語言內容設計」。
 
 **正式史料匯入前必須處理**：
 

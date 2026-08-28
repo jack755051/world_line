@@ -42,11 +42,17 @@ public static class SeedData
 
         // --- Regimes + transition edges (方案 D: 客觀轉換邊，不判斷正統) ---
 
+        // Status/OriginTransitionType 用中立英文代碼存（'active'|'split'|'succeeded'|'conquered'），
+        // 不用中文字面值——憲法 §4 的「存續／分裂／被取代(禪讓)／被滅亡」是業務概念的權威定義，
+        // 這裡只是它在資料庫的編碼方式。2026-08-28 從中文字面值改過來：中文字面值當 enum 用，
+        // 套到非中國政權（例如歐洲史的合併、羅馬共和轉帝制）會很勉強，且已經在只有 5 筆資料時
+        // 就出現同一概念兩種寫法飄掉的情況（status 用過「被取代(禪讓)」、origin_transition_type
+        // 用過「被取代禪讓」，一個有括號一個沒有）。改成代碼後 UI/文件層再依語系對照回中文顯示。
         var han = new Regime
         {
             Id = Guid.NewGuid(),
             SelfName = "漢",
-            Status = "分裂",
+            Status = "split",
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
         };
@@ -55,9 +61,9 @@ public static class SeedData
         {
             Id = Guid.NewGuid(),
             SelfName = "魏",
-            Status = "被取代(禪讓)",
+            Status = "succeeded",
             PredecessorRegimeId = han.Id,
-            OriginTransitionType = "分裂",
+            OriginTransitionType = "split",
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
         };
@@ -66,9 +72,9 @@ public static class SeedData
         {
             Id = Guid.NewGuid(),
             SelfName = "蜀漢",
-            Status = "被滅亡",
+            Status = "conquered",
             PredecessorRegimeId = han.Id,
-            OriginTransitionType = "分裂",
+            OriginTransitionType = "split",
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
         };
@@ -77,9 +83,9 @@ public static class SeedData
         {
             Id = Guid.NewGuid(),
             SelfName = "吳",
-            Status = "被滅亡",
+            Status = "conquered",
             PredecessorRegimeId = han.Id,
-            OriginTransitionType = "分裂",
+            OriginTransitionType = "split",
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
         };
@@ -88,9 +94,9 @@ public static class SeedData
         {
             Id = Guid.NewGuid(),
             SelfName = "晉",
-            Status = "存續",
+            Status = "active",
             PredecessorRegimeId = wei.Id,
-            OriginTransitionType = "被取代禪讓",
+            OriginTransitionType = "succeeded",
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
         };

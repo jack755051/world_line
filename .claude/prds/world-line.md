@@ -518,7 +518,9 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 
 - [ ] TODO：`regimes` 補上「多對一合併」轉換路徑（例如新增 `regime_merge_sources` join table），現有的 `predecessor_regime_id` 單一 FK 只能表達分裂，歐洲史常見的政權合併（personal union、統一戰爭）目前存不進去。純新增，不影響現有資料，但要在真正匯入第一筆需要合併語意的政權（例如大不列顛、德意志統一）之前完成，不要等到卡住才回頭改。
 - [ ] TODO：`regime_territories` 的「政權＝固定邊界多邊形」假設，套到遊牧部落聯盟或非洲分節式政治體系是否成立，需要具體案例出現時再評估，目前只是標記為開放問題，不預先改 schema。
-- [ ] TODO：羅馬/拜占庭/伊斯蘭等文明「政權身份連續存在、統治家族多次更替」的情況，現有 `regimes` 沒有獨立的「統治家族」概念（中國史因兩者重合而不需要）。M4 實際建置時若發現這個資訊需要被查詢/篩選（不只是敘事文字），才評估要不要加表。四大文明政權合法性模型的完整比對見 `.claude/notes/world-line-civilizational-legitimacy-models.md`（M4 grill-me 參考素材）。
+- [ ] TODO：羅馬/拜占庭/伊斯蘭等文明「政權身份連續存在、統治家族多次更替」的情況，現有 `regimes` 沒有獨立的「統治家族」概念（中國史因兩者重合而不需要）。M4 實際建置時若發現這個資訊需要被查詢/篩選（不只是敘事文字），才評估要不要加表。
+- [ ] TODO：若 M4 要做「文明圈/宗教著色」地圖圖層，`civilization_sphere`／`legitimacy_type`／`religion` 這類屬性不可做成 `regimes` 的固定欄位——政權存續期間會變動（君士坦丁皈依基督教、唐朝佛道搖擺、蒙古帝國分裂出的汗國走向完全不同的宗教/合法性系統都是同一政權內的變化），且薩珊波斯/可薩/回鶻等真實案例已證明不能是寫死的小型 enum。資料須時間切片、詞彙表須可擴充，且要走既有 citation 治理。
+- [ ] 四大文明政權合法性模型的完整比對、上述兩條 TODO 的詳細推導見 `.claude/notes/world-line-civilizational-legitimacy-models.md`（M4 grill-me 參考素材）。
 
 **低優先，情境觸發才需處理**：
 

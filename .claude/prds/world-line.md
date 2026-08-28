@@ -35,7 +35,7 @@ related_adrs: []
 
 傳統歷史知識透過書本傳遞時，是依「單一視角、按時間軸拆解」的方式敘述——例如以中國視角敘述唐朝歷史，便難以同步呈現同一時期阿拉伯帝國（大食）、歐洲政權的並行發展與互動關係。World Line 的核心動機（對應憲法 §1 業務目的、§7 Decision 1）是以 GIS／地圖取代這種單一視角敘事，讓使用者能夠「縱覽世界」：在同一個時間點上同時看到多個文明/政權的疆域與互動，並在需要時聚焦到單一政權觀察其與同時期周邊政權的關係（憲法 R2、R3）。
 
-專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1）。M1 資料層已完成：`api/` 已有 15 個領域 Entity、EF Core configurations、兩份 migration、開發環境自動 migration 與中國史示範 seed；`regime_transition_events` 已補上政權轉換與歷史事件的因果連結，seed 資料現已覆蓋全部 15 張表（含先前缺漏的 `place_names`），並用兩個並存的 `lineage_presets` 示範方案 D 的多史觀解耦設計。HTTP API 仍只有 scaffold 的 `WeatherForecast` controller，M2 業務端點尚未實作；`app/` 仍是 Angular 22 scaffold，M3 地圖與時間軸尚未實作。`docker-compose.yml` 已具備 frontend/backend/PostGIS/Redis 四個 service。可執行現況與啟動方式以 repository 根目錄 `README.md` 為準。
+專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1）。M1 資料層已完成：`api/` 已有 15 個領域 Entity、EF Core configurations、三份 migration、開發環境自動 migration 與中國史示範 seed；`regime_transition_events` 已補上政權轉換與歷史事件的因果連結，seed 資料現已覆蓋全部 15 張表（含先前缺漏的 `place_names`），並用兩個並存的 `lineage_presets` 示範方案 D 的多史觀解耦設計。`regime_territories(regime_id, valid_period)` 的 GiST 複合索引已建立（見 §5），I5 版本鏈（`superseded_by`）也已有種子資料機械驗證過（見 §6）。HTTP API 仍只有 scaffold 的 `WeatherForecast` controller，M2 業務端點尚未實作；`app/` 仍是 Angular 22 scaffold，M3 地圖與時間軸尚未實作。`docker-compose.yml` 已具備 frontend/backend/PostGIS/Redis 四個 service。可執行現況與啟動方式以 repository 根目錄 `README.md` 為準。
 
 ## 2. 目標 (Goals)
 
@@ -163,7 +163,7 @@ related_adrs: []
 | 資料供應策略 | 純 GeoJSON | 後端直接回傳幾何資料，前端直接渲染 | **已拍板：Phase 1 採用**。理由：R1 範圍（中國史、朝代/國家層級）政權數量與疆域幾何複雜度可控，純 GeoJSON 已足夠，不需額外架設 Martin/Tegola 增加維運負擔；Phase 2「世界史」需同時渲染全球大量政權疆域，若遇效能瓶頸再回頭導入 MVT 動態切片；PMTiles 待「離線/純靜態部署」具體需求出現再評估 |
 | EDTF 時間解析 | 後端 `.NET` 相容的現成 EDTF parser（具體套件待 M2.2 spike） | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已拍板的是邊界與原則**：解析、驗證與 decimal year 推算都在後端完成；EDTF 字串是 single source of truth；優先採成熟現成套件，不先自建完整 parser。先前 notes 提到的 npm `edtf` 不適用於 .NET 後端信任邊界，因此不再視為後端定案套件。M2.2 必須先驗證 .NET 套件對 `?`、`~`、區間、BCE 與閏年的支援；若沒有合格套件，依 implementation plan 停止條件回報，不自行擴張成完整 parser 專案 |
 | UI 元件庫 | Sanring UI（`@sanring/cli`）+ Tailwind CSS v4 | 毛玻璃側邊抽屜／手風琴／多重視角分頁等 headless 元件（notes §十一原開放問題） | **已拍板（2026-08-28）**：source-first、非傳統 npm 依賴——CLI 把元件原始碼複製進 `app/` 原始碼樹，團隊自行維護。既有 `app/package.json`（Angular ^22.1.0、TypeScript ~6.0.2）與其需求（Angular 22.x、TypeScript >=6.0.0 <6.1.0）相符，僅需新增 Tailwind CSS v4 依賴。納入 Phase 3 前置任務，見 `.claude/plans/world-line-implementation-plan.md` Phase 3 任務 3.0 |
-| GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已拍板**，見上方 DB 列 |
+| GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已實作（2026-08-28）**：`regime_territories(regime_id, valid_period)` 複合 GiST 索引已建立（migration `AddRegimeTerritoryGistIndex`，需 `btree_gist` extension 才能讓一般欄位跟 range 型別共用 GiST）。這條決策先前只在本表標「已拍板」，卻沒有被排進任何 phase 的任務清單，屬於「決定了沒人接手」的孤兒項目，已補上並套用到 `app_postgres` |
 | 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
 | 斜線網底配色 | 集中共用常數檔（非正式 Design Token 系統） | 爭議控制區（notes §十）視覺呈現一致性 | **已拍板：Phase 1 用單一共用常數檔**（如 `neutral-map-colors.ts`）集中管理顏色/間距，不建置正式 Design Token pipeline；待深色模式或多人協作需求出現再升級 |
 
@@ -177,6 +177,7 @@ related_adrs: []
 - **政權互動依「離散事件」vs「持續關係」拆兩張表**：戰爭/條約/會戰這類有明確起訖的事件進 `historical_events`；絲路貿易、朝貢、和親這類沒有單一時間點、更像持續狀態的關係進 `regime_relations`
 - **事件本身有三個獨立維度**：時間長短由既有 EDTF 區間表達（不需新欄位）；類型（戰爭/貿易/革命/改革）用多對多標籤（不用單一 enum，因為像明治維新這種事件常同時橫跨多個類型）；組成關係（大戰爭包含小戰役）用 `parent_event_id` 自我參照，這個父子結構同時也是 notes §六語意縮放（Semantic Zooming）的資料基礎——年級尺度只顯示頂層事件，日/月級尺度才展開子事件
 - **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
+- **I5 版本鏈（`superseded_by`）已有種子資料機械驗證過**（2026-08-28）：先前 `superseded_by`/`correction_reason`/`corrected_at` 只有 schema 欄位，從沒被任何 seed row 真正賦值過，等於這條 FK 路徑連「能不能正常 insert/查詢」都沒驗證。已補一組漢朝 `[25,189)` 的原始版＋修正版，原始列的 `superseded_by` 指向修正列。跟既有的蜀漢 I3 衝突組（同區間兩筆皆 `is_disputed=true`、互不 supersede）刻意做對照：I3 是「同期並存的兩種史觀」，I5 是「新版本取代舊版本」，語意不同。M2 應用層的修正端點行為（2.7：擋直接 UPDATE/DELETE、強制走新增新版本流程）仍待實作，這裡只驗證 schema 層的資料形狀正確
 - **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
 - **政權轉換邊需要能追溯回導致它的具體事件**（2026-08-27 拍板）：`regimes.predecessor_regime_id`/`origin_transition_type`（起源轉換）與 `regimes.destroyed_by_regime_id`（終止轉換）原本只記錄「發生過什麼轉換」，沒有連到「是哪個事件導致的」。新增 `regime_transition_events` 多對多 join 表，用 `transition_kind`（`'origin'` | `'destruction'`）區分同一個政權可能同時掛著起源與終止兩種轉換各自的觸發事件；多對多是因為一次轉換可能由多個事件共同促成（例：一連串戰役才逼成禪讓），一個事件也可能同時觸發多個政權的轉換（例：一場戰役同時導致多個分裂政權誕生）
 

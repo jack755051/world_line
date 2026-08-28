@@ -100,6 +100,13 @@ related_constitution: .claude/constitutions/world-line.md
 
 驗證方式同上（拋棄式容器 `dotnet ef database update` + 觸發 `SeedAsync`），`dotnet build` 0 錯誤 0 警告；`psql` 確認 `place_names`=4、`historical_events`=5、`historical_event_controversies`=2、`lineage_presets`=2、`lineage_preset_members`=6、`regime_transition_events`=4（origin 2 + destruction 2）。**同樣尚未套用到 `docker-compose.yml` 的 `app_postgres`**，累積成同一個待你決策的動作，見 §7。
 
+**⚠️ 事後補充（2026-08-28 第三次，「M1 是不是完全沒漏洞」的檢視）**：重新盤查 migration/entity 設定/seed 資料，又抓到兩個先前沒發現的缺口，兩個都已修：
+
+- **PRD §5 拍板要用的 `regime_territories(regime_id, valid_period)` GiST 複合索引，先前沒被排進任何 phase 的任務清單**——是一個「決定了卻沒人接手」的孤兒項目。已在 `RegimeTerritoryConfiguration` 加上 `HasIndex(...).HasMethod("gist")`，並在 `WorldLineDbContext` 宣告 `btree_gist` extension（一般欄位要跟 `int4range` 共用 GiST 索引的必要條件），產出並套用 migration `AddRegimeTerritoryGistIndex`。
+- **I5 版本鏈（`superseded_by`）從沒被種子資料真正跑過**——欄位跟 FK 一直都在，但沒有任何一筆種子資料賦值過，連「這條 FK 能不能正常 insert/查詢」都沒驗證。已補一組漢朝 `[25,189)` 的原始版＋修正版，原始列 `superseded_by` 指向修正列，`correction_reason`/`corrected_at` 一併填寫，跟既有蜀漢 I3 衝突組（同區間兩筆皆爭議、互不 supersede）刻意做語意對照。
+
+驗證方式同上（新開一個拋棄式容器，因為這次連 migration 都變了）：`dotnet ef database update` 套用 3 份 migration 無誤，`pg_indexes` 確認 `ix_regime_territories_regime_id_valid_period` 是 `USING gist (regime_id, valid_period)`；`SeedAsync` 跑完後查漢朝 `[25,189)` 那兩筆，原始列的 `superseded_by` 確實解析到修正列的 id、修正列本身乾淨未被 supersede。已套用到 `docker-compose.yml` 的 `app_postgres`（migration 直接對現有資料庫執行、不掉資料；seed 沿用 truncate + `docker compose up -d --build backend` 的既定流程）並複查一致。至此 M1（Phase 1）沒有已知的未追蹤缺口。
+
 ---
 
 ## 3. Phase 2（M2）：後端 MVP

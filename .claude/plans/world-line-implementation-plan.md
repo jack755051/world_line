@@ -107,6 +107,8 @@ related_constitution: .claude/constitutions/world-line.md
 
 驗證方式同上（新開一個拋棄式容器，因為這次連 migration 都變了）：`dotnet ef database update` 套用 3 份 migration 無誤，`pg_indexes` 確認 `ix_regime_territories_regime_id_valid_period` 是 `USING gist (regime_id, valid_period)`；`SeedAsync` 跑完後查漢朝 `[25,189)` 那兩筆，原始列的 `superseded_by` 確實解析到修正列的 id、修正列本身乾淨未被 supersede。已套用到 `docker-compose.yml` 的 `app_postgres`（migration 直接對現有資料庫執行、不掉資料；seed 沿用 truncate + `docker compose up -d --build backend` 的既定流程）並複查一致。至此 M1（Phase 1）沒有已知的未追蹤缺口。
 
+**⚠️ 事後補充（2026-08-28 第四次，「西方/日式/非洲政權會不會有文化偏頗」的檢視）**：`regimes.status`／`origin_transition_type` 原本直接存憲法 §4 的中文術語當 enum 值——只有 5 筆 seed 資料就已經飄了（`status` 用「被取代(禪讓)」、`origin_transition_type` 用「被取代禪讓」，同一概念兩種字面值），且「禪讓」是中國政治史特有概念，套到非中國政權的轉型會很勉強。已改成中立代碼 `'active'|'split'|'succeeded'|'conquered'`，憲法本身業務詞彙不變（純儲存編碼調整，不觸發回寫憲法）。無 schema 變動、不需要新 migration，純資料值改寫，已套用到 `app_postgres`（同樣是 truncate + `docker compose up -d --build backend`）並確認一致。同一輪還發現一個目前**沒有修**、留給 M4 世界史階段的結構性缺口：`predecessor_regime_id` 是單一 FK，只能表達分裂（一對多），無法表達合併（多對一，例如英格蘭+蘇格蘭→大不列顛），中國史很少出現此類轉換所以三國案例沒測到；已記錄進 PRD §9 風險表與 §12「M4 前必須處理」，不在本階段動 schema。
+
 ---
 
 ## 3. Phase 2（M2）：後端 MVP

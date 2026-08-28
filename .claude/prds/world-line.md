@@ -177,6 +177,7 @@ related_adrs: []
 - **政權互動依「離散事件」vs「持續關係」拆兩張表**：戰爭/條約/會戰這類有明確起訖的事件進 `historical_events`；絲路貿易、朝貢、和親這類沒有單一時間點、更像持續狀態的關係進 `regime_relations`
 - **事件本身有三個獨立維度**：時間長短由既有 EDTF 區間表達（不需新欄位）；類型（戰爭/貿易/革命/改革）用多對多標籤（不用單一 enum，因為像明治維新這種事件常同時橫跨多個類型）；組成關係（大戰爭包含小戰役）用 `parent_event_id` 自我參照，這個父子結構同時也是 notes §六語意縮放（Semantic Zooming）的資料基礎——年級尺度只顯示頂層事件，日/月級尺度才展開子事件
 - **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
+- **`regimes.status`／`origin_transition_type` 改用文化中立代碼，不用中文字面值**（2026-08-28，回應「西方/日式/非洲政權會不會有文化偏頗」的檢視）：原本直接存憲法 §4 的中文術語（「存續」「分裂」「被取代(禪讓)」「被滅亡」）當 enum 值，只有 5 筆 seed 資料就已經飄了（`status` 寫過「被取代(禪讓)」、`origin_transition_type` 寫過「被取代禪讓」，同一概念兩種字面值）；且「禪讓」是中國政治史特有的儀式性概念，套到羅馬共和轉帝制之類的非中國轉型會很勉強。改成 `'active'|'split'|'succeeded'|'conquered'` 中立代碼，UI/文件層再依語系對照回憲法的中文術語；憲法本身的業務詞彙不變，這純粹是儲存編碼方式的改變。**同一輪檢視發現一個目前還沒修的結構性缺口，見 §9 風險與 §12**：`predecessor_regime_id` 是單一 FK，只能表達「一對多分裂」，無法表達「多對一合併」（例如英格蘭+蘇格蘭→大不列顛這種歐洲史常見的政權合併），中國史很少出現這種轉換所以三國案例沒測到，留給 M4 世界史階段真的要放歐洲政權前處理
 - **I5 版本鏈（`superseded_by`）已有種子資料機械驗證過**（2026-08-28）：先前 `superseded_by`/`correction_reason`/`corrected_at` 只有 schema 欄位，從沒被任何 seed row 真正賦值過，等於這條 FK 路徑連「能不能正常 insert/查詢」都沒驗證。已補一組漢朝 `[25,189)` 的原始版＋修正版，原始列的 `superseded_by` 指向修正列。跟既有的蜀漢 I3 衝突組（同區間兩筆皆 `is_disputed=true`、互不 supersede）刻意做對照：I3 是「同期並存的兩種史觀」，I5 是「新版本取代舊版本」，語意不同。M2 應用層的修正端點行為（2.7：擋直接 UPDATE/DELETE、強制走新增新版本流程）仍待實作，這裡只驗證 schema 層的資料形狀正確
 - **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
 - **政權轉換邊需要能追溯回導致它的具體事件**（2026-08-27 拍板）：`regimes.predecessor_regime_id`/`origin_transition_type`（起源轉換）與 `regimes.destroyed_by_regime_id`（終止轉換）原本只記錄「發生過什麼轉換」，沒有連到「是哪個事件導致的」。新增 `regime_transition_events` 多對多 join 表，用 `transition_kind`（`'origin'` | `'destruction'`）區分同一個政權可能同時掛著起源與終止兩種轉換各自的觸發事件；多對多是因為一次轉換可能由多個事件共同促成（例：一連串戰役才逼成禪讓），一個事件也可能同時觸發多個政權的轉換（例：一場戰役同時導致多個分裂政權誕生）
@@ -188,11 +189,11 @@ related_adrs: []
 CREATE TABLE regimes (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   self_name VARCHAR(128) NOT NULL,              -- 自稱名稱（I2 硬約束，例："唐"、"阿拔斯王朝"）
-  status VARCHAR(32) NOT NULL,                  -- 存續 / 分裂 / 被取代(禪讓) / 被滅亡（憲法 §4 狀態機）
+  status VARCHAR(32) NOT NULL,                  -- 'active'|'split'|'succeeded'|'conquered'（對應憲法 §4 存續／分裂／被取代(禪讓)／被滅亡，2026-08-28 改用中立代碼，見下方設計原則）
 
   -- 轉換邊（客觀事實層，方案 D：不判斷正統，只記錄發生過的轉換動作）
   predecessor_regime_id UUID REFERENCES regimes(id),  -- 因「分裂」或「被取代(禪讓)」而來的前身政權；獨立建國則為 NULL
-  origin_transition_type VARCHAR(16),                 -- '分裂' | '被取代禪讓' | NULL（獨立建國，無前身）
+  origin_transition_type VARCHAR(16),                 -- 'split'|'succeeded'|NULL（獨立建國，無前身；2026-08-28 改用中立代碼）
   destroyed_by_regime_id UUID REFERENCES regimes(id), -- 若 status='被滅亡'，記錄消滅方政權；其餘狀態為 NULL
 
   created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -443,6 +444,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 | ~~`docker-compose.yml` 用純 `postgres:16-alpine`，GIS 幾何欄位/空間索引無法運作~~ | ~~high~~ | **已解決（2026-08-25）**：拍板改用 `postgis/postgis:16-3.4` 映像檔，列入 M1 前置工作 |
 | CHGIS／CShapes 授權為非商業限定（CC BY-NC-SA / 學術限定），若專案未來出現贊助或政府投資等資金來源，需重新確認授權相容性 | med | 使用者已確認目前無商業化/收費計畫，OHM（CC0）作主要資料來源可完全規避此風險；CHGIS/CShapes 僅輔助使用，若未來有資金來源介入，啟動前需重新查證或改用純 OHM 資料，詳見 §5 |
 | 多重視角史料考據工作量大（notes §十設計要求「客觀骨幹 + 各方主觀敘事 + 爭議點」三層結構，每個跨國事件都需多方史料） | high | 第一階段（中國史）先聚焦內部政權疆域資料，多重視角功能可延後至世界史階段跨國事件出現時再逐步建置 |
+| `regimes.predecessor_regime_id` 是單一 FK，只能表達「一對多分裂」，無法表達「多對一合併」（例如英格蘭+蘇格蘭→大不列顛）——中國史很少出現此類轉換，三國案例未觸發此缺口（2026-08-28 檢視發現） | med（會擋住 M4 世界史需要的歐洲政權資料） | M1/M2 現有資料不受影響，純新增（例如加一張 `regime_merge_sources` join table），不動現有欄位。列為 M4 世界史前必須處理，詳見 §12 |
 | ~~政權「正式朝代 vs 子朝代/分裂政權」分類與傳承鏈定義未拍板~~ | ~~med~~ | **已解決（2026-08-25）**：不做分類欄位，改用 `regimes` 轉換邊（客觀事實）+ 獨立 `lineage_presets` 表（史觀主線呈現層），詳見 §6 方案 D |
 | EDTF + decimal year 的責任邊界已定，但 .NET 套件能力尚未驗證 | med | 寫入時由後端驗證並自動計算 decimal；M2.2 先做套件 spike，驗證 `?`、`~`、區間、BCE、閏年案例。找不到成熟套件時依 implementation plan 停止並回報，不直接自建完整規格 |
 | 斜線網底（爭議控制區）Shader 方案在大量爭議區同時繪製時的效能瓶頸 | low | Phase 1 採 Canvas Pattern 方案規避（已拍板，見 §5），成熟階段再評估升級 WebGL Shader |
@@ -496,6 +498,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] 技術效能量化指標 → 暫不設定具體數字，改採質化驗收標準，待實測後回填（§2）
 - [x] XState 前後端狀態機驗證分工 → 前端僅做 UI 防呆，後端 C# 獨立實作為唯一信任來源，兩邊以憲法 §4 為 SSOT（§5、§9）
 - [x] 統一回應格式與錯誤格式 → 包裝格式 `{ statusCode, message, data }`，沿用 sanring 慣例（§7，task 2.0）
+- [x] `regimes.status`／`origin_transition_type` 的文化偏頗風險 → 改用中立代碼（`active`/`split`/`succeeded`/`conquered`），憲法中文術語維持不變，純儲存編碼調整（§6）
 
 **M2 前必須處理**：
 
@@ -510,6 +513,11 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 **M3 前必須處理**：
 
 - [ ] TODO：拍板事件詳情無 `sections`、事件無視角資料時的 empty state，以及 Perspective Tabs 預設分頁規則。
+
+**M4（世界史）前必須處理**（2026-08-28 新增，回應文化偏頗檢視）：
+
+- [ ] TODO：`regimes` 補上「多對一合併」轉換路徑（例如新增 `regime_merge_sources` join table），現有的 `predecessor_regime_id` 單一 FK 只能表達分裂，歐洲史常見的政權合併（personal union、統一戰爭）目前存不進去。純新增，不影響現有資料，但要在真正匯入第一筆需要合併語意的政權（例如大不列顛、德意志統一）之前完成，不要等到卡住才回頭改。
+- [ ] TODO：`regime_territories` 的「政權＝固定邊界多邊形」假設，套到遊牧部落聯盟或非洲分節式政治體系是否成立，需要具體案例出現時再評估，目前只是標記為開放問題，不預先改 schema。
 
 **低優先，情境觸發才需處理**：
 

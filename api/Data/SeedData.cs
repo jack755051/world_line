@@ -324,7 +324,10 @@ public static class SeedData
         // 資料庫產生的值，必須先有已知 Id 才能組 join row。
         var warTag = new EventTag { Id = 1, TagName = "戰爭" };
         var successionTag = new EventTag { Id = 2, TagName = "政權更替" };
-        db.EventTags.AddRange(warTag, successionTag);
+        // 神話援引：政權引用神話/傳說先例（如堯舜禪讓）鞏固自身合法性，是可跨文明比較的標籤
+        // ——不代表被援引的神話本身被系統當成客觀史實，見 notes §九「神話算不算歷史」。
+        var mythInvocationTag = new EventTag { Id = 3, TagName = "神話援引" };
+        db.EventTags.AddRange(warTag, successionTag, mythInvocationTag);
 
         // RegimeTransitionEvent：把既有的轉換邊（1.4/1.7 建立時只記錄「發生過」）連回「是哪個事件
         // 導致的」——這正是 7eb6a4b 新增這張表要解決的問題。'destruction' 分支先前已驗證過（滅蜀/滅
@@ -348,6 +351,7 @@ public static class SeedData
             // 禪讓事件刻意只掛「政權更替」、不掛「戰爭」——跟滅蜀/滅吳形成對照，示範同一個
             // event_tags 集合能區分「和平轉移」與「武力消滅」兩種性質的政權更替（多對多標籤設計原則）。
             new HistoricalEventTagMap { EventId = hanAbdicatesWei.Id, TagId = successionTag.Id },
+            new HistoricalEventTagMap { EventId = hanAbdicatesWei.Id, TagId = mythInvocationTag.Id },
             new HistoricalEventTagMap { EventId = weiAbdicatesJin.Id, TagId = successionTag.Id }
         );
 
@@ -370,6 +374,18 @@ public static class SeedData
                 LocalName = "後世史學界考據",
                 NarrativeSummary = "對曹操南征兵力規模、黃蓋詐降細節與火攻具體戰術的史料考證整理，各家說法不一",
                 PrimarySources = """[{"title":"三國志","author":"陳壽","year":280},{"title":"資治通鑑","author":"司馬光","year":1084}]""",
+            },
+            // 神話援引示範（notes 世界史筆記 §九）：曹丕受禪詔書與《受禪表》碑刻明確援引堯舜禪讓
+            // 先例包裝正當性——援引這件事本身是可考證史實，被援引的堯舜傳說本身不當作客觀史實看待。
+            new HistoricalEventPerspective
+            {
+                Id = Guid.NewGuid(),
+                EventId = hanAbdicatesWei.Id,
+                RegimeId = wei.Id,
+                LocalName = "魏方受禪敘事",
+                NarrativeSummary = "曹丕接受漢獻帝禪讓，即位為魏文帝，改元黃初",
+                OfficialJustification = "受禪詔書與《受禪表》援引唐堯禪舜、虞舜禪禹的上古先例，主張漢帝禪魏是效法聖王「以德相讓」的正統模式而非武力奪取；許昌一帶並立「受禪台」與《受禪表》碑刻紀念，碑文明確以堯舜作為比擬對象",
+                PrimarySources = """[{"title":"三國志·魏書·文帝紀","author":"陳壽","year":280},{"title":"受禪表（碑刻）","author":"魏黃初元年立","year":220}]""",
             }
         );
 

@@ -172,9 +172,35 @@ public static class SeedData
 
         // --- Territory snapshots (事件驅動密度 — 荊州爭奪戰讓蜀漢/東吳的快照比穩定期政權密集) ---
 
+        // I5 版本鏈的機械驗證（先前完全沒有種子資料測過 SupersededBy 這條 FK 路徑）：初版粗略依現代
+        // 省界估計東漢疆域，之後依《後漢書·郡國志》十三州範圍修正，補上西南（益州）與西北（涼州）。
+        // 原始列不刪除，只把 SupersededBy 指向修正列，並記錄修正原因與時間戳（憲法 I5、§8「類 git」）。
+        // ⚠️ 這裡驗證的是「這條 FK 鏈能不能正確 insert/查詢」，不是 M2 應用層的修正端點行為本身
+        // （新增新版本、擋直接 UPDATE/DELETE 那套流程邏輯留給 2.7，見 implementation plan）。
+        var hanTerritory1Original = new RegimeTerritory
+        {
+            Id = Guid.NewGuid(),
+            RegimeId = han.Id,
+            ValidPeriod = Years(25, 189),
+            Geom = Rect(102, 24, 118, 38), // 初版：粗略依現代省界估計，範圍偏保守
+            CreatedAt = DateTimeOffset.UtcNow,
+        };
+        var hanTerritory1Corrected = new RegimeTerritory
+        {
+            Id = Guid.NewGuid(),
+            RegimeId = han.Id,
+            ValidPeriod = Years(25, 189),
+            Geom = Rect(100, 20, 122, 40), // 修正版：納入益州、涼州後範圍擴大
+            CreatedAt = DateTimeOffset.UtcNow,
+        };
+        hanTerritory1Original.SupersededBy = hanTerritory1Corrected.Id;
+        hanTerritory1Original.CorrectionReason = "初版依現代省界粗略估計，範圍偏保守；依《後漢書·郡國志》十三州記載修正，補上西南益州與西北涼州轄境";
+        hanTerritory1Original.CorrectedAt = DateTimeOffset.UtcNow;
+
         db.RegimeTerritories.AddRange(
-            // 漢：2 筆（穩定期政權，快照較疏）
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(25, 189), Geom = Rect(100, 20, 122, 40), CreatedAt = DateTimeOffset.UtcNow },
+            // 漢：3 筆（穩定期政權，快照較疏）——前 2 筆是上方 I5 版本鏈示範（同一時間區間的原始版 + 修正版）
+            hanTerritory1Original,
+            hanTerritory1Corrected,
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(189, 220), Geom = Rect(102, 22, 120, 38), CreatedAt = DateTimeOffset.UtcNow },
 
             // 魏：3 筆

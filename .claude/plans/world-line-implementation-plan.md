@@ -173,6 +173,8 @@ related_constitution: .claude/constitutions/world-line.md
 > **明確範圍決定（2026-08-26 grill-me）**：本階段**只做唯讀/瀏覽功能**，不含任何政權/疆域/事件的新增或編輯表單 UI。Phase 1-3 期間資料寫入一律透過 Phase 2 的 API 直接打（Postman/`*.http`/script），不做圖形化編輯介面。這是刻意決定，不是遺漏——理由見 §5 Backlog「管理後台/編輯 UI」條目。
 
 > **2026-08-28 更新**：拍板 UI 元件庫選型——採用 **Sanring UI**（`https://ui.sanring.dev/`，source-first Angular headless primitives，`@sanring/cli` 把元件原始碼複製進 `app/`，非傳統 npm 依賴）。需求 Angular 22.x / TypeScript >=6.0.0 <6.1.0，與現有 `app/package.json` 相符；唯一新增依賴是 **Tailwind CSS v4**（目前專案尚未安裝）。已解決 notes §十一「毛玻璃側邊抽屜／手風琴要不要用 headless component library」開放問題，見 PRD §5 B。新增任務 3.0 作為 Phase 3 前置工作。
+>
+> **2026-08-29 更新**：M2 task 2.0 修訂 `ApiResponse.message` 語意（改成穩定代碼，非中文句子）後，發現原本的任務清單沒有對應的前端消費端——新增 3.14a，把「代碼→顯示文字」的對照集中管理，避免各元件各自寫死判斷式。多語系本身不是已拍板的產品目標（憲法未提及），這裡先只求「集中管理」，不是先做語言切換功能。
 
 ### 任務清單
 
@@ -193,6 +195,7 @@ related_constitution: .claude/constitutions/world-line.md
 | [ ] | 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
+| [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |
 | [ ] | 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |
 | [ ] | 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
 

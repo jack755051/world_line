@@ -241,4 +241,4 @@ related_constitution: .claude/constitutions/world-line.md
 
 - [ ] TODO：Phase 2-3 尚無時程估計；若使用者需要粗略工時預估，需另外討論，不從任務數直接推導承諾日期
 - [x] Phase 1 最小驗證樣本採漢／魏／蜀漢／吳／晉；它只用來驗證 schema 與轉換關係，疆域矩形和簡化年份不是正式史料。正式資料匯入前仍須遵守 `docs/data-governance.md`。
-- [ ] TODO：2026-08-28 兩輪補充的種子資料（I3 衝突組/alias/events/place_names/第二個 lineage_preset/origin 轉換邊/正統性爭議點）都只驗證於拋棄式容器，尚未套用到 `docker-compose.yml` 的 `app_postgres`（現有資料是最初 1.7 的舊快照）。需要使用者確認要清空 `regimes` 系列表重新種入，還是重建 postgres volume，再由開發者執行。
+- [x] 2026-08-28 兩輪補充的種子資料（I3 衝突組/alias/events/place_names/第二個 lineage_preset/origin 轉換邊/正統性爭議點）已套用到 `docker-compose.yml` 的 `app_postgres`——使用者選擇「清空 `regimes` 系列表重種」。**過程中發現一個踩坑點**：光 `docker compose restart backend` 不會重建 image，容器仍在跑舊的編譯產物，`TRUNCATE` 後重啟只會種回舊版精簡 seed；改用 `docker compose up -d --build backend` 重新編譯映像檔後再種，才拿到完整的 15 張表資料。已用 `psql` 核對 `app_postgres` 內 `place_names`=4、`historical_events`=5、`historical_event_controversies`=2、`lineage_presets`=2（含兩個 preset 各自的 3 筆成員）、`regime_transition_events`=4、`regime_aliases`=2，與拋棄式容器驗證結果一致。

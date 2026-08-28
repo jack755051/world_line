@@ -13,6 +13,9 @@ builder.Services.AddOpenApi();
 // 憲法 §4 政權狀態機驗證（task 2.1）：無狀態、無外部相依，singleton 即可。
 builder.Services.AddSingleton<IRegimeTransitionValidator, RegimeTransitionValidator>();
 
+// EDTF 解析（task 2.2）：無狀態（NodaTime 的 CalendarSystem.Iso 本身是靜態單例），singleton 即可。
+builder.Services.AddSingleton<IEdtfService, EdtfService>();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 

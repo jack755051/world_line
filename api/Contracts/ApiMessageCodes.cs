@@ -1,0 +1,26 @@
+namespace WorldLine.Api.Contracts;
+
+/// <summary>
+/// task 2.0（2026-08-29 修訂）：<see cref="ApiResponse{T}.Message"/> 放這裡定義的穩定代碼，
+/// 不是給人看的中文句子——前端拿代碼查自己的翻譯字典決定顯示文字，之後改中文措辭不會動到
+/// 前端邏輯，也才能真的做多語系。SCREAMING_SNAKE_CASE，是這個檔案唯一的權威清單，不另外
+/// 在文件裡維護一份會漂移的複本。
+///
+/// 命名原則：成功代碼對應 HTTP 動詞語意（GET→FETCH、POST→CREATE、PATCH→UPDATE）；錯誤代碼
+/// 盡量對應到具體違反的欄位/規則（例如 YEAR_REQUIRED），只有框架自動觸發、無法歸因到單一
+/// 規則的情況才用通用代碼（VALIDATION_ERROR、NOT_FOUND、INTERNAL_ERROR）。
+/// </summary>
+public static class ApiMessageCodes
+{
+    // --- 成功 ---
+    public const string FetchSuccess = "FETCH_SUCCESS";
+
+    // --- 通用錯誤（框架自動觸發，或沒有更具體代碼可用時的 fallback） ---
+    public const string ValidationError = "VALIDATION_ERROR"; // [ApiController] 自動 model-state 驗證失敗
+    public const string NotFound = "NOT_FOUND";
+    public const string InternalError = "INTERNAL_ERROR";
+
+    // --- 具體錯誤（依端點逐步擴充，見各 controller 使用處） ---
+    public const string YearRequired = "YEAR_REQUIRED";
+    public const string RegimeNotFound = "REGIME_NOT_FOUND";
+}

@@ -16,7 +16,7 @@ public class ReignErasController(WorldLineDbContext db) : ControllerBase
     {
         if (year is null)
         {
-            return BadRequest(ApiResponse.Error(StatusCodes.Status400BadRequest, "查詢參數 year 為必填"));
+            return BadRequest(ApiResponse.Error(StatusCodes.Status400BadRequest, ApiMessageCodes.YearRequired));
         }
 
         // 半開區間慣例：[start_year, end_year)，跟 regime_territories/regime_relations 一致
@@ -37,7 +37,7 @@ public class ReignErasController(WorldLineDbContext db) : ControllerBase
         var regimeExists = await db.Regimes.AnyAsync(r => r.Id == regimeId);
         if (!regimeExists)
         {
-            return NotFound(ApiResponse.Error(StatusCodes.Status404NotFound, $"找不到 id 為 {regimeId} 的政權"));
+            return NotFound(ApiResponse.Error(StatusCodes.Status404NotFound, ApiMessageCodes.RegimeNotFound));
         }
 
         var eras = await db.ReignEras

@@ -14,7 +14,7 @@ public class ApiExceptionHandler(ILogger<ApiExceptionHandler> logger) : IExcepti
 
         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         await httpContext.Response.WriteAsJsonAsync(
-            ApiResponse.Error(StatusCodes.Status500InternalServerError, "系統發生未預期錯誤"),
+            ApiResponse.Error(StatusCodes.Status500InternalServerError, ApiMessageCodes.InternalError),
             cancellationToken);
 
         return true;

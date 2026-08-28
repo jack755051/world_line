@@ -392,19 +392,21 @@ CREATE TABLE regime_transition_events (
 
 M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包含 request/response schema、成功狀態碼與主要 4xx 回應。正式的文字精修與範例補強可延後，但不得讓已實作端點缺席於產生出的契約。目前僅有 scaffold endpoint，詳見 `docs/api.md`。
 
-**統一回應格式（已拍板，2026-08-28，task 2.0）**：採包裝格式，沿用 sanring 慣例，不用 ASP.NET 內建 `ProblemDetails`。
+**統一回應格式（已拍板，2026-08-28，task 2.0；2026-08-29 修訂 `message` 語意）**：採包裝格式，沿用 sanring 慣例，不用 ASP.NET 內建 `ProblemDetails`。
 
 ```json
 // 成功
-{ "statusCode": 200, "message": "OK", "data": { /* resource 或陣列，query 無結果時為 [] 或 null，視端點語意 */ } }
+{ "statusCode": 200, "message": "FETCH_SUCCESS", "data": { /* resource 或陣列，query 無結果時為 [] 或 null，視端點語意 */ } }
 
 // 失敗（驗證錯誤、找不到資源、狀態轉換不合法等）
-{ "statusCode": 400, "message": "人類可讀的錯誤說明", "data": null }
+{ "statusCode": 400, "message": "YEAR_REQUIRED", "data": null }
 ```
 
-- 三欄固定：`statusCode`（對應 HTTP status code）、`message`（成功可為固定字串或 null；失敗必須是人類可讀說明）、`data`（成功時放 resource，失敗時固定 `null`）。
-- 多筆欄位驗證錯誤（例如 400 時有多個欄位不合法）不新增第 4 個欄位，統一併入 `message`（用分號或換行串接多筆說明），維持三欄不變的封包形狀。
-- 實作方式留給第一個真正動工的端點（依 §3 任務順序會是 2.3 或 2.4）決定：共用 `ApiResponse<T>` 包裝型別 + 全域 exception handler／result filter，讓所有端點（含 `[ApiController]` 預設觸發的 model validation 400）都經過同一層包裝，不需要每個端點各自組裝。這個決策本身（task 2.0）不含程式碼，只定義契約形狀。
+- 三欄固定：`statusCode`（對應 HTTP status code）、`message`、`data`（成功時放 resource，失敗時固定 `null`）。
+- **`message` 放穩定代碼，不是人類可讀的中文句子**（2026-08-29 修訂）：前端拿代碼查自己的翻譯字典決定顯示文字，之後改中文措辭不會動到前端邏輯，也才能真的做多語系。代碼是 SCREAMING_SNAKE_CASE，成功代碼對應 HTTP 動詞語意（GET→`FETCH_SUCCESS`），錯誤代碼盡量對應到具體違反的欄位/規則（如 `YEAR_REQUIRED`），只有框架自動觸發、無法歸因到單一規則的情況才用通用代碼（`VALIDATION_ERROR`／`NOT_FOUND`／`INTERNAL_ERROR`）。**已知取捨**：多筆欄位驗證各自的詳細原因，單一代碼裝不下，換取代碼本身穩定可依賴——`[ApiController]` 自動觸發的 model-state 驗證失敗一律回通用 `VALIDATION_ERROR`，不逐欄位列出。代碼清單以 `api/Contracts/ApiMessageCodes.cs` 為權威來源，不在文件裡另外維護一份會漂移的複本。
+- 不新增第 4 個欄位——維持三欄不變的封包形狀。
+- 實作已落地（2026-08-29，task 2.3）：`api/Contracts/ApiResponse.cs`（包裝型別）+ `api/Infrastructure/ApiExceptionHandler.cs`（未捕捉例外走同一包裝）+ `Program.cs` 的 `ApiBehaviorOptions.InvalidModelStateResponseFactory`（`[ApiController]` 預設 400 也走同一包裝），後續端點直接沿用。
+- **待拍板（AI 提案，2.5/2.7 動工前需確認）**：I5 樂觀併發（`version` 欄位）版本衝突要回 `409 Conflict` 還是 `412 Precondition Failed`？建議 409——這個專案的併發檢查是比對 request body 裡的 `version` 整數欄位，不是 HTTP 標準的 `If-Match`/`If-Unmodified-Since` 條件式請求標頭機制，412 在 HTTP 規格裡專指後者，用在這裡不夠精確；409 是較通用的「請求與資源目前狀態衝突」語意，更貼近實際做法。
 
 ## 8. UI 流程 (UI Flow)
 

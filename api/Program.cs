@@ -17,13 +17,11 @@ builder.Services.AddOpenApi();
 // 不能讓它偷跑成 ASP.NET 內建的 ValidationProblemDetails 形狀。
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-    options.InvalidModelStateResponseFactory = context =>
-    {
-        var message = string.Join("; ", context.ModelState
-            .Where(kvp => kvp.Value?.Errors.Count > 0)
-            .SelectMany(kvp => kvp.Value!.Errors.Select(e => $"{kvp.Key}: {e.ErrorMessage}")));
-        return new BadRequestObjectResult(ApiResponse.Error(StatusCodes.Status400BadRequest, message));
-    };
+    // 2026-08-29 修訂：message 放穩定代碼，框架自動觸發、無法歸因到單一規則的驗證失敗
+    // 一律用通用的 VALIDATION_ERROR，逐欄位的詳細原因不再組進 message（見 ApiResponse 的
+    // 類別註解，這是換取代碼穩定可依賴的已知取捨）。
+    options.InvalidModelStateResponseFactory = _ =>
+        new BadRequestObjectResult(ApiResponse.Error(StatusCodes.Status400BadRequest, ApiMessageCodes.ValidationError));
 });
 
 // task 2.0：未捕捉例外也要走統一包裝格式（見 ApiExceptionHandler），需搭配下方 UseExceptionHandler()。

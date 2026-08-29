@@ -204,10 +204,18 @@ public static class SeedData
         hanTerritory1Original.CorrectedAt = DateTimeOffset.UtcNow;
 
         db.RegimeTerritories.AddRange(
-            // 漢：3 筆（穩定期政權，快照較疏）——前 2 筆是上方 I5 版本鏈示範（同一時間區間的原始版 + 修正版）
+            // 漢：4 筆——前 2 筆是上方 I5 版本鏈示範（同一時間區間的原始版 + 修正版，涵蓋 25-189 年）。
+            // 189-220 年這段原本只有 1 筆涵蓋全境的示意矩形，跟同期蜀漢/吳的疆域整塊重疊，
+            // 沒有反映赤壁之戰後三方實際割據的局面——189-208 年劉備/孫權尚未成勢，維持原本
+            // 涵蓋全境的示意範圍；208 年（赤壁之戰、劉備借荊州）之後拆一筆出來，縮小到約略等於
+            // 曹操實際控制的地盤（漢獻帝這時只是曹操的傀儡，朝廷名義上的疆域跟曹操實際地盤是
+            // 兩回事，208 年後兩者已經高度重合）——直接沿用魏建國第一筆疆域的座標，因為魏 220
+            // 年建國（漢禪魏）是「曹操實際控制的地盤，透過禪讓儀式換了個名字跟名義上的皇帝」，
+            // 不是「打下新的領土」，兩者地理範圍理論上該是同一塊，不是巧合。
             hanTerritory1Original,
             hanTerritory1Corrected,
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(189, 220), Geom = Rect(102, 22, 120, 38), CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(189, 208), Geom = Rect(102, 22, 120, 38), CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(208, 220), Geom = Rect(105, 32, 122, 42), CreatedAt = DateTimeOffset.UtcNow }, // 縮小至約等於曹操實際控制地盤（=魏建國時的疆域，見上方說明）
 
             // 魏：3 筆
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(220, 226), Geom = Rect(105, 32, 122, 42), CreatedAt = DateTimeOffset.UtcNow },

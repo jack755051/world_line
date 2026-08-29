@@ -51,7 +51,7 @@ services:
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};
       - ConnectionStrings__Redis=redis:6379
     ports:
-      - "5000:8080"
+      - "5050:8080" # 原本 5000——macOS AirPlay 接收器預設佔用該 port（回應 Server: AirTunes），改用不常衝突的 5050
     depends_on:
       postgres:
         condition: service_healthy

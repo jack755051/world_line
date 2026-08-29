@@ -64,15 +64,15 @@ Redis 容器已編排，但後端尚未接入快取。README 中的「目前狀�
    | 服務 | 位址 | 備註 |
    |---|---|---|
    | 前端 | http://localhost:4200 | 目前顯示 Angular scaffold |
-   | 後端 API | http://localhost:5000 | Development 環境 |
-   | OpenAPI JSON | http://localhost:5000/openapi/v1.json | 目前只包含 scaffold API |
+   | 後端 API | http://localhost:5050 | Development 環境 |
+   | OpenAPI JSON | http://localhost:5050/openapi/v1.json | 目前只包含 scaffold API |
    | PostgreSQL/PostGIS | localhost:5432 | 僅供本機開發連線 |
    | Redis | localhost:6379 | 尚未接入後端 |
 
 4. 另開終端確認後端可回應：
 
    ```bash
-   curl http://localhost:5000/weatherforecast
+   curl http://localhost:5050/weatherforecast
    ```
 
 Development 環境啟動後端時會自動套用尚未執行的 EF Core migrations，並在 `regimes` 為空時加入示範 seed。示範疆域是用來驗證 schema 的矩形，不是可發布的正式歷史資料。

@@ -38,8 +38,8 @@ docker compose up --build
 檢查：
 
 ```bash
-curl http://localhost:5000/weatherforecast
-curl http://localhost:5000/openapi/v1.json
+curl http://localhost:5050/weatherforecast
+curl http://localhost:5050/openapi/v1.json
 ```
 
 查看服務狀態與 log：

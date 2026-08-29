@@ -13,7 +13,7 @@
 Docker：
 
 ```bash
-curl http://localhost:5000/weatherforecast
+curl http://localhost:5050/weatherforecast
 ```
 
 Host `dotnet run --launch-profile http`：
@@ -28,7 +28,7 @@ curl http://localhost:5151/weatherforecast
 
 ASP.NET OpenAPI 只在 Development 環境公開：
 
-- Docker：http://localhost:5000/openapi/v1.json
+- Docker：http://localhost:5050/openapi/v1.json
 - Host：http://localhost:5151/openapi/v1.json
 
 M2 每完成一個 endpoint，都必須同步確認 OpenAPI 包含：

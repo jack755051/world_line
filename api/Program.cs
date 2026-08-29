@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NetTopologySuite.IO.Converters;
 using WorldLine.Api.Contracts;
 using WorldLine.Api.Data;
 using WorldLine.Api.Domain;
@@ -9,7 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+// task 2.6：疆域端點要把 NetTopologySuite 的 MultiPolygon 序列化成標準 GeoJSON 給前端
+// MapLibre 直接吃——System.Text.Json 預設不認得 NTS 的幾何型別，要掛官方轉換器
+// （GeoJSON4STJ，跟 Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite 是同一個
+// NTS 生態系但職責不同：一個管資料庫讀寫，一個管 JSON 序列化）。
+builder.Services.AddControllers()
+    .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new GeoJsonConverterFactory()));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 

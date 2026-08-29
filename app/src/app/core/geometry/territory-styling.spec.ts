@@ -32,7 +32,7 @@ function feature(id: string, regimeId: string, geometry: MultiPolygon) {
 }
 
 describe('assignTerritoryColorSlots', () => {
-  it('把色格索引寫回每個 feature.properties.colorSlot，相鄰的兩塊拿到不同色格', () => {
+  it('把色格索引寫回每個 feature.properties.colorSlot，相鄰的兩個政權拿到不同色格', () => {
     const fc: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = {
       type: 'FeatureCollection',
       features: [
@@ -49,7 +49,7 @@ describe('assignTerritoryColorSlots', () => {
     expect(a.properties.colorSlot).not.toBe(b.properties.colorSlot);
   });
 
-  it('不相鄰的兩塊可以共用同一個色格', () => {
+  it('不相鄰的兩個政權可以共用同一個色格', () => {
     const fc: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = {
       type: 'FeatureCollection',
       features: [
@@ -64,7 +64,41 @@ describe('assignTerritoryColorSlots', () => {
     expect(a.properties.colorSlot).toBe(far.properties.colorSlot);
   });
 
-  it('回傳的 assignment map 跟寫回 properties 的結果一致，可以直接當下次呼叫的 previousAssignment', () => {
+  it('同一個政權底下多筆互相重疊的疆域記錄，永遠拿到同一個色格（2026-08-29 修正的 bug：不能因為同政權兩筆版本剛好幾何重疊，就被當成兩個要分開上色的節點）', () => {
+    const fc: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = {
+      type: 'FeatureCollection',
+      features: [
+        feature('shuHan-v1', 'shu-han', rect(100, 26, 114, 32)),
+        feature('shuHan-v2', 'shu-han', rect(100, 26, 111, 32)), // 跟 v1 同政權、幾何重疊
+        feature('wu', 'wu', rect(112, 22, 122, 32)), // 跟 shuHan-v1 重疊，是不同政權，該有不同色格
+      ],
+    };
+
+    assignTerritoryColorSlots(fc, 5);
+
+    const [v1, v2, wu] = fc.features;
+    expect(v1.properties.colorSlot).toBe(v2.properties.colorSlot); // 同政權，同色格
+    expect(v1.properties.colorSlot).not.toBe(wu.properties.colorSlot); // 不同政權且重疊，不同色格
+  });
+
+  it('同一個政權底下兩筆疆域只是彼此相鄰（共邊，不是同政權外的政權），不影響色格指派——政權層級的圖只看跟其他政權的關係', () => {
+    const fc: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = {
+      type: 'FeatureCollection',
+      features: [
+        feature('wu-core', 'wu', rect(116, 22, 122, 32)),
+        feature('wu-strip', 'wu', rect(112, 22, 116, 32)), // 跟 wu-core 共邊，同政權
+        feature('shuHan', 'shu-han', rect(100, 22, 112, 32)), // 跟 wu-strip 共邊，不同政權，該有不同色格
+      ],
+    };
+
+    assignTerritoryColorSlots(fc, 5);
+
+    const [wuCore, wuStrip, shuHan] = fc.features;
+    expect(wuCore.properties.colorSlot).toBe(wuStrip.properties.colorSlot);
+    expect(wuStrip.properties.colorSlot).not.toBe(shuHan.properties.colorSlot);
+  });
+
+  it('回傳的 assignment map 用 regimeId 當 key（不是疆域記錄自己的 id），可以直接當下次呼叫的 previousAssignment', () => {
     const fc: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = {
       type: 'FeatureCollection',
       features: [feature('a', 'regime-a', rect(100, 20, 110, 30))],
@@ -72,7 +106,7 @@ describe('assignTerritoryColorSlots', () => {
 
     const assignment = assignTerritoryColorSlots(fc, 5);
 
-    expect(assignment.get('a')).toBe(fc.features[0].properties.colorSlot);
+    expect(assignment.get('regime-a')).toBe(fc.features[0].properties.colorSlot);
   });
 });
 

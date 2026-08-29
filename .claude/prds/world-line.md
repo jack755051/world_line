@@ -214,13 +214,14 @@ CREATE TABLE content_translations (
 | 父表 | 需要翻譯的欄位 | 說明 |
 |---|---|---|
 | `regimes` | `self_name` | |
+| `regime_aliases` | `alias_name` | **2026-08-29 修正**：先前列為「待評估」是想太多——別名（例：「大食」）本身就是一個有自己 `id` 的獨立列，跟 `regimes.self_name` 沒有本質差異，一樣可以在 `content_translations` 開一筆 `entity_type='regime_alias'` 對應英文（如「大食」→「Dashi」音譯）。「這個代稱是哪個政權視角給的」（`observer_regime_id`）跟「這個代稱要用哪種語言呈現」（`locale`）是兩個獨立維度，互不干擾，套用跟上方「翻譯 vs 史觀立場」相同的正交原則 |
 | `historical_events` | `name` | `sections` JSONB 內嵌文字（客觀骨幹的三層手風琴內容）性質上也屬中立事實，但一個欄位一列的 `content_translations` 裝不下巢狀 JSON，要嘛整個 `sections` 值存成翻譯（`field_name='sections'`，`translated_text` 存整包 JSON 字串），要嘛不翻譯 `sections` 只翻 `name`——留到真的要做這張表時再拍板，不在這裡先選 |
 | `lineage_presets` | `preset_name`／`description` | |
 | `historical_event_controversies` | `topic`／`neutral_description` | 僅這兩欄；`viewpoints`（誰主張什麼）屬於立場性內容，不翻譯，見上方核心原則 |
 
 **明確不進翻譯範圍，改走多重視角機制**：`historical_event_perspectives.local_name`／`narrative_summary`／`official_justification`（整張表）、`historical_event_controversies.viewpoints`。
 
-**次要/輔助內容，維持待評估、不現在處理**：`regime_aliases.alias_name`（他稱代稱本身是特定觀察者視角的用語，跟「翻譯」的關係也需要再想清楚，比照上方原則之後再定）、`reign_eras.era_name`、`place_names.historical_name`/`modern_name`、`regime_relations.relation_type`/`description`、`event_tags.tag_name`、`observer_categories.category_name`——這些都可以沿用同一張 `content_translations` 表（不用再開新表），只是優先權低，需要時直接插入對應 `entity_type` 的資料列即可。
+**次要/輔助內容，維持待評估、不現在處理**（優先權低，之後需要時直接沿用同一張 `content_translations` 表插入對應 `entity_type` 的資料列即可，不用再開新表）：`reign_eras.era_name`、`place_names.historical_name`/`modern_name`、`regime_relations.relation_type`/`description`、`event_tags.tag_name`、`observer_categories.category_name`。
 
 **API 層影響**：唯讀端點需要能接受 `?locale=` 查詢參數（省略時預設回原始語言），例如 `GET /api/v1/regimes?locale=en`。已實作的 2.3（`reign_eras` 查詢）目前不支援，因為 `reign_eras` 不在翻譯範圍——之後真的要做時再補，不用現在回頭改。
 
@@ -550,7 +551,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] M2.2 驗證可用的 .NET EDTF 套件與支援範圍 → 無合格套件，改採自訂子集解析器 + NodaTime 曆法引擎，見 §5、implementation plan 2.2（2026-08-29 完成）
 - [ ] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。
 - [ ] TODO：M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位。
-- [ ] TODO（2026-08-29 新增，憲法 R4；同日 grill-me 修正為通用表 + 縮小範圍）：implementation plan 2.16 建立 `content_translations` 通用表，2.17 補既有 seed 資料英文翻譯（僅限中立事實內容：`regimes.self_name`、`historical_events.name`、`lineage_presets`、`historical_event_controversies.topic`/`neutral_description`；立場性敘事不翻譯）；2.4/2.8/2.10/2.13 這些尚未動工的查詢端點要支援 `?locale=`，2.12（`historical_event_perspectives`）不用，因為整張表都不進翻譯範圍，見 §6「多語言內容設計」。
+- [ ] TODO（2026-08-29 新增，憲法 R4；同日 grill-me 修正為通用表 + 縮小範圍，並補回 `regime_aliases`）：implementation plan 2.16 建立 `content_translations` 通用表，2.17 補既有 seed 資料英文翻譯（僅限中立事實內容：`regimes.self_name`、`regime_aliases.alias_name`、`historical_events.name`、`lineage_presets`、`historical_event_controversies.topic`/`neutral_description`；立場性敘事不翻譯）；2.4/2.8/2.9a/2.10/2.13 這些尚未動工的查詢端點要支援 `?locale=`，2.12（`historical_event_perspectives`）不用，因為整張表都不進翻譯範圍，見 §6「多語言內容設計」。
 
 **正式史料匯入前必須處理**：
 

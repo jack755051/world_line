@@ -166,7 +166,7 @@ related_adrs: []
 | UI 元件庫 | Sanring UI（`@sanring/cli`）+ Tailwind CSS v4 | 毛玻璃側邊抽屜／手風琴／多重視角分頁等 headless 元件（notes §十一原開放問題） | **已完成（2026-08-29，task 3.0，同日全面收斂）**：source-first、非傳統 npm 依賴——CLI 把元件原始碼複製進 `app/src/app/components/ui`，團隊自行維護；Tailwind v4 用官方 `@tailwindcss/postcss` PostCSS 外掛安裝（`app/.postcssrc.json`）。**`src/sanring-theme.css` 全部改成從 `--wl-*` 衍生，沒有任何顏色還是 Sanring 原廠預設值**：語意層（`--sanring-background/-control/-primary` 等）直接 alias 到 `design-tokens.scss` 的 `--wl-*`；9 階品牌色階（primary/neutral/coral）用 OKLCH 明度為軸從 `--wl-primary-*`/`--wl-gray-*`/`--wl-secondary-*` 十階重新取樣；success/warn/error 是全新色相，錨點分別是 `--wl-status-good/-warning/-critical`，用「錨點色度佔該明度 sRGB 色域邊界的比例」等比縮放算出其餘 8 階（**第一版曾借主色藍的色度曲線形狀縮放，結果色相在深階漂移將近 50 度，換成色域邊界比例縮放後最大偏差 <1.2 度**，換算過程見 `app/scripts/gen-sanring-theme-ramps.mjs`）；sun/info 不新增第四、五個色相，直接 `var()` 參照 warn/primary。同時移除了 CLI 預設產生的深/淺色雙軌設計（改成單一淺色語意層，同一個「❌ 不做深色模式」原則）。已用 Button 元件驗證：`ng build`/`ng test`（12/12）通過、編譯後 CSS 內 `focus-visible`/`hover` 規則正確指到 alias 過的變數，destructive variant 的 `error-70/-80` 配白字對比 11.89:1／16.37:1（`contrast()` 實測）。全域樣式檔載入 `sanring-theme.css` 改用 `@use`（非 `@import`）——`@import` 對純 CSS 檔的 passthrough 處理會在編譯結果多插入一個無意義的分號 |
 | GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已實作（2026-08-28）**：`regime_territories(regime_id, valid_period)` 複合 GiST 索引已建立（migration `AddRegimeTerritoryGistIndex`，需 `btree_gist` extension 才能讓一般欄位跟 range 型別共用 GiST）。這條決策先前只在本表標「已拍板」，卻沒有被排進任何 phase 的任務清單，屬於「決定了沒人接手」的孤兒項目，已補上並套用到 `app_postgres` |
 | 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
-| 斜線網底配色 | 集中共用常數檔（非正式 Design Token 系統） | 爭議控制區（notes §十）視覺呈現一致性 | **已拍板：Phase 1 用單一共用常數檔**（如 `neutral-map-colors.ts`）集中管理顏色/間距，不建置正式 Design Token pipeline；待深色模式或多人協作需求出現再升級 |
+| 斜線網底配色 | Canvas Pattern（`app/src/app/core/geometry/territory-dispute-pattern.ts`） | 爭議控制區（notes §十）視覺呈現一致性 | **已完成（2026-08-29，任務 3.5 後續）**：使用者拖時間拉桿看到蜀漢/東吳在荊州爭議期間（208-215 年）的疆域重疊、問「這是什麼意思」，才發現 `regime_territories.is_disputed` 資料早就有、前端從沒畫出來——補上 `territories-disputed-hatch` MapLibre 圖層，疊在 `territories-fill` 之上，只對 `isDisputed=true` 的 feature 套用網底。**跟原拍板的「集中共用常數檔」路線不同**：不是額外開一個 `neutral-map-colors.ts` 存固定網底顏色，而是 45 度斜線、色相跟該疆域自己的識別色一樣、只是加深一階（tone-on-tone）——這樣同一個政權的爭議/非爭議疆域一眼就能看出是同一個政權，不會誤以為是另一個政權；5 個政權識別色格各自對應一張網底圖樣，跟 `fill-color` 共用同一組 `colorSlot`。Canvas 2D 繪製（不是 WebGL Shader，維持 §5/§9 風險表原本的選型），透過 `TerritoryHatchPatternService`（Angular DI 包裝）注入，因為 Angular 的 Vitest 整合不支援對相對路徑模組用 `vi.mock()`，需要透過 DI 替換才能在測試環境（無真實 Canvas 2D context）裡驗證 `MapComponent` 的呼叫邏輯 |
 
 ## 6. 資料模型 (Data Model)
 
@@ -539,7 +539,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] 資料供應策略 → Phase 1 純 GeoJSON（§5）
 - [x] XState 導入時機 → Phase 1 即導入（§5）
 - [x] 紀年轉換庫涵蓋範圍 → 自建 `reign_eras` 表，不用 `lunar-javascript`/`cnlunar`（§5）
-- [x] 斜線網底 Design Token 化 → 先用共用常數檔（§5）
+- [x] 斜線網底 Design Token 化 → 實際落地時改成 Canvas Pattern（同色相加深一階，tone-on-tone），不是共用常數檔存固定顏色（§5，2026-08-29）
 - [x] 底圖要不要接外部瓦片服務 → 不接，MapLibre 只用單一背景色圖層，之後需要物理地理參考再疊靜態海岸線 GeoJSON（§5，task 3.2，2026-08-29）
 - [x] 開源歷史地理資料授權 → OHM 為主，CHGIS/CShapes 限非商業，GeaCron 僅作 UX 參考（§5、§9）
 - [x] `historical_event_perspectives.regime_id` 是否強制 FK → nullable FK + `observer_categories` 受控對照表（§6）

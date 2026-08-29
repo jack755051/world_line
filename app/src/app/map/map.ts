@@ -13,6 +13,8 @@ import {
   type TerritoryFeatureProperties,
 } from '../core/geometry/territory-styling';
 import { computeTerritoryLabelPoints } from '../core/geometry/territory-labels';
+import { territoryHatchImageId } from '../core/geometry/territory-dispute-pattern';
+import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
 import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
 import { TimelineState } from '../core/time/timeline-state';
 
@@ -50,6 +52,12 @@ interface RegimeSummary {
  * 連續形變（3.6）還沒做**：現在換年份是「整批資料換掉」，不是真的插值形變，見任務
  * 3.6。政權清單只在地圖初始化時抓一次（不隨年份重複查），因為政權本身的存在不隨
  * 年份變動，變動的是「哪些政權的疆域快照落在這個年份」。
+ *
+ * **爭議控制區斜線網底**（同日補上，使用者拖桿看到蜀漢/東吳疆域重疊、問「這是什麼
+ * 意思」才發現 `isDisputed` 資料早就有、只是沒畫出來）：`territories-disputed-hatch`
+ * 圖層疊在 `territories-fill` 之上，只對 `isDisputed=true` 的 feature 套用同色相加深
+ * 一階的斜線網底（Canvas Pattern，見 territory-dispute-pattern.ts），讓「同一塊地兩種
+ * 史觀並存」的爭議狀態一眼可辨，不會誤以為是資料重疊錯誤。
  */
 @Component({
   selector: 'app-map',
@@ -61,6 +69,7 @@ export class MapComponent implements OnDestroy {
   private readonly mapContainer = viewChild.required<ElementRef<HTMLDivElement>>('mapContainer');
   private readonly http = inject(HttpClient);
   private readonly timeline = inject(TimelineState);
+  private readonly hatchPatterns = inject(TerritoryHatchPatternService);
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -181,6 +190,27 @@ export class MapComponent implements OnDestroy {
         // 疆域邊界線維持單一中性色，不跟填色搶識別色資源（design-tokens.scss、PRD §6
         // 「政權識別色不是固定對照表」段落已拍板）。
         paint: { 'line-color': borderColor || '#52514e', 'line-width': 1 },
+      });
+
+      // 爭議控制區（isDisputed=true）疊一層斜線網底——同色相加深一階，tone-on-tone，
+      // 不是另外挑一個全域固定顏色（見 territory-dispute-pattern.ts 開頭說明）。5 個
+      // 色格各自註冊一張圖樣，跟 territories-fill 共用同一組 colorSlot 對照。
+      const hatchPatternIds = TERRITORY_COLOR_SLOTS.map((_, i) => territoryHatchImageId(i));
+      TERRITORY_COLOR_SLOTS.forEach((hex, i) => {
+        const imageId = territoryHatchImageId(i);
+        if (!this.map!.hasImage(imageId)) {
+          this.map!.addImage(imageId, this.hatchPatterns.create(hex));
+        }
+      });
+
+      this.map.addLayer({
+        id: 'territories-disputed-hatch',
+        type: 'fill',
+        source: 'territories',
+        filter: ['==', ['get', 'isDisputed'], true],
+        paint: {
+          'fill-pattern': buildColorSlotMatchExpression(hatchPatternIds) as unknown as string,
+        },
       });
     }
 

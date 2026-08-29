@@ -5,6 +5,7 @@ import type { FeatureCollection, MultiPolygon } from 'geojson';
 import { MapComponent } from './map';
 import type { TerritoryFeatureProperties } from '../core/geometry/territory-styling';
 import { TimelineState } from '../core/time/timeline-state';
+import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
 
 // MapLibre 需要真的 WebGL context 才能初始化，JSDOM 測試環境沒有——用假的 Map/
 // NavigationControl/Marker 取代，只驗證「我們自己的 wiring 邏輯」（容器元素有傳進去、
@@ -65,6 +66,16 @@ const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
       this.addLayerCalls.push(layer);
     }
 
+    readonly imageIds = new Set<string>();
+
+    hasImage(id: string): boolean {
+      return this.imageIds.has(id);
+    }
+
+    addImage(id: string): void {
+      this.imageIds.add(id);
+    }
+
     remove(): void {
       this.removed = true;
     }
@@ -106,6 +117,14 @@ vi.mock('maplibre-gl', () => ({
   Marker: FakeMarker,
 }));
 
+// TerritoryHatchPatternService.create() 底層需要真的 Canvas 2D context——JSDOM 測試
+// 環境沒有（getContext('2d') 回傳 null）。Angular 的 Vitest 整合不支援對相對路徑模組
+// 用 vi.mock()（"Please use Angular TestBed for mocking dependencies"），所以這裡改用
+// TestBed provider 換掉這個 service（見下面 beforeEach），不是用 vi.mock()。
+const fakeHatchPatternService = {
+  create: (): ImageData => ({ width: 8, height: 8, data: new Uint8ClampedArray(8 * 8 * 4), colorSpace: 'srgb' }) as ImageData,
+};
+
 function sampleFeatureCollection(): FeatureCollection<MultiPolygon, TerritoryFeatureProperties> {
   return {
     type: 'FeatureCollection',
@@ -145,7 +164,11 @@ describe('MapComponent', () => {
     // 單例，reset 也讓它跟著換成全新實例，不會被前一個 it() 拖過來的 year 值污染。
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: TerritoryHatchPatternService, useValue: fakeHatchPatternService },
+      ],
     });
     httpMock = TestBed.inject(HttpTestingController);
   });
@@ -215,9 +238,13 @@ describe('MapComponent', () => {
     const source = map.addSourceCalls[0].source as { data: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> };
     expect(source.data.features[0].properties.colorSlot).toBeDefined();
 
-    expect(map.addLayerCalls).toHaveLength(2);
+    expect(map.addLayerCalls).toHaveLength(3);
     const layerIds = map.addLayerCalls.map((l) => (l as { id: string }).id);
-    expect(layerIds).toEqual(['territories-fill', 'territories-border']);
+    expect(layerIds).toEqual(['territories-fill', 'territories-border', 'territories-disputed-hatch']);
+
+    // 爭議控制區斜線網底：5 個色格各自註冊一張圖樣（見 territory-dispute-pattern.ts）。
+    expect(map.imageIds.size).toBe(5);
+    expect(map.imageIds.has('territory-hatch-0')).toBe(true);
 
     // 標籤是 Marker（HTML 元素），不是 MapLibre 原生 symbol 圖層——見 territory-labels.ts
     // 開頭說明（避免另外接字型 glyphs 服務）。
@@ -251,7 +278,7 @@ describe('MapComponent', () => {
     // 換年份後：source 沒有被重新建立（還是只有第一次那一筆），改用 setData() 更新。
     expect(map.addSourceCalls).toHaveLength(1);
     expect(map.setDataCalls).toHaveLength(1);
-    expect(map.addLayerCalls).toHaveLength(2); // 圖層也沒有被重複加
+    expect(map.addLayerCalls).toHaveLength(3); // 圖層也沒有被重複加
   });
 
   it('logs an error but does not throw when the territories request fails', async () => {

@@ -1,8 +1,10 @@
-// 系統色 Design Tokens（2026-08-29 拍板）。
+// 系統色 Design Tokens（2026-08-29 拍板，2026-08-29 補齊完整 50-900 階）。
 //
-// 只有「系統色」（介面底色/文字/邊框/狀態色）現在定案——這些不代表任何政權身份，是整個
-// 應用程式共用的基礎色，出處是 dataviz 技能驗證過的預設色盤（品牌中立、通過 WCAG 對比度
-// 與色盲安全性檢查），不是自己挑的。
+// 三條完整的 50/100/200/300/400/500/600/700/800/900 色階（灰階、主色、次色）——這些是
+// 整個應用程式共用的介面色，不代表任何政權身份。灰階/主色的錨點來自 dataviz 技能驗證過的
+// 預設色盤（品牌中立、通過 WCAG 對比度與色盲安全性檢查）；缺口用 OKLab/OKLCH 數學內插/
+// 外推算出來，不是憑感覺補的——換算方法與驗證記錄見 app/scripts/gen-design-token-ramps.mjs
+// （用官方 OKLab 公式的反向轉換，已用正轉再反轉驗證過準確度）。
 //
 // 政權識別色（哪個政權該用哪個顏色）刻意不在這裡定案——這批顏色需要靠「相鄰動態圖著色」
 // 演算法在渲染當下決定，不是寫死的固定對照表，設計討論見
@@ -12,52 +14,79 @@
 // dark mode 分支，避免維護一份用不到的變體。
 
 :root {
-  // 版面
-  --wl-surface: #fcfcfb; // 地圖/面板底色
-  --wl-page: #f9f9f7; // 整體頁面背景
-
-  // 文字
-  --wl-ink-primary: #0b0b0b;
-  --wl-ink-secondary: #52514e;
-  --wl-ink-muted: #898781; // 軸線標籤等裝飾性/大字用途——對 --wl-surface 只有 3.50:1，
-  // 未達 WCAG AA 一般文字門檻（4.5:1），只達「大字」門檻（3:1），不可用在小字內文
-
-  // 灰階（沿用上面已經定案的幾個點位，統一編號成一條 ramp，不是另外新調的顏色）
+  // ============================================================
+  // 灰階（既有 7 個錨點沿用不變：50/100/200/300/400/600/900；
+  // 500/700/800 用相鄰錨點在 OKLCH 空間內插 L/C/H 算出）
+  // ============================================================
   --wl-gray-50: #fcfcfb; // = --wl-surface
   --wl-gray-100: #f9f9f7; // = --wl-page
   --wl-gray-200: #e1e0d9; // = --wl-gridline
   --wl-gray-300: #c3c2b7; // = --wl-baseline
   --wl-gray-400: #898781; // = --wl-ink-muted
+  --wl-gray-500: #6d6b67; // 內插（gray-400 與 gray-600 之間）
   --wl-gray-600: #52514e; // = --wl-ink-secondary
+  --wl-gray-700: #383836; // 內插（gray-600 與 gray-900 之間）
+  --wl-gray-800: #21201f; // 內插（gray-600 與 gray-900 之間）
   --wl-gray-900: #0b0b0b; // = --wl-ink-primary
+
+  // ============================================================
+  // 主色（Primary，藍）——沿用 dataviz 技能的 sequential blue ramp（100-700，共 13 個
+  // 錨點）當骨架，重新取樣成 50-900 十階；800/900 是沿同一條 OKLCH 趨勢線外推，不是
+  // 官方文件裡本來就有的值，色度地板（C>=0.10）在極淺（50/100/200）與極深（800/900）
+  // 兩端跌破——這兩端只給背景/裝飾用，不當識別色用時沒有影響（色度地板規則本來就只
+  // 管「拿來做身份辨識」的用途）。
+  //
+  // 這個色相刻意跟地圖政權識別色的分類色第 1 格（藍）同一家族但只給 UI 互動元件用：
+  // 政權動態圖著色只從分類色第 3-8 格取色（6 色，仍遠高於四色定理需要的下限），
+  // 第 1、2 格（藍、橙）分別保留給主色/次色專用，避免疆域填色跟按鈕/連結/次要元件混淆。
+  --wl-primary-50: #e4f1ff;
+  --wl-primary-100: #cde2fb;
+  --wl-primary-200: #9ec5f4;
+  --wl-primary-300: #6da7ec;
+  --wl-primary-400: #3987e5; // = 分類色第 1 格附近，白字對比僅 3.64:1，不可承載小字文字
+  --wl-primary-500: #256abf; // 按鈕預設底色（配白字 5.39:1）、連結文字（對面板 5.26:1）——已用 contrast() 實測
+  --wl-primary-600: #184f95; // 按鈕 hover（配白字 8.10:1）
+  --wl-primary-700: #0d366b; // 按鈕 active/pressed、深色強調文字（配白字 11.95:1）
+  --wl-primary-800: #071f41;
+  --wl-primary-900: #020b1c;
+
+  // ============================================================
+  // 次色（Secondary，橙）——只有分類色第 2 格一個官方錨點（#eb6834），套用主色藍在
+  // 同一個色階位置的「相對色度曲線形狀」等比縮放算出其餘 9 階，色相全程固定在錨點的
+  // H≈40.6°。用途：次要按鈕、次要強調文字/badge，不是政權識別色。
+  // ============================================================
+  --wl-secondary-50: #ffe9df;
+  --wl-secondary-100: #ffd5c6;
+  --wl-secondary-200: #faab8f;
+  --wl-secondary-300: #f17f55;
+  --wl-secondary-400: #e64900; // 白字對比 3.95:1，不可承載小字文字（同主色 400 階的限制）
+  --wl-secondary-500: #bf2f00; // 次要按鈕底色（配白字 5.80:1）
+  --wl-secondary-600: #951d00; // 次要按鈕 hover（配白字 8.56:1）
+  --wl-secondary-700: #6a0f00;
+  --wl-secondary-800: #410800;
+  --wl-secondary-900: #1c0300;
+
+  // 版面
+  --wl-surface: var(--wl-gray-50);
+  --wl-page: var(--wl-gray-100);
+
+  // 文字
+  --wl-ink-primary: var(--wl-gray-900);
+  --wl-ink-secondary: var(--wl-gray-600);
+  --wl-ink-muted: var(--wl-gray-400); // 裝飾性/大字用途——對 --wl-surface 只有 3.50:1，未達 WCAG AA 一般文字門檻（4.5:1），只達「大字」門檻（3:1），不可用在小字內文
 
   // 邊框/格線
   --wl-border-hairline: rgba(11, 11, 11, 0.10); // 一般 UI 邊框（卡片、面板）
-  --wl-gridline: #e1e0d9; // 時間軸格線
-  --wl-baseline: #c3c2b7; // 時間軸主軸線
+  --wl-gridline: var(--wl-gray-200); // 時間軸格線
+  --wl-baseline: var(--wl-gray-300); // 時間軸主軸線
 
   // 疆域邊界線（跟政權填色分開，見上方說明——邊界不做身份識別，維持單一中性色）
-  --wl-territory-border: #52514e;
+  --wl-territory-border: var(--wl-gray-600);
 
-  // 主色（Primary，按鈕/連結/焦點框等互動元件用）——沿用 dataviz 技能已驗證的 sequential
-  // blue ramp（100→700，light→dark），不是另外調色。這個色相刻意跟地圖政權識別色的分類色
-  // 第 1 格（藍）同一家族但只給 UI 互動元件用：政權動態圖著色（見 territory-adjacency.ts /
-  // graph-coloring.ts）只從分類色第 2-8 格取色（7 色，仍遠高於四色定理需要的下限），避免
-  // 疆域填色跟按鈕/連結這類互動元件顏色混淆。
-  //
-  // 已用 dataviz 技能的 contrast() 實測（2026-08-29），不是憑經驗猜的對比度：
-  //   白字配 --wl-primary-450（#2a78d6）= 4.42:1，未達 WCAG AA 一般文字門檻（4.5:1）——
-  //   所以按鈕預設底色改用更深一階的 --wl-primary-500，不是分類色本身的第 1 格數值。
-  --wl-primary-100: #cde2fb; // 極淺，選取狀態底色用，不承載文字
-  --wl-primary-450: #2a78d6; // = 分類色第 1 格（藍），大字/UI 元件可用（對比 4.42:1 達 3:1 門檻），小字文字不可用
-  --wl-primary-500: #256abf; // 按鈕預設底色（配白字 5.39:1）、連結文字（對面板底色 5.26:1）
-  --wl-primary-550: #1c5cab; // 按鈕 hover（配白字 6.63:1）、連結 hover（對面板底色 6.46:1）
-  --wl-primary-600: #184f95; // 按鈕 active/pressed（配白字 8.10:1）
-
-  // 按鈕（語意層，組合上面的主色/灰階，不是另外調色）
+  // 按鈕（語意層，組合上面的主色/次色/灰階，不是另外調色）
   --wl-btn-primary-bg: var(--wl-primary-500);
-  --wl-btn-primary-bg-hover: var(--wl-primary-550);
-  --wl-btn-primary-bg-active: var(--wl-primary-600);
+  --wl-btn-primary-bg-hover: var(--wl-primary-600);
+  --wl-btn-primary-bg-active: var(--wl-primary-700);
   --wl-btn-primary-text: #ffffff;
   --wl-btn-primary-bg-disabled: var(--wl-gray-300); // disabled 元件 WCAG 不要求對比度達標，刻意降對比表示不可互動
   --wl-btn-primary-text-disabled: var(--wl-gray-400);
@@ -66,8 +95,12 @@
   --wl-btn-secondary-bg-hover: var(--wl-gray-300);
   --wl-btn-secondary-text: var(--wl-gray-600); // 對 --wl-btn-secondary-bg 實測 6.00:1
 
+  --wl-btn-accent-bg: var(--wl-secondary-500); // 次要強調用途（例如「次色」按鈕，跟灰階次要按鈕是兩種不同語意）
+  --wl-btn-accent-bg-hover: var(--wl-secondary-600);
+  --wl-btn-accent-text: #ffffff;
+
   --wl-link-text: var(--wl-primary-500);
-  --wl-link-text-hover: var(--wl-primary-550);
+  --wl-link-text-hover: var(--wl-primary-600);
 
   // 狀態色（固定語意，不可挪作政權識別或按鈕使用）
   --wl-status-good: #0ca30c;

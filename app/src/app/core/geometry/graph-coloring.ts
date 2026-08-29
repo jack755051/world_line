@@ -9,6 +9,10 @@
  * 演算法本身不保證用到最少色格數（那是 NP-hard 的圖著色最佳化問題），但對地圖這種平面圖，
  * 四色定理保證 4 色一定夠用；`slotCount` 通常會設得比 4 大一些，換取多一點視覺變化空間，
  * 不是必要下限。
+ *
+ * 2026-08-29 拍板：實際接上分類色盤時，`slotCount` 用分類色第 2-8 格（7 色）——
+ * 第 1 格（藍）保留給 `design-tokens.scss` 的 UI 主色（按鈕/連結/焦點框）專用，避免疆域
+ * 填色跟互動元件顏色混淆。7 色仍遠高於四色定理需要的下限。
  */
 export function greedyColorAssignment(
   adjacency: Map<string, Set<string>>,

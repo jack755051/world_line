@@ -19,7 +19,17 @@
   // 文字
   --wl-ink-primary: #0b0b0b;
   --wl-ink-secondary: #52514e;
-  --wl-ink-muted: #898781; // 軸線標籤、次要說明文字
+  --wl-ink-muted: #898781; // 軸線標籤等裝飾性/大字用途——對 --wl-surface 只有 3.50:1，
+  // 未達 WCAG AA 一般文字門檻（4.5:1），只達「大字」門檻（3:1），不可用在小字內文
+
+  // 灰階（沿用上面已經定案的幾個點位，統一編號成一條 ramp，不是另外新調的顏色）
+  --wl-gray-50: #fcfcfb; // = --wl-surface
+  --wl-gray-100: #f9f9f7; // = --wl-page
+  --wl-gray-200: #e1e0d9; // = --wl-gridline
+  --wl-gray-300: #c3c2b7; // = --wl-baseline
+  --wl-gray-400: #898781; // = --wl-ink-muted
+  --wl-gray-600: #52514e; // = --wl-ink-secondary
+  --wl-gray-900: #0b0b0b; // = --wl-ink-primary
 
   // 邊框/格線
   --wl-border-hairline: rgba(11, 11, 11, 0.10); // 一般 UI 邊框（卡片、面板）
@@ -29,7 +39,37 @@
   // 疆域邊界線（跟政權填色分開，見上方說明——邊界不做身份識別，維持單一中性色）
   --wl-territory-border: #52514e;
 
-  // 狀態色（固定語意，不可挪作政權識別使用）
+  // 主色（Primary，按鈕/連結/焦點框等互動元件用）——沿用 dataviz 技能已驗證的 sequential
+  // blue ramp（100→700，light→dark），不是另外調色。這個色相刻意跟地圖政權識別色的分類色
+  // 第 1 格（藍）同一家族但只給 UI 互動元件用：政權動態圖著色（見 territory-adjacency.ts /
+  // graph-coloring.ts）只從分類色第 2-8 格取色（7 色，仍遠高於四色定理需要的下限），避免
+  // 疆域填色跟按鈕/連結這類互動元件顏色混淆。
+  //
+  // 已用 dataviz 技能的 contrast() 實測（2026-08-29），不是憑經驗猜的對比度：
+  //   白字配 --wl-primary-450（#2a78d6）= 4.42:1，未達 WCAG AA 一般文字門檻（4.5:1）——
+  //   所以按鈕預設底色改用更深一階的 --wl-primary-500，不是分類色本身的第 1 格數值。
+  --wl-primary-100: #cde2fb; // 極淺，選取狀態底色用，不承載文字
+  --wl-primary-450: #2a78d6; // = 分類色第 1 格（藍），大字/UI 元件可用（對比 4.42:1 達 3:1 門檻），小字文字不可用
+  --wl-primary-500: #256abf; // 按鈕預設底色（配白字 5.39:1）、連結文字（對面板底色 5.26:1）
+  --wl-primary-550: #1c5cab; // 按鈕 hover（配白字 6.63:1）、連結 hover（對面板底色 6.46:1）
+  --wl-primary-600: #184f95; // 按鈕 active/pressed（配白字 8.10:1）
+
+  // 按鈕（語意層，組合上面的主色/灰階，不是另外調色）
+  --wl-btn-primary-bg: var(--wl-primary-500);
+  --wl-btn-primary-bg-hover: var(--wl-primary-550);
+  --wl-btn-primary-bg-active: var(--wl-primary-600);
+  --wl-btn-primary-text: #ffffff;
+  --wl-btn-primary-bg-disabled: var(--wl-gray-300); // disabled 元件 WCAG 不要求對比度達標，刻意降對比表示不可互動
+  --wl-btn-primary-text-disabled: var(--wl-gray-400);
+
+  --wl-btn-secondary-bg: var(--wl-gray-200);
+  --wl-btn-secondary-bg-hover: var(--wl-gray-300);
+  --wl-btn-secondary-text: var(--wl-gray-600); // 對 --wl-btn-secondary-bg 實測 6.00:1
+
+  --wl-link-text: var(--wl-primary-500);
+  --wl-link-text-hover: var(--wl-primary-550);
+
+  // 狀態色（固定語意，不可挪作政權識別或按鈕使用）
   --wl-status-good: #0ca30c;
   --wl-status-warning: #fab219;
   --wl-status-serious: #ec835a;

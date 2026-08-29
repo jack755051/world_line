@@ -220,6 +220,32 @@ related_constitution: .claude/constitutions/world-line.md
 > **2026-08-29 補上爭議控制區斜線網底**（同一天，使用者接著問「213 年蜀漢跟東吳為什麼會重疊」——這次不是資料錯誤，是刻意設計：蜀漢版本A（經度 100-114）跟東吳（經度 112-122）在荊州爭議期間真的有重疊的宣稱範圍，兩者都標 `isDisputed=true`，但前端從沒把這個「有爭議」的狀態畫出來，看起來就像 bug）。補上 `app/src/app/core/geometry/territory-dispute-pattern.ts`（`darkenHex()`、`createDiagonalHatchImageData()` 畫 45 度可無縫拼接的斜線 tile、`territoryHatchImageId()`）＋ `MapComponent` 新增 `territories-disputed-hatch` 圖層（疊在 `territories-fill` 之上，`filter: isDisputed==true`，`fill-pattern` 用跟 `fill-color` 同一組 `colorSlot` 對照，只是換成網底圖樣而不是純色）。**網底色相跟識別色一樣、只是加深一階（tone-on-tone），不是另外挑一個全域固定顏色**——PRD §5 原本拍板「集中共用常數檔存固定網底顏色」，實際做的時候改了：tone-on-tone 才能讓「同一個政權的爭議/非爭議疆域」一眼看出是同一個政權，固定顏色會讓爭議疆域看起來像第六種身份色，反而搞混。**Canvas 2D 繪製，不是 WebGL Shader**（維持 §5/§9 風險表原本的選型）。**測試上的插曲**：`createDiagonalHatchImageData()` 需要真的 Canvas 2D context，JSDOM 沒有，原本想用 `vi.mock()` mock 掉，結果 Angular 的 Vitest 整合直接報錯「不支援對相對路徑模組用 vi.mock()，請用 Angular TestBed」——改把這個函式包成 `TerritoryHatchPatternService`（`providedIn: 'root'`），`map.spec.ts` 改用 `TestBed` provider 換成假的實作。已用 `ng build`/`ng test`（72/72）、`docker compose up -d --build frontend`＋curl 確認部署的 bundle 含新程式碼、`territories` 端點在 year=213 仍正確回傳驗證。
 >
 > **2026-08-29 修正斜線網底套用到非爭議疆域的 bug**（使用者拖桿到 208-214 年，回報連「漢」也被畫上網底——漢的 `isDisputed` 確認是 `false`，用瀏覽器 Console 直接 `fetch` 驗證過收到的資料本身是對的，問題出在前端渲染）。原本用 `filter: ['==', ['get','isDisputed'], true]` 排除非爭議疆域，第一次建圖層時的資料（預設年份 225）剛好 0 筆爭議疆域，換年份用 `source.setData()` 帶入新資料後，filter 疑似沒有正確重新套用，導致這個圖層對所有疆域都渲染（根因不完全確定，懷疑是 MapLibre 的 filter 在動態換資料時的邊界案例，沒有進一步深挖底層原因）。**改成不依賴 filter**：拿掉 `filter`，讓所有疆域都進這個圖層，改用 `paint.fill-opacity` 的 `case` expression（`['case', ['==', ['get','isDisputed'], true], 1, 0]`）決定要不要顯示——paint 屬性保證每次 `setData()` 都會重新求值，不依賴 filter 在動態資料下的重新套用行為，繞開這個未查明根因的邊界案例，換一個更保險的實作方式解決，不是原地打補丁。已新增 `map.spec.ts` 測試明確驗證這個圖層現在用 `fill-opacity` case expression、不是 `filter`（避免以後不小心改回去又踩到同一個坑卻沒有測試攔截）。已用 `ng build`/`ng test`（72/72）、`docker compose up -d --build frontend`＋curl 確認部署的 bundle 含新的 opacity expression。
+>
+> **2026-08-29 再次重寫：斜線網底改成即時算幾何交集，不是靠 `isDisputed` 旗標**（使用者
+> 重新整理後仍看到漢有網底，逐步排查後發現是更根本的設計問題，不只是渲染 bug）。使用者
+> 問「為什麼蜀漢/東吳整塊疆域都是斜線，不是只有兩者重疊的那一小塊」，並用二戰後英法美
+> 蘇瓜分德國當類比：佔領區邊界是條約明訂，沒有史料分歧，若套用「一整筆疆域記錄標
+> `is_disputed` 就整塊畫網底」的邏輯，會荒謬地把整個佔領區都畫成爭議——這個類比成立，
+> 點出第一版斜線網底的設計本身就有問題，不是實作細節的 bug。**新增
+> `app/src/app/core/geometry/territory-overlap.ts`**（`computeTerritoryOverlaps()`，
+> 用 Turf.js `intersect()` 即時算任兩塊疆域的幾何交集，bbox 粗篩＋只對真正有交集的候選
+> 對做精確運算；不分「同政權不同版本」的 I3 史觀分歧還是「不同政權」的邊界爭奪，兩種
+> 都代表「這塊地同時有一個以上宣稱」，語意上是同一件事）。`MapComponent` 改成獨立的
+> `territory-overlaps` GeoJSON source（換年份時重新算、`setData()` 更新，跟
+> `territories` source 同一套模式）+ `territory-overlaps-hatch` 圖層，斜線只出現在真的
+> 有面積重疊的地方，`isDisputed` 資料庫欄位不再驅動任何渲染（保留當 I3 型態的史觀分歧
+> metadata，之後可能用在點擊詳情面板，不是現在的範圍）。**網底改用單一中性色**（不是
+> tone-on-tone）——重疊區可能同時牽涉兩個以上不同色相的政權，不屬於任何單一政權的識別色；
+> `territory-dispute-pattern.ts` 拿掉不再需要的 `territoryHatchImageId()`（只需要一張
+> 圖樣，不用再依 colorSlot 分 5 張）。**種子資料順帶微調**：把東吳 208-215 年那筆疆域拆
+> 成「江東核心」（`Rect(116,22,122,32)`，不受爭議）+「荊州爭議地帶」（`Rect(112,22,116,32)`，
+> 跟蜀漢宣稱重疊）——這個拆分本身現在已經不影響斜線渲染（改用幾何交集後不需要手動拆），
+> 但仍保留作為更精確的歷史資料模型（孫氏江東本土從沒被質疑過，不該跟荊州爭議混在同一筆）。
+> 已更新 `map.spec.ts`（兩個 source、三個圖層、單一網底圖樣的新架構）、新增
+> `territory-overlap.spec.ts`（5 組測試：真的重疊/只共邊接觸/完全不接觸/同政權自己
+> 重疊/三塊兩兩重疊各自算一次）。已用 `ng build`/`ng test`（76/76）、
+> `docker compose up -d --build frontend`＋curl 確認部署的 bundle 含新程式碼、
+> `territories` 端點在 year=210 正確回傳 5 筆（東吳拆成兩筆後）驗證。
 | [ ] | 3.6 | **疆域快照間形變過渡動畫（TopoJSON + Flubber.js）** | 拖動拉桿時，兩筆快照之間的疆域邊界真正連續變形，不是切換/淡入淡出——對應憲法 §9「疆域必須連續變化呈現，非離散跳轉」核心要求（2026-08-26 拍板：從 Backlog 移入本階段，非候選） | Story 1、§9 | 1-2 個（拓撲前處理 1 個、Flubber 整合+播放時機控制 1 個） |
 | [ ] | 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |

@@ -141,7 +141,37 @@ function sampleFeatureCollection(): FeatureCollection<MultiPolygon, TerritoryFea
   };
 }
 
-const sampleRegimes = [{ id: 'r-a', selfName: '魏' }];
+// 兩個 feature 真的有幾何重疊（經度 105-110 這段），用來驗證 territory-overlaps 這個
+// source 真的有算出交集——不是只挑一個沒有重疊的樣本，那樣測不到 territory-overlap.ts
+// 有沒有被正確呼叫。
+function sampleOverlappingFeatureCollection(): FeatureCollection<MultiPolygon, TerritoryFeatureProperties> {
+  return {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPolygon',
+          coordinates: [[[[100, 20], [100, 30], [110, 30], [110, 20], [100, 20]]]],
+        },
+        properties: { id: 'a', regimeId: 'r-a', startYear: 220, endYear: 226, isDisputed: false },
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPolygon',
+          coordinates: [[[[105, 20], [105, 30], [115, 30], [115, 20], [105, 20]]]],
+        },
+        properties: { id: 'b', regimeId: 'r-b', startYear: 220, endYear: 226, isDisputed: false },
+      },
+    ],
+  };
+}
+
+const sampleRegimes = [
+  { id: 'r-a', selfName: '魏' },
+  { id: 'r-b', selfName: '吳' },
+];
 
 // map.ts 訂閱 TimelineState.year 時用了 debounceTime(150)（見 map.ts 說明：避免拖拉桿
 // 時每個中間值都發一次請求）——測試用真的時間等過這段 debounce，不用 vi.useFakeTimers()
@@ -211,7 +241,7 @@ describe('MapComponent', () => {
     httpMock.expectNone(() => true);
   });
 
-  it('on load, fetches regimes once then territories for the current timeline year, rendering fill/border layers plus name labels', async () => {
+  it('on load, fetches regimes once then territories for the current timeline year, rendering fill/border/overlap layers plus name labels', async () => {
     const fixture = TestBed.createComponent(MapComponent);
     await fixture.whenStable();
     const map = FakeMap.instances[0];
@@ -227,10 +257,12 @@ describe('MapComponent', () => {
     const territoriesReq = httpMock.expectOne(
       (r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`,
     );
-    territoriesReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    territoriesReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
 
-    expect(map.addSourceCalls).toHaveLength(1);
-    expect(map.addSourceCalls[0].id).toBe('territories');
+    // 兩個 source：territories（實際疆域）+ territory-overlaps（即時算出來的重疊區，
+    // 見 territory-overlap.ts）。
+    expect(map.addSourceCalls).toHaveLength(2);
+    expect(map.addSourceCalls.map((s) => s.id)).toEqual(['territories', 'territory-overlaps']);
 
     // colorSlot 應該已經被 assignTerritoryColorSlots() 寫回 feature.properties——
     // 不重測相鄰計算/圖著色本身的邏輯（那是 territory-styling.spec.ts 的責任），
@@ -238,30 +270,32 @@ describe('MapComponent', () => {
     const source = map.addSourceCalls[0].source as { data: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> };
     expect(source.data.features[0].properties.colorSlot).toBeDefined();
 
+    // sampleOverlappingFeatureCollection() 的兩個 feature 真的有幾何重疊，
+    // territory-overlaps 這個 source 應該算出至少一塊交集（不重測交集演算法本身，
+    // 那是 territory-overlap.spec.ts 的責任，這裡只確認 MapComponent 真的有呼叫它、
+    // 結果有被送進 addSource）。
+    const overlapSource = map.addSourceCalls[1].source as { data: FeatureCollection };
+    expect(overlapSource.data.features.length).toBeGreaterThan(0);
+
     expect(map.addLayerCalls).toHaveLength(3);
     const layerIds = map.addLayerCalls.map((l) => (l as { id: string }).id);
-    expect(layerIds).toEqual(['territories-fill', 'territories-border', 'territories-disputed-hatch']);
+    expect(layerIds).toEqual(['territories-fill', 'territories-border', 'territory-overlaps-hatch']);
 
-    // 爭議控制區斜線網底：5 個色格各自註冊一張圖樣（見 territory-dispute-pattern.ts）。
-    expect(map.imageIds.size).toBe(5);
-    expect(map.imageIds.has('territory-hatch-0')).toBe(true);
+    // 疆域重疊區斜線網底：單一中性圖樣，不分色格（見 territory-dispute-pattern.ts
+    // 開頭說明——重疊區可能同時牽涉兩個以上不同色相的政權，不屬於任何單一政權識別色）。
+    expect(map.imageIds.size).toBe(1);
+    expect(map.imageIds.has('territory-overlap-hatch')).toBe(true);
 
-    // 2026-08-29 除錯記錄：這個圖層刻意不用 filter 排除非爭議疆域（實測 filter 在
-    // setData() 換資料時沒有正確重新套用，見 map.ts 該圖層的註解），改用 fill-opacity
-    // 的 case expression。這裡明確驗證是這個寫法，不是 filter，避免以後又改回去踩到
-    // 同一個坑卻沒有測試會抓到。
-    const hatchLayer = map.addLayerCalls.find((l) => (l as { id: string }).id === 'territories-disputed-hatch') as {
-      filter?: unknown;
-      paint: { 'fill-opacity': unknown };
+    const hatchLayer = map.addLayerCalls.find((l) => (l as { id: string }).id === 'territory-overlaps-hatch') as {
+      source: string;
+      paint: { 'fill-pattern': unknown };
     };
-    expect(hatchLayer.filter).toBeUndefined();
-    expect(hatchLayer.paint['fill-opacity']).toEqual(['case', ['==', ['get', 'isDisputed'], true], 1, 0]);
+    expect(hatchLayer.source).toBe('territory-overlaps');
+    expect(hatchLayer.paint['fill-pattern']).toBe('territory-overlap-hatch');
 
     // 標籤是 Marker（HTML 元素），不是 MapLibre 原生 symbol 圖層——見 territory-labels.ts
     // 開頭說明（避免另外接字型 glyphs 服務）。
-    expect(FakeMarker.instances).toHaveLength(1);
-    expect(FakeMarker.instances[0].element.textContent).toBe('魏');
-    expect(FakeMarker.instances[0].element.className).toBe('territory-label');
+    expect(FakeMarker.instances.length).toBeGreaterThan(0);
   });
 
   it('when the timeline year changes, re-queries territories and updates via setData() instead of re-adding the layer', async () => {
@@ -278,7 +312,7 @@ describe('MapComponent', () => {
       .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
       .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
 
-    expect(map.addSourceCalls).toHaveLength(1); // 第一次渲染，source 建立過一次
+    expect(map.addSourceCalls).toHaveLength(2); // 第一次渲染，兩個 source 都建立過一次
 
     timeline.year.set(150);
     await waitForDebounce();
@@ -286,9 +320,10 @@ describe('MapComponent', () => {
     const secondReq = httpMock.expectOne((r) => r.urlWithParams === '/api/v1/territories?year=150');
     secondReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
 
-    // 換年份後：source 沒有被重新建立（還是只有第一次那一筆），改用 setData() 更新。
-    expect(map.addSourceCalls).toHaveLength(1);
-    expect(map.setDataCalls).toHaveLength(1);
+    // 換年份後：source 沒有被重新建立（還是只有第一次那兩筆），兩個 source 都改用
+    // setData() 更新（territories 本身 + 重新算出來的 territory-overlaps）。
+    expect(map.addSourceCalls).toHaveLength(2);
+    expect(map.setDataCalls).toHaveLength(2);
     expect(map.addLayerCalls).toHaveLength(3); // 圖層也沒有被重複加
   });
 

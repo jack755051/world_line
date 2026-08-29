@@ -231,8 +231,15 @@ public static class SeedData
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(219, 221), Geom = Rect(100, 26, 108, 32), CreatedAt = DateTimeOffset.UtcNow }, // 219 失荊州
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(221, 263), Geom = Rect(100, 26, 108, 32), CreatedAt = DateTimeOffset.UtcNow }, // 正式建國後穩定期（益州核心）
 
-            // 東吳：4 筆，同樣在荊州易手區間加密
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(208, 215), Geom = Rect(112, 22, 122, 32), IsDisputed = true, CreatedAt = DateTimeOffset.UtcNow },
+            // 東吳：5 筆，同樣在荊州易手區間加密。208-215 拆成兩筆——「江東核心」（孫氏
+            // 從頭到尾穩定控制，沒有任何一方質疑過）跟「荊州爭議地帶」（跟蜀漢的宣稱重疊，
+            // 是真正有史料分歧的部分）。原本只有一整筆涵蓋全境、整筆標 IsDisputed=true，
+            // 等於把孫氏從沒被挑戰過的江東本土也畫成「有爭議」，邏輯上站不住腳——跟「二戰後
+            // 英法美蘇瓜分德國，佔領區邊界是條約明訂、沒有史料分歧，不該套用『整筆記錄都算
+            // 爭議』的判斷」是同一個問題（使用者實際點出這個類比）。拆開後只有真正跟蜀漢
+            // 宣稱重疊的那一小塊（經度 112-116）標爭議，江東核心（116-122）維持穩定不爭議。
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(208, 215), Geom = Rect(116, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow }, // 江東核心，不受爭議
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(208, 215), Geom = Rect(112, 22, 116, 32), IsDisputed = true, CreatedAt = DateTimeOffset.UtcNow }, // 荊州爭議地帶，跟蜀漢的宣稱重疊
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(215, 219), Geom = Rect(111, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow },
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(219, 222), Geom = Rect(108, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow }, // 219 呂蒙奪荊州後擴大
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(222, 280), Geom = Rect(108, 20, 122, 32), CreatedAt = DateTimeOffset.UtcNow },

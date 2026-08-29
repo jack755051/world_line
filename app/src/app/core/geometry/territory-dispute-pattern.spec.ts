@@ -1,4 +1,4 @@
-import { darkenHex, territoryHatchImageId } from './territory-dispute-pattern';
+import { darkenHex } from './territory-dispute-pattern';
 
 // createDiagonalHatchImageData() 需要真的 Canvas 2D context，JSDOM 測試環境沒有
 // （getContext('2d') 回傳 null）——見該函式的文件註解，不在這裡測；只測這個檔案裡
@@ -18,12 +18,5 @@ describe('darkenHex', () => {
 
   it('黑色調暗後還是黑色（沒有負值）', () => {
     expect(darkenHex('#000000', 0.5)).toBe('rgb(0, 0, 0)');
-  });
-});
-
-describe('territoryHatchImageId', () => {
-  it('依色格索引產生對應的 image id', () => {
-    expect(territoryHatchImageId(0)).toBe('territory-hatch-0');
-    expect(territoryHatchImageId(4)).toBe('territory-hatch-4');
   });
 });

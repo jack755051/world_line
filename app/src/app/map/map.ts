@@ -1,21 +1,30 @@
 import { Component, ElementRef, OnDestroy, afterNextRender, inject, viewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
 // maplibre-gl 6.x 沒有 default export，只有具名匯出——`Map` 別名成 `MapLibreMap`，
 // 避免跟全域內建的 Map（這個專案別處已經在用，例如 graph-coloring.ts 的
 // Map<string, Set<string>>）撞名。
-import { Map as MapLibreMap, NavigationControl } from 'maplibre-gl';
+import { Map as MapLibreMap, Marker, NavigationControl } from 'maplibre-gl';
 import type { FeatureCollection, MultiPolygon } from 'geojson';
 import {
   assignTerritoryColorSlots,
   buildColorSlotMatchExpression,
   type TerritoryFeatureProperties,
 } from '../core/geometry/territory-styling';
+import { computeTerritoryLabelPoints } from '../core/geometry/territory-labels';
 import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
 
 /** `ApiResponse<T>` 的最小形狀（見 api/Contracts/ApiResponse.cs）——只取這裡用得到的
     `data` 欄位，不整個對照完整契約，畢竟目前只有這一個端點在消費。 */
 interface ApiEnvelope<T> {
   data: T;
+}
+
+/** `GET /api/v1/regimes` 回應的最小形狀（見 api/Contracts/RegimeResponse.cs）——這裡
+    只取畫標籤用得到的 id/selfName，其餘欄位（status、轉換邊）暫時用不到不列。 */
+interface RegimeSummary {
+  id: string;
+  selfName: string;
 }
 
 /**
@@ -48,6 +57,7 @@ export class MapComponent implements OnDestroy {
   private readonly http = inject(HttpClient);
 
   private map?: MapLibreMap;
+  private labelMarkers: Marker[] = [];
 
   /** 暫定年份，見類別註解——三國疆域爭奪最激烈的荊州易手期已過、三方鼎立局面穩定，
       適合當「證明整條管線能動」的示範年份。 */
@@ -87,20 +97,27 @@ export class MapComponent implements OnDestroy {
   }
 
   private loadTerritories(): void {
-    this.http
-      .get<ApiEnvelope<FeatureCollection<MultiPolygon, TerritoryFeatureProperties>>>(
+    forkJoin({
+      territories: this.http.get<ApiEnvelope<FeatureCollection<MultiPolygon, TerritoryFeatureProperties>>>(
         `/api/v1/territories?year=${MapComponent.TERRITORY_YEAR}`,
-      )
-      .subscribe({
-        next: (response) => this.renderTerritories(response.data),
-        // 第一版先求「資料管線走得通看得到東西」，還沒有失敗時的 UI 呈現（例如錯誤
-        // 提示列）——那屬於之後才需要拍板的 loading/error 狀態設計，這裡先用
-        // console.error 讓問題在開發時看得到，不是刻意省略錯誤處理。
-        error: (err: unknown) => console.error('[MapComponent] 載入疆域資料失敗', err),
-      });
+      ),
+      // 不加 ?year=——一次拿全部政權建好 id→名稱對照表，不管地圖目前顯示哪個年份都能
+      // 重複用。政權本身的存在不隨年份變動，變動的是「哪些政權的疆域快照落在這個
+      // 年份」，那是 territories 端點自己的篩選邏輯，兩者不用綁在一起查。
+      regimes: this.http.get<ApiEnvelope<RegimeSummary[]>>('/api/v1/regimes'),
+    }).subscribe({
+      next: ({ territories, regimes }) => this.renderTerritories(territories.data, regimes.data),
+      // 第一版先求「資料管線走得通看得到東西」，還沒有失敗時的 UI 呈現（例如錯誤
+      // 提示列）——那屬於之後才需要拍板的 loading/error 狀態設計，這裡先用
+      // console.error 讓問題在開發時看得到，不是刻意省略錯誤處理。
+      error: (err: unknown) => console.error('[MapComponent] 載入疆域/政權資料失敗', err),
+    });
   }
 
-  private renderTerritories(featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>): void {
+  private renderTerritories(
+    featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
+    regimes: RegimeSummary[],
+  ): void {
     if (!this.map) {
       return;
     }
@@ -136,9 +153,49 @@ export class MapComponent implements OnDestroy {
       // 「政權識別色不是固定對照表」段落已拍板）。
       paint: { 'line-color': borderColor || '#52514e', 'line-width': 1 },
     });
+
+    this.renderLabels(featureCollection, regimes);
+  }
+
+  /** 政權名稱標籤——刻意用 `Marker` 掛 HTML 元素，不是 MapLibre 原生 symbol 圖層的
+      `text-field`，理由見 territory-labels.ts 開頭說明（避免另外接字型 glyphs 服務）。 */
+  private renderLabels(
+    featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
+    regimes: RegimeSummary[],
+  ): void {
+    if (!this.map) {
+      return;
+    }
+
+    this.clearLabelMarkers();
+
+    const nameByRegimeId = new Map(regimes.map((r) => [r.id, r.selfName]));
+    const labelPoints = computeTerritoryLabelPoints(featureCollection);
+
+    for (const [regimeId, [lon, lat]] of labelPoints) {
+      const name = nameByRegimeId.get(regimeId);
+      if (!name) {
+        continue; // 查無名稱（理論上不該發生，territories/regimes 資料不一致才會走到這裡）
+      }
+
+      const el = document.createElement('div');
+      el.className = 'territory-label';
+      el.textContent = name;
+
+      const marker = new Marker({ element: el }).setLngLat([lon, lat]).addTo(this.map);
+      this.labelMarkers.push(marker);
+    }
+  }
+
+  private clearLabelMarkers(): void {
+    for (const marker of this.labelMarkers) {
+      marker.remove();
+    }
+    this.labelMarkers = [];
   }
 
   ngOnDestroy(): void {
+    this.clearLabelMarkers();
     this.map?.remove();
   }
 }

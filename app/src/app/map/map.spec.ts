@@ -6,15 +6,15 @@ import { MapComponent } from './map';
 import type { TerritoryFeatureProperties } from '../core/geometry/territory-styling';
 
 // MapLibre 需要真的 WebGL context 才能初始化，JSDOM 測試環境沒有——用假的 Map/
-// NavigationControl 取代，只驗證「我們自己的 wiring 邏輯」（容器元素有傳進去、
-// style 有背景層、有掛 NavigationControl、疆域資料抓回來後有正確組出 source/layer、
-// ngOnDestroy 有呼叫 remove），不是重新測 MapLibre 本身的渲染行為。
+// NavigationControl/Marker 取代，只驗證「我們自己的 wiring 邏輯」（容器元素有傳進去、
+// style 有背景層、有掛 NavigationControl、疆域+政權資料抓回來後有正確組出
+// source/layer/標籤、ngOnDestroy 有清乾淨），不是重新測 MapLibre 本身的渲染行為。
 //
 // 用 vi.hoisted() 包起來，不是圖方便——vi.mock() 本身會被 Vitest 提升到檔案最頂端，
-// 如果 FakeMap/FakeNavigationControl 是普通的模組作用域宣告，mock factory 執行的
-// 當下這兩個 class 還沒被求值（TDZ），會直接炸掉；vi.hoisted() 裡的內容才會跟著
+// 如果 FakeMap/FakeNavigationControl/FakeMarker 是普通的模組作用域宣告，mock factory
+// 執行的當下這些 class 還沒被求值（TDZ），會直接炸掉；vi.hoisted() 裡的內容才會跟著
 // vi.mock() 一起被提升，兩者順序才對得上。
-const { FakeMap, FakeNavigationControl } = vi.hoisted(() => {
+const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
   class FakeMap {
     static instances: FakeMap[] = [];
     readonly options: Record<string, unknown>;
@@ -61,12 +61,38 @@ const { FakeMap, FakeNavigationControl } = vi.hoisted(() => {
 
   class FakeNavigationControl {}
 
-  return { FakeMap, FakeNavigationControl };
+  class FakeMarker {
+    static instances: FakeMarker[] = [];
+    element: HTMLElement;
+    lngLat?: [number, number];
+    removed = false;
+
+    constructor(options: { element: HTMLElement }) {
+      this.element = options.element;
+      FakeMarker.instances.push(this);
+    }
+
+    setLngLat(lngLat: [number, number]): this {
+      this.lngLat = lngLat;
+      return this;
+    }
+
+    addTo(): this {
+      return this;
+    }
+
+    remove(): void {
+      this.removed = true;
+    }
+  }
+
+  return { FakeMap, FakeNavigationControl, FakeMarker };
 });
 
 vi.mock('maplibre-gl', () => ({
   Map: FakeMap,
   NavigationControl: FakeNavigationControl,
+  Marker: FakeMarker,
 }));
 
 function sampleFeatureCollection(): FeatureCollection<MultiPolygon, TerritoryFeatureProperties> {
@@ -85,11 +111,14 @@ function sampleFeatureCollection(): FeatureCollection<MultiPolygon, TerritoryFea
   };
 }
 
+const sampleRegimes = [{ id: 'r-a', selfName: '魏' }];
+
 describe('MapComponent', () => {
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     FakeMap.instances = [];
+    FakeMarker.instances = [];
     // 明確 reset：前一個 it() 只要呼叫過 TestBed.createComponent()/inject()，這個
     // testing module 就算「已實例化」，這裡的 vitest-based test runner 不會自動幫
     // 每個 it() 重置（跟傳統 Karma/Jasmine 的預設行為不同），沒有這行下一個 it() 的
@@ -139,7 +168,7 @@ describe('MapComponent', () => {
     httpMock.expectNone(() => true);
   });
 
-  it('on load, fetches territories for the fixed demo year and renders a fill + border layer', async () => {
+  it('on load, fetches territories + regimes for the fixed demo year and renders fill/border layers plus name labels', async () => {
     const fixture = TestBed.createComponent(MapComponent);
     await fixture.whenStable();
     const map = FakeMap.instances[0];
@@ -148,9 +177,13 @@ describe('MapComponent', () => {
 
     // map.ts 把 `?year=225` 直接組進 URL 字串（不是用 HttpParams），所以查詢字串是
     // req.urlWithParams 的一部分，不是 req.params——比對要對應同一種組法。
-    const req = httpMock.expectOne((r) => r.urlWithParams === '/api/v1/territories?year=225');
-    expect(req.request.method).toBe('GET');
-    req.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    const territoriesReq = httpMock.expectOne((r) => r.urlWithParams === '/api/v1/territories?year=225');
+    const regimesReq = httpMock.expectOne((r) => r.urlWithParams === '/api/v1/regimes');
+    expect(territoriesReq.request.method).toBe('GET');
+    expect(regimesReq.request.method).toBe('GET');
+
+    territoriesReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    regimesReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleRegimes });
 
     expect(map.addSourceCalls).toHaveLength(1);
     expect(map.addSourceCalls[0].id).toBe('territories');
@@ -164,29 +197,50 @@ describe('MapComponent', () => {
     expect(map.addLayerCalls).toHaveLength(2);
     const layerIds = map.addLayerCalls.map((l) => (l as { id: string }).id);
     expect(layerIds).toEqual(['territories-fill', 'territories-border']);
+
+    // 標籤是 Marker（HTML 元素），不是 MapLibre 原生 symbol 圖層——見 territory-labels.ts
+    // 開頭說明（避免另外接字型 glyphs 服務）。
+    expect(FakeMarker.instances).toHaveLength(1);
+    expect(FakeMarker.instances[0].element.textContent).toBe('魏');
+    expect(FakeMarker.instances[0].element.className).toBe('territory-label');
   });
 
-  it('logs an error but does not throw when the territory request fails', async () => {
+  it('logs an error but does not throw when either request fails', async () => {
     const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const fixture = TestBed.createComponent(MapComponent);
     await fixture.whenStable();
     const map = FakeMap.instances[0];
 
     map.fireLoad();
-    const req = httpMock.expectOne(() => true);
-    req.error(new ProgressEvent('network error'));
+    const territoriesReq = httpMock.expectOne((r) => r.urlWithParams === '/api/v1/territories?year=225');
+    httpMock.expectOne((r) => r.urlWithParams === '/api/v1/regimes'); // forkJoin 會訂閱兩邊，但下面 error() 一觸發整體就結束，這邊不用真的 flush 它
+    territoriesReq.error(new ProgressEvent('network error'));
+    // forkJoin 的行為：任一來源 error，整體立刻 error 並取消訂閱其餘來源——所以另一個
+    // request 這時候已經被取消，不能也不需要對它呼叫 flush()（呼叫了會拋
+    // "Cannot flush a cancelled request"）。
 
     expect(consoleErrorSpy).toHaveBeenCalled();
     expect(map.addSourceCalls).toHaveLength(0);
+    expect(FakeMarker.instances).toHaveLength(0);
     consoleErrorSpy.mockRestore();
   });
 
-  it('removes the map instance on destroy to avoid leaking the WebGL context', async () => {
+  it('removes the map instance and label markers on destroy', async () => {
     const fixture = TestBed.createComponent(MapComponent);
     await fixture.whenStable();
-
     const map = FakeMap.instances[0];
+
+    map.fireLoad();
+    httpMock.expectOne((r) => r.urlWithParams === '/api/v1/territories?year=225')
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    httpMock.expectOne((r) => r.urlWithParams === '/api/v1/regimes')
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleRegimes });
+
+    expect(FakeMarker.instances).toHaveLength(1);
+
     fixture.destroy();
+
     expect(map.removed).toBe(true);
+    expect(FakeMarker.instances[0].removed).toBe(true);
   });
 });

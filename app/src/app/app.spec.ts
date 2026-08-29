@@ -8,18 +8,20 @@ import { App } from './app';
 // 什麼都不做（不觸發 'load'）——這個檔案不重覆測 MapComponent 內部的疆域載入邏輯
 // （那是 map.spec.ts 的責任），只驗證 App 這一層有把 MapComponent 接上去；HttpClient
 // 一樣要提供（MapComponent 建構子會 inject），但不需要真的處理任何請求。
-const { FakeMap, FakeNavigationControl } = vi.hoisted(() => ({
+const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => ({
   FakeMap: class {
     addControl(): void {}
-    on(): void {}
+    on(): void {} // 故意不觸發 'load'，renderLabels() 不會跑，FakeMarker 只是補齊 import 需要的匯出
     remove(): void {}
   },
   FakeNavigationControl: class {},
+  FakeMarker: class {},
 }));
 
 vi.mock('maplibre-gl', () => ({
   Map: FakeMap,
   NavigationControl: FakeNavigationControl,
+  Marker: FakeMarker,
 }));
 
 describe('App', () => {

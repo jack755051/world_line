@@ -4,6 +4,8 @@
 // Tailwind 的 @import 順序無關——CSS custom property 是動態解析（compute time），不是
 // 宣告順序決定，所以 --wl-* 先宣告完全不影響 sanring-theme.css 引用它的結果。
 @use 'app/core/design/design-tokens';
+// 政權名稱標籤（maplibregl.Marker 掛的 HTML 元素）——必須是全域樣式，理由見該檔案開頭說明。
+@use 'app/map/map-labels.global';
 // 用 @use 而非 @import 載入這個純 CSS 檔——@import 會把它當「plain CSS passthrough」
 // 處理，編譯出來的結果在檔案內容後面多一個不該有的分號（`}` 後面接 `;`），雖然瀏覽器
 // 會忽略無害，但 @use 載入 .css 檔本來就有原生支援、輸出乾淨，沒有理由留著舊寫法。

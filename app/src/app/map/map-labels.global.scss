@@ -1,0 +1,24 @@
+// 政權名稱標籤（maplibregl.Marker 掛的 HTML 元素）的樣式——**必須是全域樣式，不能放進
+// map.scss**：Marker 的 DOM 元素是 MapLibre 自己用原生 DOM API 插入頁面的，不是透過
+// Angular 模板渲染出來的，不會拿到 Angular Emulated encapsulation 的 host 屬性，元件
+// 範圍的 CSS 選不到它（跟 maplibre-gl.css 本身必須是全域樣式同一個道理，見
+// angular.json 的 styles 設定）。檔名故意用 `.global.scss` 後綴跟一般元件樣式表區分。
+.territory-label {
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-sm);
+  font-weight: var(--wl-font-weight-medium);
+  color: var(--wl-ink-primary);
+
+  // 政權識別色有 5 種色相（見 territory-colors.ts），深淺不一，純色文字在某些底色上
+  // 對比會不夠——用白色描邊模擬地圖標籤常見的 halo 效果，不管疊在哪個色塊上都看得清楚，
+  // 不用為每個色格另外算文字顏色。
+  text-shadow:
+    0 0 3px var(--wl-surface),
+    0 0 3px var(--wl-surface),
+    0 0 3px var(--wl-surface),
+    0 0 3px var(--wl-surface);
+
+  white-space: nowrap;
+  pointer-events: none; // 標籤本身還不能點擊互動（那是 3.7 政權聚焦模式的事），不要擋住底下地圖的拖曳/縮放手勢
+  user-select: none;
+}

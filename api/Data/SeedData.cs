@@ -417,77 +417,98 @@ public static class SeedData
         };
         db.HistoricalEventControversies.Add(legitimacyControversy);
 
-        // --- Content translations (task 2.17: 憲法 R4 中英雙語，僅中立事實內容，見 PRD §6) ---
+        // --- Translations (task 2.17: 憲法 R4 中英雙語，僅中立事實內容，見 PRD §6) ---
         // 範圍：regimes.self_name、regime_aliases.alias_name、historical_events.name、
         // lineage_presets.preset_name/description、historical_event_controversies.topic/
         // neutral_description。historical_event_perspectives 跟 viewpoints 不翻譯（立場性敘事，
         // 靠多重視角機制各自語言呈現，見 PRD §6 核心設計原則），故這裡沒有它們的翻譯列。
-        ContentTranslation Translate(string entityType, string entityId, string fieldName, string text) => new()
-        {
-            Id = Guid.NewGuid(),
-            EntityType = entityType,
-            EntityId = entityId,
-            FieldName = fieldName,
-            Locale = "en",
-            TranslatedText = text,
-            CreatedAt = DateTimeOffset.UtcNow,
-        };
+        // 2026-08-29：改用型別化表（各自真外鍵 + ON DELETE CASCADE），取代原本的通用表方案
+        // ——理由是這個專案的目標是給多使用者用、資料量會持續成長，通用表放棄外鍵完整性的
+        // 取捨在那個前提下不划算，見 PRD §6 修訂記錄。
 
-        db.ContentTranslations.AddRange(
-            // regimes.self_name
-            Translate("regime", han.Id.ToString(), "self_name", "Han"),
-            Translate("regime", wei.Id.ToString(), "self_name", "Wei"),
-            Translate("regime", shuHan.Id.ToString(), "self_name", "Shu Han"),
-            Translate("regime", wu.Id.ToString(), "self_name", "Wu"),
-            Translate("regime", jin.Id.ToString(), "self_name", "Jin"),
+        db.RegimeTranslations.AddRange(
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = han.Id, Locale = "en", SelfName = "Han", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = wei.Id, Locale = "en", SelfName = "Wei", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = shuHan.Id, Locale = "en", SelfName = "Shu Han", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = wu.Id, Locale = "en", SelfName = "Wu", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = jin.Id, Locale = "en", SelfName = "Jin", CreatedAt = DateTimeOffset.UtcNow }
+        );
 
-            // regime_aliases.alias_name
-            Translate("regime_alias", weiAlias.Id.ToString(), "alias_name", "the Usurper"),
-            Translate("regime_alias", wuAlias.Id.ToString(), "alias_name", "Sun Wu"),
+        db.RegimeAliasTranslations.AddRange(
+            new RegimeAliasTranslation { Id = Guid.NewGuid(), RegimeAliasId = weiAlias.Id, Locale = "en", AliasName = "the Usurper", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeAliasTranslation { Id = Guid.NewGuid(), RegimeAliasId = wuAlias.Id, Locale = "en", AliasName = "Sun Wu", CreatedAt = DateTimeOffset.UtcNow }
+        );
 
-            // historical_events.name
-            Translate("historical_event", chibi.Id, "name", "Battle of Red Cliffs"),
-            Translate("historical_event", hanAbdicatesWei.Id, "name", "Emperor Xian of Han Abdicates to Wei (Cao Pi Receives the Throne)"),
-            Translate("historical_event", shuConquest.Id, "name", "Wei's Conquest of Shu Han"),
-            Translate("historical_event", weiAbdicatesJin.Id, "name", "Emperor Yuan of Wei Abdicates to Jin (Sima Yan Receives the Throne)"),
-            Translate("historical_event", wuConquest.Id, "name", "Western Jin's Conquest of Wu"),
+        db.HistoricalEventTranslations.AddRange(
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = chibi.Id, Locale = "en", Name = "Battle of Red Cliffs", CreatedAt = DateTimeOffset.UtcNow },
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = hanAbdicatesWei.Id, Locale = "en", Name = "Emperor Xian of Han Abdicates to Wei (Cao Pi Receives the Throne)", CreatedAt = DateTimeOffset.UtcNow },
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = shuConquest.Id, Locale = "en", Name = "Wei's Conquest of Shu Han", CreatedAt = DateTimeOffset.UtcNow },
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = weiAbdicatesJin.Id, Locale = "en", Name = "Emperor Yuan of Wei Abdicates to Jin (Sima Yan Receives the Throne)", CreatedAt = DateTimeOffset.UtcNow },
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = wuConquest.Id, Locale = "en", Name = "Western Jin's Conquest of Wu", CreatedAt = DateTimeOffset.UtcNow }
+        );
 
-            // lineage_presets.preset_name / description
-            Translate("lineage_preset", textbookPreset.Id.ToString(), "preset_name", "Traditional Textbook Historiography"),
-            Translate("lineage_preset", textbookPreset.Id.ToString(), "description",
-                "The Han→Wei→Jin succession as the main line; Shu Han and Eastern Wu are treated as regimes of the "
-                + "fragmentation period and excluded from this preset (though they remain fully present in the regimes table)."),
-            Translate("lineage_preset", shuHanOrthodoxPreset.Id.ToString(), "preset_name", "Shu Han Legitimist Historiography"),
-            Translate("lineage_preset", shuHanOrthodoxPreset.Id.ToString(), "description",
-                "Regards Shu Han as the legitimate continuation of the Han imperial line, treating Wei as a usurpation and "
-                + "excluding it from the main line. Legitimacy is considered interrupted after Shu Han's fall in 263; Jin is "
-                + "retroactively recognized as the legitimate continuation only once it reunifies China in 280 — on the "
-                + "grounds of reunification rather than of having received Wei's abdication, a different rationale from why "
-                + "the Traditional Textbook view includes Jin. This divergence is connected to the political needs of the "
-                + "Eastern Jin and Southern Song dynasties, both regimes confined to southern China that needed a historical "
-                + "precedent showing legitimacy could persist in the south — see the controversy entry on the "
-                + "Han-abdicates-to-Wei event below."),
+        db.LineagePresetTranslations.AddRange(
+            new LineagePresetTranslation
+            {
+                Id = Guid.NewGuid(),
+                LineagePresetId = textbookPreset.Id,
+                Locale = "en",
+                PresetName = "Traditional Textbook Historiography",
+                Description = "The Han→Wei→Jin succession as the main line; Shu Han and Eastern Wu are treated as regimes "
+                    + "of the fragmentation period and excluded from this preset (though they remain fully present in the "
+                    + "regimes table).",
+                CreatedAt = DateTimeOffset.UtcNow,
+            },
+            new LineagePresetTranslation
+            {
+                Id = Guid.NewGuid(),
+                LineagePresetId = shuHanOrthodoxPreset.Id,
+                Locale = "en",
+                PresetName = "Shu Han Legitimist Historiography",
+                Description = "Regards Shu Han as the legitimate continuation of the Han imperial line, treating Wei as a "
+                    + "usurpation and excluding it from the main line. Legitimacy is considered interrupted after Shu Han's "
+                    + "fall in 263; Jin is retroactively recognized as the legitimate continuation only once it reunifies "
+                    + "China in 280 — on the grounds of reunification rather than of having received Wei's abdication, a "
+                    + "different rationale from why the Traditional Textbook view includes Jin. This divergence is "
+                    + "connected to the political needs of the Eastern Jin and Southern Song dynasties, both regimes "
+                    + "confined to southern China that needed a historical precedent showing legitimacy could persist in "
+                    + "the south — see the controversy entry on the Han-abdicates-to-Wei event below.",
+                CreatedAt = DateTimeOffset.UtcNow,
+            }
+        );
 
-            // historical_event_controversies.topic / neutral_description
-            Translate("historical_event_controversy", troopSizeControversy.Id.ToString(), "topic",
-                "Dispute over the Size of Cao Cao's Southern Expedition Force"),
-            Translate("historical_event_controversy", troopSizeControversy.Id.ToString(), "neutral_description",
-                "Cao Cao's proclamation claimed to command \"800,000 naval troops,\" but Pei Songzhi's commentary on the "
-                + "Records of the Three Kingdoms quotes Zhou Yu describing the real number as \"large, but nothing to fear.\" "
-                + "Later historians, estimating from logistics and battlefield records, believe the actual force fell far "
-                + "short of 800,000, though the precise figure remains unresolved."),
-            Translate("historical_event_controversy", legitimacyControversy.Id.ToString(), "topic",
-                "The Three Kingdoms Legitimacy Dispute (Wei vs. Shu Han)"),
-            Translate("historical_event_controversy", legitimacyControversy.Id.ToString(), "neutral_description",
-                "Chen Shou's Records of the Three Kingdoms, compiled under the Western Jin (which itself received its throne "
-                + "by abdication from Wei), takes the \"Book of Wei\" as the imperial annals and treats Wei as legitimate. "
-                + "Xi Zuochi's Chronicles of Han and Jin, written under the Eastern Jin, reversed this, treating Shu Han as "
-                + "the legitimate continuation of Han. Zhu Xi's Zizhi Tongjian Gangmu, written under the Southern Song, "
-                + "followed Xi Zuochi's position. The three schools' disagreement doesn't stem purely from differing "
-                + "evidence — it tracks the political situation of the dynasty each history was written under: Western "
-                + "Jin's own legitimacy rested on having received Wei's abdication, while Eastern Jin and Southern Song were "
-                + "both regimes confined to southern China that needed a historical precedent showing legitimacy could "
-                + "persist in the south, and Shu Han's situation supplied exactly that precedent.")
+        db.HistoricalEventControversyTranslations.AddRange(
+            new HistoricalEventControversyTranslation
+            {
+                Id = Guid.NewGuid(),
+                ControversyId = troopSizeControversy.Id,
+                Locale = "en",
+                Topic = "Dispute over the Size of Cao Cao's Southern Expedition Force",
+                NeutralDescription = "Cao Cao's proclamation claimed to command \"800,000 naval troops,\" but Pei Songzhi's "
+                    + "commentary on the Records of the Three Kingdoms quotes Zhou Yu describing the real number as "
+                    + "\"large, but nothing to fear.\" Later historians, estimating from logistics and battlefield "
+                    + "records, believe the actual force fell far short of 800,000, though the precise figure remains "
+                    + "unresolved.",
+                CreatedAt = DateTimeOffset.UtcNow,
+            },
+            new HistoricalEventControversyTranslation
+            {
+                Id = Guid.NewGuid(),
+                ControversyId = legitimacyControversy.Id,
+                Locale = "en",
+                Topic = "The Three Kingdoms Legitimacy Dispute (Wei vs. Shu Han)",
+                NeutralDescription = "Chen Shou's Records of the Three Kingdoms, compiled under the Western Jin (which "
+                    + "itself received its throne by abdication from Wei), takes the \"Book of Wei\" as the imperial "
+                    + "annals and treats Wei as legitimate. Xi Zuochi's Chronicles of Han and Jin, written under the "
+                    + "Eastern Jin, reversed this, treating Shu Han as the legitimate continuation of Han. Zhu Xi's Zizhi "
+                    + "Tongjian Gangmu, written under the Southern Song, followed Xi Zuochi's position. The three "
+                    + "schools' disagreement doesn't stem purely from differing evidence — it tracks the political "
+                    + "situation of the dynasty each history was written under: Western Jin's own legitimacy rested on "
+                    + "having received Wei's abdication, while Eastern Jin and Southern Song were both regimes confined "
+                    + "to southern China that needed a historical precedent showing legitimacy could persist in the "
+                    + "south, and Shu Han's situation supplied exactly that precedent.",
+                CreatedAt = DateTimeOffset.UtcNow,
+            }
         );
 
         await db.SaveChangesAsync();

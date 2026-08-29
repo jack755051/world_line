@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -13,9 +14,11 @@ using WorldLine.Api.Data;
 namespace WorldLine.Api.Migrations
 {
     [DbContext(typeof(WorldLineDbContext))]
-    partial class WorldLineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260829071647_ReplaceContentTranslationsWithTypedTables")]
+    partial class ReplaceContentTranslationsWithTypedTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

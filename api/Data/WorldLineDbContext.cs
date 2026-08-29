@@ -23,8 +23,13 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<HistoricalEventPerspective> HistoricalEventPerspectives => Set<HistoricalEventPerspective>();
     public DbSet<HistoricalEventControversy> HistoricalEventControversies => Set<HistoricalEventControversy>();
 
-    // 憲法 R4：中英雙語內容支援（task 2.16），見 PRD §6「多語言內容設計」。
-    public DbSet<ContentTranslation> ContentTranslations => Set<ContentTranslation>();
+    // 憲法 R4：中英雙語內容支援（task 2.16，2026-08-29 從通用表改回型別化表，換取真外鍵/
+    // 級聯刪除——見 PRD §6「多語言內容設計」修訂記錄）。
+    public DbSet<RegimeTranslation> RegimeTranslations => Set<RegimeTranslation>();
+    public DbSet<RegimeAliasTranslation> RegimeAliasTranslations => Set<RegimeAliasTranslation>();
+    public DbSet<HistoricalEventTranslation> HistoricalEventTranslations => Set<HistoricalEventTranslation>();
+    public DbSet<LineagePresetTranslation> LineagePresetTranslations => Set<LineagePresetTranslation>();
+    public DbSet<HistoricalEventControversyTranslation> HistoricalEventControversyTranslations => Set<HistoricalEventControversyTranslation>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

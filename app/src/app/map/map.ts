@@ -207,9 +207,18 @@ export class MapComponent implements OnDestroy {
         id: 'territories-disputed-hatch',
         type: 'fill',
         source: 'territories',
-        filter: ['==', ['get', 'isDisputed'], true],
+        // 2026-08-29 除錯記錄：原本用 `filter: ['==', ['get','isDisputed'], true]`
+        // 排除非爭議疆域，實測（使用者實際在瀏覽器拖拉桿到 208-214 年）漢（isDisputed
+        // 確認為 false，用瀏覽器 Console 直接 fetch 驗證過）還是被畫上網底，懷疑是
+        // MapLibre 的 filter 在 `source.setData()` 動態換資料時沒有正確重新套用（第一次
+        // 建圖層時的資料剛好是 0 筆爭議疆域，換年份後 filter 疑似沒跟著新資料重新篩選，
+        // 根因未完全確認）。改成不用 filter，讓所有疆域都進這個圖層，改用
+        // fill-opacity 的 case expression 依 isDisputed 決定要不要顯示（非爭議的直接
+        // 設成全透明）——paint 屬性保證會跟著 setData() 每次重新求值，不依賴 filter
+        // 在動態資料下的重新套用行為，繞開這個未完全查明根因的邊界案例。
         paint: {
           'fill-pattern': buildColorSlotMatchExpression(hatchPatternIds) as unknown as string,
+          'fill-opacity': ['case', ['==', ['get', 'isDisputed'], true], 1, 0] as unknown as number,
         },
       });
     }

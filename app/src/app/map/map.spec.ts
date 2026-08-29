@@ -246,6 +246,17 @@ describe('MapComponent', () => {
     expect(map.imageIds.size).toBe(5);
     expect(map.imageIds.has('territory-hatch-0')).toBe(true);
 
+    // 2026-08-29 除錯記錄：這個圖層刻意不用 filter 排除非爭議疆域（實測 filter 在
+    // setData() 換資料時沒有正確重新套用，見 map.ts 該圖層的註解），改用 fill-opacity
+    // 的 case expression。這裡明確驗證是這個寫法，不是 filter，避免以後又改回去踩到
+    // 同一個坑卻沒有測試會抓到。
+    const hatchLayer = map.addLayerCalls.find((l) => (l as { id: string }).id === 'territories-disputed-hatch') as {
+      filter?: unknown;
+      paint: { 'fill-opacity': unknown };
+    };
+    expect(hatchLayer.filter).toBeUndefined();
+    expect(hatchLayer.paint['fill-opacity']).toEqual(['case', ['==', ['get', 'isDisputed'], true], 1, 0]);
+
     // 標籤是 Marker（HTML 元素），不是 MapLibre 原生 symbol 圖層——見 territory-labels.ts
     // 開頭說明（避免另外接字型 glyphs 服務）。
     expect(FakeMarker.instances).toHaveLength(1);

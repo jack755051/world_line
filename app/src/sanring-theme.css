@@ -1,25 +1,27 @@
 /*
- * Sanring UI — design tokens（2026-08-29 整合修訂，任務 3.0）
+ * Sanring UI — design tokens（2026-08-29 整合修訂，任務 3.0；2026-08-29 全面收斂）
  *
  * 這個檔案是 `npx @sanring/cli init` 產生的，原始內容是 Sanring 自己一套獨立的
  * teal 色階 + 深色模式預設。已手動改寫成：語意層（--sanring-background/-foreground/
  * -border/-surface/-control/-primary 等，所有元件實際引用的都是這一層）直接 alias 到
- * `app/src/app/core/design/design-tokens.scss` 的 --wl-* token，不維持兩套獨立色盤——
- * 這樣裝任何 Sanring 元件（Button、Dialog、…）都會自動吃到我們已經用 dataviz 技能/
- * WCAG 對比度驗證過的系統色，不用逐一元件覆寫。
+ * `app/src/app/core/design/design-tokens.scss` 的 --wl-* token；**下面的 9 階品牌色階
+ * 也已經全部收斂成只從 --wl-* 衍生出來，沒有任何一個色號還是 Sanring 原廠預設值**：
+ *
+ * - primary/neutral/coral：直接從 --wl-primary-*、--wl-gray-*、--wl-secondary-* 十階，
+ *   以 OKLCH 明度為軸重新取樣成 Sanring 的 9 階（10-90）。
+ * - success/warn/error：全新色相（--wl-status-good/-warning/-critical 只有單一色號，
+ *   不是九階 ramp），用「錨點色度佔該明度 sRGB 色域邊界的比例」等比縮放算出其餘 8 階，
+ *   確保色相全程一致（跟錨點 H 的最大偏差 <1.2°）。
+ * - sun/info：不新增第四、第五個色相，直接用 var() 參照 warn/primary，不是複製一份色碼。
+ *
+ * 換算過程、方法選擇（含第一版「借主色藍的色度曲線形狀」為什麼會讓色相在深階漂移、
+ * 後來改成色域邊界比例縮放的原因）見 app/scripts/gen-sanring-theme-ramps.mjs。
  *
  * 深色模式：專案已拍板「❌ 不做深色模式」（PRD §3 非範圍），但 Sanring 預設 :root 是深色、
  * 要另外加 data-theme="light" 屬性才會是淺色——這跟專案決策直接衝突，且我們從來不會去設
  * 那個屬性，代表 Sanring 元件裝上去預設會整組跑成深色。已移除深淺兩組定義，只留單一淺色
- * 語意層（等於下面直接把原本 `:root[data-theme='light']` 那組的值收斂進 :root），不依賴
- * 任何 runtime 屬性——之後除非專案真的要做深色模式，否則不要再加回 [data-theme] 分支。
- *
- * --sanring-primary-10..90（品牌色階）跟 --sanring-coral/sun/info/success/warn/error
- * 這幾組色相家族刻意維持 Sanring 原廠預設值，還沒對到 --wl-* ——目前只有 Button 一個
- * 元件裝進來，只有 default/secondary/outline/ghost/link 這幾個 variant 會經過語意層
- * （已對齊），destructive variant 目前還是吃 Sanring 原廠的 --sanring-error-70/-80
- * （跟 --wl-status-critical 是兩個不同紅色）。這是刻意留到「真的有元件用到」再處理的
- * 缺口（跟 design-tokens.scss 陰影/動畫/z-index 同一個處理原則），見 PRD §12 開放問題。
+ * 語意層，不依賴任何 runtime 屬性——之後除非專案真的要做深色模式，否則不要再加回
+ * [data-theme] 分支。
  */
 
 :root {
@@ -35,86 +37,96 @@
   --sanring-font-sans: var(--wl-font-family);
   --sanring-font-mono: ui-monospace, 'Cascadia Code', 'Cascadia Mono', 'Fira Code', monospace;
 
-  /* 品牌色階：維持 Sanring 原廠預設值，未對齊——見檔案開頭說明 */
-  --sanring-primary-10: #e8f6f8;
-  --sanring-primary-20: #d0edf1;
-  --sanring-primary-30: #b9e4ea;
-  --sanring-primary-40: #a2dbe3;
-  --sanring-primary-50: #8bd3dd;
-  --sanring-primary-60: #6fa9b1;
-  --sanring-primary-70: #537f85;
-  --sanring-primary-80: #385458;
-  --sanring-primary-90: #1c2a2c;
+  /* 品牌色階：從 --wl-primary（藍）重新取樣，不是 Sanring 原廠的 teal */
+  --sanring-primary-10: #e4f1ff;
+  --sanring-primary-20: #b2d2f7;
+  --sanring-primary-30: #7fb2ef;
+  --sanring-primary-40: #4a91e7;
+  --sanring-primary-50: #2a71c9;
+  --sanring-primary-60: #1b549d;
+  --sanring-primary-70: #0e3971;
+  --sanring-primary-80: #072144;
+  --sanring-primary-90: #020b1c;
 
-  --sanring-coral-10: #fff0ee;
-  --sanring-coral-20: #ffe0dc;
-  --sanring-coral-30: #ffd0ca;
-  --sanring-coral-40: #ffc0b8;
-  --sanring-coral-50: #ffafa3;
-  --sanring-coral-60: #cc8c82;
-  --sanring-coral-70: #996962;
-  --sanring-coral-80: #664641;
-  --sanring-coral-90: #332321;
+  /* coral：從 --wl-secondary（橙）重新取樣——這個專案沒有獨立的珊瑚色語意，跟次色的
+     「次要強調/warm accent」角色重疊，直接共用同一個色相家族 */
+  --sanring-coral-10: #ffe9df;
+  --sanring-coral-20: #fdbca5;
+  --sanring-coral-30: #f58f6a;
+  --sanring-coral-40: #ea5b26;
+  --sanring-coral-50: #c83500;
+  --sanring-coral-60: #9c2000;
+  --sanring-coral-70: #6f1100;
+  --sanring-coral-80: #440800;
+  --sanring-coral-90: #1c0300;
 
-  --sanring-sun-10: #fef9e9;
-  --sanring-sun-20: #fdf2d2;
-  --sanring-sun-30: #fcecbc;
-  --sanring-sun-40: #fce6a5;
-  --sanring-sun-50: #fce08f;
-  --sanring-sun-60: #c9b372;
-  --sanring-sun-70: #978656;
-  --sanring-sun-80: #655a39;
-  --sanring-sun-90: #322d1d;
+  /* neutral：從 --wl-gray 重新取樣 */
+  --sanring-neutral-10: #fcfcfb;
+  --sanring-neutral-20: #dbdad2;
+  --sanring-neutral-30: #b9b8ae;
+  --sanring-neutral-40: #999790;
+  --sanring-neutral-50: #797772;
+  --sanring-neutral-60: #5b5956;
+  --sanring-neutral-70: #3d3d3b;
+  --sanring-neutral-80: #232321;
+  --sanring-neutral-90: #0b0b0b;
 
-  --sanring-neutral-10: #edf1f2;
-  --sanring-neutral-20: #dce3e5;
-  --sanring-neutral-30: #c8d4d6;
-  --sanring-neutral-40: #b4c3c6;
-  --sanring-neutral-50: #a1b2b5;
-  --sanring-neutral-60: #818e91;
-  --sanring-neutral-70: #606b6d;
-  --sanring-neutral-80: #404748;
-  --sanring-neutral-90: #202424;
+  /* info：不新增第五個色相，直接參照 primary（同一個藍） */
+  --sanring-info-10: var(--sanring-primary-10);
+  --sanring-info-20: var(--sanring-primary-20);
+  --sanring-info-30: var(--sanring-primary-30);
+  --sanring-info-40: var(--sanring-primary-40);
+  --sanring-info-50: var(--sanring-primary-50);
+  --sanring-info-60: var(--sanring-primary-60);
+  --sanring-info-70: var(--sanring-primary-70);
+  --sanring-info-80: var(--sanring-primary-80);
+  --sanring-info-90: var(--sanring-primary-90);
 
-  --sanring-info-10: #e0f0fe;
-  --sanring-info-20: #c2e2fd;
-  --sanring-info-30: #a3d3fb;
-  --sanring-info-40: #83c4fa;
-  --sanring-info-50: #64b5f6;
-  --sanring-info-60: #5091c5;
-  --sanring-info-70: #3c6d94;
-  --sanring-info-80: #284862;
-  --sanring-info-90: #142431;
+  /* success：全新色相，錨點 = --wl-status-good（#0ca30c），色域邊界比例縮放算出其餘 8 階 */
+  --sanring-success-10: #cfffca;
+  --sanring-success-20: #19f919;
+  --sanring-success-30: #13d313;
+  --sanring-success-40: #0eae0e;
+  --sanring-success-50: #088b08;
+  --sanring-success-60: #056905;
+  --sanring-success-70: #024902;
+  --sanring-success-80: #012b01;
+  --sanring-success-90: #001000;
 
-  --sanring-success-10: #e6f4e7;
-  --sanring-success-20: #cde9cf;
-  --sanring-success-30: #b3deb6;
-  --sanring-success-40: #9ad39e;
-  --sanring-success-50: #81c784;
-  --sanring-success-60: #679f6a;
-  --sanring-success-70: #4d7750;
-  --sanring-success-80: #345035;
-  --sanring-success-90: #1a281a;
+  /* warn：全新色相，錨點 = --wl-status-warning（#fab219） */
+  --sanring-warn-10: #ffedd2;
+  --sanring-warn-20: #fec360;
+  --sanring-warn-30: #e2a115;
+  --sanring-warn-40: #bb8410;
+  --sanring-warn-50: #95690a;
+  --sanring-warn-60: #714e06;
+  --sanring-warn-70: #4f3503;
+  --sanring-warn-80: #2f1e01;
+  --sanring-warn-90: #120900;
 
-  --sanring-warn-10: #fff7dc;
-  --sanring-warn-20: #ffefb9;
-  --sanring-warn-30: #ffe796;
-  --sanring-warn-40: #ffde72;
-  --sanring-warn-50: #ffd54f;
-  --sanring-warn-60: #cca133;
-  --sanring-warn-70: #997526;
-  --sanring-warn-80: #664e19;
-  --sanring-warn-90: #33270c;
+  /* sun：不新增第四個色相，直接參照 warn */
+  --sanring-sun-10: var(--sanring-warn-10);
+  --sanring-sun-20: var(--sanring-warn-20);
+  --sanring-sun-30: var(--sanring-warn-30);
+  --sanring-sun-40: var(--sanring-warn-40);
+  --sanring-sun-50: var(--sanring-warn-50);
+  --sanring-sun-60: var(--sanring-warn-60);
+  --sanring-sun-70: var(--sanring-warn-70);
+  --sanring-sun-80: var(--sanring-warn-80);
+  --sanring-sun-90: var(--sanring-warn-90);
 
-  --sanring-error-10: #fae3e3;
-  --sanring-error-20: #f5c6c6;
-  --sanring-error-30: #f0a9a9;
-  --sanring-error-40: #eb8c8c;
-  --sanring-error-50: #e57373;
-  --sanring-error-60: #b75c5c;
-  --sanring-error-70: #894545;
-  --sanring-error-80: #5c2e2e;
-  --sanring-error-90: #2e1717;
+  /* error：全新色相，錨點 = --wl-status-critical（#d03b3b）。destructive 按鈕實際吃
+     70/80（背景/hover）、60（focus 環）這三階，已用 contrast() 驗證配白字 11.89:1／
+     16.37:1，遠超 WCAG AA 門檻 */
+  --sanring-error-10: #fcebe9;
+  --sanring-error-20: #f6bfb9;
+  --sanring-error-30: #f19088;
+  --sanring-error-40: #ec5551;
+  --sanring-error-50: #c53737;
+  --sanring-error-60: #962828;
+  --sanring-error-70: #6a1919;
+  --sanring-error-80: #410c0c;
+  --sanring-error-90: #1c0303;
 
   /* 單一主色別名：Tailwind @theme inline 橋接 bg-primary/text-primary/border-primary
      用，也是 Button default variant 的底色來源（見下面 --sanring-control）——
@@ -127,7 +139,7 @@
   --sanring-foreground: var(--wl-ink-primary);
   --sanring-muted: var(--wl-ink-secondary); /* 元件常用在 text-sm 說明文字，需要小字級也過 WCAG AA 的階，用 ink-secondary 不用 ink-muted（ink-muted 只有 3.50:1，只夠大字） */
   --sanring-border: var(--wl-border-hairline);
-  --sanring-border-strong: var(--wl-gray-400); /* outline 按鈕邊框、focus-visible 環的預設色——中性灰，Sanring 元件自己的 focus 環設計是「用 border-strong」，不是我們自訂元件那條「focus 環用主色」的規則，兩者刻意分開見上方檔案說明 */
+  --sanring-border-strong: var(--wl-gray-400); /* outline 按鈕邊框、focus-visible 環的預設色——中性灰，Sanring 元件自己的 focus 環設計是「用 border-strong」，不是我們自訂元件那條「focus 環用主色」的規則，兩者刻意分開 */
   --sanring-surface: var(--wl-surface);
   --sanring-surface-strong: var(--wl-gray-200);
   --sanring-elevated: var(--wl-surface); /* 對話框/彈出層背景——我們的 surface 本來就是近白色，不需要再分一層 */
@@ -140,7 +152,7 @@
   --sanring-progress-bar: var(--sanring-control);
   --sanring-progress-shimmer: rgba(0, 0, 0, 0.18);
 
-  /* Avatar 狀態徽章：維持 Sanring 原廠色相家族，見檔案開頭說明 */
+  /* Avatar 狀態徽章：走上面已收斂過的色相家族，不是 Sanring 原廠色碼 */
   --sanring-badge-online: var(--sanring-success-50);
   --sanring-badge-offline: var(--sanring-neutral-50);
   --sanring-badge-away: var(--sanring-warn-50);

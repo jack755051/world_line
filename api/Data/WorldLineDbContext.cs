@@ -23,6 +23,9 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<HistoricalEventPerspective> HistoricalEventPerspectives => Set<HistoricalEventPerspective>();
     public DbSet<HistoricalEventControversy> HistoricalEventControversies => Set<HistoricalEventControversy>();
 
+    // 憲法 R4：中英雙語內容支援（task 2.16），見 PRD §6「多語言內容設計」。
+    public DbSet<ContentTranslation> ContentTranslations => Set<ContentTranslation>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Required so a GiST index can cover a plain (non-range/geometry) column like regime_id

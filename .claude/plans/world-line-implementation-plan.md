@@ -198,12 +198,14 @@ related_constitution: .claude/constitutions/world-line.md
 >
 > **2026-08-29 使用者實機瀏覽器驗證完成**：三輪 nginx/asset 修正後，使用者在真實瀏覽器（含無痕視窗排除快取因素）確認 Console 已無任何模組載入錯誤，且直接互動驗證：`document.querySelector('.maplibregl-canvas')?.getBoundingClientRect()` 回傳 `width: 1800, height: 1236`（容器/畫布尺寸正常，不是塌陷成 0）；滑鼠在地圖區域按住拖曳，游標正確從一般箭頭變成抓取手勢（grab/grabbing），確認拖曳平移手勢有被地圖接收。畫面本身呈現空白／接近純白，是任務本身刻意選擇「不接底圖、單一中性背景色」的預期結果，不是 bug——之前誤用「羅盤圖示會不會轉」當互動驗證指標是錯的判斷方式（羅盤只在旋轉手勢時才會動，平移/縮放本來就不會讓它轉），已在對話中更正。至此任務 3.2 補上了先前只做到 curl/build 層級、缺的「瀏覽器實機目視+互動」驗證這一步，前面記錄的「沒連上 Chrome 擴充功能」缺口已補齊。
 
+> **2026-08-29 完成 3.1**：`app/src/app/core/regime/`——`regime-status.enum.ts`（`RegimeStatus` 字串聯集型別 + `isLegalRegimeStatusTransition()`/`getLegalNextRegimeStatuses()` 兩個純函式，跟後端 `api/Domain/RegimeStatus.cs`/`RegimeStatusCodes.cs` 的代碼字面值完全對齊）、`regime-status.machine.ts`（XState 5 狀態圖，狀態直接是 active/split/succeeded/conquered 四個字面量，三個終止狀態標記 `type: 'final'`）。**兩份手寫表示刻意不共用程式碼**：狀態圖手寫成 XState 慣用的字面量結構（能直接餵給 XState 視覺化工具），純函式版本給不需要真的跑 actor 的地方（例如靜態渲染進度圖）用；跟後端「C#/TypeScript 沒辦法共用同一份 library，只能各自實作、以憲法 §4 為 SSOT」同一個處理原則，這裡在前端內部也刻意採用同一個「兩份獨立表示＋測試互相比對」的模式，不是自己找麻煩。**測試**：`regime-status.enum.spec.ts` 窮舉全部 4×4=16 組 (from, to) 配對（3 組合法、13 組不合法，含同狀態/逆轉/終止狀態互轉）；`regime-status.machine.spec.ts` 驗證機器初始狀態、三條合法轉換各自到達正確的終止狀態、終止狀態不接受任何後續事件，並逐一比對機器的實際轉換結果跟 `isLegalRegimeStatusTransition()` 是否一致（防止兩份手寫表示日後飄掉沒被發現）。**目前只有定義檔，還沒接進任何元件**——跟任務 3.5 的 `territory-adjacency.ts`/`graph-coloring.ts` 同一個模式，先把通用邏輯做好、測完，等 Story 4（任務 3.9：政權狀態轉換視覺呈現）真的要畫進度圖/狀態徽章時再接上去；`ng build` 已確認沒有元件匯入的情況下 esbuild 正確 tree-shake 掉，不會平白增加 bundle 大小。已用 `ng build`、`ng test`（53/53，新增 37 條）驗證。
+
 ### 任務清單
 
 | 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
 |---|---|---|---|---|---|
 | [x] | 3.0 | 引入 Sanring UI + Tailwind CSS v4（`app/` 前端樣式基礎建設） | `npx @sanring/cli init` 設定完成、Tailwind v4 安裝並接上 `sanring-theme.css`、以 Button 元件驗證 hover/focus 樣式與 Angular standalone import 皆正常 | §5 UI 元件庫 | 1 個 |
-| [ ] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
+| [x] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
 | [x] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
 | [ ] | 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |
 | [ ] | 3.4 | 時間軸 Scrubber 副軸（月/日展開） | 聚焦近代事件時下方展開精細軸 | §8 notes §六 | 1 個（依賴 3.3） |

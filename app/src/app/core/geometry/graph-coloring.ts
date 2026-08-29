@@ -10,10 +10,12 @@
  * 四色定理保證 4 色一定夠用；`slotCount` 通常會設得比 4 大一些，換取多一點視覺變化空間，
  * 不是必要下限。
  *
- * 2026-08-29 拍板（同日補齊系統色 50-900 完整色階後修正）：實際接上分類色盤時，
- * `slotCount` 用分類色第 3-8 格（6 色）——第 1 格（藍）、第 2 格（橙）分別保留給
+ * 2026-08-29 拍板、任務 3.5 動工時定案：實際接上分類色盤的色碼清單見
+ * `core/design/territory-colors.ts`（`TERRITORY_COLOR_SLOTS`，5 色，`slotCount` 直接
+ * 用這個陣列的長度，不要另外寫死數字）——第 1 格（藍）、第 2 格（橙）分別保留給
  * `design-tokens.scss` 的 UI 主色／次色（按鈕/連結/焦點框/次要強調）專用，避免疆域填色
- * 跟互動元件顏色混淆。6 色仍遠高於四色定理需要的下限。
+ * 跟互動元件顏色混淆；原本規劃的第 6 色（magenta）因為色盲安全性 all-pairs 驗證沒過而
+ * 拿掉，詳見該檔案的驗證記錄。5 色仍遠高於四色定理需要的下限。
  */
 export function greedyColorAssignment(
   adjacency: Map<string, Set<string>>,

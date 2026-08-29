@@ -151,7 +151,7 @@ related_adrs: []
 
 | 層 | 選型 | 對應需求 | 狀態 |
 |---|---|---|---|
-| 地圖引擎 | MapLibre GL JS | 全球政權圖層渲染、時間過濾器（Filter Expressions） | **已拍板：Phase 1 單獨使用**。Deck.gl 保留為後續可疊加選項，待動畫流動效果（絲路貿易路線、傳播視覺化等）出現實際需求時再加，兩者設計上可疊加不衝突 |
+| 地圖引擎 | MapLibre GL JS | 全球政權圖層渲染、時間過濾器（Filter Expressions） | **已完成整合（2026-08-29，task 3.2）**：Phase 1 單獨使用。Deck.gl 保留為後續可疊加選項，待動畫流動效果（絲路貿易路線、傳播視覺化等）出現實際需求時再加，兩者設計上可疊加不衝突。**底圖拍板：不接外部瓦片服務**——MapLibre style 只有一個 `background` 圖層（背景色即時讀 `--wl-page` computed 值），不畫海岸線/現代地名參考層。理由：疆域資料本來就自己從 OHM 取 GeoJSON、不依賴第三方瓦片服務的方向已定案；歷史疆域疊在現代國界/地名底圖上有時代錯置的觀感問題；零外部依賴/API key/流量限制風險，符合目前單人自用階段。之後真的需要海岸線等物理地理參考，疊一層公眾領域靜態海岸線 GeoJSON 即可，不必為此換成瓦片服務。元件見 `app/src/app/map/map.ts` |
 | 高階視覺化 | Deck.gl（搭配 MapLibre） | 貿易路線/行軍路線/傳播軌跡等進階圖層 | **已拍板：Phase 1 不導入**，明確保留為後續疊加選項（見上） |
 | 圖資壓縮與形變 | TopoJSON + Flubber.js | 疆域邊界共享壓縮、連續變化過渡動畫（對應憲法 §9） | **已拍板（2026-08-26 grill-me on implementation plan）：Phase 1（M3）就導入，非候選延後**。理由：憲法 §9 業務規則本體是「疆域必須連續變化呈現，非離散跳轉」（非僅拉桿操作連續），使用者明確要求「類似衛星雲圖」的真實形變效果，淡入淡出等簡化方案無法達到，纳入 M3 範圍，見 `.claude/plans/world-line-implementation-plan.md` Phase 3 |
 | 空間幾何分析 | Turf.js | 政權標籤置中點計算、邊界簡化，**已拍板新增用途（2026-08-29）**：拓撲相交測試（`booleanIntersects`）計算疆域相鄰關係，供政權識別色的動態圖著色演算法使用（見 §6 設計原則、implementation plan 3.5） | `booleanIntersects` 這個用途已拍板並落地（`app/src/app/core/geometry/territory-adjacency.ts`）；標籤置中點/邊界簡化仍是候選，待實際需求出現再評估 |
@@ -539,6 +539,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] XState 導入時機 → Phase 1 即導入（§5）
 - [x] 紀年轉換庫涵蓋範圍 → 自建 `reign_eras` 表，不用 `lunar-javascript`/`cnlunar`（§5）
 - [x] 斜線網底 Design Token 化 → 先用共用常數檔（§5）
+- [x] 底圖要不要接外部瓦片服務 → 不接，MapLibre 只用單一背景色圖層，之後需要物理地理參考再疊靜態海岸線 GeoJSON（§5，task 3.2，2026-08-29）
 - [x] 開源歷史地理資料授權 → OHM 為主，CHGIS/CShapes 限非商業，GeaCron 僅作 UX 參考（§5、§9）
 - [x] `historical_event_perspectives.regime_id` 是否強制 FK → nullable FK + `observer_categories` 受控對照表（§6）
 - [x] EDTF parser 責任邊界與 decimal 計算時機 → 後端寫入時驗證並自動推算；具體 .NET 套件列為 M2.2 spike（§5）

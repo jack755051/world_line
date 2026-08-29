@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  height: 100dvh;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  flex: 0 0 auto;
+  padding: var(--wl-space-3) var(--wl-space-4);
+  border-bottom: 1px solid var(--wl-border-hairline);
+  background: var(--wl-surface);
+}
+
+.map-area {
+  flex: 1 1 auto;
+  min-height: 0; // flex 子項需要這個才不會被地圖的固有高度撐爆容器
+}

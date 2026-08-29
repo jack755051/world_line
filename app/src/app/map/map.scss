@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  // MapLibre 需要容器有明確高度才會正確渲染——不能只靠內容撐開，父層（app.html）
+  // 目前用 100dvh 版面，這裡填滿 host 本身分配到的空間。
+  width: 100%;
+  height: 100%;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}

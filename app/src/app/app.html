@@ -1,22 +1,15 @@
 <!--
-  任務 3.0 驗證頁：暫時取代 Angular CLI 預設 scaffold，用來驗證 Sanring UI Button
-  元件（standalone directive import、Tailwind utility class、--sanring-*/--wl-* token
-  接線）在真實頁面上正常運作。等實際功能畫面（地圖/時間拉桿）開始開發時會被取代。
+  任務 3.2：MapLibre 底圖整合驗證。任務 3.0 的按鈕展示頁已完成階段性任務，這裡換成
+  地圖畫面——之後時間拉桿（3.3/3.4）、政權疆域圖層（3.5）都會疊加在這個版面上。
 -->
-<main class="p-8">
-  <h1 class="text-2xl font-semibold text-[var(--wl-ink-primary)]">{{ title }}</h1>
-  <p class="mt-2 text-sm text-[var(--wl-ink-secondary)]">
-    任務 3.0：Sanring UI + Tailwind CSS v4 整合驗證
-  </p>
+<div class="app-shell">
+  <header class="app-header">
+    <h1 class="text-lg font-semibold text-[var(--wl-ink-primary)]">{{ title }}</h1>
+  </header>
 
-  <div class="mt-6 flex flex-wrap gap-3">
-    <button sanringBtn variant="default">預設按鈕</button>
-    <button sanringBtn variant="secondary">次要按鈕</button>
-    <button sanringBtn variant="outline">外框按鈕</button>
-    <button sanringBtn variant="ghost">幽靈按鈕</button>
-    <button sanringBtn variant="link">連結樣式</button>
-    <button sanringBtn variant="default" disabled>停用按鈕</button>
-  </div>
-</main>
+  <main class="map-area">
+    <app-map />
+  </main>
+</div>
 
 <router-outlet />

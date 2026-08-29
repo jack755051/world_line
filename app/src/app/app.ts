@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ButtonDirective } from './components/ui/button';
+import { MapComponent } from './map/map';
 
 @Component({
-  imports: [RouterOutlet, ButtonDirective],
+  imports: [RouterOutlet, MapComponent],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',

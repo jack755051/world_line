@@ -188,13 +188,15 @@ related_constitution: .claude/constitutions/world-line.md
 >
 > **2026-08-29 追加**：原本刻意留下的缺口（Sanring 原廠品牌色階 `--sanring-primary-10..90`/`coral/sun/info/success/warn/error` 未對齊 `--wl-*`）當天追加拍板全面收斂——不保留任何 Sanring 原廠色碼。primary/neutral/coral 從 `--wl-primary-*`/`--wl-gray-*`/`--wl-secondary-*` 十階以 OKLCH 明度重新取樣；success/warn/error 是全新色相（錨點 `--wl-status-good/-warning/-critical`），用「錨點色度佔該明度 sRGB 色域邊界比例」等比縮放算出其餘 8 階；sun/info 直接 `var()` 參照 warn/primary，不複製色碼。**過程中發現並修正一個方法論錯誤**：第一版沿用 design-tokens.scss 產生次色橙時「借主色藍的色度曲線形狀縮放」的手法，套到 success/warn/error 這幾個色相跟藍色色域邊界形狀差很多的情況時，色相在深色階被 RGB 裁切裁到嚴重漂移（warn 從錨點 H=78.5° 漂到 H=33° 附近，將近 50 度），改成「色域邊界比例縮放」（每一階都用自己明度下的 sRGB 色域邊界當基準，不借用藍色的絕對色度數字）後，三個色相家族最大偏差都 <1.2°。換算過程與方法比較見 `app/scripts/gen-sanring-theme-ramps.mjs`。全域樣式改用 `@use` 載入 `sanring-theme.css`（原本用 `@import` 會在編譯結果多一個無意義的分號，`@use` 沒有這個問題）。已重新 `ng build`/`ng test`（12/12）驗證。
 
+> **2026-08-29 完成 3.2**：`app/src/app/map/`（`MapComponent`，用 `afterNextRender` 在瀏覽器端初始化，signal-based `viewChild.required`）。**底圖決策：不接外部瓦片服務**，MapLibre style 只有一個 `background` 圖層，背景色即時讀取 `--wl-page` 的 computed 值（不寫死色碼，避免跟 design-tokens.scss 兩處維護不同步）。理由記在 `map.ts` 開頭註解：疆域資料本來就是自己從 OHM 取 GeoJSON、不依賴第三方瓦片服務這個方向已經定案；歷史地圖疊在現代底圖（現代國界/地名）上有時代錯置問題；零外部依賴/零 API key/流量限制風險，符合目前單人自用階段。之後真的需要海岸線等物理地理參考時，疊一層公眾領域的靜態海岸線 GeoJSON 即可，不必為此換成瓦片服務。`maplibre-gl` 6.x 沒有 default export，用具名匯入 `Map as MapLibreMap`（避開跟內建 `Map` 撞名）。**測試**：`maplibre-gl` 需要真的 WebGL，JSDOM 測試環境沒有，spec 用 `vi.mock` + `vi.hoisted()`（避開 `vi.mock` 提升到檔案最頂端導致的 TDZ 問題）換成假的 `Map`/`NavigationControl`，只驗證我們自己的 wiring（容器元素、style 內容、`addControl`、`ngOnDestroy` 呼叫 `remove()`），不重測 MapLibre 本身。**production bundle 預算**：MapLibre GL JS 本身就有一定重量（gzip 後約 260KB），原本 Angular CLI scaffold 的預設值（500kB warning / 1MB error）是給空殼機案設的，不是這個專案刻意選的門檻，已調高為 1.5MB/2.5MB。已用 `ng build`（含新預算）、`ng test`（16/16）、實際重建 `docker compose up -d --build frontend` 容器並用 curl 驗證正確 bundle 有部署上去三種方式驗證；同樣因為沒連上 Chrome 擴充功能，沒做到瀏覽器截圖層級的目視驗證。
+
 ### 任務清單
 
 | 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
 |---|---|---|---|---|---|
 | [x] | 3.0 | 引入 Sanring UI + Tailwind CSS v4（`app/` 前端樣式基礎建設） | `npx @sanring/cli init` 設定完成、Tailwind v4 安裝並接上 `sanring-theme.css`、以 Button 元件驗證 hover/focus 樣式與 Angular standalone import 皆正常 | §5 UI 元件庫 | 1 個 |
 | [ ] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
-| [ ] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
+| [x] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
 | [ ] | 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |
 | [ ] | 3.4 | 時間軸 Scrubber 副軸（月/日展開） | 聚焦近代事件時下方展開精細軸 | §8 notes §六 | 1 個（依賴 3.3） |
 | [ ] | 3.5 | 政權疆域圖層渲染（基礎版，GeoJSON + MapLibre filter expressions） | 拖動時間拉桿時，依快照篩出當下應顯示的疆域（尚未做形變，見 3.6）。**政權識別色的指派邏輯已提前備妥（2026-08-29）**：`app/src/app/core/geometry/territory-adjacency.ts`（Turf.js 拓撲相交測試算相鄰關係）+ `graph-coloring.ts`（貪婪圖著色，含穩定性——優先沿用前一次色格，避免拖拉桿時無謂閃爍換色），兩者都是通用演算法、已有測試，尚未接上實際顏色值或 MapLibre 渲染，這一步才要把它們接起來。**政權識別色的實際色碼清單、地圖著色形式的色盲安全性上限（choropleth 是「任兩色都要能分辨」的嚴格標準，只有 3 色能過；但因為這裡是真正算相鄰關係後才分配，只需要「相鄰不同色」的寬鬆標準，8 色都能過，見 dataviz 技能）待這一步動工時再拍板** | Story 1 | 1 個 |

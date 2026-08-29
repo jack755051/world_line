@@ -1,0 +1,13 @@
+<div class="time-scrubber">
+  <input
+    type="range"
+    class="time-scrubber-input"
+    [min]="minYear"
+    [max]="maxYear"
+    [value]="timeline.year()"
+    (input)="onInput($event)"
+    [attr.aria-valuetext]="'西元 ' + timeline.year() + ' 年'"
+    aria-label="年份"
+  />
+  <span class="time-scrubber-year">西元 {{ timeline.year() }} 年</span>
+</div>

@@ -1,7 +1,3 @@
-<!--
-  任務 3.2：MapLibre 底圖整合驗證。任務 3.0 的按鈕展示頁已完成階段性任務，這裡換成
-  地圖畫面——之後時間拉桿（3.3/3.4）、政權疆域圖層（3.5）都會疊加在這個版面上。
--->
 <div class="app-shell">
   <header class="app-header">
     <h1 class="text-lg font-semibold text-[var(--wl-ink-primary)]">{{ title }}</h1>
@@ -10,6 +6,8 @@
   <main class="map-area">
     <app-map />
   </main>
+
+  <app-time-scrubber />
 </div>
 
 <router-outlet />

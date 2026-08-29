@@ -1,10 +1,11 @@
-import { Component, ElementRef, OnDestroy, afterNextRender, inject, viewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, Injector, OnDestroy, afterNextRender, inject, viewChild } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
+import { debounceTime } from 'rxjs';
 // maplibre-gl 6.x 沒有 default export，只有具名匯出——`Map` 別名成 `MapLibreMap`，
 // 避免跟全域內建的 Map（這個專案別處已經在用，例如 graph-coloring.ts 的
 // Map<string, Set<string>>）撞名。
-import { Map as MapLibreMap, Marker, NavigationControl } from 'maplibre-gl';
+import { Map as MapLibreMap, Marker, NavigationControl, type GeoJSONSource } from 'maplibre-gl';
 import type { FeatureCollection, MultiPolygon } from 'geojson';
 import {
   assignTerritoryColorSlots,
@@ -13,6 +14,7 @@ import {
 } from '../core/geometry/territory-styling';
 import { computeTerritoryLabelPoints } from '../core/geometry/territory-labels';
 import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
+import { TimelineState } from '../core/time/timeline-state';
 
 /** `ApiResponse<T>` 的最小形狀（見 api/Contracts/ApiResponse.cs）——只取這裡用得到的
     `data` 欄位，不整個對照完整契約，畢竟目前只有這一個端點在消費。 */
@@ -41,10 +43,13 @@ interface RegimeSummary {
  * 顏色定義兩處各自維護、之後改色沒同步更新的風險（這個專案已經因為「兩處各自維護
  * 同一個概念」踩過真的 bug，見憲法/PRD 對 regimes.status 字面值飄移的記錄）。
  *
- * 任務 3.5（2026-08-29）：接上政權疆域圖層——基礎版。**暫定固定年份**（見
- * `TERRITORY_YEAR`）：時間拉桿（3.3/3.4）還沒做，先用一個具代表性的年份驗證整條
- * 資料管線（後端 GeoJSON → 相鄰計算 → 圖著色 → MapLibre 渲染）能不能動起來；拖拉桿
- * 即時換年份、疆域快照間的連續形變（3.6）都留給之後的任務。
+ * 任務 3.5（2026-08-29）：接上政權疆域圖層。任務 3.3（同日）接上時間拉桿後，年份
+ * 不再寫死——訂閱 `TimelineState.year`（debounce 150ms，避免拖桿時每個中間值都發一次
+ * 請求），年份變動時重新查詢疆域並用 `source.setData()` 更新，不重新 `addSource`/
+ * `addLayer`（MapLibre 官方建議的動態資料更新方式，避免圖層閃爍重建）。**疆域快照間的
+ * 連續形變（3.6）還沒做**：現在換年份是「整批資料換掉」，不是真的插值形變，見任務
+ * 3.6。政權清單只在地圖初始化時抓一次（不隨年份重複查），因為政權本身的存在不隨
+ * 年份變動，變動的是「哪些政權的疆域快照落在這個年份」。
  */
 @Component({
   selector: 'app-map',
@@ -55,13 +60,16 @@ interface RegimeSummary {
 export class MapComponent implements OnDestroy {
   private readonly mapContainer = viewChild.required<ElementRef<HTMLDivElement>>('mapContainer');
   private readonly http = inject(HttpClient);
+  private readonly timeline = inject(TimelineState);
+  private readonly injector = inject(Injector);
+  private readonly destroyRef = inject(DestroyRef);
 
   private map?: MapLibreMap;
   private labelMarkers: Marker[] = [];
-
-  /** 暫定年份，見類別註解——三國疆域爭奪最激烈的荊州易手期已過、三方鼎立局面穩定，
-      適合當「證明整條管線能動」的示範年份。 */
-  private static readonly TERRITORY_YEAR = 225;
+  private regimeNames: RegimeSummary[] = [];
+  /** 圖著色的「前一次指派結果」，餵給 `assignTerritoryColorSlots()` 維持顏色穩定性
+      （見 graph-coloring.ts）——拖拉桿換年份時，同一個政權不會無謂換色閃爍。 */
+  private previousColorAssignment?: Map<string, number>;
 
   constructor() {
     afterNextRender(() => this.initMap());
@@ -93,83 +101,102 @@ export class MapComponent implements OnDestroy {
     });
 
     this.map.addControl(new NavigationControl(), 'top-right');
-    this.map.on('load', () => this.loadTerritories());
+    this.map.on('load', () => this.loadRegimesThenSubscribeToYear());
   }
 
-  private loadTerritories(): void {
-    forkJoin({
-      territories: this.http.get<ApiEnvelope<FeatureCollection<MultiPolygon, TerritoryFeatureProperties>>>(
-        `/api/v1/territories?year=${MapComponent.TERRITORY_YEAR}`,
-      ),
-      // 不加 ?year=——一次拿全部政權建好 id→名稱對照表，不管地圖目前顯示哪個年份都能
-      // 重複用。政權本身的存在不隨年份變動，變動的是「哪些政權的疆域快照落在這個
-      // 年份」，那是 territories 端點自己的篩選邏輯，兩者不用綁在一起查。
-      regimes: this.http.get<ApiEnvelope<RegimeSummary[]>>('/api/v1/regimes'),
-    }).subscribe({
-      next: ({ territories, regimes }) => this.renderTerritories(territories.data, regimes.data),
-      // 第一版先求「資料管線走得通看得到東西」，還沒有失敗時的 UI 呈現（例如錯誤
-      // 提示列）——那屬於之後才需要拍板的 loading/error 狀態設計，這裡先用
-      // console.error 讓問題在開發時看得到，不是刻意省略錯誤處理。
-      error: (err: unknown) => console.error('[MapComponent] 載入疆域/政權資料失敗', err),
+  private loadRegimesThenSubscribeToYear(): void {
+    // 不加 ?year=——一次拿全部政權建好 id→名稱對照表，不管地圖目前顯示哪個年份都能
+    // 重複用，不需要每次換年份都重新查一次政權清單。
+    this.http.get<ApiEnvelope<RegimeSummary[]>>('/api/v1/regimes').subscribe({
+      next: (response) => {
+        this.regimeNames = response.data;
+
+        // toObservable 需要 injection context——這裡是在 map.on('load', ...) 的
+        // callback 裡（非同步），已經離開建構子當下的 injection context，要明確傳
+        // injector 選項才能用；debounceTime 避免拖拉桿時每個中間值都打一次 API。
+        toObservable(this.timeline.year, { injector: this.injector })
+          .pipe(debounceTime(150), takeUntilDestroyed(this.destroyRef))
+          .subscribe((year) => this.loadTerritories(year));
+      },
+      error: (err: unknown) => console.error('[MapComponent] 載入政權清單失敗', err),
     });
   }
 
-  private renderTerritories(
-    featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
-    regimes: RegimeSummary[],
-  ): void {
+  private loadTerritories(year: number): void {
+    this.http
+      .get<ApiEnvelope<FeatureCollection<MultiPolygon, TerritoryFeatureProperties>>>(
+        `/api/v1/territories?year=${year}`,
+      )
+      .subscribe({
+        next: (response) => this.renderTerritories(response.data),
+        // 第一版先求「資料管線走得通看得到東西」，還沒有失敗時的 UI 呈現（例如錯誤
+        // 提示列）——那屬於之後才需要拍板的 loading/error 狀態設計，這裡先用
+        // console.error 讓問題在開發時看得到，不是刻意省略錯誤處理。
+        error: (err: unknown) => console.error('[MapComponent] 載入疆域資料失敗', err),
+      });
+  }
+
+  private renderTerritories(featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>): void {
     if (!this.map) {
       return;
     }
 
     // 相鄰計算＋圖著色（純函式，見 core/geometry/territory-styling.ts）——這一步把
     // 色格索引寫回每個 feature.properties.colorSlot，下面的 fill-color expression
-    // 直接讀這個欄位。
-    assignTerritoryColorSlots(featureCollection, TERRITORY_COLOR_SLOTS.length);
+    // 直接讀這個欄位。傳入 previousColorAssignment 維持顏色穩定性。
+    this.previousColorAssignment = assignTerritoryColorSlots(
+      featureCollection,
+      TERRITORY_COLOR_SLOTS.length,
+      this.previousColorAssignment,
+    );
 
-    this.map.addSource('territories', { type: 'geojson', data: featureCollection });
+    const existingSource = this.map.getSource('territories') as GeoJSONSource | undefined;
+    if (existingSource) {
+      // 換年份時走這條路：只換資料，不重新 addLayer——避免圖層被整個移除重建造成閃爍。
+      existingSource.setData(featureCollection);
+    } else {
+      // 第一次渲染：建立 source 跟兩個圖層。
+      this.map.addSource('territories', { type: 'geojson', data: featureCollection });
 
-    this.map.addLayer({
-      id: 'territories-fill',
-      type: 'fill',
-      source: 'territories',
-      paint: {
-        // MapLibre 的 expression 型別是遞迴 tuple union，buildColorSlotMatchExpression()
-        // 回傳 unknown[] 沒辦法結構化對上，這裡轉型一次，交給 MapLibre 執行期自己驗證格式。
-        'fill-color': buildColorSlotMatchExpression(TERRITORY_COLOR_SLOTS) as unknown as string,
-        'fill-opacity': 0.85,
-      },
-    });
+      this.map.addLayer({
+        id: 'territories-fill',
+        type: 'fill',
+        source: 'territories',
+        paint: {
+          // MapLibre 的 expression 型別是遞迴 tuple union，buildColorSlotMatchExpression()
+          // 回傳 unknown[] 沒辦法結構化對上，這裡轉型一次，交給 MapLibre 執行期自己驗證格式。
+          'fill-color': buildColorSlotMatchExpression(TERRITORY_COLOR_SLOTS) as unknown as string,
+          'fill-opacity': 0.85,
+        },
+      });
 
-    const borderColor = getComputedStyle(document.documentElement)
-      .getPropertyValue('--wl-territory-border')
-      .trim();
+      const borderColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--wl-territory-border')
+        .trim();
 
-    this.map.addLayer({
-      id: 'territories-border',
-      type: 'line',
-      source: 'territories',
-      // 疆域邊界線維持單一中性色，不跟填色搶識別色資源（design-tokens.scss、PRD §6
-      // 「政權識別色不是固定對照表」段落已拍板）。
-      paint: { 'line-color': borderColor || '#52514e', 'line-width': 1 },
-    });
+      this.map.addLayer({
+        id: 'territories-border',
+        type: 'line',
+        source: 'territories',
+        // 疆域邊界線維持單一中性色，不跟填色搶識別色資源（design-tokens.scss、PRD §6
+        // 「政權識別色不是固定對照表」段落已拍板）。
+        paint: { 'line-color': borderColor || '#52514e', 'line-width': 1 },
+      });
+    }
 
-    this.renderLabels(featureCollection, regimes);
+    this.renderLabels(featureCollection);
   }
 
   /** 政權名稱標籤——刻意用 `Marker` 掛 HTML 元素，不是 MapLibre 原生 symbol 圖層的
       `text-field`，理由見 territory-labels.ts 開頭說明（避免另外接字型 glyphs 服務）。 */
-  private renderLabels(
-    featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
-    regimes: RegimeSummary[],
-  ): void {
+  private renderLabels(featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>): void {
     if (!this.map) {
       return;
     }
 
     this.clearLabelMarkers();
 
-    const nameByRegimeId = new Map(regimes.map((r) => [r.id, r.selfName]));
+    const nameByRegimeId = new Map(this.regimeNames.map((r) => [r.id, r.selfName]));
     const labelPoints = computeTerritoryLabelPoints(featureCollection);
 
     for (const [regimeId, [lon, lat]] of labelPoints) {

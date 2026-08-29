@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+.time-scrubber {
+  display: flex;
+  align-items: center;
+  gap: var(--wl-space-3);
+  padding: var(--wl-space-3) var(--wl-space-4);
+  background: var(--wl-surface);
+  border-top: 1px solid var(--wl-border-hairline);
+}
+
+.time-scrubber-input {
+  flex: 1 1 auto;
+  // 原生 range input 直接用 accent-color 换主色，不用另外刻 -webkit-slider-thumb/
+  // -moz-range-thumb 這些瀏覽器前綴偽元素——先求功能正確跟基本一致的視覺，之後
+  // 真的需要更精緻的滑桿外觀（例如標出政權轉換年份的刻度）再回頭客製。
+  accent-color: var(--wl-primary-500);
+}
+
+.time-scrubber-year {
+  flex: 0 0 auto;
+  min-width: 6em; // 避免年份數字位數變化時左右的元素跟著抖動
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-sm);
+  font-weight: var(--wl-font-weight-medium);
+  color: var(--wl-ink-primary);
+  font-variant-numeric: tabular-nums; // 數字等寬，拖動時視覺更穩定
+}

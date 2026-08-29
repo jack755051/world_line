@@ -20,3 +20,7 @@
   flex: 1 1 auto;
   min-height: 0; // flex 子項需要這個才不會被地圖的固有高度撐爆容器
 }
+
+app-time-scrubber {
+  flex: 0 0 auto; // 跟 .app-header 同一個道理：固定高度，不跟 .map-area 搶剩餘空間
+}

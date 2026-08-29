@@ -52,4 +52,11 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('app-map')).toBeTruthy();
   });
+
+  it('should render the time scrubber', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-time-scrubber')).toBeTruthy();
+  });
 });

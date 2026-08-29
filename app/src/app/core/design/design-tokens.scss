@@ -83,28 +83,85 @@
   // 疆域邊界線（跟政權填色分開，見上方說明——邊界不做身份識別，維持單一中性色）
   --wl-territory-border: var(--wl-gray-600);
 
-  // 按鈕（語意層，組合上面的主色/次色/灰階，不是另外調色）
+  // 焦點框（focus ring，鍵盤導覽用）——這才是「用主色當邊框」的正確場景，跟上面結構性
+  // 邊框（--wl-border-hairline/--wl-territory-border，維持中性色）分開，目的是刻意
+  // 讓焦點狀態顯眼、跟一般邊框有區別。
+  --wl-focus-ring: var(--wl-primary-500);
+  --wl-focus-ring-width: 2px;
+  --wl-focus-ring-offset: 2px;
+
+  // 互動狀態蒙板（2026-08-29 拍板，取代「跳到下一個色階」的做法）：hover/active 用固定
+  // 透明度的黑色蒙板疊在底色上，不是換一個寫死的色碼——同一個公式（8%／16% 黑）套用在
+  // 主色、次色、未來任何顏色上都通用，不用每個顏色各自挑「hover 該用哪一階」。透明度比照
+  // Material Design 的 state layer 慣例。用 CSS 原生 `color-mix()` 直接把底色跟黑色混合成
+  // 一個新的實色（不是疊一層半透明遮罩，不需要額外的 DOM 元素），瀏覽器即時運算，底色
+  // 數值改了 hover/active 自動跟著變。已用 dataviz 技能的 contrast() 驗證：primary-500
+  // 疊 8%/16% 黑後配白字分別是 6.10:1／7.01:1（不疊蒙板本身是 5.39:1），對比只增不減，
+  // 不會反而不合格。下面每個按鈕/連結 token 直接用這個公式，沒有另外抽出共用變數——
+  // `color-mix()` 的蒙板比例（8%/16%）本身才是要維持一致的規則，不是某個變數值。
+
+  // 按鈕（語意層，組合上面的主色/次色/灰階/蒙板，不是另外調色）
   --wl-btn-primary-bg: var(--wl-primary-500);
-  --wl-btn-primary-bg-hover: var(--wl-primary-600);
-  --wl-btn-primary-bg-active: var(--wl-primary-700);
+  --wl-btn-primary-bg-hover: color-mix(in srgb, var(--wl-primary-500), black 8%);
+  --wl-btn-primary-bg-active: color-mix(in srgb, var(--wl-primary-500), black 16%);
   --wl-btn-primary-text: #ffffff;
   --wl-btn-primary-bg-disabled: var(--wl-gray-300); // disabled 元件 WCAG 不要求對比度達標，刻意降對比表示不可互動
   --wl-btn-primary-text-disabled: var(--wl-gray-400);
 
   --wl-btn-secondary-bg: var(--wl-gray-200);
-  --wl-btn-secondary-bg-hover: var(--wl-gray-300);
+  --wl-btn-secondary-bg-hover: color-mix(in srgb, var(--wl-gray-200), black 8%);
   --wl-btn-secondary-text: var(--wl-gray-600); // 對 --wl-btn-secondary-bg 實測 6.00:1
 
   --wl-btn-accent-bg: var(--wl-secondary-500); // 次要強調用途（例如「次色」按鈕，跟灰階次要按鈕是兩種不同語意）
-  --wl-btn-accent-bg-hover: var(--wl-secondary-600);
+  --wl-btn-accent-bg-hover: color-mix(in srgb, var(--wl-secondary-500), black 8%);
   --wl-btn-accent-text: #ffffff;
 
   --wl-link-text: var(--wl-primary-500);
-  --wl-link-text-hover: var(--wl-primary-600);
+  --wl-link-text-hover: color-mix(in srgb, var(--wl-primary-500), black 8%);
 
   // 狀態色（固定語意，不可挪作政權識別或按鈕使用）
   --wl-status-good: #0ca30c;
   --wl-status-warning: #fab219;
   --wl-status-serious: #ec835a;
   --wl-status-critical: #d03b3b;
+
+  // ============================================================
+  // 圓角
+  // ============================================================
+  --wl-radius-sm: 4px; // 輸入框、標籤/badge
+  --wl-radius-md: 8px; // 按鈕、卡片
+  --wl-radius-lg: 12px; // 面板、抽屜（notes §八毛玻璃側邊抽屜）
+  --wl-radius-full: 9999px; // 圓形/膠囊（頭像、圓形按鈕）
+
+  // ============================================================
+  // 間距（4px 基準單位，元件 padding/margin/gap 都從這裡取值，不要另外寫死數字）
+  // ============================================================
+  --wl-space-1: 4px;
+  --wl-space-2: 8px;
+  --wl-space-3: 12px;
+  --wl-space-4: 16px;
+  --wl-space-5: 24px;
+  --wl-space-6: 32px;
+  --wl-space-8: 48px;
+  --wl-space-10: 64px;
+
+  // ============================================================
+  // 文字排版——字體沿用系統無襯線字型（跟 dataviz 技能的建議一致，不用襯線/展示字型）。
+  // 字級用 rem（相對使用者瀏覽器預設字級 16px），不用寫死 px，尊重使用者的字級偏好設定。
+  // ============================================================
+  --wl-font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --wl-font-size-xs: 0.75rem; // 12px，輔助說明文字
+  --wl-font-size-sm: 0.875rem; // 14px，次要內文
+  --wl-font-size-base: 1rem; // 16px，一般內文
+  --wl-font-size-lg: 1.125rem; // 18px，小標題
+  --wl-font-size-xl: 1.5rem; // 24px，區塊標題
+  --wl-font-size-2xl: 2rem; // 32px，頁面主標題
+
+  --wl-font-weight-regular: 400;
+  --wl-font-weight-medium: 500;
+  --wl-font-weight-bold: 700;
+
+  --wl-line-height-tight: 1.25; // 標題
+  --wl-line-height-normal: 1.5; // 一般內文
 }

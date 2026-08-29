@@ -277,9 +277,23 @@ describe('MapComponent', () => {
     const overlapSource = map.addSourceCalls[1].source as { data: FeatureCollection };
     expect(overlapSource.data.features.length).toBeGreaterThan(0);
 
-    expect(map.addLayerCalls).toHaveLength(3);
+    expect(map.addLayerCalls).toHaveLength(4);
     const layerIds = map.addLayerCalls.map((l) => (l as { id: string }).id);
-    expect(layerIds).toEqual(['territories-fill', 'territories-border', 'territory-overlaps-hatch']);
+    expect(layerIds).toEqual([
+      'territories-fill',
+      'territories-border',
+      'territory-overlaps-fill',
+      'territory-overlaps-hatch',
+    ]);
+
+    // 重疊區底色：不透明中性色，蓋掉底下兩個政權各自的填色——不能只疊網底，網底圖樣
+    // 背景透明，疊在 territories-fill 上面會透出「剛好排在後面那個政權」的顏色，
+    // 看起來像這塊地只屬於其中一個政權（使用者實機發現的問題）。
+    const overlapFillLayer = map.addLayerCalls.find(
+      (l) => (l as { id: string }).id === 'territory-overlaps-fill',
+    ) as { source: string; paint: { 'fill-opacity': unknown } };
+    expect(overlapFillLayer.source).toBe('territory-overlaps');
+    expect(overlapFillLayer.paint['fill-opacity']).toBe(1);
 
     // 疆域重疊區斜線網底：單一中性圖樣，不分色格（見 territory-dispute-pattern.ts
     // 開頭說明——重疊區可能同時牽涉兩個以上不同色相的政權，不屬於任何單一政權識別色）。
@@ -324,7 +338,7 @@ describe('MapComponent', () => {
     // setData() 更新（territories 本身 + 重新算出來的 territory-overlaps）。
     expect(map.addSourceCalls).toHaveLength(2);
     expect(map.setDataCalls).toHaveLength(2);
-    expect(map.addLayerCalls).toHaveLength(3); // 圖層也沒有被重複加
+    expect(map.addLayerCalls).toHaveLength(4); // 圖層也沒有被重複加
   });
 
   it('logs an error but does not throw when the territories request fails', async () => {

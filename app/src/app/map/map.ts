@@ -164,11 +164,17 @@ export class MapComponent implements OnDestroy {
       this.previousColorAssignment,
     );
 
-    // 疆域重疊區（見 territory-overlap.ts）——不依賴任何手動標記的旗標，即時算幾何交集。
+    // 疆域重疊區（見 territory-overlap.ts）——不依賴任何手動標記的旗標，即時算幾何交集，
+    // 只算「不同政權」之間的重疊（同一個政權自己底下多筆疆域記錄互相重疊，不算「政權
+    // 重疊」，一律用顏色表示），所以要傳 regimeId，不能只傳 id。
     const overlaps: FeatureCollection<Polygon | MultiPolygon> = {
       type: 'FeatureCollection',
       features: computeTerritoryOverlaps(
-        featureCollection.features.map((f) => ({ id: f.properties.id, geometry: f.geometry })),
+        featureCollection.features.map((f) => ({
+          id: f.properties.id,
+          regimeId: f.properties.regimeId,
+          geometry: f.geometry,
+        })),
       ).map((geometry) => ({ type: 'Feature', properties: {}, geometry })),
     };
 

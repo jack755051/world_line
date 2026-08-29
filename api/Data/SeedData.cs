@@ -222,24 +222,30 @@ public static class SeedData
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(226, 249), Geom = Rect(104, 32, 122, 42), CreatedAt = DateTimeOffset.UtcNow },
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(249, 265), Geom = Rect(104, 32, 123, 42), CreatedAt = DateTimeOffset.UtcNow },
 
-            // 蜀漢：5 筆，208/215/219 荊州易手區間刻意加密
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(208, 215), Geom = Rect(100, 26, 114, 32), IsDisputed = true, CorrectionReason = null, CreatedAt = DateTimeOffset.UtcNow }, // 借荊州（版本 A：含江陵以東）
-            // I3 測試用：同一政權、同一時間區間的第二筆爭議版本——史料對「借荊州」實際控制範圍記載不一，
-            // 兩筆皆標 IsDisputed=true 且互不 supersede（I5 修正鏈是「新版本取代舊版本」，這裡是「同期並存的兩種史觀」，語意不同）。
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(208, 215), Geom = Rect(100, 26, 111, 32), IsDisputed = true, CreatedAt = DateTimeOffset.UtcNow }, // 借荊州（版本 B：僅含南郡以西，較保守估計）
+            // 蜀漢：5 筆，208/215/219 荊州易手區間刻意加密。208-215 拆成兩筆——「核心」
+            // （南郡以西，孫氏從沒質疑過）跟「荊州爭議地帶」，跟下面東吳的爭議地帶用**完全
+            // 相同的座標**（2026-08-29 使用者拍板：爭議區的定義是「雙方宣稱的範圍本身就是
+            // 同一塊」，類比現實的喀什米爾爭議——印巴雙方對「爭議區」認定的範圍是同一塊，
+            // 不是「我宣稱這一大塊、你宣稱那一大塊，剛好有一小段重疊」。原本蜀漢版本 A
+            // 宣稱到經度 114、東吳爭議地帶宣稱從 112 開始，兩者只有 112-114 這一小段真的
+            // 重疊，各自宣稱的範圍都比實際重疊區大很多，不合理）。**取代原本 I3 示範用的
+            // 兩個並存版本**（蜀漢自己對借荊州範圍的史觀分歧）——那個示範跟「跟東吳的邊界
+            // 爭議」其實是同一個歷史問題的兩種建模方式，同時維持兩者太複雜，選擇保留跟
+            // 東吳的邊界爭議（跨政權，更貼近「政權重疊區才算爭議」這條已拍板規則的實際
+            // 用例），I3 並存版本機制本身的 schema 支援不受影響，只是這筆種子資料不再拿
+            // 它示範，之後有更適合的案例再補。
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(208, 215), Geom = Rect(100, 26, 111, 32), CreatedAt = DateTimeOffset.UtcNow }, // 核心（南郡以西），不受爭議
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(208, 215), Geom = Rect(111, 26, 116, 32), IsDisputed = true, CreatedAt = DateTimeOffset.UtcNow }, // 荊州爭議地帶——座標跟東吳那筆完全一致
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(215, 219), Geom = Rect(100, 26, 111, 32), CreatedAt = DateTimeOffset.UtcNow }, // 215 孫劉分荊州後縮小
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(219, 221), Geom = Rect(100, 26, 108, 32), CreatedAt = DateTimeOffset.UtcNow }, // 219 失荊州
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = shuHan.Id, ValidPeriod = Years(221, 263), Geom = Rect(100, 26, 108, 32), CreatedAt = DateTimeOffset.UtcNow }, // 正式建國後穩定期（益州核心）
 
             // 東吳：5 筆，同樣在荊州易手區間加密。208-215 拆成兩筆——「江東核心」（孫氏
-            // 從頭到尾穩定控制，沒有任何一方質疑過）跟「荊州爭議地帶」（跟蜀漢的宣稱重疊，
-            // 是真正有史料分歧的部分）。原本只有一整筆涵蓋全境、整筆標 IsDisputed=true，
-            // 等於把孫氏從沒被挑戰過的江東本土也畫成「有爭議」，邏輯上站不住腳——跟「二戰後
-            // 英法美蘇瓜分德國，佔領區邊界是條約明訂、沒有史料分歧，不該套用『整筆記錄都算
-            // 爭議』的判斷」是同一個問題（使用者實際點出這個類比）。拆開後只有真正跟蜀漢
-            // 宣稱重疊的那一小塊（經度 112-116）標爭議，江東核心（116-122）維持穩定不爭議。
+            // 從頭到尾穩定控制，沒有任何一方質疑過）跟「荊州爭議地帶」。爭議地帶座標跟
+            // 上面蜀漢那筆**完全一致**（見蜀漢區塊的說明——爭議區定義是雙方宣稱範圍本身
+            // 就是同一塊，不是兩個不同形狀矩形的碰撞產物）。
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(208, 215), Geom = Rect(116, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow }, // 江東核心，不受爭議
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(208, 215), Geom = Rect(112, 22, 116, 32), IsDisputed = true, CreatedAt = DateTimeOffset.UtcNow }, // 荊州爭議地帶，跟蜀漢的宣稱重疊
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(208, 215), Geom = Rect(111, 26, 116, 32), IsDisputed = true, CreatedAt = DateTimeOffset.UtcNow }, // 荊州爭議地帶——座標跟蜀漢那筆完全一致
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(215, 219), Geom = Rect(111, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow },
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(219, 222), Geom = Rect(108, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow }, // 219 呂蒙奪荊州後擴大
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(222, 280), Geom = Rect(108, 20, 122, 32), CreatedAt = DateTimeOffset.UtcNow },

@@ -184,11 +184,13 @@ related_constitution: .claude/constitutions/world-line.md
 >
 > **2026-08-29 更新**：M2 task 2.0 修訂 `ApiResponse.message` 語意（改成穩定代碼，非中文句子）後，發現原本的任務清單沒有對應的前端消費端——新增 3.14a，把「代碼→顯示文字」的對照集中管理，避免各元件各自寫死判斷式。多語系本身不是已拍板的產品目標（憲法未提及），這裡先只求「集中管理」，不是先做語言切換功能。
 
+> **2026-08-29 完成 3.0**：`npx @sanring/cli init`（componentPath 用預設 `src/app/components/ui`）+ `add button` 驗證完成；Tailwind v4 用官方 PostCSS 外掛安裝（`tailwindcss`、`@tailwindcss/postcss`、`postcss`，新增 `app/.postcssrc.json`），`styles.scss` 用 `@import 'tailwindcss';`（Sass 對這行的 deprecation warning 是已知/預期噪音——這是 Tailwind v4 官方文件對 Angular 專案的建法，實測編譯後的 CSS 有完整展開的 utility class，不是留一行沒被解析的裸 import）。**`src/sanring-theme.css` 語意層已全部 alias 到 `design-tokens.scss` 的 `--wl-*`**（background/foreground/muted/border/border-strong/surface/control/primary/圓角/字型），不是併存兩套色盤；同時移除了原檔案的 `[data-theme='light']` 深色/淺色雙軌設計（Sanring 預設 :root 是深色，跟本專案「❌ 不做深色模式」的既定範圍衝突且我們不會去設那個屬性），改成單一淺色語意層。**刻意未處理**：`--sanring-primary-10..90`、`coral/sun/info/success/warn/error` 這幾組色相家族仍是 Sanring 原廠預設值，跟 `--wl-*` 未對齊——目前只有 Button 一個元件裝進來，只有 destructive variant 會吃到 `--sanring-error-70/-80`，等真的有元件（badge/alert）用到這幾組家族色再處理，見 PRD §12。已用 `ng build`（Tailwind utility class 有展開、無編譯錯誤）、`ng test`（12/12 過，新增一條驗證 `sanringBtn` directive 有掛上的測試）、`ng serve` 後直接讀取編譯後的 CSS（`focus-visible:ring-[var(--sanring-border-strong)]`、`hover:bg-[var(--sanring-active)]` 等規則都正確產生並指到重新 alias 過的 `--sanring-*`/`--wl-*` 變數）三種方式驗證；因為這次對話環境沒有連上 Chrome 擴充功能，沒有做到瀏覽器截圖層級的目視驗證（顏色/hover 的實際渲染結果建議之後找機會用瀏覽器實際看一次）。
+
 ### 任務清單
 
 | 狀態 | # | 任務 | 產出 | 對應 PRD | Commit 建議 |
 |---|---|---|---|---|---|
-| [ ] | 3.0 | 引入 Sanring UI + Tailwind CSS v4（`app/` 前端樣式基礎建設） | `npx @sanring/cli init` 設定完成、Tailwind v4 安裝並接上 `sanring-theme.css`、以 Button 元件驗證 hover/focus 樣式與 Angular standalone import 皆正常 | §5 UI 元件庫 | 1 個 |
+| [x] | 3.0 | 引入 Sanring UI + Tailwind CSS v4（`app/` 前端樣式基礎建設） | `npx @sanring/cli init` 設定完成、Tailwind v4 安裝並接上 `sanring-theme.css`、以 Button 元件驗證 hover/focus 樣式與 Angular standalone import 皆正常 | §5 UI 元件庫 | 1 個 |
 | [ ] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
 | [ ] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
 | [ ] | 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |

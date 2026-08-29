@@ -1,0 +1,37 @@
+// 系統色 Design Tokens（2026-08-29 拍板）。
+//
+// 只有「系統色」（介面底色/文字/邊框/狀態色）現在定案——這些不代表任何政權身份，是整個
+// 應用程式共用的基礎色，出處是 dataviz 技能驗證過的預設色盤（品牌中立、通過 WCAG 對比度
+// 與色盲安全性檢查），不是自己挑的。
+//
+// 政權識別色（哪個政權該用哪個顏色）刻意不在這裡定案——這批顏色需要靠「相鄰動態圖著色」
+// 演算法在渲染當下決定，不是寫死的固定對照表，設計討論見
+// .claude/plans/world-line-implementation-plan.md Phase 3 任務 3.5 的補充說明。
+//
+// 只做淺色模式——Phase 3 範圍已明確排除深色模式（「❌ 不做深色模式」），這裡不預先做
+// dark mode 分支，避免維護一份用不到的變體。
+
+:root {
+  // 版面
+  --wl-surface: #fcfcfb; // 地圖/面板底色
+  --wl-page: #f9f9f7; // 整體頁面背景
+
+  // 文字
+  --wl-ink-primary: #0b0b0b;
+  --wl-ink-secondary: #52514e;
+  --wl-ink-muted: #898781; // 軸線標籤、次要說明文字
+
+  // 邊框/格線
+  --wl-border-hairline: rgba(11, 11, 11, 0.10); // 一般 UI 邊框（卡片、面板）
+  --wl-gridline: #e1e0d9; // 時間軸格線
+  --wl-baseline: #c3c2b7; // 時間軸主軸線
+
+  // 疆域邊界線（跟政權填色分開，見上方說明——邊界不做身份識別，維持單一中性色）
+  --wl-territory-border: #52514e;
+
+  // 狀態色（固定語意，不可挪作政權識別使用）
+  --wl-status-good: #0ca30c;
+  --wl-status-warning: #fab219;
+  --wl-status-serious: #ec835a;
+  --wl-status-critical: #d03b3b;
+}

@@ -204,6 +204,11 @@ export class MapComponent implements OnDestroy {
 
       const borderColor =
         getComputedStyle(document.documentElement).getPropertyValue('--wl-territory-border').trim() || '#52514e';
+      // 爭議區専用色——design-tokens.scss 的 --wl-dispute-* 紅色階（2026-08-29 拍板），
+      // 跟 territories-border 的中性灰刻意分開：中性灰是「疆域邊界」這個結構性語意，
+      // 紅色才是「這裡有政權主張衝突」這個內容語意，兩者不該共用同一個 token。
+      const disputeColor =
+        getComputedStyle(document.documentElement).getPropertyValue('--wl-dispute-500').trim() || '#b83333';
 
       this.map.addLayer({
         id: 'territories-border',
@@ -214,23 +219,25 @@ export class MapComponent implements OnDestroy {
         paint: { 'line-color': borderColor, 'line-width': 1 },
       });
 
-      // 疆域重疊區——先鋪一層不透明的中性底色，再疊斜線網底。**不能只疊網底**：網底
+      // 疆域重疊區——先鋪一層不透明的爭議紅底色，再疊斜線網底。**不能只疊網底**：網底
       // 圖樣本身背景是透明的（只有斜線本身不透明，見 createDiagonalHatchImageData()），
       // 疊在 territories-fill 上面時，透明部分會透出底下「剛好排在後面那個政權」的
       // 顏色，看起來像這塊地「只屬於其中一個政權」——使用者實機發現這個問題（重疊區
-      // 看起來像單純東吳的顏色加網底，看不出蜀漢也宣稱這塊地）。先鋪不透明中性底色
-      // 蓋掉底下兩個政權各自的顏色，才能明確傳達「這裡不屬於任何單一政權，是重疊
-      // 爭議區」，不是 tone-on-tone：重疊區可能同時牽涉兩個以上不同色相的政權，不屬於
-      // 任何單一政權的識別色，見 territory-dispute-pattern.ts 開頭說明。
+      // 看起來像單純東吳的顏色加網底，看不出蜀漢也宣稱這塊地）。先鋪不透明底色蓋掉
+      // 底下兩個政權各自的顏色，才能明確傳達「這裡不屬於任何單一政權，是重疊爭議
+      // 區」；改用 --wl-dispute-500 而非中性灰是因為「爭議」本身是需要被看見的內容
+      // 語意，不只是結構線條，見 design-tokens.scss 該 token 區塊的說明。不是
+      // tone-on-tone：重疊區可能同時牽涉兩個以上不同色相的政權，不屬於任何單一政權的
+      // 識別色，見 territory-dispute-pattern.ts 開頭說明。
       this.map.addLayer({
         id: 'territory-overlaps-fill',
         type: 'fill',
         source: 'territory-overlaps',
-        paint: { 'fill-color': borderColor, 'fill-opacity': 1 },
+        paint: { 'fill-color': disputeColor, 'fill-opacity': 1 },
       });
 
       if (!this.map.hasImage(OVERLAP_HATCH_IMAGE_ID)) {
-        this.map.addImage(OVERLAP_HATCH_IMAGE_ID, this.hatchPatterns.create(borderColor));
+        this.map.addImage(OVERLAP_HATCH_IMAGE_ID, this.hatchPatterns.create(disputeColor));
       }
 
       this.map.addLayer({

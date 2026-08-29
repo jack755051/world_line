@@ -298,6 +298,27 @@ related_constitution: .claude/constitutions/world-line.md
 > 就是同一塊完整範圍，不再有「宣稱範圍>實際重疊」的落差。已 truncate `app_postgres`
 > 相關表格＋`docker compose up -d --build backend` 重新播種，curl 驗證 year=210 蜀漢/
 > 東吳的爭議地帶座標完全一致（111-116，緯度26-32）。
+>
+> **2026-08-30 重疊區底色從中性灰改成專屬紅色階**（使用者要求「幫我多加一組色票在
+> design token 當中，是需要紅色的 50-900 的」，對應前一則喀什米爾模型定案後的自然延伸：
+> 重疊區的視覺語意其實是「內容」——有政權主張衝突——不是「結構」，不該跟疆域邊界線共用
+> `--wl-territory-border` 那個中性色 token）。新增 `design-tokens.scss` 的
+> `--wl-dispute-50` ~ `--wl-dispute-900` 十階紅色階，錨點沿用既有的 `--wl-status-critical`
+> （`#d03b3b`），不是另外挑一個新紅色——語意上「爭議」跟既有的「危急/嚴重」狀態色同屬一個
+> 色相家族；也刻意不用 `territory-colors.ts` 政權識別色清單裡已經在用的那個紅（分類色
+> slot 8），避免疆域填色跟爭議標記的紅色混淆成同一件事。生成方法沿用本次對話稍早驗證過
+> 的**色域邊界比例縮放**（`maxChromaInGamut(L,H)` 二分搜尋 + `ratio = 錨點彩度 / 錨點
+> L的色域邊界彩度`），不是「借用其他色相的彩度曲線形狀」那個已知有嚴重色相漂移問題的方法
+> （Sanring success/warn/error 色階踩過的坑）。實測色相偏差最大 8 度（集中在幾乎無彩度的
+> 50 階，可忽略），其餘各階都在 0.5 度內；`--wl-dispute-500`（`#b83333`）配白字對比
+> 5.90:1、配淺色面板 5.75:1，均通過 WCAG AA。`MapComponent` 的 `territory-overlaps-fill`
+> 與 `territory-overlaps-hatch`（含 `hatchPatterns.create()` 的網底基準色）改吃
+> `--wl-dispute-500`，`territories-border`（疆域邊界線本身）維持不變、仍是
+> `--wl-territory-border` 中性灰——兩者刻意分開，一個是結構語意一個是內容語意。
+> `territory-dispute-pattern.ts` 的網底繪製邏輯本身不用改（`createDiagonalHatchImageData()`
+> 不關心呼叫端傳什麼底色，只負責加深一階畫斜線），只更新了檔案開頭過時的「中性色」說明
+> 文字。已用 `ng build`/`ng test`（79/79）、`docker compose up -d --build frontend`
+> 重新部署，curl 確認後端 `territories` 端點正常回應驗證。
 | [ ] | 3.6 | **疆域快照間形變過渡動畫（TopoJSON + Flubber.js）** | 拖動拉桿時，兩筆快照之間的疆域邊界真正連續變形，不是切換/淡入淡出——對應憲法 §9「疆域必須連續變化呈現，非離散跳轉」核心要求（2026-08-26 拍板：從 Backlog 移入本階段，非候選） | Story 1、§9 | 1-2 個（拓撲前處理 1 個、Flubber 整合+播放時機控制 1 個） |
 | [ ] | 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |

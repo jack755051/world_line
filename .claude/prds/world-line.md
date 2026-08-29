@@ -181,47 +181,48 @@ related_adrs: []
 - **I5 版本鏈（`superseded_by`）已有種子資料機械驗證過**（2026-08-28）：先前 `superseded_by`/`correction_reason`/`corrected_at` 只有 schema 欄位，從沒被任何 seed row 真正賦值過，等於這條 FK 路徑連「能不能正常 insert/查詢」都沒驗證。已補一組漢朝 `[25,189)` 的原始版＋修正版，原始列的 `superseded_by` 指向修正列。跟既有的蜀漢 I3 衝突組（同區間兩筆皆 `is_disputed=true`、互不 supersede）刻意做對照：I3 是「同期並存的兩種史觀」，I5 是「新版本取代舊版本」，語意不同。M2 應用層的修正端點行為（2.7：擋直接 UPDATE/DELETE、強制走新增新版本流程）仍待實作，這裡只驗證 schema 層的資料形狀正確
 - **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
 - **政權轉換邊需要能追溯回導致它的具體事件**（2026-08-27 拍板）：`regimes.predecessor_regime_id`/`origin_transition_type`（起源轉換）與 `regimes.destroyed_by_regime_id`（終止轉換）原本只記錄「發生過什麼轉換」，沒有連到「是哪個事件導致的」。新增 `regime_transition_events` 多對多 join 表，用 `transition_kind`（`'origin'` | `'destruction'`）區分同一個政權可能同時掛著起源與終止兩種轉換各自的觸發事件；多對多是因為一次轉換可能由多個事件共同促成（例：一連串戰役才逼成禪讓），一個事件也可能同時觸發多個政權的轉換（例：一場戰役同時導致多個分裂政權誕生）
-- **領域內容雙語支援用通用翻譯表，只翻譯中立事實內容**（2026-08-29 拍板，對應憲法 R4）：詳見下方「多語言內容設計」小節。翻譯（換語言講同一件事）跟史觀/史料傳統差異（不同語言史料內容本來就可能不同）是兩個獨立的軸——只有中立事實內容用 `content_translations` 通用表翻譯，立場性敘事（`historical_event_perspectives`）不翻譯、靠既有多重視角機制各自用原語言寫。選通用表而非語言後綴欄位（`self_name_en`）或每個父表各開一張型別化 companion 表，理由跟 `civilization_sphere` 那次討論一樣——這個專案已經反覆撞到「寫死小範圍的設計後來都不夠用」；通用表加語言/加欄位都只要多插資料列，不用改 schema，代價是犧牲外鍵完整性，見下方細節
+- **領域內容雙語支援用型別化翻譯表，只翻譯中立事實內容**（2026-08-29 拍板，2026-08-29 grill-me 兩輪修正，對應憲法 R4）：詳見下方「多語言內容設計」小節。翻譯（換語言講同一件事）跟史觀/史料傳統差異（不同語言史料內容本來就可能不同）是兩個獨立的軸——只有中立事實內容需要翻譯，立場性敘事（`historical_event_perspectives`）不翻譯、靠既有多重視角機制各自用原語言寫。**翻譯表本身最終定案是 5 張型別化 companion 表（`regime_translations` 等），不是單一通用表**——中途曾改成通用表（省開表數），但釐清這個專案的實際目標是給多使用者用、資料量會持續成長後，通用表放棄外鍵完整性（父列刪除時翻譯列不會自動級聯刪除，得靠應用層清孤兒資料）這個取捨在這個前提下不划算，改回型別化表換真外鍵 + `ON DELETE CASCADE`，詳見下方修訂記錄
 
-### 多語言內容設計（憲法 R4，2026-08-29 拍板，2026-08-29 grill-me 修正為通用表 + 縮小範圍）
+### 多語言內容設計（憲法 R4，2026-08-29 拍板，2026-08-29 grill-me 兩輪修正）
 
 **核心設計原則：「翻譯」跟「史觀/史料傳統」是兩個獨立的軸，不能混在一起處理**（2026-08-29 grill-me 釐清）：
 
-- **中立事實內容**（政權自稱名稱、事件客觀骨幹、史觀 preset 名稱說明）——換一種語言講的是同一件事，沒有立場差異，適合機械翻譯，用 `content_translations`（見下）。
+- **中立事實內容**（政權自稱名稱、事件客觀骨幹、史觀 preset 名稱說明）——換一種語言講的是同一件事，沒有立場差異，適合機械翻譯。
 - **有立場的敘事內容**（`historical_event_perspectives.narrative_summary`/`official_justification`、`historical_event_controversies.viewpoints`）——中文史料寫出來的視角跟英文/阿拉伯文史料寫出來的視角，內容本身可能就不一樣（側重點、細節、甚至部分事實認定），不是「同一段話換語言講」。**這類內容不翻譯，直接依照既有的多重視角機制（`historical_event_perspectives` + `observer_categories`）各自用原本的語言寫**——`observer_categories` 本來就是可擴充的受控詞彙表（已有「後世史學界（事後回顧）」），未來可以直接新增「中文史料傳統」「阿拉伯文史料傳統」等類別，不需要新結構。想看「中文史料怎麼講阿拉伯帝國」就直接看對應語言寫的那筆視角，沒有對應語言版本代表還沒寫，不是系統缺陷。避免把某個語言史料的內容硬翻成另一種語言、包裝成看似客觀中立的敘述。
 
-**只有「中立事實內容」需要 schema 支援翻譯**，用**一張通用對照表**，不是每個父表各開一張 `_translations` companion 表（2026-08-29 grill-me 從 5 張型別化表改成 1 張通用表，理由見下）：
+**只有「中立事實內容」需要 schema 支援翻譯，每個要翻譯的父表各開一張型別化 `_translations` companion 表**（2026-08-29 grill-me 第二輪定案；中途曾走過單一通用表方案，修訂原因見下）：
 
 ```sql
-CREATE TABLE content_translations (
+-- 範例（其餘表比照同一 pattern：一張表一個真外鍵、一組 (parent_id, locale) 唯一鍵）
+CREATE TABLE regime_translations (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  entity_type VARCHAR(64) NOT NULL,   -- 'regime' | 'historical_event' | 'lineage_preset' | 'historical_event_controversy' | ...
-  entity_id VARCHAR(64) NOT NULL,     -- 對應父表 id，統一存字串（historical_events.id 本身就是字串 slug，其他表是 UUID 轉字串）
-  field_name VARCHAR(64) NOT NULL,    -- 'self_name' | 'name' | 'preset_name' | 'description' | 'topic' | 'neutral_description' | ...
+  regime_id UUID NOT NULL REFERENCES regimes(id) ON DELETE CASCADE,
   locale VARCHAR(5) NOT NULL,         -- ISO 639-1，如 'en'；未來若要地區變體可延伸 'en-US'
-  translated_text TEXT NOT NULL,
+  self_name VARCHAR(128) NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE (entity_type, entity_id, field_name, locale)
+  UNIQUE (regime_id, locale)
 );
 ```
 
-**選通用表而非 5 張型別化表的理由**：需要翻譯的欄位分散在 4 張表、跟訊息代碼字典（task 2.0）本質上是同一種「key → 對照文字」問題，通用表少開 4 張表跟對應的 migration，之後要多蓋一個「中立內容」欄位（例如 M4 幫某個新表加中立摘要）不用再開新表，直接多插資料列。**代價（已知、接受）**：`entity_id` 無法設真正外鍵約束，父表資料被刪除時翻譯列不會自動級聯刪除，孤兒資料清理要放應用層；查詢一個實體的完整翻譯要組裝多列（不像型別化表一列到底），這在目前資料量小、單人自用的階段是可接受的取捨。
+其餘 4 張表同一個 pattern：`regime_alias_translations`（FK → `regime_aliases`）、`historical_event_translations`（FK → `historical_events`，`event_id` 是字串型別對齊原表）、`lineage_preset_translations`（FK → `lineage_presets`）、`historical_event_controversy_translations`（FK → `historical_event_controversies`）。
 
-**父表欄位維持「原始語言」不變**——現階段中國史資料的原始語言就是中文，語意上等同這筆內容最初被記載/建檔時用的語言（跟 notes 曆法章節「記錄原始曆法系統」的精神一致）。查詢時指定 `locale` 若有對照列則回傳翻譯內容，沒有則 fallback 回父表原始語言欄位——**加這張表不會讓既有內容自動變雙語，仍需要有人實際寫英文翻譯內容，schema 只是讓這件事變得可行、可漸進式補**。
+**修訂記錄：為什麼從單一通用表改回型別化表**——通用表（`entity_type`/`entity_id`/`field_name`/`locale` 四欄定位一筆翻譯）少開 4 張表、跟訊息代碼字典（task 2.0）同一種「key → 對照文字」思路，一度定案並已建置驗證過。但重新檢視這個專案的實際目標——**不是單人自用的小工具，是要給其他使用者用、資料量會隨著史料涵蓋範圍持續成長**——通用表放棄外鍵完整性（`entity_id` 無法對任何一張表設真正外鍵，父列刪除時翻譯列得靠應用層自己清，沒有資料庫層級的保護網）這個取捨在這個前提下不成立：資料量小、單人測試時看不出問題，但正是「多人維護、資料量變大」這種情境下最容易在沒有任何錯誤提示的情況下悄悄累積孤兒資料。改回型別化表，換回真外鍵 + `ON DELETE CASCADE`，已用實際刪除測試驗證：刪除一個政權，對應的翻譯列會被資料庫自動級聯刪除，不需要應用層自己清。代價是回到 5 張表（而非 1 張），接受。
 
-**需要翻譯的欄位清單**（只有中立事實內容，範圍比第一版縮小）：
+**父表欄位不是永遠固定存中文**——父表欄位存的是「這筆內容的原始語言」，語意上等於這筆內容最初被記載/建檔時用的語言，**跟著題材本身的史料傳統走，不是系統固定「中文是主、其他語言是翻譯」**。中國史題材（三國等）原始史料就是中文，中文欄位是原文不是翻譯；但如果之後某個題材的原始史料本來就是英文/法文（例如歐洲史的百年戰爭），主欄位存的應該是英文，中文才是 `_translations` 表裡 `locale='zh'` 的那一列——方向完全視題材出處而定，schema 對兩個方向都對稱支援。查詢時指定 `locale` 若有對照列則回傳翻譯內容，沒有則 fallback 回父表欄位——**加這些表不會讓既有內容自動變雙語，仍需要有人實際寫翻譯內容，schema 只是讓這件事變得可行、可漸進式補**。
 
-| 父表 | 需要翻譯的欄位 | 說明 |
-|---|---|---|
-| `regimes` | `self_name` | |
-| `regime_aliases` | `alias_name` | **2026-08-29 修正**：先前列為「待評估」是想太多——別名（例：「大食」）本身就是一個有自己 `id` 的獨立列，跟 `regimes.self_name` 沒有本質差異，一樣可以在 `content_translations` 開一筆 `entity_type='regime_alias'` 對應英文（如「大食」→「Dashi」音譯）。「這個代稱是哪個政權視角給的」（`observer_regime_id`）跟「這個代稱要用哪種語言呈現」（`locale`）是兩個獨立維度，互不干擾，套用跟上方「翻譯 vs 史觀立場」相同的正交原則 |
-| `historical_events` | `name` | `sections` JSONB 內嵌文字（客觀骨幹的三層手風琴內容）性質上也屬中立事實，但一個欄位一列的 `content_translations` 裝不下巢狀 JSON，要嘛整個 `sections` 值存成翻譯（`field_name='sections'`，`translated_text` 存整包 JSON 字串），要嘛不翻譯 `sections` 只翻 `name`——留到真的要做這張表時再拍板，不在這裡先選 |
-| `lineage_presets` | `preset_name`／`description` | |
-| `historical_event_controversies` | `topic`／`neutral_description` | 僅這兩欄；`viewpoints`（誰主張什麼）屬於立場性內容，不翻譯，見上方核心原則 |
+**需要翻譯的欄位清單**（只有中立事實內容）：
+
+| 父表 | 對應 companion 表 | 需要翻譯的欄位 | 說明 |
+|---|---|---|---|
+| `regimes` | `regime_translations` | `self_name` | |
+| `regime_aliases` | `regime_alias_translations` | `alias_name` | 別名（例：「大食」）本身就是一個有自己 `id` 的獨立列，跟 `regimes.self_name` 沒有本質差異，一樣可以開一筆翻譯（如「大食」→「Dashi」音譯）。「這個代稱是哪個政權視角給的」（`observer_regime_id`）跟「這個代稱要用哪種語言呈現」（`locale`）是兩個獨立維度，互不干擾，套用跟上方「翻譯 vs 史觀立場」相同的正交原則 |
+| `historical_events` | `historical_event_translations` | `name` | `sections` JSONB 內嵌文字（客觀骨幹的三層手風琴內容）性質上也屬中立事實，但要不要連帶翻譯、翻譯結構長怎樣還沒拍板——留到真的要擴充這張表時再決定，不在這裡先選 |
+| `lineage_presets` | `lineage_preset_translations` | `preset_name`／`description` | |
+| `historical_event_controversies` | `historical_event_controversy_translations` | `topic`／`neutral_description` | 僅這兩欄；`viewpoints`（誰主張什麼）屬於立場性內容，不翻譯，見上方核心原則 |
 
 **明確不進翻譯範圍，改走多重視角機制**：`historical_event_perspectives.local_name`／`narrative_summary`／`official_justification`（整張表）、`historical_event_controversies.viewpoints`。
 
-**次要/輔助內容，維持待評估、不現在處理**（優先權低，之後需要時直接沿用同一張 `content_translations` 表插入對應 `entity_type` 的資料列即可，不用再開新表）：`reign_eras.era_name`、`place_names.historical_name`/`modern_name`、`regime_relations.relation_type`/`description`、`event_tags.tag_name`、`observer_categories.category_name`。
+**次要/輔助內容，維持待評估、不現在處理**（優先權低，之後需要時比照同一個 pattern 各自開一張 companion 表）：`reign_eras.era_name`、`place_names.historical_name`/`modern_name`、`regime_relations.relation_type`/`description`、`event_tags.tag_name`、`observer_categories.category_name`。
 
 **API 層影響**：唯讀端點需要能接受 `?locale=` 查詢參數（省略時預設回原始語言），例如 `GET /api/v1/regimes?locale=en`。已實作的 2.3（`reign_eras` 查詢）目前不支援，因為 `reign_eras` 不在翻譯範圍——之後真的要做時再補，不用現在回頭改。
 
@@ -487,7 +488,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 | 風險 | 影響 | 緩解 |
 |---|---|---|
 | ~~`docker-compose.yml` 用純 `postgres:16-alpine`，GIS 幾何欄位/空間索引無法運作~~ | ~~high~~ | **已解決（2026-08-25）**：拍板改用 `postgis/postgis:16-3.4` 映像檔，列入 M1 前置工作 |
-| 憲法 R4（2026-08-29 新增）要求雙語內容，但既有 15 張表全部是單一語言欄位，且現有 seed 資料完全沒有英文版本——`content_translations` 通用表（§6）本身是新增，不影響現有資料，但要讓雙語「真的有內容」還需要實際撰寫英文翻譯（內容產出工作，不是純工程工作），且 `historical_events.sections` JSONB 是否連帶翻譯還沒拍板 | med（2026-08-29 grill-me 縮小範圍後：改用通用表少開 4 張表，且立場性敘事不翻譯、靠多重視角機制自然雙語，實際要翻譯的欄位只剩 4 張表的中立內容） | schema 用單一通用表（§6 已定案）；英文內容撰寫留給實際導入時再排期，不擋 schema 本身先就位；`sections` 是否翻譯待真的實作 `content_translations` 的 `historical_event` 條目時才拍板 |
+| ~~憲法 R4（2026-08-29 新增）要求雙語內容，但既有 15 張表全部是單一語言欄位，且現有 seed 資料完全沒有英文版本~~ | ~~med~~ | **已解決（2026-08-29）**：5 張型別化 `_translations` companion 表（`regime_translations` 等，§6）+ 20 筆既有 seed 資料的英文翻譯已完成並套用到 `app_postgres`，真外鍵 + `ON DELETE CASCADE` 已用實際刪除測試驗證。`historical_events.sections` JSONB 是否連帶翻譯仍未拍板，留給實際擴充 `historical_event_translations` 時決定 |
 | CHGIS／CShapes 授權為非商業限定（CC BY-NC-SA / 學術限定），若專案未來出現贊助或政府投資等資金來源，需重新確認授權相容性 | med | 使用者已確認目前無商業化/收費計畫，OHM（CC0）作主要資料來源可完全規避此風險；CHGIS/CShapes 僅輔助使用，若未來有資金來源介入，啟動前需重新查證或改用純 OHM 資料，詳見 §5 |
 | 多重視角史料考據工作量大（notes §十設計要求「客觀骨幹 + 各方主觀敘事 + 爭議點」三層結構，每個跨國事件都需多方史料） | high | 第一階段（中國史）先聚焦內部政權疆域資料，多重視角功能可延後至世界史階段跨國事件出現時再逐步建置 |
 | `regimes.predecessor_regime_id` 是單一 FK，只能表達「一對多分裂」，無法表達「多對一合併」（例如英格蘭+蘇格蘭→大不列顛）——中國史很少出現此類轉換，三國案例未觸發此缺口（2026-08-28 檢視發現） | med（會擋住 M4 世界史需要的歐洲政權資料） | M1/M2 現有資料不受影響，純新增（例如加一張 `regime_merge_sources` join table），不動現有欄位。列為 M4 世界史前必須處理，詳見 §12 |
@@ -551,7 +552,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] M2.2 驗證可用的 .NET EDTF 套件與支援範圍 → 無合格套件，改採自訂子集解析器 + NodaTime 曆法引擎，見 §5、implementation plan 2.2（2026-08-29 完成）
 - [ ] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。
 - [ ] TODO：M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位。
-- [ ] TODO（2026-08-29 新增，憲法 R4；同日 grill-me 修正為通用表 + 縮小範圍，並補回 `regime_aliases`）：implementation plan 2.16 建立 `content_translations` 通用表，2.17 補既有 seed 資料英文翻譯（僅限中立事實內容：`regimes.self_name`、`regime_aliases.alias_name`、`historical_events.name`、`lineage_presets`、`historical_event_controversies.topic`/`neutral_description`；立場性敘事不翻譯）；2.4/2.8/2.9a/2.10/2.13 這些尚未動工的查詢端點要支援 `?locale=`，2.12（`historical_event_perspectives`）不用，因為整張表都不進翻譯範圍，見 §6「多語言內容設計」。
+- [x] 憲法 R4：implementation plan 2.16（5 張型別化 `_translations` companion 表，真外鍵 + `ON DELETE CASCADE`）、2.17（既有 seed 資料 20 筆英文翻譯）已完成並套用到 `app_postgres`，見 §6「多語言內容設計」。2.4/2.8/2.9a/2.10/2.13 這些尚未動工的查詢端點仍要支援 `?locale=`；2.12（`historical_event_perspectives`）不用，因為整張表都不進翻譯範圍。
 
 **正式史料匯入前必須處理**：
 

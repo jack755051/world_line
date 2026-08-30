@@ -5,6 +5,19 @@ export interface TerritoryWithRegime {
   id: string;
   regimeId: string;
   geometry: MultiPolygon;
+  /** 形變過場動畫中（任務 3.6）正在淡入/淡出的疆域列的目前透明度（0-1），沒有動畫時
+      省略即可，視同 1。用來讓重疊區網底也跟著淡入淡出，而不是在來源政權自己都還沒
+      「完全出現」時就先以滿版強度顯示重疊斜線——見下方 `overlap.opacity` 的說明。 */
+  morphOpacity?: number;
+}
+
+export interface TerritoryOverlap {
+  geometry: Polygon | MultiPolygon;
+  /** 這塊重疊區的顯示透明度——取兩個來源政權疆域列各自 `morphOpacity` 的較小值。
+      重疊區的存在本身依附在兩個疆域主張都要「看得見」才有意義，任一邊還在淡入/淡出，
+      重疊斜線也該跟著淡，不能無視動畫狀態直接以滿版強度顯示。沒有傳 `morphOpacity`
+      的一般情況（兩邊都當作 1）維持原本行為，值是 1。 */
+  opacity: number;
 }
 
 /**
@@ -33,9 +46,9 @@ export interface TerritoryWithRegime {
  * 邊界只是接觸（不是真的有面積重疊）的情況，`turf.intersect()` 本身就會回傳 `null`
  * （已用測試驗證），不需要另外過濾。
  */
-export function computeTerritoryOverlaps(territories: TerritoryWithRegime[]): (Polygon | MultiPolygon)[] {
+export function computeTerritoryOverlaps(territories: TerritoryWithRegime[]): TerritoryOverlap[] {
   const boxes = territories.map((t) => bbox(t.geometry));
-  const overlaps: (Polygon | MultiPolygon)[] = [];
+  const overlaps: TerritoryOverlap[] = [];
 
   for (let i = 0; i < territories.length; i++) {
     for (let j = i + 1; j < territories.length; j++) {
@@ -50,7 +63,9 @@ export function computeTerritoryOverlaps(territories: TerritoryWithRegime[]): (P
       const b = { type: 'Feature' as const, properties: {}, geometry: territories[j].geometry };
       const result = intersect(featureCollection([a, b]));
       if (result) {
-        overlaps.push(result.geometry);
+        const opacityA = territories[i].morphOpacity ?? 1;
+        const opacityB = territories[j].morphOpacity ?? 1;
+        overlaps.push({ geometry: result.geometry, opacity: Math.min(opacityA, opacityB) });
       }
     }
   }

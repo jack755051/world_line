@@ -87,4 +87,26 @@ describe('computeTerritoryOverlaps', () => {
 
     expect(overlaps).toHaveLength(1); // 只有 shuHan-v1 跟 wu 那組
   });
+
+  it('沒有帶 morphOpacity 時，重疊區透明度預設為 1（非動畫的一般情況維持原本行為）', () => {
+    const territories: TerritoryWithRegime[] = [
+      { id: 'shuHan', regimeId: 'shu-han', geometry: rect(100, 26, 114, 32) },
+      { id: 'wu', regimeId: 'wu', geometry: rect(112, 22, 116, 32) },
+    ];
+
+    const overlaps = computeTerritoryOverlaps(territories);
+
+    expect(overlaps[0].opacity).toBe(1);
+  });
+
+  it('重疊區透明度取兩個來源政權疆域列 morphOpacity 的較小值（任務 3.6：一邊還在淡入時，重疊斜線也該跟著淡）', () => {
+    const territories: TerritoryWithRegime[] = [
+      { id: 'shuHan', regimeId: 'shu-han', geometry: rect(100, 26, 114, 32), morphOpacity: 1 },
+      { id: 'wu', regimeId: 'wu', geometry: rect(112, 22, 116, 32), morphOpacity: 0.3 }, // 東吳這筆還在淡入
+    ];
+
+    const overlaps = computeTerritoryOverlaps(territories);
+
+    expect(overlaps[0].opacity).toBeCloseTo(0.3);
+  });
 });

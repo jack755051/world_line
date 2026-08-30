@@ -6,6 +6,7 @@ import { MapComponent } from './map';
 import type { TerritoryFeatureProperties } from '../core/geometry/territory-styling';
 import { TimelineState } from '../core/time/timeline-state';
 import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
+import { MorphAnimationScheduler } from '../core/geometry/morph-animation-scheduler.service';
 
 // MapLibre 需要真的 WebGL context 才能初始化，JSDOM 測試環境沒有——用假的 Map/
 // NavigationControl/Marker 取代，只驗證「我們自己的 wiring 邏輯」（容器元素有傳進去、
@@ -125,6 +126,21 @@ const fakeHatchPatternService = {
   create: (): ImageData => ({ width: 8, height: 8, data: new Uint8ClampedArray(8 * 8 * 4), colorSpace: 'srgb' }) as ImageData,
 };
 
+// MorphAnimationScheduler（任務 3.6）真正實作是包裝 requestAnimationFrame——JSDOM 雖然
+// 有提供合成的 rAF，但真的等動畫時長（500ms）跑完會讓每個牽涉到換年份的測試都變慢又不
+// 穩定，跟上面 fakeHatchPatternService 換掉 Canvas 2D 同一個處理原則：用 TestBed provider
+// 換成「第一次排程就直接跳到終點」的假時序，不是真的等。`requestFrame` 回呼拿到的
+// timestamp 遠大於 `now()` 第一次回傳的值，讓 map.ts 的 `rawT = (now-start)/duration`
+// 算出來必定 >= 1，動畫在測試裡永遠是一步到位。
+const fakeInstantMorphScheduler = {
+  now: (): number => 0,
+  requestFrame: (callback: FrameRequestCallback): number => {
+    callback(1_000_000);
+    return 1;
+  },
+  cancelFrame: (): void => {},
+};
+
 function sampleFeatureCollection(): FeatureCollection<MultiPolygon, TerritoryFeatureProperties> {
   return {
     type: 'FeatureCollection',
@@ -168,6 +184,18 @@ function sampleOverlappingFeatureCollection(): FeatureCollection<MultiPolygon, T
   };
 }
 
+// 換一個可辨識的 startYear，方便測試分辨「這是哪一輪換年份寫進去的資料」——不用比對
+// 整包 geometry。
+function withStartYear(
+  fc: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
+  startYear: number,
+): FeatureCollection<MultiPolygon, TerritoryFeatureProperties> {
+  return {
+    ...fc,
+    features: fc.features.map((f) => ({ ...f, properties: { ...f.properties, startYear } })),
+  };
+}
+
 const sampleRegimes = [
   { id: 'r-a', selfName: '魏' },
   { id: 'r-b', selfName: '吳' },
@@ -198,6 +226,7 @@ describe('MapComponent', () => {
         provideHttpClient(),
         provideHttpClientTesting(),
         { provide: TerritoryHatchPatternService, useValue: fakeHatchPatternService },
+        { provide: MorphAnimationScheduler, useValue: fakeInstantMorphScheduler },
       ],
     });
     httpMock = TestBed.inject(HttpTestingController);
@@ -293,7 +322,10 @@ describe('MapComponent', () => {
       (l) => (l as { id: string }).id === 'territory-overlaps-fill',
     ) as { source: string; paint: { 'fill-opacity': unknown } };
     expect(overlapFillLayer.source).toBe('territory-overlaps');
-    expect(overlapFillLayer.paint['fill-opacity']).toBe(1);
+    // 任務 3.6：改用 coalesce expression（沒有 opacity 屬性時預設 1），不是寫死的
+    // 字面數字——重疊區要能跟著形變動畫的淡入淡出（見 territory-overlap.ts 的
+    // TerritoryOverlap.opacity）。
+    expect(overlapFillLayer.paint['fill-opacity']).toEqual(['coalesce', ['get', 'opacity'], 1]);
 
     // 疆域重疊區斜線網底：單一中性圖樣，不分色格（見 territory-dispute-pattern.ts
     // 開頭說明——重疊區可能同時牽涉兩個以上不同色相的政權，不屬於任何單一政權識別色）。
@@ -302,10 +334,16 @@ describe('MapComponent', () => {
 
     const hatchLayer = map.addLayerCalls.find((l) => (l as { id: string }).id === 'territory-overlaps-hatch') as {
       source: string;
-      paint: { 'fill-pattern': unknown };
+      paint: { 'fill-pattern': unknown; 'fill-opacity': unknown };
     };
     expect(hatchLayer.source).toBe('territory-overlaps');
     expect(hatchLayer.paint['fill-pattern']).toBe('territory-overlap-hatch');
+    expect(hatchLayer.paint['fill-opacity']).toEqual(['coalesce', ['get', 'opacity'], 1]);
+
+    const fillLayer = map.addLayerCalls.find((l) => (l as { id: string }).id === 'territories-fill') as {
+      paint: { 'fill-opacity': unknown };
+    };
+    expect(fillLayer.paint['fill-opacity']).toEqual(['*', 0.85, ['coalesce', ['get', 'morphOpacity'], 1]]);
 
     // 標籤是 Marker（HTML 元素），不是 MapLibre 原生 symbol 圖層——見 territory-labels.ts
     // 開頭說明（避免另外接字型 glyphs 服務）。
@@ -335,10 +373,108 @@ describe('MapComponent', () => {
     secondReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
 
     // 換年份後：source 沒有被重新建立（還是只有第一次那兩筆），兩個 source 都改用
-    // setData() 更新（territories 本身 + 重新算出來的 territory-overlaps）。
+    // setData() 更新（territories 本身 + 重新算出來的 territory-overlaps）。用的是
+    // fakeInstantMorphScheduler，動畫一步到位，不會有中間幀的額外 setData()。
     expect(map.addSourceCalls).toHaveLength(2);
     expect(map.setDataCalls).toHaveLength(2);
     expect(map.addLayerCalls).toHaveLength(4); // 圖層也沒有被重複加
+  });
+
+  it('拖拉桿拖得比動畫時長還快時，取消掉還沒播完的舊動畫，最終畫面停在最新的年份而不是被卡在中途的年份（任務 3.6）', async () => {
+    // 這裡刻意不用共用的 fakeInstantMorphScheduler（它一次排程就直接跳到終點，測不出
+    // 「動畫還沒播完、年份又換了」這個競態情境）——改用手動控制的假排程器，把 callback
+    // 存起來，讓測試自己決定何時觸發。
+    const pendingCallbacks: FrameRequestCallback[] = [];
+    const cancelledHandles: number[] = [];
+    let nextHandle = 0;
+    const manualScheduler = {
+      now: (): number => 0,
+      requestFrame: (callback: FrameRequestCallback): number => {
+        pendingCallbacks.push(callback);
+        return ++nextHandle;
+      },
+      cancelFrame: (handle: number): void => {
+        cancelledHandles.push(handle);
+      },
+    };
+    // 這個測試需要在 TestBed 初始化「之前」就換掉排程器——`overrideProvider()` 在
+    // testing module 已經 instantiate 過之後呼叫會直接丟例外（`beforeEach()` 裡的
+    // `TestBed.inject(HttpTestingController)` 已經讓它 instantiate 過一次），所以這裡
+    // 重新 reset + configure 一次，用跟 beforeEach 同樣的 provider 清單，只把
+    // MorphAnimationScheduler 換成這個測試專用的手動排程器。
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: TerritoryHatchPatternService, useValue: fakeHatchPatternService },
+        { provide: MorphAnimationScheduler, useValue: manualScheduler },
+      ],
+    });
+    httpMock = TestBed.inject(HttpTestingController);
+
+    const fixture = TestBed.createComponent(MapComponent);
+    await fixture.whenStable();
+    const map = FakeMap.instances[0];
+    const timeline = TestBed.inject(TimelineState);
+
+    map.fireLoad();
+    httpMock.expectOne((r) => r.urlWithParams === '/api/v1/regimes')
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleRegimes });
+    await waitForDebounce();
+    httpMock
+      .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    // 第一次渲染沒有「上一個狀態」可以形變過去，直接 settle()，不會走動畫分支——
+    // 排程器應該完全沒被呼叫過。
+    expect(pendingCallbacks).toHaveLength(0);
+
+    timeline.year.set(150);
+    await waitForDebounce();
+    httpMock
+      .expectOne((r) => r.urlWithParams === '/api/v1/territories?year=150')
+      .flush({
+        statusCode: 200,
+        message: 'FETCH_SUCCESS',
+        data: withStartYear(sampleFeatureCollection(), 150),
+      });
+
+    expect(pendingCallbacks).toHaveLength(1); // 第一輪動畫排了一幀，還沒觸發
+    const staleCallback = pendingCallbacks[0];
+    pendingCallbacks.length = 0;
+
+    // 動畫還沒播完，拉桿又拖到下一個年份。
+    timeline.year.set(160);
+    await waitForDebounce();
+    httpMock
+      .expectOne((r) => r.urlWithParams === '/api/v1/territories?year=160')
+      .flush({
+        statusCode: 200,
+        message: 'FETCH_SUCCESS',
+        data: withStartYear(sampleFeatureCollection(), 160),
+      });
+
+    // 新的一輪動畫應該主動取消掉第一輪還沒播完的那一幀。
+    expect(cancelledHandles).toHaveLength(1);
+
+    // 就算舊的（本該被取消的）callback 之後還是被觸發了（模擬 cancelFrame 沒有真的
+    // 立刻生效的邊界情況），也不該寫入資料——map.ts 的 morphToken 比對要擋下它。
+    const setDataCallsBeforeStaleFire = map.setDataCalls.length;
+    staleCallback(1_000_000);
+    expect(map.setDataCalls.length).toBe(setDataCallsBeforeStaleFire); // 沒有新增任何 setData()
+
+    // 觸發新一輪（真正沒被取代的那一輪）的排定幀，完成這次換年份。
+    expect(pendingCallbacks).toHaveLength(1);
+    pendingCallbacks[0](1_000_000);
+
+    const lastTerritoriesWrite = [...map.setDataCalls]
+      .reverse()
+      .find(
+        (data): data is FeatureCollection<MultiPolygon, TerritoryFeatureProperties> =>
+          (data as FeatureCollection).features.length > 0 &&
+          'regimeId' in ((data as FeatureCollection).features[0].properties ?? {}),
+      );
+    expect(lastTerritoriesWrite?.features[0].properties.startYear).toBe(160); // 停在最新年份，不是 150
   });
 
   it('logs an error but does not throw when the territories request fails', async () => {

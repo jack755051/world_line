@@ -96,8 +96,9 @@ describe('TimeScrubberComponent', () => {
 
       const band: HTMLElement = fixture.nativeElement.querySelector('.time-scrubber-lifetime-band');
       expect(band).not.toBeNull();
-      // TimelineState 範圍是 1-300（見 timeline-state.ts），存續區間 100-130：
-      // left = (100-1)/(300-1)*100 ≈ 33.11%，width = (130-100)/(300-1)*100 ≈ 10.03%。
+      // 百分比算法本身依賴 TimelineState.MIN_YEAR/MAX_YEAR 動態算出的期望值，不寫死
+      // 具體數字——2026-08-31 這兩個常數從 1-300 延伸到 1-950（見 timeline-state.ts），
+      // 這裡照樣算得出正確結果，不用跟著改。
       const totalSpan = TimelineState.MAX_YEAR - TimelineState.MIN_YEAR;
       const expectedLeft = ((100 - TimelineState.MIN_YEAR) / totalSpan) * 100;
       const expectedWidth = (30 / totalSpan) * 100;

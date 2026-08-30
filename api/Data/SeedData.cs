@@ -14,6 +14,11 @@ namespace WorldLine.Api.Data;
 /// ⚠️ Geometries are rough illustrative rectangles, not historically accurate boundaries — this
 /// is schema/relationship test data, not a real dataset. Years are simplified round numbers for
 /// the same reason (e.g. treating all three post-Han regimes as splitting off in exactly 220).
+///
+/// **2026-08-31 追加：唐朝／伍麥亞王朝／阿拔斯王朝**（task 3.8 後補，見檔案內該區塊的
+/// 說明）——PRD Story 3 AC#2 舉例的「唐朝視角看阿拉伯帝國稱大食」在三國種子資料裡沒有
+/// 對應案例，這批資料補上真正的例子（含怛羅斯之戰這個唐朝與阿拉伯帝國唯一真實接觸
+/// 點），跟三國那批資料之間（189-618 年）刻意留白，不是遺漏。
 /// </summary>
 public static class SeedData
 {
@@ -566,6 +571,201 @@ public static class SeedData
                 CreatedAt = DateTimeOffset.UtcNow,
             }
         );
+
+        // --- 唐朝／阿拉伯帝國（伍麥亞→阿拔斯）：2026-08-31 追加，Story 3 AC#2 的真實
+        // 驗證案例 ---
+        // PRD Story 3 AC#2 原文舉例「唐朝視角下阿拉伯帝國稱大食」，但三國種子資料完全
+        // 沒有涵蓋這個時代/地區，task 3.8 動工時只能拿種子資料裡真實存在的「蜀漢稱魏為
+        // 賊」示範，不是 PRD 原文案例本身。這裡補上真正的唐朝/阿拉伯帝國資料，讓 AC#2
+        // 的原文案例也有真實資料可以驗證，同時示範「政權被滅亡」在非中國史脈絡下的案例
+        // ——阿拔斯革命推翻伍麥亞王朝是一場革命起事，不是中國史常見的禪讓或攻滅戰爭，
+        // 但末代哈里發馬爾萬二世兵敗被殺、政權遭暴力終結，仍符合 conquered 狀態的定義。
+        //
+        // ⚠️ 跟本檔案其餘資料同一個限制：疆域是粗略示意矩形，不是精確史料邊界；年份簡化
+        // 為整數年。唐朝疆域資料終點訂在 907 年（唐朝滅亡年，但本批資料不建模唐滅亡本身
+        // ——跟晉的疆域資料延伸到 316 年、卻不建模西晉滅亡是同一個簡化原則）；阿拔斯王朝
+        // 疆域資料終點訂在 900 年（示意終點，實際王朝存續到 1258 年蒙古滅巴格達，超出這批
+        // 種子資料的示範範圍，不是史實錯誤）。
+        //
+        // ⚠️ 189-618 年之間（本檔案原有三國資料結束跟這批新資料開始之間）刻意留白，沒有
+        // 任何政權的疆域資料——不是 bug，是這個資料庫目前唯二涵蓋的兩個歷史區段之間本來
+        // 就沒有串連資料，拖拉桿經過這段年份地圖會正確顯示「查無疆域」，等之後真的匯入
+        // 銜接時代的史料才會補上（TimelineState 拉桿上限也因此一併從 300 延伸到 950）。
+
+        var tang = new Regime
+        {
+            Id = Guid.NewGuid(),
+            SelfName = "唐",
+            Status = "active",
+            CreatedAt = DateTimeOffset.UtcNow,
+            UpdatedAt = DateTimeOffset.UtcNow,
+        };
+
+        var umayyad = new Regime
+        {
+            Id = Guid.NewGuid(),
+            SelfName = "伍麥亞王朝",
+            Status = "conquered",
+            CreatedAt = DateTimeOffset.UtcNow,
+            UpdatedAt = DateTimeOffset.UtcNow,
+        };
+
+        var abbasid = new Regime
+        {
+            Id = Guid.NewGuid(),
+            SelfName = "阿拔斯王朝",
+            Status = "active",
+            CreatedAt = DateTimeOffset.UtcNow,
+            UpdatedAt = DateTimeOffset.UtcNow,
+        };
+
+        // 阿拔斯王朝不是伍麥亞王朝「分裂」或「禪讓」出來的——阿拔斯家族主張的正統性
+        // 來自先知叔父阿拔斯的血統，是一場推翻既有政權的革命，不是既有政權內部的傳承
+        // 轉移，predecessor_regime_id/origin_transition_type 刻意留 null（這兩個欄位
+        // 的語意只回答「split/succeeded」這兩種傳承關係，不是「誰打贏了誰」——那個關係
+        // 記錄在被滅政權自己的 destroyed_by_regime_id，見下面 umayyad.DestroyedByRegimeId，
+        // 跟蜀漢/吳被滅時魏/晉自己也不會有對應 origin 欄位是同一個處理原則）。
+        umayyad.DestroyedByRegimeId = abbasid.Id; // 750
+
+        db.Regimes.AddRange(tang, umayyad, abbasid);
+
+        // 唐朝對阿拉伯帝國的稱呼確實依王朝分兩種（白衣/黑衣），不是同一個「大食」通用
+        // 套在兩個政權上——伍麥亞旗幟尚白、阿拔斯旗幟尚黑，唐代史料（《舊唐書》《新唐書》
+        // 〈大食傳〉）以此區分兩個先後政權，這裡刻意各建一筆而非一個泛用代稱。
+        var umayyadAlias = new RegimeAlias { Id = Guid.NewGuid(), RegimeId = umayyad.Id, ObserverRegimeId = tang.Id, AliasName = "白衣大食", AliasType = RegimeAliasType.Transliteration, CreatedAt = DateTimeOffset.UtcNow };
+        var abbasidAlias = new RegimeAlias { Id = Guid.NewGuid(), RegimeId = abbasid.Id, ObserverRegimeId = tang.Id, AliasName = "黑衣大食", AliasType = RegimeAliasType.Transliteration, CreatedAt = DateTimeOffset.UtcNow };
+        db.RegimeAliases.AddRange(umayyadAlias, abbasidAlias);
+
+        // 伊斯蘭哈里發傳統沒有中國式年號紀年，這裡只給唐朝加 reign_eras，不是遺漏。
+        db.ReignEras.AddRange(
+            new ReignEra { Id = Guid.NewGuid(), RegimeId = tang.Id, EraName = "貞觀", StartYear = 627, EndYear = 649, CreatedAt = DateTimeOffset.UtcNow },
+            new ReignEra { Id = Guid.NewGuid(), RegimeId = tang.Id, EraName = "天寶", StartYear = 742, EndYear = 756, CreatedAt = DateTimeOffset.UtcNow } // 怛羅斯之戰（751）發生於此年號期間
+        );
+
+        // 唐朝西境跟阿拉伯帝國東境在中亞（河中地區）真的有地理重疊——這正是怛羅斯之戰的
+        // 地緣背景，不是矩形示意資料湊巧重疊；751 年戰敗後唐朝勢力退出中亞，第二筆疆域
+        // 刻意收縮，兩個政權此後不再重疊（跟本檔案其餘疆域資料同一個「事件驅動密度」
+        // 原則，不是固定週期切分）。
+        db.RegimeTerritories.AddRange(
+            // 唐：618-751 涵蓋安西四鎮鼎盛期西抵中亞的影響範圍；751 怛羅斯戰敗後收縮
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = tang.Id, ValidPeriod = Years(618, 751), Geom = Rect(73, 20, 123, 42), CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = tang.Id, ValidPeriod = Years(751, 907), Geom = Rect(95, 20, 123, 42), CreatedAt = DateTimeOffset.UtcNow }, // 退出中亞後收縮
+
+            // 伍麥亞王朝：661-750，一筆涵蓋伊比利半島到中亞（史上疆域最大的政權之一），
+            // 矩形簡化跟本檔案其餘資料同一個限制
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = umayyad.Id, ValidPeriod = Years(661, 750), Geom = Rect(-9, 15, 75, 45), CreatedAt = DateTimeOffset.UtcNow },
+
+            // 阿拔斯王朝：750 年起，怛羅斯戰後鞏固河中地區（東境略往東擴到 78 度），
+            // 疆域資料示意終點訂在 900 年（見本區塊開頭說明）
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = abbasid.Id, ValidPeriod = Years(750, 900), Geom = Rect(20, 12, 78, 45), CreatedAt = DateTimeOffset.UtcNow }
+        );
+
+        // 阿拔斯革命（伍麥亞王朝終結的觸發事件）＋怛羅斯之戰（唐朝與阿拉伯帝國唯一真實
+        // 直接接觸點，task 3.8 Story 3 AC#2 的驗證錨點）。
+        var abbasidRevolution = new HistoricalEvent
+        {
+            Id = "event-abbasid-revolution-750",
+            Name = "阿拔斯革命（伍麥亞王朝覆滅）",
+            StartEdtf = "0750",
+            EndEdtf = "0750",
+            StartDecimal = 750.000m,
+            EndDecimal = 750.000m,
+            CreatedAt = DateTimeOffset.UtcNow,
+            UpdatedAt = DateTimeOffset.UtcNow,
+        };
+
+        var battleOfTalas = new HistoricalEvent
+        {
+            Id = "event-battle-of-talas-751",
+            Name = "怛羅斯之戰",
+            StartEdtf = "0751",
+            EndEdtf = "0751",
+            StartDecimal = 751.000m,
+            EndDecimal = 751.000m,
+            Sections = """{"background":"唐朝安西節度使高仙芝介入拔汗那（費爾干納）與石國（塔什干）的紛爭，石國王子向阿拔斯王朝求援，雙方軍隊在中亞怛羅斯河畔遭遇","turning_points":["參戰的葛邏祿部臨陣倒戈"],"impact":"唐朝勢力退出中亞爭奪，阿拔斯王朝鞏固對河中地區的控制；後世流傳戰俘工匠將造紙術傳入伊斯蘭世界之說，惟具體傳播過程史學界仍有爭議（見下方爭議點）"}""",
+            CreatedAt = DateTimeOffset.UtcNow,
+            UpdatedAt = DateTimeOffset.UtcNow,
+        };
+
+        db.HistoricalEvents.AddRange(abbasidRevolution, battleOfTalas);
+
+        db.RegimeTransitionEvents.Add(
+            new RegimeTransitionEvent { RegimeId = umayyad.Id, EventId = abbasidRevolution.Id, TransitionKind = "destruction" }
+        );
+
+        db.HistoricalEventTagMaps.AddRange(
+            new HistoricalEventTagMap { EventId = abbasidRevolution.Id, TagId = warTag.Id },
+            new HistoricalEventTagMap { EventId = abbasidRevolution.Id, TagId = successionTag.Id },
+            new HistoricalEventTagMap { EventId = battleOfTalas.Id, TagId = warTag.Id }
+        );
+
+        // 多重視角：唐/阿拔斯王朝各自的參戰理由，跟赤壁之戰蜀漢/東吳雙方視角同一個模式
+        // ——task 3.7 AC#3「互動清單」用這組資料配對出「唐↔阿拔斯王朝」這組互動。
+        db.HistoricalEventPerspectives.AddRange(
+            new HistoricalEventPerspective
+            {
+                Id = Guid.NewGuid(),
+                EventId = battleOfTalas.Id,
+                RegimeId = tang.Id,
+                LocalName = "唐軍（安西都護府）視角",
+                NarrativeSummary = "安西節度使高仙芝率軍馳援西域屬國拔汗那，與阿拔斯軍隊在怛羅斯遭遇，激戰數日後因葛邏祿部倒戈而潰敗",
+                OfficialJustification = "援助西域附庸拔汗那，鞏固安西四鎮對河中地區的宗主地位",
+            },
+            new HistoricalEventPerspective
+            {
+                Id = Guid.NewGuid(),
+                EventId = battleOfTalas.Id,
+                RegimeId = abbasid.Id,
+                LocalName = "阿拔斯軍視角",
+                NarrativeSummary = "呼羅珊總督轄下齊亞德·伊本·薩利赫應石國王子求援，領軍迎擊東進的唐軍，於怛羅斯擊敗唐軍",
+                OfficialJustification = "聲援石國、抵禦唐朝勢力東擴，鞏固新政權對河中地區的控制",
+            }
+        );
+
+        // 爭議點：真實存在的史學爭議（「戰俘傳播造紙術」是通俗流傳的敘事，但傳播路徑
+        // 是否僅此一途，現代史學界看法不一），跟赤壁之戰的曹操兵力爭議同一個「非虛構
+        // 案例」原則。
+        var talasControversy = new HistoricalEventControversy
+        {
+            Id = Guid.NewGuid(),
+            EventId = battleOfTalas.Id,
+            Topic = "戰俘傳播造紙術入伊斯蘭世界之說的爭議",
+            NeutralDescription = "後世史料（多見於較晚的阿拉伯/波斯文獻轉引）記載，怛羅斯之戰被俘的唐軍工匠中有造紙匠人，因此把造紙術傳入撒馬爾罕，進而經伊斯蘭世界傳入歐洲；但現代史學界指出，造紙技術在此戰之前可能已經透過絲路貿易與文化交流逐漸西傳，「戰俘傳播」是否為唯一或主要途徑證據並不充分，撒馬爾罕造紙業與此戰確切的因果關係至今仍無定論。",
+            Viewpoints = """[{"stance":"怛羅斯戰俘工匠將造紙術傳入伊斯蘭世界","source":"後世阿拉伯/波斯史料轉引記載"},{"stance":"造紙術可能已透過絲路貿易漸進西傳，戰俘傳播說證據不足","source":"現代造紙史／絲路交流史研究"}]""",
+        };
+        db.HistoricalEventControversies.Add(talasControversy);
+
+        db.RegimeTranslations.AddRange(
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = tang.Id, Locale = "en", SelfName = "Tang", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = umayyad.Id, Locale = "en", SelfName = "Umayyad Caliphate", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTranslation { Id = Guid.NewGuid(), RegimeId = abbasid.Id, Locale = "en", SelfName = "Abbasid Caliphate", CreatedAt = DateTimeOffset.UtcNow }
+        );
+
+        db.RegimeAliasTranslations.AddRange(
+            new RegimeAliasTranslation { Id = Guid.NewGuid(), RegimeAliasId = umayyadAlias.Id, Locale = "en", AliasName = "White-Clad Dashi", CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeAliasTranslation { Id = Guid.NewGuid(), RegimeAliasId = abbasidAlias.Id, Locale = "en", AliasName = "Black-Clad Dashi", CreatedAt = DateTimeOffset.UtcNow }
+        );
+
+        db.HistoricalEventTranslations.AddRange(
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = abbasidRevolution.Id, Locale = "en", Name = "The Abbasid Revolution (Fall of the Umayyad Caliphate)", CreatedAt = DateTimeOffset.UtcNow },
+            new HistoricalEventTranslation { Id = Guid.NewGuid(), EventId = battleOfTalas.Id, Locale = "en", Name = "Battle of Talas", CreatedAt = DateTimeOffset.UtcNow }
+        );
+
+        db.HistoricalEventControversyTranslations.Add(new HistoricalEventControversyTranslation
+        {
+            Id = Guid.NewGuid(),
+            ControversyId = talasControversy.Id,
+            Locale = "en",
+            Topic = "The Dispute Over the Spread of Papermaking via Prisoners of War",
+            NeutralDescription = "Later sources (mostly transmitted through relatively late Arabic/Persian accounts) record that "
+                + "papermakers among the Tang soldiers captured at Talas brought papermaking to Samarkand, from where it "
+                + "spread through the Islamic world and eventually to Europe. Modern historians, however, note that "
+                + "papermaking technology may have already been gradually moving westward through Silk Road trade and "
+                + "cultural contact before the battle, and that the evidence for prisoner transmission being the sole or "
+                + "primary route is thin; the exact causal link between the battle and Samarkand's papermaking industry "
+                + "remains unresolved.",
+            CreatedAt = DateTimeOffset.UtcNow,
+        });
 
         await db.SaveChangesAsync();
     }

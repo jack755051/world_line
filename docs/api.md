@@ -62,7 +62,7 @@ OpenAPI 是可執行契約，不取代 PRD 中「為什麼需要這個 endpoint�
 
 - 業務 API 使用 `/api/v1` prefix。
 - 第一階段 GET 公開。
-- POST/PATCH 使用固定 `X-API-Key`，值來自 backend 環境變數 `API_WRITE_KEY`；middleware 尚未實作。
+- POST/PATCH 使用固定 `X-API-Key`，值來自 backend 環境變數 `API_WRITE_KEY`；middleware 已實作（task 2.14，`api/Infrastructure/ApiWriteKeyMiddleware.cs`），缺少/錯誤的 key 回 401 `UNAUTHORIZED`（統一包裝格式）。本機開發把 `API_WRITE_KEY` 放在 repo 根目錄的 `.env`（`.env.example` 有 placeholder），透過 `docker-compose.yml` 的 `env_file` 注入容器。
 - 政權狀態機與 EDTF 驗證必須由 backend 執行。
 - 疆域回傳策略第一階段採 GeoJSON，不導入 MVT/PMTiles。
 - I5 修正端點新增 replacement row 並保留原資料，不得直接覆蓋或刪除原史料。

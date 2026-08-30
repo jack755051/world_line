@@ -64,6 +64,12 @@ app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
+// task 2.14：寫入端點（POST/PATCH）的最小 API Key 驗證，見 ApiWriteKeyMiddleware。
+// 放在 UseAuthorization() 之前——這個 middleware 自己判斷方法/驗證 key，不依賴
+// ASP.NET 內建的 authentication/authorization 管線（這個專案沒有配置任何
+// authentication scheme，UseAuthorization() 目前是保留給之後真的需要時的預留位置）。
+app.UseMiddleware<ApiWriteKeyMiddleware>();
+
 app.UseAuthorization();
 
 app.MapControllers();

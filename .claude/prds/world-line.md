@@ -141,7 +141,7 @@ related_adrs: []
 | Backend | .NET 10 Web API（`net10.0`） | 既有專案偵測（`api/WorldLine.Api.csproj`），CLI scaffold 已存在，沿用 |
 | DB | PostgreSQL 16（`postgis/postgis:16-3.4` 映像檔） | **已拍板（grill-me 2026-08-25）**：`docker-compose.yml` 的 postgres image 由純 `postgres:16-alpine` 改為 `postgis/postgis:16-3.4`，一行改動即取得 PostGIS extension，維護成本低於自建 init script，列入 M1 前置工作 |
 | Cache | Redis 7-alpine | 既有專案偵測（`docker-compose.yml`），已備妥容器 |
-| Auth | 單一固定 API Key（僅保護寫入端點） | **已拍板（grill-me 2026-08-25 第二輪；2026-08-26 implementation plan 細化）**：讀取端點（GET）第一階段不驗證；寫入端點（POST/PATCH）由 middleware 驗證環境變數 `API_WRITE_KEY` 與 request header `X-API-Key`。M2 尚未實作。JWT 與多使用者帳號不在第一階段範圍，待教育對象開放時再評估 |
+| Auth | 單一固定 API Key（僅保護寫入端點） | **已拍板（grill-me 2026-08-25 第二輪；2026-08-26 implementation plan 細化）**：讀取端點（GET）第一階段不驗證；寫入端點（POST/PATCH）由 middleware 驗證環境變數 `API_WRITE_KEY` 與 request header `X-API-Key`。**已完成（2026-08-30，task 2.14）**：`api/Infrastructure/ApiWriteKeyMiddleware.cs`，固定時間比較（`CryptographicOperations.FixedTimeEquals`）避免 timing attack；`API_WRITE_KEY` 未設定時擋下所有寫入請求回 500，不是靜默放行變成公開端點。詳見 implementation plan 任務 2.14。JWT 與多使用者帳號不在第一階段範圍，待教育對象開放時再評估 |
 | Deploy | Docker Compose | 既有專案偵測，frontend（Nginx，4200→80）/ backend（8080→5000）/ postgres（5432）/ redis（6379）四 service 已編排完成 |
 | 監控 | TODO | 尚未評估，憲法/notes 未提及 |
 

@@ -19,6 +19,7 @@ public static class ApiMessageCodes
     public const string ValidationError = "VALIDATION_ERROR"; // [ApiController] 自動 model-state 驗證失敗
     public const string NotFound = "NOT_FOUND";
     public const string InternalError = "INTERNAL_ERROR";
+    public const string Unauthorized = "UNAUTHORIZED"; // task 2.14：寫入端點缺少/錯誤的 X-API-Key
 
     // --- 具體錯誤（依端點逐步擴充，見各 controller 使用處） ---
     public const string YearRequired = "YEAR_REQUIRED";

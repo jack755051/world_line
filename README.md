@@ -127,8 +127,9 @@ npm --prefix app test -- --watch=false
 
 ## 安全與資料注意事項
 
-- `.env` 已被 gitignore；不要提交真實密碼或未來的 `API_WRITE_KEY`。
+- `.env` 已被 gitignore；不要提交真實密碼或 `API_WRITE_KEY`。
 - `POSTGRES_PASSWORD=change_me` 只是範例，啟動前應更換。
+- `API_WRITE_KEY`（task 2.14 已實作，寫入端點 `X-API-Key` middleware 用）同樣只是本機開發用的隨機字串，不是正式機密；`.env.example` 有 placeholder，複製成 `.env` 後請換成自己的值。
 - Docker Compose 目前使用 Development 環境並對 host 開放資料庫與 Redis port，不是 production hardening 設定。
 - 正式史料不得直接沿用 seed 的簡化年份或矩形疆域；請遵守 [歷史資料治理](docs/data-governance.md)。
 

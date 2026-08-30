@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
@@ -51,10 +52,42 @@ interface HistoricalEventDetail {
   sections: HistoricalEventSections | null;
 }
 
+/** `GET /api/v1/events/:id/perspectives` 回應的一列——見
+    `api/Contracts/EventPerspectiveResponse.cs`。`localName` 本身就是任務 3.13
+    分頁標籤要顯示的文字（例如「孫劉聯軍視角」「後世史學界考據」），不用另外拿
+    `regimeId`/`observerCategoryId` 去反查政權/類別名稱組字串。 */
+interface EventPerspectiveRow {
+  id: string;
+  localName: string;
+  narrativeSummary: string;
+  officialJustification: string | null;
+  /** 形狀見 `api/Contracts/CreateEventPerspectiveRequest.cs` 類別文件拍板的慣例：
+      陣列，每筆 `{title, author, year?}`。 */
+  primarySources: ReadonlyArray<{ title: string; author: string; year?: number }> | null;
+  /** 形狀同上文件：物件，鍵名依史料實際記載彈性增減，不強制固定清單。 */
+  claimedCasualties: Readonly<Record<string, string>> | null;
+}
+
+/** `GET /api/v1/events/:id/controversies` 回應的一列——見
+    `api/Contracts/EventControversyResponse.cs`。 */
+interface EventControversyRow {
+  id: string;
+  topic: string;
+  neutralDescription: string;
+  /** 形狀見 `api/Contracts/CreateEventControversyRequest.cs` 類別文件拍板的慣例：
+      陣列，每筆 `{stance, source}`。 */
+  viewpoints: ReadonlyArray<{ stance: string; source: string }> | null;
+}
+
 type DetailState =
   | { status: 'loading' }
   | { status: 'error' }
-  | { status: 'success'; event: HistoricalEventDetail };
+  | {
+      status: 'success';
+      event: HistoricalEventDetail;
+      perspectives: readonly EventPerspectiveRow[];
+      controversies: readonly EventControversyRow[];
+    };
 
 /** 同一個事件可能因為跟多個政權互動而在原始回應裡重複出現——這個面板現在呈現的是
     「這個政權的事件史」，不是「這個政權跟誰互動」，一個事件只顯示一次，取第一次出現
@@ -123,7 +156,22 @@ function dedupeAndSortEvents(rows: readonly EventInteractionRow[]): RegimeEventS
  * 面板連帶消失（使用者實機回報：點手風琴標題會直接關閉整個面板）。既有的政權名稱
  * 標籤點擊處理（`map.ts` 的 `renderLabels()`）本來就有這個問題的解法
  * （`e.stopPropagation()`），這裡在根元素統一擋一次，不用在面板裡每個按鈕各自加，
- * 之後新增互動元素也不用記得補這行。 */
+ * 之後新增互動元素也不用記得補這行。
+ *
+ * **2026-08-31：task 3.13 多重視角分頁（Perspective Tabs），notes §十／PRD §8**——
+ * 展開事件時，除了原本的 `GET /events/:id`，同時併發打 task 2.12/2.13 的
+ * `GET /events/:id/perspectives`／`GET /events/:id/controversies`（`forkJoin`，三個
+ * 都回來才進入 success 狀態，避免呈現「部分資料到位、部分還在轉」的中間態）。
+ * **分頁結構**：固定第一個分頁「客觀經過概要」（`activeTabId() === null`，PRD §12
+ * 這次拍板的預設分頁）顯示既有的 `sections`（背景起因/關鍵轉折/歷史影響）；其餘每個
+ * `EventPerspectiveRow` 各自一個分頁，標籤直接用 `localName`（種子資料本身就是給人看
+ * 的標籤，例如「孫劉聯軍視角」，不用另外反查 `regimeId`/`observerCategoryId` 組字串）。
+ * **沒有視角資料時完全不顯示分頁列**，直接顯示 `sections` 內容（跟原本任務 3.12 的
+ * 呈現方式一致）——PRD §12「事件無視角資料時的 empty state」這次拍板成「不特別做一個
+ * 空狀態文案，優雅退化成單一檢視」，不是每個事件都硬要生出一個分頁介面。
+ * **爭議點固定顯示在分頁列下方**，不是分頁的一部分（notes §十原文草圖：分頁列之下另
+ * 有一個 `> 關鍵爭議點` 區塊，跟哪個分頁被選中無關，並列呈現，不是切換式）；沒有爭議
+ * 點資料時這個區塊不渲染。 */
 @Component({
   selector: 'app-regime-event-panel',
   standalone: true,
@@ -153,14 +201,40 @@ export class RegimeEventPanelComponent {
 
   protected readonly expandedEventId = signal<string | null>(null);
   private readonly expandedDetail = signal<DetailState | null>(null);
-  /** 已經成功查過的事件詳情快取——見類別文件「記憶體內快取」說明。 */
-  private readonly detailCache = new Map<string, HistoricalEventDetail>();
+  /** 已經成功查過的事件詳情（含視角/爭議點）快取——見類別文件「記憶體內快取」說明。 */
+  private readonly detailCache = new Map<
+    string,
+    { event: HistoricalEventDetail; perspectives: readonly EventPerspectiveRow[]; controversies: readonly EventControversyRow[] }
+  >();
+
+  /** task 3.13：目前選中的分頁——`null` 代表「客觀經過概要」（固定第一個、預設分頁），
+      非 null 時是某筆 `EventPerspectiveRow.id`。每次展開新事件都重置回 `null`，見
+      `toggleEvent()`。 */
+  protected readonly activeTabId = signal<string | null>(null);
 
   protected readonly isExpandedLoading = computed(() => this.expandedDetail()?.status === 'loading');
   protected readonly isExpandedError = computed(() => this.expandedDetail()?.status === 'error');
   protected readonly expandedEventDetail = computed(() => {
     const state = this.expandedDetail();
     return state?.status === 'success' ? state.event : null;
+  });
+  protected readonly expandedPerspectives = computed(() => {
+    const state = this.expandedDetail();
+    return state?.status === 'success' ? state.perspectives : [];
+  });
+  protected readonly hasPerspectives = computed(() => this.expandedPerspectives().length > 0);
+  protected readonly expandedControversies = computed(() => {
+    const state = this.expandedDetail();
+    return state?.status === 'success' ? state.controversies : [];
+  });
+  /** `activeTabId()` 對應的視角列——`null`（客觀經過概要分頁）時回傳 `null`。 */
+  protected readonly activePerspective = computed(() => {
+    const id = this.activeTabId();
+    return id === null ? null : (this.expandedPerspectives().find((p) => p.id === id) ?? null);
+  });
+  protected readonly activeClaimedCasualtiesEntries = computed(() => {
+    const casualties = this.activePerspective()?.claimedCasualties;
+    return casualties ? Object.entries(casualties) : [];
   });
 
   constructor() {
@@ -180,6 +254,13 @@ export class RegimeEventPanelComponent {
     return Math.floor(startDecimal);
   }
 
+  /** 史料出處的顯示字串——`year` 選填（史料本身可能無法確定成書年份，見
+      `CreateEventPerspectiveRequest` 類別文件的 schema 說明），寫成方法而不是內嵌在
+      樣板裡的條件式，避免樣板裡的插值字串被 `@if` 切成好幾段、可讀性變差。 */
+  protected formatPrimarySource(source: { title: string; author: string; year?: number }): string {
+    return source.year ? `${source.title}（${source.author}，${source.year}）` : `${source.title}（${source.author}）`;
+  }
+
   /** 展開內容裡「跳到此年份」按鈕——使用者明確要求連動地圖時才觸發，不是展開的自動
       副作用（見類別文件說明）。 */
   protected jumpToEventYear(event: RegimeEventSummary): void {
@@ -187,31 +268,38 @@ export class RegimeEventPanelComponent {
   }
 
   /** 點擊手風琴標題——已展開的再點一次收合，否則展開、視需要（沒快取過）打 API 查
-      詳情。**不再連動時間拉桿**（見類別文件 2026-08-31 的說明），純粹是「展開/收合」
-      這一件事。 */
+      詳情+視角+爭議點。**不再連動時間拉桿**（見類別文件 2026-08-31 的說明），純粹是
+      「展開/收合」這一件事。 */
   protected toggleEvent(event: RegimeEventSummary): void {
     if (this.expandedEventId() === event.id) {
       this.expandedEventId.set(null);
       this.expandedDetail.set(null);
+      this.activeTabId.set(null);
       return;
     }
 
     this.expandedEventId.set(event.id);
+    this.activeTabId.set(null); // 每次展開新事件都回到「客觀經過概要」分頁
 
     const cached = this.detailCache.get(event.id);
     if (cached) {
-      this.expandedDetail.set({ status: 'success', event: cached });
+      this.expandedDetail.set({ status: 'success', ...cached });
       return;
     }
 
     this.expandedDetail.set({ status: 'loading' });
-    this.http.get<ApiEnvelope<HistoricalEventDetail>>(`/api/v1/events/${event.id}`).subscribe({
-      next: (response) => {
-        this.detailCache.set(event.id, response.data);
+    forkJoin({
+      event: this.http.get<ApiEnvelope<HistoricalEventDetail>>(`/api/v1/events/${event.id}`),
+      perspectives: this.http.get<ApiEnvelope<EventPerspectiveRow[]>>(`/api/v1/events/${event.id}/perspectives`),
+      controversies: this.http.get<ApiEnvelope<EventControversyRow[]>>(`/api/v1/events/${event.id}/controversies`),
+    }).subscribe({
+      next: ({ event: eventResp, perspectives, controversies }) => {
+        const payload = { event: eventResp.data, perspectives: perspectives.data, controversies: controversies.data };
+        this.detailCache.set(event.id, payload);
         // 使用者可能在請求還沒回來前就收合、或展開了別的事件——只套用還對得上目前
         // 展開目標的回應，避免過期請求蓋掉使用者已經在看的內容。
         if (this.expandedEventId() === event.id) {
-          this.expandedDetail.set({ status: 'success', event: response.data });
+          this.expandedDetail.set({ status: 'success', ...payload });
         }
       },
       error: (err: unknown) => {

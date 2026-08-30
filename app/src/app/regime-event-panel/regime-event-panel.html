@@ -36,31 +36,113 @@
                     }
                   </p>
 
-                  @if (detail.sections; as sections) {
-                    @if (sections.background) {
+                  <!-- task 3.13：只有查到視角資料才顯示分頁列，否則直接顯示客觀骨幹
+                       （見元件類別文件「沒有視角資料時完全不顯示分頁列」的說明）。 -->
+                  @if (hasPerspectives()) {
+                    <div class="regime-event-panel-tabs" role="tablist">
+                      <button
+                        type="button"
+                        role="tab"
+                        class="regime-event-panel-tab"
+                        [class.regime-event-panel-tab-active]="activeTabId() === null"
+                        (click)="activeTabId.set(null)"
+                      >
+                        客觀經過概要
+                      </button>
+                      @for (perspective of expandedPerspectives(); track perspective.id) {
+                        <button
+                          type="button"
+                          role="tab"
+                          class="regime-event-panel-tab"
+                          [class.regime-event-panel-tab-active]="activeTabId() === perspective.id"
+                          (click)="activeTabId.set(perspective.id)"
+                        >
+                          {{ perspective.localName }}
+                        </button>
+                      }
+                    </div>
+                  }
+
+                  @if (!hasPerspectives() || activeTabId() === null) {
+                    <!-- 客觀經過概要（或沒有視角資料時的唯一內容）：既有的 sections 呈現。 -->
+                    @if (detail.sections; as sections) {
+                      @if (sections.background) {
+                        <p class="regime-event-panel-section">
+                          <strong>背景起因</strong>
+                          <span>{{ sections.background }}</span>
+                        </p>
+                      }
+                      @if (sections.turning_points?.length) {
+                        <div class="regime-event-panel-section">
+                          <strong>關鍵轉折時間點</strong>
+                          <ul class="regime-event-panel-turning-points">
+                            @for (point of sections.turning_points; track point) {
+                              <li>{{ point }}</li>
+                            }
+                          </ul>
+                        </div>
+                      }
+                      @if (sections.impact) {
+                        <p class="regime-event-panel-section">
+                          <strong>歷史影響</strong>
+                          <span>{{ sections.impact }}</span>
+                        </p>
+                      }
+                    } @else {
+                      <p class="regime-event-panel-empty">這個事件目前只有基本記錄，還沒有詳細內容</p>
+                    }
+                  } @else if (activePerspective(); as perspective) {
+                    <!-- task 3.13：某一方的主觀敘事分頁。 -->
+                    <p class="regime-event-panel-section">
+                      <span>{{ perspective.narrativeSummary }}</span>
+                    </p>
+                    @if (perspective.officialJustification) {
                       <p class="regime-event-panel-section">
-                        <strong>背景起因</strong>
-                        <span>{{ sections.background }}</span>
+                        <strong>官方說法</strong>
+                        <span>{{ perspective.officialJustification }}</span>
                       </p>
                     }
-                    @if (sections.turning_points?.length) {
+                    @if (activeClaimedCasualtiesEntries().length > 0) {
                       <div class="regime-event-panel-section">
-                        <strong>關鍵轉折時間點</strong>
+                        <strong>宣稱的傷亡</strong>
                         <ul class="regime-event-panel-turning-points">
-                          @for (point of sections.turning_points; track point) {
-                            <li>{{ point }}</li>
+                          @for (entry of activeClaimedCasualtiesEntries(); track entry[0]) {
+                            <li>{{ entry[0] }}：{{ entry[1] }}</li>
                           }
                         </ul>
                       </div>
                     }
-                    @if (sections.impact) {
-                      <p class="regime-event-panel-section">
-                        <strong>歷史影響</strong>
-                        <span>{{ sections.impact }}</span>
-                      </p>
+                    @if (perspective.primarySources?.length) {
+                      <div class="regime-event-panel-section">
+                        <strong>史料出處</strong>
+                        <ul class="regime-event-panel-turning-points">
+                          @for (source of perspective.primarySources; track source.title) {
+                            <li>{{ formatPrimarySource(source) }}</li>
+                          }
+                        </ul>
+                      </div>
                     }
-                  } @else {
-                    <p class="regime-event-panel-empty">這個事件目前只有基本記錄，還沒有詳細內容</p>
+                  }
+
+                  <!-- notes §十原文草圖：爭議點固定顯示在分頁列下方，不隨分頁切換，見
+                       元件類別文件說明。 -->
+                  @if (expandedControversies().length > 0) {
+                    <div class="regime-event-panel-controversies">
+                      <strong class="regime-event-panel-controversies-title">關鍵爭議點</strong>
+                      @for (controversy of expandedControversies(); track controversy.id) {
+                        <div class="regime-event-panel-section">
+                          <strong>{{ controversy.topic }}</strong>
+                          <span>{{ controversy.neutralDescription }}</span>
+                          @if (controversy.viewpoints?.length) {
+                            <ul class="regime-event-panel-turning-points">
+                              @for (viewpoint of controversy.viewpoints; track viewpoint.stance) {
+                                <li>{{ viewpoint.stance }}（{{ viewpoint.source }}）</li>
+                              }
+                            </ul>
+                          }
+                        </div>
+                      }
+                    </div>
                   }
                 }
               </div>

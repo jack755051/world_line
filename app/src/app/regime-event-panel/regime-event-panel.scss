@@ -158,3 +158,55 @@
   margin: 0;
   padding-left: var(--wl-space-4);
 }
+
+// task 3.13：多重視角分頁列——刻意用底線標示選中狀態（不是實心背景色塊），跟毛玻璃
+// 深色底維持一致的輕量視覺語言，不搶過事件內容本身的注意力。
+.regime-event-panel-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wl-space-1);
+  margin: 0 0 var(--wl-space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.regime-event-panel-tab {
+  padding: var(--wl-space-1) var(--wl-space-2);
+  margin-bottom: -1px; // 讓選中狀態的底線疊在父層 border-bottom 上，不是額外多一條線
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font: inherit;
+  font-size: var(--wl-font-size-xs);
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
+}
+
+.regime-event-panel-tab-active {
+  border-bottom-color: rgba(255, 255, 255, 0.85);
+  color: #fff;
+  font-weight: var(--wl-font-weight-medium);
+}
+
+// task 3.13：爭議點固定顯示在分頁列下方，不隨分頁切換（notes §十原文草圖），用一條
+// 上邊界跟分頁內容區隔開，視覺上明確是「並列的獨立區塊」而不是某個分頁的延伸內容。
+.regime-event-panel-controversies {
+  margin-top: var(--wl-space-3);
+  padding-top: var(--wl-space-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.regime-event-panel-controversies-title {
+  display: block;
+  margin: 0 0 var(--wl-space-2);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: var(--wl-font-weight-medium);
+}

@@ -56,6 +56,26 @@ describe('RegimeEventPanelComponent', () => {
       .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data });
   }
 
+  // task 3.13 起，展開一筆事件會用 forkJoin 併發打三個請求（GET /events/:id +
+  // .../perspectives + .../controversies，見 toggleEvent() 說明），這個 helper 一次
+  // flush 三筆，預設視角/爭議點都是空陣列（大多數測試不關心這兩塊）。
+  function flushEventDetail(
+    eventId: string,
+    eventData: unknown,
+    perspectives: unknown[] = [],
+    controversies: unknown[] = [],
+  ): void {
+    httpMock
+      .expectOne((r) => r.url === `/api/v1/events/${eventId}`)
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: eventData });
+    httpMock
+      .expectOne((r) => r.url === `/api/v1/events/${eventId}/perspectives`)
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: perspectives });
+    httpMock
+      .expectOne((r) => r.url === `/api/v1/events/${eventId}/controversies`)
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: controversies });
+  }
+
   it('沒有聚焦任何政權時，不渲染任何內容', () => {
     const fixture = TestBed.createComponent(RegimeEventPanelComponent);
     fixture.detectChanges();
@@ -148,10 +168,7 @@ describe('RegimeEventPanelComponent', () => {
     expect(timeline.year()).toBe(TimelineState.DEFAULT_YEAR);
     expect(fixture.nativeElement.querySelector('.regime-event-panel-status')?.textContent).toContain('載入中');
 
-    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
-      statusCode: 200,
-      message: 'FETCH_SUCCESS',
-      data: {
+    flushEventDetail('event-a', {
         id: 'event-a',
         name: '赤壁之戰',
         startEdtf: '0208',
@@ -161,8 +178,7 @@ describe('RegimeEventPanelComponent', () => {
           turning_points: ['黃蓋詐降'],
           impact: '奠定三國鼎立',
         },
-      },
-    });
+      });
     fixture.detectChanges();
 
     const detailText = fixture.nativeElement.querySelector('.regime-event-panel-detail').textContent as string;
@@ -186,11 +202,7 @@ describe('RegimeEventPanelComponent', () => {
 
     fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
     fixture.detectChanges();
-    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
-      statusCode: 200,
-      message: 'FETCH_SUCCESS',
-      data: { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null },
-    });
+    flushEventDetail('event-a', { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null });
     fixture.detectChanges();
 
     const timeline = TestBed.inject(TimelineState);
@@ -214,11 +226,7 @@ describe('RegimeEventPanelComponent', () => {
 
     fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
     fixture.detectChanges();
-    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
-      statusCode: 200,
-      message: 'FETCH_SUCCESS',
-      data: { id: 'event-a', name: '漢禪魏', startEdtf: '0220', endEdtf: '0220', sections: null },
-    });
+    flushEventDetail('event-a', { id: 'event-a', name: '漢禪魏', startEdtf: '0220', endEdtf: '0220', sections: null });
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.regime-event-panel-empty')?.textContent).toContain('還沒有詳細內容');
@@ -237,11 +245,7 @@ describe('RegimeEventPanelComponent', () => {
     const trigger: HTMLButtonElement = fixture.nativeElement.querySelector('.regime-event-panel-trigger');
     trigger.click();
     fixture.detectChanges();
-    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
-      statusCode: 200,
-      message: 'FETCH_SUCCESS',
-      data: { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null },
-    });
+    flushEventDetail('event-a', { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null });
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.regime-event-panel-detail')).not.toBeNull();
 
@@ -264,11 +268,7 @@ describe('RegimeEventPanelComponent', () => {
     const trigger: HTMLButtonElement = fixture.nativeElement.querySelector('.regime-event-panel-trigger');
     trigger.click();
     fixture.detectChanges();
-    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
-      statusCode: 200,
-      message: 'FETCH_SUCCESS',
-      data: { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null },
-    });
+    flushEventDetail('event-a', { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null });
     fixture.detectChanges();
 
     trigger.click(); // 收合
@@ -290,11 +290,7 @@ describe('RegimeEventPanelComponent', () => {
     fixture.detectChanges();
     fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
     fixture.detectChanges();
-    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
-      statusCode: 200,
-      message: 'FETCH_SUCCESS',
-      data: { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null },
-    });
+    flushEventDetail('event-a', { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null });
     fixture.detectChanges();
 
     focusAndFlushTerritories('r-wei'); // toggle 到新政權——r-wu 已聚焦，toggle('r-wei') 直接切換不用先取消
@@ -307,6 +303,130 @@ describe('RegimeEventPanelComponent', () => {
       statusCode: 200,
       message: 'FETCH_SUCCESS',
       data: [],
+    });
+  });
+
+  describe('task 3.13：多重視角分頁', () => {
+    function expandChibi(fixture: ReturnType<typeof TestBed.createComponent<RegimeEventPanelComponent>>): void {
+      focusAndFlushTerritories('r-wu');
+      fixture.detectChanges();
+      flushEvents('r-wu', [
+        { eventId: 'event-a', eventName: '赤壁之戰', otherRegimeId: 'r-y', startEdtf: '0208', endEdtf: '0208', startDecimal: 208 },
+      ]);
+      fixture.detectChanges();
+      fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
+      fixture.detectChanges();
+    }
+
+    it('沒有視角資料時，不顯示分頁列，直接顯示客觀骨幹', () => {
+      const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+      expandChibi(fixture);
+      flushEventDetail('event-a', {
+        id: 'event-a',
+        name: '赤壁之戰',
+        startEdtf: '0208',
+        endEdtf: '0208',
+        sections: { background: '曹操南下', turning_points: [], impact: '三國鼎立' },
+      }); // perspectives/controversies 預設空陣列
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.regime-event-panel-tabs')).toBeNull();
+      expect(fixture.nativeElement.querySelector('.regime-event-panel-detail').textContent).toContain('曹操南下');
+    });
+
+    it('有視角資料時顯示分頁列，預設在「客觀經過概要」，切換分頁顯示該視角內容', () => {
+      const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+      expandChibi(fixture);
+      flushEventDetail(
+        'event-a',
+        {
+          id: 'event-a',
+          name: '赤壁之戰',
+          startEdtf: '0208',
+          endEdtf: '0208',
+          sections: { background: '曹操南下', turning_points: [], impact: '三國鼎立' },
+        },
+        [
+          {
+            id: 'p-1',
+            regimeId: null,
+            observerCategoryId: 1,
+            localName: '後世史學界考據',
+            narrativeSummary: '對兵力與戰術的史料考證整理',
+            officialJustification: null,
+            primarySources: [{ title: '三國志', author: '陳壽', year: 280 }],
+            claimedCasualties: { own_loss: '不詳', enemy_loss: '過半' },
+          },
+        ],
+      );
+      fixture.detectChanges();
+
+      const tabLabels = [...fixture.nativeElement.querySelectorAll('.regime-event-panel-tab')].map((el: Element) =>
+        el.textContent?.trim(),
+      );
+      expect(tabLabels).toEqual(['客觀經過概要', '後世史學界考據']);
+      // 預設分頁是客觀經過概要，顯示既有的 sections 內容。
+      expect(fixture.nativeElement.querySelector('.regime-event-panel-detail').textContent).toContain('曹操南下');
+
+      const perspectiveTab: HTMLButtonElement = [
+        ...fixture.nativeElement.querySelectorAll('.regime-event-panel-tab'),
+      ].find((el: Element) => el.textContent?.includes('後世史學界考據'))!;
+      perspectiveTab.click();
+      fixture.detectChanges();
+
+      const detailText = fixture.nativeElement.querySelector('.regime-event-panel-detail').textContent as string;
+      expect(detailText).toContain('對兵力與戰術的史料考證整理');
+      expect(detailText).toContain('史料出處');
+      expect(detailText).toContain('三國志（陳壽，280）');
+      expect(detailText).toContain('宣稱的傷亡');
+      expect(detailText).toContain('own_loss：不詳');
+      expect(detailText).not.toContain('曹操南下'); // 切到視角分頁後，客觀骨幹內容不該還留著
+    });
+
+    it('有爭議點資料時，固定顯示在分頁列下方，不隨分頁切換消失', () => {
+      const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+      expandChibi(fixture);
+      flushEventDetail(
+        'event-a',
+        { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null },
+        [
+          {
+            id: 'p-1',
+            regimeId: null,
+            observerCategoryId: 1,
+            localName: '後世史學界考據',
+            narrativeSummary: '考證整理',
+            officialJustification: null,
+            primarySources: null,
+            claimedCasualties: null,
+          },
+        ],
+        [
+          {
+            id: 'c-1',
+            topic: '曹操南征兵力數字爭議',
+            neutralDescription: '確切數字至今無定論',
+            viewpoints: [{ stance: '曹操自稱八十萬眾', source: '曹操檄文' }],
+          },
+        ],
+      );
+      fixture.detectChanges();
+
+      let detailText = fixture.nativeElement.querySelector('.regime-event-panel-detail').textContent as string;
+      expect(detailText).toContain('關鍵爭議點');
+      expect(detailText).toContain('曹操南征兵力數字爭議');
+      expect(detailText).toContain('曹操自稱八十萬眾（曹操檄文）');
+
+      // 切到視角分頁，爭議點區塊應該還在（不是分頁的一部分）。
+      const perspectiveTab: HTMLButtonElement = [
+        ...fixture.nativeElement.querySelectorAll('.regime-event-panel-tab'),
+      ].find((el: Element) => el.textContent?.includes('後世史學界考據'))!;
+      perspectiveTab.click();
+      fixture.detectChanges();
+
+      detailText = fixture.nativeElement.querySelector('.regime-event-panel-detail').textContent as string;
+      expect(detailText).toContain('關鍵爭議點');
+      expect(detailText).toContain('曹操南征兵力數字爭議');
     });
   });
 });

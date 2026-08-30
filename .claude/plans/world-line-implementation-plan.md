@@ -981,7 +981,30 @@ related_constitution: .claude/constitutions/world-line.md
 > 事件不會冒泡出面板根元素」，鎖住這次的修正，但不是端對端驗證整條「點擊→冒泡→地圖
 > 誤判」的鏈路。已用 `ng build`（clean）、`ng test`（219/219）、`docker compose up -d
 > --build frontend` 重新部署。
-| [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
+| [x] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
+
+> **2026-08-31 完成**：接在 task 2.12/2.13 後端端點做出來之後，同一次對話繼續完成
+> 前端。展開事件時（`RegimeEventPanelComponent.toggleEvent()`）改用 `forkJoin` 併發
+> 打三個請求——`GET /events/:id`（既有）＋新的 `GET /events/:id/perspectives`／
+> `GET /events/:id/controversies`，三個都回來才進入 success 狀態，避免「部分資料到位
+> 部分還在轉」的中間態。
+>
+> **分頁結構**：固定第一個分頁「客觀經過概要」（`activeTabId() === null`，PRD §12
+> 這次拍板的預設分頁規則）顯示既有的 `sections`；其餘每個視角各一個分頁，標籤直接用
+> `localName`（種子資料本身就是給人看的標籤，例如「孫劉聯軍視角」，不用反查
+> `regimeId`/`observerCategoryId` 組字串）。**沒有視角資料時完全不顯示分頁列**，直接
+> 顯示 `sections`（PRD §12「事件無視角資料時的 empty state」這次拍板：優雅退化成
+> 單一檢視，不特別做空狀態文案）。**爭議點固定顯示在分頁列下方，不隨分頁切換**（notes
+> §十原文草圖：分頁列之下另有一個「關鍵爭議點」區塊，跟哪個分頁被選中無關，並列呈現）。
+>
+> 已用 `ng build`（clean）、`ng test`（222/222，`regime-event-panel.spec.ts` 新增
+> 3 條【沒有視角資料不顯示分頁列／有視角資料顯示分頁+切換分頁顯示對應內容／爭議點固定
+> 顯示不隨分頁切換消失】，既有測試改用新的 `flushEventDetail()` helper 一次 flush
+> 三個請求）、`docker compose up -d --build backend frontend` 重新部署，瀏覽器主控台
+> 確認無錯誤。**同樣受限於這次對話環境的 WebGL 問題**（分頁背景分頁 `requestAnimation
+> Frame` 不跑，見 task 3.12 記錄），沒有做到瀏覽器裡「展開事件→切分頁→看爭議點」完整
+> 視覺流程的驗證，邏輯正確性靠單元測試涵蓋，建議使用者實機找一個有視角資料的事件（例如
+> 赤壁之戰、怛羅斯之戰）走一次確認呈現效果。
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |
 | [ ] | 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |

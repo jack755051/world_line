@@ -1,16 +1,18 @@
-// 刻意不是 display: contents——見 regime-event-panel.ts 類別文件說明，這個元件的
-// host 本身就是 MapLibre Marker 要定位的那個 box。
+// 刻意不是 display: contents——MapLibre Marker 靠對這個元件的 host 元素本身套用
+// position/transform 樣式來定位，host 本身就是要被定位的那個 box。
 :host {
   display: block;
-  width: 260px;
+  width: 280px;
   max-width: 70vw;
 }
 
 .regime-event-panel {
   padding: var(--wl-space-3);
+  max-height: 60vh;
+  overflow-y: auto;
 
-  // 跟 event-drawer.scss 同一套毛玻璃規格（notes §八原文），刻意寫死深色，不套用
-  // --wl-* 淺色主題 token，理由同 event-drawer.scss 開頭說明。
+  // 跟原本 event-drawer.scss 同一套毛玻璃規格（notes §八原文），刻意寫死深色，不套用
+  // --wl-* 淺色主題 token，理由同該檔案開頭說明。
   backdrop-filter: blur(16px);
   background: rgba(20, 20, 25, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -23,8 +25,8 @@
 .regime-event-panel-title {
   margin: 0 0 var(--wl-space-2);
   font-size: var(--wl-font-size-sm);
-  font-weight: var(--wl-font-weight-medium);
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: var(--wl-font-weight-bold);
+  color: rgba(255, 255, 255, 0.96);
 }
 
 .regime-event-panel-list {
@@ -33,19 +35,29 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--wl-space-2);
+  gap: var(--wl-space-1);
+}
+
+.regime-event-panel-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:first-child {
+    border-top: none;
+  }
 }
 
 .regime-event-panel-trigger {
-  padding: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--wl-space-2);
+  width: 100%;
+  padding: var(--wl-space-2) 0;
   border: none;
   background: transparent;
   font: inherit;
   color: inherit;
   text-align: left;
   cursor: pointer;
-  text-decoration: underline dotted;
-  text-underline-offset: 2px;
 
   &:hover {
     color: #fff;
@@ -57,14 +69,61 @@
   }
 }
 
+.regime-event-panel-year {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.regime-event-panel-name {
+  flex: 1 1 auto;
+  font-size: var(--wl-font-size-sm);
+}
+
+.regime-event-panel-chevron {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.regime-event-panel-detail {
+  padding: 0 0 var(--wl-space-2);
+}
+
 .regime-event-panel-date {
-  display: block;
-  margin-top: 2px;
+  margin: 0 0 var(--wl-space-2);
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.regime-event-panel-status {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.regime-event-panel-status-error {
+  color: var(--wl-status-critical);
+}
+
+.regime-event-panel-empty {
+  margin: 0;
   color: rgba(255, 255, 255, 0.6);
 }
 
-.regime-event-panel-description {
-  display: block;
-  margin-top: 2px;
-  color: rgba(255, 255, 255, 0.6);
+.regime-event-panel-section {
+  margin: 0 0 var(--wl-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+
+  strong {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: var(--wl-font-weight-medium);
+  }
+}
+
+.regime-event-panel-turning-points {
+  margin: 0;
+  padding-left: var(--wl-space-4);
 }

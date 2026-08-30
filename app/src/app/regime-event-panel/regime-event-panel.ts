@@ -1,36 +1,116 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { HttpClient } from '@angular/common/http';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
-import { EventDrawerState } from '../core/event/event-drawer-state';
+import { TimelineState } from '../core/time/timeline-state';
 import { EdtfDateComponent } from '../edtf-date/edtf-date';
 
+/** `ApiResponse<T>` 的最小形狀，同專案內其他直接打 API 的元件（`map.ts`/
+    `time-scrubber.ts`/原本的 `event-drawer.ts`）的 `ApiEnvelope<T>`。 */
+interface ApiEnvelope<T> {
+  data: T;
+}
+
+/** `GET /api/v1/regimes/:id/events`（不帶 `year`）回應的一列——見
+    `api/Contracts/RegimeEventInteractionResponse.cs`。同一個事件可能因為跟多個
+    政權都有互動而在清單裡出現多次（`otherRegimeId` 不同），這裡只取得到
+    `dedupeAndSortEvents()` 需要的欄位。 */
+interface EventInteractionRow {
+  eventId: string;
+  eventName: string;
+  startEdtf: string;
+  endEdtf: string;
+  startDecimal: number;
+}
+
+/** 這個元件實際要顯示的清單項目形狀——已經去重（同一個事件只出現一次，不分是跟哪個
+    政權互動）、依 `startDecimal` 排序過。 */
+interface RegimeEventSummary {
+  id: string;
+  name: string;
+  startEdtf: string;
+  endEdtf: string;
+  startDecimal: number;
+}
+
+/** `historical_events.sections` 的實際內容形狀——**注意是 snake_case**，見原本
+    `event-drawer.ts` 的說明：後端原封不動轉傳資料庫 jsonb 內容，不經過 ASP.NET
+    屬性序列化器改鍵名。 */
+interface HistoricalEventSections {
+  background?: string;
+  turning_points?: string[];
+  impact?: string;
+}
+
+interface HistoricalEventDetail {
+  id: string;
+  name: string;
+  startEdtf: string;
+  endEdtf: string;
+  sections: HistoricalEventSections | null;
+}
+
+type DetailState =
+  | { status: 'loading' }
+  | { status: 'error' }
+  | { status: 'success'; event: HistoricalEventDetail };
+
+/** 同一個事件可能因為跟多個政權互動而在原始回應裡重複出現——這個面板現在呈現的是
+    「這個政權的事件史」，不是「這個政權跟誰互動」，一個事件只顯示一次，取第一次出現
+    的那筆（`eventName`/`startEdtf`/`endEdtf`/`startDecimal` 對同一個 `eventId` 應該
+    都一致，不會因為對到不同的 `otherRegimeId` 而有落差）。依 `startDecimal` 由舊到
+    新排序，符合「依發生時間順序排列」的需求。 */
+function dedupeAndSortEvents(rows: readonly EventInteractionRow[]): RegimeEventSummary[] {
+  const byId = new Map<string, RegimeEventSummary>();
+  for (const row of rows) {
+    if (!byId.has(row.eventId)) {
+      byId.set(row.eventId, {
+        id: row.eventId,
+        name: row.eventName,
+        startEdtf: row.startEdtf,
+        endEdtf: row.endEdtf,
+        startDecimal: row.startDecimal,
+      });
+    }
+  }
+  return [...byId.values()].sort((a, b) => a.startDecimal - b.startDecimal);
+}
+
 /**
- * 政權互動記錄的地圖疊加面板（2026-08-31，使用者提案：把 AC#3 互動清單從
- * `RegimeFocusPanelComponent`（固定在左上角）搬出來，改成疊在聚焦政權的疆域正上方的
- * 獨立毛玻璃卡片，跟 task 3.12 事件詳情抽屜同一套視覺語言）。
+ * 政權事件記錄的地圖疊加面板（2026-08-31，使用者提案，見類別文件歷史：先是「把互動
+ * 清單搬到地圖 overlay」，使用者實機測試後進一步提出這個更完整的規格）——`MapComponent`
+ * 用 `ViewContainerRef.createComponent()` 動態建立、掛 MapLibre `Marker` 疊在聚焦
+ * 政權疆域上方，見 `map.ts` 的 `updateEventPanelMarker()`。
  *
- * **這個元件本身不是用一般的 `<app-...>` 標籤掛在 `app.html` 裡**——它是被
- * `MapComponent` 用 `ViewContainerRef.createComponent()` 動態建立，把渲染出來的
- * DOM 元素交給 MapLibre 的 `Marker` 掛在地圖上、跟著政權疆域的地理座標定位（見
- * map.ts 的 `updateEventPanelMarker()`）。這是這個專案第一次把 Angular 元件（而不是
- * 純 DOM 元素，見 `renderLabels()` 的政權名稱標籤）當 Marker 內容用——因為政權名稱
- * 標籤只需要靜態文字，這裡需要完整的 Angular 響應式綁定（清單會隨互動資料/命名視角
- * 變動）跟事件處理（點擊開抽屜），純手刻 DOM 沒辦法重用既有的 computed/樣板語法。
+ * **抬頭 + 手風琴列表結構**：抬頭顯示政權名稱（不是固定文字「互動記錄」）；內容是這個
+ * 政權的事件手風琴——每筆事件的標題是「{{年度}}年 {{事件名稱}}」，點標題展開/收合，
+ * 展開時**直接在原地顯示事件詳情**（背景起因/關鍵轉折時間點/歷史影響），不是另外跳出
+ * 一個獨立的抽屜——這取代了原本 task 3.12 的 `EventDrawerComponent`（已移除，見該次
+ * commit 的說明），避免同一件事「顯示事件詳情」有兩條互相獨立的 UI 路徑。
  *
- * **`:host` 刻意不是 `display: contents`**（跟這個專案其他固定角落面板不同）：
- * MapLibre `Marker` 靠對它拿到的 DOM 元素本身套用 `position`/`transform` 樣式來定位，
- * `display: contents` 的元素不產生自己的 box，套用 transform 不會有效果——這個元件的
- * host 元素就是真正要被地圖定位的那個 box，樣式直接寫在它自己身上，不像其他面板把
- * 排版交給父層容器。
+ * **不拘泥於目前拉桿年份**：改打 `GET /api/v1/regimes/:id/events`（不帶 `year`，
+ * task 3.12 後續調整讓這個參數變選填），拿到這個政權「全部已知事件」，依 `startDecimal`
+ * 由舊到新排序，預設只顯示前 5 筆（`MAX_DISPLAYED_EVENTS`，這個規模的資料量下先簡單
+ * 用固定上限，沒有「顯示更多」的分頁 UI——真的有需要（未來事件資料量大到 5 筆不夠用）
+ * 再回頭加）。**只在聚焦政權改變時查一次，不會跟著拉桿換年份重新查**——這是跟先前
+ * `RegimeFocusState` 版本最大的行為差異：既然清單本身不受年份限制，年份改變自然不需要
+ * 觸發重新查詢，也因此不再需要 `RegimeFocusState` 那套「聚焦目標 × 年份」的 debounce
+ * 訂閱跟競態 token（見 `regime-focus-state.ts` 的說明，這段邏輯已經整個移除）。
  *
- * **邏輯搬自 `RegimeFocusPanelComponent`（task 3.7 AC#3），資料來源不變**：
- * `eventInteractionItems`/`relationInteractionItems` 一樣只保留跟目前「同時期周邊
- * 政權」有交集的互動，離散事件一樣可點擊開 `EventDrawerState`，持續性關係一樣維持
- * 純文字（理由見 `EventDrawerComponent` 類別文件）。**沒有互動記錄時整個面板不渲染
- * 任何內容**（跟原本在側欄面板裡顯示「這個年份沒有查到...」空狀態文案不同）——這個
- * 面板疊在地圖上，多數年份沒有互動記錄時若還顯示一張空卡片，會變成每次點擊政權都冒出
- * 一個沒有內容的浮動卡片，比不顯示更干擾；空狀態的說明文字留在 `RegimeFocusPanel`
- * 的側欄裡就夠了。
+ * **點擊展開事件時，時間拉桿同步跳到那個事件的年份**（`Math.floor(startDecimal)`）——
+ * 使用者原文「打開206年的事件，外部時間也要跳到206」；收合事件不會把時間拉桿跳回去，
+ * 維持使用者最後一次操作的狀態，不做自動復原。
+ *
+ * **事件詳情用 `Map` 做記憶體內快取，不是响應式 signal**：同一時間只會有一個事件展開
+ * （手風琴互斥），只有「目前展開的那一個」需要響應式呈現，用一個 `expandedDetail`
+ * signal 就夠；快取本身是給「使用者收合又重新展開同一筆」這種情境用，避免重複打 API，
+ * 不需要讓快取本身也是響應式的。
+ *
+ * **持續性關係（`regime_relations`，例如「同盟」）這次改版刻意整個拿掉，不再顯示**
+ * （使用者確認）——關係沒有單一「年度」（是一段存續區間），套不進「年度+事件名稱」這種
+ * 手風琴標題格式，跟這次「事件史」的呈現邏輯不是同一種資料形狀，混在一起會讓手風琴標題
+ * 格式不一致。
  */
 @Component({
   selector: 'app-regime-event-panel',
@@ -40,42 +120,101 @@ import { EdtfDateComponent } from '../edtf-date/edtf-date';
   styleUrl: './regime-event-panel.scss',
 })
 export class RegimeEventPanelComponent {
+  private static readonly MAX_DISPLAYED_EVENTS = 5;
+
   private readonly focusState = inject(RegimeFocusState);
   private readonly directory = inject(RegimeDirectoryService);
-  private readonly eventDrawer = inject(EventDrawerState);
+  private readonly timeline = inject(TimelineState);
+  private readonly http = inject(HttpClient);
 
-  /** 離散事件互動——只保留跟目前周邊政權有交集的，見類別文件說明。 */
-  protected readonly eventInteractionItems = computed(() => {
-    const neighborIds = new Set(this.focusState.neighborRegimeIds());
-    return this.focusState
-      .eventInteractions()
-      .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
-      .map((interaction) => ({
-        key: `${interaction.eventId}-${interaction.otherRegimeId}`,
-        eventId: interaction.eventId,
-        label: interaction.eventName,
-        otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
-        startEdtf: interaction.startEdtf,
-        endEdtf: interaction.endEdtf,
-      }));
+  protected readonly focusedRegimeId = this.focusState.focusedRegimeId;
+
+  protected readonly focusedRegimeName = computed(() => {
+    const id = this.focusedRegimeId();
+    return id ? (this.directory.nameOf(id) ?? id) : null;
   });
 
-  /** 持續性關係互動——同樣只保留跟目前周邊政權有交集的。 */
-  protected readonly relationInteractionItems = computed(() => {
-    const neighborIds = new Set(this.focusState.neighborRegimeIds());
-    return this.focusState
-      .relationInteractions()
-      .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
-      .map((interaction) => ({
-        key: interaction.id,
-        label: interaction.relationType,
-        otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
-        description: interaction.description,
-      }));
+  private readonly allEvents = signal<readonly RegimeEventSummary[]>([]);
+  protected readonly displayedEvents = computed(() =>
+    this.allEvents().slice(0, RegimeEventPanelComponent.MAX_DISPLAYED_EVENTS),
+  );
+
+  protected readonly expandedEventId = signal<string | null>(null);
+  private readonly expandedDetail = signal<DetailState | null>(null);
+  /** 已經成功查過的事件詳情快取——見類別文件「記憶體內快取」說明。 */
+  private readonly detailCache = new Map<string, HistoricalEventDetail>();
+
+  protected readonly isExpandedLoading = computed(() => this.expandedDetail()?.status === 'loading');
+  protected readonly isExpandedError = computed(() => this.expandedDetail()?.status === 'error');
+  protected readonly expandedEventDetail = computed(() => {
+    const state = this.expandedDetail();
+    return state?.status === 'success' ? state.event : null;
   });
 
-  /** task 3.12：點擊互動清單裡的事件，打開事件詳情抽屜。 */
-  protected openEvent(eventId: string): void {
-    this.eventDrawer.open(eventId);
+  constructor() {
+    toObservable(this.focusedRegimeId).subscribe((id) => {
+      this.expandedEventId.set(null);
+      this.expandedDetail.set(null);
+      this.detailCache.clear();
+      if (!id) {
+        this.allEvents.set([]);
+        return;
+      }
+      this.loadEvents(id);
+    });
+  }
+
+  protected yearLabel(startDecimal: number): number {
+    return Math.floor(startDecimal);
+  }
+
+  /** 點擊手風琴標題——已展開的再點一次收合，否則展開並跳時間拉桿到這個事件的年份、
+      視需要（沒快取過）打 API 查詳情。 */
+  protected toggleEvent(event: RegimeEventSummary): void {
+    if (this.expandedEventId() === event.id) {
+      this.expandedEventId.set(null);
+      this.expandedDetail.set(null);
+      return;
+    }
+
+    this.expandedEventId.set(event.id);
+    this.timeline.year.set(this.yearLabel(event.startDecimal));
+
+    const cached = this.detailCache.get(event.id);
+    if (cached) {
+      this.expandedDetail.set({ status: 'success', event: cached });
+      return;
+    }
+
+    this.expandedDetail.set({ status: 'loading' });
+    this.http.get<ApiEnvelope<HistoricalEventDetail>>(`/api/v1/events/${event.id}`).subscribe({
+      next: (response) => {
+        this.detailCache.set(event.id, response.data);
+        // 使用者可能在請求還沒回來前就收合、或展開了別的事件——只套用還對得上目前
+        // 展開目標的回應，避免過期請求蓋掉使用者已經在看的內容。
+        if (this.expandedEventId() === event.id) {
+          this.expandedDetail.set({ status: 'success', event: response.data });
+        }
+      },
+      error: (err: unknown) => {
+        console.error('[RegimeEventPanelComponent] 載入事件詳情失敗', err);
+        if (this.expandedEventId() === event.id) {
+          this.expandedDetail.set({ status: 'error' });
+        }
+      },
+    });
+  }
+
+  private loadEvents(regimeId: string): void {
+    this.http.get<ApiEnvelope<EventInteractionRow[]>>(`/api/v1/regimes/${regimeId}/events`).subscribe({
+      next: (response) => {
+        // 使用者可能已經切換到別的政權——只套用還對得上目前聚焦目標的回應。
+        if (this.focusedRegimeId() !== regimeId) {
+          return;
+        }
+        this.allEvents.set(dedupeAndSortEvents(response.data));
+      },
+      error: (err: unknown) => console.error('[RegimeEventPanelComponent] 載入政權事件清單失敗', err),
+    });
   }
 }

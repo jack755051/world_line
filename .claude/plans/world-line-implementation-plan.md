@@ -864,6 +864,50 @@ related_constitution: .claude/constitutions/world-line.md
 > 測試替身補強真的補到了這個回歸（`git stash` 暫時拿掉 `map.ts` 的修正，重新測試
 > 確認會失敗、訊息文字跟使用者回報的一致，再還原修正）。已用 `ng test`（222/222）、
 > `docker compose up -d --build frontend` 重新部署驗證。
+>
+> **2026-08-31 第二次重新設計（使用者實機看到卡片後提出更完整的規格）**：把「抬頭+
+> 手風琴列表」的完整規格定案，取代原本的 task 3.12 事件詳情抽屜（`EventDrawerComponent`
+> /`EventDrawerState` 已整個刪除，不再獨立存在）跟第一版的「互動記錄」地圖 overlay：
+>
+> - **抬頭+手風琴結構**：抬頭顯示政權名稱（不是固定文字「互動記錄」）；內容是這個
+>   政權的事件手風琴，每筆標題「{{年度}}年 {{事件名稱}}」，點標題展開/收合，展開時
+>   **直接在原地顯示事件詳情**（背景起因/關鍵轉折時間點/歷史影響），不再跳出獨立抽屜
+>   ——「顯示事件詳情」從此只有一條 UI 路徑，不是兩個獨立元件各自維護一份。
+> - **不拘泥於目前拉桿年份**：`GET /api/v1/regimes/:id/events` 的 `year` 改成選填
+>   （`api/Controllers/EventsController.cs`，`AddTransitionInteractionsAsync`/
+>   `AddPerspectiveInteractionsAsync` 內部條件套用年份篩選），省略時回這個政權「全部
+>   已知事件」。清單依 `startDecimal` 由舊到新排序、同一事件因跟多個政權互動而重複
+>   出現時去重，預設只顯示前 5 筆（`MAX_DISPLAYED_EVENTS`，先簡單用固定上限，沒有
+>   分頁 UI，真的有需要再回頭加）。**只在聚焦政權改變時查一次，不跟著拉桿換年份重新
+>   查**——這連帶讓 `RegimeFocusState` 整個收斂回任務 3.7 原本的範圍（聚焦目標/周邊
+>   政權/存續區間），AC#3 的事件查詢邏輯完全搬進 `RegimeEventPanelComponent` 自己管，
+>   不再需要「聚焦目標 × 年份」組合鍵的 debounce 訂閱跟競態 token（`interactionToken`
+>   已移除）。
+> - **持續性關係（例如「同盟」）這次改版拿掉，不再顯示**（使用者確認，先聚焦事件
+>   手風琴，關係資料之後有明確需求再設計要怎麼呈現）——關係沒有單一「年度」（是一段
+>   存續區間），套不進「年度+事件名稱」這種手風琴標題格式。
+> - **點擊展開事件時，時間拉桿同步跳到那個事件的年份**（`Math.floor(startDecimal)`，
+>   使用者原文「打開206年的事件，外部時間也要跳到206」）；收合不會把拉桿跳回去。
+> - **`updateEventPanelMarker()` 行為連帶調整**：跳到的年份可能是聚焦政權當時還沒有
+>   疆域快照的年份（例如政權正式建國前的事件）——原本「這個年份查無定位點就清掉
+>   marker」的行為會讓使用者剛點開的事件內容連同卡片一起消失，改成「查無定位點就跳過
+>   這次 `setLngLat()`，卡片留在最後一次有效的位置」，只有真的取消聚焦才清掉 marker。
+>
+> 事件詳情用 `Map` 做記憶體內快取（不是響應式 signal——手風琴互斥，同時間只有一個
+> 展開項目需要響應式呈現），收合又重新展開同一筆不會重打 API。
+>
+> 已用 `dotnet build`（clean）、`ng build`（1.52MB/342KB，budget 內，比第一版還小
+> ——刪掉 `EventDrawerComponent` 抵銷了新增的手風琴邏輯）、`ng test`（217/217，
+> `regime-event-panel.spec.ts` 改寫成 8 條涵蓋抬頭/排序去重上限/展開查詳情+拉桿跳轉/
+> empty state/收合/快取/切換聚焦重置、`regime-focus-state.spec.ts` 移除 AC#3 描述
+> 區塊收斂回 6 條原本範圍的測試、`map.spec.ts`/`time-scrubber.spec.ts`/
+> `regime-focus-panel.spec.ts` 的 `flushFocusRequests`/`flushRegimeFocusRequests`
+> helper 同步調整成新的請求形狀）、真實容器（`docker compose up -d --build backend
+> frontend`）+ curl 驗證 `GET /regimes/:蜀漢/events`（不帶 year）正確回傳魏滅蜀之戰
+> （263）跟赤壁之戰（208）兩筆全歷史事件。**同樣受限於這次對話環境的 WebGL 問題**
+> （見上方說明），沒有做到瀏覽器裡完整互動流程的視覺驗證，邏輯正確性靠單元測試+
+> 後端 curl 驗證涵蓋，建議使用者之後在自己的瀏覽器裡完整走一次「點政權→看手風琴→
+> 點事件展開→拉桿跳轉→收合再展開走快取」的流程確認視覺呈現。
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |

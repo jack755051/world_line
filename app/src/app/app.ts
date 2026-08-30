@@ -5,7 +5,6 @@ import { TimeScrubberComponent } from './time-scrubber/time-scrubber';
 import { RegimeFocusPanelComponent } from './regime-focus-panel/regime-focus-panel';
 import { LineageSequenceComponent } from './lineage-sequence/lineage-sequence';
 import { NamingViewpointSelectorComponent } from './naming-viewpoint-selector/naming-viewpoint-selector';
-import { EventDrawerComponent } from './event-drawer/event-drawer';
 
 @Component({
   imports: [
@@ -15,7 +14,6 @@ import { EventDrawerComponent } from './event-drawer/event-drawer';
     RegimeFocusPanelComponent,
     LineageSequenceComponent,
     NamingViewpointSelectorComponent,
-    EventDrawerComponent,
   ],
   selector: 'app-root',
   styleUrl: './app.scss',

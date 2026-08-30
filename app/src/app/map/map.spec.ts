@@ -652,15 +652,16 @@ describe('MapComponent', () => {
     // events/relations，都是 RegimeFocusState 的責任，不是 MapComponent 這裡要驗證的
     // 範圍，見 regime-focus-state.spec.ts），flush 掉避免 httpMock.verify() 在
     // afterEach 噴「還有未處理的請求」。
+    // 2026-08-31 起：RegimeFocusState.toggle() 只查存續區間；`RegimeEventPanelComponent`
+    // （地圖 overlay，見 map.ts 的 updateEventPanelMarker()）改自己打不帶 year 的
+    // GET /regimes/:id/events（task 3.12 後續調整），這裡改 flush 那一筆，不再是
+    // events/relations 兩筆帶 year 的舊版請求。
     function flushRegimeFocusRequests(regimeId: string): void {
       httpMock
         .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/territories`)
         .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
       httpMock
-        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events?year=${TimelineState.DEFAULT_YEAR}`)
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
-      httpMock
-        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/relations?year=${TimelineState.DEFAULT_YEAR}`)
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events`)
         .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
     }
 
@@ -825,15 +826,16 @@ describe('MapComponent', () => {
     // 複製一份（不是共用）——兩個 describe 區塊刻意各自獨立管理測試情境，跟這個測試檔
     // 既有的 scoping 慣例一致（`renderWithOverlappingTerritories()` 也只在它自己的
     // describe 裡定義，不是頂層共用）。
+    // 2026-08-31 起：RegimeFocusState.toggle() 只查存續區間；`RegimeEventPanelComponent`
+    // （地圖 overlay，見 map.ts 的 updateEventPanelMarker()）改自己打不帶 year 的
+    // GET /regimes/:id/events（task 3.12 後續調整），這裡改 flush 那一筆，不再是
+    // events/relations 兩筆帶 year 的舊版請求。
     function flushRegimeFocusRequests(regimeId: string): void {
       httpMock
         .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/territories`)
         .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
       httpMock
-        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events?year=${TimelineState.DEFAULT_YEAR}`)
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
-      httpMock
-        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/relations?year=${TimelineState.DEFAULT_YEAR}`)
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events`)
         .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
     }
 

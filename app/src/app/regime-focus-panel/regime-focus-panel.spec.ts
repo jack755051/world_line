@@ -81,11 +81,12 @@ describe('RegimeFocusPanelComponent', () => {
   // toggle() 除了查存續區間（territories），2026-08-30 起也會同步查 AC#3 的兩個互動
   // 端點（events/relations，見 RegimeFocusState 類別文件說明）——這個 helper 一次把
   // toggle() 觸發的三個請求都 flush 掉，不用每個測試各自重複寫。
+  // 2026-08-31 起 RegimeFocusState.toggle() 只查存續區間（events/relations 的互動
+  // 查詢已經整個搬到 RegimeEventPanelComponent 自己管，見該元件類別文件），這個 helper
+  // 因此只需要 flush 一筆請求，不再是「events/relations」複數形。
   function flushFocusRequests(
     regimeId: string,
     territoryRows: Array<{ startYear: number; endYear: number }>,
-    events: unknown[] = [],
-    relations: unknown[] = [],
   ): void {
     httpMock.expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/territories`).flush({
       statusCode: 200,
@@ -99,14 +100,6 @@ describe('RegimeFocusPanelComponent', () => {
         })),
       },
     });
-
-    const year = timeline.year();
-    httpMock
-      .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events?year=${year}`)
-      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: events });
-    httpMock
-      .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/relations?year=${year}`)
-      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: relations });
   }
 
   it('沒有聚焦任何政權時，不渲染面板', () => {

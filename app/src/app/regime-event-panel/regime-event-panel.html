@@ -1,28 +1,69 @@
-@if (eventInteractionItems().length > 0 || relationInteractionItems().length > 0) {
-  <div class="regime-event-panel" aria-label="政權互動記錄">
-    <h3 class="regime-event-panel-title">互動記錄</h3>
-    <ul class="regime-event-panel-list">
-      @for (item of eventInteractionItems(); track item.key) {
-        <li>
-          <button type="button" class="regime-event-panel-trigger" (click)="openEvent(item.eventId)">
-            {{ item.label }}（與{{ item.otherRegimeName }}）
-          </button>
-          <span class="regime-event-panel-date">
-            <app-edtf-date [value]="item.startEdtf" />
-            @if (item.endEdtf !== item.startEdtf) {
-              – <app-edtf-date [value]="item.endEdtf" />
+@if (focusedRegimeId()) {
+  @if (displayedEvents().length > 0) {
+    <div class="regime-event-panel" aria-label="政權事件記錄">
+      <h3 class="regime-event-panel-title">{{ focusedRegimeName() }}</h3>
+      <ul class="regime-event-panel-list">
+        @for (event of displayedEvents(); track event.id) {
+          <li class="regime-event-panel-item">
+            <button
+              type="button"
+              class="regime-event-panel-trigger"
+              [attr.aria-expanded]="expandedEventId() === event.id"
+              (click)="toggleEvent(event)"
+            >
+              <span class="regime-event-panel-year">{{ yearLabel(event.startDecimal) }}年</span>
+              <span class="regime-event-panel-name">{{ event.name }}</span>
+              <span class="regime-event-panel-chevron" aria-hidden="true">
+                {{ expandedEventId() === event.id ? '▾' : '▸' }}
+              </span>
+            </button>
+
+            @if (expandedEventId() === event.id) {
+              <div class="regime-event-panel-detail">
+                @if (isExpandedLoading()) {
+                  <p class="regime-event-panel-status">載入中…</p>
+                } @else if (isExpandedError()) {
+                  <p class="regime-event-panel-status regime-event-panel-status-error">事件詳情載入失敗，請稍後再試</p>
+                } @else if (expandedEventDetail(); as detail) {
+                  <p class="regime-event-panel-date">
+                    <app-edtf-date [value]="detail.startEdtf" />
+                    @if (detail.endEdtf !== detail.startEdtf) {
+                      – <app-edtf-date [value]="detail.endEdtf" />
+                    }
+                  </p>
+
+                  @if (detail.sections; as sections) {
+                    @if (sections.background) {
+                      <p class="regime-event-panel-section">
+                        <strong>背景起因</strong>
+                        <span>{{ sections.background }}</span>
+                      </p>
+                    }
+                    @if (sections.turning_points?.length) {
+                      <div class="regime-event-panel-section">
+                        <strong>關鍵轉折時間點</strong>
+                        <ul class="regime-event-panel-turning-points">
+                          @for (point of sections.turning_points; track point) {
+                            <li>{{ point }}</li>
+                          }
+                        </ul>
+                      </div>
+                    }
+                    @if (sections.impact) {
+                      <p class="regime-event-panel-section">
+                        <strong>歷史影響</strong>
+                        <span>{{ sections.impact }}</span>
+                      </p>
+                    }
+                  } @else {
+                    <p class="regime-event-panel-empty">這個事件目前只有基本記錄，還沒有詳細內容</p>
+                  }
+                }
+              </div>
             }
-          </span>
-        </li>
-      }
-      @for (item of relationInteractionItems(); track item.key) {
-        <li>
-          {{ item.label }}（與{{ item.otherRegimeName }}）
-          @if (item.description) {
-            <span class="regime-event-panel-description">{{ item.description }}</span>
-          }
-        </li>
-      }
-    </ul>
-  </div>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 }

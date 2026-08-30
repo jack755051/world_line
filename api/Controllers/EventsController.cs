@@ -148,16 +148,18 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
     ///    政權跟另一個政權都留下了各自的視角記錄，視為兩者在這個事件裡有互動——涵蓋一般
     ///    的戰役/事件（不限於轉換性事件），但受限於視角資料目前還很稀疏（見
     ///    implementation plan 任務 3.7 的補充說明），只有雙方都留下視角的事件才配對得
-    ///    出來，不是「這個政權有視角就算」。</summary>
+    ///    出來，不是「這個政權有視角就算」。
+    ///
+    /// **2026-08-31（使用者提案，task 3.12 後續調整）：`year` 改成選填**——原本這個
+    /// 端點只服務「聚焦政權在目前這一年的互動」，`year` 必填；使用者提案把地圖 overlay
+    /// 的互動記錄改成「這個政權全部已知事件，依時間排序，不拘泥於當年」，需要能查「不限
+    /// 年份」的版本。省略 `year` 時兩個內部方法都跳過年份篩選，回傳這個政權全部已知
+    /// 互動；帶 `year` 時維持原本語意不變（既有呼叫端，例如任何之後真的需要「只看這一年」
+    /// 的用途，不受影響）。</summary>
     [HttpGet("regimes/{regimeId:guid}/events")]
     public async Task<ActionResult<ApiResponse<IEnumerable<RegimeEventInteractionResponse>>>> GetInteractionsByRegime(
         Guid regimeId, [FromQuery] int? year)
     {
-        if (year is null)
-        {
-            return BadRequest(ApiResponse.Error(StatusCodes.Status400BadRequest, ApiMessageCodes.YearRequired));
-        }
-
         var regime = await db.Regimes.FirstOrDefaultAsync(r => r.Id == regimeId);
         if (regime is null)
         {
@@ -165,22 +167,25 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
         }
 
         var interactions = new List<RegimeEventInteractionResponse>();
-        await AddTransitionInteractionsAsync(interactions, regimeId, regime, year.Value);
-        await AddPerspectiveInteractionsAsync(interactions, regimeId, year.Value);
+        await AddTransitionInteractionsAsync(interactions, regimeId, regime, year);
+        await AddPerspectiveInteractionsAsync(interactions, regimeId, year);
 
         return Ok(ApiResponse.Ok<IEnumerable<RegimeEventInteractionResponse>>(interactions));
     }
 
     private async Task AddTransitionInteractionsAsync(
-        List<RegimeEventInteractionResponse> interactions, Guid regimeId, Regime regime, int year)
+        List<RegimeEventInteractionResponse> interactions, Guid regimeId, Regime regime, int? year)
     {
         // 這個政權自己的轉換事件——另一方從 regimes 的傳承欄位反查（見類別註解，
         // regime_transition_events 本身只連轉換的一方，不會直接告訴我們另一方是誰）。
-        var ownTransitions = await db.RegimeTransitionEvents
+        var ownTransitionsQuery = db.RegimeTransitionEvents
             .Where(t => t.RegimeId == regimeId)
-            .Join(db.HistoricalEvents, t => t.EventId, e => e.Id, (t, e) => new { t.TransitionKind, Event = e })
-            .Where(x => x.Event.StartDecimal < year + 1 && x.Event.EndDecimal >= year)
-            .ToListAsync();
+            .Join(db.HistoricalEvents, t => t.EventId, e => e.Id, (t, e) => new { t.TransitionKind, Event = e });
+        if (year is not null)
+        {
+            ownTransitionsQuery = ownTransitionsQuery.Where(x => x.Event.StartDecimal < year + 1 && x.Event.EndDecimal >= year);
+        }
+        var ownTransitions = await ownTransitionsQuery.ToListAsync();
 
         foreach (var t in ownTransitions)
         {
@@ -215,7 +220,11 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
                 .Join(db.HistoricalEvents, t => t.EventId, e => e.Id, (t, e) => e)
                 .FirstOrDefaultAsync();
 
-            if (transitionEvent is null || transitionEvent.StartDecimal >= year + 1 || transitionEvent.EndDecimal < year)
+            if (transitionEvent is null)
+            {
+                continue;
+            }
+            if (year is not null && (transitionEvent.StartDecimal >= year + 1 || transitionEvent.EndDecimal < year))
             {
                 continue;
             }
@@ -234,7 +243,7 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
     }
 
     private async Task AddPerspectiveInteractionsAsync(
-        List<RegimeEventInteractionResponse> interactions, Guid regimeId, int year)
+        List<RegimeEventInteractionResponse> interactions, Guid regimeId, int? year)
     {
         var eventIdsWithOwnPerspective = await db.HistoricalEventPerspectives
             .Where(p => p.RegimeId == regimeId && p.EventId != null)
@@ -248,12 +257,15 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
 
         // 同一批事件裡，其他政權（非自己、非 null）也留下視角的那些列——這是判斷「兩個
         // 政權在這個事件裡有互動」的依據，不是單方面有視角就算。
-        var otherPerspectives = await db.HistoricalEventPerspectives
+        var otherPerspectivesQuery = db.HistoricalEventPerspectives
             .Where(p => p.EventId != null && eventIdsWithOwnPerspective.Contains(p.EventId)
                 && p.RegimeId != null && p.RegimeId != regimeId)
-            .Join(db.HistoricalEvents, p => p.EventId, e => e.Id, (p, e) => new { Perspective = p, Event = e })
-            .Where(x => x.Event.StartDecimal < year + 1 && x.Event.EndDecimal >= year)
-            .ToListAsync();
+            .Join(db.HistoricalEvents, p => p.EventId, e => e.Id, (p, e) => new { Perspective = p, Event = e });
+        if (year is not null)
+        {
+            otherPerspectivesQuery = otherPerspectivesQuery.Where(x => x.Event.StartDecimal < year + 1 && x.Event.EndDecimal >= year);
+        }
+        var otherPerspectives = await otherPerspectivesQuery.ToListAsync();
 
         foreach (var x in otherPerspectives)
         {

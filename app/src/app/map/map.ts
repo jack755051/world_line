@@ -574,28 +574,35 @@ export class MapComponent implements OnDestroy {
       **定位點沿用 `currentLabelPoints`**（`renderLabels()` 算的同一份標籤定位點，
       Turf.js 幾何中心）——不重新算一次「疆域最上緣」，`Marker` 的 `anchor: 'bottom'`
       + 向上 offset 讓卡片浮在這個定位點上方，視覺上落在疆域偏上緣，不需要更精確的
-      幾何運算。**沒有聚焦政權、或聚焦政權在目前這批疆域裡查無定位點時**（例如換年份
-      後這個政權已滅亡/尚未建立），直接清掉 marker——不留一張飄在螢幕上、指向不存在
-      疆域的卡片。 */
+      幾何運算。**只有取消聚焦時才清掉 marker，「這個年份查無定位點」不會清掉**（跟
+      task 3.12 剛做出來時的第一版行為不同）：`RegimeEventPanelComponent` 現在點事件
+      展開會把時間拉桿跳到那個事件的年份（可能跳到聚焦政權當時還沒有疆域快照的年份，
+      例如政權正式建國前的事件），這時如果查無定位點就清掉 marker，使用者剛點開的
+      事件內容會連同卡片一起消失——比「疆域暫時不在畫面上、卡片留在原位置」更糟。
+      查無定位點時單純跳過這次 `setLngLat()`，卡片留在最後一次有效的位置上。 */
   private updateEventPanelMarker(focusedRegimeId: string | null): void {
     if (!this.map) {
       return;
     }
 
-    const point = focusedRegimeId ? this.currentLabelPoints.get(focusedRegimeId) : undefined;
-    if (!point) {
+    if (!focusedRegimeId) {
       this.clearEventPanelMarker();
       return;
     }
 
+    const point = this.currentLabelPoints.get(focusedRegimeId);
+
     if (!this.eventPanelComponentRef) {
-      this.eventPanelComponentRef = this.viewContainerRef.createComponent(RegimeEventPanelComponent);
+      if (!point) {
+        return; // 剛聚焦、這個年份還沒有疆域可以定位——等真的有定位點再建立
+      }
       // **`setLngLat()` 必須在 `addTo()` 之前呼叫**（跟 `renderLabels()` 的政權名稱
       // 標籤同一個順序）——`Marker.addTo()` 內部會立刻觸發一次 `_update()` 嘗試投影
       // 目前的經緯度，這時如果 `_lngLat` 還沒設定會直接對 `undefined.lng` 拋例外。
       // 這裡原本寫反過順序，`FakeMarker` 測試替身沒有模擬這個內部行為所以沒測出來，
       // 真實瀏覽器裡才會炸（使用者實機回報 `Cannot read properties of undefined
       // (reading 'lng')`）。
+      this.eventPanelComponentRef = this.viewContainerRef.createComponent(RegimeEventPanelComponent);
       this.eventPanelMarker = new Marker({
         element: this.eventPanelComponentRef.location.nativeElement,
         anchor: 'bottom',
@@ -606,7 +613,9 @@ export class MapComponent implements OnDestroy {
       return;
     }
 
-    this.eventPanelMarker!.setLngLat(point);
+    if (point) {
+      this.eventPanelMarker!.setLngLat(point);
+    }
   }
 
   private clearEventPanelMarker(): void {

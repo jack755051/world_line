@@ -36,4 +36,6 @@ public static class ApiMessageCodes
     public const string LineagePresetNotFound = "LINEAGE_PRESET_NOT_FOUND"; // task 2.8
     public const string ObserverRegimeNotFound = "OBSERVER_REGIME_NOT_FOUND"; // task 2.9a：observerRegimeId 指到不存在的政權
     public const string InvalidAliasType = "INVALID_ALIAS_TYPE"; // task 2.9a：aliasType 有值但不是 RegimeAliasType 四個受控值之一
+    public const string PerspectivePartyRequired = "PERSPECTIVE_PARTY_REQUIRED"; // task 2.12：regimeId 跟 observerCategoryId 不能同時是 null，至少要知道這是誰的視角
+    public const string ObserverCategoryNotFound = "OBSERVER_CATEGORY_NOT_FOUND"; // task 2.12：observerCategoryId 指到不存在的類別
 }

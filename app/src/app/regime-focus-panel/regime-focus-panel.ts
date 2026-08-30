@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
+import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
 
 /**
  * 政權聚焦模式的資訊面板（任務 3.7，對應 PRD Story 2）——點擊地圖上的疆域後顯示，列出
@@ -15,10 +16,22 @@ import { TimelineState } from '../core/time/timeline-state';
  * 做**：後端對應端點（task 2.9 政權關係、2.10 事件骨幹）都還沒實作，沒有資料可以連結，
  * 跟任務 3.4（時間軸副軸）因為事件資料還沒做而刻意跳過是同一個處理原則，見
  * implementation plan 任務 3.7 的說明。
+ *
+ * **2026-08-30 改用 Sanring `Collapsible` 收納周邊政權清單，不是 `Sheet`**——使用者
+ * 一開始提議改用 `Sheet`，但 Sanring 的 `Sheet` 是包在 CDK Dialog 之上的真．模態框
+ * （鎖 `<body>` 捲動、背景其他元素標 `aria-hidden`、有可點擊關閉的遮罩、focus trap），
+ * 這些行為都是「讓使用者專心看這塊內容、暫時不管背景」設計的，跟「同時看地圖高亮+讀
+ * 面板」這個需求方向相反，沒有內建選項可以關掉模態行為（使用者自己也在提案的同一句話
+ * 裡發現了這個問題）。`Collapsible` 沒有遮罩、不鎖畫面，單純是可展開/收合的內容區塊，
+ * 拿來包「同時期周邊政權」這個區塊，讓使用者可以視情況收起來、面板佔用的畫面更小，
+ * 面板本身仍然是固定在角落的一般 DOM 元素，不會蓋住地圖操作。政權名稱（標題列）跟
+ * 存續區間警告刻意留在 Collapsible 外面、永遠可見——警告是「這個政權現在不存在」這種
+ * 重要資訊，不該被收合狀態藏起來。
  */
 @Component({
   selector: 'app-regime-focus-panel',
   standalone: true,
+  imports: [SANRING_COLLAPSIBLE_IMPORTS],
   templateUrl: './regime-focus-panel.html',
   styleUrl: './regime-focus-panel.scss',
 })

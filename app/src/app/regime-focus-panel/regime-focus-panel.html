@@ -9,17 +9,23 @@
       <p class="regime-focus-panel-warning">{{ warning }}</p>
     }
 
-    <section>
-      <h3 class="regime-focus-panel-section-title">同時期周邊政權</h3>
-      @if (neighborNames().length > 0) {
-        <ul class="regime-focus-panel-neighbor-list">
-          @for (name of neighborNames(); track name) {
-            <li>{{ name }}</li>
-          }
-        </ul>
-      } @else {
-        <p class="regime-focus-panel-empty">這個年份沒有查到相鄰的政權</p>
-      }
-    </section>
+    <sanring-collapsible [open]="true" class="regime-focus-panel-collapsible">
+      <button type="button" sanringCollapsibleTrigger class="regime-focus-panel-section-trigger">
+        <span>同時期周邊政權</span>
+        <span class="regime-focus-panel-chevron" aria-hidden="true">▾</span>
+      </button>
+
+      <div sanringCollapsibleContent>
+        @if (neighborNames().length > 0) {
+          <ul class="regime-focus-panel-neighbor-list">
+            @for (name of neighborNames(); track name) {
+              <li>{{ name }}</li>
+            }
+          </ul>
+        } @else {
+          <p class="regime-focus-panel-empty">這個年份沒有查到相鄰的政權</p>
+        }
+      </div>
+    </sanring-collapsible>
   </aside>
 }

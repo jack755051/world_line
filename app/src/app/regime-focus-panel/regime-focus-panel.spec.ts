@@ -131,6 +131,39 @@ describe('RegimeFocusPanelComponent', () => {
     expect(fixture.nativeElement.querySelector('.regime-focus-panel-warning')).toBeNull();
   });
 
+  it('周邊政權清單預設是展開的（不是預設收合，維持既有行為，只是加了可以收合的能力）', () => {
+    focusState.toggle('r-wei');
+    flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }]);
+    focusState.setNeighbors(['r-shuhan']);
+
+    const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+    fixture.detectChanges();
+
+    const content: HTMLElement = fixture.nativeElement.querySelector('[sanringCollapsibleContent]');
+    expect(content.hidden).toBe(false);
+  });
+
+  it('點擊「同時期周邊政權」觸發鈕會收合/展開清單，不影響聚焦狀態本身', () => {
+    focusState.toggle('r-wei');
+    flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }]);
+    focusState.setNeighbors(['r-shuhan']);
+
+    const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+    fixture.detectChanges();
+
+    const trigger: HTMLElement = fixture.nativeElement.querySelector('.regime-focus-panel-section-trigger');
+    const content: HTMLElement = fixture.nativeElement.querySelector('[sanringCollapsibleContent]');
+
+    trigger.click();
+    fixture.detectChanges();
+    expect(content.hidden).toBe(true);
+    expect(focusState.focusedRegimeId()).toBe('r-wei'); // 收合只影響這個區塊，不會連帶取消聚焦
+
+    trigger.click();
+    fixture.detectChanges();
+    expect(content.hidden).toBe(false);
+  });
+
   it('點擊關閉按鈕會清除聚焦狀態', () => {
     focusState.toggle('r-wei');
     flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }]);

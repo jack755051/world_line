@@ -1,15 +1,16 @@
 :host {
-  // 疊在地圖右上角——跟 MapLibre 的 NavigationControl（左上角? 見 map.ts `top-right`）
-  // 共用同一個角落會打架，這裡改用 position: absolute 掛在 .map-area 內，見 app.scss。
-  // 實際定位交給 .map-area 的 position: relative + 這裡的 absolute，不寫死在 :host 本身，
-  // 避免跟父層版面耦合太緊。
+  // 實際定位交給 .map-area 的 position: relative（見 app.scss）+ 這裡的 absolute，
+  // 不寫死在 :host 本身，避免跟父層版面耦合太緊。
   display: contents;
 }
 
 .regime-focus-panel {
   position: absolute;
   top: var(--wl-space-4);
-  right: var(--wl-space-4);
+  // 疊在地圖左上角，不是右上角——MapLibre 的 `NavigationControl`（+/-/指南針）掛在
+  // `top-right`（見 map.ts），2026-08-30 使用者截圖回報面板會蓋住那些控制項，改到
+  // 對角的左上角完全避開，不用另外去動 NavigationControl 的位置。
+  left: var(--wl-space-4);
   z-index: 10; // 蓋在地圖畫布（MapLibre canvas 沒有特別設 z-index，預設 stacking context）之上
   width: 260px;
   max-width: calc(100% - var(--wl-space-4) * 2);
@@ -64,15 +65,47 @@
   font-size: var(--wl-font-size-sm);
 }
 
-.regime-focus-panel-section-title {
-  margin: var(--wl-space-4) 0 var(--wl-space-2);
+.regime-focus-panel-collapsible {
+  display: block;
+  margin-top: var(--wl-space-4);
+}
+
+// Sanring 的 CollapsibleComponent 本身沒有預設樣式（只回傳 ng-content，見該元件原始碼），
+// 觸發鈕/內容的外觀完全由這裡的專案樣式決定，不是 Sanring 內建的視覺，跟 Button 元件
+// （有預設 variant 樣式）不同，這裡刻意做成跟面板其他文字一致的樸素外觀。
+.regime-focus-panel-section-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
   font-size: var(--wl-font-size-sm);
   font-weight: var(--wl-font-weight-medium);
   color: var(--wl-ink-secondary);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
+}
+
+.regime-focus-panel-chevron {
+  transition: transform 0.15s ease;
+}
+
+// CollapsibleComponent 把 data-state 綁在自己的 host 元素上（見該元件原始碼的
+// `'[attr.data-state]': 'open() ? "open" : "closed"'`），這裡就是 sanring-collapsible
+// 這個標籤本身——不是它投影進來的子元素，選取器要對到 host，不是找子元素身上的屬性。
+sanring-collapsible[data-state='closed'] .regime-focus-panel-chevron {
+  transform: rotate(-90deg);
 }
 
 .regime-focus-panel-neighbor-list {
-  margin: 0;
+  margin: var(--wl-space-2) 0 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -83,7 +116,7 @@
 }
 
 .regime-focus-panel-empty {
-  margin: 0;
+  margin: var(--wl-space-2) 0 0;
   font-size: var(--wl-font-size-sm);
   color: var(--wl-ink-muted);
 }

@@ -379,6 +379,23 @@ related_constitution: .claude/constitutions/world-line.md
 > `docker compose up -d --build frontend`＋curl 確認部署的 bundle 含
 > `territories-focus-outline`／`regime-focus` 關鍵字驗證。這次對話環境沒有連上 Chrome
 > 擴充功能，沒有做到瀏覽器截圖層級的目視驗證，建議之後找機會實際點一次看看。
+>
+> **2026-08-30 修正實機截圖回報的版面問題 + 引入 Sanring `Collapsible`**：使用者截圖
+> 回報聚焦面板（原本掛在地圖右上角）會蓋住 MapLibre 的 `NavigationControl`（+/-/指南針，
+> 同樣掛在 `top-right`）。**面板改到左上角**，跟 `NavigationControl` 完全對角分開，不用
+> 動 `NavigationControl` 的位置。使用者接著提議改用 Sanring `Sheet`，但自己在同一句話
+> 裡就發現問題：`Sheet` 是包在 CDK Dialog 之上的真．模態框（鎖 `<body>` 捲動、背景
+> `aria-hidden`、可點擊關閉的遮罩、focus trap），這些行為是「專心看這塊內容、暫時不管
+> 背景」設計的，跟「同時看地圖高亮+讀面板」的需求方向相反，沒有選項可以關掉模態行為——
+> 使用者確認**不用 Sheet，維持固定面板 + 引入 `Collapsible`**（見 AskUserQuestion 的
+> 選擇）。已用 `npx @sanring/cli add collapsible` 安裝（`app/src/app/components/ui/
+> collapsible/`，這個元件本身沒有預設樣式，純邏輯 + a11y 屬性，視覺完全由專案樣式決定，
+> 跟已裝的 `Button`——有預設 variant 樣式——不一樣）。「同時期周邊政權」這個區塊包進
+> `<sanring-collapsible [open]="true">`，觸發鈕在 `regime-focus-panel.html`；**政權
+> 名稱（標題）跟存續區間警告刻意留在 Collapsible 外面、永遠可見**——警告是「這個政權
+> 現在不存在」這種重要資訊，不該被收合狀態藏起來。已用 `ng build`（1.48MB/335KB，
+> budget 內）、`ng test`（127/127，新增 2 條收合/展開的互動測試）、
+> `docker compose up -d --build frontend`＋curl 確認部署驗證。
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
 | [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
 | [ ] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |

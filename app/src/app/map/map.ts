@@ -49,6 +49,16 @@ const OVERLAP_HATCH_IMAGE_ID = 'territory-overlap-hatch';
  * 顏色定義兩處各自維護、之後改色沒同步更新的風險（這個專案已經因為「兩處各自維護
  * 同一個概念」踩過真的 bug，見憲法/PRD 對 regimes.status 字面值飄移的記錄）。
  *
+ * **任務 3.17（2026-08-31）：補上上面說的「靜態海岸線 GeoJSON」**——`app/public/
+ * ne_50m_land.geojson`（Natural Earth 1:50m Land，公眾領域 CC0，下載一次存成靜態
+ * 檔案，瀏覽器跟自己的 origin 要，不是每次都打外部服務，維持零外部依賴原則）疊一層
+ * 陸地色塊（`land-fill` 圖層，色票 `--wl-map-land`，比 `--wl-page`／海洋只深一階，
+ * 純粹當地理方位參考，不能搶政權疆域填色的視覺重量）。**只畫陸地/海洋，不畫現代
+ * 國界/現代地名**——上面提到的「時代錯置」疑慮只針對政治性邊界，物理地理（海岸線
+ * 本身歷史上幾乎沒變過）不受這個疑慮影響，這正是任務 3.2 原本規劃的路線，不是推翻
+ * 那個決策。
+ *
+
  * 任務 3.5（2026-08-29）：接上政權疆域圖層。任務 3.3（同日）接上時間拉桿後，年份
  * 不再寫死——訂閱 `TimelineState.year`（debounce 150ms，避免拖桿時每個中間值都發一次
  * 請求），年份變動時重新查詢疆域。**換年份的畫面呈現方式見下方任務 3.6 的說明**（不再是
@@ -181,17 +191,38 @@ export class MapComponent implements OnDestroy {
     const backgroundColor = getComputedStyle(document.documentElement)
       .getPropertyValue('--wl-page')
       .trim();
+    const landColor = getComputedStyle(document.documentElement).getPropertyValue('--wl-map-land').trim();
 
     this.map = new MapLibreMap({
       container: this.mapContainer().nativeElement,
       style: {
         version: 8,
-        sources: {},
+        // 任務 3.17：陸地/海洋參考層——`background` 圖層本身就是「海洋」（讀
+        // `--wl-page`，跟 M1 決議一致，見下方 `land` source 的說明），`land` 這個
+        // GeoJSON source 疊在上面畫出陸地色塊。這兩個圖層直接寫進初始 style（不像
+        // 疆域圖層要等 'load' 事件後才 `addLayer()`）——不依賴任何 HTTP 請求回來的
+        // 資料，沒有理由晚於地圖本身初始化。
+        sources: {
+          land: {
+            type: 'geojson',
+            // 靜態檔案，不是外部 API——Natural Earth 1:50m Land（公眾領域，CC0，不需
+            // 標註來源），下載一次存進 `app/public/`（Angular assets glob 涵蓋整個
+            // `public/` 目錄），瀏覽器直接跟自己的 origin 要這個檔案，不是每次都打
+            // 外部服務，維持任務 3.2 拍板的「零外部依賴」原則。
+            data: '/ne_50m_land.geojson',
+          },
+        },
         layers: [
           {
             id: 'background',
             type: 'background',
             paint: { 'background-color': backgroundColor || '#f9f9f7' },
+          },
+          {
+            id: 'land-fill',
+            type: 'fill',
+            source: 'land',
+            paint: { 'fill-color': landColor || '#e1e0d9' },
           },
         ],
       },

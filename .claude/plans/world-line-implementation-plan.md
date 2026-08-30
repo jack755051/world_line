@@ -723,6 +723,46 @@ related_constitution: .claude/constitutions/world-line.md
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |
 | [ ] | 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |
 | [ ] | 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
+| [x] | 3.17 | 地圖陸地/海洋參考底圖（靜態海岸線 GeoJSON） | 疊一層 Natural Earth 陸地色塊，落實 task 3.2 原本規劃的「之後真的需要海岸線再疊靜態 GeoJSON」路線 | §5、§12 | 1 個 |
+
+> **2026-08-31 完成**（使用者問「真實地圖哪時候可以引入」，確認現在動工；先用 `curl`
+> 確認這個對話環境有網路可以抓到 Natural Earth 的公眾領域資料，才敢承諾能做）。使用者
+> 拍板兩個決策：**陸地/海洋色塊填滿**（不是只畫海岸線細線）＋**1:50m 精度**（不是最
+> 精簡的 1:110m）。
+>
+> `app/public/ne_50m_land.geojson`（下載自 Natural Earth 官方 GitHub mirror，CC0
+> 公眾領域，1420 筆陸地多邊形，1.6MB）——存成靜態檔案由 Angular assets glob（`public/`
+> 整個目錄）打包進部署輸出，MapLibre 的 GeoJSON source 直接用 `data: '/ne_50m_
+> land.geojson'` 字串（MapLibre 自己發請求跟自己的 origin 要，不經過 Angular
+> HttpClient，也不是外部瓦片服務，維持 task 3.2 拍板的零外部依賴原則）。`land`
+> source＋`land-fill` 圖層直接寫進 `MapComponent.initMap()` 的初始 `style`（不像
+> 疆域圖層要等 `'load'` 事件才動態 `addLayer()`）——不依賴任何 HTTP 回應資料，沒有
+> 理由晚於地圖本身初始化。
+>
+> **新增 design token `--wl-map-land`**（`design-tokens.scss`）：只比 `--wl-page`
+> （海洋／地圖背景）深一階的中性灰，刻意不共用 `--wl-gridline`（雖然數值恰好都是
+> `--wl-gray-200`）——跟先前疆域重疊區底色從共用 `--wl-territory-border` 改成獨立
+> `--wl-dispute-*` 色階同一個「語意不同就不共用 token」原則。**只畫陸地/海洋，不畫
+> 現代國界/現代地名**——`docs/data-governance.md`「幾何資料」一節原本就有「海岸線只是
+> 定位輔助，不能讓現代精確邊界造成古代疆域也同樣精確的錯覺」這條原則，這裡是第一次
+> 真正落地：單一中性色平塗、沒有任何額外細節，視覺重量刻意壓低到明顯次於政權疆域
+> 填色。
+>
+> **`nginx.conf` 追加 `.geojson` 的 location 規則**（跟既有 `.mjs` 那組同一類「函式庫/
+> 資料自帶原始檔、沒有內容雜湊檔名」情況）：`default_type application/geo+json`
+> （nginx 內建 mime.types 沒有這個副檔名，會 fall back 成 `application/octet-
+> stream`——雖然 `fetch().json()` 實際上不檢查這個 header，這裡設對純粹是資料正確性
+> 衛生習慣）＋`Cache-Control: no-cache, must-revalidate`（避免以後更新這個檔案時
+> 瀏覽器一直吃到舊版本，這個檔名不像 `main-XXXX.js` 那樣有內容雜湊）。
+>
+> 已用 `ng build`（clean，`dist/app/browser/ne_50m_land.geojson` 確認有被複製進部署
+> 輸出）、`ng test`（206/206，`map.spec.ts` 的初始 style 斷言從「只有 background」
+> 改成「background + land-fill 兩層、land source 一個」）、`docker compose up -d
+> --build frontend`＋curl 對真實容器驗證：`/ne_50m_land.geojson` 回應 200、
+> `Content-Type: application/geo+json`、`Cache-Control: no-cache, must-
+> revalidate`、內容是合法 GeoJSON（1420 筆 FeatureCollection）。沒有連上 Chrome
+> 擴充功能，沒做到瀏覽器截圖層級的目視驗證（陸地色塊實際疊圖效果、跟政權疆域填色的
+> 視覺層次是否真的如預期不搶戲），建議之後找機會實機看一眼。
 
 ### 範圍上限（本階段不做）
 

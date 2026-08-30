@@ -105,6 +105,15 @@
   // 疆域邊界線（跟政權填色分開，見上方說明——邊界不做身份識別，維持單一中性色）
   --wl-territory-border: var(--wl-gray-600);
 
+  // 地圖底圖陸地色（task 3.17）——純粹的地理方位參考層，跟政權疆域填色（5 色識別色，
+  // territory-colors.ts）或疆域重疊區色階（--wl-dispute-*）完全是不同語意層，不能搶
+  // 視覺重量，所以刻意選一個只比 --wl-page（海洋／地圖背景色）深一階的中性灰，不是
+  // 隨便借用其他既有 token（跟疆域重疊區底色先前從共用 --wl-territory-border 改成
+  // 獨立 --wl-dispute-* 色階同一個「語意不同就不共用 token」原則，即使數值恰好相同）。
+  // 海洋沿用 --wl-page 本身，不用另外定義一個名稱不同、數值相同的 token——MapLibre 的
+  // background 圖層本來就讀 --wl-page（見 map.ts），地圖背景本身就是「海洋」。
+  --wl-map-land: var(--wl-gray-200);
+
   // 焦點框（focus ring，鍵盤導覽用）——這才是「用主色當邊框」的正確場景，跟上面結構性
   // 邊框（--wl-border-hairline/--wl-territory-border，維持中性色）分開，目的是刻意
   // 讓焦點狀態顯眼、跟一般邊框有區別。

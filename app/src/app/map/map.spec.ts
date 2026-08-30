@@ -312,7 +312,7 @@ describe('MapComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('initializes MapLibre with the container element and a background-only style', async () => {
+  it('initializes MapLibre with the container element and a background+land style', async () => {
     const fixture = TestBed.createComponent(MapComponent);
     await fixture.whenStable();
 
@@ -321,13 +321,18 @@ describe('MapComponent', () => {
     const container = fixture.nativeElement.querySelector('.map-container');
     expect(map.options['container']).toBe(container);
 
-    // 沒有接外部瓦片服務（見 map.ts 開頭說明）：sources 是空的，只有一個 background 圖層。
-    const style = map.options['style'] as { sources: Record<string, unknown>; layers: Array<{ type: string }> };
-    expect(Object.keys(style.sources)).toHaveLength(0);
-    expect(style.layers).toHaveLength(1);
-    expect(style.layers[0].type).toBe('background');
+    // 沒有接外部瓦片服務（見 map.ts 開頭說明）：唯一的 source 是任務 3.17 的靜態
+    // 陸地 GeoJSON（不是外部瓦片服務，MapLibre 自己去要這個檔案，不算違反零外部依賴
+    // 原則），layers 是 background（海洋）+ land-fill（陸地）兩層，沒有第三方底圖。
+    const style = map.options['style'] as {
+      sources: Record<string, { type: string; data: string }>;
+      layers: Array<{ id: string; type: string }>;
+    };
+    expect(Object.keys(style.sources)).toEqual(['land']);
+    expect(style.sources['land'].data).toBe('/ne_50m_land.geojson');
+    expect(style.layers.map((l) => l.id)).toEqual(['background', 'land-fill']);
 
-    httpMock.expectNone(() => true); // 'load' 還沒觸發，不該有任何 HTTP 請求
+    httpMock.expectNone(() => true); // 'load' 還沒觸發，不該有任何 HTTP 請求（land 是 MapLibre 自己抓的靜態檔案，不經過 Angular HttpClient）
   });
 
   it('adds a NavigationControl so users can pan/zoom via UI, not just gesture', async () => {

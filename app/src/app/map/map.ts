@@ -1,4 +1,15 @@
-import { Component, DestroyRef, ElementRef, Injector, OnDestroy, afterNextRender, inject, viewChild } from '@angular/core';
+import {
+  Component,
+  type ComponentRef,
+  DestroyRef,
+  ElementRef,
+  Injector,
+  OnDestroy,
+  ViewContainerRef,
+  afterNextRender,
+  inject,
+  viewChild,
+} from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime } from 'rxjs';
@@ -24,6 +35,7 @@ import { RegimeDirectoryService } from '../core/regime/regime-directory.service'
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeAliasDirectoryService } from '../core/regime/regime-alias-directory.service';
 import { NamingViewpointState } from '../core/regime/naming-viewpoint-state';
+import { RegimeEventPanelComponent } from '../regime-event-panel/regime-event-panel';
 
 /** `ApiResponse<T>` 的最小形狀（見 api/Contracts/ApiResponse.cs）——只取這裡用得到的
     `data` 欄位，不整個對照完整契約，畢竟目前只有這一個端點在消費。 */
@@ -157,6 +169,7 @@ export class MapComponent implements OnDestroy {
   private readonly namingViewpoint = inject(NamingViewpointState);
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
   /** 形變動畫（任務 3.6）的固定時長——刻意不做成可調參數，目前沒有「使用者想調整動畫
       速度」這個需求，先寫死一個視覺上測過還算自然的值，之後真的有需求再拍板成 UI 選項。
@@ -168,6 +181,15 @@ export class MapComponent implements OnDestroy {
 
   private map?: MapLibreMap;
   private labelMarkers: Marker[] = [];
+  /** 每個政權目前這批疆域的標籤定位點（見 `renderLabels()`）——2026-08-31 起除了畫
+      名稱標籤，也拿來給 `RegimeEventPanelComponent`（互動記錄地圖 overlay）當定位
+      依據，不用另外算一次，見 `updateEventPanelMarker()`。 */
+  private currentLabelPoints = new Map<string, [number, number]>();
+  /** 政權互動記錄地圖 overlay（2026-08-31，使用者提案從 `RegimeFocusPanel` 搬出來）
+      ——動態建立的 Angular 元件實例＋掛它的 Marker，見 `updateEventPanelMarker()`
+      的說明。同一時間最多一個（一次只能聚焦一個政權）。 */
+  private eventPanelComponentRef?: ComponentRef<RegimeEventPanelComponent>;
+  private eventPanelMarker?: Marker;
   /** 圖著色的「前一次指派結果」，餵給 `assignTerritoryColorSlots()` 維持顏色穩定性
       （見 graph-coloring.ts）——拖拉桿換年份時，同一個政權不會無謂換色閃爍。 */
   private previousColorAssignment?: Map<string, number>;
@@ -540,6 +562,49 @@ export class MapComponent implements OnDestroy {
       const others = findOtherContemporaryRegimeIds(this.currentFeatureCollection, focusedRegimeId, neighbors);
       this.focusState.setOtherContemporaryRegimes([...others]);
     }
+
+    this.updateEventPanelMarker(focusedRegimeId);
+  }
+
+  /** 2026-08-31（使用者提案）：政權互動記錄疊在聚焦政權疆域正上方，不是塞在固定角落的
+      側欄面板——用 MapLibre `Marker` 掛一個動態建立的 `RegimeEventPanelComponent`
+      實例，`Marker` 本身內建「跟著地圖拖曳/縮放即時重新定位」的機制（跟政權名稱標籤
+      同一個 Marker API，見 `renderLabels()`），不用自己手刻 `map.on('move'/'zoom')`
+      監聽器重算螢幕座標。
+      **定位點沿用 `currentLabelPoints`**（`renderLabels()` 算的同一份標籤定位點，
+      Turf.js 幾何中心）——不重新算一次「疆域最上緣」，`Marker` 的 `anchor: 'bottom'`
+      + 向上 offset 讓卡片浮在這個定位點上方，視覺上落在疆域偏上緣，不需要更精確的
+      幾何運算。**沒有聚焦政權、或聚焦政權在目前這批疆域裡查無定位點時**（例如換年份
+      後這個政權已滅亡/尚未建立），直接清掉 marker——不留一張飄在螢幕上、指向不存在
+      疆域的卡片。 */
+  private updateEventPanelMarker(focusedRegimeId: string | null): void {
+    if (!this.map) {
+      return;
+    }
+
+    const point = focusedRegimeId ? this.currentLabelPoints.get(focusedRegimeId) : undefined;
+    if (!point) {
+      this.clearEventPanelMarker();
+      return;
+    }
+
+    if (!this.eventPanelComponentRef) {
+      this.eventPanelComponentRef = this.viewContainerRef.createComponent(RegimeEventPanelComponent);
+      this.eventPanelMarker = new Marker({
+        element: this.eventPanelComponentRef.location.nativeElement,
+        anchor: 'bottom',
+        offset: [0, -32],
+      }).addTo(this.map);
+    }
+
+    this.eventPanelMarker!.setLngLat(point);
+  }
+
+  private clearEventPanelMarker(): void {
+    this.eventPanelMarker?.remove();
+    this.eventPanelMarker = undefined;
+    this.eventPanelComponentRef?.destroy();
+    this.eventPanelComponentRef = undefined;
   }
 
   /** 疆域重疊區（見 territory-overlap.ts）——不依賴任何手動標記的旗標，即時算幾何交集，
@@ -585,6 +650,7 @@ export class MapComponent implements OnDestroy {
     this.clearLabelMarkers();
 
     const labelPoints = computeTerritoryLabelPoints(featureCollection);
+    this.currentLabelPoints = labelPoints;
     const observerId = this.namingViewpoint.observerRegimeId();
 
     for (const [regimeId, [lon, lat]] of labelPoints) {
@@ -634,6 +700,7 @@ export class MapComponent implements OnDestroy {
       this.scheduler.cancelFrame(this.morphFrameHandle);
     }
     this.clearLabelMarkers();
+    this.clearEventPanelMarker();
     this.map?.remove();
   }
 }

@@ -2,10 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
-import { EventDrawerState } from '../core/event/event-drawer-state';
 import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
 import { TagComponent } from '../components/ui/tag';
-import { EdtfDateComponent } from '../edtf-date/edtf-date';
 import { describeRegimeEnd, describeRegimeOrigin } from '../core/regime/regime-transition-display';
 
 /**
@@ -16,17 +14,13 @@ import { describeRegimeEnd, describeRegimeOrigin } from '../core/regime/regime-t
  * 單一，跟 `TimeScrubberComponent`「只管拖到哪一年，不管拖動後要做什麼」是同一個
  * 分工原則。
  *
- * **AC#3（互動清單）2026-08-30 完成**：task 2.9（政權關係）、2.10（事件骨幹，含
- * `GET /regimes/:id/events` 這個專門給 AC#3 用的互動查詢端點）都已完成，離散事件用
- * `RegimeFocusState.eventInteractions`、持續性關係用 `relationInteractions`。
- * **只顯示跟目前「同時期周邊政權」有交集的互動**——AC#3 原文是「聚焦政權與周邊政權
- * 之間」，不是任意兩個政權只要有記錄就列出來；`RegimeFocusState` 回傳的是這個政權
- * 全部已知互動（不限周邊），過濾在這個元件的 computed 裡做。**2026-08-31（task 3.12）：
- * 離散事件可點開了**——點擊清單裡的事件會呼叫 `EventDrawerState.open(eventId)`，
- * 觸發 `app-event-drawer` 顯示詳情。**持續性關係（`relationInteractionItems`）維持
- * 純文字，刻意不能點擊**：task 3.12 範圍只有 `historical_events` 詳情抽屜，
- * `regime_relations` 沒有對應的詳情畫面（也沒有像 `sections` 那樣的結構化敘事內容
- * 可以顯示），沒有東西可以點開，硬做一個空的詳情畫面沒有意義。
+ * **AC#3（互動清單）2026-08-30 完成，2026-08-31 搬到 `RegimeEventPanelComponent`**：
+ * 原本這個面板自己有「互動記錄」Collapsible 區塊（`eventInteractionItems`/
+ * `relationInteractionItems`），使用者提案把它獨立成疊在聚焦政權疆域正上方的地圖
+ * overlay（跟 task 3.12 事件詳情抽屜同一套毛玻璃視覺），理由是「事件記錄」在空間上
+ * 屬於那個政權的疆域，比塞在固定角落的側欄面板更直覺。搬走後這個元件只剩下政權身份
+ * 資訊（名稱/存續期間/起源終止/周邊政權清單），不再處理互動記錄，詳見
+ * `regime-event-panel.ts` 的類別文件。
  *
  * **2026-08-30 改用 Sanring `Collapsible` 收納周邊政權清單，不是 `Sheet`**——使用者
  * 一開始提議改用 `Sheet`，但 Sanring 的 `Sheet` 是包在 CDK Dialog 之上的真．模態框
@@ -61,16 +55,6 @@ import { describeRegimeEnd, describeRegimeOrigin } from '../core/regime/regime-t
  * （例如唐朝/阿拉伯帝國那個時代）再回頭設計這塊怎麼從資料庫查出來，不要用前端寫死的
  * 對照表撐過去。
  *
- * **2026-08-30 追加 Story 5（模糊/爭議年份呈現）**：離散事件互動每一筆下方加一行起訖
- * 日期，用 `<app-edtf-date>`（`edtf-date.ts`）呈現——只顯示史料實際記載到的精度（年/
- * 月/日），`?`/`~` 不確定標記轉成「推測年份」/「約略年份」提示。後端 `GET /regimes/
- * :id/events` 原本只回 `startDecimal`/`endDecimal`（純數字，任務 3.7 AC#3 當時只需要
- * 拿來判斷年份是否落在查詢範圍內），這次追加了 `startEdtf`/`endEdtf` 兩個原始字串
- * 欄位——decimal 換算的過程本身就會把「精度層級」跟「不確定標記」這些資訊丟失，只有
- * 原始字串留得住，UI 要呈現這些資訊沒有其他資料來源可以用。持續性關係（`regime_
- * relations`）維持只用整數年份（`valid_period` 本來就是 `INT4RANGE`，不是 EDTF），
- * 不套用這個元件。
- *
  * **2026-08-30 追加 Story 4 AC#2（政權狀態轉換視覺呈現）**：標題下方新增「起源／終止」
  * 兩個 `sanring-tag`——文字/variant 由純函式模組 `regime-transition-display.ts` 決定
  * （這個元件只負責把 `RegimeDirectoryService` 查到的 id 轉成名稱餵進去，見
@@ -83,7 +67,7 @@ import { describeRegimeEnd, describeRegimeOrigin } from '../core/regime/regime-t
 @Component({
   selector: 'app-regime-focus-panel',
   standalone: true,
-  imports: [SANRING_COLLAPSIBLE_IMPORTS, TagComponent, EdtfDateComponent],
+  imports: [SANRING_COLLAPSIBLE_IMPORTS, TagComponent],
   templateUrl: './regime-focus-panel.html',
   styleUrl: './regime-focus-panel.scss',
 })
@@ -91,7 +75,6 @@ export class RegimeFocusPanelComponent {
   private readonly focusState = inject(RegimeFocusState);
   private readonly directory = inject(RegimeDirectoryService);
   private readonly timeline = inject(TimelineState);
-  private readonly eventDrawer = inject(EventDrawerState);
 
   protected readonly focusedRegimeId = this.focusState.focusedRegimeId;
 
@@ -150,39 +133,6 @@ export class RegimeFocusPanelComponent {
     this.toSortedNames(this.focusState.otherContemporaryRegimeIds()),
   );
 
-  /** AC#3 離散事件互動——只保留跟目前周邊政權有交集的，見類別文件說明。 */
-  protected readonly eventInteractionItems = computed(() => {
-    const neighborIds = new Set(this.focusState.neighborRegimeIds());
-    return this.focusState
-      .eventInteractions()
-      .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
-      .map((interaction) => ({
-        key: `${interaction.eventId}-${interaction.otherRegimeId}`,
-        eventId: interaction.eventId,
-        label: interaction.eventName,
-        otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
-        // 任務 3.10：事件用起訖兩個 EDTF 日期都顯示——跟疆域/存續區間那種「一個範圍」
-        // 不同，這裡的兩個日期分別可能有各自獨立的精度/不確定性（例如起始日期確定、
-        // 結束日期是推測），不能只挑一個顯示。
-        startEdtf: interaction.startEdtf,
-        endEdtf: interaction.endEdtf,
-      }));
-  });
-
-  /** AC#3 持續性關係互動——同樣只保留跟目前周邊政權有交集的。 */
-  protected readonly relationInteractionItems = computed(() => {
-    const neighborIds = new Set(this.focusState.neighborRegimeIds());
-    return this.focusState
-      .relationInteractions()
-      .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
-      .map((interaction) => ({
-        key: interaction.id,
-        label: interaction.relationType,
-        otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
-        description: interaction.description,
-      }));
-  });
-
   /** AC#2：聚焦政權若已超出（或還沒進入）存續區間要提示。`lifetimeRange` 為 `null`
       代表還在載入中或沒有聚焦政權，這時不顯示警告——避免載入過程中的暫時性 `null`
       被誤判成「超出範圍」而閃一下錯誤訊息。 */
@@ -203,11 +153,6 @@ export class RegimeFocusPanelComponent {
 
   protected close(): void {
     this.focusState.clear();
-  }
-
-  /** task 3.12：點擊互動清單裡的事件，打開事件詳情抽屜。 */
-  protected openEvent(eventId: string): void {
-    this.eventDrawer.open(eventId);
   }
 
   /** regimeId 清單→排序過的名稱清單——`neighborNames`/`otherContemporaryNames` 共用

@@ -5,7 +5,6 @@ import { RegimeFocusPanelComponent } from './regime-focus-panel';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
-import { EventDrawerState } from '../core/event/event-drawer-state';
 
 describe('RegimeFocusPanelComponent', () => {
   let httpMock: HttpTestingController;
@@ -330,72 +329,6 @@ describe('RegimeFocusPanelComponent', () => {
     });
   });
 
-  describe('AC#3 互動記錄', () => {
-    it('離散事件跟持續性關係都只顯示跟目前周邊政權有交集的那些', () => {
-      focusState.toggle('r-wei');
-      flushFocusRequests(
-        'r-wei',
-        [{ startYear: 220, endYear: 226 }],
-        [
-          { eventId: 'event-a', eventName: '跟蜀漢的戰役', otherRegimeId: 'r-shuhan', startEdtf: '0221', endEdtf: '0221' }, // r-shuhan 是周邊，該顯示
-          { eventId: 'event-b', eventName: '跟吳的戰役', otherRegimeId: 'r-wu', startEdtf: '0222', endEdtf: '0222' }, // r-wu 不是周邊，不該顯示
-        ],
-        [
-          // 真實 API 回傳的是 regimeAId/regimeBId（對稱關係表，見
-          // RegimeRelationResponse），不是 otherRegimeId——那個欄位是
-          // RegimeFocusState.loadInteractions() 換算出來的內部形狀，這裡要模擬後端
-          // 實際回傳的原始形狀才會真的測到換算邏輯。
-          { id: 'rel-a', regimeAId: 'r-shuhan', regimeBId: 'r-wei', relationType: '同盟', description: '測試關係' },
-        ],
-      );
-      focusState.setNeighbors(['r-shuhan']); // 只有蜀漢是目前的周邊政權
-
-      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
-      fixture.detectChanges();
-
-      const items = [...fixture.nativeElement.querySelectorAll('.regime-focus-panel-interaction-list li')].map(
-        (el: Element) => el.textContent?.replace(/\s+/g, ' ').trim(),
-      );
-      expect(items).toHaveLength(2); // 只有跟蜀漢的事件+關係，跟吳的事件被過濾掉
-      expect(items[0]).toContain('跟蜀漢的戰役');
-      expect(items[0]).toContain('蜀漢');
-      expect(items[0]).toContain('西元 221 年'); // 任務 3.10：事件日期用 <app-edtf-date> 呈現
-      expect(items[1]).toContain('同盟');
-      expect(items[1]).toContain('測試關係');
-    });
-
-    it('task 3.12：點擊離散事件會打開事件詳情抽屜（EventDrawerState.open）', () => {
-      focusState.toggle('r-wei');
-      flushFocusRequests(
-        'r-wei',
-        [{ startYear: 220, endYear: 226 }],
-        [{ eventId: 'event-a', eventName: '跟蜀漢的戰役', otherRegimeId: 'r-shuhan', startEdtf: '0221', endEdtf: '0221' }],
-      );
-      focusState.setNeighbors(['r-shuhan']);
-
-      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
-      fixture.detectChanges();
-
-      const trigger: HTMLButtonElement = fixture.nativeElement.querySelector(
-        '.regime-focus-panel-interaction-trigger',
-      );
-      trigger.click();
-
-      const eventDrawer = TestBed.inject(EventDrawerState);
-      expect(eventDrawer.openEventId()).toBe('event-a');
-    });
-
-    it('沒有任何跟周邊政權的互動記錄時，顯示空狀態文案', () => {
-      focusState.toggle('r-wei');
-      flushFocusRequests('r-wei', [{ startYear: 220, endYear: 226 }]);
-      focusState.setNeighbors(['r-shuhan']);
-
-      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
-      fixture.detectChanges();
-
-      const sections = fixture.nativeElement.querySelectorAll('sanring-collapsible');
-      expect(sections[2].querySelector('.regime-focus-panel-interaction-list')).toBeNull();
-      expect(sections[2].querySelector('.regime-focus-panel-empty')).not.toBeNull();
-    });
-  });
+  // AC#3 互動記錄的顯示/點擊測試 2026-08-31 搬到 regime-event-panel.spec.ts——見
+  // RegimeFocusPanelComponent 類別文件說明，這個元件不再處理互動記錄。
 });

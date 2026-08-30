@@ -123,11 +123,13 @@ const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
   class FakeMarker {
     static instances: FakeMarker[] = [];
     element: HTMLElement;
+    options: Record<string, unknown>;
     lngLat?: [number, number];
     removed = false;
 
-    constructor(options: { element: HTMLElement }) {
+    constructor(options: { element: HTMLElement } & Record<string, unknown>) {
       this.element = options.element;
+      this.options = options; // 2026-08-31：任務 3.12 追加的互動記錄 overlay 需要驗證 anchor/offset
       FakeMarker.instances.push(this);
     }
 
@@ -727,6 +729,44 @@ describe('MapComponent', () => {
       await fixture.whenStable();
 
       expect(focusState.focusedRegimeId()).toBeNull();
+    });
+
+    // 2026-08-31（使用者提案）：政權互動記錄搬到地圖 overlay（RegimeEventPanelComponent），
+    // 用 Marker 疊在聚焦政權疆域上方，不是塞在固定角落的側欄面板，見 map.ts
+    // updateEventPanelMarker() 的說明。
+    describe('政權互動記錄地圖 overlay（task 3.12 使用者提案）', () => {
+      it('聚焦政權後，建立一個 anchor:bottom、向上 offset 的 Marker（疊在疆域上方）', async () => {
+        const { fixture, map } = await renderWithOverlappingTerritories();
+
+        map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
+        map.fireClick();
+        await fixture.whenStable();
+        flushRegimeFocusRequests('r-a');
+
+        // 標籤 Marker（renderLabels()）沒有帶 anchor 選項，只有這個 overlay Marker 會帶
+        // anchor: 'bottom'——用這個屬性把它從一批 Marker 裡篩出來，不用猜索引順序。
+        const overlayMarkers = FakeMarker.instances.filter((m) => !m.removed && m.options['anchor'] === 'bottom');
+        expect(overlayMarkers).toHaveLength(1);
+        expect(overlayMarkers[0].options['offset']).toEqual([0, -32]); // 向上偏移，讓卡片浮在疆域偏上緣
+        expect(overlayMarkers[0].lngLat).toBeDefined();
+      });
+
+      it('取消聚焦後，overlay Marker 會被移除', async () => {
+        const { fixture, map } = await renderWithOverlappingTerritories();
+
+        map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
+        map.fireClick();
+        await fixture.whenStable();
+        flushRegimeFocusRequests('r-a');
+
+        const overlayMarker = FakeMarker.instances.find((m) => !m.removed && m.options['anchor'] === 'bottom')!;
+        expect(overlayMarker.removed).toBe(false);
+
+        map.fireClick(); // 再點一次同一個政權，toggle 取消聚焦
+        await fixture.whenStable();
+
+        expect(overlayMarker.removed).toBe(true);
+      });
     });
   });
 

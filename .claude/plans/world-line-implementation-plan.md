@@ -811,6 +811,43 @@ related_constitution: .claude/constitutions/world-line.md
 > （`regime-focus-panel.spec.ts` 新增的測試），跟 task 3.8 當時同樣受限環境下的驗證
 > 方式一致。建議之後找機會在真的能跑 WebGL 的瀏覽器環境裡實機驗證一次點擊疆域→
 > 互動清單→事件抽屜的完整流程。
+>
+> **2026-08-31 追加調整：互動記錄搬離側欄面板，改成疊在政權疆域上方的地圖 overlay**
+> （使用者實機測試截圖回報看到政權聚焦面板後提案：既然事件記錄本質上屬於「這個政權
+> 發生的事」，比起塞在固定左上角的側欄面板，疊在該政權疆域正上方的毛玻璃卡片更直覺；
+> 使用者確認要即時跟著地圖拖曳/縮放定位，不是打開當下定位一次就不動）。
+>
+> 新元件 `RegimeEventPanelComponent`（`app/src/app/regime-event-panel/`）——`AC#3`
+> 互動清單的邏輯（`eventInteractionItems`/`relationInteractionItems`/`openEvent()`）
+> 從 `RegimeFocusPanelComponent` 整段搬過去，不是複製一份，`RegimeFocusPanel` 現在
+> 只剩政權身份資訊（名稱/存續期間/起源終止/周邊政權清單）。**這個新元件不是用一般的
+> `<app-...>` 標籤掛進 `app.html`**：`MapComponent` 用 `ViewContainerRef.
+> createComponent()` 動態建立它，把渲染出來的 DOM 元素交給 MapLibre 的 `Marker`
+> （`anchor: 'bottom'` + 向上 `offset: [0, -32]`，讓卡片浮在疆域偏上緣）——這是這個
+> 專案第一次把完整 Angular 元件（不是純 DOM 元素，見 `renderLabels()` 的政權名稱
+> 標籤）當 Marker 內容用，因為互動清單需要真正的響應式綁定跟事件處理（點擊開抽屜），
+> 純手刻 DOM 沒辦法重用既有的 computed/樣板語法。**即時跟著地圖動這件事完全不用自己
+> 寫 `map.on('move'/'zoom')` 監聽器重算螢幕座標**——直接重用 MapLibre `Marker` 內建
+> 的定位機制（跟政權名稱標籤同一個 API），`Marker` 自己會在地圖變動時重新計算螢幕
+> 位置，這個專案的程式碼只需要在政權/年份/疆域資料變動時呼叫 `setLngLat()` 更新地理
+> 座標本身。定位點沿用 `renderLabels()` 已經算好的 `currentLabelPoints`（Turf.js 幾何
+> 中心），不重新算一次「疆域最上緣」。
+>
+> **沒有互動記錄時整個 overlay 不渲染任何內容**（跟原本側欄面板顯示「這個年份沒有
+> 查到...」空狀態文案不同）——這個面板疊在地圖上，多數年份沒有互動記錄時若還顯示一張
+> 空卡片，會變成每次點擊政權都冒出一個沒有內容的浮動卡片，比不顯示更干擾。**聚焦政權
+> 在目前這批疆域裡查無定位點時**（換年份後政權已滅亡/尚未建立）直接清掉 marker，不留
+> 一張飄在螢幕上、指向不存在疆域的卡片。
+>
+> 已用 `ng build`（1.53MB/342KB，budget 內）、`ng test`（222/222，新增
+> `regime-event-panel.spec.ts` 4 條【沒有聚焦不渲染／沒有互動記錄不渲染／只顯示跟周邊
+> 政權有交集的互動／點擊事件觸發抽屜】、`map.spec.ts` 新增 2 條驗證
+> `updateEventPanelMarker()`【聚焦後建立 `anchor:'bottom'`+向上 offset 的 Marker／
+> 取消聚焦後 Marker 被移除】、`regime-focus-panel.spec.ts` 移除搬走的 3 條舊測試）、
+> 真實容器（`docker compose up -d --build backend frontend`）部署驗證 bundle 含新
+> 程式碼。**同樣受限於這次對話環境的 WebGL 問題**（見上方說明），沒有做到瀏覽器裡
+> 「政權疆域正上方真的浮出卡片、拖曳地圖卡片跟著移動」的視覺驗證——邏輯正確性靠上述
+> 單元測試涵蓋，視覺呈現建議之後找機會實機看一眼。
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |

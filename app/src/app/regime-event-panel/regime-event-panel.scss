@@ -1,0 +1,70 @@
+// 刻意不是 display: contents——見 regime-event-panel.ts 類別文件說明，這個元件的
+// host 本身就是 MapLibre Marker 要定位的那個 box。
+:host {
+  display: block;
+  width: 260px;
+  max-width: 70vw;
+}
+
+.regime-event-panel {
+  padding: var(--wl-space-3);
+
+  // 跟 event-drawer.scss 同一套毛玻璃規格（notes §八原文），刻意寫死深色，不套用
+  // --wl-* 淺色主題 token，理由同 event-drawer.scss 開頭說明。
+  backdrop-filter: blur(16px);
+  background: rgba(20, 20, 25, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--wl-radius-lg);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-xs);
+}
+
+.regime-event-panel-title {
+  margin: 0 0 var(--wl-space-2);
+  font-size: var(--wl-font-size-sm);
+  font-weight: var(--wl-font-weight-medium);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.regime-event-panel-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wl-space-2);
+}
+
+.regime-event-panel-trigger {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
+}
+
+.regime-event-panel-date {
+  display: block;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.regime-event-panel-description {
+  display: block;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.6);
+}

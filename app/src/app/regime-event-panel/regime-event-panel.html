@@ -1,0 +1,28 @@
+@if (eventInteractionItems().length > 0 || relationInteractionItems().length > 0) {
+  <div class="regime-event-panel" aria-label="政權互動記錄">
+    <h3 class="regime-event-panel-title">互動記錄</h3>
+    <ul class="regime-event-panel-list">
+      @for (item of eventInteractionItems(); track item.key) {
+        <li>
+          <button type="button" class="regime-event-panel-trigger" (click)="openEvent(item.eventId)">
+            {{ item.label }}（與{{ item.otherRegimeName }}）
+          </button>
+          <span class="regime-event-panel-date">
+            <app-edtf-date [value]="item.startEdtf" />
+            @if (item.endEdtf !== item.startEdtf) {
+              – <app-edtf-date [value]="item.endEdtf" />
+            }
+          </span>
+        </li>
+      }
+      @for (item of relationInteractionItems(); track item.key) {
+        <li>
+          {{ item.label }}（與{{ item.otherRegimeName }}）
+          @if (item.description) {
+            <span class="regime-event-panel-description">{{ item.description }}</span>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+}

@@ -62,47 +62,5 @@
         }
       </div>
     </sanring-collapsible>
-
-    <sanring-collapsible [open]="true" class="regime-focus-panel-collapsible">
-      <button type="button" sanringCollapsibleTrigger class="regime-focus-panel-section-trigger">
-        <span>互動記錄</span>
-        <span class="regime-focus-panel-chevron" aria-hidden="true">▾</span>
-      </button>
-
-      <div sanringCollapsibleContent>
-        @if (eventInteractionItems().length > 0 || relationInteractionItems().length > 0) {
-          <ul class="regime-focus-panel-interaction-list">
-            @for (item of eventInteractionItems(); track item.key) {
-              <li>
-                <button
-                  type="button"
-                  class="regime-focus-panel-interaction-trigger"
-                  (click)="openEvent(item.eventId)"
-                >
-                  {{ item.label }}（與{{ item.otherRegimeName }}）
-                </button>
-                <span class="regime-focus-panel-interaction-date">
-                  <app-edtf-date [value]="item.startEdtf" />
-                  @if (item.endEdtf !== item.startEdtf) {
-                    –
-                    <app-edtf-date [value]="item.endEdtf" />
-                  }
-                </span>
-              </li>
-            }
-            @for (item of relationInteractionItems(); track item.key) {
-              <li>
-                {{ item.label }}（與{{ item.otherRegimeName }}）
-                @if (item.description) {
-                  <span class="regime-focus-panel-interaction-description">{{ item.description }}</span>
-                }
-              </li>
-            }
-          </ul>
-        } @else {
-          <p class="regime-focus-panel-empty">這個年份沒有查到跟周邊政權的互動記錄</p>
-        }
-      </div>
-    </sanring-collapsible>
   </aside>
 }

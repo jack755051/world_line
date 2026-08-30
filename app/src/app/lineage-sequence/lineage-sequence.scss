@@ -1,0 +1,25 @@
+:host {
+  display: contents; // 跟 regime-focus-panel.scss 的 :host 同一個理由：實際排版交給
+  // 父層（app.scss 的 .app-header），這個元件自己不建立額外的 box。
+}
+
+.lineage-sequence {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--wl-space-1);
+  font-size: var(--wl-font-size-sm);
+  // :host 是 display: contents（見上方說明），這個元件在 flex 版面（.app-header）裡
+  // 沒有自己的 box 可以套 margin-left: auto 把自己推到最右邊，margin 只能下在這個真正
+  // 有 box 的子元素上。
+  margin-left: auto;
+}
+
+.lineage-sequence-label {
+  color: var(--wl-ink-secondary);
+  white-space: nowrap;
+}
+
+.lineage-sequence-arrow {
+  color: var(--wl-ink-muted);
+}

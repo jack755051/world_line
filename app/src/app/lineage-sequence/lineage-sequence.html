@@ -1,0 +1,11 @@
+@if (presetName(); as name) {
+  <div class="lineage-sequence" aria-label="預設史觀主線">
+    <span class="lineage-sequence-label">{{ name }}主線：</span>
+    @for (regime of sequence(); track regime.id; let last = $last) {
+      <sanring-tag variant="outline">{{ regime.selfName }}</sanring-tag>
+      @if (!last) {
+        <span class="lineage-sequence-arrow" aria-hidden="true">→</span>
+      }
+    }
+  </div>
+}

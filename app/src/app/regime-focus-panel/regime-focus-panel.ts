@@ -5,6 +5,7 @@ import { TimelineState } from '../core/time/timeline-state';
 import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
 import { TagComponent } from '../components/ui/tag';
 import { EdtfDateComponent } from '../edtf-date/edtf-date';
+import { describeRegimeEnd, describeRegimeOrigin } from '../core/regime/regime-transition-display';
 
 /**
  * 政權聚焦模式的資訊面板（任務 3.7，對應 PRD Story 2）——點擊地圖上的疆域後顯示，列出
@@ -65,6 +66,15 @@ import { EdtfDateComponent } from '../edtf-date/edtf-date';
  * 原始字串留得住，UI 要呈現這些資訊沒有其他資料來源可以用。持續性關係（`regime_
  * relations`）維持只用整數年份（`valid_period` 本來就是 `INT4RANGE`，不是 EDTF），
  * 不套用這個元件。
+ *
+ * **2026-08-30 追加 Story 4 AC#2（政權狀態轉換視覺呈現）**：標題下方新增「起源／終止」
+ * 兩個 `sanring-tag`——文字/variant 由純函式模組 `regime-transition-display.ts` 決定
+ * （這個元件只負責把 `RegimeDirectoryService` 查到的 id 轉成名稱餵進去，見
+ * `originDescription`/`endDescription` 兩個 computed 的說明）。AC#2 憲法原話「取代跟
+ * 消滅應該是兩種不同的定義」——`succeeded`（禪讓）用 `default` variant，`conquered`
+ * （被滅亡）用 `destructive`（紅）variant，兩者在畫面上一定是不同顏色，不會混淆；
+ * `status==='active'` 時 `endDescription().text` 是 `null`，不顯示終止 Tag（政權仍
+ * 存續，沒有「終止」可以描述）。
  */
 @Component({
   selector: 'app-regime-focus-panel',
@@ -83,6 +93,44 @@ export class RegimeFocusPanelComponent {
   protected readonly focusedRegimeName = computed(() => {
     const id = this.focusedRegimeId();
     return id ? (this.directory.nameOf(id) ?? id) : null;
+  });
+
+  /** 任務 3.9 AC#2：聚焦政權「怎麼來的」——見 `regime-transition-display.ts` 說明，
+      這裡只負責把 `RegimeDirectoryService` 查到的原始 id 轉成名稱字串餵給純函式。 */
+  protected readonly originDescription = computed(() => {
+    const id = this.focusedRegimeId();
+    if (!id) {
+      return null;
+    }
+    const regime = this.directory.regimeOf(id);
+    if (!regime) {
+      return null;
+    }
+    return describeRegimeOrigin({
+      predecessorRegimeId: regime.predecessorRegimeId,
+      originTransitionType: regime.originTransitionType,
+      predecessorName: regime.predecessorRegimeId ? this.directory.nameOf(regime.predecessorRegimeId) : undefined,
+    });
+  });
+
+  /** 任務 3.9 AC#2：聚焦政權「怎麼終止的」——`status==='active'` 時回傳 `text: null`，
+      模板用這個判斷是否要顯示終止 Tag（仍存續的政權沒有終止可以描述）。 */
+  protected readonly endDescription = computed(() => {
+    const id = this.focusedRegimeId();
+    if (!id) {
+      return null;
+    }
+    const regime = this.directory.regimeOf(id);
+    if (!regime) {
+      return null;
+    }
+    return describeRegimeEnd({
+      status: regime.status,
+      destroyedByRegimeId: regime.destroyedByRegimeId,
+      destroyedByName: regime.destroyedByRegimeId ? this.directory.nameOf(regime.destroyedByRegimeId) : undefined,
+      successorNames: this.directory.successorOf(id).map((r) => r.selfName),
+      splitChildrenNames: this.directory.splitChildrenOf(id).map((r) => r.selfName),
+    });
   });
 
   /** 存續期間文字，例如「西元 221–263 年」——只有年份精度，見上方類別文件說明。 */

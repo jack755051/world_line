@@ -114,9 +114,9 @@ related_adrs: []
 - **So that** 我能清楚看到政權狀態轉換的過程，並區分「被取代（禪讓）」與「被滅亡」這兩種不同性質的終止方式
 
 **Acceptance Criteria**:
-- [ ] Given 時間拉桿拖到政權分裂年份，when 地圖渲染，then 應同時顯示分裂後的多個新政權疆域（例：漢朝→曹魏／蜀漢／東吳三個獨立疆域區塊）
-- [ ] Given 某政權以「被取代（禪讓）」方式終止（例：曹魏→西晉），when 顯示該政權狀態，then UI 呈現方式須與「被滅亡」（例：蜀漢被曹魏滅亡）在視覺/文字上明確區分為兩種不同狀態，不可合併呈現（憲法原話：「取代跟消滅應該是兩種不同的定義」）
-- [ ] Given 系統呈現政權列表的預設「主線」視圖，when 使用者未指定特定史觀，then 依 `lineage_presets` 中的預設 preset（例：「傳統教科書史觀」，內含漢→曹魏→西晉序列）顯示主線；蜀漢/東吳等分裂期政權仍完整存在於資料庫，可在細節模式中查看（方案 D，已拍板，見 §6）
+- [x] Given 時間拉桿拖到政權分裂年份，when 地圖渲染，then 應同時顯示分裂後的多個新政權疆域（例：漢朝→曹魏／蜀漢／東吳三個獨立疆域區塊）（2026-08-30 驗證確認**已滿足，不用新增程式碼**——task 3.6 的 `morphRole: 'entering'/'leaving'` 機制本來就處理疆域列數量變多的情況；用真實容器 curl 逐年驗證，實際「一次多出好幾個新政權」的分裂時刻是 208 年（劉備/孫權崛起，漢一筆變成漢＋蜀漢＋吳），不是原先以為的 220 年——220 年漢→魏是單一政權對單一政權的禪讓替換，屬於 AC#2 的終止方式範疇，見 implementation plan 任務 3.9）
+- [x] Given 某政權以「被取代（禪讓）」方式終止（例：曹魏→西晉），when 顯示該政權狀態，then UI 呈現方式須與「被滅亡」（例：蜀漢被曹魏滅亡）在視覺/文字上明確區分為兩種不同狀態，不可合併呈現（憲法原話：「取代跟消滅應該是兩種不同的定義」）（2026-08-30 完成，見 implementation plan 任務 3.9：`regime-transition-display.ts` 依 `RegimeStatus` 決定文字＋`sanring-tag` variant，`succeeded`＝`default`、`conquered`＝`destructive`〔紅〕，兩者視覺上必為不同色）
+- [x] Given 系統呈現政權列表的預設「主線」視圖，when 使用者未指定特定史觀，then 依 `lineage_presets` 中的預設 preset（例：「傳統教科書史觀」，內含漢→曹魏→西晉序列）顯示主線；蜀漢/東吳等分裂期政權仍完整存在於資料庫，可在細節模式中查看（方案 D，已拍板，見 §6）（2026-08-30 完成，見 implementation plan 任務 3.9：`<app-lineage-sequence>` 掛在頁首，用 task 2.8 的 `GET /lineage-presets`＋`GET /lineage-presets/:id/regimes` 顯示 `isDefault` 那筆 preset 的政權序列）
 
 ### Story 5: 模糊／爭議年份的呈現與查詢（對應憲法 §9、notes EDTF 設計）
 

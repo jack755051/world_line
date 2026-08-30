@@ -26,10 +26,50 @@ describe('RegimeFocusPanelComponent', () => {
     httpMock.expectOne((r) => r.urlWithParams === '/api/v1/regimes').flush({
       statusCode: 200,
       message: 'FETCH_SUCCESS',
+      // 2026-08-30 起這份 fixture 貼近真實種子資料的傳承關係（漢→魏→晉、漢→蜀漢／吳
+      // 分裂），不是任意值——task 3.9 AC#2 的測試需要真的有「succeeded」/「split」的
+      // 反查對象才測得到 describeRegimeEnd() 的正常路徑，不能只測 fallback 文案。
       data: [
-        { id: 'r-wei', selfName: '魏' },
-        { id: 'r-shuhan', selfName: '蜀漢' },
-        { id: 'r-wu', selfName: '吳' },
+        {
+          id: 'r-han',
+          selfName: '漢',
+          status: 'split',
+          predecessorRegimeId: null,
+          originTransitionType: null,
+          destroyedByRegimeId: null,
+        },
+        {
+          id: 'r-wei',
+          selfName: '魏',
+          status: 'succeeded',
+          predecessorRegimeId: 'r-han',
+          originTransitionType: 'split',
+          destroyedByRegimeId: null,
+        },
+        {
+          id: 'r-shuhan',
+          selfName: '蜀漢',
+          status: 'conquered',
+          predecessorRegimeId: 'r-han',
+          originTransitionType: 'split',
+          destroyedByRegimeId: 'r-wei',
+        },
+        {
+          id: 'r-wu',
+          selfName: '吳',
+          status: 'conquered',
+          predecessorRegimeId: 'r-han',
+          originTransitionType: 'split',
+          destroyedByRegimeId: null,
+        },
+        {
+          id: 'r-jin',
+          selfName: '晉',
+          status: 'active',
+          predecessorRegimeId: 'r-wei',
+          originTransitionType: 'succeeded',
+          destroyedByRegimeId: null,
+        },
       ],
     });
   });
@@ -229,6 +269,64 @@ describe('RegimeFocusPanelComponent', () => {
     fixture.nativeElement.querySelector('.regime-focus-panel-close').click();
 
     expect(focusState.focusedRegimeId()).toBeNull();
+  });
+
+  describe('任務 3.9 AC#2：起源／終止狀態視覺呈現', () => {
+    it('魏（承漢分裂而立、後由晉禪讓取代）顯示對應的起源/終止 Tag，終止 variant 是 default 不是 destructive', () => {
+      focusState.toggle('r-wei');
+      flushFocusRequests('r-wei', [{ startYear: 220, endYear: 226 }]);
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      const tags = fixture.nativeElement.querySelectorAll('.regime-focus-panel-transition-tags sanring-tag');
+      expect(tags[0].textContent.trim()).toBe('承 漢 分裂而立');
+      expect(tags[1].textContent.trim()).toBe('禪讓予 晉');
+      // AC#2 核心：variant 決定實際渲染出來的顏色 class（BadgeDirective 把 variant 轉成
+      // `[class]` host binding，見 badge.directive.ts），不是憑文字內容猜——這裡直接比對
+      // class 字串，確保「禪讓」用的是 default（中性色），不是 conquered 那個紅色 class。
+      const endBadge = tags[1].querySelector('[sanringbadge]') as HTMLElement;
+      expect(endBadge.className).toContain('--sanring-control)'); // default variant 的識別 class 片段
+      expect(endBadge.className).not.toContain('--sanring-error-50)');
+    });
+
+    it('蜀漢（被魏所滅）終止 Tag 文字含滅亡方，variant 用 destructive（紅色，跟禪讓明確視覺區分）', () => {
+      focusState.toggle('r-shuhan');
+      flushFocusRequests('r-shuhan', [{ startYear: 221, endYear: 263 }]);
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      const tags = fixture.nativeElement.querySelectorAll('.regime-focus-panel-transition-tags sanring-tag');
+      expect(tags[0].textContent.trim()).toBe('承 漢 分裂而立');
+      expect(tags[1].textContent.trim()).toBe('被 魏 所滅');
+      const endBadge = tags[1].querySelector('[sanringbadge]') as HTMLElement;
+      expect(endBadge.className).toContain('--sanring-error-50)'); // destructive variant 的識別 class 片段
+    });
+
+    it('漢（分裂為魏／蜀漢／吳，沒有前身政權）起源顯示「獨立起始」，終止列出全部分裂政權', () => {
+      focusState.toggle('r-han');
+      flushFocusRequests('r-han', [{ startYear: 189, endYear: 220 }]);
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      const tags = fixture.nativeElement.querySelectorAll('.regime-focus-panel-transition-tags sanring-tag');
+      expect(tags[0].textContent.trim()).toBe('獨立起始（無前身政權）');
+      expect(tags[1].textContent.trim()).toBe('分裂為 魏／蜀漢／吳');
+    });
+
+    it('晉（仍存續中）只顯示起源 Tag，不顯示終止 Tag', () => {
+      focusState.toggle('r-jin');
+      flushFocusRequests('r-jin', [{ startYear: 265, endYear: 280 }]);
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      const tags = fixture.nativeElement.querySelectorAll('.regime-focus-panel-transition-tags sanring-tag');
+      expect(tags).toHaveLength(1);
+      expect(tags[0].textContent.trim()).toBe('承 魏 禪讓而立');
+    });
   });
 
   describe('AC#3 互動記錄', () => {

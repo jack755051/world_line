@@ -496,7 +496,60 @@ related_constitution: .claude/constitutions/world-line.md
 > 重新查/未聚焦時不查/過濾周邊/空狀態）、`docker compose up -d --build backend frontend`
 > ＋curl 確認部署驗證，AC#1/AC#2/AC#3 全數完成，3.7 完整達成。
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
-| [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
+| [x] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
+
+> **2026-08-30 完成**（Story 4，使用者確認做完 Story 5 後接著做，依先前分析的
+> 「Story5→4→3」優先順序，見 3.7 前後的討論）：
+>
+> **AC#1（分裂年份同時顯示多個新政權疆域）驗證後確認已滿足，不用新增程式碼**——
+> task 3.6 的形變動畫本來就用 `morphRole: 'entering'/'leaving'` 處理「這個年份疆域
+> 列數量變多/變少」的情況（新政權淡入、不強行插值，見 3.6 說明），一對多的分裂情況
+> 跟「政權被取代/滅亡」這種一對一在資料結構上沒有差異，同一套機制已經涵蓋。**用真實
+> 容器 curl 逐年驗證確認實際發生的年份**（先前以為是 220/221 年漢→魏那個轉折點，
+> 實際查證後發現那其實是 1:1 替換，見下方更正）：year=200 只有「漢」一筆；
+> year=208（劉備/孫權崛起，見 3.5 的種子資料說明）一次新增「蜀漢」跟「吳」兩個政權
+> （含爭議期間各自的核心區+爭議區共 4 筆新疆域，加上漢原本那 1 筆共 5 筆），才是
+> 真正「一個政權在畫面上同時多出好幾個新政權疆域」的分裂時刻；220 年的漢→魏是單一
+> 政權對單一政權的禪讓替換（entering×leaving 一對一配對，跟 AC#2 的「終止方式」相關，
+> 不是 AC#1 講的「分裂」）。
+>
+> **AC#2（禪讓／滅亡視覺區分，本任務主要工作）**：憲法原話「取代跟消滅應該是兩種不同
+> 的定義」——新增純函式模組 `app/src/app/core/regime/regime-transition-display.ts`
+> （`describeRegimeOrigin()`/`describeRegimeEnd()`），把 `RegimeStatus` 狀態機
+> （`api/Domain/RegimeStatus.cs`，前端對照 `regime-status.enum.ts`）轉成中文敘述＋
+> `sanring-tag` 的固定語意 `variant`：`succeeded`（禪讓）用 `default`、`conquered`
+> （被滅亡）用 `destructive`（紅），兩者視覺上一定不同色，不可能混淆；`split`（分裂）
+> 用 `secondary`；`active`（仍存續）不顯示終止 Tag。**動工前先解決了 destroyedByRegimeId
+> 語意的疑點**（見 3.9 動工前的 grep 記錄）：這個欄位依 PRD §6 只在 `conquered` 時
+> 填值，`succeeded` 時後繼者要反查 `predecessorRegimeId`，不是資料缺口。**`RegimeDirectoryService`
+> 從只有 `{id, selfName}` 擴充成完整欄位**（`status`/`predecessorRegimeId`/
+> `originTransitionType`/`destroyedByRegimeId`），新增 `regimeOf()`/`successorOf()`/
+> `splitChildrenOf()` 三個查詢方法——後兩個是反查方法，跟 `EventsController.
+> GetInteractionsByRegime()` 反查政權轉換事件另一方同一個模式（後端也沒有另外存一份
+> 反向關係表）。`RegimeFocusPanelComponent` 標題下方新增「起源／終止」兩個 Tag
+> （`originDescription`/`endDescription` 兩個 computed，見元件文件說明）。
+>
+> **AC#3（未指定史觀時顯示預設主線）**：task 2.8 的 `GET /lineage-presets`＋
+> `GET /lineage-presets/:id/regimes` 這次才真正接上前端——新增
+> `app/src/app/core/regime/default-lineage.service.ts`（`DefaultLineageService`，
+> `shareReplay(1)` 快取，`switchMap` 串接兩個請求：先查出 `isDefault===true` 的
+> preset，再查它的政權序列）跟 `app/src/app/lineage-sequence/`
+> （`LineageSequenceComponent`，箭頭串接的 `sanring-tag` 顯示「傳統教科書史觀主線：
+> 漢→魏→晉」），掛在 `App` 的 header，跟標題並排靠右。**刻意只顯示這一條預設序列，不做
+> 史觀切換 UI**——AC#3 原文只要求「未指定特定史觀時」顯示預設主線，沒有要求切換功能，
+> 蜀漢/東吳等分裂期政權仍可在地圖上點擊聚焦查看，只是不在這條主線序列裡，這是 PRD §6
+> 「方案 D」本來就拍板的設計。
+>
+> 已用 `dotnet build`（clean）、`ng build`（clean，budget 內，esbuild `--charset=ascii`
+> escape 過的中文字串已用 `\uXXXX` 形式比對確認新程式碼真的在部署的 bundle 裡，不是
+> 憑「應該有」猜測）、`ng test`（188/188，新增 19 條：`regime-transition-display.spec.ts`
+> 窮舉四種狀態的文字/variant、`regime-directory.service.spec.ts` 補上
+> `regimeOf()`/`successorOf()`/`splitChildrenOf()`、`regime-focus-panel.spec.ts`
+> 新增「任務 3.9 AC#2」區塊驗證漢/魏/蜀漢/晉四種狀態的 Tag 文字與 variant class、
+> `default-lineage.service.spec.ts`/`lineage-sequence.spec.ts` 涵蓋主線序列載入/
+> 查無預設 preset 時的空狀態）、`docker compose up -d --build backend frontend`＋curl
+> 對真實容器驗證 `/api/v1/regimes`（漢/魏/蜀漢/吳/晉五筆狀態機欄位皆正確）跟
+> `/api/v1/lineage-presets/:id/regimes`（漢→魏→晉，`sortOrder` 1/2/3）。
 | [x] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |
 
 > **2026-08-30 完成**（使用者確認三個 Story 裡優先做這個，理由：唯一沒有後端阻塞的

@@ -13,6 +13,18 @@
       <p class="regime-focus-panel-warning">{{ warning }}</p>
     }
 
+    <!-- 任務 3.9 AC#2：起源／終止狀態，見元件文件說明。 -->
+    <div class="regime-focus-panel-transition-tags">
+      @if (originDescription(); as origin) {
+        <sanring-tag variant="outline">{{ origin.text }}</sanring-tag>
+      }
+      @if (endDescription(); as end) {
+        @if (end.text) {
+          <sanring-tag [variant]="end.variant">{{ end.text }}</sanring-tag>
+        }
+      }
+    </div>
+
     <sanring-collapsible [open]="true" class="regime-focus-panel-collapsible">
       <button type="button" sanringCollapsibleTrigger class="regime-focus-panel-section-trigger">
         <span>同時期周邊政權</span>

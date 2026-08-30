@@ -253,8 +253,22 @@ function withStartYear(
 }
 
 const sampleRegimes = [
-  { id: 'r-a', selfName: '魏' },
-  { id: 'r-b', selfName: '吳' },
+  {
+    id: 'r-a',
+    selfName: '魏',
+    status: 'succeeded' as const,
+    predecessorRegimeId: null,
+    originTransitionType: null,
+    destroyedByRegimeId: null,
+  },
+  {
+    id: 'r-b',
+    selfName: '吳',
+    status: 'conquered' as const,
+    predecessorRegimeId: null,
+    originTransitionType: null,
+    destroyedByRegimeId: null,
+  },
 ];
 
 // map.ts 訂閱 TimelineState.year 時用了 debounceTime(150)（見 map.ts 說明：避免拖拉桿

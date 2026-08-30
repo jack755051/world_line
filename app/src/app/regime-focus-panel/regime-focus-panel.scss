@@ -72,6 +72,16 @@
   font-size: var(--wl-font-size-sm);
 }
 
+// 任務 3.9 AC#2：起源／終止 Tag——跟 .regime-focus-panel-tag-list（周邊政權清單）共用
+// 同一種 flex-wrap 排版，但語意不同（這裡固定最多兩個 Tag，不是清單），拆成獨立 class
+// 避免日後兩處各自調整版面時互相牽動。
+.regime-focus-panel-transition-tags {
+  margin-top: var(--wl-space-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wl-space-1);
+}
+
 .regime-focus-panel-collapsible {
   display: block;
   margin-top: var(--wl-space-4);

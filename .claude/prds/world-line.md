@@ -103,9 +103,9 @@ related_adrs: []
 - **So that** 我能看到政權名稱依觀察視角動態改變（例如阿拉伯帝國在唐朝視角下顯示為「大食」），同時仍能追溯回其自稱本體
 
 **Acceptance Criteria**:
-- [ ] Given 使用者處於全球客觀視角，when 地圖渲染政權標籤，then 應顯示各政權自稱名稱（憲法 I2：政權建立必須有自稱名稱）
-- [ ] Given 使用者切換為「聚焦唐朝視角」，when 地圖渲染同時期的阿拉伯帝國，then 標籤應顯示唐朝視角下的代稱「大食」，且點擊/hover 後可追溯回「阿拉伯帝國」自稱本體（對應 I4：他稱代稱不可為孤兒資料）
-- [ ] Given 某政權存在他稱代稱資料，但找不到對應的自稱政權本體，when 系統載入資料，then 應視為資料完整性錯誤並阻擋顯示（I4 硬約束，不可容忍孤兒代稱資料上線）
+- [x] Given 使用者處於全球客觀視角，when 地圖渲染政權標籤，then 應顯示各政權自稱名稱（憲法 I2：政權建立必須有自稱名稱）（2026-08-30 完成，見 implementation plan 任務 3.8：`NamingViewpointState.observerRegimeId` 預設 `null`，標籤一律顯示 `RegimeDirectoryService.nameOf()` 的自稱名稱）
+- [x] Given 使用者切換為「聚焦唐朝視角」，when 地圖渲染同時期的阿拉伯帝國，then 標籤應顯示唐朝視角下的代稱「大食」，且點擊/hover 後可追溯回「阿拉伯帝國」自稱本體（對應 I4：他稱代稱不可為孤兒資料）（2026-08-30 完成，見 implementation plan 任務 3.8。**目前種子資料還沒有唐朝/阿拉伯帝國**，實際驗證改用真實存在的案例——切換到「以蜀漢視角」，魏的標籤正確顯示代稱「賊」；hover 用原生 `title` 屬性顯示「自稱：魏」，click 直接複用任務 3.7 既有的聚焦面板機制，不另外做一個顯示自稱的 UI）
+- [x] Given 某政權存在他稱代稱資料，但找不到對應的自稱政權本體，when 系統載入資料，then 應視為資料完整性錯誤並阻擋顯示（I4 硬約束，不可容忍孤兒代稱資料上線）（2026-08-30 驗證確認**已滿足，不用新增程式碼**——`regime_aliases.regime_id` 是必填 FK 約束（`RegimeAliasConfiguration.cs` 的 `.IsRequired()`），孤兒代稱在資料庫層面就物理上不可能存在；用真實容器直接對 `app_postgres` 執行 `INSERT INTO regime_aliases ... regime_id = '00000000-...'` 驗證，確認被 `fk_regime_aliases_regimes_regime_id` 約束擋下，不是應用層才檢查）
 
 ### Story 4: 政權狀態轉換呈現（對應憲法 §4 狀態機）
 

@@ -74,6 +74,15 @@ describe('RegimeDirectoryService', () => {
     expect(service.regimeOf('nonexistent')).toBeUndefined();
   });
 
+  it('all() 回傳全部政權清單（任務 3.8：RegimeAliasDirectoryService 用來知道要查哪些政權的代稱）', () => {
+    loadRegimes([
+      { id: 'r-wei', selfName: '魏', status: 'succeeded', predecessorRegimeId: null, originTransitionType: null, destroyedByRegimeId: null },
+      { id: 'r-wu', selfName: '吳', status: 'conquered', predecessorRegimeId: null, originTransitionType: null, destroyedByRegimeId: null },
+    ]);
+
+    expect(service.all().map((r) => r.id).sort()).toEqual(['r-wei', 'r-wu']);
+  });
+
   describe('反向查詢（任務 3.9）', () => {
     it('successorOf() 找出「接續這個政權」的政權（origin_transition_type=succeeded）', () => {
       loadRegimes([

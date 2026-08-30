@@ -70,12 +70,18 @@ export class RegimeDirectoryService {
     return this.regimesById().get(regimeId);
   }
 
+  /** 全部政權清單（任務 3.8：`RegimeAliasDirectoryService` 要對每個政權各查一次代稱，
+      需要先知道有哪些政權 id，不用另外打一次 `/regimes` 拿清單）。 */
+  all(): readonly RegimeSummary[] {
+    return [...this.regimesById().values()];
+  }
+
   /** 反查「誰接續了這個政權」（`status='succeeded'` 時用）——找出所有
       `predecessorRegimeId` 指向這個政權、且 `originTransitionType==='succeeded'` 的
       政權。理論上只會有 0 或 1 筆（禪讓是一對一），回傳陣列是為了跟
       `splitChildrenOf()` 介面一致，呼叫端自己視情況只取第一筆。 */
   successorOf(regimeId: string): readonly RegimeSummary[] {
-    return [...this.regimesById().values()].filter(
+    return this.all().filter(
       (r) => r.predecessorRegimeId === regimeId && r.originTransitionType === 'succeeded',
     );
   }
@@ -83,7 +89,7 @@ export class RegimeDirectoryService {
   /** 反查「這個政權分裂出了哪些政權」（`status='split'` 時用）——分裂本來就是一對多，
       不像禪讓/滅亡有單一對象，所以回傳的是整批清單，不是單一結果。 */
   splitChildrenOf(regimeId: string): readonly RegimeSummary[] {
-    return [...this.regimesById().values()].filter(
+    return this.all().filter(
       (r) => r.predecessorRegimeId === regimeId && r.originTransitionType === 'split',
     );
   }

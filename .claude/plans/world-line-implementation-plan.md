@@ -519,7 +519,67 @@ related_constitution: .claude/constitutions/world-line.md
 > budget 內）、`ng test`（140/140，新增 5 條：互動清單同步查詢跟換算/debounce 換年份
 > 重新查/未聚焦時不查/過濾周邊/空狀態）、`docker compose up -d --build backend frontend`
 > ＋curl 確認部署驗證，AC#1/AC#2/AC#3 全數完成，3.7 完整達成。
-| [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
+| [x] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
+
+> **2026-08-30 完成**（Story 3 最後一塊拼圖，依賴 task 2.9a 拍板的 `alias_type` 決策，
+> 完成後 5 個 Story 全數達成）：
+>
+> **AC#1（客觀視角顯示自稱）驗證後確認已滿足，不用新增程式碼**——地圖標籤本來就一律
+> 顯示 `RegimeDirectoryService.nameOf()`，這本身就是「全球客觀視角」；`NamingViewpoint
+> State.observerRegimeId` 預設 `null`，維持這個既有行為，AC#1 不需要額外邏輯，只需要
+> 確保新加的視角邏輯預設不啟動。
+>
+> **AC#3（孤兒代稱資料完整性）驗證後確認已滿足，不用新增程式碼**——`regime_aliases.
+> regime_id` 是必填 FK（`RegimeAliasConfiguration.cs`），孤兒代稱在 DB 層面物理上不
+> 可能存在。用真實容器直接對 `app_postgres` 跑 `INSERT INTO regime_aliases (...)
+> VALUES (..., '00000000-...', ...)`，確認被 `fk_regime_aliases_regimes_regime_id`
+> 約束擋下（`ERROR: insert or update on table "regime_aliases" violates foreign key
+> constraint`）——這是 I4「不可容忍孤兒代稱資料上線」比應用層檢查更強的保證，不需要
+> 前端另外寫一層「載入時檢查孤兒資料」的防呆邏輯。
+>
+> **AC#2（視角切換＋代稱顯示＋可追溯性，本任務主要工作）**：
+> - `app/src/app/core/regime/naming-viewpoint-state.ts`（`NamingViewpointState`）：
+>   目前選擇的觀察政權 id，`null`＝客觀視角。**刻意跟 `RegimeFocusState`（任務 3.7）
+>   分開**——3.7 的「聚焦」是點擊疆域→高亮+顯示周邊/互動面板，這裡的「視角」是全域性
+>   改變地圖上*所有*標籤怎麼命名，服務完全不同的問題，硬共用同一個 signal 會讓兩件事
+>   的意圖糾纏在一起。
+> - `app/src/app/core/regime/regime-alias-directory.service.ts`
+>   （`RegimeAliasDirectoryService`）：後端沒有「一次查全部代稱」的端點，依賴
+>   `RegimeDirectoryService.all()`（這次順便補上）先知道有哪些政權，`forkJoin` 對每個
+>   政權各發一次 `GET /regimes/:id/aliases`。**刻意延後載入，不在地圖初始化時跟著
+>   `RegimeDirectoryService` 一起預先抓**：多數使用者全程停留在客觀視角，代稱資料完全
+>   用不到，只有使用者第一次切換到某個特定觀察視角才觸發（`ensureLoaded()` 沿用
+>   `shareReplay(1)` 快取，之後切換視角不重新查）。
+> - `MapComponent.renderLabels()`：`observerRegimeId` 非 `null` 時查
+>   `aliasFor(regimeId, observerId)`，查得到才換代稱顯示、查無資料 fallback 回自稱
+>   （跟翻譯 fallback 同一個原則）。顯示代稱的標籤額外加 `.territory-label-clickable`
+>   （打開 `pointer-events`，其餘標籤維持 `pointer-events: none` 不擋地圖拖曳手勢）、
+>   原生 `title` 屬性顯示「自稱：OOO」（hover 可追溯，不用自己刻 tooltip UI）、
+>   click 直接呼叫 `focusState.toggle(regimeId)`（複用任務 3.7 既有的聚焦面板機制，
+>   面板標題本來就顯示真正的自稱名稱，不用為這個 AC 另外做一個顯示自稱的 UI）。
+> - `app/src/app/naming-viewpoint-selector/`（`NamingViewpointSelectorComponent`）：
+>   下拉選單，「全球客觀視角」+ 全部政權（依名稱排序），掛在頁首跟 `<app-lineage-
+>   sequence>` 並排。**列出全部政權，不篩掉目前沒有代稱資料的**——「任何政權都可以是
+>   觀察者」這個概念成立，跟「這個觀察者目前有沒有留下代稱記錄」是兩回事，沒有資料時
+>   fallback 顯示自稱不是錯誤狀態。
+>
+> **目前種子資料還沒有 PRD 原文舉例的「唐朝視角看阿拉伯帝國＝大食」**（那個時代的政權
+> 還沒匯入），實際驗證改用種子資料裡真實存在的案例：切換到「以蜀漢視角」，魏的標籤
+> 正確顯示代稱「賊」（task 2.9a 種子資料，蜀漢文書視角稱魏為賊），hover 顯示「自稱：
+> 魏」，點擊正確開啟聚焦面板並顯示真正的自稱「魏」。
+>
+> 已用 `ng build`（clean）、`ng test`（206/206，新增 22 條：`regime-alias-directory.
+> service.spec.ts`、`naming-viewpoint-state.spec.ts`、`naming-viewpoint-selector.
+> spec.ts`、`regime-directory.service.spec.ts` 補上 `all()`、`map.spec.ts` 新增「命名
+> 視角切換（任務 3.8）」describe 區塊涵蓋客觀視角不預先載入代稱/切換視角後代稱+
+> fallback 正確顯示/hover title+可點擊樣式/點擊觸發聚焦/切回客觀視角不重複載入五種
+> 情境）、`docker compose up -d --build backend frontend`＋curl 對真實容器驗證
+> `GET /regimes/:id/aliases` 資料形狀跟前端測試 mock 一致、部署的 bundle 用 esbuild
+> 轉義後的 `\uXXXX` 形式比對確認新程式碼真的在裡面（`全球客觀視角`／`自稱：`／
+> `territory-label-clickable` 均命中）。**沒有做到真實瀏覽器的視覺/互動驗證**（這次
+> 對話環境沒有連上 Chrome 擴充功能）——click/hover 邏輯是用 jsdom 直接 dispatch 真實
+> DOM 事件驗證（不是純粹的邏輯 mock），但畫面實際呈現效果（例如底線樣式、hover
+> tooltip 的瀏覽器原生外觀）建議之後找機會實機看一眼
 | [x] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
 
 > **2026-08-30 完成**（Story 4，使用者確認做完 Story 5 後接著做，依先前分析的

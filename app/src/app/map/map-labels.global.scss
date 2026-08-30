@@ -19,6 +19,18 @@
     0 0 3px var(--wl-surface);
 
   white-space: nowrap;
-  pointer-events: none; // 標籤本身還不能點擊互動（那是 3.7 政權聚焦模式的事），不要擋住底下地圖的拖曳/縮放手勢
+  pointer-events: none; // 標籤本身預設不能點擊互動，不要擋住底下地圖的拖曳/縮放手勢
   user-select: none;
+}
+
+// 任務 3.8（Story 3 AC#2）：正在顯示代稱（不是自稱）的標籤才需要互動——hover 用原生
+// title 屬性顯示自稱本體、click 觸發聚焦（見 map.ts renderLabels() 的說明）。只有這個
+// 子集打開 pointer-events，其餘（多數情況，全球客觀視角或查無代稱時 fallback 顯示
+// 自稱的）標籤維持 .territory-label 的 pointer-events: none，不擴大互動面積影響地圖
+// 拖曳手勢。
+.territory-label-clickable {
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: underline dotted; // 用底線標示「這不是自稱，可以互動查看原名」，不是純裝飾文字
+  text-underline-offset: 2px;
 }

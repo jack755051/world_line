@@ -1,0 +1,14 @@
+<div class="naming-viewpoint-selector">
+  <label for="naming-viewpoint-select" class="naming-viewpoint-selector-label">命名視角</label>
+  <select
+    id="naming-viewpoint-select"
+    class="naming-viewpoint-selector-select"
+    [value]="currentObserverId() ?? ''"
+    (change)="onChange($event)"
+  >
+    <option value="">全球客觀視角</option>
+    @for (regime of regimes(); track regime.id) {
+      <option [value]="regime.id">以{{ regime.selfName }}視角</option>
+    }
+  </select>
+</div>

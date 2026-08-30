@@ -8,6 +8,7 @@ import { TimelineState } from '../core/time/timeline-state';
 import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
 import { MorphAnimationScheduler } from '../core/geometry/morph-animation-scheduler.service';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
+import { NamingViewpointState } from '../core/regime/naming-viewpoint-state';
 
 // MapLibre 需要真的 WebGL context 才能初始化，JSDOM 測試環境沒有——用假的 Map/
 // NavigationControl/Marker 取代，只驗證「我們自己的 wiring 邏輯」（容器元素有傳進去、
@@ -721,6 +722,151 @@ describe('MapComponent', () => {
       await fixture.whenStable();
 
       expect(focusState.focusedRegimeId()).toBeNull();
+    });
+  });
+
+  describe('命名視角切換（任務 3.8，Story 3）', () => {
+    async function renderWithLabels(): Promise<{
+      fixture: ReturnType<typeof TestBed.createComponent<MapComponent>>;
+      namingViewpoint: NamingViewpointState;
+    }> {
+      const fixture = TestBed.createComponent(MapComponent);
+      await fixture.whenStable();
+      const map = FakeMap.instances[0];
+      const namingViewpoint = TestBed.inject(NamingViewpointState);
+
+      map.fireLoad();
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleRegimes });
+      await waitForDebounce();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+
+      return { fixture, namingViewpoint };
+    }
+
+    // RegimeAliasDirectoryService 對 sampleRegimes 的每個政權（r-a/r-b）各查一次代稱
+    // （見該 service 說明），這裡一次把兩筆都 flush 掉，呼叫端指定各自要回什麼資料。
+    function flushAliasRequests(aliasesByRegime: Record<string, unknown[]>): void {
+      for (const [regimeId, aliases] of Object.entries(aliasesByRegime)) {
+        httpMock
+          .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/aliases`)
+          .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: aliases });
+      }
+    }
+
+    // FakeMarker.instances 是「這個測試檔跑過程中建立過的全部 Marker」（見 vi.hoisted()
+    // 定義），不會因為 renderLabels() 呼叫 clearLabelMarkers() 而消失——舊 marker 只是
+    // 被標記 removed=true，still 留在陣列裡。切換視角會重畫一輪新標籤，這裡只看「目前
+    // 還沒被移除」的那些，不然會把舊一輪殘留的標籤也算進去。
+    function activeLabelTexts(): string[] {
+      return FakeMarker.instances
+        .filter((m) => !m.removed)
+        .map((m) => m.element.textContent)
+        .sort();
+    }
+
+    // 跟「政權聚焦模式（任務 3.7）」describe 區塊裡同名的 helper 邏輯相同，這裡另外
+    // 複製一份（不是共用）——兩個 describe 區塊刻意各自獨立管理測試情境，跟這個測試檔
+    // 既有的 scoping 慣例一致（`renderWithOverlappingTerritories()` 也只在它自己的
+    // describe 裡定義，不是頂層共用）。
+    function flushRegimeFocusRequests(regimeId: string): void {
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/territories`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/relations?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+    }
+
+    it('全球客觀視角（預設）時標籤顯示自稱名稱，不打任何代稱請求（AC#1）', async () => {
+      await renderWithLabels();
+
+      expect(activeLabelTexts()).toEqual(['吳', '魏']); // sampleRegimes 的自稱名稱
+
+      httpMock.expectNone(() => true); // 客觀視角完全用不到代稱資料，不該預先載入
+    });
+
+    it('切換到某個政權視角後，有代稱的政權標籤改顯示代稱；查無代稱的政權 fallback 回自稱（AC#2）', async () => {
+      const { fixture, namingViewpoint } = await renderWithLabels();
+
+      namingViewpoint.setObserver('r-shuhan');
+      await fixture.whenStable();
+      flushAliasRequests({
+        'r-a': [{ id: 'alias-1', regimeId: 'r-a', observerRegimeId: 'r-shuhan', aliasName: '賊', aliasType: 'political' }],
+        'r-b': [], // r-b 在這個視角下查無代稱，標籤應該 fallback 回自稱「吳」
+      });
+      await fixture.whenStable();
+
+      expect(activeLabelTexts()).toEqual(['吳', '賊']); // r-a 顯示代稱，r-b fallback 回自稱
+    });
+
+    it('顯示代稱的標籤有 hover 用的 title 屬性（自稱本體）跟可點擊樣式；fallback 顯示自稱的標籤沒有（AC#2 可追溯性）', async () => {
+      const { fixture, namingViewpoint } = await renderWithLabels();
+
+      namingViewpoint.setObserver('r-shuhan');
+      await fixture.whenStable();
+      flushAliasRequests({
+        'r-a': [{ id: 'alias-1', regimeId: 'r-a', observerRegimeId: 'r-shuhan', aliasName: '賊', aliasType: 'political' }],
+        'r-b': [],
+      });
+      await fixture.whenStable();
+
+      const byText = new Map(
+        FakeMarker.instances.filter((m) => !m.removed).map((m) => [m.element.textContent, m.element]),
+      );
+
+      const aliasedEl = byText.get('賊')!;
+      expect(aliasedEl.classList.contains('territory-label-clickable')).toBe(true);
+      expect(aliasedEl.title).toBe('自稱：魏');
+
+      const fallbackEl = byText.get('吳')!;
+      expect(fallbackEl.classList.contains('territory-label-clickable')).toBe(false);
+      expect(fallbackEl.title).toBe('');
+    });
+
+    it('點擊顯示代稱的標籤會聚焦該政權——追溯回自稱本體複用任務 3.7 既有的聚焦面板機制，不另外做一個顯示自稱的 UI', async () => {
+      const { fixture, namingViewpoint } = await renderWithLabels();
+      const focusState = TestBed.inject(RegimeFocusState);
+
+      namingViewpoint.setObserver('r-shuhan');
+      await fixture.whenStable();
+      flushAliasRequests({
+        'r-a': [{ id: 'alias-1', regimeId: 'r-a', observerRegimeId: 'r-shuhan', aliasName: '賊', aliasType: 'political' }],
+        'r-b': [],
+      });
+      await fixture.whenStable();
+
+      const aliasedEl = FakeMarker.instances.find((m) => !m.removed && m.element.textContent === '賊')!.element;
+      aliasedEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      await fixture.whenStable();
+      flushRegimeFocusRequests('r-a');
+
+      expect(focusState.focusedRegimeId()).toBe('r-a');
+    });
+
+    it('切回全球客觀視角時標籤改回自稱名稱，不重新打代稱請求（沿用已快取的資料）', async () => {
+      const { fixture, namingViewpoint } = await renderWithLabels();
+
+      namingViewpoint.setObserver('r-shuhan');
+      await fixture.whenStable();
+      flushAliasRequests({
+        'r-a': [{ id: 'alias-1', regimeId: 'r-a', observerRegimeId: 'r-shuhan', aliasName: '賊', aliasType: 'political' }],
+        'r-b': [],
+      });
+      await fixture.whenStable();
+
+      namingViewpoint.setObserver(null);
+      await fixture.whenStable();
+
+      expect(activeLabelTexts()).toEqual(['吳', '魏']); // 改回自稱
+
+      httpMock.expectNone(() => true); // 代稱資料已經快取過，不該重新打請求
     });
   });
 });

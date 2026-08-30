@@ -1,0 +1,30 @@
+:host {
+  display: contents; // 跟 lineage-sequence.scss 同一個理由：排版交給父層 .app-header
+}
+
+.naming-viewpoint-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--wl-space-2);
+  font-size: var(--wl-font-size-sm);
+}
+
+.naming-viewpoint-selector-label {
+  color: var(--wl-ink-secondary);
+  white-space: nowrap;
+}
+
+.naming-viewpoint-selector-select {
+  padding: var(--wl-space-1) var(--wl-space-2);
+  border: 1px solid var(--wl-border-hairline);
+  border-radius: var(--wl-radius-sm);
+  background: var(--wl-surface);
+  color: var(--wl-ink-primary);
+  font-family: inherit;
+  font-size: inherit;
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
+}

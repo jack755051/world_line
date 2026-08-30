@@ -22,6 +22,8 @@ import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
 import { TimelineState } from '../core/time/timeline-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
+import { RegimeAliasDirectoryService } from '../core/regime/regime-alias-directory.service';
+import { NamingViewpointState } from '../core/regime/naming-viewpoint-state';
 
 /** `ApiResponse<T>` 的最小形狀（見 api/Contracts/ApiResponse.cs）——只取這裡用得到的
     `data` 欄位，不整個對照完整契約，畢竟目前只有這一個端點在消費。 */
@@ -141,6 +143,8 @@ export class MapComponent implements OnDestroy {
   private readonly scheduler = inject(MorphAnimationScheduler);
   private readonly regimeDirectory = inject(RegimeDirectoryService);
   private readonly focusState = inject(RegimeFocusState);
+  private readonly aliasDirectory = inject(RegimeAliasDirectoryService);
+  private readonly namingViewpoint = inject(NamingViewpointState);
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -220,6 +224,27 @@ export class MapComponent implements OnDestroy {
         toObservable(this.focusState.focusedRegimeId, { injector: this.injector })
           .pipe(takeUntilDestroyed(this.destroyRef))
           .subscribe(() => this.refreshFocusOverlay());
+
+        // 命名視角改變時（任務 3.8）：重畫標籤，不用重打 territories，用已經快取的
+        // currentFeatureCollection 就夠。刻意不在這裡就預先載入代稱資料——見
+        // RegimeAliasDirectoryService 類別文件說明，只有使用者第一次切換到某個特定
+        // 觀察視角（非 null）時才真的觸發 N 筆 GET /regimes/:id/aliases，之後靠
+        // ensureLoaded() 內建的 shareReplay 快取，不會每次切換視角都重新查。
+        toObservable(this.namingViewpoint.observerRegimeId, { injector: this.injector })
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe((observerId) => {
+            if (!this.currentFeatureCollection) {
+              return; // 疆域還沒載入完成，還沒有東西可以重畫標籤
+            }
+            if (observerId === null) {
+              this.renderLabels(this.currentFeatureCollection);
+              return;
+            }
+            this.aliasDirectory.ensureLoaded().subscribe({
+              next: () => this.renderLabels(this.currentFeatureCollection!),
+              error: (err: unknown) => console.error('[MapComponent] 載入政權代稱資料失敗', err),
+            });
+          });
       },
       error: (err: unknown) => console.error('[MapComponent] 載入政權清單失敗', err),
     });
@@ -516,7 +541,11 @@ export class MapComponent implements OnDestroy {
   }
 
   /** 政權名稱標籤——刻意用 `Marker` 掛 HTML 元素，不是 MapLibre 原生 symbol 圖層的
-      `text-field`，理由見 territory-labels.ts 開頭說明（避免另外接字型 glyphs 服務）。 */
+      `text-field`，理由見 territory-labels.ts 開頭說明（避免另外接字型 glyphs 服務）。
+      **任務 3.8（Story 3）追加命名視角**：`NamingViewpointState.observerRegimeId()`
+      為 `null`（全球客觀視角，AC#1）時一律顯示自稱名稱；非 `null`（聚焦某政權視角，
+      AC#2）時改查 `RegimeAliasDirectoryService.aliasFor()`，查得到代稱才換成代稱顯示，
+      查無資料 fallback 回自稱名稱（跟翻譯 fallback 同一個原則，不是資料缺陷）。 */
   private renderLabels(featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>): void {
     if (!this.map) {
       return;
@@ -525,16 +554,37 @@ export class MapComponent implements OnDestroy {
     this.clearLabelMarkers();
 
     const labelPoints = computeTerritoryLabelPoints(featureCollection);
+    const observerId = this.namingViewpoint.observerRegimeId();
 
     for (const [regimeId, [lon, lat]] of labelPoints) {
-      const name = this.regimeDirectory.nameOf(regimeId);
-      if (!name) {
+      const selfName = this.regimeDirectory.nameOf(regimeId);
+      if (!selfName) {
         continue; // 查無名稱（理論上不該發生，territories/regimes 資料不一致才會走到這裡）
       }
 
+      const alias = observerId ? this.aliasDirectory.aliasFor(regimeId, observerId) : undefined;
+
       const el = document.createElement('div');
-      el.className = 'territory-label';
-      el.textContent = name;
+      el.textContent = alias?.aliasName ?? selfName;
+
+      if (alias) {
+        // AC#2「點擊/hover 後可追溯回自稱本體」：hover 用原生 title 屬性顯示自稱名稱
+        // （不用自己刻一個 tooltip UI，瀏覽器原生支援）；click 直接重用任務 3.7 既有的
+        // 聚焦機制（跟點擊底下的疆域本身效果相同）——政權聚焦面板的標題本來就顯示
+        // `RegimeDirectoryService.nameOf()` 算出的真正自稱名稱，不用為了這個 AC 另外
+        // 做一個顯示自稱的 UI。`.territory-label` 預設 `pointer-events: none`（見
+        // map-labels.global.scss，避免標籤擋住底下地圖的拖曳/縮放手勢），只有顯示代稱
+        // 的這個分支才加 `.territory-label-clickable` 打開 pointer-events，不影響
+        // 其餘（多數情況）標籤維持純裝飾、不可互動。
+        el.className = 'territory-label territory-label-clickable';
+        el.title = `自稱：${selfName}`;
+        el.addEventListener('click', (e) => {
+          e.stopPropagation(); // 避免同時被底下地圖的 'click' handler 當成點擊背景重複處理
+          this.focusState.toggle(regimeId);
+        });
+      } else {
+        el.className = 'territory-label';
+      }
 
       const marker = new Marker({ element: el }).setLngLat([lon, lat]).addTo(this.map);
       this.labelMarkers.push(marker);

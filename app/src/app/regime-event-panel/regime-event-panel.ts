@@ -98,9 +98,13 @@ function dedupeAndSortEvents(rows: readonly EventInteractionRow[]): RegimeEventS
  * 觸發重新查詢，也因此不再需要 `RegimeFocusState` 那套「聚焦目標 × 年份」的 debounce
  * 訂閱跟競態 token（見 `regime-focus-state.ts` 的說明，這段邏輯已經整個移除）。
  *
- * **點擊展開事件時，時間拉桿同步跳到那個事件的年份**（`Math.floor(startDecimal)`）——
- * 使用者原文「打開206年的事件，外部時間也要跳到206」；收合事件不會把時間拉桿跳回去，
- * 維持使用者最後一次操作的狀態，不做自動復原。
+ * **2026-08-31 事後調整：時間拉桿跳轉改成獨立按鈕，不再是點標題展開的自動副作用**
+ * （使用者實機測試回報：點標題展開只是想讀內容，卻同時觸發整個 App 的時間拉桿跳年份
+ * ＋地圖疆域重新渲染，兩件事同時發生會互搶注意力，感覺「跳轉」跟「展開」在打架）。
+ * 原本 `toggleEvent()` 展開時會呼叫 `this.timeline.year.set(...)`，現在拆成
+ * `jumpToEventYear()` 這個獨立方法，只在使用者點展開內容裡的「跳到此年份」按鈕時才
+ * 觸發，不再是展開的自動副作用——「讀內容」跟「連動地圖」是兩個獨立意圖，使用者各自
+ * 決定要不要後者。
  *
  * **事件詳情用 `Map` 做記憶體內快取，不是响應式 signal**：同一時間只會有一個事件展開
  * （手風琴互斥），只有「目前展開的那一個」需要響應式呈現，用一個 `expandedDetail`
@@ -168,8 +172,15 @@ export class RegimeEventPanelComponent {
     return Math.floor(startDecimal);
   }
 
-  /** 點擊手風琴標題——已展開的再點一次收合，否則展開並跳時間拉桿到這個事件的年份、
-      視需要（沒快取過）打 API 查詳情。 */
+  /** 展開內容裡「跳到此年份」按鈕——使用者明確要求連動地圖時才觸發，不是展開的自動
+      副作用（見類別文件說明）。 */
+  protected jumpToEventYear(event: RegimeEventSummary): void {
+    this.timeline.year.set(this.yearLabel(event.startDecimal));
+  }
+
+  /** 點擊手風琴標題——已展開的再點一次收合，否則展開、視需要（沒快取過）打 API 查
+      詳情。**不再連動時間拉桿**（見類別文件 2026-08-31 的說明），純粹是「展開/收合」
+      這一件事。 */
   protected toggleEvent(event: RegimeEventSummary): void {
     if (this.expandedEventId() === event.id) {
       this.expandedEventId.set(null);
@@ -178,7 +189,6 @@ export class RegimeEventPanelComponent {
     }
 
     this.expandedEventId.set(event.id);
-    this.timeline.year.set(this.yearLabel(event.startDecimal));
 
     const cached = this.detailCache.get(event.id);
     if (cached) {

@@ -20,6 +20,10 @@
 
             @if (expandedEventId() === event.id) {
               <div class="regime-event-panel-detail">
+                <button type="button" class="regime-event-panel-jump" (click)="jumpToEventYear(event)">
+                  跳到此年份
+                </button>
+
                 @if (isExpandedLoading()) {
                   <p class="regime-event-panel-status">載入中…</p>
                 } @else if (isExpandedError()) {

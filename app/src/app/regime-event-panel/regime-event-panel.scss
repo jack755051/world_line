@@ -1,14 +1,18 @@
 // 刻意不是 display: contents——MapLibre Marker 靠對這個元件的 host 元素本身套用
 // position/transform 樣式來定位，host 本身就是要被定位的那個 box。
+//
+// 2026-08-31：使用者實機測試回報原本 280px 寬、最小字級（--wl-font-size-xs）看起來
+// 侷促——加大到 400px、把內文字級升一階（--wl-font-size-sm），標題/事件名稱也各自
+// 跟著升一階，行高跟留白一併加大，不是只放大容器本身。
 :host {
   display: block;
-  width: 280px;
-  max-width: 70vw;
+  width: 400px;
+  max-width: 80vw;
 }
 
 .regime-event-panel {
-  padding: var(--wl-space-3);
-  max-height: 60vh;
+  padding: var(--wl-space-4);
+  max-height: 70vh;
   overflow-y: auto;
 
   // 跟原本 event-drawer.scss 同一套毛玻璃規格（notes §八原文），刻意寫死深色，不套用
@@ -19,12 +23,12 @@
   border-radius: var(--wl-radius-lg);
   color: rgba(255, 255, 255, 0.92);
   font-family: var(--wl-font-family);
-  font-size: var(--wl-font-size-xs);
+  font-size: var(--wl-font-size-sm);
 }
 
 .regime-event-panel-title {
-  margin: 0 0 var(--wl-space-2);
-  font-size: var(--wl-font-size-sm);
+  margin: 0 0 var(--wl-space-3);
+  font-size: var(--wl-font-size-lg);
   font-weight: var(--wl-font-weight-bold);
   color: rgba(255, 255, 255, 0.96);
 }
@@ -49,9 +53,9 @@
 .regime-event-panel-trigger {
   display: flex;
   align-items: baseline;
-  gap: var(--wl-space-2);
+  gap: var(--wl-space-3);
   width: 100%;
-  padding: var(--wl-space-2) 0;
+  padding: var(--wl-space-3) 0;
   border: none;
   background: transparent;
   font: inherit;
@@ -77,7 +81,7 @@
 
 .regime-event-panel-name {
   flex: 1 1 auto;
-  font-size: var(--wl-font-size-sm);
+  font-size: var(--wl-font-size-base);
 }
 
 .regime-event-panel-chevron {
@@ -86,11 +90,38 @@
 }
 
 .regime-event-panel-detail {
-  padding: 0 0 var(--wl-space-2);
+  padding: 0 0 var(--wl-space-3);
+}
+
+// 2026-08-31：獨立的「跳到此年份」按鈕（見 regime-event-panel.ts 類別文件的行為調整
+// 說明）——刻意做成明顯的小按鈕（有邊框/底色），跟純文字的日期/內容區分開，讓使用者
+// 清楚知道「按這個才會連動地圖」，不是展開內容本身的一部分。
+.regime-event-panel-jump {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 var(--wl-space-3);
+  padding: var(--wl-space-1) var(--wl-space-2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--wl-radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  font: inherit;
+  font-size: var(--wl-font-size-xs);
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
 }
 
 .regime-event-panel-date {
-  margin: 0 0 var(--wl-space-2);
+  margin: 0 0 var(--wl-space-3);
   color: rgba(255, 255, 255, 0.6);
   font-variant-numeric: tabular-nums;
 }
@@ -110,11 +141,11 @@
 }
 
 .regime-event-panel-section {
-  margin: 0 0 var(--wl-space-2);
+  margin: 0 0 var(--wl-space-3);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  line-height: 1.6;
+  gap: 4px;
+  line-height: 1.7;
   color: rgba(255, 255, 255, 0.88);
 
   strong {

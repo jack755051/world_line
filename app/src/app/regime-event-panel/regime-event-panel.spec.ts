@@ -112,8 +112,10 @@ describe('RegimeEventPanelComponent', () => {
     trigger.click();
     fixture.detectChanges();
 
+    // 2026-08-31 起展開本身不連動時間拉桿（見元件類別文件說明），只有另外點「跳到此
+    // 年份」按鈕才會——這裡先確認展開這個動作本身不會動到 timeline。
     const timeline = TestBed.inject(TimelineState);
-    expect(timeline.year()).toBe(208);
+    expect(timeline.year()).toBe(TimelineState.DEFAULT_YEAR);
     expect(fixture.nativeElement.querySelector('.regime-event-panel-status')?.textContent).toContain('載入中');
 
     httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
@@ -140,6 +142,34 @@ describe('RegimeEventPanelComponent', () => {
     expect(detailText).toContain('黃蓋詐降');
     expect(detailText).toContain('歷史影響');
     expect(detailText).toContain('奠定三國鼎立');
+  });
+
+  it('展開後點擊「跳到此年份」按鈕，時間拉桿才會跳到事件年份', () => {
+    focusAndFlushTerritories('r-wu');
+
+    const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+    fixture.detectChanges();
+    flushEvents('r-wu', [
+      { eventId: 'event-a', eventName: '赤壁之戰', otherRegimeId: 'r-y', startEdtf: '0208', endEdtf: '0208', startDecimal: 208 },
+    ]);
+    fixture.detectChanges();
+
+    fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
+    fixture.detectChanges();
+    httpMock.expectOne((r) => r.url === '/api/v1/events/event-a').flush({
+      statusCode: 200,
+      message: 'FETCH_SUCCESS',
+      data: { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null },
+    });
+    fixture.detectChanges();
+
+    const timeline = TestBed.inject(TimelineState);
+    expect(timeline.year()).toBe(TimelineState.DEFAULT_YEAR); // 展開本身還沒動到
+
+    const jumpButton: HTMLButtonElement = fixture.nativeElement.querySelector('.regime-event-panel-jump');
+    jumpButton.click();
+
+    expect(timeline.year()).toBe(208);
   });
 
   it('sections 為 null 時顯示空狀態文案', () => {

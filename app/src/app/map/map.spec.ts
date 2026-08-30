@@ -618,6 +618,22 @@ describe('MapComponent', () => {
       return { fixture, map, focusState };
     }
 
+    // 聚焦政權自己還會另外打三個查詢（存續區間 territories + AC#3 互動清單
+    // events/relations，都是 RegimeFocusState 的責任，不是 MapComponent 這裡要驗證的
+    // 範圍，見 regime-focus-state.spec.ts），flush 掉避免 httpMock.verify() 在
+    // afterEach 噴「還有未處理的請求」。
+    function flushRegimeFocusRequests(regimeId: string): void {
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/territories`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/events?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/${regimeId}/relations?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+    }
+
     it('點擊政權疆域會聚焦該政權：套用「聚光燈」fill-opacity、更新高亮外框 filter、寫入周邊政權清單', async () => {
       const { fixture, map, focusState } = await renderWithOverlappingTerritories();
 
@@ -627,12 +643,7 @@ describe('MapComponent', () => {
       map.fireClick();
       await fixture.whenStable();
 
-      // 聚焦政權自己還會另外打一次存續區間查詢（RegimeFocusState 的責任，不是
-      // MapComponent 這裡要驗證的範圍，見 regime-focus-state.spec.ts），flush 掉避免
-      // httpMock.verify() 在 afterEach 噴「還有未處理的請求」。
-      httpMock
-        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      flushRegimeFocusRequests('r-a');
 
       expect(focusState.focusedRegimeId()).toBe('r-a');
       expect(focusState.neighborRegimeIds()).toEqual(['r-b']);
@@ -659,9 +670,7 @@ describe('MapComponent', () => {
       map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
       map.fireClick();
       await fixture.whenStable();
-      httpMock
-        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollectionWithFarRegime() });
+      flushRegimeFocusRequests('r-a');
 
       expect(focusState.neighborRegimeIds()).toEqual(['r-b']); // 真的接壤的
       expect(focusState.otherContemporaryRegimeIds()).toEqual(['r-c']); // 同時期但不接壤的
@@ -673,9 +682,7 @@ describe('MapComponent', () => {
       map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
       map.fireClick();
       await fixture.whenStable();
-      httpMock
-        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      flushRegimeFocusRequests('r-a');
       expect(focusState.focusedRegimeId()).toBe('r-a');
 
       map.queryRenderedFeaturesResult = []; // 這次點在背景，查不到任何疆域
@@ -693,9 +700,7 @@ describe('MapComponent', () => {
       map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
       map.fireClick();
       await fixture.whenStable();
-      httpMock
-        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      flushRegimeFocusRequests('r-a');
       expect(focusState.focusedRegimeId()).toBe('r-a');
 
       map.fireClick(); // 同一個 queryRenderedFeaturesResult，還是點到 r-a

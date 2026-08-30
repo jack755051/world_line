@@ -84,6 +84,16 @@ describe('TimeScrubberComponent', () => {
       const fixture = TestBed.createComponent(TimeScrubberComponent);
       fixture.detectChanges();
 
+      // toggle() 2026-08-30 起也會同步查 AC#3 的兩個互動端點（events/relations），
+      // 不 flush 掉會讓 httpMock.verify() 在 afterEach 噴「還有未處理的請求」——這個
+      // 測試本身不關心互動清單，用空陣列打發掉就好。
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/r-a/events?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/regimes/r-a/relations?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+
       const band: HTMLElement = fixture.nativeElement.querySelector('.time-scrubber-lifetime-band');
       expect(band).not.toBeNull();
       // TimelineState 範圍是 1-300（見 timeline-state.ts），存續區間 100-130：

@@ -357,7 +357,8 @@ related_constitution: .claude/constitutions/world-line.md
 > **已知限制（2026-08-30，使用者確認擱置）**：魏 263 年併吞蜀漢後的疆域畫法（北方核心+南方新併吞兩筆分開的矩形），視覺上看起來像「兩塊拼起來」不是一整塊——用 `ST_Touches`/`ST_Distance` 驗證過兩塊矩形確實有接觸（`distance=0`），不是浮空的兩塊，只是接觸的邊只佔北方矩形寬度一小段（104-123 裡的 104-108），看起來像掛在角落。曾評估改成單一合併外接矩形（lon 100-123、lat 26-42），但驗證後發現這個範圍會把吳的實際疆域（lon 108-122、lat 20-32）幾乎整塊包進去，等於把吳的領土誤植成魏的——矩形疊代示意資料的形狀/位置限制，沒有更好的單一矩形解法。使用者確認**先擱置，等之後真的匯入 OpenHistoricalMap 真實史料（非矩形多邊形）時，這個「矩形示意資料形狀限制」會自然消失，不需要現在特別花時間優化**，不是被遺忘沒處理。
 | [x] | 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
 
-> **2026-08-30 完成 3.7（AC#1、AC#2；AC#3 刻意未做，見下方說明）**：
+> **2026-08-30 完成 3.7 AC#1、AC#2（AC#3 當時刻意未做，見下方說明；同一天稍後
+> task 2.9/2.10 做完後回頭補上，見本任務區塊最後一則更新）**：
 >
 > **AC#1（點擊聚焦+高亮+周邊政權清單）**：`MapComponent` 新增 `map.on('click', ...)`
 > + `queryRenderedFeatures()` 判斷點擊到哪個 regimeId（不是自己重新算幾何），寫進新的
@@ -450,6 +451,50 @@ related_constitution: .claude/constitutions/world-line.md
 > Tag 呈現周邊清單、「同時期其他地區政權」清單的顯示/排序/空狀態、`map.spec.ts` 驗證
 > 不相鄰政權正確分流到 `otherContemporaryRegimeIds` 而非 `neighborRegimeIds`）、
 > `docker compose up -d --build frontend`＋curl 確認部署驗證。
+>
+> **2026-08-30 補完 AC#3（互動清單）——task 2.9/2.10 都做完後回頭補上**：使用者一開始
+> 問「互動清單是哪裡定義的」，追問到底才發現 schema 沒有一張通用的「事件參與者」關聯表
+> 可以查「哪些政權涉入了哪個事件」，只有兩個各自不完整的機制：`regime_transition_events`
+> （只連轉換的一方，另一方要從 `regimes.predecessor_regime_id`/`destroyed_by_regime_id`
+> 反查）、`historical_event_perspectives.regime_id`（種子資料原本只有蜀漢對赤壁之戰
+> 留了視角，東吳完全沒留，配不出「蜀漢↔東吳」這組互動）。跟使用者確認方向後**選項 2：
+> 兩套機制都用，並補一筆東吳視角種子資料**（不是只用轉換事件那套範圍較窄但簡單的做法）。
+>
+> **後端新增 `GET /api/v1/regimes/{regimeId}/events?year={y}`**（`EventsController.
+> GetInteractionsByRegime()`，任務 2.10 的延伸）：合併兩個來源，任一成立就算一筆互動——
+> (1) 政權轉換事件，含反向查詢（這個政權是別人的 predecessor/destroyer 時，也要從對方
+> 的 `regime_transition_events` 找出事件）；(2) 多重視角敘事，同一事件下這個政權跟
+> 另一個政權都留下視角才算（不是單方面有視角就算）。持續性關係沿用既有的
+> `GET /regimes/:id/relations`（task 2.9），不用新端點。`api/Data/SeedData.cs` 補上
+> 東吳對赤壁之戰的視角（`LocalName = "東吳視角"`），敘事重心刻意跟蜀漢視角不同（蜀漢
+> 視角強調「孫劉兩家結盟、聯軍以寡擊眾」，東吳視角強調周瑜/江東水軍才是決勝主力——
+> 這是史學界真實存在的敘事分歧，不是為了測試隨便複製一份）。已用真實容器 curl 驗證
+> 六種組合：轉換事件正向（蜀漢/魏在 263 年）、反向（魏/蜀漢在 263 年，從魏這邊查也
+> 要看到同一個事件）、視角互動正向反向（蜀漢/吳、吳/蜀漢在 208 年赤壁之戰）、缺
+> `year`（400）、政權不存在（404）。
+>
+> **前端**：`RegimeFocusState` 新增 `eventInteractions`/`relationInteractions` 兩個
+> signal，`toggle()` 時同步（不等 debounce，跟 `loadLifetimeRange()` 一樣的道理——
+> 聚焦是離散動作）查詢；另外訂閱 `timeline.year`（debounce 150ms）在已聚焦狀態下拖拉桿
+> 換年份時重新查——**這裡踩到一個真的會製造偽陽性測試的坑**：一開始把
+> `focusedRegimeId`／`timeline.year` 兩個信號合併進同一個 `toObservable` 訂閱，
+> 結果 `toggle()` 呼叫一次會讓這個訂閱的第一次 emit 又觸發一次一模一樣的查詢（重複
+> 打兩次 API）；改成 `toggle()` 裡同步呼叫、建構子只單獨訂閱 `timeline.year`（讀
+> `focusedRegimeId()` 判斷要不要查，但不當作觸發源）解決重複呼叫，同時大幅縮小了
+> debounce 相關的測試面積（原本 debounce 版本會讓所有呼叫 `toggle()` 的既有測試在
+> `afterEach` 的 `httpMock.verify()` 噴「還有未處理的請求」，因為請求要等 150ms debounce
+> 才真的發出、測試沒等那麼久就結束了——**這批既有測試原本會變成「意外綠燈」，因為
+> debounce 還沒觸發時 `verify()` 根本看不到那個請求**，跟這個專案先前踩過的
+> `afterNextRender` 吞例外是同一類「非同步時序讓測試看起來過但沒真的測到」的陷阱，
+> 已在 `map.spec.ts`／`regime-focus-panel.spec.ts`／`regime-focus-state.spec.ts`／
+> `time-scrubber.spec.ts` 補齊對應的 `httpMock.expectOne().flush()`）。面板新增「互動
+> 記錄」collapsible 區塊，**只顯示跟目前周邊政權清單有交集的互動**（AC#3 原文是「聚焦
+> 政權與周邊政權之間」，`RegimeFocusState` 回傳的是這個政權全部已知互動、過濾交給面板
+> 的 computed 做）；「可點擊追溯」目前只是純文字，還不能真的點開——事件/關係詳情畫面
+> （task 3.12）還沒做，先把「有哪些互動」列出來。已用 `ng build`（1.50MB/338KB，
+> budget 內）、`ng test`（140/140，新增 5 條：互動清單同步查詢跟換算/debounce 換年份
+> 重新查/未聚焦時不查/過濾周邊/空狀態）、`docker compose up -d --build backend frontend`
+> ＋curl 確認部署驗證，AC#1/AC#2/AC#3 全數完成，3.7 完整達成。
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
 | [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
 | [ ] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |

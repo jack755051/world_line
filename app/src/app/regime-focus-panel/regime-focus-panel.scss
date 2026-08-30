@@ -123,3 +123,24 @@ sanring-collapsible[data-state='closed'] .regime-focus-panel-chevron {
   font-size: var(--wl-font-size-sm);
   color: var(--wl-ink-muted);
 }
+
+// AC#3 互動清單——純文字列表，不是 Tag：跟「政權名稱清單」（同時期周邊/其他地區）
+// 語意不同，這裡每一項是「一筆事件/關係記錄」，不是一個政權識別符號，繼續用 Tag 會
+// 讓使用者誤以為這也是政權清單。目前刻意不能點擊（見元件文件的說明：事件/關係詳情畫面
+// 還沒做，task 3.12），先不用 <a>/<button>，等真的能點開再換成可互動元素。
+.regime-focus-panel-interaction-list {
+  margin: var(--wl-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wl-space-2);
+  font-size: var(--wl-font-size-sm);
+  color: var(--wl-ink-primary);
+}
+
+.regime-focus-panel-interaction-description {
+  display: block;
+  margin-top: var(--wl-space-1);
+  color: var(--wl-ink-muted);
+}

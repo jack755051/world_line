@@ -13,10 +13,14 @@ import { TagComponent } from '../components/ui/tag';
  * 單一，跟 `TimeScrubberComponent`「只管拖到哪一年，不管拖動後要做什麼」是同一個
  * 分工原則。
  *
- * **AC#3（互動清單，連結 `historical_events`/`regime_relations` 記錄）刻意不在這裡
- * 做**：後端對應端點（task 2.9 政權關係、2.10 事件骨幹）都還沒實作，沒有資料可以連結，
- * 跟任務 3.4（時間軸副軸）因為事件資料還沒做而刻意跳過是同一個處理原則，見
- * implementation plan 任務 3.7 的說明。
+ * **AC#3（互動清單）2026-08-30 完成**：task 2.9（政權關係）、2.10（事件骨幹，含
+ * `GET /regimes/:id/events` 這個專門給 AC#3 用的互動查詢端點）都已完成，離散事件用
+ * `RegimeFocusState.eventInteractions`、持續性關係用 `relationInteractions`。
+ * **只顯示跟目前「同時期周邊政權」有交集的互動**——AC#3 原文是「聚焦政權與周邊政權
+ * 之間」，不是任意兩個政權只要有記錄就列出來；`RegimeFocusState` 回傳的是這個政權
+ * 全部已知互動（不限周邊），過濾在這個元件的 computed 裡做。**「可點擊追溯」目前只是
+ * 純文字，還不能真的點開**——事件/關係的詳情畫面（task 3.12 事件詳情抽屜）還沒做，
+ * 沒有東西可以追溯過去，先把「有哪些互動」列出來，可點擊的部分等 3.12 做出來再補。
  *
  * **2026-08-30 改用 Sanring `Collapsible` 收納周邊政權清單，不是 `Sheet`**——使用者
  * 一開始提議改用 `Sheet`，但 Sanring 的 `Sheet` 是包在 CDK Dialog 之上的真．模態框
@@ -81,6 +85,33 @@ export class RegimeFocusPanelComponent {
   protected readonly otherContemporaryNames = computed(() =>
     this.toSortedNames(this.focusState.otherContemporaryRegimeIds()),
   );
+
+  /** AC#3 離散事件互動——只保留跟目前周邊政權有交集的，見類別文件說明。 */
+  protected readonly eventInteractionItems = computed(() => {
+    const neighborIds = new Set(this.focusState.neighborRegimeIds());
+    return this.focusState
+      .eventInteractions()
+      .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
+      .map((interaction) => ({
+        key: `${interaction.eventId}-${interaction.otherRegimeId}`,
+        label: interaction.eventName,
+        otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
+      }));
+  });
+
+  /** AC#3 持續性關係互動——同樣只保留跟目前周邊政權有交集的。 */
+  protected readonly relationInteractionItems = computed(() => {
+    const neighborIds = new Set(this.focusState.neighborRegimeIds());
+    return this.focusState
+      .relationInteractions()
+      .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
+      .map((interaction) => ({
+        key: interaction.id,
+        label: interaction.relationType,
+        otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
+        description: interaction.description,
+      }));
+  });
 
   /** AC#2：聚焦政權若已超出（或還沒進入）存續區間要提示。`lifetimeRange` 為 `null`
       代表還在載入中或沒有聚焦政權，這時不顯示警告——避免載入過程中的暫時性 `null`

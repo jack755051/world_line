@@ -402,6 +402,23 @@ public static class SeedData
                 NarrativeSummary = "曹操大軍壓境，孫劉兩家結盟，以火攻大破曹軍水寨，聯軍以寡擊眾",
                 OfficialJustification = "抵禦北方統一威脅，保全江東與荊州根基",
             },
+            // 2026-08-30 補上：東吳視角刻意跟上面蜀漢視角在敘事重心上真的不一樣（不是換個
+            // 標籤複製一份）——蜀漢視角強調「孫劉兩家結盟、聯軍以寡擊眾」的平等聯盟敘事，
+            // 這裡改成強調周瑜/東吳水軍才是決勝主力、劉備方兵力有限，這是史學界真實存在
+            // 的敘事分歧（受《三國演義》影響的通俗史觀常放大劉備/諸葛亮的角色，東吳本位或
+            // 較嚴謹的史學考據通常認為周瑜跟江東水軍才是實際主導戰局的一方）。順帶讓
+            // task 3.7 AC#3「互動清單」的赤壁之戰有兩個政權（蜀漢、東吳）都留下視角，才
+            // 配對得出「蜀漢↔東吳」這組互動——原本只有蜀漢單方視角時配不出來，見
+            // implementation plan 任務 3.7 的補充說明。
+            new HistoricalEventPerspective
+            {
+                Id = Guid.NewGuid(),
+                EventId = chibi.Id,
+                RegimeId = wu.Id,
+                LocalName = "東吳視角",
+                NarrativeSummary = "周瑜統領江東水軍主力，以火攻大破曹軍，是此役決勝關鍵；劉備軍協同但兵力有限",
+                OfficialJustification = "保全江東基業，抵禦曹操南下併吞",
+            },
             new HistoricalEventPerspective
             {
                 Id = Guid.NewGuid(),

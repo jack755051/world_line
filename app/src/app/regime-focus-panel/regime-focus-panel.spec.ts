@@ -157,6 +157,46 @@ describe('RegimeFocusPanelComponent', () => {
     expect(fixture.nativeElement.querySelector('.regime-focus-panel-lifespan').textContent).toBe('西元 220–265 年');
   });
 
+  describe('任務 3.14：存續區間 loading/error 態（PRD §8「政權聚焦頁」四態齊備）', () => {
+    it('回應還沒回來前顯示「載入中」，不顯示存續期間文字', () => {
+      focusState.toggle('r-wei');
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.regime-focus-panel-lifespan-status')?.textContent).toContain(
+        '載入中',
+      );
+      expect(fixture.nativeElement.querySelector('.regime-focus-panel-lifespan')).toBeNull();
+
+      // 這個測試不關心後續狀態，flush 掉避免 httpMock.verify() 噴錯。
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-wei/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: { type: 'FeatureCollection', features: [] } });
+    });
+
+    it('查詢失敗時顯示錯誤提示+重試按鈕，點擊重試會重新查詢', () => {
+      focusState.toggle('r-wei');
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-wei/territories')
+        .flush({ statusCode: 500, message: 'INTERNAL_ERROR', data: null }, { status: 500, statusText: 'Server Error' });
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      const warning = fixture.nativeElement.querySelector('.regime-focus-panel-warning');
+      expect(warning?.textContent).toContain('存續區間載入失敗');
+
+      const retryButton: HTMLButtonElement = fixture.nativeElement.querySelector('.regime-focus-panel-retry');
+      retryButton.click();
+
+      flushFocusRequests('r-wei', [{ startYear: 220, endYear: 226 }]);
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.regime-focus-panel-lifespan').textContent).toBe('西元 220–226 年');
+    });
+  });
+
   it('「同時期其他地區政權」清單依名稱排序顯示，用 Sanring Tag 呈現，不跟周邊政權混在一起', () => {
     focusState.toggle('r-wei');
     flushFocusRequests('r-wei', [{ startYear: 220, endYear: 226 }]);

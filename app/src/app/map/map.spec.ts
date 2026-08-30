@@ -623,6 +623,102 @@ describe('MapComponent', () => {
     expect(FakeMarker.instances[0].removed).toBe(true);
   });
 
+  describe('任務 3.14：主地圖頁四態齊備（PRD §8）', () => {
+    async function fireLoadAndFlushRegimes(): Promise<{
+      fixture: ReturnType<typeof TestBed.createComponent<MapComponent>>;
+      map: InstanceType<typeof FakeMap>;
+    }> {
+      const fixture = TestBed.createComponent(MapComponent);
+      await fixture.whenStable();
+      const map = FakeMap.instances[0];
+
+      map.fireLoad();
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleRegimes });
+      await waitForDebounce();
+
+      return { fixture, map };
+    }
+
+    it('第一批疆域資料回來前，顯示載入骨架', async () => {
+      const { fixture } = await fireLoadAndFlushRegimes();
+
+      expect(fixture.nativeElement.querySelector('.map-loading-overlay')).not.toBeNull();
+      expect(fixture.nativeElement.querySelector('.map-status-banner')).toBeNull();
+
+      // 還沒 flush territories 請求，afterEach 的 httpMock.verify() 會噴——這裡先
+      // flush 掉，讓這個測試乾淨結束（不驗證後續狀態，那是下一個測試的責任）。
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    });
+
+    it('疆域資料回來後，載入骨架消失', async () => {
+      const { fixture } = await fireLoadAndFlushRegimes();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.map-loading-overlay')).toBeNull();
+    });
+
+    it('疆域查詢失敗時，顯示錯誤提示列（不是全畫面骨架），點「重試」會重新查詢同一個年份', async () => {
+      const { fixture } = await fireLoadAndFlushRegimes();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 500, message: 'INTERNAL_ERROR', data: null }, { status: 500, statusText: 'Server Error' });
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.map-loading-overlay')).toBeNull();
+      const errorBanner = fixture.nativeElement.querySelector('.map-status-banner-error');
+      expect(errorBanner).not.toBeNull();
+      expect(errorBanner.textContent).toContain('疆域資料載入失敗');
+
+      const retryButton: HTMLButtonElement = fixture.nativeElement.querySelector('.map-status-retry');
+      retryButton.click();
+
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    });
+
+    it('查詢成功但這個年份沒有任何疆域時，顯示空狀態提示（不是錯誤）', async () => {
+      const { fixture } = await fireLoadAndFlushRegimes();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: { type: 'FeatureCollection', features: [] } });
+      fixture.detectChanges();
+
+      const banner = fixture.nativeElement.querySelector('.map-status-banner');
+      expect(banner).not.toBeNull();
+      expect(banner.classList.contains('map-status-banner-error')).toBe(false);
+      expect(banner.textContent).toContain('查無政權疆域資料');
+    });
+
+    it('拖拉桿換年份重新查詢時，不會重新顯示載入骨架（骨架只在第一次載入顯示）', async () => {
+      const { fixture } = await fireLoadAndFlushRegimes();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('.map-loading-overlay')).toBeNull();
+
+      const timeline = TestBed.inject(TimelineState);
+      timeline.year.set(150);
+      await waitForDebounce();
+      fixture.detectChanges();
+
+      // 換年份的請求還在飛行中，這個當下骨架也不該重新出現。
+      expect(fixture.nativeElement.querySelector('.map-loading-overlay')).toBeNull();
+
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/territories?year=150')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollection() });
+    });
+  });
+
   describe('政權聚焦模式（任務 3.7）', () => {
     async function renderWithOverlappingTerritories(
       territories: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = sampleOverlappingFeatureCollection(),

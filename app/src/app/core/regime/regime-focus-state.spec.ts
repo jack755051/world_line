@@ -113,4 +113,41 @@ describe('RegimeFocusState', () => {
     state.setOtherContemporaryRegimes(['r-d']);
     expect(state.otherContemporaryRegimeIds()).toEqual(['r-d']);
   });
+
+  describe('任務 3.14：lifetimeLoadState（PRD §8「政權聚焦頁」四態齊備）', () => {
+    it('toggle() 後、回應還沒回來前是 loading，成功回應後變成 loaded', () => {
+      state.toggle('r-a');
+      expect(state.lifetimeLoadState()).toBe('loading');
+
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: territoryFeatureCollection([{ startYear: 220, endYear: 226 }]) });
+
+      expect(state.lifetimeLoadState()).toBe('loaded');
+    });
+
+    it('查詢失敗時變成 error，retryLifetimeRange() 會重新查詢並在成功後變回 loaded', () => {
+      state.toggle('r-a');
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 500, message: 'INTERNAL_ERROR', data: null }, { status: 500, statusText: 'Server Error' });
+
+      expect(state.lifetimeLoadState()).toBe('error');
+
+      state.retryLifetimeRange();
+      expect(state.lifetimeLoadState()).toBe('loading');
+
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: territoryFeatureCollection([{ startYear: 220, endYear: 226 }]) });
+
+      expect(state.lifetimeLoadState()).toBe('loaded');
+      expect(state.lifetimeRange()).toEqual({ minYear: 220, maxYear: 226 });
+    });
+
+    it('沒有聚焦任何政權時 retryLifetimeRange() 是 no-op，不會打 API', () => {
+      state.retryLifetimeRange();
+      httpMock.expectNone(() => true);
+    });
+  });
 });

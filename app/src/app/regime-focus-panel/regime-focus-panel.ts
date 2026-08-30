@@ -77,6 +77,10 @@ export class RegimeFocusPanelComponent {
   private readonly timeline = inject(TimelineState);
 
   protected readonly focusedRegimeId = this.focusState.focusedRegimeId;
+  /** 任務 3.14：存續區間查詢的 loading/error 狀態，見 `RegimeFocusState` 類別文件的
+      說明。直接傳遞 `RegimeFocusState` 的 signal，不重新包一層——這個元件本身
+      「只讀不自己算」的既有原則。 */
+  protected readonly lifetimeLoadState = this.focusState.lifetimeLoadState;
 
   protected readonly focusedRegimeName = computed(() => {
     const id = this.focusedRegimeId();
@@ -153,6 +157,11 @@ export class RegimeFocusPanelComponent {
 
   protected close(): void {
     this.focusState.clear();
+  }
+
+  /** 任務 3.14：存續區間錯誤提示的「重試」按鈕。 */
+  protected retryLifetimeRange(): void {
+    this.focusState.retryLifetimeRange();
   }
 
   /** regimeId 清單→排序過的名稱清單——`neighborNames`/`otherContemporaryNames` 共用

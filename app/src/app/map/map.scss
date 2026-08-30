@@ -4,9 +4,78 @@
   // 目前用 100dvh 版面，這裡填滿 host 本身分配到的空間。
   width: 100%;
   height: 100%;
+  position: relative; // 讓下面任務 3.14 的載入/錯誤/空狀態疊層可以用 position: absolute
 }
 
 .map-container {
   width: 100%;
   height: 100%;
+}
+
+// 任務 3.14：初始載入骨架——只在第一批疆域資料回來前顯示（見 map.ts
+// territoryLoadState 的說明），蓋住整個地圖容器，因為這個階段本來就沒有可互動的
+// 疆域內容。用 --wl-surface（不透明淺色），不是毛玻璃深色——這是主要內容區域本身的
+// 載入狀態，不是疊在地圖上的輔助資訊卡片（跟 event-drawer/regime-event-panel 那種
+// 深色玻璃卡片是不同語意，不要套同一套視覺）。
+.map-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--wl-surface);
+}
+
+.map-loading-text {
+  margin: 0;
+  color: var(--wl-ink-secondary);
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-sm);
+}
+
+// 任務 3.14：錯誤/空狀態提示列——刻意不是全畫面疊層，使用者這時候地圖本身（陸地/
+// 海洋底圖、已經載入過的舊疆域資料）通常還看得到、拉桿也還能拖，不該被一個滿版遮罩
+// 擋住整個操作介面，只在頂部提示「這批資料怎麼了」。
+.map-status-banner {
+  position: absolute;
+  top: var(--wl-space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6; // 蓋在 .map-loading-overlay（5）跟地圖畫布之上
+  display: flex;
+  align-items: center;
+  gap: var(--wl-space-3);
+  padding: var(--wl-space-2) var(--wl-space-3);
+  border-radius: var(--wl-radius-md);
+  background: var(--wl-surface);
+  border: 1px solid var(--wl-border-hairline);
+  color: var(--wl-ink-secondary);
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.map-status-banner-error {
+  border-color: var(--wl-status-critical);
+  color: var(--wl-status-critical);
+}
+
+.map-status-retry {
+  padding: var(--wl-space-1) var(--wl-space-2);
+  border: 1px solid currentcolor;
+  border-radius: var(--wl-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, currentcolor, transparent 90%);
+  }
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
 }

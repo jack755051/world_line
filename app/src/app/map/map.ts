@@ -7,7 +7,9 @@ import {
   OnDestroy,
   ViewContainerRef,
   afterNextRender,
+  computed,
   inject,
+  signal,
   viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -153,6 +155,15 @@ interface ApiEnvelope<T> {
  * （漢/魏/蜀漢/吳/晉擠在同一小塊地理範圍，彼此幾乎都相鄰），不是邏輯錯誤，是還沒有
  * 真正「同時期不同地區」的政權資料可以示範，等之後匯入世界史資料才會開始出現東西，
  * 見該函式文件註解。
+ *
+ * **任務 3.14（2026-08-31）：主地圖頁四態齊備，對應 PRD §8**——原本疆域查詢失敗只有
+ * `console.error`（見 `loadTerritories()` 舊註解），現在補上 `territoryLoadState`
+ * signal（`loading`/`loaded`/`error`）跟對應的 UI（骨架/錯誤提示列+重試按鈕，見
+ * `map.html`）。**`loading` 只在第一次載入顯示全畫面骨架**，拖拉桿換年份不會重新
+ * 觸發（那有形變動畫當視覺回饋，不需要另一層載入骨架蓋住畫面）；`error` 則任何一次
+ * 查詢失敗都會顯示，不限第一次。`isTerritoriesEmpty` 另外用 `territoryCount`
+ * signal 判斷「這個年份查無疆域」，用小提示列呈現，不擋住地圖操作（拖拉桿本來就會
+ * 經過刻意留白的年份，見 `TimelineState` 189-618 年那段說明，這是正常狀態不是錯誤）。
  */
 @Component({
   selector: 'app-map',
@@ -181,6 +192,22 @@ export class MapComponent implements OnDestroy {
       形狀就已經定案了；900ms 讓變化過程有足夠時間被看清楚，同時還在「拖拉桿感覺是
       即時回饋」的合理範圍內（沒有拖到讓拖桿操作感覺遲鈍的程度）。 */
   private static readonly MORPH_DURATION_MS = 900;
+
+  /** 任務 3.14（PRD §8「主地圖頁」四態齊備）：`'loading'` 是初始狀態，直到第一批疆域
+      資料回來才變成 `'loaded'`／`'error'`。**只有第一次載入會顯示全畫面骨架**——之後
+      拖拉桿換年份重新查詢時不會把這個 signal 撥回 `'loading'`，那樣會在每次拖動時蓋住
+      整個地圖，跟 PRD §8 原文「地圖底圖與*初始年份*政權疆域載入中骨架畫面」的範圍不
+      符（拖動中的年份切換有形變動畫本身當作視覺回饋，不需要另外的載入骨架）。查詢
+      失敗则任何一次都會切到 `'error'`（不限第一次），讓使用者看得到、能重試。 */
+  protected readonly territoryLoadState = signal<'loading' | 'loaded' | 'error'>('loading');
+  private hasLoadedTerritoriesOnce = false;
+  /** 目前這批疆域的筆數——PRD §8「主地圖頁」empty 態（拖到某年份無任何政權資料）用
+      這個判斷，不直接讀 `currentFeatureCollection`（那個是給形變動畫用的內部欄位，
+      特地拉一個獨立 signal 給樣板讀，職責分開）。 */
+  private readonly territoryCount = signal(0);
+  protected readonly isTerritoriesEmpty = computed(
+    () => this.territoryLoadState() === 'loaded' && this.territoryCount() === 0,
+  );
 
   private map?: MapLibreMap;
   private labelMarkers: Marker[] = [];
@@ -327,17 +354,34 @@ export class MapComponent implements OnDestroy {
   }
 
   private loadTerritories(year: number): void {
+    if (!this.hasLoadedTerritoriesOnce) {
+      this.territoryLoadState.set('loading');
+    }
+
     this.http
       .get<ApiEnvelope<FeatureCollection<MultiPolygon, TerritoryFeatureProperties>>>(
         `/api/v1/territories?year=${year}`,
       )
       .subscribe({
-        next: (response) => this.applyTerritories(response.data),
-        // 第一版先求「資料管線走得通看得到東西」，還沒有失敗時的 UI 呈現（例如錯誤
-        // 提示列）——那屬於之後才需要拍板的 loading/error 狀態設計，這裡先用
-        // console.error 讓問題在開發時看得到，不是刻意省略錯誤處理。
-        error: (err: unknown) => console.error('[MapComponent] 載入疆域資料失敗', err),
+        next: (response) => {
+          this.hasLoadedTerritoriesOnce = true;
+          this.territoryLoadState.set('loaded');
+          this.applyTerritories(response.data);
+        },
+        // 任務 3.14：從「只有 console.error」補上 UI 呈現（錯誤提示列 + 重試按鈕，
+        // 見 map.html 的 territoryLoadState() === 'error' 分支），console.error 保留
+        // 給開發時看堆疊用，不是互相取代。
+        error: (err: unknown) => {
+          console.error('[MapComponent] 載入疆域資料失敗', err);
+          this.territoryLoadState.set('error');
+        },
       });
+  }
+
+  /** 任務 3.14：錯誤提示列的「重試」按鈕——直接重打目前拉桿停留的年份，不需要额外
+      的重試狀態機，讓 `loadTerritories()` 走一次既有流程就好。 */
+  protected retryLoadTerritories(): void {
+    this.loadTerritories(this.timeline.year());
   }
 
   /** 新一批疆域資料到手後的進入點——決定「直接顯示」還是「跑形變動畫」，見任務 3.6
@@ -436,6 +480,7 @@ export class MapComponent implements OnDestroy {
     }
 
     this.currentFeatureCollection = featureCollection;
+    this.territoryCount.set(featureCollection.features.length);
     this.renderLabels(featureCollection);
     this.refreshFocusOverlay();
   }

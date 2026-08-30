@@ -1005,7 +1005,40 @@ related_constitution: .claude/constitutions/world-line.md
 > Frame` 不跑，見 task 3.12 記錄），沒有做到瀏覽器裡「展開事件→切分頁→看爭議點」完整
 > 視覺流程的驗證，邏輯正確性靠單元測試涵蓋，建議使用者實機找一個有視角資料的事件（例如
 > 赤壁之戰、怛羅斯之戰）走一次確認呈現效果。
-| [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
+| [x] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
+
+> **2026-08-31 完成**：逐頁對照 PRD §8 的四態要求，盤點結果：
+>
+> - **事件詳情/多重視角**（`RegimeEventPanelComponent`，PRD §8 原文「事件詳情抽屜」+
+>   「多重視角分頁」兩頁，實作時已合併成同一個元件，見 task 3.12/3.13 完成記錄）：
+>   四態早在 task 3.12/3.13 動工時就已經齊備（`isExpandedLoading`/`isExpandedError`/
+>   sections 為 null 時的空狀態文案/正常呈現），這次盤點確認不用補。
+> - **主地圖頁**（`MapComponent`）：**原本完全沒有 loading/error/empty 態**——查詢
+>   失敗只有 `console.error`，沒有任何 UI 反應；沒有初始載入骨架；查無疆域的年份
+>   （例如刻意留白的 189-618 年）畫面上只是安靜地什麼都不畫，使用者無法分辨是「這個
+>   年份真的沒資料」還是「東西壞了」。補上 `territoryLoadState` signal
+>   （`loading`/`loaded`/`error`）+ `territoryCount`／`isTerritoriesEmpty`：**loading
+>   只在第一次載入顯示全畫面骨架**（拖拉桿換年份不重新觸發，那有形變動畫當視覺回饋，
+>   蓋一層骨架反而干擾）；error 用頂部提示列+重試按鈕（不用全畫面遮罩擋住還能用的
+>   地圖/拉桿）；empty 同樣用頂部提示列，跟 error 視覺區分開（不是「壞了」，是「這個
+>   年份真的沒資料」）。
+> - **政權聚焦頁**（`RegimeFocusPanel`）：empty 態（該政權於當前時間點尚未建立/已不
+>   存在）已經在 task 3.7 AC#2 做過（`outOfLifetimeWarning`）；**loading/error 態
+>   原本沒有**——存續區間查詢失敗一樣只有 `console.error`，面板看起來像「什麼都沒
+>   發生」。`RegimeFocusState` 補上 `lifetimeLoadState` signal +
+>   `retryLifetimeRange()`，面板對應顯示「存續區間載入中…」／錯誤提示+重試按鈕。
+>
+> 已用 `dotnet build`（不涉及，純前端）、`ng build`（clean）、`ng test`（235/235，
+> 新增 10 條：`map.spec.ts` 5 條【初始骨架顯示/資料到位後骨架消失/查詢失敗顯示錯誤列
+> +重試可用/成功但無資料顯示空狀態/換年份不重新顯示骨架】、`regime-focus-state.spec.
+> ts` 3 條【toggle 後 loading→loaded/查詢失敗 error+retry 恢復 loaded/沒有聚焦時
+> retry 是 no-op】、`regime-focus-panel.spec.ts` 2 條【顯示載入中文案/顯示錯誤+重試
+> 按鈕可用】）、`docker compose up -d --build frontend` 重新部署。**這次意外驗證了
+> 一件事**：這個對話環境的 WebGL canvas 一直卡在 `requestAnimationFrame` 不跑（見
+> task 3.12 記錄），代表 `MapComponent` 的疆域查詢永遠不會觸發、`territoryLoadState`
+> 永遠停在 `'loading'`——用 `find` 工具直接讀到畫面上真的顯示著「地圖載入中…」文字，
+> 反而在真實瀏覽器裡意外驗證了這個新載入骨架確實有正確渲染出來（雖然不是刻意設計的
+> 驗證方式）。
 | [x] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |
 
 > **2026-08-31 完成**：`app/src/app/core/api/message-codes.ts`——`API_MESSAGE_CODE_TEXT`

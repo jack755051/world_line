@@ -32,6 +32,14 @@ export interface RegimeLifetimeRange {
  * 裡（這裡的職責是「聚焦狀態本身」，不是「跟聚焦政權有關的所有資料」）。這個 service
  * 因此收斂回任務 3.7 原本的範圍：聚焦目標、周邊政權清單、存續區間，不再耦合事件/關係
  * 查詢，詳見 `regime-event-panel.ts` 的類別文件。
+ *
+ * **任務 3.14（2026-08-31）：補上 `lifetimeLoadState`**，對應 PRD §8「政權聚焦頁」
+ * 四態齊備——原本存續區間查詢失敗只有 `console.error`，`RegimeFocusPanelComponent`
+ * 沒有任何畫面反應（使用者看起來就像「什麼都沒發生」）。現在明確分開 loading/loaded/
+ * error 三態，empty 態（該政權於當前時間點尚未建立/已不存在）維持既有的
+ * `RegimeFocusPanelComponent.outOfLifetimeWarning`，不需要另外處理——那本來就是
+ * `lifetimeRange` 查到之後、拿現在年份跟區間比對算出來的，屬於「loaded 但比對結果」
+ * 的呈現邏輯，不是這裡的載入狀態機。
  */
 @Injectable({ providedIn: 'root' })
 export class RegimeFocusState {
@@ -48,6 +56,11 @@ export class RegimeFocusState {
   readonly otherContemporaryRegimeIds = signal<readonly string[]>([]);
   /** 見 `RegimeLifetimeRange` 說明。`null` 代表沒有聚焦政權，或存續區間還在載入中。 */
   readonly lifetimeRange = signal<RegimeLifetimeRange | null>(null);
+  /** 任務 3.14（PRD §8「政權聚焦頁」四態齊備）：`loadLifetimeRange()` 這筆查詢本身的
+      loading/error 狀態——`lifetimeRange` 是 `null` 沒辦法區分「還在載入」跟「查詢
+      失敗」跟「查到了但沒有任何疆域列」，UI 需要明確分開這三種情況才能各自顯示對應
+      的畫面，不能只看 `lifetimeRange` 是不是 `null` 猜。 */
+  readonly lifetimeLoadState = signal<'loading' | 'loaded' | 'error'>('loading');
 
   /** 點擊某個政權的疆域——再次點擊同一個政權會取消聚焦（toggle），這是比較直覺的
       互動行為（點兩次回到原狀），不是每次點擊都只會「切換到新政權」。 */
@@ -70,6 +83,15 @@ export class RegimeFocusState {
     this.lifetimeRange.set(null);
   }
 
+  /** 任務 3.14：面板的「重試」按鈕——重新查詢目前聚焦政權的存續區間。沒有聚焦政權
+      時是 no-op（理論上不該被呼叫到，按鈕只在有聚焦政權時才會渲染出來）。 */
+  retryLifetimeRange(): void {
+    const regimeId = this.focusedRegimeId();
+    if (regimeId) {
+      this.loadLifetimeRange(regimeId);
+    }
+  }
+
   setNeighbors(regimeIds: readonly string[]): void {
     this.neighborRegimeIds.set(regimeIds);
   }
@@ -79,6 +101,8 @@ export class RegimeFocusState {
   }
 
   private loadLifetimeRange(regimeId: string): void {
+    this.lifetimeLoadState.set('loading');
+
     this.http
       .get<ApiEnvelope<FeatureCollection<MultiPolygon, TerritoryFeatureProperties>>>(
         `/api/v1/regimes/${regimeId}/territories`,
@@ -91,6 +115,7 @@ export class RegimeFocusState {
           if (this.focusedRegimeId() !== regimeId) {
             return;
           }
+          this.lifetimeLoadState.set('loaded');
           const features = response.data.features;
           if (features.length === 0) {
             this.lifetimeRange.set(null);
@@ -100,9 +125,15 @@ export class RegimeFocusState {
           const maxYear = Math.max(...features.map((f) => f.properties.endYear));
           this.lifetimeRange.set({ minYear, maxYear });
         },
-        // 存續區間只是輔助提示，查詢失敗不影響聚焦模式本身（高亮/周邊清單照常運作），
-        // 一樣先用 console.error 讓問題在開發時看得到，跟 map.ts 目前的錯誤處理水準一致。
-        error: (err: unknown) => console.error('[RegimeFocusState] 載入政權存續區間失敗', err),
+        // 任務 3.14：從「只有 console.error」補上 lifetimeLoadState，讓
+        // RegimeFocusPanelComponent 能顯示錯誤提示+重試按鈕（見該元件樣板），
+        // console.error 保留給開發時看堆疊用。
+        error: (err: unknown) => {
+          console.error('[RegimeFocusState] 載入政權存續區間失敗', err);
+          if (this.focusedRegimeId() === regimeId) {
+            this.lifetimeLoadState.set('error');
+          }
+        },
       });
   }
 }

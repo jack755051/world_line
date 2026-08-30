@@ -5,12 +5,22 @@
       <button type="button" class="regime-focus-panel-close" (click)="close()" aria-label="關閉聚焦模式">✕</button>
     </header>
 
-    @if (lifespanText(); as lifespan) {
-      <p class="regime-focus-panel-lifespan">{{ lifespan }}</p>
-    }
+    <!-- 任務 3.14：存續區間查詢的 loading/error 態，見 RegimeFocusState 類別文件說明。 -->
+    @if (lifetimeLoadState() === 'loading') {
+      <p class="regime-focus-panel-lifespan-status">存續區間載入中…</p>
+    } @else if (lifetimeLoadState() === 'error') {
+      <p class="regime-focus-panel-warning">
+        存續區間載入失敗
+        <button type="button" class="regime-focus-panel-retry" (click)="retryLifetimeRange()">重試</button>
+      </p>
+    } @else {
+      @if (lifespanText(); as lifespan) {
+        <p class="regime-focus-panel-lifespan">{{ lifespan }}</p>
+      }
 
-    @if (outOfLifetimeWarning(); as warning) {
-      <p class="regime-focus-panel-warning">{{ warning }}</p>
+      @if (outOfLifetimeWarning(); as warning) {
+        <p class="regime-focus-panel-warning">{{ warning }}</p>
+      }
     }
 
     <!-- 任務 3.9 AC#2：起源／終止狀態，見元件文件說明。 -->

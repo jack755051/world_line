@@ -70,6 +70,39 @@
   background: color-mix(in srgb, var(--wl-status-warning), transparent 85%);
   color: var(--wl-ink-primary);
   font-size: var(--wl-font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--wl-space-2);
+}
+
+// 任務 3.14：存續區間查詢的 loading 態——跟 .regime-focus-panel-lifespan 同一種樸素
+// 呈現（不是警告色，只是還在等資料），錯誤態沿用既有的 .regime-focus-panel-warning
+// 視覺（跟「超出存續區間」同一種「有狀況要看」的語意，不用另外設計一套錯誤配色）。
+.regime-focus-panel-lifespan-status {
+  margin: var(--wl-space-1) 0 0;
+  font-size: var(--wl-font-size-sm);
+  color: var(--wl-ink-muted);
+}
+
+.regime-focus-panel-retry {
+  flex: 0 0 auto;
+  padding: 0 var(--wl-space-2);
+  border: 1px solid currentcolor;
+  border-radius: var(--wl-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--wl-font-size-xs);
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, currentcolor, transparent 90%);
+  }
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
 }
 
 // 任務 3.9 AC#2：起源／終止 Tag——跟 .regime-focus-panel-tag-list（周邊政權清單）共用

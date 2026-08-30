@@ -14,6 +14,7 @@ public static class ApiMessageCodes
 {
     // --- 成功 ---
     public const string FetchSuccess = "FETCH_SUCCESS";
+    public const string CreateSuccess = "CREATE_SUCCESS"; // task 2.10：第一個真正落地的 POST 端點
 
     // --- 通用錯誤（框架自動觸發，或沒有更具體代碼可用時的 fallback） ---
     public const string ValidationError = "VALIDATION_ERROR"; // [ApiController] 自動 model-state 驗證失敗
@@ -24,4 +25,9 @@ public static class ApiMessageCodes
     // --- 具體錯誤（依端點逐步擴充，見各 controller 使用處） ---
     public const string YearRequired = "YEAR_REQUIRED";
     public const string RegimeNotFound = "REGIME_NOT_FOUND";
+    public const string EventNotFound = "EVENT_NOT_FOUND"; // task 2.10
+    public const string EventIdAlreadyExists = "EVENT_ID_ALREADY_EXISTS"; // task 2.10：Id 是呼叫端指定的 slug，不是資料庫自動產生，會撞已存在的
+    public const string InvalidEdtf = "INVALID_EDTF"; // task 2.10：start_edtf/end_edtf 不符合 EdtfService 支援的子集格式
+    public const string EventEndBeforeStart = "EVENT_END_BEFORE_START"; // task 2.10：EdtfService.TryParse 只驗證單一字串合法性，這條是額外補的跨欄位檢查
+    public const string ParentEventNotFound = "PARENT_EVENT_NOT_FOUND"; // task 2.10：parent_event_id 指到不存在的事件
 }

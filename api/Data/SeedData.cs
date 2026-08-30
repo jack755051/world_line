@@ -217,10 +217,20 @@ public static class SeedData
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(189, 208), Geom = Rect(102, 22, 120, 38), CreatedAt = DateTimeOffset.UtcNow },
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = han.Id, ValidPeriod = Years(208, 220), Geom = Rect(105, 32, 122, 42), CreatedAt = DateTimeOffset.UtcNow }, // 縮小至約等於曹操實際控制地盤（=魏建國時的疆域，見上方說明）
 
-            // 魏：3 筆
+            // 魏：4 筆——249-265 這筆（北方核心）維持不變，另外新增 263-265 這筆（南方，
+            // 263 年滅蜀後接管蜀漢原本的地盤）。**2026-08-30 修正**：原本只有北方核心
+            // 這 3 筆，263 年蜀漢滅亡後，蜀漢原本的疆域（益州）直接從地圖上消失、變成
+            // 無主之地，沒有反映「魏滅蜀」這個事件實際發生的地盤轉移（使用者實機發現
+            // 這個問題）。座標沿用蜀漢滅亡前最後一筆疆域 `Rect(100,26,108,32)`——跟漢
+            // 禪魏那筆的處理原則一樣：政權更迭（不管是和平禪讓還是被滅國攻佔）不會讓
+            // 已經被佔領的土地憑空消失或變成新開墾的無主地，疆域理論上該直接銜接原本
+            // 的控制範圍。魏在 263-265 年因此同時有兩筆疆域記錄（北方核心+南方新併入的
+            // 蜀地），不是同一個政權自己內部的爭議（不會畫紅色斜線，見圖著色跟重疊區
+            // 判斷都是用 regimeId 分組，同政權多筆疆域一律用同一個顏色表示）。
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(220, 226), Geom = Rect(105, 32, 122, 42), CreatedAt = DateTimeOffset.UtcNow },
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(226, 249), Geom = Rect(104, 32, 122, 42), CreatedAt = DateTimeOffset.UtcNow },
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(249, 265), Geom = Rect(104, 32, 123, 42), CreatedAt = DateTimeOffset.UtcNow },
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(249, 265), Geom = Rect(104, 32, 123, 42), CreatedAt = DateTimeOffset.UtcNow }, // 北方核心，263 滅蜀後維持不變
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wei.Id, ValidPeriod = Years(263, 265), Geom = Rect(100, 26, 108, 32), CreatedAt = DateTimeOffset.UtcNow }, // 263 滅蜀新增——座標沿用蜀漢滅亡前最後一筆疆域
 
             // 蜀漢：5 筆，208/215/219 荊州易手區間刻意加密。208-215 拆成兩筆——「核心」
             // （南郡以西，孫氏從沒質疑過）跟「荊州爭議地帶」，跟下面東吳的爭議地帶用**完全
@@ -250,8 +260,13 @@ public static class SeedData
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(219, 222), Geom = Rect(108, 22, 122, 32), CreatedAt = DateTimeOffset.UtcNow }, // 219 呂蒙奪荊州後擴大
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = wu.Id, ValidPeriod = Years(222, 280), Geom = Rect(108, 20, 122, 32), CreatedAt = DateTimeOffset.UtcNow },
 
-            // 西晉：2 筆
-            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = jin.Id, ValidPeriod = Years(265, 280), Geom = Rect(104, 32, 123, 42), CreatedAt = DateTimeOffset.UtcNow },
+            // 西晉：3 筆——265-280 這段拆成北方核心+南方（原蜀地）兩筆，跟魏 263-265
+            // 那兩筆同樣的處理原則：晉是魏禪讓而來（265 年），禪讓當下魏的實際控制範圍
+            // 已經包含 263 年滅蜀併入的南方地盤，晉繼承的疆域理論上該直接銜接魏禪讓前的
+            // 完整範圍，不能只繼承北方核心、讓南方（原蜀地）在禪讓那一刻又憑空消失一次
+            // （2026-08-30 修正，跟上面魏新增 263-265 那筆是同一次修正的另一半）。
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = jin.Id, ValidPeriod = Years(265, 280), Geom = Rect(104, 32, 123, 42), CreatedAt = DateTimeOffset.UtcNow }, // 北方核心，繼承自魏
+            new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = jin.Id, ValidPeriod = Years(265, 280), Geom = Rect(100, 26, 108, 32), CreatedAt = DateTimeOffset.UtcNow }, // 南方（原蜀地），繼承自魏 263 年滅蜀後的地盤
             new RegimeTerritory { Id = Guid.NewGuid(), RegimeId = jin.Id, ValidPeriod = Years(280, 316), Geom = Rect(100, 20, 123, 42), CreatedAt = DateTimeOffset.UtcNow } // 統一後涵蓋原吳蜀疆域
         );
 

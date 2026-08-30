@@ -109,4 +109,38 @@ describe('computeTerritoryOverlaps', () => {
 
     expect(overlaps[0].opacity).toBeCloseTo(0.3);
   });
+
+  it('entering 對 leaving（不同政權、座標完全一致）不算重疊——政權更迭的交接瞬間，不是政權衝突（2026-08-30，使用者實機回報漢禪魏/魏禪晉的形變動畫會閃過紅色斜線）', () => {
+    const handoverGeometry = rect(105, 32, 122, 42); // 跟 SeedData.cs 漢禪魏那筆疆域同樣的「座標完全一致」情境
+    const territories: TerritoryWithRegime[] = [
+      { id: 'han-last', regimeId: 'han', geometry: handoverGeometry, morphRole: 'leaving' },
+      { id: 'wei-first', regimeId: 'wei', geometry: handoverGeometry, morphRole: 'entering' },
+    ];
+
+    const overlaps = computeTerritoryOverlaps(territories);
+
+    expect(overlaps).toHaveLength(0);
+  });
+
+  it('entering 對 entering（不同政權、真的有幾何重疊）仍然算重疊——不是所有牽涉到 entering/leaving 的配對都要排除，只有 entering×leaving 這一種組合', () => {
+    const territories: TerritoryWithRegime[] = [
+      { id: 'a', regimeId: 'regime-a', geometry: rect(100, 20, 110, 30), morphRole: 'entering' },
+      { id: 'b', regimeId: 'regime-b', geometry: rect(105, 20, 115, 30), morphRole: 'entering' },
+    ];
+
+    const overlaps = computeTerritoryOverlaps(territories);
+
+    expect(overlaps).toHaveLength(1);
+  });
+
+  it('matched（沒有 morphRole）對 leaving 仍然算重疊——只有明確 entering×leaving 這種配對才排除', () => {
+    const territories: TerritoryWithRegime[] = [
+      { id: 'a', regimeId: 'regime-a', geometry: rect(100, 20, 110, 30) }, // matched，沒有 morphRole
+      { id: 'b', regimeId: 'regime-b', geometry: rect(105, 20, 115, 30), morphRole: 'leaving' },
+    ];
+
+    const overlaps = computeTerritoryOverlaps(territories);
+
+    expect(overlaps).toHaveLength(1);
+  });
 });

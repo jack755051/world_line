@@ -4,11 +4,19 @@ import type { TerritoryFeatureProperties } from './territory-styling';
 
 type TerritoryFeature = Feature<MultiPolygon, TerritoryFeatureProperties>;
 
-/** `sampleMorphPlan()` 輸出的 feature 額外帶一個 `morphOpacity`（0-1）——動畫進行中，
-    正在「出現」或「消失」的疆域用這個欄位控制淡入淡出透明度，`map.ts` 的 paint expression
-    讀這個欄位。真正的（非動畫過場中）疆域資料不帶這個欄位，paint expression 用
-    `coalesce` 預設回 1，不需要每個呼叫端都手動補這個屬性。 */
-export type MorphedFeatureProperties = TerritoryFeatureProperties & { morphOpacity: number };
+/** `sampleMorphPlan()` 輸出的 feature 額外帶：
+    - `morphOpacity`（0-1）：動畫進行中，正在「出現」或「消失」的疆域用這個欄位控制
+      淡入淡出透明度，`map.ts` 的 paint expression 讀這個欄位。
+    - `morphRole`：只有 entering/leaving 的 feature 才有這個欄位（matched 的沒有）——
+      `map.ts` 組疆域重疊區資料時要靠這個欄位判斷「entering 對 leaving」這種跨政權
+      配對該不該算重疊，見 `territory-overlap.ts` 的 `TerritoryWithRegime.morphRole`
+      說明。
+    真正的（非動畫過場中）疆域資料不帶這兩個欄位，paint expression 用 `coalesce`
+    預設回 1，不需要每個呼叫端都手動補這些屬性。 */
+export type MorphedFeatureProperties = TerritoryFeatureProperties & {
+  morphOpacity: number;
+  morphRole?: 'entering' | 'leaving';
+};
 
 interface MatchedPair {
   to: TerritoryFeature;
@@ -70,12 +78,7 @@ export function buildMorphPlan(
     for (let i = 0; i < pairCount; i++) {
       const fromRing = outerRing(fromRows[i]);
       const toRing = outerRing(toRows[i]);
-      // `string: false` 讓 flubber 回傳插值後的點陣列而不是 SVG path 字串（見上方
-      // MatchedPair 的型別轉型註解）。
-      const interpolator = interpolate(fromRing as unknown as string, toRing as unknown as string, {
-        string: false,
-      }) as unknown as (t: number) => Position[];
-      matched.push({ to: toRows[i], interpolator });
+      matched.push({ to: toRows[i], interpolator: buildRingInterpolator(fromRing, toRing) });
     }
     for (let i = pairCount; i < toRows.length; i++) {
       entering.push(toRows[i]);
@@ -112,10 +115,10 @@ export function sampleMorphPlan(
     });
   }
   for (const feature of plan.entering) {
-    features.push({ ...feature, properties: { ...feature.properties, morphOpacity: t } });
+    features.push({ ...feature, properties: { ...feature.properties, morphOpacity: t, morphRole: 'entering' } });
   }
   for (const feature of plan.leaving) {
-    features.push({ ...feature, properties: { ...feature.properties, morphOpacity: 1 - t } });
+    features.push({ ...feature, properties: { ...feature.properties, morphOpacity: 1 - t, morphRole: 'leaving' } });
   }
 
   return { type: 'FeatureCollection', features };
@@ -153,6 +156,38 @@ function sortRowsByCentroid(features: TerritoryFeature[]): TerritoryFeature[] {
 
 function outerRing(feature: TerritoryFeature): Position[] {
   return feature.geometry.coordinates[0][0];
+}
+
+/**
+ * 建立一個環對環的插值函式。**頂點數相同時，直接逐點線性插值，不透過 flubber**
+ * （2026-08-30，使用者實機回報：疆域明明只是單邊往內縮/往外擴的矩形，形變過程卻看起來
+ * 像在旋轉或不對稱拉伸）。根因：flubber 的 `interpolate()` 是設計給「不知道兩個形狀
+ * 頂點對應關係」的一般情況用的——它會先把兩個環重新取樣成更密的點集，再嘗試幾種不同的
+ * 起點位移，挑「總移動量最小」的那個當對應關係。這個專案的疆域資料目前一律是 `Rect()`
+ * 產生的矩形，**相鄰年份快照之間頂點數永遠相同、順序永遠一致**（永遠是同一個
+ * min/min→min/max→max/max→max/min 建構順序），對應關係其實是已知的、不需要用演算法猜；
+ * 讓 flubber 猜反而在「只有一條邊移動、其餘角完全沒動」這種簡單情況下，因為重新取樣後
+ * 的密集點集，最小總移動量搜尋可能選到一個跟直覺不符的對應關係，看起來像整塊疆域在
+ * 旋轉/歪斜，不是單純一條邊平移。
+ *
+ * 頂點數相同時逐點線性插值，保證每個頂點走最短直線路徑，不會有這個問題。頂點數不同
+ * 時（例如之後匯入的真實史料，形狀被重新繪製、增刪了頂點）才真的沒有已知對應關係，
+ * 這時才需要 flubber 的形狀比對演算法去猜——這個分支維持原本的做法。
+ */
+function buildRingInterpolator(fromRing: Position[], toRing: Position[]): (t: number) => Position[] {
+  if (fromRing.length === toRing.length) {
+    return (t: number) =>
+      fromRing.map(([fromX, fromY], i) => {
+        const [toX, toY] = toRing[i];
+        return [fromX + (toX - fromX) * t, fromY + (toY - fromY) * t] as Position;
+      });
+  }
+
+  // `string: false` 讓 flubber 回傳插值後的點陣列而不是 SVG path 字串（見
+  // MatchedPair 的型別轉型註解）。
+  return interpolate(fromRing as unknown as string, toRing as unknown as string, {
+    string: false,
+  }) as unknown as (t: number) => Position[];
 }
 
 function centroidOf(ring: Position[]): [number, number] {

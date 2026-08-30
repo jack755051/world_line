@@ -87,6 +87,16 @@ const OVERLAP_HATCH_IMAGE_ID = 'territory-overlap-hatch';
  *   這是刻意的 V1 範圍限制：逐幀重新算形心、搬動 DOM marker 位置的視覺效益，相對於
  *   額外的實作複雜度不成比例，之後真的有需求（例如使用者反應標籤位置跟疆域形狀動畫
  *   脫節很違和）再回頭做。
+ *
+ * **2026-08-30 修正兩個實機回報的問題**：
+ * 1. 疆域環的插值不再一律交給 flubber 猜對應關係——頂點數相同時（目前種子資料的矩形
+ *    永遠是這個情況）改成逐點線性插值，修正「明明只有一條邊移動，形變過程卻像在旋轉/
+ *    不對稱拉伸」的問題，見 `territory-morph.ts` 的 `buildRingInterpolator()` 說明。
+ * 2. `territory-overlap.ts` 的 `computeTerritoryOverlaps()` 現在會排除
+ *    entering×leaving 這種跨政權配對——修正「漢禪魏、魏禪晉這種和平政權更迭，換年份
+ *    動畫過程中會閃過一整塊紅色爭議斜線」的問題（根因：這個專案刻意讓禪讓前後兩個政權
+ *    的疆域座標完全一致，交接瞬間舊政權淡出、新政權淡入，兩者座標重合被誤判成政權
+ *    衝突）。詳見該函式文件註解的「政權更迭不是政權衝突」說明。
  */
 @Component({
   selector: 'app-map',
@@ -104,8 +114,12 @@ export class MapComponent implements OnDestroy {
   private readonly destroyRef = inject(DestroyRef);
 
   /** 形變動畫（任務 3.6）的固定時長——刻意不做成可調參數，目前沒有「使用者想調整動畫
-      速度」這個需求，先寫死一個視覺上測過還算自然的值，之後真的有需求再拍板成 UI 選項。 */
-  private static readonly MORPH_DURATION_MS = 500;
+      速度」這個需求，先寫死一個視覺上測過還算自然的值，之後真的有需求再拍板成 UI 選項。
+      **2026-08-30 從 500ms 調高到 900ms**：使用者實機回報疆域有變動的年份切換時感覺
+      突兀，500ms 對「疆域邊界移動」這種面積變化的視覺效果來說太快，人眼還來不及跟上
+      形狀就已經定案了；900ms 讓變化過程有足夠時間被看清楚，同時還在「拖拉桿感覺是
+      即時回饋」的合理範圍內（沒有拖到讓拖桿操作感覺遲鈍的程度）。 */
+  private static readonly MORPH_DURATION_MS = 900;
 
   private map?: MapLibreMap;
   private labelMarkers: Marker[] = [];
@@ -366,21 +380,25 @@ export class MapComponent implements OnDestroy {
 
   /** 疆域重疊區（見 territory-overlap.ts）——不依賴任何手動標記的旗標，即時算幾何交集，
       只算「不同政權」之間的重疊（同一個政權自己底下多筆疆域記錄互相重疊，不算「政權
-      重疊」，一律用顏色表示），所以要傳 regimeId，不能只傳 id。`morphOpacity` 是選填
-      屬性（只有動畫過場中的取樣結果才有），一般資料沒有這個欄位，`computeTerritoryOverlaps`
-      內部會當作 1 處理。 */
+      重疊」，一律用顏色表示），所以要傳 regimeId，不能只傳 id。`morphOpacity`／
+      `morphRole` 是選填屬性（只有動畫過場中的取樣結果才有），一般資料沒有這兩個欄位，
+      `computeTerritoryOverlaps` 內部會分別當作 1／matched 處理。 */
   private buildOverlapFeatureCollection(
     featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
   ): FeatureCollection<Polygon | MultiPolygon, Pick<TerritoryOverlap, 'opacity'>> {
     return {
       type: 'FeatureCollection',
       features: computeTerritoryOverlaps(
-        featureCollection.features.map((f) => ({
-          id: f.properties.id,
-          regimeId: f.properties.regimeId,
-          geometry: f.geometry,
-          morphOpacity: (f.properties as Partial<MorphedFeatureProperties>).morphOpacity,
-        })),
+        featureCollection.features.map((f) => {
+          const morphed = f.properties as Partial<MorphedFeatureProperties>;
+          return {
+            id: f.properties.id,
+            regimeId: f.properties.regimeId,
+            geometry: f.geometry,
+            morphOpacity: morphed.morphOpacity,
+            morphRole: morphed.morphRole,
+          };
+        }),
       ).map((overlap) => ({
         type: 'Feature',
         properties: { opacity: overlap.opacity },

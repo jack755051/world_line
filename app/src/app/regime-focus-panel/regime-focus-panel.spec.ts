@@ -5,6 +5,7 @@ import { RegimeFocusPanelComponent } from './regime-focus-panel';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
+import { EventDrawerState } from '../core/event/event-drawer-state';
 
 describe('RegimeFocusPanelComponent', () => {
   let httpMock: HttpTestingController;
@@ -361,6 +362,27 @@ describe('RegimeFocusPanelComponent', () => {
       expect(items[0]).toContain('西元 221 年'); // 任務 3.10：事件日期用 <app-edtf-date> 呈現
       expect(items[1]).toContain('同盟');
       expect(items[1]).toContain('測試關係');
+    });
+
+    it('task 3.12：點擊離散事件會打開事件詳情抽屜（EventDrawerState.open）', () => {
+      focusState.toggle('r-wei');
+      flushFocusRequests(
+        'r-wei',
+        [{ startYear: 220, endYear: 226 }],
+        [{ eventId: 'event-a', eventName: '跟蜀漢的戰役', otherRegimeId: 'r-shuhan', startEdtf: '0221', endEdtf: '0221' }],
+      );
+      focusState.setNeighbors(['r-shuhan']);
+
+      const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+      fixture.detectChanges();
+
+      const trigger: HTMLButtonElement = fixture.nativeElement.querySelector(
+        '.regime-focus-panel-interaction-trigger',
+      );
+      trigger.click();
+
+      const eventDrawer = TestBed.inject(EventDrawerState);
+      expect(eventDrawer.openEventId()).toBe('event-a');
     });
 
     it('沒有任何跟周邊政權的互動記錄時，顯示空狀態文案', () => {

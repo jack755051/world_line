@@ -568,7 +568,8 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 
 **M3 前必須處理**：
 
-- [ ] TODO：拍板事件詳情無 `sections`、事件無視角資料時的 empty state，以及 Perspective Tabs 預設分頁規則。
+- [x] 事件詳情無 `sections` 時的 empty state → 2026-08-31 task 3.12 動工時拍板：顯示「這個事件目前只有基本記錄（名稱與時間），還沒有詳細內容」，見 implementation plan 任務 3.12
+- [ ] TODO：事件無視角資料時的 empty state，以及 Perspective Tabs 預設分頁規則——留給 task 3.13（依賴 task 2.12/2.13 先有真實視角/爭議點資料）動工前拍板。
 
 **已解決（追加）**：
 - [x] 任務 3.0 原本留下的缺口——`src/sanring-theme.css` 的品牌色階跟 Sanring 原廠色盤不一致 → 同日（2026-08-29）追加拍板：`--wl-*` 全面覆蓋，不保留任何 Sanring 原廠色碼，見 §5 UI 元件庫列

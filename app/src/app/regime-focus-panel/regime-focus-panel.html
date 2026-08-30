@@ -74,7 +74,13 @@
           <ul class="regime-focus-panel-interaction-list">
             @for (item of eventInteractionItems(); track item.key) {
               <li>
-                {{ item.label }}（與{{ item.otherRegimeName }}）
+                <button
+                  type="button"
+                  class="regime-focus-panel-interaction-trigger"
+                  (click)="openEvent(item.eventId)"
+                >
+                  {{ item.label }}（與{{ item.otherRegimeName }}）
+                </button>
                 <span class="regime-focus-panel-interaction-date">
                   <app-edtf-date [value]="item.startEdtf" />
                   @if (item.endEdtf !== item.startEdtf) {

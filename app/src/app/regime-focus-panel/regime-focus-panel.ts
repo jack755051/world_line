@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
+import { EventDrawerState } from '../core/event/event-drawer-state';
 import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
 import { TagComponent } from '../components/ui/tag';
 import { EdtfDateComponent } from '../edtf-date/edtf-date';
@@ -20,9 +21,12 @@ import { describeRegimeEnd, describeRegimeOrigin } from '../core/regime/regime-t
  * `RegimeFocusState.eventInteractions`、持續性關係用 `relationInteractions`。
  * **只顯示跟目前「同時期周邊政權」有交集的互動**——AC#3 原文是「聚焦政權與周邊政權
  * 之間」，不是任意兩個政權只要有記錄就列出來；`RegimeFocusState` 回傳的是這個政權
- * 全部已知互動（不限周邊），過濾在這個元件的 computed 裡做。**「可點擊追溯」目前只是
- * 純文字，還不能真的點開**——事件/關係的詳情畫面（task 3.12 事件詳情抽屜）還沒做，
- * 沒有東西可以追溯過去，先把「有哪些互動」列出來，可點擊的部分等 3.12 做出來再補。
+ * 全部已知互動（不限周邊），過濾在這個元件的 computed 裡做。**2026-08-31（task 3.12）：
+ * 離散事件可點開了**——點擊清單裡的事件會呼叫 `EventDrawerState.open(eventId)`，
+ * 觸發 `app-event-drawer` 顯示詳情。**持續性關係（`relationInteractionItems`）維持
+ * 純文字，刻意不能點擊**：task 3.12 範圍只有 `historical_events` 詳情抽屜，
+ * `regime_relations` 沒有對應的詳情畫面（也沒有像 `sections` 那樣的結構化敘事內容
+ * 可以顯示），沒有東西可以點開，硬做一個空的詳情畫面沒有意義。
  *
  * **2026-08-30 改用 Sanring `Collapsible` 收納周邊政權清單，不是 `Sheet`**——使用者
  * 一開始提議改用 `Sheet`，但 Sanring 的 `Sheet` 是包在 CDK Dialog 之上的真．模態框
@@ -87,6 +91,7 @@ export class RegimeFocusPanelComponent {
   private readonly focusState = inject(RegimeFocusState);
   private readonly directory = inject(RegimeDirectoryService);
   private readonly timeline = inject(TimelineState);
+  private readonly eventDrawer = inject(EventDrawerState);
 
   protected readonly focusedRegimeId = this.focusState.focusedRegimeId;
 
@@ -153,6 +158,7 @@ export class RegimeFocusPanelComponent {
       .filter((interaction) => neighborIds.has(interaction.otherRegimeId))
       .map((interaction) => ({
         key: `${interaction.eventId}-${interaction.otherRegimeId}`,
+        eventId: interaction.eventId,
         label: interaction.eventName,
         otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
         // 任務 3.10：事件用起訖兩個 EDTF 日期都顯示——跟疆域/存續區間那種「一個範圍」
@@ -197,6 +203,11 @@ export class RegimeFocusPanelComponent {
 
   protected close(): void {
     this.focusState.clear();
+  }
+
+  /** task 3.12：點擊互動清單裡的事件，打開事件詳情抽屜。 */
+  protected openEvent(eventId: string): void {
+    this.eventDrawer.open(eventId);
   }
 
   /** regimeId 清單→排序過的名稱清單——`neighborNames`/`otherContemporaryNames` 共用

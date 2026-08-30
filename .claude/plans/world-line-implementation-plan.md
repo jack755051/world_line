@@ -764,7 +764,53 @@ related_constitution: .claude/constitutions/world-line.md
 > 種子資料）時年號區塊正確消失。**螢幕截圖工具本身因 MapLibre WebGL canvas 逾時失敗**
 > （跟 task 3.5 記錄的同一個環境限制），改用 `find`/`read_network_requests` 讀真實
 > DOM 文字與 API 請求驗證，不是跳過視覺驗證。
-| [ ] | 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
+| [x] | 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
+
+> **2026-08-31 完成**：由 `RegimeFocusPanelComponent`（task 3.7）「互動記錄」清單裡的
+> 離散事件觸發——原本只是純文字，這次改成 `<button>`，點擊呼叫新增的
+> `EventDrawerState.open(eventId)`（`app/src/app/core/event/event-drawer-state.ts`，
+> 跟 `NamingViewpointState` 同一個「獨立 signal、不跟其他聚焦/選取狀態共用」的理由）。
+> 持續性關係（`regime_relations`）刻意維持純文字不能點——這個任務範圍只有
+> `historical_events` 詳情，關係沒有對應的詳情畫面/結構化敘事內容可以顯示。
+>
+> `EventDrawerComponent`（`app/src/app/event-drawer/`）打 task 2.10 既有的
+> `GET /api/v1/events/:id`（無需新增後端），三層手風琴沿用既有的 `sanring-collapsible`
+> （跟 `RegimeFocusPanelComponent` 同一個元件，不導入新的 accordion 依賴），三層預設
+> 都展開，不是嚴格互斥的傳統 accordion。**視覺照搬 notes §八原文毛玻璃規格**
+> （`backdrop-filter: blur(16px); background: rgba(20,20,25,0.75); border: 1px
+> solid rgba(255,255,255,0.1)`）——刻意寫死深色玻璃卡片，不套用 `--wl-*` 淺色主題
+> token（這個專案沒有深色模式分支，玻璃卡片是疊在地圖上的獨立視覺元素，不是要讓整個
+> App 變深色）。
+>
+> **`sections` 解析注意 snake_case**：跟這個 API 其他欄位不同，`sections` 是後端
+> 原封不動轉傳資料庫 jsonb 內容（不經過 ASP.NET 屬性序列化器改鍵名），前端型別對到
+> 種子資料實際寫的鍵名（`background`/`turning_points`/`impact`），不是 camelCase。
+>
+> **PRD §12「M3 前必須處理」的 empty state 這次拍板**：事件沒有 `sections` 時顯示
+> 「這個事件目前只有基本記錄（名稱與時間），還沒有詳細內容」——目前種子資料 7 筆事件
+> 有 5 筆（漢禪魏、蜀漢滅亡、魏禪晉、吳滅亡、阿拔斯革命）就是這個狀態，是政權轉換的
+> 骨幹記錄本來就沒有詳細敘事，不是資料缺陷，跟翻譯/代稱 fallback 同一個「沒有資料不
+> 等於錯誤狀態」原則。
+>
+> **刻意不做「點擊關鍵轉折時間點→地圖 flyTo + 時間軸連動」**（notes §八原文互動草圖
+> 的一部分）：`turning_points` 目前的 schema 就是純文字陣列，沒有座標/年份可以驅動
+> 鏡頭移動或時間拉桿定位，要做這個互動得先擴充 `historical_events` schema——這個任務
+> 範圍不含 schema 變更，記錄成明確的 V1 範圍限制，不是遺漏。
+>
+> 已用 `ng build`（1.53MB/342KB，budget 內）、`ng test`（219/219，新增
+> `event-drawer.spec.ts` 6 條涵蓋關閉狀態不渲染/loading/三層手風琴依 sections 個別
+> 顯示/empty state/錯誤狀態/關閉按鈕，`regime-focus-panel.spec.ts` 新增 1 條驗證點擊
+> 觸發 `EventDrawerState.open()`）、真實容器（`docker compose up -d --build backend
+> frontend`）+ curl 驗證 `GET /api/v1/events/event-chibi-208` 回傳的 `sections` 形狀
+> 跟前端型別/測試 fixture 完全一致。**沒有做到瀏覽器點擊地圖疆域→打開抽屜的端到端
+> 視覺驗證**：這次對話環境的 MapLibre WebGL canvas 在瀏覽器裡持續無回應（`Page.
+> captureScreenshot` 逾時、`map.on('load', ...)` 從未觸發、`/api/v1/territories`
+> 從未發出，跟本次對話較早驗證 task 3.11 時能正常操作一般 DOM 元素形成對比），屬於
+> 這個對話環境本身的 WebGL 限制（跟 task 3.5/3.9 記錄的環境限制同一類），不是這次
+> 改動造成的迴歸——點擊觸發抽屜的邏輯改用真實 DOM `.click()` 事件在單元測試中驗證
+> （`regime-focus-panel.spec.ts` 新增的測試），跟 task 3.8 當時同樣受限環境下的驗證
+> 方式一致。建議之後找機會在真的能跑 WebGL 的瀏覽器環境裡實機驗證一次點擊疆域→
+> 互動清單→事件抽屜的完整流程。
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |

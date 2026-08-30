@@ -11,6 +11,7 @@ public class LineagePresetConfiguration : IEntityTypeConfiguration<LineagePreset
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id).HasDefaultValueSql("gen_random_uuid()");
         builder.Property(p => p.PresetName).HasMaxLength(128).IsRequired();
+        builder.Property(p => p.IsDefault).HasDefaultValue(false);
         builder.Property(p => p.CreatedAt).HasDefaultValueSql("now()");
     }
 }

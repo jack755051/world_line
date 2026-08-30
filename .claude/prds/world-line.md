@@ -254,6 +254,7 @@ CREATE TABLE lineage_presets (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   preset_name VARCHAR(128) NOT NULL,            -- 例："傳統教科書史觀"、"蜀漢正統論史觀"
   description TEXT,                             -- 這個 preset 代表哪一種史觀立場、由誰／依據什麼提出
+  is_default BOOLEAN NOT NULL DEFAULT FALSE,    -- 2026-08-30 新增（task 2.8）：Story 4 AC#3「使用者未指定特定史觀時顯示的預設主線」，明確標記，不靠插入順序/名稱字串猜
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

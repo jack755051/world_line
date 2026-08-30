@@ -123,6 +123,7 @@ public static class SeedData
             Id = Guid.NewGuid(),
             PresetName = "傳統教科書史觀",
             Description = "漢→魏→晉正線傳承，蜀漢/東吳為分裂期政權，不列入本 preset（但仍完整存在於 regimes 表）",
+            IsDefault = true, // task 2.8：PRD Story 4 AC#3 的預設主線視圖，兩個 preset 只有這筆標 true
             CreatedAt = DateTimeOffset.UtcNow,
         };
         db.LineagePresets.Add(textbookPreset);

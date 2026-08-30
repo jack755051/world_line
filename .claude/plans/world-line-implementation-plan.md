@@ -140,7 +140,31 @@ related_constitution: .claude/constitutions/world-line.md
 | [x] | 2.6 | 疆域查詢端點（唯讀） | `GET /api/v1/regimes/:id/territories`、`GET /api/v1/territories?year={y}`（R2/Story 1 核心查詢）。**已完成（2026-08-29，提前於 2.4 前完成）**：`api/Controllers/TerritoriesController.cs`，回傳標準 GeoJSON `FeatureCollection`（`NetTopologySuite.IO.GeoJSON4STJ` 套件掛 `GeoJsonConverterFactory` 到 `Program.cs` 的 JSON 選項，`MultiPolygon` 自動序列化成標準 geometry），前端 MapLibre 可以直接當 geojson source 用不用轉換。**不依賴 2.16**（疆域形狀沒有語言問題，不像 2.4 的政權名稱需要 `?locale=`），所以能先於 2.4 動工——回應地圖要先看到東西的實際需求。`year` 查詢用 `NpgsqlRange<int>.Contains()`，已實測會正確轉譯成 SQL `@>` range 運算子。只回「目前有效」的快照：排除 `SupersededBy` 非 null 的舊版本（I5 修正鏈），但保留 `IsDisputed=true` 的並存史觀版本（I3，不是新舊關係）。已用真正的 `app_postgres` 種子資料 curl 驗證：year=225 正確回 3 筆（魏/蜀漢/吳，排除已終止的漢跟未建立的晉）、year=210 正確回 4 筆（含 2 筆並存的蜀漢爭議版本 + 1 筆吳）、year=100 正確只回 1 筆漢（I5 修正版，原始版正確被排除）、缺 year 回 400、不存在的政權 id 回 404，OpenAPI 文件正確收錄兩個路徑。**附帶修正一個環境問題**：本機 `curl localhost:5000` 撞到 macOS AirPlay 接收器服務（回應 `Server: AirTunes`，佔用該 port），跟使用者確認後把 `docker-compose.yml` 的後端對外 port 從 5000 改成 5050，連帶更新 README/docs/api.md/docs/development.md | §7 | 1 個 |
 | [ ] | 2.7 | 疆域寫入 + 修正端點 | `POST /api/v1/regimes/:id/territories`（I1 校驗時間區間必填）、`PATCH /api/v1/territories/:id/correct`（I5 版本鏈：新增新版本、`superseded_by` 指回、不覆蓋刪除原記錄） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
 | [ ] | 2.8 | 史觀主線 preset 查詢端點 | `GET /api/v1/lineage-presets`、`GET /api/v1/lineage-presets/:id/regimes`。**依賴 2.16**：`preset_name`/`description` 在翻譯範圍內，同 2.4 支援 `?locale=` | §7 | 1 個 |
-| [ ] | 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
+| [x] | 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
+
+> **2026-08-30 完成**：`api/Controllers/RegimeRelationsController.cs`。**沒有 `?locale=`**：
+> `relation_type`/`description` 是 PRD §6 明確列在「次要/輔助內容，維持待評估、不現在
+> 處理」的翻譯範圍外，這是 PRD 已經先拍板過的決定，不用這個任務重新決定（跟 2.10 的
+> `sections` 是「動工前才決定」不同）。**`year` 必填**：跟 territories/events 同一個
+> 慣例（查詢時間點是必填，不是選填的列表過濾條件），缺 `year` 回 400
+> `YEAR_REQUIRED`。**關係表本身對稱**（`regime_a_id`/`regime_b_id` 沒有主從之分），
+> `GET /regimes/:id/relations` 回傳這個政權出現在任一端的所有關係列。**POST 請求
+> body 刻意不重複 `regimeAId`**：路由裡的 `{regimeId}` 就是關係的一端，body 只需要
+> `otherRegimeId` 指定另一端是誰，避免路由參數跟 body 兩個等效欄位不一致時該聽誰的
+> 這種歧義。**新增三個額外驗證**（PRD 沒有逐字講，但屬於基本資料完整性，不需要另外
+> 拍板，跟 2.10「結束不能早於開始」同一個處理原則）：`otherRegimeId` 不能等於路由的
+> `regimeId`（不能跟自己有關係，400 `RELATION_SAME_REGIME`）、`otherRegimeId` 必須是
+> 存在的政權（400 `RELATION_OTHER_REGIME_NOT_FOUND`，跟「路由的 `regimeId` 本身不存在」
+> 刻意分開成 404 `REGIME_NOT_FOUND`——一個是找不到 URL 指的資源，一個是 body 裡引用的
+> 資源不存在，語意不同）、`endYear` 必須晚於 `startYear`（半開區間 `[start,end)` 要真的
+> 圈出至少一年，400 `RELATION_END_BEFORE_START`）。**沒有「取得單一關係」的端點**（計畫
+> 範圍只有列表查詢+新增），`POST` 成功後的 `Location` header 指回這個政權的關係列表
+> （集合本身），不是指向一個不存在的單筆資源端點。已用真實容器 curl 驗證：GET 依年份
+> 查詢（含孫劉聯盟 208-219 年在範圍內/225 年已跳出範圍兩種案例）、GET 缺 `year`（400）、
+> GET 路由政權不存在（404）、POST 缺 `X-API-Key`（401）、POST 自己跟自己建關係（400）、
+> POST 引用不存在的 `otherRegimeId`（400）、POST 結束不晚於開始（400）、POST 路由政權
+> 不存在（404）、POST 成功（201）——九種案例全數驗證通過，測試資料事後從
+> `app_postgres` 手動刪除。沒有另外寫 xUnit 測試，延續既有慣例。
 | [ ] | 2.9a | 政權代稱（Alias）CRUD | 先拍板 `alias_type` 受控值（若提不出比 observer relationship 更清楚的語意就直接移除該欄位，§12 TODO）；`GET /api/v1/regimes/:id/aliases`、`POST /api/v1/regimes/:id/aliases`（I4 校驗 `regime_id` FK 必存在）。**依賴 2.16**（2026-08-29 修正納入）：`alias_name` 在翻譯範圍內，同 2.4 支援 `?locale=` | §6、§7、§12 TODO | 1 個 |
 | [ ] | 2.9b | 地名雙軌查詢端點 | `GET /api/v1/place-names?year={y}`（依年份查當時使用中的地名，`valid_period` 區間匹配）、`GET /api/v1/place-names/:id`；回傳含 `historical_name`/`modern_name`（可為 NULL）雙欄位，不做寫入端點（seed 已覆蓋首都示範，正式匯入前的來源治理見 `docs/data-governance.md`） | 憲法 §6、§7 | 1 個 |
 | [x] | 2.10 | 事件骨幹 CRUD | `GET /api/v1/events?year={y}`、`GET /api/v1/events/:id`、`POST /api/v1/events`（寫入時呼叫 2.2 EdtfService，含 `parent_event_id` 組成關係）。**2.2 的 `EdtfService.TryParse` 只驗證單一字串合法性，不驗證跨欄位邏輯**——這裡要另外補一條檢查：換算出的 `end_decimal` 不可早於 `start_decimal`（避免使用者填反開始/結束時間），憲法/PRD 沒有明講這條但屬於基本資料完整性，不需要另外拍板。**依賴 2.16**：`name` 在翻譯範圍內，同 2.4 支援 `?locale=`；`sections` JSONB 要不要連帶翻譯尚未拍板，見 PRD §6，這裡動工前要先決定。**已完成（2026-08-30）**：`api/Controllers/EventsController.cs`。**動工前先解決的開放問題**：`sections` 要不要連帶翻譯——決定**先不擴充**，`historical_event_translations` 目前只有 `Name` 欄位，`?locale=` 只影響 `name`，`sections` 一律回資料庫原始內容；這不是隨便繞過問題，是這個問題裡範圍最小、不用新增 schema 就能回答的那部分（要不要新增 `sections` 翻譯欄位是更大的內容設計問題，留給真的要擴充翻譯範圍時再決定）。**`GET /events?year=`的查詢語意**：事件用 decimal 精度年份，「查某一年」定義成查詢區間跟該整年 `[year, year+1)` 有重疊（`start_decimal < year+1 AND end_decimal >= year`）——跟 territories/reign_eras 用 INT4RANGE 半開區間同一個語意的 decimal 版本，已用邊界案例驗證（year=219 不含 208/220 年的事件，year=220 剛好含 220 年那筆）。**路由刻意不用 `{id:guid}`**：`historical_events.id` 是手動指定的字串 slug（例："event-chibi-208"），不是 GUID，跟 `RegimesController` 不是同一種資源識別碼型別。**`sections` 的序列化**：資料庫存 jsonb 原始文字（`HistoricalEvent.Sections` 是 `string?`），回應時解析回真正的巢狀 `JsonElement`，不是把整個 JSON 字串再包一層字串（不然前端要多做一次 `JSON.parse()`，等於把「jsonb 存成字串」這個後端實作細節洩漏出去），已用真實種子資料的赤壁之戰 `sections` 驗證回應是巢狀物件不是雙重編碼字串。**POST 請求 body 刻意排除的範圍**（`CreateHistoricalEventRequest` 類別註解有記錄）：`origin_point`/`influence_area`/`routes` 這三個地理欄位刻意先只做唯讀（現有種子資料完全沒填過，也還沒有前端消費端可以驗證寫入格式對不對）；`tag_ids` 不在這裡，2.11 的計畫敘述明確寫是要回頭擴充這個端點的 request body，不是 2.10 自己的範圍。**新增這個 API 第一個真正落地的 POST 端點**，順帶定案 `ApiMessageCodes.CreateSuccess`（`CREATE_SUCCESS`）——沿用 task 2.0 的命名慣例（成功代碼對應 HTTP 動詞語意）第一次真正套用到 POST。**發現並修正一個小落差**：`historical_events.start_decimal`/`end_decimal` 是 `numeric(8,3)`，`POST` 當下組回應物件用的是 `EdtfDate.ToDecimalYear()` 算出來的完整精度小數，但 `SaveChangesAsync()` 之後資料庫實際存的是四捨五入到 3 位小數的版本——用真實容器測了一次「POST 回應 vs 緊接著 GET 回應」發現兩個數字對不起來（`208.74863387978142076502732240` vs `208.749`），修正成寫入前先 `Math.Round(x, 3)` 對齊，重測後兩者一致。已用真實容器 curl 驗證：GET 依年份查詢（含邊界案例）、GET 單筆（含 404）、`?locale=en` 正確回英文翻譯（赤壁之戰→"Battle of Red Cliffs"）、POST 缺 `X-API-Key`（401，掛在 task 2.14 middleware 底下）、POST 錯誤 EDTF（400 `INVALID_EDTF`）、POST 結束早於開始（400 `EVENT_END_BEFORE_START`）、POST 引用不存在的 `parentEventId`（400 `PARENT_EVENT_NOT_FOUND`）、POST 成功（201，含 `sections`/`parentEventId`）、POST 重複 `id`（409 `EVENT_ID_ALREADY_EXISTS`）——九種案例全數驗證通過，測試用的事件事後從 `app_postgres` 手動刪除，不留在種子資料裡。沒有另外寫 xUnit 測試，延續這個專案從 2.0 開始的既有慣例（curl 真實容器驗證，自動化測試留給 2.15 統一補） | §7 | 1 個 |

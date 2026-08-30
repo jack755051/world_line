@@ -435,6 +435,7 @@ CREATE TABLE regime_transition_events (
 | GET | /api/v1/lineage-presets | 取得可用史觀主線 preset 清單（方案 D，§6） | 公開（唯讀） |
 | GET | /api/v1/lineage-presets/:id/regimes | 取得某 preset 底下依序排列的政權序列 | 公開（唯讀） |
 | GET | /api/v1/regimes/:id/relations?year={y} | 取得政權在某時間點的持續性關係（貿易/朝貢/同盟等，`regime_relations`） | 公開（唯讀） |
+| POST | /api/v1/regimes/:id/relations | 新增一筆持續性關係（`:id` 是關係一端，body 指定另一端） | `X-API-Key` |
 | GET | /api/v1/place-names?year={y} | 依年份查詢當時使用中的地名（憲法 §6 古地名為主、現代地名括號對照） | 公開（唯讀） |
 | GET | /api/v1/place-names/:id | 取得單一地名詳情（含 `historical_name`/`modern_name`） | 公開（唯讀） |
 

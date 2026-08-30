@@ -30,4 +30,7 @@ public static class ApiMessageCodes
     public const string InvalidEdtf = "INVALID_EDTF"; // task 2.10：start_edtf/end_edtf 不符合 EdtfService 支援的子集格式
     public const string EventEndBeforeStart = "EVENT_END_BEFORE_START"; // task 2.10：EdtfService.TryParse 只驗證單一字串合法性，這條是額外補的跨欄位檢查
     public const string ParentEventNotFound = "PARENT_EVENT_NOT_FOUND"; // task 2.10：parent_event_id 指到不存在的事件
+    public const string RelationSameRegime = "RELATION_SAME_REGIME"; // task 2.9：regime_a_id 跟 regime_b_id 不能是同一個政權
+    public const string RelationOtherRegimeNotFound = "RELATION_OTHER_REGIME_NOT_FOUND"; // task 2.9：關係另一端指到不存在的政權
+    public const string RelationEndBeforeStart = "RELATION_END_BEFORE_START"; // task 2.9：valid_period 的結束年份沒有晚於開始年份
 }

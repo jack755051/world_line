@@ -1,6 +1,27 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { HttpClient } from '@angular/common/http';
+import { debounceTime } from 'rxjs';
 import { TimelineState } from '../core/time/timeline-state';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
+import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
+
+/** `GET /api/v1/reign-eras?year=` 回應的形狀（見 `api/Contracts/ReignEraResponse.cs`）。
+    不支援 `?locale=`——`reign_eras` 不在雙語內容範圍內（task 2.16 拍板），`eraName`
+    只有單一語言可顯示。 */
+interface ReignEraSummary {
+  id: string;
+  regimeId: string;
+  eraName: string;
+  startYear: number;
+  endYear: number | null;
+}
+
+/** `ApiResponse<T>` 的最小形狀，同 `map.ts` 的 `ApiEnvelope<T>`——這裡只取得到的
+    `data` 欄位，不整個對照完整契約。 */
+interface ApiEnvelope<T> {
+  data: T;
+}
 
 /**
  * 時間軸 Scrubber 主軸（任務 3.3，憲法 §9「非離散跳轉」）。用原生
@@ -32,8 +53,39 @@ import { RegimeFocusState } from '../core/regime/regime-focus-state';
 export class TimeScrubberComponent {
   protected readonly timeline = inject(TimelineState);
   private readonly focusState = inject(RegimeFocusState);
+  private readonly http = inject(HttpClient);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly regimeDirectory = inject(RegimeDirectoryService);
   protected readonly minYear = TimelineState.MIN_YEAR;
   protected readonly maxYear = TimelineState.MAX_YEAR;
+
+  private readonly activeEras = signal<readonly ReignEraSummary[]>([]);
+
+  constructor() {
+    // 政權名稱目錄可能已被 MapComponent 載入過（`shareReplay(1)` 快取，見該
+    // service 的類別說明），這裡再呼叫一次不會重複打 API。
+    this.regimeDirectory.ensureLoaded().subscribe();
+
+    // 同 `MapComponent.loadTerritories()` 的 debounce 節奏——拖拉桿時每個中間值
+    // 都打一次 API 沒有必要，跟疆域查詢共用同一套節流間隔（150ms）。
+    toObservable(this.timeline.year)
+      .pipe(debounceTime(150), takeUntilDestroyed(this.destroyRef))
+      .subscribe((year) => this.loadReignEras(year));
+  }
+
+  /** 目前拉桿年份對應的年號標籤，格式「{政權名} {年號}{元年｜N年}」——多個政權可能
+      在同一年各自有年號在使用中（例如三國時期），逐一列出並標政權名稱區分，不是
+      只顯示年號本身（單看「建興」不知道是哪個政權的年號）。查無年號資料（seed 尚
+      未涵蓋的年份）時回傳空陣列，模板端不顯示這個區塊。 */
+  protected readonly eraLabels = computed<readonly string[]>(() => {
+    const year = this.timeline.year();
+    return this.activeEras().map((era) => {
+      const regimeName = this.regimeDirectory.nameOf(era.regimeId) ?? era.regimeId;
+      const yearInEra = year - era.startYear + 1;
+      const yearLabel = yearInEra === 1 ? '元年' : `${yearInEra}年`;
+      return `${regimeName} ${era.eraName}${yearLabel}`;
+    });
+  });
 
   protected readonly lifetimeBand = computed<{ left: string; width: string } | null>(() => {
     const range = this.focusState.lifetimeRange();
@@ -53,5 +105,14 @@ export class TimeScrubberComponent {
   protected onInput(event: Event): void {
     const value = Number((event.target as HTMLInputElement).value);
     this.timeline.year.set(value);
+  }
+
+  private loadReignEras(year: number): void {
+    this.http.get<ApiEnvelope<ReignEraSummary[]>>(`/api/v1/reign-eras?year=${year}`).subscribe({
+      next: (response) => this.activeEras.set(response.data),
+      // 同 `MapComponent.loadTerritories()`：第一版先求資料管線走得通，還沒有
+      // loading/error 狀態的 UI 呈現，用 console.error 讓問題在開發時看得到。
+      error: (err: unknown) => console.error('[TimeScrubberComponent] 載入年號資料失敗', err),
+    });
   }
 }

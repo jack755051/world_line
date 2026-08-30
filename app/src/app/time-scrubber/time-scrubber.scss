@@ -36,12 +36,27 @@
   accent-color: var(--wl-primary-500);
 }
 
-.time-scrubber-year {
+.time-scrubber-year-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
   flex: 0 0 auto;
   min-width: 6em; // 避免年份數字位數變化時左右的元素跟著抖動
+}
+
+.time-scrubber-year {
   font-family: var(--wl-font-family);
   font-size: var(--wl-font-size-sm);
   font-weight: var(--wl-font-weight-medium);
   color: var(--wl-ink-primary);
   font-variant-numeric: tabular-nums; // 數字等寬，拖動時視覺更穩定
+}
+
+.time-scrubber-eras {
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-xs);
+  color: var(--wl-ink-secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }

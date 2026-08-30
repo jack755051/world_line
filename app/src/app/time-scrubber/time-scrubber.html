@@ -14,5 +14,10 @@
       aria-label="年份"
     />
   </div>
-  <span class="time-scrubber-year">西元 {{ timeline.year() }} 年</span>
+  <div class="time-scrubber-year-group">
+    <span class="time-scrubber-year">西元 {{ timeline.year() }} 年</span>
+    @if (eraLabels().length) {
+      <span class="time-scrubber-eras">{{ eraLabels().join('、') }}</span>
+    }
+  </div>
 </div>

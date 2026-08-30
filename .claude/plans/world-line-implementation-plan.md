@@ -716,7 +716,34 @@ related_constitution: .claude/constitutions/world-line.md
 > 年份、無法解析的 fallback；`edtf-date.spec.ts` 涵蓋元件渲染跟 qualifier 獨立 span；
 > 面板既有測試補上 `startEdtf`/`endEdtf` 欄位跟一則日期顯示斷言）、真實容器 curl 驗證
 > AC#3、`docker compose up -d --build backend frontend` 部署驗證。
-| [ ] | 3.11 | reign_eras 年號標籤顯示（對應時間拉桿位置顯示年號） | UI 顯示「貞觀元年」等 | §5 紀年轉換 | 1 個 |
+| [x] | 3.11 | reign_eras 年號標籤顯示（對應時間拉桿位置顯示年號） | UI 顯示「貞觀元年」等 | §5 紀年轉換 | 1 個 |
+
+> **2026-08-31 完成**：`TimeScrubberComponent`（`app/src/app/time-scrubber/time-scrubber.ts`）
+> 拉桿年份變動時打 task 2.3 既有的 `GET /api/v1/reign-eras?year=` 端點，跟
+> `MapComponent.loadTerritories()` 同一套節奏——`toObservable(timeline.year)` +
+> `debounceTime(150)`，不是每個拖動中間值都打一次 API。
+>
+> **多政權同時期年號並存的顯示決策**：`reign_eras` 是 `regimes` 1--N 的關係，同一年
+> 可能有多個政權各自年號在使用中（例如三國時期魏/蜀漢/吳三方並存）——`ReignEraResponse`
+> 本身沒有政權名稱欄位，光顯示「建興」不知道是哪個政權的年號，所以額外注入既有的
+> `RegimeDirectoryService`（`shareReplay(1)` 快取，跟 `MapComponent`/`RegimeFocusPanel`
+> 共用同一份、不重複打 `/api/v1/regimes`）查政權自稱名稱，格式定為「{政權名}
+> {年號}{元年｜N年}」，多筆用「、」分隔。年號起始那一年顯示「元年」不是「1年」
+> （`yearInEra === 1` 特判），符合 PRD 給的範例格式。
+>
+> `reign_eras.era_name` 不在雙語內容範圍（task 2.16 拍板時明確排除），端點不支援
+> `?locale=`，前端也不用處理翻譯 fallback。查無年號資料的年份（例如三國/唐朝種子
+> 資料之間刻意留白的 189-618 年區間）不顯示這個區塊，不是 bug。
+>
+> 已用 `ng build`（1.52MB/341KB，budget 內）、`ng test`（210/210，新增 4 條涵蓋單一
+> 年號顯示、元年特判、多政權並存頓號分隔、查無資料時不顯示區塊）、真實容器
+> （`docker compose up -d --build frontend`）+ Chrome 擴充功能實測驗證：`curl
+> localhost:5050/api/v1/reign-eras?year=225` 確認回三筆（魏黃初/吳黃武/蜀漢建興），
+> 瀏覽器讀到的實際 DOM 文字正確顯示「魏 黃初6年、吳 黃武4年、蜀漢 建興3年」；用鍵盤
+> 方向鍵把拉桿拖到 220 年（黃初起始年），文字正確變成「魏 黃初元年」；拖到 1 年（無
+> 種子資料）時年號區塊正確消失。**螢幕截圖工具本身因 MapLibre WebGL canvas 逾時失敗**
+> （跟 task 3.5 記錄的同一個環境限制），改用 `find`/`read_network_requests` 讀真實
+> DOM 文字與 API 請求驗證，不是跳過視覺驗證。
 | [ ] | 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |

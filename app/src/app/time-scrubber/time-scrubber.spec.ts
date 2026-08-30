@@ -24,8 +24,30 @@ describe('TimeScrubberComponent', () => {
     httpMock.verify();
   });
 
-  it('顯示 TimelineState 目前的年份', () => {
+  /** 建立元件並立刻沖掉建構子觸發的 `RegimeDirectoryService.ensureLoaded()` 請求
+      （任務 3.11 起這個元件也會注入政權目錄，用來把年號標籤跟政權名稱配對）——
+      跟既有測試無關，但不沖掉的話 `httpMock.verify()` 會在 afterEach 噴「還有未
+      處理的請求」。**刻意不在這裡呼叫 `fixture.detectChanges()`**：既有測試（例如
+      色帶測試）需要先 flush 其他請求才 `detectChanges()`，由呼叫端自行決定順序。
+      年號查詢本身（`/api/v1/reign-eras`）有 150ms debounce，不會在這裡同步發出，
+      個別測試需要驗證年號標籤時再自行 flush。 */
+  function createScrubber(regimes: ReadonlyArray<Record<string, unknown>> = []) {
     const fixture = TestBed.createComponent(TimeScrubberComponent);
+    httpMock
+      .expectOne((r) => r.urlWithParams === '/api/v1/regimes')
+      .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: regimes });
+    return fixture;
+  }
+
+  // time-scrubber.ts 訂閱 TimelineState.year 查年號時也用了跟 map.ts 同一節奏的
+  // debounceTime(150)——理由同 map.spec.ts 的 waitForDebounce()：zoneless TestBed
+  // 對 fake timers 相容性不夠肯定，用真時間換測試行為可信度。
+  function waitForDebounce(): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, 200));
+  }
+
+  it('顯示 TimelineState 目前的年份', () => {
+    const fixture = createScrubber();
     fixture.detectChanges();
 
     const yearText = fixture.nativeElement.querySelector('.time-scrubber-year').textContent;
@@ -33,7 +55,7 @@ describe('TimeScrubberComponent', () => {
   });
 
   it('拖動 range input 會更新 TimelineState.year', () => {
-    const fixture = TestBed.createComponent(TimeScrubberComponent);
+    const fixture = createScrubber();
     fixture.detectChanges();
     const timeline = TestBed.inject(TimelineState);
 
@@ -47,7 +69,7 @@ describe('TimeScrubberComponent', () => {
   });
 
   it('range input 的上下限對到 TimelineState 定義的範圍', () => {
-    const fixture = TestBed.createComponent(TimeScrubberComponent);
+    const fixture = createScrubber();
     fixture.detectChanges();
 
     const input: HTMLInputElement = fixture.nativeElement.querySelector('.time-scrubber-input');
@@ -57,7 +79,7 @@ describe('TimeScrubberComponent', () => {
 
   describe('政權存續區間色帶（任務 3.7 AC#2）', () => {
     it('沒有聚焦任何政權時，不顯示色帶', () => {
-      const fixture = TestBed.createComponent(TimeScrubberComponent);
+      const fixture = createScrubber();
       fixture.detectChanges();
 
       expect(fixture.nativeElement.querySelector('.time-scrubber-lifetime-band')).toBeNull();
@@ -81,7 +103,7 @@ describe('TimeScrubberComponent', () => {
         },
       });
 
-      const fixture = TestBed.createComponent(TimeScrubberComponent);
+      const fixture = createScrubber();
       fixture.detectChanges();
 
       // toggle() 2026-08-30 起也會同步查 AC#3 的兩個互動端點（events/relations），
@@ -104,6 +126,108 @@ describe('TimeScrubberComponent', () => {
       const expectedWidth = (30 / totalSpan) * 100;
       expect(band.style.left).toBe(`${expectedLeft}%`);
       expect(band.style.width).toBe(`${expectedWidth}%`);
+    });
+  });
+
+  describe('年號標籤（任務 3.11）', () => {
+    it('顯示目前年份對應的年號，含政權名稱與年數', async () => {
+      const fixture = createScrubber([
+        {
+          id: 'r-wei',
+          selfName: '魏',
+          status: 'active',
+          predecessorRegimeId: null,
+          originTransitionType: null,
+          destroyedByRegimeId: null,
+        },
+      ]);
+
+      await waitForDebounce();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/reign-eras?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({
+          statusCode: 200,
+          message: 'FETCH_SUCCESS',
+          // 黃初 220-226（同真實種子資料），DEFAULT_YEAR=225 落在區間內，年數=6。
+          data: [{ id: 'era-1', regimeId: 'r-wei', eraName: '黃初', startYear: 220, endYear: 226 }],
+        });
+      fixture.detectChanges();
+
+      const erasText = fixture.nativeElement.querySelector('.time-scrubber-eras').textContent;
+      expect(erasText).toBe('魏 黃初6年');
+    });
+
+    it('年號起始那一年顯示「元年」，不是「1年」', async () => {
+      const fixture = createScrubber([
+        {
+          id: 'r-wei',
+          selfName: '魏',
+          status: 'active',
+          predecessorRegimeId: null,
+          originTransitionType: null,
+          destroyedByRegimeId: null,
+        },
+      ]);
+
+      await waitForDebounce();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/reign-eras?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({
+          statusCode: 200,
+          message: 'FETCH_SUCCESS',
+          data: [{ id: 'era-1', regimeId: 'r-wei', eraName: '黃初', startYear: TimelineState.DEFAULT_YEAR, endYear: null }],
+        });
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.time-scrubber-eras').textContent).toBe('魏 黃初元年');
+    });
+
+    it('同一年多個政權各自使用中的年號都顯示，用頓號分隔（例如三國時期）', async () => {
+      const fixture = createScrubber([
+        {
+          id: 'r-wei',
+          selfName: '魏',
+          status: 'active',
+          predecessorRegimeId: null,
+          originTransitionType: null,
+          destroyedByRegimeId: null,
+        },
+        {
+          id: 'r-shu',
+          selfName: '蜀漢',
+          status: 'active',
+          predecessorRegimeId: null,
+          originTransitionType: null,
+          destroyedByRegimeId: null,
+        },
+      ]);
+
+      await waitForDebounce();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/reign-eras?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({
+          statusCode: 200,
+          message: 'FETCH_SUCCESS',
+          data: [
+            { id: 'era-1', regimeId: 'r-wei', eraName: '黃初', startYear: 220, endYear: 226 },
+            { id: 'era-2', regimeId: 'r-shu', eraName: '建興', startYear: 223, endYear: 237 },
+          ],
+        });
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.time-scrubber-eras').textContent).toBe('魏 黃初6年、蜀漢 建興3年');
+    });
+
+    it('查無年號資料時不顯示年號區塊', async () => {
+      const fixture = createScrubber();
+
+      await waitForDebounce();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/reign-eras?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.time-scrubber-eras')).toBeNull();
     });
   });
 });

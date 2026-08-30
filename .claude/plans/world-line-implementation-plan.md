@@ -848,6 +848,22 @@ related_constitution: .claude/constitutions/world-line.md
 > 程式碼。**同樣受限於這次對話環境的 WebGL 問題**（見上方說明），沒有做到瀏覽器裡
 > 「政權疆域正上方真的浮出卡片、拖曳地圖卡片跟著移動」的視覺驗證——邏輯正確性靠上述
 > 單元測試涵蓋，視覺呈現建議之後找機會實機看一眼。
+>
+> **2026-08-31 事後修正**：使用者實機測試回報主控台錯誤——`TypeError: Cannot read
+> properties of undefined (reading 'lng')`，發生在 `Marker.addTo()` 內部。根因：
+> `updateEventPanelMarker()` 把 `.addTo(this.map)` 寫在 `.setLngLat(point)`
+> **之前**（跟 `renderLabels()` 的政權名稱標籤順序相反——那邊正確是
+> `.setLngLat(...).addTo(...)`）；MapLibre 的 `addTo()` 內部會立刻觸發一次
+> `_update()` 嘗試投影目前經緯度，這時 `_lngLat` 還沒設定就會對 `undefined.lng`
+> 拋例外。**單元測試當時沒抓到**：`FakeMarker` 測試替身的 `addTo()` 只是回傳
+> `this`，沒有模擬真的 MapLibre 這個「順序要求」的內部行為，是這次唯一沒有先靠測試
+> 抓到、要靠使用者實機回報才發現的問題（其餘 task 3.11/3.12 的邏輯錯誤都在單元測試
+> 階段抓到）。修正兩處：`map.ts` 改成正確順序（`.setLngLat(point).addTo(this.map)`），
+> `map.spec.ts` 的 `FakeMarker.addTo()` 補上跟真的 MapLibre 一致的檢查（`lngLat`
+> 未設定就拋出同一個錯誤訊息），並用「刻意還原修正、確認測試會失敗」的方式驗證這個
+> 測試替身補強真的補到了這個回歸（`git stash` 暫時拿掉 `map.ts` 的修正，重新測試
+> 確認會失敗、訊息文字跟使用者回報的一致，再還原修正）。已用 `ng test`（222/222）、
+> `docker compose up -d --build frontend` 重新部署驗證。
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |

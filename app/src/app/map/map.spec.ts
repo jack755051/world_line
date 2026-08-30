@@ -138,7 +138,15 @@ const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
       return this;
     }
 
+    // 真的 MapLibre 的 addTo() 內部會立刻投影目前的經緯度，`setLngLat()` 沒有先呼叫過
+    // 就 addTo() 會直接對 `undefined.lng` 拋例外——這裡刻意模擬同一個順序要求，不是
+    // 多此一舉：先前 `updateEventPanelMarker()` 寫反過順序（先 addTo() 才 setLngLat()），
+    // 這個假替身當時沒有模擬這個行為所以測試沒抓到，真實瀏覽器才炸出
+    // `Cannot read properties of undefined (reading 'lng')`（task 3.12 事後修正）。
     addTo(): this {
+      if (!this.lngLat) {
+        throw new TypeError("Cannot read properties of undefined (reading 'lng')");
+      }
       return this;
     }
 

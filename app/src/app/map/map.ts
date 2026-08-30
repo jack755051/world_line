@@ -590,11 +590,20 @@ export class MapComponent implements OnDestroy {
 
     if (!this.eventPanelComponentRef) {
       this.eventPanelComponentRef = this.viewContainerRef.createComponent(RegimeEventPanelComponent);
+      // **`setLngLat()` 必須在 `addTo()` 之前呼叫**（跟 `renderLabels()` 的政權名稱
+      // 標籤同一個順序）——`Marker.addTo()` 內部會立刻觸發一次 `_update()` 嘗試投影
+      // 目前的經緯度，這時如果 `_lngLat` 還沒設定會直接對 `undefined.lng` 拋例外。
+      // 這裡原本寫反過順序，`FakeMarker` 測試替身沒有模擬這個內部行為所以沒測出來，
+      // 真實瀏覽器裡才會炸（使用者實機回報 `Cannot read properties of undefined
+      // (reading 'lng')`）。
       this.eventPanelMarker = new Marker({
         element: this.eventPanelComponentRef.location.nativeElement,
         anchor: 'bottom',
         offset: [0, -32],
-      }).addTo(this.map);
+      })
+        .setLngLat(point)
+        .addTo(this.map);
+      return;
     }
 
     this.eventPanelMarker!.setLngLat(point);

@@ -3,6 +3,7 @@ import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
 import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
+import { TagComponent } from '../components/ui/tag';
 
 /**
  * 政權聚焦模式的資訊面板（任務 3.7，對應 PRD Story 2）——點擊地圖上的疆域後顯示，列出
@@ -27,11 +28,33 @@ import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
  * 面板本身仍然是固定在角落的一般 DOM 元素，不會蓋住地圖操作。政權名稱（標題列）跟
  * 存續區間警告刻意留在 Collapsible 外面、永遠可見——警告是「這個政權現在不存在」這種
  * 重要資訊，不該被收合狀態藏起來。
+ *
+ * **2026-08-30 追加兩塊內容**：
+ * - **存續期間**（標題下方）：跟使用者確認過先只用年份精度（`RegimeFocusState.
+ *   lifetimeRange`，已經有這份資料，不用新增查詢）——日期精度（例如「221年5月15日」）
+ *   需要查 `historical_events` 裡禪讓/滅國事件的確切 EDTF 日期，那個查詢端點
+ *   （task 2.10）還沒做，先不做，等 2.10 做出來再回頭補精確日期。
+ * - **同時期其他地區政權**（新的 Collapsible 區塊，見 `map.ts` 的
+ *   `findOtherContemporaryRegimeIds()` 說明）：跟「周邊政權」不是同一件事——周邊是
+ *   地理相鄰，這塊是「同時期存在、但不相鄰」（例如唐朝聚焦時的阿拉伯帝國）。
+ *
+ * 政權名稱改用 Sanring `Tag` 呈現（`npx @sanring/cli add tag`，同批裝了它的依賴
+ * `Badge`）——**跟使用者確認過**：`Tag`/`Badge` 的配色是走固定的語意 variant
+ * （`default`/`secondary`/`destructive`/`outline`/`ghost`，見 `badge.directive.ts`），
+ * 沒有設計成讓每個實例帶入任意顏色，這裡刻意不硬套「文字色＝該政權在地圖上的
+ * colorSlot 色」這種每個政權都不同的動態配色（會需要繞過它內部的 Tailwind class
+ * 合併機制），固定用同一個 `variant` 呈現所有政權名稱，不嘗試精確對應地圖顏色。
+ *
+ * **「三國」這種歷史分期標籤——使用者提過，先記下來、還沒做**：目前 `regimes` schema
+ * 完全沒有「歷史分期」這個概念，`lineage_presets` 是史觀方案不是分期；現有種子資料
+ * 也全部落在同一個分期（三國），加了也沒有區分度。等之後真的匯入跨分期的世界史資料
+ * （例如唐朝/阿拉伯帝國那個時代）再回頭設計這塊怎麼從資料庫查出來，不要用前端寫死的
+ * 對照表撐過去。
  */
 @Component({
   selector: 'app-regime-focus-panel',
   standalone: true,
-  imports: [SANRING_COLLAPSIBLE_IMPORTS],
+  imports: [SANRING_COLLAPSIBLE_IMPORTS, TagComponent],
   templateUrl: './regime-focus-panel.html',
   styleUrl: './regime-focus-panel.scss',
 })
@@ -47,14 +70,16 @@ export class RegimeFocusPanelComponent {
     return id ? (this.directory.nameOf(id) ?? id) : null;
   });
 
-  protected readonly neighborNames = computed(() =>
-    this.focusState
-      .neighborRegimeIds()
-      .map((id) => this.directory.nameOf(id) ?? id)
-      // 用 zh-Hant collator 排序，不是保留後端回傳/相鄰運算的原始順序——那個順序沒有
-      // 對使用者有意義的語意（取決於 Set 迭代順序跟浮點座標排序細節），字母/筆畫排序
-      // 至少是一個穩定、使用者看得懂的呈現方式。
-      .sort((a, b) => a.localeCompare(b, 'zh-Hant')),
+  /** 存續期間文字，例如「西元 221–263 年」——只有年份精度，見上方類別文件說明。 */
+  protected readonly lifespanText = computed(() => {
+    const range = this.focusState.lifetimeRange();
+    return range ? `西元 ${range.minYear}–${range.maxYear} 年` : null;
+  });
+
+  protected readonly neighborNames = computed(() => this.toSortedNames(this.focusState.neighborRegimeIds()));
+
+  protected readonly otherContemporaryNames = computed(() =>
+    this.toSortedNames(this.focusState.otherContemporaryRegimeIds()),
   );
 
   /** AC#2：聚焦政權若已超出（或還沒進入）存續區間要提示。`lifetimeRange` 為 `null`
@@ -77,5 +102,16 @@ export class RegimeFocusPanelComponent {
 
   protected close(): void {
     this.focusState.clear();
+  }
+
+  /** regimeId 清單→排序過的名稱清單——`neighborNames`/`otherContemporaryNames` 共用
+      同一套轉換邏輯，不重複寫兩次。 */
+  private toSortedNames(regimeIds: readonly string[]): string[] {
+    return regimeIds
+      .map((id) => this.directory.nameOf(id) ?? id)
+      // 用 zh-Hant collator 排序，不是保留後端回傳/相鄰運算的原始順序——那個順序沒有
+      // 對使用者有意義的語意（取決於 Set 迭代順序跟浮點座標排序細節），字母/筆畫排序
+      // 至少是一個穩定、使用者看得懂的呈現方式。
+      .sort((a, b) => a.localeCompare(b, 'zh-Hant'));
   }
 }

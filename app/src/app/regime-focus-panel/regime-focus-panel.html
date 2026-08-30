@@ -5,6 +5,10 @@
       <button type="button" class="regime-focus-panel-close" (click)="close()" aria-label="關閉聚焦模式">✕</button>
     </header>
 
+    @if (lifespanText(); as lifespan) {
+      <p class="regime-focus-panel-lifespan">{{ lifespan }}</p>
+    }
+
     @if (outOfLifetimeWarning(); as warning) {
       <p class="regime-focus-panel-warning">{{ warning }}</p>
     }
@@ -17,13 +21,32 @@
 
       <div sanringCollapsibleContent>
         @if (neighborNames().length > 0) {
-          <ul class="regime-focus-panel-neighbor-list">
+          <div class="regime-focus-panel-tag-list">
             @for (name of neighborNames(); track name) {
-              <li>{{ name }}</li>
+              <sanring-tag variant="secondary">{{ name }}</sanring-tag>
             }
-          </ul>
+          </div>
         } @else {
           <p class="regime-focus-panel-empty">這個年份沒有查到相鄰的政權</p>
+        }
+      </div>
+    </sanring-collapsible>
+
+    <sanring-collapsible [open]="true" class="regime-focus-panel-collapsible">
+      <button type="button" sanringCollapsibleTrigger class="regime-focus-panel-section-trigger">
+        <span>同時期其他地區政權</span>
+        <span class="regime-focus-panel-chevron" aria-hidden="true">▾</span>
+      </button>
+
+      <div sanringCollapsibleContent>
+        @if (otherContemporaryNames().length > 0) {
+          <div class="regime-focus-panel-tag-list">
+            @for (name of otherContemporaryNames(); track name) {
+              <sanring-tag variant="outline">{{ name }}</sanring-tag>
+            }
+          </div>
+        } @else {
+          <p class="regime-focus-panel-empty">目前資料庫裡的政權彼此都地理相鄰，還沒有查到不相鄰的同時期政權</p>
         }
       </div>
     </sanring-collapsible>

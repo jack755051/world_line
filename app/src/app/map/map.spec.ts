@@ -219,6 +219,27 @@ function sampleOverlappingFeatureCollection(): FeatureCollection<MultiPolygon, T
   };
 }
 
+// 在 sampleOverlappingFeatureCollection() 的 r-a/r-b 之外，再加一個完全不接壤的 r-c
+// （例如唐朝聚焦時的阿拉伯帝國那種案例）——驗證「同時期但不相鄰」清單真的有算出東西，
+// 不是永遠空的。
+function sampleFeatureCollectionWithFarRegime(): FeatureCollection<MultiPolygon, TerritoryFeatureProperties> {
+  const overlapping = sampleOverlappingFeatureCollection();
+  return {
+    type: 'FeatureCollection',
+    features: [
+      ...overlapping.features,
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'MultiPolygon',
+          coordinates: [[[[300, 20], [300, 30], [310, 30], [310, 20], [300, 20]]]],
+        },
+        properties: { id: 'c', regimeId: 'r-c', startYear: 220, endYear: 226, isDisputed: false },
+      },
+    ],
+  };
+}
+
 // 換一個可辨識的 startYear，方便測試分辨「這是哪一輪換年份寫進去的資料」——不用比對
 // 整包 geometry。
 function withStartYear(
@@ -573,7 +594,9 @@ describe('MapComponent', () => {
   });
 
   describe('政權聚焦模式（任務 3.7）', () => {
-    async function renderWithOverlappingTerritories(): Promise<{
+    async function renderWithOverlappingTerritories(
+      territories: FeatureCollection<MultiPolygon, TerritoryFeatureProperties> = sampleOverlappingFeatureCollection(),
+    ): Promise<{
       fixture: ReturnType<typeof TestBed.createComponent<MapComponent>>;
       map: InstanceType<typeof FakeMap>;
       focusState: RegimeFocusState;
@@ -590,7 +613,7 @@ describe('MapComponent', () => {
       await waitForDebounce();
       httpMock
         .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
-        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: territories });
 
       return { fixture, map, focusState };
     }
@@ -626,6 +649,22 @@ describe('MapComponent', () => {
       const lastFilter = map.setFilterCalls.at(-1);
       expect(lastFilter?.layerId).toBe('territories-focus-outline');
       expect(lastFilter?.filter).toEqual(['==', ['get', 'regimeId'], 'r-a']);
+    });
+
+    it('「同時期但不相鄰」的政權（例如唐朝聚焦時的阿拉伯帝國）會被算進 otherContemporaryRegimeIds，不會混進周邊政權清單', async () => {
+      const { fixture, map, focusState } = await renderWithOverlappingTerritories(
+        sampleFeatureCollectionWithFarRegime(),
+      );
+
+      map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
+      map.fireClick();
+      await fixture.whenStable();
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleFeatureCollectionWithFarRegime() });
+
+      expect(focusState.neighborRegimeIds()).toEqual(['r-b']); // 真的接壤的
+      expect(focusState.otherContemporaryRegimeIds()).toEqual(['r-c']); // 同時期但不接壤的
     });
 
     it('點擊背景（沒點到任何疆域）會清除聚焦', async () => {

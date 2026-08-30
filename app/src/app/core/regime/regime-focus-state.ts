@@ -34,6 +34,10 @@ export class RegimeFocusState {
   /** 聚焦政權在「目前這一年」的周邊政權 id 清單——`MapComponent` 每次渲染疆域或聚焦
       對象改變時重算並寫入這裡（見 `regime-focus.ts` 的 `findNeighboringRegimeIds()`）。 */
   readonly neighborRegimeIds = signal<readonly string[]>([]);
+  /** 「同時期、但不相鄰」的其他政權 id 清單（例如聚焦唐朝時的阿拉伯帝國）——見
+      `regime-focus.ts` 的 `findOtherContemporaryRegimeIds()` 說明。跟
+      `neighborRegimeIds` 同樣的更新時機。 */
+  readonly otherContemporaryRegimeIds = signal<readonly string[]>([]);
   /** 見 `RegimeLifetimeRange` 說明。`null` 代表沒有聚焦政權，或存續區間還在載入中。 */
   readonly lifetimeRange = signal<RegimeLifetimeRange | null>(null);
 
@@ -46,6 +50,7 @@ export class RegimeFocusState {
     }
     this.focusedRegimeId.set(regimeId);
     this.neighborRegimeIds.set([]);
+    this.otherContemporaryRegimeIds.set([]);
     this.lifetimeRange.set(null);
     this.loadLifetimeRange(regimeId);
   }
@@ -53,11 +58,16 @@ export class RegimeFocusState {
   clear(): void {
     this.focusedRegimeId.set(null);
     this.neighborRegimeIds.set([]);
+    this.otherContemporaryRegimeIds.set([]);
     this.lifetimeRange.set(null);
   }
 
   setNeighbors(regimeIds: readonly string[]): void {
     this.neighborRegimeIds.set(regimeIds);
+  }
+
+  setOtherContemporaryRegimes(regimeIds: readonly string[]): void {
+    this.otherContemporaryRegimeIds.set(regimeIds);
   }
 
   private loadLifetimeRange(regimeId: string): void {

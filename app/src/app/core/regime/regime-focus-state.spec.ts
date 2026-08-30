@@ -94,16 +94,23 @@ describe('RegimeFocusState', () => {
       .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
       .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: territoryFeatureCollection([{ startYear: 220, endYear: 226 }]) });
     state.setNeighbors(['r-b']);
+    state.setOtherContemporaryRegimes(['r-c']);
 
     state.clear();
 
     expect(state.focusedRegimeId()).toBeNull();
     expect(state.lifetimeRange()).toBeNull();
     expect(state.neighborRegimeIds()).toEqual([]);
+    expect(state.otherContemporaryRegimeIds()).toEqual([]);
   });
 
   it('setNeighbors() 直接寫入周邊政權清單', () => {
     state.setNeighbors(['r-b', 'r-c']);
     expect(state.neighborRegimeIds()).toEqual(['r-b', 'r-c']);
+  });
+
+  it('setOtherContemporaryRegimes() 直接寫入「同時期但不相鄰」的政權清單', () => {
+    state.setOtherContemporaryRegimes(['r-d']);
+    expect(state.otherContemporaryRegimeIds()).toEqual(['r-d']);
   });
 });

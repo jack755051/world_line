@@ -396,6 +396,36 @@ related_constitution: .claude/constitutions/world-line.md
 > 現在不存在」這種重要資訊，不該被收合狀態藏起來。已用 `ng build`（1.48MB/335KB，
 > budget 內）、`ng test`（127/127，新增 2 條收合/展開的互動測試）、
 > `docker compose up -d --build frontend`＋curl 確認部署驗證。
+>
+> **2026-08-30 追加存續期間顯示、Sanring `Tag`、「同時期其他地區政權」清單**：使用者
+> 提三個需求，逐一釐清資料來源後拍板：
+> 1. **政權存活時間**——確認先只用年份精度（`RegimeFocusState.lifetimeRange` 已經有
+>    這份資料），顯示在標題下方，例如「西元 220–265 年」。日期精度（例如「221年5月
+>    15日」）需要查 `historical_events` 裡禪讓/滅國事件的確切 EDTF 日期，那個查詢端點
+>    （task 2.10）還沒做，先不做。
+> 2. **「三國」這種歷史分期標籤**——確認**先不做，但記下來之後要處理**：目前
+>    `regimes` schema 完全沒有「歷史分期」概念，`lineage_presets` 是史觀方案不是分期；
+>    現有種子資料也全部落在同一個分期，加了也沒有區分度，等之後真的匯入跨分期的世界史
+>    資料再回頭設計這塊怎麼從資料庫查出來，不要用前端寫死的對照表撐過去。
+> 3. **同時期其他地區政權清單**（例如聚焦唐朝時列出不接壤的阿拉伯帝國）——確認要做。
+>    新增 `regime-focus.ts` 的 `findOtherContemporaryRegimeIds()`：這批當年有效的疆域
+>    資料裡，除了聚焦政權自己跟已經算出來的周邊政權以外，其餘政權全部算進去，不用額外
+>    查詢。**目前種子資料規模下這個清單大概率是空的**（漢/魏/蜀漢/吳/晉彼此地理相鄰），
+>    不是邏輯錯誤，已在程式碼/面板空狀態文案裡都有說明，等之後匯入世界史資料才會開始
+>    出現東西。
+>
+> **政權名稱改用 Sanring `Tag` 呈現**（`npx @sanring/cli add tag`，同批裝了依賴
+> `Badge` 跟 `@lucide/angular`）：使用者原本要「文字色＝該政權在地圖上的顏色」這種
+> 動態配色，但 `Tag`/`Badge` 的配色是走固定語意 variant（`default`/`secondary`/
+> `destructive`/`outline`/`ghost`），沒有設計成讓每個實例帶入任意顏色——跟使用者
+> 確認後，**拍板不硬套動態配色，固定用同一個 variant 呈現所有政權名稱**（周邊政權用
+> `secondary`、同時期其他地區政權用 `outline`，用不同 variant 區分兩個清單的語意，
+> 不是嘗試精確對應地圖顏色）。已用 `ng build`（1.50MB/338KB，把 `maximumWarning`
+> 從 1.5MB 調到 1.8MB——這次新增的是真的功能性 UI 元件，不是意外肥大，跟任務 3.2
+> 為 MapLibre 調高預算同一個處理原則）、`ng test`（135/135，新增 8 條：存續期間顯示、
+> Tag 呈現周邊清單、「同時期其他地區政權」清單的顯示/排序/空狀態、`map.spec.ts` 驗證
+> 不相鄰政權正確分流到 `otherContemporaryRegimeIds` 而非 `neighborRegimeIds`）、
+> `docker compose up -d --build frontend`＋curl 確認部署驗證。
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
 | [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
 | [ ] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |

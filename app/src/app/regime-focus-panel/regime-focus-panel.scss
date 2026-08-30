@@ -56,6 +56,13 @@
   }
 }
 
+.regime-focus-panel-lifespan {
+  margin: var(--wl-space-1) 0 0;
+  font-size: var(--wl-font-size-sm);
+  color: var(--wl-ink-secondary);
+  font-variant-numeric: tabular-nums; // 數字等寬，跟 time-scrubber 的年份顯示一致
+}
+
 .regime-focus-panel-warning {
   margin: var(--wl-space-3) 0 0;
   padding: var(--wl-space-2) var(--wl-space-3);
@@ -104,15 +111,11 @@ sanring-collapsible[data-state='closed'] .regime-focus-panel-chevron {
   transform: rotate(-90deg);
 }
 
-.regime-focus-panel-neighbor-list {
-  margin: var(--wl-space-2) 0 0;
-  padding: 0;
-  list-style: none;
+.regime-focus-panel-tag-list {
+  margin-top: var(--wl-space-2);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap; // 政權數量一多會超出 260px 面板寬度，讓 Tag 自動換行而不是被裁切
   gap: var(--wl-space-1);
-  font-size: var(--wl-font-size-base);
-  color: var(--wl-ink-primary);
 }
 
 .regime-focus-panel-empty {

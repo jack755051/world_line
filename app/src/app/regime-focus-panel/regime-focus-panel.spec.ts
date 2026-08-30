@@ -73,7 +73,7 @@ describe('RegimeFocusPanelComponent', () => {
     expect(fixture.nativeElement.querySelector('h2').textContent).toBe('魏');
   });
 
-  it('周邊政權清單依名稱排序顯示', () => {
+  it('周邊政權清單依名稱排序顯示，用 Sanring Tag 呈現', () => {
     focusState.toggle('r-wei');
     flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }]);
     focusState.setNeighbors(['r-wu', 'r-shuhan']); // 刻意用非排序順序傳入
@@ -81,9 +81,8 @@ describe('RegimeFocusPanelComponent', () => {
     const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
     fixture.detectChanges();
 
-    const items = [...fixture.nativeElement.querySelectorAll('.regime-focus-panel-neighbor-list li')].map(
-      (el: Element) => el.textContent,
-    );
+    const tagLists = fixture.nativeElement.querySelectorAll('.regime-focus-panel-tag-list');
+    const items = [...tagLists[0].querySelectorAll('sanring-tag')].map((el: Element) => el.textContent?.trim());
     expect(items).toEqual(['吳', '蜀漢']); // localeCompare('zh-Hant') 排序結果
   });
 
@@ -94,8 +93,48 @@ describe('RegimeFocusPanelComponent', () => {
     const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.regime-focus-panel-neighbor-list')).toBeNull();
-    expect(fixture.nativeElement.querySelector('.regime-focus-panel-empty')).not.toBeNull();
+    const sections = fixture.nativeElement.querySelectorAll('sanring-collapsible');
+    expect(sections[0].querySelector('.regime-focus-panel-tag-list')).toBeNull();
+    expect(sections[0].querySelector('.regime-focus-panel-empty')).not.toBeNull();
+  });
+
+  it('存續期間顯示在標題下方（只有年份精度）', () => {
+    focusState.toggle('r-wei');
+    flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }, { startYear: 226, endYear: 265 }]);
+
+    const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.regime-focus-panel-lifespan').textContent).toBe('西元 220–265 年');
+  });
+
+  it('「同時期其他地區政權」清單依名稱排序顯示，用 Sanring Tag 呈現，不跟周邊政權混在一起', () => {
+    focusState.toggle('r-wei');
+    flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }]);
+    focusState.setNeighbors(['r-shuhan']);
+    focusState.setOtherContemporaryRegimes(['r-wu']);
+
+    const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+    fixture.detectChanges();
+
+    const tagLists = fixture.nativeElement.querySelectorAll('.regime-focus-panel-tag-list');
+    expect(tagLists).toHaveLength(2);
+    const neighborItems = [...tagLists[0].querySelectorAll('sanring-tag')].map((el: Element) => el.textContent?.trim());
+    const otherItems = [...tagLists[1].querySelectorAll('sanring-tag')].map((el: Element) => el.textContent?.trim());
+    expect(neighborItems).toEqual(['蜀漢']);
+    expect(otherItems).toEqual(['吳']);
+  });
+
+  it('沒有「同時期其他地區政權」時顯示空狀態文案', () => {
+    focusState.toggle('r-wei');
+    flushLifetime('r-wei', [{ startYear: 220, endYear: 226 }]);
+
+    const fixture = TestBed.createComponent(RegimeFocusPanelComponent);
+    fixture.detectChanges();
+
+    const sections = fixture.nativeElement.querySelectorAll('sanring-collapsible');
+    expect(sections[1].querySelector('.regime-focus-panel-tag-list')).toBeNull();
+    expect(sections[1].querySelector('.regime-focus-panel-empty')).not.toBeNull();
   });
 
   it('目前年份早於聚焦政權存續區間時，顯示「尚未建立」警告', () => {

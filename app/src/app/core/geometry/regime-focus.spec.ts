@@ -1,5 +1,5 @@
 import type { Feature, FeatureCollection, MultiPolygon } from 'geojson';
-import { findNeighboringRegimeIds } from './regime-focus';
+import { findNeighboringRegimeIds, findOtherContemporaryRegimeIds } from './regime-focus';
 import type { TerritoryFeatureProperties } from './territory-styling';
 
 type TerritoryFeature = Feature<MultiPolygon, TerritoryFeatureProperties>;
@@ -65,5 +65,43 @@ describe('findNeighboringRegimeIds', () => {
     const neighbors = findNeighboringRegimeIds(featureCollection, 'wei');
 
     expect(neighbors.size).toBe(0);
+  });
+});
+
+describe('findOtherContemporaryRegimeIds', () => {
+  it('回傳除了聚焦政權跟已知周邊政權以外，這批資料裡其餘的政權 id（例如唐朝聚焦時，不接壤的阿拉伯帝國）', () => {
+    const featureCollection = fc([
+      feature('tang-a', 'tang', rect(100, 26, 120, 42)),
+      feature('arab-a', 'arab-empire', rect(-10, 20, 40, 40)), // 完全不接壤，但同時期存在
+    ]);
+
+    const others = findOtherContemporaryRegimeIds(featureCollection, 'tang', new Set());
+
+    expect(others).toEqual(new Set(['arab-empire']));
+  });
+
+  it('已經被算成周邊政權的，不會重複出現在「其他地區政權」清單', () => {
+    const featureCollection = fc([
+      feature('wei-a', 'wei', rect(104, 32, 123, 42)),
+      feature('shu-a', 'shu-han', rect(100, 26, 108, 32)), // 跟魏相鄰
+      feature('arab-a', 'arab-empire', rect(-10, 20, 40, 40)), // 不相鄰
+    ]);
+
+    const others = findOtherContemporaryRegimeIds(featureCollection, 'wei', new Set(['shu-han']));
+
+    expect(others).toEqual(new Set(['arab-empire'])); // 蜀漢已經在周邊清單了，不重複列
+  });
+
+  it('目前種子資料規模下（政權彼此地理相鄰）大概率回傳空集合，這是預期行為，不是邏輯錯誤', () => {
+    const featureCollection = fc([
+      feature('wei-a', 'wei', rect(104, 32, 123, 42)),
+      feature('shu-a', 'shu-han', rect(100, 26, 108, 32)),
+      feature('wu-a', 'wu', rect(108, 20, 122, 32)),
+    ]);
+    const neighbors = findNeighboringRegimeIds(featureCollection, 'wei');
+
+    const others = findOtherContemporaryRegimeIds(featureCollection, 'wei', neighbors);
+
+    expect(others.size).toBe(0);
   });
 });

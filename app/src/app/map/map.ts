@@ -17,7 +17,7 @@ import { computeTerritoryOverlaps, type TerritoryOverlap } from '../core/geometr
 import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
 import { buildMorphPlan, easeInOutCubic, sampleMorphPlan, type MorphedFeatureProperties, type MorphPlan } from '../core/geometry/territory-morph';
 import { MorphAnimationScheduler } from '../core/geometry/morph-animation-scheduler.service';
-import { findNeighboringRegimeIds } from '../core/geometry/regime-focus';
+import { findNeighboringRegimeIds, findOtherContemporaryRegimeIds } from '../core/geometry/regime-focus';
 import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
 import { TimelineState } from '../core/time/timeline-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
@@ -116,6 +116,16 @@ const OVERLAP_HATCH_IMAGE_ID = 'territory-overlap-hatch';
  * 做**：後端對應端點（task 2.9、2.10）都還沒實作，沒有資料可以連結，跟任務 3.4
  * （時間軸副軸）因為事件資料還沒做而刻意跳過是同一個處理原則，見 implementation plan
  * 任務 3.7 的說明。
+ *
+ * **2026-08-30 追加「同時期、但不相鄰」的其他政權清單**（使用者提出：地理相鄰的周邊
+ * 政權只是關係的一種，PRD §1 核心動機講的是「同一個時間點上同時看到多個文明/政權」，
+ * 例如聚焦唐朝時阿拉伯帝國不接壤，但兩者是同時期存在的政權，也該呈現）。用
+ * `regime-focus.ts` 的 `findOtherContemporaryRegimeIds()`：這批疆域資料裡除了聚焦
+ * 政權自己、跟已經算出來的周邊政權以外，其餘政權全部算進去，不用額外查詢——當年有效
+ * 的疆域資料本來就涵蓋地圖上所有政權。**目前種子資料規模下這個清單大概率是空的**
+ * （漢/魏/蜀漢/吳/晉擠在同一小塊地理範圍，彼此幾乎都相鄰），不是邏輯錯誤，是還沒有
+ * 真正「同時期不同地區」的政權資料可以示範，等之後匯入世界史資料才會開始出現東西，
+ * 見該函式文件註解。
  */
 @Component({
   selector: 'app-map',
@@ -470,6 +480,9 @@ export class MapComponent implements OnDestroy {
     if (focusedRegimeId && this.currentFeatureCollection) {
       const neighbors = findNeighboringRegimeIds(this.currentFeatureCollection, focusedRegimeId);
       this.focusState.setNeighbors([...neighbors]);
+
+      const others = findOtherContemporaryRegimeIds(this.currentFeatureCollection, focusedRegimeId, neighbors);
+      this.focusState.setOtherContemporaryRegimes([...others]);
     }
   }
 

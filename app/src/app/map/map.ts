@@ -30,6 +30,13 @@ import { buildMorphPlan, easeInOutCubic, sampleMorphPlan, type MorphedFeaturePro
 import { MorphAnimationScheduler } from '../core/geometry/morph-animation-scheduler.service';
 import { findNeighboringRegimeIds, findOtherContemporaryRegimeIds } from '../core/geometry/regime-focus';
 import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
+import {
+  DISPUTE_COLOR_FALLBACK_HEX,
+  DISPUTE_FILL_LAYER_ID,
+  DISPUTE_HATCH_IMAGE_ID,
+  DISPUTE_HATCH_LAYER_ID,
+  DISPUTE_OVERLAP_SOURCE_ID,
+} from '../core/design/territory-dispute-constants';
 import { TimelineState } from '../core/time/timeline-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
@@ -42,10 +49,6 @@ import { RegimeEventPanelComponent } from '../regime-event-panel/regime-event-pa
 interface ApiEnvelope<T> {
   data: T;
 }
-
-/** 疆域重疊區斜線網底用的圖樣 id——單一中性色，不分政權（見 territory-dispute-pattern.ts
-    開頭說明）。 */
-const OVERLAP_HATCH_IMAGE_ID = 'territory-overlap-hatch';
 
 /**
  * 底圖決策（2026-08-29，任務 3.2）：**不接外部瓦片服務**，用中性背景色當畫布，
@@ -397,7 +400,7 @@ export class MapComponent implements OnDestroy {
       }
 
       const territoriesSource = this.map?.getSource('territories') as GeoJSONSource | undefined;
-      const overlapsSource = this.map?.getSource('territory-overlaps') as GeoJSONSource | undefined;
+      const overlapsSource = this.map?.getSource(DISPUTE_OVERLAP_SOURCE_ID) as GeoJSONSource | undefined;
       if (territoriesSource && overlapsSource) {
         const sampled = sampleMorphPlan(plan, easeInOutCubic(rawT));
         territoriesSource.setData(sampled);
@@ -421,14 +424,14 @@ export class MapComponent implements OnDestroy {
 
     const overlaps = this.buildOverlapFeatureCollection(featureCollection);
     const existingSource = this.map.getSource('territories') as GeoJSONSource | undefined;
-    const existingOverlapSource = this.map.getSource('territory-overlaps') as GeoJSONSource | undefined;
+    const existingOverlapSource = this.map.getSource(DISPUTE_OVERLAP_SOURCE_ID) as GeoJSONSource | undefined;
 
     if (existingSource && existingOverlapSource) {
       existingSource.setData(featureCollection);
       existingOverlapSource.setData(overlaps);
     } else {
       this.map.addSource('territories', { type: 'geojson', data: featureCollection });
-      this.map.addSource('territory-overlaps', { type: 'geojson', data: overlaps });
+      this.map.addSource(DISPUTE_OVERLAP_SOURCE_ID, { type: 'geojson', data: overlaps });
       this.addTerritoryLayers();
     }
 
@@ -461,7 +464,7 @@ export class MapComponent implements OnDestroy {
     // 跟 territories-border 的中性灰刻意分開：中性灰是「疆域邊界」這個結構性語意，
     // 紅色才是「這裡有政權主張衝突」這個內容語意，兩者不該共用同一個 token。
     const disputeColor =
-      getComputedStyle(document.documentElement).getPropertyValue('--wl-dispute-500').trim() || '#b83333';
+      getComputedStyle(document.documentElement).getPropertyValue('--wl-dispute-500').trim() || DISPUTE_COLOR_FALLBACK_HEX;
 
     this.map.addLayer({
       id: 'territories-border',
@@ -483,9 +486,9 @@ export class MapComponent implements OnDestroy {
     // tone-on-tone：重疊區可能同時牽涉兩個以上不同色相的政權，不屬於任何單一政權的
     // 識別色，見 territory-dispute-pattern.ts 開頭說明。
     this.map.addLayer({
-      id: 'territory-overlaps-fill',
+      id: DISPUTE_FILL_LAYER_ID,
       type: 'fill',
-      source: 'territory-overlaps',
+      source: DISPUTE_OVERLAP_SOURCE_ID,
       paint: {
         'fill-color': disputeColor,
         // 任務 3.6：重疊區也跟著兩個來源政權疆域列裡較晚出現/較早消失的那一邊淡入
@@ -494,16 +497,16 @@ export class MapComponent implements OnDestroy {
       },
     });
 
-    if (!this.map.hasImage(OVERLAP_HATCH_IMAGE_ID)) {
-      this.map.addImage(OVERLAP_HATCH_IMAGE_ID, this.hatchPatterns.create(disputeColor));
+    if (!this.map.hasImage(DISPUTE_HATCH_IMAGE_ID)) {
+      this.map.addImage(DISPUTE_HATCH_IMAGE_ID, this.hatchPatterns.create(disputeColor));
     }
 
     this.map.addLayer({
-      id: 'territory-overlaps-hatch',
+      id: DISPUTE_HATCH_LAYER_ID,
       type: 'fill',
-      source: 'territory-overlaps',
+      source: DISPUTE_OVERLAP_SOURCE_ID,
       paint: {
-        'fill-pattern': OVERLAP_HATCH_IMAGE_ID,
+        'fill-pattern': DISPUTE_HATCH_IMAGE_ID,
         'fill-opacity': ['coalesce', ['get', 'opacity'], 1] as unknown as number,
       },
     });

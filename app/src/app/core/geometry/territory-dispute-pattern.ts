@@ -1,3 +1,9 @@
+import {
+  DISPUTE_HATCH_DARKEN_AMOUNT,
+  DISPUTE_HATCH_LINE_WIDTH,
+  DISPUTE_HATCH_TILE_SIZE,
+} from '../design/territory-dispute-constants';
+
 /**
  * 疆域重疊區的斜線網底圖樣（PRD §5「斜線網底配色」，任務 3.5 完成後補上——使用者實際
  * 看到蜀漢/東吳在荊州爭議期間（208-215 年）的疆域重疊、問「這是什麼意思」才發現資料裡
@@ -21,6 +27,11 @@
  * 看見的內容語意，不該跟純結構性的邊界線共用同一個中性色 token。這個檔案本身完全
  * 不關心呼叫端傳進來的 `baseColorHex` 是什麼顏色，只負責把它加深一階畫網底，所以
  * 這次調色不需要改這個檔案的邏輯，只需要呼叫端（map.ts）改傳色。
+ *
+ * **2026-08-31（任務 3.15）**：tile 尺寸/線寬/加深比例改讀
+ * `core/design/territory-dispute-constants.ts`，不再是這個檔案自己寫死的數字——
+ * `map.ts` 的網底相關圖層/圖片/來源 id 字串也搬到同一份常數檔，兩邊共用同一個真相
+ * 來源，避免其中一處調整時忘記同步改另一處。
  */
 
 /** 簡單的線性 RGB darken，不是 design-tokens.scss 用的 OKLab 數學——這裡只是把中性色
@@ -43,7 +54,7 @@ export function darkenHex(hex: string, amount: number): string {
  * 划算，跟 MapLibre/WebGL 本身在測試裡被 mock 掉是同一個處理原則；已在瀏覽器/容器實際
  * 部署驗證過會正確渲染。這個檔案只有 `darkenHex()`（純函式，不碰 Canvas）有單元測試。
  */
-export function createDiagonalHatchImageData(baseColorHex: string, size = 8): ImageData {
+export function createDiagonalHatchImageData(baseColorHex: string, size = DISPUTE_HATCH_TILE_SIZE): ImageData {
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
@@ -52,8 +63,8 @@ export function createDiagonalHatchImageData(baseColorHex: string, size = 8): Im
     throw new Error('createDiagonalHatchImageData: 無法取得 2d context');
   }
 
-  ctx.strokeStyle = darkenHex(baseColorHex, 0.35);
-  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = darkenHex(baseColorHex, DISPUTE_HATCH_DARKEN_AMOUNT);
+  ctx.lineWidth = DISPUTE_HATCH_LINE_WIDTH;
   ctx.beginPath();
   // 主對角線 + 兩側各一條偏移半格的對角線，讓 tile 邊界拼接時線條視覺連續，不會在
   // 相鄰兩塊 tile 交界處斷開。

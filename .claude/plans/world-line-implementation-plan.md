@@ -1006,8 +1006,36 @@ related_constitution: .claude/constitutions/world-line.md
 > 視覺流程的驗證，邏輯正確性靠單元測試涵蓋，建議使用者實機找一個有視角資料的事件（例如
 > 赤壁之戰、怛羅斯之戰）走一次確認呈現效果。
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
-| [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |
-| [ ] | 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |
+| [x] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |
+
+> **2026-08-31 完成**：`app/src/app/core/api/message-codes.ts`——`API_MESSAGE_CODE_TEXT`
+> 純資料物件（21 個代碼，對齊 `ApiMessageCodes.cs` 目前完整清單）+ `messageCodeToText()`
+> 查詢函式，呼叫端一律透過函式取得顯示文字，不直接索引字典物件（字典結構跟查詢邏輯
+> 分開，之後真的要加語言只需要換字典內部結構，不用回頭改呼叫端）。查無對照的代碼
+> fallback 回傳原始代碼字串（不是空字串），跟這個專案別處「查無資料 fallback 顯示
+> 原始值」同一個原則。**動工前先確認過現況**：目前整個前端完全沒有任何 UI 顯示 API
+> 錯誤訊息（HTTP 失敗一律 `console.error` 帶過），這個字典目前沒有消費端，是先把
+> 對照表建好——跟 task 2.16 翻譯字典先做骨架、內容之後再補齊不是同一種情況，這裡是
+> 「目前沒有畫面會用到」，等之後真的要在 UI 顯示錯誤訊息時直接呼叫
+> `messageCodeToText()`，不用重新設計。已用 `ng test`（225/225，新增 3 條：涵蓋完整
+> 代碼清單斷言、已知代碼查詢、未知代碼 fallback）。
+| [x] | 3.15 | 共用常數檔（斜線網底顏色/間距，§5 已拍板方案） | `neutral-map-colors.ts` 或同等檔案 | §5 | 1 個 |
+
+> **2026-08-31 完成**：`app/src/app/core/design/territory-dispute-constants.ts`（命名
+> 沒有照計畫表建議的 `neutral-map-colors.ts`，因為實際內容不是「中性地圖顏色」，是
+> 「斜線網底渲染參數 + MapLibre 圖層/圖片/來源 id」，取更準確反映內容的名字，計畫表
+> 本來就寫「或同等檔案」留了彈性）。動工前先盤點過實際散落的位置：`--wl-dispute-*`
+> 色階本身早就是 `design-tokens.scss` 的 CSS 自訂屬性（唯一真相來源，不是這次的問題）
+> ——真正散落的是 CSS 沒有對應 token 的純 TS 端參數（tile 尺寸 8px、線寬 1.5px、
+> 加深比例 0.35，原本寫死在 `territory-dispute-pattern.ts`）跟 MapLibre 圖層/圖片/
+> 來源 id 字串（`territory-overlaps`／`territory-overlaps-fill`／
+> `territory-overlaps-hatch`／`territory-overlap-hatch`，原本寫死在 `map.ts`），
+> 兩處各自硬編碼，其中一處調整時容易忘記同步改另一處。集中到這份常數檔後，兩邊改成
+> 匯入使用，**沒有改變任何實際執行期的字串/數字值**（純粹搬移常數定義位置），所以
+> 既有測試（`map.spec.ts` 斷言的圖層/圖片 id 字面字串、`territory-dispute-pattern.
+> spec.ts` 的 `darkenHex()` 測試）不用跟著改，直接驗證這次重構沒有動到行為。已用
+> `ng build`（clean）、`ng test`（225/225，全數延用既有測試，無新增/修改）、
+> `docker compose up -d --build frontend` 重新部署，瀏覽器主控台確認無錯誤。
 | [ ] | 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
 | [x] | 3.17 | 地圖陸地/海洋參考底圖（靜態海岸線 GeoJSON） | 疊一層 Natural Earth 陸地色塊，落實 task 3.2 原本規劃的「之後真的需要海岸線再疊靜態 GeoJSON」路線 | §5、§12 | 1 個 |
 

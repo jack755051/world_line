@@ -59,4 +59,11 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('app-time-scrubber')).toBeTruthy();
   });
+
+  it('should render the regime focus panel host (任務 3.7)', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-regime-focus-panel')).toBeTruthy();
+  });
 });

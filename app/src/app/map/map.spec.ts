@@ -7,6 +7,7 @@ import type { TerritoryFeatureProperties } from '../core/geometry/territory-styl
 import { TimelineState } from '../core/time/timeline-state';
 import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
 import { MorphAnimationScheduler } from '../core/geometry/morph-animation-scheduler.service';
+import { RegimeFocusState } from '../core/regime/regime-focus-state';
 
 // MapLibre 需要真的 WebGL context 才能初始化，JSDOM 測試環境沒有——用假的 Map/
 // NavigationControl/Marker 取代，只驗證「我們自己的 wiring 邏輯」（容器元素有傳進去、
@@ -26,8 +27,14 @@ const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
     readonly addSourceCalls: Array<{ id: string; source: unknown }> = [];
     readonly addLayerCalls: unknown[] = [];
     readonly setDataCalls: unknown[] = [];
+    readonly setPaintPropertyCalls: Array<{ layerId: string; name: string; value: unknown }> = [];
+    readonly setFilterCalls: Array<{ layerId: string; filter: unknown }> = [];
+    /** 測試直接賦值控制 `queryRenderedFeatures()` 的回傳結果——模擬「點擊到某個政權的
+        疆域」（回傳一筆帶 regimeId 的 feature）或「點在背景」（回傳空陣列）。 */
+    queryRenderedFeaturesResult: Array<{ properties: Record<string, unknown> }> = [];
     removed = false;
     private loadCallback?: () => void;
+    private clickCallback?: (e: { point: unknown }) => void;
 
     constructor(options: Record<string, unknown>) {
       this.options = options;
@@ -41,14 +48,22 @@ const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
     // 真的 MapLibre 的 'load' 事件是非同步的（等瓦片/資源就緒），但這個假的 Map 只需要
     // 記住 callback、讓測試自己決定何時觸發（見下面 fireLoad()）——不用真的模擬非同步
     // 時序，這裡只驗證「load 之後有沒有做對的事」，不是驗證 MapLibre 本身的事件時機。
-    on(event: string, callback: () => void): void {
+    // 'click' 同理，讓測試自己決定何時觸發（見下面 fireClick()）。
+    on(event: string, callback: (...args: never[]) => void): void {
       if (event === 'load') {
-        this.loadCallback = callback;
+        this.loadCallback = callback as () => void;
+      }
+      if (event === 'click') {
+        this.clickCallback = callback as (e: { point: unknown }) => void;
       }
     }
 
     fireLoad(): void {
       this.loadCallback?.();
+    }
+
+    fireClick(point: unknown = {}): void {
+      this.clickCallback?.({ point });
     }
 
     addSource(id: string, source: unknown): void {
@@ -65,6 +80,26 @@ const { FakeMap, FakeNavigationControl, FakeMarker } = vi.hoisted(() => {
 
     addLayer(layer: unknown): void {
       this.addLayerCalls.push(layer);
+    }
+
+    // 任務 3.7：MapComponent 用 getLayer() 判斷圖層是否已建立（避免對還不存在的圖層
+    // 呼叫 queryRenderedFeatures()/setPaintProperty()/setFilter() 拋例外，真的 MapLibre
+    // 在這種情況下確實會拋例外，這裡不特別模擬那個例外行為，只模擬「查得到/查不到」）。
+    getLayer(id: string): { id: string } | undefined {
+      const layer = this.addLayerCalls.find((l) => (l as { id: string }).id === id);
+      return layer ? { id } : undefined;
+    }
+
+    queryRenderedFeatures(): Array<{ properties: Record<string, unknown> }> {
+      return this.queryRenderedFeaturesResult;
+    }
+
+    setPaintProperty(layerId: string, name: string, value: unknown): void {
+      this.setPaintPropertyCalls.push({ layerId, name, value });
+    }
+
+    setFilter(layerId: string, filter: unknown): void {
+      this.setFilterCalls.push({ layerId, filter });
     }
 
     readonly imageIds = new Set<string>();
@@ -306,13 +341,14 @@ describe('MapComponent', () => {
     const overlapSource = map.addSourceCalls[1].source as { data: FeatureCollection };
     expect(overlapSource.data.features.length).toBeGreaterThan(0);
 
-    expect(map.addLayerCalls).toHaveLength(4);
+    expect(map.addLayerCalls).toHaveLength(5);
     const layerIds = map.addLayerCalls.map((l) => (l as { id: string }).id);
     expect(layerIds).toEqual([
       'territories-fill',
       'territories-border',
       'territory-overlaps-fill',
       'territory-overlaps-hatch',
+      'territories-focus-outline', // 任務 3.7：聚焦高亮外框，疊在最上層
     ]);
 
     // 重疊區底色：不透明中性色，蓋掉底下兩個政權各自的填色——不能只疊網底，網底圖樣
@@ -377,7 +413,7 @@ describe('MapComponent', () => {
     // fakeInstantMorphScheduler，動畫一步到位，不會有中間幀的額外 setData()。
     expect(map.addSourceCalls).toHaveLength(2);
     expect(map.setDataCalls).toHaveLength(2);
-    expect(map.addLayerCalls).toHaveLength(4); // 圖層也沒有被重複加
+    expect(map.addLayerCalls).toHaveLength(5); // 圖層也沒有被重複加
   });
 
   it('拖拉桿拖得比動畫時長還快時，取消掉還沒播完的舊動畫，最終畫面停在最新的年份而不是被卡在中途的年份（任務 3.6）', async () => {
@@ -534,5 +570,99 @@ describe('MapComponent', () => {
 
     expect(map.removed).toBe(true);
     expect(FakeMarker.instances[0].removed).toBe(true);
+  });
+
+  describe('政權聚焦模式（任務 3.7）', () => {
+    async function renderWithOverlappingTerritories(): Promise<{
+      fixture: ReturnType<typeof TestBed.createComponent<MapComponent>>;
+      map: InstanceType<typeof FakeMap>;
+      focusState: RegimeFocusState;
+    }> {
+      const fixture = TestBed.createComponent(MapComponent);
+      await fixture.whenStable();
+      const map = FakeMap.instances[0];
+      const focusState = TestBed.inject(RegimeFocusState);
+
+      map.fireLoad();
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleRegimes });
+      await waitForDebounce();
+      httpMock
+        .expectOne((r) => r.urlWithParams === `/api/v1/territories?year=${TimelineState.DEFAULT_YEAR}`)
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+
+      return { fixture, map, focusState };
+    }
+
+    it('點擊政權疆域會聚焦該政權：套用「聚光燈」fill-opacity、更新高亮外框 filter、寫入周邊政權清單', async () => {
+      const { fixture, map, focusState } = await renderWithOverlappingTerritories();
+
+      // sampleOverlappingFeatureCollection() 的 r-a/r-b 兩塊疆域真的有幾何重疊
+      // （見該 fixture 的說明），點擊到 r-a 應該把 r-b 算成周邊政權。
+      map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
+      map.fireClick();
+      await fixture.whenStable();
+
+      // 聚焦政權自己還會另外打一次存續區間查詢（RegimeFocusState 的責任，不是
+      // MapComponent 這裡要驗證的範圍，見 regime-focus-state.spec.ts），flush 掉避免
+      // httpMock.verify() 在 afterEach 噴「還有未處理的請求」。
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+
+      expect(focusState.focusedRegimeId()).toBe('r-a');
+      expect(focusState.neighborRegimeIds()).toEqual(['r-b']);
+
+      const lastPaint = map.setPaintPropertyCalls.at(-1);
+      expect(lastPaint?.layerId).toBe('territories-fill');
+      expect(lastPaint?.value).toEqual([
+        'case',
+        ['==', ['get', 'regimeId'], 'r-a'],
+        ['*', 0.9, ['coalesce', ['get', 'morphOpacity'], 1]],
+        ['*', 0.2, ['coalesce', ['get', 'morphOpacity'], 1]],
+      ]);
+
+      const lastFilter = map.setFilterCalls.at(-1);
+      expect(lastFilter?.layerId).toBe('territories-focus-outline');
+      expect(lastFilter?.filter).toEqual(['==', ['get', 'regimeId'], 'r-a']);
+    });
+
+    it('點擊背景（沒點到任何疆域）會清除聚焦', async () => {
+      const { fixture, map, focusState } = await renderWithOverlappingTerritories();
+
+      map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
+      map.fireClick();
+      await fixture.whenStable();
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      expect(focusState.focusedRegimeId()).toBe('r-a');
+
+      map.queryRenderedFeaturesResult = []; // 這次點在背景，查不到任何疆域
+      map.fireClick();
+      await fixture.whenStable();
+
+      expect(focusState.focusedRegimeId()).toBeNull();
+      const lastFilter = map.setFilterCalls.at(-1);
+      expect(lastFilter?.filter).toEqual(['==', ['get', 'regimeId'], '']); // 空字串比對不到任何政權
+    });
+
+    it('再次點擊同一個政權會取消聚焦（toggle 行為）', async () => {
+      const { fixture, map, focusState } = await renderWithOverlappingTerritories();
+
+      map.queryRenderedFeaturesResult = [{ properties: { regimeId: 'r-a' } }];
+      map.fireClick();
+      await fixture.whenStable();
+      httpMock
+        .expectOne((r) => r.urlWithParams === '/api/v1/regimes/r-a/territories')
+        .flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: sampleOverlappingFeatureCollection() });
+      expect(focusState.focusedRegimeId()).toBe('r-a');
+
+      map.fireClick(); // 同一個 queryRenderedFeaturesResult，還是點到 r-a
+      await fixture.whenStable();
+
+      expect(focusState.focusedRegimeId()).toBeNull();
+    });
   });
 });

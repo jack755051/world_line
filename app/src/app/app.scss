@@ -19,6 +19,7 @@
 .map-area {
   flex: 1 1 auto;
   min-height: 0; // flex 子項需要這個才不會被地圖的固有高度撐爆容器
+  position: relative; // 讓 app-regime-focus-panel（任務 3.7）可以用 position: absolute 疊在地圖右上角
 }
 
 app-time-scrubber {

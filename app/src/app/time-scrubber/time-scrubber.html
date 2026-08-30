@@ -1,13 +1,18 @@
 <div class="time-scrubber">
-  <input
-    type="range"
-    class="time-scrubber-input"
-    [min]="minYear"
-    [max]="maxYear"
-    [value]="timeline.year()"
-    (input)="onInput($event)"
-    [attr.aria-valuetext]="'西元 ' + timeline.year() + ' 年'"
-    aria-label="年份"
-  />
+  <div class="time-scrubber-track-wrapper">
+    @if (lifetimeBand(); as band) {
+      <div class="time-scrubber-lifetime-band" [style.left]="band.left" [style.width]="band.width"></div>
+    }
+    <input
+      type="range"
+      class="time-scrubber-input"
+      [min]="minYear"
+      [max]="maxYear"
+      [value]="timeline.year()"
+      (input)="onInput($event)"
+      [attr.aria-valuetext]="'西元 ' + timeline.year() + ' 年'"
+      aria-label="年份"
+    />
+  </div>
   <span class="time-scrubber-year">西元 {{ timeline.year() }} 年</span>
 </div>

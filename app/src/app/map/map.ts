@@ -5,7 +5,7 @@ import { debounceTime } from 'rxjs';
 // maplibre-gl 6.x 沒有 default export，只有具名匯出——`Map` 別名成 `MapLibreMap`，
 // 避免跟全域內建的 Map（這個專案別處已經在用，例如 graph-coloring.ts 的
 // Map<string, Set<string>>）撞名。
-import { Map as MapLibreMap, Marker, NavigationControl, type GeoJSONSource } from 'maplibre-gl';
+import { Map as MapLibreMap, Marker, NavigationControl, type GeoJSONSource, type MapMouseEvent } from 'maplibre-gl';
 import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import {
   assignTerritoryColorSlots,
@@ -17,20 +17,16 @@ import { computeTerritoryOverlaps, type TerritoryOverlap } from '../core/geometr
 import { TerritoryHatchPatternService } from '../core/geometry/territory-hatch-pattern.service';
 import { buildMorphPlan, easeInOutCubic, sampleMorphPlan, type MorphedFeatureProperties, type MorphPlan } from '../core/geometry/territory-morph';
 import { MorphAnimationScheduler } from '../core/geometry/morph-animation-scheduler.service';
+import { findNeighboringRegimeIds } from '../core/geometry/regime-focus';
 import { TERRITORY_COLOR_SLOTS } from '../core/design/territory-colors';
 import { TimelineState } from '../core/time/timeline-state';
+import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
+import { RegimeFocusState } from '../core/regime/regime-focus-state';
 
 /** `ApiResponse<T>` 的最小形狀（見 api/Contracts/ApiResponse.cs）——只取這裡用得到的
     `data` 欄位，不整個對照完整契約，畢竟目前只有這一個端點在消費。 */
 interface ApiEnvelope<T> {
   data: T;
-}
-
-/** `GET /api/v1/regimes` 回應的最小形狀（見 api/Contracts/RegimeResponse.cs）——這裡
-    只取畫標籤用得到的 id/selfName，其餘欄位（status、轉換邊）暫時用不到不列。 */
-interface RegimeSummary {
-  id: string;
-  selfName: string;
 }
 
 /** 疆域重疊區斜線網底用的圖樣 id——單一中性色，不分政權（見 territory-dispute-pattern.ts
@@ -97,6 +93,29 @@ const OVERLAP_HATCH_IMAGE_ID = 'territory-overlap-hatch';
  *    動畫過程中會閃過一整塊紅色爭議斜線」的問題（根因：這個專案刻意讓禪讓前後兩個政權
  *    的疆域座標完全一致，交接瞬間舊政權淡出、新政權淡入，兩者座標重合被誤判成政權
  *    衝突）。詳見該函式文件註解的「政權更迭不是政權衝突」說明。
+ *
+ * **任務 3.7（2026-08-30）：政權聚焦模式**，對應 PRD Story 2。點擊 `territories-fill`
+ * 圖層上的疆域（`map.on('click', ...)` + `queryRenderedFeatures()` 判斷點擊到哪個
+ * regimeId，不是逐一比對疆域圖形），把 regimeId 寫進 `RegimeFocusState`（再點一次
+ * 同一個政權會取消聚焦，跟一般「toggle」互動直覺一致）；沒點到任何疆域（點在背景）也
+ * 會清除聚焦。渲染面：
+ * - `territories-fill` 的 `fill-opacity` 改成聚焦中的政權維持原本不透明度、其餘政權
+ *   大幅降低（「聚光燈」效果），跟形變動畫的 `morphOpacity` 相乘組合，兩者不衝突。
+ * - 新增 `territories-focus-outline` 圖層（`filter` 綁定聚焦政權 id，`--wl-focus-ring`
+ *   色，比一般疆域邊界粗），疊在所有圖層最上層，讓聚焦目標更醒目。
+ * - 周邊政權清單重用圖著色也在用的同一套「政權層級相鄰關係」判斷（見
+ *   `core/geometry/regime-focus.ts`），不是另外發明一套「周邊」定義；每次疆域資料
+ *   定案（`settle()`）或聚焦目標改變時都重算一次，寫進 `RegimeFocusState`，讓拖拉桿
+ *   換年份時周邊政權清單自動跟著更新（AC#1 隱含的要求：聚焦模式下換年份，畫面上的
+ *   高亮/清單不能停留在舊年份的狀態）。
+ * - 政權名稱對照表（原本是這個元件的私有欄位）抽成 `RegimeDirectoryService`
+ *   （`providedIn:'root'`），跟政權聚焦面板（`RegimeFocusPanelComponent`）共用同一份、
+ *   只打一次 `/api/v1/regimes`，不是各自重複查詢。
+ *
+ * **AC#3（互動清單，連結 `historical_events`/`regime_relations` 記錄）刻意不在這裡
+ * 做**：後端對應端點（task 2.9、2.10）都還沒實作，沒有資料可以連結，跟任務 3.4
+ * （時間軸副軸）因為事件資料還沒做而刻意跳過是同一個處理原則，見 implementation plan
+ * 任務 3.7 的說明。
  */
 @Component({
   selector: 'app-map',
@@ -110,6 +129,8 @@ export class MapComponent implements OnDestroy {
   private readonly timeline = inject(TimelineState);
   private readonly hatchPatterns = inject(TerritoryHatchPatternService);
   private readonly scheduler = inject(MorphAnimationScheduler);
+  private readonly regimeDirectory = inject(RegimeDirectoryService);
+  private readonly focusState = inject(RegimeFocusState);
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
 
@@ -123,7 +144,6 @@ export class MapComponent implements OnDestroy {
 
   private map?: MapLibreMap;
   private labelMarkers: Marker[] = [];
-  private regimeNames: RegimeSummary[] = [];
   /** 圖著色的「前一次指派結果」，餵給 `assignTerritoryColorSlots()` 維持顏色穩定性
       （見 graph-coloring.ts）——拖拉桿換年份時，同一個政權不會無謂換色閃爍。 */
   private previousColorAssignment?: Map<string, number>;
@@ -169,25 +189,50 @@ export class MapComponent implements OnDestroy {
     });
 
     this.map.addControl(new NavigationControl(), 'top-right');
+    this.map.on('click', (e) => this.handleMapClick(e));
     this.map.on('load', () => this.loadRegimesThenSubscribeToYear());
   }
 
   private loadRegimesThenSubscribeToYear(): void {
-    // 不加 ?year=——一次拿全部政權建好 id→名稱對照表，不管地圖目前顯示哪個年份都能
-    // 重複用，不需要每次換年份都重新查一次政權清單。
-    this.http.get<ApiEnvelope<RegimeSummary[]>>('/api/v1/regimes').subscribe({
-      next: (response) => {
-        this.regimeNames = response.data;
-
+    // ensureLoaded() 是 idempotent 的快取載入（見 RegimeDirectoryService 說明），不管
+    // 地圖目前顯示哪個年份都能重複用，不需要每次換年份都重新查一次政權清單。
+    this.regimeDirectory.ensureLoaded().subscribe({
+      next: () => {
         // toObservable 需要 injection context——這裡是在 map.on('load', ...) 的
         // callback 裡（非同步），已經離開建構子當下的 injection context，要明確傳
         // injector 選項才能用；debounceTime 避免拖拉桿時每個中間值都打一次 API。
         toObservable(this.timeline.year, { injector: this.injector })
           .pipe(debounceTime(150), takeUntilDestroyed(this.destroyRef))
           .subscribe((year) => this.loadTerritories(year));
+
+        // 聚焦目標改變時（任務 3.7）：更新高亮圖層 + 重算周邊政權清單。跟年份訂閱
+        // 分開，不用 debounce——點擊是離散動作，不像拖拉桿會連續觸發。
+        toObservable(this.focusState.focusedRegimeId, { injector: this.injector })
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe(() => this.refreshFocusOverlay());
       },
       error: (err: unknown) => console.error('[MapComponent] 載入政權清單失敗', err),
     });
+  }
+
+  /** 點擊地圖——判斷點到哪個政權的疆域（任務 3.7），沒點到任何疆域（點在背景/海）視為
+      取消聚焦。用 `queryRenderedFeatures()` 查點擊當下畫面上實際渲染出的圖形，不是
+      自己重新算一次點是否落在某個 GeoJSON polygon 裡——MapLibre 本來就有這個能力，
+      不需要另外引入幾何運算。`territories-fill` 圖層在第一次疆域資料回來前不存在，
+      查詢不存在的圖層 MapLibre 會直接拋例外，所以要先確認圖層存在。 */
+  private handleMapClick(e: MapMouseEvent): void {
+    if (!this.map || !this.map.getLayer('territories-fill')) {
+      return;
+    }
+
+    const clicked = this.map.queryRenderedFeatures(e.point, { layers: ['territories-fill'] });
+    const regimeId = clicked[0]?.properties?.['regimeId'] as string | undefined;
+
+    if (regimeId) {
+      this.focusState.toggle(regimeId);
+    } else {
+      this.focusState.clear();
+    }
   }
 
   private loadTerritories(year: number): void {
@@ -301,9 +346,10 @@ export class MapComponent implements OnDestroy {
 
     this.currentFeatureCollection = featureCollection;
     this.renderLabels(featureCollection);
+    this.refreshFocusOverlay();
   }
 
-  /** 第一次渲染才會呼叫：建立三個圖層（疆域填色/邊界、重疊區底色+網底）。 */
+  /** 第一次渲染才會呼叫：建立四個圖層（疆域填色/邊界、重疊區底色+網底、聚焦高亮外框）。 */
   private addTerritoryLayers(): void {
     if (!this.map) {
       return;
@@ -317,10 +363,7 @@ export class MapComponent implements OnDestroy {
         // MapLibre 的 expression 型別是遞迴 tuple union，buildColorSlotMatchExpression()
         // 回傳 unknown[] 沒辦法結構化對上，這裡轉型一次，交給 MapLibre 執行期自己驗證格式。
         'fill-color': buildColorSlotMatchExpression(TERRITORY_COLOR_SLOTS) as unknown as string,
-        // 形變動畫進行中（任務 3.6），正在淡入/淡出的疆域列（entering/leaving，見
-        // territory-morph.ts）用 morphOpacity 控制透明度；一般（非動畫中）的資料沒有
-        // 這個屬性，coalesce 預設回 1，維持原本固定 0.85 不透明度。
-        'fill-opacity': ['*', 0.85, ['coalesce', ['get', 'morphOpacity'], 1]] as unknown as number,
+        'fill-opacity': this.buildFillOpacityExpression(this.focusState.focusedRegimeId()) as unknown as number,
       },
     });
 
@@ -376,6 +419,58 @@ export class MapComponent implements OnDestroy {
         'fill-opacity': ['coalesce', ['get', 'opacity'], 1] as unknown as number,
       },
     });
+
+    // 政權聚焦模式的高亮外框（任務 3.7）——疊在所有圖層最上層（後加的圖層畫在上面），
+    // 這樣即使聚焦的政權剛好落在爭議重疊區底下，外框依然清楚可見。一開始沒有聚焦任何
+    // 政權，filter 給一個不會比對到任何 regimeId 的值（空字串），`refreshFocusOverlay()`
+    // 會在聚焦目標改變時用 `setFilter()` 更新。
+    const focusRingColor =
+      getComputedStyle(document.documentElement).getPropertyValue('--wl-focus-ring').trim() || '#3d6fd1';
+    this.map.addLayer({
+      id: 'territories-focus-outline',
+      type: 'line',
+      source: 'territories',
+      filter: ['==', ['get', 'regimeId'], ''],
+      paint: { 'line-color': focusRingColor, 'line-width': 3 },
+    });
+  }
+
+  /** 疊出 `fill-opacity` expression：沒有聚焦任何政權時維持原本固定不透明度；有聚焦時
+      聚焦中的政權維持不透明、其餘政權大幅降低透明度（「聚光燈」效果，任務 3.7）。兩種
+      情況都跟形變動畫的 `morphOpacity`（見 territory-morph.ts）相乘組合，不是互斥的
+      兩條路——拖拉桿拖動時即使正在播放形變動畫，聚焦高亮也該繼續生效。 */
+  private buildFillOpacityExpression(focusedRegimeId: string | null): unknown[] {
+    const morphAdjustedOpacity = ['coalesce', ['get', 'morphOpacity'], 1];
+    if (!focusedRegimeId) {
+      return ['*', 0.85, morphAdjustedOpacity];
+    }
+    return [
+      'case',
+      ['==', ['get', 'regimeId'], focusedRegimeId],
+      ['*', 0.9, morphAdjustedOpacity],
+      ['*', 0.2, morphAdjustedOpacity],
+    ];
+  }
+
+  /** 聚焦目標改變、或疆域資料重新定案（換年份）時都要呼叫：更新高亮圖層的 paint/filter，
+      並重算周邊政權清單寫回 `RegimeFocusState`（任務 3.7）。 */
+  private refreshFocusOverlay(): void {
+    if (!this.map || !this.map.getLayer('territories-fill')) {
+      return; // 圖層還沒建立（疆域資料還沒回來第一次）——沒有東西可以更新
+    }
+
+    const focusedRegimeId = this.focusState.focusedRegimeId();
+    this.map.setPaintProperty(
+      'territories-fill',
+      'fill-opacity',
+      this.buildFillOpacityExpression(focusedRegimeId) as unknown as number,
+    );
+    this.map.setFilter('territories-focus-outline', ['==', ['get', 'regimeId'], focusedRegimeId ?? '']);
+
+    if (focusedRegimeId && this.currentFeatureCollection) {
+      const neighbors = findNeighboringRegimeIds(this.currentFeatureCollection, focusedRegimeId);
+      this.focusState.setNeighbors([...neighbors]);
+    }
   }
 
   /** 疆域重疊區（見 territory-overlap.ts）——不依賴任何手動標記的旗標，即時算幾何交集，
@@ -416,11 +511,10 @@ export class MapComponent implements OnDestroy {
 
     this.clearLabelMarkers();
 
-    const nameByRegimeId = new Map(this.regimeNames.map((r) => [r.id, r.selfName]));
     const labelPoints = computeTerritoryLabelPoints(featureCollection);
 
     for (const [regimeId, [lon, lat]] of labelPoints) {
-      const name = nameByRegimeId.get(regimeId);
+      const name = this.regimeDirectory.nameOf(regimeId);
       if (!name) {
         continue; // 查無名稱（理論上不該發生，territories/regimes 資料不一致才會走到這裡）
       }

@@ -11,8 +11,25 @@
   border-top: 1px solid var(--wl-border-hairline);
 }
 
-.time-scrubber-input {
+.time-scrubber-track-wrapper {
+  position: relative; // 讓 .time-scrubber-lifetime-band 可以疊在 input 底下
+  display: flex;
+  align-items: center;
   flex: 1 1 auto;
+}
+
+.time-scrubber-lifetime-band {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 6px; // 比原生 range 軌道粗一點，當「政權存續區間」標示（任務 3.7 AC#2）
+  background: color-mix(in srgb, var(--wl-focus-ring), transparent 60%);
+  border-radius: var(--wl-radius-full);
+  pointer-events: none; // 純裝飾，不擋 input 本身的拖動手感
+}
+
+.time-scrubber-input {
+  width: 100%;
   // 原生 range input 直接用 accent-color 换主色，不用另外刻 -webkit-slider-thumb/
   // -moz-range-thumb 這些瀏覽器前綴偽元素——先求功能正確跟基本一致的視覺，之後
   // 真的需要更精緻的滑桿外觀（例如標出政權轉換年份的刻度）再回頭客製。

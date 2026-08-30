@@ -40,6 +40,23 @@ export function assignTerritoryColorSlots(
   slotCount: number,
   previousAssignment?: Map<string, number>,
 ): Map<string, number> {
+  const rowsByRegime = groupRowsByRegime(featureCollection);
+  const adjacency = computeRegimeAdjacency(rowsByRegime);
+  const assignment = greedyColorAssignment(adjacency, slotCount, previousAssignment);
+
+  for (const feature of featureCollection.features) {
+    feature.properties.colorSlot = assignment.get(feature.properties.regimeId) ?? 0;
+  }
+
+  return assignment;
+}
+
+/** 把一批疆域 feature 依 `regimeId` 分組——`assignTerritoryColorSlots()`（圖著色）跟
+    `regime-focus.ts` 的周邊政權查詢（任務 3.7）共用這個分組結果，不要各自重複寫一次
+    同樣的分組迴圈。 */
+export function groupRowsByRegime(
+  featureCollection: FeatureCollection<MultiPolygon, TerritoryFeatureProperties>,
+): Map<string, MultiPolygon[]> {
   const rowsByRegime = new Map<string, MultiPolygon[]>();
   for (const feature of featureCollection.features) {
     const regimeId = feature.properties.regimeId;
@@ -50,15 +67,7 @@ export function assignTerritoryColorSlots(
       rowsByRegime.set(regimeId, [feature.geometry]);
     }
   }
-
-  const adjacency = computeRegimeAdjacency(rowsByRegime);
-  const assignment = greedyColorAssignment(adjacency, slotCount, previousAssignment);
-
-  for (const feature of featureCollection.features) {
-    feature.properties.colorSlot = assignment.get(feature.properties.regimeId) ?? 0;
-  }
-
-  return assignment;
+  return rowsByRegime;
 }
 
 /**
@@ -70,8 +79,12 @@ export function assignTerritoryColorSlots(
  *
  * 效能：先用每個政權所有疆域記錄合併起來的 bounding box 粗篩，只對候選對做精確的
  * 逐筆拓撲相交測試。
+ *
+ * **匯出給 `regime-focus.ts` 重用**（任務 3.7）：政權聚焦模式的「周邊政權清單」就是
+ * 這裡算出來的相鄰關係——不是另外發明一套「周邊」定義，跟圖著色用同一套判斷標準，
+ * 語意一致（會需要不同顏色區分的政權，正好也是地理上真正相鄰、有互動可能的政權）。
  */
-function computeRegimeAdjacency(rowsByRegime: Map<string, MultiPolygon[]>): Map<string, Set<string>> {
+export function computeRegimeAdjacency(rowsByRegime: Map<string, MultiPolygon[]>): Map<string, Set<string>> {
   const regimeIds = [...rowsByRegime.keys()];
   const adjacency = new Map<string, Set<string>>();
   for (const id of regimeIds) {

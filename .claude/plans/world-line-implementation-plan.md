@@ -331,7 +331,54 @@ related_constitution: .claude/constitutions/world-line.md
 > **同時修正 SeedData.cs 的一個政權更迭資料缺口**（使用者：「263年蜀漢被魏攻入後滅亡，那魏並沒有接管蜀漢的領地這是為什麼？」）——這是資料問題，不是渲染問題：魏原本只有北方核心疆域 3 筆快照，263 年蜀漢滅亡後，蜀漢原本的益州疆域直接從地圖上消失、變成無主之地，沒有反映「魏滅蜀」實際發生的地盤轉移。**修正**：魏新增一筆 `[263,265)` 疆域（南方，座標沿用蜀漢滅亡前最後一筆 `Rect(100,26,108,32)`）；晉的 `[265,280)` 這段同樣拆成北方核心+南方（原蜀地）兩筆——跟漢禪魏的處理原則一致：政權更迭不會讓已經被佔領的土地憑空消失，疆域理論上該直接銜接原本的控制範圍。已 truncate `app_postgres` 相關表格＋`docker compose up -d --build backend` 重新播種，curl 驗證 year=262（蜀漢仍在）、year=264（蜀漢消失、魏出現兩筆疆域記錄）、year=270（晉出現兩筆疆域記錄，涵蓋原魏+原蜀地）都正確。
 >
 > **已知限制（2026-08-30，使用者確認擱置）**：魏 263 年併吞蜀漢後的疆域畫法（北方核心+南方新併吞兩筆分開的矩形），視覺上看起來像「兩塊拼起來」不是一整塊——用 `ST_Touches`/`ST_Distance` 驗證過兩塊矩形確實有接觸（`distance=0`），不是浮空的兩塊，只是接觸的邊只佔北方矩形寬度一小段（104-123 裡的 104-108），看起來像掛在角落。曾評估改成單一合併外接矩形（lon 100-123、lat 26-42），但驗證後發現這個範圍會把吳的實際疆域（lon 108-122、lat 20-32）幾乎整塊包進去，等於把吳的領土誤植成魏的——矩形疊代示意資料的形狀/位置限制，沒有更好的單一矩形解法。使用者確認**先擱置，等之後真的匯入 OpenHistoricalMap 真實史料（非矩形多邊形）時，這個「矩形示意資料形狀限制」會自然消失，不需要現在特別花時間優化**，不是被遺忘沒處理。
-| [ ] | 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
+| [x] | 3.7 | 政權聚焦模式（點擊疆域→高亮+周邊政權清單） | Story 2 完整流程 | Story 2 | 1 個 |
+
+> **2026-08-30 完成 3.7（AC#1、AC#2；AC#3 刻意未做，見下方說明）**：
+>
+> **AC#1（點擊聚焦+高亮+周邊政權清單）**：`MapComponent` 新增 `map.on('click', ...)`
+> + `queryRenderedFeatures()` 判斷點擊到哪個 regimeId（不是自己重新算幾何），寫進新的
+> `RegimeFocusState`（`providedIn:'root'`，跟 `TimelineState` 同一個「地圖跟其他元件是
+> 兄弟關係，用 service 集中管理」的理由）。渲染面：`territories-fill` 的 `fill-opacity`
+> 改成聚焦政權維持不透明、其餘政權大幅降低（「聚光燈」效果，用 `['case', ...]`
+> expression，跟形變動畫的 `morphOpacity` 相乘組合，兩者不衝突）；新增
+> `territories-focus-outline` 圖層（`--wl-focus-ring` 色、比一般邊界粗，疊在所有圖層
+> 最上層）。周邊政權清單重用圖著色也在用的同一套「政權層級相鄰關係」判斷（把
+> `territory-styling.ts` 的 `computeRegimeAdjacency()` 匯出，新增
+> `core/geometry/regime-focus.ts` 的 `findNeighboringRegimeIds()` 重用它，不是另外
+>發明一套「周邊」定義）——每次疆域資料定案或聚焦目標改變都重算一次，拖拉桿換年份時
+> 高亮/清單會自動跟著更新。新增 `RegimeFocusPanelComponent`（掛在 `App` 的 `.map-area`
+> 右上角）顯示聚焦政權名稱+周邊清單。**政權名稱對照表抽成共用 service**
+> （`RegimeDirectoryService`，`providedIn:'root'`，`shareReplay(1)` 快取）：原本是
+> `MapComponent` 私有欄位，面板元件也需要同一份，改成兩邊共用、只打一次
+> `/api/v1/regimes`。
+>
+> **AC#2（存續區間高亮+超出範圍警示）**：`RegimeFocusState` 聚焦時額外打
+> `GET /api/v1/regimes/:id/territories`（task 2.6 既有端點），取所有疆域列的
+> `startYear`/`endYear` 邊界算 `lifetimeRange`（min/max，近似「存續期間」，不逐年
+> 精確——疆域快照本身就是事件驅動的離散記錄，這是目前資料精度下唯一可行的定義）。
+> **過期請求防護**：聚焦目標可能在請求還沒回來前就再次改變，`loadLifetimeRange()` 回應
+> 時會比對「現在聚焦的還是不是當初發請求的那個政權」，不是的話直接丟棄——已用專門的
+> 競態測試驗證（`regime-focus-state.spec.ts`）。`TimeScrubberComponent` 疊一條半透明
+> 色帶標示這個區間（换算成拉桿範圍內的百分比定位）——**刻意不客製原生 `<input
+> type=range>` 的 `::-webkit-slider-runnable-track`/`::-moz-range-track` 偽元素**
+> 去畫，那兩個是不同瀏覽器引擎分開的 API，會打架既有的 `accent-color` 簡化方案，改用
+> 疊一層獨立的裝飾用 `<div>`（`pointer-events: none`）。超出區間時的警示文字顯示在
+> `RegimeFocusPanelComponent`（「此政權於西元 X 年尚未建立/已不存在」），不重複做在
+> 拉桿上。
+>
+> **AC#3（互動清單，連結 `historical_events`/`regime_relations` 記錄）刻意不做**：
+> 後端對應端點（task 2.9 政權關係、2.10 事件骨幹）都還沒實作，沒有資料可以連結，跟
+> 任務 3.4（時間軸副軸）因為事件資料還沒做而刻意跳過是同一個處理原則——等 2.9/2.10
+> 做出來後再回頭補這個 AC，3.7 不因此卡住不打勾（跟 3.5 曾經因為缺一個子項目沒打勾、
+> 之後補齊才打勾的處理方式一致，這次改成直接記錄「大部分完成、剩一個明確待辦」）。
+>
+> 已用 `ng build`（1.45MB/325KB，budget 內）、`ng test`（125/125，新增 25 條：
+> `regime-focus.spec.ts`＋`regime-directory.service.spec.ts`＋
+> `regime-focus-state.spec.ts`（含過期請求競態測試）＋`regime-focus-panel.spec.ts`＋
+> `map.spec.ts`／`time-scrubber.spec.ts`／`app.spec.ts` 的新增案例）、
+> `docker compose up -d --build frontend`＋curl 確認部署的 bundle 含
+> `territories-focus-outline`／`regime-focus` 關鍵字驗證。這次對話環境沒有連上 Chrome
+> 擴充功能，沒有做到瀏覽器截圖層級的目視驗證，建議之後找機會實際點一次看看。
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
 | [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
 | [ ] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |

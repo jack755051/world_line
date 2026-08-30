@@ -1,0 +1,89 @@
+:host {
+  // 疊在地圖右上角——跟 MapLibre 的 NavigationControl（左上角? 見 map.ts `top-right`）
+  // 共用同一個角落會打架，這裡改用 position: absolute 掛在 .map-area 內，見 app.scss。
+  // 實際定位交給 .map-area 的 position: relative + 這裡的 absolute，不寫死在 :host 本身，
+  // 避免跟父層版面耦合太緊。
+  display: contents;
+}
+
+.regime-focus-panel {
+  position: absolute;
+  top: var(--wl-space-4);
+  right: var(--wl-space-4);
+  z-index: 10; // 蓋在地圖畫布（MapLibre canvas 沒有特別設 z-index，預設 stacking context）之上
+  width: 260px;
+  max-width: calc(100% - var(--wl-space-4) * 2);
+  padding: var(--wl-space-4);
+  background: var(--wl-surface);
+  border: 1px solid var(--wl-border-hairline);
+  border-radius: var(--wl-radius-lg);
+  font-family: var(--wl-font-family);
+}
+
+.regime-focus-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wl-space-2);
+
+  h2 {
+    margin: 0;
+    font-size: var(--wl-font-size-lg);
+    font-weight: var(--wl-font-weight-bold);
+    color: var(--wl-ink-primary);
+  }
+}
+
+.regime-focus-panel-close {
+  flex: 0 0 auto;
+  padding: 0;
+  width: 1.5em;
+  height: 1.5em;
+  border: none;
+  border-radius: var(--wl-radius-sm);
+  background: transparent;
+  color: var(--wl-ink-secondary);
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--wl-ink-primary), transparent 92%);
+  }
+
+  &:focus-visible {
+    outline: var(--wl-focus-ring-width) solid var(--wl-focus-ring);
+    outline-offset: var(--wl-focus-ring-offset);
+  }
+}
+
+.regime-focus-panel-warning {
+  margin: var(--wl-space-3) 0 0;
+  padding: var(--wl-space-2) var(--wl-space-3);
+  border-radius: var(--wl-radius-sm);
+  background: color-mix(in srgb, var(--wl-status-warning), transparent 85%);
+  color: var(--wl-ink-primary);
+  font-size: var(--wl-font-size-sm);
+}
+
+.regime-focus-panel-section-title {
+  margin: var(--wl-space-4) 0 var(--wl-space-2);
+  font-size: var(--wl-font-size-sm);
+  font-weight: var(--wl-font-weight-medium);
+  color: var(--wl-ink-secondary);
+}
+
+.regime-focus-panel-neighbor-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wl-space-1);
+  font-size: var(--wl-font-size-base);
+  color: var(--wl-ink-primary);
+}
+
+.regime-focus-panel-empty {
+  margin: 0;
+  font-size: var(--wl-font-size-sm);
+  color: var(--wl-ink-muted);
+}

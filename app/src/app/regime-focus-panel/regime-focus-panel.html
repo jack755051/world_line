@@ -1,0 +1,25 @@
+@if (focusedRegimeId(); as id) {
+  <aside class="regime-focus-panel" aria-label="政權聚焦資訊">
+    <header class="regime-focus-panel-header">
+      <h2>{{ focusedRegimeName() }}</h2>
+      <button type="button" class="regime-focus-panel-close" (click)="close()" aria-label="關閉聚焦模式">✕</button>
+    </header>
+
+    @if (outOfLifetimeWarning(); as warning) {
+      <p class="regime-focus-panel-warning">{{ warning }}</p>
+    }
+
+    <section>
+      <h3 class="regime-focus-panel-section-title">同時期周邊政權</h3>
+      @if (neighborNames().length > 0) {
+        <ul class="regime-focus-panel-neighbor-list">
+          @for (name of neighborNames(); track name) {
+            <li>{{ name }}</li>
+          }
+        </ul>
+      } @else {
+        <p class="regime-focus-panel-empty">這個年份沒有查到相鄰的政權</p>
+      }
+    </section>
+  </aside>
+}

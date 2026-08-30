@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
 using NpgsqlTypes;
 using WorldLine.Api.Data.Entities;
+using WorldLine.Api.Domain;
 
 namespace WorldLine.Api.Data;
 
@@ -108,12 +109,13 @@ public static class SeedData
         db.Regimes.AddRange(han, wei, shuHan, wu, jin);
 
         // --- Regime aliases (I4: 他稱代稱，FK 必須指回明確存在的自稱政權本體) ---
-        // AliasType 刻意留 null——PRD §12 TODO：alias_type 受控值須在 M2 alias API 前拍板，
-        // 這裡先不腦補分類，避免種子資料把未拍板的欄位值變相定案。
+        // AliasType 2026-08-30 起有值（task 2.9a 拍板受控值，見 RegimeAliasType 類別
+        // 說明）——這兩筆本來就是決定分類依據時參考的真實案例：「賊」是政治敵意稱呼，
+        // 「孫吳」是無關特定視角的史學消歧義稱呼，兩者理由本質不同。
 
         // 改成有名稱的變數（而非匿名 inline new），才能在下方 content_translations 區塊引用它們的 Id。
-        var weiAlias = new RegimeAlias { Id = Guid.NewGuid(), RegimeId = wei.Id, ObserverRegimeId = shuHan.Id, AliasName = "賊", CreatedAt = DateTimeOffset.UtcNow }; // 蜀漢文書視角（如《出師表》「漢賊不兩立」）稱魏為賊，帶政治立場的他稱
-        var wuAlias = new RegimeAlias { Id = Guid.NewGuid(), RegimeId = wu.Id, ObserverRegimeId = null, AliasName = "孫吳", CreatedAt = DateTimeOffset.UtcNow }; // 後世史家為與其他「吳」政權（如十國吳）區隔而使用，無特定觀察政權視角
+        var weiAlias = new RegimeAlias { Id = Guid.NewGuid(), RegimeId = wei.Id, ObserverRegimeId = shuHan.Id, AliasName = "賊", AliasType = RegimeAliasType.Political, CreatedAt = DateTimeOffset.UtcNow }; // 蜀漢文書視角（如《出師表》「漢賊不兩立」）稱魏為賊，帶政治立場的他稱
+        var wuAlias = new RegimeAlias { Id = Guid.NewGuid(), RegimeId = wu.Id, ObserverRegimeId = null, AliasName = "孫吳", AliasType = RegimeAliasType.Scholarly, CreatedAt = DateTimeOffset.UtcNow }; // 後世史家為與其他「吳」政權（如十國吳）區隔而使用，無特定觀察政權視角
         db.RegimeAliases.AddRange(weiAlias, wuAlias);
 
         // --- Lineage preset (方案 D: 史觀主線，跟核心政權圖解耦) ---

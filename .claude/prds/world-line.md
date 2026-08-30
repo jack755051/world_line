@@ -283,7 +283,7 @@ CREATE TABLE regime_aliases (
   regime_id UUID NOT NULL REFERENCES regimes(id), -- FK 強制約束，落實 I4
   observer_regime_id UUID REFERENCES regimes(id),  -- 給予此代稱的觀察視角主體（例：唐朝視角下稱阿拉伯帝國為"大食"），可為 NULL 代表通用他稱
   alias_name VARCHAR(128) NOT NULL,               -- 例："大食"、"拂菻"
-  alias_type VARCHAR(32),                         -- nullable 保留欄位；允許值／是否保留須在 M2 alias API 前拍板，見 §12
+  alias_type VARCHAR(32),                         -- nullable；受控值 political/scholarly/transliteration/geographic（2026-08-30 拍板，見 §12、api/Domain/RegimeAliasType.cs），應用層驗證，非 DB CHECK 約束
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -557,7 +557,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 **M2 前必須處理**：
 
 - [x] M2.2 驗證可用的 .NET EDTF 套件與支援範圍 → 無合格套件，改採自訂子集解析器 + NodaTime 曆法引擎，見 §5、implementation plan 2.2（2026-08-29 完成）
-- [ ] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。
+- [x] TODO：M2 政權代稱 API 前決定 `regime_aliases.alias_type` 的受控值與用途；若無法提供比 observer relationship 更清楚的語意，移除欄位而不是保留自由文字。（2026-08-30 拍板：保留欄位，定 4 個受控值——`political`〔政治敵意稱呼，例：蜀漢視角稱魏為「賊」〕／`scholarly`〔史學消歧義，例：「孫吳」〕／`transliteration`〔音譯外來稱呼，例：「大食」「拂菻」〕／`geographic`〔地理方位代稱〕。前兩者依據種子資料既有的兩筆真實案例，語意確實比單靠 `observer_regime_id`〔只回答「誰給的稱呼」〕多一個「為什麼這樣稱呼」的維度，見 `api/Domain/RegimeAliasType.cs`、implementation plan 任務 2.9a）
 - [ ] TODO：§7 契約表的 `GET /api/v1/regimes` 寫了 `?period=` 過濾但沒定義形狀（兩個 int？字串範圍？）；task 2.4 只實作了 `?year=`（跟 2.6 疆域端點同一套語意），`?period=` 留待真的有需求時再拍板，不猜測實作。
 - [ ] TODO：M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位。
 - [x] 憲法 R4：implementation plan 2.16（5 張型別化 `_translations` companion 表，真外鍵 + `ON DELETE CASCADE`）、2.17（既有 seed 資料 20 筆英文翻譯）已完成並套用到 `app_postgres`，見 §6「多語言內容設計」。2.4/2.8/2.9a/2.10/2.13 這些尚未動工的查詢端點仍要支援 `?locale=`；2.12（`historical_event_perspectives`）不用，因為整張表都不進翻譯範圍。

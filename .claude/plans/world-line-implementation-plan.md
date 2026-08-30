@@ -165,7 +165,31 @@ related_constitution: .claude/constitutions/world-line.md
 > POST 引用不存在的 `otherRegimeId`（400）、POST 結束不晚於開始（400）、POST 路由政權
 > 不存在（404）、POST 成功（201）——九種案例全數驗證通過，測試資料事後從
 > `app_postgres` 手動刪除。沒有另外寫 xUnit 測試，延續既有慣例。
-| [ ] | 2.9a | 政權代稱（Alias）CRUD | 先拍板 `alias_type` 受控值（若提不出比 observer relationship 更清楚的語意就直接移除該欄位，§12 TODO）；`GET /api/v1/regimes/:id/aliases`、`POST /api/v1/regimes/:id/aliases`（I4 校驗 `regime_id` FK 必存在）。**依賴 2.16**（2026-08-29 修正納入）：`alias_name` 在翻譯範圍內，同 2.4 支援 `?locale=` | §6、§7、§12 TODO | 1 個 |
+| [x] | 2.9a | 政權代稱（Alias）CRUD | 先拍板 `alias_type` 受控值（若提不出比 observer relationship 更清楚的語意就直接移除該欄位，§12 TODO）；`GET /api/v1/regimes/:id/aliases`、`POST /api/v1/regimes/:id/aliases`（I4 校驗 `regime_id` FK 必存在）。**依賴 2.16**（2026-08-29 修正納入）：`alias_name` 在翻譯範圍內，同 2.4 支援 `?locale=` | §6、§7、§12 TODO | 1 個 |
+
+> **2026-08-30 完成**（Story 3 的後端前置任務——5 個 Story 裡當時只剩 Story 3 卡在這個
+> 決策沒動，使用者確認優先做完讓 Story 3 通）：
+>
+> **`alias_type` 受控值決策**：不是憑空發明分類，動工前先看種子資料既有的兩筆代稱
+> （`weiAlias`「賊」／`wuAlias`「孫吳」），發現兩者的「他稱理由」本質不同——政治敵意
+> vs. 史學消歧義——`observer_regime_id`（只回答「誰給的稱呼」，可為 null）回答不了
+> 「為什麼這樣稱呼」，確認語意站得住腳，拍板保留欄位。定 4 個值（`political`／
+> `scholarly`／`transliteration`／`geographic`，理由與例子見 `api/Domain/
+> RegimeAliasType.cs` 的類別文件），純字串常數＋`HashSet` 驗證，不做成真正的 enum
+> （跟 `RegimeStatus` 不同——這裡沒有狀態機/合法轉換規則要驗證，只是描述性分類，不用
+> 那麼重的機制）。種子資料回填：`weiAlias`＝`political`、`wuAlias`＝`scholarly`。
+>
+> **端點**：`api/Controllers/RegimeAliasesController.cs`，跟 `RegimeRelationsController`
+> 同一套「路由參數是主體，body 不重複填」慣例。POST 額外驗證：`observerRegimeId`（若
+> 有指定）必須是存在的政權（400 `OBSERVER_REGIME_NOT_FOUND`）、`aliasType`（若有指定）
+> 必須是四個受控值之一（400 `INVALID_ALIAS_TYPE`）。沒有「取得單一代稱」端點，跟 2.9
+> 同一個範圍決定。已用真實容器 curl 驗證：GET 魏的代稱正確回「賊」/political、GET 吳
+> 的代稱正確回「孫吳」/scholarly、`?locale=en` 正確回英文翻譯（"Sun Wu"）、GET 漢的
+> 代稱正確回空陣列（漢沒有他稱記錄）、GET 不存在的政權 id 回 404、POST 缺 API Key
+> 回 401、POST 不存在的 regimeId 回 404、POST `observerRegimeId` 不存在回 400、POST
+> `aliasType` 不是受控值回 400、POST 成功回 201（測試資料事後從 `app_postgres` 手動
+> 刪除，不留在種子資料裡），OpenAPI 正確收錄 GET/POST 兩個 method。沒有另外寫 xUnit
+> 測試，延續既有慣例
 | [ ] | 2.9b | 地名雙軌查詢端點 | `GET /api/v1/place-names?year={y}`（依年份查當時使用中的地名，`valid_period` 區間匹配）、`GET /api/v1/place-names/:id`；回傳含 `historical_name`/`modern_name`（可為 NULL）雙欄位，不做寫入端點（seed 已覆蓋首都示範，正式匯入前的來源治理見 `docs/data-governance.md`） | 憲法 §6、§7 | 1 個 |
 | [x] | 2.10 | 事件骨幹 CRUD | `GET /api/v1/events?year={y}`、`GET /api/v1/events/:id`、`POST /api/v1/events`（寫入時呼叫 2.2 EdtfService，含 `parent_event_id` 組成關係）。**2.2 的 `EdtfService.TryParse` 只驗證單一字串合法性，不驗證跨欄位邏輯**——這裡要另外補一條檢查：換算出的 `end_decimal` 不可早於 `start_decimal`（避免使用者填反開始/結束時間），憲法/PRD 沒有明講這條但屬於基本資料完整性，不需要另外拍板。**依賴 2.16**：`name` 在翻譯範圍內，同 2.4 支援 `?locale=`；`sections` JSONB 要不要連帶翻譯尚未拍板，見 PRD §6，這裡動工前要先決定。**已完成（2026-08-30）**：`api/Controllers/EventsController.cs`。**動工前先解決的開放問題**：`sections` 要不要連帶翻譯——決定**先不擴充**，`historical_event_translations` 目前只有 `Name` 欄位，`?locale=` 只影響 `name`，`sections` 一律回資料庫原始內容；這不是隨便繞過問題，是這個問題裡範圍最小、不用新增 schema 就能回答的那部分（要不要新增 `sections` 翻譯欄位是更大的內容設計問題，留給真的要擴充翻譯範圍時再決定）。**`GET /events?year=`的查詢語意**：事件用 decimal 精度年份，「查某一年」定義成查詢區間跟該整年 `[year, year+1)` 有重疊（`start_decimal < year+1 AND end_decimal >= year`）——跟 territories/reign_eras 用 INT4RANGE 半開區間同一個語意的 decimal 版本，已用邊界案例驗證（year=219 不含 208/220 年的事件，year=220 剛好含 220 年那筆）。**路由刻意不用 `{id:guid}`**：`historical_events.id` 是手動指定的字串 slug（例："event-chibi-208"），不是 GUID，跟 `RegimesController` 不是同一種資源識別碼型別。**`sections` 的序列化**：資料庫存 jsonb 原始文字（`HistoricalEvent.Sections` 是 `string?`），回應時解析回真正的巢狀 `JsonElement`，不是把整個 JSON 字串再包一層字串（不然前端要多做一次 `JSON.parse()`，等於把「jsonb 存成字串」這個後端實作細節洩漏出去），已用真實種子資料的赤壁之戰 `sections` 驗證回應是巢狀物件不是雙重編碼字串。**POST 請求 body 刻意排除的範圍**（`CreateHistoricalEventRequest` 類別註解有記錄）：`origin_point`/`influence_area`/`routes` 這三個地理欄位刻意先只做唯讀（現有種子資料完全沒填過，也還沒有前端消費端可以驗證寫入格式對不對）；`tag_ids` 不在這裡，2.11 的計畫敘述明確寫是要回頭擴充這個端點的 request body，不是 2.10 自己的範圍。**新增這個 API 第一個真正落地的 POST 端點**，順帶定案 `ApiMessageCodes.CreateSuccess`（`CREATE_SUCCESS`）——沿用 task 2.0 的命名慣例（成功代碼對應 HTTP 動詞語意）第一次真正套用到 POST。**發現並修正一個小落差**：`historical_events.start_decimal`/`end_decimal` 是 `numeric(8,3)`，`POST` 當下組回應物件用的是 `EdtfDate.ToDecimalYear()` 算出來的完整精度小數，但 `SaveChangesAsync()` 之後資料庫實際存的是四捨五入到 3 位小數的版本——用真實容器測了一次「POST 回應 vs 緊接著 GET 回應」發現兩個數字對不起來（`208.74863387978142076502732240` vs `208.749`），修正成寫入前先 `Math.Round(x, 3)` 對齊，重測後兩者一致。已用真實容器 curl 驗證：GET 依年份查詢（含邊界案例）、GET 單筆（含 404）、`?locale=en` 正確回英文翻譯（赤壁之戰→"Battle of Red Cliffs"）、POST 缺 `X-API-Key`（401，掛在 task 2.14 middleware 底下）、POST 錯誤 EDTF（400 `INVALID_EDTF`）、POST 結束早於開始（400 `EVENT_END_BEFORE_START`）、POST 引用不存在的 `parentEventId`（400 `PARENT_EVENT_NOT_FOUND`）、POST 成功（201，含 `sections`/`parentEventId`）、POST 重複 `id`（409 `EVENT_ID_ALREADY_EXISTS`）——九種案例全數驗證通過，測試用的事件事後從 `app_postgres` 手動刪除，不留在種子資料裡。沒有另外寫 xUnit 測試，延續這個專案從 2.0 開始的既有慣例（curl 真實容器驗證，自動化測試留給 2.15 統一補） | §7 | 1 個 |
 | [ ] | 2.11 | 事件類型標籤 | `GET /api/v1/event-tags`（列出可用標籤）、事件寫入端點（2.10）支援帶 `tag_ids` 陣列建立 `historical_event_tag_map` | §6 事件三維度 | 1 個 |

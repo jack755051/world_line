@@ -34,4 +34,6 @@ public static class ApiMessageCodes
     public const string RelationOtherRegimeNotFound = "RELATION_OTHER_REGIME_NOT_FOUND"; // task 2.9：關係另一端指到不存在的政權
     public const string RelationEndBeforeStart = "RELATION_END_BEFORE_START"; // task 2.9：valid_period 的結束年份沒有晚於開始年份
     public const string LineagePresetNotFound = "LINEAGE_PRESET_NOT_FOUND"; // task 2.8
+    public const string ObserverRegimeNotFound = "OBSERVER_REGIME_NOT_FOUND"; // task 2.9a：observerRegimeId 指到不存在的政權
+    public const string InvalidAliasType = "INVALID_ALIAS_TYPE"; // task 2.9a：aliasType 有值但不是 RegimeAliasType 四個受控值之一
 }

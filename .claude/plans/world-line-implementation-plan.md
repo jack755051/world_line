@@ -925,6 +925,31 @@ related_constitution: .claude/constitutions/world-line.md
 > `timeline.year()` 仍是 `DEFAULT_YEAR`）、`docker compose up -d --build frontend`
 > 重新部署。**同樣受限於這次對話環境的 WebGL 問題**，沒有做到瀏覽器視覺驗證，麻煩
 > 使用者實機確認放大後的排版跟拆開後的互動流程是否符合預期。
+>
+> **2026-08-31 事後修正（使用者實機測試立刻回報）**：點手風琴標題會直接關閉整個面板。
+> 根因：`RegimeEventPanelComponent` 是掛在 MapLibre `Marker` 上（跟地圖畫布共用同一個
+> 父容器），面板裡按鈕點擊沒擋住冒泡的話會傳到 `MapComponent.handleMapClick()`，被誤判
+> 成「點擊地圖背景」而呼叫 `RegimeFocusState.clear()`，連帶讓整個面板消失——這正是
+> `renderLabels()` 的政權名稱標籤點擊處理本來就有 `e.stopPropagation()` 在擋的同一類
+> 問題，這次新加的手風琴按鈕漏掉了。**這個 bug 為什麼沒被先前的測試/使用者驗證抓到**：
+> 舊版 `EventDrawerComponent`（第一版事件詳情呈現方式）是獨立於 `RegimeFocusState.
+> focusedRegimeId` 之外的另一個 state（`EventDrawerState`），就算冒泡清掉了聚焦，
+> 抽屜本身還是繼續顯示，使用者感覺不到底層有這個問題；這次改成手風琴內嵌在
+> `RegimeEventPanelComponent` 裡、完全依賴 `focusedRegimeId` 才會渲染，才第一次讓這個
+> 已經存在的冒泡問題變得看得見。修正：在面板根元素統一擋一次
+> （`(click)="$event.stopPropagation()"`），不用在面板裡每個按鈕各自補，之後新增互動
+> 元素也不用記得加這行。
+>
+> 已用「刻意還原修正、確認測試會失敗」的方式驗證新增的回歸測試真的有效——`git stash`
+> 暫時拿掉 html 的修正，重新測試確認會失敗（`bubbledToDocument` 為 `true`），再還原
+> 修正。**這類「元件被掛在地圖 Marker 上、DOM 事件冒泡到地圖點擊處理」的問題，`map.
+> spec.ts` 的 `FakeMap`/`FakeMarker` 測試替身完全模擬不出來**（`fireClick()` 是測試
+> 手動觸發，不是真的 DOM 事件冒泡機制），跟先前 `addTo()`/`setLngLat()` 順序那次一樣，
+> 屬於這類「元件真的掛進地圖」場景下這個對話環境沒辦法用真實瀏覽器驗證、只能等使用者
+> 實機回報的已知落差；`regime-event-panel.spec.ts` 新增的測試直接驗證「原生 DOM click
+> 事件不會冒泡出面板根元素」，鎖住這次的修正，但不是端對端驗證整條「點擊→冒泡→地圖
+> 誤判」的鏈路。已用 `ng build`（clean）、`ng test`（219/219）、`docker compose up -d
+> --build frontend` 重新部署。
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |
 | [ ] | 3.14 | 四態齊備（loading/empty/error/success，依 §8 逐頁核對） | 每個主要頁面四態都有畫面 | §8 | 1 個 |
 | [ ] | 3.14a | API 訊息代碼對照字典 | 對應後端 `api/Contracts/ApiMessageCodes.cs`（task 2.0 修訂，2026-08-29）：`ApiResponse.message` 回傳的是穩定代碼（如 `YEAR_REQUIRED`）不是中文句子，前端要有一個集中的 `message-codes.ts`（或同等檔案）把代碼對照成顯示文字，不能讓各元件各自寫 `if (message === 'XXX')` 散落各處。現階段只需要中文一種語言（多語系本身不是已拍板的產品目標，見 PRD §7），但字典結構要跟訊息代碼本身分離，之後真的要加語言不用重構呼叫端。新增代碼時要記得同步更新這份字典，避免前後端代碼集合漂移 | §7 task 2.0 | 1 個 |

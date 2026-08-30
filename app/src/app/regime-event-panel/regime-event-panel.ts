@@ -115,7 +115,15 @@ function dedupeAndSortEvents(rows: readonly EventInteractionRow[]): RegimeEventS
  * （使用者確認）——關係沒有單一「年度」（是一段存續區間），套不進「年度+事件名稱」這種
  * 手風琴標題格式，跟這次「事件史」的呈現邏輯不是同一種資料形狀，混在一起會讓手風琴標題
  * 格式不一致。
- */
+ *
+ * **2026-08-31 事後修正：根元素要擋住點擊事件冒泡（`(click)="$event.stopPropagation()"`）**
+ * ——這個元件是掛在 MapLibre `Marker` 上（見類別文件開頭），跟地圖畫布共用同一個父
+ * 容器，點擊面板裡任何東西（例如手風琴標題）沒擋住的話會冒泡到
+ * `MapComponent.handleMapClick()`，被當成「點擊地圖背景」誤判成取消聚焦，導致整個
+ * 面板連帶消失（使用者實機回報：點手風琴標題會直接關閉整個面板）。既有的政權名稱
+ * 標籤點擊處理（`map.ts` 的 `renderLabels()`）本來就有這個問題的解法
+ * （`e.stopPropagation()`），這裡在根元素統一擋一次，不用在面板裡每個按鈕各自加，
+ * 之後新增互動元素也不用記得補這行。 */
 @Component({
   selector: 'app-regime-event-panel',
   standalone: true,

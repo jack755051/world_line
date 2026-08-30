@@ -74,6 +74,36 @@ describe('RegimeEventPanelComponent', () => {
     expect(fixture.nativeElement.querySelector('.regime-event-panel')).toBeNull();
   });
 
+  // 2026-08-31 事後修正：這個元件被 MapComponent 掛在 MapLibre Marker 上（跟地圖畫布
+  // 共用同一個父容器），點擊面板裡任何東西沒擋住冒泡的話，會被地圖自己的 click handler
+  // 誤判成「點擊背景」而清除聚焦，導致整個面板連帶消失（使用者實機回報：點手風琴標題
+  // 會直接關閉面板）。這裡直接驗證原生 DOM click 事件不會冒泡出面板根元素，不用真的
+  // 掛一個 MapComponent 出來重現整條鏈路。
+  it('點擊面板不會冒泡到外層 DOM（避免被地圖點擊處理誤判成點背景取消聚焦）', () => {
+    focusAndFlushTerritories('r-wu');
+
+    const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+    fixture.detectChanges();
+    flushEvents('r-wu', [
+      { eventId: 'event-a', eventName: '赤壁之戰', otherRegimeId: 'r-y', startEdtf: '0208', endEdtf: '0208', startDecimal: 208 },
+    ]);
+    fixture.detectChanges();
+
+    let bubbledToDocument = false;
+    const listener = () => {
+      bubbledToDocument = true;
+    };
+    document.addEventListener('click', listener);
+    try {
+      const panel: HTMLElement = fixture.nativeElement.querySelector('.regime-event-panel');
+      panel.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    } finally {
+      document.removeEventListener('click', listener);
+    }
+
+    expect(bubbledToDocument).toBe(false);
+  });
+
   it('抬頭顯示政權名稱，清單依 startDecimal 排序、同一事件去重，最多顯示 5 筆', () => {
     focusAndFlushTerritories('r-wu');
 

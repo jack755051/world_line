@@ -105,7 +105,7 @@ describe('RegimeFocusState', () => {
       message: 'FETCH_SUCCESS',
       data: territoryFeatureCollection([{ startYear: 1, endYear: 2 }]),
     });
-    staleEventsReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [{ eventId: 'stale', eventName: 'stale', otherRegimeId: 'x' }] });
+    staleEventsReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [{ eventId: 'stale', eventName: 'stale', otherRegimeId: 'x', startEdtf: '0001', endEdtf: '0001' }] });
     staleRelationsReq.flush({ statusCode: 200, message: 'FETCH_SUCCESS', data: [] });
     expect(state.focusedRegimeId()).toBe('r-b');
     expect(state.lifetimeRange()).toBeNull(); // 還沒被過期請求誤植
@@ -161,7 +161,7 @@ describe('RegimeFocusState', () => {
         .flush({
           statusCode: 200,
           message: 'FETCH_SUCCESS',
-          data: [{ eventId: 'event-x', eventName: '某戰役', otherRegimeId: 'r-b' }],
+          data: [{ eventId: 'event-x', eventName: '某戰役', otherRegimeId: 'r-b', startEdtf: '0225', endEdtf: '0225' }],
         });
       httpMock
         .expectOne((r) => r.urlWithParams === `/api/v1/regimes/r-a/relations?year=${TimelineState.DEFAULT_YEAR}`)
@@ -173,7 +173,7 @@ describe('RegimeFocusState', () => {
           data: [{ id: 'rel-1', regimeAId: 'r-b', regimeBId: 'r-a', relationType: '同盟', description: null }],
         });
 
-      expect(state.eventInteractions()).toEqual([{ eventId: 'event-x', eventName: '某戰役', otherRegimeId: 'r-b' }]);
+      expect(state.eventInteractions()).toEqual([{ eventId: 'event-x', eventName: '某戰役', otherRegimeId: 'r-b', startEdtf: '0225', endEdtf: '0225' }]);
       expect(state.relationInteractions()).toEqual([
         { id: 'rel-1', relationType: '同盟', otherRegimeId: 'r-b', description: null },
       ]);
@@ -190,8 +190,8 @@ describe('RegimeFocusState', () => {
       timeline.year.set(230);
       await waitForDebounce();
 
-      flushInteractions(httpMock, 'r-a', 230, [{ eventId: 'event-y', eventName: '換年份後的事件', otherRegimeId: 'r-c' }]);
-      expect(state.eventInteractions()).toEqual([{ eventId: 'event-y', eventName: '換年份後的事件', otherRegimeId: 'r-c' }]);
+      flushInteractions(httpMock, 'r-a', 230, [{ eventId: 'event-y', eventName: '換年份後的事件', otherRegimeId: 'r-c', startEdtf: '0230', endEdtf: '0230' }]);
+      expect(state.eventInteractions()).toEqual([{ eventId: 'event-y', eventName: '換年份後的事件', otherRegimeId: 'r-c', startEdtf: '0230', endEdtf: '0230' }]);
     });
 
     it('沒有聚焦任何政權時，拖拉桿換年份不會打互動查詢', async () => {

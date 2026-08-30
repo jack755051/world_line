@@ -29,6 +29,11 @@ export interface EventInteraction {
   eventId: string;
   eventName: string;
   otherRegimeId: string;
+  /** 原始 EDTF 字串（例如 `"0220"`、`"1046?"`）——任務 3.10 用 `<app-edtf-date>`
+      呈現精度/不確定性，見 `api/Contracts/RegimeEventInteractionResponse.cs` 的
+      `StartEdtf`/`EndEdtf` 說明。 */
+  startEdtf: string;
+  endEdtf: string;
 }
 
 /** `GET /api/v1/regimes/:id/relations` 回應的形狀（見

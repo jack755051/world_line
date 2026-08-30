@@ -1,0 +1,13 @@
+:host {
+  display: inline;
+}
+
+.edtf-date {
+  font-variant-numeric: tabular-nums; // 數字等寬，跟這個專案其他年份顯示（time-scrubber/regime-focus-panel）一致
+}
+
+// AC#2：不確定性提示刻意用比主要日期文字淡的顏色——「推測」是附加資訊，不該跟日期
+// 本身搶視覺重量，讓使用者一眼分得出「這是確定的年份」還是「這是推測出來的」。
+.edtf-date-qualifier {
+  color: var(--wl-ink-muted);
+}

@@ -497,7 +497,44 @@ related_constitution: .claude/constitutions/world-line.md
 > ＋curl 確認部署驗證，AC#1/AC#2/AC#3 全數完成，3.7 完整達成。
 | [ ] | 3.8 | 政權命名視角切換（自稱／他稱代稱） | Story 3 完整流程 | Story 3 | 1 個 |
 | [ ] | 3.9 | 政權狀態轉換視覺呈現（分裂/禪讓/滅亡三種視覺區分） | Story 4 完整流程 | Story 4 | 1 個 |
-| [ ] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |
+| [x] | 3.10 | EDTF 精度/不確定性 UI 標示（模糊年份提示） | Story 5 完整流程 | Story 5 | 1 個 |
+
+> **2026-08-30 完成**（使用者確認三個 Story 裡優先做這個，理由：唯一沒有後端阻塞的
+> ——`historical_events.start_edtf`/`end_edtf` 這個原始字串 task 2.10 早就整包回傳
+> 了，不像 Story 3/4 各自卡在 2.9a 的受控值決策/2.8 端點還沒做）：
+>
+> **AC#3（模糊區間查詢）驗證後確認已經滿足，不用新增程式碼**：`GET /events?year=`
+> 的區間比對（`start_decimal < year+1 AND end_decimal >= year`）本來就不管日期本身
+> 精不精確、有沒有 `?`/`~` 標記，只看換算出來的 decimal 數值有沒有落在查詢年份的整年
+> 區間裡——用真實容器 POST 一筆帶 `?` 標記的事件（`"1046?"`）、`GET year=1046` 驗證
+> 確實能查到，`GET /events/:id` 驗證原始字串的 `?` 標記完整往返不遺失。
+>
+> **AC#1/AC#2 是這個任務真正要做的**：新增 `app/src/app/core/time/edtf-display.ts`
+> （純函式，`parseEdtf()`/`formatEdtfDateLabel()`/`formatEdtfQualifierLabel()`）——
+> **語法解析規則刻意跟後端 `EdtfService.TryParse()` 用同一個子集**（`-?YYYY(-MM(-DD)?)?`
+> 加選用尾綴 `?`/`~`），不支援完整 EDTF 規格的世紀/年代/季節語法（後端本來就沒實作）；
+> 這裡只做「解析成顯示用的結構」，不重做曆法驗證（月份 1-12、日期依月份/閏年正確範圍
+> 這些交給後端 `NodaTime` 驗證過才寫進資料庫，前端不重複驗證一次，見 `edtf-display.ts`
+> 的說明）。新增 `EdtfDateComponent`（`app/src/app/edtf-date/`）呈現：**AC#1** 只顯示
+> 史料實際記載到的精度（年精度就只到年，不會因為後端內部把月/日補成 1 月 1 日就跟著
+> 偽造出更精確的假象），精度層級靠「顯示到哪一級」本身表達，不另外疊加文字說明；
+> **AC#2** `?`/`~` 標記轉成「推測年份」/「約略年份」提示，用獨立的 `<span>` 包起來、
+> 顏色比主要日期淡，跟確定的日期在視覺上分開。
+>
+> **後端小擴充**：`GET /regimes/:id/events`（task 3.7 AC#3 用的互動查詢端點）原本只回
+> `startDecimal`/`endDecimal`（純數字），這次追加 `startEdtf`/`endEdtf` 兩個原始字串
+> 欄位——decimal 換算過程本身就會把精度層級跟不確定標記這些資訊丟失，UI 要呈現這些
+> 資訊只能從原始字串取得，沒有其他資料來源。
+>
+> **實際接上的畫面**：task 3.7 的政權聚焦面板「互動記錄」清單，每筆離散事件下方多一行
+> 起訖日期（`<app-edtf-date>`，起訖相同時只顯示一個，不同時顯示成範圍）——目前唯一有
+> 事件資料觸及到使用者畫面的地方，沒有為了展示這個功能另外生一個孤立的頁面。
+>
+> 已用 `dotnet build`（clean）、`ng build`（1.51MB/339KB，budget 內）、`ng test`
+> （165/165，新增 25 條：`edtf-display.spec.ts` 涵蓋年/月/日精度、`?`/`~` 標記、負
+> 年份、無法解析的 fallback；`edtf-date.spec.ts` 涵蓋元件渲染跟 qualifier 獨立 span；
+> 面板既有測試補上 `startEdtf`/`endEdtf` 欄位跟一則日期顯示斷言）、真實容器 curl 驗證
+> AC#3、`docker compose up -d --build backend frontend` 部署驗證。
 | [ ] | 3.11 | reign_eras 年號標籤顯示（對應時間拉桿位置顯示年號） | UI 顯示「貞觀元年」等 | §5 紀年轉換 | 1 個 |
 | [ ] | 3.12 | 事件詳情抽屜（毛玻璃 + 三層手風琴） | notes §八互動草圖落地 | §8 | 1 個 |
 | [ ] | 3.13 | 多重視角分頁（Perspective Tabs） | notes §十互動草圖落地 | §8、Story 3 | 1 個 |

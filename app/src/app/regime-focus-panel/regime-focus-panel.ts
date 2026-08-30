@@ -4,6 +4,7 @@ import { RegimeDirectoryService } from '../core/regime/regime-directory.service'
 import { TimelineState } from '../core/time/timeline-state';
 import { SANRING_COLLAPSIBLE_IMPORTS } from '../components/ui/collapsible';
 import { TagComponent } from '../components/ui/tag';
+import { EdtfDateComponent } from '../edtf-date/edtf-date';
 
 /**
  * 政權聚焦模式的資訊面板（任務 3.7，對應 PRD Story 2）——點擊地圖上的疆域後顯示，列出
@@ -54,11 +55,21 @@ import { TagComponent } from '../components/ui/tag';
  * 也全部落在同一個分期（三國），加了也沒有區分度。等之後真的匯入跨分期的世界史資料
  * （例如唐朝/阿拉伯帝國那個時代）再回頭設計這塊怎麼從資料庫查出來，不要用前端寫死的
  * 對照表撐過去。
+ *
+ * **2026-08-30 追加 Story 5（模糊/爭議年份呈現）**：離散事件互動每一筆下方加一行起訖
+ * 日期，用 `<app-edtf-date>`（`edtf-date.ts`）呈現——只顯示史料實際記載到的精度（年/
+ * 月/日），`?`/`~` 不確定標記轉成「推測年份」/「約略年份」提示。後端 `GET /regimes/
+ * :id/events` 原本只回 `startDecimal`/`endDecimal`（純數字，任務 3.7 AC#3 當時只需要
+ * 拿來判斷年份是否落在查詢範圍內），這次追加了 `startEdtf`/`endEdtf` 兩個原始字串
+ * 欄位——decimal 換算的過程本身就會把「精度層級」跟「不確定標記」這些資訊丟失，只有
+ * 原始字串留得住，UI 要呈現這些資訊沒有其他資料來源可以用。持續性關係（`regime_
+ * relations`）維持只用整數年份（`valid_period` 本來就是 `INT4RANGE`，不是 EDTF），
+ * 不套用這個元件。
  */
 @Component({
   selector: 'app-regime-focus-panel',
   standalone: true,
-  imports: [SANRING_COLLAPSIBLE_IMPORTS, TagComponent],
+  imports: [SANRING_COLLAPSIBLE_IMPORTS, TagComponent, EdtfDateComponent],
   templateUrl: './regime-focus-panel.html',
   styleUrl: './regime-focus-panel.scss',
 })
@@ -96,6 +107,11 @@ export class RegimeFocusPanelComponent {
         key: `${interaction.eventId}-${interaction.otherRegimeId}`,
         label: interaction.eventName,
         otherRegimeName: this.directory.nameOf(interaction.otherRegimeId) ?? interaction.otherRegimeId,
+        // 任務 3.10：事件用起訖兩個 EDTF 日期都顯示——跟疆域/存續區間那種「一個範圍」
+        // 不同，這裡的兩個日期分別可能有各自獨立的精度/不確定性（例如起始日期確定、
+        // 結束日期是推測），不能只挑一個顯示。
+        startEdtf: interaction.startEdtf,
+        endEdtf: interaction.endEdtf,
       }));
   });
 

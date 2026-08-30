@@ -194,6 +194,8 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
                 EventId = t.Event.Id,
                 EventName = t.Event.Name,
                 OtherRegimeId = otherRegimeId.Value,
+                StartEdtf = t.Event.StartEdtf,
+                EndEdtf = t.Event.EndEdtf,
                 StartDecimal = t.Event.StartDecimal,
                 EndDecimal = t.Event.EndDecimal,
             });
@@ -223,6 +225,8 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
                 EventId = transitionEvent.Id,
                 EventName = transitionEvent.Name,
                 OtherRegimeId = other.Id,
+                StartEdtf = transitionEvent.StartEdtf,
+                EndEdtf = transitionEvent.EndEdtf,
                 StartDecimal = transitionEvent.StartDecimal,
                 EndDecimal = transitionEvent.EndDecimal,
             });
@@ -258,6 +262,8 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
                 EventId = x.Event.Id,
                 EventName = x.Event.Name,
                 OtherRegimeId = x.Perspective.RegimeId!.Value,
+                StartEdtf = x.Event.StartEdtf,
+                EndEdtf = x.Event.EndEdtf,
                 StartDecimal = x.Event.StartDecimal,
                 EndDecimal = x.Event.EndDecimal,
             });

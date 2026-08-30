@@ -238,8 +238,8 @@ describe('RegimeFocusPanelComponent', () => {
         'r-wei',
         [{ startYear: 220, endYear: 226 }],
         [
-          { eventId: 'event-a', eventName: '跟蜀漢的戰役', otherRegimeId: 'r-shuhan' }, // r-shuhan 是周邊，該顯示
-          { eventId: 'event-b', eventName: '跟吳的戰役', otherRegimeId: 'r-wu' }, // r-wu 不是周邊，不該顯示
+          { eventId: 'event-a', eventName: '跟蜀漢的戰役', otherRegimeId: 'r-shuhan', startEdtf: '0221', endEdtf: '0221' }, // r-shuhan 是周邊，該顯示
+          { eventId: 'event-b', eventName: '跟吳的戰役', otherRegimeId: 'r-wu', startEdtf: '0222', endEdtf: '0222' }, // r-wu 不是周邊，不該顯示
         ],
         [
           // 真實 API 回傳的是 regimeAId/regimeBId（對稱關係表，見
@@ -260,6 +260,7 @@ describe('RegimeFocusPanelComponent', () => {
       expect(items).toHaveLength(2); // 只有跟蜀漢的事件+關係，跟吳的事件被過濾掉
       expect(items[0]).toContain('跟蜀漢的戰役');
       expect(items[0]).toContain('蜀漢');
+      expect(items[0]).toContain('西元 221 年'); // 任務 3.10：事件日期用 <app-edtf-date> 呈現
       expect(items[1]).toContain('同盟');
       expect(items[1]).toContain('測試關係');
     });

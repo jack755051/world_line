@@ -21,6 +21,9 @@ public class RegimeRelationsController(WorldLineDbContext db) : ControllerBase
     /// 所有關係列。`year` 比照 territories/events：查詢時間點是必填，不是選填的列表
     /// 過濾條件。</summary>
     [HttpGet("regimes/{regimeId:guid}/relations")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<RegimeRelationResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<RegimeRelationResponse>>>> GetByRegimeAndYear(
         Guid regimeId, [FromQuery] int? year)
     {
@@ -44,6 +47,10 @@ public class RegimeRelationsController(WorldLineDbContext db) : ControllerBase
     /// <summary>新增一筆持續性關係，`{regimeId}` 是關係的一端，request body 指定另一端
     /// 是誰（見 <see cref="CreateRegimeRelationRequest"/> 的類別註解）。</summary>
     [HttpPost("regimes/{regimeId:guid}/relations")]
+    [ProducesResponseType(typeof(ApiResponse<RegimeRelationResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<RegimeRelationResponse>>> Create(
         Guid regimeId, CreateRegimeRelationRequest request)
     {

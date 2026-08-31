@@ -175,17 +175,29 @@ related_constitution: .claude/constitutions/world-line.md
 > 新版本內容（不接受部分欄位差異，避免「哪些欄位沿用舊值」的隱性合併邏輯）＋必填的
 > `correctionReason`；新增一筆新版本（`RegimeId` 沿用舊版本，不可過戶給別的政權）、
 > 舊版本補上 `SupersededBy`/`CorrectionReason`/`CorrectedAt` 三個欄位，其餘內容原封
-> 不動——不刪除、不覆蓋。**額外補的一致性檢查（任務描述沒逐字寫，但屬於版本鏈基本
-> 完整性）**：已經被修正過的舊版本不能再被修正（`TERRITORY_ALREADY_SUPERSEDED`，
-> 409），避免同一筆原始記錄分岔出兩條互相不知道對方的修正鏈——要修正的話對「目前
-> 最新那一版」下手。已用真實容器 curl 驗證 11 種案例（POST 5 種：缺 key/政權不存在/
-> endYear≤startYear/缺 geom/成功；PATCH 6 種：缺 key/疆域不存在/缺
-> correctionReason/endYear≤startYear/成功修正/對已修正過的舊版本再修正一次）全數
-> 符合預期；額外用 `psql` 直接查 `regime_territories` 表格核對版本鏈欄位正確（舊版本
-> 幾何/時間區間原封不動、`superseded_by` 正確指向新版本）；`GET /regimes/:id/
-> territories` 驗證確認只回傳新版本、不含已被取代的舊版本。OpenAPI 正確收錄兩個新
-> 端點，測試用的疆域快照事後從 `app_postgres` 手動刪除。沒有另外寫 xUnit 測試，延續
-> 既有慣例（curl 真實容器驗證，自動化測試留給 2.15 統一補） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
+> 不動——不刪除、不覆蓋。已用真實容器 curl 驗證多種案例（POST：缺 key/政權不存在/
+> endYear≤startYear/缺 geom/成功；PATCH：缺 key/疆域不存在/缺
+> correctionReason/endYear≤startYear/成功修正）全數符合預期；額外用 `psql` 直接查
+> `regime_territories` 表格核對版本鏈欄位正確（舊版本幾何/時間區間原封不動、
+> `superseded_by` 正確指向新版本）；`GET /regimes/:id/territories` 驗證確認只回傳
+> 新版本、不含已被取代的舊版本。OpenAPI 正確收錄兩個新端點，測試用的疆域快照事後從
+> `app_postgres` 手動刪除。沒有另外寫 xUnit 測試，延續既有慣例（curl 真實容器驗證，
+> 自動化測試留給 2.15 統一補）。
+>
+> **2026-08-31 事後修正（task 2.15 回顧才發現、補問使用者才拍板）**：原本這裡的
+> `Correct` 邏輯是「已經被修正過的舊版本不能再被修正」（409 `TERRITORY_ALREADY_
+> SUPERSEDED`），其實正好是這個任務自己寫的停止條件點名的情境——「I5 疆域修正端點的
+> 版本鏈邏輯發現需要支援『修正一筆已經被修正過的記錄』這種鏈式情境，且憲法/PRD 沒
+> 講清楚多層修正要怎麼呈現 → 回報，不要自行腦補規則」——當時沒有停下來問，直接用
+> 「不支援、409 擋下」這個保守假設實作掉了。task 2.15 補齊 integration test、逐條
+> 對照任務原始停止條件時才發現這個落差，回頭問過使用者，拍板改成**支援多層修正**：
+> `{id}` 不要求一定是這條修正鏈目前最新的一筆——沿著 `SupersededBy` 一路往前追到
+> 真正最新的版本，實際修正永遠套用在追到的那一筆上，不管呼叫端傳的是鏈上哪一筆
+> 歷史版本的 id；鏈本身允許無限層，但任何時間點永遠只有一條、不會分岔。移除
+> `TERRITORY_ALREADY_SUPERSEDED`（連同對應的 409 回應與 message code，因為現在
+> `Correct` 不會再回這個狀態）。已用真實容器 curl 重新驗證三層修正鏈（`psql`
+> 直接核對 `superseded_by` 依序正確串接）、`api.Tests` 的 integration test 同步
+> 改寫並全數通過（見下方 task 2.15） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
 | [x] | 2.8 | 史觀主線 preset 查詢端點 | `GET /api/v1/lineage-presets`、`GET /api/v1/lineage-presets/:id/regimes`。**依賴 2.16**：`preset_name`/`description` 在翻譯範圍內，同 2.4 支援 `?locale=`。**已完成（2026-08-30，為了 Story 4/task 3.9 補上的缺口）**：`api/Controllers/LineagePresetsController.cs`。**動工前發現並解決一個 schema 缺口**：PRD Story 4 AC#3 要求「使用者未指定特定史觀時，依 `lineage_presets` 中的預設 preset 顯示主線」，但 `lineage_presets` 表完全沒有欄位可以回答「哪一個是預設」——不是靠插入順序或名稱字串猜（那樣之後新增/調整 preset 順序會意外改變預設值，是隱性行為，違反這個專案一貫「不讓資料的巧合順序承載真正商業語意」的原則），新增 `LineagePreset.IsDefault`（migration `AddLineagePresetIsDefault`，純新增欄位不影響既有資料）明確標記；種子資料把「傳統教科書史觀」標成 `IsDefault=true`，「蜀漢正統論史觀」維持預設值 `false`。應用層目前不強制「最多一筆為 true」——task 2.8 範圍只有唯讀端點，沒有寫入端點，不會有人透過 API 改出兩個預設，等真的有寫入端點時再補這條約束。`GET /lineage-presets/:id/regimes` 的政權欄位刻意跟既有 `RegimeResponse` 同一組（`selfName`/`status`/`predecessorRegimeId`/`originTransitionType`/`destroyedByRegimeId`），不重新設計一套——這是 task 3.9 畫「主線上相鄰兩個政權之間是禪讓還是滅亡」需要的同一批資料。已用真實容器 curl 驗證：`GET /lineage-presets` 正確回兩筆、`isDefault` 只有「傳統教科書史觀」是 `true`、`?locale=en` 正確翻譯兩個 preset 名稱；`GET /lineage-presets/:id/regimes` 正確回漢→魏→晉三筆、`sortOrder` 1/2/3、`status`/`predecessorRegimeId`/`originTransitionType` 都對；不存在的 preset id 回 404 `LINEAGE_PRESET_NOT_FOUND`。沒有另外寫 xUnit 測試，延續既有慣例 | §7 | 1 個 |
 | [x] | 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
 
@@ -306,7 +318,61 @@ related_constitution: .claude/constitutions/world-line.md
 | [x] | 2.16 | 雙語內容 schema（憲法 R4） | **最終定案（2026-08-29 grill-me 第二輪）**：5 張型別化 `_translations` companion 表（`regime_translations`／`regime_alias_translations`／`historical_event_translations`／`lineage_preset_translations`／`historical_event_controversy_translations`），各自真外鍵 + `ON DELETE CASCADE`，見 PRD §6「多語言內容設計」。範圍限中立事實內容——`historical_event_perspectives`、`viewpoints` 不進範圍。`historical_events.sections` JSONB 要不要連帶翻譯要先拍板再動工。**已完成**：5 個 Entity + 5 個 Configuration，migration `ReplaceContentTranslationsWithTypedTables`（先移除第一輪的通用表 `content_translations`，再建 5 張新表，均純 schema 變動不影響其他既有表）。已在拋棄式容器驗證：seed 資料正確寫入 5 張表、實際執行刪除測試確認級聯刪除正常運作（刪一筆 `regimes` 資料，對應 `regime_translations` 列自動消失，不需要應用層清）；已套用到 `app_postgres` 並複查一致 | §6、憲法 R4 | 1 個 |
 | [x] | 2.17 | 既有 seed 資料英文翻譯內容 | 幫 2.16 的翻譯範圍（漢/魏/蜀漢/吳/晉自稱名稱、既有 2 筆 `regime_aliases`、赤壁/漢禪魏/魏禪晉事件名稱、兩個 lineage preset 名稱/說明、曹操兵力爭議的 topic/neutral_description）補上英文內容。**這是內容撰寫工作，不是純工程工作**——翻譯品質需要人工核對，不是機械轉換；可以分批進行，不需要一次補齊全部才能讓 schema/API 上線（沒有翻譯的內容 fallback 回中文，見 PRD §6）。**已完成（2026-08-29）**：20 筆翻譯資料分散在 5 張型別化表裡，涵蓋 5 個政權自稱、2 筆他稱、5 個事件名稱、2 個 lineage preset 名稱+說明、2 筆爭議點 topic+neutral_description。已在拋棄式容器驗證全部正確 join 回對應中文列；已套用到 `app_postgres`（truncate + `docker compose up -d --build backend`）並複查一致 | §6、憲法 R4 | 依內容量拆多個 commit |
 | [x] | 2.14 | 最小 Auth middleware | **已拍板（2026-08-26）**：`.env` 存單一固定 `API_WRITE_KEY`，middleware 檢查所有 POST/PATCH request header（例：`X-API-Key`）是否相符，不符回 401；GET 端點不掛此 middleware。**已完成（2026-08-30，M2 後端下一輪的第一個任務，優先於 2.9/2.10 等寫入端點——先把守門機制建好，之後每個新端點生下來就有保護，不用事後回頭補）**：`api/Infrastructure/ApiWriteKeyMiddleware.cs`，比對 `X-API-Key` header 跟環境變數 `API_WRITE_KEY`，用 `CryptographicOperations.FixedTimeEquals`（固定時間比較，避免 timing attack 側錄字元——單人自用階段風險很低，但幾乎零成本，沒理由不做對）。**只擋 POST/PATCH**（`HttpMethods.Post`/`HttpMethods.Patch`），GET 完全不掛這層檢查；**`API_WRITE_KEY` 環境變數本身沒設定時回 500（`INTERNAL_ERROR`）而不是靜默放行**——避免部署忘記設定這個變數時，寫入端點意外變成完全公開。新增 `ApiMessageCodes.Unauthorized`（`UNAUTHORIZED`），跟現有的 `ApiResponse.Error()` 包裝格式一致。`.env`／`.env.example` 補上 `API_WRITE_KEY`（`.env.example` 原本已有註解掉的 placeholder，這次拍板實作、取消註解並更新說明；`docs/api.md`、`README.md` 同步更新）；`docker-compose.yml` 不用額外改——backend 服務本來就有 `env_file: .env`，新變數自動注入容器，不需要另外列進 `environment:` 區塊。**驗證方式跟既有慣例（curl 真實容器）一致，但這個任務比較特殊**：因為 2.5/2.7/2.9 等真正的寫入端點都還沒做，沒有真實 POST/PATCH 業務端點可以測——利用「middleware 註冊在 `MapControllers()` 之前、對任何 request path 都生效（不管路由存不存在）」這個管線順序特性，直接對任意 `/api/v1/...` 路徑送 POST/PATCH 驗證四種狀況：GET 不受影響（200，照舊）、POST 缺 key（401 `UNAUTHORIZED`）、POST 錯誤 key（401）、POST 正確 key（通過 middleware，落到路由層，因為 `RegimesController` 目前只有 GET action，正確回 405 Method Not Allowed——這個 405 本身就是「middleware 已放行、問題出在下一層路由」的證據）、PATCH 缺 key（401，確認 PATCH 也有被擋）。`dotnet build` 過，`docker compose up -d --build backend` 部署後五種案例 curl 全部驗證通過。**沒有另外寫 xUnit 測試**：`api/` repository 目前完全沒有測試專案，這個專案從 2.0 開始的既有慣例是「curl 真實容器驗證，自動化測試留給 2.15 統一補」，這個任務延續同一個慣例，不提前偏離 | §5 Auth 拍板 | 1 個 |
-| [ ] | 2.15 | 測試與契約驗證 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13、2.9a 主要端點；ASP.NET 產生的 OpenAPI 必須包含所有已實作端點、request/response schema 與主要狀態碼 | PRD M2 驗收門檻 | 1 個 |
+| [x] | 2.15 | 測試與契約驗證 | 單元測試（.NET 預設用 xUnit）涵蓋 2.1 狀態機驗證、2.2 EDTF 換算（含閏年案例）；integration test 涵蓋 2.4-2.13、2.9a 主要端點；ASP.NET 產生的 OpenAPI 必須包含所有已實作端點、request/response schema 與主要狀態碼 | PRD M2 驗收門檻 | 1 個 |
+
+> **2026-08-31 完成**：這個專案第一個自動化測試專案——`api.Tests/`（xUnit）。**動工前
+> 先拍板 integration test 要打哪個資料庫**：選 Testcontainers（不是直接對開發用的
+> `app_postgres` 跑）——每次執行自動起一個臨時 PostGIS 容器（跟 `docker-compose.yml`
+> 同一個 image，PostGIS extension 版本一致），完全隔離、不會汙染/碰撞開發種子資料，
+> 跑完自動清掉（Testcontainers 內建 Ryuk reaper）。
+>
+> **單元測試**（`Domain/`，52 條）：`RegimeTransitionValidatorTests`——`ValidateStatusTransition`
+> 窮舉 4×4=16 組狀態配對（跟前端 `regime-status.enum.spec.ts` 同一個策略，各自獨立
+> 實作互相印證，不是共用同一份邏輯）、`ValidateOriginLinkage` 涵蓋獨立建國/欄位
+> 不一致/受控值等情境；`EdtfServiceTests`——年/月/日精度、負年份（BCE，絕對紀年慣例）、
+> 閏年邊界（1900 非閏年／2000/2024 閏年）、不存在的日期、空字串/格式錯誤、`?`/`~`
+> 尾綴、`ToDecimalYear()` 换算順序正確性。
+>
+> **integration test**（`Integration/`，97 條）：`WorldLineApiFactory`（`WebApplicationFactory<Program>`
+> + Testcontainers，`IAsyncLifetime`）用真正的 `Program.cs` 啟動流程（migration +
+> `SeedData.SeedAsync()`），不 mock DbContext——沿用整個 Phase 2 開發過程一路用
+> curl 驗證過的同一份種子資料，不用為測試另外手刻 fixture。**踩到一個坑，記錄下來**：
+> `ConfigureWebHost().ConfigureAppConfiguration()` 是一般 `IWebHostBuilder` 專案的
+> 標準做法，但 `Program.cs` 是 minimal hosting model，`WebApplicationFactory`
+> 靠 `HostFactoryResolver` 攔截、實際上是讓真正的 `Program.Main()` 整段跑過一次、
+> 只在 `builder.Build()` 那一刻才攔下來——`Program.cs` 讀連線字串那行在攔截點**之前**
+> 就執行完了，`ConfigureAppConfiguration()` 加的設定來得太晚，實測直接炸
+> `InvalidOperationException`；改用環境變數（`Environment.SetEnvironmentVariable`）
+> 才解決，因為 `WebApplication.CreateBuilder()` 一開始就會讀環境變數當設定來源。
+> 所有 integration test 類別掛同一個 `[Collection]`，共用一個容器實例、依序執行
+> （xUnit 保證同 collection 內序列化，不會有多個測試同時打同一個資料庫的競態）。
+> 涵蓋 2.3-2.13（含 2.9a/2.9b/2.11——2.4-2.13 這個數字範圍本身已經涵蓋 2.5/2.6/2.7/
+> 2.8/2.9/2.10/2.11/2.12/2.13，2.9a/2.9b 是穿插在中間的子編號，一併涵蓋；2.3 雖然
+> 不在原始任務描述的範圍內，但已實作的端點沒有理由排除）——每個端點至少一條成功案例
+> ＋ 1-2 條關鍵驗證失敗案例，不是重新窮舉每個端點在 2.4-2.13 各任務完成時已經用 curl
+> 驗證過的所有分支。
+>
+> **一個事後補問使用者才發現/修正的落差**：整理 integration test 時逐條對照 2.7 自己
+> 寫的停止條件，才發現 2.7 的 `Correct` 端點當時「已被修正過的舊版本不能再修正」這個
+> 設計，正好是那條「發現需要支援鏈式修正情境、且憲法/PRD 沒講清楚 → 回報，不要自行
+> 腦補規則」點名的情境——當時沒有停下來問就直接用保守假設實作掉了。回頭補問，拍板
+> 改成支援多層修正鏈，詳見上方 task 2.7 的「2026-08-31 事後修正」記錄。
+>
+> **OpenAPI 契約測試**（`OpenApiContractTests`）：動工前**先查證這條驗收標準原本完全
+> 不成立**——這個 API 在 2.15 之前沒有任何 `[ProducesResponseType]` 標註，ASP.NET
+> 內建的 OpenAPI 產生器（`AddOpenApi()`/`MapOpenApi()`，不是 Swashbuckle）只能從
+> action 的宣告回傳型別推論出唯一一個「預設」狀態碼，完全不知道 `NotFound()`/
+> `BadRequest()`/`Conflict()` 這些分支的存在——實測 `GET /regimes/{id}` 只有 `200`，
+> 完全沒有 `404`。**補上 `[ProducesResponseType]` 橫跨全部 13 個 controller、約 30 個
+> action**，過程中踩到另一個坑：一旦對某個 action 加了任何一個
+> `[ProducesResponseType]`，ASP.NET 就完全停止自動推論「預設成功狀態碼」——不是疊加
+> 關係，是取代關係；只加錯誤狀態碼（例如只加 404）會讓原本存在的 200 反而從文件裡
+> 消失，比完全不加還糟。改成每個 action 都完整列出**所有**會回傳的狀態碼（含成功），
+> 逐一驗證過 `/openapi/v1.json` 之後才確認正確。**附帶清理**：移除專案 scaffold 殘留、
+> 完全沒被使用過的 `WeatherForecastController`/`WeatherForecast.cs`（`dotnet new
+> webapi` 預設產生，跟這個 API 的業務範圍無關，留著只會讓 OpenAPI 文件多一個不相關
+> 的端點）。已用 `dotnet test`（149/149：52 單元 + 97 integration/契約）跟真實容器 curl
+> 雙重驗證，`docs/development.md` 補上執行方式與說明 | PRD M2 驗收門檻 | 1 個 |
 
 ### 範圍上限（本階段不做）
 

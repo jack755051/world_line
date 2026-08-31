@@ -31,6 +31,7 @@ public class RegimesController(WorldLineDbContext db, IRegimeTransitionValidator
     /// 的政權——跟 task 2.6 疆域端點用同一套「當年有效」判斷，語意一致。
     /// </summary>
     [HttpGet("regimes")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<RegimeResponse>>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResponse<IEnumerable<RegimeResponse>>>> GetAll(
         [FromQuery] int? year, [FromQuery] string? locale)
     {
@@ -52,6 +53,8 @@ public class RegimesController(WorldLineDbContext db, IRegimeTransitionValidator
 
     /// <summary>取得單一政權詳情。</summary>
     [HttpGet("regimes/{id:guid}")]
+    [ProducesResponseType(typeof(ApiResponse<RegimeResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<RegimeResponse>>> GetById(Guid id, [FromQuery] string? locale)
     {
         var regime = await db.Regimes.FirstOrDefaultAsync(r => r.Id == id);
@@ -68,6 +71,9 @@ public class RegimesController(WorldLineDbContext db, IRegimeTransitionValidator
     /// `CreateRegimeRequest` 類別文件），掛在 task 2.14 的 `ApiWriteKeyMiddleware`
     /// 底下（POST 一律要求 `X-API-Key`）。</summary>
     [HttpPost("regimes")]
+    [ProducesResponseType(typeof(ApiResponse<RegimeResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResponse<RegimeResponse>>> Create(CreateRegimeRequest request)
     {
         // 2.1 的純函式檢查：predecessorRegimeId/originTransitionType 內部一致性
@@ -119,6 +125,10 @@ public class RegimesController(WorldLineDbContext db, IRegimeTransitionValidator
     /// <summary>更新政權狀態（憲法 §4 轉換）——目前唯一用途，見 `UpdateRegimeRequest`
     /// 類別文件。</summary>
     [HttpPatch("regimes/{id:guid}")]
+    [ProducesResponseType(typeof(ApiResponse<RegimeResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<RegimeResponse>>> Update(Guid id, UpdateRegimeRequest request)
     {
         var regime = await db.Regimes.FirstOrDefaultAsync(r => r.Id == id);

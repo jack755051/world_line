@@ -12,6 +12,8 @@ public class ReignErasController(WorldLineDbContext db) : ControllerBase
 {
     /// <summary>依年份查詢當時使用中的所有年號（跨政權）。</summary>
     [HttpGet("reign-eras")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<ReignEraResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ApiResponse<IEnumerable<ReignEraResponse>>>> GetByYear([FromQuery] int? year)
     {
         if (year is null)
@@ -32,6 +34,8 @@ public class ReignErasController(WorldLineDbContext db) : ControllerBase
 
     /// <summary>取得某政權底下所有年號，依起始年排序。</summary>
     [HttpGet("regimes/{regimeId:guid}/reign-eras")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<ReignEraResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<ReignEraResponse>>>> GetByRegime(Guid regimeId)
     {
         var regimeExists = await db.Regimes.AnyAsync(r => r.Id == regimeId);

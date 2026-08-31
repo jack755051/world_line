@@ -18,6 +18,8 @@ public class PlaceNamesController(WorldLineDbContext db) : ControllerBase
     /// <summary>依年份查詢當時使用中的所有地名。`year` 必填，跟 `reign-eras`（同樣是
     /// 「依年份查 X」語意）一致，不是選填的列表過濾條件。</summary>
     [HttpGet("place-names")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<PlaceNameResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ApiResponse<IEnumerable<PlaceNameResponse>>>> GetByYear([FromQuery] int? year)
     {
         if (year is null)
@@ -40,6 +42,8 @@ public class PlaceNamesController(WorldLineDbContext db) : ControllerBase
 
     /// <summary>取得單一地名詳情。</summary>
     [HttpGet("place-names/{id:guid}")]
+    [ProducesResponseType(typeof(ApiResponse<PlaceNameResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<PlaceNameResponse>>> GetById(Guid id)
     {
         var placeName = await db.PlaceNames.Where(p => p.Id == id).Select(ToResponse).FirstOrDefaultAsync();

@@ -21,6 +21,8 @@ public class RegimeAliasesController(WorldLineDbContext db) : ControllerBase
     /// <summary>取得某政權的所有代稱——不分年份/觀察視角，一次全部回傳（代稱本身沒有
     /// 時間區間欄位，跟疆域/事件不同，不需要 `?year=`）。</summary>
     [HttpGet("regimes/{regimeId:guid}/aliases")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<RegimeAliasResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<RegimeAliasResponse>>>> GetByRegime(
         Guid regimeId, [FromQuery] string? locale)
     {
@@ -38,6 +40,10 @@ public class RegimeAliasesController(WorldLineDbContext db) : ControllerBase
     /// <summary>新增一筆代稱。I4 校驗：`{regimeId}`（代稱指回的自稱本體）必須存在；
     /// `observerRegimeId`（若有指定）也必須是存在的政權，不能引用不存在的觀察視角。</summary>
     [HttpPost("regimes/{regimeId:guid}/aliases")]
+    [ProducesResponseType(typeof(ApiResponse<RegimeAliasResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<RegimeAliasResponse>>> Create(
         Guid regimeId, CreateRegimeAliasRequest request)
     {

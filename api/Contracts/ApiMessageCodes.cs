@@ -48,7 +48,6 @@ public static class ApiMessageCodes
     public const string DestroyedByRegimeOnlyForConquered = "DESTROYED_BY_REGIME_ONLY_FOR_CONQUERED"; // task 2.5：狀態不是 conquered 卻帶了 destroyedByRegimeId，語意矛盾（見 SeedData.cs 既有慣例：只有 conquered 才會設這個欄位）
     public const string TerritoryEndBeforeStart = "TERRITORY_END_BEFORE_START"; // task 2.7：endYear 沒有晚於 startYear
     public const string TerritoryNotFound = "TERRITORY_NOT_FOUND"; // task 2.7：/territories/:id/correct 指到不存在的疆域快照
-    public const string TerritoryAlreadySuperseded = "TERRITORY_ALREADY_SUPERSEDED"; // task 2.7：I5 版本鏈——這筆已經被修正過一次，不能再對它修正（要修正的話對現在最新的那筆下手）
     public const string PlaceNameNotFound = "PLACE_NAME_NOT_FOUND"; // task 2.9b
     public const string EventTagNotFound = "EVENT_TAG_NOT_FOUND"; // task 2.11：tagIds 裡有不存在的標籤 id
 }

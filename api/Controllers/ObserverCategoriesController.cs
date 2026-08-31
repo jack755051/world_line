@@ -17,6 +17,7 @@ public class ObserverCategoriesController(WorldLineDbContext db) : ControllerBas
 {
     /// <summary>列出全部觀察者類別——數量少（目前只有一筆），不用分頁/篩選。</summary>
     [HttpGet("observer-categories")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<ObserverCategoryResponse>>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResponse<IEnumerable<ObserverCategoryResponse>>>> GetAll()
     {
         var categories = await db.ObserverCategories.ToListAsync();

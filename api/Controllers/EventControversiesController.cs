@@ -18,6 +18,8 @@ namespace WorldLine.Api.Controllers;
 public class EventControversiesController(WorldLineDbContext db) : ControllerBase
 {
     [HttpGet("events/{eventId}/controversies")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<EventControversyResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<EventControversyResponse>>>> GetByEvent(
         string eventId, [FromQuery] string? locale)
     {
@@ -37,6 +39,10 @@ public class EventControversiesController(WorldLineDbContext db) : ControllerBas
     /// <summary>新增一筆爭議點——沒有政權/觀察者 FK（爭議點本身是「尚無共識的問題」，
     /// 不歸屬於特定當事方，見 `docs/data-governance.md`），只需要事件存在。</summary>
     [HttpPost("events/{eventId}/controversies")]
+    [ProducesResponseType(typeof(ApiResponse<EventControversyResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<EventControversyResponse>>> Create(
         string eventId, CreateEventControversyRequest request)
     {

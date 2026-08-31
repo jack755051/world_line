@@ -75,3 +75,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// task 2.15：`Program` 用 top-level statements 寫，編譯器產生的類別預設是
+// internal——`WebApplicationFactory<Program>`（api.Tests 的 integration test）
+// 要從外部組件參考它，必須明確宣告成 public，這是 ASP.NET Core 官方文件記載的標準
+// 做法，不影響應用程式本身任何行為。
+public partial class Program;

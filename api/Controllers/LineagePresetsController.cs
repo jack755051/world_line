@@ -17,6 +17,7 @@ namespace WorldLine.Api.Controllers;
 public class LineagePresetsController(WorldLineDbContext db) : ControllerBase
 {
     [HttpGet("lineage-presets")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<LineagePresetResponse>>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResponse<IEnumerable<LineagePresetResponse>>>> GetAll([FromQuery] string? locale)
     {
         var presets = await db.LineagePresets.ToListAsync();
@@ -26,6 +27,8 @@ public class LineagePresetsController(WorldLineDbContext db) : ControllerBase
 
     /// <summary>取得某個 preset 底下依 `sort_order` 排序的政權序列。</summary>
     [HttpGet("lineage-presets/{id:guid}/regimes")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<LineagePresetRegimeResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<LineagePresetRegimeResponse>>>> GetRegimes(Guid id)
     {
         if (!await db.LineagePresets.AnyAsync(p => p.Id == id))

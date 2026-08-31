@@ -14,6 +14,7 @@ namespace WorldLine.Api.Controllers;
 public class EventTagsController(WorldLineDbContext db) : ControllerBase
 {
     [HttpGet("event-tags")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<EventTagResponse>>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResponse<IEnumerable<EventTagResponse>>>> GetAll()
     {
         var tags = await db.EventTags

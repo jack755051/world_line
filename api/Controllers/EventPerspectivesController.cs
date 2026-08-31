@@ -20,6 +20,8 @@ public class EventPerspectivesController(WorldLineDbContext db) : ControllerBase
     /// <summary>取得某事件的全部視角——**不支援 `?locale=`**，見
     /// `EventPerspectiveResponse` 類別註解（整張表不進翻譯範圍）。</summary>
     [HttpGet("events/{eventId}/perspectives")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<EventPerspectiveResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<EventPerspectiveResponse>>>> GetByEvent(string eventId)
     {
         if (!await db.HistoricalEvents.AnyAsync(e => e.Id == eventId))
@@ -38,6 +40,10 @@ public class EventPerspectivesController(WorldLineDbContext db) : ControllerBase
     /// 非 NULL（PRD §6 原話，見 <see cref="CreateEventPerspectiveRequest"/> 類別
     /// 註解），兩個都有值也允許，不是互斥。</summary>
     [HttpPost("events/{eventId}/perspectives")]
+    [ProducesResponseType(typeof(ApiResponse<EventPerspectiveResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<EventPerspectiveResponse>>> Create(
         string eventId, CreateEventPerspectiveRequest request)
     {

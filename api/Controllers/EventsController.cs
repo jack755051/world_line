@@ -32,6 +32,8 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
     /// [year, year+1) 有重疊就算。single-day/single-year 事件（StartDecimal ==
     /// EndDecimal）套用同一個判斷式一樣成立，不需要另外特判。</summary>
     [HttpGet("events")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<HistoricalEventResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ApiResponse<IEnumerable<HistoricalEventResponse>>>> GetByYear(
         [FromQuery] int? year, [FromQuery] string? locale)
     {
@@ -53,6 +55,8 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
     /// <c>HistoricalEvent.Id</c> 的類別註解），跟 <c>RegimesController</c> 的
     /// <c>{id:guid}</c> 不是同一種資源識別碼型別，不能照抄。</summary>
     [HttpGet("events/{id}")]
+    [ProducesResponseType(typeof(ApiResponse<HistoricalEventResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<HistoricalEventResponse>>> GetById(string id, [FromQuery] string? locale)
     {
         var historicalEvent = await db.HistoricalEvents.FirstOrDefaultAsync(e => e.Id == id);
@@ -68,6 +72,10 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
     /// <summary>新增事件骨幹——這個 API 的第一個真正落地的寫入端點，掛在 task 2.14 的
     /// <c>ApiWriteKeyMiddleware</c> 底下（POST 一律要求 <c>X-API-Key</c>）。</summary>
     [HttpPost("events")]
+    [ProducesResponseType(typeof(ApiResponse<HistoricalEventResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status409Conflict)]
     public async Task<ActionResult<ApiResponse<HistoricalEventResponse>>> Create(CreateHistoricalEventRequest request)
     {
         // Id 是呼叫端指定的 slug，不是資料庫自動產生——DB 的主鍵約束本來就會擋重複，但那樣
@@ -174,6 +182,8 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
     /// 互動；帶 `year` 時維持原本語意不變（既有呼叫端，例如任何之後真的需要「只看這一年」
     /// 的用途，不受影響）。</summary>
     [HttpGet("regimes/{regimeId:guid}/events")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<RegimeEventInteractionResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<object?>), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ApiResponse<IEnumerable<RegimeEventInteractionResponse>>>> GetInteractionsByRegime(
         Guid regimeId, [FromQuery] int? year)
     {

@@ -128,6 +128,25 @@ npm --prefix app run build
 npm --prefix app test -- --watch=false
 ```
 
+Backend 測試（任務 2.15，xUnit）：
+
+```bash
+dotnet test api.Tests/WorldLine.Api.Tests.csproj
+```
+
+分兩類，同一個指令一起跑：
+
+- **單元測試**（`api.Tests/Domain/`）：`RegimeTransitionValidator`（2.1，窮舉 4×4=16 組
+  狀態轉換）、`EdtfService`（2.2，含閏年邊界案例），純函式、不需要任何外部資源。
+- **integration test**（`api.Tests/Integration/`）：涵蓋 2.4-2.13、2.9a/2.9b 全部已
+  實作端點，用 [Testcontainers](https://dotnet.testcontainers.org/) 每次執行自動起一個
+  臨時 PostGIS 容器（跟 `docker-compose.yml` 用同一個 image），對真正的 `Program.cs`
+  啟動流程（migration + `SeedData.SeedAsync()`）跑，不 mock DbContext——**需要本機能
+  存取 Docker**，跟 E2E 一樣；不會碰到／汙染 `docker compose up` 起的 `app_postgres`
+  開發資料庫，容器跑完自動清掉（Testcontainers 內建的 Ryuk reaper）。也包含 OpenAPI
+  契約測試（`OpenApiContractTests`），驗證每個已實作端點的 request/response schema
+  跟主要狀態碼都有正確產生在 `/openapi/v1.json` 裡。
+
 E2E（任務 3.16，Playwright）需要先啟動 `frontend`/`backend` 容器：
 
 ```bash
@@ -142,12 +161,11 @@ npm --prefix app run e2e
 
 目前限制：
 
-- 沒有 backend test project（沿用「curl 真實容器驗證」取代 xUnit 的既有慣例，見
-  implementation plan 任務 2.15 仍未動工的記錄）。
-- 前端 unit tests 已涵蓋大部分元件邏輯，但正式業務 endpoint 的 integration test
-  仍缺。
-- 正式業務 endpoint 尚未全數實作（見 implementation plan Phase 2 剩餘任務），因此
-  OpenAPI 目前不能作為完整業務驗收。
+- 前端 unit tests 已涵蓋大部分元件邏輯；正式業務 endpoint 的 integration test 見上方
+  `dotnet test`（任務 2.15，2026-08-31 補齊）。
+- Phase 2 尚未實作的端點只剩少數刻意擱置項目（見 implementation plan §5 Backlog／
+  §7 開放問題，例如 `regimes?period=` 沒有具體規格、「分裂」轉換至少 2 個子政權的
+  數量檢查留給人工檢視），不影響現有已實作端點的 OpenAPI 完整性。
 
 ## 常見問題
 

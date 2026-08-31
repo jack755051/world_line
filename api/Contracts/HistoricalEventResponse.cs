@@ -25,4 +25,8 @@ public class HistoricalEventResponse
     public Point? OriginPoint { get; init; }
     public MultiPolygon? InfluenceArea { get; init; }
     public MultiLineString? Routes { get; init; }
+
+    /// <summary>task 2.11：這筆事件掛的 `event_tags`，跟 `CreateHistoricalEventRequest.
+    /// TagIds` 對應——沒掛任何標籤時是空陣列，不是 `null`（讀端不用另外判斷 null）。</summary>
+    public required IReadOnlyList<EventTagResponse> Tags { get; init; }
 }

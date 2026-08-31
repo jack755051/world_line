@@ -111,6 +111,18 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
             return BadRequest(ApiResponse.Error(StatusCodes.Status400BadRequest, ApiMessageCodes.ParentEventNotFound));
         }
 
+        // task 2.11：tagIds 全部要是既有 event_tags 的 id 才能建立 map 列，不是先建再讓
+        // FK 約束擋——那樣會直接炸成未分類的 500，這裡先查一次回傳有意義的 400。
+        var tagIds = request.TagIds ?? [];
+        if (tagIds.Count > 0)
+        {
+            var existingTagIds = await db.EventTags.Where(t => tagIds.Contains(t.Id)).Select(t => t.Id).ToListAsync();
+            if (existingTagIds.Count != tagIds.Distinct().Count())
+            {
+                return BadRequest(ApiResponse.Error(StatusCodes.Status400BadRequest, ApiMessageCodes.EventTagNotFound));
+            }
+        }
+
         var entity = new HistoricalEvent
         {
             Id = request.Id,
@@ -128,6 +140,11 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
         };
 
         db.HistoricalEvents.Add(entity);
+        db.HistoricalEventTagMaps.AddRange(tagIds.Distinct().Select(tagId => new HistoricalEventTagMap
+        {
+            EventId = entity.Id,
+            TagId = tagId,
+        }));
         await db.SaveChangesAsync();
 
         var response = (await ApplyLocaleAsync([entity], null)).Single();
@@ -294,8 +311,18 @@ public class EventsController(WorldLineDbContext db, IEdtfService edtfService) :
                 .ToDictionaryAsync(t => t.EventId, t => t.Name);
         }
 
+        // task 2.11：批次查這批事件掛的所有標籤，不是每筆事件各自查一次（N+1）。
+        var eventIds = events.Select(e => e.Id).ToList();
+        var tagsByEventId = (await db.HistoricalEventTagMaps
+            .Where(m => eventIds.Contains(m.EventId))
+            .Join(db.EventTags, m => m.TagId, t => t.Id, (m, t) => new { m.EventId, Tag = new EventTagResponse { Id = t.Id, TagName = t.TagName } })
+            .ToListAsync())
+            .GroupBy(x => x.EventId)
+            .ToDictionary(g => g.Key, g => (IReadOnlyList<EventTagResponse>)g.Select(x => x.Tag).ToList());
+
         return events.Select(e => new HistoricalEventResponse
         {
+            Tags = tagsByEventId.TryGetValue(e.Id, out var tags) ? tags : [],
             Id = e.Id,
             Name = translatedNames.TryGetValue(e.Id, out var translated) ? translated : e.Name,
             ParentEventId = e.ParentEventId,

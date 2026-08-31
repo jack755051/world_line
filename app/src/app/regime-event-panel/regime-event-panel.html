@@ -1,6 +1,11 @@
 @if (focusedRegimeId()) {
   @if (displayedEvents().length > 0) {
-    <div class="regime-event-panel" aria-label="政權事件記錄" (click)="$event.stopPropagation()">
+    <div
+      class="regime-event-panel"
+      aria-label="政權事件記錄"
+      (click)="$event.stopPropagation()"
+      (wheel)="$event.stopPropagation()"
+    >
       <h3 class="regime-event-panel-title">{{ focusedRegimeName() }}</h3>
       <ul class="regime-event-panel-list">
         @for (event of displayedEvents(); track event.id) {

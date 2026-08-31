@@ -124,6 +124,35 @@ describe('RegimeEventPanelComponent', () => {
     expect(bubbledToDocument).toBe(false);
   });
 
+  // 2026-08-31 使用者實機回報：事件內文較長、用滑鼠滾輪往下捲動時會誤觸發地圖縮放
+  // ——跟上面的 click 案例同一個根因（面板掛在 MapLibre Marker 上，是地圖容器的子
+  // 元素），滾輪事件冒泡到地圖容器後被 MapLibre 內建的 scrollZoom 攔截。這裡同樣只
+  // 驗證原生 DOM wheel 事件不會冒泡出面板根元素，不用真的掛一個 MapComponent。
+  it('滾輪滾動面板不會冒泡到外層 DOM（避免觸發地圖的滾輪縮放）', () => {
+    focusAndFlushTerritories('r-wu');
+
+    const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+    fixture.detectChanges();
+    flushEvents('r-wu', [
+      { eventId: 'event-a', eventName: '赤壁之戰', otherRegimeId: 'r-y', startEdtf: '0208', endEdtf: '0208', startDecimal: 208 },
+    ]);
+    fixture.detectChanges();
+
+    let bubbledToDocument = false;
+    const listener = () => {
+      bubbledToDocument = true;
+    };
+    document.addEventListener('wheel', listener);
+    try {
+      const panel: HTMLElement = fixture.nativeElement.querySelector('.regime-event-panel');
+      panel.dispatchEvent(new WheelEvent('wheel', { bubbles: true, cancelable: true }));
+    } finally {
+      document.removeEventListener('wheel', listener);
+    }
+
+    expect(bubbledToDocument).toBe(false);
+  });
+
   it('抬頭顯示政權名稱，清單依 startDecimal 排序、同一事件去重，最多顯示 5 筆', () => {
     focusAndFlushTerritories('r-wu');
 

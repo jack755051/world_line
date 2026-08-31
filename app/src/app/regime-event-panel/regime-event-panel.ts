@@ -158,6 +158,13 @@ function dedupeAndSortEvents(rows: readonly EventInteractionRow[]): RegimeEventS
  * （`e.stopPropagation()`），這裡在根元素統一擋一次，不用在面板裡每個按鈕各自加，
  * 之後新增互動元素也不用記得補這行。
  *
+ * **2026-08-31 同批修正：根元素也要擋住滾輪事件冒泡（`(wheel)="$event.stopPropagation()"`）**
+ * ——同一個根因（掛在 MapLibre `Marker` 上，跟地圖畫布共用同一個父容器）：事件內文
+ * 較長、需要在 `.regime-event-panel` 的 `overflow-y: auto` 裡往下捲動時，滾輪事件會
+ * 先冒泡到地圖容器，被 MapLibre 內建的 `scrollZoom` 攔截變成地圖縮放（使用者實機回報
+ * 「想看完文字卻誤觸地圖縮放」）。只 `stopPropagation()`、不 `preventDefault()`——
+ * 面板內部的捲動仍交給瀏覽器原生處理，不用自己刻一套捲動邏輯。
+ *
  * **2026-08-31：task 3.13 多重視角分頁（Perspective Tabs），notes §十／PRD §8**——
  * 展開事件時，除了原本的 `GET /events/:id`，同時併發打 task 2.12/2.13 的
  * `GET /events/:id/perspectives`／`GET /events/:id/controversies`（`forkJoin`，三個

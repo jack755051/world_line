@@ -337,14 +337,31 @@ public static class SeedData
         // 兩筆禪讓事件：先前 RegimeTransitionEvent 只示範過 TransitionKind='destruction'（滅國之戰），
         // 'origin' 分支（分裂/禪讓觸發的建國）完全沒有種子資料驗證過。這兩筆同時也是三國正統之爭
         // 的具體歷史錨點（見下方爭議點記錄）。
+        // 2026-08-31（task 3.4 前置）：這是目前種子資料裡唯一補上月/日精度的事件——原本跟
+        // 其餘 6 筆事件一樣只有年精度（"0220"），但 task 3.4「聚焦近代事件時下方展開精細軸」
+        // 需要至少一筆真的細到月/日的事件才有東西可以展開/驗證，不能無中生有捏造一個日期
+        // （見 docs/data-governance.md「不可補成看似精確的日期」）。這筆禪讓過程本身剛好是
+        // 中國史上記載最精確的事件之一（有明確的干支紀日可換算），改用兩個查證過的日期：
+        // 延康元年十月乙卯日（獻帝下詔禪位，公曆 220-11-25）、十月二十九日（曹丕正式受禪
+        // 即位，公曆 220-12-11），對應英文維基百科 Emperor Xian of Han／Cao Pi 條目的換算
+        // 結果（兩篇互相印證同一組日期，非單一來源）。**曆法系統警語**：這裡採用的是西方
+        // 史學慣例對西元 1582 年前日期的儒略曆（Julian）標示法，`EdtfService`／NodaTime 內部
+        // 拿 ISO（proleptic Gregorian）曆法算 day-of-year 小數，兩曆對這個年代有約 2 天系統性
+        // 落差——對這個 app 的用途（地圖動畫拉桿定位）可忽略，但不是「精確到儒略日」等級的
+        // 換算，跟 PRD §12 尚待處理的「原始曆法系統/換算方法要不要結構化」TODO 是同一類尚未
+        // 解決的一般性問題，這裡只是先按現有慣例存，不代表已經解決。
         var hanAbdicatesWei = new HistoricalEvent
         {
             Id = "event-han-abdicates-wei-220",
             Name = "漢獻帝禪位於魏（曹丕受禪）",
-            StartEdtf = "0220",
-            EndEdtf = "0220",
-            StartDecimal = 220.000m,
-            EndDecimal = 220.000m,
+            StartEdtf = "0220-11-25",
+            EndEdtf = "0220-12-11",
+            // Year + (DayOfYear - 1) / DaysInYear（220 年是閏年，366 天），公式見 EdtfDate.ToDecimalYear()，
+            // 四捨五入到 3 位小數跟 historical_events.start_decimal/end_decimal 的 numeric(8,3) 對齊
+            // （task 2.10 已發現過寫入前沒對齊會跟後續 GET 回應對不起來，這裡直接手算對齊，
+            // 不留給資料庫四捨五入去猜）。
+            StartDecimal = 220.899m,
+            EndDecimal = 220.943m,
             CreatedAt = DateTimeOffset.UtcNow,
             UpdatedAt = DateTimeOffset.UtcNow,
         };

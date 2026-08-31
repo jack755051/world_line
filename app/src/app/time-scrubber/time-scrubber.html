@@ -1,23 +1,36 @@
 <div class="time-scrubber">
-  <div class="time-scrubber-track-wrapper">
-    @if (lifetimeBand(); as band) {
-      <div class="time-scrubber-lifetime-band" [style.left]="band.left" [style.width]="band.width"></div>
-    }
-    <input
-      type="range"
-      class="time-scrubber-input"
-      [min]="minYear"
-      [max]="maxYear"
-      [value]="timeline.year()"
-      (input)="onInput($event)"
-      [attr.aria-valuetext]="'西元 ' + timeline.year() + ' 年'"
-      aria-label="年份"
-    />
+  <div class="time-scrubber-main-row">
+    <div class="time-scrubber-track-wrapper">
+      @if (lifetimeBand(); as band) {
+        <div class="time-scrubber-lifetime-band" [style.left]="band.left" [style.width]="band.width"></div>
+      }
+      <input
+        type="range"
+        class="time-scrubber-input"
+        [min]="minYear"
+        [max]="maxYear"
+        [value]="timeline.year()"
+        (input)="onInput($event)"
+        [attr.aria-valuetext]="'西元 ' + timeline.year() + ' 年'"
+        aria-label="年份"
+      />
+    </div>
+    <div class="time-scrubber-year-group">
+      <span class="time-scrubber-year">西元 {{ timeline.year() }} 年</span>
+      @if (eraLabels().length) {
+        <span class="time-scrubber-eras">{{ eraLabels().join('、') }}</span>
+      }
+    </div>
   </div>
-  <div class="time-scrubber-year-group">
-    <span class="time-scrubber-year">西元 {{ timeline.year() }} 年</span>
-    @if (eraLabels().length) {
-      <span class="time-scrubber-eras">{{ eraLabels().join('、') }}</span>
-    }
-  </div>
+
+  @if (subAxis(); as event) {
+    <!-- task 3.4：副軸，唯讀顯示展開事件的月/日精度區間——不能拖動，見類別文件
+         「刻意的 V1 範圍限制」說明。 -->
+    <div class="time-scrubber-sub-axis" aria-label="事件精細時間軸">
+      <span class="time-scrubber-sub-axis-name">{{ event.name }}</span>
+      <span class="time-scrubber-sub-axis-date"><app-edtf-date [value]="event.startEdtf" /></span>
+      <span class="time-scrubber-sub-axis-bar" aria-hidden="true"></span>
+      <span class="time-scrubber-sub-axis-date"><app-edtf-date [value]="event.endEdtf" /></span>
+    </div>
+  }
 </div>

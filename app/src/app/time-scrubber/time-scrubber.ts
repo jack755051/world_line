@@ -5,6 +5,9 @@ import { debounceTime } from 'rxjs';
 import { TimelineState } from '../core/time/timeline-state';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
+import { EventFocusState } from '../core/event/event-focus-state';
+import { parseEdtf, type ParsedEdtf } from '../core/time/edtf-display';
+import { EdtfDateComponent } from '../edtf-date/edtf-date';
 
 /** `GET /api/v1/reign-eras?year=` 回應的形狀（見 `api/Contracts/ReignEraResponse.cs`）。
     不支援 `?locale=`——`reign_eras` 不在雙語內容範圍內（task 2.16 拍板），`eraName`
@@ -26,9 +29,29 @@ interface ApiEnvelope<T> {
 /**
  * 時間軸 Scrubber 主軸（任務 3.3，憲法 §9「非離散跳轉」）。用原生
  * `<input type="range">`——瀏覽器原生支援真正連續拖動（不會卡固定格），鍵盤也能操作
- * （方向鍵微調），不需要自己刻一套拖曳手勢邏輯。**副軸（月/日展開，任務 3.4）刻意不在
- * 這裡做**：3.4 的用途是「聚焦近代事件時下方展開精細軸」，但事件資料（`historical_events`,
- * task 2.10+）根本還沒做，沒有東西可以展開，先不做無資料可展示的 UI。
+ * （方向鍵微調），不需要自己刻一套拖曳手勢邏輯。
+ *
+ * **副軸（月/日展開，任務 3.4，notes §六）——2026-08-31 補做**：原本卡在「事件資料
+ * （`historical_events`，task 2.10+）還沒做，沒有東西可以展開」，2.10 做完後回頭發現
+ * 種子資料的 7 筆事件全部只有年精度 EDTF（例如 `"0208"`），沒有一筆真的細到月/日——
+ * 於是先補了一筆有查證過的真實史料事件（`event-han-abdicates-wei-220`，見
+ * `api/Data/SeedData.cs` 該筆的來源說明），3.4 才有真實資料可以展開/驗證，不是憑空
+ * 刻一個測不出真假的 UI 骨架。
+ * **顯示範圍刻意限縮**：副軸只在「使用者展開的那一筆事件的 `startEdtf`/`endEdtf` 至少
+ * 一邊有月/日精度」時才顯示（`subAxis()` 用既有的 `parseEdtf()` 判斷，不新增一套解析
+ * 邏輯）——年精度事件（例如赤壁之戰的 `"0208"`）沒有東西可以展開，維持原本「不做無
+ * 資料可展示的 UI」的原則，不會每筆事件展開都跟著長出一段沒有內容的空軸。
+ * **刻意的 V1 範圍限制（跟 notes §六/§七的完整願景不同）**：副軸目前只是唯讀的
+ * 「這筆事件精確到哪一天／哪個月」視覺標示（重用 `EdtfDateComponent`，跟事件面板顯示
+ * 日期同一個元件、同一套格式化規則），**不能拖動、也不會改變地圖顯示**——`TimelineState.
+ * year` 跟 `/api/v1/territories?year=` 都只認整數年，這個 app 目前完全沒有「日精度
+ * 疆域/事件標記圖層」可以讓拖動副軸這件事產生任何實際效果；notes §六/§七構想的「拖到
+ * 某一天→地圖疊事件標記點/行軍箭頭」需要那些圖層先存在才有意義，記在 PRD §12 留給
+ * 之後（很可能是 M4）有那些資料時再回頭做，不在這裡先刻一個「拖了也沒反應」的假互動
+ * 騙使用者。**收合手風琴時自動收起**：`EventFocusState.expandedEvent` 由
+ * `RegimeEventPanelComponent` 的 `toggleEvent()` 廣播，兩個元件是同一層級的兄弟元件
+ * （都掛在 `App` 底下），不是父子關係，用 service + signal 集中管理，同 `RegimeFocusState`
+ * 既有模式。
  *
  * 拖動只更新 `TimelineState.year` 這個 signal 本身——實際觸發地圖重新查詢/渲染的
  * debounce 邏輯在 `MapComponent`（見 map.ts），不是這裡的責任：這個元件只管「使用者
@@ -47,12 +70,14 @@ interface ApiEnvelope<T> {
 @Component({
   selector: 'app-time-scrubber',
   standalone: true,
+  imports: [EdtfDateComponent],
   templateUrl: './time-scrubber.html',
   styleUrl: './time-scrubber.scss',
 })
 export class TimeScrubberComponent {
   protected readonly timeline = inject(TimelineState);
   private readonly focusState = inject(RegimeFocusState);
+  private readonly eventFocus = inject(EventFocusState);
   private readonly http = inject(HttpClient);
   private readonly destroyRef = inject(DestroyRef);
   private readonly regimeDirectory = inject(RegimeDirectoryService);
@@ -100,6 +125,21 @@ export class TimeScrubberComponent {
     const leftPercent = ((clampedStart - this.minYear) / totalSpan) * 100;
     const widthPercent = Math.max(((clampedEnd - clampedStart) / totalSpan) * 100, 0);
     return { left: `${leftPercent}%`, width: `${widthPercent}%` };
+  });
+
+  /** task 3.4：副軸只在展開事件的 `startEdtf`/`endEdtf` 至少一邊有月/日精度時才顯示
+      （見類別文件說明）——回傳事件本身（不是布林值），模板直接拿 `startEdtf`/
+      `endEdtf` 餵給 `EdtfDateComponent`，不用另外重複解析一次。 */
+  protected readonly subAxis = computed(() => {
+    const event = this.eventFocus.expandedEvent();
+    if (!event) {
+      return null;
+    }
+    const hasSubYearPrecision = (raw: string): boolean => {
+      const parsed: ParsedEdtf | null = parseEdtf(raw);
+      return parsed !== null && parsed.precision !== 'year';
+    };
+    return hasSubYearPrecision(event.startEdtf) || hasSubYearPrecision(event.endEdtf) ? event : null;
   });
 
   protected onInput(event: Event): void {

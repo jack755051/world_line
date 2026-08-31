@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
+import { EventFocusState } from '../core/event/event-focus-state';
 import { EdtfDateComponent } from '../edtf-date/edtf-date';
 
 /** `ApiResponse<T>` 的最小形狀，同專案內其他直接打 API 的元件（`map.ts`/
@@ -201,6 +202,7 @@ export class RegimeEventPanelComponent {
   private readonly focusState = inject(RegimeFocusState);
   private readonly directory = inject(RegimeDirectoryService);
   private readonly timeline = inject(TimelineState);
+  private readonly eventFocus = inject(EventFocusState);
   private readonly http = inject(HttpClient);
 
   protected readonly focusedRegimeId = this.focusState.focusedRegimeId;
@@ -257,6 +259,7 @@ export class RegimeEventPanelComponent {
     toObservable(this.focusedRegimeId).subscribe((id) => {
       this.expandedEventId.set(null);
       this.expandedDetail.set(null);
+      this.eventFocus.expandedEvent.set(null); // task 3.4：換/取消聚焦政權時，副軸也要跟著收起來
       this.detailCache.clear();
       if (!id) {
         this.allEvents.set([]);
@@ -291,11 +294,21 @@ export class RegimeEventPanelComponent {
       this.expandedEventId.set(null);
       this.expandedDetail.set(null);
       this.activeTabId.set(null);
+      this.eventFocus.expandedEvent.set(null); // task 3.4：收合手風琴，副軸跟著收起來
       return;
     }
 
     this.expandedEventId.set(event.id);
     this.activeTabId.set(null); // 每次展開新事件都回到「客觀經過概要」分頁
+    // task 3.4：把展開的事件廣播給 TimeScrubberComponent（副軸），讓它自己判斷這筆
+    // 事件的 startEdtf/endEdtf 有沒有月/日精度可以展開——這裡不用等 API 回來的詳情，
+    // 列表列本身（`RegimeEventSummary`）已經有這兩個欄位。
+    this.eventFocus.expandedEvent.set({
+      id: event.id,
+      name: event.name,
+      startEdtf: event.startEdtf,
+      endEdtf: event.endEdtf,
+    });
 
     const cached = this.detailCache.get(event.id);
     if (cached) {

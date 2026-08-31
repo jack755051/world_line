@@ -121,3 +121,33 @@ test('政權事件面板展開手風琴時，卡片改為釘在畫面正中央�
   expect(Math.abs(panelBox!.x + panelBox!.width / 2 - viewport.width / 2)).toBeLessThan(5);
   expect(Math.abs(panelBox!.y + panelBox!.height / 2 - viewport.height / 2)).toBeLessThan(5);
 });
+
+/**
+ * 2026-08-31：task 3.4（時間軸 Scrubber 副軸）——展開有月/日精度的事件時，主軸下方
+ * 應該顯示精細軸；展開只有年精度的事件時不應該顯示（沒有月/日可以展開，見
+ * `time-scrubber.ts` 類別文件說明）。拿真實種子資料當測試對象：
+ * `event-han-abdicates-wei-220`（`0220-11-25`～`0220-12-11`，唯一補上月/日精度查證
+ * 過的事件）vs `event-chibi-208`（赤壁之戰，`"0208"` 只有年精度）。
+ */
+test('政權事件面板展開有月/日精度的事件時，時間拉桿下方顯示副軸；年精度事件不顯示', async ({ page }) => {
+  await waitForInitialTerritories(page);
+  await clickTerritoryAt(page, 113.5, 37); // 魏的疆域中心
+
+  const focusPanel = page.locator('.regime-focus-panel');
+  await expect(focusPanel.locator('h2')).toHaveText('魏');
+
+  const eventPanel = page.locator('.regime-event-panel');
+  const subAxis = page.locator('.time-scrubber-sub-axis');
+  await expect(subAxis).toHaveCount(0); // 手風琴還沒展開，不該有副軸
+
+  const abdicationTrigger = eventPanel.locator('.regime-event-panel-trigger', { hasText: '漢獻帝禪位於魏' });
+  await abdicationTrigger.click();
+  await expect(eventPanel.locator('.regime-event-panel-detail')).toBeVisible();
+  await expect(subAxis).toBeVisible();
+  await expect(subAxis).toContainText('漢獻帝禪位於魏（曹丕受禪）');
+  await expect(subAxis).toContainText('11 月 25 日');
+  await expect(subAxis).toContainText('12 月 11 日');
+
+  await abdicationTrigger.click(); // 收合
+  await expect(subAxis).toHaveCount(0);
+});

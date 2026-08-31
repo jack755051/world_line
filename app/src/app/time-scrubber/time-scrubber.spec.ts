@@ -4,6 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TimeScrubberComponent } from './time-scrubber';
 import { TimelineState } from '../core/time/timeline-state';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
+import { EventFocusState } from '../core/event/event-focus-state';
 
 describe('TimeScrubberComponent', () => {
   let httpMock: HttpTestingController;
@@ -116,6 +117,68 @@ describe('TimeScrubberComponent', () => {
       const expectedWidth = (30 / totalSpan) * 100;
       expect(band.style.left).toBe(`${expectedLeft}%`);
       expect(band.style.width).toBe(`${expectedWidth}%`);
+    });
+  });
+
+  describe('副軸（任務 3.4）', () => {
+    it('沒有展開任何事件時，不顯示副軸', () => {
+      const fixture = createScrubber();
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.time-scrubber-sub-axis')).toBeNull();
+    });
+
+    it('展開的事件只有年精度時，不顯示副軸（沒有月/日可以展開）', () => {
+      const eventFocus = TestBed.inject(EventFocusState);
+      eventFocus.expandedEvent.set({
+        id: 'event-chibi-208',
+        name: '赤壁之戰',
+        startEdtf: '0208',
+        endEdtf: '0208',
+      });
+
+      const fixture = createScrubber();
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.time-scrubber-sub-axis')).toBeNull();
+    });
+
+    it('展開的事件有月/日精度時，顯示副軸，含事件名稱與起訖日期', () => {
+      const eventFocus = TestBed.inject(EventFocusState);
+      eventFocus.expandedEvent.set({
+        id: 'event-han-abdicates-wei-220',
+        name: '漢獻帝禪位於魏（曹丕受禪）',
+        startEdtf: '0220-11-25',
+        endEdtf: '0220-12-11',
+      });
+
+      const fixture = createScrubber();
+      fixture.detectChanges();
+
+      const subAxis: HTMLElement = fixture.nativeElement.querySelector('.time-scrubber-sub-axis');
+      expect(subAxis).not.toBeNull();
+      expect(subAxis.textContent).toContain('漢獻帝禪位於魏（曹丕受禪）');
+      expect(subAxis.textContent).toContain('11 月 25 日');
+      expect(subAxis.textContent).toContain('12 月 11 日');
+    });
+
+    it('收合事件（EventFocusState 清空）後，副軸跟著收起來', () => {
+      const eventFocus = TestBed.inject(EventFocusState);
+      eventFocus.expandedEvent.set({
+        id: 'event-han-abdicates-wei-220',
+        name: '漢獻帝禪位於魏（曹丕受禪）',
+        startEdtf: '0220-11-25',
+        endEdtf: '0220-12-11',
+      });
+
+      const fixture = createScrubber();
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('.time-scrubber-sub-axis')).not.toBeNull();
+
+      eventFocus.expandedEvent.set(null);
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.time-scrubber-sub-axis')).toBeNull();
     });
   });
 

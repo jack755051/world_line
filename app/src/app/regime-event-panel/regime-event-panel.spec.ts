@@ -5,6 +5,7 @@ import { RegimeEventPanelComponent } from './regime-event-panel';
 import { RegimeFocusState } from '../core/regime/regime-focus-state';
 import { RegimeDirectoryService } from '../core/regime/regime-directory.service';
 import { TimelineState } from '../core/time/timeline-state';
+import { EventFocusState } from '../core/event/event-focus-state';
 
 describe('RegimeEventPanelComponent', () => {
   let httpMock: HttpTestingController;
@@ -217,6 +218,97 @@ describe('RegimeEventPanelComponent', () => {
     expect(detailText).toContain('黃蓋詐降');
     expect(detailText).toContain('歷史影響');
     expect(detailText).toContain('奠定三國鼎立');
+  });
+
+  describe('task 3.4：廣播展開事件給 TimeScrubberComponent（副軸）', () => {
+    it('展開手風琴時，把事件的 id/name/startEdtf/endEdtf 寫進 EventFocusState', () => {
+      focusAndFlushTerritories('r-wu');
+
+      const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+      fixture.detectChanges();
+      flushEvents('r-wu', [
+        {
+          eventId: 'event-han-abdicates-wei-220',
+          eventName: '漢獻帝禪位於魏（曹丕受禪）',
+          otherRegimeId: 'r-wei',
+          startEdtf: '0220-11-25',
+          endEdtf: '0220-12-11',
+          startDecimal: 220.899,
+        },
+      ]);
+      fixture.detectChanges();
+
+      const eventFocus = TestBed.inject(EventFocusState);
+      expect(eventFocus.expandedEvent()).toBeNull();
+
+      fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
+      fixture.detectChanges();
+      flushEventDetail('event-han-abdicates-wei-220', {
+        id: 'event-han-abdicates-wei-220',
+        name: '漢獻帝禪位於魏（曹丕受禪）',
+        startEdtf: '0220-11-25',
+        endEdtf: '0220-12-11',
+        sections: null,
+      });
+      fixture.detectChanges();
+
+      expect(eventFocus.expandedEvent()).toEqual({
+        id: 'event-han-abdicates-wei-220',
+        name: '漢獻帝禪位於魏（曹丕受禪）',
+        startEdtf: '0220-11-25',
+        endEdtf: '0220-12-11',
+      });
+    });
+
+    it('再點一次收合手風琴時，清空 EventFocusState', () => {
+      focusAndFlushTerritories('r-wu');
+
+      const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+      fixture.detectChanges();
+      flushEvents('r-wu', [
+        { eventId: 'event-a', eventName: '赤壁之戰', otherRegimeId: 'r-y', startEdtf: '0208', endEdtf: '0208', startDecimal: 208 },
+      ]);
+      fixture.detectChanges();
+
+      const trigger: HTMLButtonElement = fixture.nativeElement.querySelector('.regime-event-panel-trigger');
+      trigger.click();
+      fixture.detectChanges();
+      flushEventDetail('event-a', { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null });
+      fixture.detectChanges();
+
+      const eventFocus = TestBed.inject(EventFocusState);
+      expect(eventFocus.expandedEvent()).not.toBeNull();
+
+      trigger.click(); // 再點一次收合
+      fixture.detectChanges();
+
+      expect(eventFocus.expandedEvent()).toBeNull();
+    });
+
+    it('切換聚焦的政權時，也清空 EventFocusState（不留著上一個政權展開的事件）', () => {
+      focusAndFlushTerritories('r-wu');
+
+      const fixture = TestBed.createComponent(RegimeEventPanelComponent);
+      fixture.detectChanges();
+      flushEvents('r-wu', [
+        { eventId: 'event-a', eventName: '赤壁之戰', otherRegimeId: 'r-y', startEdtf: '0208', endEdtf: '0208', startDecimal: 208 },
+      ]);
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('.regime-event-panel-trigger').click();
+      fixture.detectChanges();
+      flushEventDetail('event-a', { id: 'event-a', name: '赤壁之戰', startEdtf: '0208', endEdtf: '0208', sections: null });
+      fixture.detectChanges();
+
+      const eventFocus = TestBed.inject(EventFocusState);
+      expect(eventFocus.expandedEvent()).not.toBeNull();
+
+      const focusState = TestBed.inject(RegimeFocusState);
+      focusState.toggle('r-wu'); // 取消聚焦
+      fixture.detectChanges();
+
+      expect(eventFocus.expandedEvent()).toBeNull();
+    });
   });
 
   it('展開後點擊「跳到此年份」按鈕，時間拉桿才會跳到事件年份', () => {

@@ -3,12 +3,21 @@
 }
 
 .time-scrubber {
+  // task 3.4：改成直向排列，副軸（.time-scrubber-sub-axis）展開時疊在主軸下方，
+  // 不是塞進同一行——原本的主軸/年份顯示搬進 .time-scrubber-main-row，維持原本的
+  // 水平排列不變。
   display: flex;
-  align-items: center;
-  gap: var(--wl-space-3);
+  flex-direction: column;
+  gap: var(--wl-space-2);
   padding: var(--wl-space-3) var(--wl-space-4);
   background: var(--wl-surface);
   border-top: 1px solid var(--wl-border-hairline);
+}
+
+.time-scrubber-main-row {
+  display: flex;
+  align-items: center;
+  gap: var(--wl-space-3);
 }
 
 .time-scrubber-track-wrapper {
@@ -59,4 +68,36 @@
   color: var(--wl-ink-secondary);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+// task 3.4：副軸——唯讀顯示展開事件的月/日精度範圍，視覺上刻意做得比主軸樸素、次要
+// （細線＋小字），不是另一個可以拖動的滑桿，避免使用者誤以為這裡可以互動（見
+// time-scrubber.ts 類別文件「刻意的 V1 範圍限制」說明）。
+.time-scrubber-sub-axis {
+  display: flex;
+  align-items: center;
+  gap: var(--wl-space-2);
+  padding-left: var(--wl-space-2);
+  font-family: var(--wl-font-family);
+  font-size: var(--wl-font-size-xs);
+  color: var(--wl-ink-secondary);
+}
+
+.time-scrubber-sub-axis-name {
+  flex: 0 0 auto;
+  font-weight: var(--wl-font-weight-medium);
+  color: var(--wl-ink-primary);
+}
+
+.time-scrubber-sub-axis-date {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.time-scrubber-sub-axis-bar {
+  flex: 1 1 auto;
+  height: 2px;
+  min-width: var(--wl-space-4);
+  background: var(--wl-border-hairline);
 }

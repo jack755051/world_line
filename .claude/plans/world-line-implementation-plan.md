@@ -287,7 +287,35 @@ related_constitution: .claude/constitutions/world-line.md
 | [x] | 3.1 | 前端 XState 政權狀態機定義（UI 層防呆，非信任來源） | 前端 state machine 定義檔 | §5 | 1 個 |
 | [x] | 3.2 | MapLibre GL JS 整合 + 底圖 | 地圖能顯示、能平移縮放 | §5、§8 | 1 個 |
 | [x] | 3.3 | 時間軸 Scrubber 主軸（世紀/年） | 可連續拖動元件，對應憲法 §9「非離散跳轉」 | §8 notes §六 | 1 個 |
-| [ ] | 3.4 | 時間軸 Scrubber 副軸（月/日展開） | 聚焦近代事件時下方展開精細軸。**刻意不做**：用途是「聚焦近代事件時下方展開精細軸」，但事件資料（`historical_events`，task 2.10+）根本還沒做，沒有東西可以展開——不做無資料可展示的 UI，等事件端點做出來、真的有東西要展開時再回頭做 | §8 notes §六 | 1 個（依賴 3.3） |
+| [x] | 3.4 | 時間軸 Scrubber 副軸（月/日展開） | 聚焦近代事件時下方展開精細軸 | §8 notes §六 | 1 個（依賴 3.3） |
+
+> **2026-08-31 完成**：原本擱置理由是「事件資料（2.10+）還沒做」，但 2.10 做完後回頭盤點
+> 發現一個新卡點——種子資料的 7 筆事件全部只有年精度 EDTF（`"0208"`/`"0220"`/`"0265"`
+> 等），沒有一筆真的細到月/日，3.4 仍然沒有真實資料可以展開/驗證。**先補一筆查證過的
+> 真實史料，不是憑空刻一個測不出真假的 UI 骨架**：`event-han-abdicates-wei-220`（漢獻帝
+> 禪位於魏）改成 `0220-11-25`～`0220-12-11`（延康元年十月乙卯日下詔禪位、十月二十九日
+> 曹丕正式受禪即位，換算公曆日期跟英文維基百科 Emperor Xian of Han／Cao Pi 兩篇條目
+> 互相印證，見 `api/Data/SeedData.cs` 該筆的來源與曆法系統警語說明——這裡用的是西方
+> 史學對 1582 年前日期的儒略曆慣例標示法，跟 `NodaTime` 內部拿 ISO/proleptic Gregorian
+> 曆算 day-of-year 小數這個年代有約 2 天系統性落差，對地圖動畫拉桿定位可忽略，但不是
+> 「精確到儒略日」等級的換算，記在 PRD §12 既有的曆法系統 TODO 底下，不是新問題）。
+>
+> **實作**：新增 `EventFocusState`（`app/src/app/core/event/event-focus-state.ts`）
+> 當橋接——`RegimeEventPanelComponent` 展開/收合手風琴時廣播目前展開的事件
+> （`id`/`name`/`startEdtf`/`endEdtf`），`TimeScrubberComponent` 訂閱後用既有的
+> `parseEdtf()`（task 3.10 已有）判斷 `startEdtf`/`endEdtf` 至少一邊有月/日精度時才在
+> 主軸下方顯示副軸（重用 `EdtfDateComponent` 顯示日期，跟事件面板本身同一套格式化規則，
+> 不重做一次）；年精度事件（例如赤壁之戰）展開時不顯示，維持「不做無資料可展示的 UI」
+> 原則。**刻意的 V1 範圍限制**（跟 notes §六/§七完整願景不同，已在 `time-scrubber.ts`
+> 類別文件記錄）：副軸目前是唯讀顯示，**不能拖動、也不會改變地圖**——`TimelineState.
+> year`／`/api/v1/territories?year=` 只認整數年，這個 app 完全沒有日精度疆域/事件標記
+> 圖層可以讓拖動副軸產生任何實際效果；notes 構想的「拖到某一天→地圖疊事件標記點/行軍
+> 箭頭」需要那些圖層先存在才有意義，留給之後（很可能是 M4）有那些資料時再做，不在這裡
+> 刻一個「拖了也沒反應」的假互動。已用 `npm test`（243/243，新增 7 條涵蓋
+> `RegimeEventPanelComponent` 廣播/收合/切換聚焦清空三種情境＋`TimeScrubberComponent`
+> 副軸顯示/不顯示/收合三種情境）、`npx playwright test`（7/7，新增一條拿
+> `event-han-abdicates-wei-220` vs 赤壁之戰兩個真實事件對照驗證）、`ng build`（clean）、
+> `docker compose up -d --build frontend backend`＋curl／截圖對真實容器驗證。
 | [x] | 3.5 | 政權疆域圖層渲染（基礎版，GeoJSON + MapLibre filter expressions） | 拖動時間拉桿時，依快照篩出當下應顯示的疆域（尚未做形變，見 3.6）。**部分完成（2026-08-29）**：資料管線已打通並實際渲染出真的疆域形狀（見下方說明），**尚未完成的是「拖動時間拉桿換年份」這件事本身**——因為時間拉桿（3.3/3.4）根本還沒做，目前是固定年份（225，寫死在 `MapComponent.TERRITORY_YEAR`），等 3.3/3.4 做完、真的有拉桿可以拖，再回頭把這裡改成拉桿即時觸發重新查詢/重新著色，才算完整達成本任務的驗收標準，不提前打勾。已完成的部分：`app/src/app/core/geometry/territory-styling.ts`（`assignTerritoryColorSlots()` 串接 `territory-adjacency.ts`＋`graph-coloring.ts`，把色格索引寫回 GeoJSON feature properties；`buildColorSlotMatchExpression()` 組出 MapLibre `fill-color` match expression）、`app/src/app/core/design/territory-colors.ts`（**政權識別色實際色碼清單已拍板**，見下方說明）、`MapComponent` 接上 `HttpClient` 打 `GET /api/v1/territories?year=...`，`map.on('load', ...)` 後渲染 `territories-fill`（依色格著色）+ `territories-border`（統一中性色）兩個圖層。**已修正一個先前記錄有誤的色盲安全性判斷**：先前記錄「因為這裡是真正算相鄰關係後才分配，只需要『相鄰配對』寬鬆標準，8 色都能過」——這個推論套用錯了 dataviz 技能的 `--pairs adjacent` 模式（那是給堆疊圖/折線圖「畫面上只有固定順序相鄰的顏色會真的貼在一起」的圖表用的，地圖是任意拓撲，不適用）。實測分類色第 3-8 格（6 色）跑 `--pairs all`（正確的嚴格標準）會 FAIL，拿掉 magenta 之後剩下 5 色（aqua/yellow/green/violet/red）全數過關，已改用這 5 色，詳見 `territory-colors.ts` 的驗證記錄。**已用真實瀏覽器＋容器驗證**：`docker compose up -d --build frontend backend`、curl 確認部署的 JS bundle 含新程式碼、API proxy 正常；`ng build`/`ng test`（59/59，含新增的 `territory-styling.spec.ts`＋改寫過的 `map.spec.ts`——過程中發現並修正一個測試假象：舊版 `FakeMap` mock 沒有 `on()` 方法，`initMap()` 呼叫 `.on('load', ...)` 時拋出的例外被 Angular 的 `afterNextRender` 機制吞掉、沒有讓測試失敗，導致先前的測試「綠燈但沒有真的驗證到」，已補上完整的 `on()`/`addSource()`/`addLayer()` mock 並用 `HttpTestingController` 驗證真正的請求/渲染流程）。**未做到瀏覽器截圖層級的目視驗證**（畫面實際顏色/形狀），因為這次對話環境沒有連上 Chrome 擴充功能，建議之後找機會實際看一眼 | Story 1 | 1 個 |
 
 > **2026-08-29 追加（同一天，使用者實機看到三個矩形後回報「沒有標示，也沒有地圖」）**：釐清了兩件事——(1) 沒有地圖（海岸線/地名）是任務 3.2 已經確認過的刻意決定，不是還沒載入好；(2) 沒有標示是因為 `territories` 端點本來就沒有政權名稱（只有 `regimeId`），這個缺口用 task 2.4（見上）補上後，接著在前端加了政權名稱標籤：`app/src/app/core/geometry/territory-labels.ts`（`computeTerritoryLabelPoints()`，用 Turf.js `centroid` 算每個政權的標籤定位點，同一政權多筆疆域快照只標一次）、`MapComponent` 改用 `forkJoin` 同時打 `territories`＋`regimes`（不加 `?year=` 一次拿全部政權建好 id→名稱對照表），`renderLabels()` 用 `maplibregl.Marker` 掛真正的 HTML 元素顯示政權名稱。**刻意不用 MapLibre 原生 symbol 圖層的 `text-field`**——那需要外部字型 glyphs（PBF）服務，違反任務 3.2 已拍板的「零外部依賴」原則，CJK 字型的 glyphs 又特別龐大，自架也不划算；改用 `Marker` 直接吃瀏覽器原生字型渲染，樣式檔 `app/src/app/map/map-labels.global.scss`（**必須是全域樣式，不能放進元件範圍的 `map.scss`**——`Marker` 的 DOM 元素是 MapLibre 自己插入頁面的，不會拿到 Angular Emulated encapsulation 的 host 屬性，跟 `maplibre-gl.css` 本身必須全域載入同一個道理），用白色 `text-shadow` 模擬地圖標籤常見的 halo 效果，不管疊在哪個色格上都看得清楚。已用 `ng build`/`ng test`（62/62，新增 `territory-labels.spec.ts`＋`map.spec.ts` 補上 `FakeMarker` mock）、`docker compose up -d --build frontend`＋curl 驗證部署的 bundle 含新程式碼、`/api/v1/regimes` proxy 正常。

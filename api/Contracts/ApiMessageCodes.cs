@@ -15,6 +15,7 @@ public static class ApiMessageCodes
     // --- 成功 ---
     public const string FetchSuccess = "FETCH_SUCCESS";
     public const string CreateSuccess = "CREATE_SUCCESS"; // task 2.10：第一個真正落地的 POST 端點
+    public const string UpdateSuccess = "UPDATE_SUCCESS"; // task 2.5：第一個真正落地的 PATCH 端點
 
     // --- 通用錯誤（框架自動觸發，或沒有更具體代碼可用時的 fallback） ---
     public const string ValidationError = "VALIDATION_ERROR"; // [ApiController] 自動 model-state 驗證失敗
@@ -38,4 +39,11 @@ public static class ApiMessageCodes
     public const string InvalidAliasType = "INVALID_ALIAS_TYPE"; // task 2.9a：aliasType 有值但不是 RegimeAliasType 四個受控值之一
     public const string PerspectivePartyRequired = "PERSPECTIVE_PARTY_REQUIRED"; // task 2.12：regimeId 跟 observerCategoryId 不能同時是 null，至少要知道這是誰的視角
     public const string ObserverCategoryNotFound = "OBSERVER_CATEGORY_NOT_FOUND"; // task 2.12：observerCategoryId 指到不存在的類別
+    public const string InvalidOriginLinkage = "INVALID_ORIGIN_LINKAGE"; // task 2.5：RegimeTransitionValidator.ValidateOriginLinkage 判定不合法（見該方法的各種原因）
+    public const string PredecessorRegimeNotFound = "PREDECESSOR_REGIME_NOT_FOUND"; // task 2.5：predecessorRegimeId 指到不存在的政權
+    public const string PredecessorAlreadyConquered = "PREDECESSOR_ALREADY_CONQUERED"; // task 2.5：predecessor 的狀態已經是 conquered，不能再當分裂/禪讓的前身（見任務描述的具體例子）
+    public const string InvalidStatusTransition = "INVALID_STATUS_TRANSITION"; // task 2.5：RegimeTransitionValidator.ValidateStatusTransition 判定不合法（見該方法的各種原因）
+    public const string DestroyedByRegimeRequired = "DESTROYED_BY_REGIME_REQUIRED"; // task 2.5：狀態轉成 conquered 時必須指明是被誰消滅的
+    public const string DestroyedByRegimeNotFound = "DESTROYED_BY_REGIME_NOT_FOUND"; // task 2.5：destroyedByRegimeId 指到不存在的政權
+    public const string DestroyedByRegimeOnlyForConquered = "DESTROYED_BY_REGIME_ONLY_FOR_CONQUERED"; // task 2.5：狀態不是 conquered 卻帶了 destroyedByRegimeId，語意矛盾（見 SeedData.cs 既有慣例：只有 conquered 才會設這個欄位）
 }

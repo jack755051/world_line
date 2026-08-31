@@ -14,24 +14,36 @@ namespace WorldLine.Api.Data;
 /// 修正（不覆蓋刪除原記錄）＋ PRD §12 source/citation model（`Source`/
 /// `RegimeTerritoryCitation`，2026-08-31 落地）記錄考證過程。
 ///
-/// **2026-08-31 第一筆真實資料：吳（西元 225 年）疆域**——使用者問「東吳的矩形什麼時候
-/// 能換成真的」，經過一輪 pilot（先試魏失敗，CHGIS 對魏核心地盤幾乎沒有三國時期的
-/// 資料，改用吳成功）之後正式匯入。幾何資料放 `Data/RealData/wu-225-territory.geojson`
-/// （不寫成 C# 字面值——82KB、1951 個頂點，寫進程式碼可讀性太差），是用 CHGIS v6 Time
-/// Series Prefecture Polygons（Harvard Dataverse DOI 10.7910/DVN/I0Q7SM）的 12 筆
-/// 郡級記錄（武陵/長沙/零陵/桂陽/丹陽/會稽/吳郡/豫章/廬陵/合浦/蒼梧/南海，皆與西元
-/// 225 年重疊）用 shapely `unary_union` dissolve、再用 Douglas-Peucker 演算法簡化
-/// （容許誤差 0.02 度）算出來的，完整考證過程記在下方 `evidenceNote`。
-///
-/// **冪等判斷**：檢查有沒有已存在的 `Source.Title` 等於這筆匯入用的資料集名稱——不是
-/// 檢查「regimes 存不存在」（那是 `SeedData.SeedAsync` 自己的冪等判斷，兩者範圍不同：
-/// 這個方法在 `SeedData.SeedAsync` 之後才跑，每次啟動都要能正確判斷「這筆真實資料
-/// 匯入過了沒」，不能因為 regimes 表已經有資料就整批跳過）。
+/// **2026-08-31 曾經嘗試、後來收回的一批資料**：一度想用 Wikimedia Commons 的公共
+/// 領域插圖《三國時期行政區劃圖.svg》（座標用「對比已驗證的吳國 bbox 反推仿射變換」
+/// 的方式估算）補上魏／蜀漢，程式碼一度寫到能正確匯入。但查證這張圖的檔案來源紀錄後
+/// 發現：無論是這張 SVG 或它的前身 PNG，「來源」欄位都只寫「自製」，完全沒有標注
+/// 繪製時依據了哪個地圖集或史料——不是「路人畫的」這麼單純，是連依據都查不到，可信度
+/// 落在「有依據可查」跟「純粹猜測」的模糊地帶，使用者確認不採用，已改回矩形（見
+/// implementation plan §5 Backlog 該筆記錄）。中研院 CCTS（底層真的基於譚其驤《中國
+/// 歷史地圖集》）是後續評估中的候選，但授權條款需要使用者自己申請/簽署才能確認能不能
+/// 用，不在這裡預先假設。
 /// </summary>
 public static class RealDataSeed
 {
     private const string ChgisV6SourceTitle = "CHGIS Version 6: Time Series Prefecture Polygons";
 
+    /// <summary>
+    /// **2026-08-31 第一筆真實資料：吳（西元 225 年）疆域**——使用者問「東吳的矩形什麼
+    /// 時候能換成真的」，經過一輪 pilot（先試魏失敗，CHGIS 對魏核心地盤幾乎沒有三國
+    /// 時期的資料，改用吳成功）之後正式匯入。幾何資料放
+    /// `Data/RealData/wu-225-territory.geojson`（不寫成 C# 字面值——82KB、1951 個
+    /// 頂點，寫進程式碼可讀性太差），是用 CHGIS v6 Time Series Prefecture Polygons
+    /// （Harvard Dataverse DOI 10.7910/DVN/I0Q7SM）的 12 筆郡級記錄（武陵/長沙/零陵/
+    /// 桂陽/丹陽/會稽/吳郡/豫章/廬陵/合浦/蒼梧/南海，皆與西元 225 年重疊）用 shapely
+    /// `unary_union` dissolve、再用 Douglas-Peucker 演算法簡化（容許誤差 0.02 度）
+    /// 算出來的，完整考證過程記在下方 `evidenceNote`。
+    ///
+    /// 冪等判斷：檢查有沒有已存在的 `Source.Title` 等於這筆匯入用的資料集名稱——不是
+    /// 檢查「regimes 存不存在」（那是 `SeedData.SeedAsync` 自己的冪等判斷，兩者範圍
+    /// 不同：這個方法在 `SeedData.SeedAsync` 之後才跑，每次啟動都要能正確判斷「這筆
+    /// 真實資料匯入過了沒」，不能因為 regimes 表已經有資料就整批跳過）。
+    /// </summary>
     public static async Task SeedAsync(WorldLineDbContext db)
     {
         if (await db.Sources.AnyAsync(s => s.Title == ChgisV6SourceTitle))
@@ -86,6 +98,7 @@ public static class RealDataSeed
             AccessedAt = new DateOnly(2026, 8, 31),
             CreatedAt = DateTimeOffset.UtcNow,
         };
+        db.Sources.Add(source);
 
         var replacement = new RegimeTerritory
         {
@@ -102,7 +115,6 @@ public static class RealDataSeed
         target.CorrectionReason = "以 CHGIS v6 Time Series Prefecture Polygons 取代示意矩形，詳見對應的 regime_territory_citations.evidence_note";
         target.CorrectedAt = DateTimeOffset.UtcNow;
 
-        db.Sources.Add(source);
         db.RegimeTerritoryCitations.Add(new RegimeTerritoryCitation
         {
             Id = Guid.NewGuid(),

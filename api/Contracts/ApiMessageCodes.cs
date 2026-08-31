@@ -49,4 +49,5 @@ public static class ApiMessageCodes
     public const string TerritoryEndBeforeStart = "TERRITORY_END_BEFORE_START"; // task 2.7：endYear 沒有晚於 startYear
     public const string TerritoryNotFound = "TERRITORY_NOT_FOUND"; // task 2.7：/territories/:id/correct 指到不存在的疆域快照
     public const string TerritoryAlreadySuperseded = "TERRITORY_ALREADY_SUPERSEDED"; // task 2.7：I5 版本鏈——這筆已經被修正過一次，不能再對它修正（要修正的話對現在最新的那筆下手）
+    public const string PlaceNameNotFound = "PLACE_NAME_NOT_FOUND"; // task 2.9b
 }

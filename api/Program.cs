@@ -58,6 +58,7 @@ if (app.Environment.IsDevelopment())
     var seedDb = seedScope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
     await seedDb.Database.MigrateAsync();
     await SeedData.SeedAsync(seedDb);
+    await RealDataSeed.SeedAsync(seedDb); // 真正查證過、附引用來源的正式史料，見該類別文件說明
 }
 
 app.UseExceptionHandler();

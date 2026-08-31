@@ -1401,17 +1401,34 @@ related_constitution: .claude/constitutions/world-line.md
   的記錄）、交趾/九真/日南/鬱林（交州最南端，CHGIS 資料庫範圍本身不涵蓋現在的越南
   地區）——這兩塊之後可能需要另外找資料來源補，不在這次 pilot 範圍內解決。
 
-  **回頭用這個 pilot 設計出的 citation schema 提案**（尚未拍板、尚未實作，等使用者
-  確認要不要現在動工）：`sources` 表（`title`/`author_or_publisher`/
+  **回頭用這個 pilot 設計出的 citation schema，2026-08-31 第三輪已實作並正式匯入**
+  （使用者問「東吳為什麼還是矩形」才發現 pilot 產出只留在暫存目錄，沒有寫回 app，
+  確認要現在建 schema＋正式匯入）：新增 `sources` 表（`title`/`author_or_publisher`/
   `version_or_published_at`/`locator`/`license`/`accessed_at`，對應
-  `docs/data-governance.md`「最低來源紀錄」表格的六個欄位）+ 每個實體各自一張型別化
-  citation join 表（`territory_citations`/`regime_citations`/`event_citations`/...，
-  跟 task 2.16 雙語 schema 同一個「不用單一通用表，各自開型別化 companion 表」的既有
-  慣例，不是這次臨時決定）——每筆 join 列除了指回 `sources`，還要有一個
-  `evidence_note` 文字欄位記錄「這個引用具體支持哪個結論」，這是這次 pilot 實際
-  碰到才發現需要的欄位：光引用「CHGIS v6」這個資料集本身不夠，還要記錄「這次疆域
-  是合併了哪 12 個郡級記錄、用了什麼 GIS 方法、修補過哪些不合法的幾何、還缺哪些
-  郡沒有資料」，這些具體細節才是真正能讓人事後追溯判斷可信度的內容。
+  `docs/data-governance.md`「最低來源紀錄」表格前六欄，migration
+  `AddSourceCitationModel`）+ 5 張型別化 citation join 表（`regime_citations`/
+  `regime_territory_citations`/`reign_era_citations`/`regime_relation_citations`/
+  `historical_event_citations`，對應 PRD §12 原話點名的政權/疆域/年號/關係/事件
+  五種實體，跟 task 2.16 雙語 schema 同一個「不用單一通用表，各自開型別化 companion
+  表」的既有慣例）。每張 join 表除了指回 `sources`，都有一個 `evidence_note` 文字
+  欄位——`Source` 本身刻意不含這欄（見 `Source` 類別文件說明：同一份資料集會被很多筆
+  不同實體引用，具體支持的結論每次都不一樣，硬塞進 `Source` 只會塞出互相矛盾的
+  單一欄位）。**正式匯入吳（西元 225 年）疆域**：新增 `api/Data/RealDataSeed.cs`
+  （跟 `SeedData.cs` 刻意分開一個檔案——後者開頭明講「rough illustrative rectangles,
+  not historically accurate」，混進真實資料會讓這句警語變成謊話），透過 task 2.7
+  的 I5 修正機制把吳 `[222,280)` 那筆示意矩形換成真的多邊形（幾何資料存
+  `Data/RealData/wu-225-territory.geojson`，執行期讀取解析，不寫成 C# 字面值），
+  同時寫入 `Source`（CHGIS v6）+ `RegimeTerritoryCitation`（`evidence_note` 完整記錄
+  合併了哪 12 筆郡級記錄、GIS 方法、修補過的不合法幾何、已知缺口）。冪等判斷用
+  `Sources.Any(Title == 這筆匯入的資料集名稱)`，不是沿用 `SeedData.SeedAsync` 那套
+  「regimes 存在就整批跳過」的判斷（兩者範圍不同，這個方法要在 `SeedData.SeedAsync`
+  之後、每次啟動都能正確判斷這筆真實資料匯入過了沒）。已用**完全重建的資料庫**驗證
+  （`docker compose down postgres && docker volume rm world_line_postgres_data &&
+  docker compose up -d --build postgres backend`，不是沿用已經手動 psql 過的舊資料庫）
+  ——確認從空白資料庫重新跑 migration+seed 也能正確重現同一組真實資料，不是只有我
+  手動下過 SQL 才有效果；`npx playwright test`（7/7）、`npm test`（243/243）全數通過，
+  確認既有 e2e 測試點擊座標 (119,27) 仍落在新多邊形範圍內。已知缺口（南郡、交趾/九真/
+  日南/鬱林）記在 evidence_note 裡，留給之後有新資料來源時再補。
 
 ---
 

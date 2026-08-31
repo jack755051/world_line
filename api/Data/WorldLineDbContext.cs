@@ -31,6 +31,16 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<LineagePresetTranslation> LineagePresetTranslations => Set<LineagePresetTranslation>();
     public DbSet<HistoricalEventControversyTranslation> HistoricalEventControversyTranslations => Set<HistoricalEventControversyTranslation>();
 
+    // PRD §12「source/citation model」TODO（2026-08-31 落地，吳 225 年 pilot 第一次
+    // 真正使用）——一個可重複引用的 Source，各實體各自一張型別化 citation join 表，
+    // 跟上面雙語內容同一個「不共用單一通用表」的既有慣例，見 Source 類別文件說明。
+    public DbSet<Source> Sources => Set<Source>();
+    public DbSet<RegimeCitation> RegimeCitations => Set<RegimeCitation>();
+    public DbSet<RegimeTerritoryCitation> RegimeTerritoryCitations => Set<RegimeTerritoryCitation>();
+    public DbSet<ReignEraCitation> ReignEraCitations => Set<ReignEraCitation>();
+    public DbSet<RegimeRelationCitation> RegimeRelationCitations => Set<RegimeRelationCitation>();
+    public DbSet<HistoricalEventCitation> HistoricalEventCitations => Set<HistoricalEventCitation>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Required so a GiST index can cover a plain (non-range/geometry) column like regime_id

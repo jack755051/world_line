@@ -19,4 +19,10 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="10.0.3" />
   </ItemGroup>
 
+  <!-- 真實史料幾何資料（見 RealDataSeed.cs）——體積太大不適合寫成 C# 字面值，跟一般
+       schema-validation 用的 SeedData.cs 分開存放，執行期讀取解析。 -->
+  <ItemGroup>
+    <Content Include="Data\RealData\**\*.geojson" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

@@ -1069,7 +1069,48 @@ related_constitution: .claude/constitutions/world-line.md
 > spec.ts` 的 `darkenHex()` 測試）不用跟著改，直接驗證這次重構沒有動到行為。已用
 > `ng build`（clean）、`ng test`（225/225，全數延用既有測試，無新增/修改）、
 > `docker compose up -d --build frontend` 重新部署，瀏覽器主控台確認無錯誤。
-| [ ] | 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
+| [x] | 3.16 | E2E 測試主流程（時間拖動→疆域形變→聚焦→事件詳情） | E2E 測試綠燈 | PRD M3 驗收門檻 | 1 個 |
+
+> **2026-08-31 完成**：選 **Playwright**（`app/playwright.config.ts`、
+> `app/e2e/main-flow.spec.ts`）——PRD/notes 都沒有預先拍板過 E2E 框架，動工前先做
+> 一次性 spike 測試比較 Playwright 自己啟動的 Chromium 跟這次對話環境慣用的
+> `claude-in-chrome` 瀏覽器擴充功能自動化：擴充功能開的分頁在這個對話環境裡持續被
+> Chrome 當成背景分頁處理（`document.visibilityState === 'hidden'`），
+> `requestAnimationFrame` 完全不執行，MapLibre 的 WebGL 渲染迴圈永遠完成不了第一幀，
+> `map.on('load')` 永遠不觸發（見 task 3.12/3.13/3.14 完成記錄反覆碰到的同一個環境
+> 限制）；spike 測試證實 Playwright 自己開的分頁 `visibilityState` 正確回傳
+> `'visible'`，`GET /api/v1/territories` 正常發出——**這是這次對話環境裡唯一真的能讓
+> WebGL 地圖跑起來的自動化路徑**，直接決定了框架選擇，不是先比較過幾個框架的功能
+> 才選 Playwright。
+>
+> **主流程測試涵蓋任務名稱裡的四個步驟**（`e2e/main-flow.spec.ts`）：
+> 1. **時間拖動**：把拉桿從預設的 225 年（原生 `<input type=range>` 觸發 `input`
+>    事件模擬拖動）拖到 208 年（赤壁之戰當年）。
+> 2. **疆域形變**：等新年份的 `GET /api/v1/territories?year=208` 回來、等過 task 3.6
+>    的 900ms 形變動畫時間，確認拉桿年份文字同步更新。
+> 3. **聚焦**：點擊吳的疆域（東南角、跟蜀漢/漢不重疊的乾淨區域，避免點到荊州爭議
+>    重疊區造成點擊目標歧義）——**點擊座標不是憑空猜的**，`e2e/helpers/
+>    map-projection.ts` 用 Web Mercator 投影公式（跟 MapLibre 內部演算法一致，
+>    `worldSize = 512 * 2^zoom`）反推「政權疆域中心經緯度」對應的螢幕像素，比對
+>    `MapComponent.initMap()` 寫死的 `center: [110, 32], zoom: 3`。確認政權聚焦面板
+>    正確顯示「吳」。
+> 4. **事件詳情**：政權事件記錄 overlay 應該列出赤壁之戰，點開手風琴後確認 task 3.13
+>    的分頁列（預設「客觀經過概要」）跟 task 2.13 的爭議點區塊都正確渲染——這條測試
+>    同時是這次對話環境唯一一次「事件詳情/多重視角/爭議點」完整流程的真實瀏覽器視覺
+>    驗證（task 3.12/3.13 動工當時都因為上述環境限制沒能做到，只用單元測試涵蓋）。
+>
+> **刻意不用 `data-testid`**：PRD §7 原文「關鍵互動的 data-testid 不在 PRD 預先臆測
+> 名稱，M3 實作元件時依 3.16 E2E 主流程同步定義」——這次盤點發現既有元件的 CSS class
+> 命名（例如 `.regime-event-panel-trigger`）本身已經夠具體穩定、單元測試也一路沿用
+> 同一組 class 當選擇器，另外疊一層 `data-testid` 是重複的識別機制，沿用既有 class
+> 不追加新屬性。
+>
+> `.gitignore` 補上 Playwright 產物（`test-results`/`playwright-report`/
+> `blob-report`）；`package.json` 新增 `npm run e2e` script；`docs/development.md`
+> 補上執行方式，順便更新兩處已經過時的既有段落（「沒有 E2E runner」限制、`ng e2e`
+> FAQ）。已連續執行 3 次確認不 flaky（每次 2.5-2.8 秒），`ng test`（235/235，不受
+> 影響——Angular 的 Vitest 設定本來就只掃 `src/`，不會誤把 `e2e/*.spec.ts` 當成
+> unit test 撿進去）。
 | [x] | 3.17 | 地圖陸地/海洋參考底圖（靜態海岸線 GeoJSON） | 疊一層 Natural Earth 陸地色塊，落實 task 3.2 原本規劃的「之後真的需要海岸線再疊靜態 GeoJSON」路線 | §5、§12 | 1 個 |
 
 > **2026-08-31 完成**（使用者問「真實地圖哪時候可以引入」，確認現在動工；先用 `curl`

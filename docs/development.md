@@ -128,14 +128,26 @@ npm --prefix app run build
 npm --prefix app test -- --watch=false
 ```
 
+E2E（任務 3.16，Playwright）需要先啟動 `frontend`/`backend` 容器：
+
+```bash
+docker compose up -d --build frontend backend
+npm --prefix app run e2e
+```
+
+**只用 Playwright 自己啟動的瀏覽器，不要用 `claude-in-chrome` 這類瀏覽器擴充功能自動化
+去跑地圖互動測試**——擴充功能開的分頁在部分自動化環境裡會被瀏覽器當成背景分頁處理，
+`requestAnimationFrame` 不會執行，MapLibre 的 WebGL 渲染永遠完成不了第一幀，地圖疆域
+資料永遠查詢不到。Playwright 自己啟動的瀏覽器分頁沒有這個問題。
+
 目前限制：
 
-- 沒有 backend test project。
-- 前端只有 scaffold unit tests。
-- 沒有 E2E runner。
-- 正式業務 endpoint 尚未實作，因此 OpenAPI 目前不能作為業務驗收。
-
-Phase 2 完成後，backend unit/integration tests 與 OpenAPI completeness 都是必要門檻；Phase 3 完成後需增加主要使用流程 E2E。
+- 沒有 backend test project（沿用「curl 真實容器驗證」取代 xUnit 的既有慣例，見
+  implementation plan 任務 2.15 仍未動工的記錄）。
+- 前端 unit tests 已涵蓋大部分元件邏輯，但正式業務 endpoint 的 integration test
+  仍缺。
+- 正式業務 endpoint 尚未全數實作（見 implementation plan Phase 2 剩餘任務），因此
+  OpenAPI 目前不能作為完整業務驗收。
 
 ## 常見問題
 
@@ -153,7 +165,9 @@ PostgreSQL image 只在第一次建立資料 volume 時初始化帳號與密碼�
 
 ### `ng e2e` 找不到 target
 
-目前尚未設定 E2E runner，這是預期狀態。不要臨時把 `ng e2e` 加入 CI；應在 M3 選定 runner 後連同第一條主流程測試一起導入。
+Angular CLI 內建的 `ng e2e` schematic 沒有配置目標，這是預期狀態——任務 3.16 選的
+是 Playwright（`npm --prefix app run e2e`），不是走 Angular CLI 的 e2e builder，
+`ng e2e` 不會被用到，不需要另外接。
 
 ## 完成定義
 

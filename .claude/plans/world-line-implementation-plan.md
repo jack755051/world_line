@@ -162,7 +162,30 @@ related_constitution: .claude/constitutions/world-line.md
 > 的政權事後從 `app_postgres` 手動刪除，不留在種子資料裡。沒有另外寫 xUnit 測試，延續
 > 這個專案從 2.0 開始的既有慣例（curl 真實容器驗證，自動化測試留給 2.15 統一補） | §7 | 1 個 |
 | [x] | 2.6 | 疆域查詢端點（唯讀） | `GET /api/v1/regimes/:id/territories`、`GET /api/v1/territories?year={y}`（R2/Story 1 核心查詢）。**已完成（2026-08-29，提前於 2.4 前完成）**：`api/Controllers/TerritoriesController.cs`，回傳標準 GeoJSON `FeatureCollection`（`NetTopologySuite.IO.GeoJSON4STJ` 套件掛 `GeoJsonConverterFactory` 到 `Program.cs` 的 JSON 選項，`MultiPolygon` 自動序列化成標準 geometry），前端 MapLibre 可以直接當 geojson source 用不用轉換。**不依賴 2.16**（疆域形狀沒有語言問題，不像 2.4 的政權名稱需要 `?locale=`），所以能先於 2.4 動工——回應地圖要先看到東西的實際需求。`year` 查詢用 `NpgsqlRange<int>.Contains()`，已實測會正確轉譯成 SQL `@>` range 運算子。只回「目前有效」的快照：排除 `SupersededBy` 非 null 的舊版本（I5 修正鏈），但保留 `IsDisputed=true` 的並存史觀版本（I3，不是新舊關係）。已用真正的 `app_postgres` 種子資料 curl 驗證：year=225 正確回 3 筆（魏/蜀漢/吳，排除已終止的漢跟未建立的晉）、year=210 正確回 4 筆（含 2 筆並存的蜀漢爭議版本 + 1 筆吳）、year=100 正確只回 1 筆漢（I5 修正版，原始版正確被排除）、缺 year 回 400、不存在的政權 id 回 404，OpenAPI 文件正確收錄兩個路徑。**附帶修正一個環境問題**：本機 `curl localhost:5000` 撞到 macOS AirPlay 接收器服務（回應 `Server: AirTunes`，佔用該 port），跟使用者確認後把 `docker-compose.yml` 的後端對外 port 從 5000 改成 5050，連帶更新 README/docs/api.md/docs/development.md | §7 | 1 個 |
-| [ ] | 2.7 | 疆域寫入 + 修正端點 | `POST /api/v1/regimes/:id/territories`（I1 校驗時間區間必填）、`PATCH /api/v1/territories/:id/correct`（I5 版本鏈：新增新版本、`superseded_by` 指回、不覆蓋刪除原記錄） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
+| [x] | 2.7 | 疆域寫入 + 修正端點 | `POST /api/v1/regimes/:id/territories`（I1 校驗時間區間必填）、`PATCH /api/v1/territories/:id/correct`（I5 版本鏈：新增新版本、`superseded_by` 指回、不覆蓋刪除原記錄） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
+
+> **2026-08-31 完成**：`api/Controllers/TerritoriesController.cs` 新增 `Create`/
+> `Correct`，兩者都回傳單一 GeoJSON `Feature`（不是 `FeatureCollection`），跟既有 GET
+> 端點共用同一個 attribute 形狀（新抽出 `ToFeature()` helper，GET 的
+> `ToFeatureCollection()` 也改呼叫它，不重複兩份邏輯）。**Create**：I1 時間區間必填
+> （`required int StartYear/EndYear`，自動觸發 `VALIDATION_ERROR`）+ `EndYear` 必須
+> 晚於 `StartYear`（`TERRITORY_END_BEFORE_START`，跟 task 2.9 關係端點同一條檢查邏輯）；
+> `Geom` 直接收 GeoJSON，靠 task 2.6 已註冊的 `GeoJsonConverterFactory` 自動解析，不用
+> 額外轉換程式碼。**Correct（I5 版本鏈）**：`{id}` 是要被修正的舊版本，body 要求完整
+> 新版本內容（不接受部分欄位差異，避免「哪些欄位沿用舊值」的隱性合併邏輯）＋必填的
+> `correctionReason`；新增一筆新版本（`RegimeId` 沿用舊版本，不可過戶給別的政權）、
+> 舊版本補上 `SupersededBy`/`CorrectionReason`/`CorrectedAt` 三個欄位，其餘內容原封
+> 不動——不刪除、不覆蓋。**額外補的一致性檢查（任務描述沒逐字寫，但屬於版本鏈基本
+> 完整性）**：已經被修正過的舊版本不能再被修正（`TERRITORY_ALREADY_SUPERSEDED`，
+> 409），避免同一筆原始記錄分岔出兩條互相不知道對方的修正鏈——要修正的話對「目前
+> 最新那一版」下手。已用真實容器 curl 驗證 11 種案例（POST 5 種：缺 key/政權不存在/
+> endYear≤startYear/缺 geom/成功；PATCH 6 種：缺 key/疆域不存在/缺
+> correctionReason/endYear≤startYear/成功修正/對已修正過的舊版本再修正一次）全數
+> 符合預期；額外用 `psql` 直接查 `regime_territories` 表格核對版本鏈欄位正確（舊版本
+> 幾何/時間區間原封不動、`superseded_by` 正確指向新版本）；`GET /regimes/:id/
+> territories` 驗證確認只回傳新版本、不含已被取代的舊版本。OpenAPI 正確收錄兩個新
+> 端點，測試用的疆域快照事後從 `app_postgres` 手動刪除。沒有另外寫 xUnit 測試，延續
+> 既有慣例（curl 真實容器驗證，自動化測試留給 2.15 統一補） | §7 | 1 個（修正邏輯較複雜，獨立驗證） |
 | [x] | 2.8 | 史觀主線 preset 查詢端點 | `GET /api/v1/lineage-presets`、`GET /api/v1/lineage-presets/:id/regimes`。**依賴 2.16**：`preset_name`/`description` 在翻譯範圍內，同 2.4 支援 `?locale=`。**已完成（2026-08-30，為了 Story 4/task 3.9 補上的缺口）**：`api/Controllers/LineagePresetsController.cs`。**動工前發現並解決一個 schema 缺口**：PRD Story 4 AC#3 要求「使用者未指定特定史觀時，依 `lineage_presets` 中的預設 preset 顯示主線」，但 `lineage_presets` 表完全沒有欄位可以回答「哪一個是預設」——不是靠插入順序或名稱字串猜（那樣之後新增/調整 preset 順序會意外改變預設值，是隱性行為，違反這個專案一貫「不讓資料的巧合順序承載真正商業語意」的原則），新增 `LineagePreset.IsDefault`（migration `AddLineagePresetIsDefault`，純新增欄位不影響既有資料）明確標記；種子資料把「傳統教科書史觀」標成 `IsDefault=true`，「蜀漢正統論史觀」維持預設值 `false`。應用層目前不強制「最多一筆為 true」——task 2.8 範圍只有唯讀端點，沒有寫入端點，不會有人透過 API 改出兩個預設，等真的有寫入端點時再補這條約束。`GET /lineage-presets/:id/regimes` 的政權欄位刻意跟既有 `RegimeResponse` 同一組（`selfName`/`status`/`predecessorRegimeId`/`originTransitionType`/`destroyedByRegimeId`），不重新設計一套——這是 task 3.9 畫「主線上相鄰兩個政權之間是禪讓還是滅亡」需要的同一批資料。已用真實容器 curl 驗證：`GET /lineage-presets` 正確回兩筆、`isDefault` 只有「傳統教科書史觀」是 `true`、`?locale=en` 正確翻譯兩個 preset 名稱；`GET /lineage-presets/:id/regimes` 正確回漢→魏→晉三筆、`sortOrder` 1/2/3、`status`/`predecessorRegimeId`/`originTransitionType` 都對；不存在的 preset id 回 404 `LINEAGE_PRESET_NOT_FOUND`。沒有另外寫 xUnit 測試，延續既有慣例 | §7 | 1 個 |
 | [x] | 2.9 | 政權持續性關係 CRUD | `GET /api/v1/regimes/:id/relations?year={y}`、`POST /api/v1/regimes/:id/relations` | §7 | 1 個 |
 

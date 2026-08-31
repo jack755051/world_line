@@ -1219,6 +1219,22 @@ related_constitution: .claude/constitutions/world-line.md
 - Auth 升級為多使用者/角色權限系統——待開放教育對象使用時評估（憲法 §1 階段順序）
 - CHGIS/CShapes 授權重新確認——僅在出現贊助/政府投資等資金來源時才需處理（見 PRD §9）
 - `historical_event_controversies.viewpoints` 是否標準化 schema（強制附學者/文獻來源）——待第一個真實跨國爭議事件建檔時再細化
+- **矩形疆域改成真實史料多邊形**（使用者問「這個到哪一部能夠處理」，2026-08-31 研究記錄）：
+  前置條件是 PRD §12 尚未拍板的「source/citation model」TODO（`docs/data-governance.md`：
+  「在補上 citation/source model 前，不應開始不可逆的大量正式資料匯入」），這條本身
+  沒有任務編號，跟 Phase 2 剩下 5 項、Phase 4 都沒有直接綁定。**已實際下載並驗證資料
+  可行性，不是猜測**：CHGIS v6 Time Series Prefecture Polygons（Harvard Dataverse
+  DOI 10.7910/DVN/I0Q7SM，`v6_time_pref_pgn_utf_wgs84.shp`）3830 筆郡級政區記錄裡，
+  **94 筆的 `BEG_YR`/`END_YR` 跟三國時期（189-280 年）重疊**，涵蓋丹陽/豫章/吳/會稽/
+  長沙/廣陵/東海/武陵/桂陽等真實三國轄郡；隨機抽驗一筆（東海郡，81-197 年）確認是
+  shape type 5（Polygon）、單一 part、1557 個頂點的真實邊界多邊形，不是空殼佔位資料。
+  授權條款讀取自官方隨附 README：「free for academic research, no commercial use,
+  resale, or redistribution permitted」，跟 PRD §5 既有記錄一致。**還沒解決的部分**：
+  這個圖層是郡級（例如「東海郡」），不是政權級（「魏」）——屬性表沒有「這個郡在這個
+  時間點屬於哪個政權」欄位，需要另外考證史料交叉驗證（不能只憑 CHGIS 自己的屬性表
+  猜），再對同一政權底下的郡多邊形做 GIS dissolve/union 合併，且每一步都要照
+  `docs/data-governance.md` 的規則記錄考證來源——這是實質的研究＋GIS 處理工作，不是
+  單純「下載檔案套進資料庫」。使用者確認先擱置，回頭處理 Phase 2 剩下 5 項。
 
 ---
 

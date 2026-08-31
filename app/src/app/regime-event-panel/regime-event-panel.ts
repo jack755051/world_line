@@ -185,6 +185,15 @@ function dedupeAndSortEvents(rows: readonly EventInteractionRow[]): RegimeEventS
   imports: [EdtfDateComponent],
   templateUrl: './regime-event-panel.html',
   styleUrl: './regime-event-panel.scss',
+  // 2026-08-31 使用者回報：手風琴展開內文較長時，卡片仍錨定在政權疆域位置——疆域若
+  // 靠近畫面上緣（見類別文件展開態說明），展開後的內容會被裁到視窗外面，看不到也
+  // 滾不到。這裡在 host 元素本身標記狀態（沿用專案既有的 data-state 慣例，見
+  // sanring-collapsible），展開時讓 .scss 把整張卡片改成釘在畫面正中央；一定要標
+  // 在 host 本身，不是內層 .regime-event-panel 子元素——理由見該 .scss 規則旁的
+  // 說明。
+  host: {
+    '[attr.data-detail-expanded]': "expandedEventId() !== null ? '' : null",
+  },
 })
 export class RegimeEventPanelComponent {
   private static readonly MAX_DISPLAYED_EVENTS = 5;

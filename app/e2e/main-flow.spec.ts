@@ -81,3 +81,43 @@ test('主流程：時間拖動 → 疆域形變 → 聚焦 → 事件詳情', as
   // 都只能靠單元測試涵蓋邏輯，見該任務完成記錄）。
   await page.screenshot({ path: 'e2e/screenshots/main-flow-event-detail.png' });
 });
+
+/**
+ * 2026-08-31 使用者回報：手風琴展開內文較長時，卡片仍錨定在政權疆域位置——疆域若
+ * 靠近畫面上緣（例如這裡測的魏），展開後的內容會被裁到視窗外面（見
+ * regime-event-panel.scss `[data-detail-expanded]` 規則的說明）。單元測試只能驗證
+ * host 屬性有沒有正確綁定，驗不到「MapLibre Marker 的 will-change: transform 會讓
+ * 子元素 position: fixed 相對 host 定位、蓋錯層級就不是真正畫面正中央」這種只有真實
+ * CSS 佈局引擎才躲得掉的錯誤——這正是這次對話環境保留 Playwright 真實瀏覽器測試的
+ * 理由，故意選魏（種子資料 `Rect(105,32,122,42)`，疆域中心貼近畫面上緣）當測試對象，
+ * 不選蜀漢/吳（比較靠畫面中下段，就算沒修好這個 bug 也不容易露出裁切問題）。
+ */
+test('政權事件面板展開手風琴時，卡片改為釘在畫面正中央（避免疆域靠近畫面邊緣時內容被裁掉）', async ({
+  page,
+}) => {
+  await waitForInitialTerritories(page);
+  await clickTerritoryAt(page, 113.5, 37); // 魏的疆域中心，靠近畫面上緣
+
+  const focusPanel = page.locator('.regime-focus-panel');
+  await expect(focusPanel.locator('h2')).toHaveText('魏');
+
+  const eventPanel = page.locator('.regime-event-panel');
+  const trigger = eventPanel.locator('.regime-event-panel-trigger', { hasText: '漢獻帝禪位於魏' });
+  await expect(trigger).toBeVisible();
+  await trigger.click();
+  await expect(eventPanel.locator('.regime-event-panel-detail')).toBeVisible();
+
+  const panelBox = await eventPanel.boundingBox();
+  const viewport = page.viewportSize()!;
+  expect(panelBox).not.toBeNull();
+
+  // 完整落在視窗範圍內，沒有任何一邊被裁掉
+  expect(panelBox!.y).toBeGreaterThanOrEqual(0);
+  expect(panelBox!.y + panelBox!.height).toBeLessThanOrEqual(viewport.height);
+  expect(panelBox!.x).toBeGreaterThanOrEqual(0);
+  expect(panelBox!.x + panelBox!.width).toBeLessThanOrEqual(viewport.width);
+
+  // 大致置中（容許幾像素的次像素捨入誤差）
+  expect(Math.abs(panelBox!.x + panelBox!.width / 2 - viewport.width / 2)).toBeLessThan(5);
+  expect(Math.abs(panelBox!.y + panelBox!.height / 2 - viewport.height / 2)).toBeLessThan(5);
+});

@@ -10,6 +10,28 @@
   max-width: 80vw;
 }
 
+// 2026-08-31 使用者回報：手風琴展開時內文較長，卡片仍錨定在政權疆域位置——疆域若
+// 靠近畫面上緣，展開後的內容會被裁到視窗外面，MapLibre Marker 是絕對座標定位，不是
+// 頁面捲動，裁掉的部分完全看不到也滾不到。有事件展開時（見 regime-event-panel.ts
+// 的 host 綁定）整張卡片改成釘在畫面正中央，不管疆域在畫面哪個位置都保證完整可見；
+// 收合後拿掉這個屬性，MapLibre 每次重繪本來就會持續更新這個元素的 inline
+// transform（只是被下面這條規則的 !important 蓋掉），屬性一拿掉馬上恢復錨定定位，
+// 不用另外寫程式碼幫它「歸位」。
+//
+// **蓋的一定要是 host 本身**，不是 .regime-event-panel 子元素：MapLibre 的
+// `Marker` 直接對傳進去的元素（也就是這個元件的 host）設定 position/transform（見
+// maplibre-gl 的 marker.ts、`.maplibregl-marker` class 內建 `will-change:
+// transform`）——`will-change: transform`／`transform` 都會讓子元素的
+// `position: fixed` 改成相對這個 host 定位，而不是相對整個瀏覽器視窗；蓋在子元素上
+// 只會讓卡片釘在「host 目前所在的地圖座標」附近，不會是真正的畫面正中央。
+:host([data-detail-expanded]) {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 20; // 蓋過 regime-focus-panel（z-index: 10）跟地圖控制項
+}
+
 .regime-event-panel {
   padding: var(--wl-space-4);
   max-height: 70vh;

@@ -1361,6 +1361,18 @@ related_constitution: .claude/constitutions/world-line.md
 - 監控（Prometheus/OpenTelemetry/Grafana）——尚未評估，等有實際維運需求
 - Auth 升級為多使用者/角色權限系統——待開放教育對象使用時評估（憲法 §1 階段順序）
 - CHGIS/CShapes 授權重新確認——僅在出現贊助/政府投資等資金來源時才需處理（見 PRD §9）
+- **CDN／Cloudflare R2 等物件儲存**（2026-08-31 使用者提問「史料文檔變多要不要上 CDN/R2」）：
+  評估後**現階段不需要**——確認「文檔變多」具體指的是（1）更多像吳（225年）那樣
+  dissolve 出來的疆域 GeoJSON、（2）citation `evidence_note` 這類純文字考證筆記，
+  兩者都是資料庫本來就該處理、也處理得很好的資料型態：GeoJSON 疆域是 PostGIS
+  `geometry` 欄位 + GiST 索引本來就為這個場景設計的，搬去 R2 存成靜態檔案反而是
+  倒退（失去空間查詢能力、前端要多一趟下載解析、資料庫端很可能還是要留一份索引用
+  副本）；文字考證筆記是 `TEXT` 欄位的量級，累積到幾萬筆也才個位數 MB。CDN 的邊緣
+  快取/降低跨地域延遲價值在目前單人自用階段用不上（見憲法/PRD「開放教育對象」明確
+  排在更後面的階段），現在導入只會多一個雲端依賴、多一組 credential、多一個失敗點，
+  換不到實際好處。**真正會讓這個決定翻盤的觸發條件**：真的要存掃描地圖圖片／PDF
+  原始文件本體（不是只存 URL/DOI 指標）——那種二進位大檔案才是物件儲存/CDN 適合
+  的情境，使用者這次確認目前沒有這個需求，之後真的出現再回頭評估。
 - `historical_event_controversies.viewpoints` 是否標準化 schema（強制附學者/文獻來源）——待第一個真實跨國爭議事件建檔時再細化
 - **矩形疆域改成真實史料多邊形**（使用者問「這個到哪一部能夠處理」，2026-08-31 研究記錄）：
   前置條件是 PRD §12 尚未拍板的「source/citation model」TODO（`docs/data-governance.md`：

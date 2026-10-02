@@ -4,18 +4,20 @@ feature_id: world-line
 feature_name: World Line — 歷史地圖 GIS 平台
 status: active
 owner: jack755051@gmail.com
-last_updated: 2026-08-27
+last_updated: 2026-10-02
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
 
 # PRD: World Line — 歷史地圖 GIS 平台
 
-> **文件狀態**：本 PRD 是目前有效的產品與技術基線。`active` 代表內容可作為實作依據，不代表功能已全部完成。實作進度以 `.claude/plans/world-line-implementation-plan.md` 的核取方塊為準：截至 2026-08-27，M1 資料層完成，M2 後端 MVP 與 M3 前端整合尚未開始。
+> **文件狀態**：本 PRD 是目前有效的產品與技術基線。`active` 代表內容可作為實作依據，不代表功能已全部完成。實作進度以 `.claude/plans/world-line-implementation-plan.md` 的核取方塊為準：截至 2026-10-02，M1 資料層、M2 後端 MVP、M3 前端整合（以三國示範資料驗證）皆已完成；M4 起依 2026-10-02 策略轉向重排為二戰階段（見 §10）。
 >
 > **狀態用語**：本文的「已拍板」表示決策已確認；「已實作」表示 repository 中已有對應程式碼與 migration；「待評估／TODO」不得被當成已承諾的行為。若敘述與可執行程式碼不一致，先視為文件漂移並修正，不以過時文字覆蓋實際行為。
 
-> ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md` 產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
+> ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md` 產出。憲法本體的業務規則（R1-R8）、狀態機（§4）、不可變約束（I1-I6）已具備足夠明確度可作為 PRD 依據。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
+>
+> **2026-10-02 更新（憲法策略轉向 delta 比對）**：憲法改版（grill-me Q1-Q14 拍板，已 `active`）：第一階段由中國史改為**二戰（1937-07～1945-09，全球，國家／控制區層級）**，階段順序改為由近而遠；新增 R5（多維度）、R6（主權／控制兩軸）、R7（史料來源政策）、R8（多重視角≠相對主義）、§4 近代擴充轉換（流亡／被併吞／復國）、I1 擴大、I3 改寫、I6（控制與主權紀錄必附來源）、§9 史料快照／推估過渡區分。本 PRD 依 delta 同步更新 §1-§12；另外在 PRD 層拍板 4 項工程決策（使用者 2026-10-02 選定）：(1) 擴充 `regime_territories` 當控制軸、新增 `sovereignty_claims` 當主權軸；(2) 疆域時間 `int4range` 改 `daterange`；(3) 地圖預設顯示實際控制，主權可切換；(4) 斜線網底語意擴大為「非完整掌控」。不屬憲法層級的 grill 結論（第一階段不新增前端套件、戰線由 PostGIS 計算、三國資料保留）也一併落在本 PRD。既有 Story 1-5 與三國相關內容保留，作為古代模型（凍結）的驗收紀錄。
 >
 > **2026-08-25 更新（第三輪，delta 比對）**：憲法 frontmatter `status` 已由 `draft` 拍板為 `active`，§10 原始 4 條開放問題全數解決（回填至憲法 §2 角色職責、§4 傳承關係鏈、§6 正式朝代/政權間互動術語）。經逐項比對，這些內容與本 PRD 既有的角色權限說明（§2）、方案 D lineage_presets 設計（§6）、historical_events/regime_relations 拆分（§6）**完全一致，無需修改對應段落**——本輪僅同步移除過時的「憲法尚未拍板」警語。
 >
@@ -35,12 +37,15 @@ related_adrs: []
 
 傳統歷史知識透過書本傳遞時，是依「單一視角、按時間軸拆解」的方式敘述——例如以中國視角敘述唐朝歷史，便難以同步呈現同一時期阿拉伯帝國（大食）、歐洲政權的並行發展與互動關係。World Line 的核心動機（對應憲法 §1 業務目的、§7 Decision 1）是以 GIS／地圖取代這種單一視角敘事，讓使用者能夠「縱覽世界」：在同一個時間點上同時看到多個文明/政權的疆域與互動，並在需要時聚焦到單一政權觀察其與同時期周邊政權的關係（憲法 R2、R3）。
 
+**2026-10-02 策略轉向**（憲法 §1「策略轉向」、§7 Decision 2）：古代中國史料（魏／蜀漢疆域）在 CHGIS、中研院 CCTS、OpenHistoricalMap 三個管道皆無法取得可用資料，第一階段改為二戰。二戰是「多政權同時並存、跨洲互動」的極端案例，正好驗證 R2／R3 的核心價值；同時史料多、授權清楚、精度高（大量公有領域軍事地圖可供數位化），能避開古代資料管線的瓶頸。產品核心目標（縱覽世界、多視角並存）不變，既有古代模型與三國資料保留凍結。以下為 2026-08 時期的背景紀錄，保留供追溯。
+
 專案目前處於「先給自己（開發者本人）使用，後續再考慮教育用途」的階段（憲法 §1）。M1 資料層已完成：`api/` 已有 15 個領域 Entity、EF Core configurations、三份 migration、開發環境自動 migration 與中國史示範 seed；`regime_transition_events` 已補上政權轉換與歷史事件的因果連結，seed 資料現已覆蓋全部 15 張表（含先前缺漏的 `place_names`），並用兩個並存的 `lineage_presets` 示範方案 D 的多史觀解耦設計。`regime_territories(regime_id, valid_period)` 的 GiST 複合索引已建立（見 §5），I5 版本鏈（`superseded_by`）也已有種子資料機械驗證過（見 §6）。**2026-08-29 更新**：M2 已有兩個真正動工的業務端點（HTTP API 不再只有 scaffold 的 `WeatherForecast` controller）：`reign-eras` 查詢（task 2.3）、`territories` 疆域查詢（task 2.6，提前於 2.4 完成——回應「地圖要先看到東西」的實際需求，疆域形狀不依賴 2.16 多語系）；雙語內容 schema（task 2.16/2.17）也已完成並套用。`app/` 不再是 Angular 22 scaffold：Sanring UI + Tailwind CSS v4（task 3.0）、MapLibre GL JS 底圖（task 3.2，已用真實瀏覽器驗證顯示與互動）、前端 XState 政權狀態機定義（task 3.1）均已完成，地圖疆域圖層渲染（task 3.5）待動工。`docker-compose.yml` 已具備 frontend/backend/PostGIS/Redis 四個 service（backend 對外 port 因 macOS AirPlay 接收器佔用 5000，已改為 5050）。可執行現況與啟動方式以 repository 根目錄 `README.md` 為準。
 
 ## 2. 目標 (Goals)
 
 - **業務目標**：
-  - 依憲法 §1 階段實施順序，優先完成「中國史」政權/疆域資料的地圖化呈現，作為第一階段可用產品；後續依序擴充至「世界史」（多文明並存，對應 R2）與「單一國家史」（如台灣史）。
+  - 依憲法 §1 新階段順序（2026-10-02，由近而遠）：優先完成**二戰（1937-07～1945-09，全球，國家／控制區層級）**的主權與實際控制地圖化呈現，作為第一階段可用產品；後續依序為二戰深化（戰線／部隊層級、第二個以上歷史維度）→ 近代延伸 → 古代（原中國史／世界史，三國資料解凍）→ 單一國家史（如台灣史）。
+  - ~~依憲法 §1 階段實施順序，優先完成「中國史」政權/疆域資料的地圖化呈現，作為第一階段可用產品；後續依序擴充至「世界史」（多文明並存，對應 R2）與「單一國家史」（如台灣史）。~~（2026-10-02 被上一條取代）
   - 服務對象階段性明確：第一階段僅需滿足開發者本人（使用者自己）的使用需求，教育用途為後續階段目標，非本 PRD 範圍內的驗收標準。
   - **角色與權限**（已拍板，grill-me 2026-08-25 第二輪）：開發者（使用者自己）＝可寫可讀，擁有新增/修正政權與疆域資料的職責（對應憲法 I5 史料修正機制）；使用者（含未來教育對象）＝純唯讀，僅能瀏覽/查詢，無資料編輯權限。呼應憲法 §1「先給自己再給教育」的階段順序，落地為 §7 API 契約的權限設計依據。
 - **技術目標**：暫不設定量化數字（如 p95 latency、併發使用者數、資料量體規模）——已拍板（grill-me 2026-08-25 第二輪），因第一階段僅開發者單人自用，無併發壓力，設定具體數字無實質意義。改採質化驗收標準：時間拉桿拖動、地圖疆域渲染需「操作流暢、無明顯卡頓」；待進入世界史階段或有實際效能瓶頸時，依實測數據回填具體指標（標記待補，非永久排除）。
@@ -53,7 +58,22 @@ related_adrs: []
 
 ### ✅ 範圍
 
-- [ ] 第一階段（中國史）政權與疆域資料的建置與地圖呈現，粒度僅到「朝代/國家」層級，**不含城市層級**（對應憲法 R1：「第一階段只呈現到朝代/國家層級，如果完成宏觀的史觀後再繼續深入到城市的發展」）
+**二戰第一階段（2026-10-02 起，對應 §10 M4）**：
+
+- [ ] 1937-07～1945-09 全球所有戰區的政權、主權主張、實際控制資料建置與地圖呈現，粒度為「國家／控制區」層級（憲法 §1 策略轉向、R1 補充）
+- [ ] 主權／實際控制兩軸並存：控制紀錄含控制類型（直接統治／軍事佔領／傀儡代管／不完全控制／交戰中）；主權主張可多筆並存並標主張方與承認方（憲法 R6、§6）
+- [ ] 地圖預設呈現實際控制，主權主張可切換檢視（PRD 層拍板，2026-10-02）
+- [ ] 戰線＝敵對控制區之間的邊界，由後端 PostGIS 推導，不獨立描繪（憲法 §6「戰線」）
+- [ ] 不完全控制／交戰中區域以斜線網底呈現（憲法 §6、§5 斜線網底列）
+- [ ] 控制區快照為月或轉折點粒度，快照之間連續形變，但**推估過渡**須與**史料快照**明確區分呈現（憲法 §9 2026-10-02 修訂）
+- [ ] 政權狀態機新增流亡／被併吞／復國三種轉換（憲法 §4 近代擴充轉換）
+- [ ] 每筆主權主張與控制紀錄附來源引用，控制軸只採用有明確出處且為公有領域或 CC 授權的底圖數位化（憲法 R7、I6）
+- [ ] 重大戰役、政治事件與暴行事件（如南京大屠殺、猶太大屠殺）以歷史事件呈現；觀點須有合格史料支撐，否認論不入列（憲法 R8）
+- [ ] 「二戰起點」以爭議點並列呈現（1931／1937／1939），系統不裁定（憲法 §9）
+
+**古代示範階段（M1-M3，已完成，資料與模型保留凍結）**：
+
+- [x] 第一階段（中國史）政權與疆域資料的建置與地圖呈現，粒度僅到「朝代/國家」層級，**不含城市層級**（對應憲法 R1：「第一階段只呈現到朝代/國家層級，如果完成宏觀的史觀後再繼續深入到城市的發展」）
 - [ ] 時間拖拉桿驅動的疆域連續變化呈現（對應憲法 §9）
 - [ ] 多政權同時並存檢視（對應 R2：唐朝＋阿拉伯帝國＋歐洲政權疆域並列）
 - [ ] 政權聚焦檢視與同時期周邊政權互動呈現（對應 R3）
@@ -70,7 +90,10 @@ related_adrs: []
 > ⚠️ **史前歷史不屬於上述兩項同類的「永久排除」**，而是**階段性延後**——憲法 §1 原話：「史前歷史先等整個完成後再處理」。本 PRD 第一階段（中國史）與後續世界史/單一國家史階段皆不含史前歷史，但此排除性質是「本階段尚未排入」，不可視為與遊戲化劇情/未來推測相同性質的永久業務邊界，未來可能重新評估納入時程。
 
 - ❌ 城市層級的疆域/政區細節（第一階段範圍外，待 R1 宏觀史觀完成後才評估，對應憲法 R1）
-- ❌ 宗教／語言／科技／文化／疾病／飲食等主題的傳播與分合呈現（憲法 §1 明確標註為「後續擴充意圖」，非本階段範圍）
+- ❌ ~~宗教／語言／科技／文化／疾病／飲食等主題的傳播與分合呈現（憲法 §1 明確標註為「後續擴充意圖」，非本階段範圍）~~ → 2026-10-02 已升格為憲法 R5，改列下一條
+- ❌ 政治／軍事以外的第二個歷史維度（經濟／後勤、人口／人道、宗教、文化、疾病等）與維度切換器——憲法 R5 已確立多維度方向，但**二戰第一階段只交付政治／軍事維度**，第二個維度上線時才做切換器（階段性延後，非永久排除）
+- ❌ 戰線層級（獨立描繪的週級戰線、軍團／集團軍級進軍箭頭）與部隊層級（師級軌跡、日級精度）——憲法 R1 補充，屬二戰深化階段（階段性延後，非永久排除）
+- ❌ 「點線佔領」的點／線建模（城市 Point＋鐵路 LineString）——第一階段以「不完全控制」多邊形概括，精確建模屬二戰深化階段
 
 ## 4. 使用者故事 (User Stories)
 
@@ -129,6 +152,52 @@ related_adrs: []
 - [x] Given 某筆事件時間帶有不確定標記（EDTF `?` 如 `1046?`），when 呈現該事件，then UI 應顯示「推測年份」等不確定性提示（2026-08-30 完成，`~`「約略」標記一併處理）
 - [x] Given 使用者查詢某一年份範圍內的資料，when 該年份落在某疆域紀錄的模糊區間內，then 該筆資料應被視為符合查詢條件納入結果（允許區間匹配，對應憲法 §9「允許區間」）（2026-08-30 驗證確認**已滿足，不用新增程式碼**——`GET /events?year=` 的區間比對本來就不管日期精不精確，只看換算出來的 decimal 數值；用真實容器驗證帶 `?` 標記的事件仍能被年份查詢正確找到）
 
+### Story 6: 二戰實際控制與主權主張檢視（對應憲法 R6、R2）
+
+- **As a** 使用者
+- **I want to** 把時間拉桿拖到 1940 年 7 月
+- **So that** 我能同時看到德國佔領的法國北部、維琪法國控制的南部，並能切換檢視「法國主權由誰主張、誰承認」（維琪法國、自由法國）
+
+**Acceptance Criteria**:
+- [ ] Given 時間拉桿停在 1940-07，when 地圖以預設模式渲染，then 依實際控制紀錄著色，同一時間全球各戰區控制區同時顯示（R2）
+- [ ] Given 使用者切換到主權檢視，when 地圖渲染，then 依「實際生效」的主權主張著色；點擊某地區可看到該地區所有並存的主權主張及各自的承認方（R6）
+- [ ] Given 某控制紀錄的控制類型為「不完全控制」或「交戰中」，when 地圖渲染，then 該區域以斜線網底呈現，與完整掌控（實心色塊）視覺上明確區分
+- [ ] Given 兩個敵對控制區相鄰，when 地圖渲染，then 顯示由後端推導的戰線
+
+### Story 7: 史料快照與推估過渡區分（對應憲法 §9 2026-10-02 修訂）
+
+- **As a** 使用者
+- **I want to** 拖動時間拉桿經過 1941 年 8 月到 9 月（基輔包圍戰）
+- **So that** 我能看到控制區連續變化，同時清楚知道哪些畫面是史料、哪些是系統推估
+
+**Acceptance Criteria**:
+- [ ] Given 時間拉桿停在某筆控制快照的日期，when 地圖渲染，then 以「史料快照」樣式呈現，並可查看該快照的來源引用（I6）
+- [ ] Given 時間拉桿停在兩筆快照之間，when 地圖渲染形變插值結果，then 邊界以推估樣式呈現（例：虛線邊界、降低不透明度）並標示「推估過渡」，同時顯示前後最近的史料快照日期
+- [ ] Given 拉桿持續拖動，when 跨過快照日期，then 形變維持連續（不離散跳轉，憲法 §9），僅呈現樣式在史料與推估之間切換
+
+### Story 8: 近代政權狀態轉換（對應憲法 §4 近代擴充轉換）
+
+- **As a** 使用者
+- **I want to** 查看波蘭（1939 流亡倫敦）、奧地利（1938 被併吞、1945 復國）的政權狀態
+- **So that** 我能區分「流亡」「被併吞」「被滅亡」「被佔領」這幾種不同的處境
+
+**Acceptance Criteria**:
+- [ ] Given 某政權狀態為「流亡」，when 顯示該政權，then 標示為流亡狀態，且該政權仍可作為主權主張方出現（R6）
+- [ ] Given 某政權以「被併吞」終止，when 顯示狀態，then 視覺／文字上與「被滅亡」明確區分
+- [ ] Given 某政權由流亡或被併吞恢復為存續（復國），when 拖動拉桿跨過復國日期，then 狀態轉換正確呈現
+- [ ] Given 某政權僅被軍事佔領（例：1945 年後的日本），when 顯示狀態，then 政權狀態仍為「存續」，佔領只呈現在實際控制軸
+
+### Story 9: 爭議與暴行事件的多視角邊界（對應憲法 R8）
+
+- **As a** 使用者
+- **I want to** 查看南京大屠殺的事件詳情
+- **So that** 我能看到有學術依據的不同傷亡估計並列，而不會看到否認論被當成同等觀點
+
+**Acceptance Criteria**:
+- [ ] Given 事件有多個傷亡估計觀點，when 顯示爭議點區塊，then 各觀點並列，且每個觀點都附合格史料引用
+- [ ] Given 一筆觀點完全沒有來源引用，when 透過 API 寫入，then 應被拒絕（R8）；來源是否「合格」（憲法 §6 判準）無法由程式判斷，由資料建置者在數位化時審查，不在 API 層假裝能驗證
+- [ ] Given 事件「二戰起點」，when 顯示，then 1931／1937／1939 三種起點以爭議點並列，系統不標示任何一者為正確（憲法 §9）
+
 ## 5. 技術選型 (Tech Stack)
 
 > 分兩類：**A. 既有專案技術棧（已定案沿用）**——`app/package.json`、`api/WorldLine.Api.csproj`、`docker-compose.yml` 的實際版本為準。**B. GIS 領域專屬技術**——最初來自 `.claude/notes/world-line-tech-candidates.md`；目前大部分已拍板，個別尚未決定的項目會明確標成「候選／待評估」，不得把 notes 中的舊候選文字當成現行決策。
@@ -152,9 +221,10 @@ related_adrs: []
 | 層 | 選型 | 對應需求 | 狀態 |
 |---|---|---|---|
 | 地圖引擎 | MapLibre GL JS | 全球政權圖層渲染、時間過濾器（Filter Expressions） | **已完成整合（2026-08-29，task 3.2）**：Phase 1 單獨使用。Deck.gl 保留為後續可疊加選項，待動畫流動效果（絲路貿易路線、傳播視覺化等）出現實際需求時再加，兩者設計上可疊加不衝突。**底圖拍板：不接外部瓦片服務**——MapLibre style 只有一個 `background` 圖層（背景色即時讀 `--wl-page` computed 值），不畫海岸線/現代地名參考層。理由：疆域資料本來就自己從 OHM 取 GeoJSON、不依賴第三方瓦片服務的方向已定案；歷史疆域疊在現代國界/地名底圖上有時代錯置的觀感問題；零外部依賴/API key/流量限制風險，符合目前單人自用階段。之後真的需要海岸線等物理地理參考，疊一層公眾領域靜態海岸線 GeoJSON 即可，不必為此換成瓦片服務。元件見 `app/src/app/map/map.ts`。**2026-08-31 落地（task 3.17）**：疊上 Natural Earth 1:50m Land（公眾領域 CC0，下載一次存成 `app/public/ne_50m_land.geojson` 靜態檔案，MapLibre 直接跟自己 origin 要，不是每次都打外部服務）當陸地色塊參考層，`--wl-map-land` 單一中性色平塗、只比海洋（`--wl-page`）深一階，刻意不畫現代國界/現代地名（「時代錯置」疑慮只針對政治性邊界，物理地理本身歷史上幾乎沒變過，不受這個疑慮影響），視覺規則詳見 `docs/data-governance.md`「幾何資料」一節 |
-| 高階視覺化 | Deck.gl（搭配 MapLibre） | 貿易路線/行軍路線/傳播軌跡等進階圖層 | **已拍板：Phase 1 不導入**，明確保留為後續疊加選項（見上） |
+| 高階視覺化 | Deck.gl（搭配 MapLibre） | 貿易路線/行軍路線/傳播軌跡等進階圖層 | **已拍板：Phase 1 不導入**，明確保留為後續疊加選項（見上）。**2026-10-02 重申（grill-me Q7）**：二戰第一階段仍不導入——國家層級月快照用不到 TripsLayer／ArcLayer；導入時機綁定「二戰深化」階段的部隊層級軌跡。屆時需處理與 MapLibre 6 的 interleaved 模式、與 Flubber 形變圖層的疊放順序 |
+| 時間刻度 | D3（僅 `d3-scale`／`d3-time` 子模組） | 時間軸刻度 | **2026-10-02 拍板（grill-me Q7）：不導入整包 D3**。既有 task 3.3／3.4 主副軸 Scrubber 已可用，二戰只需把範圍設為 1937–1945、預設刻度改為月；確實不夠用時才單獨引入 `d3-scale`／`d3-time` |
 | 圖資壓縮與形變 | ~~TopoJSON~~ + Flubber.js | 疆域邊界共享壓縮、連續變化過渡動畫（對應憲法 §9） | **已拍板（2026-08-26 grill-me on implementation plan）：Phase 1（M3）就導入，非候選延後**。理由：憲法 §9 業務規則本體是「疆域必須連續變化呈現，非離散跳轉」（非僅拉桿操作連續），使用者明確要求「類似衛星雲圖」的真實形變效果，淡入淡出等簡化方案無法達到，纳入 M3 範圍，見 `.claude/plans/world-line-implementation-plan.md` Phase 3。**Flubber.js 部分已完成（2026-08-30，任務 3.6）**：`app/src/app/core/geometry/territory-morph.ts`，直接對 GeoJSON 疆域環的座標點做插值，實測驗證兩個關鍵行為（`{string:false}` 回傳插值點陣列而非 SVG path 字串、插值結果不保留閉環格式），詳見 implementation plan 3.6。**TopoJSON 這半沒有實作**——原本的用途是「疆域邊界共享壓縮＋讓相鄰政權的共用邊界形變時保持拓撲一致（不會在動畫過程中，兩塊本來緊貼的疆域邊界暫時裂開一條縫或短暫重疊）」，目前種子資料規模小（矩形疊代示意），這個視覺瑕疵還不明顯，先不做；已知限制記在 3.6 的實作註解裡，不是遺漏沒發現，之後真的匯入大量真實史料、相鄰疆域邊界形變不同步的問題浮現到有感，再回頭評估要不要補 TopoJSON 拓撲層 |
-| 空間幾何分析 | Turf.js | 政權標籤置中點計算、邊界簡化，**已拍板新增用途（2026-08-29）**：拓撲相交測試（`booleanIntersects`）計算疆域相鄰關係，供政權識別色的動態圖著色演算法使用（見 §6 設計原則、implementation plan 3.5） | `booleanIntersects` 這個用途已拍板並落地（`app/src/app/core/geometry/territory-adjacency.ts`）；標籤置中點/邊界簡化仍是候選，待實際需求出現再評估 |
+| 空間幾何分析 | Turf.js | **2026-10-02 補充**：戰線（敵對控制區邊界）**不在前端用 Turf 計算**，改由後端 PostGIS（`ST_Boundary`／`ST_Intersection` 等）推導，避免每次拖動拉桿重算幾何（grill-me Q7）。原有用途：政權標籤置中點計算、邊界簡化，**已拍板新增用途（2026-08-29）**：拓撲相交測試（`booleanIntersects`）計算疆域相鄰關係，供政權識別色的動態圖著色演算法使用（見 §6 設計原則、implementation plan 3.5） | `booleanIntersects` 這個用途已拍板並落地（`app/src/app/core/geometry/territory-adjacency.ts`）；標籤置中點/邊界簡化仍是候選，待實際需求出現再評估 |
 | GeoJSON 序列化 | `NetTopologySuite.IO.GeoJSON4STJ` | 後端把 NTS 的 `MultiPolygon` 序列化成標準 GeoJSON 給前端 MapLibre 直接用（`System.Text.Json` 預設不認得 NTS 幾何型別） | **已完成（2026-08-29，task 2.6）**：`Program.cs` 的 controllers JSON 選項掛 `GeoJsonConverterFactory`；跟 `Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite`（管資料庫讀寫）是同一個 NTS 生態系但職責不同，不是重複依賴 |
 | 政權狀態機 | XState | 存續/分裂/被取代/被滅亡狀態防呆（對應憲法 §4） | **前端已完成（2026-08-29，task 3.1）**：`app/src/app/core/regime/regime-status.machine.ts`（狀態圖，狀態即 active/split/succeeded/conquered，終止狀態標記 `type: 'final'`）+ `regime-status.enum.ts`（純函式版本 `isLegalRegimeStatusTransition()`，供不需要跑 actor 的場合用，例如靜態進度圖）。兩份手寫表示刻意不共用程式碼，用測試互相比對抓飄移（跟前後端分工同一個原則，往下延伸到前端內部）。**驗證分工（grill-me 2026-08-25 第二輪追加拍板）**：前端 XState 僅負責 UI 層防呆與進度圖顯示；後端 C#（.NET，與 XState 不同語言無法直接共用同一份 library）獨立實作同一套合法轉換規則作為唯一信任來源，防止 API 被繞過前端直接呼叫寫入非法狀態轉換。雙方均以憲法 §4 列出的合法轉換規則（存續→分裂／存續→被取代禪讓／存續→被滅亡）作為 SSOT 文件依據，日後憲法 §4 若修訂需同步更新前後端兩份實作，避免規則飄移。目前只有定義檔，尚未接進任何元件——留給任務 3.9（政權狀態轉換視覺呈現）真的要畫進度圖/狀態徽章時再接上去 |
 | 紀年轉換 | 自建 `reign_eras` 查詢表 | 西元 ↔ 年號/廟號（武德、開元、日本昭和、民國年等）雙向映射（對應憲法 §9 多重紀年） | **已拍板：自建查詢表，不使用 `lunar-javascript`/`cnlunar`**——這兩個套件處理的是農曆換算，跟「年號查詢」是不同問題；憲法 §9 需求本質是一張「年號-政權-起訖年」查詢表，不是曆法計算 |
@@ -165,8 +235,9 @@ related_adrs: []
 | EDTF 時間解析 | 自訂子集解析器（`api/Domain/EdtfService.cs`）+ `NodaTime` 3.3.3 負責曆法數學 | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已完成（2026-08-29，task 2.2）**：M2.2 spike 調查了 .NET 生態僅有的 EDTF 專用套件（`EDTF` by nharren，2015 年後未更新、只 target net45；`MoreDateTime` 的 EDTF 功能是 2026 年剛加的新功能，作者自承未完整覆蓋 ISO 8601-2:2019，且強制依賴 `Nager.Date` 假日套件），均不合格，觸發 implementation plan 停止條件。最終方案：EDTF 語法解析（`?`/`~`/負年份/年-月-日，只涵蓋憲法/notes 實際用到的子集，不追求完整規格覆蓋）自己寫，純字串處理風險低；曆法數學（閏年、負年份 day-of-year 計算）交給業界標準的 `NodaTime`（Jon Skeet 維護，321M 次下載，`CalendarSystem.Iso` 官方支援西元前 9998 年到西元 9999 年，絕對紀年慣例與 EDTF/ISO 8601 一致，不需要額外年份偏移轉換）。EDTF 字串仍是 single source of truth，decimal year 由後端寫入時自動推算 |
 | UI 元件庫 | Sanring UI（`@sanring/cli`）+ Tailwind CSS v4 | 毛玻璃側邊抽屜／手風琴／多重視角分頁等 headless 元件（notes §十一原開放問題） | **已完成（2026-08-29，task 3.0，同日全面收斂）**：source-first、非傳統 npm 依賴——CLI 把元件原始碼複製進 `app/src/app/components/ui`，團隊自行維護；Tailwind v4 用官方 `@tailwindcss/postcss` PostCSS 外掛安裝（`app/.postcssrc.json`）。**`src/sanring-theme.css` 全部改成從 `--wl-*` 衍生，沒有任何顏色還是 Sanring 原廠預設值**：語意層（`--sanring-background/-control/-primary` 等）直接 alias 到 `design-tokens.scss` 的 `--wl-*`；9 階品牌色階（primary/neutral/coral）用 OKLCH 明度為軸從 `--wl-primary-*`/`--wl-gray-*`/`--wl-secondary-*` 十階重新取樣；success/warn/error 是全新色相，錨點分別是 `--wl-status-good/-warning/-critical`，用「錨點色度佔該明度 sRGB 色域邊界的比例」等比縮放算出其餘 8 階（**第一版曾借主色藍的色度曲線形狀縮放，結果色相在深階漂移將近 50 度，換成色域邊界比例縮放後最大偏差 <1.2 度**，換算過程見 `app/scripts/gen-sanring-theme-ramps.mjs`）；sun/info 不新增第四、五個色相，直接 `var()` 參照 warn/primary。同時移除了 CLI 預設產生的深/淺色雙軌設計（改成單一淺色語意層，同一個「❌ 不做深色模式」原則）。已用 Button 元件驗證：`ng build`/`ng test`（12/12）通過、編譯後 CSS 內 `focus-visible`/`hover` 規則正確指到 alias 過的變數，destructive variant 的 `error-70/-80` 配白字對比 11.89:1／16.37:1（`contrast()` 實測）。全域樣式檔載入 `sanring-theme.css` 改用 `@use`（非 `@import`）——`@import` 對純 CSS 檔的 passthrough 處理會在編譯結果多插入一個無意義的分號。**2026-08-30（task 3.7）第一次真正在頁面上用到元件（Button 之前只有驗證用，沒接進任何畫面）**：`Collapsible`（`npx @sanring/cli add collapsible`）用在政權聚焦面板收納周邊政權清單。同一次評估過 `Sheet`（原本使用者提議），確認**不適合**這個場景——`Sheet` 是包在 CDK Dialog 之上的真．模態框（鎖 `<body>` 捲動、背景 `aria-hidden`、可點擊關閉的遮罩、focus trap），沒有選項可以關掉模態行為，跟「聚焦面板要能同時看到地圖高亮」的需求方向相反；`Collapsible` 沒有遮罩、不鎖畫面，純粹是可展開/收合的內容區塊，也沒有預設樣式（純邏輯 + a11y 屬性，跟有預設 variant 樣式的 `Button` 不同），視覺完全由專案自己的樣式決定，見 implementation plan 任務 3.7 的說明 |
 | GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已實作（2026-08-28）**：`regime_territories(regime_id, valid_period)` 複合 GiST 索引已建立（migration `AddRegimeTerritoryGistIndex`，需 `btree_gist` extension 才能讓一般欄位跟 range 型別共用 GiST）。這條決策先前只在本表標「已拍板」，卻沒有被排進任何 phase 的任務清單，屬於「決定了沒人接手」的孤兒項目，已補上並套用到 `app_postgres` |
+| 二戰史料來源 | 主權軸：開放授權歷史國界資料集；控制軸：QGIS 地理配準手動數位化（輕量描圖可用 geojson.io） | 憲法 R7、I6 | **2026-10-02 拍板（grill-me Q8）**：主權軸候選 historical-basemaps（GPL-3.0，作者標明 work in progress）、europe-historical-geojson（BSD-3，僅歐洲）、CShapes（CC BY-NC-SA）等——**選哪一份由使用者決定（GPL copyleft 對衍生資料庫的影響屬法律判斷，見 §12）**。查證結果：目前**沒有**現成開放授權的「二戰每月控制區」資料集，控制軸必須手描；底圖限定有明確出版者／出處且為公有領域或 CC 授權者（例：美國陸軍軍史中心 CMH、西點軍校戰史地圖集，多為美國政府作品，仍須逐張確認），每筆記錄的 citation `locator` 須指到地圖集頁碼／圖號；「自製」無依據來源一律不採用（比照 2026-08-31 Wikimedia SVG 收回判準）。數位化產出格式為 GeoJSON |
 | 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
-| 斜線網底配色 | Canvas Pattern（`app/src/app/core/geometry/territory-dispute-pattern.ts`） | 疆域重疊區（notes §十）視覺呈現一致性 | **已完成，2026-08-29 當天修正兩次語意**。**第一版**：讀 `regime_territories.is_disputed` 整筆記錄畫網底，同色相加深一階（tone-on-tone）。使用者指出邏輯站不住腳——一整筆疆域記錄裡沒有爭議的部分也會被畫成整塊爭議（類比二戰後英法美蘇瓜分德國，佔領區邊界是條約明訂、沒有史料分歧，套用同一套判斷會荒謬地把整個佔領區都畫成爭議）。**第二版（最終）**：改用 `app/src/app/core/geometry/territory-overlap.ts` 的 `computeTerritoryOverlaps()` **即時計算幾何交集**（Turf.js `intersect()`，先用 bbox 粗篩再算精確交集），斜線只畫在真的有面積重疊的地方，不依賴任何手動標記的旗標——不管以後匯入什麼史料、任兩塊疆域重疊都會自動正確顯示，不需要再判斷或標記哪一筆該算爭議。渲染上改成**獨立的 `territory-overlaps` GeoJSON source + `territory-overlaps-hatch` 圖層**（疊在 `territories-fill` 之上），只有一張中性色網底圖樣（不是 5 個色格各自一張，見下方）。**網底顏色也跟著改**：重疊區可能同時牽涉兩個以上不同色相的政權，不再適合 tone-on-tone（那假設网底屬於單一政權），改用**單一中性色**（沿用 `--wl-territory-border` 同一色系）。Canvas 2D 繪製（不是 WebGL Shader，維持 §5/§9 風險表原本的選型），透過 `TerritoryHatchPatternService`（Angular DI 包裝）注入，因為 Angular 的 Vitest 整合不支援對相對路徑模組用 `vi.mock()`，需要透過 DI 替換才能在測試環境（無真實 Canvas 2D context）裡驗證 `MapComponent` 的呼叫邏輯。**過程中也踩過一個 MapLibre 邊界案例**：曾經改成 `isDisputed` 驅動的 `filter` 排除非爭議疆域，實測（使用者在瀏覽器拖拉桿到 208-214 年、並用 Console `fetch()` 直接驗證收到的資料本身正確）filter 在 `source.setData()` 動態換資料時沒有正確重新套用（根因未完全查明），後來直接改用不依賴 filter 的幾何交集方案，繞開整個問題。**規則最終定案（使用者拍板）**：「政權掌控區用顏色表示，政權重疊區域才用斜線」——只算**不同政權**之間的幾何交集，同一個政權自己底下多筆疆域記錄（I3 史觀分歧的並存版本）互相重疊不算「政權重疊」，一律用顏色表示；`computeTerritoryOverlaps()` 因此改吃帶 `regimeId` 的輸入，`regimeId` 相同的配對直接跳過。**重疊區另外補一層不透明中性底色**（`territory-overlaps-fill`，排在網底圖層之前）——網底圖樣背景透明，疊在兩個政權各自的填色上面時，只會透出「剛好排在後面那個政權」的顏色，看起來像重疊區只屬於其中一個政權；不透明中性底色先蓋掉底下兩色，才能明確傳達「這裡不屬於任何單一政權」。**2026-08-30 更新**：重疊區底色從「沿用 `--wl-territory-border` 中性色系」改成 `design-tokens.scss` 新增的專屬 `--wl-dispute-50~900` 紅色階（錨點沿用既有 `--wl-status-critical`，色域邊界比例縮放法生成，色相偏差 <1°，`--wl-dispute-500` 配白字對比 5.90:1）——重疊區的視覺語意其實是「內容」（有政權主張衝突），不是「結構」，跟疆域邊界線那種純結構性中性色不該共用同一個 token；`territories-border`（邊界線本身）維持原本的中性灰不變。網底繪製邏輯（`territory-dispute-pattern.ts`）不需要跟著改，只是換一個底色參數傳進去 |
+| 斜線網底配色 | Canvas Pattern（`app/src/app/core/geometry/territory-dispute-pattern.ts`） | 疆域重疊區（notes §十）視覺呈現一致性 | **2026-10-02 語意擴大（使用者拍板）**：規則由「政權掌控區用顏色，政權重疊區才用斜線」擴大為「**顏色＝完整掌控，斜線＝非完整掌控**」——除了既有的跨政權幾何重疊（`computeTerritoryOverlaps()` 即時計算，不變），`control_type` 為 `partial`（不完全控制）或 `contested`（交戰中）的控制紀錄即使只有一方也畫斜線。沿用同一套 Canvas Pattern，不新增第二種圖樣。**已完成，2026-08-29 當天修正兩次語意**。**第一版**：讀 `regime_territories.is_disputed` 整筆記錄畫網底，同色相加深一階（tone-on-tone）。使用者指出邏輯站不住腳——一整筆疆域記錄裡沒有爭議的部分也會被畫成整塊爭議（類比二戰後英法美蘇瓜分德國，佔領區邊界是條約明訂、沒有史料分歧，套用同一套判斷會荒謬地把整個佔領區都畫成爭議）。**第二版（最終）**：改用 `app/src/app/core/geometry/territory-overlap.ts` 的 `computeTerritoryOverlaps()` **即時計算幾何交集**（Turf.js `intersect()`，先用 bbox 粗篩再算精確交集），斜線只畫在真的有面積重疊的地方，不依賴任何手動標記的旗標——不管以後匯入什麼史料、任兩塊疆域重疊都會自動正確顯示，不需要再判斷或標記哪一筆該算爭議。渲染上改成**獨立的 `territory-overlaps` GeoJSON source + `territory-overlaps-hatch` 圖層**（疊在 `territories-fill` 之上），只有一張中性色網底圖樣（不是 5 個色格各自一張，見下方）。**網底顏色也跟著改**：重疊區可能同時牽涉兩個以上不同色相的政權，不再適合 tone-on-tone（那假設网底屬於單一政權），改用**單一中性色**（沿用 `--wl-territory-border` 同一色系）。Canvas 2D 繪製（不是 WebGL Shader，維持 §5/§9 風險表原本的選型），透過 `TerritoryHatchPatternService`（Angular DI 包裝）注入，因為 Angular 的 Vitest 整合不支援對相對路徑模組用 `vi.mock()`，需要透過 DI 替換才能在測試環境（無真實 Canvas 2D context）裡驗證 `MapComponent` 的呼叫邏輯。**過程中也踩過一個 MapLibre 邊界案例**：曾經改成 `isDisputed` 驅動的 `filter` 排除非爭議疆域，實測（使用者在瀏覽器拖拉桿到 208-214 年、並用 Console `fetch()` 直接驗證收到的資料本身正確）filter 在 `source.setData()` 動態換資料時沒有正確重新套用（根因未完全查明），後來直接改用不依賴 filter 的幾何交集方案，繞開整個問題。**規則最終定案（使用者拍板）**：「政權掌控區用顏色表示，政權重疊區域才用斜線」——只算**不同政權**之間的幾何交集，同一個政權自己底下多筆疆域記錄（I3 史觀分歧的並存版本）互相重疊不算「政權重疊」，一律用顏色表示；`computeTerritoryOverlaps()` 因此改吃帶 `regimeId` 的輸入，`regimeId` 相同的配對直接跳過。**重疊區另外補一層不透明中性底色**（`territory-overlaps-fill`，排在網底圖層之前）——網底圖樣背景透明，疊在兩個政權各自的填色上面時，只會透出「剛好排在後面那個政權」的顏色，看起來像重疊區只屬於其中一個政權；不透明中性底色先蓋掉底下兩色，才能明確傳達「這裡不屬於任何單一政權」。**2026-08-30 更新**：重疊區底色從「沿用 `--wl-territory-border` 中性色系」改成 `design-tokens.scss` 新增的專屬 `--wl-dispute-50~900` 紅色階（錨點沿用既有 `--wl-status-critical`，色域邊界比例縮放法生成，色相偏差 <1°，`--wl-dispute-500` 配白字對比 5.90:1）——重疊區的視覺語意其實是「內容」（有政權主張衝突），不是「結構」，跟疆域邊界線那種純結構性中性色不該共用同一個 token；`territories-border`（邊界線本身）維持原本的中性灰不變。網底繪製邏輯（`territory-dispute-pattern.ts`）不需要跟著改，只是換一個底色參數傳進去 |
 
 ## 6. 資料模型 (Data Model)
 
@@ -180,12 +251,69 @@ related_adrs: []
 - **多重視角的「觀察者」不一定是政權**：`historical_event_perspectives.regime_id` 維持 nullable FK（給當事政權用），非政權主體（國際第三者、後世史學界等）改用受控的 `observer_categories` 對照表，不用自由文字，避免同一概念打出不同拼法
 - **`regimes.status`／`origin_transition_type` 改用文化中立代碼，不用中文字面值**（2026-08-28，回應「西方/日式/非洲政權會不會有文化偏頗」的檢視）：原本直接存憲法 §4 的中文術語（「存續」「分裂」「被取代(禪讓)」「被滅亡」）當 enum 值，只有 5 筆 seed 資料就已經飄了（`status` 寫過「被取代(禪讓)」、`origin_transition_type` 寫過「被取代禪讓」，同一概念兩種字面值）；且「禪讓」是中國政治史特有的儀式性概念，套到羅馬共和轉帝制之類的非中國轉型會很勉強。改成 `'active'|'split'|'succeeded'|'conquered'` 中立代碼，UI/文件層再依語系對照回憲法的中文術語；憲法本身的業務詞彙不變，這純粹是儲存編碼方式的改變。**同一輪檢視發現一個目前還沒修的結構性缺口，見 §9 風險與 §12**：`predecessor_regime_id` 是單一 FK，只能表達「一對多分裂」，無法表達「多對一合併」（例如英格蘭+蘇格蘭→大不列顛這種歐洲史常見的政權合併），中國史很少出現這種轉換所以三國案例沒測到，留給 M4 世界史階段真的要放歐洲政權前處理
 - **I5 版本鏈（`superseded_by`）已有種子資料機械驗證過**（2026-08-28）：先前 `superseded_by`/`correction_reason`/`corrected_at` 只有 schema 欄位，從沒被任何 seed row 真正賦值過，等於這條 FK 路徑連「能不能正常 insert/查詢」都沒驗證。已補一組漢朝 `[25,189)` 的原始版＋修正版，原始列的 `superseded_by` 指向修正列。跟原本蜀漢的 I3 衝突組（同區間兩筆皆 `is_disputed=true`、互不 supersede）刻意做對照：I3 是「同期並存的兩種史觀」，I5 是「新版本取代舊版本」，語意不同。**2026-08-29 更新**：蜀漢原本的 I3 示範組（自己兩個並存版本）已被拿掉，改成「蜀漢/東吳的荊州邊界爭議」（見 §5 斜線網底配色，喀什米爾模型：跨政權邊界爭議跟單政權史觀分歧是同一個歷史問題的兩種建模方式，選擇保留前者，更貼近「政權重疊區才算爭議」規則的實際用例）——I3 機制本身的 schema 支援不受影響，只是目前種子資料沒有實例在示範，之後有更適合的案例（不涉及跨政權邊界的單純史觀分歧）再補一組。M2 應用層的修正端點行為（2.7：擋直接 UPDATE/DELETE、強制走新增新版本流程）仍待實作，這裡只驗證 schema 層的資料形狀正確
-- **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
+- **一個政權在存續期間需要多筆疆域快照，不是一筆涵蓋全朝代**（2026-08-26 拍板；⚠️ 2026-10-02：本條「`valid_period` 維持 `INT4RANGE`」的部分已被「二戰階段資料模型擴充」改為 `daterange` 取代，其餘快照密度原則不變）：`regime_territories` 是「快照表」，同一個 `regime_id` 依疆域實際變動筆數會有多筆記錄（例：唐朝 618-907 年間應有多筆，涵蓋擴張/收縮的不同階段），時間拉桿拖動時前端在快照之間做形變過渡動畫，快照本身不等於「離散跳轉」。快照密度**事件驅動**（有史料佐證的變動才建，不強制固定週期），疆域爭奪激烈的區域（如三國時期荊州）自然會比穩定期政權有更密集的快照；快照密度是「資料儲存」層面的事，跟時間拉桿的「拖動粒度」是兩回事——拉桿依憲法 §9 永遠連續拖動，不因快照稀疏而卡格。`valid_period` 維持 `INT4RANGE`（年精度），不跟隨 `historical_events` 升級為 EDTF+decimal：疆域史料常態以年為單位記載/推定，精確到日的疆域轉移（條約割地等）由對應的 `historical_events` 承載日期精度即可
 - **政權識別色不是固定對照表，是每個時間切片動態算出來的**（2026-08-29 拍板，前端設計；2026-08-29 任務 3.5 動工時修正色盲安全性判斷）：地圖是 choropleth 形式，任兩塊疆域都可能被拿來比較，色盲安全性要用最嚴格的「任兩色都要能分辨」（`--pairs all`）標準檢驗——用 dataviz 技能驗證過的預設 8 色分類色盤跑這個標準，只有前 3 色能過。**先前記錄過一個誤判**：曾以為「因為這裡是真正算相鄰關係後才分配，只需要『相鄰配對』（`--pairs adjacent`）寬鬆標準」，但 `--pairs adjacent` 是給堆疊圖/折線圖這種「畫面上只有固定順序相鄰的兩個顏色會真的貼在一起」的圖表用的；地圖是任意拓撲，兩塊疆域會不會實際相鄰是史料資料決定的，不是色盤陣列順序決定的——任何兩個色格理論上都可能在某張地圖上真的碰在一起，正確標準其實還是 `--pairs all`，不能放寬。任務 3.5 動工時實測：分類色第 3-8 格（aqua/yellow/magenta/green/violet/red）六色跑 `--pairs all` 會 FAIL（red 對 magenta 只有 13.2 ΔE，低於 15 下限）；拿掉 magenta 之後剩下五色（aqua/yellow/green/violet/red）全數過關（CVD 落在 6-8 的 WARN 帶，依規則需要「次要編碼」才合法——本來就有：疆域邊界統一中性色 + 點擊/hover 顯示名稱是身份辨識主要管道，色彩只是輔助，已滿足這個要求）。**最終定案 5 色**，實際色碼清單見 `app/src/app/core/design/territory-colors.ts` 的 `TERRITORY_COLOR_SLOTS`，仍遠高於四色定理需要的下限（4）。因此政權識別色的做法是：不幫每個政權寫死一個永久顏色，而是每個時間切片用貪婪圖著色演算法（`app/src/app/core/geometry/graph-coloring.ts`）即時分配，兩者由 `core/geometry/territory-styling.ts` 串接、寫回 GeoJSON feature properties 供 MapLibre 直接讀取；演算法會優先沿用前一次的色格以避免拖拉桿拖動時顏色無謂閃爍。**圖著色的節點是「政權」，不是「單筆疆域記錄」**（2026-08-29 修正，使用者實機發現「同一個政權出現兩種顏色、看起來像被對方領土包圍」）——一個政權若同時有多筆疆域記錄（I3 史觀分歧的並存版本、或核心/邊界拆成兩筆），這些記錄彼此幾何上可能互相重疊/相鄰，若直接把每筆記錄當節點，會被圖著色演算法誤判成「這幾筆需要分開上色」；`assignTerritoryColorSlots()` 改成先依 `regimeId` 分組，相鄰關係在政權層級計算（政權 A 任一筆疆域跟政權 B 任一筆疆域有實際拓撲相交才算相鄰），同一個政權不管底下有幾筆疆域記錄永遠只有一個顏色。政權身份辨識的主要管道是點擊/hover 顯示名稱（Story 2、3），不是靠記憶顏色——顏色只是輔助疆域彼此有區別，不是身份的唯一或主要依據。疆域邊界線維持單一中性色，不跟填色搶識別色資源；爭議控制區維持既有拍板的斜線網底（§5、3.15）
 - **系統色（介面底色/文字/灰階/主色/次色/按鈕/狀態色）已定案，三條完整 50-900 色階**（2026-08-29 拍板）於 `app/src/app/core/design/design-tokens.scss`：灰階、主色（藍）、次色（橙）都補齊 50/100/200/300/400/500/600/700/800/900 十階，不是跳著幾個點位。灰階/主色的錨點來自 dataviz 技能驗證過的預設色盤，缺口（灰階 500/700/800、主色 800/900、次色除官方錨點外全部）用 OKLab/OKLCH 數學內插/外推算出來，換算過程見 `app/scripts/gen-design-token-ramps.mjs`（用官方 OKLab 公式，已驗證正轉再反轉能精確拿回原始色碼），不是憑感覺補的。跟政權識別色是分開的兩套：政權識別色可用分類色盤**第 3-8 格（6 色，仍遠高於四色定理需要的下限）**，**第 1 格（藍）保留給主色、第 2 格（橙）保留給次色**（按鈕/連結/焦點框/次要強調），避免疆域填色跟互動元件顏色混淆。按鈕底色**用 dataviz 技能的 `contrast()` 工具實測而非用經驗猜**：分類色第 1 格（`#2a78d6`，對應主色 400 階附近）配白字只有 3.64-4.42:1，未達 WCAG AA 一般文字門檻（4.5:1），所以按鈕預設底色改用主色 500 階（`#256abf`，配白字 5.39:1）；連結文字、次色按鈕比照同一個原則，不用最鮮豔的那一階，用深一階通過對比度
 - **互動狀態（hover/active）用 `color-mix()` 蒙板公式，不是另外挑一階寫死色碼；文字顏色一律出自灰階，不直接用主/次色**（2026-08-29 拍板，同日補完系統色 50-900 色階後接續定案）：按鈕/連結的 hover 疊 8% 黑、active 疊 16% 黑（比照 Material Design state layer 慣例），用 CSS 原生 `color-mix(in srgb, 底色, black 8%/16%)` 即時運算成一個新實色，不是切到 ramp 上另一個寫死的色階——好處是同一個公式套用在任何底色上都通用，底色數值改了 hover/active 自動跟著變。**已用 `contrast()` 驗證疊蒙板後對比只增不減**：主色 500 疊 8%/16% 黑配白字分別是 6.10:1／7.01:1（不疊蒙板本身 5.39:1）。一般內文字顏色（`--wl-ink-primary/secondary/muted`）固定出自灰階、不直接借用主/次色——borders 同理維持中性灰階（`--wl-border-hairline`/`--wl-territory-border`），不用次色（次色是次要強調用色，不是「灰階的替代邊框色」）。**焦點框（focus ring）是唯一刻意「用主色當邊框」的場景**：新增 `--wl-focus-ring`（= 主色 500）／`--wl-focus-ring-width`（2px）／`--wl-focus-ring-offset`（2px），跟結構性邊框（維持中性色）分開、目的是讓鍵盤導覽焦點顯眼、有區別。同批定案：**圓角**四階（`--wl-radius-sm/md/lg/full` = 4/8/12/9999px，對應輸入框/按鈕卡片/面板抽屜/圓形膠囊）、**間距**以 4px 為基準單位的八階（`--wl-space-1` 到 `--wl-space-10` = 4/8/12/16/24/32/48/64px）、**文字排版**（沿用系統無襯線字型，跟 dataviz 技能建議一致；字級 `--wl-font-size-xs` 到 `-2xl` 用 `rem` 尊重使用者瀏覽器字級偏好、不寫死 `px`；字重 400/500/700；行高 tight/normal 兩階）。陰影、動畫時長、z-index 刻意先不定案——這幾個屬於「有實際元件（下拉選單、彈窗）需求時才知道該取什麼值」的類型，先記錄待補，不預先猜規格。全部落在 `app/src/app/core/design/design-tokens.scss`
 - **政權轉換邊需要能追溯回導致它的具體事件**（2026-08-27 拍板）：`regimes.predecessor_regime_id`/`origin_transition_type`（起源轉換）與 `regimes.destroyed_by_regime_id`（終止轉換）原本只記錄「發生過什麼轉換」，沒有連到「是哪個事件導致的」。新增 `regime_transition_events` 多對多 join 表，用 `transition_kind`（`'origin'` | `'destruction'`）區分同一個政權可能同時掛著起源與終止兩種轉換各自的觸發事件；多對多是因為一次轉換可能由多個事件共同促成（例：一連串戰役才逼成禪讓），一個事件也可能同時觸發多個政權的轉換（例：一場戰役同時導致多個分裂政權誕生）
 - **領域內容雙語支援用型別化翻譯表，只翻譯中立事實內容**（2026-08-29 拍板，2026-08-29 grill-me 兩輪修正，對應憲法 R4）：詳見下方「多語言內容設計」小節。翻譯（換語言講同一件事）跟史觀/史料傳統差異（不同語言史料內容本來就可能不同）是兩個獨立的軸——只有中立事實內容需要翻譯，立場性敘事（`historical_event_perspectives`）不翻譯、靠既有多重視角機制各自用原語言寫。**翻譯表本身最終定案是 5 張型別化 companion 表（`regime_translations` 等），不是單一通用表**——中途曾改成通用表（省開表數），但釐清這個專案的實際目標是給多使用者用、資料量會持續成長後，通用表放棄外鍵完整性（父列刪除時翻譯列不會自動級聯刪除，得靠應用層清孤兒資料）這個取捨在這個前提下不划算，改回型別化表換真外鍵 + `ON DELETE CASCADE`，詳見下方修訂記錄
+
+### 二戰階段資料模型擴充（2026-10-02，對應憲法 R6、I1、I3、I6、§4 近代擴充轉換、§9）
+
+**設計原則**：
+
+- **主權與實際控制分兩軸，各自一張表**（使用者 2026-10-02 選定）：`regime_territories` **擴充為控制軸**（加 `control_type`），三國等既有資料自動視為「直接統治」，前端只走一條疆域渲染路徑；新增 `sovereignty_claims` 承載主權軸。不採「單表加 axis 欄位」，因為主張方／承認方等欄位對控制紀錄沒有意義。
+- **疆域時間精度 `int4range` → `daterange`**（使用者 2026-10-02 選定）：月快照需要日精度；PostgreSQL `date` 可表達到西元前 4713 年，古代資料不受影響，既有年區間 `[y1,y2)` 遷移為 `[y1-01-01, y2-01-01)`；GiST 複合索引沿用（`btree_gist` 已裝）。**取代** 2026-08-26「`valid_period` 維持 `INT4RANGE`、不跟隨事件升級」的決策——當時的前提「疆域史料常態以年為單位記載」對二戰不成立。不改用 EDTF＋decimal，因為會失去 range 型別的 GiST 區間索引。
+- **史料快照日期＝控制紀錄 `valid_period` 的下界**：每筆控制紀錄代表一張有出處的地圖「截至某日」的狀態；相鄰兩筆快照下界之間的形變插值即為「推估過渡」（憲法 §9）。前端依此判斷目前拉桿位置是否落在史料快照日期上，不需額外欄位。
+- **主權主張可多筆並存**：同一地區同時可有不同主張方的主張（I3 改寫後只限制「同一主張方」的矛盾正式版本）；`is_effective` 標記「當時實際生效」那一筆，供主權檢視預設著色；有爭議的個案以 `historical_event_controversies` 記錄，不建通則（憲法 R6）。
+- **政權狀態需要時間切片**：既有 `regimes.status` 是單一值，只能表達「最終狀態」；流亡（波蘭 1939–1945）、被併吞後復國（奧地利 1938–1945）是**期間性**狀態，新增 `regime_status_periods` 記錄狀態隨時間變化，`regimes.status` 保留為目前／最終狀態以維持既有 API 相容。新狀態代碼：`exiled`（流亡）、`annexed`（被併吞）；復國不是獨立狀態，是由 `exiled`／`annexed` 回到 `active` 的轉換，`regime_transition_events.transition_kind` 新增 `'restoration'` 掛觸發事件。被併吞的併吞方沿用 `destroyed_by_regime_id`（語意擴大為「終止方政權」）。後端 `RegimeTransitionValidator` 與前端 XState 定義需同步加入新轉換（§5 驗證分工原則不變）。
+- **I6 由應用層強制**：主權主張與控制紀錄寫入端點須至少帶一筆 citation，否則拒絕；沿用 2026-08-31 已實作的 `sources` ＋ `*_citations` 模型（`evidence_note` 必填）。既有三國資料的 citation 回填不在第一階段範圍（凍結資料）。
+- **戰線不存表**：由 API 依查詢日期即時以 PostGIS 推導敵對控制區的共用邊界（憲法 §6「戰線」、grill-me Q7）；「敵對」判定依交戰事件或 `regime_relations.relation_type='敵對'`，具體規則留到實作任務拍板。
+
+```sql
+-- 控制軸：擴充既有疆域表
+ALTER TABLE regime_territories
+  ALTER COLUMN valid_period TYPE daterange USING daterange(make_date(lower(valid_period),1,1), make_date(upper(valid_period),1,1)),
+  ADD COLUMN control_type VARCHAR(24) NOT NULL DEFAULT 'direct_rule';
+  -- 'direct_rule'（直接統治）|'military_occupation'（軍事佔領）|'puppet_administration'（傀儡代管）
+  -- |'partial'（不完全控制）|'contested'（交戰中）；中立代碼，應用層驗證（比照 regimes.status 慣例）
+  -- ⚠️ 負年份（西元前）的 make_date 轉換需在 migration 實作時驗證
+
+-- 主權軸
+CREATE TABLE sovereignty_claims (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  claimant_regime_id UUID NOT NULL REFERENCES regimes(id), -- 主張方
+  valid_period DATERANGE NOT NULL,                          -- I1
+  geom GEOMETRY(MultiPolygon, 4326) NOT NULL,
+  is_effective BOOLEAN NOT NULL DEFAULT FALSE,              -- 當時實際生效（主權檢視預設著色依據）
+  is_disputed BOOLEAN NOT NULL DEFAULT FALSE,               -- I3 例外：同一主張方的爭議並存版本
+  superseded_by UUID REFERENCES sovereignty_claims(id),     -- I5 版本鏈
+  correction_reason TEXT,
+  corrected_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  version INT DEFAULT 0
+);
+
+-- 承認方（多對多，承認本身也有時間性：例 美國對波羅的海併入的不承認政策）
+CREATE TABLE sovereignty_claim_recognitions (
+  claim_id UUID NOT NULL REFERENCES sovereignty_claims(id) ON DELETE CASCADE,
+  recognizer_regime_id UUID NOT NULL REFERENCES regimes(id),
+  stance VARCHAR(16) NOT NULL,                              -- 'recognized'|'not_recognized'
+  valid_period DATERANGE NOT NULL,
+  PRIMARY KEY (claim_id, recognizer_regime_id, valid_period)
+);
+
+-- I6：沿用既有 citation pattern
+CREATE TABLE sovereignty_claim_citations ( /* 同 regime_territory_citations：claim_id + source_id + locator + evidence_note */ );
+
+-- 政權狀態時間切片（流亡／被併吞等期間性狀態）
+CREATE TABLE regime_status_periods (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  regime_id UUID NOT NULL REFERENCES regimes(id) ON DELETE CASCADE,
+  status VARCHAR(32) NOT NULL,                              -- 既有 4 碼 + 'exiled'|'annexed'
+  valid_period DATERANGE NOT NULL
+);
+```
 
 ### 多語言內容設計（憲法 R4，2026-08-29 拍板，2026-08-29 grill-me 兩輪修正）
 
@@ -396,7 +524,10 @@ CREATE TABLE regime_transition_events (
 ### 主要實體與關係
 
 - `regimes` 1 --- N `regime_aliases`（I4 FK 約束，代稱不可孤兒）
-- `regimes` 1 --- N `regime_territories`（I1 時間區間必填，I5 版本鏈以 `superseded_by` 自我參照而非覆蓋刪除）
+- `regimes` 1 --- N `regime_territories`（I1 時間區間必填，I5 版本鏈以 `superseded_by` 自我參照而非覆蓋刪除；2026-10-02 起為控制軸，含 `control_type`）
+- `regimes` 1 --- N `sovereignty_claims`（主張方；2026-10-02）
+- `sovereignty_claims` N --- N `regimes`（透過 `sovereignty_claim_recognitions`，承認方與時間）
+- `regimes` 1 --- N `regime_status_periods`（期間性狀態；2026-10-02）
 - `regimes` 1 --- N `reign_eras`（年號查詢，§5 已拍板）
 - `regimes` 自我參照 `predecessor_regime_id` / `destroyed_by_regime_id`（分裂/禪讓/滅亡轉換邊，客觀事實層，方案 D）
 - `regimes` N --- N `regimes`（透過 `regime_relations`，持續性關係如貿易/朝貢/和親）
@@ -412,7 +543,7 @@ CREATE TABLE regime_transition_events (
 ### DDD 邊界
 
 - **Aggregate Root**: `Regime`（政權）、`HistoricalEvent`（歷史事件）、`LineagePreset`（史觀主線 preset）——三者為平行的獨立聚合根，對應 notes §七「疆域圖層 vs 事件圖層」解耦設計，`LineagePreset` 額外把「呈現用史觀立場」跟「客觀政權圖」解耦（方案 D）
-- **內部 Entity**: `RegimeTerritory`（疆域版本記錄，含修正歷史）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`ReignEra`（年號查詢資料）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）、`RegimeTransitionEvent`（政權轉換邊與觸發事件的連接記錄）
+- **內部 Entity**: `SovereigntyClaim`（主權主張，含承認方與修正歷史，2026-10-02）、`RegimeStatusPeriod`（期間性狀態，2026-10-02）、`RegimeTerritory`（疆域版本記錄，含修正歷史；2026-10-02 起兼控制紀錄）、`RegimeAlias`（他稱代稱）、`RegimeRelation`（政權間持續性關係）、`ReignEra`（年號查詢資料）、`LineagePresetMember`（preset 內的排序成員）、`EventTag`（事件類型標籤）、`RegimeTransitionEvent`（政權轉換邊與觸發事件的連接記錄）
 - **Value Object**: `valid_period`（int4range）、EDTF 時間字串、`geom` 幾何值、`origin_transition_type`（分裂/被取代禪讓）
 - **跨 Aggregate 連結**: `historical_event_perspectives.regime_id`、`lineage_preset_members.regime_id`、`regime_relations.regime_a_id/regime_b_id` 均以識別碼 FK 連結至 `Regime` 聚合，**不直接持有** `Regime` 實體引用
 
@@ -439,6 +570,19 @@ CREATE TABLE regime_transition_events (
 | POST | /api/v1/regimes/:id/relations | 新增一筆持續性關係（`:id` 是關係一端，body 指定另一端） | `X-API-Key` |
 | GET | /api/v1/place-names?year={y} | 依年份查詢當時使用中的地名（憲法 §6 古地名為主、現代地名括號對照） | 公開（唯讀） |
 | GET | /api/v1/place-names/:id | 取得單一地名詳情（含 `historical_name`/`modern_name`） | 公開（唯讀） |
+
+**二戰階段新增／調整（2026-10-02，目標契約，尚未實作）**：
+
+| Method | Path | 用途 | 認證 |
+|---|---|---|---|
+| GET | /api/v1/territories?date={yyyy-mm-dd} | 控制軸快照查詢，回傳含 `controlType`、所屬快照日期（`valid_period` 下界）與前後最近快照日期（供 Story 7 推估過渡標示）；既有 `?year=` 保留相容（視為該年 1 月 1 日） | 公開（唯讀） |
+| POST | /api/v1/regimes/:id/territories | 既有端點加上 `controlType`、`validPeriod` 改日期區間，並**強制至少一筆 citation**（I6） | `X-API-Key` |
+| GET | /api/v1/sovereignty-claims?date={yyyy-mm-dd} | 主權軸查詢，含 `isEffective` 與承認方清單（R6） | 公開（唯讀） |
+| POST | /api/v1/sovereignty-claims | 新增主權主張（I1 時間區間、I6 citation 必填） | `X-API-Key` |
+| PATCH | /api/v1/sovereignty-claims/:id/correct | 史料修正（I5 版本鏈，同 territories correct） | `X-API-Key` + 樂觀併發 |
+| POST | /api/v1/sovereignty-claims/:id/recognitions | 新增承認／不承認紀錄 | `X-API-Key` |
+| GET | /api/v1/frontlines?date={yyyy-mm-dd} | PostGIS 即時推導的敵對控制區邊界（不存表） | 公開（唯讀） |
+| GET | /api/v1/regimes/:id/status-periods | 政權期間性狀態（流亡／被併吞等） | 公開（唯讀） |
 
 M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包含 request/response schema、成功狀態碼與主要 4xx 回應。正式的文字精修與範例補強可延後，但不得讓已實作端點缺席於產生出的契約。目前僅有 scaffold endpoint，詳見 `docs/api.md`。
 
@@ -483,6 +627,13 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
   - error：視角資料載入失敗
   - success：客觀經過概要 + 各當事方視角分頁 + 爭議點區塊並列呈現；預設開啟哪個分頁須在 M3.13 前拍板（見 §12）
 
+- **二戰階段主地圖補充（2026-10-02）** — 對應 Story 6、7：
+  - 軸切換：預設「實際控制」，可切換到「主權」檢視（使用者 2026-10-02 選定）
+  - 時間拉桿預設範圍 1937-07～1945-09、主刻度為月；仍可往回拉到古代（三國資料保留，grill-me Q14），地圖預設中心移到歐亞大陸
+  - 史料快照／推估過渡：位於兩筆快照之間時，邊界改為推估樣式並顯示「推估過渡」標籤與前後最近快照日期；具體樣式（虛線、不透明度數值）於實作任務拍板
+  - 斜線網底：完整掌控＝實心色塊，非完整掌控（重疊、不完全控制、交戰中）＝斜線（§5）
+  - empty：拉到 1937-07 以前且無資料的時段時，沿用既有空狀態提示；1931 起的零星資料（如滿洲國）照常顯示但不保證完整
+
 對應 Figma / design assets：**已拍板（grill-me 2026-08-25 第二輪）**——`design_output_mode: assets_only`，不引入 Figma 同步流程。理由：專案目前無設計稿，屬單人自用階段，先直接以 UI 元件庫（**2026-08-28 已選定 Sanring UI**，見 §5 B）+ MapLibre 拼介面；待有明確視覺規範需求或設計師/多人協作介入時再評估升級。
 
 關鍵互動的 `data-testid` 不在 PRD 預先臆測名稱；M3 實作元件時依 3.16 E2E 主流程同步定義，並由測試 review 確認穩定性。
@@ -496,6 +647,10 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 | ~~`docker-compose.yml` 用純 `postgres:16-alpine`，GIS 幾何欄位/空間索引無法運作~~ | ~~high~~ | **已解決（2026-08-25）**：拍板改用 `postgis/postgis:16-3.4` 映像檔，列入 M1 前置工作 |
 | ~~憲法 R4（2026-08-29 新增）要求雙語內容，但既有 15 張表全部是單一語言欄位，且現有 seed 資料完全沒有英文版本~~ | ~~med~~ | **已解決（2026-08-29）**：5 張型別化 `_translations` companion 表（`regime_translations` 等，§6）+ 20 筆既有 seed 資料的英文翻譯已完成並套用到 `app_postgres`，真外鍵 + `ON DELETE CASCADE` 已用實際刪除測試驗證。`historical_events.sections` JSONB 是否連帶翻譯仍未拍板，留給實際擴充 `historical_event_translations` 時決定 |
 | CHGIS／CShapes 授權為非商業限定（CC BY-NC-SA / 學術限定），若專案未來出現贊助或政府投資等資金來源，需重新確認授權相容性 | med | 使用者已確認目前無商業化/收費計畫，OHM（CC0）作主要資料來源可完全規避此風險；CHGIS/CShapes 僅輔助使用，若未來有資金來源介入，啟動前需重新查證或改用純 OHM 資料，詳見 §5 |
+| **二戰控制軸必須手動數位化**（2026-10-02 查證：無現成開放授權的每月控制區資料集）——1937-1945 全球月快照的描圖量很大，是第一階段最大的進度風險 | high | 先以「轉折點快照」起步（例：1939-09、1940-06、1941-06、1941-12、1942-11、1943-07、1944-06、1945-05、1945-08），再逐步加密；底圖限定公有領域／CC（R7），每張圖描完立即寫 citation，不累積「事後補來源」的技術債 |
+| 主權軸開放資料集授權（GPL-3.0 copyleft 對衍生資料庫的影響）未決 | med | 由使用者自行判斷（§12）；未決前可先做控制軸，主權軸資料暫緩匯入 |
+| `valid_period` `int4range`→`daterange` migration 會碰到既有查詢（2.6 territories、3.5 前端篩選）與西元前年份轉換 | med | migration 任務內一併改查詢與測試；用全新 volume 重建資料庫驗證（比照 2026-08-31 吳疆域匯入的驗證方式） |
+| 中國戰區「點線佔領」以多邊形概括，精度有限 | low | 已知限制，以「不完全控制」網底誠實呈現；點線建模列為二戰深化階段 |
 | 多重視角史料考據工作量大（notes §十設計要求「客觀骨幹 + 各方主觀敘事 + 爭議點」三層結構，每個跨國事件都需多方史料） | high | 第一階段（中國史）先聚焦內部政權疆域資料，多重視角功能可延後至世界史階段跨國事件出現時再逐步建置 |
 | `regimes.predecessor_regime_id` 是單一 FK，只能表達「一對多分裂」，無法表達「多對一合併」（例如英格蘭+蘇格蘭→大不列顛）——中國史很少出現此類轉換，三國案例未觸發此缺口（2026-08-28 檢視發現） | med（會擋住 M4 世界史需要的歐洲政權資料） | M1/M2 現有資料不受影響，純新增（例如加一張 `regime_merge_sources` join table），不動現有欄位。列為 M4 世界史前必須處理，詳見 §12 |
 | ~~政權「正式朝代 vs 子朝代/分裂政權」分類與傳承鏈定義未拍板~~ | ~~med~~ | **已解決（2026-08-25）**：不做分類欄位，改用 `regimes` 轉換邊（客觀事實）+ 獨立 `lineage_presets` 表（史觀主線呈現層），詳見 §6 方案 D |
@@ -507,25 +662,28 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 
 ### 相依
 
-- **上游**：憲法 `.claude/constitutions/world-line.md`（已於 2026-08-25 拍板為 `status: active`）；PostGIS extension 安裝需先於資料庫層完成；歷史地理原始資料（CHGIS 等）授權確認需先於資料建置階段完成。
+- **上游**：憲法 `.claude/constitutions/world-line.md`（2026-08-25 拍板 `active`；2026-10-02 二戰策略轉向改版已拍板 `active`）；PostGIS extension 安裝需先於資料庫層完成；歷史地理原始資料（CHGIS 等）授權確認需先於資料建置階段完成。
 - **下游**：目前無其他 team/service 依賴本 feature（單一專案，無已知下游影響範圍）。
 
 ## 10. 里程碑 (Milestones)
 
-> 依憲法 §1 階段實施順序（中國史 → 世界史 → 單一國家史）給出粗略里程碑。M1 使用實際完成日期；尚未排程的未來里程碑維持 TODO，不自行腦補承諾日期。
+> 2026-10-02 依憲法 §1 新階段順序（由近而遠）重排 M4 以後。M1-M3 以三國示範資料完成，成果（schema、API、地圖、時間軸、形變、E2E）為二戰階段的基礎；尚未排程的里程碑維持 TODO，不自行腦補承諾日期。
 
 | Milestone | 預計完成 | 內容 | 驗收門檻 |
 |---|---|---|---|
 | M1 | 2026-08-27 完成 | 資料層定案：15 張領域表、PostGIS、migration、seed 與 schema 可表達性驗證 | migration 可套用；I1/I2/I4 由 schema 擋下；I3/I5 所需欄位就緒並明確交由 M2 應用層強制 |
-| M2 | TODO | 後端 MVP（中國史階段政權/疆域 CRUD + 時間區間查詢） | 單元測試 + integration test 綠；所有已實作端點出現在 ASP.NET OpenAPI |
-| M3 | TODO | 前端整合（時間拉桿 + 地圖渲染 + 中國史資料上線，對應 Story 1、4） | 四態齊備、E2E 主流程綠 |
-| M4 | TODO | 世界史階段擴充（多文明並存渲染，對應 R2；事件圖層與多重視角初版，對應 Story 3、5） | 品質門禁全綠 |
-| M5 | TODO | 單一國家史深化階段（如台灣史）+ 教育對象開放評估（對應憲法 §1 未來擴充意圖） | Production smoke test 通過 |
+| M2 | 2026-08-31 完成 | 後端 MVP（政權/疆域/事件 CRUD + 時間區間查詢，以三國資料驗證） | 單元測試 + integration test 綠；所有已實作端點出現在 ASP.NET OpenAPI |
+| M3 | 2026-08-31 完成 | 前端整合（時間拉桿 + 地圖渲染 + 形變 + 聚焦/視角/事件抽屜，以三國資料驗證，對應 Story 1-5） | 四態齊備、E2E 主流程綠（7/7） |
+| M4 | TODO | **二戰第一階段**：主權／控制兩軸 schema 與 API、`daterange` 遷移、狀態機近代擴充、推估過渡標示、網底語意擴大、二戰轉折點快照資料與事件（含爭議點與暴行事件），對應 Story 6-9 | Story 6-9 AC 全過；I1/I3/I5/I6 由測試覆蓋；E2E 涵蓋二戰主流程；既有三國 E2E 不退化 |
+| M5 | TODO | 二戰深化：戰線層級、部隊層級（Deck.gl 導入）、點線佔領建模、第二個歷史維度與維度切換器（R5） | 屆時展開 |
+| M6 | TODO | 近代延伸（一戰、19 世紀等史料豐富時代） | 屆時展開 |
+| M7 | TODO | 古代（原中國史 → 世界史；三國資料解凍；原「M4 世界史前必須處理」清單於此階段處理） | 屆時展開 |
+| M8 | TODO | 單一國家史（如台灣史）+ 教育對象開放評估 | Production smoke test 通過 |
 
 ## 11. 後續追蹤 (Follow-ups)
 
 - 上線後 1 週：review 使用者（開發者自身）實際使用回饋，是否符合「縱覽世界」的核心體驗目標
-- 30 天：檢視中國史階段資料完整度與正確性，決定是否啟動世界史階段擴充
+- 30 天：檢視二戰第一階段轉折點快照的完整度與正確性（含來源覆蓋率），決定加密快照或啟動二戰深化階段
 - 90 天：檢視已拍板的技術決策（方案 D 史觀 preset、事件三維度拆分、Auth、角色權限、狀態機驗證分工等），依實作回饋決定是否需要正式 ADR 留存；尚未拍板事項以 §12 現行分類為準
 
 ## 12. 開放問題 (Open Questions)
@@ -562,9 +720,16 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 - [x] M2.12/M2.13 寫入端點前定義 `primary_sources`、`claimed_casualties`、`viewpoints` 的 JSON schema 與最小 citation 欄位 → 2026-08-31 拍板：沿用既有種子資料已經在用的形狀當定案（不憑空另外設計）。`primary_sources` 陣列 `{title, author, year?}`；`claimed_casualties` 物件，鍵名彈性（例：`{own_loss, enemy_loss}`）；`viewpoints` 陣列 `{stance, source}`。不寫程式碼層級 JSON Schema 驗證，同 task 2.10 `sections` 既有慣例，見 implementation plan 任務 2.12/2.13
 - [x] 憲法 R4：implementation plan 2.16（5 張型別化 `_translations` companion 表，真外鍵 + `ON DELETE CASCADE`）、2.17（既有 seed 資料 20 筆英文翻譯）已完成並套用到 `app_postgres`，見 §6「多語言內容設計」。2.4/2.8/2.9a/2.10/2.13 這些尚未動工的查詢端點仍要支援 `?locale=`；2.12（`historical_event_perspectives`）不用，因為整張表都不進翻譯範圍。
 
+**二戰第一階段（M4）前必須處理**（2026-10-02 新增）：
+
+- [ ] TODO（使用者自行判斷）：主權軸採用哪一份開放資料集（historical-basemaps GPL-3.0／europe-historical-geojson BSD-3 僅歐洲／CShapes CC BY-NC-SA 等），GPL copyleft 影響屬法律判斷，不由 AI 拍板（憲法 §10）。
+- [ ] TODO：「敵對」控制區的判定規則（戰線推導用），實作任務動工前拍板。
+- [ ] TODO：推估過渡的具體視覺樣式（虛線、不透明度數值、標籤位置），實作任務動工前拍板。
+- [ ] TODO：二戰第一階段轉折點快照日期清單（§9 風險表為初步建議，需使用者確認）。
+
 **正式史料匯入前必須處理**：
 
-- [ ] TODO：新增可重用的 source/citation model，讓政權、疆域、年號、關係與事件都能逐筆追溯來源、版本、locator 與授權；最低要求見 `docs/data-governance.md`。
+- [x] ~~TODO：新增可重用的 source/citation model~~ → 2026-08-31 已實作（commit `6ff01c3`，migration `AddSourceCitationModel`：`sources` + `regime_citations`／`regime_territory_citations`／`regime_relation_citations`／`reign_era_citations`／`historical_event_citations`）。原 TODO 文字：新增可重用的 source/citation model，讓政權、疆域、年號、關係與事件都能逐筆追溯來源、版本、locator 與授權；最低要求見 `docs/data-governance.md`。
 
 **M3 前必須處理**：
 
@@ -574,7 +739,7 @@ M2 每個端點完成時都必須同步進入 ASP.NET 內建 OpenAPI，至少包
 **已解決（追加）**：
 - [x] 任務 3.0 原本留下的缺口——`src/sanring-theme.css` 的品牌色階跟 Sanring 原廠色盤不一致 → 同日（2026-08-29）追加拍板：`--wl-*` 全面覆蓋，不保留任何 Sanring 原廠色碼，見 §5 UI 元件庫列
 
-**M4（世界史）前必須處理**（2026-08-28 新增，回應文化偏頗檢視）：
+**古代世界史階段前必須處理**（2026-08-28 新增，回應文化偏頗檢視；2026-10-02 註：原標題「M4（世界史）前」，里程碑重排後對應 M7。其中「多對一合併」一條若 M6 近代延伸就遇到〔如德意志統一〕需提前處理）：
 
 - [ ] TODO：`regimes` 補上「多對一合併」轉換路徑（例如新增 `regime_merge_sources` join table），現有的 `predecessor_regime_id` 單一 FK 只能表達分裂，歐洲史常見的政權合併（personal union、統一戰爭）目前存不進去。純新增，不影響現有資料，但要在真正匯入第一筆需要合併語意的政權（例如大不列顛、德意志統一）之前完成，不要等到卡住才回頭改。
 - [ ] TODO：`regime_territories` 的「政權＝固定邊界多邊形」假設，套到遊牧部落聯盟或非洲分節式政治體系是否成立，需要具體案例出現時再評估，目前只是標記為開放問題，不預先改 schema。

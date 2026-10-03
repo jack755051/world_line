@@ -19,7 +19,8 @@ Redis 容器已編排，但後端尚未接入快取。README 中的「目前狀�
 | 文件 | 用途 | 權威範圍 |
 |---|---|---|
 | [業務憲法](.claude/constitutions/world-line.md) | 業務目的、術語、狀態機、I1-I5 不可變約束 | 業務規則 SSOT |
-| [PRD](.claude/prds/world-line.md) | 使用者故事、技術決策、目標資料模型與 API 契約 | 已拍板的產品／技術基線 |
+| [PRD（核心）](.claude/prds/world-line.md) | 跨階段技術決策、已實作資料模型與 API 契約、里程碑總覽 | 已拍板的產品／技術基線 |
+| [PRD（二戰 M4）](.claude/prds/world-line-ww2.md)／[PRD（古代，凍結）](.claude/prds/world-line-ancient.md) | 各階段範圍、使用者故事、schema／API 變動 | 階段 PRD |
 | [實作計畫](.claude/plans/world-line-implementation-plan.md) | M1-M3 任務、進度、停止條件與驗收方式 | 實作進度 SSOT |
 | [架構說明](docs/architecture.md) | Current/Target 架構、資料流與責任邊界 | 工程架構入口 |
 | [開發指南](docs/development.md) | 本機啟動、migration、seed、驗證與疑難排解 | 開發操作入口 |

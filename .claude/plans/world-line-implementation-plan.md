@@ -6,6 +6,7 @@ status: active
 owner: jack755051@gmail.com
 date: 2026-08-27
 related_prd: .claude/prds/world-line.md
+related_phase_prds: [".claude/prds/world-line-ww2.md", ".claude/prds/world-line-ancient.md"]
 related_constitution: .claude/constitutions/world-line.md
 ---
 
@@ -29,7 +30,7 @@ related_constitution: .claude/constitutions/world-line.md
 | Phase 1 | M1：資料層定案，PostGIS extension 安裝完成 | ✅ 已完成（見 §2） |
 | Phase 2 | M2：後端 MVP（中國史階段政權/疆域 CRUD + 時間區間查詢） | ✅ 已完成（見 §3） |
 | Phase 3 | M3：前端整合（時間拉桿 + 地圖渲染 + 中國史資料上線） | ✅ 已完成（見 §4） |
-| Phase 4 | M4：**二戰第一階段**（2026-10-02 策略轉向，原「世界史」移至 PRD M7） | ⏳ 待顆粒化，依 PRD §10 M4 與 Story 6-9 展開 |
+| Phase 4 | M4：**二戰第一階段**（2026-10-02 策略轉向，原「世界史」移至 PRD M7） | ⏳ 待顆粒化，依 `world-line-ww2.md` 展開 |
 | Phase 5+ | M5-M8：二戰深化 → 近代 → 古代 → 單一國家史（PRD §10，2026-10-02 重排） | ⏸ M4 完成後再展開 |
 
 **全域範圍上限（適用所有階段）**：

@@ -11,8 +11,8 @@ public static class SourcesEndpoints
 {
     public static void Map(RouteGroupBuilder read, RouteGroupBuilder write)
     {
-        read.MapGet("/sources/{id:guid}", Get).WithTags("Sources").WithName("GetSource");
-        write.MapPost("/sources", Create).WithTags("Sources").WithName("CreateSource").RequiresApiKey();
+        read.MapGet("/sources/{id:guid}", Get).WithTags("Sources").WithName("GetSource").Ok<SourceDto>().Errors(404);
+        write.MapPost("/sources", Create).WithTags("Sources").WithName("CreateSource").RequiresApiKey().Created<SourceDto>().Errors(400, 401);
     }
 
     public static async Task<IResult> Get(Guid id, WorldLineDbContext db, CancellationToken ct)

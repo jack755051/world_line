@@ -15,8 +15,8 @@ public static partial class RegimesEndpoints
 
     public static void Map(RouteGroupBuilder read, RouteGroupBuilder write)
     {
-        read.MapGet("/regimes/{id:guid}", Get).WithTags("Regimes").WithName("GetRegime");
-        write.MapPost("/regimes", Create).WithTags("Regimes").WithName("CreateRegime").RequiresApiKey();
+        read.MapGet("/regimes/{id:guid}", Get).WithTags("Regimes").WithName("GetRegime").Ok<RegimeDto>().Errors(404);
+        write.MapPost("/regimes", Create).WithTags("Regimes").WithName("CreateRegime").RequiresApiKey().Created<RegimeDto>().Errors(400, 401, 409);
     }
 
     public static async Task<IResult> Get(Guid id, WorldLineDbContext db, CancellationToken ct)

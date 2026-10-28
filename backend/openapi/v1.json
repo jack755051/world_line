@@ -23,8 +23,35 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfSourceDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -49,8 +76,45 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRegimeDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -75,8 +139,45 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfTheaterDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -101,8 +202,45 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfControlSnapshotDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -127,8 +265,45 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfControlRecordCreatedDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -155,7 +330,24 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfSourceDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         }
       }
@@ -179,7 +371,24 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRegimeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         }
       }
@@ -202,7 +411,24 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfControlMapDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         }
       }
@@ -257,7 +483,24 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfPaginatedResponseOfTimelineSnapshotDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
           }
         }
       }
@@ -265,6 +508,428 @@
   },
   "components": {
     "schemas": {
+      "ApiResponseOfControlMapDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ControlMapDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfControlRecordCreatedDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ControlRecordCreatedDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfControlSnapshotDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ControlSnapshotDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfObject": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": { },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfPaginatedResponseOfTimelineSnapshotDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/PaginatedResponseOfTimelineSnapshotDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfRegimeDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RegimeDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfSourceDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SourceDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfTheaterDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/TheaterDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "CitationDto": {
+        "required": [
+          "sourceId",
+          "sourceTitle",
+          "publisher",
+          "licenseCode",
+          "locator",
+          "role",
+          "evidenceNote"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sourceTitle": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "licenseCode": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "locator": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "evidenceNote": {
+            "type": "string"
+          }
+        }
+      },
       "CitationInput": {
         "required": [
           "sourceId",
@@ -298,6 +963,207 @@
               "null",
               "string"
             ]
+          }
+        }
+      },
+      "ControlFeature": {
+        "required": [
+          "id",
+          "geometry",
+          "properties"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/JsonElement"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/ControlFeatureProperties"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "ControlFeatureCollection": {
+        "required": [
+          "features"
+        ],
+        "type": "object",
+        "properties": {
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ControlFeature"
+            }
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "ControlFeatureProperties": {
+        "required": [
+          "controlRecordId",
+          "versionId",
+          "controllerRegimeId",
+          "controlType",
+          "patronRegimeId",
+          "theaterCode",
+          "snapshotId",
+          "isDisputed",
+          "validPeriod",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "controlRecordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "versionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "controllerRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "controlType": {
+            "type": "string"
+          },
+          "patronRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "theaterCode": {
+            "type": "string"
+          },
+          "snapshotId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isDisputed": {
+            "type": "boolean"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/IntervalDto"
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
+          }
+        }
+      },
+      "ControlMapDto": {
+        "required": [
+          "date",
+          "featureCollection",
+          "theaters"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "featureCollection": {
+            "$ref": "#/components/schemas/ControlFeatureCollection"
+          },
+          "theaters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TheaterStateDto"
+            }
+          }
+        }
+      },
+      "ControlRecordCreatedDto": {
+        "required": [
+          "controlRecordId",
+          "versionId"
+        ],
+        "type": "object",
+        "properties": {
+          "controlRecordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "versionId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ControlSnapshotDto": {
+        "required": [
+          "id",
+          "theaterId",
+          "asOf",
+          "attestation",
+          "attestedPeriod",
+          "asOfNote",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "theaterId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date"
+          },
+          "attestation": {
+            "type": "string"
+          },
+          "attestedPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "asOfNote": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       },
@@ -612,7 +1478,169 @@
           }
         }
       },
+      "IntervalDto": {
+        "required": [
+          "start",
+          "end"
+        ],
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date"
+          },
+          "end": {
+            "type": "string",
+            "format": "date"
+          },
+          "startUncertainty": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "endUncertainty": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          }
+        }
+      },
       "JsonElement": { },
+      "PaginatedResponseOfTimelineSnapshotDto": {
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimelineSnapshotDto"
+            }
+          },
+          "page": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "pageSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "total": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      },
+      "RegimeDto": {
+        "required": [
+          "id",
+          "slug",
+          "wikidataQid",
+          "names"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "wikidataQid": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegimeNameDto"
+            }
+          }
+        }
+      },
+      "RegimeNameDto": {
+        "required": [
+          "id",
+          "nameKind",
+          "originalText",
+          "originalLang",
+          "display",
+          "observerRegimeId",
+          "validPeriod",
+          "isPrimary"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nameKind": {
+            "type": "string"
+          },
+          "originalText": {
+            "type": "string"
+          },
+          "originalLang": {
+            "type": "string"
+          },
+          "display": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "observerRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "isPrimary": {
+            "type": "boolean"
+          }
+        }
+      },
       "RegimeNameInput": {
         "required": [
           "nameKind",
@@ -669,6 +1697,254 @@
           "isPrimary": {
             "type": "boolean",
             "default": false
+          }
+        }
+      },
+      "SnapshotRefDto": {
+        "required": [
+          "id",
+          "asOf"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "SnapshotSourceDto": {
+        "required": [
+          "sourceId",
+          "title",
+          "locator"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "locator": {
+            "type": "string"
+          }
+        }
+      },
+      "SourceDto": {
+        "required": [
+          "id",
+          "sourceKind",
+          "title",
+          "publisher",
+          "authors",
+          "publishedText",
+          "licenseCode",
+          "licenseEvidenceUrl",
+          "url",
+          "archiveUrl",
+          "localCopyPath",
+          "catalogId",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sourceKind": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "authors": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "publishedText": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseCode": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseEvidenceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "url": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "archiveUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "localCopyPath": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "catalogId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "TheaterDto": {
+        "required": [
+          "id",
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "TheaterStateDto": {
+        "required": [
+          "theaterCode",
+          "state",
+          "attestingSnapshot",
+          "prevSnapshot",
+          "nextSnapshot"
+        ],
+        "type": "object",
+        "properties": {
+          "theaterCode": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "attestingSnapshot": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SnapshotRefDto"
+              }
+            ]
+          },
+          "prevSnapshot": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SnapshotRefDto"
+              }
+            ]
+          },
+          "nextSnapshot": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SnapshotRefDto"
+              }
+            ]
+          }
+        }
+      },
+      "TimelineSnapshotDto": {
+        "required": [
+          "id",
+          "theaterCode",
+          "asOf",
+          "attestation",
+          "attestedPeriod",
+          "title",
+          "primarySources"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "theaterCode": {
+            "type": "string"
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date"
+          },
+          "attestation": {
+            "type": "string"
+          },
+          "attestedPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "primarySources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SnapshotSourceDto"
+            }
           }
         }
       }

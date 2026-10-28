@@ -11,8 +11,8 @@ public static class ControlEndpoints
 {
     public static void Map(RouteGroupBuilder read, RouteGroupBuilder write)
     {
-        read.MapGet("/control", GetControl).WithTags("Control").WithName("GetControl");
-        write.MapPost("/control-records", Create).WithTags("Control").WithName("CreateControlRecord").RequiresApiKey();
+        read.MapGet("/control", GetControl).WithTags("Control").WithName("GetControl").Ok<ControlMapDto>().Errors(400);
+        write.MapPost("/control-records", Create).WithTags("Control").WithName("CreateControlRecord").RequiresApiKey().Created<ControlRecordCreatedDto>().Errors(400, 401, 409);
     }
 
     /// <summary>POST /control-records：新增控制紀錄（第一版）。身分、版本、引用同一 transaction 寫入。</summary>

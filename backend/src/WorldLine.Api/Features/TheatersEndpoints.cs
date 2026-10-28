@@ -11,8 +11,8 @@ public static class TheatersEndpoints
 {
     public static void Map(RouteGroupBuilder write)
     {
-        write.MapPost("/theaters", CreateTheater).WithTags("Theaters").WithName("CreateTheater").RequiresApiKey();
-        write.MapPost("/control-snapshots", CreateSnapshot).WithTags("Theaters").WithName("CreateControlSnapshot").RequiresApiKey();
+        write.MapPost("/theaters", CreateTheater).WithTags("Theaters").WithName("CreateTheater").RequiresApiKey().Created<TheaterDto>().Errors(400, 401, 409);
+        write.MapPost("/control-snapshots", CreateSnapshot).WithTags("Theaters").WithName("CreateControlSnapshot").RequiresApiKey().Created<ControlSnapshotDto>().Errors(400, 401, 409);
     }
 
     public static async Task<IResult> CreateTheater(CreateTheaterRequest req, WorldLineDbContext db, CancellationToken ct)

@@ -12,7 +12,7 @@ public static class TimelineEndpoints
     public const int MaxPageSize = 500;
 
     public static void Map(RouteGroupBuilder read) =>
-        read.MapGet("/timeline/snapshots", GetSnapshots).WithTags("Timeline").WithName("GetTimelineSnapshots");
+        read.MapGet("/timeline/snapshots", GetSnapshots).WithTags("Timeline").WithName("GetTimelineSnapshots").Ok<PaginatedResponse<TimelineSnapshotDto>>().Errors(400);
 
     public static async Task<IResult> GetSnapshots(DateOnly? from, DateOnly? to, int? page, int? pageSize,
         WorldLineDbContext db, CancellationToken ct)

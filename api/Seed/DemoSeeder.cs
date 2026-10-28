@@ -9,7 +9,8 @@ namespace WorldLine.Api.Seed;
 
 /// <summary>
 /// 示範資料（可重複執行）：只新增不存在的資料、從不更新或刪除（符合 I5）。以固定 Guid／slug／名稱判斷是否已存在。
-/// 年份為公認史實（天文紀年）；疆域一律是粗略「示意多邊形」（is_illustrative = true），非史料考據。
+/// 日期為公認史實（只知年份者精度標為 year，I7）；疆域一律是粗略「示意多邊形」（is_illustrative = true），非史料考據。
+/// 二戰示範資料見 <see cref="Ww2Seeder"/>。
 /// 執行：`dotnet WorldLine.Api.dll seed`（容器內）或 `dotnet run --project api -- seed`。
 /// </summary>
 public static class DemoSeeder
@@ -60,17 +61,25 @@ public static class DemoSeeder
         await SeedPresetsAsync(db, report, ct);
         await SeedReignErasAndPlacesAsync(db, report, ct);
         await SeedEventsAsync(db, report, ct);
+        await Ww2Seeder.RunAsync(db, report, ct);
 
         await tx.CommitAsync(ct);
         return report;
     }
 
+    /// <summary>年份（只知年）→ 4 位數字串，給 <see cref="Periods.Parse"/>。</summary>
+    internal static string Y(int year) => year.ToString("0000");
+
     private static Regime R(Guid id, string self, int from, int to, string status,
-        Guid? predecessor = null, string? origin = null, Guid? destroyedBy = null) => new()
+        Guid? predecessor = null, string? origin = null, Guid? destroyedBy = null)
     {
-        Id = id, SelfName = self, ExistencePeriod = Ranges.Closed(from, to), Status = status,
-        PredecessorRegimeId = predecessor, OriginTransitionType = origin, DestroyedByRegimeId = destroyedBy,
-    };
+        var (range, fp, tp) = Periods.Parse(Y(from), Y(to));
+        return new()
+        {
+            Id = id, SelfName = self, ExistencePeriod = range, ExistenceFromPrecision = fp, ExistenceToPrecision = tp, Status = status,
+            PredecessorRegimeId = predecessor, OriginTransitionType = origin, DestroyedByRegimeId = destroyedBy,
+        };
+    }
 
     private static async Task SeedRegimesAsync(WorldLineDbContext db, SeedReport report, CancellationToken ct)
     {
@@ -140,11 +149,12 @@ public static class DemoSeeder
             .Select(t => new { t.RegimeId, t.ValidPeriod }).ToListAsync(ct);
         foreach (var r in rows)
         {
-            if (have.Any(h => h.RegimeId == r.Regime && Ranges.Lower(h.ValidPeriod) == r.From && Ranges.UpperInclusive(h.ValidPeriod) == r.To))
+            var (range, fp, tp) = Periods.Parse(Y(r.From), Y(r.To));
+            if (have.Any(h => h.RegimeId == r.Regime && Periods.SameSpan(h.ValidPeriod, range)))
                 continue;
             db.RegimeTerritories.Add(new RegimeTerritory
             {
-                RegimeId = r.Regime, ValidPeriod = Ranges.Closed(r.From, r.To), Geom = Poly(r.Shape),
+                RegimeId = r.Regime, ValidPeriod = range, ValidFromPrecision = fp, ValidToPrecision = tp!, Geom = Poly(r.Shape),
                 IsIllustrative = true, Source = IllustrativeSource,
             });
             report.Territories++;
@@ -164,9 +174,11 @@ public static class DemoSeeder
         var have = await db.RegimeRelations.Select(r => new { r.RegimeAId, r.RegimeBId, r.RelationType }).ToListAsync(ct);
         foreach (var r in rows.Where(r => !have.Any(h => h.RegimeAId == r.A && h.RegimeBId == r.B && h.RelationType == r.Type)))
         {
+            var (range, fp, tp) = Periods.Parse(Y(r.From), Y(r.To));
             db.RegimeRelations.Add(new RegimeRelation
             {
-                RegimeAId = r.A, RegimeBId = r.B, RelationType = r.Type, ValidPeriod = Ranges.Closed(r.From, r.To), Description = r.Desc,
+                RegimeAId = r.A, RegimeBId = r.B, RelationType = r.Type, ValidPeriod = range,
+                ValidFromPrecision = fp, ValidToPrecision = tp!, Description = r.Desc,
             });
             report.Relations++;
         }
@@ -205,10 +217,15 @@ public static class DemoSeeder
             (Tang, "開元", "唐玄宗", 713, 741),
             (Tang, "天寶", "唐玄宗", 742, 756),
         ];
-        var have = await db.ReignEras.Select(e => new { e.RegimeId, e.EraName, e.StartYear }).ToListAsync(ct);
-        foreach (var e in eras.Where(e => !have.Any(h => h.RegimeId == e.Regime && h.EraName == e.Era && h.StartYear == e.From)))
+        var have = await db.ReignEras.Select(e => new { e.RegimeId, e.EraName, e.StartDate }).ToListAsync(ct);
+        foreach (var e in eras.Where(e => !have.Any(h => h.RegimeId == e.Regime && h.EraName == e.Era && h.StartDate == new DateOnly(e.From, 1, 1))))
         {
-            db.ReignEras.Add(new ReignEra { RegimeId = e.Regime, EraName = e.Era, MonarchName = e.Monarch, StartYear = e.From, EndYear = e.To });
+            db.ReignEras.Add(new ReignEra
+            {
+                RegimeId = e.Regime, EraName = e.Era, MonarchName = e.Monarch,
+                StartDate = new DateOnly(e.From, 1, 1), StartPrecision = DatePrecision.Year,
+                EndDate = new DateOnly(e.To, 12, 31), EndPrecision = DatePrecision.Year,
+            });
             report.ReignEras++;
         }
 
@@ -220,15 +237,19 @@ public static class DemoSeeder
         var havePlaces = await db.PlaceNames.Select(p => p.HistoricalName).ToListAsync(ct);
         foreach (var p in places.Where(p => !havePlaces.Contains(p.Name)))
         {
-            db.PlaceNames.Add(new PlaceName
-            {
-                HistoricalName = p.Name, ModernName = p.Modern, ValidPeriod = Ranges.Closed(p.From, p.To),
-                Geom = F.CreatePoint(new Coordinate(p.X, p.Y)),
-            });
+            // .NET DateOnly 無法表示西元前（長安自西元前 202 年），所以直接以 SQL 的 daterange 寫入（PostgreSQL 支援 BC 日期）
+            var range = $"[{PgYearStart(p.From)},{PgYearStart(p.To + 1)})";
+            await db.Database.ExecuteSqlInterpolatedAsync($@"
+                INSERT INTO place_names (historical_name, modern_name, valid_period, valid_from_precision, valid_to_precision, geom)
+                VALUES ({p.Name}, {p.Modern}, {range}::daterange, 'year', 'year', ST_SetSRID(ST_MakePoint({p.X}, {p.Y}), 4326))", ct);
             report.Places++;
         }
         await db.SaveChangesAsync(ct);
     }
+
+    /// <summary>天文紀年 → PostgreSQL 日期字串（PG 沒有 0 年：天文 0 = 西元前 1 年 = '0001-01-01 BC'）。</summary>
+    internal static string PgYearStart(int astronomicalYear) =>
+        astronomicalYear > 0 ? $"{astronomicalYear:0000}-01-01" : $"{1 - astronomicalYear:0000}-01-01 BC";
 
     private static async Task SeedEventsAsync(WorldLineDbContext db, SeedReport report, CancellationToken ct)
     {
@@ -237,7 +258,7 @@ public static class DemoSeeder
             if (!await db.ObserverCategories.AnyAsync(c => c.CategoryName == name, ct))
                 db.ObserverCategories.Add(new ObserverCategory { CategoryName = name });
         }
-        foreach (var tag in new[] { "war", "conquest", "abdication", "trade", "treaty" })
+        foreach (var tag in new[] { "war", "conquest", "abdication", "trade", "treaty", "surrender", "annexation" })
         {
             if (!await db.EventTags.AnyAsync(t => t.TagName == tag, ct))
                 db.EventTags.Add(new EventTag { TagName = tag });
@@ -311,7 +332,10 @@ public sealed class SeedReport
     public int ReignEras { get; set; }
     public int Places { get; set; }
     public int Events { get; set; }
+    public int ControlRelations { get; set; }
+    public int Alliances { get; set; }
+    public int Memberships { get; set; }
 
     public override string ToString() =>
-        $"regimes+{Regimes} aliases+{Aliases} territories+{Territories} relations+{Relations} presets+{Presets} reign_eras+{ReignEras} places+{Places} events+{Events}";
+        $"regimes+{Regimes} aliases+{Aliases} territories+{Territories} relations+{Relations} presets+{Presets} reign_eras+{ReignEras} places+{Places} events+{Events} control_relations+{ControlRelations} alliances+{Alliances} memberships+{Memberships}";
 }

@@ -356,7 +356,6 @@ CREATE TABLE regimes (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug VARCHAR(80) NOT NULL UNIQUE,     -- 例：'french-state-vichy'
   wikidata_qid VARCHAR(20),             -- 回查用（OHM 有 341 筆帶 wikidata）
-  display_color VARCHAR(9),             -- TODO 待拍板：政權配色存 DB 還是前端規則產生（§12 Q11）
   retracted_at TIMESTAMPTZ,             -- I5：不硬刪，只撤回
   retraction_reason TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -381,6 +380,21 @@ CREATE TABLE regime_names (
   CHECK (jsonb_typeof(display) = 'object')
 );
 -- I2：建立政權時至少一筆 name_kind='self'（應用層，同一 transaction）
+
+-- 陣營時間切片（憲法 §6「陣營」，2026-10-28 拍板）：地圖配色依此決定色系
+CREATE TABLE regime_alignments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  regime_id UUID NOT NULL REFERENCES regimes(id),
+  camp VARCHAR(16) NOT NULL CHECK (camp IN ('axis', 'allies', 'co_belligerent', 'neutral')),
+  valid_period DATERANGE NOT NULL,                          -- 起點＝條約簽署／參戰日
+  basis_event_id UUID,                                      -- 依據事件（例：三國同盟條約簽署），FK 於 historical_events 建立後加上
+  retracted_at TIMESTAMPTZ, retraction_reason TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  version INT NOT NULL DEFAULT 0,
+  EXCLUDE USING gist (regime_id WITH =, valid_period WITH &&) WHERE (retracted_at IS NULL)
+);
+-- 每筆須附引用（regime_alignment_citations，格式同其他 citation 表），應用層強制
+-- 沒有 alignment 紀錄的政權，前端以「中立／未結盟」色系呈現並標示「未建置」
 
 -- 政權狀態時間切片：存續／流亡／被併吞（§4）
 CREATE TABLE regime_status_periods (
@@ -1186,13 +1200,13 @@ erDiagram
 - [ ] **Q8** 多語文字的儲存（JSONB 或翻譯表），以及寫入時是否強制雙語、缺翻譯時怎麼呈現。AI 提案：JSONB；建置期允許缺 `en`，前端顯示「未翻譯」。待拍板。
 - [ ] **Q9** 日期旁要顯示哪些紀年：全部相關紀年、只顯示聚焦政權的，或依語言決定。AI 提案：沒有聚焦時只顯示西元；聚焦時顯示該政權的紀年。待拍板。
 - [ ] **Q10** 史觀主線（6.6）第一階段是否建表。AI 提案不建，待拍板。
-- [ ] **Q11** 政權配色存在 DB（`regimes.display_color`），還是由前端規則產生？兩者都要確保相鄰政權可區分。待拍板，由 DESIGN.md 階段一起決定。
+- [x] **Q11** 政權配色存在 DB（`regimes.display_color`），還是由前端規則產生？兩者都要確保相鄰政權可區分。待拍板，由 DESIGN.md 階段一起決定。 → **2026-10-28 使用者拍板：依陣營色系（憲法 §6「陣營」）由前端規則產生：色系由 `regime_alignments` 決定，同色系內由圖著色確保相鄰政權可區分；不存 `display_color`。具體色值見 DESIGN.md**
 - [ ] **Q12** 同一地點同一時間出現兩筆「實際生效」主權主張時，寫入要拒絕還是只警告？憲法 R6 說「實際生效」有爭議時逐案記錄爭議點，AI 提案：要求同時建立爭議點才允許。待拍板。
 - [ ] **Q13** 主權與控制以外的資料（政權名稱、狀態轉換、持續關係、事件）是否也強制附引用？憲法 I6 只規定主權主張與控制紀錄。AI 提案：持續關係與狀態轉換強制（它們會影響戰線與狀態呈現），其餘選填。待拍板。
 
 **UI**
-- [ ] **Q14** 第一階段支援的螢幕尺寸。AI 提案 ≥ 1024px，待拍板。
-- [ ] **Q15** 時間軸起點下限：1931-09-18，或依資料的最早日期決定。待拍板。
+- [x] **Q14** 第一階段支援的螢幕尺寸。AI 提案 ≥ 1024px，待拍板。 → **2026-10-28 使用者拍板：只做桌機 ≥1024px**
+- [x] **Q15** 時間軸起點下限：1931-09-18，或依資料的最早日期決定。待拍板。 → **2026-10-28 使用者拍板：依資料最早日期**
 - [x] **Q16** 資料建置是否需要 UI（8.12）。**AI 建議 A：只用 API＋QGIS 匯入腳本**，待拍板。 → **2026-10-27 使用者拍板：選 A**
 - [ ] TODO：推估過渡、控制類型、控制資料缺的具體視覺樣式（色、虛線、不透明度數值），由 DESIGN.md 定。
 

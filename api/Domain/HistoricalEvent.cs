@@ -21,6 +21,14 @@ public class HistoricalEvent
     public decimal StartDecimal { get; set; }
     public decimal EndDecimal { get; set; }
 
+    /// <summary>
+    /// 事件發生地時區（IANA，例：Pacific/Honolulu）。憲法 §9 2026-10-28：日期以發生地當地日期為準，另附時區備註。
+    /// </summary>
+    public string? TimeZone { get; set; }
+
+    /// <summary>時區／跨時區說明（例：「日本時間為 1941-12-08」）。</summary>
+    public string? TimeNote { get; set; }
+
     public Point? OriginPoint { get; set; }
     public MultiPolygon? InfluenceArea { get; set; }
     public MultiLineString? Routes { get; set; }

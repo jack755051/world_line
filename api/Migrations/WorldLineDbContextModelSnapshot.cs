@@ -26,6 +26,214 @@ namespace WorldLine.Api.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "postgis");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("WorldLine.Api.Domain.Alliance", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("ExistenceFromPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("existence_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ExistencePeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("existence_period");
+
+                    b.Property<string>("ExistenceToPrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("existence_to_precision");
+
+                    b.Property<string>("SelfName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("self_name");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_alliances");
+
+                    b.HasIndex("ExistencePeriod")
+                        .HasDatabaseName("ix_alliances_existence_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ExistencePeriod"), "gist");
+
+                    b.HasIndex("SelfName")
+                        .IsUnique()
+                        .HasDatabaseName("ix_alliances_self_name");
+
+                    b.ToTable("alliances", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_alliances_existence_period", "NOT isempty(existence_period) AND NOT lower_inf(existence_period)");
+
+                            t.HasCheckConstraint("ck_alliances_existence_precision", "existence_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(existence_period), existence_from_precision) AND ((upper_inf(existence_period) AND existence_to_precision IS NULL) OR (NOT upper_inf(existence_period) AND existence_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(existence_period), existence_to_precision)))");
+
+                            t.HasCheckConstraint("ck_alliances_self_name_not_blank", "btrim(self_name) <> ''");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.AllianceAlias", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<string>("AliasName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("alias_name");
+
+                    b.Property<string>("AliasType")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("alias_type");
+
+                    b.Property<Guid>("AllianceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("alliance_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Guid?>("ObserverRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("observer_regime_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_alliance_aliases");
+
+                    b.HasIndex("ObserverRegimeId")
+                        .HasDatabaseName("ix_alliance_aliases_observer_regime_id");
+
+                    b.HasIndex("AllianceId", "ObserverRegimeId", "AliasName")
+                        .IsUnique()
+                        .HasDatabaseName("ix_alliance_aliases_alliance_id_observer_regime_id_alias_name");
+
+                    NpgsqlIndexBuilderExtensions.AreNullsDistinct(b.HasIndex("AllianceId", "ObserverRegimeId", "AliasName"), false);
+
+                    b.ToTable("alliance_aliases", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_alliance_aliases_alias_type", "alias_type IN ('contemporary', 'historiographic')");
+
+                            t.HasCheckConstraint("ck_alliance_aliases_name_not_blank", "btrim(alias_name) <> ''");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.AllianceMembership", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<Guid>("AllianceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("alliance_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text")
+                        .HasColumnName("note");
+
+                    b.Property<Guid>("RegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_id");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasDefaultValue("member")
+                        .HasColumnName("role");
+
+                    b.Property<string>("ValidFromPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("valid_period");
+
+                    b.Property<string>("ValidToPrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_to_precision");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_alliance_memberships");
+
+                    b.HasIndex("RegimeId")
+                        .HasDatabaseName("ix_alliance_memberships_regime_id");
+
+                    b.HasIndex("ValidPeriod")
+                        .HasDatabaseName("ix_alliance_memberships_valid_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ValidPeriod"), "gist");
+
+                    b.HasIndex("AllianceId", "RegimeId")
+                        .HasDatabaseName("ix_alliance_memberships_alliance_id_regime_id");
+
+                    b.ToTable("alliance_memberships", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_alliance_memberships_precision", "valid_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(valid_period), valid_from_precision) AND ((upper_inf(valid_period) AND valid_to_precision IS NULL) OR (NOT upper_inf(valid_period) AND valid_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(valid_period), valid_to_precision)))");
+
+                            t.HasCheckConstraint("ck_alliance_memberships_role", "role IN ('member', 'co_belligerent', 'associate')");
+
+                            t.HasCheckConstraint("ck_alliance_memberships_valid_period", "NOT isempty(valid_period) AND NOT lower_inf(valid_period)");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.EventTag", b =>
                 {
                     b.Property<int>("Id")
@@ -116,6 +324,15 @@ namespace WorldLine.Api.Migrations
                         .HasColumnType("character varying(32)")
                         .HasColumnName("start_edtf");
 
+                    b.Property<string>("TimeNote")
+                        .HasColumnType("text")
+                        .HasColumnName("time_note");
+
+                    b.Property<string>("TimeZone")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("time_zone");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -156,6 +373,8 @@ namespace WorldLine.Api.Migrations
                             t.HasCheckConstraint("ck_historical_events_not_own_parent", "parent_event_id <> id");
 
                             t.HasCheckConstraint("ck_historical_events_sections_object", "sections IS NULL OR jsonb_typeof(sections) = 'object'");
+
+                            t.HasCheckConstraint("ck_historical_events_time_zone", "time_zone IS NULL OR btrim(time_zone) <> ''");
                         });
                 });
 
@@ -435,9 +654,19 @@ namespace WorldLine.Api.Migrations
                         .HasColumnType("character varying(128)")
                         .HasColumnName("modern_name");
 
-                    b.Property<NpgsqlRange<int>?>("ValidPeriod")
-                        .HasColumnType("int4range")
+                    b.Property<string>("ValidFromPrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>?>("ValidPeriod")
+                        .HasColumnType("daterange")
                         .HasColumnName("valid_period");
+
+                    b.Property<string>("ValidToPrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_to_precision");
 
                     b.HasKey("Id")
                         .HasName("pk_place_names");
@@ -456,6 +685,8 @@ namespace WorldLine.Api.Migrations
                         {
                             t.HasCheckConstraint("ck_place_names_name_not_blank", "btrim(historical_name) <> ''");
 
+                            t.HasCheckConstraint("ck_place_names_precision", "(valid_period IS NULL AND valid_from_precision IS NULL AND valid_to_precision IS NULL) OR (valid_period IS NOT NULL AND valid_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(valid_period), valid_from_precision) AND valid_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(valid_period), valid_to_precision))");
+
                             t.HasCheckConstraint("ck_place_names_valid_period_bounded", "valid_period IS NULL OR (NOT isempty(valid_period) AND NOT lower_inf(valid_period) AND NOT upper_inf(valid_period))");
                         });
                 });
@@ -468,6 +699,10 @@ namespace WorldLine.Api.Migrations
                         .HasColumnName("id")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<Guid?>("AnnexedByRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("annexed_by_regime_id");
+
                     b.Property<DateTimeOffset>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -478,9 +713,20 @@ namespace WorldLine.Api.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("destroyed_by_regime_id");
 
-                    b.Property<NpgsqlRange<int>>("ExistencePeriod")
-                        .HasColumnType("int4range")
+                    b.Property<string>("ExistenceFromPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("existence_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ExistencePeriod")
+                        .HasColumnType("daterange")
                         .HasColumnName("existence_period");
+
+                    b.Property<string>("ExistenceToPrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("existence_to_precision");
 
                     b.Property<string>("OriginTransitionType")
                         .HasMaxLength(16)
@@ -521,6 +767,9 @@ namespace WorldLine.Api.Migrations
                     b.HasKey("Id")
                         .HasName("pk_regimes");
 
+                    b.HasIndex("AnnexedByRegimeId")
+                        .HasDatabaseName("ix_regimes_annexed_by_regime_id");
+
                     b.HasIndex("DestroyedByRegimeId")
                         .HasDatabaseName("ix_regimes_destroyed_by_regime_id");
 
@@ -537,9 +786,15 @@ namespace WorldLine.Api.Migrations
 
                     b.ToTable("regimes", null, t =>
                         {
+                            t.HasCheckConstraint("ck_regimes_annexed_by_iff_annexed", "(status = 'annexed') = (annexed_by_regime_id IS NOT NULL)");
+
                             t.HasCheckConstraint("ck_regimes_destroyed_by_iff_destroyed", "(status = 'destroyed') = (destroyed_by_regime_id IS NOT NULL)");
 
                             t.HasCheckConstraint("ck_regimes_existence_period", "NOT isempty(existence_period) AND NOT lower_inf(existence_period) AND (NOT upper_inf(existence_period) OR status = 'existing')");
+
+                            t.HasCheckConstraint("ck_regimes_existence_precision", "existence_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(existence_period), existence_from_precision) AND ((upper_inf(existence_period) AND existence_to_precision IS NULL) OR (NOT upper_inf(existence_period) AND existence_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(existence_period), existence_to_precision)))");
+
+                            t.HasCheckConstraint("ck_regimes_not_annexed_by_self", "annexed_by_regime_id <> id");
 
                             t.HasCheckConstraint("ck_regimes_not_destroyed_by_self", "destroyed_by_regime_id <> id");
 
@@ -551,7 +806,7 @@ namespace WorldLine.Api.Migrations
 
                             t.HasCheckConstraint("ck_regimes_self_name_not_blank", "btrim(self_name) <> ''");
 
-                            t.HasCheckConstraint("ck_regimes_status", "status IN ('existing', 'split', 'abdicated', 'destroyed')");
+                            t.HasCheckConstraint("ck_regimes_status", "status IN ('existing', 'split', 'abdicated', 'destroyed', 'annexed')");
                         });
                 });
 
@@ -614,6 +869,114 @@ namespace WorldLine.Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeControlRelation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<MultiPolygon>("Area")
+                        .HasColumnType("geometry(MultiPolygon,4326)")
+                        .HasColumnName("area");
+
+                    b.Property<string>("ControlType")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("control_type");
+
+                    b.Property<Guid>("ControlledRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("controlled_regime_id");
+
+                    b.Property<Guid>("ControllerRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("controller_regime_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsDisputed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_disputed");
+
+                    b.Property<bool>("IsIllustrative")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_illustrative");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("text")
+                        .HasColumnName("source");
+
+                    b.Property<string>("ValidFromPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("valid_period");
+
+                    b.Property<string>("ValidToPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_to_precision");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_regime_control_relations");
+
+                    b.HasIndex("Area")
+                        .HasDatabaseName("ix_regime_control_relations_area");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("Area"), "gist");
+
+                    b.HasIndex("ControlledRegimeId")
+                        .HasDatabaseName("ix_regime_control_relations_controlled_regime_id");
+
+                    b.HasIndex("ControllerRegimeId")
+                        .HasDatabaseName("ix_regime_control_relations_controller_regime_id");
+
+                    b.HasIndex("ValidPeriod")
+                        .HasDatabaseName("ix_regime_control_relations_valid_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ValidPeriod"), "gist");
+
+                    b.ToTable("regime_control_relations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_regime_control_relations_area_valid", "area IS NULL OR ST_IsValid(area)");
+
+                            t.HasCheckConstraint("ck_regime_control_relations_distinct", "controller_regime_id <> controlled_regime_id");
+
+                            t.HasCheckConstraint("ck_regime_control_relations_precision", "valid_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(valid_period), valid_from_precision) AND valid_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(valid_period), valid_to_precision)");
+
+                            t.HasCheckConstraint("ck_regime_control_relations_type", "control_type IN ('occupation', 'puppet', 'protectorate', 'colony', 'mandate')");
+
+                            t.HasCheckConstraint("ck_regime_control_relations_valid_period_bounded", "NOT isempty(valid_period) AND NOT lower_inf(valid_period) AND NOT upper_inf(valid_period)");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.RegimeRelation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -650,9 +1013,21 @@ namespace WorldLine.Api.Migrations
                         .HasColumnType("geometry(MultiLineString,4326)")
                         .HasColumnName("route");
 
-                    b.Property<NpgsqlRange<int>>("ValidPeriod")
-                        .HasColumnType("int4range")
+                    b.Property<string>("ValidFromPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
                         .HasColumnName("valid_period");
+
+                    b.Property<string>("ValidToPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_to_precision");
 
                     b.HasKey("Id")
                         .HasName("pk_regime_relations");
@@ -671,6 +1046,8 @@ namespace WorldLine.Api.Migrations
                     b.ToTable("regime_relations", null, t =>
                         {
                             t.HasCheckConstraint("ck_regime_relations_distinct_regimes", "regime_a_id <> regime_b_id");
+
+                            t.HasCheckConstraint("ck_regime_relations_precision", "valid_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(valid_period), valid_from_precision) AND valid_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(valid_period), valid_to_precision)");
 
                             t.HasCheckConstraint("ck_regime_relations_route_valid", "route IS NULL OR ST_IsValid(route)");
 
@@ -731,9 +1108,21 @@ namespace WorldLine.Api.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("superseded_by");
 
-                    b.Property<NpgsqlRange<int>>("ValidPeriod")
-                        .HasColumnType("int4range")
+                    b.Property<string>("ValidFromPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_from_precision");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
                         .HasColumnName("valid_period");
+
+                    b.Property<string>("ValidToPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("valid_to_precision");
 
                     b.Property<int>("Version")
                         .IsConcurrencyToken()
@@ -772,6 +1161,8 @@ namespace WorldLine.Api.Migrations
 
                             t.HasCheckConstraint("ck_regime_territories_not_self_superseded", "superseded_by <> id");
 
+                            t.HasCheckConstraint("ck_regime_territories_precision", "valid_from_precision IN ('year', 'month', 'day') AND wl_date_aligned(lower(valid_period), valid_from_precision) AND valid_to_precision IN ('year', 'month', 'day') AND wl_date_aligned(upper(valid_period), valid_to_precision)");
+
                             t.HasCheckConstraint("ck_regime_territories_valid_period_bounded", "NOT isempty(valid_period) AND NOT lower_inf(valid_period) AND NOT upper_inf(valid_period)");
                         });
                 });
@@ -790,9 +1181,14 @@ namespace WorldLine.Api.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<int>("EndYear")
-                        .HasColumnType("integer")
-                        .HasColumnName("end_year");
+                    b.Property<DateOnly?>("EndDate")
+                        .HasColumnType("date")
+                        .HasColumnName("end_date");
+
+                    b.Property<string>("EndPrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("end_precision");
 
                     b.Property<string>("EraName")
                         .IsRequired()
@@ -809,26 +1205,75 @@ namespace WorldLine.Api.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("regime_id");
 
-                    b.Property<int>("StartYear")
-                        .HasColumnType("integer")
-                        .HasColumnName("start_year");
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date")
+                        .HasColumnName("start_date");
+
+                    b.Property<string>("StartPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("start_precision");
 
                     b.HasKey("Id")
                         .HasName("pk_reign_eras");
 
-                    b.HasIndex("StartYear", "EndYear")
-                        .HasDatabaseName("ix_reign_eras_start_year_end_year");
+                    b.HasIndex("StartDate", "EndDate")
+                        .HasDatabaseName("ix_reign_eras_start_date_end_date");
 
-                    b.HasIndex("RegimeId", "EraName", "StartYear")
+                    b.HasIndex("RegimeId", "EraName", "StartDate")
                         .IsUnique()
-                        .HasDatabaseName("ix_reign_eras_regime_id_era_name_start_year");
+                        .HasDatabaseName("ix_reign_eras_regime_id_era_name_start_date");
 
                     b.ToTable("reign_eras", null, t =>
                         {
+                            t.HasCheckConstraint("ck_reign_eras_date_order", "end_date IS NULL OR start_date <= end_date");
+
                             t.HasCheckConstraint("ck_reign_eras_name_not_blank", "btrim(era_name) <> ''");
 
-                            t.HasCheckConstraint("ck_reign_eras_year_order", "start_year <= end_year");
+                            t.HasCheckConstraint("ck_reign_eras_precision", "start_precision IN ('year', 'month', 'day') AND wl_date_aligned(start_date, start_precision) AND ((end_date IS NULL AND end_precision IS NULL) OR (end_date IS NOT NULL AND end_precision IN ('year', 'month', 'day') AND wl_date_aligned(end_date + 1, end_precision)))");
                         });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.AllianceAlias", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Alliance", "Alliance")
+                        .WithMany("Aliases")
+                        .HasForeignKey("AllianceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_alliance_aliases_alliances_alliance_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", "ObserverRegime")
+                        .WithMany()
+                        .HasForeignKey("ObserverRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_alliance_aliases_regimes_observer_regime_id");
+
+                    b.Navigation("Alliance");
+
+                    b.Navigation("ObserverRegime");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.AllianceMembership", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Alliance", "Alliance")
+                        .WithMany("Memberships")
+                        .HasForeignKey("AllianceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_alliance_memberships_alliances_alliance_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", "Regime")
+                        .WithMany()
+                        .HasForeignKey("RegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_alliance_memberships_regimes_regime_id");
+
+                    b.Navigation("Alliance");
+
+                    b.Navigation("Regime");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>
@@ -926,6 +1371,12 @@ namespace WorldLine.Api.Migrations
 
             modelBuilder.Entity("WorldLine.Api.Domain.Regime", b =>
                 {
+                    b.HasOne("WorldLine.Api.Domain.Regime", "AnnexedByRegime")
+                        .WithMany()
+                        .HasForeignKey("AnnexedByRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_regimes_regimes_annexed_by_regime_id");
+
                     b.HasOne("WorldLine.Api.Domain.Regime", "DestroyedByRegime")
                         .WithMany()
                         .HasForeignKey("DestroyedByRegimeId")
@@ -937,6 +1388,8 @@ namespace WorldLine.Api.Migrations
                         .HasForeignKey("PredecessorRegimeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_regimes_regimes_predecessor_regime_id");
+
+                    b.Navigation("AnnexedByRegime");
 
                     b.Navigation("DestroyedByRegime");
 
@@ -961,6 +1414,27 @@ namespace WorldLine.Api.Migrations
                     b.Navigation("ObserverRegime");
 
                     b.Navigation("Regime");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeControlRelation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Regime", "ControlledRegime")
+                        .WithMany()
+                        .HasForeignKey("ControlledRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_control_relations_regimes_controlled_regime_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", "ControllerRegime")
+                        .WithMany()
+                        .HasForeignKey("ControllerRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_control_relations_regimes_controller_regime_id");
+
+                    b.Navigation("ControlledRegime");
+
+                    b.Navigation("ControllerRegime");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.RegimeRelation", b =>
@@ -1014,6 +1488,13 @@ namespace WorldLine.Api.Migrations
                         .HasConstraintName("fk_reign_eras_regimes_regime_id");
 
                     b.Navigation("Regime");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.Alliance", b =>
+                {
+                    b.Navigation("Aliases");
+
+                    b.Navigation("Memberships");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>

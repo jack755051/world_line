@@ -20,7 +20,9 @@ public class RegimeRelation
     public string RelationType { get; set; } = null!;
 
     /// <summary>關係存續區間（同 I1 精神，必填且有上下界）。</summary>
-    public NpgsqlRange<int> ValidPeriod { get; set; }
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public string ValidFromPrecision { get; set; } = DatePrecision.Day;
+    public string ValidToPrecision { get; set; } = DatePrecision.Day;
 
     /// <summary>可選：關係對應路線（例：絲路）。</summary>
     public MultiLineString? Route { get; set; }

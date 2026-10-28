@@ -15,8 +15,12 @@ public class RegimeTerritory
     public Guid RegimeId { get; set; }
     public Regime Regime { get; set; } = null!;
 
-    /// <summary>西元年區間（負數為西元前），例：[618,907]。</summary>
-    public NpgsqlRange<int> ValidPeriod { get; set; }
+    /// <summary>日期區間（含頭含尾，I1：必須有上下界），例：[1938-03-13, 1945-05-08]。</summary>
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+
+    /// <summary>起訖精度（I7）。</summary>
+    public string ValidFromPrecision { get; set; } = DatePrecision.Day;
+    public string ValidToPrecision { get; set; } = DatePrecision.Day;
 
     public MultiPolygon Geom { get; set; } = null!;
 

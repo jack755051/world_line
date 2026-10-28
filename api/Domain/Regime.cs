@@ -11,10 +11,16 @@ public class Regime
     public string SelfName { get; set; } = null!;
 
     /// <summary>
-    /// 存續年份區間（天文紀年：0 = 西元前 1 年，-201 = 西元前 202 年）。必填且有起點；
-    /// 只有 status = existing 時允許無終點（仍存續）。
+    /// 存續日期區間（含頭含尾；憲法 §9 2026-10-28：全面日期區間＋精度）。必填且有起點；
+    /// 只有 status = existing 時允許無終點（仍存續，或本階段未記錄終止）。
     /// </summary>
-    public NpgsqlRange<int> ExistencePeriod { get; set; }
+    public NpgsqlRange<DateOnly> ExistencePeriod { get; set; }
+
+    /// <summary>起日精度（I7，見 <see cref="DatePrecision"/>）。</summary>
+    public string ExistenceFromPrecision { get; set; } = DatePrecision.Day;
+
+    /// <summary>迄日精度；無終點時為 null。</summary>
+    public string? ExistenceToPrecision { get; set; }
 
     /// <summary>見 <see cref="RegimeStatus"/>。</summary>
     public string Status { get; set; } = RegimeStatus.Existing;
@@ -29,6 +35,10 @@ public class Regime
     /// <summary>status = destroyed 時必填的消滅方政權；其餘狀態為 null。</summary>
     public Guid? DestroyedByRegimeId { get; set; }
     public Regime? DestroyedByRegime { get; set; }
+
+    /// <summary>status = annexed 時必填的併吞方政權（憲法 §4 2026-10-28：被併吞與被滅亡不可合併）。</summary>
+    public Guid? AnnexedByRegimeId { get; set; }
+    public Regime? AnnexedByRegime { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }

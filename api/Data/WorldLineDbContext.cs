@@ -26,6 +26,10 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<HistoricalEventControversy> HistoricalEventControversies => Set<HistoricalEventControversy>();
     public DbSet<PlaceName> PlaceNames => Set<PlaceName>();
     public DbSet<ReignEra> ReignEras => Set<ReignEra>();
+    public DbSet<RegimeControlRelation> RegimeControlRelations => Set<RegimeControlRelation>();
+    public DbSet<Alliance> Alliances => Set<Alliance>();
+    public DbSet<AllianceAlias> AllianceAliases => Set<AllianceAlias>();
+    public DbSet<AllianceMembership> AllianceMemberships => Set<AllianceMembership>();
 
     /// <summary>
     /// 本次 SaveChanges 的修改原因（I5）。修改「有修訂紀錄的表」時必填，
@@ -38,6 +42,7 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     [
         typeof(Regime), typeof(RegimeAlias), typeof(RegimeRelation), typeof(HistoricalEvent),
         typeof(HistoricalEventPerspective), typeof(HistoricalEventControversy), typeof(PlaceName), typeof(ReignEra),
+        typeof(RegimeControlRelation), typeof(Alliance), typeof(AllianceAlias), typeof(AllianceMembership),
     ];
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess) =>
@@ -52,6 +57,7 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
         {
             BumpVersion(entry);
             if (entry.Entity is HistoricalEvent ev) ev.UpdatedAt = DateTimeOffset.UtcNow;
+            if (entry.Entity is Alliance al) al.UpdatedAt = DateTimeOffset.UtcNow;
         }
 
         var needsReason = modified.Any(e => RevisionedTypes.Contains(e.Entity.GetType()));
@@ -93,7 +99,21 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
         p.CurrentValue = (int)p.OriginalValue! + 1;
     }
 
-    /// <summary>年份區間的 DB 檢查式：非空、上下界皆有限（I1：不允許無時間區間或開放式區間）。</summary>
+    /// <summary>
+    /// I7：日期區間的精度檢查式。精度欄位必須是 year/month/day，且日期必須與精度對齊
+    /// （year：起日 1/1、迄日 12/31；month：起日 1 號、迄日月底）。無終點時迄日精度必須為 null。
+    /// wl_date_aligned() 定義於 migration M25Ww2DatesAndControl。
+    /// </summary>
+    internal static string PrecisionCheck(string period, string fromPrecision, string toPrecision, bool allowOpenEnd) =>
+        $"{InList(fromPrecision, DatePrecision.All)} AND wl_date_aligned(lower({period}), {fromPrecision})"
+        + (allowOpenEnd
+            ? $" AND ((upper_inf({period}) AND {toPrecision} IS NULL) OR (NOT upper_inf({period}) AND {InList(toPrecision, DatePrecision.All)} AND wl_date_aligned(upper({period}), {toPrecision})))"
+            : $" AND {InList(toPrecision, DatePrecision.All)} AND wl_date_aligned(upper({period}), {toPrecision})");
+
+    private static string NullablePrecisionCheck(string period, string fromPrecision, string toPrecision) =>
+        $"({period} IS NULL AND {fromPrecision} IS NULL AND {toPrecision} IS NULL) OR ({period} IS NOT NULL AND {PrecisionCheck(period, fromPrecision, toPrecision, false)})";
+
+    /// <summary>日期區間的 DB 檢查式：非空、上下界皆有限（I1：不允許無時間區間或開放式區間）。</summary>
     private static string BoundedPeriod(string column) =>
         $"NOT isempty({column}) AND NOT lower_inf({column}) AND NOT upper_inf({column})";
 
@@ -121,6 +141,12 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
                     "(status = 'destroyed') = (destroyed_by_regime_id IS NOT NULL)");
                 t.HasCheckConstraint("ck_regimes_not_own_predecessor", "predecessor_regime_id <> id");
                 t.HasCheckConstraint("ck_regimes_not_destroyed_by_self", "destroyed_by_regime_id <> id");
+                // 被併吞 ⇔ 有併吞方（憲法 §4 2026-10-28）
+                t.HasCheckConstraint("ck_regimes_annexed_by_iff_annexed",
+                    "(status = 'annexed') = (annexed_by_regime_id IS NOT NULL)");
+                t.HasCheckConstraint("ck_regimes_not_annexed_by_self", "annexed_by_regime_id <> id");
+                t.HasCheckConstraint("ck_regimes_existence_precision",
+                    PrecisionCheck("existence_period", "existence_from_precision", "existence_to_precision", allowOpenEnd: true)); // I7
                 // 存續區間：非空、有起點；只有仍存續（existing）可無終點
                 t.HasCheckConstraint("ck_regimes_existence_period",
                     "NOT isempty(existence_period) AND NOT lower_inf(existence_period) AND (NOT upper_inf(existence_period) OR status = 'existing')");
@@ -128,7 +154,9 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.HasKey(x => x.Id);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.SelfName).HasMaxLength(128).IsRequired();
-            e.Property(x => x.ExistencePeriod).HasColumnType("int4range").IsRequired();
+            e.Property(x => x.ExistencePeriod).HasColumnType("daterange").IsRequired();
+            e.Property(x => x.ExistenceFromPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.ExistenceToPrecision).HasMaxLength(8);
             e.HasIndex(x => x.ExistencePeriod).HasMethod("gist");
             e.Property(x => x.Status).HasMaxLength(32).IsRequired().HasDefaultValue(RegimeStatus.Existing);
             e.Property(x => x.OriginTransitionType).HasMaxLength(16);
@@ -137,6 +165,7 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
             e.HasOne(x => x.PredecessorRegime).WithMany().HasForeignKey(x => x.PredecessorRegimeId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne(x => x.DestroyedByRegime).WithMany().HasForeignKey(x => x.DestroyedByRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.AnnexedByRegime).WithMany().HasForeignKey(x => x.AnnexedByRegimeId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.SelfName);
         });
 
@@ -166,6 +195,8 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.ToTable("regime_territories", t =>
             {
                 t.HasCheckConstraint("ck_regime_territories_valid_period_bounded", BoundedPeriod("valid_period")); // I1
+                t.HasCheckConstraint("ck_regime_territories_precision",
+                    PrecisionCheck("valid_period", "valid_from_precision", "valid_to_precision", allowOpenEnd: false)); // I7
                 t.HasCheckConstraint("ck_regime_territories_geom_valid", "ST_IsValid(geom)");
                 // I5：被取代的版本一定有修正時間與修正原因；現行版本則兩者皆無
                 t.HasCheckConstraint("ck_regime_territories_correction_pair",
@@ -176,7 +207,9 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             });
             e.HasKey(x => x.Id);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
-            e.Property(x => x.ValidPeriod).HasColumnType("int4range").IsRequired();
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange").IsRequired();
+            e.Property(x => x.ValidFromPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.ValidToPrecision).HasMaxLength(8).IsRequired();
             e.Property(x => x.Geom).HasColumnType("geometry(MultiPolygon,4326)").IsRequired();
             e.Property(x => x.IsDisputed).HasDefaultValue(false);
             e.Property(x => x.IsIllustrative).HasDefaultValue(false);
@@ -223,12 +256,16 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
                     [RelationType.Trade, RelationType.Tributary, RelationType.MarriageAlliance,
                      RelationType.Alliance, RelationType.Hostility, RelationType.Other]));
                 t.HasCheckConstraint("ck_regime_relations_valid_period_bounded", BoundedPeriod("valid_period"));
+                t.HasCheckConstraint("ck_regime_relations_precision",
+                    PrecisionCheck("valid_period", "valid_from_precision", "valid_to_precision", allowOpenEnd: false)); // I7
                 t.HasCheckConstraint("ck_regime_relations_route_valid", "route IS NULL OR ST_IsValid(route)");
             });
             e.HasKey(x => x.Id);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.RelationType).HasMaxLength(32).IsRequired();
-            e.Property(x => x.ValidPeriod).HasColumnType("int4range").IsRequired();
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange").IsRequired();
+            e.Property(x => x.ValidFromPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.ValidToPrecision).HasMaxLength(8).IsRequired();
             e.Property(x => x.Route).HasColumnType("geometry(MultiLineString,4326)");
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
             e.HasOne(x => x.RegimeA).WithMany().HasForeignKey(x => x.RegimeAId).OnDelete(DeleteBehavior.Restrict);
@@ -246,6 +283,7 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
                 t.HasCheckConstraint("ck_historical_events_name_not_blank", "btrim(name) <> ''");
                 t.HasCheckConstraint("ck_historical_events_decimal_order", "start_decimal <= end_decimal");
                 t.HasCheckConstraint("ck_historical_events_not_own_parent", "parent_event_id <> id");
+                t.HasCheckConstraint("ck_historical_events_time_zone", "time_zone IS NULL OR btrim(time_zone) <> ''");
                 t.HasCheckConstraint("ck_historical_events_sections_object", "sections IS NULL OR jsonb_typeof(sections) = 'object'");
                 t.HasCheckConstraint("ck_historical_events_geoms_valid",
                     "(origin_point IS NULL OR ST_IsValid(origin_point)) AND (influence_area IS NULL OR ST_IsValid(influence_area)) AND (routes IS NULL OR ST_IsValid(routes))");
@@ -258,6 +296,7 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.Property(x => x.EndEdtf).HasMaxLength(32).IsRequired();
             e.Property(x => x.StartDecimal).HasPrecision(8, 3);
             e.Property(x => x.EndDecimal).HasPrecision(8, 3);
+            e.Property(x => x.TimeZone).HasMaxLength(64);
             e.Property(x => x.OriginPoint).HasColumnType("geometry(Point,4326)");
             e.Property(x => x.InfluenceArea).HasColumnType("geometry(MultiPolygon,4326)");
             e.Property(x => x.Routes).HasColumnType("geometry(MultiLineString,4326)");
@@ -340,12 +379,16 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
                 t.HasCheckConstraint("ck_place_names_name_not_blank", "btrim(historical_name) <> ''");
                 t.HasCheckConstraint("ck_place_names_valid_period_bounded",
                     "valid_period IS NULL OR (" + BoundedPeriod("valid_period") + ")");
+                t.HasCheckConstraint("ck_place_names_precision",
+                    NullablePrecisionCheck("valid_period", "valid_from_precision", "valid_to_precision")); // I7
             });
             e.HasKey(x => x.Id);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.HistoricalName).HasMaxLength(128).IsRequired();
             e.Property(x => x.ModernName).HasMaxLength(128);
-            e.Property(x => x.ValidPeriod).HasColumnType("int4range");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.ValidFromPrecision).HasMaxLength(8);
+            e.Property(x => x.ValidToPrecision).HasMaxLength(8);
             e.Property(x => x.Geom).HasColumnType("geometry(Point,4326)");
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
@@ -357,16 +400,119 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.ToTable("reign_eras", t =>
             {
                 t.HasCheckConstraint("ck_reign_eras_name_not_blank", "btrim(era_name) <> ''");
-                t.HasCheckConstraint("ck_reign_eras_year_order", "start_year <= end_year");
+                t.HasCheckConstraint("ck_reign_eras_date_order", "end_date IS NULL OR start_date <= end_date");
+                t.HasCheckConstraint("ck_reign_eras_precision",
+                    $"{InList("start_precision", DatePrecision.All)} AND wl_date_aligned(start_date, start_precision) AND " +
+                    $"((end_date IS NULL AND end_precision IS NULL) OR (end_date IS NOT NULL AND {InList("end_precision", DatePrecision.All)} AND wl_date_aligned(end_date + 1, end_precision)))"); // I7
             });
             e.HasKey(x => x.Id);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.EraName).HasMaxLength(32).IsRequired();
             e.Property(x => x.MonarchName).HasMaxLength(64);
+            e.Property(x => x.StartPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.EndPrecision).HasMaxLength(8);
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
             e.HasOne(x => x.Regime).WithMany(r => r.ReignEras).HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
-            e.HasIndex(x => new { x.RegimeId, x.EraName, x.StartYear }).IsUnique();
-            e.HasIndex(x => new { x.StartYear, x.EndYear });
+            e.HasIndex(x => new { x.RegimeId, x.EraName, x.StartDate }).IsUnique();
+            e.HasIndex(x => new { x.StartDate, x.EndDate });
+        });
+
+        // ---- 二戰階段（2026-10-28）：控制關係、同盟陣營 ----
+
+        b.Entity<RegimeControlRelation>(e =>
+        {
+            e.ToTable("regime_control_relations", t =>
+            {
+                t.HasCheckConstraint("ck_regime_control_relations_distinct", "controller_regime_id <> controlled_regime_id"); // I6
+                t.HasCheckConstraint("ck_regime_control_relations_type", InList("control_type", ControlType.All));
+                t.HasCheckConstraint("ck_regime_control_relations_valid_period_bounded", BoundedPeriod("valid_period")); // I6
+                t.HasCheckConstraint("ck_regime_control_relations_precision",
+                    PrecisionCheck("valid_period", "valid_from_precision", "valid_to_precision", allowOpenEnd: false)); // I7
+                t.HasCheckConstraint("ck_regime_control_relations_area_valid", "area IS NULL OR ST_IsValid(area)");
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.ControlType).HasMaxLength(16).IsRequired();
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange").IsRequired();
+            e.Property(x => x.ValidFromPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.ValidToPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.Area).HasColumnType("geometry(MultiPolygon,4326)");
+            e.Property(x => x.IsIllustrative).HasDefaultValue(false);
+            e.Property(x => x.IsDisputed).HasDefaultValue(false);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
+            // I6：兩方都必須是存在的政權本體（NOT NULL + FK，本體不可刪除）
+            e.HasOne(x => x.ControllerRegime).WithMany().HasForeignKey(x => x.ControllerRegimeId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.ControlledRegime).WithMany().HasForeignKey(x => x.ControlledRegimeId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            e.HasIndex(x => x.Area).HasMethod("gist");
+            e.HasIndex(x => x.ControlledRegimeId);
+            e.HasIndex(x => x.ControllerRegimeId);
+        });
+
+        b.Entity<Alliance>(e =>
+        {
+            e.ToTable("alliances", t =>
+            {
+                t.HasCheckConstraint("ck_alliances_self_name_not_blank", "btrim(self_name) <> ''");
+                t.HasCheckConstraint("ck_alliances_existence_period",
+                    "NOT isempty(existence_period) AND NOT lower_inf(existence_period)");
+                t.HasCheckConstraint("ck_alliances_existence_precision",
+                    PrecisionCheck("existence_period", "existence_from_precision", "existence_to_precision", allowOpenEnd: true)); // I7
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.SelfName).HasMaxLength(128).IsRequired();
+            e.Property(x => x.ExistencePeriod).HasColumnType("daterange").IsRequired();
+            e.Property(x => x.ExistenceFromPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.ExistenceToPrecision).HasMaxLength(8);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.Property(x => x.UpdatedAt).HasDefaultValueSql("now()");
+            e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
+            e.HasIndex(x => x.SelfName).IsUnique();
+            e.HasIndex(x => x.ExistencePeriod).HasMethod("gist");
+        });
+
+        b.Entity<AllianceAlias>(e =>
+        {
+            e.ToTable("alliance_aliases", t =>
+            {
+                t.HasCheckConstraint("ck_alliance_aliases_name_not_blank", "btrim(alias_name) <> ''");
+                t.HasCheckConstraint("ck_alliance_aliases_alias_type",
+                    InList("alias_type", [AliasPerspective.Contemporary, AliasPerspective.Historiographic]));
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.AliasName).HasMaxLength(128).IsRequired();
+            e.Property(x => x.AliasType).HasMaxLength(32).IsRequired();
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne(x => x.Alliance).WithMany(a => a.Aliases).HasForeignKey(x => x.AllianceId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.ObserverRegime).WithMany().HasForeignKey(x => x.ObserverRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.AllianceId, x.ObserverRegimeId, x.AliasName }).IsUnique().AreNullsDistinct(false);
+        });
+
+        b.Entity<AllianceMembership>(e =>
+        {
+            e.ToTable("alliance_memberships", t =>
+            {
+                t.HasCheckConstraint("ck_alliance_memberships_role", InList("role", MembershipRole.All));
+                t.HasCheckConstraint("ck_alliance_memberships_valid_period",
+                    "NOT isempty(valid_period) AND NOT lower_inf(valid_period)");
+                t.HasCheckConstraint("ck_alliance_memberships_precision",
+                    PrecisionCheck("valid_period", "valid_from_precision", "valid_to_precision", allowOpenEnd: true)); // I7
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Role).HasMaxLength(16).IsRequired().HasDefaultValue(MembershipRole.Member);
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange").IsRequired();
+            e.Property(x => x.ValidFromPrecision).HasMaxLength(8).IsRequired();
+            e.Property(x => x.ValidToPrecision).HasMaxLength(8);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
+            e.HasOne(x => x.Alliance).WithMany(a => a.Memberships).HasForeignKey(x => x.AllianceId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Regime).WithMany().HasForeignKey(x => x.RegimeId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            e.HasIndex(x => new { x.AllianceId, x.RegimeId });
         });
     }
 }

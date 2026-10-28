@@ -2,7 +2,8 @@ namespace WorldLine.Api.Domain;
 
 /// <summary>
 /// 政權狀態（憲法 §4 狀態機）。以英文代碼存入資料庫，與前端 map-colors.ts 的 PolityState 一致。
-/// 合法轉換只有：existing → split / abdicated / destroyed；「被取代（禪讓）」與「被滅亡」不可合併。
+/// 合法轉換只有：existing → split / abdicated / destroyed / annexed；四種終止方式彼此不可合併、不可互轉、不可回到存續。
+/// 佔領、傀儡、保護、殖民、託管不是狀態，而是控制關係（<see cref="RegimeControlRelation"/>，憲法 §4 選項 A）。
 /// </summary>
 public static class RegimeStatus
 {
@@ -14,12 +15,14 @@ public static class RegimeStatus
     public const string Abdicated = "abdicated";
     /// <summary>被滅亡（武力消滅，須記錄消滅方）</summary>
     public const string Destroyed = "destroyed";
+    /// <summary>被併吞（併入他國，未必經戰爭；須記錄併吞方，例：奧地利 1938）</summary>
+    public const string Annexed = "annexed";
 
-    public static readonly IReadOnlyList<string> All = [Existing, Split, Abdicated, Destroyed];
+    public static readonly IReadOnlyList<string> All = [Existing, Split, Abdicated, Destroyed, Annexed];
 
     /// <summary>後端唯一信任來源的合法轉換規則（PRD §5：前端 XState 僅做 UI 防呆）。</summary>
     public static bool IsLegalTransition(string from, string to) =>
-        from == Existing && (to == Split || to == Abdicated || to == Destroyed);
+        from == Existing && (to == Split || to == Abdicated || to == Destroyed || to == Annexed);
 }
 
 /// <summary>政權「如何產生」：因分裂或因禪讓而來；獨立建國則為 null（無前身）。</summary>

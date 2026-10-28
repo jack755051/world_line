@@ -14,7 +14,18 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// HTTPS 轉址只在「非容器」且「實際有設定 https 端點」（例如 launchSettings 的 https profile）時啟用。
+// 容器內只開 http（TLS 由前端 Nginx／外部反向代理處理），官方 .NET 映像檔會設 DOTNET_RUNNING_IN_CONTAINER=true。
+var runningInContainer = string.Equals(
+    Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), "true", StringComparison.OrdinalIgnoreCase);
+var configuredUrls = app.Configuration["urls"] ?? string.Empty;
+var hasHttpsEndpoint = configuredUrls.Contains("https://", StringComparison.OrdinalIgnoreCase)
+    || !string.IsNullOrWhiteSpace(app.Configuration["HTTPS_PORTS"])
+    || !string.IsNullOrWhiteSpace(app.Configuration["https_port"]);
+if (!runningInContainer && hasHttpsEndpoint)
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 

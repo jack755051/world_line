@@ -38,7 +38,7 @@ builder.Services.AddOpenApi(o => o.AddDocumentTransformer((doc, _, _) =>
 
 // 連線字串由 compose 的 ConnectionStrings__WorldLine 提供；未設定時仍註冊（Npgsql 只在實際查詢時連線），健康檢查會回報 Unhealthy。
 var connectionString = builder.Configuration.GetConnectionString(DbSetup.ConnectionStringName)
-                       ?? "Host=127.0.0.1;Port=5433;Database=appdb_ww2;Username=unset;Password=unset";
+                       ?? "Host=127.0.0.1;Port=5432;Database=appdb_ww2;Username=unset;Password=unset";
 builder.Services.AddDbContext<WorldLineDbContext>(o => DbSetup.Configure(o, connectionString));
 builder.Services.AddHealthChecks().AddDbContextCheck<WorldLineDbContext>("db");
 

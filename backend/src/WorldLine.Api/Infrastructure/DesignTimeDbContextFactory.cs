@@ -11,7 +11,7 @@ public sealed class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<Wor
     public WorldLineDbContext CreateDbContext(string[] args)
     {
         var cs = Environment.GetEnvironmentVariable("WORLDLINE_DESIGN_CONNECTION")
-                 ?? "Host=127.0.0.1;Port=5433;Database=appdb_ww2_design;Username=unused;Password=unused";
+                 ?? "Host=127.0.0.1;Port=5432;Database=appdb_ww2_design;Username=unused;Password=unused";
         var builder = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<WorldLineDbContext>();
         DbSetup.Configure(builder, cs);
         return new WorldLineDbContext(builder.Options);

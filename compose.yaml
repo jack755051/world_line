@@ -1,7 +1,8 @@
 # World Line（二戰階段）本機開發環境：PostGIS＋api（web 待 M0 前端，A9 Stitch 畫面定稿後加入）
 # 與舊的 docker-compose.yml（app_* 容器、postgres_data volume、appdb）完全分開：
 #   - 專案名固定為 worldline-ww2，volume 為 worldline-ww2_pgdata
-#   - 預設資料庫 appdb_ww2；埠只綁 127.0.0.1，預設 5433（DB）／5051（API），避開舊環境的 5432／5050
+#   - 預設資料庫 appdb_ww2；埠只綁 127.0.0.1，預設 5432（DB）／5050（API）（Tai 2026-10-28 決定）
+#   - 舊環境（根目錄 docker-compose.yml）也用 5432／5050，兩者不可同時啟動；舊環境請 docker compose down（不加 -v）
 # 用法：cp .env.example .env（填密碼與 API key）→ docker compose up -d --build
 name: worldline-ww2
 
@@ -15,7 +16,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:?請在 .env 設定 POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?請在 .env 設定 POSTGRES_PASSWORD}
     ports:
-      - "127.0.0.1:${WW2_DB_PORT:-5433}:5432"
+      - "127.0.0.1:${WW2_DB_PORT:-5432}:5432"
     volumes:
       # PostgreSQL 18 官方映像的資料目錄改為 /var/lib/postgresql/18/docker，掛載點用上層目錄
       - pgdata:/var/lib/postgresql
@@ -35,10 +36,10 @@ services:
       ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__WorldLine: Host=postgres;Port=5432;Database=${WW2_POSTGRES_DB:-appdb_ww2};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
       WORLDLINE_API_KEY: ${WORLDLINE_API_KEY:-}
-      # 啟動時套用 migration（只新增，不刪資料；Down 一律不支援）
+      # 啟動時套用 migration（Tai 2026-10-28：保留環境變數開關，compose 預設開；只往前套用，Down 一律不支援）
       WORLDLINE_MIGRATE_ON_STARTUP: "true"
     ports:
-      - "127.0.0.1:${WW2_API_PORT:-5051}:8080"
+      - "127.0.0.1:${WW2_API_PORT:-5050}:8080"
     depends_on:
       postgres:
         condition: service_healthy

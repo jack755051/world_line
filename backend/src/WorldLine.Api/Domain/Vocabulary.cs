@@ -44,3 +44,25 @@ public static class Languages
 {
     public static readonly string[] Supported = ["zh-Hant", "en"];
 }
+
+/// <summary>
+/// 持續關係類型（PRD §6.3 regime_relations；清單仍屬 §12 Q6 待拍板）。
+/// patron_puppet 方向：regime_a＝扶植方、regime_b＝傀儡（Tai 2026-10-28：與控制紀錄的 patron_regime_id 並存）。
+/// </summary>
+public static class RelationTypes
+{
+    public const string PatronPuppet = "patron_puppet";
+    public static readonly string[] All = ["at_war", "alliance", "non_aggression_pact", PatronPuppet, "trade"];
+}
+
+/// <summary>事件類型（PRD §6.3 AI 提案・待拍板）。</summary>
+public static class EventKinds
+{
+    public static readonly string[] All = ["war", "campaign", "battle", "treaty", "armistice", "surrender", "political", "atrocity"];
+}
+
+public static class DatePrecisions
+{
+    public const string Day = "day";
+    public static readonly string[] All = [Day, "month", "year"];
+}

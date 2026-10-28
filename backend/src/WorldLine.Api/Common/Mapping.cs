@@ -104,6 +104,20 @@ public static class Mapping
         return multi;
     }
 
+    /// <summary>任意有效的 GeoJSON 幾何（事件地點：Point 等），WGS84。</summary>
+    public static Geometry RequireGeometry(JsonElement geojson, string field)
+    {
+        if (geojson.ValueKind != JsonValueKind.Object)
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, $"{field} 必須是 GeoJSON 幾何。", field);
+        Geometry? g;
+        try { g = geojson.Deserialize<Geometry>(GeoJson); }
+        catch (JsonException e) { throw ApiError.BadRequest(ErrorCodes.ValidationFailed, $"{field} 不是合法的 GeoJSON：{e.Message}", field); }
+        if (g is null || g.IsEmpty || !g.IsValid)
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, $"{field} 幾何無效。", field);
+        g.SRID = 4326;
+        return g;
+    }
+
     public static JsonElement ToGeoJson(Geometry g) => JsonSerializer.SerializeToElement(g, GeoJson);
 
     public static string RequireText(string? value, string field, int? maxLength = null)

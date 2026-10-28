@@ -15,6 +15,8 @@ public static class EndpointRegistry
         TheatersEndpoints.Map(write);
         ControlEndpoints.Map(api, write);
         TimelineEndpoints.Map(api);
+        RegimeRelationsEndpoints.Map(api, write);
+        EventsEndpoints.Map(api, write);
     }
 
     /// <summary>OpenAPI：成功回應為 <c>ApiResponse&lt;T&gt;</c>（200）。</summary>

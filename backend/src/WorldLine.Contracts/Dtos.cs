@@ -93,3 +93,35 @@ public sealed record SnapshotSourceDto(Guid SourceId, string Title, string Locat
 public sealed record TimelineSnapshotDto(
     Guid Id, string TheaterCode, DateOnly AsOf, string Attestation, DatePeriodDto? AttestedPeriod,
     IReadOnlyDictionary<string, string>? Title, IReadOnlyList<SnapshotSourceDto> PrimarySources);
+
+// ───────────── 持續關係（§6「政權間互動」(2)） ─────────────
+/// <summary>patron_puppet 方向：regimeA＝扶植方、regimeB＝傀儡（Tai 2026-10-28：與控制紀錄的 patronRegimeId 並存）。</summary>
+public sealed record CreateRegimeRelationRequest(
+    Guid? RegimeAId, Guid? RegimeBId, string? RelationType, DatePeriodDto? ValidPeriod,
+    DatePeriodDto? StartUncertainty = null, DatePeriodDto? EndUncertainty = null,
+    IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record RegimeRelationDto(
+    Guid Id, Guid RegimeAId, Guid RegimeBId, string RelationType, DatePeriodDto ValidPeriod,
+    DatePeriodDto? StartUncertainty, DatePeriodDto? EndUncertainty, IReadOnlyDictionary<string, string>? Note);
+
+/// <summary>聚焦政權在某日的持續關係。<c>role</c>：patron／puppet（patron_puppet）或 party（其他關係）。</summary>
+public sealed record RegimeInteractionDto(Guid CounterpartRegimeId, string Role, RegimeRelationDto Relation);
+
+/// <summary>聚焦面板資料（PRD §7.1）。離散事件需 event_participants，尚未建置，暫不回傳。</summary>
+public sealed record RegimeInteractionsDto(Guid RegimeId, DateOnly Date, IReadOnlyList<RegimeInteractionDto> Relations);
+
+// ───────────── 事件（R8、§9） ─────────────
+/// <summary>
+/// occurred 為事件發生地的「當地日期」（半開區間）；localTimeZone 為發生地 IANA 時區（例：Pacific/Honolulu）；
+/// timeNote 為選填多語時間備註（例：「東京時間 12 月 8 日」）。Tai 2026-10-28 決定。
+/// </summary>
+public sealed record CreateEventRequest(
+    string? EventKind, DatePeriodDto? Occurred, string? DatePrecision,
+    string? LocalTimeZone = null, IReadOnlyDictionary<string, string>? TimeNote = null,
+    IReadOnlyDictionary<string, string>? Summary = null, Guid? ParentEventId = null, JsonElement? Location = null);
+
+public sealed record EventDto(
+    Guid Id, string EventKind, Guid? ParentEventId, IReadOnlyDictionary<string, string>? Summary,
+    DatePeriodDto Occurred, string DatePrecision, string? LocalTimeZone, IReadOnlyDictionary<string, string>? TimeNote,
+    JsonElement? Location);

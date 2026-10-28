@@ -16,6 +16,8 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<ControlRecordVersion> ControlRecordVersions => Set<ControlRecordVersion>();
     public DbSet<ControlRecordCitation> ControlRecordCitations => Set<ControlRecordCitation>();
     public DbSet<ReferenceLand> ReferenceLand => Set<ReferenceLand>();
+    public DbSet<RegimeRelation> RegimeRelations => Set<RegimeRelation>();
+    public DbSet<HistoricalEvent> HistoricalEvents => Set<HistoricalEvent>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -155,6 +157,51 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.Geom).HasColumnType("geometry(MultiPolygon,4326)");
             e.HasIndex(x => x.Geom).HasMethod("gist").HasDatabaseName("ix_reference_land_geom");
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<RegimeRelation>(e =>
+        {
+            e.ToTable("regime_relations", t =>
+            {
+                t.HasCheckConstraint("ck_regime_relations_type", InList("relation_type", RelationTypes.All));
+                t.HasCheckConstraint("ck_regime_relations_distinct", "regime_a_id <> regime_b_id");
+                t.HasCheckConstraint("ck_regime_relations_start_bounded", "NOT lower_inf(valid_period)");
+                t.HasCheckConstraint("ck_regime_relations_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.RelationType).HasMaxLength(24);
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.StartUncertainty).HasColumnType("daterange");
+            e.Property(x => x.EndUncertainty).HasColumnType("daterange");
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeAId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeBId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist").HasDatabaseName("ix_regime_relations_period");
+            Timestamps(e, updated: false);
+        });
+
+        b.Entity<HistoricalEvent>(e =>
+        {
+            e.ToTable("historical_events", t =>
+            {
+                t.HasCheckConstraint("ck_historical_events_kind", InList("event_kind", EventKinds.All));
+                t.HasCheckConstraint("ck_historical_events_precision", InList("date_precision", DatePrecisions.All));
+                t.HasCheckConstraint("ck_historical_events_occurred_bounded", "NOT lower_inf(occurred) AND NOT upper_inf(occurred)");
+                t.HasCheckConstraint("ck_historical_events_time_note_object", "time_note IS NULL OR jsonb_typeof(time_note) = 'object'");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.EventKind).HasMaxLength(16);
+            e.Property(x => x.Summary).HasColumnType("jsonb");
+            e.Property(x => x.Occurred).HasColumnType("daterange");
+            e.Property(x => x.DatePrecision).HasMaxLength(8);
+            e.Property(x => x.LocalTimeZone).HasMaxLength(64);
+            e.Property(x => x.TimeNote).HasColumnType("jsonb");
+            e.Property(x => x.Location).HasColumnType("geometry(Geometry,4326)");
+            e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.ParentEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.Occurred).HasMethod("gist").HasDatabaseName("ix_events_occurred");
+            Timestamps(e, updated: true);
         });
     }
 }

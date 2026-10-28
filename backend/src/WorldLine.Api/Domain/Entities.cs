@@ -124,3 +124,42 @@ public sealed class ReferenceLand
     public MultiPolygon Geom { get; set; } = null!;
     public Guid SourceId { get; set; }
 }
+
+/// <summary>持續關係（PRD §6.3；§6「政權間互動」(2)）。</summary>
+public sealed class RegimeRelation
+{
+    public Guid Id { get; set; }
+    public Guid RegimeAId { get; set; }
+    public Guid RegimeBId { get; set; }
+    public string RelationType { get; set; } = "";
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public NpgsqlRange<DateOnly>? StartUncertainty { get; set; }
+    public NpgsqlRange<DateOnly>? EndUncertainty { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 歷史事件（PRD §6.3）。日期記事件發生地的「當地日期」；另記發生地 IANA 時區與選填多語時間備註
+/// （Tai 2026-10-28 決定，例：珍珠港 1941-12-07 Pacific/Honolulu，備註「東京時間 12 月 8 日」）。
+/// </summary>
+public sealed class HistoricalEvent
+{
+    public Guid Id { get; set; }
+    public string EventKind { get; set; } = "";
+    public Guid? ParentEventId { get; set; }
+    public string? Summary { get; set; }
+    public NpgsqlRange<DateOnly> Occurred { get; set; }
+    public string DatePrecision { get; set; } = DatePrecisions.Day;
+    public string? LocalTimeZone { get; set; }
+    public string? TimeNote { get; set; }
+    public Geometry? Location { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
+    public int Version { get; set; }
+}

@@ -259,6 +259,101 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("DatePrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
+                    b.Property<string>("EventKind")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("event_kind");
+
+                    b.Property<string>("LocalTimeZone")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("local_time_zone");
+
+                    b.Property<Geometry>("Location")
+                        .HasColumnType("geometry(Geometry,4326)")
+                        .HasColumnName("location");
+
+                    b.Property<NpgsqlRange<DateOnly>>("Occurred")
+                        .HasColumnType("daterange")
+                        .HasColumnName("occurred");
+
+                    b.Property<Guid?>("ParentEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("parent_event_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("summary");
+
+                    b.Property<string>("TimeNote")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("time_note");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_historical_events");
+
+                    b.HasIndex("Occurred")
+                        .HasDatabaseName("ix_events_occurred");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("Occurred"), "gist");
+
+                    b.HasIndex("ParentEventId")
+                        .HasDatabaseName("ix_historical_events_parent_event_id");
+
+                    b.ToTable("historical_events", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_historical_events_kind", "event_kind IN ('war', 'campaign', 'battle', 'treaty', 'armistice', 'surrender', 'political', 'atrocity')");
+
+                            t.HasCheckConstraint("ck_historical_events_occurred_bounded", "NOT lower_inf(occurred) AND NOT upper_inf(occurred)");
+
+                            t.HasCheckConstraint("ck_historical_events_precision", "date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_historical_events_time_note_object", "time_note IS NULL OR jsonb_typeof(time_note) = 'object'");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.ReferenceLand", b =>
                 {
                     b.Property<int>("Id")
@@ -431,6 +526,90 @@ namespace WorldLine.Api.Infrastructure.Migrations
                             t.HasCheckConstraint("ck_regime_names_exonym_observer", "name_kind = 'self' OR observer_regime_id IS NOT NULL");
 
                             t.HasCheckConstraint("ck_regime_names_name_kind", "name_kind IN ('self', 'exonym')");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeRelation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<NpgsqlRange<DateOnly>?>("EndUncertainty")
+                        .HasColumnType("daterange")
+                        .HasColumnName("end_uncertainty");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("note");
+
+                    b.Property<Guid>("RegimeAId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_a_id");
+
+                    b.Property<Guid>("RegimeBId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_b_id");
+
+                    b.Property<string>("RelationType")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasColumnName("relation_type");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<NpgsqlRange<DateOnly>?>("StartUncertainty")
+                        .HasColumnType("daterange")
+                        .HasColumnName("start_uncertainty");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("valid_period");
+
+                    b.Property<int>("Version")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_regime_relations");
+
+                    b.HasIndex("RegimeAId")
+                        .HasDatabaseName("ix_regime_relations_regime_a_id");
+
+                    b.HasIndex("RegimeBId")
+                        .HasDatabaseName("ix_regime_relations_regime_b_id");
+
+                    b.HasIndex("ValidPeriod")
+                        .HasDatabaseName("ix_regime_relations_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ValidPeriod"), "gist");
+
+                    b.ToTable("regime_relations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_regime_relations_distinct", "regime_a_id <> regime_b_id");
+
+                            t.HasCheckConstraint("ck_regime_relations_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+
+                            t.HasCheckConstraint("ck_regime_relations_start_bounded", "NOT lower_inf(valid_period)");
+
+                            t.HasCheckConstraint("ck_regime_relations_type", "relation_type IN ('at_war', 'alliance', 'non_aggression_pact', 'patron_puppet', 'trade')");
                         });
                 });
 
@@ -630,6 +809,15 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasConstraintName("fk_control_snapshots_theaters_theater_id");
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("ParentEventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_historical_events_historical_events_parent_event_id");
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.ReferenceLand", b =>
                 {
                     b.HasOne("WorldLine.Api.Domain.Source", null)
@@ -654,6 +842,23 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_regime_names_regimes_regime_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeRelation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("RegimeAId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_relations_regimes_regime_a_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("RegimeBId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_relations_regimes_regime_b_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.ControlRecord", b =>

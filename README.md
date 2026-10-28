@@ -43,7 +43,7 @@
    | 服務 | 位址 |
    | --- | --- |
    | 前端（Angular / Nginx） | http://localhost:4200 |
-   | 後端 API（.NET） | http://localhost:5000 |
+   | 後端 API（.NET） | http://localhost:5050（可用 `.env` 的 `BACKEND_PORT` 調整；避開 macOS AirPlay 接收器佔用的 5000） |
    | PostgreSQL（PostGIS） | localhost:5432 |
    | Redis | localhost:6379 |
 

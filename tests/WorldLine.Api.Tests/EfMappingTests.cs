@@ -10,7 +10,7 @@ namespace WorldLine.Api.Tests;
 public class EfMappingTests
 {
     [Fact]
-    public async Task Can_save_and_query_regime_territory_by_year()
+    public async Task Can_save_and_query_regime_territory_by_date()
     {
         await TestDatabase.EnsureReadyAsync();
         var options = new DbContextOptionsBuilder<WorldLineDbContext>();
@@ -22,13 +22,21 @@ public class EfMappingTests
         var square = gf.CreateMultiPolygon([gf.CreatePolygon([
             new(100, 30), new(110, 30), new(110, 40), new(100, 40), new(100, 30)])]);
 
-        var tang = new Regime { SelfName = "唐", ExistencePeriod = new NpgsqlRange<int>(618, true, 907, true) };
-        tang.Territories.Add(new RegimeTerritory { ValidPeriod = new NpgsqlRange<int>(618, true, 907, true), Geom = square });
+        var period = new NpgsqlRange<DateOnly>(new DateOnly(618, 1, 1), true, new DateOnly(907, 12, 31), true);
+        var tang = new Regime
+        {
+            SelfName = "唐", ExistencePeriod = period,
+            ExistenceFromPrecision = DatePrecision.Year, ExistenceToPrecision = DatePrecision.Year,
+        };
+        tang.Territories.Add(new RegimeTerritory
+        {
+            ValidPeriod = period, ValidFromPrecision = DatePrecision.Year, ValidToPrecision = DatePrecision.Year, Geom = square,
+        });
         ctx.Regimes.Add(tang);
         await ctx.SaveChangesAsync();
 
         var found = await ctx.RegimeTerritories
-            .Where(t => t.SupersededBy == null && t.ValidPeriod.Contains(700))
+            .Where(t => t.SupersededBy == null && t.ValidPeriod.Contains(new DateOnly(700, 6, 1)))
             .Select(t => new { t.Regime.SelfName, t.Geom })
             .ToListAsync();
 

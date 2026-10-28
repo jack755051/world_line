@@ -64,7 +64,15 @@ public sealed class TestDb : IAsyncDisposable
     }
 
     public Task<Guid> InsertRegimeAsync(string selfName) =>
-        ScalarAsync<Guid>($"INSERT INTO regimes (self_name, existence_period) VALUES ('{selfName}', '[1,2000]') RETURNING id");
+        ScalarAsync<Guid>($"INSERT INTO regimes (self_name, existence_period, existence_from_precision, existence_to_precision) VALUES ('{selfName}', {Years(1, 1999)}, 'year', 'year') RETURNING id");
+
+    /// <summary>只知年的含頭含尾區間 → daterange 字面值，例：Years(618, 907) = '[0618-01-01,0907-12-31]'。</summary>
+    public static string Years(int from, int to) => $"'[{from:0000}-01-01,{to:0000}-12-31]'";
+
+    /// <summary>疆域 INSERT（年精度）。extraCols/extraVals 以逗號開頭，例：", is_disputed" / ", true"。</summary>
+    public static string TerritorySql(Guid regime, int from, int to, int square, string extraCols = "", string extraVals = "") =>
+        $"INSERT INTO regime_territories (regime_id, valid_period, valid_from_precision, valid_to_precision, geom{extraCols}) " +
+        $"VALUES ('{regime}', {Years(from, to)}, 'year', 'year', {Square(square)}{extraVals})";
 
     public static string Square(int x) =>
         $"ST_Multi(ST_GeomFromText('POLYGON(({x} 30,{x + 10} 30,{x + 10} 40,{x} 40,{x} 30))', 4326))";

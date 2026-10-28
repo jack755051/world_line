@@ -11,11 +11,12 @@ public class M2InvariantTests
     public async Task Regime_existence_period_required_and_open_end_only_while_existing()
     {
         await using var db = await TestDb.OpenAsync();
-        Assert.Equal(SqlState.NotNull, await db.ExpectErrorAsync("INSERT INTO regimes (self_name) VALUES ('無年代')"));
-        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync("INSERT INTO regimes (self_name, existence_period) VALUES ('空區間', 'empty')"));
-        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync("INSERT INTO regimes (self_name, existence_period) VALUES ('無起點', '(,300]')"));
-        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync("INSERT INTO regimes (self_name, existence_period, status) VALUES ('已分裂', '[25,)', 'split')"));
-        await db.ExecAsync("INSERT INTO regimes (self_name, existence_period) VALUES ('仍存續', '[750,)')");
+        const string cols = "self_name, existence_period, existence_from_precision, existence_to_precision";
+        Assert.Equal(SqlState.NotNull, await db.ExpectErrorAsync("INSERT INTO regimes (self_name, existence_from_precision) VALUES ('無年代', 'year')"));
+        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"INSERT INTO regimes ({cols}) VALUES ('空區間', 'empty', 'year', NULL)"));
+        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"INSERT INTO regimes ({cols}) VALUES ('無起點', '(,0300-12-31]', 'year', 'year')"));
+        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"INSERT INTO regimes ({cols}, status) VALUES ('已分裂', '[0025-01-01,)', 'year', NULL, 'split')"));
+        await db.ExecAsync($"INSERT INTO regimes ({cols}) VALUES ('仍存續', '[0750-01-01,)', 'year', NULL)");
     }
 
     [Fact]
@@ -63,7 +64,7 @@ public class M2InvariantTests
     {
         await using var db = await TestDb.OpenAsync();
         var tang = await db.InsertRegimeAsync("唐");
-        var t = await db.ScalarAsync<Guid>($"INSERT INTO regime_territories (regime_id, valid_period, geom, is_illustrative, source) VALUES ('{tang}', '[618,907]', {TestDb.Square(100)}, true, '示意') RETURNING id");
+        var t = await db.ScalarAsync<Guid>(TestDb.TerritorySql(tang, 618, 907, 100, ", is_illustrative, source", ", true, '示意'") + " RETURNING id");
         Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"UPDATE regime_territories SET is_illustrative = false WHERE id = '{t}'"));
         Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"UPDATE regime_territories SET source = '考據' WHERE id = '{t}'"));
     }
@@ -79,7 +80,7 @@ public class EfRevisionTests
         await using var ctx = TestDatabase.CreateContext();
         await using var tx = await ctx.Database.BeginTransactionAsync();
 
-        var r = new Regime { SelfName = "測試國", ExistencePeriod = Api.Ranges.Closed(100, 200) };
+        var r = new Regime { SelfName = "測試國", ExistencePeriod = Api.Periods.Of(new DateOnly(100, 1, 1), new DateOnly(200, 12, 31)), ExistenceFromPrecision = DatePrecision.Year, ExistenceToPrecision = DatePrecision.Year };
         ctx.Regimes.Add(r);
         await ctx.SaveChangesAsync();
         Assert.Equal(0, r.Version);

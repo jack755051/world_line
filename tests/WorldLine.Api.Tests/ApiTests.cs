@@ -34,20 +34,20 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
         return client;
     }
 
-    private static async Task<JsonNode> JsonAsync(HttpResponseMessage res, HttpStatusCode expected)
+    internal static async Task<JsonNode> JsonAsync(HttpResponseMessage res, HttpStatusCode expected)
     {
         var body = await res.Content.ReadAsStringAsync();
         Assert.True(res.StatusCode == expected, $"預期 {(int)expected}，實得 {(int)res.StatusCode}：{body}");
         return JsonNode.Parse(body)!;
     }
 
-    private static object Square(double x, double y, double size = 5) => new
+    internal static object Square(double x, double y, double size = 5) => new
     {
         type = "Polygon",
         coordinates = new[] { new[] { new[] { x, y }, new[] { x + size, y }, new[] { x + size, y + size }, new[] { x, y + size }, new[] { x, y } } },
     };
 
-    private static async Task<(string Id, int Version)> CreateRegimeAsync(HttpClient client, int from = 100, int? to = 200)
+    internal static async Task<(string Id, int Version)> CreateRegimeAsync(HttpClient client, string from = "0100", string? to = "0200")
     {
         var res = await client.PostAsJsonAsync("/api/v1/regimes", new
         {
@@ -105,7 +105,8 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
             Assert.Equal("Feature", f!["type"]!.GetValue<string>());
             Assert.Equal("MultiPolygon", f["geometry"]!["type"]!.GetValue<string>());
             Assert.NotNull(f["properties"]!["regimeId"]);
-            Assert.True(f["properties"]!["validFrom"]!.GetValue<int>() <= 220);
+            Assert.True(string.CompareOrdinal(f["properties"]!["validFrom"]!.GetValue<string>(), "0220-12-31") <= 0);
+            Assert.NotNull(f["properties"]!["validFromPrecision"]);
         }
         var han = features.Single(f => f!["properties"]!["regimeId"]!.GetValue<string>() == "0b1e0000-0000-4000-8000-000000000001")!;
         Assert.True(han["properties"]!["isIllustrative"]!.GetValue<bool>());
@@ -163,10 +164,10 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
     public async Task Writes_without_or_with_wrong_key_are_rejected()
     {
         var anon = await ClientAsync();
-        var body = new { selfName = "未授權", existenceFrom = 1, existenceTo = 2 };
+        var body = new { selfName = "未授權", existenceFrom = "0001", existenceTo = "0002" };
         Assert.Equal(HttpStatusCode.Unauthorized, (await anon.PostAsJsonAsync("/api/v1/regimes", body)).StatusCode);
         Assert.Equal(HttpStatusCode.Unauthorized, (await anon.PatchAsJsonAsync($"/api/v1/regimes/{Tang}", new { version = 0, changeReason = "x", selfName = "x" })).StatusCode);
-        Assert.Equal(HttpStatusCode.Unauthorized, (await anon.PostAsJsonAsync($"/api/v1/regimes/{Tang}/territories", new { validFrom = 700, validTo = 701, geometry = Square(0, 0) })).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await anon.PostAsJsonAsync($"/api/v1/regimes/{Tang}/territories", new { validFrom = "0700", validTo = "0701", geometry = Square(0, 0) })).StatusCode);
         Assert.Equal(HttpStatusCode.Unauthorized, (await anon.PatchAsJsonAsync($"/api/v1/territories/{Guid.NewGuid()}/correct", new { version = 0, reason = "x" })).StatusCode);
 
         var wrong = factory.CreateClient();
@@ -183,7 +184,7 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
         using var noKey = factory.WithWebHostBuilder(b => b.UseSetting(Api.ApiKeyFilter.ConfigKey, ""));
         var client = noKey.CreateClient();
         client.DefaultRequestHeaders.Add(Api.ApiKeyFilter.HeaderName, ApiFactory.TestKey);
-        var res = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = 1, existenceTo = 2 });
+        var res = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = "0001", existenceTo = "0002" });
         Assert.Equal(HttpStatusCode.ServiceUnavailable, res.StatusCode);
         Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/v1/regimes?year=220")).StatusCode);
     }
@@ -192,13 +193,13 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
     public async Task Create_regime_validates_invariants()
     {
         var client = await ClientAsync(withKey: true);
-        var blank = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "  ", existenceFrom = 1, existenceTo = 2 });
+        var blank = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "  ", existenceFrom = "0001", existenceTo = "0002" });
         Assert.Equal(HttpStatusCode.BadRequest, blank.StatusCode);
-        var destroyedNoBy = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = 1, existenceTo = 2, status = "destroyed" });
+        var destroyedNoBy = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = "0001", existenceTo = "0002", status = "destroyed" });
         Assert.Equal(HttpStatusCode.BadRequest, destroyedNoBy.StatusCode);
-        var halfOrigin = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = 1, existenceTo = 2, predecessorRegimeId = Tang });
+        var halfOrigin = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = "0001", existenceTo = "0002", predecessorRegimeId = Tang });
         Assert.Equal(HttpStatusCode.BadRequest, halfOrigin.StatusCode);
-        var unknownPredecessor = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = 1, existenceTo = 2, predecessorRegimeId = Guid.NewGuid(), originTransitionType = "split" });
+        var unknownPredecessor = await client.PostAsJsonAsync("/api/v1/regimes", new { selfName = "x", existenceFrom = "0001", existenceTo = "0002", predecessorRegimeId = Guid.NewGuid(), originTransitionType = "split" });
         Assert.Equal(HttpStatusCode.BadRequest, unknownPredecessor.StatusCode);
     }
 
@@ -227,22 +228,22 @@ public class ApiTests(ApiFactory factory) : IClassFixture<ApiFactory>
     public async Task Territory_create_overlap_and_correction_flow()
     {
         var client = await ClientAsync(withKey: true);
-        var (regime, _) = await CreateRegimeAsync(client, 100, 200);
+        var (regime, _) = await CreateRegimeAsync(client, "0100", "0200");
 
         var created = await JsonAsync(await client.PostAsJsonAsync($"/api/v1/regimes/{regime}/territories",
-            new { validFrom = 100, validTo = 150, geometry = Square(110, 30), isIllustrative = true, source = "測試" }), HttpStatusCode.Created);
+            new { validFrom = "0100", validTo = "0150", geometry = Square(110, 30), isIllustrative = true, source = "測試" }), HttpStatusCode.Created);
         Assert.Equal("MultiPolygon", created["geometry"]!["type"]!.GetValue<string>());
         var territoryId = created["id"]!.GetValue<string>();
 
         // 期間超出政權存續 → 400；I3 正式疆域重疊 → 409；標記爭議可並存 → 201
         Assert.Equal(HttpStatusCode.BadRequest, (await client.PostAsJsonAsync($"/api/v1/regimes/{regime}/territories",
-            new { validFrom = 90, validTo = 120, geometry = Square(110, 30) })).StatusCode);
+            new { validFrom = "0090", validTo = "0120", geometry = Square(110, 30) })).StatusCode);
         var overlap = await client.PostAsJsonAsync($"/api/v1/regimes/{regime}/territories",
-            new { validFrom = 140, validTo = 160, geometry = Square(111, 31) });
+            new { validFrom = "0140", validTo = "0160", geometry = Square(111, 31) });
         Assert.Equal(HttpStatusCode.Conflict, overlap.StatusCode);
         Assert.Equal("application/problem+json", overlap.Content.Headers.ContentType?.MediaType);
         Assert.Equal(HttpStatusCode.Created, (await client.PostAsJsonAsync($"/api/v1/regimes/{regime}/territories",
-            new { validFrom = 140, validTo = 160, geometry = Square(111, 31), isDisputed = true })).StatusCode);
+            new { validFrom = "0140", validTo = "0160", geometry = Square(111, 31), isDisputed = true })).StatusCode);
 
         // I5 修正：缺原因 → 400；正確修正 → 新版本、舊版本保留並指向新版本
         Assert.Equal(HttpStatusCode.BadRequest, (await client.PatchAsJsonAsync($"/api/v1/territories/{territoryId}/correct",

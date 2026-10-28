@@ -9,6 +9,7 @@ public class RegimeStatusTests
     [InlineData(RegimeStatus.Existing, RegimeStatus.Split)]
     [InlineData(RegimeStatus.Existing, RegimeStatus.Abdicated)]
     [InlineData(RegimeStatus.Existing, RegimeStatus.Destroyed)]
+    [InlineData(RegimeStatus.Existing, RegimeStatus.Annexed)]
     public void Legal_transitions_are_allowed(string from, string to) =>
         Assert.True(RegimeStatus.IsLegalTransition(from, to));
 
@@ -17,6 +18,9 @@ public class RegimeStatusTests
     [InlineData(RegimeStatus.Abdicated, RegimeStatus.Destroyed)]
     [InlineData(RegimeStatus.Destroyed, RegimeStatus.Abdicated)]
     [InlineData(RegimeStatus.Existing, RegimeStatus.Existing)]
+    [InlineData(RegimeStatus.Annexed, RegimeStatus.Existing)]
+    [InlineData(RegimeStatus.Annexed, RegimeStatus.Destroyed)]
+    [InlineData(RegimeStatus.Destroyed, RegimeStatus.Annexed)]
     public void Illegal_transitions_are_rejected(string from, string to) =>
         Assert.False(RegimeStatus.IsLegalTransition(from, to));
 }

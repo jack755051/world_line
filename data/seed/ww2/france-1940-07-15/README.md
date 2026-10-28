@@ -1,46 +1,61 @@
-# M0 第一筆真實資料：1940-07-15 德國在法國本土的軍事佔領區
+# M0 第一批真實資料：1940 德國在法國本土的控制區（v2，各區獨立紀錄）
 
-> **狀態：DRAFT — 待 Tai 檢查。尚未寫入 appdb_ww2。**
-> 檢查通過後才執行 `python3 send_seed.py --send`。預設只做 dry-run。
+> **狀態：DRAFT v2 — 待 Tai 檢查。尚未寫入 appdb_ww2。**
+> 預設 dry-run：`python3 send_seed.py`；檢查通過後 `--send`。東北禁區兩筆待決，另需 `--include-pending`。
+
+## Tai 的決定（2026-10-28）
+
+- 主要引用用 Leconte（CC0）；西點 Map 15 只當 date_check。
+- 混合做法：分界線照原圖描，不沿省界；其他區塊用 1940 年省界組合；拆成獨立紀錄；每筆註明邊界來源。
+
+## 各區紀錄
+
+| 紀錄 | 區塊 | 面積 | 有效期間 [start, end) | 控制類型 | 邊界來源 |
+|---|---|---|---|---|---|
+| CR_MAIN | 本體軍事佔領區 | 228,776 km² | 1940-07-15 – 1942-11-11（起始不確定 06-25～07-15） | military_occupation | 分界線圖描＋東北線＋省界＋TRF 外框 |
+| CR_NORD | 北部兩省（Nord、Pas-de-Calais，布魯塞爾軍管） | 12,439 km² | 1940-06-04 – 1944-07-16 | military_occupation | 省界組合（59＋62） |
+| CR_AM_MIL | 亞爾薩斯－摩澤爾（CdZ 之前） | 14,581 km² | 1940-07-15 – 1940-08-02 | military_occupation | 省界組合（57＋67＋68） |
+| CR_AM_CDZ | 亞爾薩斯－摩澤爾（CdZ，事實併入） | 同上 | 1940-08-02 – 1944-11-22（結束不確定至 1945-03） | direct_rule | 省界組合（57＋67＋68） |
+| CR_ZI_PRE ⚠ | 東北禁區（東北線生效前） | 45,945 km² | 1940-07-15 – 1940-07-20 | military_occupation | 東北線（Perseus112）＋分界線＋省界 |
+| CR_ZI ⚠ | 東北禁區（zone réservée） | 同上 | 1940-07-20 – 1942-11-11 | military_occupation | 同上 |
+
+⚠ 表示 `requiresDecision`：primary 只能用 Perseus112 的現代自製圖（CC BY-SA），依 R7 精神不採用自製來源。
+
+- 四個區塊彼此只共用邊界：在 1e-5° 網格上做疊合運算，兩兩交集面積為 0（I3）。
+- 大西洋沿岸帶不拆：「zone côtière interdite」1941-04 才設立，在本批之外；目前也只有自製圖可描。
 
 ## 來源與授權
 
-| 角色 | 來源 | 種類 | 授權 | 用途 |
-|---|---|---|---|---|
-| primary | Éditions André Leconte《Nouvelle carte de France par régions administratives au 1.800.000e (ligne de démarcation)》，Musée de la Libération de Paris – musée Jean Moulin 館藏號 2015.3.1.230，印行於 1940–1943 | map | `cc0`（Paris Musées 開放內容） | 用來目視核對分界線 |
-| date_check | USMA West Point Atlas WWII Europe, **Map 15**「Western Europe 1940: Campaign in the West, The Pursuit, 13–25 June」 | atlas_map | `us_federal_pd`（17 U.S.C. §105） | 佐證 6/25 德軍推進範圍超過分界線；**圖上沒有分界線** |
-| auxiliary_geometry | Département de l'Ain「Ligne de démarcation」（data.gouv.fr） | dataset | `licence_ouverte_2` | 分界線座標 |
-| auxiliary_geometry | Natural Earth 1:10m Admin 0 Countries | dataset | `public_domain`（代碼待拍板） | 法國本土外框（現代國界） |
+| 來源 | 種類 | 授權 | 角色 |
+|---|---|---|---|
+| Leconte《Nouvelle carte de France… (ligne de démarcation)》，館藏號 2015.3.1.230 | map | cc0 | primary（分界線、省界） |
+| USMA WWII Europe Map 15 | atlas_map | us_federal_pd | date_check |
+| Ain「Ligne de démarcation」 | dataset | licence_ouverte_2 | auxiliary_geometry |
+| **TRF-GIS Départements 1940**（Victor Gay，doi:10.7910/DVN/ULQYM5） | dataset | **cc_by**（在允許清單） | auxiliary_geometry（外框、省界） |
+| Perseus112《Carte régionale et zonale de la France occupée de 1940 à 1943》（Commons） | map | cc_by_sa | 東北線線形；東北禁區兩筆暫列 primary（待決） |
+| Dejonghe 1994, *Revue du Nord* 76(306):487–499 | peer_reviewed | — | date_check |
+| Bundesarchiv RWD 20 館藏說明（EHRI） | official_record | — | date_check |
+| 《Alzacja i Lotaryngia w latach 1940–1945》, *Czasopismo Prawno-Historyczne* | peer_reviewed | — | date_check（作者與頁碼待核） |
 
-**West Point 圖集裡找不到分界線圖。** USMA WWII Europe/Med 圖集共 91 張，Map 15、33、43 和 Overview 都沒有畫 1940 分界線，所以 primary 改用同屬允許清單（CC0）的 Leconte 分界線圖。這點要請 Tai 確認。
+- Natural Earth 已不再用於幾何，只當總覽圖的鄰國底圖，所以不再送出這個來源。
+- CC BY 要求署名，前端需標「TRF-GIS, Victor Gay (CC BY 4.0)」。
 
-## 描繪方法
+## 方法與精度
 
-1. 從 Natural Earth 10m 取法國本土部分（box −6,41,10,52）。
-2. 用 Ain 分界線（兩端各延長 0.05°）切開本土。不含 Vichy (3.43, 46.13) 的一側即為佔領區，包含巴黎一側和 Gex 地區的飛地（約 372 km²，只以一點與主體相接，保留為獨立 part）。
-3. 島嶼歸佔領區；地中海島嶼（含 Corse）除外。
-4. 座標四捨五入到 1e-5°，並以 shapely 驗證幾何有效。
-5. 把 Leconte 圖以 27 個控制點（城市圓點、岬角）配準，用二次多項式，RMSE ≈ 13 px ≈ 2.4 km。再把描線疊上去目視比對。
-
-結果：MultiPolygon，8 個 part，5,282 個頂點，約 300,789 km²，佔法國本土的 54.9%。
-
-## 精度限制
-
-- 外框用的是**現代**國界和 1:10M 海岸線，海岸誤差達公里級。1940 年的 Alsace-Moselle 邊界與現代相同，影響不大。
-- 分界線取自 Ain 資料集（1:200,000 等級）。1940–42 年間的局部調整沒有建模。
-- Leconte 配準誤差約 2–3 km，只能用來目視核對，不是座標來源。
-
-## 範圍（待決）
-
-- 包含：北部兩省（Nord、Pas-de-Calais，歸布魯塞爾軍事管理）、Alsace-Moselle、東北禁區、大西洋沿岸帶。是否拆成獨立紀錄，待 Tai 決定。
-- 不含：自由區、義大利佔領區、海峽群島（英國王室屬地，另立紀錄）。
+1. **外框與省界**：TRF-GIS 1940（Lambert-93 轉 WGS84）。由現代市鎮界組成，Gay 2021 自述這是主要限制。
+2. **分界線**：Ain 資料集座標，對照 Leconte 原圖（配準 RMSE ≈ 2.4 km）。只用這條線切割，不沿省界。
+3. **東北線**：從 Perseus112 原圖抽出核心色像素，骨架化後取最短路徑。
+   - 配準用 37 個控制點，RMSE 1.2 px ≈ 0.2 km。
+   - Abbeville 以西沿索姆河口手動補 4 點。
+   - 線的終點是 Dole 以南與分界線交會處。
+4. **各區**：北部兩省、亞爾薩斯－摩澤爾直接取 1940 年省界；其餘佔領區用東北線切成本體和東北禁區。Pays de Gex 依史料歸東北禁區。
 
 ## 檔案
 
-- `occupied-zone-1940-07-15.geojson`：描好的佔領區。
-- `requests/`：POST 請求，依檔名順序送出。`{{...}}` 由前一步回應的 id 取代。
-- `send_seed.py`：送出工具，預設 dry-run，key 從 `.env` 安靜讀取。
-- `build/`：產生幾何、預覽、請求的腳本，以及配準控制點。腳本的路徑指向 box 的 `/workspace/world-line-ww2/trace/`，大圖檔不 commit。
-- `preview-overview.png`：Natural Earth 底圖總覽。
-- 疊在 Leconte 上的大張預覽只放在 box：`/workspace/world-line-ww2/trace/preview-overlay-leconte.png`，另有 `preview-detail-*.png`。
-- 測試 `SeedFrance1940Tests` 會把這批請求送到 Testcontainers（不是 appdb_ww2），驗證 API 接受。
+- `zones-1940-v2.geojson`：四個區塊，含邊界來源與期間。
+- `requests/`：依檔名順序送出。
+- `send_seed.py`：送出工具。
+- `build/`：腳本、控制點、東北線。
+- `preview-v2-overview.png`：總覽預覽。
+- 大圖只放在 box 的 `/workspace/world-line-ww2/trace/`：`preview-v2-overlay-leconte.png`、`preview-v2-detail-*.png`。
+- 測試 `SeedFrance1940Tests` 在 Testcontainers 重播兩種情境（含待決、不含待決）。

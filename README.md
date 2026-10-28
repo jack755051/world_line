@@ -44,7 +44,7 @@
    | --- | --- |
    | 前端（Angular / Nginx） | http://localhost:4200 |
    | 後端 API（.NET） | http://localhost:5000 |
-   | PostgreSQL | localhost:5432 |
+   | PostgreSQL（PostGIS） | localhost:5432 |
    | Redis | localhost:6379 |
 
 ## 開發工具

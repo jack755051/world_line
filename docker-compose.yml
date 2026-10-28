@@ -1,7 +1,7 @@
 services:
   # 1. PostgreSQL 資料庫
   postgres:
-    image: postgres:16-alpine
+    image: postgis/postgis:16-3.4
     container_name: app_postgres
     restart: always
     env_file:
@@ -10,6 +10,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      # 只掛單一檔案，避免覆蓋映像檔內建的 10_postgis.sh；僅在資料目錄首次初始化時執行
+      - ./db/init/20-enable-postgis.sql:/docker-entrypoint-initdb.d/20-enable-postgis.sql:ro
     networks:
       - app_network
     healthcheck:

@@ -12,7 +12,7 @@ public class EfMappingTests
     [Fact]
     public async Task Can_save_and_query_regime_territory_by_year()
     {
-        Assert.SkipWhen(string.IsNullOrWhiteSpace(TestDb.ConnectionString), $"未設定 {TestDb.EnvVar}，略過資料庫整合測試");
+        await TestDatabase.EnsureReadyAsync();
         var options = new DbContextOptionsBuilder<WorldLineDbContext>();
         DbSetup.Configure(options, TestDb.ConnectionString!);
         await using var ctx = new WorldLineDbContext(options.Options);
@@ -22,7 +22,7 @@ public class EfMappingTests
         var square = gf.CreateMultiPolygon([gf.CreatePolygon([
             new(100, 30), new(110, 30), new(110, 40), new(100, 40), new(100, 30)])]);
 
-        var tang = new Regime { SelfName = "唐" };
+        var tang = new Regime { SelfName = "唐", ExistencePeriod = new NpgsqlRange<int>(618, true, 907, true) };
         tang.Territories.Add(new RegimeTerritory { ValidPeriod = new NpgsqlRange<int>(618, true, 907, true), Geom = square });
         ctx.Regimes.Add(tang);
         await ctx.SaveChangesAsync();

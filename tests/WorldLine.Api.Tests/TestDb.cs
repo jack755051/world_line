@@ -4,7 +4,9 @@ namespace WorldLine.Api.Tests;
 
 /// <summary>
 /// 整合測試用連線：讀環境變數 WORLDLINE_TEST_DB（未設定則跳過整合測試）。
-/// 每個測試都在交易內執行並於結束時 ROLLBACK，不會在資料庫留下任何資料。
+/// 必須指向「專用測試資料庫」（名稱需含 test，例如 worldline_test），首次使用時自動建立並套用 migration + 示範 seed。
+/// 本類別的每個測試都在交易內執行並於結束時 ROLLBACK；API 測試（WebApplicationFactory）則會真的寫入測試庫——
+/// 因為 I5 禁止刪除，這些資料無法清除，所以絕不能指向 appdb。
 /// </summary>
 public sealed class TestDb : IAsyncDisposable
 {
@@ -23,7 +25,7 @@ public sealed class TestDb : IAsyncDisposable
 
     public static async Task<TestDb> OpenAsync()
     {
-        Assert.SkipWhen(string.IsNullOrWhiteSpace(ConnectionString), $"未設定 {EnvVar}，略過資料庫整合測試");
+        await TestDatabase.EnsureReadyAsync();
         var conn = new NpgsqlConnection(ConnectionString);
         await conn.OpenAsync();
         var tx = await conn.BeginTransactionAsync();
@@ -62,7 +64,7 @@ public sealed class TestDb : IAsyncDisposable
     }
 
     public Task<Guid> InsertRegimeAsync(string selfName) =>
-        ScalarAsync<Guid>($"INSERT INTO regimes (self_name) VALUES ('{selfName}') RETURNING id");
+        ScalarAsync<Guid>($"INSERT INTO regimes (self_name, existence_period) VALUES ('{selfName}', '[1,2000]') RETURNING id");
 
     public static string Square(int x) =>
         $"ST_Multi(ST_GeomFromText('POLYGON(({x} 30,{x + 10} 30,{x + 10} 40,{x} 40,{x} 30))', 4326))";

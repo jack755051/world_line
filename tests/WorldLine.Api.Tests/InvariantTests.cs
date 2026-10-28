@@ -7,8 +7,8 @@ public class InvariantTests
     public async Task I2_regime_requires_non_blank_self_name()
     {
         await using var db = await TestDb.OpenAsync();
-        Assert.Equal(SqlState.NotNull, await db.ExpectErrorAsync("INSERT INTO regimes (self_name) VALUES (NULL)"));
-        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync("INSERT INTO regimes (self_name) VALUES ('   ')"));
+        Assert.Equal(SqlState.NotNull, await db.ExpectErrorAsync("INSERT INTO regimes (self_name, existence_period) VALUES (NULL, '[618,907]')"));
+        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync("INSERT INTO regimes (self_name, existence_period) VALUES ('   ', '[618,907]')"));
         Assert.NotEqual(Guid.Empty, await db.InsertRegimeAsync("唐"));
     }
 
@@ -112,7 +112,7 @@ public class InvariantTests
         // 終止狀態之間不可互轉（禪讓與滅亡不可合併）
         Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"UPDATE regimes SET status = 'abdicated', destroyed_by_regime_id = NULL WHERE id = '{shu}'"));
         // 前身與產生方式須成對
-        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"INSERT INTO regimes (self_name, predecessor_regime_id) VALUES ('西晉', '{wei}')"));
-        await db.ExecAsync($"INSERT INTO regimes (self_name, predecessor_regime_id, origin_transition_type) VALUES ('西晉', '{wei}', 'abdication')");
+        Assert.Equal(SqlState.Check, await db.ExpectErrorAsync($"INSERT INTO regimes (self_name, existence_period, predecessor_regime_id) VALUES ('西晉', '[266,316]', '{wei}')"));
+        await db.ExecAsync($"INSERT INTO regimes (self_name, existence_period, predecessor_regime_id, origin_transition_type) VALUES ('西晉', '[266,316]', '{wei}', 'abdication')");
     }
 }

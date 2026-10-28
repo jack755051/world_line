@@ -1,0 +1,19 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "World Line API",
+    "description": "二戰階段歷史地圖 API。讀取公開；寫入需 X-API-Key。日期一律 YYYY-MM-DD，區間為半開 [start, end)。",
+    "version": "v1"
+  },
+  "paths": { },
+  "components": {
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "apiKey",
+        "description": "寫入端點用的 API Key（伺服器端由環境變數 WORLDLINE_API_KEY 設定）",
+        "name": "X-API-Key",
+        "in": "header"
+      }
+    }
+  }
+}

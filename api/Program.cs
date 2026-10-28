@@ -86,6 +86,7 @@ var api = app.MapGroup("/api/v1");
 RegimeEndpoints.Map(api);
 TerritoryEndpoints.Map(api);
 QueryEndpoints.Map(api);
+ControlEndpoints.Map(api);
 
 app.Run();
 

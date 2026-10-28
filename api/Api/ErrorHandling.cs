@@ -41,8 +41,13 @@ public sealed class ProblemExceptionHandler(IProblemDetailsService problemDetail
         {
             return pg.SqlState switch
             {
-                PostgresErrorCodes.ExclusionViolation =>
+                PostgresErrorCodes.ExclusionViolation when pg.ConstraintName == "ex_regime_territories_official_no_overlap" =>
                     (409, "I3 衝突：同政權同時間已有正式疆域", $"{pg.ConstraintName}：請改為修正既有版本，或標記為爭議並存（isDisputed）。"),
+                PostgresErrorCodes.ExclusionViolation when pg.ConstraintName == "ex_regime_control_relations_no_overlap" =>
+                    (409, "控制關係重疊：同一方向、同類型的控制關係期間重疊", $"{pg.ConstraintName}：請改為修正既有記錄，或標記為爭議（isDisputed）。"),
+                PostgresErrorCodes.ExclusionViolation when pg.ConstraintName == "ex_alliance_memberships_no_overlap" =>
+                    (409, "陣營成員期間重疊", $"{pg.ConstraintName}：同一政權在同一陣營的成員期間不可重疊。"),
+                PostgresErrorCodes.ExclusionViolation => (409, "期間重疊衝突", pg.ConstraintName),
                 PostgresErrorCodes.RestrictViolation => (409, "I5：史料不可刪除", pg.MessageText),
                 PostgresErrorCodes.UniqueViolation => (409, "資料重複", pg.ConstraintName),
                 PostgresErrorCodes.ForeignKeyViolation => (400, "參照的資料不存在", pg.ConstraintName),

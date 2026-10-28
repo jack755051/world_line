@@ -14,8 +14,8 @@ public static class TerritoryEndpoints
         var g = api.MapGroup("").WithTags("Territories");
 
         g.MapGet("/territories", SnapshotAsync)
-            .WithSummary("某年份所有政權疆域並存快照（GeoJSON FeatureCollection）")
-            .WithDescription("只回傳現行版本（未被取代）。observer / names 參數同 GET /regimes，用於標籤顯示名稱。");
+            .WithSummary("某日所有政權疆域並存快照（GeoJSON FeatureCollection）")
+            .WithDescription("date=YYYY-MM-DD（快照建議用 date）；year=YYYY 為捷徑（該年任一天有效即納入，同一政權可能回傳多個版本）。只回傳現行版本（未被取代）。properties.controlledBy 列出當時控制此政權的一方（佔領／傀儡…，憲法 §4 控制關係）。observer / names 同 GET /regimes。");
         g.MapGet("/regimes/{id:guid}/territories", HistoryAsync)
             .WithSummary("某政權的疆域歷史（含被取代的版本鏈，I5）");
         g.MapPost("/regimes/{id:guid}/territories", CreateAsync).AddEndpointFilter<ApiKeyFilter>()
@@ -24,7 +24,7 @@ public static class TerritoryEndpoints
             .WithSummary("史料修正（需 X-Api-Key；I5：產生新版本，舊版本保留並指向新版本，附原因與時間）");
     }
 
-    private static GeoJsonFeature ToFeature(RegimeTerritory t, Regime regime, string? displayName) =>
+    private static GeoJsonFeature ToFeature(RegimeTerritory t, Regime regime, string? displayName, IReadOnlyList<ControlRefDto>? controlledBy = null) =>
         new(t.Id, t.Geom, new Dictionary<string, object?>
         {
             ["territoryId"] = t.Id,
@@ -32,8 +32,11 @@ public static class TerritoryEndpoints
             ["selfName"] = regime.SelfName,
             ["displayName"] = displayName ?? regime.SelfName,
             ["status"] = regime.Status,
-            ["validFrom"] = Ranges.Lower(t.ValidPeriod),
-            ["validTo"] = Ranges.UpperInclusive(t.ValidPeriod),
+            ["validFrom"] = Periods.FromText(t.ValidPeriod, t.ValidFromPrecision),
+            ["validFromPrecision"] = t.ValidFromPrecision,
+            ["validTo"] = Periods.ToText(t.ValidPeriod, t.ValidToPrecision),
+            ["validToPrecision"] = t.ValidToPrecision,
+            ["controlledBy"] = controlledBy ?? [],
             ["isDisputed"] = t.IsDisputed,
             ["isIllustrative"] = t.IsIllustrative,
             ["source"] = t.Source,
@@ -44,22 +47,26 @@ public static class TerritoryEndpoints
         });
 
     private static async Task<IResult> SnapshotAsync(
-        WorldLineDbContext db, int? year, Guid? observer, string? names, CancellationToken ct)
+        WorldLineDbContext db, DateOnly? date, int? year, Guid? observer, string? names, CancellationToken ct)
     {
-        if (year is null)
-            return Results.ValidationProblem(new Dictionary<string, string[]> { ["year"] = ["year 必填（天文紀年整數）"] });
+        if (!Periods.TryWindow(date, year, out var window, out var werr)) return Results.ValidationProblem(werr!);
+        if (window is null) return Results.ValidationProblem(Periods.Required());
+        var w = window.Value;
 
         var rows = await db.RegimeTerritories.AsNoTracking().Include(t => t.Regime)
-            .Where(t => t.SupersededBy == null && t.ValidPeriod.Contains(year.Value))
+            .Where(t => t.SupersededBy == null && t.ValidPeriod.Overlaps(w))
             .ToListAsync(ct);
-        var display = await RegimeEndpoints.DisplayNamesAsync(db, rows.Select(r => r.RegimeId).Distinct().ToList(), observer, names, ct);
+        var ids = rows.Select(r => r.RegimeId).Distinct().ToList();
+        var display = await RegimeEndpoints.DisplayNamesAsync(db, ids, observer, names, ct);
+        var controlled = await RegimeEndpoints.ControlledByAsync(db, ids, w, observer, names, ct);
         var features = rows
-            .OrderBy(t => t.Regime.SelfName).ThenBy(t => t.IsDisputed)
-            .Select(t => ToFeature(t, t.Regime, display.GetValueOrDefault(t.RegimeId)))
+            .OrderBy(t => t.Regime.SelfName).ThenBy(t => t.IsDisputed).ThenBy(t => Periods.Lower(t.ValidPeriod))
+            .Select(t => ToFeature(t, t.Regime, display.GetValueOrDefault(t.RegimeId), controlled.GetValueOrDefault(t.RegimeId)))
             .ToList();
-        // features 為空時前端顯示空狀態（PRD Story 1：資料缺漏年份不報錯）
+        // features 為空時前端顯示空狀態（PRD Story 1：資料缺漏的日期不報錯）
         return Results.Ok(new GeoJsonFeatureCollection(features, new Dictionary<string, object?>
         {
+            ["date"] = date?.ToString("yyyy-MM-dd"),
             ["year"] = year,
             ["count"] = features.Count,
         }));
@@ -70,7 +77,7 @@ public static class TerritoryEndpoints
         var regime = await db.Regimes.AsNoTracking().FirstOrDefaultAsync(r => r.Id == id, ct);
         if (regime is null) return RegimeEndpoints.NotFound("政權", id);
         var rows = await db.RegimeTerritories.AsNoTracking().Where(t => t.RegimeId == id).ToListAsync(ct);
-        var features = rows.OrderBy(t => Ranges.Lower(t.ValidPeriod)).ThenBy(t => t.CreatedAt)
+        var features = rows.OrderBy(t => Periods.Lower(t.ValidPeriod)).ThenBy(t => t.CreatedAt)
             .Select(t => ToFeature(t, regime, null)).ToList();
         return Results.Ok(new GeoJsonFeatureCollection(features));
     }
@@ -91,22 +98,11 @@ public static class TerritoryEndpoints
         return multi;
     }
 
-    private static void ValidatePeriod(Regime regime, int? from, int? to, Dictionary<string, string[]> errors)
+    private static void ValidateWithin(Regime regime, PeriodInput.Parsed? period, Dictionary<string, string[]> errors)
     {
-        if (from is null || to is null)
-        {
-            errors["validFrom"] = ["I1：疆域必須有起訖年份"];
-            return;
-        }
-        if (to < from)
-        {
-            errors["validTo"] = ["結束年不可早於起始年"];
-            return;
-        }
-        var lo = Ranges.Lower(regime.ExistencePeriod);
-        var hi = Ranges.UpperInclusive(regime.ExistencePeriod);
-        if (from < lo || (hi is not null && to > hi))
-            errors["validFrom"] = [$"疆域年份 {from}–{to} 超出政權存續區間 {lo}–{hi?.ToString() ?? "迄今"}"];
+        if (period is null) return;
+        if (!Periods.Within(period.Range, regime.ExistencePeriod))
+            errors["validFrom"] = [$"疆域期間 {Periods.Describe(period.Range)} 超出政權存續期間 {Periods.Describe(regime.ExistencePeriod)}"];
     }
 
     private static async Task<IResult> CreateAsync(WorldLineDbContext db, Guid id, CreateTerritoryRequest req, CancellationToken ct)
@@ -115,14 +111,17 @@ public static class TerritoryEndpoints
         if (regime is null) return RegimeEndpoints.NotFound("政權", id);
 
         var errors = new Dictionary<string, string[]>();
-        ValidatePeriod(regime, req.ValidFrom, req.ValidTo, errors);
+        var period = PeriodInput.Parse(req.ValidFrom, req.ValidTo, requireTo: true, "validFrom", "validTo", errors); // I1
+        ValidateWithin(regime, period, errors);
         var geom = NormalizeGeometry(req.Geometry, errors);
         if (errors.Count > 0) return Results.ValidationProblem(errors, title: "疆域資料驗證失敗");
 
         var territory = new RegimeTerritory
         {
             RegimeId = id,
-            ValidPeriod = Ranges.Closed(req.ValidFrom!.Value, req.ValidTo!.Value),
+            ValidPeriod = period!.Range,
+            ValidFromPrecision = period.From.Precision,
+            ValidToPrecision = period.To!.Precision,
             Geom = geom!,
             IsDisputed = req.IsDisputed,
             IsIllustrative = req.IsIllustrative,
@@ -142,9 +141,11 @@ public static class TerritoryEndpoints
         var errors = new Dictionary<string, string[]>();
         if (req.Version is null) errors["version"] = ["version 必填（樂觀併發）"];
         if (string.IsNullOrWhiteSpace(req.Reason)) errors["reason"] = ["I5：史料修正必須提供原因"];
-        var from = req.ValidFrom ?? Ranges.Lower(old.ValidPeriod);
-        var to = req.ValidTo ?? Ranges.UpperInclusive(old.ValidPeriod);
-        ValidatePeriod(old.Regime, from, to, errors);
+        var period = PeriodInput.Parse(
+            req.ValidFrom ?? Periods.FromText(old.ValidPeriod, old.ValidFromPrecision),
+            req.ValidTo ?? Periods.ToText(old.ValidPeriod, old.ValidToPrecision),
+            requireTo: true, "validFrom", "validTo", errors);
+        ValidateWithin(old.Regime, period, errors);
         var geom = req.Geometry is null ? old.Geom : NormalizeGeometry(req.Geometry, errors);
         if (errors.Count > 0) return Results.ValidationProblem(errors, title: "史料修正驗證失敗");
 
@@ -157,7 +158,9 @@ public static class TerritoryEndpoints
         {
             Id = Guid.NewGuid(),
             RegimeId = old.RegimeId,
-            ValidPeriod = Ranges.Closed(from, to!.Value),
+            ValidPeriod = period!.Range,
+            ValidFromPrecision = period.From.Precision,
+            ValidToPrecision = period.To!.Precision,
             Geom = (MultiPolygon)geom!.Copy(),
             IsDisputed = req.IsDisputed ?? old.IsDisputed,
             IsIllustrative = req.IsIllustrative ?? old.IsIllustrative,

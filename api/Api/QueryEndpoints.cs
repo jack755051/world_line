@@ -12,8 +12,8 @@ public static class QueryEndpoints
     {
         var events = api.MapGroup("/events").WithTags("Events");
         events.MapGet("/", EventsAsync)
-            .WithSummary("查詢某年份（或區間）的歷史事件")
-            .WithDescription("year：與該年有交集的事件；或用 from/to 指定年份區間。依 start_decimal/end_decimal（由 EDTF 推算）比對，模糊區間只要有交集就納入（憲法 §9「允許區間」）。");
+            .WithSummary("查詢某日（或區間）的歷史事件")
+            .WithDescription("date=YYYY-MM-DD：與當天有交集的事件；year=YYYY 捷徑；或 from/to（YYYY、YYYY-MM 或 YYYY-MM-DD）。依 start_decimal/end_decimal（由 EDTF 推算）比對，模糊區間只要有交集就納入（憲法 §9「允許區間」）。日期為事件發生地的當地日期，timeZone/timeNote 為時區備註（憲法 §9）。");
         events.MapGet("/{id}/perspectives", PerspectivesAsync).WithSummary("事件的多重視角敘事");
         events.MapGet("/{id}/controversies", ControversiesAsync).WithSummary("事件的爭議點");
 
@@ -22,21 +22,37 @@ public static class QueryEndpoints
         presets.MapGet("/{id:guid}/regimes", PresetRegimesAsync).WithSummary("某 preset 依序排列的政權序列");
 
         api.MapGet("/reign-eras", ReignErasAsync).WithTags("ReignEras")
-            .WithSummary("西元年 → 各政權年號（例：742 → 唐 天寶元年）");
+            .WithSummary("日期 → 各政權年號（例：1942-06-01 → 昭和十七年、民國三十一年；year=742 → 天寶元年）");
     }
 
-    private static async Task<IResult> EventsAsync(WorldLineDbContext db, int? year, int? from, int? to, CancellationToken ct)
+    /// <summary>日期 → 小數年份（與 EDTF 推算同一公式，見 <see cref="EdtfDate"/>）。</summary>
+    internal static decimal ToDecimal(DateOnly d) => EdtfDate.Parse(d.ToString("yyyy-MM-dd")).EarliestDecimal;
+
+    private static async Task<IResult> EventsAsync(
+        WorldLineDbContext db, DateOnly? date, int? year, string? from, string? to, CancellationToken ct)
     {
-        if (year is null && (from is null || to is null))
-            return Results.ValidationProblem(new Dictionary<string, string[]> { ["year"] = ["請提供 year，或同時提供 from 與 to"] });
-        decimal lo = year ?? from!.Value;
-        decimal hiExclusive = (year ?? to!.Value) + 1;
+        DateOnly lo, hi;
+        if (from is not null || to is not null)
+        {
+            var errors = new Dictionary<string, string[]>();
+            var period = PeriodInput.Parse(from, to, requireTo: true, "from", "to", errors);
+            if (period is null) return Results.ValidationProblem(errors);
+            (lo, hi) = (period.From.Earliest, period.To!.Latest);
+        }
+        else
+        {
+            if (!Periods.TryWindow(date, year, out var window, out var werr)) return Results.ValidationProblem(werr!);
+            if (window is null) return Results.ValidationProblem(Periods.Required());
+            (lo, hi) = (Periods.Lower(window.Value), Periods.UpperInclusive(window.Value)!.Value);
+        }
+        var loDec = ToDecimal(lo);
+        var hiExclusive = hi.Year == 9999 && hi.DayOfYear == 365 ? 10000m : ToDecimal(hi.AddDays(1));
 
         var rows = await db.HistoricalEvents.AsNoTracking()
-            .Where(e => e.StartDecimal < hiExclusive && e.EndDecimal >= lo)
+            .Where(e => e.StartDecimal < hiExclusive && e.EndDecimal >= loDec)
             .Select(e => new
             {
-                e.Id, e.Name, e.ParentEventId, e.StartEdtf, e.EndEdtf, e.StartDecimal, e.EndDecimal, e.OriginPoint,
+                e.Id, e.Name, e.ParentEventId, e.StartEdtf, e.EndEdtf, e.StartDecimal, e.EndDecimal, e.OriginPoint, e.TimeZone, e.TimeNote,
                 Tags = e.Tags.Select(t => t.Tag.TagName).ToList(),
                 PerspectiveCount = e.Perspectives.Count,
                 ControversyCount = e.Controversies.Count,
@@ -53,7 +69,7 @@ public static class QueryEndpoints
                 precision.ToString().ToLowerInvariant(),
                 start.Uncertain || end.Uncertain || start.Unspecified || end.Unspecified,
                 start.Approximate || end.Approximate,
-                e.Tags.OrderBy(t => t).ToList(), e.OriginPoint, e.PerspectiveCount, e.ControversyCount);
+                e.Tags.OrderBy(t => t).ToList(), e.TimeZone, e.TimeNote, e.OriginPoint, e.PerspectiveCount, e.ControversyCount);
         }).ToList());
     }
 
@@ -93,18 +109,43 @@ public static class QueryEndpoints
         return Results.Ok(members.Select(m => new LineageMemberDto(m.SortOrder, RegimeEndpoints.ToSummary(m.Regime))).ToList());
     }
 
-    private static async Task<IResult> ReignErasAsync(WorldLineDbContext db, int? year, CancellationToken ct)
+    private static async Task<IResult> ReignErasAsync(WorldLineDbContext db, DateOnly? date, int? year, CancellationToken ct)
     {
-        if (year is null)
-            return Results.ValidationProblem(new Dictionary<string, string[]> { ["year"] = ["year 必填"] });
+        if (!Periods.TryWindow(date, year, out var window, out var werr)) return Results.ValidationProblem(werr!);
+        if (window is null) return Results.ValidationProblem(Periods.Required());
+        var lo = Periods.Lower(window.Value);
+        var hi = Periods.UpperInclusive(window.Value)!.Value;
         var rows = await db.ReignEras.AsNoTracking().Include(e => e.Regime)
-            .Where(e => e.StartYear <= year && e.EndYear >= year)
-            .OrderBy(e => e.Regime.SelfName).ThenBy(e => e.StartYear).ToListAsync(ct);
+            .Where(e => e.StartDate <= hi && (e.EndDate == null || e.EndDate >= lo))
+            .OrderBy(e => e.Regime.SelfName).ThenBy(e => e.StartDate).ToListAsync(ct);
+        var targetYear = lo.Year;
         return Results.Ok(rows.Select(e =>
         {
-            var n = year.Value - e.StartYear + 1;
+            var n = targetYear - e.StartDate.Year + 1;
             return new ReignEraYearDto(e.RegimeId, e.Regime.SelfName, e.EraName, e.MonarchName, n,
-                $"{e.EraName}{(n == 1 ? "元" : n.ToString())}年");
+                $"{e.EraName}{EraNumber(n)}年");
         }).ToList());
+    }
+
+    private static readonly string[] Digits = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+
+    /// <summary>年號年序的中文寫法：1 → 元、17 → 十七、31 → 三十一、64 → 六十四、100 → 一百。</summary>
+    public static string EraNumber(int n)
+    {
+        if (n == 1) return "元";
+        if (n <= 0) return n.ToString();
+        var parts = new System.Text.StringBuilder();
+        var hundreds = n / 100;
+        var tens = n / 10 % 10;
+        var ones = n % 10;
+        if (hundreds > 0) parts.Append(Digits[hundreds]).Append('百');
+        if (tens > 0)
+        {
+            if (!(hundreds == 0 && tens == 1)) parts.Append(Digits[tens]);
+            parts.Append('十');
+        }
+        else if (hundreds > 0 && ones > 0) parts.Append('〇');
+        if (ones > 0) parts.Append(Digits[ones]);
+        return parts.ToString();
     }
 }

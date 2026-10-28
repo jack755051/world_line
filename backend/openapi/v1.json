@@ -5,8 +5,674 @@
     "description": "二戰階段歷史地圖 API。讀取公開；寫入需 X-API-Key。日期一律 YYYY-MM-DD，區間為半開 [start, end)。",
     "version": "v1"
   },
-  "paths": { },
+  "paths": {
+    "/api/v1/sources": {
+      "post": {
+        "tags": [
+          "Sources"
+        ],
+        "operationId": "CreateSource",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSourceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/regimes": {
+      "post": {
+        "tags": [
+          "Regimes"
+        ],
+        "operationId": "CreateRegime",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRegimeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/theaters": {
+      "post": {
+        "tags": [
+          "Theaters"
+        ],
+        "operationId": "CreateTheater",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTheaterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/control-snapshots": {
+      "post": {
+        "tags": [
+          "Theaters"
+        ],
+        "operationId": "CreateControlSnapshot",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateControlSnapshotRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/control-records": {
+      "post": {
+        "tags": [
+          "Control"
+        ],
+        "operationId": "CreateControlRecord",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateControlRecordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/sources/{id}": {
+      "get": {
+        "tags": [
+          "Sources"
+        ],
+        "operationId": "GetSource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/regimes/{id}": {
+      "get": {
+        "tags": [
+          "Regimes"
+        ],
+        "operationId": "GetRegime",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/control": {
+      "get": {
+        "tags": [
+          "Control"
+        ],
+        "operationId": "GetControl",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/timeline/snapshots": {
+      "get": {
+        "tags": [
+          "Timeline"
+        ],
+        "operationId": "GetTimelineSnapshots",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
   "components": {
+    "schemas": {
+      "CitationInput": {
+        "required": [
+          "sourceId",
+          "locator",
+          "role",
+          "evidenceNote"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "locator": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "role": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "evidenceNote": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "CreateControlRecordRequest": {
+        "required": [
+          "controllerRegimeId",
+          "snapshotId",
+          "controlType",
+          "validPeriod",
+          "geometry",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "controllerRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "snapshotId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "controlType": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "geometry": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
+            ]
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/CitationInput"
+            }
+          },
+          "patronRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "startUncertainty": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "endUncertainty": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "isDisputed": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "CreateControlSnapshotRequest": {
+        "required": [
+          "theaterId",
+          "asOf"
+        ],
+        "type": "object",
+        "properties": {
+          "theaterId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "asOf": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date"
+          },
+          "attestation": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "attestedPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "asOfNote": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateRegimeRequest": {
+        "required": [
+          "slug",
+          "wikidataQid",
+          "names"
+        ],
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "wikidataQid": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "names": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/RegimeNameInput"
+            }
+          }
+        }
+      },
+      "CreateSourceRequest": {
+        "required": [
+          "sourceKind",
+          "title",
+          "publisher"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceKind": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "publisher": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "authors": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "publishedText": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseCode": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseEvidenceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "url": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "archiveUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "localCopyPath": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "catalogId": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "CreateTheaterRequest": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "name": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "extent": { }
+        }
+      },
+      "DatePeriodDto": {
+        "required": [
+          "start",
+          "end"
+        ],
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date"
+          },
+          "end": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date"
+          }
+        }
+      },
+      "JsonElement": { },
+      "RegimeNameInput": {
+        "required": [
+          "nameKind",
+          "originalText",
+          "originalLang",
+          "display"
+        ],
+        "type": "object",
+        "properties": {
+          "nameKind": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "originalText": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "originalLang": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "display": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "observerRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "isPrimary": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
     "securitySchemes": {
       "ApiKey": {
         "type": "apiKey",
@@ -15,5 +681,22 @@
         "in": "header"
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Sources"
+    },
+    {
+      "name": "Regimes"
+    },
+    {
+      "name": "Theaters"
+    },
+    {
+      "name": "Control"
+    },
+    {
+      "name": "Timeline"
+    }
+  ]
 }

@@ -4,7 +4,7 @@ feature_id: world-line
 feature_name: World Line — 歷史地圖 GIS 平台
 status: draft
 owner: jack755051@gmail.com
-last_updated: 2026-08-25
+last_updated: 2026-10-28
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
@@ -14,6 +14,8 @@ related_adrs: []
 > ⚠️ 本 PRD 基於 `.claude/constitutions/world-line.md` 產出。憲法本體的業務規則（R1-R3）、狀態機（§4）、不可變約束（I1-I5）已具備足夠明確度可作為 PRD 依據。若後續憲法內容變動，本 PRD 需重新走過 `prd-from-constitution` delta 比對流程。
 >
 > **2026-08-25 更新（第三輪，delta 比對）**：憲法 frontmatter `status` 已由 `draft` 拍板為 `active`，§10 原始 4 條開放問題全數解決（回填至憲法 §2 角色職責、§4 傳承關係鏈、§6 正式朝代/政權間互動術語）。經逐項比對，這些內容與本 PRD 既有的角色權限說明（§2）、方案 D lineage_presets 設計（§6）、historical_events/regime_relations 拆分（§6）**完全一致，無需修改對應段落**——本輪僅同步移除過時的「憲法尚未拍板」警語。
+>
+> **2026-10-28 更新（設計規格回填）**：依 `.claude/design/world-line-design-spec.md` v0.2（Tai 2026-10-28 拍板 D1–D11）回填：§8 UI 元件庫定為 Sanring UI（slate preset，預設深色）；§5 深色模式升級條件已觸發，改為單一常數檔 `map-colors.ts` 內放深淺兩套值；毛玻璃抽屜不透明度深色 0.90／淺色 0.92；政權終止殘影 10 年；政權顏色前端計算並快取；事件點用紅色（事件語意色）；同步修正後端對外 port 為 5050。
 >
 > **2026-08-25 更新（第一輪）**：透過 `/grill-me` 對本 PRD 逐項壓力測試，拍板了 12 項技術選型與資料模型決策（PostGIS 安裝方式、正式朝代分類、政權互動建模、事件多維度拆分、地圖引擎、資料供應策略、狀態機函式庫、紀年轉換、EDTF 解析、多重視角觀察者、斜線網底、開源資料授權），內容已回填至 §5/§6/§9/§12。
 >
@@ -126,11 +128,12 @@ related_adrs: []
 | 層 | 選型 | 理由 |
 |---|---|---|
 | Frontend | Angular ^22.1.0 | 既有專案偵測（`app/package.json`），CLI scaffold 已存在，沿用 |
+| UI 元件庫 | Sanring UI（`@sanring/cli` 複製原始碼模式；Angular 22、Tailwind CSS v4、`@angular/aria`） | **已拍板（2026-10-28，設計規格 §1）**：主題用 **slate** preset，**預設深色**、支援淺色（`data-theme="light"`）；app 層覆寫 `--sanring-primary-fg`、淺色 `--sanring-border-strong` 與中文字型後援（設計規格 §1.1、§1.2）。M3 前置工作已完成：`app/` 已安裝 Tailwind v4 與 `maplibre-gl`（D2） |
 | Backend | .NET 10 Web API（`net10.0`） | 既有專案偵測（`api/WorldLine.Api.csproj`），CLI scaffold 已存在，沿用 |
 | DB | PostgreSQL 16（`postgis/postgis:16-3.4` 映像檔） | **已拍板（grill-me 2026-08-25）**：`docker-compose.yml` 的 postgres image 由純 `postgres:16-alpine` 改為 `postgis/postgis:16-3.4`，一行改動即取得 PostGIS extension，維護成本低於自建 init script，列入 M1 前置工作 |
 | Cache | Redis 7-alpine | 既有專案偵測（`docker-compose.yml`），已備妥容器 |
 | Auth | 單一 API Key/JWT（僅保護寫入端點） | **已拍板（grill-me 2026-08-25 第二輪）**：讀取端點（GET）第一階段不加限制；寫入端點（POST/PATCH）加最小驗證，避免 `docker-compose.yml` 已備妥容器隨時可能部署到內網/雲端後，寫入端點完全裸露被任意竄改/刪除史料（違反 I5 版本保留精神）。日後開放多使用者/教育對象時，讀取端點是否也要驗證再重新評估 |
-| Deploy | Docker Compose | 既有專案偵測，frontend（Nginx，4200→80）/ backend（8080→5000）/ postgres（5432）/ redis（6379）四 service 已編排完成 |
+| Deploy | Docker Compose | 既有專案偵測，frontend（Nginx，4200→80）/ backend（容器 8080 → 主機 5050，可用 `.env` 的 `BACKEND_PORT` 調整；避開 macOS AirPlay 佔用的 5000）/ postgres（5432）/ redis（6379）四 service 已編排完成 |
 | 監控 | TODO | 尚未評估，憲法/notes 未提及 |
 
 ### B. GIS 領域專屬技術
@@ -152,7 +155,7 @@ related_adrs: []
 | EDTF 時間解析 | npm `edtf` | 精確到日/月/年/模糊區間的人類語意時間格式解析（對應憲法 §9、notes §五） | **已拍板：使用現成套件**，不自建正則解析器（EDTF 規格邊界情況多，如不確定標記 `?`、約略標記 `~`、開放區間、負數西元前年份，自建風險大於收益）；寫入時後端強制驗證格式；`start_decimal`/`end_decimal` 由後端寫入當下自動推算（EDTF 字串為 single source of truth，不手動分別填兩欄；閏年天數由標準日期函式庫正確處理，不需另外設計誤差公式） |
 | GIS 資料庫擴充 | PostGIS extension（`postgis/postgis` 映像檔） | `GEOMETRY(MultiPolygon, 4326)` 儲存政權疆域、`int4range` 時間區間索引（GiST 複合索引） | **已拍板**，見上方 DB 列 |
 | 歷史地理原始資料 | OpenHistoricalMap（主要來源）＋ CHGIS／CShapes（輔助，僅限非商業情境） | 繪製政權疆域 GeoJSON 骨幹的資料來源 | **已拍板（grill-me 2026-08-25，含實際授權查證）**：OHM 為 CC0 公眾領域，作主要來源；CHGIS 僅限學術非商業使用，CShapes 為 CC BY-NC-SA 4.0（禁商業＋需 ShareAlike），兩者僅能在非商業情境使用；GeaCron 查無明確公開授權，**只作 UX 互動設計參考，不當資料來源**。⚠️ 使用者確認目前無商業化/收費計畫；若未來出現贊助/政府投資等資金來源，需重新確認 CHGIS/CShapes 的 NC 授權相容性（詳見 §9 風險） |
-| 斜線網底配色 | 集中共用常數檔（非正式 Design Token 系統） | 爭議控制區（notes §十）視覺呈現一致性 | **已拍板：Phase 1 用單一共用常數檔**（如 `neutral-map-colors.ts`）集中管理顏色/間距，不建置正式 Design Token pipeline；待深色模式或多人協作需求出現再升級 |
+| 地圖配色常數（含斜線網底） | 集中共用常數檔 `app/src/app/map/map-colors.ts`（非正式 Design Token 系統） | 爭議控制區（notes §十）斜線網底、疆域色盤、政權狀態樣式、時間軸、毛玻璃抽屜等地圖專用值的一致性 | **已拍板：Phase 1 用單一共用常數檔**，不建置正式 Design Token pipeline、不做 Figma 同步。檔名由原舉例的 `neutral-map-colors.ts` 改為 **`map-colors.ts`**（設計規格 D4，因內容已不只中立色）。**深色模式升級條件已觸發（2026-10-28）**：Sanring UI 預設深色並支援淺色，處理方式為「同一常數檔內放深色／淺色兩套值」（D1），**仍不建 token pipeline**；待多人協作需求出現再評估升級。政權色號由前端 `assignTerritoryColors()` 計算並快取，**不寫入資料庫、不改 schema**（D6） |
 
 ## 6. 資料模型 (Data Model)
 
@@ -368,14 +371,22 @@ CREATE TABLE historical_event_controversies (
   - loading：抽屜展開動畫 + 內容骨架
   - empty：TODO（事件無 sections 內容時如何呈現，notes 未定義，待補）
   - error：事件詳情載入失敗
-  - success：`backdrop-filter: blur(16px)` 毛玻璃抽屜 + 三層手風琴（背景起因/關鍵轉折時間點/歷史影響），點擊「關鍵轉折時間點」觸發地圖 `flyTo` + 時間軸雙向連動
+  - success：`backdrop-filter: blur(16px)` 毛玻璃抽屜（**不透明度深色 `rgb(35 42 43 / .90)`、淺色 `rgb(255 255 255 / .92)`**，取代 notes §八的 `rgba(20,20,25,0.75)`——原值在淺底上 muted 文字僅 4.49:1，未過 WCAG AA；設計規格 D3） + 三層手風琴（背景起因/關鍵轉折時間點/歷史影響），點擊「關鍵轉折時間點」觸發地圖 `flyTo` + 時間軸雙向連動
 - **多重視角分頁（Perspective Tabs）** — 對應 notes §十、Story 3：
   - loading：各視角敘事載入中
   - empty：TODO（若某事件僅有客觀骨幹、無任一方視角資料時如何呈現，待補）
   - error：視角資料載入失敗
   - success：客觀經過概要 + 各當事方視角分頁 + 爭議點區塊並列呈現，預設開啟分頁邏輯 TODO（見 §12）
 
-對應 Figma / design assets：**已拍板（grill-me 2026-08-25 第二輪）**——`design_output_mode: assets_only`，不引入 Figma 同步流程。理由：專案目前無設計稿、無 UI 元件庫選型，屬單人自用階段，先直接以既有 UI 元件庫（待選型）+ MapLibre 拼介面；待有明確視覺規範需求或設計師/多人協作介入時再評估升級。
+**地圖視覺規則（2026-10-28 拍板，設計規格 §3、§9）**：
+- 政權終止「殘影」：`GHOST_YEARS = 10`，政權終止後原邊界殘影於 10 年內線性淡出到透明，不突然消失（呼應憲法 §9 連續變化；D5）。
+- 政權顏色：前端依 16 色疆域色盤以 `assignTerritoryColors()` 計算並快取，鄰接政權避免撞色，**不寫入資料庫**（D6）。
+- 事件點：紅色 `#e57373`（深色，= `--sanring-error-50`）／`#b75c5c`（淺色，= `--sanring-error-60`），直徑 10px 加 2px 背景色光環；定位為**事件語意色**（「這裡發生了事件」），不代表對任何政權或事件的價值判斷，圖例須明寫「事件」、不得與政權色盤混用；脈動動畫遵守 `prefers-reduced-motion`（D8）。
+- 所有地圖專用值集中於 `app/src/app/map/map-colors.ts`（見 §5）。
+
+UI 元件庫：**Sanring UI**（slate preset，預設深色、支援淺色；見 §5 A），notes 的「Radix/shadcn」開放問題一併結案。
+
+對應 Figma / design assets：**已拍板（grill-me 2026-08-25 第二輪）**——`design_output_mode: assets_only`，不引入 Figma 同步流程。理由（2026-08-25 當時）：專案無設計稿、無 UI 元件庫選型，屬單人自用階段，先直接以 Sanring UI + MapLibre 拼介面；待有明確視覺規範需求或設計師/多人協作介入時再評估升級。
 
 關鍵互動的 `data-testid` 預埋清單：TODO——待前端實作階段依實際元件結構補上。
 

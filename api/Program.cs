@@ -20,4 +20,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// 簡易存活檢查，供 compose／nginx 路徑對齊驗證使用
+app.MapGet("/api/v1/health", () => Results.Ok(new { status = "ok" }));
+
 app.Run();

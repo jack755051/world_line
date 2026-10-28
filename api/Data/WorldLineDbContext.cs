@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using WorldLine.Api.Domain;
 
 namespace WorldLine.Api.Data;
@@ -17,6 +18,80 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
     public DbSet<LineagePreset> LineagePresets => Set<LineagePreset>();
     public DbSet<LineagePresetMember> LineagePresetMembers => Set<LineagePresetMember>();
     public DbSet<RegimeRelation> RegimeRelations => Set<RegimeRelation>();
+    public DbSet<HistoricalEvent> HistoricalEvents => Set<HistoricalEvent>();
+    public DbSet<EventTag> EventTags => Set<EventTag>();
+    public DbSet<HistoricalEventTagMap> HistoricalEventTagMaps => Set<HistoricalEventTagMap>();
+    public DbSet<ObserverCategory> ObserverCategories => Set<ObserverCategory>();
+    public DbSet<HistoricalEventPerspective> HistoricalEventPerspectives => Set<HistoricalEventPerspective>();
+    public DbSet<HistoricalEventControversy> HistoricalEventControversies => Set<HistoricalEventControversy>();
+    public DbSet<PlaceName> PlaceNames => Set<PlaceName>();
+    public DbSet<ReignEra> ReignEras => Set<ReignEra>();
+
+    /// <summary>
+    /// 本次 SaveChanges 的修改原因（I5）。修改「有修訂紀錄的表」時必填，
+    /// SaveChanges 會在同一交易內 `set_config('world_line.change_reason', ..., true)` 交給 DB 觸發器寫入 data_revisions。
+    /// </summary>
+    public string? ChangeReason { get; set; }
+
+    /// <summary>DB 觸發器會要求修改原因的實體（對應 data_revisions 的表）。</summary>
+    private static readonly HashSet<Type> RevisionedTypes =
+    [
+        typeof(Regime), typeof(RegimeAlias), typeof(RegimeRelation), typeof(HistoricalEvent),
+        typeof(HistoricalEventPerspective), typeof(HistoricalEventControversy), typeof(PlaceName), typeof(ReignEra),
+    ];
+
+    public override int SaveChanges(bool acceptAllChangesOnSuccess) =>
+        SaveChangesAsync(acceptAllChangesOnSuccess).GetAwaiter().GetResult();
+
+    public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        ChangeTracker.DetectChanges();
+        var modified = ChangeTracker.Entries().Where(e => e.State == EntityState.Modified).ToList();
+
+        foreach (var entry in modified)
+        {
+            BumpVersion(entry);
+            if (entry.Entity is HistoricalEvent ev) ev.UpdatedAt = DateTimeOffset.UtcNow;
+        }
+
+        var needsReason = modified.Any(e => RevisionedTypes.Contains(e.Entity.GetType()));
+        if (needsReason && string.IsNullOrWhiteSpace(ChangeReason))
+        {
+            throw new MissingChangeReasonException();
+        }
+
+        if (string.IsNullOrWhiteSpace(ChangeReason))
+        {
+            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        // 修改原因用交易層級設定（SET LOCAL 語意），所以必須在交易內；外部已開交易就沿用
+        var ownTransaction = Database.CurrentTransaction is null
+            ? await Database.BeginTransactionAsync(cancellationToken)
+            : null;
+        try
+        {
+            await Database.ExecuteSqlInterpolatedAsync(
+                $"SELECT set_config('world_line.change_reason', {ChangeReason}, true)", cancellationToken);
+            var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            if (ownTransaction is not null) await ownTransaction.CommitAsync(cancellationToken);
+            return result;
+        }
+        finally
+        {
+            if (ownTransaction is not null) await ownTransaction.DisposeAsync();
+        }
+    }
+
+    /// <summary>樂觀併發：Version 原值作為 WHERE 條件，新值 = 原值 + 1。</summary>
+    private static void BumpVersion(EntityEntry entry)
+    {
+        var prop = entry.Metadata.FindProperty("Version");
+        if (prop is null || prop.ClrType != typeof(int)) return;
+        var p = entry.Property("Version");
+        if (p.IsModified) return; // 呼叫端自行指定時不覆蓋
+        p.CurrentValue = (int)p.OriginalValue! + 1;
+    }
 
     /// <summary>年份區間的 DB 檢查式：非空、上下界皆有限（I1：不允許無時間區間或開放式區間）。</summary>
     private static string BoundedPeriod(string column) =>
@@ -46,10 +121,15 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
                     "(status = 'destroyed') = (destroyed_by_regime_id IS NOT NULL)");
                 t.HasCheckConstraint("ck_regimes_not_own_predecessor", "predecessor_regime_id <> id");
                 t.HasCheckConstraint("ck_regimes_not_destroyed_by_self", "destroyed_by_regime_id <> id");
+                // 存續區間：非空、有起點；只有仍存續（existing）可無終點
+                t.HasCheckConstraint("ck_regimes_existence_period",
+                    "NOT isempty(existence_period) AND NOT lower_inf(existence_period) AND (NOT upper_inf(existence_period) OR status = 'existing')");
             });
             e.HasKey(x => x.Id);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.SelfName).HasMaxLength(128).IsRequired();
+            e.Property(x => x.ExistencePeriod).HasColumnType("int4range").IsRequired();
+            e.HasIndex(x => x.ExistencePeriod).HasMethod("gist");
             e.Property(x => x.Status).HasMaxLength(32).IsRequired().HasDefaultValue(RegimeStatus.Existing);
             e.Property(x => x.OriginTransitionType).HasMaxLength(16);
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
@@ -99,6 +179,7 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.Property(x => x.ValidPeriod).HasColumnType("int4range").IsRequired();
             e.Property(x => x.Geom).HasColumnType("geometry(MultiPolygon,4326)").IsRequired();
             e.Property(x => x.IsDisputed).HasDefaultValue(false);
+            e.Property(x => x.IsIllustrative).HasDefaultValue(false);
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
             e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
             e.HasOne(x => x.Regime).WithMany(r => r.Territories).HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
@@ -156,5 +237,140 @@ public class WorldLineDbContext(DbContextOptions<WorldLineDbContext> options) : 
             e.HasIndex(x => new { x.RegimeAId, x.RegimeBId });
             e.HasIndex(x => x.RegimeBId);
         });
+
+        b.Entity<HistoricalEvent>(e =>
+        {
+            e.ToTable("historical_events", t =>
+            {
+                t.HasCheckConstraint("ck_historical_events_id_slug", "id ~ '^[a-z0-9][a-z0-9-]*$'");
+                t.HasCheckConstraint("ck_historical_events_name_not_blank", "btrim(name) <> ''");
+                t.HasCheckConstraint("ck_historical_events_decimal_order", "start_decimal <= end_decimal");
+                t.HasCheckConstraint("ck_historical_events_not_own_parent", "parent_event_id <> id");
+                t.HasCheckConstraint("ck_historical_events_sections_object", "sections IS NULL OR jsonb_typeof(sections) = 'object'");
+                t.HasCheckConstraint("ck_historical_events_geoms_valid",
+                    "(origin_point IS NULL OR ST_IsValid(origin_point)) AND (influence_area IS NULL OR ST_IsValid(influence_area)) AND (routes IS NULL OR ST_IsValid(routes))");
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasMaxLength(64);
+            e.Property(x => x.Name).HasMaxLength(100).IsRequired();
+            e.Property(x => x.ParentEventId).HasMaxLength(64);
+            e.Property(x => x.StartEdtf).HasMaxLength(32).IsRequired();
+            e.Property(x => x.EndEdtf).HasMaxLength(32).IsRequired();
+            e.Property(x => x.StartDecimal).HasPrecision(8, 3);
+            e.Property(x => x.EndDecimal).HasPrecision(8, 3);
+            e.Property(x => x.OriginPoint).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.InfluenceArea).HasColumnType("geometry(MultiPolygon,4326)");
+            e.Property(x => x.Routes).HasColumnType("geometry(MultiLineString,4326)");
+            e.Property(x => x.Sections).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.Property(x => x.UpdatedAt).HasDefaultValueSql("now()");
+            e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
+            e.HasOne(x => x.ParentEvent).WithMany().HasForeignKey(x => x.ParentEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.StartDecimal, x.EndDecimal });
+            e.HasIndex(x => x.OriginPoint).HasMethod("gist");
+        });
+
+        b.Entity<EventTag>(e =>
+        {
+            e.ToTable("event_tags", t => t.HasCheckConstraint("ck_event_tags_name", "tag_name ~ '^[a-z][a-z0-9_]*$'"));
+            e.HasKey(x => x.Id);
+            e.Property(x => x.TagName).HasMaxLength(32).IsRequired();
+            e.HasIndex(x => x.TagName).IsUnique();
+        });
+
+        b.Entity<HistoricalEventTagMap>(e =>
+        {
+            e.ToTable("historical_event_tag_map");
+            e.HasKey(x => new { x.EventId, x.TagId });
+            e.HasOne(x => x.Event).WithMany(ev => ev.Tags).HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Tag).WithMany().HasForeignKey(x => x.TagId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<ObserverCategory>(e =>
+        {
+            e.ToTable("observer_categories", t => t.HasCheckConstraint("ck_observer_categories_name_not_blank", "btrim(category_name) <> ''"));
+            e.HasKey(x => x.Id);
+            e.Property(x => x.CategoryName).HasMaxLength(64).IsRequired();
+            e.HasIndex(x => x.CategoryName).IsUnique();
+        });
+
+        b.Entity<HistoricalEventPerspective>(e =>
+        {
+            e.ToTable("historical_event_perspectives", t =>
+            {
+                // 觀察者恰好擇一：當事政權，或受控的非政權觀察者類別（不允許自由文字）
+                t.HasCheckConstraint("ck_perspectives_exactly_one_observer", "num_nonnulls(regime_id, observer_category_id) = 1");
+                t.HasCheckConstraint("ck_perspectives_text_not_blank", "btrim(local_name) <> '' AND btrim(narrative_summary) <> ''");
+                t.HasCheckConstraint("ck_perspectives_sources_array", "primary_sources IS NULL OR jsonb_typeof(primary_sources) = 'array'");
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.EventId).HasMaxLength(64).IsRequired();
+            e.Property(x => x.LocalName).HasMaxLength(128).IsRequired();
+            e.Property(x => x.NarrativeSummary).IsRequired();
+            e.Property(x => x.PrimarySources).HasColumnType("jsonb");
+            e.Property(x => x.ClaimedCasualties).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne(x => x.Event).WithMany(ev => ev.Perspectives).HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.Regime).WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne(x => x.ObserverCategory).WithMany().HasForeignKey(x => x.ObserverCategoryId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<HistoricalEventControversy>(e =>
+        {
+            e.ToTable("historical_event_controversies", t =>
+            {
+                t.HasCheckConstraint("ck_controversies_text_not_blank", "btrim(topic) <> '' AND btrim(neutral_description) <> ''");
+                t.HasCheckConstraint("ck_controversies_viewpoints_array", "viewpoints IS NULL OR jsonb_typeof(viewpoints) = 'array'");
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.EventId).HasMaxLength(64).IsRequired();
+            e.Property(x => x.Topic).HasMaxLength(128).IsRequired();
+            e.Property(x => x.NeutralDescription).IsRequired();
+            e.Property(x => x.Viewpoints).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne(x => x.Event).WithMany(ev => ev.Controversies).HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<PlaceName>(e =>
+        {
+            e.ToTable("place_names", t =>
+            {
+                t.HasCheckConstraint("ck_place_names_name_not_blank", "btrim(historical_name) <> ''");
+                t.HasCheckConstraint("ck_place_names_valid_period_bounded",
+                    "valid_period IS NULL OR (" + BoundedPeriod("valid_period") + ")");
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.HistoricalName).HasMaxLength(128).IsRequired();
+            e.Property(x => x.ModernName).HasMaxLength(128);
+            e.Property(x => x.ValidPeriod).HasColumnType("int4range");
+            e.Property(x => x.Geom).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            e.HasIndex(x => x.Geom).HasMethod("gist");
+        });
+
+        b.Entity<ReignEra>(e =>
+        {
+            e.ToTable("reign_eras", t =>
+            {
+                t.HasCheckConstraint("ck_reign_eras_name_not_blank", "btrim(era_name) <> ''");
+                t.HasCheckConstraint("ck_reign_eras_year_order", "start_year <= end_year");
+            });
+            e.HasKey(x => x.Id);
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.EraName).HasMaxLength(32).IsRequired();
+            e.Property(x => x.MonarchName).HasMaxLength(64);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne(x => x.Regime).WithMany(r => r.ReignEras).HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.RegimeId, x.EraName, x.StartYear }).IsUnique();
+            e.HasIndex(x => new { x.StartYear, x.EndYear });
+        });
     }
 }
+
+/// <summary>修改有修訂紀錄的資料時未提供原因（I5）。API 層轉成 400 ProblemDetails。</summary>
+public sealed class MissingChangeReasonException()
+    : InvalidOperationException("I5：修改既有史料必須提供修改原因（changeReason）");

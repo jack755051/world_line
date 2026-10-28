@@ -26,6 +26,280 @@ namespace WorldLine.Api.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "postgis");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("WorldLine.Api.Domain.EventTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("tag_name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_event_tags");
+
+                    b.HasIndex("TagName")
+                        .IsUnique()
+                        .HasDatabaseName("ix_event_tags_tag_name");
+
+                    b.ToTable("event_tags", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_event_tags_name", "tag_name ~ '^[a-z][a-z0-9_]*$'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<decimal>("EndDecimal")
+                        .HasPrecision(8, 3)
+                        .HasColumnType("numeric(8,3)")
+                        .HasColumnName("end_decimal");
+
+                    b.Property<string>("EndEdtf")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("end_edtf");
+
+                    b.Property<MultiPolygon>("InfluenceArea")
+                        .HasColumnType("geometry(MultiPolygon,4326)")
+                        .HasColumnName("influence_area");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("name");
+
+                    b.Property<Point>("OriginPoint")
+                        .HasColumnType("geometry(Point,4326)")
+                        .HasColumnName("origin_point");
+
+                    b.Property<string>("ParentEventId")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("parent_event_id");
+
+                    b.Property<MultiLineString>("Routes")
+                        .HasColumnType("geometry(MultiLineString,4326)")
+                        .HasColumnName("routes");
+
+                    b.Property<string>("Sections")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("sections");
+
+                    b.Property<decimal>("StartDecimal")
+                        .HasPrecision(8, 3)
+                        .HasColumnType("numeric(8,3)")
+                        .HasColumnName("start_decimal");
+
+                    b.Property<string>("StartEdtf")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("start_edtf");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_historical_events");
+
+                    b.HasIndex("OriginPoint")
+                        .HasDatabaseName("ix_historical_events_origin_point");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("OriginPoint"), "gist");
+
+                    b.HasIndex("ParentEventId")
+                        .HasDatabaseName("ix_historical_events_parent_event_id");
+
+                    b.HasIndex("StartDecimal", "EndDecimal")
+                        .HasDatabaseName("ix_historical_events_start_decimal_end_decimal");
+
+                    b.ToTable("historical_events", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_historical_events_decimal_order", "start_decimal <= end_decimal");
+
+                            t.HasCheckConstraint("ck_historical_events_geoms_valid", "(origin_point IS NULL OR ST_IsValid(origin_point)) AND (influence_area IS NULL OR ST_IsValid(influence_area)) AND (routes IS NULL OR ST_IsValid(routes))");
+
+                            t.HasCheckConstraint("ck_historical_events_id_slug", "id ~ '^[a-z0-9][a-z0-9-]*$'");
+
+                            t.HasCheckConstraint("ck_historical_events_name_not_blank", "btrim(name) <> ''");
+
+                            t.HasCheckConstraint("ck_historical_events_not_own_parent", "parent_event_id <> id");
+
+                            t.HasCheckConstraint("ck_historical_events_sections_object", "sections IS NULL OR jsonb_typeof(sections) = 'object'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEventControversy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("EventId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("event_id");
+
+                    b.Property<string>("NeutralDescription")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("neutral_description");
+
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("topic");
+
+                    b.Property<string>("Viewpoints")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("viewpoints");
+
+                    b.HasKey("Id")
+                        .HasName("pk_historical_event_controversies");
+
+                    b.HasIndex("EventId")
+                        .HasDatabaseName("ix_historical_event_controversies_event_id");
+
+                    b.ToTable("historical_event_controversies", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_controversies_text_not_blank", "btrim(topic) <> '' AND btrim(neutral_description) <> ''");
+
+                            t.HasCheckConstraint("ck_controversies_viewpoints_array", "viewpoints IS NULL OR jsonb_typeof(viewpoints) = 'array'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEventPerspective", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<string>("ClaimedCasualties")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("claimed_casualties");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("EventId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("event_id");
+
+                    b.Property<string>("LocalName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("local_name");
+
+                    b.Property<string>("NarrativeSummary")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("narrative_summary");
+
+                    b.Property<int?>("ObserverCategoryId")
+                        .HasColumnType("integer")
+                        .HasColumnName("observer_category_id");
+
+                    b.Property<string>("OfficialJustification")
+                        .HasColumnType("text")
+                        .HasColumnName("official_justification");
+
+                    b.Property<string>("PrimarySources")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("primary_sources");
+
+                    b.Property<Guid?>("RegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_historical_event_perspectives");
+
+                    b.HasIndex("EventId")
+                        .HasDatabaseName("ix_historical_event_perspectives_event_id");
+
+                    b.HasIndex("ObserverCategoryId")
+                        .HasDatabaseName("ix_historical_event_perspectives_observer_category_id");
+
+                    b.HasIndex("RegimeId")
+                        .HasDatabaseName("ix_historical_event_perspectives_regime_id");
+
+                    b.ToTable("historical_event_perspectives", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_perspectives_exactly_one_observer", "num_nonnulls(regime_id, observer_category_id) = 1");
+
+                            t.HasCheckConstraint("ck_perspectives_sources_array", "primary_sources IS NULL OR jsonb_typeof(primary_sources) = 'array'");
+
+                            t.HasCheckConstraint("ck_perspectives_text_not_blank", "btrim(local_name) <> '' AND btrim(narrative_summary) <> ''");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEventTagMap", b =>
+                {
+                    b.Property<string>("EventId")
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("event_id");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("integer")
+                        .HasColumnName("tag_id");
+
+                    b.HasKey("EventId", "TagId")
+                        .HasName("pk_historical_event_tag_map");
+
+                    b.HasIndex("TagId")
+                        .HasDatabaseName("ix_historical_event_tag_map_tag_id");
+
+                    b.ToTable("historical_event_tag_map", (string)null);
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.LineagePreset", b =>
                 {
                     b.Property<Guid>("Id")
@@ -104,6 +378,88 @@ namespace WorldLine.Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.ObserverCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("category_name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_observer_categories");
+
+                    b.HasIndex("CategoryName")
+                        .IsUnique()
+                        .HasDatabaseName("ix_observer_categories_category_name");
+
+                    b.ToTable("observer_categories", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_observer_categories_name_not_blank", "btrim(category_name) <> ''");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.PlaceName", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Point>("Geom")
+                        .HasColumnType("geometry(Point,4326)")
+                        .HasColumnName("geom");
+
+                    b.Property<string>("HistoricalName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("historical_name");
+
+                    b.Property<string>("ModernName")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("modern_name");
+
+                    b.Property<NpgsqlRange<int>?>("ValidPeriod")
+                        .HasColumnType("int4range")
+                        .HasColumnName("valid_period");
+
+                    b.HasKey("Id")
+                        .HasName("pk_place_names");
+
+                    b.HasIndex("Geom")
+                        .HasDatabaseName("ix_place_names_geom");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("Geom"), "gist");
+
+                    b.HasIndex("ValidPeriod")
+                        .HasDatabaseName("ix_place_names_valid_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ValidPeriod"), "gist");
+
+                    b.ToTable("place_names", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_place_names_name_not_blank", "btrim(historical_name) <> ''");
+
+                            t.HasCheckConstraint("ck_place_names_valid_period_bounded", "valid_period IS NULL OR (NOT isempty(valid_period) AND NOT lower_inf(valid_period) AND NOT upper_inf(valid_period))");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.Regime", b =>
                 {
                     b.Property<Guid>("Id")
@@ -121,6 +477,10 @@ namespace WorldLine.Api.Migrations
                     b.Property<Guid?>("DestroyedByRegimeId")
                         .HasColumnType("uuid")
                         .HasColumnName("destroyed_by_regime_id");
+
+                    b.Property<NpgsqlRange<int>>("ExistencePeriod")
+                        .HasColumnType("int4range")
+                        .HasColumnName("existence_period");
 
                     b.Property<string>("OriginTransitionType")
                         .HasMaxLength(16)
@@ -164,6 +524,11 @@ namespace WorldLine.Api.Migrations
                     b.HasIndex("DestroyedByRegimeId")
                         .HasDatabaseName("ix_regimes_destroyed_by_regime_id");
 
+                    b.HasIndex("ExistencePeriod")
+                        .HasDatabaseName("ix_regimes_existence_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ExistencePeriod"), "gist");
+
                     b.HasIndex("PredecessorRegimeId")
                         .HasDatabaseName("ix_regimes_predecessor_regime_id");
 
@@ -173,6 +538,8 @@ namespace WorldLine.Api.Migrations
                     b.ToTable("regimes", null, t =>
                         {
                             t.HasCheckConstraint("ck_regimes_destroyed_by_iff_destroyed", "(status = 'destroyed') = (destroyed_by_regime_id IS NOT NULL)");
+
+                            t.HasCheckConstraint("ck_regimes_existence_period", "NOT isempty(existence_period) AND NOT lower_inf(existence_period) AND (NOT upper_inf(existence_period) OR status = 'existing')");
 
                             t.HasCheckConstraint("ck_regimes_not_destroyed_by_self", "destroyed_by_regime_id <> id");
 
@@ -346,9 +713,19 @@ namespace WorldLine.Api.Migrations
                         .HasDefaultValue(false)
                         .HasColumnName("is_disputed");
 
+                    b.Property<bool>("IsIllustrative")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_illustrative");
+
                     b.Property<Guid>("RegimeId")
                         .HasColumnType("uuid")
                         .HasColumnName("regime_id");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("text")
+                        .HasColumnName("source");
 
                     b.Property<Guid?>("SupersededBy")
                         .HasColumnType("uuid")
@@ -397,6 +774,133 @@ namespace WorldLine.Api.Migrations
 
                             t.HasCheckConstraint("ck_regime_territories_valid_period_bounded", "NOT isempty(valid_period) AND NOT lower_inf(valid_period) AND NOT upper_inf(valid_period)");
                         });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.ReignEra", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("EndYear")
+                        .HasColumnType("integer")
+                        .HasColumnName("end_year");
+
+                    b.Property<string>("EraName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("era_name");
+
+                    b.Property<string>("MonarchName")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("monarch_name");
+
+                    b.Property<Guid>("RegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_id");
+
+                    b.Property<int>("StartYear")
+                        .HasColumnType("integer")
+                        .HasColumnName("start_year");
+
+                    b.HasKey("Id")
+                        .HasName("pk_reign_eras");
+
+                    b.HasIndex("StartYear", "EndYear")
+                        .HasDatabaseName("ix_reign_eras_start_year_end_year");
+
+                    b.HasIndex("RegimeId", "EraName", "StartYear")
+                        .IsUnique()
+                        .HasDatabaseName("ix_reign_eras_regime_id_era_name_start_year");
+
+                    b.ToTable("reign_eras", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_reign_eras_name_not_blank", "btrim(era_name) <> ''");
+
+                            t.HasCheckConstraint("ck_reign_eras_year_order", "start_year <= end_year");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", "ParentEvent")
+                        .WithMany()
+                        .HasForeignKey("ParentEventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_historical_events_historical_events_parent_event_id");
+
+                    b.Navigation("ParentEvent");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEventControversy", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", "Event")
+                        .WithMany("Controversies")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_historical_event_controversies_historical_events_event_id");
+
+                    b.Navigation("Event");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEventPerspective", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", "Event")
+                        .WithMany("Perspectives")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_historical_event_perspectives_historical_events_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.ObserverCategory", "ObserverCategory")
+                        .WithMany()
+                        .HasForeignKey("ObserverCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_historical_event_perspectives_observer_categories_observer_");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", "Regime")
+                        .WithMany()
+                        .HasForeignKey("RegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_historical_event_perspectives_regimes_regime_id");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("ObserverCategory");
+
+                    b.Navigation("Regime");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEventTagMap", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", "Event")
+                        .WithMany("Tags")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_historical_event_tag_map_historical_events_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.EventTag", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_historical_event_tag_map_event_tags_tag_id");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.LineagePresetMember", b =>
@@ -500,6 +1004,27 @@ namespace WorldLine.Api.Migrations
                     b.Navigation("SupersededByTerritory");
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.ReignEra", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Regime", "Regime")
+                        .WithMany("ReignEras")
+                        .HasForeignKey("RegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_reign_eras_regimes_regime_id");
+
+                    b.Navigation("Regime");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>
+                {
+                    b.Navigation("Controversies");
+
+                    b.Navigation("Perspectives");
+
+                    b.Navigation("Tags");
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.LineagePreset", b =>
                 {
                     b.Navigation("Members");
@@ -508,6 +1033,8 @@ namespace WorldLine.Api.Migrations
             modelBuilder.Entity("WorldLine.Api.Domain.Regime", b =>
                 {
                     b.Navigation("Aliases");
+
+                    b.Navigation("ReignEras");
 
                     b.Navigation("Territories");
                 });

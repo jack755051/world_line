@@ -1,3 +1,5 @@
+using NpgsqlTypes;
+
 namespace WorldLine.Api.Domain;
 
 /// <summary>政權主體（Aggregate Root）。I2：自稱名稱必填。</summary>
@@ -7,6 +9,12 @@ public class Regime
 
     /// <summary>自稱名稱（I2 硬約束，例：「唐」「阿拔斯王朝」）。</summary>
     public string SelfName { get; set; } = null!;
+
+    /// <summary>
+    /// 存續年份區間（天文紀年：0 = 西元前 1 年，-201 = 西元前 202 年）。必填且有起點；
+    /// 只有 status = existing 時允許無終點（仍存續）。
+    /// </summary>
+    public NpgsqlRange<int> ExistencePeriod { get; set; }
 
     /// <summary>見 <see cref="RegimeStatus"/>。</summary>
     public string Status { get; set; } = RegimeStatus.Existing;
@@ -30,4 +38,5 @@ public class Regime
 
     public List<RegimeAlias> Aliases { get; set; } = [];
     public List<RegimeTerritory> Territories { get; set; } = [];
+    public List<ReignEra> ReignEras { get; set; } = [];
 }

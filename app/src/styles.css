@@ -1,2 +1,27 @@
-/* 全域樣式：Tailwind v4 進入點（Sanring UI 主題由 sanring init 寫入的 sanring-theme.css 提供） */
-@import "tailwindcss";
+/*
+ * World Line 全域樣式
+ * - Tailwind v4 進入點
+ * - Sanring UI 主題（slate preset，`npx @sanring/cli init --theme slate` 產生；:root 為深色、[data-theme='light'] 為淺色）
+ * - World Line app 層覆寫：見 .claude/design/world-line-design-spec.md §1.1、§1.2
+ */
+@import 'tailwindcss';
+@import './sanring-theme.css';
+
+/* §1.1 Slate 未過 WCAG AA 的兩項 app 層覆寫（D10：暫不回報上游） */
+:root {
+  --sanring-primary-fg: #ffffff;
+}
+:root[data-theme='light'] {
+  --sanring-border-strong: #818e91;
+}
+
+/* §1.2 Ubuntu 無中文字形，補中文字型後援 */
+:root {
+  --sanring-font-sans: Ubuntu, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--sanring-background);
+  color: var(--sanring-foreground);
+  font-family: var(--sanring-font-sans);
+}

@@ -4,6 +4,7 @@ using NetTopologySuite.Geometries;
 using NetTopologySuite.IO.Converters;
 using WorldLine.Api.Api;
 using WorldLine.Api.Data;
+using WorldLine.Api.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,16 @@ if (!string.IsNullOrWhiteSpace(connectionString))
 }
 
 var app = builder.Build();
+
+// `dotnet WorldLine.Api.dll seed`：寫入示範資料（可重複執行，只新增不修改）後結束
+if (args.Contains("seed"))
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+    var report = await DemoSeeder.RunAsync(db);
+    Console.WriteLine($"Seed 完成：{report}");
+    return;
+}
 
 app.UseExceptionHandler();
 app.UseStatusCodePages();

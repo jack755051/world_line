@@ -285,11 +285,6 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("event_kind");
 
-                    b.Property<string>("LocalTimeZone")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("local_time_zone");
-
                     b.Property<Geometry>("Location")
                         .HasColumnType("geometry(Geometry,4326)")
                         .HasColumnName("location");

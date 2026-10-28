@@ -143,8 +143,8 @@ public sealed class RegimeRelation
 }
 
 /// <summary>
-/// 歷史事件（PRD §6.3）。日期記事件發生地的「當地日期」；另記發生地 IANA 時區與選填多語時間備註
-/// （Tai 2026-10-28 決定，例：珍珠港 1941-12-07 Pacific/Honolulu，備註「東京時間 12 月 8 日」）。
+/// 歷史事件（PRD §6.3）。日期記事件發生地的「當地日期」；另有選填多語時間備註
+/// （Tai 2026-10-28 修正：不記時區欄位，例：珍珠港 1941-12-07，備註「東京時間 12 月 8 日」）。
 /// </summary>
 public sealed class HistoricalEvent
 {
@@ -154,7 +154,6 @@ public sealed class HistoricalEvent
     public string? Summary { get; set; }
     public NpgsqlRange<DateOnly> Occurred { get; set; }
     public string DatePrecision { get; set; } = DatePrecisions.Day;
-    public string? LocalTimeZone { get; set; }
     public string? TimeNote { get; set; }
     public Geometry? Location { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }

@@ -113,15 +113,15 @@ public sealed record RegimeInteractionsDto(Guid RegimeId, DateOnly Date, IReadOn
 
 // ───────────── 事件（R8、§9） ─────────────
 /// <summary>
-/// occurred 為事件發生地的「當地日期」（半開區間）；localTimeZone 為發生地 IANA 時區（例：Pacific/Honolulu）；
-/// timeNote 為選填多語時間備註（例：「東京時間 12 月 8 日」）。Tai 2026-10-28 決定。
+/// occurred 為事件發生地的「當地日期」（半開區間）；timeNote 為選填多語時間備註
+/// （例：「東京時間 12 月 8 日」）。Tai 2026-10-28 修正：不記時區欄位。
 /// </summary>
 public sealed record CreateEventRequest(
     string? EventKind, DatePeriodDto? Occurred, string? DatePrecision,
-    string? LocalTimeZone = null, IReadOnlyDictionary<string, string>? TimeNote = null,
+    IReadOnlyDictionary<string, string>? TimeNote = null,
     IReadOnlyDictionary<string, string>? Summary = null, Guid? ParentEventId = null, JsonElement? Location = null);
 
 public sealed record EventDto(
     Guid Id, string EventKind, Guid? ParentEventId, IReadOnlyDictionary<string, string>? Summary,
-    DatePeriodDto Occurred, string DatePrecision, string? LocalTimeZone, IReadOnlyDictionary<string, string>? TimeNote,
+    DatePeriodDto Occurred, string DatePrecision, IReadOnlyDictionary<string, string>? TimeNote,
     JsonElement? Location);

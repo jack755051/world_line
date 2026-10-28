@@ -8,7 +8,7 @@ namespace WorldLine.Api.Tests;
 /// <summary>
 /// Tai 2026-10-28 決定：
 /// - 扶植關係兩者並存：控制紀錄 patronRegimeId ＋ regime_relations patron_puppet（regimeA＝扶植方、regimeB＝傀儡）。
-/// - 事件記當地日期＋IANA 時區＋選填多語 timeNote。
+/// - 事件記當地日期＋選填多語 timeNote（Tai 2026-10-28 修正：不記時區欄位）。
 /// </summary>
 [Collection(PostGisCollection.Name)]
 public sealed class RelationsAndEventsTests(PostGisFixture fx)
@@ -84,7 +84,7 @@ public sealed class RelationsAndEventsTests(PostGisFixture fx)
     }
 
     [Fact]
-    public async Task Event_records_local_date_iana_zone_and_time_note()
+    public async Task Event_records_local_date_and_time_note()
     {
         var k = new ApiTestKit(fx);
         var res = await k.W.PostAsJsonAsync("/api/v1/events", new
@@ -92,7 +92,6 @@ public sealed class RelationsAndEventsTests(PostGisFixture fx)
             eventKind = "battle",
             occurred = new { start = "1941-12-07", end = "1941-12-08" },
             datePrecision = "day",
-            localTimeZone = "Pacific/Honolulu",
             timeNote = new Dictionary<string, string> { ["zh-Hant"] = "東京時間 12 月 8 日", ["en"] = "8 December, Tokyo time" },
             summary = new Dictionary<string, string> { ["zh-Hant"] = "珍珠港事件", ["en"] = "Attack on Pearl Harbor" },
             location = new { type = "Point", coordinates = new[] { -157.95, 21.35 } },
@@ -102,23 +101,9 @@ public sealed class RelationsAndEventsTests(PostGisFixture fx)
         var data = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/events/{id}"), HttpStatusCode.OK)).GetProperty("data");
         Assert.Equal("1941-12-07", data.GetProperty("occurred").GetProperty("start").GetString());
         Assert.Equal("1941-12-08", data.GetProperty("occurred").GetProperty("end").GetString());
-        Assert.Equal("Pacific/Honolulu", data.GetProperty("localTimeZone").GetString());
+        Assert.False(data.TryGetProperty("localTimeZone", out _));
         Assert.Equal("東京時間 12 月 8 日", data.GetProperty("timeNote").GetProperty("zh-Hant").GetString());
         Assert.Equal("Point", data.GetProperty("location").GetProperty("type").GetString());
-    }
-
-    [Fact]
-    public async Task Event_time_zone_is_optional_but_must_be_iana()
-    {
-        var k = new ApiTestKit(fx);
-        object Body(string? zone) => new
-        {
-            eventKind = "treaty", occurred = new { start = "1940-09-27", end = "1940-09-28" }, datePrecision = "day", localTimeZone = zone,
-        };
-        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/events", Body(null)), HttpStatusCode.Created);
-        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/events", Body("Europe/Berlin")), HttpStatusCode.Created);
-        foreach (var bad in new[] { "Tokyo Standard Time", "UTC", "Etc/GMT-9", "+09:00", "Mars/Olympus" })
-            await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/events", Body(bad)), HttpStatusCode.BadRequest, ErrorCodes.ValidationFailed);
     }
 
     [Fact]

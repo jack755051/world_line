@@ -624,8 +624,7 @@ CREATE TABLE historical_events (
   summary JSONB,                                            -- 事件敘事（R4 雙語）
   occurred DATERANGE NOT NULL,                              -- 允許區間（§9）；記事件發生地的「當地日期」（使用者 2026-10-28 拍板）
   date_precision VARCHAR(8) NOT NULL CHECK (date_precision IN ('day', 'month', 'year')),
-  local_time_zone VARCHAR(64),                              -- 發生地 IANA 時區，例：'Pacific/Honolulu'、'Asia/Tokyo'（使用者 2026-10-28 拍板；選填，只收 IANA ID，伺服器不做換算）
-  time_note JSONB,                                          -- 選填多語時間備註，例：{"zh-Hant": "東京時間 12 月 8 日", "en": "8 December, Tokyo time"}（使用者 2026-10-28 拍板）
+  time_note JSONB,                                          -- 選填多語時間備註，例：{"zh-Hant": "東京時間 12 月 8 日", "en": "8 December, Tokyo time"}（使用者 2026-10-28 拍板、同日修正：只加此選填備註，不記時區欄位）
   location GEOMETRY(Geometry, 4326),
   place_id UUID,                                            -- FK 於 places 建立後加上
   retracted_at TIMESTAMPTZ, retraction_reason TEXT,
@@ -828,7 +827,7 @@ erDiagram
 - 統一回應格式：`{ statusCode, message, data }`；列表用 `PaginatedResponse<T>`（`items, page, pageSize, total`）。錯誤回應同格式（`data` 為 `null`），另帶 `code`（下列錯誤代碼）與選填 `errors`（欄位→訊息）。**使用者 2026-10-28 拍板**：統一用此格式，不採 RFC 9457 ProblemDetails。
 - 地圖類端點的 `data` 內含 GeoJSON `FeatureCollection`。
 - OpenAPI 輸出到 `backend/openapi/v1.json`，前端以 `gen:api` 產生型別。
-- 日期參數一律用 `YYYY-MM-DD`；回應的區間以 `{ start, end, startUncertainty?, endUncertainty? }` 表示（半開區間）。事件日期為發生地當地日期，另帶 `localTimeZone`（IANA）與 `timeNote`（使用者 2026-10-28 拍板）。
+- 日期參數一律用 `YYYY-MM-DD`；回應的區間以 `{ start, end, startUncertainty?, endUncertainty? }` 表示（半開區間）。事件日期為發生地當地日期，另帶選填 `timeNote`（使用者 2026-10-28 拍板並修正：不帶時區欄位）。
 - **雙語**（AI 提案・待拍板）：回應一次帶齊所有語言（`LocalizedText` 物件），切換語言時前端不必重新請求（R4、Story 8）。
 - **讀取**：公開、唯讀。**寫入**：需要 `X-API-Key`（§2）。
 - **修正與併發**：修正端點帶 `expectedVersion`（或 `If-Match`），不符就回 409。
@@ -1206,7 +1205,7 @@ erDiagram
 - [x] **Q11** 政權配色存在 DB（`regimes.display_color`），還是由前端規則產生？兩者都要確保相鄰政權可區分。待拍板，由 DESIGN.md 階段一起決定。 → **2026-10-28 使用者拍板：依陣營色系（憲法 §6「陣營」）由前端規則產生：色系由 `regime_alignments` 決定，同色系內由圖著色確保相鄰政權可區分；不存 `display_color`。具體色值見 DESIGN.md**
 - [ ] **Q12** 同一地點同一時間出現兩筆「實際生效」主權主張時，寫入要拒絕還是只警告？憲法 R6 說「實際生效」有爭議時逐案記錄爭議點，AI 提案：要求同時建立爭議點才允許。待拍板。
 - [ ] **Q13** 主權與控制以外的資料（政權名稱、狀態轉換、持續關係、事件）是否也強制附引用？憲法 I6 只規定主權主張與控制紀錄。AI 提案：持續關係與狀態轉換強制（它們會影響戰線與狀態呈現），其餘選填。待拍板。
-- [x] **Q19** 事件的時區：只記一個日期，還是同時保留各方日期（例：珍珠港 夏威夷 12/7、東京 12/8）？ → **2026-10-28 使用者拍板：兩種都保留**——`occurred` 記發生地當地日期＋`local_time_zone`（IANA 時區）；另加選填多語 `time_note` 說明其他時區的日期
+- [x] **Q19** 事件的時區：只記一個日期，還是同時保留各方日期（例：珍珠港 夏威夷 12/7、東京 12/8）？ → **2026-10-28 使用者拍板（同日修正）：只加選填多語 `time_note`**——`occurred` 記發生地當地日期，其他時區的日期寫在 `time_note`；不設時區欄位（先前轉述的「兩種都保留」指的是 Q7 扶植記法，非時區）
 - [x] **Q20** API 回應格式：統一 `{ statusCode, message, data }`，或 RFC 9457 ProblemDetails？ → **2026-10-28 使用者拍板：統一 `{ statusCode, message, data }`**，錯誤另帶 `code`
 
 **UI**

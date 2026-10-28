@@ -195,7 +195,6 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.Summary).HasColumnType("jsonb");
             e.Property(x => x.Occurred).HasColumnType("daterange");
             e.Property(x => x.DatePrecision).HasMaxLength(8);
-            e.Property(x => x.LocalTimeZone).HasMaxLength(64);
             e.Property(x => x.TimeNote).HasColumnType("jsonb");
             e.Property(x => x.Location).HasColumnType("geometry(Geometry,4326)");
             e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();

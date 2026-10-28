@@ -4,7 +4,7 @@ feature_id: world-line-ww2
 feature_name: World Line — 二戰第一階段
 status: draft
 owner: jack755051@gmail.com
-last_updated: 2026-10-27
+last_updated: 2026-10-28
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
@@ -241,11 +241,11 @@ related_adrs: []
 | OpenAPI | `Microsoft.AspNetCore.OpenApi` 10.0.x，輸出 `backend/openapi/v1.json` | 照 middle-platform。`TODO`：是否加互動式 API 文件 UI（Scalar 等），middle-platform 未見，未驗證 |
 | 套件鎖定 | `Directory.Build.props`：`RestorePackagesWithLockFile=true`、`RuntimeIdentifiers=linux-x64;linux-arm64` | 照 middle-platform |
 | 後端測試 | xUnit 2.9.3、`Microsoft.AspNetCore.Mvc.Testing`、`Testcontainers.PostgreSql` 4.16.0（改用 PostGIS image） | 照 middle-platform；I1–I6 必須用真實 PostGIS 測 |
-| DB | **PostgreSQL＋PostGIS**（擴充：`postgis`、`btree_gist`） | 使用者明示。middle-platform 用 `postgres:18-alpine`，但 PostGIS 需要另外的 image。`TODO`：確認 PostgreSQL 18＋PostGIS 3.x 的官方 image tag（例 `postgis/postgis:18-3.x`，**未驗證**） |
+| DB | **PostgreSQL＋PostGIS**（擴充：`postgis`、`btree_gist`） | 使用者明示。middle-platform 用 `postgres:18-alpine`，但 PostGIS 需要另外的 image。~~`TODO`：確認 PostgreSQL 18＋PostGIS 3.x 的官方 image tag~~ → **2026-10-28 實作驗證**：`postgis/postgis:18-3.6`（PostgreSQL 18.6、PostGIS 3.6.4）；官方只發佈 `linux/amd64`，Apple Silicon 以模擬執行（compose 與 Testcontainers 均明示 `platform: linux/amd64`） |
 | 向量 DB | **不用** | 使用者明示；日後語意搜尋以 pgvector 評估（§11） |
 | Cache | **無**（第一階段不加 Redis） | 使用者明示「只在確定需要時才加」，觸發條件見 §11 |
 | Auth | 讀取公開；寫入用 `X-API-Key` header（單一 key，存環境變數） | §2：只有開發者可寫。AI 提案・待拍板：key 的產生與輪替方式 |
-| Deploy | **Docker Compose**（`compose.yaml`：`postgres`（PostGIS）＋`api`＋`web`），本機埠只綁 `127.0.0.1` | 照 middle-platform。`TODO`：第一階段是否需要對外部署（§2 第一階段只有開發者，AI 提案：只跑本機） |
+| Deploy | **Docker Compose**（`compose.yaml`：`postgres`（PostGIS）＋`api`＋`web`），本機埠只綁 `127.0.0.1`；**API 5050、DB 5432**（使用者 2026-10-28 拍板）；api 啟動時是否自動套用 migration 由環境變數 `WORLDLINE_MIGRATE_ON_STARTUP` 控制，compose 預設開（使用者 2026-10-28 拍板；migration 只往前套用，不提供 Down） | 照 middle-platform。`TODO`：第一階段是否需要對外部署（§2 第一階段只有開發者，AI 提案：只跑本機） |
 | 監控 | ASP.NET Core Health Checks（`/healthz`，含 DB 檢查） | 照 middle-platform（`HealthChecks.EntityFrameworkCore`）。第一階段單人使用，不導入 Prometheus／OTel |
 | 資料建置工具 | QGIS（地理配準、手描多邊形，匯出 GeoJSON）＋匯入腳本或匯入 API | 史料調查 §2、§4；建置 UI 是否需要見 §8.10 |
 
@@ -452,7 +452,8 @@ CREATE TABLE regime_relations (
   relation_type VARCHAR(24) NOT NULL CHECK (relation_type IN (
     'at_war', 'alliance', 'non_aggression_pact', 'patron_puppet', 'trade'
   )),                                                       -- AI 提案・待拍板（§12 Q6）
-  valid_period DATERANGE NOT NULL,
+                                                            -- patron_puppet 方向：regime_a＝扶植方、regime_b＝傀儡（§12 Q7，使用者 2026-10-28 拍板：與控制紀錄 patron_regime_id 並存）
+  valid_period DATERANGE NOT NULL,                          -- 實作暫定・待拍板：起日必須有界（CHECK NOT lower_inf），迄日未知可無界
   start_uncertainty DATERANGE, end_uncertainty DATERANGE,
   note JSONB,
   retracted_at TIMESTAMPTZ, retraction_reason TEXT,
@@ -504,7 +505,7 @@ CREATE TABLE control_record_versions (
     'partial',                -- 不完全控制
     'contested'               -- 交戰中
   )),                         -- R9：「控制資料缺」刻意不在此清單
-  patron_regime_id UUID REFERENCES regimes(id),             -- 傀儡代管的扶植方（AI 提案・待拍板 §12 Q7）
+  patron_regime_id UUID REFERENCES regimes(id),             -- 傀儡代管的扶植方（§12 Q7，使用者 2026-10-28 拍板：與 regime_relations.patron_puppet 並存）
   valid_period DATERANGE NOT NULL
     CHECK (NOT lower_inf(valid_period) AND NOT upper_inf(valid_period)),  -- I1
   start_uncertainty DATERANGE,
@@ -621,8 +622,9 @@ CREATE TABLE historical_events (
   )),                                                       -- AI 提案・待拍板
   parent_event_id UUID REFERENCES historical_events(id),   -- 例：會戰屬於某戰役
   summary JSONB,                                            -- 事件敘事（R4 雙語）
-  occurred DATERANGE NOT NULL,                              -- 允許區間（§9）
+  occurred DATERANGE NOT NULL,                              -- 允許區間（§9）；記事件發生地的「當地日期」（使用者 2026-10-28 拍板）
   date_precision VARCHAR(8) NOT NULL CHECK (date_precision IN ('day', 'month', 'year')),
+  time_note JSONB,                                          -- 選填多語時間備註，例：{"zh-Hant": "東京時間 12 月 8 日", "en": "8 December, Tokyo time"}（使用者 2026-10-28 拍板、同日修正：只加此選填備註，不記時區欄位）
   location GEOMETRY(Geometry, 4326),
   place_id UUID,                                            -- FK 於 places 建立後加上
   retracted_at TIMESTAMPTZ, retraction_reason TEXT,
@@ -822,10 +824,10 @@ erDiagram
 
 **共通慣例**（照 middle-platform）：
 - 前綴 `/api/v1`。
-- 統一回應格式：`{ statusCode, message, data }`；列表用 `PaginatedResponse<T>`（`items, page, pageSize, total`）。
+- 統一回應格式：`{ statusCode, message, data }`；列表用 `PaginatedResponse<T>`（`items, page, pageSize, total`）。錯誤回應同格式（`data` 為 `null`），另帶 `code`（下列錯誤代碼）與選填 `errors`（欄位→訊息）。**使用者 2026-10-28 拍板**：統一用此格式，不採 RFC 9457 ProblemDetails。
 - 地圖類端點的 `data` 內含 GeoJSON `FeatureCollection`。
 - OpenAPI 輸出到 `backend/openapi/v1.json`，前端以 `gen:api` 產生型別。
-- 日期參數一律用 `YYYY-MM-DD`；回應的區間以 `{ start, end, startUncertainty?, endUncertainty? }` 表示（半開區間）。
+- 日期參數一律用 `YYYY-MM-DD`；回應的區間以 `{ start, end, startUncertainty?, endUncertainty? }` 表示（半開區間）。事件日期為發生地當地日期，另帶選填 `timeNote`（使用者 2026-10-28 拍板並修正：不帶時區欄位）。
 - **雙語**（AI 提案・待拍板）：回應一次帶齊所有語言（`LocalizedText` 物件），切換語言時前端不必重新請求（R4、Story 8）。
 - **讀取**：公開、唯讀。**寫入**：需要 `X-API-Key`（§2）。
 - **修正與併發**：修正端點帶 `expectedVersion`（或 `If-Match`），不符就回 409。
@@ -1196,13 +1198,15 @@ erDiagram
 - [x] **Q4** 「史料快照」是否允許「區間型證明」：來源本身確立整段期間時（例：停戰協定分界線 1940-06-22～1942-11-11），整段算史料，還是只有快照日期當天算史料、其餘一律推估？憲法 §6 寫的是「對應特定日期」，這點**可能需回寫憲法**。AI 提案：允許 `attestation='interval'`，但必須由來源明文支撐。待拍板。 → **2026-10-27 使用者拍板：允許，已回寫憲法 §6**
 - [ ] **Q5** 戰區（theater）的劃分方式與清單，以及範圍是否必須互不重疊。AI 提案依史料調查 §3 覆蓋矩陣的列分區。待拍板。
 - [ ] **Q6** 「敵對」的判定（戰線推導）：只看 `at_war` 關係，或也包含其他關係；`regime_relations.relation_type` 清單。AI 提案：`at_war`、`alliance`、`non_aggression_pact`、`patron_puppet`、`trade`。待拍板。
-- [ ] **Q7** 傀儡代管的建模：控制方記傀儡政權、另記扶植方（`patron_regime_id`），還是控制方記扶植方？AI 提案前者，待拍板。
+- [x] **Q7** 傀儡代管的建模：控制方記傀儡政權、另記扶植方（`patron_regime_id`），還是控制方記扶植方？AI 提案前者，待拍板。 → **2026-10-28 使用者拍板：兩者並存**——控制紀錄版本：控制方記傀儡政權＋`patron_regime_id` 記扶植方（地圖用）；`regime_relations` 另記 `patron_puppet`（`regime_a`＝扶植方、`regime_b`＝傀儡，聚焦面板用）。兩者不互相推導、不強制一致
 - [ ] **Q8** 多語文字的儲存（JSONB 或翻譯表），以及寫入時是否強制雙語、缺翻譯時怎麼呈現。AI 提案：JSONB；建置期允許缺 `en`，前端顯示「未翻譯」。待拍板。
 - [ ] **Q9** 日期旁要顯示哪些紀年：全部相關紀年、只顯示聚焦政權的，或依語言決定。AI 提案：沒有聚焦時只顯示西元；聚焦時顯示該政權的紀年。待拍板。
 - [ ] **Q10** 史觀主線（6.6）第一階段是否建表。AI 提案不建，待拍板。
 - [x] **Q11** 政權配色存在 DB（`regimes.display_color`），還是由前端規則產生？兩者都要確保相鄰政權可區分。待拍板，由 DESIGN.md 階段一起決定。 → **2026-10-28 使用者拍板：依陣營色系（憲法 §6「陣營」）由前端規則產生：色系由 `regime_alignments` 決定，同色系內由圖著色確保相鄰政權可區分；不存 `display_color`。具體色值見 DESIGN.md**
 - [ ] **Q12** 同一地點同一時間出現兩筆「實際生效」主權主張時，寫入要拒絕還是只警告？憲法 R6 說「實際生效」有爭議時逐案記錄爭議點，AI 提案：要求同時建立爭議點才允許。待拍板。
 - [ ] **Q13** 主權與控制以外的資料（政權名稱、狀態轉換、持續關係、事件）是否也強制附引用？憲法 I6 只規定主權主張與控制紀錄。AI 提案：持續關係與狀態轉換強制（它們會影響戰線與狀態呈現），其餘選填。待拍板。
+- [x] **Q19** 事件的時區：只記一個日期，還是同時保留各方日期（例：珍珠港 夏威夷 12/7、東京 12/8）？ → **2026-10-28 使用者拍板（同日修正）：只加選填多語 `time_note`**——`occurred` 記發生地當地日期，其他時區的日期寫在 `time_note`；不設時區欄位（先前轉述的「兩種都保留」指的是 Q7 扶植記法，非時區）
+- [x] **Q20** API 回應格式：統一 `{ statusCode, message, data }`，或 RFC 9457 ProblemDetails？ → **2026-10-28 使用者拍板：統一 `{ statusCode, message, data }`**，錯誤另帶 `code`
 
 **UI**
 - [x] **Q14** 第一階段支援的螢幕尺寸。AI 提案 ≥ 1024px，待拍板。 → **2026-10-28 使用者拍板：只做桌機 ≥1024px**
@@ -1215,11 +1219,11 @@ erDiagram
 - [x] **Q18** 政權內部的制度性更替（例：1940-07-10／11 第三共和 → 法蘭西國）在 §4 狀態機中屬於哪一種轉換？不是分裂、禪讓、滅亡，也不是流亡、併吞、復國；同類案例可能還有義大利 1943（社會共和國成立）。要新增轉換類型，或視為同一政權延續＋名稱變更？**需要使用者在憲法層拍板**，M1 卡在這一點。 → **2026-10-27 使用者拍板：選 A（新增「政體更替」轉換 `regime_change`），已回寫憲法 §4**
 
 **技術**
-- [ ] TODO：PostgreSQL 18＋PostGIS 3.x 的 Docker image tag（未驗證）。
+- [x] ~~TODO：PostgreSQL 18＋PostGIS 3.x 的 Docker image tag（未驗證）。~~ → 2026-10-28 實作驗證：`postgis/postgis:18-3.6`（僅 linux/amd64）。
 - [ ] TODO：`Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite` 版本、MapLibre GL 版本。
 - [ ] TODO：`@sanring/cli` 是否提供 slider 元件（未驗證）。
 - [ ] TODO：是否加互動式 API 文件 UI。
-- [ ] TODO：API Key 的產生與輪替方式；第一階段是否對外部署。
+- [ ] TODO：API Key 的產生與輪替方式；第一階段是否對外部署。（本機埠已拍板：API 5050、DB 5432，只綁 127.0.0.1，使用者 2026-10-28）
 - [ ] TODO：I3 幾何相交容差、戰線 buffer 容差、缺口面積門檻的數值。
 - [ ] TODO：史料檔案的本機存檔位置與是否進版控。
 - [ ] TODO：R7 是否接受政府開放資料集（例：Département de l'Ain 分界線，Licence Ouverte 2.0）作為「輔助幾何」（史料調查 §4.3.4，由使用者決定）。

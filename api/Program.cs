@@ -1,3 +1,5 @@
+using WorldLine.Api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// 資料庫（PostgreSQL + PostGIS）。連線字串由 compose 的 ConnectionStrings__DefaultConnection 提供；
+// 未設定（例如本機無 DB 時 dotnet run）就不註冊，避免啟動失敗。migration 一律以 `dotnet ef database update` 明確套用，不在啟動時自動執行。
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (!string.IsNullOrWhiteSpace(connectionString))
+{
+    builder.Services.AddDbContext<WorldLineDbContext>(options => DbSetup.Configure(options, connectionString));
+}
 
 var app = builder.Build();
 

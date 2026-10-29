@@ -1,24 +1,26 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { App } from './app';
+import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-    })
-      .compileComponents();
+      providers: [provideRouter(routes)],
+    }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('建立 App', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('渲染 app shell 與 router-outlet', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, world-line-web');
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.querySelector('wl-app-shell')).not.toBeNull();
+    expect(el.querySelector('wl-app-shell router-outlet')).not.toBeNull();
   });
 });

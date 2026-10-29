@@ -1,0 +1,121 @@
+/*
+ * World Line 設計 token（--wl-*）
+ * 來源：design/stitch/DESIGN.md front matter（Atlas Paper，2026-10-28 第一版提案）。
+ * 數值待 Tai 看過校正卡後確認；改值請先改 DESIGN.md，再同步此檔。
+ * 只有淺色主題（DESIGN.md：不做深色模式）。
+ */
+
+:root {
+  /* 顏色（Material roles＋額外 roles＋地圖底色） */
+  --wl-color-primary: #b23a26;
+  --wl-color-on-primary: #fffaf2;
+  --wl-color-primary-container: #f6ddd4;
+  --wl-color-on-primary-container: #5a1a0f;
+  --wl-color-inverse-primary: #f0a896;
+  --wl-color-primary-fixed: #f6ddd4;
+  --wl-color-primary-fixed-dim: #eab5a6;
+  --wl-color-on-primary-fixed: #3d1009;
+  --wl-color-on-primary-fixed-variant: #8a2b1b;
+  --wl-color-secondary: #34506b;
+  --wl-color-on-secondary: #fffaf2;
+  --wl-color-secondary-container: #dce4ec;
+  --wl-color-on-secondary-container: #1a2b3c;
+  --wl-color-secondary-fixed: #dce4ec;
+  --wl-color-secondary-fixed-dim: #b4c3d2;
+  --wl-color-on-secondary-fixed: #0f1c29;
+  --wl-color-on-secondary-fixed-variant: #2a4158;
+  --wl-color-tertiary: #8a6d2f;
+  --wl-color-on-tertiary: #fffaf2;
+  --wl-color-tertiary-container: #efe3c4;
+  --wl-color-on-tertiary-container: #3f3013;
+  --wl-color-tertiary-fixed: #efe3c4;
+  --wl-color-tertiary-fixed-dim: #dcc690;
+  --wl-color-on-tertiary-fixed: #2a1f0a;
+  --wl-color-on-tertiary-fixed-variant: #6b5323;
+  --wl-color-error: #8c1d40;
+  --wl-color-on-error: #fffaf2;
+  --wl-color-error-container: #f3d9e0;
+  --wl-color-on-error-container: #4a0c20;
+  --wl-color-background: #f4efe4;
+  --wl-color-on-background: #2a2620;
+  --wl-color-surface: #faf7f0;
+  --wl-color-on-surface: #2a2620;
+  --wl-color-surface-variant: #ebe4d5;
+  --wl-color-on-surface-variant: #6b6355;
+  --wl-color-surface-tint: #f4efe4;
+  --wl-color-surface-dim: #e6dfcf;
+  --wl-color-surface-bright: #fdfbf6;
+  --wl-color-surface-container-lowest: #fdfbf6;
+  --wl-color-surface-container-low: #faf7f0;
+  --wl-color-surface-container: #f6f1e6;
+  --wl-color-surface-container-high: #efe9dc;
+  --wl-color-surface-container-highest: #e8e1d1;
+  --wl-color-inverse-surface: #2a2620;
+  --wl-color-inverse-on-surface: #f4efe4;
+  --wl-color-outline: #a39985;
+  --wl-color-outline-variant: #d9d0bd;
+  --wl-color-placeholder: #9a917f;
+  --wl-color-success: #4f7a4a;
+  --wl-color-warning: #a8741c;
+  --wl-color-info: #34506b;
+  --wl-color-map-land: #ece4d2;
+  --wl-color-map-sea: #cfdbe0;
+  --wl-color-map-coast: #9fb2ba;
+  --wl-color-map-ink: #3a2f28;
+
+  /* 字型：標題襯線、內文無襯線（Noto Serif TC／Noto Sans TC，Latin 用 Noto Serif／Noto Sans） */
+  --wl-font-serif: 'Noto Serif TC', 'Noto Serif', serif;
+  --wl-font-sans: 'Noto Sans TC', 'Noto Sans', sans-serif;
+
+  /* 字級（只有這幾種） */
+  --wl-type-display-family: var(--wl-font-serif);
+  --wl-type-display-size: 30px;
+  --wl-type-display-weight: 600;
+  --wl-type-display-line-height: 1.2;
+  --wl-type-title1-family: var(--wl-font-serif);
+  --wl-type-title1-size: 22px;
+  --wl-type-title1-weight: 600;
+  --wl-type-title1-line-height: 1.35;
+  --wl-type-title2-family: var(--wl-font-serif);
+  --wl-type-title2-size: 17px;
+  --wl-type-title2-weight: 600;
+  --wl-type-title2-line-height: 1.4;
+  --wl-type-sub-title-family: var(--wl-font-sans);
+  --wl-type-sub-title-size: 15px;
+  --wl-type-sub-title-weight: 600;
+  --wl-type-sub-title-line-height: 1.5;
+  --wl-type-text1-family: var(--wl-font-sans);
+  --wl-type-text1-size: 14px;
+  --wl-type-text1-weight: 400;
+  --wl-type-text1-line-height: 1.6;
+  --wl-type-text2-family: var(--wl-font-sans);
+  --wl-type-text2-size: 12px;
+  --wl-type-text2-weight: 400;
+  --wl-type-text2-line-height: 1.5;
+  --wl-type-label-sm-family: var(--wl-font-sans);
+  --wl-type-label-sm-size: 12px;
+  --wl-type-label-sm-weight: 600;
+  --wl-type-label-sm-line-height: 1.5;
+  --wl-type-label-xs-family: var(--wl-font-sans);
+  --wl-type-label-xs-size: 12px;
+  --wl-type-label-xs-weight: 400;
+  --wl-type-label-xs-line-height: 1.5;
+
+  /* 圓角（DESIGN.md Shapes：按鈕／輸入／標籤 md，面板／popover lg，徽章 sm） */
+  --wl-radius-xs: 2px;
+  --wl-radius-sm: 3px;
+  --wl-radius-md: 4px;
+  --wl-radius-lg: 6px;
+  --wl-radius-xl: 8px;
+
+  /* 陰影（DESIGN.md Elevation：只給浮動面板） */
+  --wl-shadow-panel: 0 1px 2px rgba(42, 38, 32, 0.08);
+
+  /* 版面尺寸（DESIGN.md Layout & Spacing） */
+  --wl-space-unit: 4px;
+  --wl-topbar-height: 56px;
+  --wl-panel-width: 400px;
+  --wl-timeline-height: 112px;
+  --wl-legend-width: 280px;
+  --wl-min-width: 1024px;
+}

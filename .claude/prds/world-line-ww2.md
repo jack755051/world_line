@@ -395,6 +395,13 @@ CREATE TABLE regime_alignments (
 );
 -- 每筆須附引用（regime_alignment_citations，格式同其他 citation 表），應用層強制
 -- 沒有 alignment 紀錄的政權，前端以「中立／未結盟」色系呈現並標示「未建置」
+--   ↳ 實作（2026-10-30，C8 已做）：前端改用獨立的「陣營未建置」色（不在四色系內），避免把「沒資料」看成「中立」（R9 精神）。待拍板。
+-- 實作補充（2026-10-30，AI 提案・待拍板）：
+--   * valid_period 起日必須有界（CHECK NOT lower_inf），迄日未知可無界（同 regime_relations）；note JSONB 選填
+--   * regime_alignment_citations(regime_alignment_id, source_id, locator, role, evidence_note)，PK 三欄，同 control_record_citations
+--   * primary citation 必須有 locator，且來源授權在允許清單（us_federal_pd／pd_expired／cc0／cc_by／cc_by_sa）＝有使用權（使用者 2026-10-29）
+--   * basis_event_id 已加 FK → historical_events
+--   * I5：不可 DELETE／TRUNCATE；切片只允許一次寫入撤回（retracted_at＋retraction_reason），引用寫入後不可改
 
 -- 政權狀態時間切片：存續／流亡／被併吞（§4）
 CREATE TABLE regime_status_periods (
@@ -847,7 +854,7 @@ erDiagram
 
 | Method | Path | 用途 | 規則／Story | 認證 |
 |---|---|---|---|---|
-| GET | `/api/v1/control?date=` | 指定日期的控制區（現行版本）。每個 feature 帶 `controllerRegimeId`、`controlType`、`patronRegimeId`、`theaterCode`、`snapshotId`；並依戰區回報 `state: attested\|interpolated`、`prevSnapshot`、`nextSnapshot`。推估時另回前後快照的幾何供前端插值（依 §12 Q3 調整） | R6、§9、Story 2、3 | 公開 |
+| GET | `/api/v1/control?date=` | 指定日期的控制區（現行版本）。每個 feature 帶 `controllerRegimeId`、`controlType`、`patronRegimeId`、`theaterCode`、`snapshotId`、`controllerAlignment`（控制方當日陣營切片＋引用；沒有則 null＝陣營未建置，2026-10-30 實作，待拍板）；並依戰區回報 `state: attested\|interpolated`、`prevSnapshot`、`nextSnapshot`。推估時另回前後快照的幾何供前端插值（依 §12 Q3 調整） | R6、§9、Story 2、3 | 公開 |
 | GET | `/api/v1/control/gaps?date=` | 控制資料缺的幾何（推導），附涵蓋備註（若採 B／C） | R9、Story 4 | 公開 |
 | GET | `/api/v1/sovereignty?date=` | 指定日期的主權主張（現行版本），帶 `isEffective`、`isDisputed` | R6、Story 2 | 公開 |
 | GET | `/api/v1/sovereignty/at?date=&lon=&lat=` | 某點某日所有並存主張，含承認方與不承認方、相關爭議 | R6、I3、Story 2 | 公開 |
@@ -856,6 +863,7 @@ erDiagram
 | GET | `/api/v1/regimes?date=&q=` | 政權清單（該日存續或有資料者），支援名稱篩選 | R2、Story 6 | 公開 |
 | GET | `/api/v1/regimes/{id}` | 政權詳情：所有名稱（自稱、代稱、視角）、狀態切片、轉換與傳承、紀年 | §4、§6、Story 5、6 | 公開 |
 | GET | `/api/v1/regimes/{id}/interactions?date=&from=&to=` | 聚焦面板資料：當日持續關係，以及時間窗內的離散事件 | R3、Story 6 | 公開 |
+| GET | `/api/v1/regimes/{id}/alignments` | 政權的陣營切片（有效者，依起日排序），每段附引用（2026-10-30 實作，AI 提案・待拍板） | §6「陣營」、Q11 | 公開 |
 | GET | `/api/v1/regimes/{id}/status?date=` | 該日狀態（存續、流亡、被併吞，或已終止及終止方式） | §4、Story 5 | 公開 |
 | GET | `/api/v1/events?from=&to=&bbox=&regimeId=` | 事件清單（地圖標記與時間軸用） | R8、Story 7 | 公開 |
 | GET | `/api/v1/events/{id}` | 事件詳情：各視角命名、參與方、敘事、爭議點與觀點（含引用） | R8、§9、Story 7 | 公開 |
@@ -876,6 +884,7 @@ erDiagram
 | PATCH | `/api/v1/regimes/{id}` | 修正政權（帶 `reason`、`expectedVersion`） | I5 |
 | POST | `/api/v1/regimes/{id}/names` | 新增自稱或代稱（代稱必須帶 `observerRegimeId`） | I4、§6 |
 | POST | `/api/v1/regimes/{id}/status-periods` | 新增狀態切片（同政權不可重疊） | §4 |
+| POST | `/api/v1/regimes/{id}/alignments` | 新增陣營切片（`camp`、`validPeriod.start` 必填、≥1 筆 primary 引用；同政權不可重疊 → 409）（2026-10-30 實作，AI 提案・待拍板） | §6「陣營」、R8 |
 | POST | `/api/v1/regime-transitions` | 新增狀態轉換（Validator 檢查合法性） | §4 |
 | POST | `/api/v1/regime-relations` | 新增持續關係 | R3、§6 |
 | POST | `/api/v1/theaters`、`/api/v1/control-snapshots` | 建立戰區、史料快照 | §9 |
@@ -1237,4 +1246,9 @@ erDiagram
 - 2026-10-30 使用者拍板二戰版 API 埠為 5051。
 - 原文（2026-10-28）：「本機埠只綁 `127.0.0.1`；**API 5050、DB 5432**（使用者 2026-10-28 拍板）」。DB 埠 5432 不變。
 - 同步修改：`compose.yaml`（`WW2_API_PORT` 預設值）、`.env.example`、`data/seed/ww2/france-1940-07-15/send_seed.py`（預設 `--base`）、前端 `frontend/proxy.conf.json`。
+
+### 2026-10-30：陣營歸屬（regime_alignments）實作
+
+- 依 §6.3 既有 schema 實作 `regime_alignments`＋`regime_alignment_citations`、`POST/GET /api/v1/regimes/{id}/alignments`，`GET /control` 的 feature 加 `controllerAlignment`。
+- 實作補充寫在 §6.3 註解與 §7 表格，均標「AI 提案・待拍板」；憲法 §6「陣營」本身未改。
 

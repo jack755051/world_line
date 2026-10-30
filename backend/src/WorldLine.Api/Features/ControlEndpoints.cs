@@ -13,6 +13,48 @@ public static class ControlEndpoints
     {
         read.MapGet("/control", GetControl).WithTags("Control").WithName("GetControl").Ok<ControlMapDto>().Errors(400);
         write.MapPost("/control-records", Create).WithTags("Control").WithName("CreateControlRecord").RequiresApiKey().Created<ControlRecordCreatedDto>().Errors(400, 401, 409);
+        write.MapPost("/control-records/{id:guid}/retraction", Retract).WithTags("Control").WithName("RetractControlRecord")
+            .RequiresApiKey().Ok<RetractionDto>().Errors(400, 401, 404, 409);
+    }
+
+    /// <summary>
+    /// POST /control-records/{id}/retraction（PRD §7、I5「撤回也是一個版本」）：新增一個 is_retraction 版本取代現行版本，
+    /// 舊版本只寫入 superseded_by／superseded_at（DB trigger 兜底），身分、版本、引用全部保留，可查歷程。
+    /// 撤回版本沿用被撤回版本的欄位與引用（只是標記「此紀錄已撤回」）。修正＝撤回後新增。2026-10-31 實作，AI 提案・待拍板。
+    /// </summary>
+    public static async Task<IResult> Retract(Guid id, RetractionRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        var reason = Mapping.RequireText(req.Reason, "reason");
+        var current = await db.ControlRecordVersions.Include(v => v.Citations)
+                          .FirstOrDefaultAsync(v => v.ControlRecordId == id && v.SupersededBy == null, ct)
+                      ?? throw ApiError.NotFound("控制紀錄");
+        if (current.IsRetraction)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"控制紀錄 {id} 已撤回。");
+
+        var now = DateTimeOffset.UtcNow;
+        var retraction = new ControlRecordVersion
+        {
+            Id = Guid.CreateVersion7(),
+            ControlRecordId = id,
+            SnapshotId = current.SnapshotId,
+            ControlType = current.ControlType,
+            PatronRegimeId = current.PatronRegimeId,
+            ValidPeriod = current.ValidPeriod,
+            StartUncertainty = current.StartUncertainty,
+            EndUncertainty = current.EndUncertainty,
+            Geom = (NetTopologySuite.Geometries.MultiPolygon)current.Geom.Copy(),
+            IsDisputed = current.IsDisputed,
+            IsRetraction = true,
+            RevisionReason = reason,
+            Citations = current.Citations.Select(c => new ControlRecordCitation
+                { SourceId = c.SourceId, Locator = c.Locator, Role = c.Role, EvidenceNote = c.EvidenceNote }).ToList(),
+        };
+        db.ControlRecordVersions.Add(retraction);
+        current.SupersededBy = retraction.Id;
+        current.SupersededAt = now;
+        await db.SaveChangesAsync(ct); // 單一 transaction：先 INSERT 撤回版本，再寫舊版本的 superseded_*（trigger 擋重複取代）
+
+        return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
     /// <summary>POST /control-records：新增控制紀錄（第一版）。身分、版本、引用同一 transaction 寫入。</summary>

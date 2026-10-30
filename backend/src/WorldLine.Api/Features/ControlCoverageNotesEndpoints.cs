@@ -18,6 +18,25 @@ public static class ControlCoverageNotesEndpoints
     {
         write.MapPost("/control-coverage-notes", Create).WithTags("Control").WithName("CreateControlCoverageNote")
             .RequiresApiKey().Created<CoverageNoteDto>().Errors(400, 401, 409);
+        write.MapPost("/control-coverage-notes/{id:guid}/retraction", Retract).WithTags("Control").WithName("RetractControlCoverageNote")
+            .RequiresApiKey().Ok<RetractionDto>().Errors(400, 401, 404, 409);
+    }
+
+    /// <summary>撤回涵蓋備註（I5：不刪除，只寫一次 retracted_at＋原因；DB trigger 另擋重複撤回與改其他欄位）。修正＝撤回後新增。2026-10-31 實作，AI 提案・待拍板。</summary>
+    public static async Task<IResult> Retract(Guid id, RetractionRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        var reason = Mapping.RequireText(req.Reason, "reason");
+        var row = await db.ControlCoverageNotes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, ct)
+                  ?? throw ApiError.NotFound("涵蓋備註");
+        if (row.RetractedAt is not null)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"涵蓋備註 {id} 已於 {row.RetractedAt:O} 撤回。");
+        var now = DateTimeOffset.UtcNow;
+        var n = await db.ControlCoverageNotes
+            .Where(x => x.Id == id && x.RetractedAt == null)
+            .ExecuteUpdateAsync(u => u.SetProperty(x => x.RetractedAt, now).SetProperty(x => x.RetractionReason, reason), ct);
+        if (n != 1)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"涵蓋備註 {id} 已被撤回。");
+        return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
     public static async Task<IResult> Create(CreateCoverageNoteRequest req, WorldLineDbContext db, CancellationToken ct)

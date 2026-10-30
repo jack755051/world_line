@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject, signal, untracked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LucideCircleAlert, LucideCloudOff, LucideRotateCw } from '@lucide/angular';
+import { LucideCircleAlert, LucideCloudOff, LucideInfo, LucideRotateCw } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
 import { ToastService } from '../../components/ui/toast';
@@ -23,27 +23,39 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
+  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="h-full" [attr.lang]="lang()" aria-label="主地圖">
       @switch (data.health()) {
         @case ('checking') {
+          <!-- Stitch W7-1：頂部列骨架＋紙色地圖區＋時間軸框架骨架（不畫任何資料） -->
           <div data-testid="app-skeleton" class="flex h-full flex-col" aria-busy="true">
             <div class="flex h-[var(--wl-topbar-height)] items-center gap-4 border-b border-wl-outline-variant bg-wl-surface px-4">
-              <div sanringSkeleton class="h-5 w-24"></div><div sanringSkeleton class="h-8 w-48"></div><div sanringSkeleton class="ml-auto h-7 w-40"></div>
+              <div sanringSkeleton class="h-4 w-24"></div><span class="h-6 w-px bg-wl-outline-variant" aria-hidden="true"></span>
+              <div sanringSkeleton class="h-6 w-48"></div><div sanringSkeleton class="h-4 w-14"></div>
+              <div class="ml-auto flex items-center gap-3"><div sanringSkeleton class="h-7 w-36"></div><div sanringSkeleton class="h-7 w-16"></div><div sanringSkeleton class="size-7"></div></div>
             </div>
             <div class="flex-1 bg-[#ece4d2]"></div>
-            <div class="h-[var(--wl-timeline-height)] border-t border-wl-outline-variant bg-wl-surface p-4"><div sanringSkeleton class="h-full w-full"></div></div>
+            <div class="flex h-[var(--wl-timeline-height)] items-center gap-4 border-t border-wl-outline-variant bg-wl-surface px-4">
+              <div class="flex w-[300px] flex-none items-center gap-1.5">
+                <div sanringSkeleton class="size-7"></div><div sanringSkeleton class="size-7"></div><div sanringSkeleton class="size-7"></div>
+                <span class="mx-1 h-5 w-px bg-wl-outline-variant" aria-hidden="true"></span><div sanringSkeleton class="h-7 w-14"></div><div sanringSkeleton class="h-7 w-28"></div>
+              </div>
+              <div class="flex flex-1 gap-2">
+                <div class="flex w-[48px] flex-none flex-col gap-[6px]">@for (i of skeletonRows; track i) { <div sanringSkeleton class="h-[6px] w-full"></div> }</div>
+                <div class="flex flex-1 flex-col gap-[6px]">@for (i of skeletonRows; track i) { <div sanringSkeleton class="h-[6px] w-full"></div> }</div>
+              </div>
+            </div>
           </div>
         }
         @case ('down') {
           <div data-testid="app-offline" class="flex h-full items-center justify-center bg-wl-background">
-            <div class="wl-paper flex w-[420px] flex-col items-center gap-3 p-8 text-center" role="alert">
-              <span class="flex size-10 items-center justify-center rounded-wl-lg bg-wl-error-container text-wl-error"><svg lucideCloudOff class="size-5"></svg></span>
-              <h1 class="wl-title1">{{ tr('offline.title') }}</h1>
-              <p class="wl-alert-error justify-center">{{ tr('offline.health', { status: data.healthStatus() ?? tr('offline.noResponse') }) }}</p>
-              <button type="button" data-testid="app-retry" class="wl-btn-primary inline-flex h-9 items-center gap-2 px-4" (click)="boot()">
+            <div class="wl-paper flex w-[420px] flex-col items-center gap-2 px-8 py-10 text-center" role="alert">
+              <svg lucideCloudOff class="size-6 text-wl-error" aria-hidden="true"></svg>
+              <h1 class="mt-2 wl-title1">{{ tr('offline.title') }}</h1>
+              <p data-testid="app-offline-status" class="wl-text2 text-wl-on-surface-variant">{{ tr('offline.health', { status: data.healthStatus() ?? tr('offline.noResponse') }) }}</p>
+              <button type="button" data-testid="app-retry" class="wl-btn-primary mt-4 inline-flex h-9 min-w-[132px] items-center justify-center gap-2 px-6 wl-text1 font-semibold" (click)="boot()">
                 <svg lucideRotateCw class="size-4"></svg>{{ tr('map.retry') }}</button>
             </div>
           </div>
@@ -67,10 +79,11 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 
               @if (data.controlStatus() === 'error') {
                 <div data-testid="map-error" class="absolute left-1/2 top-4 -translate-x-1/2">
-                  <div class="wl-alert-error wl-paper" role="alert">
+                  <div class="wl-alert-error shadow-[var(--wl-shadow-panel)]" role="alert">
                     <svg lucideCircleAlert class="size-4 flex-none"></svg>
-                    <span>{{ tr('map.error') }}@if (data.controlDate(); as shown) {；{{ tr('map.errorShowing', { date: shown }) }}}</span>
-                    <button type="button" data-testid="map-retry" class="wl-btn-secondary ml-2 h-7 px-3" (click)="reloadControl()">{{ tr('map.retry') }}</button>
+                    <span class="font-semibold">{{ tr('map.error') }}</span>
+                    @if (data.controlDate(); as shown) { <span data-testid="map-error-showing" class="wl-text2 text-wl-on-surface-variant">{{ tr('map.errorShowing', { date: shown }) }}</span> }
+                    <button type="button" data-testid="map-retry" class="wl-btn-secondary ml-4 h-7 px-3 wl-text2 text-wl-error" (click)="reloadControl()">{{ tr('map.retry') }}</button>
                   </div>
                 </div>
               }
@@ -87,14 +100,14 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               }
 
               @if (state.date() < completeFrom) {
-                <div data-testid="map-incomplete-period-hint" class="absolute right-4 top-4 wl-paper px-3 py-1.5 wl-text2">{{ tr('map.incomplete') }}</div>
+                <div data-testid="map-incomplete-period-hint" class="absolute left-4 top-4 wl-paper flex items-center gap-1.5 px-3 py-1.5 wl-text2"><svg lucideInfo class="size-3.5 text-wl-on-surface-variant" aria-hidden="true"></svg>{{ tr('map.incomplete') }}</div>
               }
 
               @if (hoverInfo(); as h) {
-                <div data-testid="map-tooltip" role="tooltip" class="wl-paper pointer-events-none absolute z-10 px-2 py-1 wl-text2"
+                <div data-testid="map-tooltip" role="tooltip" class="wl-paper pointer-events-none absolute z-10 px-3 py-2 wl-text2"
                   [style.left.px]="h.x + 12" [style.top.px]="h.y + 12">
-                  <div class="wl-label">{{ h.name }}・{{ h.type }}</div>
-                  <div class="text-wl-on-surface-variant">{{ h.evidence }}</div>
+                  <div class="wl-sub-title">{{ h.name }}・{{ h.type }}</div>
+                  <div [class.text-wl-tertiary]="h.attested" [class.text-wl-on-surface-variant]="!h.attested">{{ h.evidence }}</div>
                 </div>
               }
 
@@ -128,6 +141,7 @@ export class AtlasPage {
   private readonly toast = inject(ToastService, { optional: true });
 
   protected readonly completeFrom = COMPLETE_FROM;
+  protected readonly skeletonRows = [0, 1, 2, 3, 4];
   protected readonly lang = this.state.lang;
   protected readonly selected = signal<MapFeatureEvent | null>(null);
   protected readonly hover = signal<MapFeatureEvent | null>(null);
@@ -185,7 +199,7 @@ export class AtlasPage {
     const ev = d.evidence === 'attested'
       ? `${this.tr('evidence.attested')} ${d.theater?.attestingSnapshot?.asOf ?? ''}`
       : `${this.tr('evidence.interpolated')}，${this.lang() === 'en' ? 'not attested; nearest snapshot' : '非史料；最近史料'}：${d.theater?.prevSnapshot?.asOf ?? d.theater?.nextSnapshot?.asOf ?? '—'}`;
-    return { x: h.x, y: h.y, name: d.name?.display ?? '—', type: this.tr(key), evidence: ev };
+    return { x: h.x, y: h.y, name: d.name?.display ?? '—', type: this.tr(key), evidence: ev, attested: d.evidence === 'attested' };
   });
 
   protected readonly selectedInfo = computed(() => {
@@ -212,7 +226,7 @@ export class AtlasPage {
     this.state.date.set(q.date);
     this.state.lang.set(q.lang);
     this.state.axis.set(q.axis);
-    if (q.invalidDate) queueMicrotask(() => this.toast?.warning(t('toast.invalidDate', q.lang, { date: q.date })));
+    if (q.invalidDate) queueMicrotask(() => this.toast?.info(t('toast.invalidDate', q.lang)));
 
     effect(() => {
       if (this.data.controlStatus() === 'ok') untracked(() => this.everLoaded.set(true));

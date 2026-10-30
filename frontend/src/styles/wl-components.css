@@ -74,3 +74,7 @@
   .wl-icon-btn.wl-btn-primary { background: var(--wl-color-primary); color: var(--wl-color-on-primary); border-color: var(--wl-color-primary); }
   .wl-icon-btn.wl-btn-primary:hover { background: var(--wl-color-on-primary-fixed-variant); }
 }
+
+/* Stitch W7-4：toast 置中於時間軸上方（toaster 預設 bottom-4 會蓋住時間軸） */
+[data-testid='toast'] .fixed.bottom-4 { bottom: calc(var(--wl-timeline-height) + 12px); }
+[data-testid='toast'] .fixed.bottom-4 { max-width: 32rem; }

@@ -43,12 +43,16 @@ public sealed class SeedAlignmentsTests(PostGisFixture fx)
 
         var list = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/regimes/{ids["REGIME_DE"]}/alignments"), HttpStatusCode.OK))
             .GetProperty("data").EnumerateArray().ToList();
-        var de = Assert.Single(list);
-        Assert.Equal("axis", de.GetProperty("camp").GetString());
-        Assert.Equal("1940-09-27", de.GetProperty("validPeriod").GetProperty("start").GetString());
-        Assert.Equal(JsonValueKind.Null, de.GetProperty("validPeriod").GetProperty("end").ValueKind);
-        // 每筆都要有 primary 引用，且授權是公有領域（使用權）
-        Assert.Contains(de.GetProperty("citations").EnumerateArray(), c =>
-            c.GetProperty("role").GetString() == "primary" && c.GetProperty("licenseCode").GetString() == "us_federal_pd");
+        // 兩段：鋼鐵條約 [1939-05-22, 1940-09-27) 接三國同盟條約 [1940-09-27, 未定)，相接不重疊
+        Assert.Equal(2, list.Count);
+        Assert.All(list, a => Assert.Equal("axis", a.GetProperty("camp").GetString()));
+        Assert.Equal("1939-05-22", list[0].GetProperty("validPeriod").GetProperty("start").GetString());
+        Assert.Equal("1940-09-27", list[0].GetProperty("validPeriod").GetProperty("end").GetString());
+        Assert.Equal("1940-09-27", list[1].GetProperty("validPeriod").GetProperty("start").GetString());
+        Assert.Equal(JsonValueKind.Null, list[1].GetProperty("validPeriod").GetProperty("end").ValueKind);
+        // 每筆都要有 primary 引用，且授權在允許清單（使用權）
+        Assert.All(list, a => Assert.Contains(a.GetProperty("citations").EnumerateArray(), c =>
+            c.GetProperty("role").GetString() == "primary"
+            && new[] { "us_federal_pd", "pd_expired" }.Contains(c.GetProperty("licenseCode").GetString())));
     }
 }

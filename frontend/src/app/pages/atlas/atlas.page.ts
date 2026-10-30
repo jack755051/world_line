@@ -12,7 +12,7 @@ import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
 import { AtlasMap, type MapFeatureEvent } from '../../shared/map/atlas-map';
-import { campTonesFrom, decorateFeatures } from '../../shared/map/map-style';
+import { campTonesFrom, controlLabels, decorateFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
 
@@ -66,7 +66,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
             <div class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
-              <wl-atlas-map [collection]="collection()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+              <wl-atlas-map [collection]="collection()" [labels]="labels()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
                 (featureClick)="onFeatureClick($event)" (emptyClick)="selected.set(null)" (featureHover)="hover.set($event)" />
 
               @if (firstLoad()) {
@@ -164,16 +164,30 @@ export class AtlasPage {
   protected readonly nearest = computed(() => nearestDate(this.data.snapshots().map((s) => s.asOf), this.state.date()));
 
   protected readonly legendRegimes = computed<LegendRegime[]>(() => {
-    const ids = [...new Set((this.data.control()?.featureCollection.features ?? []).map((f) => f.properties.controllerRegimeId))];
+    const feats = this.collection().features;
+    const ids = [...new Set(feats.map((f) => f.properties.controllerRegimeId))];
     const regs = this.data.regimes();
     return ids
       .filter((id) => regs[id])
-      .map((id) => ({
-        id,
-        name: regimeSelfName(regs[id], this.lang())?.display ?? id,
-        tone: this.campTones().toneFor(id),
-        camp: this.campTones().campFor(id),
-      }));
+      .map((id) => {
+        const mine = feats.filter((f) => f.properties.controllerRegimeId === id);
+        return {
+          id,
+          name: regimeSelfName(regs[id], this.lang())?.display ?? id,
+          tone: this.campTones().toneFor(id),
+          camp: this.campTones().campFor(id),
+          controlTypes: [...new Set(mine.map((f) => f.properties.controlType))],
+          attested: mine.every((f) => f.properties.evidence === 'attested'),
+        };
+      });
+  });
+
+  /** 政權名稱標籤：只用 API 的政權自稱（PRD §8.2），查不到名稱的政權不標。 */
+  protected readonly labels = computed(() => {
+    const regs = this.data.regimes();
+    const dto = this.data.control();
+    if (!dto || (this.data.controlStatus() === 'error' && this.data.showingStale())) return [];
+    return controlLabels(dto, (id) => regimeSelfName(regs[id], this.lang())?.display ?? null);
   });
 
   private findFeature(versionId: string) {

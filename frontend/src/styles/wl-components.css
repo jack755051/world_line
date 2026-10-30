@@ -78,3 +78,10 @@
 /* Stitch W7-4：toast 置中於時間軸上方（toaster 預設 bottom-4 會蓋住時間軸） */
 [data-testid='toast'] .fixed.bottom-4 { bottom: calc(var(--wl-timeline-height) + 12px); }
 [data-testid='toast'] .fixed.bottom-4 { max-width: 32rem; }
+
+/* 政權名稱標籤（docs/ww2-stitch.md W1：12px、small caps 風格；墨色 85%＋紙色暈邊，不用朱紅） */
+.wl-regime-label {
+  font-family: var(--wl-font-serif); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; line-height: 1;
+  color: rgba(58, 47, 40, 0.85);
+  text-shadow: 0 0 2px #faf7f0, 0 0 2px #faf7f0, 0 0 3px #faf7f0;
+}

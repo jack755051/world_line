@@ -12,6 +12,8 @@ const DICT = {
   'axis.sovereignty': { 'zh-Hant': '主權', en: 'Sovereignty' },
   'axis.sovereignty.unavailable': { 'zh-Hant': '主權檢視尚未建置（主權資料與 API 屬 M1 之後）', en: 'Sovereignty view not built yet (after M1)' },
   'legend.toggle': { 'zh-Hant': '圖例', en: 'Legend' },
+  'legend.controlTypes.note': { 'zh-Hant': '填色＝陣營；紋理與邊框＝控制類型。樣本以四個陣營色並排示意，不代表任何一個陣營。', en: 'Fill = camp; texture and border = control type. Samples show all four camp colors side by side and do not stand for any one camp.' },
+  'legend.regimes.note': { 'zh-Hant': '同陣營同填色；政權以邊框和地圖上的名稱標籤區分。', en: 'Regimes in one camp share a fill; they are told apart by borders and name labels on the map.' },
   'legend.title': { 'zh-Hant': '圖例', en: 'Legend' },
   'legend.mode.control': { 'zh-Hant': '實際控制模式', en: 'Control view' },
   'legend.controlTypes': { 'zh-Hant': '控制類型', en: 'Control types' },

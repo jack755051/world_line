@@ -140,3 +140,22 @@ test('找不到頁面：置中紙卡＋回主地圖', async ({ page }) => {
   await page.getByTestId('not-found-back').click();
   await expect(page.getByTestId('atlas-page')).toBeVisible();
 });
+
+test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點 1937-07', async ({ page, request }) => {
+  const res = await request.get('/api/v1/control?date=1940-07-15');
+  const features = (await res.json()).data.featureCollection.features as { properties: { controllerRegimeId: string; controlType: string } }[];
+  await page.goto('/?date=1940-07-15');
+  await waitForPolygons(page);
+  await expect(page.getByTestId('timeline-start-label')).toHaveText('1937-07');
+  // 圖例：每個政權至少一個邊框樣本，樣本的控制類型都出現在 API 資料中
+  const types = new Set(features.map((f) => f.properties.controlType));
+  const sw = page.getByTestId('legend-regime-swatch');
+  await expect(sw.first()).toBeVisible();
+  for (const t of await sw.evaluateAll((els) => els.map((e) => e.getAttribute('data-control-type') ?? ''))) expect(types.has(t)).toBe(true);
+  // 地圖標籤：只標 API 資料中的控制方政權
+  const ids = new Set(features.map((f) => f.properties.controllerRegimeId));
+  const labels = page.getByTestId('map-regime-label');
+  await expect(labels.first()).toBeVisible();
+  for (const id of await labels.evaluateAll((els) => els.map((e) => e.getAttribute('data-regime-id') ?? ''))) expect(ids.has(id)).toBe(true);
+  await expect(page.getByTestId('legend-control-types-note')).toContainText('填色＝陣營');
+});

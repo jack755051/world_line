@@ -1,0 +1,33 @@
+{
+ "_placeholder": "AL_FR3_ALLIES_1939",
+ "_post": "/api/v1/regimes/{{REGIME_FR3}}/alignments",
+ "_meta": {
+  "requiresDecision": true,
+  "reason": "同盟的正式依據有爭議（參戰日或其他文件），由 Tai 拍板"
+ },
+ "body": {
+  "camp": "allies",
+  "validPeriod": {
+   "start": "1939-09-03",
+   "end": "1940-06-25"
+  },
+  "citations": [
+   {
+    "sourceId": "{{SRC_FRUS_1939_I}}",
+    "role": "primary",
+    "locator": "Doc. 421, p. 415（法國 1939-09-03 照會）",
+    "evidenceNote": "法國照會：德國未答覆 9/1 照會，法國自 9/3 下午 5 時起履行對波蘭的義務。"
+   },
+   {
+    "sourceId": "{{SRC_DGFP_D9}}",
+    "role": "date_check",
+    "locator": "pp. 671–676，德法停戰協定第 I、XXIII 條",
+    "evidenceNote": "第 I 條：法國政府下令停止對德作戰；第 XXIII 條：法義停戰後 6 小時停火生效（1940-06-25）。"
+   }
+  ],
+  "note": {
+   "zh-Hant": "候選 A（參戰日至停戰生效）。1940-06-25～07-10 第三共和屬哪一陣營未定（不推定）。憲法定義下 1940 年英法沒有共同簽署「聯合國家宣言」，屬爭議，待 Tai 拍板。",
+   "en": "Candidate A (entry into the war to the armistice). Camp for 1940-06-25 to 07-10 left undetermined. Pending Tai."
+  }
+ }
+}

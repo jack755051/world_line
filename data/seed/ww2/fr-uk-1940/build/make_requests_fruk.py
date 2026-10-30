@@ -1,4 +1,4 @@
-"""產生 requests/*.json（法、英政權與 1940 控制區；DRAFT，待 Tai 檢查，尚未寫入 appdb_ww2）。
+"""產生 requests/*.json（法、英政權、1940 控制區、陣營與補充事件、控制資料缺備註；DRAFT，待 Tai 檢查，尚未寫入 appdb_ww2）。
 先跑 make_fruk.py 產生 ../zones-fr-uk-1940.geojson，再跑本檔。
 _meta.requiresDecision = true 的請求預設不送（send_seed.py 要加 --include-pending）。
 """
@@ -54,30 +54,30 @@ src(3, 'SRC_FRUS_1939_I', {
     'catalogId': 'FRUS 1939 v. I',
     'note': '美國國務院出版（17 U.S.C. §105）。Doc. 419（p. 414）：英國 1939-09-03 照會全文轉述；Doc. 421（p. 415）：法國照會。頁碼以 HistoryAtState TEI 原始檔的 <pb> 核對。',
 })
-# FRUS 1940 v. I（Doc. 235）與 FRUS 1942 v. I（Doc. 18）只是候選依據，沒有紀錄引用，不建來源（列在 README）。
-src(4, 'SRC_USMA02', {
-    'sourceKind': 'atlas_map',
-    'title': 'Europe, 1936–1939: German Aggressions, 1936–1939',
-    'publisher': 'United States Military Academy, Department of History',
-    'publishedText': 'West Point Atlas, World War II European Theater（USMA 網站版）',
+# 2026-10-31 Tai 拍板：同盟以聯合國家宣言為主（FRUS 1942 v. I, Doc. 18），參戰照會只作「補充」；自由法國起日依 FRUS 1940 v. I, Doc. 235。
+src(4, 'SRC_FRUS_1942_I', {
+    'sourceKind': 'official_record',
+    'title': 'Foreign Relations of the United States, Diplomatic Papers, 1942, General; the British Commonwealth; the Far East, Volume I',
+    'publisher': 'United States Department of State; United States Government Printing Office, Washington',
+    'publishedText': '1960',
     'licenseCode': 'us_federal_pd',
-    'licenseEvidenceUrl': 'https://commons.wikimedia.org/wiki/Category:World_War_II_maps_of_the_United_States_Military_Academy',
-    'url': 'https://s3.amazonaws.com/usma-media/inline-images/academics/academic_departments/history/WWII%20Europe%20Med/WWIIEurope02.jpg',
-    'archiveUrl': 'https://web.archive.org/web/20230921185042/https://www.westpoint.edu/academics/academic-departments/history/digital-history-center/atlases/world-war-two-europe',
-    'catalogId': 'USMA WWII Europe/Med, Map 2',
-    'localCopyPath': '/workspace/world-line-ww2/trace/WWIIEurope02.jpg',
-    'note': '17 U.S.C. §105 公有領域（同 Map 15）。圖上有 GREAT BRITAIN、NORTH IRELAND 與 IRISH FREE STATE 的邊界，不列顛群島不在德國擴張範圍內。5100×3300，2026-10-30 下載。',
+    'licenseEvidenceUrl': FRUS_LIC,
+    'url': 'https://history.state.gov/historicaldocuments/frus1942v01/d18',
+    'catalogId': 'FRUS 1942 v. I',
+    'note': '美國國務院出版（17 U.S.C. §105）。Doc. 18（pp. 25–26）：Declaration by United Nations 全文，文末「Done at Washington January First, 1942」，英國由 Winston S. Churchill 簽署。頁碼以 HistoryAtState TEI 原始檔的 <pb> 核對（2026-10-30）。',
 })
-src(5, 'SRC_NATURAL_EARTH', {
-    'sourceKind': 'dataset',
-    'title': 'Natural Earth 1:10m Cultural Vectors — Admin 0 – Countries',
-    'publisher': 'Natural Earth（North American Cartographic Information Society 支援）',
-    'licenseCode': 'public_domain',
-    'licenseEvidenceUrl': 'https://www.naturalearthdata.com/about/terms-of-use/',
-    'url': 'https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/',
-    'localCopyPath': '/workspace/world-line-ww2/trace/ne_10m_admin_0_countries.geojson',
-    'note': '公有領域（官網 terms of use）。現代疆界，只當 auxiliary_geometry：英國本土取 ADM0_A3 = GBR，排除 1955 年才併入的 Rockall。',
+src(5, 'SRC_FRUS_1940_I', {
+    'sourceKind': 'official_record',
+    'title': 'Foreign Relations of the United States, Diplomatic Papers, 1940, General, Volume I',
+    'publisher': 'United States Department of State; United States Government Printing Office, Washington',
+    'publishedText': '1959',
+    'licenseCode': 'us_federal_pd',
+    'licenseEvidenceUrl': FRUS_LIC,
+    'url': 'https://history.state.gov/historicaldocuments/frus1940v01/d235',
+    'catalogId': 'FRUS 1940 v. I',
+    'note': "美國國務院出版（17 U.S.C. §105）。Doc. 235（pp. 266–267）：美國駐法國副大使 Biddle 1940-06-24 自 Bordeaux 發出的電報，提到「last night's announcement of recognition of General de Gaulle's National Committee as the only sovereign authority of France」（英國 6/23 晚間的宣布）。頁碼以 HistoryAtState TEI 原始檔的 <pb> 核對（2026-10-30）。",
 })
+# SRC_USMA02、SRC_NATURAL_EARTH 只供英國本土（CR_UK_HOME）使用；英國本土 2026-10-31「需再聚焦」不寫，兩個來源也先不建（見 README）。
 
 def regime(n, ph, slug, qid, orig, lang, zh, en):
     w(f'02-regime-{n}-{slug}.json', ph, '/api/v1/regimes', {
@@ -85,7 +85,14 @@ def regime(n, ph, slug, qid, orig, lang, zh, en):
         'names': [{'nameKind': 'self', 'originalText': orig, 'originalLang': lang, 'display': {'zh-Hant': zh, 'en': en}, 'isPrimary': True}]})
 regime(1, 'REGIME_FR3', 'french-third-republic', 'Q70802', 'République française', 'fr', '法蘭西共和國（第三共和）', 'French Republic (Third Republic)')
 regime(2, 'REGIME_FR_STATE', 'french-state-vichy', 'Q69808', 'État français', 'fr', '法蘭西國（維琪）', 'French State (Vichy)')
-regime(3, 'REGIME_FR_LIBRE', 'free-france', 'Q152582', 'France libre', 'fr', '自由法國', 'Free France')
+def regime_named(n, ph, slug, qid, name):
+    w(f'02-regime-{n}-{slug}.json', ph, '/api/v1/regimes', {'slug': slug, 'wikidataQid': qid, 'names': [name]})
+# 自由法國起日 1940-06-23（Tai 2026-10-31 依建議）：政權狀態切片（regime_status_periods）尚未建置，
+# 暫記在自稱名稱的 validPeriod（起日有據、迄日未定），依據見事件 EV_UK_RECOG_FF。
+regime_named(3, 'REGIME_FR_LIBRE', 'free-france', 'Q152582', {
+    'nameKind': 'self', 'originalText': 'France libre', 'originalLang': 'fr',
+    'display': {'zh-Hant': '自由法國', 'en': 'Free France'}, 'isPrimary': True,
+    'validPeriod': {'start': '1940-06-23', 'end': None}})
 regime(4, 'REGIME_UK', 'united-kingdom', 'Q145', 'United Kingdom of Great Britain and Northern Ireland', 'en', '大不列顛及北愛爾蘭聯合王國', 'United Kingdom')
 
 w('05-control-1-vichy-free-zone.json', 'CR_VICHY_FREE', '/api/v1/control-records', {
@@ -111,23 +118,7 @@ w('05-control-1-vichy-free-zone.json', 'CR_VICHY_FREE', '/api/v1/control-records
          'evidenceNote': '6/25 德軍最遠推進線越過後來的分界線，7 月中才退回（同 CR_MAIN 的起日與不確定區間）。'},
     ]})
 
-w('05-control-2-uk-home.json', 'CR_UK_HOME', '/api/v1/control-records', {
-    'controllerRegimeId': '{{REGIME_UK}}',
-    'snapshotId': '{{SNAP_0715}}',
-    'controlType': 'direct_rule',
-    'validPeriod': {'start': '1939-09-03', 'end': '1945-09-03'},
-    'isDisputed': False,
-    'geometry': geo['CR_UK_HOME'],
-    'citations': [
-        {'sourceId': '{{SRC_USMA02}}', 'role': 'primary', 'locator': 'West Point Atlas WWII Europe, Map 2：GREAT BRITAIN、NORTH IRELAND 與 IRISH FREE STATE 邊界',
-         'evidenceNote': '1936–39 年的政治邊界；不列顛與北愛爾蘭在德國擴張範圍之外。'},
-        {'sourceId': '{{SRC_NATURAL_EARTH}}', 'role': 'auxiliary_geometry', 'locator': 'ne_10m_admin_0_countries，ADM0_A3 = GBR（排除 Rockall）',
-         'evidenceNote': '現代英國本土幾何；北愛爾蘭邊界自 1925 年未變，與 Map 2 目視相符。'},
-        {'sourceId': '{{SRC_USMA15}}', 'role': 'date_check', 'locator': 'West Point Atlas WWII Europe, Map 15',
-         'evidenceNote': '1940-06-13～25：英格蘭南部在德軍推進範圍之外。'},
-        {'sourceId': '{{SRC_FRUS_1939_I}}', 'role': 'date_check', 'locator': 'Doc. 419, p. 414',
-         'evidenceNote': '英國 1939-09-03 照會：11 時前未獲保證即與德國進入戰爭狀態（起日）。'},
-    ]}, meta={'requiresDecision': True, 'reason': '起訖日不是來源明文：起日取英國參戰日 1939-09-03、迄日取第一階段終點 1945-09-03，待 Tai 拍板'})
+# 英國本土控制紀錄（CR_UK_HOME）：Tai 2026-10-31「需再聚焦」，不寫；選項見 README。幾何仍保留在 zones-fr-uk-1940.geojson 備查。
 
 def alignment(n, ph, slug, regime_ph, camp, start, end, citations, note, meta=None):
     w(f'06-alignment-{n}-{slug}.json', ph, '/api/v1/regimes/{{%s}}/alignments' % regime_ph,
@@ -141,19 +132,47 @@ alignment(1, 'AL_FR_STATE_COBEL', 'french-state-co-belligerent', 'REGIME_FR_STAT
 ], {'zh-Hant': '憲法 §6「陣營」明列維琪法國屬共同交戰／合作；Tai 2026-10-30 指示依停戰協定等正式文件。起日 1940-07-11 是法蘭西國成立日（Acte constitutionnel n° 1 原文未核對，只核對到 7-10 授權法）。迄日未定。候選替代起日：1940-10-24 Montoire 會談。',
     'en': 'Constitution §6 names Vichy France as co-belligerent/collaborator; basis: the Franco-German armistice. Start 1940-07-11 = founding of the French State (Constitutional Act No. 1 not checked against the original; the 10 July enabling law is). End undetermined. Alternative start: Montoire, 1940-10-24.'})
 
-alignment(2, 'AL_UK_ALLIES_1939', 'united-kingdom-allies-1939', 'REGIME_UK', 'allies', '1939-09-03', None, [
-    {'sourceId': '{{SRC_FRUS_1939_I}}', 'role': 'primary', 'locator': 'Doc. 419, p. 414（英國 1939-09-03 照會）',
-     'evidenceNote': '照會：11 時（英國夏令時間）前未獲德國保證，兩國即自該時起進入戰爭狀態。'},
-], {'zh-Hant': '候選 A（參戰日）。憲法 §6 例舉「聯合國家宣言簽署日或參戰日」；英國另有候選 B：1942-01-01 簽署聯合國家宣言（FRUS 1942 v. I, Doc. 18, pp. 25–26；選 B 時再建來源）。待 Tai 拍板，未決前不送。',
-    'en': 'Candidate A (date of entry into the war). Candidate B: Declaration by United Nations, 1942-01-01 (FRUS 1942 I, Doc. 18, pp. 25–26). Pending Tai.'},
-  meta={'requiresDecision': True, 'reason': '同盟的正式依據有爭議（參戰日 1939-09-03 或聯合國家宣言 1942-01-01），由 Tai 拍板'})
+alignment(2, 'AL_UK_ALLIES_1942', 'united-kingdom-allies-1942', 'REGIME_UK', 'allies', '1942-01-01', None, [
+    {'sourceId': '{{SRC_FRUS_1942_I}}', 'role': 'primary', 'locator': 'Doc. 18, pp. 25–26（Declaration by United Nations）',
+     'evidenceNote': '聯合國家宣言全文，文末「Done at Washington January First, 1942」，英國由 Churchill 簽署；簽署國承諾以全部資源對三國同盟條約成員作戰、不單獨媾和。'},
+], {'zh-Hant': 'Tai 2026-10-31 拍板：陣營只依有紀錄且最嚴謹的正式文件（聯合國家宣言）判定；1939-09-03 對德宣戰只作「補充」（事件 EV_UK_DECL_1939），不構成陣營切片。1942-01-01 以前英國陣營不建（前端顯示「陣營未建置」＋補充）。迄日未定。',
+    'en': 'Decided by Tai 2026-10-31: camp follows the most rigorous formal document (Declaration by United Nations); the 1939-09-03 declaration of war is a supplement only (event EV_UK_DECL_1939). No camp before 1942-01-01. End undetermined.'})
 
-alignment(3, 'AL_FR3_ALLIES_1939', 'french-third-republic-allies-1939', 'REGIME_FR3', 'allies', '1939-09-03', '1940-06-25', [
-    {'sourceId': '{{SRC_FRUS_1939_I}}', 'role': 'primary', 'locator': 'Doc. 421, p. 415（法國 1939-09-03 照會）',
-     'evidenceNote': '法國照會：德國未答覆 9/1 照會，法國自 9/3 下午 5 時起履行對波蘭的義務。'},
-    {'sourceId': '{{SRC_DGFP_D9}}', 'role': 'date_check', 'locator': 'pp. 671–676，德法停戰協定第 I、XXIII 條',
-     'evidenceNote': '第 I 條：法國政府下令停止對德作戰；第 XXIII 條：法義停戰後 6 小時停火生效（1940-06-25）。'},
-], {'zh-Hant': '候選 A（參戰日至停戰生效）。1940-06-25～07-10 第三共和屬哪一陣營未定（不推定）。憲法定義下 1940 年英法沒有共同簽署「聯合國家宣言」，屬爭議，待 Tai 拍板。',
-    'en': 'Candidate A (entry into the war to the armistice). Camp for 1940-06-25 to 07-10 left undetermined. Pending Tai.'},
-  meta={'requiresDecision': True, 'reason': '同盟的正式依據有爭議（參戰日或其他文件），由 Tai 拍板'})
+# 第三共和：沒有簽署聯合國家宣言（1942 年已不存在），依原則 1 不建陣營切片；1939-09-03 照會只作補充（EV_FR3_DECL_1939）。
+# 自由法國：未簽署聯合國家宣言，FRUS 中未找到正式加入文件，不建陣營切片；補充為英國承認（EV_UK_RECOG_FF）。
+
+def event(n, ph, slug, kind, start, end, summary, participants, citations, time_note=None):
+    body = {'eventKind': kind, 'occurred': {'start': start, 'end': end}, 'datePrecision': 'day',
+            'summary': summary, 'participants': participants, 'citations': citations}
+    if time_note: body['timeNote'] = time_note
+    w(f'07-event-{n}-{slug}.json', ph, '/api/v1/events', body)
+
+event(1, 'EV_UK_DECL_1939', 'uk-declares-war-on-germany', 'war', '1939-09-03', '1939-09-04',
+      {'zh-Hant': '英國對德國進入戰爭狀態（陣營補充）', 'en': 'United Kingdom at war with Germany (camp supplement)'},
+      [{'regimeId': '{{REGIME_UK}}', 'role': 'belligerent'}, {'regimeId': '{{REGIME_DE}}', 'role': 'belligerent'}],
+      [{'sourceId': '{{SRC_FRUS_1939_I}}', 'locator': 'Doc. 419, p. 414（英國 1939-09-03 照會）',
+        'evidenceNote': '照會：11 時（英國夏令時間）前未獲德國保證，兩國即自該時起進入戰爭狀態。'}],
+      {'zh-Hant': '倫敦時間 11 時', 'en': '11 a.m. British Summer Time'})
+event(2, 'EV_FR3_DECL_1939', 'france-at-war-with-germany', 'war', '1939-09-03', '1939-09-04',
+      {'zh-Hant': '法國對德國進入戰爭狀態（陣營補充）', 'en': 'France at war with Germany (camp supplement)'},
+      [{'regimeId': '{{REGIME_FR3}}', 'role': 'belligerent'}, {'regimeId': '{{REGIME_DE}}', 'role': 'belligerent'}],
+      [{'sourceId': '{{SRC_FRUS_1939_I}}', 'locator': 'Doc. 421, p. 415（法國 1939-09-03 照會）',
+        'evidenceNote': '法國照會：德國未答覆 9/1 照會，法國自 9/3 下午 5 時起履行對波蘭的義務。'}],
+      {'zh-Hant': '巴黎時間 17 時', 'en': '5 p.m. Paris time'})
+event(3, 'EV_UK_RECOG_FF', 'uk-recognizes-french-national-committee', 'political', '1940-06-23', '1940-06-24',
+      {'zh-Hant': '英國宣布承認戴高樂的法國國家委員會（自由法國起點；陣營補充）', 'en': "UK announces recognition of General de Gaulle's French National Committee (start of Free France; camp supplement)"},
+      [{'regimeId': '{{REGIME_UK}}', 'role': 'other'}, {'regimeId': '{{REGIME_FR_LIBRE}}', 'role': 'other'}],
+      [{'sourceId': '{{SRC_FRUS_1940_I}}', 'locator': 'Doc. 235, pp. 266–267（美國駐法副大使 Biddle 1940-06-24 電報，Bordeaux）',
+        'evidenceNote': "電報提到「last night's announcement of recognition of General de Gaulle's National Committee as the only sovereign authority of France」，即英國 6/23 晚間的宣布。"}])
+
+# R9：義大利佔領的阿爾卑斯五省沒有合格來源 → 涵蓋備註（控制資料缺），前端以點狀樣式呈現（Tai 2026-10-31）。
+w('08-coverage-1-alpine.json', 'GAP_ALPINE', '/api/v1/control-coverage-notes', {
+    'theaterId': '{{THEATER_WE}}',
+    'geometry': geo['GAP_ALPINE'],
+    'validPeriod': {'start': '1940-07-15', 'end': '1942-11-11'},
+    'reason': 'no_qualified_source',
+    'note': {'zh-Hant': '義大利佔領區（1940-06-24 法義停戰後）沒有合格來源：Basses-Alpes、Hautes-Alpes、Alpes-Maritimes、Savoie、Haute-Savoie 五省（TRF-GIS 1940 省界）不畫，不標成維琪或義大利。',
+             'en': 'Italian occupation zone: no qualified source. The five Alpine départements (TRF-GIS 1940 boundaries) are left as a data gap, not assigned to Vichy or Italy.'},
+    'researchRef': 'data/seed/ww2/fr-uk-1940/README.md；build/make_fruk.py（ALPINE）',
+})
 print(sorted(os.listdir(OUT)))

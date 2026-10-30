@@ -92,10 +92,18 @@ for k in ('vichy', 'uk'):
 for f, g in existing:
     ov = shapely.intersection(shape(geo['vichy']), shapely.make_valid(g), grid_size=G).area
     print(f'  與 {f} 交集面積 {ov}'); assert ov == 0, f
+# 缺口（GAP_ALPINE，2026-10-31 起送成涵蓋備註）：四捨五入後扣掉維琪自由區與既有控制區，交集面積必須為 0（R9：缺口不與控制紀錄重疊）
+others = [shape(geo['vichy'])] + [shapely.set_precision(shapely.make_valid(g), G) for _, g in existing]
+# 與控制區之間留約 2 m 退縮（大於 1e-5 網格捨入量），避免 PostGIS 不設網格比對時出現浮點細縫
+geo['gap'] = rnd(mp(shapely.difference(shapely.set_precision(shape(rnd(gap)), G), union(others).buffer(2e-5), grid_size=G)))
+assert shape(geo['gap']).is_valid
+for g in others:
+    assert shape(geo['gap']).intersection(g).area == 0   # 不設網格的浮點交集
+print('GAP_ALPINE km2', round(km2(shape(geo['gap']))))
 json.dump({'type': 'FeatureCollection', 'features': [
     {'type': 'Feature', 'properties': {'id': 'CR_VICHY_FREE', 'controller': 'État français', 'km2': round(km2(vichy)),
         'boundarySource': '分界線：Ain 座標（對照 Leconte）；外框與扣除的 5 省：TRF-GIS 1940'}, 'geometry': geo['vichy']},
-    {'type': 'Feature', 'properties': {'id': 'GAP_ALPINE', 'note': '義大利佔領區沒有合格來源：04、05、06、73、74 五省不畫（控制資料缺）', 'km2': round(km2(gap))}, 'geometry': rnd(gap)},
+    {'type': 'Feature', 'properties': {'id': 'GAP_ALPINE', 'note': '義大利佔領區沒有合格來源：04、05、06、73、74 五省不畫（控制資料缺）', 'km2': round(km2(shape(geo['gap'])))}, 'geometry': geo['gap']},
     {'type': 'Feature', 'properties': {'id': 'CR_UK_HOME', 'controller': 'United Kingdom', 'km2': round(km2(uk)),
         'boundarySource': 'Natural Earth 10m admin-0 GBR（公有領域）'}, 'geometry': geo['uk']},
 ]}, open(os.path.join(SEED, 'zones-fr-uk-1940.geojson'), 'w'))

@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import type { ControlMapDto, RegimeDto, TimelineSnapshotDto } from './api/api-types';
+import type { ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto } from './api/api-types';
 import { WorldLineApi } from './api/world-line-api';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
@@ -20,6 +20,12 @@ export class AtlasData {
   readonly controlDate = signal<string | null>(null);
   readonly controlStatus = signal<LoadStatus>('idle');
   readonly requestedDate = signal<string | null>(null);
+
+  /** 主權圖層（國界）：與控制區分開載入；失敗時保留上一次成功的結果。 */
+  readonly sovereignty = signal<SovereigntyMapDto | null>(null);
+  readonly sovereigntyStatus = signal<LoadStatus>('idle');
+  private readonly sovCache = new Map<string, SovereigntyMapDto>();
+  private sovSeq = 0;
 
   readonly snapshots = signal<TimelineSnapshotDto[]>([]);
   readonly snapshotsStatus = signal<LoadStatus>('idle');
@@ -67,6 +73,30 @@ export class AtlasData {
     } catch {
       if (my === this.seq) this.controlStatus.set('error');
     }
+  }
+
+  async loadSovereignty(date: string): Promise<void> {
+    const my = ++this.sovSeq;
+    const hit = this.sovCache.get(date);
+    if (hit) {
+      this.applySovereignty(hit);
+      return;
+    }
+    this.sovereigntyStatus.set('loading');
+    try {
+      const dto = await this.api.sovereignty(date);
+      this.sovCache.set(date, dto);
+      if (this.sovCache.size > 30) this.sovCache.delete(this.sovCache.keys().next().value as string);
+      if (my === this.sovSeq) this.applySovereignty(dto);
+    } catch {
+      if (my === this.sovSeq) this.sovereigntyStatus.set('error');
+    }
+  }
+
+  private applySovereignty(dto: SovereigntyMapDto): void {
+    this.sovereignty.set(dto);
+    this.sovereigntyStatus.set('ok');
+    void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId));
   }
 
   async loadSnapshots(): Promise<void> {

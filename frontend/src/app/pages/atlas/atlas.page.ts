@@ -12,7 +12,9 @@ import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
-import { AtlasMap, type MapFeatureEvent, type MapGapEvent } from '../../shared/map/atlas-map';
+import { AtlasMap, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
+import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { SovereigntyCard } from '../../shared/sovereignty-card/sovereignty-card';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
@@ -24,7 +26,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
+  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SovereigntyCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -67,8 +69,16 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
             <div class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
-              <wl-atlas-map [collection]="collection()" [labels]="labels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
-                (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
+              <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+                [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="selectedSov()?.recordId ?? null"
+                (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
+                (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
+
+              <!-- 陣營外框圖層（補充，可開關；Tai 2026-10-31：政權優先於陣營，填色不變） -->
+              <button type="button" data-testid="camp-layer-toggle" class="wl-paper absolute right-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2"
+                [attr.aria-pressed]="showCamps()" (click)="showCamps.set(!showCamps())">
+                <span class="inline-block size-3 border border-wl-outline" [class.bg-wl-secondary]="showCamps()"></span>{{ lang() === 'en' ? 'Camp outlines (supplement)' : '陣營外框（補充）' }}
+              </button>
 
               @if (firstLoad()) {
                 <div data-testid="map-loading" class="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -119,6 +129,13 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
                 </div>
               }
 
+              @if (selectedSovInfo(); as s) {
+                <div class="absolute z-20" [style.left.px]="s.x" [style.top.px]="s.y">
+                  <wl-sovereignty-card [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [lang]="lang()"
+                    (closed)="selectedSov.set(null)" />
+                </div>
+              }
+
               @if (selectedGapInfo(); as g) {
                 <div class="absolute z-20" [style.left.px]="g.x" [style.top.px]="g.y">
                   <wl-gap-card [note]="g.note" [lang]="lang()" (closed)="selectedGap.set(null)" />
@@ -153,6 +170,26 @@ export class AtlasPage {
   protected readonly selected = signal<MapFeatureEvent | null>(null);
   protected readonly hover = signal<MapFeatureEvent | null>(null);
   protected readonly selectedGap = signal<MapGapEvent | null>(null);
+  protected readonly selectedSov = signal<MapSovereigntyEvent | null>(null);
+  protected readonly showCamps = signal(false);
+  /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
+  protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
+  protected readonly sovereigntyCount = computed(() => this.data.sovereignty()?.featureCollection.features.length ?? 0);
+  protected readonly selectedSovInfo = computed(() => {
+    const e = this.selectedSov();
+    const f = e && this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.recordId === e.recordId);
+    if (!e || !f) return null;
+    const reg = this.data.regimes()[f.properties.regimeId];
+    const name = regimeSelfName(reg, this.lang());
+    return {
+      x: Math.max(8, Math.min(e.x + 12, window.innerWidth - 360)),
+      y: Math.max(8, Math.min(e.y - 40, window.innerHeight - 560)),
+      props: f.properties,
+      name: name?.display ?? f.properties.regimeSlug,
+      original: name?.original ?? '',
+      originalLang: reg?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '',
+    };
+  });
   private readonly everLoaded = signal(false);
 
   /** 載入失敗而顯示舊日期資料時，不沿用舊的史料判斷：一律以推估（不明）樣式呈現（PRD §8.5 error 保守原則）。 */
@@ -176,7 +213,8 @@ export class AtlasPage {
   protected readonly featureCount = computed(() => this.data.control()?.featureCollection.features.length ?? 0);
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
   protected readonly isEmpty = computed(
-    () => this.data.controlStatus() === 'ok' && this.featureCount() === 0 && !this.data.showingStale(),
+    () => this.data.controlStatus() === 'ok' && this.featureCount() === 0 && !this.data.showingStale()
+      && this.data.sovereigntyStatus() !== 'loading' && this.sovereigntyCount() === 0,
   );
   protected readonly nearest = computed(() => nearestDate(this.data.snapshots().map((s) => s.asOf), this.state.date()));
 
@@ -205,6 +243,12 @@ export class AtlasPage {
     const dto = this.data.control();
     if (!dto || (this.data.controlStatus() === 'error' && this.data.showingStale())) return [];
     return controlLabels(dto, (id) => regimeSelfName(regs[id], this.lang())?.display ?? null);
+  });
+
+  /** 國名標籤＋控制區政權標籤（控制區標籤在後，畫在國名上面）。 */
+  protected readonly allLabels = computed(() => {
+    const regs = this.data.regimes();
+    return [...sovereigntyLabels(this.data.sovereignty(), (id) => regimeSelfName(regs[id], this.lang())?.display ?? null), ...this.labels()];
   });
 
   private findFeature(versionId: string) {
@@ -270,7 +314,10 @@ export class AtlasPage {
       untracked(() => {
         if (this.data.health() === 'up') {
           clearTimeout(this.debounce);
-          this.debounce = setTimeout(() => void this.data.loadControl(date), this.everLoaded() ? 120 : 0);
+          this.debounce = setTimeout(() => {
+            void this.data.loadControl(date);
+            void this.data.loadSovereignty(date);
+          }, this.everLoaded() ? 120 : 0);
         }
         void this.router.navigate([], {
           relativeTo: this.route,
@@ -289,6 +336,7 @@ export class AtlasPage {
     if (!(await this.data.checkHealth())) return;
     void this.data.loadSnapshots();
     void this.data.loadControl(this.state.date());
+    void this.data.loadSovereignty(this.state.date());
   }
 
   protected reloadControl(): void {
@@ -302,8 +350,16 @@ export class AtlasPage {
 
   protected onFeatureClick(e: MapFeatureEvent): void {
     this.hover.set(null);
+    this.selectedSov.set(null);
     this.selectedGap.set(null);
     this.selected.set(e);
+  }
+
+  protected onSovereigntyClick(e: MapSovereigntyEvent): void {
+    this.hover.set(null);
+    this.selected.set(null);
+    this.selectedGap.set(null);
+    this.selectedSov.set(e);
   }
 
   protected onGapClick(e: MapGapEvent): void {
@@ -315,6 +371,7 @@ export class AtlasPage {
   protected clearSelection(): void {
     this.selected.set(null);
     this.selectedGap.set(null);
+    this.selectedSov.set(null);
   }
 
   protected onInvalidInput(): void {

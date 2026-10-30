@@ -196,6 +196,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sovereignty-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateSovereigntyRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty-records/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractSovereigntyRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sources/{id}": {
         parameters: {
             query?: never;
@@ -284,6 +316,22 @@ export interface paths {
             cookie?: never;
         };
         get: operations["GetEvent"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetSovereignty"];
         put?: never;
         post?: never;
         delete?: never;
@@ -431,6 +479,26 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["SourceDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfSovereigntyMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["SovereigntyMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfSovereigntyRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["SovereigntyRecordDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -634,6 +702,34 @@ export interface components {
             catalogId?: null | string;
             note?: null | string;
         };
+        CreateSovereigntyRecordRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            geometry: null | components["schemas"]["JsonElement"];
+            validPeriod: null | components["schemas"]["DatePeriodDto"];
+            layerStatus: null | string;
+            /** Format: uuid */
+            geometrySourceId: null | string;
+            geometryLocator: null | string;
+            geometryLicense: null | string;
+            attribution?: null | string;
+            /** Format: uuid */
+            startEventId?: null | string;
+            /** Format: uuid */
+            endEventId?: null | string;
+            /** Format: int64 */
+            ohmRelationId?: null | number | string;
+            /** Format: int32 */
+            ohmVersion?: null | number | string;
+            /** Format: date-time */
+            ohmFetchedAt?: null | string;
+            ohmStartRaw?: null | string;
+            ohmEndRaw?: null | string;
+            provenance?: unknown;
+            note?: null | {
+                [key: string]: string;
+            };
+        };
         CreateTheaterRequest: {
             code: null | string;
             name: null | {
@@ -680,6 +776,25 @@ export interface components {
             /** Format: uuid */
             regimeId: null | string;
             role: null | string;
+        };
+        GeometryProvenanceDto: {
+            /** Format: uuid */
+            sourceId: string;
+            sourceTitle: string;
+            publisher: string;
+            sourceLicenseCode: null | string;
+            locator: string;
+            geometryLicense: string;
+            attribution: null | string;
+            /** Format: int64 */
+            ohmRelationId: null | number | string;
+            /** Format: int32 */
+            ohmVersion: null | number | string;
+            /** Format: date-time */
+            ohmFetchedAt: null | string;
+            ohmStartRaw: null | string;
+            ohmEndRaw: null | string;
+            flags: null | components["schemas"]["JsonElement"];
         };
         IntervalDto: {
             /** Format: date */
@@ -812,6 +927,72 @@ export interface components {
             localCopyPath: null | string;
             catalogId: null | string;
             note: null | string;
+        };
+        SovereigntyEventRefDto: {
+            /** Format: uuid */
+            id: string;
+            eventKind: string;
+            occurred: components["schemas"]["DatePeriodDto"];
+            summary: null | {
+                [key: string]: string;
+            };
+            verification: string;
+            citations: components["schemas"]["CitationDto"][];
+        };
+        SovereigntyFeature: {
+            /** Format: uuid */
+            id: string;
+            geometry: components["schemas"]["JsonElement"];
+            properties: components["schemas"]["SovereigntyFeatureProperties"];
+            type?: null | string;
+        };
+        SovereigntyFeatureCollection: {
+            features: components["schemas"]["SovereigntyFeature"][];
+            type?: null | string;
+        };
+        SovereigntyFeatureProperties: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            layerStatus: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            startEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            endEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            geometry: components["schemas"]["GeometryProvenanceDto"];
+            note: null | {
+                [key: string]: string;
+            };
+            regimeAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
+        };
+        SovereigntyMapDto: {
+            /** Format: date */
+            date: string;
+            featureCollection: components["schemas"]["SovereigntyFeatureCollection"];
+        };
+        SovereigntyRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            layerStatus: string;
+            /** Format: uuid */
+            startEventId: null | string;
+            /** Format: uuid */
+            endEventId: null | string;
+            /** Format: uuid */
+            geometrySourceId: string;
+            geometryLocator: string;
+            geometryLicense: string;
+            attribution: null | string;
+            /** Format: int64 */
+            ohmRelationId: null | number | string;
+            /** Format: int32 */
+            ohmVersion: null | number | string;
+            /** Format: date-time */
+            ohmFetchedAt: null | string;
         };
         SupplementEventDto: {
             /** Format: uuid */
@@ -1522,6 +1703,119 @@ export interface operations {
             };
         };
     };
+    CreateSovereigntyRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSovereigntyRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractSovereigntyRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
     GetSource: {
         parameters: {
             query?: never;
@@ -1713,6 +2007,37 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetSovereignty: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -7,6 +7,7 @@ import type {
   PaginatedSnapshots,
   RegimeDto,
   SourceDto,
+  SovereigntyMapDto,
   TimelineSnapshotDto,
 } from './api-types';
 
@@ -30,6 +31,16 @@ export class WorldLineApi {
   async control(date: string): Promise<ControlMapDto> {
     const res = await firstValueFrom(
       this.http.get<ApiEnvelope<ControlMapDto>>(`${WorldLineApi.base}/control`, {
+        params: new HttpParams().set('date', date),
+      }),
+    );
+    return res.data;
+  }
+
+  /** GET /sovereignty?date=：該日主權圖層（國界，依政權上色；陣營只作補充）。 */
+  async sovereignty(date: string): Promise<SovereigntyMapDto> {
+    const res = await firstValueFrom(
+      this.http.get<ApiEnvelope<SovereigntyMapDto>>(`${WorldLineApi.base}/sovereignty`, {
         params: new HttpParams().set('date', date),
       }),
     );

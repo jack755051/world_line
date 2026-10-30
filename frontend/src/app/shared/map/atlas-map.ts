@@ -17,9 +17,17 @@ import type { FeatureCollection, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
+import type { SovereigntyProps } from './sovereignty-style';
 
 export interface MapGapEvent {
   gapId: string;
+  x: number;
+  y: number;
+}
+
+/** 點主權圖層（國界）上的國家。 */
+export interface MapSovereigntyEvent {
+  recordId: string;
   x: number;
   y: number;
 }
@@ -45,11 +53,39 @@ export function buildBaseStyle(): StyleSpecification {
       land: { type: 'geojson', data: BASEMAP_URL, attribution: '底圖 Base map: Natural Earth（公有領域 public domain）' },
       control: { type: 'geojson', data: EMPTY, promoteId: 'versionId' },
       gaps: { type: 'geojson', data: EMPTY, promoteId: 'gapId' },
+      sovereignty: {
+        type: 'geojson',
+        data: EMPTY,
+        promoteId: 'recordId',
+        attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）; CNIG, GURS, Kartverket, OCHA/HDX（CC BY 4.0）; 部分線段源自 OpenStreetMap（ODbL）',
+      },
     },
     layers: [
       { id: 'sea', type: 'background', paint: { 'background-color': MAP_COLORS.sea } },
       { id: 'land', type: 'fill', source: 'land', paint: { 'fill-color': MAP_COLORS.land } },
       { id: 'coast', type: 'line', source: 'land', paint: { 'line-color': MAP_COLORS.coast, 'line-width': 0.75 } },
+      // 主權圖層（國界）：填色依政權；非主權實體（佔領軍政府）用斜線；控制區疊在上面
+      { id: 'sov-fill', type: 'fill', source: 'sovereignty', filter: ['==', ['get', 'wlPattern'], ''], paint: { 'fill-color': ['get', 'wlFill'], 'fill-opacity': 0.9 } },
+      { id: 'sov-hatch-base', type: 'fill', source: 'sovereignty', filter: ['!=', ['get', 'wlPattern'], ''], paint: { 'fill-color': MAP_COLORS.land, 'fill-opacity': 1 } },
+      { id: 'sov-hatch', type: 'fill', source: 'sovereignty', filter: ['!=', ['get', 'wlPattern'], ''], paint: { 'fill-pattern': ['get', 'wlPattern'] } },
+      { id: 'sov-line', type: 'line', source: 'sovereignty', filter: ['==', ['get', 'wlPattern'], ''], paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.75 } },
+      {
+        id: 'sov-line-not-sovereign',
+        type: 'line',
+        source: 'sovereignty',
+        filter: ['!=', ['get', 'wlPattern'], ''],
+        paint: { 'line-color': MAP_COLORS.ink, 'line-width': 1, 'line-opacity': 0.8, 'line-dasharray': [2, 2] },
+      },
+      {
+        // 陣營外框（補充，可開關，預設關）：只描有陣營切片的國家，不改填色
+        id: 'sov-camp-line',
+        type: 'line',
+        source: 'sovereignty',
+        filter: ['!=', ['get', 'wlCampLine'], ''],
+        layout: { visibility: 'none' },
+        paint: { 'line-color': ['get', 'wlCampLine'], 'line-width': 3, 'line-opacity': 0.9, 'line-offset': 1.5 },
+      },
+      { id: 'sov-selected', type: 'line', source: 'sovereignty', filter: ['==', ['get', 'recordId'], ''], paint: { 'line-color': MAP_COLORS.ink, 'line-width': 2 } },
       {
         // 控制資料缺（R9）：紙底＋細墨點，邊框細虛線；不與任何控制類型共用樣式
         id: 'gap-base',
@@ -130,7 +166,8 @@ export function buildBaseStyle(): StyleSpecification {
   host: { class: 'absolute inset-0 block overflow-hidden' },
   template: `
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
-      [attr.data-rendered-gaps]="renderedGaps()" [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
+      [attr.data-rendered-gaps]="renderedGaps()" [attr.data-rendered-sovereignty]="renderedSovereignty()"
+      [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
@@ -146,6 +183,9 @@ export function buildBaseStyle(): StyleSpecification {
 export class AtlasMap {
   readonly collection = input<FeatureCollection<Geometry, DecoratedProps> | null>(null);
   readonly gaps = input<FeatureCollection<Geometry, GapProps> | null>(null);
+  readonly sovereignty = input<FeatureCollection<Geometry, SovereigntyProps> | null>(null);
+  readonly showCamps = input(false);
+  readonly selectedRecordId = input<string | null>(null);
   readonly selectedVersionId = input<string | null>(null);
   readonly engineErrorText = input('');
   readonly labels = input<ControlLabel[]>([]);
@@ -154,10 +194,12 @@ export class AtlasMap {
   readonly featureClick = output<MapFeatureEvent>();
   readonly emptyClick = output<void>();
   readonly gapClick = output<MapGapEvent>();
+  readonly sovereigntyClick = output<MapSovereigntyEvent>();
   readonly featureHover = output<MapFeatureEvent | null>();
 
   protected readonly renderedCount = signal(0);
   protected readonly renderedGaps = signal(0);
+  protected readonly renderedSovereignty = signal(0);
   protected readonly ready = signal(false);
   readonly engineError = signal(false);
 
@@ -183,6 +225,21 @@ export class AtlasMap {
       const data = this.gaps();
       if (!this.ready()) return;
       untracked(() => (this.map?.getSource('gaps') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+    });
+    effect(() => {
+      const data = this.sovereignty();
+      if (!this.ready()) return;
+      untracked(() => (this.map?.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+    });
+    effect(() => {
+      const on = this.showCamps();
+      if (!this.ready()) return;
+      this.map?.setLayoutProperty('sov-camp-line', 'visibility', on ? 'visible' : 'none');
+    });
+    effect(() => {
+      const id = this.selectedRecordId() ?? '';
+      if (!this.ready()) return;
+      this.map?.setFilter('sov-selected', ['==', ['get', 'recordId'], id]);
     });
     effect(() => {
       const id = this.selectedVersionId() ?? '';
@@ -223,6 +280,8 @@ export class AtlasMap {
         this.setData(this.collection());
         this.placeLabels();
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
+        (map.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(this.sovereignty() ?? EMPTY);
+        map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
       });
       map.on('idle', () => this.countRendered());
       map.on('move', () => this.placeLabels());
@@ -237,7 +296,12 @@ export class AtlasMap {
           return;
         }
         const gap = map.queryRenderedFeatures(e.point, { layers: ['gap-base'] })[0]?.properties?.['gapId'] as string | undefined;
-        if (gap) this.gapClick.emit({ gapId: gap, x: e.point.x, y: e.point.y });
+        if (gap) {
+          this.gapClick.emit({ gapId: gap, x: e.point.x, y: e.point.y });
+          return;
+        }
+        const rec = map.queryRenderedFeatures(e.point, { layers: ['sov-fill', 'sov-hatch-base'] })[0]?.properties?.['recordId'] as string | undefined;
+        if (rec) this.sovereigntyClick.emit({ recordId: rec, x: e.point.x, y: e.point.y });
         else this.emptyClick.emit();
       });
       for (const layer of layers) {
@@ -251,6 +315,8 @@ export class AtlasMap {
           this.featureHover.emit(null);
         });
       }
+      map.on('mouseenter', 'sov-fill', () => (map.getCanvas().style.cursor = 'pointer'));
+      map.on('mouseleave', 'sov-fill', () => (map.getCanvas().style.cursor = ''));
       map.on('mouseenter', 'gap-base', () => (map.getCanvas().style.cursor = 'pointer'));
       map.on('mouseleave', 'gap-base', () => (map.getCanvas().style.cursor = ''));
     } catch {
@@ -287,6 +353,7 @@ export class AtlasMap {
     const n = this.map.queryRenderedFeatures({ layers: ['control-fill', 'control-hatch'] }).length;
     this.renderedCount.set(n);
     this.renderedGaps.set(this.map.queryRenderedFeatures({ layers: ['gap-fill'] }).length);
+    this.renderedSovereignty.set(this.map.queryRenderedFeatures({ layers: ['sov-fill', 'sov-hatch-base'] }).length);
   }
 
   private addHatch(id: string): void {

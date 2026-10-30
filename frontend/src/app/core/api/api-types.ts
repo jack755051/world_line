@@ -27,3 +27,10 @@ export type SupplementEventDto = Schemas['SupplementEventDto'];
 
 /** `LocalizedText`：OpenAPI 只描述成 additionalProperties，這裡收斂成兩種語言（R4）。 */
 export type LocalizedText = Partial<Record<'zh-Hant' | 'en', string>> & Record<string, string | undefined>;
+
+// 主權圖層（法理／事實國界；2026-10-31 試驗 feature/borders-1938-1940）
+export type SovereigntyMapDto = Schemas['SovereigntyMapDto'];
+export type SovereigntyFeature = Schemas['SovereigntyFeature'];
+export type SovereigntyFeatureProperties = Schemas['SovereigntyFeatureProperties'];
+export type SovereigntyEventRefDto = Schemas['SovereigntyEventRefDto'];
+export type GeometryProvenanceDto = Schemas['GeometryProvenanceDto'];

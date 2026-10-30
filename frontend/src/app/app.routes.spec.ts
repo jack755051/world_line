@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
+import { ToastService } from './components/ui/toast';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { routes } from './app.routes';
 
 describe('routes', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [provideRouter(routes)] });
+    TestBed.configureTestingModule({ providers: [provideRouter(routes), provideHttpClient(), provideHttpClientTesting(), ToastService] });
   });
 
   it('/ 進主地圖頁', async () => {

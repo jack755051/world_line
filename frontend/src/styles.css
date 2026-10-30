@@ -3,6 +3,12 @@
 @import './sanring-theme.css';
 @import './styles/wl-tokens.css';
 @import './styles/sanring-bridge.css';
+@import './styles/wl-components.css';
+
+/* 字型：Noto Serif TC（標題 600）、Noto Sans TC（內文 400／600），以 @fontsource 隨前端打包（SIL OFL），不連外部字型 CDN */
+@import '@fontsource/noto-serif-tc/600.css';
+@import '@fontsource/noto-sans-tc/400.css';
+@import '@fontsource/noto-sans-tc/600.css';
 
 /* Tailwind utility 對應 --wl-*（例：bg-wl-surface、text-wl-on-surface、font-wl-serif、rounded-wl-lg） */
 @theme inline {
@@ -25,7 +31,28 @@
   --radius-wl-sm: var(--wl-radius-sm);
   --radius-wl-md: var(--wl-radius-md);
   --radius-wl-lg: var(--wl-radius-lg);
+  --color-wl-surface-dim: var(--wl-color-surface-dim);
+  --color-wl-surface-bright: var(--wl-color-surface-bright);
+  --color-wl-surface-container: var(--wl-color-surface-container);
+  --color-wl-surface-container-high: var(--wl-color-surface-container-high);
+  --color-wl-surface-container-lowest: var(--wl-color-surface-container-lowest);
+  --color-wl-secondary-container: var(--wl-color-secondary-container);
+  --color-wl-tertiary-container: var(--wl-color-tertiary-container);
+  --color-wl-placeholder: var(--wl-color-placeholder);
+  --color-wl-warning: var(--wl-color-warning);
+
+  /* sanring popover／toast 用到的動畫（元件只引用 class，未附 keyframes） */
+  --animate-popover-in: wl-pop-in 120ms ease-out;
+  --animate-popover-out: wl-pop-out 100ms ease-in forwards;
+  --animate-toast-in-top: wl-toast-in-top 160ms ease-out;
+  --animate-toast-in-bottom: wl-toast-in-bottom 160ms ease-out;
+  --animate-toast-leave: wl-pop-out 140ms ease-in forwards;
 }
+
+@keyframes wl-pop-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+@keyframes wl-pop-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes wl-toast-in-top { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes wl-toast-in-bottom { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 html,
 body {
@@ -44,3 +71,6 @@ body {
   /* DESIGN.md：日期與數字一律等寬數字 */
   font-variant-numeric: tabular-nums;
 }
+
+/* MapLibre 版權標示改用紙色 */
+.maplibregl-ctrl-attrib { background: rgba(250, 247, 240, 0.85) !important; font-size: 10px; }

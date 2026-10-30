@@ -182,3 +182,52 @@ public sealed record RegimeAlignmentDto(
 public sealed record RetractionRequest(string? Reason);
 
 public sealed record RetractionDto(Guid Id, DateTimeOffset RetractedAt, string Reason);
+
+// ───────────── 主權圖層（法理國界；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增主權紀錄。validPeriod.start 必填，迄日未知可留空。geometrySourceId 必須是授權在允許清單的資料集來源；
+/// geometryLicense 為此筆幾何的授權（cc0／cc_by…），cc_by／cc_by_sa 必須附 attribution。
+/// </summary>
+public sealed record CreateSovereigntyRecordRequest(
+    Guid? RegimeId, JsonElement? Geometry, DatePeriodDto? ValidPeriod, string? LayerStatus,
+    Guid? GeometrySourceId, string? GeometryLocator, string? GeometryLicense, string? Attribution = null,
+    Guid? StartEventId = null, Guid? EndEventId = null,
+    long? OhmRelationId = null, int? OhmVersion = null, DateTimeOffset? OhmFetchedAt = null,
+    string? OhmStartRaw = null, string? OhmEndRaw = null,
+    JsonElement? Provenance = null, IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record SovereigntyRecordDto(
+    Guid Id, Guid RegimeId, DatePeriodDto ValidPeriod, string LayerStatus, Guid? StartEventId, Guid? EndEventId,
+    Guid GeometrySourceId, string GeometryLocator, string GeometryLicense, string? Attribution,
+    long? OhmRelationId, int? OhmVersion, DateTimeOffset? OhmFetchedAt);
+
+/// <summary>疆界變動事件摘要。verification：verified（有合格引用）| pending（待查證：尚無合格引用）。</summary>
+public sealed record SovereigntyEventRefDto(
+    Guid Id, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
+    string Verification, IReadOnlyList<CitationDto> Citations);
+
+/// <summary>幾何出處：來源（資料集）＋locator（關係 id／版本）＋此筆幾何授權與署名。</summary>
+public sealed record GeometryProvenanceDto(
+    Guid SourceId, string SourceTitle, string Publisher, string? SourceLicenseCode, string Locator,
+    string GeometryLicense, string? Attribution, long? OhmRelationId, int? OhmVersion, DateTimeOffset? OhmFetchedAt,
+    string? OhmStartRaw, string? OhmEndRaw, JsonElement? Flags);
+
+/// <summary>
+/// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
+/// </summary>
+public sealed record SovereigntyFeatureProperties(
+    Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
+    SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
+    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null);
+
+public sealed record SovereigntyFeature(Guid Id, JsonElement Geometry, SovereigntyFeatureProperties Properties)
+{
+    public string Type => "Feature";
+}
+
+public sealed record SovereigntyFeatureCollection(IReadOnlyList<SovereigntyFeature> Features)
+{
+    public string Type => "FeatureCollection";
+}
+
+public sealed record SovereigntyMapDto(DateOnly Date, SovereigntyFeatureCollection FeatureCollection);

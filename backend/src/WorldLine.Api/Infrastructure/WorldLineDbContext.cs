@@ -23,6 +23,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
+    public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -275,6 +276,36 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.Note).HasColumnType("jsonb");
             e.Property(x => x.Version).HasDefaultValue(0);
             e.HasOne<Theater>().WithMany().HasForeignKey(x => x.TheaterId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.Geom).HasMethod("gist");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 主權圖層（法理國界；2026-10-31 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyRecord>(e =>
+        {
+            e.ToTable("sovereignty_records", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_records_layer_status", InList("layer_status", SovereigntyLayerStatuses.All));
+                t.HasCheckConstraint("ck_sovereignty_records_geometry_license", InList("geometry_license", CitationPolicy.PrimaryLicenseAllowlist.Order()));
+                t.HasCheckConstraint("ck_sovereignty_records_attribution", "geometry_license NOT IN ('cc_by', 'cc_by_sa') OR attribution IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_sovereignty_records_provenance_object", "provenance IS NULL OR jsonb_typeof(provenance) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_records_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_records_ohm_pinned", "ohm_relation_id IS NULL OR (ohm_version IS NOT NULL AND ohm_fetched_at IS NOT NULL)");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Geom).HasColumnType("geometry(MultiPolygon,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.LayerStatus).HasMaxLength(16);
+            e.Property(x => x.GeometryLicense).HasMaxLength(16);
+            e.Property(x => x.Provenance).HasColumnType("jsonb");
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.GeometrySourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.Geom).HasMethod("gist");
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);

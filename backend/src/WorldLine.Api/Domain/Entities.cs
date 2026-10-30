@@ -228,3 +228,39 @@ public sealed class ControlCoverageNote
     public DateTimeOffset CreatedAt { get; set; }
     public int Version { get; set; }
 }
+
+/// <summary>
+/// 主權圖層（法理國界，sovereignty_records）：某政權在某期間的國土範圍，與控制區圖層（control_records）分開。
+/// - 幾何來自外部資料集（目前為 OpenHistoricalMap admin_level=2 關係），釘選關係 id＋版本＋抓取時間。
+/// - 疆界變動由起訖事件（historical_events）說明；事件沒有合格引用即為「待查證」，不推測。
+/// - 同一政權的有效紀錄期間不可重疊（EXCLUDE）；修正走軟撤回（I5），不硬刪。
+/// 2026-10-31 試驗（feature/borders-1938-1940），AI 提案・待拍板。
+/// </summary>
+public sealed class SovereigntyRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    public MultiPolygon Geom { get; set; } = null!;
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    /// <summary>de_jure（法理國土）| not_sovereign（資料集列為國家層級、但其實是佔領行政區，非主權）。</summary>
+    public string LayerStatus { get; set; } = SovereigntyLayerStatuses.DeJure;
+    public Guid? StartEventId { get; set; }
+    public Guid? EndEventId { get; set; }
+    public Guid GeometrySourceId { get; set; }
+    public string GeometryLocator { get; set; } = "";
+    /// <summary>幾何本身的授權（逐筆判定：成員線段帶 CC BY 標籤者為 cc_by，否則依 OHM 整體的 cc0）。</summary>
+    public string GeometryLicense { get; set; } = "";
+    public string? Attribution { get; set; }
+    public long? OhmRelationId { get; set; }
+    public int? OhmVersion { get; set; }
+    public DateTimeOffset? OhmFetchedAt { get; set; }
+    public string? OhmStartRaw { get; set; }
+    public string? OhmEndRaw { get; set; }
+    /// <summary>出處旗標（jsonb 物件）：成員線段的授權／來源統計、需人工審查的項目。</summary>
+    public string? Provenance { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}

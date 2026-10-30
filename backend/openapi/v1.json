@@ -864,6 +864,153 @@
         ]
       }
     },
+    "/api/v1/sovereignty-records": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "CreateSovereigntyRecord",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSovereigntyRecordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfSovereigntyRecordDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/sovereignty-records/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "RetractSovereigntyRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/sources/{id}": {
       "get": {
         "tags": [
@@ -1147,6 +1294,46 @@
           },
           "404": {
             "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sovereignty": {
+      "get": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "GetSovereignty",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfSovereigntyMapDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -1814,6 +2001,104 @@
               },
               {
                 "$ref": "#/components/schemas/SourceDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfSovereigntyMapDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyMapDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfSovereigntyRecordDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyRecordDto"
               }
             ]
           },
@@ -2758,6 +3043,139 @@
           }
         }
       },
+      "CreateSovereigntyRecordRequest": {
+        "required": [
+          "regimeId",
+          "geometry",
+          "validPeriod",
+          "layerStatus",
+          "geometrySourceId",
+          "geometryLocator",
+          "geometryLicense"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometry": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "layerStatus": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geometrySourceId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometryLocator": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geometryLicense": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "startEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "endEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "ohmRelationId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "ohmVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "ohmFetchedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "ohmStartRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmEndRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "provenance": { },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "CreateTheaterRequest": {
         "required": [
           "code",
@@ -2950,6 +3368,101 @@
             "type": [
               "null",
               "string"
+            ]
+          }
+        }
+      },
+      "GeometryProvenanceDto": {
+        "required": [
+          "sourceId",
+          "sourceTitle",
+          "publisher",
+          "sourceLicenseCode",
+          "locator",
+          "geometryLicense",
+          "attribution",
+          "ohmRelationId",
+          "ohmVersion",
+          "ohmFetchedAt",
+          "ohmStartRaw",
+          "ohmEndRaw",
+          "flags"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sourceTitle": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "sourceLicenseCode": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "locator": {
+            "type": "string"
+          },
+          "geometryLicense": {
+            "type": "string"
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmRelationId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "ohmVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "ohmFetchedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "ohmStartRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmEndRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "flags": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
             ]
           }
         }
@@ -3491,6 +4004,273 @@
           }
         }
       },
+      "SovereigntyEventRefDto": {
+        "required": [
+          "id",
+          "eventKind",
+          "occurred",
+          "summary",
+          "verification",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventKind": {
+            "type": "string"
+          },
+          "occurred": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "summary": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "verification": {
+            "type": "string"
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
+          }
+        }
+      },
+      "SovereigntyFeature": {
+        "required": [
+          "id",
+          "geometry",
+          "properties"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/JsonElement"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/SovereigntyFeatureProperties"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "SovereigntyFeatureCollection": {
+        "required": [
+          "features"
+        ],
+        "type": "object",
+        "properties": {
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SovereigntyFeature"
+            }
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "SovereigntyFeatureProperties": {
+        "required": [
+          "recordId",
+          "regimeId",
+          "regimeSlug",
+          "layerStatus",
+          "validPeriod",
+          "startEvent",
+          "endEvent",
+          "geometry",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeSlug": {
+            "type": "string"
+          },
+          "layerStatus": {
+            "type": "string"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "startEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "endEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeometryProvenanceDto"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "regimeAlignment": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RegimeAlignmentDto"
+              }
+            ]
+          }
+        }
+      },
+      "SovereigntyMapDto": {
+        "required": [
+          "date",
+          "featureCollection"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "featureCollection": {
+            "$ref": "#/components/schemas/SovereigntyFeatureCollection"
+          }
+        }
+      },
+      "SovereigntyRecordDto": {
+        "required": [
+          "id",
+          "regimeId",
+          "validPeriod",
+          "layerStatus",
+          "startEventId",
+          "endEventId",
+          "geometrySourceId",
+          "geometryLocator",
+          "geometryLicense",
+          "attribution",
+          "ohmRelationId",
+          "ohmVersion",
+          "ohmFetchedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "layerStatus": {
+            "type": "string"
+          },
+          "startEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "endEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometrySourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "geometryLocator": {
+            "type": "string"
+          },
+          "geometryLicense": {
+            "type": "string"
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmRelationId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "ohmVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "ohmFetchedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          }
+        }
+      },
       "SupplementEventDto": {
         "required": [
           "eventId",
@@ -3684,6 +4464,9 @@
     },
     {
       "name": "Events"
+    },
+    {
+      "name": "Sovereignty"
     },
     {
       "name": "Timeline"

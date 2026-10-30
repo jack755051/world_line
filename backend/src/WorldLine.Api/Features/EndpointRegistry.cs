@@ -19,6 +19,7 @@ public static class EndpointRegistry
         EventsEndpoints.Map(api, write);
         RegimeAlignmentsEndpoints.Map(api, write);
         ControlCoverageNotesEndpoints.Map(api, write);
+        SovereigntyEndpoints.Map(api, write);
     }
 
     /// <summary>OpenAPI：成功回應為 <c>ApiResponse&lt;T&gt;</c>（200）。</summary>

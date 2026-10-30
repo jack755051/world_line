@@ -1,0 +1,46 @@
+/* 全域樣式。載入順序：Tailwind → sanring 預設 token → World Line token → sanring 橋接 */
+@import 'tailwindcss';
+@import './sanring-theme.css';
+@import './styles/wl-tokens.css';
+@import './styles/sanring-bridge.css';
+
+/* Tailwind utility 對應 --wl-*（例：bg-wl-surface、text-wl-on-surface、font-wl-serif、rounded-wl-lg） */
+@theme inline {
+  --color-wl-primary: var(--wl-color-primary);
+  --color-wl-on-primary: var(--wl-color-on-primary);
+  --color-wl-primary-container: var(--wl-color-primary-container);
+  --color-wl-secondary: var(--wl-color-secondary);
+  --color-wl-tertiary: var(--wl-color-tertiary);
+  --color-wl-error: var(--wl-color-error);
+  --color-wl-error-container: var(--wl-color-error-container);
+  --color-wl-background: var(--wl-color-background);
+  --color-wl-surface: var(--wl-color-surface);
+  --color-wl-surface-variant: var(--wl-color-surface-variant);
+  --color-wl-on-surface: var(--wl-color-on-surface);
+  --color-wl-on-surface-variant: var(--wl-color-on-surface-variant);
+  --color-wl-outline: var(--wl-color-outline);
+  --color-wl-outline-variant: var(--wl-color-outline-variant);
+  --font-wl-serif: var(--wl-font-serif);
+  --font-wl-sans: var(--wl-font-sans);
+  --radius-wl-sm: var(--wl-radius-sm);
+  --radius-wl-md: var(--wl-radius-md);
+  --radius-wl-lg: var(--wl-radius-lg);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: var(--wl-min-width);
+  background: var(--wl-color-background);
+  color: var(--wl-color-on-surface);
+  font-family: var(--wl-type-text1-family);
+  font-size: var(--wl-type-text1-size);
+  font-weight: var(--wl-type-text1-weight);
+  line-height: var(--wl-type-text1-line-height);
+  /* DESIGN.md：日期與數字一律等寬數字 */
+  font-variant-numeric: tabular-nums;
+}

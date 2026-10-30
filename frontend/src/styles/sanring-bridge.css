@@ -1,0 +1,41 @@
+/*
+ * sanring UI → World Line token 橋接
+ * DESIGN.md：sanring 元件只取結構與行為，顏色、字型、圓角一律用 --wl-*。
+ * sanring-theme.css 預設是深色；這裡把元件實際引用的語意層變數改指到 --wl-*（只有淺色）。
+ * 載入順序必須在 sanring-theme.css 之後。
+ */
+:root,
+:root[data-theme='light'] {
+  /* 圓角：xs→sm 3px（徽章）、sm／base→md 4px（按鈕、輸入）、lg→lg 6px（面板、popover） */
+  --sanring-radius-xs: var(--wl-radius-sm);
+  --sanring-radius-sm: var(--wl-radius-md);
+  --sanring-radius: var(--wl-radius-md);
+  --sanring-radius-lg: var(--wl-radius-lg);
+
+  --sanring-font-sans: var(--wl-font-sans);
+
+  --sanring-primary: var(--wl-color-primary);
+  --sanring-primary-fg: var(--wl-color-on-primary);
+
+  --sanring-background: var(--wl-color-background);
+  --sanring-foreground: var(--wl-color-on-surface);
+  --sanring-muted: var(--wl-color-on-surface-variant);
+  --sanring-border: var(--wl-color-outline-variant);
+  --sanring-border-strong: var(--wl-color-outline);
+  --sanring-surface: var(--wl-color-surface);
+  --sanring-surface-strong: var(--wl-color-surface-container-high);
+  --sanring-elevated: var(--wl-color-surface);
+  --sanring-control: var(--wl-color-primary);
+  --sanring-control-foreground: var(--wl-color-on-primary);
+  --sanring-active: var(--wl-color-primary-container);
+
+  --sanring-progress-track: var(--wl-color-surface-container-high);
+  --sanring-progress-bar: var(--wl-color-primary);
+  --sanring-progress-shimmer: rgba(255, 250, 242, 0.45);
+
+  /* 狀態色階的中間階（元件若直接引用 -50） */
+  --sanring-error-50: var(--wl-color-error);
+  --sanring-success-50: var(--wl-color-success);
+  --sanring-warn-50: var(--wl-color-warning);
+  --sanring-info-50: var(--wl-color-info);
+}

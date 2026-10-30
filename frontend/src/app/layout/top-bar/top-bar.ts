@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { LucideMap } from '@lucide/angular';
+import { LucideBookOpen } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import type { TheaterStateDto } from '../../core/api/api-types';
 import type { LoadStatus } from '../../core/atlas-data';
@@ -15,7 +15,7 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
 @Component({
   selector: 'wl-top-bar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideMap, InterpChip, SkeletonDirective],
+  imports: [LucideBookOpen, InterpChip, SkeletonDirective],
   host: { class: 'block' },
   template: `
     <header class="flex h-[var(--wl-topbar-height)] items-center gap-4 border-b border-wl-outline-variant bg-wl-surface px-4">
@@ -37,7 +37,7 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
           <button type="button" data-testid="lang-toggle-en" [attr.aria-pressed]="lang() === 'en'" (click)="langChange.emit('en')" lang="en">EN</button>
         </div>
         <button type="button" data-testid="legend-toggle" class="wl-icon-btn wl-outlined size-8" [attr.aria-pressed]="legendOpen()"
-          [attr.aria-label]="tr('legend.toggle')" [attr.title]="tr('legend.toggle')" (click)="legendToggle.emit()"><svg lucideMap class="size-4"></svg></button>
+          [attr.aria-label]="tr('legend.toggle')" [attr.title]="tr('legend.toggle')" (click)="legendToggle.emit()"><svg lucideBookOpen class="size-4"></svg></button>
       </div>
     </header>
   `,

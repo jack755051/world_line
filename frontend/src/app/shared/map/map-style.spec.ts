@@ -1,5 +1,5 @@
 import type { ControlMapDto } from '../../core/api/api-types';
-import { CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, darken, decorateFeatures, evidenceFor, hatchImageId } from './map-style';
+import { CAMP_FILL, CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, evidenceFor, hatchImageId, labelPoint } from './map-style';
 
 // 測試用假資料（只存在於測試檔，不進畫面、不寫入資料庫）
 function fixture(state: string, controlType = 'military_occupation', camp: string | null = null): ControlMapDto {
@@ -90,5 +90,32 @@ describe('map-style', () => {
 
   it('darken', () => {
     expect(darken('#ffffff', 0.25)).toBe('#bfbfbf');
+  });
+
+  it('填色＝陣營：同陣營的不同政權用同一個填色（政權靠邊框與標籤區分）', () => {
+    const a = fixture('attested', 'military_occupation', 'axis');
+    const f0 = a.featureCollection.features[0];
+    const f1 = { ...f0, properties: { ...f0.properties, versionId: 'v2', controllerRegimeId: 'g2', controllerAlignment: { ...f0.properties.controllerAlignment!, regimeId: 'g2' } } };
+    a.featureCollection.features.push(f1 as typeof f0);
+    const tones = campTonesFrom(a);
+    expect(tones.toneFor('g1')).toBe(CAMP_FILL.axis);
+    expect(tones.toneFor('g2')).toBe(CAMP_FILL.axis);
+  });
+
+  it('labelPoint：凹多邊形的標籤點落在多邊形內', () => {
+    // L 形：重心 (≈1.17, ≈1.17) 在缺角外側附近，標籤點必須在 L 內
+    const L = [[[0, 0], [3, 0], [3, 1], [1, 1], [1, 3], [0, 3], [0, 0]]];
+    const [x, y] = labelPoint(L);
+    const inL = (x >= 0 && x <= 3 && y >= 0 && y <= 1) || (x >= 0 && x <= 1 && y >= 0 && y <= 3);
+    expect(inL).toBe(true);
+  });
+
+  it('controlLabels：文字只來自政權名稱；查不到名稱就不標', () => {
+    const dto = fixture('attested');
+    expect(controlLabels(dto, () => null)).toEqual([]);
+    const labels = controlLabels(dto, (id) => (id === 'g1' ? '測試政權' : null));
+    expect(labels).toHaveLength(1);
+    expect(labels[0].text).toBe('測試政權');
+    expect(labels[0].bbox).toEqual([0, 0, 1, 1]);
   });
 });

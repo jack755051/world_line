@@ -42,29 +42,33 @@ export interface CampTones {
 }
 
 /**
- * 依 API 回傳的 `controllerAlignment` 決定每個控制方的陣營與色（PRD §12 Q11：色系由 regime_alignments 決定）。
- * 同色系內依政權在資料中出現的順序輪用色票（相鄰政權可區分的圖著色留待多政權資料，TODO）。
- * 只看控制方自己的陣營切片；扶植方若不是任何區塊的控制方，沒有資料 → 陣營未建置色。
+ * 填色＝陣營（Tai 2026-10-31 拍板）：每個陣營只用一個代表色（色系第一個色票），政權不另配填色；
+ * 政權之間用邊框與名稱標籤區分，控制類型用紋理／邊框區分（DESIGN.md Control types）。
+ * ⚠ 與 DESIGN.md「Camp colors」不同：DESIGN.md 原本要在同陣營內依圖著色輪用色票，讓相鄰政權不同色；此處依拍板改成同陣營同色。
  */
+export const CAMP_FILL: Record<Camp, string> = {
+  axis: CAMP_TONES.axis[0],
+  allies: CAMP_TONES.allies[0],
+  cobelligerent: CAMP_TONES.cobelligerent[0],
+  neutral: CAMP_TONES.neutral[0],
+};
+
+/** 依 API 回傳的 `controllerAlignment` 決定每個控制方的陣營與填色（PRD §12 Q11：色系由 regime_alignments 決定）。 */
 export function campTonesFrom(dto: ControlMapDto | null | undefined): CampTones {
   const camps = new Map<string, Camp>();
-  const tones = new Map<string, string>();
-  const used: Record<Camp, number> = { axis: 0, allies: 0, cobelligerent: 0, neutral: 0 };
   for (const f of dto?.featureCollection.features ?? []) {
     const id = f.properties.controllerRegimeId;
-    if (tones.has(id)) continue;
+    if (camps.has(id)) continue;
     const camp = campOf(f.properties.controllerAlignment);
-    if (!camp) {
-      tones.set(id, CAMP_UNASSIGNED_TONE);
-      continue;
-    }
-    const palette = CAMP_TONES[camp];
-    camps.set(id, camp);
-    tones.set(id, palette[used[camp]++ % palette.length]);
+    if (camp) camps.set(id, camp);
   }
+  const campFor = (id: string | null | undefined): Camp | null => (id && camps.get(id)) || null;
   return {
-    toneFor: (id) => (id && tones.get(id)) || CAMP_UNASSIGNED_TONE,
-    campFor: (id) => (id && camps.get(id)) || null,
+    toneFor: (id) => {
+      const c = campFor(id);
+      return c ? CAMP_FILL[c] : CAMP_UNASSIGNED_TONE;
+    },
+    campFor,
   };
 }
 
@@ -184,4 +188,106 @@ export function decorateFeatures(
       return { type: 'Feature', id: p.versionId, geometry: f.geometry as unknown as Geometry, properties: props };
     }),
   };
+}
+
+export interface ControlLabel {
+  versionId: string;
+  regimeId: string;
+  text: string;
+  /** 標籤位置：控制區（最大的那塊多邊形）內離邊界最遠的點 */
+  lngLat: [number, number];
+  /** 該多邊形的經緯度外框 [minX, minY, maxX, maxY]，畫面上太小就不標 */
+  bbox: [number, number, number, number];
+}
+
+type Ring = number[][];
+
+function ringArea(r: Ring): number {
+  let a = 0;
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) a += (r[j][0] - r[i][0]) * (r[j][1] + r[i][1]);
+  return Math.abs(a / 2);
+}
+
+function pointInRing(x: number, y: number, r: Ring): boolean {
+  let inside = false;
+  for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+    const [xi, yi] = r[i];
+    const [xj, yj] = r[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+
+function segDist2(px: number, py: number, a: number[], b: number[]): number {
+  let x = a[0];
+  let y = a[1];
+  let dx = b[0] - x;
+  let dy = b[1] - y;
+  if (dx !== 0 || dy !== 0) {
+    const t = Math.max(0, Math.min(1, ((px - x) * dx + (py - y) * dy) / (dx * dx + dy * dy)));
+    x += dx * t;
+    y += dy * t;
+  }
+  dx = px - x;
+  dy = py - y;
+  return dx * dx + dy * dy;
+}
+
+/** 多邊形內離邊界最遠的點（格點搜尋＋兩輪細化；標籤用，不需精確）。洞內的點不算。 */
+export function labelPoint(poly: Ring[]): [number, number] {
+  const outer = poly[0];
+  let [minX, minY, maxX, maxY] = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const [x, y] of outer) {
+    minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
+  }
+  const inside = (x: number, y: number) => pointInRing(x, y, outer) && !poly.slice(1).some((h) => pointInRing(x, y, h));
+  const dist = (x: number, y: number) => {
+    let d = Infinity;
+    for (const r of poly) for (let i = 0, j = r.length - 1; i < r.length; j = i++) d = Math.min(d, segDist2(x, y, r[i], r[j]));
+    return d;
+  };
+  let best: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2];
+  let bestD = inside(...best) ? dist(...best) : -1;
+  let cx = best[0];
+  let cy = best[1];
+  let w = maxX - minX;
+  let h = maxY - minY;
+  for (let round = 0; round < 3; round++) {
+    const n = 24;
+    for (let i = 0; i <= n; i++)
+      for (let j = 0; j <= n; j++) {
+        const x = cx - w / 2 + (w * i) / n;
+        const y = cy - h / 2 + (h * j) / n;
+        if (!inside(x, y)) continue;
+        const d = dist(x, y);
+        if (d > bestD) { bestD = d; best = [x, y]; }
+      }
+    [cx, cy] = best;
+    w /= 4;
+    h /= 4;
+  }
+  return best;
+}
+
+/**
+ * 政權名稱標籤（PRD §8.2：政權標籤預設顯示自稱）。每個控制區標一次，位置在其最大多邊形內。
+ * 文字只來自 API 的政權名稱；查不到名稱就不標（不自行命名）。
+ */
+export function controlLabels(dto: ControlMapDto | null | undefined, nameFor: (regimeId: string) => string | null): ControlLabel[] {
+  const out: ControlLabel[] = [];
+  for (const f of dto?.featureCollection.features ?? []) {
+    const p = f.properties;
+    const text = nameFor(p.controllerRegimeId);
+    if (!text) continue;
+    const g = f.geometry as unknown as Geometry;
+    const polys: Ring[][] = g.type === 'Polygon' ? [g.coordinates as Ring[]] : g.type === 'MultiPolygon' ? (g.coordinates as Ring[][]) : [];
+    if (polys.length === 0) continue;
+    const biggest = polys.reduce((a, b) => (ringArea(b[0]) > ringArea(a[0]) ? b : a));
+    let [minX, minY, maxX, maxY] = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const [x, y] of biggest[0]) {
+      minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
+    }
+    out.push({ versionId: p.versionId, regimeId: p.controllerRegimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY] });
+  }
+  return out;
 }

@@ -16,7 +16,7 @@ import {
 import type { FeatureCollection, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { hatchImage } from './hatch';
-import { MAP_COLORS, type DecoratedProps } from './map-style';
+import { MAP_COLORS, type ControlLabel, type DecoratedProps } from './map-style';
 
 export interface MapFeatureEvent {
   versionId: string;
@@ -56,6 +56,14 @@ export function buildBaseStyle(): StyleSpecification {
         source: 'control',
         filter: ['!=', ['get', 'wlPattern'], ''],
         paint: { 'fill-pattern': ['get', 'wlPattern'], 'fill-opacity': ['get', 'wlFillOpacity'] },
+      },
+      {
+        // 政權邊框：每個控制區都有一圈墨線（同陣營同填色，政權之間靠這條線＋名稱標籤區分）；推估／不明時由下方虛線層負責
+        id: 'control-regime-outline',
+        type: 'line',
+        source: 'control',
+        filter: ['==', ['get', 'evidence'], 'attested'],
+        paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.75, 'line-opacity': 0.7 },
       },
       {
         id: 'control-line-solid',
@@ -102,6 +110,13 @@ export function buildBaseStyle(): StyleSpecification {
   template: `
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
       [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
+    <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      @for (l of placedLabels(); track l.versionId) {
+        <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId" class="wl-regime-label absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap"
+          [style.left.px]="l.x" [style.top.px]="l.y">{{ l.text }}</span>
+      }
+    </div>
     @if (engineError()) {
       <div data-testid="map-engine-error" class="sr-only">{{ engineErrorText() }}</div>
     }
@@ -111,6 +126,8 @@ export class AtlasMap {
   readonly collection = input<FeatureCollection<Geometry, DecoratedProps> | null>(null);
   readonly selectedVersionId = input<string | null>(null);
   readonly engineErrorText = input('');
+  readonly labels = input<ControlLabel[]>([]);
+  protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number }[]>([]);
 
   readonly featureClick = output<MapFeatureEvent>();
   readonly emptyClick = output<void>();
@@ -132,6 +149,11 @@ export class AtlasMap {
       const data = this.collection();
       if (!this.ready()) return;
       untracked(() => this.setData(data));
+    });
+    effect(() => {
+      this.labels();
+      if (!this.ready()) return;
+      untracked(() => this.placeLabels());
     });
     effect(() => {
       const id = this.selectedVersionId() ?? '';
@@ -170,8 +192,11 @@ export class AtlasMap {
       map.on('load', () => {
         this.ready.set(true);
         this.setData(this.collection());
+        this.placeLabels();
       });
       map.on('idle', () => this.countRendered());
+      map.on('move', () => this.placeLabels());
+      map.on('resize', () => this.placeLabels());
 
       const layers = ['control-fill', 'control-hatch'];
       map.on('click', (e) => {
@@ -200,6 +225,24 @@ export class AtlasMap {
     const src = this.map?.getSource('control') as GeoJSONSource | undefined;
     if (!src) return;
     src.setData(data ?? EMPTY);
+  }
+
+  /** 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。 */
+  private placeLabels(): void {
+    const map = this.map;
+    if (!map) return;
+    const placed = [];
+    for (const l of this.labels()) {
+      const a = map.project([l.bbox[0], l.bbox[1]]);
+      const b = map.project([l.bbox[2], l.bbox[3]]);
+      const w = Math.abs(b.x - a.x);
+      const h = Math.abs(b.y - a.y);
+      // 文字寬約每字 14px（12px＋字距）；外框至少要比字寬 1.6 倍、高 32px，避免標籤壓出小區塊
+      if (w < l.text.length * 14 * 1.6 || h < 32) continue;
+      const p = map.project(l.lngLat);
+      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y });
+    }
+    this.placedLabels.set(placed);
   }
 
   private countRendered(): void {

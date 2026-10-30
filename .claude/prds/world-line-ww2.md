@@ -4,7 +4,7 @@ feature_id: world-line-ww2
 feature_name: World Line — 二戰第一階段
 status: draft
 owner: jack755051@gmail.com
-last_updated: 2026-10-28
+last_updated: 2026-10-30
 related_constitution: .claude/constitutions/world-line.md
 related_adrs: []
 ---
@@ -245,7 +245,7 @@ related_adrs: []
 | 向量 DB | **不用** | 使用者明示；日後語意搜尋以 pgvector 評估（§11） |
 | Cache | **無**（第一階段不加 Redis） | 使用者明示「只在確定需要時才加」，觸發條件見 §11 |
 | Auth | 讀取公開；寫入用 `X-API-Key` header（單一 key，存環境變數） | §2：只有開發者可寫。AI 提案・待拍板：key 的產生與輪替方式 |
-| Deploy | **Docker Compose**（`compose.yaml`：`postgres`（PostGIS）＋`api`＋`web`），本機埠只綁 `127.0.0.1`；**API 5050、DB 5432**（使用者 2026-10-28 拍板）；api 啟動時是否自動套用 migration 由環境變數 `WORLDLINE_MIGRATE_ON_STARTUP` 控制，compose 預設開（使用者 2026-10-28 拍板；migration 只往前套用，不提供 Down） | 照 middle-platform。`TODO`：第一階段是否需要對外部署（§2 第一階段只有開發者，AI 提案：只跑本機） |
+| Deploy | **Docker Compose**（`compose.yaml`：`postgres`（PostGIS）＋`api`＋`web`），本機埠只綁 `127.0.0.1`；**API 5051、DB 5432**（DB 埠使用者 2026-10-28 拍板；API 埠使用者 2026-10-30 拍板改為 5051，見文末修訂紀錄）；api 啟動時是否自動套用 migration 由環境變數 `WORLDLINE_MIGRATE_ON_STARTUP` 控制，compose 預設開（使用者 2026-10-28 拍板；migration 只往前套用，不提供 Down） | 照 middle-platform。`TODO`：第一階段是否需要對外部署（§2 第一階段只有開發者，AI 提案：只跑本機） |
 | 監控 | ASP.NET Core Health Checks（`/healthz`，含 DB 檢查） | 照 middle-platform（`HealthChecks.EntityFrameworkCore`）。第一階段單人使用，不導入 Prometheus／OTel |
 | 資料建置工具 | QGIS（地理配準、手描多邊形，匯出 GeoJSON）＋匯入腳本或匯入 API | 史料調查 §2、§4；建置 UI 是否需要見 §8.10 |
 
@@ -1223,7 +1223,18 @@ erDiagram
 - [ ] TODO：`Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite` 版本、MapLibre GL 版本。
 - [ ] TODO：`@sanring/cli` 是否提供 slider 元件（未驗證）。
 - [ ] TODO：是否加互動式 API 文件 UI。
-- [ ] TODO：API Key 的產生與輪替方式；第一階段是否對外部署。（本機埠已拍板：API 5050、DB 5432，只綁 127.0.0.1，使用者 2026-10-28）
+- [ ] TODO：API Key 的產生與輪替方式；第一階段是否對外部署。（本機埠已拍板：API 5051（使用者 2026-10-30）、DB 5432（使用者 2026-10-28），只綁 127.0.0.1）
 - [ ] TODO：I3 幾何相交容差、戰線 buffer 容差、缺口面積門檻的數值。
 - [ ] TODO：史料檔案的本機存檔位置與是否進版控。
 - [ ] TODO：R7 是否接受政府開放資料集（例：Département de l'Ain 分界線，Licence Ouverte 2.0）作為「輔助幾何」（史料調查 §4.3.4，由使用者決定）。
+
+---
+
+## 修訂紀錄
+
+### 2026-10-30：二戰版 API 埠改為 5051
+
+- 2026-10-30 使用者拍板二戰版 API 埠為 5051。
+- 原文（2026-10-28）：「本機埠只綁 `127.0.0.1`；**API 5050、DB 5432**（使用者 2026-10-28 拍板）」。DB 埠 5432 不變。
+- 同步修改：`compose.yaml`（`WW2_API_PORT` 預設值）、`.env.example`、`data/seed/ww2/france-1940-07-15/send_seed.py`（預設 `--base`）、前端 `frontend/proxy.conf.json`。
+

@@ -1,0 +1,76 @@
+/*
+ * World Line 共用元件樣式（DESIGN.md Components／Typography）。
+ * 只用 --wl-* token；朱紅（primary）只出現在主要按鈕、分段切換選取、時間軸把手、焦點框（DESIGN.md Colors）。
+ */
+@layer components {
+  .wl-display { font-family: var(--wl-type-display-family); font-size: var(--wl-type-display-size); font-weight: var(--wl-type-display-weight); line-height: var(--wl-type-display-line-height); }
+  .wl-title1 { font-family: var(--wl-type-title1-family); font-size: var(--wl-type-title1-size); font-weight: var(--wl-type-title1-weight); line-height: var(--wl-type-title1-line-height); }
+  .wl-title2 { font-family: var(--wl-type-title2-family); font-size: var(--wl-type-title2-size); font-weight: var(--wl-type-title2-weight); line-height: var(--wl-type-title2-line-height); }
+  .wl-sub-title { font-family: var(--wl-type-sub-title-family); font-size: var(--wl-type-sub-title-size); font-weight: var(--wl-type-sub-title-weight); line-height: var(--wl-type-sub-title-line-height); }
+  .wl-text1 { font-family: var(--wl-type-text1-family); font-size: var(--wl-type-text1-size); font-weight: var(--wl-type-text1-weight); line-height: var(--wl-type-text1-line-height); }
+  .wl-text2 { font-family: var(--wl-type-text2-family); font-size: var(--wl-type-text2-size); font-weight: var(--wl-type-text2-weight); line-height: var(--wl-type-text2-line-height); }
+  .wl-label { font-family: var(--wl-type-label-sm-family); font-size: var(--wl-type-label-sm-size); font-weight: var(--wl-type-label-sm-weight); line-height: var(--wl-type-label-sm-line-height); }
+
+  /* 浮動紙卡：1px outline-variant＋極淡陰影（DESIGN.md Elevation） */
+  .wl-paper { background: var(--wl-color-surface); border: 1px solid var(--wl-color-outline-variant); border-radius: var(--wl-radius-lg); box-shadow: var(--wl-shadow-panel); }
+
+  /* 檔案館中繼資料（圖號、館藏號）：黃銅 tertiary（DESIGN.md：tertiary 只用於「史料快照」章與檔案中繼資料） */
+  .wl-archival { color: var(--wl-color-on-tertiary-fixed-variant); font-variant-numeric: tabular-nums; }
+  .wl-stamp {
+    display: inline-flex; align-items: center; gap: 4px; padding: 1px 6px;
+    color: var(--wl-color-tertiary); border: 1px solid var(--wl-color-tertiary); border-radius: var(--wl-radius-sm);
+    font-size: var(--wl-type-label-sm-size); font-weight: 600; letter-spacing: 0.12em; background: transparent;
+  }
+  /* 推估過渡 chip：slate 1px 虛線框 */
+  .wl-chip-interp {
+    display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px;
+    color: var(--wl-color-secondary); border: 1px dashed var(--wl-color-secondary); border-radius: var(--wl-radius-sm);
+    background: var(--wl-color-secondary-container); font-size: var(--wl-type-label-sm-size); font-weight: 600;
+  }
+  /* 無法判斷：警示色（warning），不用朱紅 */
+  .wl-chip-warn {
+    display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px;
+    color: var(--wl-color-warning); border: 1px solid var(--wl-color-warning); border-radius: var(--wl-radius-sm);
+    font-size: var(--wl-type-label-sm-size); font-weight: 600;
+  }
+
+  .wl-link { color: var(--wl-color-secondary); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+
+  .wl-btn-primary, .wl-btn-secondary, .wl-icon-btn {
+    border-radius: var(--wl-radius-md); cursor: pointer; font-family: var(--wl-font-sans);
+    transition: background-color 120ms;
+  }
+  .wl-btn-primary { background: var(--wl-color-primary); color: var(--wl-color-on-primary); border: 1px solid var(--wl-color-primary); }
+  .wl-btn-secondary { background: transparent; color: var(--wl-color-on-surface); border: 1px solid var(--wl-color-outline); }
+  .wl-btn-secondary:hover, .wl-icon-btn:hover { background: var(--wl-color-surface-container-high); }
+  .wl-icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid transparent; color: var(--wl-color-on-surface); background: transparent; }
+  .wl-icon-btn.wl-outlined { border-color: var(--wl-color-outline-variant); }
+  .wl-btn-primary:focus-visible, .wl-btn-secondary:focus-visible, .wl-icon-btn:focus-visible, .wl-seg button:focus-visible, .wl-link:focus-visible {
+    outline: 2px solid var(--wl-color-primary); outline-offset: 1px;
+  }
+  .wl-btn-secondary:disabled, .wl-icon-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  /* 分段切換：選取段朱紅填色 */
+  .wl-seg { display: inline-flex; padding: 2px; gap: 2px; border: 1px solid var(--wl-color-outline-variant); border-radius: var(--wl-radius-md); background: var(--wl-color-surface-container); }
+  .wl-seg button { padding: 2px 10px; border-radius: var(--wl-radius-sm); font-size: var(--wl-type-text2-size); font-weight: 600; color: var(--wl-color-on-surface); background: transparent; cursor: pointer; }
+  .wl-seg button[aria-pressed='true'] { background: var(--wl-color-primary); color: var(--wl-color-on-primary); }
+  .wl-seg button:disabled { color: var(--wl-color-placeholder); cursor: not-allowed; }
+
+  .wl-badge { display: inline-flex; align-items: center; padding: 0 6px; border: 1px solid var(--wl-color-outline); border-radius: var(--wl-radius-sm); font-size: var(--wl-type-text2-size); color: var(--wl-color-on-surface-variant); }
+  .wl-badge-primary { color: var(--wl-color-on-surface); border-color: var(--wl-color-on-surface); }
+
+  /* error：深緋紅＋警示圖示＋error-container 底（DESIGN.md：不可與朱紅混淆） */
+  .wl-alert-error { display: flex; align-items: center; gap: 8px; padding: 10px 12px; color: var(--wl-color-error); background: var(--wl-color-error-container); border: 1px solid color-mix(in srgb, var(--wl-color-error) 40%, transparent); border-radius: var(--wl-radius-lg); font-size: var(--wl-type-text1-size); }
+
+  /* 控制資料缺樣式 A：紙底＋6px 網格細墨點 35% */
+  .wl-gap-pattern {
+    background-color: var(--wl-color-map-land);
+    background-image: radial-gradient(rgba(58, 47, 40, 0.35) 0.8px, transparent 1px);
+    background-size: 6px 6px;
+  }
+}
+
+@layer components {
+  .wl-icon-btn.wl-btn-primary { background: var(--wl-color-primary); color: var(--wl-color-on-primary); border-color: var(--wl-color-primary); }
+  .wl-icon-btn.wl-btn-primary:hover { background: var(--wl-color-on-primary-fixed-variant); }
+}

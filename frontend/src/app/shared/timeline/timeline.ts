@@ -119,6 +119,13 @@ interface Marker {
               [style.top.px]="12 + tracks().length * 14 + 4" [style.left.%]="y.f * 100">{{ y.label }}</span>
           }
 
+          <!-- 起點標籤（Tai 2026-10-31）：範圍不是從 1 月 1 日開始時，在最左端標「YYYY-MM」 -->
+          @if (startLabel(); as sl) {
+            <div class="pointer-events-none absolute left-0 h-[4px] w-px bg-wl-outline" [style.top.px]="12 + tracks().length * 14"></div>
+            <span data-testid="timeline-start-label" class="pointer-events-none absolute left-0 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface tabular-nums"
+              [style.top.px]="12 + tracks().length * 14 + 4">{{ sl }}</span>
+          }
+
           @if (snapshotsStatus() === 'error') {
             <div data-testid="timeline-error" class="absolute inset-x-0 top-[12px] flex items-center justify-center gap-2 wl-text2 text-wl-error"
               [style.height.px]="tracks().length * 14">
@@ -171,6 +178,7 @@ export class Timeline {
     return rangeFor(earliest);
   });
   protected readonly years = computed(() => yearTicks(this.range()));
+  protected readonly startLabel = computed(() => (this.range().start.slice(5) === '01-01' ? null : this.range().start.slice(0, 7)));
   protected readonly months = computed(() => monthTicks(this.range()));
   protected readonly handleF = computed(() => fraction(this.date(), this.range()));
   protected readonly incompleteWidth = computed(() => (this.range().start < COMPLETE_FROM ? fraction(COMPLETE_FROM, this.range()) : 0));

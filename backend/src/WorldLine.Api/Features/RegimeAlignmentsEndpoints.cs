@@ -22,6 +22,28 @@ public static class RegimeAlignmentsEndpoints
             .Ok<IReadOnlyList<RegimeAlignmentDto>>().Errors(404);
         write.MapPost("/regimes/{id:guid}/alignments", Create).WithTags("Regimes").WithName("CreateRegimeAlignment")
             .RequiresApiKey().Created<RegimeAlignmentDto>().Errors(400, 401, 404, 409);
+        write.MapPost("/regimes/{id:guid}/alignments/{alignmentId:guid}/retraction", Retract).WithTags("Regimes").WithName("RetractRegimeAlignment")
+            .RequiresApiKey().Ok<RetractionDto>().Errors(400, 401, 404, 409);
+    }
+
+    /// <summary>
+    /// 撤回陣營切片（I5：不刪除，只寫一次 retracted_at＋原因；DB trigger 另擋重複撤回與改其他欄位）。
+    /// 修正＝撤回舊切片後新增。端點路徑為實作提案（比照 PRD §7 control-records/{id}/retraction），待拍板。
+    /// </summary>
+    public static async Task<IResult> Retract(Guid id, Guid alignmentId, RetractionRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        var reason = Mapping.RequireText(req.Reason, "reason");
+        var row = await db.RegimeAlignments.AsNoTracking().FirstOrDefaultAsync(a => a.Id == alignmentId && a.RegimeId == id, ct)
+                  ?? throw ApiError.NotFound("陣營切片");
+        if (row.RetractedAt is not null)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"陣營切片 {alignmentId} 已於 {row.RetractedAt:O} 撤回。");
+        var now = DateTimeOffset.UtcNow;
+        var n = await db.RegimeAlignments
+            .Where(a => a.Id == alignmentId && a.RetractedAt == null)
+            .ExecuteUpdateAsync(u => u.SetProperty(a => a.RetractedAt, now).SetProperty(a => a.RetractionReason, reason), ct);
+        if (n != 1)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"陣營切片 {alignmentId} 已被撤回。");
+        return ApiResults.Ok(new RetractionDto(alignmentId, now, reason));
     }
 
     public static async Task<IResult> List(Guid id, WorldLineDbContext db, CancellationToken ct)

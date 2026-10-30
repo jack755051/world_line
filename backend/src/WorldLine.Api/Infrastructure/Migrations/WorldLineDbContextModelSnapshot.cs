@@ -26,6 +26,89 @@ namespace WorldLine.Api.Infrastructure.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "postgis");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("WorldLine.Api.Domain.ControlCoverageNote", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<MultiPolygon>("Geom")
+                        .IsRequired()
+                        .HasColumnType("geometry(MultiPolygon,4326)")
+                        .HasColumnName("geom");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("note");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasColumnName("reason");
+
+                    b.Property<string>("ResearchRef")
+                        .HasColumnType("text")
+                        .HasColumnName("research_ref");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid?>("TheaterId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("theater_id");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("valid_period");
+
+                    b.Property<int>("Version")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_control_coverage_notes");
+
+                    b.HasIndex("Geom")
+                        .HasDatabaseName("ix_control_coverage_notes_geom");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("Geom"), "gist");
+
+                    b.HasIndex("TheaterId")
+                        .HasDatabaseName("ix_control_coverage_notes_theater_id");
+
+                    b.HasIndex("ValidPeriod")
+                        .HasDatabaseName("ix_control_coverage_notes_valid_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ValidPeriod"), "gist");
+
+                    b.ToTable("control_coverage_notes", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_control_coverage_notes_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+
+                            t.HasCheckConstraint("ck_control_coverage_notes_period_bounded", "NOT lower_inf(valid_period) AND NOT upper_inf(valid_period) AND NOT isempty(valid_period)");
+
+                            t.HasCheckConstraint("ck_control_coverage_notes_reason", "reason IN ('no_qualified_source', 'not_yet_digitized')");
+
+                            t.HasCheckConstraint("ck_control_coverage_notes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.ControlRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -256,6 +339,61 @@ namespace WorldLine.Api.Infrastructure.Migrations
                             t.HasCheckConstraint("ck_control_snapshots_attestation", "attestation IN ('point', 'interval')");
 
                             t.HasCheckConstraint("ck_control_snapshots_interval_period", "(attestation = 'interval') = (attested_period IS NOT NULL)");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.EventCitation", b =>
+                {
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.Property<string>("Locator")
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<string>("EvidenceNote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.HasKey("EventId", "SourceId", "Locator")
+                        .HasName("pk_event_citations");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_event_citations_source_id");
+
+                    b.ToTable("event_citations", (string)null);
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.EventParticipant", b =>
+                {
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<Guid>("RegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_id");
+
+                    b.Property<string>("Role")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("role");
+
+                    b.HasKey("EventId", "RegimeId", "Role")
+                        .HasName("pk_event_participants");
+
+                    b.HasIndex("RegimeId")
+                        .HasDatabaseName("ix_event_participants_regime_id");
+
+                    b.ToTable("event_participants", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_event_participants_role", "role IN ('belligerent', 'signatory', 'perpetrator', 'other')");
                         });
                 });
 
@@ -848,6 +986,15 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     b.ToTable("theaters", (string)null);
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.ControlCoverageNote", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Theater", null)
+                        .WithMany()
+                        .HasForeignKey("TheaterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_control_coverage_notes_theaters_theater_id");
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.ControlRecord", b =>
                 {
                     b.HasOne("WorldLine.Api.Domain.Regime", null)
@@ -912,6 +1059,40 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_control_snapshots_theaters_theater_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.EventCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_event_citations_historical_events_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_event_citations_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.EventParticipant", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_event_participants_historical_events_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("RegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_event_participants_regimes_regime_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.HistoricalEvent", b =>

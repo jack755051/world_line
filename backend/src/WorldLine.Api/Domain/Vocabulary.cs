@@ -79,3 +79,17 @@ public static class Camps
     public const string Neutral = "neutral";
     public static readonly string[] All = [Axis, Allies, CoBelligerent, Neutral];
 }
+
+/// <summary>事件參與角色（PRD §6.3 event_participants；TODO：清單待拍板）。</summary>
+public static class EventParticipantRoles
+{
+    public const string Belligerent = "belligerent";
+    public const string Signatory = "signatory";
+    public static readonly string[] All = [Belligerent, Signatory, "perpetrator", "other"];
+}
+
+/// <summary>控制資料缺的原因（PRD §6.3 control_coverage_notes）。</summary>
+public static class CoverageReasons
+{
+    public static readonly string[] All = ["no_qualified_source", "not_yet_digitized"];
+}

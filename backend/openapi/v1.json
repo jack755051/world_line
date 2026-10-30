@@ -540,6 +540,162 @@
         }
       }
     },
+    "/api/v1/regimes/{id}/alignments/{alignmentId}/retraction": {
+      "post": {
+        "tags": [
+          "Regimes"
+        ],
+        "operationId": "RetractRegimeAlignment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "alignmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/control-coverage-notes": {
+      "post": {
+        "tags": [
+          "Control"
+        ],
+        "operationId": "CreateControlCoverageNote",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCoverageNoteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfCoverageNoteDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/sources/{id}": {
       "get": {
         "tags": [
@@ -984,6 +1140,55 @@
           }
         }
       },
+      "ApiResponseOfCoverageNoteDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CoverageNoteDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "ApiResponseOfEventDto": {
         "required": [
           "statusCode",
@@ -1366,6 +1571,55 @@
           }
         }
       },
+      "ApiResponseOfRetractionDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RetractionDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "ApiResponseOfSourceDto": {
         "required": [
           "statusCode",
@@ -1650,6 +1904,15 @@
                 "$ref": "#/components/schemas/RegimeAlignmentDto"
               }
             ]
+          },
+          "controllerSupplements": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/SupplementEventDto"
+            }
           }
         }
       },
@@ -1672,6 +1935,15 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TheaterStateDto"
+            }
+          },
+          "coverageNotes": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/CoverageNoteDto"
             }
           }
         }
@@ -1747,6 +2019,55 @@
             "additionalProperties": {
               "type": "string"
             }
+          }
+        }
+      },
+      "CoverageNoteDto": {
+        "required": [
+          "id",
+          "theaterId",
+          "geometry",
+          "validPeriod",
+          "reason",
+          "note",
+          "researchRef"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "theaterId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/JsonElement"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "researchRef": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
@@ -1900,6 +2221,65 @@
           }
         }
       },
+      "CreateCoverageNoteRequest": {
+        "required": [
+          "theaterId",
+          "geometry",
+          "validPeriod",
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "theaterId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometry": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "reason": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "researchRef": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "CreateEventRequest": {
         "required": [
           "eventKind",
@@ -1955,7 +2335,25 @@
             ],
             "format": "uuid"
           },
-          "location": { }
+          "location": { },
+          "participants": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EventParticipantInput"
+            }
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EventCitationInput"
+            }
+          }
         }
       },
       "CreateRegimeAlignmentRequest": {
@@ -2240,6 +2638,35 @@
           }
         }
       },
+      "EventCitationInput": {
+        "required": [
+          "sourceId",
+          "locator",
+          "evidenceNote"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "locator": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "evidenceNote": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "EventDto": {
         "required": [
           "id",
@@ -2299,6 +2726,62 @@
               {
                 "$ref": "#/components/schemas/JsonElement"
               }
+            ]
+          },
+          "participants": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/EventParticipantDto"
+            }
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
+          }
+        }
+      },
+      "EventParticipantDto": {
+        "required": [
+          "regimeId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "EventParticipantInput": {
+        "required": [
+          "regimeId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "role": {
+            "type": [
+              "null",
+              "string"
             ]
           }
         }
@@ -2681,6 +3164,41 @@
           }
         }
       },
+      "RetractionDto": {
+        "required": [
+          "id",
+          "retractedAt",
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "retractedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "RetractionRequest": {
+        "required": [
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "SnapshotRefDto": {
         "required": [
           "id",
@@ -2802,6 +3320,50 @@
               "null",
               "string"
             ]
+          }
+        }
+      },
+      "SupplementEventDto": {
+        "required": [
+          "eventId",
+          "eventKind",
+          "occurred",
+          "summary",
+          "participants",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventKind": {
+            "type": "string"
+          },
+          "occurred": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "summary": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventParticipantDto"
+            }
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
           }
         }
       },

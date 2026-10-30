@@ -66,3 +66,16 @@ public static class DatePrecisions
     public const string Day = "day";
     public static readonly string[] All = [Day, "month", "year"];
 }
+
+/// <summary>
+/// 陣營（憲法 §6「陣營」，2026-10-28 拍板）：軸心、同盟、共同交戰／合作、中立／未結盟。
+/// 軸心與同盟只依有文件的正式加入判定；系統不依交戰關係自行推導。
+/// </summary>
+public static class Camps
+{
+    public const string Axis = "axis";
+    public const string Allies = "allies";
+    public const string CoBelligerent = "co_belligerent";
+    public const string Neutral = "neutral";
+    public static readonly string[] All = [Axis, Allies, CoBelligerent, Neutral];
+}

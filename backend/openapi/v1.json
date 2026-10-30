@@ -417,6 +417,129 @@
         ]
       }
     },
+    "/api/v1/regimes/{id}/alignments": {
+      "post": {
+        "tags": [
+          "Regimes"
+        ],
+        "operationId": "CreateRegimeAlignment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRegimeAlignmentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRegimeAlignmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Regimes"
+        ],
+        "operationId": "GetRegimeAlignments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfIReadOnlyListOfRegimeAlignmentDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/sources/{id}": {
       "get": {
         "tags": [
@@ -910,6 +1033,54 @@
           }
         }
       },
+      "ApiResponseOfIReadOnlyListOfRegimeAlignmentDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/RegimeAlignmentDto"
+            }
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "ApiResponseOfObject": {
         "required": [
           "statusCode",
@@ -976,6 +1147,55 @@
               },
               {
                 "$ref": "#/components/schemas/PaginatedResponseOfTimelineSnapshotDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfRegimeAlignmentDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RegimeAlignmentDto"
               }
             ]
           },
@@ -1420,6 +1640,16 @@
             "items": {
               "$ref": "#/components/schemas/CitationDto"
             }
+          },
+          "controllerAlignment": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RegimeAlignmentDto"
+              }
+            ]
           }
         }
       },
@@ -1726,6 +1956,57 @@
             "format": "uuid"
           },
           "location": { }
+        }
+      },
+      "CreateRegimeAlignmentRequest": {
+        "required": [
+          "camp",
+          "validPeriod",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "camp": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/CitationInput"
+            }
+          },
+          "basisEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
         }
       },
       "CreateRegimeRelationRequest": {
@@ -2098,6 +2379,56 @@
               "string"
             ],
             "format": "int32"
+          }
+        }
+      },
+      "RegimeAlignmentDto": {
+        "required": [
+          "id",
+          "regimeId",
+          "camp",
+          "validPeriod",
+          "basisEventId",
+          "note",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "camp": {
+            "type": "string"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "basisEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
           }
         }
       },

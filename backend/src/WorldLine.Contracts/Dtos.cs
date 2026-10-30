@@ -62,9 +62,14 @@ public sealed record ControlRecordCreatedDto(Guid ControlRecordId, Guid VersionI
 public sealed record CitationDto(
     Guid SourceId, string SourceTitle, string Publisher, string? LicenseCode, string Locator, string Role, string EvidenceNote);
 
+/// <summary>
+/// <c>controllerAlignment</c>：控制方在該日期的陣營切片（憲法 §6「陣營」），附引用；
+/// 沒有陣營資料時為 null，前端顯示「陣營未建置」，不自行推定。
+/// </summary>
 public sealed record ControlFeatureProperties(
     Guid ControlRecordId, Guid VersionId, Guid ControllerRegimeId, string ControlType, Guid? PatronRegimeId,
-    string TheaterCode, Guid SnapshotId, bool IsDisputed, IntervalDto ValidPeriod, IReadOnlyList<CitationDto> Citations);
+    string TheaterCode, Guid SnapshotId, bool IsDisputed, IntervalDto ValidPeriod, IReadOnlyList<CitationDto> Citations,
+    RegimeAlignmentDto? ControllerAlignment = null);
 
 public sealed record ControlFeature(Guid Id, JsonElement Geometry, ControlFeatureProperties Properties)
 {
@@ -125,3 +130,17 @@ public sealed record EventDto(
     Guid Id, string EventKind, Guid? ParentEventId, IReadOnlyDictionary<string, string>? Summary,
     DatePeriodDto Occurred, string DatePrecision, IReadOnlyDictionary<string, string>? TimeNote,
     JsonElement? Location);
+
+// ───────────── 陣營（憲法 §6「陣營」、PRD §6.3 regime_alignments） ─────────────
+/// <summary>
+/// 新增陣營切片。camp：axis | allies | co_belligerent | neutral。validPeriod.start 必填（正式加入日），迄日未知可留空。
+/// citations 至少一筆 role = primary（有 locator、授權在允許清單）。basisEventId 選填（依據事件）。
+/// </summary>
+public sealed record CreateRegimeAlignmentRequest(
+    string? Camp, DatePeriodDto? ValidPeriod, IReadOnlyList<CitationInput>? Citations,
+    Guid? BasisEventId = null, IReadOnlyDictionary<string, string>? Note = null);
+
+/// <summary>陣營切片。validPeriod 為半開區間 [start, end)；end 為 null 表示迄日未定（不推測）。</summary>
+public sealed record RegimeAlignmentDto(
+    Guid Id, Guid RegimeId, string Camp, DatePeriodDto ValidPeriod, Guid? BasisEventId,
+    IReadOnlyDictionary<string, string>? Note, IReadOnlyList<CitationDto> Citations);

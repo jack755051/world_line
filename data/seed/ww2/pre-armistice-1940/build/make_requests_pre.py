@@ -1,6 +1,6 @@
 """產生 requests/*.json：停戰前快照 1940-06-04（USMA Map 13）、1940-06-12（USMA Map 14）。DRAFT，待 Tai 檢查，未寫入 appdb_ww2。
 先跑 make_prearmistice.py 產生 ../zones-pre-armistice-1940.geojson，再跑本檔。
-前置 id：THEATER_WE、REGIME_DE、SRC_TRF（法國那批）；REGIME_FR3（法英那批）。
+前置 id：THEATER_WE、REGIME_DE、SRC_TRF（法國那批）；REGIME_FR3、REGIME_UK（法英那批）。
 """
 import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -51,7 +51,7 @@ w('01-source-3-src_natural_earth.json', 'SRC_NATURAL_EARTH', '/api/v1/sources', 
     'licenseEvidenceUrl': 'https://www.naturalearthdata.com/about/terms-of-use/',
     'url': 'https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/',
     'localCopyPath': '/workspace/world-line-ww2/trace/ne_10m_admin_0_countries.geojson',
-    'note': '公有領域（官網 terms of use）。現代疆界，只當 auxiliary_geometry：比利時（BEL）、盧森堡（LUX）、荷蘭（NLD）外框。',
+    'note': '公有領域（官網 terms of use）。現代疆界，只當 auxiliary_geometry：比利時（BEL）、盧森堡（LUX）、荷蘭（NLD）、英國（GBR，1940-06-12 英國本土）外框。',
 })
 
 SNAP = {'1940-06-04': ('SNAP_0604', 'SRC_USMA13', 'Map 13', '4 June'), '1940-06-12': ('SNAP_0612', 'SRC_USMA14', 'Map 14', '12 June')}
@@ -90,7 +90,22 @@ for d, (ph, src, mapn, label) in SNAP.items():
                        'locator': f'West Point Atlas WWII Europe, {mapn}（Situation {label} 1940）：{label} 粗藍實線與 Maginot 網格帶的南側／西側',
                        'evidenceNote': f'圖上 {label} 戰線以南為法軍防線後方。{gcp}。只取圖框內；圖框外與圖上不明處列控制資料缺。'}] + common_aux[:1]})
 
+# ── 英國本土（Tai 2026-10-31 選 B）：只有 Map 14（6/12）畫到英國陸地；6/4 Map 13 沒畫，不寫 ──
+mu = Z[('1940-06-12', 'UK')][1]
+n += 1
+w(f'03-control-{n}-uk-0612.json', 'CR_UK_0612', '/api/v1/control-records', {
+    'controllerRegimeId': '{{REGIME_UK}}', 'snapshotId': '{{SNAP_0612}}', 'controlType': 'direct_rule',
+    'validPeriod': {'start': '1940-06-12', 'end': '1940-06-13'}, 'isDisputed': False, 'geometry': Z[('1940-06-12', 'UK')][0],
+    'citations': [{'sourceId': '{{SRC_USMA14}}', 'role': 'primary',
+                   'locator': 'West Point Atlas WWII Europe, Map 14（Situation 12 June 1940）：圖幅 A1–B2「ENGLAND」（倫敦、Dover、Portsmouth、Bristol、Norwich、Coventry）',
+                   'evidenceNote': f"圖上英格蘭東南與德軍區不同色、無德軍單位或戰線，標「ENGLAND」。只取圖框內、標題框以外看得到的部分：控制點 {mu['gcp']} 個（trace/gcp-map14-uk.json），仿射配準殘差 RMS {mu['rms_km']} km、最大 {mu['max_km']} km，leave-one-out 最大 {mu['loo_max_km']} km，邊界再往內縮 {mu['inset_km']} km。其餘英國領土列控制資料缺，不推測。"},
+                  {'sourceId': '{{SRC_NATURAL_EARTH}}', 'role': 'auxiliary_geometry', 'locator': 'ne_10m_admin_0_countries，ADM0_A3 = GBR',
+                   'evidenceNote': '英國陸地外框（海岸線；現代資料，只用來描海岸）。'}]})
+
 GAPS = {
+    'GAP_UK': ('not_yet_digitized', '英國本土圖上未畫到的部分', 'Parts of Great Britain not shown',
+               '{map} 圖框外、標題框下，以及看得到範圍的配準誤差內縮帶（{inset} km）：本圖沒有畫到，暫無同日的合格地圖，不推測。',
+               'Outside the frame of {map}, under its title block, or within the {inset} km registration margin: not shown; no qualified map for this date.'),
     'GAP_FRAME': ('not_yet_digitized', '圖框外', 'Outside the map frame',
                   '{map} 圖框外的法國、比、盧、荷領土：本圖沒有畫到，暫無同日的合格地圖。',
                   'Outside the frame of {map}: not shown; no qualified map for this date yet.'),
@@ -110,13 +125,13 @@ GAPS = {
 k = 0
 for d, (ph, src, mapn, label) in SNAP.items():
     tag = d[5:].replace('-', '')
-    for zone in ['GAP_FRAME', 'GAP_MAGINOT', 'GAP_DUNKIRK', 'GAP_CAUX', 'GAP_LINEBREAK']:
+    for zone in ['GAP_FRAME', 'GAP_MAGINOT', 'GAP_DUNKIRK', 'GAP_CAUX', 'GAP_LINEBREAK', 'GAP_UK']:
         if (d, zone) not in Z: continue
         reason, zh_t, en_t, zh, en = GAPS[zone]
         k += 1
         w(f'04-coverage-{k}-{zone.lower()}-{tag}.json', f'{zone}_{tag}', '/api/v1/control-coverage-notes', {
             'theaterId': '{{THEATER_WE}}', 'geometry': Z[(d, zone)][0],
             'validPeriod': {'start': d, 'end': nxt(d)}, 'reason': reason,
-            'note': {'zh-Hant': f'{zh_t}：' + zh.format(map=f'USMA {mapn}'), 'en': f'{en_t}: ' + en.format(map=f'USMA {mapn}')},
+            'note': {'zh-Hant': f'{zh_t}：' + zh.format(map=f'USMA {mapn}', inset=mu['inset_km']), 'en': f'{en_t}: ' + en.format(map=f'USMA {mapn}', inset=mu['inset_km'])},
             'researchRef': 'data/seed/ww2/pre-armistice-1940/README.md；build/make_prearmistice.py'})
 print(sorted(os.listdir(OUT)))

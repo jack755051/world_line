@@ -2,12 +2,13 @@
 
 > **狀態：DRAFT — 待 Tai 檢查。尚未寫入 appdb_ww2。**
 > 預設 dry-run：`python3 send_seed.py`；Tai 同意後 `--send`。
-> 前置 id：THEATER_WE、REGIME_DE、SRC_TRF（`../france-1940-07-15/sent-ids.json`），REGIME_FR3（`../fr-uk-1940/sent-ids.json`，法英那批要先寫入）。
+> 前置 id：THEATER_WE、REGIME_DE、SRC_TRF（`../france-1940-07-15/sent-ids.json`），REGIME_FR3、REGIME_UK（`../fr-uk-1940/sent-ids.json`，法英那批要先寫入）。
 
 ## Tai 的決定（2026-10-31）
 
 - 用 USMA WWII Europe Map 13（Situation 4 June 1940）與 Map 14（Situation 12 June 1940）做停戰前快照，兩張都是美國聯邦公有領域。
 - 幾何要能追溯到地圖；地圖畫不清楚的標「控制資料缺」或拆成不確定區，不推測；照憲法的精度規則。
+- 英國本土（2026-10-31，Tai 同意選項 B）：每張快照當天各一筆 [d, d+1)，只寫地圖上看得到的範圍；來源不夠的日期不寫。
 
 ## 快照與期間
 
@@ -27,6 +28,20 @@
 | CR_FR3_0604 | 第三共和 | direct_rule | 35,727 km² | Map 13 戰線以南，限圖框內 |
 | CR_DE_0612 | 德意志國 | military_occupation | 103,086 km² | Map 14 同上 |
 | CR_FR3_0612 | 第三共和 | direct_rule | 159,656 km² | Map 14 同上 |
+| CR_UK_0612 | 英國 | direct_rule | 70,235 km² | Map 14 圖框內、標題框以外看得到的英格蘭東南（標「ENGLAND」，與德軍區不同色），邊界內縮 11 km |
+
+### 英國本土（選項 B）
+
+| 日期 | 結果 | 理由 |
+|---|---|---|
+| 1940-06-04 | 不寫 | Map 13 圖框西北角（肯特所在位置）畫成海面與標題框，沒有畫英國陸地。（fr-uk README 先前說「Map 13 圖框含肯特」是依配準推算，實際看圖沒有畫出，已更正。） |
+| 1940-06-12 | CR_UK_0612＋GAP_UK_0612 | Map 14 畫出英格蘭東南（Bristol–Coventry–Norwich 以南）。 |
+| 1940-07-15、08-15 | 不寫 | 這兩個快照的地圖（Leconte 分界線圖等）只畫法國；USMA Map 15 是 6/13–25 的期間圖，不是這兩天。沒有同日的合格地圖。 |
+
+- 配準：Map 14 原本的三次多項式只用法國、比、荷的控制點，外推到英格蘭北緣誤差 9–12 km（以 Norwich、Coventry 驗證）。英國另用 21 個英格蘭與海峽兩岸控制點（`build/trace/gcp-map14-uk.json`；Norwich、Coventry、Southampton、Portland 為新增，像素座標目讀圓點中心）做仿射配準：殘差 RMS 3.39 km、最大 7.78 km，留一驗證最大 10.64 km。
+- 看得到的範圍＝圖框 − 標題框（像素 752,257–1570,636），再往內縮 11 km（留一驗證最大誤差），確保紀錄只落在圖上確實畫到的地方。陸地外框用 Natural Earth GBR（海岸線）。
+- 其餘英國領土（圖框外、標題框下、內縮帶，含蘇格蘭、威爾斯、北愛爾蘭）＝GAP_UK_0612（not_yet_digitized，173,547 km²），不推測。
+- 預覽：`/workspace/world-line-c8/uk-0612-overlay-map14.png`（box）。
 
 - 法國外框：TRF-GIS 1940 省界；比、盧、荷：Natural Earth（現代疆界，auxiliary_geometry）。
 - **扣掉 CR_NORD**（Nord＋Pas-de-Calais，已寫入，[1940-06-04, 1944-07-16)，德國）：同控制方不可重疊（I3）。
@@ -44,6 +59,7 @@
 | GAP_MAGINOT_0612 | 06-12 | no_qualified_source | 3,239 km² | Maginot 帶外側（含亞爾薩斯萊茵河沿岸） |
 | GAP_CAUX_0612 | 06-12 | no_qualified_source | 2,644 km² | Pays de Caux：12 June 線西端以西、8 June 點線以西；圖註「Elements of Tenth Army and British surrendered 12 June」 |
 | GAP_LINEBREAK_0612 | 06-12 | no_qualified_source | 332 km² | 12 June 線在 Châlons 東南斷開約 10 km，以斷點中點畫圓 |
+| GAP_UK_0612 | 06-12 | not_yet_digitized | 173,547 km² | 英國本土在 Map 14 上沒畫到的部分（見上） |
 
 - Maginot 帶外側的西界：以「戰線與要塞帶交會點」的經線切開，這是建構線，不是圖上的線。
 - 缺口與控制區之間留約 2 m 退縮（大於 1e-5° 網格捨入量），確保送出座標與同日控制紀錄的浮點交集面積為 0。
@@ -69,7 +85,7 @@
 |---|---|---|---|
 | SRC_USMA13 | atlas_map | us_federal_pd | 06-04 primary |
 | SRC_USMA14 | atlas_map | us_federal_pd | 06-12 primary |
-| SRC_NATURAL_EARTH | dataset | public_domain | auxiliary_geometry（比、盧、荷外框） |
+| SRC_NATURAL_EARTH | dataset | public_domain | auxiliary_geometry（比、盧、荷、英國外框） |
 
 沿用法國那批：SRC_TRF（cc_by，1940 省界）。
 

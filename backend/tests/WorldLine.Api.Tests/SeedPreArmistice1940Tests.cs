@@ -77,7 +77,14 @@ public sealed class SeedPreArmistice1940Tests(PostGisFixture fx)
         var (r0612, g0612, _) = await On("1940-06-12");
         Assert.Contains(ids["CR_DE_0612"], r0612);
         Assert.Contains(ids["CR_FR3_0612"], r0612);
-        foreach (var g in new[] { "GAP_FRAME_0612", "GAP_MAGINOT_0612", "GAP_CAUX_0612", "GAP_LINEBREAK_0612" }) Assert.Contains(ids[g], g0612);
+        foreach (var g in new[] { "GAP_FRAME_0612", "GAP_MAGINOT_0612", "GAP_CAUX_0612", "GAP_LINEBREAK_0612", "GAP_UK_0612" }) Assert.Contains(ids[g], g0612);
+
+        // 英國本土（Tai 2026-10-31 選 B）：只有 06-12（Map 14 畫到英格蘭東南），只撐一天；06-04 Map 13 沒畫英國，不寫
+        Assert.Contains(ids["CR_UK_0612"], r0612);
+        Assert.False(ids.ContainsKey("CR_UK_0604"));
+        var (r0613, g0613, _) = await On("1940-06-13");
+        Assert.DoesNotContain(ids["CR_UK_0612"], r0613);
+        Assert.DoesNotContain(ids["GAP_UK_0612"], g0613);
         Assert.DoesNotContain(ids["CR_DE_0612"], (await On("1940-06-13")).records);
     }
 }

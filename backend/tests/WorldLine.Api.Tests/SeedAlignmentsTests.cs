@@ -28,7 +28,9 @@ public sealed class SeedAlignmentsTests(PostGisFixture fx)
         if (body["slug"] is not null) body["slug"] = $"{body["slug"]}-{k.Tag}";
         string Fill(string s) => Regex.Replace(s, @"\{\{(\w+)\}\}", m => ids[m.Groups[1].Value]);
         var res = await k.W.PostAsync(Fill((string)req["_post"]!), new StringContent(Fill(body.ToJsonString()), Encoding.UTF8, "application/json"));
-        var data = (await ApiTestKit.Expect(res, HttpStatusCode.Created)).GetProperty("data");
+        // 撤回端點回 200，其餘建立回 201
+        var expected = ((string)req["_post"]!).EndsWith("/retraction") ? HttpStatusCode.OK : HttpStatusCode.Created;
+        var data = (await ApiTestKit.Expect(res, expected)).GetProperty("data");
         ids[(string)req["_placeholder"]!] = data.GetProperty("id").GetString()!;
     }
 
@@ -54,5 +56,11 @@ public sealed class SeedAlignmentsTests(PostGisFixture fx)
         Assert.All(list, a => Assert.Contains(a.GetProperty("citations").EnumerateArray(), c =>
             c.GetProperty("role").GetString() == "primary"
             && new[] { "us_federal_pd", "pd_expired" }.Contains(c.GetProperty("licenseCode").GetString())));
+        // Tai 2026-10-31：鋼鐵條約那段改指向美國政府印刷局版（舊切片撤回、新切片取代）
+        Assert.Equal(ids["AL_DE_AXIS_1939_GPO"], list[0].GetProperty("id").GetString());
+        var primary = list[0].GetProperty("citations").EnumerateArray().Single(c => c.GetProperty("role").GetString() == "primary");
+        Assert.Equal("us_federal_pd", primary.GetProperty("licenseCode").GetString());
+        Assert.Equal(ids["SRC_DGFP_D6_GPO"], primary.GetProperty("sourceId").GetString());
+        Assert.DoesNotContain(list, a => a.GetProperty("id").GetString() == ids["AL_DE_AXIS_1939"]);
     }
 }

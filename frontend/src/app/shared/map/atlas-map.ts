@@ -15,8 +15,14 @@ import {
 } from '@angular/core';
 import type { FeatureCollection, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
-import { hatchImage } from './hatch';
-import { MAP_COLORS, type ControlLabel, type DecoratedProps } from './map-style';
+import { gapDotsImage, hatchImage } from './hatch';
+import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
+
+export interface MapGapEvent {
+  gapId: string;
+  x: number;
+  y: number;
+}
 
 export interface MapFeatureEvent {
   versionId: string;
@@ -38,11 +44,26 @@ export function buildBaseStyle(): StyleSpecification {
     sources: {
       land: { type: 'geojson', data: BASEMAP_URL, attribution: '底圖 Base map: Natural Earth（公有領域 public domain）' },
       control: { type: 'geojson', data: EMPTY, promoteId: 'versionId' },
+      gaps: { type: 'geojson', data: EMPTY, promoteId: 'gapId' },
     },
     layers: [
       { id: 'sea', type: 'background', paint: { 'background-color': MAP_COLORS.sea } },
       { id: 'land', type: 'fill', source: 'land', paint: { 'fill-color': MAP_COLORS.land } },
       { id: 'coast', type: 'line', source: 'land', paint: { 'line-color': MAP_COLORS.coast, 'line-width': 0.75 } },
+      {
+        // 控制資料缺（R9）：紙底＋細墨點，邊框細虛線；不與任何控制類型共用樣式
+        id: 'gap-base',
+        type: 'fill',
+        source: 'gaps',
+        paint: { 'fill-color': MAP_COLORS.land, 'fill-opacity': 1 },
+      },
+      { id: 'gap-fill', type: 'fill', source: 'gaps', paint: { 'fill-pattern': GAP_IMAGE_ID } },
+      {
+        id: 'gap-line',
+        type: 'line',
+        source: 'gaps',
+        paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.75, 'line-opacity': 0.45, 'line-dasharray': [2, 2] },
+      },
       {
         id: 'control-fill',
         type: 'fill',
@@ -109,7 +130,7 @@ export function buildBaseStyle(): StyleSpecification {
   host: { class: 'absolute inset-0 block overflow-hidden' },
   template: `
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
-      [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
+      [attr.data-rendered-gaps]="renderedGaps()" [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
@@ -124,6 +145,7 @@ export function buildBaseStyle(): StyleSpecification {
 })
 export class AtlasMap {
   readonly collection = input<FeatureCollection<Geometry, DecoratedProps> | null>(null);
+  readonly gaps = input<FeatureCollection<Geometry, GapProps> | null>(null);
   readonly selectedVersionId = input<string | null>(null);
   readonly engineErrorText = input('');
   readonly labels = input<ControlLabel[]>([]);
@@ -131,9 +153,11 @@ export class AtlasMap {
 
   readonly featureClick = output<MapFeatureEvent>();
   readonly emptyClick = output<void>();
+  readonly gapClick = output<MapGapEvent>();
   readonly featureHover = output<MapFeatureEvent | null>();
 
   protected readonly renderedCount = signal(0);
+  protected readonly renderedGaps = signal(0);
   protected readonly ready = signal(false);
   readonly engineError = signal(false);
 
@@ -154,6 +178,11 @@ export class AtlasMap {
       this.labels();
       if (!this.ready()) return;
       untracked(() => this.placeLabels());
+    });
+    effect(() => {
+      const data = this.gaps();
+      if (!this.ready()) return;
+      untracked(() => (this.map?.getSource('gaps') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
     });
     effect(() => {
       const id = this.selectedVersionId() ?? '';
@@ -193,6 +222,7 @@ export class AtlasMap {
         this.ready.set(true);
         this.setData(this.collection());
         this.placeLabels();
+        (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
       });
       map.on('idle', () => this.countRendered());
       map.on('move', () => this.placeLabels());
@@ -202,7 +232,12 @@ export class AtlasMap {
       map.on('click', (e) => {
         const hit = map.queryRenderedFeatures(e.point, { layers });
         const id = hit[0]?.properties?.['versionId'] as string | undefined;
-        if (id) this.featureClick.emit({ versionId: id, x: e.point.x, y: e.point.y });
+        if (id) {
+          this.featureClick.emit({ versionId: id, x: e.point.x, y: e.point.y });
+          return;
+        }
+        const gap = map.queryRenderedFeatures(e.point, { layers: ['gap-base'] })[0]?.properties?.['gapId'] as string | undefined;
+        if (gap) this.gapClick.emit({ gapId: gap, x: e.point.x, y: e.point.y });
         else this.emptyClick.emit();
       });
       for (const layer of layers) {
@@ -216,6 +251,8 @@ export class AtlasMap {
           this.featureHover.emit(null);
         });
       }
+      map.on('mouseenter', 'gap-base', () => (map.getCanvas().style.cursor = 'pointer'));
+      map.on('mouseleave', 'gap-base', () => (map.getCanvas().style.cursor = ''));
     } catch {
       this.engineError.set(true);
     }
@@ -249,9 +286,15 @@ export class AtlasMap {
     if (!this.map || !this.ready()) return;
     const n = this.map.queryRenderedFeatures({ layers: ['control-fill', 'control-hatch'] }).length;
     this.renderedCount.set(n);
+    this.renderedGaps.set(this.map.queryRenderedFeatures({ layers: ['gap-fill'] }).length);
   }
 
   private addHatch(id: string): void {
+    if (id === GAP_IMAGE_ID && this.map && !this.map.hasImage(id)) {
+      const img = gapDotsImage(GAP_STYLE.dotColor, GAP_STYLE.grid);
+      if (img) this.map.addImage(id, img, { pixelRatio: 2 });
+      return;
+    }
     const m = /^wl-hatch-(partial|contested)-([0-9a-f]{6})$/.exec(id);
     if (!m || !this.map || this.map.hasImage(id)) return;
     const img = hatchImage(`#${m[2]}`, m[1] as 'partial' | 'contested');

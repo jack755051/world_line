@@ -9,7 +9,10 @@ namespace WorldLine.Api.Features;
 
 /// <summary>
 /// 歷史事件（PRD §6.3 historical_events）。日期規則（Tai 2026-10-28 修正）：
-/// occurred 記發生地的當地日期；time_note 為選填多語備註（不記時區欄位）。命名、參與方、引用、爭議點於 M1 補上。
+/// occurred 記發生地的當地日期；time_note 為選填多語備註（不記時區欄位）。
+/// 參與方（event_participants）與引用（event_citations）2026-10-31 實作（AI 提案・待拍板）：
+/// 隨事件同一 transaction 寫入，寫入後不可改、不可刪（I5）；引用必須有 locator 且授權在允許清單（有使用權）。
+/// 命名、爭議點仍待後續。
 /// </summary>
 public static class EventsEndpoints
 {
@@ -45,20 +48,104 @@ public static class EventsEndpoints
             TimeNote = Mapping.OptionalLocalized(req.TimeNote, "timeNote"),
             Location = location,
         };
+
+        // 參與方
+        var parts = new List<EventParticipant>();
+        var pin = req.Participants ?? [];
+        var regimeIds = pin.Select(p => p.RegimeId).OfType<Guid>().Distinct().ToList();
+        var existing = await db.Regimes.AsNoTracking().Where(r => regimeIds.Contains(r.Id) && r.RetractedAt == null).Select(r => r.Id).ToListAsync(ct);
+        for (var i = 0; i < pin.Count; i++)
+        {
+            var f = $"participants[{i}]";
+            if (pin[i].RegimeId is not { } rid || !existing.Contains(rid))
+                throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "參與方政權不存在。", $"{f}.regimeId");
+            var role = Mapping.RequireOneOf(pin[i].Role, EventParticipantRoles.All, $"{f}.role");
+            parts.Add(new EventParticipant { EventId = e.Id, RegimeId = rid, Role = role });
+        }
+        if (parts.GroupBy(p => (p.RegimeId, p.Role)).Any(g => g.Count() > 1))
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "同一政權與角色重複。", "participants");
+
+        // 引用（R8 合格史料；有使用權）
+        var cites = new List<EventCitation>();
+        var cin = req.Citations ?? [];
+        var sourceIds = cin.Select(c => c.SourceId).OfType<Guid>().Distinct().ToList();
+        var sources = await db.Sources.AsNoTracking().Where(s => sourceIds.Contains(s.Id)).ToDictionaryAsync(s => s.Id, ct);
+        for (var i = 0; i < cin.Count; i++)
+        {
+            var c = cin[i];
+            var f = $"citations[{i}]";
+            if (c.SourceId is not { } sid || !sources.TryGetValue(sid, out var source))
+                throw ApiError.BadRequest(ErrorCodes.CitationRequired, "引用的來源不存在。", $"{f}.sourceId");
+            if (CitationPolicy.WhyNotQualifiedAlignmentPrimary(source, c.Locator ?? "") is { } why)
+                throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, why, $"{f}.sourceId");
+            cites.Add(new EventCitation { EventId = e.Id, SourceId = sid, Locator = c.Locator!.Trim(), EvidenceNote = Mapping.RequireText(c.EvidenceNote, $"{f}.evidenceNote") });
+        }
+        if (cites.GroupBy(c => (c.SourceId, c.Locator)).Any(g => g.Count() > 1))
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "同一來源與 locator 的引用重複。", "citations");
+
         db.HistoricalEvents.Add(e);
-        await db.SaveChangesAsync(ct);
-        return ApiResults.Created($"/api/v1/events/{e.Id}", ToDto(e));
+        db.EventParticipants.AddRange(parts);
+        db.EventCitations.AddRange(cites);
+        await db.SaveChangesAsync(ct); // 事件、參與方、引用同一 transaction
+        return ApiResults.Created($"/api/v1/events/{e.Id}", (await ToDtosAsync(db, [e], ct)).Single());
     }
 
     public static async Task<IResult> Get(Guid id, WorldLineDbContext db, CancellationToken ct)
     {
         var e = await db.HistoricalEvents.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.RetractedAt == null, ct)
                 ?? throw ApiError.NotFound("事件");
-        return ApiResults.Ok(ToDto(e));
+        return ApiResults.Ok((await ToDtosAsync(db, [e], ct)).Single());
     }
 
-    public static EventDto ToDto(HistoricalEvent e) => new(
-        e.Id, e.EventKind, e.ParentEventId, Mapping.ReadLocalizedOrNull(e.Summary), Mapping.ToDto(e.Occurred)!,
-        e.DatePrecision, Mapping.ReadLocalizedOrNull(e.TimeNote),
-        e.Location is null ? null : Mapping.ToGeoJson(e.Location));
+    internal static async Task<List<EventDto>> ToDtosAsync(WorldLineDbContext db, List<HistoricalEvent> rows, CancellationToken ct)
+    {
+        var ids = rows.Select(r => r.Id).ToList();
+        var parts = (await db.EventParticipants.AsNoTracking().Where(p => ids.Contains(p.EventId))
+                .OrderBy(p => p.Role).ThenBy(p => p.RegimeId).ToListAsync(ct))
+            .ToLookup(p => p.EventId, p => new EventParticipantDto(p.RegimeId, p.Role));
+        var cites = (await (
+                from c in db.EventCitations.AsNoTracking()
+                join s in db.Sources on c.SourceId equals s.Id
+                where ids.Contains(c.EventId)
+                orderby s.Title, c.Locator
+                select new { c.EventId, Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, "event", c.EvidenceNote) })
+            .ToListAsync(ct))
+            .ToLookup(x => x.EventId, x => x.Dto);
+        return rows.Select(e => new EventDto(
+            e.Id, e.EventKind, e.ParentEventId, Mapping.ReadLocalizedOrNull(e.Summary), Mapping.ToDto(e.Occurred)!,
+            e.DatePrecision, Mapping.ReadLocalizedOrNull(e.TimeNote),
+            e.Location is null ? null : Mapping.ToGeoJson(e.Location),
+            parts[e.Id].ToList(), cites[e.Id].ToList())).ToList();
+    }
+
+    /// <summary>
+    /// 陣營「補充」（使用者 2026-10-31 拍板）：各政權在 d 當日或之前參與、且附引用的事件（war／treaty／political）。
+    /// 只作補充呈現，不參與陣營判定（陣營只依 regime_alignments）。
+    /// </summary>
+    internal static readonly string[] SupplementKinds = ["war", "treaty", "political"];
+
+    internal static async Task<ILookup<Guid, SupplementEventDto>> SupplementsOnAsync(
+        WorldLineDbContext db, IReadOnlyCollection<Guid> regimeIds, DateOnly d, CancellationToken ct)
+    {
+        if (regimeIds.Count == 0) return Array.Empty<(Guid, SupplementEventDto)>().ToLookup(x => x.Item1, x => x.Item2);
+        var hits = await (
+                from p in db.EventParticipants.AsNoTracking()
+                join e in db.HistoricalEvents on p.EventId equals e.Id
+                where regimeIds.Contains(p.RegimeId) && e.RetractedAt == null
+                      && SupplementKinds.Contains(e.EventKind)
+                      && e.Occurred.LowerBound <= d
+                      && db.EventCitations.Any(c => c.EventId == e.Id)
+                select new { p.RegimeId, Event = e })
+            .ToListAsync(ct);
+        var events = hits.Select(h => h.Event).DistinctBy(e => e.Id).ToList();
+        var dtos = (await ToDtosAsync(db, events, ct)).ToDictionary(x => x.Id);
+        return hits
+            .DistinctBy(h => (h.RegimeId, h.Event.Id))
+            .OrderBy(h => h.Event.Occurred.LowerBound).ThenBy(h => h.Event.Id)
+            .ToLookup(h => h.RegimeId, h =>
+            {
+                var x = dtos[h.Event.Id];
+                return new SupplementEventDto(x.Id, x.EventKind, x.Occurred, x.Summary, x.Participants ?? [], x.Citations ?? []);
+            });
+    }
 }

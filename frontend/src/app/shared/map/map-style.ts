@@ -74,6 +74,28 @@ export function campTonesFrom(dto: ControlMapDto | null | undefined): CampTones 
 
 /** 控制資料缺候選 A（DESIGN.md：紙底＋6px 網格細墨點 35%）。M1 實測前先用 A。 */
 export const GAP_STYLE = { dotColor: 'rgba(58,47,40,0.35)', grid: 6 } as const;
+export const GAP_IMAGE_ID = 'wl-gap-dots';
+
+export interface GapProps {
+  gapId: string;
+  reason: string;
+}
+
+/**
+ * 控制資料缺（R9）：API 回傳的涵蓋備註幾何（`coverageNotes`）。只畫 API 給的範圍，前端不推導、不以任何控制類型代替。
+ * 戰區範圍與 reference_land 尚未建置，所以只有寫了涵蓋備註的地方會出現（PRD §6.4，2026-10-31 暫代，待拍板）。
+ */
+export function gapFeatures(dto: ControlMapDto | null | undefined): FeatureCollection<Geometry, GapProps> {
+  return {
+    type: 'FeatureCollection',
+    features: (dto?.coverageNotes ?? []).map((n) => ({
+      type: 'Feature',
+      id: n.id,
+      geometry: n.geometry as unknown as Geometry,
+      properties: { gapId: n.id, reason: n.reason },
+    })),
+  };
+}
 
 export const CONTROL_TYPES = ['direct_rule', 'military_occupation', 'puppet_administration', 'partial', 'contested'] as const;
 export type ControlType = (typeof CONTROL_TYPES)[number];

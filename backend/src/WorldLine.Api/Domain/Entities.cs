@@ -192,3 +192,39 @@ public sealed class RegimeAlignmentCitation
     public string Role { get; set; } = CitationRoles.Primary;
     public string EvidenceNote { get; set; } = "";
 }
+
+/// <summary>事件參與方（PRD §6.3 event_participants；2026-10-31 實作，AI 提案・待拍板）。寫入後不可改、不可刪（I5）。</summary>
+public sealed class EventParticipant
+{
+    public Guid EventId { get; set; }
+    public Guid RegimeId { get; set; }
+    public string Role { get; set; } = "";
+}
+
+/// <summary>事件引用（PRD §6.3 event_citations；格式同其他 citation 表）。寫入後不可改、不可刪（I5）。</summary>
+public sealed class EventCitation
+{
+    public Guid EventId { get; set; }
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string EvidenceNote { get; set; } = "";
+}
+
+/// <summary>
+/// 涵蓋備註（PRD §6.3 control_coverage_notes、§6.4 選項 C）：說明某範圍某期間「控制資料缺」的原因，
+/// 不產生任何控制類型（R9）。修正走軟撤回（retracted_at＋原因，I5）。
+/// </summary>
+public sealed class ControlCoverageNote
+{
+    public Guid Id { get; set; }
+    public Guid? TheaterId { get; set; }
+    public MultiPolygon Geom { get; set; } = null!;
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public string Reason { get; set; } = "";
+    public string? Note { get; set; }
+    public string? ResearchRef { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}

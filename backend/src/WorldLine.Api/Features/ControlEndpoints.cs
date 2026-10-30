@@ -130,8 +130,10 @@ public static class ControlEndpoints
             .ToLookup(x => x.ControlRecordVersionId, x => x.Dto);
 
         // 憲法 §6「陣營」：控制方在該日的陣營切片（沒有就是 null＝陣營未建置，不推定）
-        var alignments = await RegimeAlignmentsEndpoints.ActiveOnAsync(
-            db, versions.Select(x => x.ControllerRegimeId).Distinct().ToList(), d, ct);
+        var controllers = versions.Select(x => x.ControllerRegimeId).Distinct().ToList();
+        var alignments = await RegimeAlignmentsEndpoints.ActiveOnAsync(db, controllers, d, ct);
+        // 使用者 2026-10-31 拍板：陣營以正式文件為主，其他有紀錄者（宣戰、承認等）作「補充」
+        var supplements = await EventsEndpoints.SupplementsOnAsync(db, controllers, d, ct);
 
         var features = versions.Select(x => new ControlFeature(
             x.v.Id,
@@ -141,10 +143,12 @@ public static class ControlEndpoints
                 x.TheaterCode, x.v.SnapshotId, x.v.IsDisputed,
                 Mapping.ToInterval(x.v.ValidPeriod, x.v.StartUncertainty, x.v.EndUncertainty),
                 citations[x.v.Id].ToList(),
-                alignments.GetValueOrDefault(x.ControllerRegimeId)))).ToList();
+                alignments.GetValueOrDefault(x.ControllerRegimeId),
+                supplements[x.ControllerRegimeId].ToList()))).ToList();
 
         var theaters = await TheaterStatesAsync(db, d, ct);
-        return ApiResults.Ok(new ControlMapDto(d, new ControlFeatureCollection(features), theaters));
+        var gaps = await ControlCoverageNotesEndpoints.ActiveOnAsync(db, d, ct);
+        return ApiResults.Ok(new ControlMapDto(d, new ControlFeatureCollection(features), theaters, gaps));
     }
 
     /// <summary>

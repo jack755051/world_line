@@ -69,7 +69,15 @@ public sealed record CitationDto(
 public sealed record ControlFeatureProperties(
     Guid ControlRecordId, Guid VersionId, Guid ControllerRegimeId, string ControlType, Guid? PatronRegimeId,
     string TheaterCode, Guid SnapshotId, bool IsDisputed, IntervalDto ValidPeriod, IReadOnlyList<CitationDto> Citations,
-    RegimeAlignmentDto? ControllerAlignment = null);
+    RegimeAlignmentDto? ControllerAlignment = null, IReadOnlyList<SupplementEventDto>? ControllerSupplements = null);
+
+/// <summary>
+/// 陣營「補充」（使用者 2026-10-31 拍板：陣營以最嚴謹的正式文件為主，其他有紀錄者只作補充）：
+/// 控制方在該日之前參與、且附引用的事件（宣戰、承認等）。不改變陣營判定，前端標「補充」。實作為 AI 提案・待拍板。
+/// </summary>
+public sealed record SupplementEventDto(
+    Guid EventId, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
+    IReadOnlyList<EventParticipantDto> Participants, IReadOnlyList<CitationDto> Citations);
 
 public sealed record ControlFeature(Guid Id, JsonElement Geometry, ControlFeatureProperties Properties)
 {
@@ -90,7 +98,23 @@ public sealed record SnapshotRefDto(Guid Id, DateOnly AsOf);
 public sealed record TheaterStateDto(
     string TheaterCode, string State, SnapshotRefDto? AttestingSnapshot, SnapshotRefDto? PrevSnapshot, SnapshotRefDto? NextSnapshot);
 
-public sealed record ControlMapDto(DateOnly Date, ControlFeatureCollection FeatureCollection, IReadOnlyList<TheaterStateDto> Theaters);
+/// <summary>
+/// <c>coverageNotes</c>：該日有效的涵蓋備註（R9「控制資料缺」及原因，PRD §6.4 選項 C）。
+/// 戰區範圍與 reference_land 尚未建置，暫以備註幾何直接呈現缺口（2026-10-31 實作，AI 提案・待拍板）。
+/// </summary>
+public sealed record ControlMapDto(
+    DateOnly Date, ControlFeatureCollection FeatureCollection, IReadOnlyList<TheaterStateDto> Theaters,
+    IReadOnlyList<CoverageNoteDto>? CoverageNotes = null);
+
+// ───────────── 控制資料缺（R9、PRD §6.3 control_coverage_notes） ─────────────
+/// <summary>reason：no_qualified_source（已調查、無合格來源）| not_yet_digitized（尚未建置／地圖沒畫到）。期間兩端有界。</summary>
+public sealed record CreateCoverageNoteRequest(
+    Guid? TheaterId, JsonElement? Geometry, DatePeriodDto? ValidPeriod, string? Reason,
+    IReadOnlyDictionary<string, string>? Note = null, string? ResearchRef = null);
+
+public sealed record CoverageNoteDto(
+    Guid Id, Guid? TheaterId, JsonElement Geometry, DatePeriodDto ValidPeriod, string Reason,
+    IReadOnlyDictionary<string, string>? Note, string? ResearchRef);
 
 // ───────────── 時間軸 ─────────────
 public sealed record SnapshotSourceDto(Guid SourceId, string Title, string Locator);
@@ -124,12 +148,21 @@ public sealed record RegimeInteractionsDto(Guid RegimeId, DateOnly Date, IReadOn
 public sealed record CreateEventRequest(
     string? EventKind, DatePeriodDto? Occurred, string? DatePrecision,
     IReadOnlyDictionary<string, string>? TimeNote = null,
-    IReadOnlyDictionary<string, string>? Summary = null, Guid? ParentEventId = null, JsonElement? Location = null);
+    IReadOnlyDictionary<string, string>? Summary = null, Guid? ParentEventId = null, JsonElement? Location = null,
+    IReadOnlyList<EventParticipantInput>? Participants = null, IReadOnlyList<EventCitationInput>? Citations = null);
+
+/// <summary>事件參與方（PRD §6.3 event_participants）。role：belligerent | signatory | perpetrator | other（清單待拍板）。</summary>
+public sealed record EventParticipantInput(Guid? RegimeId, string? Role);
+
+/// <summary>事件引用（PRD §6.3 event_citations）：來源＋locator（頁碼、文件號）＋審查依據。</summary>
+public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote);
+
+public sealed record EventParticipantDto(Guid RegimeId, string Role);
 
 public sealed record EventDto(
     Guid Id, string EventKind, Guid? ParentEventId, IReadOnlyDictionary<string, string>? Summary,
     DatePeriodDto Occurred, string DatePrecision, IReadOnlyDictionary<string, string>? TimeNote,
-    JsonElement? Location);
+    JsonElement? Location, IReadOnlyList<EventParticipantDto>? Participants = null, IReadOnlyList<CitationDto>? Citations = null);
 
 // ───────────── 陣營（憲法 §6「陣營」、PRD §6.3 regime_alignments） ─────────────
 /// <summary>
@@ -144,3 +177,8 @@ public sealed record CreateRegimeAlignmentRequest(
 public sealed record RegimeAlignmentDto(
     Guid Id, Guid RegimeId, string Camp, DatePeriodDto ValidPeriod, Guid? BasisEventId,
     IReadOnlyDictionary<string, string>? Note, IReadOnlyList<CitationDto> Citations);
+
+/// <summary>撤回（I5：不硬刪，只寫一次撤回時間與原因）。</summary>
+public sealed record RetractionRequest(string? Reason);
+
+public sealed record RetractionDto(Guid Id, DateTimeOffset RetractedAt, string Reason);

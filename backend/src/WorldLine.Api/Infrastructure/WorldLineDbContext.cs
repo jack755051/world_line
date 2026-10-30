@@ -20,6 +20,9 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<HistoricalEvent> HistoricalEvents => Set<HistoricalEvent>();
     public DbSet<RegimeAlignment> RegimeAlignments => Set<RegimeAlignment>();
     public DbSet<RegimeAlignmentCitation> RegimeAlignmentCitations => Set<RegimeAlignmentCitation>();
+    public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
+    public DbSet<EventCitation> EventCitations => Set<EventCitation>();
+    public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -234,6 +237,47 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasKey(x => new { x.RegimeAlignmentId, x.SourceId, x.Locator });
             e.Property(x => x.Role).HasMaxLength(24).HasDefaultValue(CitationRoles.Primary);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // 事件參與方與引用（PRD §6.3；2026-10-31 實作，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<EventParticipant>(e =>
+        {
+            e.ToTable("event_participants", t =>
+                t.HasCheckConstraint("ck_event_participants_role", InList("role", EventParticipantRoles.All)));
+            e.HasKey(x => new { x.EventId, x.RegimeId, x.Role });
+            e.Property(x => x.Role).HasMaxLength(16);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<EventCitation>(e =>
+        {
+            e.ToTable("event_citations");
+            e.HasKey(x => new { x.EventId, x.SourceId, x.Locator });
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // 涵蓋備註（PRD §6.3 control_coverage_notes、§6.4 選項 C）
+        b.Entity<ControlCoverageNote>(e =>
+        {
+            e.ToTable("control_coverage_notes", t =>
+            {
+                t.HasCheckConstraint("ck_control_coverage_notes_reason", InList("reason", CoverageReasons.All));
+                t.HasCheckConstraint("ck_control_coverage_notes_period_bounded", "NOT lower_inf(valid_period) AND NOT upper_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_control_coverage_notes_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_control_coverage_notes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Geom).HasColumnType("geometry(MultiPolygon,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Reason).HasMaxLength(24);
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Theater>().WithMany().HasForeignKey(x => x.TheaterId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.Geom).HasMethod("gist");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
         });
     }
 }

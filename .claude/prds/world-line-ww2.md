@@ -386,7 +386,7 @@ CREATE TABLE regime_alignments (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   regime_id UUID NOT NULL REFERENCES regimes(id),
   camp VARCHAR(16) NOT NULL CHECK (camp IN ('axis', 'allies', 'co_belligerent', 'neutral')),
-  valid_period DATERANGE NOT NULL,                          -- 起點＝條約簽署／參戰日
+  valid_period DATERANGE NOT NULL,                          -- 起點＝最嚴謹的正式加入文件日（條約簽署、聯合國家宣言簽署）；參戰日只作補充（憲法 §6「陣營」，使用者 2026-10-31 拍板）
   basis_event_id UUID,                                      -- 依據事件（例：三國同盟條約簽署），FK 於 historical_events 建立後加上
   retracted_at TIMESTAMPTZ, retraction_reason TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -402,6 +402,11 @@ CREATE TABLE regime_alignments (
 --   * primary citation 必須有 locator，且來源授權在允許清單（us_federal_pd／pd_expired／cc0／cc_by／cc_by_sa）＝有使用權（使用者 2026-10-29）
 --   * basis_event_id 已加 FK → historical_events
 --   * I5：不可 DELETE／TRUNCATE；切片只允許一次寫入撤回（retracted_at＋retraction_reason），引用寫入後不可改
+-- 使用者 2026-10-31 拍板（憲法 §6「陣營」）：陣營以有紀錄且最嚴謹的正式文件為主（同盟＝聯合國家宣言），參戰日等其他有紀錄者只作「補充」。
+-- 實作（2026-10-31，AI 提案・待拍板）：
+--   * 補充＝控制方參與、且附引用的事件（event_participants＋event_citations，kind ∈ war／treaty／political，occurred 起日 ≤ 查詢日），
+--     GET /control 的 feature 帶 controllerSupplements，前端卡片標「補充」；不參與陣營判定
+--   * 撤回端點 POST /regimes/{id}/alignments/{alignmentId}/retraction（reason 必填；只寫一次，DB trigger 兜底）
 
 -- 政權狀態時間切片：存續／流亡／被併吞（§4）
 CREATE TABLE regime_status_periods (
@@ -620,6 +625,9 @@ CREATE TABLE control_coverage_notes (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   version INT NOT NULL DEFAULT 0
 );
+-- 實作（2026-10-31，AI 提案・待拍板）：valid_period 兩端有界；不可與同期間的現行控制紀錄有正面積重疊（409）；
+--   I5 不可刪、只允許一次撤回。reference_land 與戰區範圍尚未建置，GET /control 暫以備註幾何直接回傳缺口（coverageNotes），
+--   前端以點狀「控制資料缺」樣式呈現；完整選項 C（由 reference_land − 控制紀錄聯集推導）待 §12 Q5 一起決定
 
 -- ───────────────────────── 事件、命名、爭議（R8、§6、§9） ─────────────────────────
 CREATE TABLE historical_events (
@@ -661,6 +669,7 @@ CREATE TABLE event_participants (
   role VARCHAR(16) NOT NULL CHECK (role IN ('belligerent', 'signatory', 'perpetrator', 'other')),  -- TODO：角色清單待拍板
   PRIMARY KEY (event_id, regime_id, role)
 );
+-- 實作（2026-10-31，AI 提案・待拍板）：隨 POST /events 同一 transaction 寫入（participants[]）；I5 不可改、不可刪
 
 CREATE TABLE event_citations (
   event_id UUID NOT NULL REFERENCES historical_events(id),
@@ -669,6 +678,7 @@ CREATE TABLE event_citations (
   evidence_note TEXT NOT NULL,
   PRIMARY KEY (event_id, source_id, locator)
 );
+-- 實作（2026-10-31，AI 提案・待拍板）：隨 POST /events 寫入（citations[]）；必須有 locator、來源授權在允許清單（同陣營 primary）；I5 不可改、不可刪
 
 -- 爭議點：數字、命名、定性、日期（R8；§9 起訖爭議；§4 政權是否終止）
 CREATE TABLE event_controversies (
@@ -855,7 +865,7 @@ erDiagram
 | Method | Path | 用途 | 規則／Story | 認證 |
 |---|---|---|---|---|
 | GET | `/api/v1/control?date=` | 指定日期的控制區（現行版本）。每個 feature 帶 `controllerRegimeId`、`controlType`、`patronRegimeId`、`theaterCode`、`snapshotId`、`controllerAlignment`（控制方當日陣營切片＋引用；沒有則 null＝陣營未建置，2026-10-30 實作，待拍板）；並依戰區回報 `state: attested\|interpolated`、`prevSnapshot`、`nextSnapshot`。推估時另回前後快照的幾何供前端插值（依 §12 Q3 調整） | R6、§9、Story 2、3 | 公開 |
-| GET | `/api/v1/control/gaps?date=` | 控制資料缺的幾何（推導），附涵蓋備註（若採 B／C） | R9、Story 4 | 公開 |
+| GET | `/api/v1/control/gaps?date=` | 控制資料缺的幾何（推導），附涵蓋備註（若採 B／C）。**暫代**（2026-10-31 實作，AI 提案・待拍板）：`GET /control` 回應帶 `coverageNotes`（該日有效的涵蓋備註幾何＋原因），推導部分待 reference_land 與戰區範圍建置 | R9、Story 4 | 公開 |
 | GET | `/api/v1/sovereignty?date=` | 指定日期的主權主張（現行版本），帶 `isEffective`、`isDisputed` | R6、Story 2 | 公開 |
 | GET | `/api/v1/sovereignty/at?date=&lon=&lat=` | 某點某日所有並存主張，含承認方與不承認方、相關爭議 | R6、I3、Story 2 | 公開 |
 | GET | `/api/v1/frontlines?date=` | 推導的戰線（LineString／MultiLineString），附兩側控制方 | R6、§6「戰線」 | 公開 |
@@ -864,6 +874,7 @@ erDiagram
 | GET | `/api/v1/regimes/{id}` | 政權詳情：所有名稱（自稱、代稱、視角）、狀態切片、轉換與傳承、紀年 | §4、§6、Story 5、6 | 公開 |
 | GET | `/api/v1/regimes/{id}/interactions?date=&from=&to=` | 聚焦面板資料：當日持續關係，以及時間窗內的離散事件 | R3、Story 6 | 公開 |
 | GET | `/api/v1/regimes/{id}/alignments` | 政權的陣營切片（有效者，依起日排序），每段附引用（2026-10-30 實作，AI 提案・待拍板） | §6「陣營」、Q11 | 公開 |
+| — | `GET /api/v1/control` 的 `controllerSupplements` | 陣營「補充」：控制方在該日當天或之前參與、且附引用的事件（2026-10-31 實作，AI 提案・待拍板） | §6「陣營」（使用者 2026-10-31 拍板） | 公開 |
 | GET | `/api/v1/regimes/{id}/status?date=` | 該日狀態（存續、流亡、被併吞，或已終止及終止方式） | §4、Story 5 | 公開 |
 | GET | `/api/v1/events?from=&to=&bbox=&regimeId=` | 事件清單（地圖標記與時間軸用） | R8、Story 7 | 公開 |
 | GET | `/api/v1/events/{id}` | 事件詳情：各視角命名、參與方、敘事、爭議點與觀點（含引用） | R8、§9、Story 7 | 公開 |
@@ -884,6 +895,7 @@ erDiagram
 | PATCH | `/api/v1/regimes/{id}` | 修正政權（帶 `reason`、`expectedVersion`） | I5 |
 | POST | `/api/v1/regimes/{id}/names` | 新增自稱或代稱（代稱必須帶 `observerRegimeId`） | I4、§6 |
 | POST | `/api/v1/regimes/{id}/status-periods` | 新增狀態切片（同政權不可重疊） | §4 |
+| POST | `/api/v1/regimes/{id}/alignments/{alignmentId}/retraction` | 撤回陣營切片（`reason` 必填；只寫一次 retracted_at＋原因）（2026-10-31 實作，AI 提案・待拍板） | I5 |
 | POST | `/api/v1/regimes/{id}/alignments` | 新增陣營切片（`camp`、`validPeriod.start` 必填、≥1 筆 primary 引用；同政權不可重疊 → 409）（2026-10-30 實作，AI 提案・待拍板） | §6「陣營」、R8 |
 | POST | `/api/v1/regime-transitions` | 新增狀態轉換（Validator 檢查合法性） | §4 |
 | POST | `/api/v1/regime-relations` | 新增持續關係 | R3、§6 |
@@ -897,7 +909,7 @@ erDiagram
 | POST | `/api/v1/sovereignty-claims/{id}/recognitions` | 新增承認或不承認紀錄 | R6 |
 | POST | `/api/v1/control-coverage-notes` | 涵蓋備註（僅選項 B／C） | R9 |
 | POST | `/api/v1/events` | 新增事件 | R8 |
-| POST | `/api/v1/events/{id}/names`、`/participants` | 事件命名、參與方 | §6、R3 |
+| POST | `/api/v1/events/{id}/names`、`/participants` | 事件命名、參與方。**實作**（2026-10-31，AI 提案・待拍板）：參與方與引用改為隨 `POST /api/v1/events` 一起送（`participants[]`、`citations[]`），同一 transaction | §6、R3 |
 | POST | `/api/v1/controversies` | 新增爭議點（事件或政權層級） | R8、§4、§9 |
 | POST | `/api/v1/controversies/{id}/positions` | 新增觀點（≥1 citation） | R8 |
 | POST | `/api/v1/eras`、`/api/v1/places`、`/api/v1/places/{id}/names` | 紀年、地名 | §9、§6 |
@@ -1240,6 +1252,12 @@ erDiagram
 ---
 
 ## 修訂紀錄
+
+### 2026-10-31：陣營依據拍板與「補充」、控制資料缺備註實作
+
+- 使用者 2026-10-31 拍板（憲法 §6「陣營」已改，見憲法修訂紀錄）：「目前如果有記錄，並且最嚴謹的才算。所以應該以B為主，但是可以以A補充。」——同盟以聯合國家宣言為準，參戰日只作補充。
+- §6.3 `regime_alignments` 註解：valid_period 起點原文「起點＝條約簽署／參戰日」改為「起點＝最嚴謹的正式加入文件日；參戰日只作補充」。
+- 實作（AI 提案・待拍板）：`event_participants`、`event_citations`、`control_coverage_notes` 三表（migration `EventParticipantsCitationsCoverageNotes`）；`POST /events` 帶參與方與引用；陣營切片撤回端點；`POST /control-coverage-notes`；`GET /control` 帶 `controllerSupplements` 與 `coverageNotes`。
 
 ### 2026-10-30：二戰版 API 埠改為 5051
 

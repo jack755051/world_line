@@ -22,6 +22,8 @@ export type SourceDto = Schemas['SourceDto'];
 export type RegimeDto = Schemas['RegimeDto'];
 export type RegimeNameDto = Schemas['RegimeNameDto'];
 export type RegimeAlignmentDto = Schemas['RegimeAlignmentDto'];
+export type CoverageNoteDto = Schemas['CoverageNoteDto'];
+export type SupplementEventDto = Schemas['SupplementEventDto'];
 
 /** `LocalizedText`：OpenAPI 只描述成 additionalProperties，這裡收斂成兩種語言（R4）。 */
 export type LocalizedText = Partial<Record<'zh-Hant' | 'en', string>> & Record<string, string | undefined>;

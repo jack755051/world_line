@@ -51,10 +51,18 @@ test('兩快照之間顯示推估過渡，chip 列出戰區並可跳到前一快
   await expect(page).toHaveURL(/date=1940-07-15/);
 });
 
-test('時間軸：五條戰區軌道，無快照的軌道標為控制資料缺', async ({ page }) => {
+/** 快照日期一律問 API，不寫死筆數（資料會隨 seed 增加）。 */
+async function snapshotDates(request: import('@playwright/test').APIRequestContext): Promise<string[]> {
+  const res = await request.get('/api/v1/timeline/snapshots?pageSize=100');
+  const body = await res.json();
+  return ((body.data.items ?? body.data) as { asOf: string }[]).map((s) => s.asOf).sort();
+}
+
+test('時間軸：五條戰區軌道，無快照的軌道標為控制資料缺', async ({ page, request }) => {
+  const dates = await snapshotDates(request);
   await page.goto('/?date=1940-07-15');
   await expect(page.getByTestId('timeline-track-west-europe')).toBeVisible();
-  await expect(page.getByTestId('timeline-snapshot-marker')).toHaveCount(2);
+  await expect(page.getByTestId('timeline-snapshot-marker')).toHaveCount(dates.length);
   for (const code of ['east-front', 'north-africa', 'pacific', 'china']) {
     await expect(page.getByTestId(`timeline-track-${code}`)).toHaveAttribute('data-empty', 'true');
   }
@@ -68,11 +76,38 @@ test('日期格式無效 → 回到預設日期並提示', async ({ page }) => {
   await expect(page.getByTestId('toast')).toContainText('日期格式無效');
 });
 
-test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page }) => {
+test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page, request }) => {
+  const [first] = await snapshotDates(request);
+  const [y, m, d] = first.split('-').map(Number);
   await page.goto('/?date=1938-03-01');
   await expect(page.getByTestId('map-empty')).toBeVisible();
   await page.getByTestId('map-empty-jump').click();
-  await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
+  await expect(page.getByTestId('topbar-date')).toHaveText(`${y}年${m}月${d}日`);
+});
+
+test('控制資料缺：點點狀區塊出現資料缺卡片（原因來自 API）；控制區卡片的「補充」列', async ({ page, request }) => {
+  const dto = (await (await request.get('/api/v1/control?date=1940-07-15')).json()).data;
+  test.skip(!(dto.coverageNotes ?? []).length, '此日期沒有控制資料缺備註');
+  await page.goto('/?date=1940-07-15');
+  await waitForPolygons(page);
+  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-rendered-gaps')) ?? 0)).toBeGreaterThan(0);
+  // 阿爾卑斯（Hautes-Alpes，Gap 市附近）
+  await page.evaluate(() => (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap.jumpTo({ center: [6.3, 44.7], zoom: 7 }));
+  await page.waitForTimeout(800);
+  const pt = await screenPointOf(page, [6.3, 44.6]);
+  await page.mouse.click(pt.x, pt.y);
+  await expect(page.getByTestId('gap-card')).toBeVisible();
+  await expect(page.getByTestId('gap-card-reason')).toHaveText('已調查，沒有合格來源');
+
+  // 補充：有 controllerSupplements 的控制區，卡片要標「補充」
+  const f = (dto.featureCollection.features as { properties: { controllerSupplements?: unknown[] } }[]).find((x) => (x.properties.controllerSupplements ?? []).length > 0);
+  test.skip(!f, '此日期沒有補充事件');
+  await page.goto('/?date=1940-07-15');
+  await waitForPolygons(page);
+  const paris = await screenPointOf(page, [2.35, 48.86]);
+  await page.mouse.click(paris.x, paris.y);
+  await expect(page.getByTestId('feature-card')).toBeVisible();
+  await expect(page.getByTestId('feature-card-supplement-label')).toHaveText('補充');
 });
 
 // 陣營色只依 API 的 controllerAlignment（憲法 §6「陣營」）。不寫死資料：先問 API 當日陣營，再比對圖例；

@@ -213,6 +213,8 @@ export function decorateFeatures(
 }
 
 export interface ControlLabel {
+  /** 外框寬度至少要是文字寬的幾倍才標（預設 1.6）；國界標籤用 1.0，並做標籤互撞檢查。 */
+  fit?: number;
   versionId: string;
   regimeId: string;
   text: string;

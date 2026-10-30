@@ -11,9 +11,10 @@ import { regimeSelfName } from '../../core/regime-names';
 import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { GapCard } from '../../shared/gap-card/gap-card';
-import { Legend, type LegendRegime } from '../../shared/legend/legend';
+import { Legend, type LegendRegime, type LegendSovereigntyRegime } from '../../shared/legend/legend';
+import { MotionService } from '../../core/motion';
 import { AtlasMap, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
-import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { decorateSovereignty, regimeColor, sovereigntyLabels } from '../../shared/map/sovereignty-style';
 import { SovereigntyCard } from '../../shared/sovereignty-card/sovereignty-card';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
@@ -66,10 +67,11 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
         @default {
           <div class="flex h-full flex-col">
             <wl-top-bar [date]="state.date()" [lang]="lang()" [legendOpen]="state.legendOpen()" [controlStatus]="data.controlStatus()"
-              [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()"
+              [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()" [axis]="state.axis()" (axisChange)="setAxis($event)"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
             <div class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+ [axis]="state.axis()" [reducedMotion]="motion.reduced()"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="selectedSov()?.recordId ?? null"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
@@ -144,6 +146,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 
               <div class="absolute bottom-4 left-4 z-10">
                 <wl-legend [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
+                  [axis]="state.axis()" [sovRegimes]="legendSovRegimes()" [sovRegimesStatus]="data.sovereigntyStatus()"
                   (toggle)="state.legendOpen.set(!state.legendOpen())" />
               </div>
             </div>
@@ -172,6 +175,25 @@ export class AtlasPage {
   protected readonly selectedGap = signal<MapGapEvent | null>(null);
   protected readonly selectedSov = signal<MapSovereigntyEvent | null>(null);
   protected readonly showCamps = signal(false);
+  protected readonly motion = inject(MotionService);
+  /** 圖例：主權圖層中的政權（一政權一列；同政權多筆合併）。 */
+  protected readonly legendSovRegimes = computed<LegendSovereigntyRegime[]>(() => {
+    const regs = this.data.regimes();
+    const out = new Map<string, LegendSovereigntyRegime>();
+    for (const f of this.data.sovereignty()?.featureCollection.features ?? []) {
+      const p = f.properties;
+      const prev = out.get(p.regimeId);
+      const pending = p.startEvent?.verification === 'pending' || p.endEvent?.verification === 'pending';
+      out.set(p.regimeId, {
+        id: p.regimeId,
+        name: regimeSelfName(regs[p.regimeId], this.lang())?.display ?? p.regimeSlug,
+        color: regimeColor(p.regimeSlug),
+        notSovereign: (prev?.notSovereign ?? false) || p.layerStatus === 'not_sovereign',
+        pending: (prev?.pending ?? false) || pending,
+      });
+    }
+    return [...out.values()].sort((a, b) => a.name.localeCompare(b.name, this.lang() === 'en' ? 'en' : 'zh-Hant'));
+  });
   /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
   protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
   protected readonly sovereigntyCount = computed(() => this.data.sovereignty()?.featureCollection.features.length ?? 0);
@@ -248,7 +270,9 @@ export class AtlasPage {
   /** 國名標籤＋控制區政權標籤（控制區標籤在後，畫在國名上面）。 */
   protected readonly allLabels = computed(() => {
     const regs = this.data.regimes();
-    return [...sovereigntyLabels(this.data.sovereignty(), (id) => regimeSelfName(regs[id], this.lang())?.display ?? null), ...this.labels()];
+    const sov = sovereigntyLabels(this.data.sovereignty(), (id) => regimeSelfName(regs[id], this.lang())?.display ?? null);
+    // 主權檢視只標國名；實際控制檢視國名在下、控制區政權標籤在上
+    return this.state.axis() === 'sovereignty' ? sov : [...sov, ...this.labels()];
   });
 
   private findFeature(versionId: string) {
@@ -311,6 +335,7 @@ export class AtlasPage {
     effect(() => {
       const date = this.state.date();
       const lang = this.state.lang();
+      const axis = untracked(() => this.state.axis());
       untracked(() => {
         if (this.data.health() === 'up') {
           clearTimeout(this.debounce);
@@ -321,11 +346,24 @@ export class AtlasPage {
         }
         void this.router.navigate([], {
           relativeTo: this.route,
-          queryParams: { date, lang: lang === 'en' ? 'en' : null },
+          queryParams: { date, lang: lang === 'en' ? 'en' : null, axis: axis === 'sovereignty' ? 'sovereignty' : null },
           queryParamsHandling: 'merge',
           replaceUrl: true,
         });
       });
+    });
+
+    // 檢視軸改變 → 只寫回 URL（不重新載入資料）
+    effect(() => {
+      const axis = this.state.axis();
+      untracked(() =>
+        void this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { axis: axis === 'sovereignty' ? 'sovereignty' : null },
+          queryParamsHandling: 'merge',
+          replaceUrl: true,
+        }),
+      );
     });
 
     inject(DestroyRef).onDestroy(() => clearTimeout(this.debounce));
@@ -353,6 +391,14 @@ export class AtlasPage {
     this.selectedSov.set(null);
     this.selectedGap.set(null);
     this.selected.set(e);
+  }
+
+  protected setAxis(axis: 'control' | 'sovereignty'): void {
+    this.state.axis.set(axis);
+    if (axis === 'sovereignty') {
+      this.selected.set(null);
+      this.selectedGap.set(null);
+    }
   }
 
   protected onSovereigntyClick(e: MapSovereigntyEvent): void {

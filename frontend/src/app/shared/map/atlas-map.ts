@@ -17,6 +17,42 @@ import type { FeatureCollection, Geometry } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
+import type { Axis } from '../../core/atlas-state';
+import { AXIS_TRANSITION_MS } from '../../core/motion';
+
+/**
+ * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
+ * 控制區填色／線的不透明度是逐筆資料驅動（['get', …]），MapLibre 不支援資料驅動屬性的 transition，
+ * 所以這些圖層改用 visibility（淡出結束後才隱藏、淡入開始時先顯示），國界層負責視覺上的過場。
+ */
+export const AXIS_PAINT: Record<Axis, [layer: string, prop: string, value: number][]> = {
+  control: [
+    ['sov-fill', 'fill-opacity', 0.35],
+    ['sov-hatch', 'fill-opacity', 0.45],
+    ['sov-hatch-base', 'fill-opacity', 0.45],
+    ['sov-line', 'line-opacity', 0.4],
+    ['sov-line-not-sovereign', 'line-opacity', 0.45],
+    ['control-regime-outline', 'line-opacity', 0.7],
+    ['control-selected', 'line-opacity', 1],
+    ['gap-line', 'line-opacity', 0.45],
+  ],
+  sovereignty: [
+    ['sov-fill', 'fill-opacity', 0.9],
+    ['sov-hatch', 'fill-opacity', 1],
+    ['sov-hatch-base', 'fill-opacity', 1],
+    ['sov-line', 'line-opacity', 0.75],
+    ['sov-line-not-sovereign', 'line-opacity', 0.8],
+    ['control-regime-outline', 'line-opacity', 0],
+    ['control-selected', 'line-opacity', 0],
+    ['gap-line', 'line-opacity', 0],
+  ],
+};
+/** 只屬於實際控制檢視、opacity 為資料驅動（無法 transition）的圖層：主權檢視時隱藏。 */
+export const CONTROL_ONLY_LAYERS = ['gap-base', 'gap-fill', 'control-fill', 'control-hatch', 'control-line-solid', 'control-line-dotted', 'control-line-dashed'];
+/** 地圖標籤矩形互撞檢查（像素）。 */
+export function overlaps(a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }): boolean {
+  return Math.abs(a.x - b.x) * 2 < a.w + b.w && Math.abs(a.y - b.y) * 2 < a.h + b.h;
+}
 import type { SovereigntyProps } from './sovereignty-style';
 
 export interface MapGapEvent {
@@ -167,7 +203,7 @@ export function buildBaseStyle(): StyleSpecification {
   template: `
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
       [attr.data-rendered-gaps]="renderedGaps()" [attr.data-rendered-sovereignty]="renderedSovereignty()"
-      [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
+      [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
@@ -185,6 +221,12 @@ export class AtlasMap {
   readonly gaps = input<FeatureCollection<Geometry, GapProps> | null>(null);
   readonly sovereignty = input<FeatureCollection<Geometry, SovereigntyProps> | null>(null);
   readonly showCamps = input(false);
+  /** 目前檢視軸；切換時用 MapLibre transition 淡入淡出（reducedMotion 時 0ms）。 */
+  readonly axis = input<Axis>('control');
+  readonly reducedMotion = input(false);
+  /** 已套用到地圖的檢視軸（過場結束後才更新；e2e 用）。 */
+  protected readonly appliedAxis = signal<Axis | null>(null);
+  private axisTimer: ReturnType<typeof setTimeout> | undefined;
   readonly selectedRecordId = input<string | null>(null);
   readonly selectedVersionId = input<string | null>(null);
   readonly engineErrorText = input('');
@@ -209,7 +251,10 @@ export class AtlasMap {
 
   constructor() {
     afterNextRender(() => void this.init());
-    this.destroyRef.onDestroy(() => this.map?.remove());
+    this.destroyRef.onDestroy(() => {
+      clearTimeout(this.axisTimer);
+      this.map?.remove();
+    });
 
     effect(() => {
       const data = this.collection();
@@ -230,6 +275,12 @@ export class AtlasMap {
       const data = this.sovereignty();
       if (!this.ready()) return;
       untracked(() => (this.map?.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+    });
+    effect(() => {
+      const axis = this.axis();
+      const reduced = this.reducedMotion();
+      if (!this.ready()) return;
+      untracked(() => this.applyAxis(axis, reduced ? 0 : AXIS_TRANSITION_MS));
     });
     effect(() => {
       const on = this.showCamps();
@@ -282,6 +333,7 @@ export class AtlasMap {
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
         (map.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(this.sovereignty() ?? EMPTY);
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
+        this.applyAxis(this.axis(), 0);
       });
       map.on('idle', () => this.countRendered());
       map.on('move', () => this.placeLabels());
@@ -330,19 +382,61 @@ export class AtlasMap {
     src.setData(data ?? EMPTY);
   }
 
+  /**
+   * 套用檢視軸。常數不透明度圖層：先設 `<prop>-transition`，再設值 → MapLibre 依 duration 淡入淡出。
+   * 資料驅動圖層：要顯示時先顯示；要隱藏時等淡出（duration）結束才隱藏。
+   */
+  private applyAxis(axis: Axis, duration: number): void {
+    const map = this.map;
+    if (!map) return;
+    clearTimeout(this.axisTimer);
+    // MapLibre 的型別把屬性名限定為字面值；這裡的屬性名來自 AXIS_PAINT（測試檢查過都是常數不透明度）
+    const setPaint = map.setPaintProperty.bind(map) as (layer: string, name: string, value: unknown) => void;
+    for (const [layer, prop, value] of AXIS_PAINT[axis]) {
+      if (!map.getLayer(layer)) continue;
+      setPaint(layer, `${prop}-transition`, { duration, delay: 0 });
+      setPaint(layer, prop, value);
+    }
+    const setControl = (v: 'visible' | 'none') => CONTROL_ONLY_LAYERS.forEach((l) => map.getLayer(l) && map.setLayoutProperty(l, 'visibility', v));
+    const done = () => {
+      this.appliedAxis.set(axis);
+      this.placeLabels();
+      map.triggerRepaint();
+    };
+    if (axis === 'control') {
+      setControl('visible');
+      if (duration === 0) done();
+      else this.axisTimer = setTimeout(done, duration);
+    } else if (duration === 0) {
+      setControl('none');
+      done();
+    } else {
+      this.axisTimer = setTimeout(() => {
+        setControl('none');
+        done();
+      }, duration);
+    }
+  }
+
   /** 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。 */
   private placeLabels(): void {
     const map = this.map;
     if (!map) return;
-    const placed = [];
+    const placed: { versionId: string; regimeId: string; text: string; x: number; y: number }[] = [];
+    const boxes: { x: number; y: number; w: number; h: number }[] = [];
     for (const l of this.labels()) {
       const a = map.project([l.bbox[0], l.bbox[1]]);
       const b = map.project([l.bbox[2], l.bbox[3]]);
       const w = Math.abs(b.x - a.x);
       const h = Math.abs(b.y - a.y);
       // 文字寬約每字 14px（12px＋字距）；外框至少要比字寬 1.6 倍、高 32px，避免標籤壓出小區塊
-      if (w < l.text.length * 14 * 1.6 || h < 32) continue;
+      const textW = l.text.length * 14;
+      if (w < textW * (l.fit ?? 1.6) || h < 32) continue;
       const p = map.project(l.lngLat);
+      // 國界標籤（fit 有設）放寬了大小門檻，改用互撞檢查避免疊字；控制區標籤維持原規則
+      const box = { x: p.x, y: p.y, w: textW + 8, h: 20 };
+      if (l.fit !== undefined && boxes.some((b) => overlaps(b, box))) continue;
+      boxes.push(box);
       placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y });
     }
     this.placedLabels.set(placed);

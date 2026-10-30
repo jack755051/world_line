@@ -136,7 +136,8 @@ export function sovereigntyLabels(dto: SovereigntyMapDto | null | undefined, nam
     for (const [x, y] of biggest[0]) {
       minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
     }
-    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY] });
+    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY], fit: 1 });
   }
-  return out;
+  // 大的先放：互撞時保留大國名稱
+  return out.sort((a, b) => (b.bbox[2] - b.bbox[0]) * (b.bbox[3] - b.bbox[1]) - (a.bbox[2] - a.bbox[0]) * (a.bbox[3] - a.bbox[1]));
 }

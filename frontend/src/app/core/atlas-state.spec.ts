@@ -11,10 +11,11 @@ describe('parseAtlasQuery', () => {
     expect(q.invalidDate).toBe(true);
   });
 
-  it('沒帶日期不算錯；主權檢視未建置時一律回到實際控制', () => {
+  it('沒帶日期不算錯；axis=sovereignty 進主權檢視，其他值回到實際控制', () => {
     const q = parseAtlasQuery({ axis: 'sovereignty' });
     expect(q.invalidDate).toBe(false);
-    expect(q.axis).toBe('control');
+    expect(q.axis).toBe('sovereignty');
     expect(q.lang).toBe('zh-Hant');
+    expect(parseAtlasQuery({ axis: 'whatever' }).axis).toBe('control');
   });
 });

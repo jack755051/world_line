@@ -55,3 +55,58 @@ test('1940-09-15：布魯塞爾屬比北軍政府，卡片標示非主權', asyn
   await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'not_sovereign');
   await expect(page.getByTestId('sovereignty-card-status')).toContainText('非主權');
 });
+
+test('實際控制 ↔ 主權切換：地圖過場、URL、圖例跟著換', async ({ page }) => {
+  await page.goto('/?date=1939-04-15');
+  await waitForBorders(page);
+  const canvas = page.getByTestId('map-canvas');
+  await expect(canvas).toHaveAttribute('data-axis', 'control');
+  await page.getByTestId('axis-toggle-sovereignty').click();
+  await expect(page.getByTestId('axis-toggle-sovereignty')).toHaveAttribute('aria-pressed', 'true');
+  await expect(canvas).toHaveAttribute('data-axis', 'sovereignty');
+  await expect(page).toHaveURL(/axis=sovereignty/);
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-axis', 'sovereignty');
+  await expect.poll(() => page.getByTestId('legend-sov-regime-item').count()).toBeGreaterThan(10);
+  // 國界標籤：捷克斯洛伐克（1939-03-14 前）在 1939-04-15 已不存在，改驗 1938-10-15 的捷克斯洛伐克見下一個測試
+  await page.getByTestId('axis-toggle-control').click();
+  await expect(canvas).toHaveAttribute('data-axis', 'control');
+  await expect(page).not.toHaveURL(/axis=sovereignty/);
+});
+
+test('?axis=sovereignty 直接進主權檢視；1938-10-15 捷克斯洛伐克有國名標籤', async ({ page }) => {
+  await page.goto('/?date=1938-10-15&axis=sovereignty');
+  await waitForBorders(page);
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-axis', 'sovereignty');
+  await page.evaluate(() => {
+    const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+    map.jumpTo({ center: [16, 52], zoom: 3.55 });
+  });
+  await expect(page.getByTestId('map-regime-label').filter({ hasText: '捷克斯洛伐克' })).toHaveCount(1);
+});
+
+test('圖例收合有過場（closing → collapsed）；prefers-reduced-motion 時直接收合', async ({ page }) => {
+  await page.goto('/?date=1939-04-15');
+  await waitForBorders(page);
+  const legend = page.getByTestId('legend');
+  await expect(legend).toHaveAttribute('data-state', 'open');
+  const states: string[] = [];
+  await page.exposeFunction('wlState', (s: string) => states.push(s));
+  await page.evaluate(() => {
+    const el = document.querySelector('wl-legend')!;
+    new MutationObserver(() => {
+      const s = el.querySelector('[data-testid="legend"]')?.getAttribute('data-state');
+      if (s) (window as unknown as { wlState: (s: string) => void }).wlState(s);
+    }).observe(el, { subtree: true, attributes: true, childList: true });
+  });
+  await page.getByTestId('legend-toggle').click();
+  await expect(legend).toHaveAttribute('data-state', 'collapsed');
+  expect(states).toContain('closing');
+  await page.getByTestId('legend-expand').click();
+  await expect(legend).toHaveAttribute('data-state', 'open');
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  states.length = 0;
+  await page.getByTestId('legend-toggle').click();
+  await expect(legend).toHaveAttribute('data-state', 'collapsed');
+  expect(states).not.toContain('closing');
+});

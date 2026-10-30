@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
 import { LucideBookOpen, LucideChevronDown, LucideChevronUp } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
+import type { Axis } from '../../core/atlas-state';
 import type { LoadStatus } from '../../core/atlas-data';
+import { MOTION_DURATION, MotionService } from '../../core/motion';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { CAMP_FILL, CAMP_TONES, CAMP_UNASSIGNED_TONE, CONTROL_TYPES, darken, type Camp } from '../map/map-style';
 
@@ -17,9 +19,20 @@ export interface LegendRegime {
   attested?: boolean;
 }
 
+/** 主權圖層（國界）中的政權：填色＝政權色；非主權＝斜線。 */
+export interface LegendSovereigntyRegime {
+  id: string;
+  name: string;
+  color: string;
+  notSovereign?: boolean;
+  /** 起或迄疆界變動「待查證」 */
+  pending?: boolean;
+}
+
 /**
  * 圖例（PRD §8.4，`shared/legend`，左下浮動、可收合）。
- * 樣式說明固定顯示；「目前畫面中的政權」來自 API 載入的控制區。
+ * 樣式說明固定顯示；「目前畫面中的政權」來自 API 載入的控制區（實際控制）或國界（主權）。
+ * 收合／展開用 motion 做高度與透明度過場；prefers-reduced-motion 時直接切換。
  */
 @Component({
   selector: 'wl-legend',
@@ -32,7 +45,7 @@ export interface LegendRegime {
     .row { display: flex; align-items: center; gap: 8px; }
   `,
   template: `
-    @if (!open()) {
+    @if (!open() && !closing()) {
       <!-- 收合：左下小按鈕「圖例」（Stitch W2／W3／W7-6） -->
       <section data-testid="legend" data-state="collapsed" [attr.aria-label]="tr('legend.title')">
         <button type="button" data-testid="legend-expand" class="wl-paper flex h-8 items-center gap-1.5 px-3 wl-text2 text-wl-on-surface hover:bg-wl-surface-container-high"
@@ -41,14 +54,47 @@ export interface LegendRegime {
         </button>
       </section>
     } @else {
-    <section data-testid="legend" data-state="open" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
+    <section #panel data-testid="legend" [attr.data-state]="closing() ? 'closing' : 'open'" [attr.data-axis]="axis()" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
       <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left" (click)="toggle.emit()"
         [attr.aria-expanded]="open()" aria-controls="wl-legend-body">
         <span class="wl-title2">{{ tr('legend.title') }}</span>
         <svg lucideChevronDown class="size-4 text-wl-on-surface-variant"></svg>
       </button>
-      @if (open()) {
+      @if (open() || closing()) {
         <div id="wl-legend-body" class="flex max-h-[calc(100vh-56px-112px-120px)] flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
+          <!-- 主權圖層（國界試驗 1938–1940） -->
+          <div data-testid="legend-sovereignty">
+            <h3 class="wl-label mb-2">{{ lang() === 'en' ? 'Borders (sovereignty layer)' : '國界（主權圖層）' }}
+              @if (axis() === 'control') { <span class="font-normal text-wl-on-surface-variant">{{ lang() === 'en' ? '· faded backdrop' : '・淡色底圖' }}</span> }</h3>
+            <ul class="flex flex-col gap-1.5">
+              <li class="row" data-testid="legend-sov-fill"><span class="sw" [style.background]="sovSample" style="border:0.75px solid rgba(58,47,40,.75)"></span>{{ lang() === 'en' ? 'Fill = regime (one colour each)' : '填色＝政權（一政權一色）' }}</li>
+              <li class="row" data-testid="legend-sov-not-sovereign"><span class="sw" [style.background]="sovHatch" style="border:1px dashed #3a2f28"></span>{{ lang() === 'en' ? 'Hatched, dashed edge = not sovereign (occupation administration)' : '斜線＋虛線邊＝非主權（佔領行政區）' }}</li>
+              <li class="row" data-testid="legend-sov-blank"><span class="sw border border-wl-outline-variant" style="background:#ece4d2"></span>{{ lang() === 'en' ? 'Blank = no qualified source yet (pending)' : '空白＝尚無合格出處（待查證）' }}</li>
+            </ul>
+            <p class="mt-1 text-wl-on-surface-variant">{{ lang() === 'en' ? 'Borders as drawn by OpenHistoricalMap (de facto). Camp is a supplement only.' : '國界依 OpenHistoricalMap 所畫的事實國界；陣營只作補充。' }}</p>
+          </div>
+          @if (axis() === 'sovereignty') {
+            <div>
+              <h3 class="wl-label mb-2">{{ tr('legend.regimes') }}</h3>
+              @if (sovRegimesStatus() === 'loading' && sovRegimes().length === 0) {
+                <div class="flex flex-col gap-1.5"><div sanringSkeleton class="h-4 w-40"></div><div sanringSkeleton class="h-4 w-32"></div></div>
+              } @else if (sovRegimesStatus() === 'error') {
+                <p class="text-wl-error">{{ tr('legend.regimes.error') }}</p>
+              } @else if (sovRegimes().length === 0) {
+                <p class="text-wl-on-surface-variant">{{ tr('legend.regimes.empty') }}</p>
+              } @else {
+                <ul class="flex flex-col gap-1.5" data-testid="legend-sov-regimes">
+                  @for (r of sovRegimes(); track r.id) {
+                    <li class="row" data-testid="legend-sov-regime-item" [attr.data-not-sovereign]="r.notSovereign ? 'true' : null">
+                      <span class="sw" [style]="sovSwatch(r)"></span>
+                      <span>{{ r.name }}@if (r.notSovereign) {<span class="text-wl-on-surface-variant">・{{ lang() === 'en' ? 'not sovereign' : '非主權' }}</span>}
+                        @if (r.pending) {<span class="text-wl-on-surface-variant">・{{ lang() === 'en' ? 'change pending' : '變動待查證' }}</span>}</span>
+                    </li>
+                  }
+                </ul>
+              }
+            </div>
+          } @else {
           <div>
             <h3 class="wl-label mb-2">{{ tr('legend.controlTypes') }}</h3>
             <ul class="flex flex-col gap-1.5">
@@ -109,6 +155,7 @@ export interface LegendRegime {
               <p class="mt-1.5 text-wl-on-surface-variant">{{ tr('legend.regimes.note') }}</p>
             }
           </div>
+          }
         </div>
       }
     </section>
@@ -120,7 +167,73 @@ export class Legend {
   readonly lang = input<Lang>('zh-Hant');
   readonly regimes = input<LegendRegime[]>([]);
   readonly regimesStatus = input<LoadStatus>('idle');
+  readonly axis = input<Axis>('control');
+  readonly sovRegimes = input<LegendSovereigntyRegime[]>([]);
+  readonly sovRegimesStatus = input<LoadStatus>('idle');
   readonly toggle = output<void>();
+
+  /** 收合過場進行中（面板仍在 DOM 內播放收合動畫）。 */
+  protected readonly closing = signal(false);
+  private readonly panel = viewChild<ElementRef<HTMLElement>>('panel');
+  private readonly motion = inject(MotionService);
+  private readonly injector = inject(Injector);
+  private prevOpen: boolean | undefined;
+  private run = 0;
+
+  protected readonly sovSample = 'linear-gradient(90deg, #a99dc4 0 33%, #c9a87c 33% 66%, #8fb39a 66% 100%)';
+  protected readonly sovHatch = 'repeating-linear-gradient(-45deg, #a99dc4 0 1.5px, #ece4d2 1.5px 5px)';
+
+  constructor() {
+    effect(() => {
+      const open = this.open();
+      const prev = this.prevOpen;
+      this.prevOpen = open;
+      if (prev === undefined || prev === open) return;
+      untracked(() => (open ? this.animateOpen() : this.animateClose()));
+    });
+  }
+
+  /** 展開：等新面板畫出來後，高度從收合按鈕（32px）長到內容高度、淡入。 */
+  private animateOpen(): void {
+    const run = ++this.run;
+    this.closing.set(false);
+    afterNextRender(
+      () => {
+        const el = this.panel()?.nativeElement;
+        if (!el || run !== this.run || this.motion.reduced()) return;
+        const h = el.scrollHeight;
+        void this.motion
+          .animate(el, { height: ['32px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
+          .then(() => run === this.run && (el.style.height = ''));
+      },
+      { injector: this.injector },
+    );
+  }
+
+  /** 收合：面板留在 DOM 播放高度縮回 32px＋淡出，結束後才換成收合按鈕。 */
+  private animateClose(): void {
+    const run = ++this.run;
+    const el = this.panel()?.nativeElement;
+    if (!el || this.motion.reduced()) {
+      this.closing.set(false);
+      return;
+    }
+    this.closing.set(true);
+    void this.motion
+      .animate(el, { height: [`${el.offsetHeight}px`, '32px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
+      .then(() => {
+        if (run !== this.run) return;
+        el.style.height = '';
+        el.style.opacity = '';
+        this.closing.set(false);
+      });
+  }
+
+  protected sovSwatch(r: LegendSovereigntyRegime): string {
+    return r.notSovereign
+      ? `background:repeating-linear-gradient(-45deg, ${r.color} 0 1.5px, #ece4d2 1.5px 5px);border:1px dashed #3a2f28`
+      : `background:${r.color};opacity:.9;border:0.75px solid rgba(58,47,40,.75)`;
+  }
 
   protected readonly controlTypes = CONTROL_TYPES;
   protected readonly camps = Object.keys(CAMP_TONES) as Camp[];

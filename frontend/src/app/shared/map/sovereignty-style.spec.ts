@@ -64,3 +64,22 @@ describe('sovereignty-style', () => {
     expect(sovereigntyLabels(dto(feature('r1', 'x')), () => null)).toHaveLength(0);
   });
 });
+
+describe('sovereigntyLabels：國名標籤放寬尺寸門檻（fit=1）並由大到小排序', () => {
+  it('fit=1、大國在前', () => {
+    const sq = (x0: number, y0: number, s: number) => [[[[x0, y0], [x0 + s, y0], [x0 + s, y0 + s], [x0, y0 + s], [x0, y0]]]];
+    const dto = {
+      date: '1938-10-15',
+      featureCollection: {
+        type: 'FeatureCollection',
+        features: [
+          { id: 'a', type: 'Feature', geometry: { type: 'MultiPolygon', coordinates: sq(0, 0, 1) }, properties: { recordId: 'a', regimeId: 'A' } },
+          { id: 'b', type: 'Feature', geometry: { type: 'MultiPolygon', coordinates: sq(10, 10, 5) }, properties: { recordId: 'b', regimeId: 'B' } },
+        ],
+      },
+    } as never;
+    const out = sovereigntyLabels(dto, (id) => `名${id}`);
+    expect(out.map((l) => l.regimeId)).toEqual(['B', 'A']);
+    expect(out.every((l) => l.fit === 1)).toBe(true);
+  });
+});

@@ -33,15 +33,17 @@ export function chipMode(status: LoadStatus, theaters: readonly TheaterStateDto[
           <button sanringPopoverTrigger type="button" data-testid="interp-chip" data-state="interpolated" class="wl-chip-interp cursor-pointer">
             {{ label() }}
           </button>
-          <sanring-popover-content class="w-[360px] rounded-[var(--wl-radius-lg)] bg-wl-surface border-wl-outline-variant p-3 shadow-[var(--wl-shadow-panel)]">
-            <div data-testid="interp-popover" class="flex flex-col gap-2 wl-text2">
+          <sanring-popover-content class="w-[360px] rounded-[var(--wl-radius-lg)] bg-wl-surface border-wl-outline-variant p-4 shadow-[var(--wl-shadow-panel)]">
+            <div data-testid="interp-popover" class="flex flex-col gap-3 wl-text2">
               <h2 class="wl-sub-title">{{ tr('chip.popover.title') }}</h2>
-              @for (row of rows(); track row.theaterCode) {
-                <div data-testid="interp-theater-row" class="flex flex-col gap-1 border-t border-wl-outline-variant pt-2">
-                  <span><b>{{ name(row.theaterCode) }}</b>：{{ rowText(row) }}</span>
-                  <span class="flex gap-2">
-                    @if (row.prevSnapshot) { <button type="button" class="wl-link" data-testid="interp-jump-prev" (click)="jumpTo(row.prevSnapshot.asOf)">{{ tr('chip.jumpPrev') }}（{{ row.prevSnapshot.asOf }}）</button> }
-                    @if (row.nextSnapshot) { <button type="button" class="wl-link" data-testid="interp-jump-next" (click)="jumpTo(row.nextSnapshot.asOf)">{{ tr('chip.jumpNext') }}（{{ row.nextSnapshot.asOf }}）</button> }
+              @for (row of rows(); track row.theaterCode; let first = $first) {
+                <div data-testid="interp-theater-row" class="flex flex-col gap-2" [class.border-t]="!first" [class.border-wl-outline-variant]="!first" [class.pt-3]="!first">
+                  <span>{{ name(row.theaterCode) }}：{{ rowText(row) }}</span>
+                  <span class="grid grid-cols-2 gap-2">
+                    <button type="button" class="wl-btn-secondary h-7 px-2 wl-text2" data-testid="interp-jump-prev" [disabled]="!row.prevSnapshot"
+                      [attr.title]="row.prevSnapshot?.asOf ?? null" (click)="row.prevSnapshot && jumpTo(row.prevSnapshot.asOf)">{{ tr('chip.jumpPrev') }}</button>
+                    <button type="button" class="wl-btn-secondary h-7 px-2 wl-text2" data-testid="interp-jump-next" [disabled]="!row.nextSnapshot"
+                      [attr.title]="row.nextSnapshot?.asOf ?? null" (click)="row.nextSnapshot && jumpTo(row.nextSnapshot.asOf)">{{ tr('chip.jumpNext') }}</button>
                   </span>
                 </div>
               }

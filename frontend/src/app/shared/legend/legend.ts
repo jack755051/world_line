@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { LucideChevronDown } from '@lucide/angular';
+import { LucideBookOpen, LucideChevronDown, LucideChevronUp } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import type { LoadStatus } from '../../core/atlas-data';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
@@ -20,19 +20,27 @@ export interface LegendRegime {
 @Component({
   selector: 'wl-legend',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideChevronDown, SkeletonDirective],
+  imports: [LucideChevronDown, LucideChevronUp, LucideBookOpen, SkeletonDirective],
   host: { class: 'block' },
   styles: `
     .sw { width: 22px; height: 14px; flex: none; border-radius: 2px; }
     .row { display: flex; align-items: center; gap: 8px; }
   `,
   template: `
-    <section data-testid="legend" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
+    @if (!open()) {
+      <!-- 收合：左下小按鈕「圖例」（Stitch W2／W3／W7-6） -->
+      <section data-testid="legend" data-state="collapsed" [attr.aria-label]="tr('legend.title')">
+        <button type="button" data-testid="legend-expand" class="wl-paper flex h-8 items-center gap-1.5 px-3 wl-text2 text-wl-on-surface hover:bg-wl-surface-container-high"
+          (click)="toggle.emit()" [attr.aria-expanded]="false" aria-controls="wl-legend-body">
+          <svg lucideBookOpen class="size-3.5"></svg>{{ tr('legend.title') }}<svg lucideChevronUp class="size-3.5 text-wl-on-surface-variant"></svg>
+        </button>
+      </section>
+    } @else {
+    <section data-testid="legend" data-state="open" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
       <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left" (click)="toggle.emit()"
         [attr.aria-expanded]="open()" aria-controls="wl-legend-body">
-        <span><span class="wl-title2">{{ tr('legend.title') }}</span>
-          <span class="ml-2 wl-text2 text-wl-on-surface-variant">{{ tr('legend.mode.control') }}</span></span>
-        <svg lucideChevronDown class="size-4 transition-transform" [class.rotate-180]="!open()"></svg>
+        <span class="wl-title2">{{ tr('legend.title') }}</span>
+        <svg lucideChevronDown class="size-4 text-wl-on-surface-variant"></svg>
       </button>
       @if (open()) {
         <div id="wl-legend-body" class="flex max-h-[calc(100vh-56px-112px-120px)] flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
@@ -90,6 +98,7 @@ export interface LegendRegime {
         </div>
       }
     </section>
+    }
   `,
 })
 export class Legend {

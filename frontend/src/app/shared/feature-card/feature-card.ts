@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { LucideX } from '@lucide/angular';
 import type { ControlFeatureProperties, TheaterStateDto } from '../../core/api/api-types';
-import { hasKey, t, type I18nKey, type Lang } from '../../core/i18n';
+import { hasKey, localized, t, type I18nKey, type Lang } from '../../core/i18n';
 import { theaterLabel } from '../../core/theater-tracks';
 import { CitationPopover } from '../citation/citation-popover';
 import { campOf, type Evidence } from '../map/map-style';
@@ -50,6 +50,22 @@ import { campOf, type Evidence } from '../map/map-style';
             <span class="text-wl-on-surface-variant">{{ tr('legend.campUnassigned') }}</span>
           }
         </dd>
+        @if (supplements().length > 0) {
+          <dt class="text-wl-on-surface-variant">
+            <span class="wl-badge" data-testid="feature-card-supplement-label">{{ tr('card.supplement') }}</span>
+          </dt>
+          <dd data-testid="feature-card-supplements">
+            <p class="text-wl-on-surface-variant">{{ tr('card.supplement.note') }}</p>
+            @for (e of supplements(); track e.eventId) {
+              <div class="mt-1" data-testid="feature-card-supplement">
+                <span>{{ e.date }}　{{ e.summary }}</span>
+                @for (c of e.citations; track c.sourceId + c.locator) {
+                  <div class="text-wl-on-surface-variant">{{ tr('card.campBasis') }}：{{ c.sourceTitle }}，{{ c.locator }}</div>
+                }
+              </div>
+            }
+          </dd>
+        }
         @if (props().isDisputed) {
           <dt class="text-wl-on-surface-variant"></dt><dd><span class="wl-badge">{{ tr('card.disputed') }}</span></dd>
         }
@@ -97,6 +113,16 @@ export class FeatureCard {
   });
   protected readonly primaryAlignmentCitations = computed(
     () => this.props().controllerAlignment?.citations.filter((c) => c.role === 'primary') ?? [],
+  );
+
+  /** 陣營「補充」（使用者 2026-10-31 拍板）：API 的 controllerSupplements，只列出、不參與陣營判定。 */
+  protected readonly supplements = computed(() =>
+    (this.props().controllerSupplements ?? []).map((e) => ({
+      eventId: e.eventId,
+      date: e.occurred.start ?? '',
+      summary: localized(e.summary as Record<string, string> | null, this.lang()).text,
+      citations: e.citations,
+    })),
   );
 
   protected readonly theater = computed(() => theaterLabel(this.props().theaterCode, this.lang()));

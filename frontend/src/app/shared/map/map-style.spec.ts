@@ -1,5 +1,5 @@
 import type { ControlMapDto } from '../../core/api/api-types';
-import { CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, darken, decorateFeatures, evidenceFor, hatchImageId } from './map-style';
+import { CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, darken, decorateFeatures, evidenceFor, gapFeatures, hatchImageId } from './map-style';
 
 // 測試用假資料（只存在於測試檔，不進畫面、不寫入資料庫）
 function fixture(state: string, controlType = 'military_occupation', camp: string | null = null): ControlMapDto {
@@ -90,5 +90,24 @@ describe('map-style', () => {
 
   it('darken', () => {
     expect(darken('#ffffff', 0.25)).toBe('#bfbfbf');
+  });
+
+  it('控制資料缺：只畫 API 的 coverageNotes，沒有就是空集合（R9，前端不推導）', () => {
+    expect(gapFeatures(fixture('attested')).features).toEqual([]);
+    expect(gapFeatures(null).features).toEqual([]);
+    const dto: ControlMapDto = {
+      ...fixture('attested'),
+      coverageNotes: [
+        {
+          id: 'n1', theaterId: null, reason: 'no_qualified_source', note: null, researchRef: null,
+          geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 0]]] },
+          validPeriod: { start: '1940-07-15', end: '1942-11-11' },
+        },
+      ],
+    };
+    const g = gapFeatures(dto).features;
+    expect(g.length).toBe(1);
+    expect(g[0].properties).toEqual({ gapId: 'n1', reason: 'no_qualified_source' });
+    expect(g[0].geometry.type).toBe('Polygon');
   });
 });

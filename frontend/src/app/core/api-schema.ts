@@ -132,6 +132,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/regimes/{id}/alignments/{alignmentId}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractRegimeAlignment"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/control-coverage-notes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateControlCoverageNote"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sources/{id}": {
         parameters: {
             query?: never;
@@ -262,6 +294,16 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfCoverageNoteDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CoverageNoteDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfEventDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -342,6 +384,16 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfRetractionDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["RetractionDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfSourceDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -407,12 +459,14 @@ export interface components {
             validPeriod: components["schemas"]["IntervalDto"];
             citations: components["schemas"]["CitationDto"][];
             controllerAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
+            controllerSupplements?: null | components["schemas"]["SupplementEventDto"][];
         };
         ControlMapDto: {
             /** Format: date */
             date: string;
             featureCollection: components["schemas"]["ControlFeatureCollection"];
             theaters: components["schemas"]["TheaterStateDto"][];
+            coverageNotes?: null | components["schemas"]["CoverageNoteDto"][];
         };
         ControlRecordCreatedDto: {
             /** Format: uuid */
@@ -435,6 +489,19 @@ export interface components {
             title: null | {
                 [key: string]: string;
             };
+        };
+        CoverageNoteDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            theaterId: null | string;
+            geometry: components["schemas"]["JsonElement"];
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            reason: string;
+            note: null | {
+                [key: string]: string;
+            };
+            researchRef: null | string;
         };
         CreateControlRecordRequest: {
             /** Format: uuid */
@@ -466,6 +533,17 @@ export interface components {
                 [key: string]: string;
             };
         };
+        CreateCoverageNoteRequest: {
+            /** Format: uuid */
+            theaterId: null | string;
+            geometry: null | components["schemas"]["JsonElement"];
+            validPeriod: null | components["schemas"]["DatePeriodDto"];
+            reason: null | string;
+            note?: null | {
+                [key: string]: string;
+            };
+            researchRef?: null | string;
+        };
         CreateEventRequest: {
             eventKind: null | string;
             occurred: null | components["schemas"]["DatePeriodDto"];
@@ -479,6 +557,8 @@ export interface components {
             /** Format: uuid */
             parentEventId?: null | string;
             location?: unknown;
+            participants?: null | components["schemas"]["EventParticipantInput"][];
+            citations?: null | components["schemas"]["EventCitationInput"][];
         };
         CreateRegimeAlignmentRequest: {
             camp: null | string;
@@ -535,6 +615,12 @@ export interface components {
             /** Format: date */
             end: null | string;
         };
+        EventCitationInput: {
+            /** Format: uuid */
+            sourceId: null | string;
+            locator: null | string;
+            evidenceNote: null | string;
+        };
         EventDto: {
             /** Format: uuid */
             id: string;
@@ -550,6 +636,18 @@ export interface components {
                 [key: string]: string;
             };
             location: null | components["schemas"]["JsonElement"];
+            participants?: null | components["schemas"]["EventParticipantDto"][];
+            citations?: null | components["schemas"]["CitationDto"][];
+        };
+        EventParticipantDto: {
+            /** Format: uuid */
+            regimeId: string;
+            role: string;
+        };
+        EventParticipantInput: {
+            /** Format: uuid */
+            regimeId: null | string;
+            role: null | string;
         };
         IntervalDto: {
             /** Format: date */
@@ -645,6 +743,16 @@ export interface components {
                 [key: string]: string;
             };
         };
+        RetractionDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: date-time */
+            retractedAt: string;
+            reason: string;
+        };
+        RetractionRequest: {
+            reason: null | string;
+        };
         SnapshotRefDto: {
             /** Format: uuid */
             id: string;
@@ -672,6 +780,17 @@ export interface components {
             localCopyPath: null | string;
             catalogId: null | string;
             note: null | string;
+        };
+        SupplementEventDto: {
+            /** Format: uuid */
+            eventId: string;
+            eventKind: string;
+            occurred: components["schemas"]["DatePeriodDto"];
+            summary: null | {
+                [key: string]: string;
+            };
+            participants: components["schemas"]["EventParticipantDto"][];
+            citations: components["schemas"]["CitationDto"][];
         };
         TheaterDto: {
             /** Format: uuid */
@@ -1115,6 +1234,120 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractRegimeAlignment: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+                alignmentId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateControlCoverageNote: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCoverageNoteRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCoverageNoteDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -30,3 +30,19 @@ export function hatchImage(color: string, kind: 'partial' | 'contested', pixelRa
   ctx.stroke();
   return ctx.getImageData(0, 0, size, size);
 }
+
+/** 控制資料缺樣式 A（DESIGN.md：紙底＋6px 網格細墨點 35%，同 CSS `.wl-gap-pattern`）。紙底由圖層 fill-color 提供，這裡只畫墨點。 */
+export function gapDotsImage(dotColor: string, grid = 6, pixelRatio = 2): ImageData | null {
+  const size = grid * pixelRatio;
+  if (typeof document === 'undefined') return null;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+  ctx.fillStyle = dotColor;
+  ctx.beginPath();
+  ctx.arc(size / 2, size / 2, 0.8 * pixelRatio, 0, Math.PI * 2);
+  ctx.fill();
+  return ctx.getImageData(0, 0, size, size);
+}

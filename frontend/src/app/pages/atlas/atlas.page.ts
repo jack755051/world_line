@@ -10,9 +10,10 @@ import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { regimeSelfName } from '../../core/regime-names';
 import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
+import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
-import { AtlasMap, type MapFeatureEvent } from '../../shared/map/atlas-map';
-import { campTonesFrom, decorateFeatures } from '../../shared/map/map-style';
+import { AtlasMap, type MapFeatureEvent, type MapGapEvent } from '../../shared/map/atlas-map';
+import { campTonesFrom, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
 
@@ -23,7 +24,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
+  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -54,8 +55,8 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
             <div class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
-              <wl-atlas-map [collection]="collection()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
-                (featureClick)="onFeatureClick($event)" (emptyClick)="selected.set(null)" (featureHover)="hover.set($event)" />
+              <wl-atlas-map [collection]="collection()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+                (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
 
               @if (firstLoad()) {
                 <div data-testid="map-loading" class="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -105,6 +106,12 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
                 </div>
               }
 
+              @if (selectedGapInfo(); as g) {
+                <div class="absolute z-20" [style.left.px]="g.x" [style.top.px]="g.y">
+                  <wl-gap-card [note]="g.note" [lang]="lang()" (closed)="selectedGap.set(null)" />
+                </div>
+              }
+
               <div class="absolute bottom-4 left-4 z-10">
                 <wl-legend [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
                   (toggle)="state.legendOpen.set(!state.legendOpen())" />
@@ -131,6 +138,7 @@ export class AtlasPage {
   protected readonly lang = this.state.lang;
   protected readonly selected = signal<MapFeatureEvent | null>(null);
   protected readonly hover = signal<MapFeatureEvent | null>(null);
+  protected readonly selectedGap = signal<MapGapEvent | null>(null);
   private readonly everLoaded = signal(false);
 
   /** 載入失敗而顯示舊日期資料時，不沿用舊的史料判斷：一律以推估（不明）樣式呈現（PRD §8.5 error 保守原則）。 */
@@ -141,6 +149,15 @@ export class AtlasPage {
     const { toneFor } = this.campTones();
     if (dto && this.data.controlStatus() === 'error' && this.data.showingStale()) return decorateFeatures({ ...dto, theaters: [] }, toneFor);
     return decorateFeatures(dto, toneFor);
+  });
+  /** 控制資料缺（R9）：只畫 API 的涵蓋備註；顯示舊日期資料時不畫（避免把別天的缺口當成今天的）。 */
+  protected readonly gaps = computed(() =>
+    this.data.controlStatus() === 'error' && this.data.showingStale() ? gapFeatures(null) : gapFeatures(this.data.control()),
+  );
+  protected readonly selectedGapInfo = computed(() => {
+    const g = this.selectedGap();
+    const note = g && this.data.control()?.coverageNotes?.find((n) => n.id === g.gapId);
+    return g && note ? { x: Math.max(8, g.x + 12), y: Math.max(8, g.y - 40), note } : null;
   });
   protected readonly featureCount = computed(() => this.data.control()?.featureCollection.features.length ?? 0);
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
@@ -251,13 +268,25 @@ export class AtlasPage {
   }
 
   protected setDate(d: string): void {
-    this.selected.set(null);
+    this.clearSelection();
     this.state.setDate(d);
   }
 
   protected onFeatureClick(e: MapFeatureEvent): void {
     this.hover.set(null);
+    this.selectedGap.set(null);
     this.selected.set(e);
+  }
+
+  protected onGapClick(e: MapGapEvent): void {
+    this.hover.set(null);
+    this.selected.set(null);
+    this.selectedGap.set(e);
+  }
+
+  protected clearSelection(): void {
+    this.selected.set(null);
+    this.selectedGap.set(null);
   }
 
   protected onInvalidInput(): void {

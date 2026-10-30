@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "gen:api": "openapi-typescript ../backend/openapi/v1.json -o src/app/core/api-schema.ts",
+    "check:api": "openapi-typescript ../backend/openapi/v1.json -o tmp/api-schema.check.ts && node -e \"const f=require('fs');if(f.readFileSync('tmp/api-schema.check.ts','utf8')!==f.readFileSync('src/app/core/api-schema.ts','utf8')){console.error('api-schema.ts 過期：請執行 pnpm gen:api');process.exit(1)}console.log('api-schema.ts 與 OpenAPI 一致')\"",
+    "e2e": "playwright test"
   },
   "private": true,
   "dependencies": {
@@ -17,8 +20,11 @@
     "@angular/forms": "^22.2.0",
     "@angular/platform-browser": "^22.2.0",
     "@angular/router": "^22.2.0",
+    "@fontsource/noto-sans-tc": "^5.3.1",
+    "@fontsource/noto-serif-tc": "^5.3.1",
     "@lucide/angular": "^1.63.0",
     "clsx": "^2.1.1",
+    "maplibre-gl": "^6.16.0",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^3.7.0",
     "tslib": "^2.3.0"
@@ -27,8 +33,11 @@
     "@angular/build": "^22.2.5",
     "@angular/cli": "^22.2.5",
     "@angular/compiler-cli": "^22.2.0",
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4.3.3",
+    "@types/geojson": "^7946.0.16",
     "jsdom": "^30.0.0",
+    "openapi-typescript": "^7.13.0",
     "postcss": "^8.5.3",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.3.3",

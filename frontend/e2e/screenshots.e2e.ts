@@ -7,7 +7,7 @@ import { expect, test, type Page } from '@playwright/test';
 test.skip(!process.env['WL_SCREENSHOTS'], 'set WL_SCREENSHOTS=1 to capture screenshots');
 test.use({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
 
-const out = (name: string) => `tmp/screens/${name}.png`;
+const out = (name: string) => `${process.env['WL_SCREENS_DIR'] ?? 'tmp/screens'}/${name}.png`;
 
 async function ready(page: Page): Promise<void> {
   const canvas = page.getByTestId('map-canvas');
@@ -94,4 +94,33 @@ test('09 首次載入 skeleton', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
   await expect(page.getByTestId('app-skeleton')).toBeVisible();
   await page.screenshot({ path: out('09-first-load-skeleton') });
+});
+
+test('10 找不到頁面', async ({ page }) => {
+  await page.goto('/no-such-page');
+  await expect(page.getByTestId('not-found-page')).toBeVisible();
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: out('10-not-found') });
+});
+
+test('11 網址日期無效 → toast', async ({ page }) => {
+  await page.goto('/?date=1940-13-99');
+  await ready(page);
+  await expect(page.getByTestId('toast')).toContainText('日期格式無效');
+  await page.screenshot({ path: out('11-invalid-date-toast') });
+});
+
+test('12 早期時段提示 1935-05-01', async ({ page }) => {
+  await page.goto('/?date=1935-05-01');
+  await expect(page.getByTestId('map-incomplete-period-hint')).toBeVisible();
+  await page.waitForTimeout(800);
+  await page.screenshot({ path: out('12-early-period-1935-05-01') });
+});
+
+test('13 圖例收合（1940-07-15）', async ({ page }) => {
+  await page.goto('/?date=1940-07-15');
+  await ready(page);
+  await page.getByTestId('legend-toggle').click();
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: out('13-legend-collapsed') });
 });

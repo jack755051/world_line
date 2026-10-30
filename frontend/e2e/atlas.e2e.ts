@@ -97,3 +97,46 @@ for (const date of ['1940-07-15', '1940-10-01']) {
   });
 }
 
+
+// Stitch v2 對齊（DESIGN.md Timeline／Typography：只用 12px 等既有字級；圖例可收成左下小按鈕）
+test('Stitch v2：時間軸標籤與年份 12px、年份不壓在軌道上、播放鈕非朱紅', async ({ page }) => {
+  await page.goto('/?date=1940-07-15');
+  await expect(page.getByTestId('timeline-track-west-europe')).toBeVisible();
+  const labels = page.getByTestId('timeline-track-label');
+  await expect(labels).toHaveCount(5);
+  for (const fs of await labels.evaluateAll((els) => els.map((e) => getComputedStyle(e).fontSize))) expect(fs).toBe('12px');
+  // 每個標籤與對應軌道垂直置中對齊（誤差 ≤ 2px）
+  const codes = ['west-europe', 'east-front', 'north-africa', 'pacific', 'china'];
+  for (let i = 0; i < codes.length; i++) {
+    const l = await labels.nth(i).boundingBox();
+    const t = await page.getByTestId(`timeline-track-${codes[i]}`).boundingBox();
+    expect(Math.abs(l!.y + l!.height / 2 - (t!.y + t!.height / 2))).toBeLessThanOrEqual(2);
+  }
+  const years = page.getByTestId('timeline-year-label');
+  expect(await years.first().evaluate((e) => getComputedStyle(e).fontSize)).toBe('12px');
+  const lastTrack = await page.getByTestId('timeline-track-china').boundingBox();
+  const year = await years.first().boundingBox();
+  expect(year!.y).toBeGreaterThanOrEqual(lastTrack!.y + lastTrack!.height);
+  const bg = await page.getByTestId('timeline-play').evaluate((e) => getComputedStyle(e).backgroundColor);
+  expect(bg).not.toBe('rgb(178, 58, 38)');
+  await page.getByTestId('timeline-speed').click();
+  await expect(page.getByTestId('timeline-speed')).toHaveAttribute('data-speed', 'month');
+});
+
+test('Stitch v2：圖例收合成小按鈕，可再展開', async ({ page }) => {
+  await page.goto('/?date=1940-07-15');
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
+  await page.getByTestId('legend-toggle').click();
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'collapsed');
+  const box = await page.getByTestId('legend-expand').boundingBox();
+  expect(box!.width).toBeLessThan(140);
+  await page.getByTestId('legend-expand').click();
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
+});
+
+test('找不到頁面：置中紙卡＋回主地圖', async ({ page }) => {
+  await page.goto('/no-such-page');
+  await expect(page.getByTestId('not-found-page')).toContainText('找不到頁面');
+  await page.getByTestId('not-found-back').click();
+  await expect(page.getByTestId('atlas-page')).toBeVisible();
+});

@@ -4,7 +4,8 @@
 預設只做 dry-run：列出要送的請求，不連 API。
 **這批只寫入本機開發／測試資料庫**（例：worldline-borders-dev，API 127.0.0.1:5052），不要送到 appdb_ww2（5051）；
 寫入正式庫要另取得 Tai 同意。
-- `_geometryFrom`：送出時才從 borders-ohm-1938-1940.geojson 讀入該 OHM 關係的幾何。
+- `_geometryFrom`：送出時才從 borders-ohm-1938-1940.geojson（OHM 關係 id）或 borders-fixes-1938-1940.geojson（FIX_*）讀入幾何。
+- 05-2-*：撤回（I5：不原地修改；撤回後在 05-3-* 重新新增）。
 - `_meta.priorPlaceholder`：正式庫已有的來源／政權；若前置 id 表（--prior）已有就略過，否則照常建立（新開的開發庫）。
 API key 從 --env 指定的檔案（WORLDLINE_API_KEY）安靜讀取，不會印出。
 用法：python3 send_seed.py [--send] --base http://127.0.0.1:5052 --env <開發用 env 檔> [--prior ../france-1940-07-15/sent-ids.json ...]
@@ -34,6 +35,9 @@ for p in a.prior:
 mine = json.load(open(a.ids, encoding='utf-8')) if os.path.exists(a.ids) else {}
 ids, key = {**prior, **mine}, (api_key() if a.send else None)
 geoms = {f['id']: f['geometry'] for f in json.load(open(os.path.join(HERE, 'borders-ohm-1938-1940.geojson')))['features']}
+# 05-*：補空白／重疊的衍生幾何（build/fixes.py 產生；feature id＝FIX_*）
+if os.path.exists(os.path.join(HERE, 'borders-fixes-1938-1940.geojson')):
+    geoms.update({f['id']: f['geometry'] for f in json.load(open(os.path.join(HERE, 'borders-fixes-1938-1940.geojson')))['features']})
 for path in sorted(glob.glob(os.path.join(HERE, 'requests', '*.json'))):
     req = json.load(open(path, encoding='utf-8'))
     name, ph, meta = os.path.basename(path), req['_placeholder'], req.get('_meta', {})
@@ -48,6 +52,7 @@ for path in sorted(glob.glob(os.path.join(HERE, 'requests', '*.json'))):
     missing = [m for m in re.findall(r'\{\{(\w+)\}\}', raw + post) if m not in ids]
     if a.send and missing: sys.exit(f'{name} 缺少前置 id：{missing}')
     for k, v in ids.items():
+        if v is None: continue  # 撤回請求沒有新 id
         raw = raw.replace('{{%s}}' % k, v); post = post.replace('{{%s}}' % k, v)
     print(f"POST {post}  ← {name}  （→ {ph}）")
     if not a.send: continue
@@ -57,7 +62,7 @@ for path in sorted(glob.glob(os.path.join(HERE, 'requests', '*.json'))):
         data = json.load(urllib.request.urlopen(r))['data']
     except urllib.error.HTTPError as e:
         sys.exit(f'失敗 {e.code}：{e.read().decode()[:500]}')
-    mine[ph] = ids[ph] = data.get('id')
+    mine[ph] = ids[ph] = data.get('id') if isinstance(data, dict) else None
     json.dump(mine, open(a.ids, 'w'), indent=2)  # 每筆成功就記，補寫時不重複
     print('   id =', ids[ph])
 if not a.send:

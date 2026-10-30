@@ -25,18 +25,23 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
     private static async Task<Dictionary<string, string>> ReplayAsync(ApiTestKit k)
     {
         var root = BatchRoot();
-        var geoms = JsonNode.Parse(await File.ReadAllTextAsync(Path.Combine(root, "borders-ohm-1938-1940.geojson")))!["features"]!.AsArray()
-            .ToDictionary(f => f!["id"]!.GetValue<long>(), f => f!["geometry"]!);
+        // feature id：OHM 關係 id（數字）或 05-* 修正用的衍生幾何（FIX_*，borders-fixes-1938-1940.geojson）
+        var geoms = new Dictionary<string, JsonNode>();
+        foreach (var file in new[] { "borders-ohm-1938-1940.geojson", "borders-fixes-1938-1940.geojson" })
+            foreach (var f in JsonNode.Parse(await File.ReadAllTextAsync(Path.Combine(root, file)))!["features"]!.AsArray())
+                geoms[f!["id"]!.ToJsonString().Trim('"')] = f["geometry"]!;
         var ids = new Dictionary<string, string>();
         foreach (var path in Directory.GetFiles(Path.Combine(root, "requests"), "*.json").Order(StringComparer.Ordinal))
         {
             var req = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
             var body = req["body"]!.AsObject();
             if (body["slug"] is not null) body["slug"] = $"{body["slug"]}-{k.Tag}";
-            if (req["_geometryFrom"] is { } g) body["geometry"] = geoms[g.GetValue<long>()].DeepClone();
+            if (req["_geometryFrom"] is { } g) body["geometry"] = geoms[g.ToJsonString().Trim('"')].DeepClone();
             string Fill(string s) => Regex.Replace(s, @"\{\{(\w+)\}\}", m => ids[m.Groups[1].Value]);
-            var res = await k.W.PostAsync((string)req["_post"]!, new StringContent(Fill(body.ToJsonString()), Encoding.UTF8, "application/json"));
-            var data = (await ApiTestKit.Expect(res, HttpStatusCode.Created)).GetProperty("data");
+            var res = await k.W.PostAsync(Fill((string)req["_post"]!), new StringContent(Fill(body.ToJsonString()), Encoding.UTF8, "application/json"));
+            // 05-2-*：撤回（I5，不原地修改）回 200；其他新增回 201
+            var isRetraction = ((string)req["_post"]!).EndsWith("/retraction");
+            var data = (await ApiTestKit.Expect(res, isRetraction ? HttpStatusCode.OK : HttpStatusCode.Created)).GetProperty("data");
             ids[(string)req["_placeholder"]!] = data.GetProperty("id").GetString()!;
         }
         return ids;
@@ -67,11 +72,18 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
         Assert.Equal(JsonValueKind.Null, reich0.GetProperty("startEvent").ValueKind);
         Assert.Equal("verified", reich0.GetProperty("endEvent").GetProperty("verification").GetString());
 
-        // 1938-10-15：德國起事件＝德奧合併（已查證），迄事件＝德捷邊界最終劃定（待查證）
-        var reich1 = (await On("1938-10-15"))[ids["SOV_R2704712"]];
+        // 1938-10-05：分區佔領中，德國仍是拆分後的前段（幾何不含蘇台德），迄事件＝分區佔領（已查證）
+        var d05 = await On("1938-10-05");
+        Assert.DoesNotContain(ids["SOV_R2704712"], d05.Keys);
+        Assert.Equal("verified", d05[ids["SOV_R2704712_A"]].GetProperty("endEvent").GetProperty("verification").GetString());
+
+        // 1938-10-15：蘇台德已畫入德國（修正紀錄）；起事件＝分區佔領（4 筆 FRUS 引用），迄事件＝德捷邊界最終劃定（待查證）
+        var reich1 = (await On("1938-10-15"))[ids["SOV_FIX_REICH_SUDETEN"]];
         Assert.Equal("verified", reich1.GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal(4, reich1.GetProperty("startEvent").GetProperty("citations").GetArrayLength());
         Assert.Equal("pending", reich1.GetProperty("endEvent").GetProperty("verification").GetString());
         Assert.Equal(0, reich1.GetProperty("endEvent").GetProperty("citations").GetArrayLength());
+        Assert.StartsWith("relation/2704712 v208 ∪", reich1.GetProperty("geometry").GetProperty("locator").GetString());
 
         // 1939-04-15：阿爾巴尼亞已由義大利兼領；捷克斯洛伐克已不在
         var slugs2 = (await On("1939-04-15")).Values.Select(Slug).ToHashSet();
@@ -80,10 +92,23 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
         Assert.DoesNotContain("czechoslovak-republic", slugs2);
         Assert.Contains("slovak-state-1939", slugs2);
 
-        // 1939-10-15：波蘭與但澤都已不在（OHM 在 10-06／09-01 結束）
-        var slugs3 = (await On("1939-10-15")).Values.Select(Slug).ToHashSet();
+        // 1939-10-15：波蘭與但澤都已不在（OHM 在 10-06／09-01 結束）；但澤已畫入德國、波蘭中部為德佔軍事管理（非主權）
+        var d3 = await On("1939-10-15");
+        var slugs3 = d3.Values.Select(Slug).ToHashSet();
         Assert.DoesNotContain("polish-republic", slugs3);
         Assert.DoesNotContain("free-city-of-danzig", slugs3);
+        Assert.Equal("verified", d3[ids["SOV_FIX_REICH_DANZIG"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.DoesNotContain(ids["SOV_FIX_MILVERW_PL"], d3.Keys); // 頁碼更正後撤回重加（05-4）
+        var pl = d3[ids["SOV_FIX_MILVERW_PL_R2"]];
+        Assert.Equal("german-military-administration-poland", Slug(pl));
+        Assert.Equal("not_sovereign", pl.GetProperty("layerStatus").GetString());
+        Assert.Equal("verified", pl.GetProperty("endEvent").GetProperty("verification").GetString());
+        Assert.Equal("Doc. 477, p. 560, nn. 2–3", pl.GetProperty("endEvent").GetProperty("citations")[0].GetProperty("locator").GetString());
+
+        // 1940-04-01：蘇聯用扣除比薩拉比亞的修正紀錄；原紀錄已撤回
+        var d35 = await On("1940-04-01");
+        Assert.Contains(ids["SOV_FIX_SU_NO_BESSARABIA"], d35.Keys);
+        Assert.DoesNotContain(ids["SOV_R2851878"], d35.Keys);
 
         // 1940-09-15：波羅的海三國已併入蘇聯；比北軍政府標示為非主權
         var d4 = await On("1940-09-15");

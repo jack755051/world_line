@@ -1,0 +1,53 @@
+{
+ "_placeholder": "SOV_FIX_REICH_SUDETEN",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "FIX_REICH_SUDETEN",
+ "_meta": {
+  "ohmName": "Deutsches Reich",
+  "ohmNameEn": "German Reich"
+ },
+ "body": {
+  "regimeId": "{{REGIME_DE}}",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1938-10-10",
+   "end": "1938-11-21"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "{{SRC_OHM}}",
+  "geometryLocator": "relation/2704712 v208 ∪ (relation/2704711 v199 ∩ relation/2692764 v97 − 1938-10-15 其他紀錄)",
+  "geometryLicense": "cc_by",
+  "attribution": "© Geodetska uprava Republike Slovenije（GURS），CC BY 4.0",
+  "startEventId": "{{EV_SUDETEN_OCCUPATION}}",
+  "endEventId": "{{EV_DE_CS_BORDER_1938}}",
+  "ohmRelationId": 2704712,
+  "ohmVersion": 208,
+  "ohmFetchedAt": "2026-10-30T19:27:35Z",
+  "ohmStartRaw": "1938-03-13",
+  "ohmEndRaw": "1938-11-21",
+  "provenance": {
+   "memberWayLicense": {
+    "untagged(OHM CC0)": 1774,
+    "gurs": 25
+   },
+   "osmDerivedWayCount": 464,
+   "ohmFixme": "needs source for boundary lines",
+   "ohmRelationSource": null,
+   "ohmAdminLevel": "2",
+   "ohmChangeset": 272226,
+   "ohmTimestamp": "2026-09-22T01:48:40Z",
+   "coastline": "{{SRC_NE_LAND}}",
+   "licenseReview": "osm_derived_ways",
+   "derivedFrom": [
+    "relation/2704712 v208",
+    "relation/2704711 v199",
+    "relation/2692764 v97"
+   ],
+   "derivation": "2704712 ∪ ((2704711 ∩ 2692764) − 1938-10-15 其他有效紀錄)"
+  },
+  "note": {
+   "zh-Hant": "蘇台德：OHM 捷克斯洛伐克 09-30 縮小、德國 11-21 才擴大，中間空白。依 FRUS 1938 I Doc. 710（佔領 10-10 大致完成、實際移轉）自 10-10 起畫入德國；邊界取 OHM 2704711（11-21 版）。10-01～10-10 分區佔領無分區幾何，維持空白。",
+   "en": "Sudetenland: drawn as German from 10 Oct (occupation substantially complete, FRUS 1938 I Doc. 710); line from OHM 2704711. 1–10 Oct stays blank (no zone geometry)."
+  }
+ }
+}

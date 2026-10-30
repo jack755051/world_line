@@ -22,7 +22,7 @@ async function clickLngLat(page: Page, lngLat: [number, number]): Promise<void> 
   await page.mouse.click((box?.x ?? 0) + p.x, (box?.y ?? 0) + p.y);
 }
 
-test('1938-10-15：點柏林 → 德意志國卡片；起始變動（德奧合併）已查證、結束變動待查證', async ({ page }) => {
+test('1938-10-15：點柏林 → 德意志國卡片（蘇台德修正紀錄）；起始變動（分區佔領）已查證、結束變動待查證', async ({ page }) => {
   await page.goto('/?date=1938-10-15');
   await waitForBorders(page);
   await clickLngLat(page, [13.4, 52.5]);
@@ -30,9 +30,9 @@ test('1938-10-15：點柏林 → 德意志國卡片；起始變動（德奧合�
   await expect(card).toBeVisible();
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
   await expect(page.getByTestId('sovereignty-card-start')).toContainText('已查證');
-  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-citation').first()).toContainText('Doc. 454');
+  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-citation').first()).toContainText('Doc. 682, p. 702');
   await expect(page.getByTestId('sovereignty-card-end').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
-  await expect(page.getByTestId('sovereignty-card-geometry')).toContainText('relation/2704712 v208');
+  await expect(page.getByTestId('sovereignty-card-geometry')).toContainText('relation/2704712 v208 ∪ (relation/2704711 v199');
   await expect(page.getByTestId('sovereignty-card-osm')).toBeVisible();
   // 陣營只作補充（開發庫沒有陣營切片 → 未建置，不推定）
   await expect(page.getByTestId('sovereignty-card-camp')).toHaveAttribute('data-camp', 'unassigned');

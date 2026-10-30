@@ -49,6 +49,8 @@ export const REGIME_COLORS: Record<string, string> = {
   'portuguese-republic': '#a9cdb9',
   'ireland-eire': '#b9d6a6',
   'mil-admin-belgium-northern-france': '#a7a3c9',
+  // 德佔波蘭軍事管理（1939-10-06→10-26，非主權、斜線）：與比北軍政府同用德國色系
+  'german-military-administration-poland': '#a7a3c9',
 };
 /** 英國屬地與義屬愛琴海群島沿用母國色（Tai 2026-10-31：屬地維持獨立政權，只共用顏色）。 */
 const SAME_COLOR_AS: Record<string, string> = {

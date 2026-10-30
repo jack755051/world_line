@@ -1,8 +1,8 @@
 import type { ControlMapDto } from '../../core/api/api-types';
-import { CAMP_TONES, CAMP_UNASSIGNED_TONE, darken, decorateFeatures, evidenceFor, hatchImageId } from './map-style';
+import { CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, darken, decorateFeatures, evidenceFor, hatchImageId } from './map-style';
 
 // 測試用假資料（只存在於測試檔，不進畫面、不寫入資料庫）
-function fixture(state: string, controlType = 'military_occupation'): ControlMapDto {
+function fixture(state: string, controlType = 'military_occupation', camp: string | null = null): ControlMapDto {
   return {
     date: '1940-07-15',
     theaters: [{ theaterCode: 'test-theater', state, attestingSnapshot: null, prevSnapshot: null, nextSnapshot: null }],
@@ -18,6 +18,9 @@ function fixture(state: string, controlType = 'military_occupation'): ControlMap
             theaterCode: 'test-theater', snapshotId: 's1', isDisputed: false,
             validPeriod: { start: '1940-07-01', end: '1940-08-01', startUncertainty: null, endUncertainty: null },
             citations: [],
+            controllerAlignment: camp
+              ? { id: 'a1', regimeId: 'g1', camp, validPeriod: { start: '1940-01-01', end: null }, basisEventId: null, note: null, citations: [] }
+              : null,
           },
         },
       ],
@@ -62,6 +65,27 @@ describe('map-style', () => {
     const all: readonly string[] = Object.values(CAMP_TONES).flat();
     expect(all).not.toContain(CAMP_UNASSIGNED_TONE);
     expect(CAMP_UNASSIGNED_TONE).not.toBe('#b23a26');
+  });
+
+  it('沒有陣營切片（controllerAlignment = null）→ 陣營未建置色，camp = unassigned（不推定）', () => {
+    const dto = fixture('attested');
+    const tones = campTonesFrom(dto);
+    expect(tones.toneFor('g1')).toBe(CAMP_UNASSIGNED_TONE);
+    expect(tones.campFor('g1')).toBeNull();
+    expect(decorateFeatures(dto, tones.toneFor).features[0].properties.camp).toBe('unassigned');
+  });
+
+  it('有陣營切片 → 用該色系的色票，API 的 co_belligerent 對到 cobelligerent', () => {
+    const axis = fixture('attested', 'military_occupation', 'axis');
+    const tones = campTonesFrom(axis);
+    expect(tones.toneFor('g1')).toBe(CAMP_TONES.axis[0]);
+    expect(tones.campFor('g1')).toBe('axis');
+    const p = decorateFeatures(axis, tones.toneFor).features[0].properties;
+    expect(p.wlFill).toBe(CAMP_TONES.axis[0]);
+    expect(p.camp).toBe('axis');
+    expect(campOf({ camp: 'co_belligerent' })).toBe('cobelligerent');
+    expect(campOf({ camp: 'something-else' })).toBeNull();
+    expect(campTonesFrom(null).toneFor('nobody')).toBe(CAMP_UNASSIGNED_TONE);
   });
 
   it('darken', () => {

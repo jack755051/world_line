@@ -12,7 +12,7 @@ import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
 import { AtlasMap, type MapFeatureEvent } from '../../shared/map/atlas-map';
-import { decorateFeatures, unassignedTone } from '../../shared/map/map-style';
+import { campTonesFrom, decorateFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
 
@@ -134,10 +134,13 @@ export class AtlasPage {
   private readonly everLoaded = signal(false);
 
   /** 載入失敗而顯示舊日期資料時，不沿用舊的史料判斷：一律以推估（不明）樣式呈現（PRD §8.5 error 保守原則）。 */
+  /** 陣營色（憲法 §6「陣營」）：只依 API 回傳的 controllerAlignment；沒有就是「陣營未建置」色，不推定。 */
+  private readonly campTones = computed(() => campTonesFrom(this.data.control()));
   protected readonly collection = computed(() => {
     const dto = this.data.control();
-    if (dto && this.data.controlStatus() === 'error' && this.data.showingStale()) return decorateFeatures({ ...dto, theaters: [] }, unassignedTone);
-    return decorateFeatures(dto, unassignedTone);
+    const { toneFor } = this.campTones();
+    if (dto && this.data.controlStatus() === 'error' && this.data.showingStale()) return decorateFeatures({ ...dto, theaters: [] }, toneFor);
+    return decorateFeatures(dto, toneFor);
   });
   protected readonly featureCount = computed(() => this.data.control()?.featureCollection.features.length ?? 0);
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
@@ -151,7 +154,12 @@ export class AtlasPage {
     const regs = this.data.regimes();
     return ids
       .filter((id) => regs[id])
-      .map((id) => ({ id, name: regimeSelfName(regs[id], this.lang())?.display ?? id, tone: unassignedTone(id) }));
+      .map((id) => ({
+        id,
+        name: regimeSelfName(regs[id], this.lang())?.display ?? id,
+        tone: this.campTones().toneFor(id),
+        camp: this.campTones().campFor(id),
+      }));
   });
 
   private findFeature(versionId: string) {

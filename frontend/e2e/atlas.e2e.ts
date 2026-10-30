@@ -74,3 +74,26 @@ test('早於所有資料的日期顯示「此日期尚無資料」並可跳到�
   await page.getByTestId('map-empty-jump').click();
   await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
 });
+
+// 陣營色只依 API 的 controllerAlignment（憲法 §6「陣營」）。不寫死資料：先問 API 當日陣營，再比對圖例；
+// 沒有陣營切片的政權必須顯示「陣營未建置」。
+const CAMP_KEY: Record<string, string> = { axis: 'axis', allies: 'allies', co_belligerent: 'cobelligerent', neutral: 'neutral' };
+for (const date of ['1940-07-15', '1940-10-01']) {
+  test(`圖例的陣營與 API 一致（${date}）`, async ({ page, request }) => {
+    const res = await request.get(`/api/v1/control?date=${date}`);
+    expect(res.ok()).toBeTruthy();
+    const features = (await res.json()).data.featureCollection.features as {
+      properties: { controllerRegimeId: string; controllerAlignment: { camp: string } | null };
+    }[];
+    expect(features.length).toBeGreaterThan(0);
+    const expected = new Set(features.map((f) => (f.properties.controllerAlignment ? CAMP_KEY[f.properties.controllerAlignment.camp] : 'unassigned')));
+
+    await page.goto(`/?date=${date}`);
+    const items = page.getByTestId('legend-regime-item');
+    await expect(items.first()).toBeVisible();
+    const shown = new Set(await items.evaluateAll((els) => els.map((e) => e.getAttribute('data-camp') ?? '')));
+    expect(shown).toEqual(expected);
+    if (expected.has('unassigned')) await expect(page.getByTestId('legend')).toContainText('陣營未建置');
+  });
+}
+

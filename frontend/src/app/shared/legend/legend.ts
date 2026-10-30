@@ -9,6 +9,8 @@ export interface LegendRegime {
   id: string;
   name: string;
   tone: string;
+  /** 當日陣營；null＝陣營未建置 */
+  camp?: Camp | null;
 }
 
 /**
@@ -79,7 +81,8 @@ export interface LegendRegime {
             } @else {
               <ul class="flex flex-col gap-1.5">
                 @for (r of regimes(); track r.id) {
-                  <li class="row" data-testid="legend-regime-item"><span class="sw" [style.background]="r.tone"></span>{{ r.name }}</li>
+                  <li class="row" data-testid="legend-regime-item" [attr.data-camp]="r.camp ?? 'unassigned'"><span class="sw" [style.background]="r.tone"></span>{{ r.name }}
+                    <span class="text-wl-on-surface-variant">・{{ r.camp ? tr(campKey(r.camp)) : tr('legend.campUnassigned') }}</span></li>
                 }
               </ul>
             }

@@ -4,7 +4,7 @@ import type { ControlFeatureProperties, TheaterStateDto } from '../../core/api/a
 import { hasKey, t, type I18nKey, type Lang } from '../../core/i18n';
 import { theaterLabel } from '../../core/theater-tracks';
 import { CitationPopover } from '../citation/citation-popover';
-import type { Evidence } from '../map/map-style';
+import { campOf, type Evidence } from '../map/map-style';
 
 /**
  * 地圖控制區卡片（點地圖區塊時出現，Stitch W1 的「德國・軍事佔領」卡）。
@@ -39,6 +39,17 @@ import type { Evidence } from '../map/map-style';
         </dd>
         <dt class="text-wl-on-surface-variant">{{ tr('card.theater') }}</dt>
         <dd>{{ theater() }}</dd>
+        <dt class="text-wl-on-surface-variant">{{ tr('card.camp') }}</dt>
+        <dd data-testid="feature-card-camp" [attr.data-camp]="camp() ?? 'unassigned'">
+          @if (props().controllerAlignment; as al) {
+            {{ campLabel() }}（{{ period(al.validPeriod) }}）
+            @for (c of primaryAlignmentCitations(); track c.sourceId + c.locator) {
+              <div class="text-wl-on-surface-variant" data-testid="feature-card-camp-basis">{{ tr('card.campBasis') }}：{{ c.sourceTitle }}，{{ c.locator }}</div>
+            }
+          } @else {
+            <span class="text-wl-on-surface-variant">{{ tr('legend.campUnassigned') }}</span>
+          }
+        </dd>
         @if (props().isDisputed) {
           <dt class="text-wl-on-surface-variant"></dt><dd><span class="wl-badge">{{ tr('card.disputed') }}</span></dd>
         }
@@ -78,6 +89,15 @@ export class FeatureCard {
         return t('evidence.unknown', this.lang());
     }
   });
+
+  protected readonly camp = computed(() => campOf(this.props().controllerAlignment));
+  protected readonly campLabel = computed(() => {
+    const c = this.camp();
+    return c ? t(`camp.${c}` as I18nKey, this.lang()) : t('legend.campUnassigned', this.lang());
+  });
+  protected readonly primaryAlignmentCitations = computed(
+    () => this.props().controllerAlignment?.citations.filter((c) => c.role === 'primary') ?? [],
+  );
 
   protected readonly theater = computed(() => theaterLabel(this.props().theaterCode, this.lang()));
 

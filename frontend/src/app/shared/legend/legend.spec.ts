@@ -23,6 +23,12 @@ describe('Legend（PRD §8.4）', () => {
     fixture.componentRef.setInput('regimes', [{ id: 'x', name: '測試政權', tone: '#8b7f6c' }]);
     await fixture.whenStable();
     expect(el.querySelectorAll('[data-testid="legend-regime-item"]').length).toBe(1);
+    expect(el.querySelector('[data-testid="legend-regime-item"]')?.getAttribute('data-camp')).toBe('unassigned');
+    expect(el.querySelector('[data-testid="legend-regime-item"]')?.textContent).toContain('陣營未建置');
+    fixture.componentRef.setInput('regimes', [{ id: 'x', name: '測試政權', tone: '#c8964a', camp: 'axis' }]);
+    await fixture.whenStable();
+    expect(el.querySelector('[data-testid="legend-regime-item"]')?.getAttribute('data-camp')).toBe('axis');
+    expect(el.querySelector('[data-testid="legend-regime-item"]')?.textContent).toContain('軸心');
   });
 
   it('收合後只剩標題列', async () => {

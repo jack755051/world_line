@@ -116,6 +116,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/regimes/{id}/alignments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetRegimeAlignments"];
+        put?: never;
+        post: operations["CreateRegimeAlignment"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sources/{id}": {
         parameters: {
             query?: never;
@@ -256,6 +272,16 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfIReadOnlyListOfRegimeAlignmentDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["RegimeAlignmentDto"][];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfObject: {
             /** Format: int32 */
             statusCode: number | string;
@@ -271,6 +297,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["PaginatedResponseOfTimelineSnapshotDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfRegimeAlignmentDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["RegimeAlignmentDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -370,6 +406,7 @@ export interface components {
             isDisputed: boolean;
             validPeriod: components["schemas"]["IntervalDto"];
             citations: components["schemas"]["CitationDto"][];
+            controllerAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
         };
         ControlMapDto: {
             /** Format: date */
@@ -442,6 +479,16 @@ export interface components {
             /** Format: uuid */
             parentEventId?: null | string;
             location?: unknown;
+        };
+        CreateRegimeAlignmentRequest: {
+            camp: null | string;
+            validPeriod: null | components["schemas"]["DatePeriodDto"];
+            citations: null | components["schemas"]["CitationInput"][];
+            /** Format: uuid */
+            basisEventId?: null | string;
+            note?: null | {
+                [key: string]: string;
+            };
         };
         CreateRegimeRelationRequest: {
             /** Format: uuid */
@@ -521,6 +568,20 @@ export interface components {
             pageSize: number | string;
             /** Format: int32 */
             total: number | string;
+        };
+        RegimeAlignmentDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            camp: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            /** Format: uuid */
+            basisEventId: null | string;
+            note: null | {
+                [key: string]: string;
+            };
+            citations: components["schemas"]["CitationDto"][];
         };
         RegimeDto: {
             /** Format: uuid */
@@ -970,6 +1031,99 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetRegimeAlignments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfIReadOnlyListOfRegimeAlignmentDto"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateRegimeAlignment: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateRegimeAlignmentRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRegimeAlignmentDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };

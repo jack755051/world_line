@@ -1,0 +1,124 @@
+import type { LocalizedText } from './api/api-types';
+
+export type Lang = 'zh-Hant' | 'en';
+
+/**
+ * 介面文字（R4：中英雙語）。內容資料（政權名、快照標題）來自 API 的 LocalizedText，不在這裡。
+ * 文案依 PRD §8 與 DESIGN.md；英文為對應翻譯。
+ */
+const DICT = {
+  'app.name': { 'zh-Hant': 'World Line', en: 'World Line' },
+  'axis.control': { 'zh-Hant': '實際控制', en: 'Control' },
+  'axis.sovereignty': { 'zh-Hant': '主權', en: 'Sovereignty' },
+  'axis.sovereignty.unavailable': { 'zh-Hant': '主權檢視尚未建置（主權資料與 API 屬 M1 之後）', en: 'Sovereignty view not built yet (after M1)' },
+  'legend.toggle': { 'zh-Hant': '圖例', en: 'Legend' },
+  'legend.title': { 'zh-Hant': '圖例', en: 'Legend' },
+  'legend.mode.control': { 'zh-Hant': '實際控制模式', en: 'Control view' },
+  'legend.controlTypes': { 'zh-Hant': '控制類型', en: 'Control types' },
+  'legend.evidence': { 'zh-Hant': '史料狀態', en: 'Evidence' },
+  'legend.camps': { 'zh-Hant': '陣營', en: 'Camps' },
+  'legend.camps.unassigned': { 'zh-Hant': '陣營歸屬尚未建置（須附來源），地圖暫以「陣營未建置」色顯示', en: 'Camp assignments not built yet (need sources); map uses the “camp not built” tone' },
+  'legend.campUnassigned': { 'zh-Hant': '陣營未建置', en: 'Camp not built' },
+  'legend.regimes': { 'zh-Hant': '目前畫面中的政權', en: 'Regimes on the map' },
+  'legend.regimes.empty': { 'zh-Hant': '目前畫面無資料', en: 'No data on the map' },
+  'legend.regimes.error': { 'zh-Hant': '清單載入失敗', en: 'Failed to load list' },
+  'legend.gap': { 'zh-Hant': '控制資料缺', en: 'No control data' },
+  'legend.gap.note': { 'zh-Hant': '沒有合格來源可判斷實際控制，並非不完全控制', en: 'No qualified source to judge actual control; not “partial control”' },
+  'legend.frontline': { 'zh-Hant': '戰線', en: 'Front line' },
+  'control.direct_rule': { 'zh-Hant': '直接統治', en: 'Direct rule' },
+  'control.military_occupation': { 'zh-Hant': '軍事佔領', en: 'Military occupation' },
+  'control.puppet_administration': { 'zh-Hant': '傀儡代管', en: 'Puppet administration' },
+  'control.partial': { 'zh-Hant': '不完全控制', en: 'Partial control' },
+  'control.contested': { 'zh-Hant': '交戰中', en: 'Contested' },
+  'camp.axis': { 'zh-Hant': '軸心', en: 'Axis' },
+  'camp.allies': { 'zh-Hant': '同盟', en: 'Allies' },
+  'camp.cobelligerent': { 'zh-Hant': '共同交戰／合作', en: 'Co-belligerent' },
+  'camp.neutral': { 'zh-Hant': '中立／未結盟', en: 'Neutral' },
+  'evidence.attested': { 'zh-Hant': '史料快照', en: 'Attested snapshot' },
+  'evidence.interpolated': { 'zh-Hant': '推估過渡', en: 'Interpolated' },
+  'evidence.unknown': { 'zh-Hant': '無法判斷史料或推估', en: 'Cannot tell attested or interpolated' },
+  'evidence.outside': { 'zh-Hant': '在史料快照範圍外（以推估樣式呈現）', en: 'Outside snapshot range (shown as interpolated)' },
+  'chip.attested': { 'zh-Hant': '史料快照', en: 'Attested' },
+  'chip.interpolated': { 'zh-Hant': '推估過渡・{n} 個戰區', en: 'Interpolated · {n} theaters' },
+  'chip.unknown': { 'zh-Hant': '無法判斷史料或推估', en: 'Cannot tell attested or interpolated' },
+  'chip.popover.title': { 'zh-Hant': '推估過渡的戰區', en: 'Interpolated theaters' },
+  'chip.popover.between': { 'zh-Hant': '介於 {prev} 與 {next} 史料快照之間', en: 'Between snapshots {prev} and {next}' },
+  'chip.popover.outside': { 'zh-Hant': '在史料快照範圍外（{ref}）', en: 'Outside snapshot range ({ref})' },
+  'chip.jumpPrev': { 'zh-Hant': '跳到前一快照', en: 'Previous snapshot' },
+  'chip.jumpNext': { 'zh-Hant': '跳到後一快照', en: 'Next snapshot' },
+  'map.loading': { 'zh-Hant': '載入 {date} 的資料…', en: 'Loading data for {date}…' },
+  'map.empty': { 'zh-Hant': '此日期尚無資料', en: 'No data for this date' },
+  'map.emptyJump': { 'zh-Hant': '跳到最近有資料的日期', en: 'Jump to nearest date with data' },
+  'map.error': { 'zh-Hant': '地圖資料載入失敗', en: 'Failed to load map data' },
+  'map.errorShowing': { 'zh-Hant': '顯示的是 {date} 的資料', en: 'Showing data for {date}' },
+  'map.retry': { 'zh-Hant': '重試', en: 'Retry' },
+  'map.incomplete': { 'zh-Hant': '本時段資料不保證完整', en: 'Data for this period may be incomplete' },
+  'map.engineError': { 'zh-Hant': '地圖引擎無法啟動（瀏覽器不支援 WebGL）', en: 'Map engine failed to start (WebGL unavailable)' },
+  'map.basemapAttribution': { 'zh-Hant': '底圖：Natural Earth（公有領域）', en: 'Base map: Natural Earth (public domain)' },
+  'card.evidence': { 'zh-Hant': '史料狀態', en: 'Evidence' },
+  'card.validPeriod': { 'zh-Hant': '有效期間', en: 'Valid period' },
+  'card.theater': { 'zh-Hant': '戰區', en: 'Theater' },
+  'card.disputed': { 'zh-Hant': '爭議並存', en: 'Disputed' },
+  'card.close': { 'zh-Hant': '關閉', en: 'Close' },
+  'card.uncertain': { 'zh-Hant': '不確定區間', en: 'uncertain' },
+  'citation.button': { 'zh-Hant': '來源', en: 'Sources' },
+  'citation.title': { 'zh-Hant': '來源', en: 'Sources' },
+  'citation.publisher': { 'zh-Hant': '出版者', en: 'Publisher' },
+  'citation.authors': { 'zh-Hant': '作者', en: 'Authors' },
+  'citation.published': { 'zh-Hant': '出版日期', en: 'Published' },
+  'citation.locator': { 'zh-Hant': '圖號／頁碼', en: 'Locator' },
+  'citation.role': { 'zh-Hant': '引用角色', en: 'Role' },
+  'citation.note': { 'zh-Hant': '依據說明', en: 'Evidence note' },
+  'citation.license': { 'zh-Hant': '授權', en: 'License' },
+  'citation.licenseEvidence': { 'zh-Hant': '授權依據', en: 'License basis' },
+  'citation.licenseNone': { 'zh-Hant': '未標註（非主要地圖來源）', en: 'Not stated (not a primary map source)' },
+  'citation.catalog': { 'zh-Hant': '館藏號', en: 'Catalog no.' },
+  'citation.url': { 'zh-Hant': '原始連結', en: 'Original' },
+  'citation.archive': { 'zh-Hant': '存檔連結', en: 'Archive' },
+  'citation.missing': { 'zh-Hant': '此紀錄缺少來源（資料錯誤）', en: 'This record has no source (data error)' },
+  'citation.detailError': { 'zh-Hant': '來源詳情載入失敗', en: 'Failed to load source details' },
+  'citation.role.primary': { 'zh-Hant': '主要', en: 'Primary' },
+  'citation.role.auxiliary_geometry': { 'zh-Hant': '輔助幾何', en: 'Auxiliary geometry' },
+  'citation.role.date_check': { 'zh-Hant': '日期核對', en: 'Date check' },
+  'timeline.prev': { 'zh-Hant': '上一個快照', en: 'Previous snapshot' },
+  'timeline.next': { 'zh-Hant': '下一個快照', en: 'Next snapshot' },
+  'timeline.play': { 'zh-Hant': '播放', en: 'Play' },
+  'timeline.pause': { 'zh-Hant': '暫停', en: 'Pause' },
+  'timeline.speed': { 'zh-Hant': '播放速度', en: 'Speed' },
+  'timeline.speed.week': { 'zh-Hant': '每秒 1 週', en: '1 week/s' },
+  'timeline.speed.month': { 'zh-Hant': '每秒 1 月', en: '1 month/s' },
+  'timeline.dateInput': { 'zh-Hant': '日期', en: 'Date' },
+  'timeline.error': { 'zh-Hant': '快照標記載入失敗', en: 'Failed to load snapshot markers' },
+  'timeline.noSnapshots': { 'zh-Hant': '控制資料缺', en: 'No control data' },
+  'timeline.incomplete': { 'zh-Hant': '資料不保證完整', en: 'Data not guaranteed complete' },
+  'timeline.handle': { 'zh-Hant': '目前日期', en: 'Current date' },
+  'offline.title': { 'zh-Hant': '無法連線到 World Line API', en: 'Cannot reach the World Line API' },
+  'offline.health': { 'zh-Hant': '服務狀態：{status}', en: 'Service status: {status}' },
+  'offline.noResponse': { 'zh-Hant': '無回應', en: 'No response' },
+  'toast.invalidDate': { 'zh-Hant': '網址中的日期格式無效，已回到預設日期 {date}', en: 'Invalid date in URL; reset to {date}' },
+  'untranslated': { 'zh-Hant': '未翻譯', en: 'Untranslated' },
+  'theater.west-europe': { 'zh-Hant': '西歐', en: 'Western Europe' },
+} as const satisfies Record<string, Record<Lang, string>>;
+
+export type I18nKey = keyof typeof DICT;
+
+export function t(key: I18nKey, lang: Lang, vars?: Record<string, string | number>): string {
+  let s: string = DICT[key][lang];
+  if (vars) for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, String(v));
+  return s;
+}
+
+export function hasKey(key: string): key is I18nKey {
+  return key in DICT;
+}
+
+/**
+ * 取 LocalizedText 的目前語言；缺翻譯時改用另一語言並回報 untranslated（PRD §8.10）。
+ */
+export function localized(text: LocalizedText | null | undefined, lang: Lang): { text: string; untranslated: boolean } {
+  if (!text) return { text: '', untranslated: false };
+  const own = text[lang];
+  if (own) return { text: own, untranslated: false };
+  const other = text[lang === 'en' ? 'zh-Hant' : 'en'] ?? Object.values(text).find((v) => !!v) ?? '';
+  return { text: other, untranslated: !!other };
+}

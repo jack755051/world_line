@@ -18,6 +18,8 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<ReferenceLand> ReferenceLand => Set<ReferenceLand>();
     public DbSet<RegimeRelation> RegimeRelations => Set<RegimeRelation>();
     public DbSet<HistoricalEvent> HistoricalEvents => Set<HistoricalEvent>();
+    public DbSet<RegimeAlignment> RegimeAlignments => Set<RegimeAlignment>();
+    public DbSet<RegimeAlignmentCitation> RegimeAlignmentCitations => Set<RegimeAlignmentCitation>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -201,6 +203,37 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.ParentEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.Occurred).HasMethod("gist").HasDatabaseName("ix_events_occurred");
             Timestamps(e, updated: true);
+        });
+
+        // 陣營時間切片（憲法 §6「陣營」、PRD §6.3）。EXCLUDE（同政權有效切片不重疊）在 migration 以 SQL 建立。
+        b.Entity<RegimeAlignment>(e =>
+        {
+            e.ToTable("regime_alignments", t =>
+            {
+                t.HasCheckConstraint("ck_regime_alignments_camp", InList("camp", Camps.All));
+                // 起點＝條約簽署／參戰日，必須有界；迄日未知可無界（同 regime_relations）
+                t.HasCheckConstraint("ck_regime_alignments_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_regime_alignments_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_regime_alignments_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Camp).HasMaxLength(16);
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.BasisEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasMany(x => x.Citations).WithOne().HasForeignKey(c => c.RegimeAlignmentId).OnDelete(DeleteBehavior.Restrict);
+            Timestamps(e, updated: false);
+        });
+
+        b.Entity<RegimeAlignmentCitation>(e =>
+        {
+            e.ToTable("regime_alignment_citations", t =>
+                t.HasCheckConstraint("ck_rac_role", InList("role", CitationRoles.All)));
+            e.HasKey(x => new { x.RegimeAlignmentId, x.SourceId, x.Locator });
+            e.Property(x => x.Role).HasMaxLength(24).HasDefaultValue(CitationRoles.Primary);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
         });
     }
 }

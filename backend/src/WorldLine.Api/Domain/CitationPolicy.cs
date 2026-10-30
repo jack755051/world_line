@@ -29,4 +29,18 @@ public static class CitationPolicy
             return $"來源「{source.Title}」的授權（{source.LicenseCode ?? "未標示"}）不在允許清單（{string.Join(", ", PrimaryLicenseAllowlist)}）。";
         return null;
     }
+
+    /// <summary>
+    /// 陣營切片的 primary citation（憲法 §6「陣營」：每段歸類都須附來源；R8 合格史料）：
+    /// 必須有 locator（頁碼／文件號），且授權在允許清單（使用者 2026-10-29：史實資料必須有使用權）。
+    /// 來源種類不限地圖（條約原文、官方紀錄、審判紀錄等皆可）。實作提案，待拍板。
+    /// </summary>
+    public static string? WhyNotQualifiedAlignmentPrimary(Source source, string locator)
+    {
+        if (string.IsNullOrWhiteSpace(locator))
+            return "primary citation 必須標出頁碼、文件號或條文（locator）。";
+        if (source.LicenseCode is null || !PrimaryLicenseAllowlist.Contains(source.LicenseCode))
+            return $"來源「{source.Title}」的授權（{source.LicenseCode ?? "未標示"}）不在允許清單（{string.Join(", ", PrimaryLicenseAllowlist)}）。";
+        return null;
+    }
 }

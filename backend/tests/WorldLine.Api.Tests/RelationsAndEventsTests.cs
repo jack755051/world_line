@@ -127,7 +127,9 @@ public sealed class RelationsAndEventsTests(PostGisFixture fx)
         await c.OpenAsync();
         foreach (var t in new[] { "regime_relations", "historical_events" })
         {
-            await using var cmd = new NpgsqlCommand($"TRUNCATE {t}", c);
+            // 加 CASCADE：historical_events 被 regime_alignments.basis_event_id 參照，不加的話 PostgreSQL 先以 0A000 拒絕，
+            // 測不到 I5 trigger（同 SchemaGuardTests 對 sources 的寫法）
+            await using var cmd = new NpgsqlCommand($"TRUNCATE {t} CASCADE", c);
             var ex = await Assert.ThrowsAsync<PostgresException>(() => cmd.ExecuteNonQueryAsync());
             Assert.Equal(PostgresErrorCodes.RestrictViolation, ex.SqlState);
         }

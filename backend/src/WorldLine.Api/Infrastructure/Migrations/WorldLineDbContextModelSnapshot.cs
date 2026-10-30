@@ -437,6 +437,116 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     b.ToTable("regimes", (string)null);
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeAlignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<Guid?>("BasisEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("basis_event_id");
+
+                    b.Property<string>("Camp")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("camp");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("note");
+
+                    b.Property<Guid>("RegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("valid_period");
+
+                    b.Property<int>("Version")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_regime_alignments");
+
+                    b.HasIndex("BasisEventId")
+                        .HasDatabaseName("ix_regime_alignments_basis_event_id");
+
+                    b.HasIndex("RegimeId")
+                        .HasDatabaseName("ix_regime_alignments_regime_id");
+
+                    b.ToTable("regime_alignments", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_regime_alignments_camp", "camp IN ('axis', 'allies', 'co_belligerent', 'neutral')");
+
+                            t.HasCheckConstraint("ck_regime_alignments_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+
+                            t.HasCheckConstraint("ck_regime_alignments_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_regime_alignments_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeAlignmentCitation", b =>
+                {
+                    b.Property<Guid>("RegimeAlignmentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("regime_alignment_id");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.Property<string>("Locator")
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<string>("EvidenceNote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasDefaultValue("primary")
+                        .HasColumnName("role");
+
+                    b.HasKey("RegimeAlignmentId", "SourceId", "Locator")
+                        .HasName("pk_regime_alignment_citations");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_regime_alignment_citations_source_id");
+
+                    b.ToTable("regime_alignment_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_rac_role", "role IN ('primary', 'auxiliary_geometry', 'date_check')");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.RegimeName", b =>
                 {
                     b.Property<Guid>("Id")
@@ -823,6 +933,39 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasConstraintName("fk_reference_land_sources_source_id");
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeAlignment", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("BasisEventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_regime_alignments_historical_events_basis_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("RegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_alignments_regimes_regime_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeAlignmentCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.RegimeAlignment", null)
+                        .WithMany("Citations")
+                        .HasForeignKey("RegimeAlignmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_alignment_citations_regime_alignments_regime_alignme");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_regime_alignment_citations_sources_source_id");
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.RegimeName", b =>
                 {
                     b.HasOne("WorldLine.Api.Domain.Regime", null)
@@ -869,6 +1012,11 @@ namespace WorldLine.Api.Infrastructure.Migrations
             modelBuilder.Entity("WorldLine.Api.Domain.Regime", b =>
                 {
                     b.Navigation("Names");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.RegimeAlignment", b =>
+                {
+                    b.Navigation("Citations");
                 });
 #pragma warning restore 612, 618
         }

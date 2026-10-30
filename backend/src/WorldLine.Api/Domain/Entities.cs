@@ -162,3 +162,33 @@ public sealed class HistoricalEvent
     public DateTimeOffset UpdatedAt { get; set; }
     public int Version { get; set; }
 }
+
+/// <summary>
+/// 陣營時間切片（憲法 §6「陣營」、PRD §6.3 regime_alignments）：政權在某期間屬於哪一個陣營。
+/// 起點＝有文件的正式加入日（條約簽署、宣戰／參戰日）；迄日未知可無界。同一政權的有效切片不可重疊（EXCLUDE）。
+/// 修正走軟撤回（retracted_at＋原因，I5），不硬刪。
+/// </summary>
+public sealed class RegimeAlignment
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    public string Camp { get; set; } = "";
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public Guid? BasisEventId { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+    public List<RegimeAlignmentCitation> Citations { get; set; } = [];
+}
+
+/// <summary>陣營切片的引用（PRD §6.3「regime_alignment_citations，格式同其他 citation 表」）。</summary>
+public sealed class RegimeAlignmentCitation
+{
+    public Guid RegimeAlignmentId { get; set; }
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string Role { get; set; } = CitationRoles.Primary;
+    public string EvidenceNote { get; set; } = "";
+}

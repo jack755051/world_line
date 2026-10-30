@@ -4,7 +4,7 @@
 預設只做 dry-run：列出要送的請求，不連 API。Tai 檢查通過後才加 --send。
 _meta.requiresDecision = true 的請求（東北禁區兩筆）預設跳過，Tai 拍板後再加 --include-pending。
 API key 從 worktree 的 .env（WORLDLINE_API_KEY）安靜讀取，不會印出。
-用法：python3 send_seed.py [--send] [--include-pending] [--base http://127.0.0.1:5050] [--env ../../../../.env]
+用法：python3 send_seed.py [--send] [--include-pending] [--base http://127.0.0.1:5051] [--env ../../../../.env]
 """
 import argparse, glob, json, os, re, sys, urllib.request, urllib.error
 
@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ap = argparse.ArgumentParser()
 ap.add_argument('--send', action='store_true', help='真的送出（預設 dry-run）')
 ap.add_argument('--include-pending', action='store_true', help='連同 requiresDecision 的請求一起送')
-ap.add_argument('--base', default='http://127.0.0.1:5050')
+ap.add_argument('--base', default='http://127.0.0.1:5051')
 ap.add_argument('--env', default=os.path.join(HERE, '../../../../.env'))
 a = ap.parse_args()
 

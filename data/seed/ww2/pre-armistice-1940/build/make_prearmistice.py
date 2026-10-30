@@ -14,6 +14,13 @@
    - Map 13 敦克爾克防線內（圖註：5/28 建立防線、6/4 夜撤離完成；6/4 當日狀態不明）
    - Map 14 Pays de Caux（圖上 12 June 線西端以西、8 June 點線以西；St-Valery 守軍 6/12 投降、Le Havre 未標）
    - Map 14 兩段 12 June 線之間的不連續處（Châlons 東南，約 10 km）
+6. 英國本土（Tai 2026-10-31 選 B：每張快照只寫當天、只寫圖上看得到的範圍）：
+   - Map 13（6/4）圖框內英國的位置畫成海面與標題框，沒有畫英國陸地 → 6/4 不寫。
+   - Map 14（6/12）畫出英格蘭東南（標「ENGLAND」，與德軍區不同色），圖框左上被標題框蓋住。
+     看得到的範圍＝圖框 − 標題框（像素 752,257–1570,636），用英格蘭與海峽兩岸 21 個控制點（trace/gcp-map14-uk.json，
+     其中 Norwich、Coventry、Southampton、Portland 4 點為本次新增）做一次（仿射）配準；再把邊界往內縮
+     leave-one-out 最大誤差（UK_INSET_KM），確保紀錄只落在圖上確實畫到的地方。陸地外框用 Natural Earth GBR。
+     其餘英國領土（圖框外、標題框下、內縮帶）列控制資料缺，不推測。
 5. 已寫入的 CR_NORD（Nord＋Pas-de-Calais，[1940-06-04, 1944-07-16)，德國）先扣掉，避免同一控制方重疊（I3）。
 用法（box）：~/.venvs/gis/bin/python make_prearmistice.py
 """
@@ -158,10 +165,46 @@ BREAK = [(mx_ + rad * math.cos(t), my_ + rad * math.sin(t)) for t in np.linspace
 z13, m13 = build('Map 13', 'gcp-map13.json', line13, L13['band_e2w'][-1], {'GAP_DUNKIRK': DUNKIRK}, '1940-06-04')
 z14, m14 = build('Map 14', 'gcp-map14.json', line14, L14['band_s2n'][-1], {'GAP_CAUX': CAUX, 'GAP_LINEBREAK': BREAK}, '1940-06-12')
 
+# ── 英國本土（Map 14，1940-06-12） ──
+UK_TITLE_PX = (752, 257, 1570, 636)      # 標題框（含 5 px 邊距）
+def fit_affine(gcps):
+    Pp = np.array([[g[1], g[2]] for g in gcps], float)
+    X = np.array([TR3035.transform(g[3], g[4]) for g in gcps])
+    A = np.c_[np.ones(len(Pp)), Pp]; c, *_ = np.linalg.lstsq(A, X, rcond=None)
+    return (lambda pts: np.c_[np.ones(len(pts)), np.asarray(pts, float)] @ c), np.hypot(*((A @ c) - X).T)
+UKG = json.load(open(os.path.join(TRACE, 'gcp-map14-uk.json')))
+uk_f, uk_res = fit_affine(UKG)
+uk_loo = []
+for i in range(len(UKG)):
+    fi, _ = fit_affine(UKG[:i] + UKG[i + 1:])
+    uk_loo.append(float(np.hypot(*(fi([UKG[i][1:3]])[0] - np.array(TR3035.transform(UKG[i][3], UKG[i][4]))))))
+UK_INSET_KM = math.ceil(max(uk_loo) / 1000)
+x0, y0, x1, y1 = 752, 257, 4364, 3026; tx0, ty0, tx1, ty1 = UK_TITLE_PX
+def edge(pts):
+    out = []
+    for (ax, ay), (bx, by) in zip(pts, pts[1:] + pts[:1]):
+        out += [(ax + (bx - ax) * t, ay + (by - ay) * t) for t in np.linspace(0, 1, 40, endpoint=False)]
+    return out
+# 圖框 − 標題框（L 形，像素座標，順時針）
+vis_px = [(tx1, y0), (x1, y0), (x1, y1), (x0, y1), (x0, ty1), (tx1, ty1)]
+vis3035 = Polygon(uk_f(edge(vis_px))).buffer(-UK_INSET_KM * 1000)
+vis_ll = rnd(Polygon(list(zip(*INV3035.transform(*np.array(vis3035.exterior.coords).T)))))
+gbr = rnd(P(shapely.make_valid(shape([f for f in ne['features'] if f['properties']['ADM0_A3'] == 'GBR'][0]['geometry']))))
+uk_vis = mp(rnd(inter(gbr, vis_ll)), min_km2=0.5)
+uk_gap = mp(rnd(diff(gbr, uk_vis.buffer(MARGIN))), min_km2=0.5)
+assert uk_vis.intersection(uk_gap).area == 0
+for k, g in z14.items(): assert uk_vis.intersection(g).area == 0 and uk_gap.intersection(g).area == 0, k
+z14['UK'] = uk_vis; z14['GAP_UK'] = uk_gap
+m_uk = {'gcp': len(UKG), 'rms_km': round(float(np.sqrt((uk_res ** 2).mean())) / 1000, 2), 'max_km': round(float(uk_res.max()) / 1000, 2),
+        'loo_max_km': round(max(uk_loo) / 1000, 2), 'inset_km': UK_INSET_KM}
+print(f'== 英國本土（1940-06-12）控制點 {m_uk["gcp"]}，仿射殘差 RMS {m_uk["rms_km"]} km、最大 {m_uk["max_km"]} km，LOO 最大 {m_uk["loo_max_km"]} km → 內縮 {UK_INSET_KM} km')
+print(f'   UK {km2(uk_vis):,.0f} km²　GAP_UK {km2(uk_gap):,.0f} km²')
+
 feats = []
 for as_of, z, meta, src in [('1940-06-04', z13, m13, 'USMA WWII Europe Map 13'), ('1940-06-12', z14, m14, 'USMA WWII Europe Map 14')]:
     for k, g in z.items():
-        feats.append({'type': 'Feature', 'properties': {'snapshot': as_of, 'zone': k, 'km2': round(km2(g)), 'source': src, **meta},
+        mm = m_uk if k in ('UK', 'GAP_UK') else meta
+        feats.append({'type': 'Feature', 'properties': {'snapshot': as_of, 'zone': k, 'km2': round(km2(g)), 'source': src, **mm},
                       'geometry': mapping(shapely.set_precision(g, G))})
 json.dump({'type': 'FeatureCollection', 'features': feats}, open(os.path.join(SEED, 'zones-pre-armistice-1940.geojson'), 'w'))
 print('寫出 zones-pre-armistice-1940.geojson')

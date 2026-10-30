@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 /**
  * E2E（PRD §10 M0 驗收：開頁 → 看到多邊形 → 點開來源）。
- * 跑的是真實 API：先在本機啟動後端（`docker compose up`，API 127.0.0.1:5050，資料庫 appdb_ww2），
+ * 跑的是真實 API：先在本機啟動後端（`docker compose up`，API 127.0.0.1:5051，資料庫 appdb_ww2），
  * 前端由 Playwright 啟動 dev server（proxy 到 API）。E2E 不使用 mock，也不寫入任何資料。
  */
 const port = Number(process.env['WL_E2E_PORT'] ?? 4310);

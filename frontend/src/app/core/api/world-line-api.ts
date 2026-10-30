@@ -18,7 +18,7 @@ export interface HealthReport {
 
 /**
  * World Line API client（PRD §7.1 唯讀查詢）。
- * 一律走相對路徑 `/api/v1`：開發時由 `proxy.conf.json` 轉到本機 API（127.0.0.1:5050），
+ * 一律走相對路徑 `/api/v1`：開發時由 `proxy.conf.json` 轉到本機 API（127.0.0.1:5051，Tai 2026-10-30 拍板），
  * 不在前端寫死主機或金鑰。只有讀取，沒有任何寫入端點。
  */
 @Injectable({ providedIn: 'root' })

@@ -187,3 +187,25 @@ test('小視窗：點下方的政權，卡片往上長、內部可捲動，不�
   const scrollable = await page.getByTestId('sovereignty-card-body').evaluate((el) => el.scrollHeight > el.clientHeight);
   expect(scrollable).toBe(true);
 });
+
+test('1942-11-01：德國、蘇聯國界與東方佔領行政區（非主權斜線）；出處或待查證', async ({ page }) => {
+  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await waitForBorders(page);
+  await jump(page, [22, 52], 3.55);
+  await clickLngLat(page, [30.52, 50.45]); // 基輔
+  const card = page.getByTestId('sovereignty-card');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('烏克蘭總督轄區');
+  const start = page.getByTestId('sovereignty-card-start');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+  await expect(start.getByTestId('sovereignty-card-citation-toggle').first()).toHaveText('NCA III, Doc. 197-PS, p. 210');
+
+  await clickLngLat(page, [24.1, 56.95]); // 里加
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('東方總督轄區');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+
+  await clickLngLat(page, [13.4, 52.5]); // 柏林：起始變動（東加利西亞併入總督府）沒有正式出處 → 待查證
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
+  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
+  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-no-citation')).toBeVisible();
+});

@@ -3,6 +3,7 @@
  * 只從 API 回傳的 sourceTitle／locator 縮寫，不新增任何書目資訊：
  * - Foreign Relations of the United States, Diplomatic Papers, 1939, General, Volume I → FRUS 1939 I
  * - Documents on German Foreign Policy 1918–1945, Series D (1937–1945), Volume VIII … → DGFP D/VIII
+ * - Nazi Conspiracy and Aggression, Volume IV（…） → NCA IV
  * 其他來源：取書名第一段（逗號前），過長截斷。
  */
 const ROMAN = '([IVXLC]+)';
@@ -13,6 +14,8 @@ export function shortSourceTitle(title: string): string {
   if (frus) return `FRUS ${frus[1]} ${frus[2]}`;
   const dgfp = new RegExp(`^Documents on German Foreign Policy\\b.*?\\bSeries\\s+([A-E])\\b.*?\\bVol(?:ume|\\.)\\s*${ROMAN}\\b`).exec(t);
   if (dgfp) return `DGFP ${dgfp[1]}/${dgfp[2]}`;
+  const nca = new RegExp(`^Nazi Conspiracy and Aggression\\b.*?\\bVol(?:ume|\\.)\\s*${ROMAN}\\b`).exec(t);
+  if (nca) return `NCA ${nca[1]}`;
   const head = t.split(/[,，（(:：]/)[0].trim() || t;
   return head.length > 40 ? `${head.slice(0, 39)}…` : head;
 }

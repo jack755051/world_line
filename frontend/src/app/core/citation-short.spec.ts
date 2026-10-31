@@ -16,6 +16,13 @@ describe('citation-short（出處簡短引用）', () => {
     expect(shortSourceTitle('Documents on German Foreign Policy 1918–1945, Series D (1937–1945), Vol. IX: The War Years, March 18–June 22, 1940')).toBe('DGFP D/IX');
   });
 
+  it('NCA（Nazi Conspiracy and Aggression）：卷次', () => {
+    expect(shortCitation({
+      sourceTitle: 'Nazi Conspiracy and Aggression, Volume IV（Office of United States Chief of Counsel for Prosecution of Axis Criminality）',
+      locator: 'Doc. 1997-PS, pp. 634–635',
+    })).toBe('NCA IV, Doc. 1997-PS, pp. 634–635');
+  });
+
   it('其他來源：取第一段，過長截斷；沒有 locator 只給書名', () => {
     expect(shortSourceTitle('OpenHistoricalMap')).toBe('OpenHistoricalMap');
     expect(shortSourceTitle('Some Very Long Source Title That Goes On And On Without Any Comma At All')).toHaveLength(40);

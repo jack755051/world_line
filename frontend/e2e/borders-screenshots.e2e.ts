@@ -98,3 +98,34 @@ for (const [name, date, center, zoom] of [
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-${name}-${date}.png` });
   });
 }
+
+// WW1 第一批（1908～1914）：歐洲、巴爾幹與北非；點選聚焦政權後才顯示該政權的衝突雙劍
+for (const [date, focus] of [
+  ['1908-10-07', [16.4, 48.2]], // 奧匈（起事件＝波士尼亞併吞）
+  ['1913-01-01', [33, 39]], // 鄂圖曼：第一次巴爾幹戰爭四條戰線
+  ['1913-09-01', [33, 39]], // 鄂圖曼：與保加利亞的第二次戰事（到君士坦丁堡和約）
+  ['1914-07-28', [16.4, 48.2]], // 奧匈：對塞爾維亞宣戰
+] as const) {
+  test(`截圖：${date} 歐洲、巴爾幹與北非（WW1 第一批）`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/?date=${date}&axis=sovereignty`);
+    const canvas = page.getByTestId('map-canvas');
+    await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+    await page.evaluate(() => {
+      const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+      map.jumpTo({ center: [18, 42], zoom: 3.3 });
+    });
+    await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+    await page.waitForTimeout(1000);
+    const box = await canvas.boundingBox();
+    const p = await page.evaluate((ll) => {
+      const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
+      return map.project([ll[0], ll[1]]);
+    }, focus);
+    await page.mouse.click((box?.x ?? 0) + p.x, (box?.y ?? 0) + p.y);
+    await expect(page.getByTestId('sovereignty-card')).toBeVisible();
+    await page.mouse.move(5, 5);
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-europe-${date}.png` });
+  });
+}

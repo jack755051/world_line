@@ -22,6 +22,8 @@ async function jump(page: Page, center: [number, number], zoom: number): Promise
 }
 
 async function clickLngLat(page: Page, lngLat: [number, number]): Promise<void> {
+  // 聚焦會讓地圖飛到被選政權；等鏡頭停下再換算座標
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
   const box = await page.getByTestId('map-canvas').boundingBox();
   const p = await page.evaluate((ll) => {
     const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
@@ -166,12 +168,11 @@ test('1939-10-23：德意志國結束變動沒有正式出處 → 待查證＋�
   await expect(end.getByTestId('sovereignty-card-citation')).toHaveCount(0);
 });
 
-test('小視窗：點下方的政權，卡片往上長、內部可捲動，不超出地圖區', async ({ page }) => {
+test('小視窗：點下方的政權，側邊面板不超出地圖區、內部可捲動', async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 560 });
   await page.goto('/?date=1939-10-23&axis=sovereignty');
   await waitForBorders(page);
   const area = (await page.getByTestId('map-area').boundingBox())!;
-  // 把克拉科夫移到地圖區下緣附近（距下緣 40px）再點
   await jump(page, [19.94, 50.06], 4);
   await page.evaluate((dy) => {
     const map = (window as unknown as { __wlMap: { panBy: (o: [number, number], opt: object) => void } }).__wlMap;
@@ -179,11 +180,13 @@ test('小視窗：點下方的政權，卡片往上長、內部可捲動，不�
   }, -(area.height / 2 - 40));
   await page.waitForTimeout(300);
   await clickLngLat(page, [19.94, 50.06]);
-  const card = page.getByTestId('sovereignty-card');
-  await expect(card).toBeVisible();
-  const box = (await card.boundingBox())!;
-  expect(box.y).toBeGreaterThanOrEqual(area.y);
+  const sheet = page.getByTestId('regime-sheet');
+  await expect(sheet).toHaveAttribute('data-state', 'open');
+  await expect(sheet).toHaveAttribute('data-side', 'right');
+  const box = (await sheet.boundingBox())!;
+  expect(box.y).toBeGreaterThanOrEqual(area.y - 0.5);
   expect(box.y + box.height).toBeLessThanOrEqual(area.y + area.height + 0.5);
+  expect(box.x + box.width).toBeLessThanOrEqual(area.x + area.width + 0.5);
   const scrollable = await page.getByTestId('sovereignty-card-body').evaluate((el) => el.scrollHeight > el.clientHeight);
   expect(scrollable).toBe(true);
 });
@@ -200,11 +203,11 @@ test('1942-11-01：德國、蘇聯國界與東方佔領行政區（非主權斜�
   await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
   await expect(start.getByTestId('sovereignty-card-citation-toggle').first()).toHaveText('NCA III, Doc. 197-PS, p. 210');
 
-  await clickLngLat(page, [24.1, 56.95]); // 里加
+  await clickAt(page, [24.1, 56.95]); // 里加
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('東方總督轄區');
   await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
 
-  await clickLngLat(page, [13.4, 52.5]); // 柏林：起始變動（東加利西亞併入總督府）沒有正式出處 → 待查證
+  await clickAt(page, [13.4, 52.5]); // 柏林：起始變動（東加利西亞併入總督府）沒有正式出處 → 待查證
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
   await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
   await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-no-citation')).toBeVisible();
@@ -212,6 +215,8 @@ test('1942-11-01：德國、蘇聯國界與東方佔領行政區（非主權斜�
 
 /** 先把地圖中心移到該點再點擊，避免資訊卡蓋住點擊位置。 */
 async function clickAt(page: Page, lngLat: [number, number]): Promise<void> {
+  // 先等上一次聚焦的飛行結束，再把點移到可見區中央（面板左側）
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
   await jump(page, lngLat, 5);
   await clickLngLat(page, lngLat);
 }

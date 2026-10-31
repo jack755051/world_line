@@ -118,4 +118,31 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     (el.querySelector('button[aria-label="Close"]') as HTMLButtonElement).click();
     expect(closed).toBe(1);
   });
+
+  it('放在面板內：列出當日相關衝突（點一項送出 conflictSelect）與事件時間線（目前日期標示、點日期送出 eventJump）', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('conflicts', [{ recordId: 'c1', title: '德意志國 — 波蘭共和國', since: '1939-09-01' }]);
+    const tev = (id: string, start: string, verification: 'verified' | 'pending', roles: string[]) => ({ ...ev(verification), id, occurred: { start, end: start }, roles });
+    fixture.componentRef.setInput('regimeEvents', [tev('a', '1938-03-13', 'verified', ['border_start']), tev('b', '1939-09-01', 'verified', ['belligerent', 'conflict_start']), tev('c', '1940-05-10', 'pending', ['belligerent'])]);
+    fixture.componentRef.setInput('eventsStatus', 'ok');
+    fixture.componentRef.setInput('currentDate', '1939-10-23');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(q(el, 'sovereignty-card-title')).toBeNull(); // 標題由面板提供
+    let picked = '';
+    let jumped = '';
+    fixture.componentInstance.conflictSelect.subscribe((id) => (picked = id));
+    fixture.componentInstance.eventJump.subscribe((d) => (jumped = d));
+    (q(el, 'sovereignty-card-conflict') as HTMLButtonElement).click();
+    expect(picked).toBe('c1');
+    const items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
+    expect(items.map((i) => i.getAttribute('data-when'))).toEqual(['past', 'now', 'future']);
+    expect(items[1].textContent).toContain('交戰方');
+    expect(items[1].textContent).toContain('開戰');
+    expect(items[2].querySelector('[data-testid="sovereignty-card-timeline-pending"]')?.textContent).toBe('待查證');
+    (items[0].querySelector('[data-testid="sovereignty-card-timeline-jump"]') as HTMLButtonElement).click();
+    expect(jumped).toBe('1938-03-13');
+  });
 });

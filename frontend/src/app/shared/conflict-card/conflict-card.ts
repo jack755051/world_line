@@ -24,11 +24,14 @@ const TXT = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LucideX, EventRef],
   template: `
-    <article data-testid="conflict-card" class="wl-paper flex max-h-[inherit] min-h-0 w-[340px] flex-col p-4" role="dialog" [attr.aria-label]="title()">
+    <article data-testid="conflict-card" [class]="embedded() ? 'flex min-h-0 flex-1 flex-col' : 'wl-paper flex max-h-[inherit] min-h-0 w-[340px] flex-col p-4'"
+      [attr.role]="embedded() ? null : 'dialog'" [attr.aria-label]="embedded() ? null : title()">
+      @if (!embedded()) {
       <header class="flex flex-none items-start justify-between gap-2 border-b border-wl-outline-variant pb-2">
         <h2 class="wl-title2" data-testid="conflict-card-title">{{ title() }}</h2>
         <button type="button" class="wl-icon-btn" data-testid="conflict-card-close" [attr.aria-label]="t().close" (click)="closed.emit()"><svg lucideX class="size-4"></svg></button>
       </header>
+      }
       <dl data-testid="conflict-card-body" class="mt-2 grid min-h-0 grid-cols-[76px_1fr] gap-x-2 gap-y-1.5 overflow-y-auto overscroll-contain pr-1 wl-text2">
         <dt class="text-wl-on-surface-variant">{{ t().kind }}</dt>
         <dd>{{ t().war }}</dd>
@@ -55,10 +58,12 @@ export class ConflictCard {
   readonly nameA = input('');
   readonly nameB = input('');
   readonly lang = input<Lang>('zh-Hant');
+  /** 放在側邊面板裡：不畫紙卡外框與標題列。 */
+  readonly embedded = input(false);
   readonly closed = output<void>();
 
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
-  protected readonly title = computed(
+  readonly title = computed(
     () => `${this.nameA() || this.props().regimeASlug} — ${this.nameB() || this.props().regimeBSlug}`,
   );
 }

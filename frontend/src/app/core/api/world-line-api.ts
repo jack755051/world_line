@@ -10,6 +10,7 @@ import type {
   SourceDto,
   SovereigntyMapDto,
   TimelineSnapshotDto,
+  RegimeEventDto,
 } from './api-types';
 
 /** 健康檢查回應（`/healthz`，不在 OpenAPI 內）。 */
@@ -71,6 +72,12 @@ export class WorldLineApi {
       if (items.length >= Number(res.data.total) || res.data.items.length === 0) break;
     }
     return items;
+  }
+
+  /** GET /regimes/{id}/events：政權相關事件（參與方事件＋國界／衝突紀錄的起訖事件），依日期排序。 */
+  async regimeEvents(id: string): Promise<RegimeEventDto[]> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<RegimeEventDto[]>>(`${WorldLineApi.base}/regimes/${id}/events`));
+    return res.data;
   }
 
   async regime(id: string): Promise<RegimeDto> {

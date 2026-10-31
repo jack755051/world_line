@@ -21,6 +21,8 @@ async function open(page: Page, date: string): Promise<void> {
 }
 
 async function clickLngLat(page: Page, lngLat: [number, number]): Promise<void> {
+  // 聚焦會讓地圖飛到被選政權；等鏡頭停下再換算座標
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
   const box = await page.getByTestId('map-canvas').boundingBox();
   const p = await page.evaluate((ll) => {
     const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
@@ -71,7 +73,7 @@ test('1939-09-15：點德國 → 德—波、法—德兩個圖示；關掉政�
   await clickLngLat(page, BERLIN);
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(2);
-  await page.getByTestId('sovereignty-card').getByRole('button', { name: '關閉' }).click();
+  await page.getByTestId('sovereignty-card-close').click();
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(0);
 });
 

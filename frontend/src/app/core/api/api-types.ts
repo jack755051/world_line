@@ -39,3 +39,6 @@ export type GeometryProvenanceDto = Schemas['GeometryProvenanceDto'];
 export type ConflictMapDto = Schemas['ConflictMapDto'];
 export type ConflictFeature = Schemas['ConflictFeature'];
 export type ConflictFeatureProperties = Schemas['ConflictFeatureProperties'];
+
+// 政權面板的事件時間線（GET /regimes/{id}/events）
+export type RegimeEventDto = Schemas['RegimeEventDto'];

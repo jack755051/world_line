@@ -13,12 +13,14 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import type { FeatureCollection, Geometry } from 'geojson';
+import type { FeatureCollection, Geometry, Position } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import type { Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
+import { focusMaskPath, focusPadding, geometryBounds, polygonRings, type FocusInset } from './focus';
+import type { LngLat, PaddingOptions } from 'maplibre-gl';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -215,7 +217,8 @@ export interface MapConflictEvent {
   template: `
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
       [attr.data-rendered-gaps]="renderedGaps()" [attr.data-rendered-sovereignty]="renderedSovereignty()"
-      [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null" aria-label="主地圖" role="region"></div>
+      [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null"
+      [attr.data-focus-record]="focusedRecord()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
@@ -223,6 +226,14 @@ export interface MapConflictEvent {
           [style.left.px]="l.x" [style.top.px]="l.y">{{ l.text }}</span>
       }
     </div>
+    <!--
+      聚焦遮罩（Tai 2026-10-31）：點政權後，被選政權以外蓋一層半透明紙色＋backdrop-filter 模糊。
+      用一個 HTML 層＋clip-path: path(evenodd, 地圖區矩形＋政權各環) 挖空被選政權：只需一次 GPU 模糊、不必複製地圖，
+      地圖移動時（含飛行過場）每幀重算路徑（投影後距離 < 1px 的點略過）。pointer-events: none，不擋地圖點擊。
+    -->
+    <div #focusMask data-testid="map-focus-mask" aria-hidden="true" [attr.data-active]="focusedRecord() ? 'true' : 'false'"
+      class="pointer-events-none absolute inset-0 bg-[rgb(236_228_210/0.42)] backdrop-blur-[3px] transition-opacity duration-200 motion-reduce:transition-none"
+      [class.opacity-0]="!focusedRecord()" [class.invisible]="!focusedRecord() && !maskFading()"></div>
     <!-- 衝突圖示（交叉雙劍，自繪 SVG）：只在點選政權後由頁面傳入相關衝突；放在兩國交界，跟著地圖移動 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
       @for (c of placedConflicts(); track c.recordId) {
@@ -261,6 +272,21 @@ export class AtlasMap {
   protected readonly appliedAxis = signal<Axis | null>(null);
   private axisTimer: ReturnType<typeof setTimeout> | undefined;
   readonly selectedRecordId = input<string | null>(null);
+  /** 聚焦的主權紀錄（被選政權當前領土）；null＝不聚焦。 */
+  readonly focusRecordId = input<string | null>(null);
+  /** 聚焦置中時要避開的面板大小（右側面板寬或底部面板高）。 */
+  readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
+  protected readonly focusedRecord = signal<string | null>(null);
+  protected readonly maskFading = signal(false);
+  protected readonly cameraMoving = signal(false);
+  private readonly focusMask = viewChild<ElementRef<HTMLDivElement>>('focusMask');
+  private focusRings: Position[][] = [];
+  private focusKey = '';
+  /** 聚焦前的視角；關掉聚焦時飛回（使用者聚焦後自己拖過／縮放過就不飛回，只還原邊距）。 */
+  private savedCamera: { center: LngLat; zoom: number; padding: PaddingOptions } | null = null;
+  private userMoved = false;
+  private maskFrame = 0;
+  private fadeTimer: ReturnType<typeof setTimeout> | undefined;
   readonly selectedVersionId = input<string | null>(null);
   readonly engineErrorText = input('');
   readonly labels = input<ControlLabel[]>([]);
@@ -290,6 +316,8 @@ export class AtlasMap {
     afterNextRender(() => void this.init());
     this.destroyRef.onDestroy(() => {
       clearTimeout(this.axisTimer);
+      clearTimeout(this.fadeTimer);
+      cancelAnimationFrame(this.maskFrame);
       this.map?.remove();
     });
 
@@ -335,6 +363,14 @@ export class AtlasMap {
       this.map?.setFilter('sov-selected', ['==', ['get', 'recordId'], id]);
     });
     effect(() => {
+      const id = this.focusRecordId();
+      const fc = this.sovereignty();
+      const inset = this.focusInset();
+      const reduced = this.reducedMotion();
+      if (!this.ready()) return;
+      untracked(() => this.applyFocus(id, fc, inset, reduced));
+    });
+    effect(() => {
       const id = this.selectedVersionId() ?? '';
       if (!this.ready()) return;
       this.map?.setFilter('control-selected', ['==', ['get', 'versionId'], id]);
@@ -377,15 +413,26 @@ export class AtlasMap {
         (map.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(this.sovereignty() ?? EMPTY);
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
+        this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion());
+      });
+      map.on('movestart', (e) => {
+        this.cameraMoving.set(true);
+        if ((e as { originalEvent?: unknown }).originalEvent && this.focusedRecord()) this.userMoved = true;
+      });
+      map.on('moveend', () => {
+        this.cameraMoving.set(false);
+        this.scheduleMask();
       });
       map.on('idle', () => this.countRendered());
       map.on('move', () => {
         this.placeLabels();
         this.placeConflicts();
+        this.scheduleMask();
       });
       map.on('resize', () => {
         this.placeLabels();
         this.placeConflicts();
+        this.scheduleMask();
       });
 
       const layers = ['control-fill', 'control-hatch'];
@@ -423,6 +470,71 @@ export class AtlasMap {
     } catch {
       this.engineError.set(true);
     }
+  }
+
+  /**
+   * 聚焦：飛到被選政權當前領土的外框、置於可見區中央（四周 48px，右側／下方再扣掉面板），最大縮放 6；
+   * 換成別的政權時從目前視角接著飛，原視角只記第一次。取消聚焦時飛回原視角。減少動態時直接跳。
+   */
+  private applyFocus(id: string | null, fc: FeatureCollection<Geometry, SovereigntyProps> | null, inset: FocusInset, reduced: boolean): void {
+    const map = this.map;
+    if (!map) return;
+    const f = id ? fc?.features.find((x) => x.properties.recordId === id) : undefined;
+    const bounds = f ? geometryBounds(f.geometry) : null;
+    const duration = reduced ? 0 : 800;
+    if (!f || !bounds) {
+      this.clearFocus(duration);
+      return;
+    }
+    const key = `${id}|${inset.right}|${inset.bottom}`;
+    if (key === this.focusKey) return;
+    this.focusKey = key;
+    if (!this.savedCamera) {
+      this.savedCamera = { center: map.getCenter(), zoom: map.getZoom(), padding: map.getPadding() };
+      this.userMoved = false;
+    }
+    clearTimeout(this.fadeTimer);
+    this.maskFading.set(false);
+    this.focusRings = polygonRings(f.geometry);
+    this.focusedRecord.set(id);
+    const el = map.getContainer();
+    const padding = focusPadding(inset, el.clientWidth, el.clientHeight);
+    const cam = map.cameraForBounds(bounds, { padding, absolutePadding: true, maxZoom: 6 });
+    if (cam) map.easeTo({ ...cam, duration, essential: false });
+    this.drawMask();
+  }
+
+  private clearFocus(duration: number): void {
+    const map = this.map;
+    if (!map || !this.focusedRecord()) return;
+    this.focusKey = '';
+    this.focusedRecord.set(null);
+    this.focusRings = [];
+    // 遮罩淡出（200ms）期間保留原本的挖空路徑
+    this.maskFading.set(duration > 0);
+    clearTimeout(this.fadeTimer);
+    if (duration > 0) this.fadeTimer = setTimeout(() => this.maskFading.set(false), 220);
+    const saved = this.savedCamera;
+    this.savedCamera = null;
+    if (!saved) return;
+    if (this.userMoved) map.easeTo({ padding: saved.padding, duration });
+    else map.easeTo({ center: saved.center, zoom: saved.zoom, padding: saved.padding, duration });
+  }
+
+  private scheduleMask(): void {
+    if (!this.focusedRecord() || this.maskFrame) return;
+    this.maskFrame = requestAnimationFrame(() => {
+      this.maskFrame = 0;
+      this.drawMask();
+    });
+  }
+
+  private drawMask(): void {
+    const el = this.focusMask()?.nativeElement;
+    const map = this.map;
+    if (!el || !map || !this.focusedRecord()) return;
+    const d = focusMaskPath(this.focusRings, (p) => map.project(p), el.clientWidth, el.clientHeight);
+    el.style.clipPath = `path(evenodd, '${d}')`;
   }
 
   private setData(data: FeatureCollection<Geometry, DecoratedProps> | null): void {

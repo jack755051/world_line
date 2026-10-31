@@ -21,6 +21,8 @@ public static class EventsEndpoints
         write.MapPost("/events", Create).WithTags("Events").WithName("CreateEvent")
             .RequiresApiKey().Created<EventDto>().Errors(400, 401);
         read.MapGet("/events/{id:guid}", Get).WithTags("Events").WithName("GetEvent").Ok<EventDto>().Errors(404);
+        read.MapGet("/regimes/{id:guid}/events", ListForRegime).WithTags("Events").WithName("ListRegimeEvents")
+            .Ok<IReadOnlyList<RegimeEventDto>>().Errors(404);
     }
 
     public static async Task<IResult> Create(CreateEventRequest req, WorldLineDbContext db, CancellationToken ct)
@@ -95,6 +97,43 @@ public static class EventsEndpoints
         var e = await db.HistoricalEvents.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.RetractedAt == null, ct)
                 ?? throw ApiError.NotFound("事件");
         return ApiResults.Ok((await ToDtosAsync(db, [e], ct)).Single());
+    }
+
+    /// <summary>
+    /// 政權相關事件（依日期排序）：此政權為參與方的事件，加上此政權國界紀錄、衝突紀錄的起訖事件（皆排除已撤回）。
+    /// 不推測、不補造：沒有引用的事件 verification = pending。
+    /// </summary>
+    public static async Task<IResult> ListForRegime(Guid id, WorldLineDbContext db, CancellationToken ct)
+    {
+        if (!await db.Regimes.AsNoTracking().AnyAsync(r => r.Id == id && r.RetractedAt == null, ct))
+            throw ApiError.NotFound("政權");
+        var roles = new Dictionary<Guid, SortedSet<string>>();
+        void Add(Guid? ev, string role)
+        {
+            if (ev is not { } g) return;
+            if (!roles.TryGetValue(g, out var set)) roles[g] = set = new SortedSet<string>(StringComparer.Ordinal);
+            set.Add(role);
+        }
+        foreach (var p in await db.EventParticipants.AsNoTracking().Where(p => p.RegimeId == id).Select(p => new { p.EventId, p.Role }).ToListAsync(ct))
+            Add(p.EventId, p.Role);
+        foreach (var r in await db.SovereigntyRecords.AsNoTracking().Where(r => r.RegimeId == id && r.RetractedAt == null)
+                     .Select(r => new { r.StartEventId, r.EndEventId }).ToListAsync(ct))
+        {
+            Add(r.StartEventId, "border_start");
+            Add(r.EndEventId, "border_end");
+        }
+        foreach (var c in await db.ConflictRecords.AsNoTracking().Where(c => (c.RegimeAId == id || c.RegimeBId == id) && c.RetractedAt == null)
+                     .Select(c => new { c.StartEventId, c.EndEventId }).ToListAsync(ct))
+        {
+            Add(c.StartEventId, "conflict_start");
+            Add(c.EndEventId, "conflict_end");
+        }
+        var refs = await SovereigntyEndpoints.EventRefsAsync(db, roles.Keys.ToList(), ct);
+        IReadOnlyList<RegimeEventDto> list = refs.Values
+            .OrderBy(e => e.Occurred.Start).ThenBy(e => e.Id)
+            .Select(e => new RegimeEventDto(e.Id, e.EventKind, e.Occurred, e.Summary, e.Verification, e.Citations, roles[e.Id].ToList()))
+            .ToList();
+        return ApiResults.Ok(list);
     }
 
     internal static async Task<List<EventDto>> ToDtosAsync(WorldLineDbContext db, List<HistoricalEvent> rows, CancellationToken ct)

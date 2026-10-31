@@ -206,6 +206,14 @@ public sealed record SovereigntyEventRefDto(
     Guid Id, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
     string Verification, IReadOnlyList<CitationDto> Citations);
 
+/// <summary>
+/// 政權相關事件（政權面板的「事件」時間線）：事件結構同主權卡起訖事件（沒有引用＝待查證）；
+/// roles＝此政權與事件的關係：參與方角色（belligerent／signatory／other…），或 border_start／border_end（此政權某段國界的起訖變動）。
+/// </summary>
+public sealed record RegimeEventDto(
+    Guid Id, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
+    string Verification, IReadOnlyList<CitationDto> Citations, IReadOnlyList<string> Roles);
+
 /// <summary>幾何出處：來源（資料集）＋locator（關係 id／版本）＋此筆幾何授權與署名。</summary>
 public sealed record GeometryProvenanceDto(
     Guid SourceId, string SourceTitle, string Publisher, string? SourceLicenseCode, string Locator,

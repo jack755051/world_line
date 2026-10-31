@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto } from './api/api-types';
+import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { WorldLineApi } from './api/world-line-api';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
@@ -30,6 +30,9 @@ export class AtlasData {
   /** 衝突圖示資料：依日期快取；失敗時保留上一次成功的結果（圖示只在點選政權後才顯示）。 */
   readonly conflicts = signal<ConflictMapDto | null>(null);
   readonly conflictsStatus = signal<LoadStatus>('idle');
+  /** 政權相關事件（政權面板時間線），依政權 id 快取；不隨日期變。 */
+  readonly regimeEvents = signal<Record<string, RegimeEventDto[]>>({});
+  readonly regimeEventsStatus = signal<Record<string, LoadStatus>>({});
   private readonly cfCache = new Map<string, ConflictMapDto>();
   private cfSeq = 0;
 
@@ -118,6 +121,19 @@ export class AtlasData {
       }
     } catch {
       if (my === this.cfSeq) this.conflictsStatus.set('error');
+    }
+  }
+
+  async loadRegimeEvents(regimeId: string): Promise<void> {
+    const st = this.regimeEventsStatus()[regimeId];
+    if (st === 'ok' || st === 'loading') return;
+    this.regimeEventsStatus.update((m) => ({ ...m, [regimeId]: 'loading' }));
+    try {
+      const list = await this.api.regimeEvents(regimeId);
+      this.regimeEvents.update((m) => ({ ...m, [regimeId]: list }));
+      this.regimeEventsStatus.update((m) => ({ ...m, [regimeId]: 'ok' }));
+    } catch {
+      this.regimeEventsStatus.update((m) => ({ ...m, [regimeId]: 'error' }));
     }
   }
 

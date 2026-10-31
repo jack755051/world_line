@@ -22,6 +22,8 @@ public static class EventsEndpoints
             .RequiresApiKey().Created<EventDto>().Errors(400, 401);
         write.MapPost("/events/{id:guid}/participants", AppendParticipant).WithTags("Events").WithName("AppendEventParticipant")
             .RequiresApiKey().Created<EventDto>().Errors(400, 401, 404, 409);
+        write.MapPost("/events/{id:guid}/retraction", Retract).WithTags("Events").WithName("RetractEvent")
+            .RequiresApiKey().Ok<RetractionDto>().Errors(400, 401, 404, 409);
         read.MapGet("/events/{id:guid}", Get).WithTags("Events").WithName("GetEvent").Ok<EventDto>().Errors(404);
         read.MapGet("/regimes/{id:guid}/events", ListForRegime).WithTags("Events").WithName("ListRegimeEvents")
             .Ok<IReadOnlyList<RegimeEventDto>>().Errors(404);
@@ -120,6 +122,34 @@ public static class EventsEndpoints
         return ApiResults.Created($"/api/v1/events/{id}", (await ToDtosAsync(db, [e], ct)).Single());
     }
 
+    /// <summary>
+    /// 撤回事件（I5：不刪除，只寫一次 retracted_at＋原因；修正＝新增新事件後撤回舊的）。
+    /// 仍被有效紀錄引用（國界起訖、衝突起訖、佔領依據、陣營依據、子事件）時拒絕（409），要先把引用紀錄撤回再新增指向新事件。
+    /// 參與方與引用隨事件保留（不可改刪），只是不再出現在任何清單。
+    /// </summary>
+    public static async Task<IResult> Retract(Guid id, RetractionRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        var reason = Mapping.RequireText(req.Reason, "reason");
+        var row = await db.HistoricalEvents.AsNoTracking().Select(x => new { x.Id, x.RetractedAt }).FirstOrDefaultAsync(x => x.Id == id, ct)
+                  ?? throw ApiError.NotFound("事件");
+        if (row.RetractedAt is not null)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"事件 {id} 已於 {row.RetractedAt:O} 撤回。");
+        var refs = new List<string>();
+        if (await db.SovereigntyRecords.AnyAsync(r => r.RetractedAt == null && (r.StartEventId == id || r.EndEventId == id), ct)) refs.Add("國界紀錄");
+        if (await db.ConflictRecords.AnyAsync(r => r.RetractedAt == null && (r.StartEventId == id || r.EndEventId == id), ct)) refs.Add("衝突紀錄");
+        if (await db.OccupationAttributions.AnyAsync(r => r.RetractedAt == null && r.BasisEventId == id, ct)) refs.Add("佔領歸屬");
+        if (await db.RegimeAlignments.AnyAsync(r => r.RetractedAt == null && r.BasisEventId == id, ct)) refs.Add("陣營");
+        if (await db.HistoricalEvents.AnyAsync(e => e.RetractedAt == null && e.ParentEventId == id, ct)) refs.Add("子事件");
+        if (refs.Count > 0)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"事件 {id} 仍被有效的{string.Join("、", refs)}引用；請先撤回引用紀錄並改指向新事件。");
+        var now = DateTimeOffset.UtcNow;
+        var n = await db.HistoricalEvents.Where(x => x.Id == id && x.RetractedAt == null)
+            .ExecuteUpdateAsync(u => u.SetProperty(x => x.RetractedAt, now).SetProperty(x => x.RetractionReason, reason), ct);
+        if (n != 1)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"事件 {id} 已被撤回。");
+        return ApiResults.Ok(new RetractionDto(id, now, reason));
+    }
+
     public static async Task<IResult> Get(Guid id, WorldLineDbContext db, CancellationToken ct)
     {
         var e = await db.HistoricalEvents.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.RetractedAt == null, ct)
@@ -143,7 +173,7 @@ public static class EventsEndpoints
             set.Add(role);
         }
         var additions = new Dictionary<Guid, List<ParticipantAdditionDto>>();
-        foreach (var p in await db.EventParticipants.AsNoTracking().Where(p => p.RegimeId == id)
+        foreach (var p in await db.EventParticipants.AsNoTracking().Where(p => p.RegimeId == id && db.HistoricalEvents.Any(e => e.Id == p.EventId && e.RetractedAt == null))
                      .Select(p => new { p.EventId, p.Role, p.AddedAt, p.AdditionNote }).ToListAsync(ct))
         {
             Add(p.EventId, p.Role);

@@ -124,7 +124,8 @@ public static class ConflictsEndpoints
     /// 當日相鄰判定與虛線弧端點（只讀）：
     /// - 控制範圍＝該政權當日主權紀錄＋當日以它為佔領方（occupation_attributions）的政權紀錄；
     /// - 相鄰＝雙方控制範圍有任何幾何相交（OHM 共用邊界線段，相接即相交；用 ST_Intersects 而非 ST_DWithin，大國幾何下快約 50 倍）；
-    /// - 端點＝雙方當日主權紀錄的 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）。
+    /// - 端點＝雙方當日主權紀錄的 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）；
+    /// - 有事件地點時其中一端改用事件地點（規則見 ConflictArcDto）。
     /// </summary>
     internal static async Task<Dictionary<Guid, (bool Adjacent, ConflictArcDto? Arc)>> ArcsOnAsync(
         WorldLineDbContext db, List<Guid> ids, DateOnly d, CancellationToken ct)
@@ -132,19 +133,48 @@ public static class ConflictsEndpoints
         var result = new Dictionary<Guid, (bool, ConflictArcDto?)>();
         if (ids.Count == 0) return result;
         const string sql = """
-            WITH c AS (SELECT id, regime_a_id AS a, regime_b_id AS b FROM conflict_records WHERE id = ANY(@ids)),
+            WITH c AS (
+              SELECT r.id, r.regime_a_id AS a, r.regime_b_id AS b,
+                     COALESCE(e.location, CASE WHEN r.location_method LIKE '開戰地點%' THEN r.location END) AS ev
+              FROM conflict_records r LEFT JOIN historical_events e ON e.id = r.start_event_id
+              WHERE r.id = ANY(@ids)),
             own AS (SELECT regime_id, geom FROM sovereignty_records WHERE retracted_at IS NULL AND valid_period @> @d),
             ctl AS (
               SELECT regime_id AS holder, geom FROM own
               UNION ALL
               SELECT o.occupier_regime_id, s.geom FROM occupation_attributions o JOIN own s ON s.regime_id = o.occupied_regime_id
-              WHERE o.retracted_at IS NULL AND o.valid_period @> @d)
-            SELECT c.id,
-              EXISTS (SELECT 1 FROM ctl x JOIN ctl y ON x.geom && y.geom AND ST_Intersects(x.geom, y.geom) WHERE x.holder = c.a AND y.holder = c.b),
-              ST_X(pa), ST_Y(pa), ST_X(pb), ST_Y(pb)
-            FROM c
-            LEFT JOIN LATERAL (SELECT ST_PointOnSurface(geom) AS pa FROM own WHERE regime_id = c.a LIMIT 1) qa ON true
-            LEFT JOIN LATERAL (SELECT ST_PointOnSurface(geom) AS pb FROM own WHERE regime_id = c.b LIMIT 1) qb ON true
+              WHERE o.retracted_at IS NULL AND o.valid_period @> @d),
+            q AS (
+              SELECT c.id, c.ev,
+                EXISTS (SELECT 1 FROM ctl x JOIN ctl y ON x.geom && y.geom AND ST_Intersects(x.geom, y.geom) WHERE x.holder = c.a AND y.holder = c.b) AS adjacent,
+                (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.a LIMIT 1) AS pa,
+                (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.b LIMIT 1) AS pb,
+                c.ev IS NOT NULL AND EXISTS (SELECT 1 FROM ctl x WHERE x.holder = c.a AND ST_DWithin(x.geom, c.ev, 1.0)) AS near_a,
+                c.ev IS NOT NULL AND EXISTS (SELECT 1 FROM ctl x WHERE x.holder = c.b AND ST_DWithin(x.geom, c.ev, 1.0)) AS near_b
+              FROM c),
+            k AS (
+              SELECT q.*,
+                CASE WHEN ev IS NULL OR pa IS NULL OR pb IS NULL THEN NULL
+                     WHEN near_a AND NOT near_b THEN 'from'
+                     WHEN near_b AND NOT near_a THEN 'to'
+                     WHEN near_a AND near_b THEN NULL
+                     WHEN ST_Distance(pa, ev) >= ST_Distance(pb, ev) THEN 'from' ELSE 'to' END AS ev_end
+              FROM q),
+            -- 有事件地點時，另一端改用「該方控制範圍中離事件地點最近的點」（例：日—英從日本控制區接到哥打巴魯，而不是北海道），
+            -- 弧線短、雙劍（弧線中點）落在事件附近，線與圖示一致；距離把事件點 ±360° 一起比，跨換日線（日本→珍珠港）取東邊而不是繞地球一圈
+            m AS (
+              SELECT k.*,
+                CASE WHEN ev_end = 'to' THEN (SELECT ST_ClosestPoint(x.geom, ST_Translate(k.ev, w, 0)) FROM ctl x JOIN c ON c.id = k.id CROSS JOIN (VALUES (-360.0), (0.0), (360.0)) sh(w) WHERE x.holder = c.a ORDER BY ST_Distance(x.geom, ST_Translate(k.ev, w, 0)) LIMIT 1)
+                     WHEN ev_end = 'from' THEN (SELECT ST_ClosestPoint(x.geom, ST_Translate(k.ev, w, 0)) FROM ctl x JOIN c ON c.id = k.id CROSS JOIN (VALUES (-360.0), (0.0), (360.0)) sh(w) WHERE x.holder = c.b ORDER BY ST_Distance(x.geom, ST_Translate(k.ev, w, 0)) LIMIT 1)
+                END AS near_other
+              FROM k)
+            SELECT id, adjacent,
+              ST_X(CASE WHEN ev_end = 'from' THEN ev WHEN ev_end = 'to' THEN COALESCE(near_other, pa) ELSE pa END),
+              ST_Y(CASE WHEN ev_end = 'from' THEN ev WHEN ev_end = 'to' THEN COALESCE(near_other, pa) ELSE pa END),
+              ST_X(CASE WHEN ev_end = 'to' THEN ev WHEN ev_end = 'from' THEN COALESCE(near_other, pb) ELSE pb END),
+              ST_Y(CASE WHEN ev_end = 'to' THEN ev WHEN ev_end = 'from' THEN COALESCE(near_other, pb) ELSE pb END),
+              ev_end
+            FROM m
             """;
         var conn = (Npgsql.NpgsqlConnection)db.Database.GetDbConnection();
         var opened = conn.State != System.Data.ConnectionState.Open;
@@ -160,7 +190,8 @@ public static class ConflictsEndpoints
                 var adjacent = rd.GetBoolean(1);
                 ConflictArcDto? arc = null;
                 if (!adjacent && !rd.IsDBNull(2) && !rd.IsDBNull(4))
-                    arc = new ConflictArcDto([Math.Round(rd.GetDouble(2), 4), Math.Round(rd.GetDouble(3), 4)], [Math.Round(rd.GetDouble(4), 4), Math.Round(rd.GetDouble(5), 4)]);
+                    arc = new ConflictArcDto([Math.Round(rd.GetDouble(2), 4), Math.Round(rd.GetDouble(3), 4)], [Math.Round(rd.GetDouble(4), 4), Math.Round(rd.GetDouble(5), 4)],
+                        rd.IsDBNull(6) ? null : rd.GetString(6));
                 result[rd.GetGuid(0)] = (adjacent, arc);
             }
         }

@@ -135,10 +135,53 @@ public sealed class ConflictTests(PostGisFixture fx)
         Assert.True(pFar.GetProperty("adjacent").GetBoolean());
         Assert.Equal(JsonValueKind.Null, pFar.GetProperty("arc").ValueKind);
 
+        Assert.Equal(JsonValueKind.Null, arc.GetProperty("eventEnd").ValueKind); // 「兩國沒有共同邊界」的位置不是事件地點
+
+        // 事件地點在一方領土內（珍珠港在美國夏威夷）→ 該方端點＝事件地點
+        var jp = await k.Regime("nippon");
+        await Territory(k, jp, ohm, 140, 36);
+        var cPearl = await k.Id(await Post(k, jp, us, start, null, Point(-99.5, 37.5), "開戰地點：測試（在美國領土內）"));
+        var aPearl = (await FeatureOn(k, "1942-12-01", cPearl))!.Value.GetProperty("properties").GetProperty("arc");
+        Assert.Equal("to", aPearl.GetProperty("eventEnd").GetString());
+        Assert.Equal(new[] { -99.5, 37.5 }, aPearl.GetProperty("to").EnumerateArray().Select(v => v.GetDouble()).ToArray());
+        // 另一端＝日本領土（140–141E、36–37N）中離事件地點最近的點；-99.5 往東走（換日線）比往西近，所以取東緣 141E
+        Assert.Equal(141, aPearl.GetProperty("from")[0].GetDouble(), 3);
+        Assert.Equal(37, aPearl.GetProperty("from")[1].GetDouble(), 3);
+
+        // 事件地點不在任何一方（哥打巴魯在尚未建置的英屬馬來亞）→ 離事件地點較遠的一方（宗主國 de）改用事件地點
+        var cKota = await k.Id(await Post(k, jp, de, start, null, Point(102.24, 6.13), "開戰地點：哥打巴魯"));
+        var aKota = (await FeatureOn(k, "1942-12-01", cKota))!.Value.GetProperty("properties").GetProperty("arc");
+        Assert.Equal("to", aKota.GetProperty("eventEnd").GetString());
+        Assert.Equal(new[] { 102.24, 6.13 }, aKota.GetProperty("to").EnumerateArray().Select(v => v.GetDouble()).ToArray());
+
         // 一方當日沒有主權紀錄：不畫弧
         var pNone = (await FeatureOn(k, "1942-12-01", cNone))!.Value.GetProperty("properties");
         Assert.False(pNone.GetProperty("adjacent").GetBoolean());
         Assert.Equal(JsonValueKind.Null, pNone.GetProperty("arc").ValueKind);
+    }
+
+    [Fact]
+    public async Task Event_retraction_refuses_while_referenced_then_hides_event_from_regime_list()
+    {
+        var k = new ApiTestKit(fx);
+        var jp = await k.Regime("nippon");
+        var uk = await k.Regime("britannia");
+        var old = await k.Id(await k.W.PostAsJsonAsync("/api/v1/events", new
+        {
+            eventKind = "war", occurred = new { start = "1941-12-08", end = "1941-12-09" }, datePrecision = "day",
+            summary = new Dictionary<string, string> { ["zh-Hant"] = "日英開戰", ["en"] = "war" },
+            participants = new[] { new { regimeId = jp, role = "belligerent" }, new { regimeId = uk, role = "belligerent" } },
+        }));
+        var cf = await k.Id(await Post(k, jp, uk, old, null, Point(102.24, 6.13), "開戰地點：哥打巴魯"));
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/events/{old}/retraction", new { reason = "補出處" }), HttpStatusCode.Conflict); // 衝突仍引用
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/conflict-records/{cf}/retraction", new { reason = "改指向新事件" }), HttpStatusCode.OK);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/events/{old}/retraction", new { reason = "" }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/events/{old}/retraction", new { reason = "補出處" }), HttpStatusCode.OK);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/events/{old}/retraction", new { reason = "again" }), HttpStatusCode.Conflict);
+        await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/events/{old}"), HttpStatusCode.NotFound);
+        var list = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/regimes/{uk}/events"), HttpStatusCode.OK)).GetProperty("data");
+        Assert.DoesNotContain(list.EnumerateArray(), e => e.GetProperty("id").GetGuid() == old);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/events/{Guid.CreateVersion7()}/retraction", new { reason = "x" }), HttpStatusCode.NotFound);
     }
 
     [Fact]

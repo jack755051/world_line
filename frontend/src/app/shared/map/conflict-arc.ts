@@ -49,3 +49,64 @@ export function worldShift(midLng: number, centerLng: number): number {
 }
 
 const round = (v: number) => Math.round(v * 1e4) / 1e4;
+
+/**
+ * 雙劍錯開（Tai 2026-10-31）：多條弧線幾乎重疊時（例：美國→德、義、羅、保、匈），中點的雙劍會疊在一起。
+ * 依序擺放：沒有弧線的圖示固定不動；有弧線的先試中點，與已擺的圖示距離小於 minDist 像素時，
+ * 沿著自己的弧線往兩側找取樣點（中點 ±step、±2step…），找到第一個不重疊的位置；都不行就留在中點。
+ * 回傳每個圖示的像素位置（順序與輸入相同），雙劍一定在自己的弧線上。
+ */
+export function staggerOnArcs(
+  items: { x: number; y: number; path: { x: number; y: number }[] | null }[],
+  minDist = 34,
+  step = 3,
+  inside: (p: { x: number; y: number }) => boolean = () => true,
+): { x: number; y: number }[] {
+  const out: ({ x: number; y: number } | null)[] = items.map((it) => (it.path?.length ? null : { x: it.x, y: it.y }));
+  const placed = out.filter((p): p is { x: number; y: number } => !!p);
+  const free = (p: { x: number; y: number }) => placed.every((q) => Math.hypot(p.x - q.x, p.y - q.y) >= minDist);
+  items.forEach((it, i) => {
+    const path = it.path;
+    if (!path?.length) return;
+    const mid = Math.floor((path.length - 1) / 2);
+    // 候選：中點，再往兩側；中點在可視區外時（弧線太長、鏡頭框不下），改用弧線上離中點最近、仍在可視區內的取樣點
+    const order: number[] = [mid];
+    for (let d = 1; d <= path.length; d++) order.push(mid + d, mid - d);
+    const cands = order.filter((j) => j >= 0 && j < path.length && inside(path[j]));
+    let pick: { x: number; y: number } = cands.length ? path[cands[0]] : { x: it.x, y: it.y };
+    if (!free(pick)) {
+      const base = cands.length ? cands[0] : mid;
+      const lim = Math.floor((path.length - 1) * 0.35);
+      for (let d = step; d <= lim; d += step) {
+        const cand = [path[base + d], path[base - d]].find((p) => p && inside(p) && free(p));
+        if (cand) {
+          pick = cand;
+          break;
+        }
+      }
+    }
+    out[i] = { x: pick.x, y: pick.y };
+    placed.push(out[i]!);
+  });
+  return out as { x: number; y: number }[];
+}
+
+/**
+ * 弧線放到哪一份世界副本：讓兩端中離地圖中心較近的那一端落在中心所在的副本（例：聚焦美國時，日本—美國弧的珍珠港端留在美國這一側）。
+ */
+export function worldShiftArc(path: [number, number][], centerLng: number, focusEnd?: 0 | 1 | null): number {
+  // 有被選政權那一端時，以那一端為準（弧線從被選政權出發，鏡頭也以它為中心）
+  if (focusEnd === 0 || focusEnd === 1) return worldShift(path[focusEnd === 0 ? 0 : path.length - 1][0], centerLng);
+  const ends = [path[0][0], path[path.length - 1][0]];
+  let best = 0;
+  let bestD = Infinity;
+  for (const x of ends) {
+    const k = worldShift(x, centerLng);
+    const d = Math.min(...ends.map((e) => Math.abs(e + k - centerLng)));
+    if (d < bestD) {
+      bestD = d;
+      best = k;
+    }
+  }
+  return best;
+}

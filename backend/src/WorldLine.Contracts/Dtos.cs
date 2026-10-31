@@ -291,8 +291,12 @@ public sealed record ConflictFeatureProperties(
 /// <summary>
 /// 遠距交戰虛線弧（Tai 2026-10-31）：當日雙方「控制範圍」（自身主權紀錄＋以其為佔領方的佔領區）不相接時才有；
 /// from／to＝雙方當日主權紀錄的 ST_PointOnSurface（[經度, 緯度]）。雙劍放在弧線中點（前端計算）。
+/// 有事件地點時（開戰事件的 location，或 locationMethod 以「開戰地點」開頭的衝突位置）優先用事件地點當其中一端：
+/// 地點在某方控制範圍內或 1 度內（例：珍珠港在美國夏威夷）→ 該方端點＝事件地點；都不在（例：哥打巴魯在英屬馬來亞，殖民地尚未建置）
+/// → 端點離事件地點較遠的一方（殖民宗主國）改用事件地點。另一端改用該方控制範圍中離事件地點最近的點（弧線短、雙劍在事件附近）。
+/// eventEnd＝"from"／"to" 標示哪一端是事件地點，沒有則為 null。
 /// </summary>
-public sealed record ConflictArcDto(double[] From, double[] To);
+public sealed record ConflictArcDto(double[] From, double[] To, string? EventEnd = null);
 
 public sealed record ConflictFeature(Guid Id, JsonElement Geometry, ConflictFeatureProperties Properties)
 {

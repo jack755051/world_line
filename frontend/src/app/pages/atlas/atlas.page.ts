@@ -261,7 +261,7 @@ export class AtlasPage {
       const label = `${this.regimeName(p.regimeAId, p.regimeASlug)} — ${this.regimeName(p.regimeBId, p.regimeBSlug)}`;
       // 雙方當日不相鄰（API arc）：畫虛線弧，雙劍改放弧線中點
       const a = p.arc?.from?.length === 2 && p.arc.to?.length === 2 ? conflictArc([Number(p.arc.from[0]), Number(p.arc.from[1])], [Number(p.arc.to[0]), Number(p.arc.to[1])]) : null;
-      if (a) return { recordId: p.recordId, lngLat: a.mid, arc: a.path, label };
+      if (a) return { recordId: p.recordId, lngLat: a.mid, arc: a.path, focusEnd: p.regimeAId === this.focusRegimeId() ? 0 : p.regimeBId === this.focusRegimeId() ? 1 : null, label };
       return { recordId: p.recordId, lngLat: [c[0], c[1]] as [number, number], label };
     }),
   );

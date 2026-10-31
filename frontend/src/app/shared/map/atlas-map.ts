@@ -13,7 +13,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import { worldShift } from './conflict-arc';
+import { staggerOnArcs, worldShiftArc } from './conflict-arc';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage } from './hatch';
@@ -205,6 +205,8 @@ export interface MapConflictIcon {
   label: string;
   /** 遠距交戰虛線弧取樣點（雙方不相鄰時才有；lngLat 此時是弧線中點），見 conflict-arc.ts */
   arc?: [number, number][] | null;
+  /** 弧線哪一端在被選政權（0＝起點、1＝終點）：決定弧線放在哪一份世界副本、鏡頭以哪一端為準 */
+  focusEnd?: 0 | 1 | null;
 }
 export interface MapConflictEvent {
   recordId: string;
@@ -225,7 +227,7 @@ export interface MapConflictEvent {
       [attr.data-rendered-gaps]="renderedGaps()" [attr.data-rendered-sovereignty]="renderedSovereignty()"
       [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null"
       [attr.data-focus-record]="focusedRecord()" [attr.data-focus-occupied]="focusOccupied()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'"
-      [attr.data-render]="renderBusySig() ? 'busy' : 'idle'" [attr.data-sov-fade]="fadeCount()" aria-label="主地圖" role="region"></div>
+      [attr.data-render]="renderBusySig() ? 'busy' : 'idle'" [attr.data-sov-fade]="fadeCount()" [attr.data-arc-fit]="arcFit()" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
@@ -304,6 +306,7 @@ export class AtlasMap {
   private readonly focusMask = viewChild<ElementRef<HTMLDivElement>>('focusMask');
   private focusRings: Position[][] = [];
   private focusKey = '';
+  private focusBounds: unknown = null;
   /** 聚焦前的視角；關掉聚焦時飛回（使用者聚焦後自己拖過／縮放過就不飛回，只還原邊距）。 */
   private savedCamera: { center: LngLat; zoom: number; padding: PaddingOptions } | null = null;
   private userMoved = false;
@@ -361,7 +364,10 @@ export class AtlasMap {
     effect(() => {
       this.conflicts();
       if (!this.ready()) return;
-      untracked(() => this.placeConflicts());
+      untracked(() => {
+        this.placeConflicts();
+        this.fitArcs();
+      });
     });
     effect(() => {
       const data = this.gaps();
@@ -455,6 +461,7 @@ export class AtlasMap {
       });
       map.on('moveend', () => {
         this.cameraMoving.set(false);
+        this.fitArcs();
         this.scheduleMask();
       });
       map.on('idle', () => {
@@ -540,15 +547,19 @@ export class AtlasMap {
     this.focusedRecord.set(id);
     const el = map.getContainer();
     const padding = focusPadding(inset, el.clientWidth, el.clientHeight);
+    this.focusBounds = bounds;
     const cam = map.cameraForBounds(bounds, { padding, absolutePadding: true, maxZoom: 6 });
     if (cam) map.easeTo({ ...cam, duration, essential: false });
     this.drawMask();
+    if (duration === 0) queueMicrotask(() => this.fitArcs());
   }
 
   private clearFocus(duration: number): void {
     const map = this.map;
     if (!map || !this.focusedRecord()) return;
     this.focusKey = '';
+    this.arcFitKey = '';
+    this.focusBounds = null;
     this.focusedRecord.set(null);
     this.focusOccupied.set(0);
     this.focusRings = [];
@@ -678,16 +689,76 @@ export class AtlasMap {
     const map = this.map;
     if (!map) return;
     const center = map.getCenter().lng;
+    const raw = this.conflicts().map((c) => {
+      if (!c.arc?.length) return { c, ...map.project(c.lngLat), path: null as { x: number; y: number }[] | null };
+      // 弧線（含雙劍）平移到離地圖中心最近的世界副本，跨換日線（例如日本—美國）時不會畫到畫面外
+      const k = worldShiftArc(c.arc, center, c.focusEnd);
+      const path = c.arc.map(([x, y]) => map.project([x + k, y]));
+      return { c, ...map.project([c.lngLat[0] + k, c.lngLat[1]]), path };
+    });
+    // 幾乎重疊的弧線（美國→歐洲各國）：雙劍沿各自弧線錯開；弧線太長框不下時，雙劍留在弧線可見的那一段（面板左側）
+    const el = map.getContainer();
+    const right = el.clientWidth - this.focusInset().right;
+    const inside = (p: { x: number; y: number }) => p.x >= 20 && p.x <= right - 20 && p.y >= 20 && p.y <= el.clientHeight - 20 - this.focusInset().bottom;
+    const pos = staggerOnArcs(raw, 34, 3, inside);
     this.placedConflicts.set(
-      this.conflicts().map((c) => {
-        if (!c.arc?.length) return { ...c, ...map.project(c.lngLat), points: null };
-        // 弧線（含中點雙劍）平移到離地圖中心最近的世界副本，跨換日線（例如日本—美國）時不會畫到畫面外
-        const k = worldShift(c.lngLat[0], center);
-        const pts = c.arc.map(([x, y]) => map.project([x + k, y]));
-        const { x, y } = map.project([c.lngLat[0] + k, c.lngLat[1]]);
-        return { ...c, x, y, points: pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') };
-      }),
+      raw.map((r, i) => ({
+        ...r.c,
+        x: pos[i].x,
+        y: pos[i].y,
+        points: r.path ? r.path.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') : null,
+      })),
     );
+  }
+
+  /**
+   * 弧線留在畫面內（Tai 2026-10-31）：聚焦後鏡頭停下時，若有虛線弧（含雙劍）落在面板以外的可視區之外，
+   * 改框「被選政權＋所有弧線」（弧線用目前的世界副本，跨換日線也連續）。每次聚焦／弧線組合只做一次；使用者自己移動過就不再動鏡頭。
+   */
+  private arcFitKey = '';
+  protected readonly arcFit = signal(0);
+  private fitArcs(): void {
+    const map = this.map;
+    if (!map || !this.focusedRecord() || this.userMoved || this.cameraMoving() || !this.focusBounds) return;
+    const arcs = this.conflicts().filter((c) => c.arc?.length);
+    if (!arcs.length) return;
+    const key = `${this.focusKey}|${arcs.map((a) => a.recordId).join(',')}`;
+    if (key === this.arcFitKey) return;
+    this.arcFitKey = key;
+    const el = map.getContainer();
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+    const pad = focusPadding(this.focusInset(), w, h);
+    // 展開的圖例（左下角）會蓋住弧線端點（例：1941-12-08 日—英的哥打巴魯端）：左側留白加到圖例右緣，剩餘寬度不足才不讓
+    const legend = document.querySelector('[data-testid="legend"][data-state="open"]')?.getBoundingClientRect();
+    if (legend) {
+      const box = el.getBoundingClientRect();
+      const left = Math.round(legend.right - box.left + 16);
+      if (legend.top - box.top < h && w - left - pad.right >= 200) pad.left = Math.max(pad.left, left);
+    }
+    // 參考經度：第一條弧線在被選政權那一端（不用目前畫面中心：美國這類跨換日線的政權聚焦後中心可能在 0 度）
+    const a0 = arcs[0];
+    const center = a0.focusEnd === 0 || a0.focusEnd === 1 ? a0.arc![a0.focusEnd === 0 ? 0 : a0.arc!.length - 1][0] : map.getCenter().lng;
+    // 只框弧線（兩端分別在被選政權與對方領土內）；不併入政權外框，避免美國這類跨換日線的屬地把範圍撐成全世界
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    let inside = true;
+    for (const c of arcs) {
+      const k = worldShiftArc(c.arc!, center, c.focusEnd);
+      for (const [x, y] of c.arc!) {
+        const lng = x + k;
+        x0 = Math.min(x0, lng);
+        x1 = Math.max(x1, lng);
+        y0 = Math.min(y0, y);
+        y1 = Math.max(y1, y);
+        const p = map.project([lng, y]);
+        if (p.x < pad.left || p.x > w - pad.right || p.y < pad.top || p.y > h - pad.bottom) inside = false;
+      }
+    }
+    if (inside) return;
+    const cam = map.cameraForBounds([[x0, y0], [x1, y1]], { padding: pad, absolutePadding: true, maxZoom: 6 });
+    if (!cam) return;
+    this.arcFit.update((n) => n + 1);
+    map.easeTo({ ...cam, duration: this.reducedMotion() ? 0 : 600, essential: false });
   }
 
   protected onConflict(e: MouseEvent, c: MapConflictIcon & { x: number; y: number }): void {

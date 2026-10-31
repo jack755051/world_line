@@ -85,7 +85,7 @@ interface SheetInfo {
             <wl-top-bar [date]="state.date()" [lang]="lang()" [legendOpen]="state.legendOpen()" [controlStatus]="data.controlStatus()"
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()" [axis]="state.axis()" (axisChange)="setAxis($event)"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
-            <div #mapArea data-testid="map-area" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
+            <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)"
@@ -190,6 +190,7 @@ interface SheetInfo {
             </div>
             <div class="h-[var(--wl-timeline-height)] flex-none">
               <wl-timeline [date]="state.date()" [snapshots]="data.snapshots()" [earliestData]="data.earliestEvent()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
+                [ready]="mapReady()" (playingChange)="playing.set($event)"
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
           </div>
@@ -298,6 +299,13 @@ export class AtlasPage {
   protected readonly sovTab = signal<SovereigntyTab>('overview');
   /** MapLibre 是否還在載入／切片（setData 後、平移到新區域時）。 */
   protected readonly mapRenderBusy = signal(false);
+  /** 時間軸是否在播放：播放時等資料（mapReady）才前進，不顯示地圖載入指示。 */
+  protected readonly playing = signal(false);
+  /** 目前日期的地圖資料已到、地圖也畫完（含 120ms 去抖動期間：日期剛變但還沒開始載入也算未就緒）。 */
+  private readonly loadsStartedFor = signal<string | null>(null);
+  protected readonly mapReady = computed(
+    () => this.loadsStartedFor() === this.state.date() && !this.data.mapDataLoading() && !this.mapRenderBusy(),
+  );
   /** 地圖角落載入指示：資料請求或地圖切片持續 300ms 以上才顯示（DelayedFlag），完成即隱藏。 */
   protected readonly busyVisible = signal(false);
   /** 載入指示出現過 → 下一次抵達的國界淡入；指示隱藏後短暫保留，讓同一輪的資料仍能淡入。 */
@@ -438,7 +446,7 @@ export class AtlasPage {
     effect(() => {
       const dto = this.data.sovereignty();
       const want = this.pendingRegime();
-      if (!want || !dto || dto.date !== this.state.date()) return;
+      if (!want || !dto || this.data.sovereigntyShownFor() !== this.state.date()) return;
       untracked(() => {
         this.pendingRegime.set(null);
         const f = dto.featureCollection.features.find((x) => x.properties.regimeId === want);
@@ -446,7 +454,7 @@ export class AtlasPage {
       });
     });
     effect(() => {
-      const busy = this.data.mapDataLoading() || this.mapRenderBusy();
+      const busy = !this.playing() && (this.data.mapDataLoading() || this.mapRenderBusy());
       untracked(() => this.busyFlag.set(busy));
     });
     inject(DestroyRef).onDestroy(() => {
@@ -467,10 +475,8 @@ export class AtlasPage {
         if (this.data.health() === 'up') {
           clearTimeout(this.debounce);
           this.debounce = setTimeout(() => {
-            void this.data.loadControl(date);
-            void this.data.loadSovereignty(date);
-            void this.data.loadConflicts(date);
-          }, this.everLoaded() ? 120 : 0);
+            this.loadDate(date);
+          }, this.everLoaded() ? (this.playing() ? 0 : 120) : 0);
         }
         void this.router.navigate([], {
           relativeTo: this.route,
@@ -519,9 +525,18 @@ export class AtlasPage {
     if (!(await this.data.checkHealth())) return;
     void this.data.loadSnapshots();
     void this.data.loadExtent();
-    void this.data.loadControl(this.state.date());
-    void this.data.loadSovereignty(this.state.date());
-    void this.data.loadConflicts(this.state.date());
+    // 變動點很小（數百個日期）：先拿到，主權／衝突就能依區間快取
+    await this.data.loadChangePoints();
+    this.loadDate(this.state.date());
+  }
+
+  /** 載入某日的控制區／主權／衝突；主權與衝突都到了之後，預先載入接下來幾格（播放、往後跳都順）。 */
+  private loadDate(date: string): void {
+    this.loadsStartedFor.set(date);
+    void this.data.loadControl(date);
+    void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
+      if (this.state.date() === date) void this.data.prefetch(date, this.playing() ? 4 : 2);
+    });
   }
 
   protected reloadControl(): void {

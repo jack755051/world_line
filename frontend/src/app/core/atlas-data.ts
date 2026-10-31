@@ -1,5 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
+import { addDaysIso, intervalKey } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
 import { isAbort } from './delayed-flag';
 
@@ -25,17 +26,35 @@ export class AtlasData {
   /** 主權圖層（國界）：與控制區分開載入；失敗時保留上一次成功的結果。 */
   readonly sovereignty = signal<SovereigntyMapDto | null>(null);
   readonly sovereigntyStatus = signal<LoadStatus>('idle');
-  private readonly sovCache = new Map<string, SovereigntyMapDto>();
+  /** 目前顯示的主權資料適用的日期（同一變動區間換日期時不換資料物件，只更新這個）。 */
+  readonly sovereigntyShownFor = signal<string | null>(null);
   private sovSeq = 0;
 
-  /** 衝突圖示資料：依日期快取；失敗時保留上一次成功的結果（圖示只在點選政權後才顯示）。 */
+  /** 衝突圖示資料：失敗時保留上一次成功的結果（圖示只在點選政權後才顯示）。 */
   readonly conflicts = signal<ConflictMapDto | null>(null);
   readonly conflictsStatus = signal<LoadStatus>('idle');
   /** 政權相關事件（政權面板時間線），依政權 id 快取；不隨日期變。 */
   readonly regimeEvents = signal<Record<string, RegimeEventDto[]>>({});
   readonly regimeEventsStatus = signal<Record<string, LoadStatus>>({});
-  private readonly cfCache = new Map<string, ConflictMapDto>();
   private cfSeq = 0;
+
+  /**
+   * 主權／衝突圖層的變動點（GET /timeline/change-points）。兩個相鄰變動點之間每天的結果相同，
+   * 所以快取依「區間」而不是日期：播放一週一格、在同一區間裡跳日期都不必重新請求，也不重建地圖圖層。
+   * 還沒載入（或失敗）時退回依日期快取。
+   */
+  readonly changePoints = signal<string[] | null>(null);
+  private readonly sovCache = new Map<string, SovereigntyMapDto>();
+  private readonly cfCache = new Map<string, ConflictMapDto>();
+  private sovKey: string | null = null;
+  private cfKey: string | null = null;
+  /** 進行中的請求（前景或預先載入），同一區間只發一次。 */
+  private readonly pending = new Map<string, Promise<unknown>>();
+  private static readonly CACHE_MAX = 40;
+  private key(date: string): string {
+    return intervalKey(this.changePoints(), date);
+  }
+
   /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
   private readonly inflight: Record<'control' | 'sov' | 'cf', AbortController | null> = { control: null, sov: null, cf: null };
   private restart(k: 'control' | 'sov' | 'cf'): void {
@@ -102,20 +121,59 @@ export class AtlasData {
     }
   }
 
+  async loadChangePoints(): Promise<void> {
+    try {
+      const cp = await this.api.timelineChangePoints();
+      this.changePoints.set(cp.points.map(String));
+    } catch {
+      this.changePoints.set(null);
+    }
+  }
+
+  /** 取某區間的資料：快取 → 進行中的同區間請求 → 新請求（前景請求可被中止；預先載入不中止）。 */
+  private fetchInterval<T>(kind: 'sov' | 'cf', key: string, date: string, cache: Map<string, T>, signal?: AbortSignal): Promise<T> {
+    const hit = cache.get(key);
+    if (hit) return Promise.resolve(hit);
+    const pk = `${kind}:${key}`;
+    const inflight = this.pending.get(pk) as Promise<T> | undefined;
+    if (inflight) return inflight;
+    const p = (kind === 'sov' ? this.api.sovereignty(date, signal) : this.api.conflicts(date, signal)) as Promise<T>;
+    this.pending.set(pk, p);
+    // 前景請求被中止時立刻移除，讓緊接著的新請求不會撿到已中止的那個
+    signal?.addEventListener('abort', () => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    p.then(
+      (dto) => {
+        cache.set(key, dto);
+        if (cache.size > AtlasData.CACHE_MAX) cache.delete(cache.keys().next().value as string);
+      },
+      () => undefined,
+    ).finally(() => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    return p;
+  }
+
   async loadSovereignty(date: string): Promise<void> {
     const my = ++this.sovSeq;
+    const key = this.key(date);
     this.restart('sov');
-    const hit = this.sovCache.get(date);
+    // 同一變動區間：資料不變，不換物件（地圖不 setData、標籤不重算），只記下目前日期
+    if (key === this.sovKey && this.sovereignty()) {
+      this.sovereigntyShownFor.set(date);
+      this.sovereigntyStatus.set('ok');
+      return;
+    }
+    const hit = this.sovCache.get(key);
     if (hit) {
-      this.applySovereignty(hit);
+      this.applySovereignty(hit, key, date);
       return;
     }
     this.sovereigntyStatus.set('loading');
     try {
-      const dto = await this.api.sovereignty(date, this.begin('sov'));
-      this.sovCache.set(date, dto);
-      if (this.sovCache.size > 30) this.sovCache.delete(this.sovCache.keys().next().value as string);
-      if (my === this.sovSeq) this.applySovereignty(dto);
+      const dto = await this.fetchInterval('sov', key, date, this.sovCache, this.begin('sov'));
+      if (my === this.sovSeq) this.applySovereignty(dto, key, date);
     } catch (e) {
       if (isAbort(e)) return;
       if (my === this.sovSeq) this.sovereigntyStatus.set('error');
@@ -124,25 +182,55 @@ export class AtlasData {
 
   async loadConflicts(date: string): Promise<void> {
     const my = ++this.cfSeq;
+    const key = this.key(date);
     this.restart('cf');
-    const hit = this.cfCache.get(date);
-    if (hit) {
-      this.conflicts.set(hit);
+    if (key === this.cfKey && this.conflicts()) {
       this.conflictsStatus.set('ok');
+      return;
+    }
+    const hit = this.cfCache.get(key);
+    if (hit) {
+      this.applyConflicts(hit, key);
       return;
     }
     this.conflictsStatus.set('loading');
     try {
-      const dto = await this.api.conflicts(date, this.begin('cf'));
-      this.cfCache.set(date, dto);
-      if (this.cfCache.size > 30) this.cfCache.delete(this.cfCache.keys().next().value as string);
-      if (my === this.cfSeq) {
-        this.conflicts.set(dto);
-        this.conflictsStatus.set('ok');
-      }
+      const dto = await this.fetchInterval('cf', key, date, this.cfCache, this.begin('cf'));
+      if (my === this.cfSeq) this.applyConflicts(dto, key);
     } catch (e) {
       if (isAbort(e)) return;
       if (my === this.cfSeq) this.conflictsStatus.set('error');
+    }
+  }
+
+  private applyConflicts(dto: ConflictMapDto, key: string): void {
+    this.cfKey = key;
+    this.conflicts.set(dto);
+    this.conflictsStatus.set('ok');
+  }
+
+  /** 預先載入接下來的日期（播放一週／一個月一格；也涵蓋接下來兩個變動點），依序送、不中止，失敗就算了。 */
+  private prefetchRun = 0;
+  async prefetch(date: string, maxIntervals = 4, offsets: number[] = [7, 14, 21, 31, 62]): Promise<void> {
+    const run = ++this.prefetchRun;
+    const dates = offsets.map((n) => addDaysIso(date, n));
+    const pts = this.changePoints();
+    if (pts) dates.push(...pts.filter((p) => p > date).slice(0, 2));
+    const seen = new Set<string>([this.key(date)]);
+    let fetched = 0;
+    for (const d of dates.sort()) {
+      if (fetched >= maxIntervals) return;
+      if (run !== this.prefetchRun) return; // 使用者又換日期：改預先載入新的位置
+      const key = this.key(d);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (this.sovCache.has(key) && this.cfCache.has(key)) continue;
+      fetched++;
+      try {
+        await Promise.all([this.fetchInterval('sov', key, d, this.sovCache), this.fetchInterval('cf', key, d, this.cfCache)]);
+      } catch {
+        /* 預先載入失敗不影響畫面 */
+      }
     }
   }
 
@@ -159,8 +247,10 @@ export class AtlasData {
     }
   }
 
-  private applySovereignty(dto: SovereigntyMapDto): void {
+  private applySovereignty(dto: SovereigntyMapDto, key: string, date: string): void {
+    this.sovKey = key;
     this.sovereignty.set(dto);
+    this.sovereigntyShownFor.set(date);
     this.sovereigntyStatus.set('ok');
     void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId));
   }

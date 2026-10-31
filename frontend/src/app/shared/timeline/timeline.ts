@@ -169,7 +169,11 @@ export class Timeline {
   /** 其他資料（事件）的最早日期；早於快照與預設起點時，時間軸起點往前延伸（WW1 試驗）。 */
   readonly earliestData = input<string | null>(null);
   readonly lang = input<Lang>('zh-Hant');
+  /** 地圖資料與繪製都完成（播放等它為真才前進下一格，不會一路閃載入中）。 */
+  readonly ready = input(true);
   readonly dateChange = output<string>();
+  /** 播放開始／停止（頁面據此在播放時不顯示地圖載入指示）。 */
+  readonly playingChange = output<boolean>();
   readonly retry = output<void>();
   readonly invalidInput = output<string>();
 
@@ -270,7 +274,12 @@ export class Timeline {
       return;
     }
     this.playing.set(true);
+    this.playingChange.emit(true);
+    // 每 100ms 檢查一次：距上一格至少 1 秒「而且」上一格的地圖已畫好才前進（資料慢時等資料，不跳過、不閃載入中）
+    let last = Date.now();
     this.timer = setInterval(() => {
+      if (Date.now() - last < Timeline.STEP_MS || !this.ready()) return;
+      last = Date.now();
       const cur = this.date();
       const next = this.speed() === 'week' ? addDays(cur, 7) : addMonths(cur, 1);
       if (next > this.range().end) {
@@ -279,12 +288,15 @@ export class Timeline {
         return;
       }
       this.emit(next);
-    }, 1000);
+    }, 100);
   }
+
+  static readonly STEP_MS = 1000;
 
   private stop(): void {
     clearInterval(this.timer);
     this.timer = undefined;
+    if (this.playing()) this.playingChange.emit(false);
     this.playing.set(false);
   }
 

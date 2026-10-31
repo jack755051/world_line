@@ -3,7 +3,8 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 
 /**
  * 效能量測（WL_E2E_BORDERS=1 時才跑；只讀，不寫資料）：Tai 2026-11-01「播放一直載入中、跳日期不連貫」。
- * - 跳日期：每次換日期的 API 請求數、到畫面穩定（無進行中請求、MapLibre idle、沒有載入指示）的時間、載入指示是否出現。
+ * - 跳日期：每次換日期的 API 請求數、到新日期畫面就緒（shownMs：map-area data-ready-for＝該日、MapLibre idle、無載入指示；
+ *   舊版前端沒有 data-ready-for，會等到逾時，只看 ms）、到全部安靜（無進行中請求、MapLibre idle、沒有載入指示）的時間、載入指示是否出現。
  * - 播放：15 秒內前進幾格、最長一格間隔、載入指示累計出現時間、請求數。
  * 結果寫到 tmp/perf/perf-<WL_PERF_LABEL>.json（預設 run）。
  */
@@ -40,6 +41,15 @@ const busy = (page: Page) => page.evaluate(() => {
   const b = (window as unknown as { __busy: { since: number | null; total: number; shows: number } }).__busy;
   return { shows: b.shows, ms: Math.round(b.total + (b.since !== null ? performance.now() - b.since : 0)) };
 });
+/** 畫面就緒：新日期的主權／衝突／控制區都已顯示、地圖畫完、沒有載入指示（不等背景預先載入）。 */
+async function shown(page: Page, to: string) {
+  const area = page.getByTestId('map-area');
+  for (let i = 0; i < 600; i++) {
+    const idle = (await page.getByTestId('map-canvas').getAttribute('data-render')) === 'idle';
+    if ((await area.getAttribute('data-ready-for')) === to && idle && (await page.getByTestId('map-busy').count()) === 0) return;
+    await page.waitForTimeout(25);
+  }
+}
 async function settled(page: Page, s: { pending: number }) {
   const canvas = page.getByTestId('map-canvas');
   let ok = 0;
@@ -60,7 +70,7 @@ test('效能：跳日期與播放', async ({ page }) => {
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
   await settled(page, s);
   await busyWatch(page);
-  const jumps: { to: string; ms: number; requests: number; kb: number; busyShows: number }[] = [];
+  const jumps: { to: string; shownMs: number; ms: number; requests: number; kb: number; busyShows: number }[] = [];
   const input = page.getByTestId('timeline-date-input');
   for (const to of ['1942-12-08', '1943-06-01', '1915-06-01', '1918-03-04', '1939-10-23', '1942-12-01', '1942-12-15']) {
     const c0 = s.count, b0 = s.bytes, bz = await busy(page);
@@ -68,9 +78,11 @@ test('效能：跳日期與播放', async ({ page }) => {
     await input.fill(to);
     await input.press('Enter');
     await page.waitForTimeout(150); // 換日期去抖動 120ms
-    await settled(page, s);
+    await shown(page, to);
+    const shownMs = Date.now() - t0;
+    await settled(page, s); // 含背景預先載入全部結束
     const bz1 = await busy(page);
-    jumps.push({ to, ms: Date.now() - t0, requests: s.count - c0, kb: Math.round((s.bytes - b0) / 1024), busyShows: bz1.shows - bz.shows });
+    jumps.push({ to, shownMs, ms: Date.now() - t0, requests: s.count - c0, kb: Math.round((s.bytes - b0) / 1024), busyShows: bz1.shows - bz.shows });
   }
 
   // 播放 15 秒（一週一格）

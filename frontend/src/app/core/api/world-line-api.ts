@@ -11,6 +11,7 @@ import type {
   SovereigntyMapDto,
   TimelineSnapshotDto,
   TimelineExtentDto,
+  TimelineChangePointsDto,
   RegimeEventDto,
 } from './api-types';
 
@@ -65,6 +66,12 @@ export class WorldLineApi {
   }
 
   /** GET /timeline/extent：未撤回事件的最早／最晚日期（時間軸起點往前延伸用）。 */
+  /** GET /timeline/change-points：主權／衝突圖層的變動點（相鄰兩點之間每天結果相同）。 */
+  async timelineChangePoints(): Promise<TimelineChangePointsDto> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<TimelineChangePointsDto>>(`${WorldLineApi.base}/timeline/change-points`));
+    return res.data;
+  }
+
   async timelineExtent(): Promise<TimelineExtentDto> {
     const res = await firstValueFrom(this.http.get<ApiEnvelope<TimelineExtentDto>>(`${WorldLineApi.base}/timeline/extent`));
     return res.data;

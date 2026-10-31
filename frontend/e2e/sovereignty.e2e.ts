@@ -158,6 +158,22 @@ test('亞洲第一批：1941-12-15 東京與首爾屬大日本帝國、重慶屬
   expect(slugs).not.toContain('soviet-union/empire-of-japan');
 });
 
+test('國界補完整：1941-12-15 新西伯利亞、塔什干、烏蘇里斯克屬蘇聯，凡城屬土耳其（不再被東經 42 度裁切）', async ({ page }) => {
+  for (const [at, title] of [
+    [[82.9, 55.0], '蘇'],
+    [[69.25, 41.3], '蘇'],
+    [[131.95, 43.8], '蘇'],
+    [[43.38, 38.5], '土耳其'],
+  ] as const) {
+    await page.goto('/?date=1941-12-15&axis=sovereignty');
+    await waitForBorders(page);
+    await jump(page, [...at], 4.5);
+    await clickLngLat(page, [...at]);
+    await expect(page.getByTestId('sovereignty-card-title')).toContainText(title);
+    await expect(page.getByTestId('sovereignty-card-geometry')).toContainText('完整，不受歐陸框裁切');
+  }
+});
+
 test('陣營外框圖層可開關，預設關閉', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);

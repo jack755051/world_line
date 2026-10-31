@@ -25,6 +25,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
+    public DbSet<OccupationAttribution> OccupationAttributions => Set<OccupationAttribution>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -331,6 +332,28 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeBId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 佔領歸屬（主權圖層依佔領國上色；2026-10-31 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<OccupationAttribution>(e =>
+        {
+            e.ToTable("occupation_attributions", t =>
+            {
+                t.HasCheckConstraint("ck_occupation_attributions_distinct_regimes", "occupied_regime_id <> occupier_regime_id");
+                t.HasCheckConstraint("ck_occupation_attributions_control_kind", InList("control_kind", OccupationControlKinds.All));
+                t.HasCheckConstraint("ck_occupation_attributions_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_occupation_attributions_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_occupation_attributions_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.ControlKind).HasMaxLength(24);
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.OccupiedRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.OccupierRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.BasisEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

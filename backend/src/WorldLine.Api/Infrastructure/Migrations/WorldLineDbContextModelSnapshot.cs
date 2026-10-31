@@ -583,6 +583,95 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.OccupationAttribution", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<Guid?>("BasisEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("basis_event_id");
+
+                    b.Property<bool>("CoOccupied")
+                        .HasColumnType("boolean")
+                        .HasColumnName("co_occupied");
+
+                    b.Property<string>("ControlKind")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasColumnName("control_kind");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("note");
+
+                    b.Property<Guid>("OccupiedRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("occupied_regime_id");
+
+                    b.Property<Guid>("OccupierRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("occupier_regime_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<NpgsqlRange<DateOnly>>("ValidPeriod")
+                        .HasColumnType("daterange")
+                        .HasColumnName("valid_period");
+
+                    b.Property<int>("Version")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_occupation_attributions");
+
+                    b.HasIndex("BasisEventId")
+                        .HasDatabaseName("ix_occupation_attributions_basis_event_id");
+
+                    b.HasIndex("OccupiedRegimeId")
+                        .HasDatabaseName("ix_occupation_attributions_occupied_regime_id");
+
+                    b.HasIndex("OccupierRegimeId")
+                        .HasDatabaseName("ix_occupation_attributions_occupier_regime_id");
+
+                    b.HasIndex("ValidPeriod")
+                        .HasDatabaseName("ix_occupation_attributions_valid_period");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("ValidPeriod"), "gist");
+
+                    b.ToTable("occupation_attributions", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_occupation_attributions_control_kind", "control_kind IN ('annexed', 'civil_administration', 'military_administration')");
+
+                            t.HasCheckConstraint("ck_occupation_attributions_distinct_regimes", "occupied_regime_id <> occupier_regime_id");
+
+                            t.HasCheckConstraint("ck_occupation_attributions_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+
+                            t.HasCheckConstraint("ck_occupation_attributions_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_occupation_attributions_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.ReferenceLand", b =>
                 {
                     b.Property<int>("Id")
@@ -1375,6 +1464,29 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasForeignKey("ParentEventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_historical_events_historical_events_parent_event_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.OccupationAttribution", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("BasisEventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_occupation_attributions_historical_events_basis_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("OccupiedRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_occupation_attributions_regimes_occupied_regime_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("OccupierRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_occupation_attributions_regimes_occupier_regime_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.ReferenceLand", b =>

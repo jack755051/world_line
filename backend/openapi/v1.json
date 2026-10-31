@@ -1148,6 +1148,153 @@
         ]
       }
     },
+    "/api/v1/occupation-attributions": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "CreateOccupationAttribution",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOccupationAttributionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfOccupationAttributionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/occupation-attributions/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "RetractOccupationAttribution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/sources/{id}": {
       "get": {
         "tags": [
@@ -2025,6 +2172,55 @@
             "type": "string"
           },
           "data": { },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfOccupationAttributionDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OccupationAttributionDto"
+              }
+            ]
+          },
           "code": {
             "type": [
               "null",
@@ -3411,6 +3607,69 @@
           }
         }
       },
+      "CreateOccupationAttributionRequest": {
+        "required": [
+          "occupiedRegimeId",
+          "occupierRegimeId",
+          "controlKind",
+          "validPeriod"
+        ],
+        "type": "object",
+        "properties": {
+          "occupiedRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "occupierRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "controlKind": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "basisEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "coOccupied": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "CreateRegimeAlignmentRequest": {
         "required": [
           "camp",
@@ -4107,6 +4366,116 @@
         }
       },
       "JsonElement": { },
+      "OccupationAttributionDto": {
+        "required": [
+          "id",
+          "occupiedRegimeId",
+          "occupierRegimeId",
+          "controlKind",
+          "validPeriod",
+          "basisEventId",
+          "coOccupied",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupiedRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupierRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "controlKind": {
+            "type": "string"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "basisEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "coOccupied": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "OccupationRefDto": {
+        "required": [
+          "id",
+          "occupierRegimeId",
+          "occupierSlug",
+          "controlKind",
+          "coOccupied",
+          "validPeriod",
+          "basisEvent",
+          "verification",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupierRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupierSlug": {
+            "type": "string"
+          },
+          "controlKind": {
+            "type": "string"
+          },
+          "coOccupied": {
+            "type": "boolean"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "basisEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "verification": {
+            "type": "string"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "PaginatedResponseOfTimelineSnapshotDto": {
         "required": [
           "items",
@@ -4811,6 +5180,16 @@
               },
               {
                 "$ref": "#/components/schemas/RegimeAlignmentDto"
+              }
+            ]
+          },
+          "occupation": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OccupationRefDto"
               }
             ]
           }

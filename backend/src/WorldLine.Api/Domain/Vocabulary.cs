@@ -103,3 +103,17 @@ public static class SovereigntyLayerStatuses
     public const string NotSovereign = "not_sovereign";
     public static readonly string[] All = [DeJure, NotSovereign];
 }
+
+/// <summary>
+/// 佔領的控制程度（2026-10-31 Tai：主權圖層依佔領國上色，深淺分三級；AI 提案・待拍板）。
+/// annexed＝併入（正式或事實併入，最深）；civil_administration＝帝國專員轄區／總督轄區／總督府等民政管理（中等）；
+/// military_administration＝軍事管理（最淺）。
+/// </summary>
+public static class OccupationControlKinds
+{
+    public const string Annexed = "annexed";
+    public const string CivilAdministration = "civil_administration";
+    public const string MilitaryAdministration = "military_administration";
+    public static readonly string[] All = [Annexed, CivilAdministration, MilitaryAdministration];
+}
+

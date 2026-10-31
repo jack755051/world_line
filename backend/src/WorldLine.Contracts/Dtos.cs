@@ -226,7 +226,25 @@ public sealed record GeometryProvenanceDto(
 public sealed record SovereigntyFeatureProperties(
     Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
     SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
-    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null);
+    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null);
+
+/// <summary>
+/// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|
+/// military_administration（軍事管理，最淺）。verification：依據事件有引用＝verified，否則 pending（待查證）。
+/// coOccupied＝共同佔領但缺分區幾何，只記主要佔領方。
+/// </summary>
+public sealed record OccupationRefDto(
+    Guid Id, Guid OccupierRegimeId, string OccupierSlug, string ControlKind, bool CoOccupied, DatePeriodDto ValidPeriod,
+    SovereigntyEventRefDto? BasisEvent, string Verification, IReadOnlyDictionary<string, string>? Note);
+
+/// <summary>新增佔領歸屬（依被佔領政權＋期間；同政權有效期間不可重疊）。</summary>
+public sealed record CreateOccupationAttributionRequest(
+    Guid? OccupiedRegimeId, Guid? OccupierRegimeId, string? ControlKind, DatePeriodDto? ValidPeriod,
+    Guid? BasisEventId = null, bool? CoOccupied = null, IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record OccupationAttributionDto(
+    Guid Id, Guid OccupiedRegimeId, Guid OccupierRegimeId, string ControlKind, DatePeriodDto ValidPeriod,
+    Guid? BasisEventId, bool CoOccupied, IReadOnlyDictionary<string, string>? Note);
 
 public sealed record SovereigntyFeature(Guid Id, JsonElement Geometry, SovereigntyFeatureProperties Properties)
 {

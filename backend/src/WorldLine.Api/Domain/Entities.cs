@@ -266,6 +266,28 @@ public sealed class SovereigntyRecord
 }
 
 /// <summary>
+/// 佔領歸屬（occupation_attributions）：某政權（非主權的佔領區、併入區）在某期間由哪個政權佔領、控制程度為何。
+/// 依政權＋期間（不綁單筆主權紀錄，國界修正撤回再新增時不必重寫）；同一被佔領政權的有效紀錄期間不可重疊（EXCLUDE）。
+/// basis_event_id＝有出處的事件；沒有事件或事件沒有引用＝「待查證」。共同佔領缺分區幾何時記主要佔領方並 co_occupied＝true、在 note 註記。
+/// I5：不可刪；只允許一次撤回。2026-10-31 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class OccupationAttribution
+{
+    public Guid Id { get; set; }
+    public Guid OccupiedRegimeId { get; set; }
+    public Guid OccupierRegimeId { get; set; }
+    public string ControlKind { get; set; } = "";
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public Guid? BasisEventId { get; set; }
+    public bool CoOccupied { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
 /// 衝突（conflict_records）：兩個政權之間的交戰，地圖上在兩國交界畫「交叉雙劍」圖示（Tai 2026-10-31）。
 /// - 每筆衝突一定對應有日期的開戰事件（start_event_id 必填）；停戰／投降事件可空（試驗範圍內未結束）。
 /// - 顯示期間由事件推得：[開戰日, 停戰或投降日 + 1)，結束日當天仍顯示；不另存可與事件不一致的日期。

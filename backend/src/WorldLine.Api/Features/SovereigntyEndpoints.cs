@@ -137,6 +137,7 @@ public static class SovereigntyEndpoints
         var events = await EventRefsAsync(db, eventIds, ct);
         var regimeIds = rows.Select(x => x.r.RegimeId).Distinct().ToList();
         var alignments = await RegimeAlignmentsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
+        var occupations = await OccupationsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
 
         var features = rows.Select(x =>
         {
@@ -150,7 +151,8 @@ public static class SovereigntyEndpoints
                 new GeometryProvenanceDto(r.GeometrySourceId, x.Title, x.Publisher, x.LicenseCode, r.GeometryLocator,
                     r.GeometryLicense, r.Attribution, r.OhmRelationId, r.OhmVersion, r.OhmFetchedAt, r.OhmStartRaw, r.OhmEndRaw, flags),
                 Mapping.ReadLocalizedOrNull(r.Note),
-                alignments.GetValueOrDefault(r.RegimeId)));
+                alignments.GetValueOrDefault(r.RegimeId),
+                occupations.GetValueOrDefault(r.RegimeId)));
         }).ToList();
         return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
     }

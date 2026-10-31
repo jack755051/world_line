@@ -289,3 +289,25 @@ test('舊資料修正：1942-11-01 阿爾及利亞仍屬維琪；1942-12-01 阿�
   await expect(title).toContainText('丹麥');
   await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
 });
+
+test('1941-12-01：補空白第一段（德國、蘇聯、東方與烏克蘭總督轄區、羅馬尼亞）', async ({ page }) => {
+  await page.goto('/?date=1941-12-01&axis=sovereignty');
+  await waitForBorders(page);
+  const card = page.getByTestId('sovereignty-card');
+  const title = page.getByTestId('sovereignty-card-title');
+  const start = page.getByTestId('sovereignty-card-start');
+  await clickAt(page, [30.52, 50.45]); // 基輔
+  await expect(title).toContainText('烏克蘭總督轄區');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+  await clickAt(page, [24.1, 56.95]); // 里加
+  await expect(title).toContainText('東方總督轄區');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await clickAt(page, [37.62, 55.75]); // 莫斯科
+  await expect(title).toContainText('蘇維埃');
+  await expect(card).toHaveAttribute('data-layer-status', 'de_jure');
+  await clickAt(page, [13.4, 52.5]); // 柏林
+  await expect(title).toContainText('德意志國');
+  await clickAt(page, [28.86, 47.01]); // 基希涅夫
+  await expect(title).toContainText('羅馬尼亞王國');
+});

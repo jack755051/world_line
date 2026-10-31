@@ -88,9 +88,7 @@ interface Marker {
           <!-- 早於 1937-07 的期間（WW1 試驗資料也在這段，仍標不保證完整）：淡底＋「資料不保證完整」 -->
           @if (incompleteWidth() > 0) {
             <div data-testid="timeline-incomplete" class="absolute top-[12px] left-0 flex items-center justify-center bg-wl-surface-dim/60 border-r border-dashed border-wl-outline"
-              [style.height.px]="tracks().length * 14" [style.width.%]="incompleteWidth() * 100">
-              <span class="wl-text2 text-wl-on-surface-variant">{{ tr('timeline.incomplete') }}</span>
-            </div>
+              [style.height.px]="tracks().length * 14" [style.width.%]="incompleteWidth() * 100"></div>
           }
           <div class="absolute inset-x-0 top-[12px] flex flex-col">
             @for (tk of tracks(); track tk.code) {
@@ -109,6 +107,12 @@ interface Marker {
               </div>
             }
           </div>
+          <!-- 「資料不保證完整」標籤：畫在軌道之後（蓋在軌道線上，實底不透字），在把手之前；區段太窄（< 8%）就不標字，只留淡底（Tai 2026-11-01：標籤和戰區軌道疊在一起） -->
+          @if (incompleteWidth() >= 0.08) {
+            <div class="pointer-events-none absolute top-[12px] left-0 flex items-center justify-center" [style.height.px]="tracks().length * 14" [style.width.%]="incompleteWidth() * 100">
+              <span data-testid="timeline-incomplete-label" class="whitespace-nowrap rounded-wl-md border border-wl-outline-variant bg-wl-surface-bright px-1.5 wl-text2 leading-[18px] text-wl-on-surface-variant">{{ tr('timeline.incomplete') }}</span>
+            </div>
+          }
           <!-- 年刻度：軌道下方 4px 刻線＋襯線 12px 年份（不與軌道重疊）；月刻度為軌道下方 2px 細線（Stitch W1：軌道內不畫格線） -->
           @for (m of months(); track m.date) {
             <div class="pointer-events-none absolute h-[2px] w-px bg-wl-outline-variant" [style.top.px]="12 + tracks().length * 14" [style.left.%]="m.f * 100"></div>

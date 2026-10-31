@@ -129,3 +129,24 @@ for (const [date, focus] of [
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-europe-${date}.png` });
   });
 }
+
+// 時間軸 1937 以前淡底的「資料不保證完整」標籤：蓋在戰區軌道上、不被軌道線穿過（Tai 2026-11-01）
+test('時間軸：1937 以前「資料不保證完整」標籤在軌道之上、可讀', async ({ page }) => {
+  await page.goto('/?date=1913-01-01&axis=sovereignty');
+  const label = page.getByTestId('timeline-incomplete-label');
+  await expect(label).toBeVisible();
+  const topmost = await label.evaluate((el) => {
+    // 標籤本身不吃滑鼠（pointer-events: none），量繪製順序時暫時打開
+    (el as HTMLElement).style.pointerEvents = 'auto';
+    (el.parentElement as HTMLElement).style.pointerEvents = 'auto';
+    const r = el.getBoundingClientRect();
+    const pts = [[0.5, 0.5], [0.15, 0.5], [0.85, 0.5], [0.5, 0.2], [0.5, 0.8]];
+    return pts.every(([fx, fy]) => {
+      const hit = document.elementFromPoint(r.left + r.width * fx, r.top + r.height * fy);
+      return hit === el || el.contains(hit);
+    });
+  });
+  expect(topmost).toBe(true);
+  const bg = await label.evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(bg).not.toMatch(/rgba\(.*,\s*0\)$|transparent/);
+});

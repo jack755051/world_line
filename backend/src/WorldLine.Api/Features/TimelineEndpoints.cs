@@ -15,6 +15,7 @@ public static class TimelineEndpoints
     {
         read.MapGet("/timeline/snapshots", GetSnapshots).WithTags("Timeline").WithName("GetTimelineSnapshots").Ok<PaginatedResponse<TimelineSnapshotDto>>().Errors(400);
         read.MapGet("/timeline/extent", GetExtent).WithTags("Timeline").WithName("GetTimelineExtent").Ok<TimelineExtentDto>();
+        read.MapGet("/timeline/change-points", GetChangePoints).WithTags("Timeline").WithName("GetTimelineChangePoints").Ok<TimelineChangePointsDto>();
     }
 
     /// <summary>未撤回事件的最早發生日（occurred 下界）與最晚發生日；沒有事件時兩者為 null。</summary>
@@ -24,6 +25,14 @@ public static class TimelineEndpoints
         var earliest = await q.MinAsync(e => (DateOnly?)e.Occurred.LowerBound, ct);
         var latest = await q.MaxAsync(e => (DateOnly?)e.Occurred.LowerBound, ct);
         return ApiResults.Ok(new TimelineExtentDto(earliest, latest));
+    }
+
+    /// <summary>主權／衝突圖層的變動點（見 <see cref="DateIntervalCache"/>）。</summary>
+    public static async Task<IResult> GetChangePoints(WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
+    {
+        var v = cache.Version;
+        var points = await cache.ChangePointsAsync(db, ct);
+        return ApiResults.Ok(new TimelineChangePointsDto(v, points));
     }
 
     public static async Task<IResult> GetSnapshots(DateOnly? from, DateOnly? to, int? page, int? pageSize,

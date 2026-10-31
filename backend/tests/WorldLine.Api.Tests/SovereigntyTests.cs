@@ -154,6 +154,12 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         Assert.NotNull(await FeatureOn(k, "1939-01-01", second));
         await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-records/{first}/retraction", new { reason = "測試快取作廢" }), HttpStatusCode.OK);
         Assert.Null(await FeatureOn(k, "1930-01-01", first));
+        // 變動點（前端用來判斷換日期要不要重新載入）含這兩筆紀錄的起訖日
+        var cp = (await ApiTestKit.Expect(await k.R.GetAsync("/api/v1/timeline/change-points"), HttpStatusCode.OK)).GetProperty("data");
+        var pts = cp.GetProperty("points").EnumerateArray().Select(x => x.GetString()).ToList();
+        Assert.Contains("1938-11-02", pts);
+        Assert.Contains("1939-03-15", pts);
+        Assert.Equal(pts.OrderBy(x => x, StringComparer.Ordinal).ToList(), pts);
     }
 
     [Fact] // 回應壓縮：要求 gzip 時回傳壓縮內容

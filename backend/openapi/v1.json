@@ -1677,6 +1677,26 @@
         }
       }
     },
+    "/api/v1/timeline/change-points": {
+      "get": {
+        "tags": [
+          "Timeline"
+        ],
+        "operationId": "GetTimelineChangePoints",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfTimelineChangePointsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/regimes/{id}/interactions": {
       "get": {
         "tags": [
@@ -2896,6 +2916,55 @@
               },
               {
                 "$ref": "#/components/schemas/TheaterDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfTimelineChangePointsDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/TimelineChangePointsDto"
               }
             ]
           },
@@ -5785,6 +5854,30 @@
                 "$ref": "#/components/schemas/SnapshotRefDto"
               }
             ]
+          }
+        }
+      },
+      "TimelineChangePointsDto": {
+        "required": [
+          "version",
+          "points"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
           }
         }
       },

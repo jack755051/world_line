@@ -246,9 +246,14 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
         b.Entity<EventParticipant>(e =>
         {
             e.ToTable("event_participants", t =>
-                t.HasCheckConstraint("ck_event_participants_role", InList("role", EventParticipantRoles.All)));
+            {
+                t.HasCheckConstraint("ck_event_participants_role", InList("role", EventParticipantRoles.All));
+                // 事後追加（方案 A）：追加時間與理由必須同時有或同時沒有
+                t.HasCheckConstraint("ck_event_participants_addition", "(added_at IS NULL) = (addition_note IS NULL) AND (addition_note IS NULL OR jsonb_typeof(addition_note) = 'object')");
+            });
             e.HasKey(x => new { x.EventId, x.RegimeId, x.Role });
             e.Property(x => x.Role).HasMaxLength(16);
+            e.Property(x => x.AdditionNote).HasColumnType("jsonb");
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
         });

@@ -199,6 +199,10 @@ public sealed class EventParticipant
     public Guid EventId { get; set; }
     public Guid RegimeId { get; set; }
     public string Role { get; set; } = "";
+    /// <summary>事後追加（方案 A，Tai 2026-10-31）的時間；隨事件一起寫入的為 null。</summary>
+    public DateTimeOffset? AddedAt { get; set; }
+    /// <summary>追加理由（多語 jsonb，追加時必填）。</summary>
+    public string? AdditionNote { get; set; }
 }
 
 /// <summary>事件引用（PRD §6.3 event_citations；格式同其他 citation 表）。寫入後不可改、不可刪（I5）。</summary>

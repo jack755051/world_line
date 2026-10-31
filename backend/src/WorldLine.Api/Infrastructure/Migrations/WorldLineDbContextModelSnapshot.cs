@@ -481,6 +481,14 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("role");
 
+                    b.Property<DateTimeOffset?>("AddedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("added_at");
+
+                    b.Property<string>("AdditionNote")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("addition_note");
+
                     b.HasKey("EventId", "RegimeId", "Role")
                         .HasName("pk_event_participants");
 
@@ -489,6 +497,8 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.ToTable("event_participants", null, t =>
                         {
+                            t.HasCheckConstraint("ck_event_participants_addition", "(added_at IS NULL) = (addition_note IS NULL) AND (addition_note IS NULL OR jsonb_typeof(addition_note) = 'object')");
+
                             t.HasCheckConstraint("ck_event_participants_role", "role IN ('belligerent', 'signatory', 'perpetrator', 'other')");
                         });
                 });

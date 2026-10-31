@@ -157,7 +157,14 @@ public sealed record EventParticipantInput(Guid? RegimeId, string? Role);
 /// <summary>事件引用（PRD §6.3 event_citations）：來源＋locator（頁碼、文件號）＋審查依據。</summary>
 public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote);
 
-public sealed record EventParticipantDto(Guid RegimeId, string Role);
+/// <summary>addedAt／additionNote：事後追加（方案 A）的參與方才有；隨事件寫入的為 null。</summary>
+public sealed record EventParticipantDto(Guid RegimeId, string Role, DateTimeOffset? AddedAt = null, IReadOnlyDictionary<string, string>? AdditionNote = null);
+
+/// <summary>
+/// 事後追加事件參與方（方案 A，Tai 2026-10-31）：只新增、不改不刪原有參與方；note 為追加理由（多語，必填）。
+/// 事件本身與引用不變；要改事件內容仍走撤回再新增。
+/// </summary>
+public sealed record AppendEventParticipantRequest(Guid? RegimeId, string? Role, IReadOnlyDictionary<string, string>? Note);
 
 public sealed record EventDto(
     Guid Id, string EventKind, Guid? ParentEventId, IReadOnlyDictionary<string, string>? Summary,

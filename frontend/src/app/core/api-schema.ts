@@ -132,6 +132,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/events/{id}/participants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AppendEventParticipant"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/regimes/{id}/alignments": {
         parameters: {
             query?: never;
@@ -650,6 +666,14 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        AppendEventParticipantRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            role: null | string;
+            note: null | {
+                [key: string]: string;
+            };
+        };
         CitationDto: {
             /** Format: uuid */
             sourceId: string;
@@ -984,6 +1008,11 @@ export interface components {
             /** Format: uuid */
             regimeId: string;
             role: string;
+            /** Format: date-time */
+            addedAt?: null | string;
+            additionNote?: null | {
+                [key: string]: string;
+            };
         };
         EventParticipantInput: {
             /** Format: uuid */
@@ -1682,6 +1711,68 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    AppendEventParticipant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AppendEventParticipantRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfEventDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };

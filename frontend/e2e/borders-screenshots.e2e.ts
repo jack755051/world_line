@@ -150,3 +150,36 @@ test('時間軸：1937 以前「資料不保證完整」標籤在軌道之上、
   const bg = await label.evaluate((el) => getComputedStyle(el).backgroundColor);
   expect(bg).not.toMatch(/rgba\(.*,\s*0\)$|transparent/);
 });
+
+// WW1 第二批（1914-08～1918-11-11）：宣戰與參戰、佔領區、布列斯特、停戰；點選聚焦政權後才顯示該政權的衝突雙劍
+for (const [date, focus] of [
+  ['1915-06-01', [10.5, 51.0]], // 德意志帝國：比利時、法國北部佔領區；東西兩線
+  ['1916-12-01', [16.4, 48.2]], // 奧匈：塞爾維亞、蒙特內哥羅軍事總督府；羅馬尼亞戰線
+  ['1918-03-04', [10.5, 51.0]], // 德意志帝國：布列斯特和約翌日，東方佔領區與新國家
+  ['1918-11-11', [2.5, 47.0]], // 法國：貢比涅停戰當日
+] as const) {
+  test(`截圖：${date} 歐洲與近東（WW1 第二批）`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/?date=${date}&axis=sovereignty`);
+    const canvas = page.getByTestId('map-canvas');
+    await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+    await page.evaluate(() => {
+      const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+      map.jumpTo({ center: [22, 47], zoom: 3.1 });
+    });
+    await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+    await page.waitForTimeout(1000);
+    const box = await canvas.boundingBox();
+    const p = await page.evaluate((ll) => {
+      const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
+      return map.project([ll[0], ll[1]]);
+    }, focus);
+    await page.mouse.click((box?.x ?? 0) + p.x, (box?.y ?? 0) + p.y);
+    await expect(page.getByTestId('sovereignty-card')).toBeVisible();
+    // 衝突 API 在這幾個日期要 8～9 秒（交戰方多、要算相鄰／弧線），等清單出現再截
+    await expect(page.getByTestId('sovereignty-card-conflict').first()).toBeVisible({ timeout: 40_000 });
+    await page.mouse.move(5, 5);
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-ww1-${date}.png` });
+  });
+}

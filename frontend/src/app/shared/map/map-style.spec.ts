@@ -110,6 +110,15 @@ describe('map-style', () => {
     expect(inL).toBe(true);
   });
 
+  it('labelPoint：很長的環（如蘇聯、美國）先等間隔取點，仍落在多邊形內且不拖慢', () => {
+    const n = 40000;
+    const ring = Array.from({ length: n + 1 }, (_, i) => [10 * Math.cos((2 * Math.PI * i) / n), 5 * Math.sin((2 * Math.PI * i) / n)]);
+    const t0 = performance.now();
+    const [x, y] = labelPoint([ring]);
+    expect(performance.now() - t0).toBeLessThan(500);
+    expect((x / 10) ** 2 + (y / 5) ** 2).toBeLessThan(0.2);
+  });
+
   it('controlLabels：文字只來自政權名稱；查不到名稱就不標', () => {
     const dto = fixture('attested');
     expect(controlLabels(dto, () => null)).toEqual([]);

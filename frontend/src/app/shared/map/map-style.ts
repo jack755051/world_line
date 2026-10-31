@@ -257,8 +257,19 @@ function segDist2(px: number, py: number, a: number[], b: number[]): number {
   return dx * dx + dy * dy;
 }
 
+/** 標籤計算用：環太長時等間隔取點（最多約 MAX_LABEL_RING_POINTS 點），避免蘇聯、美國這類大多邊形拖慢主執行緒。 */
+const MAX_LABEL_RING_POINTS = 1500;
+function thinRing(r: Ring): Ring {
+  if (r.length <= MAX_LABEL_RING_POINTS) return r;
+  const step = Math.ceil(r.length / MAX_LABEL_RING_POINTS);
+  const out: Ring = [];
+  for (let i = 0; i < r.length; i += step) out.push(r[i]);
+  return out;
+}
+
 /** 多邊形內離邊界最遠的點（格點搜尋＋兩輪細化；標籤用，不需精確）。洞內的點不算。 */
-export function labelPoint(poly: Ring[]): [number, number] {
+export function labelPoint(full: Ring[]): [number, number] {
+  const poly = full.map(thinRing);
   const outer = poly[0];
   let [minX, minY, maxX, maxY] = [Infinity, Infinity, -Infinity, -Infinity];
   for (const [x, y] of outer) {

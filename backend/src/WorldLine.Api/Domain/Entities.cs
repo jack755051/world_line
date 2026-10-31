@@ -264,3 +264,28 @@ public sealed class SovereigntyRecord
     public DateTimeOffset CreatedAt { get; set; }
     public int Version { get; set; }
 }
+
+/// <summary>
+/// 衝突（conflict_records）：兩個政權之間的交戰，地圖上在兩國交界畫「交叉雙劍」圖示（Tai 2026-10-31）。
+/// - 每筆衝突一定對應有日期的開戰事件（start_event_id 必填）；停戰／投降事件可空（試驗範圍內未結束）。
+/// - 顯示期間由事件推得：[開戰日, 停戰或投降日 + 1)，結束日當天仍顯示；不另存可與事件不一致的日期。
+/// - 事件沒有合格引用即「待查證」，不推測；圖示位置與算法（location_method）一併存放。
+/// - 修正走軟撤回（I5），不硬刪。2026-10-31 試驗（feature/borders-1938-1940），AI 提案・待拍板。
+/// </summary>
+public sealed class ConflictRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeAId { get; set; }
+    public Guid RegimeBId { get; set; }
+    public Guid StartEventId { get; set; }
+    public Guid? EndEventId { get; set; }
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public Point Location { get; set; } = null!;
+    /// <summary>圖示位置怎麼來的（例：兩國主權圖層在開戰日的共同邊界中點）。</summary>
+    public string LocationMethod { get; set; } = "";
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}

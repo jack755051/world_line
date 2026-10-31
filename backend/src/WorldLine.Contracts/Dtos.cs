@@ -231,3 +231,34 @@ public sealed record SovereigntyFeatureCollection(IReadOnlyList<SovereigntyFeatu
 }
 
 public sealed record SovereigntyMapDto(DateOnly Date, SovereigntyFeatureCollection FeatureCollection);
+
+// ───────────── 衝突圖示（交叉雙劍；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增衝突。regimeAId／regimeBId＝交戰雙方；startEventId（開戰事件）必填，endEventId（停戰／投降）可空。
+/// 顯示期間由事件推得：[開戰日, 結束日 + 1)。location＝圖示位置（GeoJSON Point），locationMethod 說明位置怎麼算的。
+/// </summary>
+public sealed record CreateConflictRecordRequest(
+    Guid? RegimeAId, Guid? RegimeBId, Guid? StartEventId, Guid? EndEventId,
+    JsonElement? Location, string? LocationMethod, IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record ConflictRecordDto(
+    Guid Id, Guid RegimeAId, Guid RegimeBId, Guid StartEventId, Guid? EndEventId, DatePeriodDto ValidPeriod,
+    JsonElement Location, string LocationMethod);
+
+/// <summary>衝突圖示屬性：起訖事件與主權卡同一結構（事件名稱、日期、查證狀態、出處）。</summary>
+public sealed record ConflictFeatureProperties(
+    Guid RecordId, Guid RegimeAId, string RegimeASlug, Guid RegimeBId, string RegimeBSlug, DatePeriodDto ValidPeriod,
+    SovereigntyEventRefDto StartEvent, SovereigntyEventRefDto? EndEvent, string LocationMethod,
+    IReadOnlyDictionary<string, string>? Note);
+
+public sealed record ConflictFeature(Guid Id, JsonElement Geometry, ConflictFeatureProperties Properties)
+{
+    public string Type => "Feature";
+}
+
+public sealed record ConflictFeatureCollection(IReadOnlyList<ConflictFeature> Features)
+{
+    public string Type => "FeatureCollection";
+}
+
+public sealed record ConflictMapDto(DateOnly Date, ConflictFeatureCollection FeatureCollection);

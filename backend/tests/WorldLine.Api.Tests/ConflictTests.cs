@@ -1,0 +1,122 @@
+using System.Net;
+using System.Net.Http.Json;
+using System.Text.Json;
+
+namespace WorldLine.Api.Tests;
+
+/// <summary>
+/// 衝突圖示（交叉雙劍；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板）：
+/// 每個衝突都對應有日期的開戰事件；顯示期間由事件推得 [開戰日, 停戰或投降日 + 1)；
+/// 起訖事件沿用主權卡的事件結構（沒有引用＝待查證）；撤回走 I5。
+/// </summary>
+[Collection(PostGisCollection.Name)]
+public sealed class ConflictTests(PostGisFixture fx)
+{
+    private static object Point(double x, double y) => new { type = "Point", coordinates = new[] { x, y } };
+
+    private static async Task<Guid> Event(ApiTestKit k, string kind, string start, params object[] citations)
+    {
+        var res = await k.W.PostAsJsonAsync("/api/v1/events", new
+        {
+            eventKind = kind,
+            occurred = new { start, end = DateOnly.Parse(start).AddDays(1).ToString("yyyy-MM-dd") },
+            datePrecision = "day",
+            summary = new Dictionary<string, string> { ["zh-Hant"] = $"{kind} {start}", ["en"] = $"{kind} {start}" },
+            citations,
+        });
+        return await k.Id(res);
+    }
+
+    private static Task<HttpResponseMessage> Post(ApiTestKit k, Guid a, Guid b, Guid? start, Guid? end, object? location = null, string method = "共同邊界中點") =>
+        k.W.PostAsJsonAsync("/api/v1/conflict-records", new
+        {
+            regimeAId = a, regimeBId = b, startEventId = start, endEventId = end,
+            location = location ?? Point(18.5, 51.5), locationMethod = method,
+        });
+
+    private static async Task<JsonElement?> FeatureOn(ApiTestKit k, string date, Guid id)
+    {
+        var data = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/conflicts?date={date}"), HttpStatusCode.OK)).GetProperty("data");
+        Assert.Equal(date, data.GetProperty("date").GetString());
+        Assert.Equal("FeatureCollection", data.GetProperty("featureCollection").GetProperty("type").GetString());
+        foreach (var f in data.GetProperty("featureCollection").GetProperty("features").EnumerateArray())
+            if (f.GetProperty("properties").GetProperty("recordId").GetGuid() == id) return f;
+        return null;
+    }
+
+    [Fact]
+    public async Task Shown_from_start_event_date_through_end_event_date_inclusive_with_point_and_event_refs()
+    {
+        var k = new ApiTestKit(fx);
+        var de = await k.Regime("reich");
+        var pl = await k.Regime("polska");
+        var frus = await k.Source(kind: "official_record", title: "FRUS 1939 I");
+        var start = await Event(k, "war", "1939-09-01", new { sourceId = frus, locator = "Doc. 403, pp. 402–403", evidenceNote = "state of war" });
+        var end = await Event(k, "surrender", "1939-10-06");
+        var id = await k.Id(await Post(k, de, pl, start, end));
+
+        Assert.Null(await FeatureOn(k, "1939-08-31", id));
+        Assert.Null(await FeatureOn(k, "1939-10-07", id));
+        Assert.NotNull(await FeatureOn(k, "1939-10-06", id)); // 結束日當天仍顯示
+        var f = (await FeatureOn(k, "1939-09-15", id))!.Value;
+        Assert.Equal("Feature", f.GetProperty("type").GetString());
+        Assert.Equal("Point", f.GetProperty("geometry").GetProperty("type").GetString());
+        var p = f.GetProperty("properties");
+        Assert.Equal($"reich-{k.Tag}", p.GetProperty("regimeASlug").GetString());
+        Assert.Equal($"polska-{k.Tag}", p.GetProperty("regimeBSlug").GetString());
+        Assert.Equal("1939-09-01", p.GetProperty("validPeriod").GetProperty("start").GetString());
+        Assert.Equal("1939-10-07", p.GetProperty("validPeriod").GetProperty("end").GetString());
+        Assert.Equal("verified", p.GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("Doc. 403, pp. 402–403", p.GetProperty("startEvent").GetProperty("citations")[0].GetProperty("locator").GetString());
+        // 結束事件沒有引用：待查證，citations 為空陣列（與起始事件同一形狀）
+        Assert.Equal("pending", p.GetProperty("endEvent").GetProperty("verification").GetString());
+        Assert.Equal(0, p.GetProperty("endEvent").GetProperty("citations").GetArrayLength());
+        Assert.Equal("共同邊界中點", p.GetProperty("locationMethod").GetString());
+    }
+
+    [Fact]
+    public async Task Without_end_event_the_conflict_stays_open()
+    {
+        var k = new ApiTestKit(fx);
+        var it = await k.Regime("italia");
+        var gr = await k.Regime("hellas");
+        var start = await Event(k, "war", "1940-10-28");
+        var id = await k.Id(await Post(k, it, gr, start, null, Point(20.6, 40.2)));
+        var p = (await FeatureOn(k, "1941-01-15", id))!.Value.GetProperty("properties");
+        Assert.Equal(JsonValueKind.Null, p.GetProperty("validPeriod").GetProperty("end").ValueKind);
+        Assert.Equal(JsonValueKind.Null, p.GetProperty("endEvent").ValueKind);
+        Assert.Equal("pending", p.GetProperty("startEvent").GetProperty("verification").GetString());
+    }
+
+    [Fact]
+    public async Task Validation_start_event_required_order_distinct_regimes_and_point_location()
+    {
+        var k = new ApiTestKit(fx);
+        var a = await k.Regime("a");
+        var b = await k.Regime("b");
+        var start = await Event(k, "war", "1940-05-10");
+        var earlier = await Event(k, "surrender", "1940-05-01");
+        await ApiTestKit.Expect(await Post(k, a, b, null, null), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await Post(k, a, b, Guid.NewGuid(), null), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await Post(k, a, a, start, null), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await Post(k, a, b, start, earlier), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await Post(k, a, b, start, null, ApiTestKit.Square(1, 1)), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await Post(k, a, b, start, null, method: " "), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.R.GetAsync("/api/v1/conflicts"), HttpStatusCode.BadRequest);
+    }
+
+    [Fact]
+    public async Task Retraction_hides_the_conflict_and_can_happen_only_once()
+    {
+        var k = new ApiTestKit(fx);
+        var a = await k.Regime("nl-a");
+        var b = await k.Regime("nl-b");
+        var start = await Event(k, "war", "1940-05-10");
+        var end = await Event(k, "surrender", "1940-05-14");
+        var id = await k.Id(await Post(k, a, b, start, end));
+        Assert.NotNull(await FeatureOn(k, "1940-05-12", id));
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/conflict-records/{id}/retraction", new { reason = "測試" }), HttpStatusCode.OK);
+        Assert.Null(await FeatureOn(k, "1940-05-12", id));
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/conflict-records/{id}/retraction", new { reason = "再一次" }), HttpStatusCode.Conflict);
+    }
+}

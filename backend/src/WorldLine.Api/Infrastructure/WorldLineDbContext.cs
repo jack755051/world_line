@@ -24,6 +24,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
+    public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -307,6 +308,29 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.GeometrySourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.Geom).HasMethod("gist");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 衝突圖示（交叉雙劍；2026-10-31 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<ConflictRecord>(e =>
+        {
+            e.ToTable("conflict_records", t =>
+            {
+                t.HasCheckConstraint("ck_conflict_records_distinct_regimes", "regime_a_id <> regime_b_id");
+                t.HasCheckConstraint("ck_conflict_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_conflict_records_location_method_not_blank", "btrim(location_method) <> ''");
+                t.HasCheckConstraint("ck_conflict_records_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_conflict_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Location).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeAId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeBId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

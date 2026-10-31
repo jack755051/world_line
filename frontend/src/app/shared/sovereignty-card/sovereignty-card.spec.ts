@@ -45,7 +45,7 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     const { el } = await render(props());
     for (const key of ['start', 'end']) {
       const row = q(el, 'sovereignty-card-' + key)!;
-      const kids = [...row.children].map((c) => c.getAttribute('data-testid'));
+      const kids = [...row.querySelector('wl-event-ref')!.children].map((c) => c.getAttribute('data-testid'));
       expect(kids).toEqual(['sovereignty-card-event-name', 'sovereignty-card-event-date', 'sovereignty-card-evidence']);
       expect(row.querySelector('[data-testid="sovereignty-card-event-date"]')?.textContent?.trim()).toBe('1938-09-29');
       const evidence = row.querySelector('[data-testid="sovereignty-card-evidence"]')!;

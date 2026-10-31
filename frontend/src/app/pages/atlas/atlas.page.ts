@@ -14,7 +14,8 @@ import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
 import { MotionService } from '../../core/motion';
 import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
-import { AtlasMap, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
+import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
+import { ConflictCard } from '../../shared/conflict-card/conflict-card';
 import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
 import { SovereigntyCard } from '../../shared/sovereignty-card/sovereignty-card';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
@@ -28,7 +29,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SovereigntyCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
+  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SovereigntyCard, ConflictCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -73,6 +74,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
             <div #mapArea data-testid="map-area" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
+                [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="selectedSov()?.recordId ?? null"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
@@ -128,14 +130,21 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               @if (selectedInfo(); as s) {
                 <div data-testid="feature-card-anchor" class="absolute z-20 overflow-y-auto" [style.left.px]="s.pos.left" [style.top.px]="s.pos.top" [style.bottom.px]="s.pos.bottom" [style.max-height.px]="s.pos.maxHeight">
                   <wl-feature-card [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang"
-                    [evidence]="s.evidence" [theaterState]="s.theater" [lang]="lang()" (closed)="selected.set(null)" />
+                    [evidence]="s.evidence" [theaterState]="s.theater" [lang]="lang()" (closed)="clearSelection()" />
                 </div>
               }
 
               @if (selectedSovInfo(); as s) {
                 <div data-testid="sovereignty-card-anchor" class="absolute z-20 flex flex-col" [style.left.px]="s.pos.left" [style.top.px]="s.pos.top" [style.bottom.px]="s.pos.bottom" [style.max-height.px]="s.pos.maxHeight">
                   <wl-sovereignty-card class="flex max-h-[inherit] min-h-0 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [lang]="lang()"
-                    (closed)="selectedSov.set(null)" />
+                    (closed)="clearSelection()" />
+                </div>
+              }
+
+              @if (selectedConflictInfo(); as c) {
+                <div data-testid="conflict-card-anchor" class="absolute z-20 flex flex-col" [style.left.px]="c.pos.left" [style.top.px]="c.pos.top" [style.bottom.px]="c.pos.bottom" [style.max-height.px]="c.pos.maxHeight">
+                  <wl-conflict-card class="flex max-h-[inherit] min-h-0 flex-col" [props]="c.props" [nameA]="c.nameA" [nameB]="c.nameB" [lang]="lang()"
+                    (closed)="clearSelection()" />
                 </div>
               }
 
@@ -175,6 +184,12 @@ export class AtlasPage {
   protected readonly hover = signal<MapFeatureEvent | null>(null);
   protected readonly selectedGap = signal<MapGapEvent | null>(null);
   protected readonly selectedSov = signal<MapSovereigntyEvent | null>(null);
+  /**
+   * 衝突圖示的焦點政權（Tai 2026-10-31）：平時不顯示衝突圖示；點選某個政權（開出資訊卡）後，
+   * 只顯示與該政權相關的衝突；關掉資訊卡（或點空白處、換日期）就清掉焦點、圖示隱藏。
+   */
+  protected readonly focusRegimeId = signal<string | null>(null);
+  protected readonly selectedConflict = signal<MapConflictEvent | null>(null);
   /** 地圖區（時間軸上方）大小：資訊卡依此避開時間軸與視窗邊緣。 */
   private readonly mapArea = viewChild<ElementRef<HTMLElement>>('mapArea');
   private readonly areaSize = signal({ w: 0, h: 0 });
@@ -200,6 +215,30 @@ export class AtlasPage {
       original: name?.original ?? '',
       originalLang: reg?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '',
     };
+  });
+  private regimeName(id: string, slug: string): string {
+    return regimeSelfName(this.data.regimes()[id], this.lang())?.display ?? slug;
+  }
+  protected readonly focusedConflicts = computed(() => {
+    const focus = this.focusRegimeId();
+    if (!focus) return [];
+    return (this.data.conflicts()?.featureCollection.features ?? []).filter(
+      (f) => f.properties.regimeAId === focus || f.properties.regimeBId === focus,
+    );
+  });
+  protected readonly conflictIcons = computed<MapConflictIcon[]>(() =>
+    this.focusedConflicts().map((f) => {
+      const p = f.properties;
+      const c = (f.geometry as { coordinates: number[] }).coordinates;
+      return { recordId: p.recordId, lngLat: [c[0], c[1]] as [number, number], label: `${this.regimeName(p.regimeAId, p.regimeASlug)} — ${this.regimeName(p.regimeBId, p.regimeBSlug)}` };
+    }),
+  );
+  protected readonly selectedConflictInfo = computed(() => {
+    const e = this.selectedConflict();
+    const f = e && this.focusedConflicts().find((x) => x.properties.recordId === e.recordId);
+    if (!e || !f) return null;
+    const p = f.properties;
+    return { pos: this.place(e.x + 14, e.y), props: p, nameA: this.regimeName(p.regimeAId, p.regimeASlug), nameB: this.regimeName(p.regimeBId, p.regimeBSlug) };
   });
   private readonly everLoaded = signal(false);
 
@@ -330,6 +369,7 @@ export class AtlasPage {
           this.debounce = setTimeout(() => {
             void this.data.loadControl(date);
             void this.data.loadSovereignty(date);
+            void this.data.loadConflicts(date);
           }, this.everLoaded() ? 120 : 0);
         }
         void this.router.navigate([], {
@@ -380,6 +420,7 @@ export class AtlasPage {
     void this.data.loadSnapshots();
     void this.data.loadControl(this.state.date());
     void this.data.loadSovereignty(this.state.date());
+    void this.data.loadConflicts(this.state.date());
   }
 
   protected reloadControl(): void {
@@ -395,12 +436,16 @@ export class AtlasPage {
     this.hover.set(null);
     this.selectedSov.set(null);
     this.selectedGap.set(null);
+    this.selectedConflict.set(null);
     this.selected.set(e);
+    this.focusRegimeId.set(this.findFeature(e.versionId)?.properties.controllerRegimeId ?? null);
   }
 
   protected setAxis(axis: 'control' | 'sovereignty'): void {
     this.state.axis.set(axis);
     if (axis === 'sovereignty') {
+      // 控制區卡片關掉時，連帶清掉它帶出的衝突圖示焦點（政權卡／衝突卡仍開著就保留）
+      if (this.selected() && !this.selectedConflict()) this.focusRegimeId.set(null);
       this.selected.set(null);
       this.selectedGap.set(null);
     }
@@ -410,12 +455,26 @@ export class AtlasPage {
     this.hover.set(null);
     this.selected.set(null);
     this.selectedGap.set(null);
+    this.selectedConflict.set(null);
     this.selectedSov.set(e);
+    const f = this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.recordId === e.recordId);
+    this.focusRegimeId.set(f?.properties.regimeId ?? null);
+  }
+
+  /** 點衝突圖示：換成衝突卡，焦點政權不變（圖示保持顯示）。 */
+  protected onConflictClick(e: MapConflictEvent): void {
+    this.hover.set(null);
+    this.selected.set(null);
+    this.selectedGap.set(null);
+    this.selectedSov.set(null);
+    this.selectedConflict.set(e);
   }
 
   protected onGapClick(e: MapGapEvent): void {
     this.hover.set(null);
     this.selected.set(null);
+    this.selectedConflict.set(null);
+    this.focusRegimeId.set(null);
     this.selectedGap.set(e);
   }
 
@@ -423,6 +482,8 @@ export class AtlasPage {
     this.selected.set(null);
     this.selectedGap.set(null);
     this.selectedSov.set(null);
+    this.selectedConflict.set(null);
+    this.focusRegimeId.set(null);
   }
 
   protected onInvalidInput(): void {

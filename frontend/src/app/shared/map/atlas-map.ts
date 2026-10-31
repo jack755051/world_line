@@ -192,6 +192,18 @@ export function buildBaseStyle(): StyleSpecification {
   };
 }
 
+/** 地圖上的一個衝突圖示（經緯度＝兩國交界的代表點，來自 API）。 */
+export interface MapConflictIcon {
+  recordId: string;
+  lngLat: [number, number];
+  label: string;
+}
+export interface MapConflictEvent {
+  recordId: string;
+  x: number;
+  y: number;
+}
+
 /**
  * 主地圖（PRD §8.2，`shared/map`）。只畫傳入的 API 資料；本元件不產生任何資料。
  * jsdom／無 WebGL 環境下不啟動 MapLibre，改顯示錯誤（單元測試因此不需要 WebGL）。
@@ -209,6 +221,27 @@ export function buildBaseStyle(): StyleSpecification {
       @for (l of placedLabels(); track l.versionId) {
         <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId" class="wl-regime-label absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap"
           [style.left.px]="l.x" [style.top.px]="l.y">{{ l.text }}</span>
+      }
+    </div>
+    <!-- 衝突圖示（交叉雙劍，自繪 SVG）：只在點選政權後由頁面傳入相關衝突；放在兩國交界，跟著地圖移動 -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      @for (c of placedConflicts(); track c.recordId) {
+        <button type="button" data-testid="map-conflict-icon" [attr.data-record-id]="c.recordId" [attr.aria-label]="c.label" [attr.title]="c.label"
+          class="wl-conflict-icon pointer-events-auto absolute flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-wl-outline bg-wl-surface shadow-[var(--wl-shadow-panel)] hover:bg-wl-surface-container-high"
+          [style.left.px]="c.x" [style.top.px]="c.y" (click)="onConflict($event, c)">
+          <svg viewBox="0 0 32 32" class="size-6 text-wl-error" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <!-- 劍一：劍尖右上、劍柄左下（劍身、護手、握把、柄頭） -->
+            <path d="M27.5 4.5 L25.8 9 L12.2 22.6 L9.4 19.8 L23 6.2 Z" fill="currentColor" stroke-width="0.8" />
+            <path d="M7.2 17.8 L14.2 24.8" stroke-width="2.4" />
+            <path d="M10.8 21.2 L6.6 25.4" stroke-width="2.2" />
+            <circle cx="5.6" cy="26.4" r="1.6" fill="currentColor" stroke-width="0" />
+            <!-- 劍二：劍尖左上、劍柄右下 -->
+            <path d="M4.5 4.5 L9 6.2 L22.6 19.8 L19.8 22.6 L6.2 9 Z" fill="currentColor" stroke-width="0.8" />
+            <path d="M24.8 17.8 L17.8 24.8" stroke-width="2.4" />
+            <path d="M21.2 21.2 L25.4 25.4" stroke-width="2.2" />
+            <circle cx="26.4" cy="26.4" r="1.6" fill="currentColor" stroke-width="0" />
+          </svg>
+        </button>
       }
     </div>
     @if (engineError()) {
@@ -231,6 +264,10 @@ export class AtlasMap {
   readonly selectedVersionId = input<string | null>(null);
   readonly engineErrorText = input('');
   readonly labels = input<ControlLabel[]>([]);
+  /** 要畫的衝突圖示（頁面只傳與點選政權相關的衝突；預設空陣列＝不顯示）。 */
+  readonly conflicts = input<MapConflictIcon[]>([]);
+  protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number })[]>([]);
+  readonly conflictClick = output<MapConflictEvent>();
   protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number }[]>([]);
 
   readonly featureClick = output<MapFeatureEvent>();
@@ -265,6 +302,11 @@ export class AtlasMap {
       this.labels();
       if (!this.ready()) return;
       untracked(() => this.placeLabels());
+    });
+    effect(() => {
+      this.conflicts();
+      if (!this.ready()) return;
+      untracked(() => this.placeConflicts());
     });
     effect(() => {
       const data = this.gaps();
@@ -330,14 +372,21 @@ export class AtlasMap {
         this.ready.set(true);
         this.setData(this.collection());
         this.placeLabels();
+        this.placeConflicts();
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
         (map.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(this.sovereignty() ?? EMPTY);
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
       });
       map.on('idle', () => this.countRendered());
-      map.on('move', () => this.placeLabels());
-      map.on('resize', () => this.placeLabels());
+      map.on('move', () => {
+        this.placeLabels();
+        this.placeConflicts();
+      });
+      map.on('resize', () => {
+        this.placeLabels();
+        this.placeConflicts();
+      });
 
       const layers = ['control-fill', 'control-hatch'];
       map.on('click', (e) => {
@@ -440,6 +489,17 @@ export class AtlasMap {
       placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y });
     }
     this.placedLabels.set(placed);
+  }
+
+  private placeConflicts(): void {
+    const map = this.map;
+    if (!map) return;
+    this.placedConflicts.set(this.conflicts().map((c) => ({ ...c, ...map.project(c.lngLat) })));
+  }
+
+  protected onConflict(e: MouseEvent, c: MapConflictIcon & { x: number; y: number }): void {
+    e.stopPropagation();
+    this.conflictClick.emit({ recordId: c.recordId, x: c.x, y: c.y });
   }
 
   private countRendered(): void {

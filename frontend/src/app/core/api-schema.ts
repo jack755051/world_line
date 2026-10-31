@@ -228,6 +228,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/conflict-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateConflictRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conflict-records/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractConflictRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sources/{id}": {
         parameters: {
             query?: never;
@@ -340,10 +372,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/conflicts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetConflicts"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ApiResponseOfConflictMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["ConflictMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfConflictRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["ConflictRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfControlMapDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -531,6 +599,54 @@ export interface components {
             role: null | string;
             evidenceNote: null | string;
         };
+        ConflictFeature: {
+            /** Format: uuid */
+            id: string;
+            geometry: components["schemas"]["JsonElement"];
+            properties: components["schemas"]["ConflictFeatureProperties"];
+            type?: null | string;
+        };
+        ConflictFeatureCollection: {
+            features: components["schemas"]["ConflictFeature"][];
+            type?: null | string;
+        };
+        ConflictFeatureProperties: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeAId: string;
+            regimeASlug: string;
+            /** Format: uuid */
+            regimeBId: string;
+            regimeBSlug: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            startEvent: components["schemas"]["SovereigntyEventRefDto"];
+            endEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            locationMethod: string;
+            note: null | {
+                [key: string]: string;
+            };
+        };
+        ConflictMapDto: {
+            /** Format: date */
+            date: string;
+            featureCollection: components["schemas"]["ConflictFeatureCollection"];
+        };
+        ConflictRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeAId: string;
+            /** Format: uuid */
+            regimeBId: string;
+            /** Format: uuid */
+            startEventId: string;
+            /** Format: uuid */
+            endEventId: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            location: components["schemas"]["JsonElement"];
+            locationMethod: string;
+        };
         ControlFeature: {
             /** Format: uuid */
             id: string;
@@ -602,6 +718,21 @@ export interface components {
                 [key: string]: string;
             };
             researchRef: null | string;
+        };
+        CreateConflictRecordRequest: {
+            /** Format: uuid */
+            regimeAId: null | string;
+            /** Format: uuid */
+            regimeBId: null | string;
+            /** Format: uuid */
+            startEventId: null | string;
+            /** Format: uuid */
+            endEventId: null | string;
+            location: null | components["schemas"]["JsonElement"];
+            locationMethod: null | string;
+            note?: null | {
+                [key: string]: string;
+            };
         };
         CreateControlRecordRequest: {
             /** Format: uuid */
@@ -1816,6 +1947,110 @@ export interface operations {
             };
         };
     };
+    CreateConflictRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateConflictRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfConflictRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractConflictRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
     GetSource: {
         parameters: {
             query?: never;
@@ -2034,6 +2269,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponseOfSovereigntyMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetConflicts: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfConflictMapDto"];
                 };
             };
             /** @description Bad Request */

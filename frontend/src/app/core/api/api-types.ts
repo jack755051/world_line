@@ -34,3 +34,8 @@ export type SovereigntyFeature = Schemas['SovereigntyFeature'];
 export type SovereigntyFeatureProperties = Schemas['SovereigntyFeatureProperties'];
 export type SovereigntyEventRefDto = Schemas['SovereigntyEventRefDto'];
 export type GeometryProvenanceDto = Schemas['GeometryProvenanceDto'];
+
+// 衝突圖示（交叉雙劍；2026-10-31 試驗，歐陸 1938–1940）
+export type ConflictMapDto = Schemas['ConflictMapDto'];
+export type ConflictFeature = Schemas['ConflictFeature'];
+export type ConflictFeatureProperties = Schemas['ConflictFeatureProperties'];

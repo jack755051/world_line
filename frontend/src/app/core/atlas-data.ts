@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import type { ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto } from './api/api-types';
+import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto } from './api/api-types';
 import { WorldLineApi } from './api/world-line-api';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
@@ -26,6 +26,12 @@ export class AtlasData {
   readonly sovereigntyStatus = signal<LoadStatus>('idle');
   private readonly sovCache = new Map<string, SovereigntyMapDto>();
   private sovSeq = 0;
+
+  /** 衝突圖示資料：依日期快取；失敗時保留上一次成功的結果（圖示只在點選政權後才顯示）。 */
+  readonly conflicts = signal<ConflictMapDto | null>(null);
+  readonly conflictsStatus = signal<LoadStatus>('idle');
+  private readonly cfCache = new Map<string, ConflictMapDto>();
+  private cfSeq = 0;
 
   readonly snapshots = signal<TimelineSnapshotDto[]>([]);
   readonly snapshotsStatus = signal<LoadStatus>('idle');
@@ -90,6 +96,28 @@ export class AtlasData {
       if (my === this.sovSeq) this.applySovereignty(dto);
     } catch {
       if (my === this.sovSeq) this.sovereigntyStatus.set('error');
+    }
+  }
+
+  async loadConflicts(date: string): Promise<void> {
+    const my = ++this.cfSeq;
+    const hit = this.cfCache.get(date);
+    if (hit) {
+      this.conflicts.set(hit);
+      this.conflictsStatus.set('ok');
+      return;
+    }
+    this.conflictsStatus.set('loading');
+    try {
+      const dto = await this.api.conflicts(date);
+      this.cfCache.set(date, dto);
+      if (this.cfCache.size > 30) this.cfCache.delete(this.cfCache.keys().next().value as string);
+      if (my === this.cfSeq) {
+        this.conflicts.set(dto);
+        this.conflictsStatus.set('ok');
+      }
+    } catch {
+      if (my === this.cfSeq) this.conflictsStatus.set('error');
     }
   }
 

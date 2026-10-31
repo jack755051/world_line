@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import type {
   ApiEnvelope,
+  ConflictMapDto,
   ControlMapDto,
   PaginatedSnapshots,
   RegimeDto,
@@ -41,6 +42,16 @@ export class WorldLineApi {
   async sovereignty(date: string): Promise<SovereigntyMapDto> {
     const res = await firstValueFrom(
       this.http.get<ApiEnvelope<SovereigntyMapDto>>(`${WorldLineApi.base}/sovereignty`, {
+        params: new HttpParams().set('date', date),
+      }),
+    );
+    return res.data;
+  }
+
+  /** GET /conflicts?date=：該日進行中的衝突（雙方政權、起訖事件與出處、圖示位置）。 */
+  async conflicts(date: string): Promise<ConflictMapDto> {
+    const res = await firstValueFrom(
+      this.http.get<ApiEnvelope<ConflictMapDto>>(`${WorldLineApi.base}/conflicts`, {
         params: new HttpParams().set('date', date),
       }),
     );

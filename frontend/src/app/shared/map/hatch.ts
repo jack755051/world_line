@@ -46,3 +46,13 @@ export function gapDotsImage(dotColor: string, grid = 6, pixelRatio = 2): ImageD
   ctx.fill();
   return ctx.getImageData(0, 0, size, size);
 }
+
+/** 圖徵集合裡用到的斜線圖樣 id（properties.wlPattern，去重、略過空字串）。 */
+export function patternIds(fc: { features: { properties?: { wlPattern?: unknown } | null }[] } | null | undefined): string[] {
+  const ids = new Set<string>();
+  for (const f of fc?.features ?? []) {
+    const id = f.properties?.wlPattern;
+    if (typeof id === 'string' && id !== '') ids.add(id);
+  }
+  return [...ids];
+}

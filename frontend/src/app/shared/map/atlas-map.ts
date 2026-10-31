@@ -16,7 +16,7 @@ import {
 import { staggerOnArcs, worldShiftArc } from './conflict-arc';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
-import { gapDotsImage, hatchImage } from './hatch';
+import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import type { Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
@@ -382,6 +382,7 @@ export class AtlasMap {
         const fade = armed && !this.reducedMotion();
         if (armed) this.fadeConsumed.emit();
         if (fade) this.fadeSovereignty('start');
+        this.ensurePatterns(data);
         (this.map?.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
         if (fade) this.fadeSovereignty('end');
       });
@@ -450,6 +451,8 @@ export class AtlasMap {
         this.placeLabels();
         this.placeConflicts();
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
+        this.addHatch(GAP_IMAGE_ID);
+        this.ensurePatterns(this.sovereignty());
         (map.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(this.sovereignty() ?? EMPTY);
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
@@ -593,7 +596,17 @@ export class AtlasMap {
   private setData(data: FeatureCollection<Geometry, DecoratedProps> | null): void {
     const src = this.map?.getSource('control') as GeoJSONSource | undefined;
     if (!src) return;
+    this.ensurePatterns(data);
     src.setData(data ?? EMPTY);
+  }
+
+  /**
+   * 斜線圖樣先加進地圖再 setData（Tai 2026-11-01：1945-08-01 滿洲國斜線沒畫出來）。
+   * MapLibre 6 的 styleimagemissing 在切片排版之後才補圖，第一次排版缺圖的圖徵不會重排，
+   * 所以只靠 styleimagemissing 時，哪些斜線畫得出來要看當天資料重設幾次。
+   */
+  private ensurePatterns(data: FeatureCollection | null | undefined): void {
+    for (const id of patternIds(data)) this.addHatch(id);
   }
 
   /**

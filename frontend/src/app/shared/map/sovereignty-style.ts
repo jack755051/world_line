@@ -160,21 +160,37 @@ function ringArea(r: Ring): number {
 }
 
 /** 國名標籤：每筆主權紀錄取最大的多邊形放標籤（地圖元件再依畫面大小決定顯示與否）。 */
+/**
+ * 標籤位置快取（依主權紀錄 id）：紀錄只會撤回、不會改幾何，所以同一筆紀錄在每個日期的標籤點都一樣。
+ * labelPoint 對大多邊形要數百毫秒；播放、跳日期時重算全部會卡住主執行緒（Tai 2026-11-01 效能問題）。
+ */
+const LABEL_CACHE_MAX = 3000;
+const labelCache = new Map<string, { lngLat: [number, number]; bbox: [number, number, number, number] }>();
+function labelGeometry(recordId: string, g: Geometry) {
+  const hit = labelCache.get(recordId);
+  if (hit) return hit;
+  const polys: Ring[][] = g.type === 'Polygon' ? [g.coordinates as Ring[]] : g.type === 'MultiPolygon' ? (g.coordinates as Ring[][]) : [];
+  if (polys.length === 0) return null;
+  const biggest = polys.reduce((a, b) => (ringArea(b[0]) > ringArea(a[0]) ? b : a));
+  let [minX, minY, maxX, maxY] = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const [x, y] of biggest[0]) {
+    minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
+  }
+  const v = { lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY] as [number, number, number, number] };
+  if (labelCache.size >= LABEL_CACHE_MAX) labelCache.delete(labelCache.keys().next().value as string);
+  labelCache.set(recordId, v);
+  return v;
+}
+
 export function sovereigntyLabels(dto: SovereigntyMapDto | null | undefined, nameFor: (regimeId: string) => string | null): ControlLabel[] {
   const out: ControlLabel[] = [];
   for (const f of dto?.featureCollection.features ?? []) {
     const p = f.properties;
     const text = nameFor(p.regimeId);
     if (!text) continue;
-    const g = f.geometry as unknown as Geometry;
-    const polys: Ring[][] = g.type === 'Polygon' ? [g.coordinates as Ring[]] : g.type === 'MultiPolygon' ? (g.coordinates as Ring[][]) : [];
-    if (polys.length === 0) continue;
-    const biggest = polys.reduce((a, b) => (ringArea(b[0]) > ringArea(a[0]) ? b : a));
-    let [minX, minY, maxX, maxY] = [Infinity, Infinity, -Infinity, -Infinity];
-    for (const [x, y] of biggest[0]) {
-      minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
-    }
-    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY], fit: 1 });
+    const lg = labelGeometry(p.recordId, f.geometry as unknown as Geometry);
+    if (!lg) continue;
+    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: lg.lngLat, bbox: lg.bbox, fit: 1 });
   }
   // 大的先放：互撞時保留大國名稱
   return out.sort((a, b) => (b.bbox[2] - b.bbox[0]) * (b.bbox[3] - b.bbox[1]) - (a.bbox[2] - a.bbox[0]) * (a.bbox[3] - a.bbox[1]));

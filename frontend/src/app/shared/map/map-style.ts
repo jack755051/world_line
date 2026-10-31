@@ -258,7 +258,7 @@ function segDist2(px: number, py: number, a: number[], b: number[]): number {
 }
 
 /** 標籤計算用：環太長時等間隔取點（最多約 MAX_LABEL_RING_POINTS 點），避免蘇聯、美國這類大多邊形拖慢主執行緒。 */
-const MAX_LABEL_RING_POINTS = 1500;
+const MAX_LABEL_RING_POINTS = 800;
 function thinRing(r: Ring): Ring {
   if (r.length <= MAX_LABEL_RING_POINTS) return r;
   const step = Math.ceil(r.length / MAX_LABEL_RING_POINTS);
@@ -275,10 +275,19 @@ export function labelPoint(full: Ring[]): [number, number] {
   for (const [x, y] of outer) {
     minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
   }
-  const inside = (x: number, y: number) => pointInRing(x, y, outer) && !poly.slice(1).some((h) => pointInRing(x, y, h));
+  // 很小的洞（面積不到外環 0.1%）不影響標籤位置，略過；其餘的洞先比外框再做點在環內測試（效能，Tai 2026-11-01）
+  const outerArea = ringArea(outer);
+  const holes = poly.slice(1).filter((h) => ringArea(h) > outerArea * 0.001).map((h) => {
+    let [a, b, c, d] = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const [x, y] of h) { a = Math.min(a, x); b = Math.min(b, y); c = Math.max(c, x); d = Math.max(d, y); }
+    return { r: h, a, b, c, d };
+  });
+  const rings = [outer, ...holes.map((h) => h.r)];
+  const inside = (x: number, y: number) =>
+    pointInRing(x, y, outer) && !holes.some((h) => x >= h.a && x <= h.c && y >= h.b && y <= h.d && pointInRing(x, y, h.r));
   const dist = (x: number, y: number) => {
     let d = Infinity;
-    for (const r of poly) for (let i = 0, j = r.length - 1; i < r.length; j = i++) d = Math.min(d, segDist2(x, y, r[i], r[j]));
+    for (const r of rings) for (let i = 0, j = r.length - 1; i < r.length; j = i++) d = Math.min(d, segDist2(x, y, r[i], r[j]));
     return d;
   };
   let best: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2];

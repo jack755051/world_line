@@ -14,7 +14,7 @@ const TXT = {
     campNone: '陣營未建置', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
-    loading: '載入中…', tabOverview: '概要', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期',
+    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期',
     role: { belligerent: '交戰方', signatory: '簽署方', other: '相關', border_start: '國界起始', border_end: '國界結束', conflict_start: '開戰', conflict_end: '停戰／投降' } as Record<string, string>,
   },
   en: {
@@ -23,7 +23,7 @@ const TXT = {
     campNone: 'Camp not set', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
-    loading: 'Loading…', tabOverview: 'Overview', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date',
+    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date',
     role: { belligerent: 'Belligerent', signatory: 'Signatory', other: 'Related', border_start: 'Border begins', border_end: 'Border ends', conflict_start: 'War begins', conflict_end: 'War ends' } as Record<string, string>,
   },
 } as const;
@@ -130,6 +130,10 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         <dd data-testid="sovereignty-card-status">{{ props().layerStatus === 'not_sovereign' ? t().notSovereign : t().deJure }}</dd>
         <dt class="text-wl-on-surface-variant">{{ t().period }}</dt>
         <dd>{{ props().validPeriod.start }} {{ t().until }} {{ props().validPeriod.end ?? '—' }}</dd>
+        @if (noteText(); as n) {
+          <dt class="text-wl-on-surface-variant">{{ t().note }}</dt>
+          <dd data-testid="sovereignty-card-note" class="min-w-0 whitespace-pre-line">{{ n }}</dd>
+        }
         @for (row of events(); track row.key) {
           <dt class="text-wl-on-surface-variant">{{ row.label }}</dt>
           <dd [attr.data-testid]="'sovereignty-card-' + row.key" class="min-w-0">
@@ -205,6 +209,12 @@ export class SovereigntyCard {
     { key: 'start', label: this.t().start, ev: this.props().startEvent },
     { key: 'end', label: this.t().end, ev: this.props().endEvent },
   ]);
+  /** 紀錄註記（幾何簡化、OHM 缺漏等說明）：依介面語言，沒有就用另一語言。 */
+  protected readonly noteText = computed(() => {
+    const n = (this.props() as unknown as { note?: Record<string, string> | null }).note;
+    if (!n) return '';
+    return (this.lang() === 'en' ? n['en'] || n['zh-Hant'] : n['zh-Hant'] || n['en']) ?? '';
+  });
   protected readonly osmDerived = computed(() => {
     const f = this.props().geometry.flags as unknown as { osmDerivedWayCount?: number } | null;
     return (f?.osmDerivedWayCount ?? 0) > 0;

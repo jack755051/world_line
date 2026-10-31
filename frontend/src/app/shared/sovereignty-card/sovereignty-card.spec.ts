@@ -199,5 +199,11 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     const e2 = f2.nativeElement as HTMLElement;
     expect(q(e2, 'sovereignty-card-tab-events')?.getAttribute('aria-selected')).toBe('true');
   });
-});
 
+  it('有註記時在概要顯示（依語言，缺則用另一語言）', async () => {
+    const { el } = await render(props({ note: { 'zh-Hant': 'OHM 沒有分區幾何，這裡簡化。', en: '' } }), 'en');
+    expect(q(el, 'sovereignty-card-note')?.textContent).toContain('簡化');
+    const r2 = await render(props());
+    expect(q(r2.el, 'sovereignty-card-note')).toBeNull();
+  });
+});

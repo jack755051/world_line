@@ -48,6 +48,27 @@ test('1938-10-15：點柏林 → 德意志國卡片（蘇台德修正紀錄）�
   await expect(page.getByTestId('sovereignty-card-camp')).toHaveAttribute('data-camp', 'unassigned');
 });
 
+test('1938-10-05：蘇台德為德軍分區進駐中（非主權斜線，慕尼黑協定 DGFP D/II No. 675）；1938-10-15 已劃入德國', async ({ page }) => {
+  await page.goto('/?date=1938-10-05');
+  await waitForBorders(page);
+  await jump(page, [14.5, 50.2], 5.5);
+  await clickLngLat(page, [12.87, 50.23]); // 卡爾斯巴德（Karlsbad）
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('蘇台德');
+  await expect(page.getByTestId('sovereignty-card-status')).toContainText('非主權');
+  await expect(page.getByTestId('sovereignty-card-start')).toContainText('已查證');
+  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-citation').first()).toContainText('No. 675, pp. 1014–1015');
+  await expect(page.getByTestId('sovereignty-card-body')).toContainText('簡化');
+  // 布拉格仍屬捷克斯洛伐克
+  await page.keyboard.press('Escape');
+  await clickLngLat(page, [14.42, 50.08]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('捷克');
+  await page.goto('/?date=1938-10-15');
+  await waitForBorders(page);
+  await jump(page, [14.5, 50.2], 5.5);
+  await clickLngLat(page, [12.87, 50.23]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
+});
+
 test('陣營外框圖層可開關，預設關閉', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);

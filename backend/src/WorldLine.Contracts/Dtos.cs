@@ -286,7 +286,13 @@ public sealed record ConflictRecordDto(
 public sealed record ConflictFeatureProperties(
     Guid RecordId, Guid RegimeAId, string RegimeASlug, Guid RegimeBId, string RegimeBSlug, DatePeriodDto ValidPeriod,
     SovereigntyEventRefDto StartEvent, SovereigntyEventRefDto? EndEvent, string LocationMethod,
-    IReadOnlyDictionary<string, string>? Note);
+    IReadOnlyDictionary<string, string>? Note, bool? Adjacent = null, ConflictArcDto? Arc = null);
+
+/// <summary>
+/// 遠距交戰虛線弧（Tai 2026-10-31）：當日雙方「控制範圍」（自身主權紀錄＋以其為佔領方的佔領區）不相接時才有；
+/// from／to＝雙方當日主權紀錄的 ST_PointOnSurface（[經度, 緯度]）。雙劍放在弧線中點（前端計算）。
+/// </summary>
+public sealed record ConflictArcDto(double[] From, double[] To);
 
 public sealed record ConflictFeature(Guid Id, JsonElement Geometry, ConflictFeatureProperties Properties)
 {

@@ -105,13 +105,69 @@ public static class ConflictsEndpoints
             .ToListAsync(ct);
         var eventIds = rows.SelectMany(x => new Guid?[] { x.r.StartEventId, x.r.EndEventId }).OfType<Guid>().Distinct().ToList();
         var events = await SovereigntyEndpoints.EventRefsAsync(db, eventIds, ct);
+        var geo = await ArcsOnAsync(db, rows.Select(x => x.r.Id).ToList(), d, ct);
         var features = rows
             .Where(x => events.ContainsKey(x.r.StartEventId))
-            .Select(x => new ConflictFeature(x.r.Id, Mapping.ToGeoJson(x.r.Location), new ConflictFeatureProperties(
-                x.r.Id, x.r.RegimeAId, x.SlugA, x.r.RegimeBId, x.SlugB, Mapping.ToDto((NpgsqlRange<DateOnly>?)x.r.ValidPeriod)!,
-                events[x.r.StartEventId], x.r.EndEventId is { } ee ? events.GetValueOrDefault(ee) : null,
-                x.r.LocationMethod, Mapping.ReadLocalizedOrNull(x.r.Note))))
+            .Select(x =>
+            {
+                var has = geo.TryGetValue(x.r.Id, out var g);
+                return new ConflictFeature(x.r.Id, Mapping.ToGeoJson(x.r.Location), new ConflictFeatureProperties(
+                    x.r.Id, x.r.RegimeAId, x.SlugA, x.r.RegimeBId, x.SlugB, Mapping.ToDto((NpgsqlRange<DateOnly>?)x.r.ValidPeriod)!,
+                    events[x.r.StartEventId], x.r.EndEventId is { } ee ? events.GetValueOrDefault(ee) : null,
+                    x.r.LocationMethod, Mapping.ReadLocalizedOrNull(x.r.Note), has ? g.Adjacent : null, has ? g.Arc : null));
+            })
             .ToList();
         return ApiResults.Ok(new ConflictMapDto(d, new ConflictFeatureCollection(features)));
+    }
+
+    /// <summary>
+    /// 當日相鄰判定與虛線弧端點（只讀）：
+    /// - 控制範圍＝該政權當日主權紀錄＋當日以它為佔領方（occupation_attributions）的政權紀錄；
+    /// - 相鄰＝雙方控制範圍有任何幾何相交（OHM 共用邊界線段，相接即相交；用 ST_Intersects 而非 ST_DWithin，大國幾何下快約 50 倍）；
+    /// - 端點＝雙方當日主權紀錄的 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）。
+    /// </summary>
+    internal static async Task<Dictionary<Guid, (bool Adjacent, ConflictArcDto? Arc)>> ArcsOnAsync(
+        WorldLineDbContext db, List<Guid> ids, DateOnly d, CancellationToken ct)
+    {
+        var result = new Dictionary<Guid, (bool, ConflictArcDto?)>();
+        if (ids.Count == 0) return result;
+        const string sql = """
+            WITH c AS (SELECT id, regime_a_id AS a, regime_b_id AS b FROM conflict_records WHERE id = ANY(@ids)),
+            own AS (SELECT regime_id, geom FROM sovereignty_records WHERE retracted_at IS NULL AND valid_period @> @d),
+            ctl AS (
+              SELECT regime_id AS holder, geom FROM own
+              UNION ALL
+              SELECT o.occupier_regime_id, s.geom FROM occupation_attributions o JOIN own s ON s.regime_id = o.occupied_regime_id
+              WHERE o.retracted_at IS NULL AND o.valid_period @> @d)
+            SELECT c.id,
+              EXISTS (SELECT 1 FROM ctl x JOIN ctl y ON x.geom && y.geom AND ST_Intersects(x.geom, y.geom) WHERE x.holder = c.a AND y.holder = c.b),
+              ST_X(pa), ST_Y(pa), ST_X(pb), ST_Y(pb)
+            FROM c
+            LEFT JOIN LATERAL (SELECT ST_PointOnSurface(geom) AS pa FROM own WHERE regime_id = c.a LIMIT 1) qa ON true
+            LEFT JOIN LATERAL (SELECT ST_PointOnSurface(geom) AS pb FROM own WHERE regime_id = c.b LIMIT 1) qb ON true
+            """;
+        var conn = (Npgsql.NpgsqlConnection)db.Database.GetDbConnection();
+        var opened = conn.State != System.Data.ConnectionState.Open;
+        if (opened) await db.Database.OpenConnectionAsync(ct);
+        try
+        {
+            await using var cmd = new Npgsql.NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("ids", ids.ToArray());
+            cmd.Parameters.AddWithValue("d", d);
+            await using var rd = await cmd.ExecuteReaderAsync(ct);
+            while (await rd.ReadAsync(ct))
+            {
+                var adjacent = rd.GetBoolean(1);
+                ConflictArcDto? arc = null;
+                if (!adjacent && !rd.IsDBNull(2) && !rd.IsDBNull(4))
+                    arc = new ConflictArcDto([Math.Round(rd.GetDouble(2), 4), Math.Round(rd.GetDouble(3), 4)], [Math.Round(rd.GetDouble(4), 4), Math.Round(rd.GetDouble(5), 4)]);
+                result[rd.GetGuid(0)] = (adjacent, arc);
+            }
+        }
+        finally
+        {
+            if (opened) await db.Database.CloseConnectionAsync();
+        }
+        return result;
     }
 }

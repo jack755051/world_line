@@ -2922,6 +2922,37 @@
           }
         }
       },
+      "ConflictArcDto": {
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "array",
+            "items": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+              "type": [
+                "number",
+                "string"
+              ],
+              "format": "double"
+            }
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+              "type": [
+                "number",
+                "string"
+              ],
+              "format": "double"
+            }
+          }
+        }
+      },
       "ConflictFeature": {
         "required": [
           "id",
@@ -3028,6 +3059,22 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "adjacent": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "arc": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ConflictArcDto"
+              }
+            ]
           }
         }
       },

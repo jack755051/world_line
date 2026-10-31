@@ -15,6 +15,7 @@ import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
 import { MotionService } from '../../core/motion';
 import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
+import { conflictArc } from '../../shared/map/conflict-arc';
 import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
 import { ConflictCard } from '../../shared/conflict-card/conflict-card';
 import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
@@ -257,7 +258,11 @@ export class AtlasPage {
     this.focusedConflicts().map((f) => {
       const p = f.properties;
       const c = (f.geometry as { coordinates: number[] }).coordinates;
-      return { recordId: p.recordId, lngLat: [c[0], c[1]] as [number, number], label: `${this.regimeName(p.regimeAId, p.regimeASlug)} — ${this.regimeName(p.regimeBId, p.regimeBSlug)}` };
+      const label = `${this.regimeName(p.regimeAId, p.regimeASlug)} — ${this.regimeName(p.regimeBId, p.regimeBSlug)}`;
+      // 雙方當日不相鄰（API arc）：畫虛線弧，雙劍改放弧線中點
+      const a = p.arc?.from?.length === 2 && p.arc.to?.length === 2 ? conflictArc([Number(p.arc.from[0]), Number(p.arc.from[1])], [Number(p.arc.to[0]), Number(p.arc.to[1])]) : null;
+      if (a) return { recordId: p.recordId, lngLat: a.mid, arc: a.path, label };
+      return { recordId: p.recordId, lngLat: [c[0], c[1]] as [number, number], label };
     }),
   );
   protected readonly selectedConflictInfo = computed(() => {

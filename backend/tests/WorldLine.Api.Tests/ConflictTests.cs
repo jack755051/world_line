@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace WorldLine.Api.Tests;
 
@@ -72,6 +73,72 @@ public sealed class ConflictTests(PostGisFixture fx)
         Assert.Equal("pending", p.GetProperty("endEvent").GetProperty("verification").GetString());
         Assert.Equal(0, p.GetProperty("endEvent").GetProperty("citations").GetArrayLength());
         Assert.Equal("共同邊界中點", p.GetProperty("locationMethod").GetString());
+    }
+
+    private static async Task<Guid> Territory(ApiTestKit k, Guid regime, Guid source, double x, double y, string status = "de_jure") =>
+        await k.Id(await k.W.PostAsync("/api/v1/sovereignty-records", new StringContent(new JsonObject
+        {
+            ["regimeId"] = regime.ToString(),
+            ["geometry"] = ApiTestKit.Square(x, y, 1),
+            ["validPeriod"] = new JsonObject { ["start"] = "1941-01-01", ["end"] = "1944-01-01" },
+            ["layerStatus"] = status,
+            ["geometrySourceId"] = source.ToString(),
+            ["geometryLocator"] = "relation/1 v1",
+            ["geometryLicense"] = "cc0",
+            ["ohmRelationId"] = 1,
+            ["ohmVersion"] = 1,
+            ["ohmFetchedAt"] = "2026-10-30T19:22:26Z",
+        }.ToJsonString(), System.Text.Encoding.UTF8, "application/json")));
+
+    [Fact]
+    public async Task Far_apart_belligerents_get_a_dashed_arc_between_their_territories_adjacent_ones_do_not()
+    {
+        var k = new ApiTestKit(fx);
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var de = await k.Regime("reich");
+        var nb = await k.Regime("nachbar");
+        var us = await k.Regime("usa");
+        var occ = await k.Regime("besetzt");
+        var far = await k.Regime("jenseits");
+        var none = await k.Regime("ohne-gebiet");
+        await Territory(k, de, ohm, 5, 52);
+        await Territory(k, nb, ohm, 6, 52);          // 與 de 共邊
+        await Territory(k, us, ohm, -100, 37);      // 遠方
+        await Territory(k, occ, ohm, 5, 40, "not_sovereign");
+        await Territory(k, far, ohm, 6, 40);         // 只與 de 佔領的 occ 共邊
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/occupation-attributions", new
+        {
+            occupiedRegimeId = occ, occupierRegimeId = de, controlKind = "military_administration",
+            validPeriod = new { start = "1941-01-01", end = "1944-01-01" }, coOccupied = false,
+            note = new Dictionary<string, string> { ["zh-Hant"] = "測試", ["en"] = "test" },
+        }), HttpStatusCode.Created);
+        var start = await Event(k, "war", "1941-12-11");
+        var cNb = await k.Id(await Post(k, de, nb, start, null));
+        var cUs = await k.Id(await Post(k, de, us, start, null, Point(-38, 55), "兩國沒有共同邊界"));
+        var cFar = await k.Id(await Post(k, de, far, start, null));
+        var cNone = await k.Id(await Post(k, de, none, start, null));
+
+        var pNb = (await FeatureOn(k, "1942-12-01", cNb))!.Value.GetProperty("properties");
+        Assert.True(pNb.GetProperty("adjacent").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, pNb.GetProperty("arc").ValueKind);
+
+        var pUs = (await FeatureOn(k, "1942-12-01", cUs))!.Value.GetProperty("properties");
+        Assert.False(pUs.GetProperty("adjacent").GetBoolean());
+        var arc = pUs.GetProperty("arc");
+        var from = arc.GetProperty("from").EnumerateArray().Select(v => v.GetDouble()).ToArray();
+        var to = arc.GetProperty("to").EnumerateArray().Select(v => v.GetDouble()).ToArray();
+        Assert.InRange(from[0], 5, 6); Assert.InRange(from[1], 52, 53);     // de 領土內
+        Assert.InRange(to[0], -100, -99); Assert.InRange(to[1], 37, 38);    // us 領土內
+
+        // 經由佔領區相接也算相鄰
+        var pFar = (await FeatureOn(k, "1942-12-01", cFar))!.Value.GetProperty("properties");
+        Assert.True(pFar.GetProperty("adjacent").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, pFar.GetProperty("arc").ValueKind);
+
+        // 一方當日沒有主權紀錄：不畫弧
+        var pNone = (await FeatureOn(k, "1942-12-01", cNone))!.Value.GetProperty("properties");
+        Assert.False(pNone.GetProperty("adjacent").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, pNone.GetProperty("arc").ValueKind);
     }
 
     [Fact]

@@ -13,6 +13,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
+import { worldShift } from './conflict-arc';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage } from './hatch';
@@ -202,6 +203,8 @@ export interface MapConflictIcon {
   recordId: string;
   lngLat: [number, number];
   label: string;
+  /** 遠距交戰虛線弧取樣點（雙方不相鄰時才有；lngLat 此時是弧線中點），見 conflict-arc.ts */
+  arc?: [number, number][] | null;
 }
 export interface MapConflictEvent {
   recordId: string;
@@ -240,6 +243,16 @@ export interface MapConflictEvent {
       [class.opacity-0]="!focusedRecord()" [class.invisible]="!focusedRecord() && !maskFading()"></div>
     <!-- 衝突圖示（交叉雙劍，自繪 SVG）：只在點選政權後由頁面傳入相關衝突；放在兩國交界，跟著地圖移動 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
+      <!-- 遠距交戰虛線弧（雙方不相鄰）：SVG 疊在聚焦遮罩之上，跟著地圖移動；底下一條紙色寬線當描邊，模糊遮罩上也看得清楚 -->
+      <svg data-testid="map-conflict-arcs" class="absolute inset-0 h-full w-full overflow-visible text-wl-error" aria-hidden="true">
+        @for (c of placedConflicts(); track c.recordId) {
+          @if (c.points) {
+            <polyline [attr.points]="c.points" fill="none" stroke="rgb(250 246 236 / 0.85)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline data-testid="map-conflict-arc" [attr.data-record-id]="c.recordId" [attr.points]="c.points" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round" />
+          }
+        }
+      </svg>
       @for (c of placedConflicts(); track c.recordId) {
         <button type="button" data-testid="map-conflict-icon" [attr.data-record-id]="c.recordId" [attr.aria-label]="c.label" [attr.title]="c.label"
           class="wl-conflict-icon pointer-events-auto absolute flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-wl-outline bg-wl-surface shadow-[var(--wl-shadow-panel)] hover:bg-wl-surface-container-high"
@@ -301,7 +314,7 @@ export class AtlasMap {
   readonly labels = input<ControlLabel[]>([]);
   /** 要畫的衝突圖示（頁面只傳與點選政權相關的衝突；預設空陣列＝不顯示）。 */
   readonly conflicts = input<MapConflictIcon[]>([]);
-  protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number })[]>([]);
+  protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number; points: string | null })[]>([]);
   readonly conflictClick = output<MapConflictEvent>();
   protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number }[]>([]);
 
@@ -664,7 +677,17 @@ export class AtlasMap {
   private placeConflicts(): void {
     const map = this.map;
     if (!map) return;
-    this.placedConflicts.set(this.conflicts().map((c) => ({ ...c, ...map.project(c.lngLat) })));
+    const center = map.getCenter().lng;
+    this.placedConflicts.set(
+      this.conflicts().map((c) => {
+        if (!c.arc?.length) return { ...c, ...map.project(c.lngLat), points: null };
+        // 弧線（含中點雙劍）平移到離地圖中心最近的世界副本，跨換日線（例如日本—美國）時不會畫到畫面外
+        const k = worldShift(c.lngLat[0], center);
+        const pts = c.arc.map(([x, y]) => map.project([x + k, y]));
+        const { x, y } = map.project([c.lngLat[0] + k, c.lngLat[1]]);
+        return { ...c, x, y, points: pts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ') };
+      }),
+    );
   }
 
   protected onConflict(e: MouseEvent, c: MapConflictIcon & { x: number; y: number }): void {

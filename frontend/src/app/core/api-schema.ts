@@ -691,6 +691,10 @@ export interface components {
             role: null | string;
             evidenceNote: null | string;
         };
+        ConflictArcDto: {
+            from: (number | string)[];
+            to: (number | string)[];
+        };
         ConflictFeature: {
             /** Format: uuid */
             id: string;
@@ -718,6 +722,8 @@ export interface components {
             note: null | {
                 [key: string]: string;
             };
+            adjacent?: null | boolean;
+            arc?: null | components["schemas"]["ConflictArcDto"];
         };
         ConflictMapDto: {
             /** Format: date */

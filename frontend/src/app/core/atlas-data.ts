@@ -1,6 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { WorldLineApi } from './api/world-line-api';
+import { isAbort } from './delayed-flag';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 
@@ -35,6 +36,19 @@ export class AtlasData {
   readonly regimeEventsStatus = signal<Record<string, LoadStatus>>({});
   private readonly cfCache = new Map<string, ConflictMapDto>();
   private cfSeq = 0;
+  /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
+  private readonly inflight: Record<'control' | 'sov' | 'cf', AbortController | null> = { control: null, sov: null, cf: null };
+  private restart(k: 'control' | 'sov' | 'cf'): void {
+    this.inflight[k]?.abort();
+    this.inflight[k] = null;
+  }
+  private begin(k: 'control' | 'sov' | 'cf'): AbortSignal {
+    const c = new AbortController();
+    this.inflight[k] = c;
+    return c.signal;
+  }
+  /** 國界／控制區資料是否正在向 API 取（地圖角落載入指示用）。 */
+  readonly mapDataLoading = computed(() => this.controlStatus() === 'loading' || this.sovereigntyStatus() === 'loading');
 
   readonly snapshots = signal<TimelineSnapshotDto[]>([]);
   readonly snapshotsStatus = signal<LoadStatus>('idle');
@@ -68,6 +82,7 @@ export class AtlasData {
   async loadControl(date: string): Promise<void> {
     const my = ++this.seq;
     this.requestedDate.set(date);
+    this.restart('control');
     const hit = this.cache.get(date);
     if (hit) {
       this.apply(date, hit);
@@ -75,17 +90,19 @@ export class AtlasData {
     }
     this.controlStatus.set('loading');
     try {
-      const dto = await this.api.control(date);
+      const dto = await this.api.control(date, this.begin('control'));
       this.cache.set(date, dto);
       if (this.cache.size > 60) this.cache.delete(this.cache.keys().next().value as string);
       if (my === this.seq) this.apply(date, dto);
-    } catch {
+    } catch (e) {
+      if (isAbort(e)) return;
       if (my === this.seq) this.controlStatus.set('error');
     }
   }
 
   async loadSovereignty(date: string): Promise<void> {
     const my = ++this.sovSeq;
+    this.restart('sov');
     const hit = this.sovCache.get(date);
     if (hit) {
       this.applySovereignty(hit);
@@ -93,17 +110,19 @@ export class AtlasData {
     }
     this.sovereigntyStatus.set('loading');
     try {
-      const dto = await this.api.sovereignty(date);
+      const dto = await this.api.sovereignty(date, this.begin('sov'));
       this.sovCache.set(date, dto);
       if (this.sovCache.size > 30) this.sovCache.delete(this.sovCache.keys().next().value as string);
       if (my === this.sovSeq) this.applySovereignty(dto);
-    } catch {
+    } catch (e) {
+      if (isAbort(e)) return;
       if (my === this.sovSeq) this.sovereigntyStatus.set('error');
     }
   }
 
   async loadConflicts(date: string): Promise<void> {
     const my = ++this.cfSeq;
+    this.restart('cf');
     const hit = this.cfCache.get(date);
     if (hit) {
       this.conflicts.set(hit);
@@ -112,14 +131,15 @@ export class AtlasData {
     }
     this.conflictsStatus.set('loading');
     try {
-      const dto = await this.api.conflicts(date);
+      const dto = await this.api.conflicts(date, this.begin('cf'));
       this.cfCache.set(date, dto);
       if (this.cfCache.size > 30) this.cfCache.delete(this.cfCache.keys().next().value as string);
       if (my === this.cfSeq) {
         this.conflicts.set(dto);
         this.conflictsStatus.set('ok');
       }
-    } catch {
+    } catch (e) {
+      if (isAbort(e)) return;
       if (my === this.cfSeq) this.conflictsStatus.set('error');
     }
   }

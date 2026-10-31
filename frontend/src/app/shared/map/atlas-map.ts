@@ -82,6 +82,9 @@ export const BASEMAP_URL = '/basemap/ne_50m_land.geojson';
 /** MapLibre 6 的 worker 由 angular.json assets 複製到 /maplibre/（打包後 import.meta.url 會失準，須明示）。 */
 export const MAPLIBRE_WORKER_URL = '/maplibre/maplibre-gl-worker.mjs';
 
+/** 載入指示顯示期間抵達的新國界淡入時長（毫秒）。 */
+export const FADE_IN_MS = 280;
+
 const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
 export function buildBaseStyle(): StyleSpecification {
@@ -218,7 +221,8 @@ export interface MapConflictEvent {
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
       [attr.data-rendered-gaps]="renderedGaps()" [attr.data-rendered-sovereignty]="renderedSovereignty()"
       [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null"
-      [attr.data-focus-record]="focusedRecord()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'" aria-label="主地圖" role="region"></div>
+      [attr.data-focus-record]="focusedRecord()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'"
+      [attr.data-render]="renderBusySig() ? 'busy' : 'idle'" [attr.data-sov-fade]="fadeCount()" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
@@ -268,6 +272,9 @@ export class AtlasMap {
   /** 目前檢視軸；切換時用 MapLibre transition 淡入淡出（reducedMotion 時 0ms）。 */
   readonly axis = input<Axis>('control');
   readonly reducedMotion = input(false);
+  /** 頁面的「載入中」指示顯示過、尚未消耗：這時抵達的新國界用淡入呈現（reducedMotion 時直接出現），之後送出 fadeConsumed。 */
+  readonly fadeArmed = input(false);
+  readonly fadeConsumed = output<void>();
   /** 已套用到地圖的檢視軸（過場結束後才更新；e2e 用）。 */
   protected readonly appliedAxis = signal<Axis | null>(null);
   private axisTimer: ReturnType<typeof setTimeout> | undefined;
@@ -301,6 +308,11 @@ export class AtlasMap {
   readonly gapClick = output<MapGapEvent>();
   readonly sovereigntyClick = output<MapSovereigntyEvent>();
   readonly featureHover = output<MapFeatureEvent | null>();
+  /** MapLibre 還在載入／切片 source（setData 後或平移到新區域）：true；畫面 idle 後 false。 */
+  readonly renderBusy = output<boolean>();
+  protected readonly renderBusySig = signal(false);
+  /** 已播放的國界淡入次數（e2e 檢查用）。 */
+  protected readonly fadeCount = signal(0);
 
   protected readonly renderedCount = signal(0);
   protected readonly renderedGaps = signal(0);
@@ -344,7 +356,14 @@ export class AtlasMap {
     effect(() => {
       const data = this.sovereignty();
       if (!this.ready()) return;
-      untracked(() => (this.map?.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+      untracked(() => {
+        const armed = this.fadeArmed() && (data?.features.length ?? 0) > 0;
+        const fade = armed && !this.reducedMotion();
+        if (armed) this.fadeConsumed.emit();
+        if (fade) this.fadeSovereignty('start');
+        (this.map?.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
+        if (fade) this.fadeSovereignty('end');
+      });
     });
     effect(() => {
       const axis = this.axis();
@@ -423,7 +442,11 @@ export class AtlasMap {
         this.cameraMoving.set(false);
         this.scheduleMask();
       });
-      map.on('idle', () => this.countRendered());
+      map.on('idle', () => {
+        this.countRendered();
+        this.setRenderBusy(false);
+      });
+      map.on('dataloading', () => this.setRenderBusy(true));
       map.on('move', () => {
         this.placeLabels();
         this.placeConflicts();
@@ -547,6 +570,35 @@ export class AtlasMap {
    * 套用檢視軸。常數不透明度圖層：先設 `<prop>-transition`，再設值 → MapLibre 依 duration 淡入淡出。
    * 資料驅動圖層：要顯示時先顯示；要隱藏時等淡出（duration）結束才隱藏。
    */
+  private setRenderBusy(v: boolean): void {
+    if (this.renderBusySig() === v) return;
+    this.renderBusySig.set(v);
+    this.renderBusy.emit(v);
+  }
+
+  /** 新國界淡入：先把國界層不透明度瞬間降到 15%，換資料後再以 FADE_IN_MS 過渡回目前檢視軸的值。 */
+  private fadeSovereignty(phase: 'start' | 'end'): void {
+    const map = this.map;
+    if (!map) return;
+    const setPaint = map.setPaintProperty.bind(map) as (layer: string, name: string, value: unknown) => void;
+    const layers = AXIS_PAINT[this.axis()].filter(([l]) => l.startsWith('sov-') && map.getLayer(l));
+    if (phase === 'start') {
+      for (const [layer, prop, value] of layers) {
+        setPaint(layer, `${prop}-transition`, { duration: 0, delay: 0 });
+        setPaint(layer, prop, value * 0.15);
+      }
+      return;
+    }
+    // 下一幀才設回：讓 0.15 先生效，transition 才有起點
+    requestAnimationFrame(() => {
+      for (const [layer, prop, value] of layers) {
+        setPaint(layer, `${prop}-transition`, { duration: FADE_IN_MS, delay: 0 });
+        setPaint(layer, prop, value);
+      }
+      this.fadeCount.update((n) => n + 1);
+    });
+  }
+
   private applyAxis(axis: Axis, duration: number): void {
     const map = this.map;
     if (!map) return;

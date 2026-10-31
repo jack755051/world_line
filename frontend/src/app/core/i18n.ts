@@ -56,6 +56,7 @@ const DICT = {
   'chip.jumpPrev': { 'zh-Hant': '跳到前一快照', en: 'Previous snapshot' },
   'chip.jumpNext': { 'zh-Hant': '跳到後一快照', en: 'Next snapshot' },
   'map.loading': { 'zh-Hant': '載入 {date} 的資料…', en: 'Loading data for {date}…' },
+  'map.busy': { 'zh-Hant': '載入中', en: 'Loading' },
   'map.empty': { 'zh-Hant': '此日期尚無資料', en: 'No data for this date' },
   'map.emptyJump': { 'zh-Hant': '跳到最近有資料的日期', en: 'Jump to nearest date with data' },
   'map.error': { 'zh-Hant': '地圖資料載入失敗', en: 'Failed to load map data' },

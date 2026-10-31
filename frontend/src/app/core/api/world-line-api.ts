@@ -30,33 +30,37 @@ export class WorldLineApi {
   static readonly base = '/api/v1';
 
   /** GET /control?date=：該日控制區＋各戰區史料／推估狀態。 */
-  async control(date: string): Promise<ControlMapDto> {
-    const res = await firstValueFrom(
-      this.http.get<ApiEnvelope<ControlMapDto>>(`${WorldLineApi.base}/control`, {
-        params: new HttpParams().set('date', date),
-      }),
-    );
-    return res.data;
+  async control(date: string, signal?: AbortSignal): Promise<ControlMapDto> {
+    return this.getByDate<ControlMapDto>('/control', date, signal);
   }
 
   /** GET /sovereignty?date=：該日主權圖層（國界，依政權上色；陣營只作補充）。 */
-  async sovereignty(date: string): Promise<SovereigntyMapDto> {
-    const res = await firstValueFrom(
-      this.http.get<ApiEnvelope<SovereigntyMapDto>>(`${WorldLineApi.base}/sovereignty`, {
-        params: new HttpParams().set('date', date),
-      }),
-    );
-    return res.data;
+  async sovereignty(date: string, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal);
   }
 
   /** GET /conflicts?date=：該日進行中的衝突（雙方政權、起訖事件與出處、圖示位置）。 */
-  async conflicts(date: string): Promise<ConflictMapDto> {
-    const res = await firstValueFrom(
-      this.http.get<ApiEnvelope<ConflictMapDto>>(`${WorldLineApi.base}/conflicts`, {
-        params: new HttpParams().set('date', date),
-      }),
-    );
-    return res.data;
+  async conflicts(date: string, signal?: AbortSignal): Promise<ConflictMapDto> {
+    return this.getByDate<ConflictMapDto>('/conflicts', date, signal);
+  }
+
+  /**
+   * 依日期查詢；signal 中止時取消 HTTP 請求（unsubscribe → XHR abort）並以 AbortError 拒絕，
+   * 讓快速連續跳日期時過時的請求不佔頻寬、也不會晚到蓋掉新資料。
+   */
+  private getByDate<T>(path: string, date: string, signal?: AbortSignal): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      const aborted = () => reject(new DOMException('Aborted', 'AbortError'));
+      if (signal?.aborted) return aborted();
+      const sub = this.http.get<ApiEnvelope<T>>(`${WorldLineApi.base}${path}`, { params: new HttpParams().set('date', date) }).subscribe({
+        next: (res) => resolve(res.data),
+        error: (e: unknown) => reject(e),
+      });
+      signal?.addEventListener('abort', () => {
+        sub.unsubscribe();
+        aborted();
+      }, { once: true });
+    });
   }
 
   /** GET /timeline/snapshots：全部快照（逐頁取完，pageSize 上限 500）。 */

@@ -18,6 +18,7 @@ import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
 import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
 import { ConflictCard } from '../../shared/conflict-card/conflict-card';
 import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
 import { sheetLayout, type FocusInset } from '../../shared/map/focus';
@@ -86,6 +87,7 @@ interface SheetInfo {
             <div #mapArea data-testid="map-area" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
+                [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()"
@@ -102,8 +104,13 @@ interface SheetInfo {
                 <div data-testid="map-loading" class="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <span class="wl-paper flex items-center gap-2 px-4 py-2 wl-text1"><sanring-spinner size="sm" ariaLabel="loading" />{{ tr('map.loading', { date: state.date() }) }}</span>
                 </div>
-              } @else if (data.controlStatus() === 'loading') {
-                <div class="absolute inset-x-0 top-0 h-0.5 overflow-hidden bg-wl-surface-container-high" aria-hidden="true"><div class="h-full w-1/3 animate-pulse bg-wl-secondary"></div></div>
+              } @else if (busyVisible()) {
+                <!-- 載入指示（非阻擋）：國界／控制區請求或 MapLibre 切片超過 300ms 未完成才出現在左上角，不擋地圖操作 -->
+                <div data-testid="map-busy" role="status" aria-live="polite"
+                  class="wl-paper pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2 text-wl-on-surface-variant">
+                  <sanring-spinner size="sm" speed="normal" [ariaLabel]="tr('map.busy')" />
+                  <span>{{ tr('map.busy') }}</span>
+                </div>
               }
 
               @if (data.controlStatus() === 'error') {
@@ -283,6 +290,19 @@ export class AtlasPage {
   protected readonly sheet = signal<SheetInfo | null>(null);
   /** 政權面板目前分頁：面板開著時切換政權、跳日期、看完衝突返回都保留（方便連續比較事件）；面板完全關閉後回到「概要」。 */
   protected readonly sovTab = signal<SovereigntyTab>('overview');
+  /** MapLibre 是否還在載入／切片（setData 後、平移到新區域時）。 */
+  protected readonly mapRenderBusy = signal(false);
+  /** 地圖角落載入指示：資料請求或地圖切片持續 300ms 以上才顯示（DelayedFlag），完成即隱藏。 */
+  protected readonly busyVisible = signal(false);
+  /** 載入指示出現過 → 下一次抵達的國界淡入；指示隱藏後短暫保留，讓同一輪的資料仍能淡入。 */
+  protected readonly fadeArmed = signal(false);
+  private fadeDisarm: ReturnType<typeof setTimeout> | undefined;
+  private readonly busyFlag = new DelayedFlag((v) => {
+    this.busyVisible.set(v);
+    clearTimeout(this.fadeDisarm);
+    if (v) this.fadeArmed.set(true);
+    else this.fadeDisarm = setTimeout(() => this.fadeArmed.set(false), 400);
+  }, 300);
   protected readonly sheetOpen = computed(() => this.sheetNow() !== null);
   protected readonly focusInset = computed<FocusInset>(
     () => {
@@ -418,6 +438,14 @@ export class AtlasPage {
         const f = dto.featureCollection.features.find((x) => x.properties.regimeId === want);
         if (f) this.onSovereigntyClick({ recordId: f.properties.recordId, x: 0, y: 0 });
       });
+    });
+    effect(() => {
+      const busy = this.data.mapDataLoading() || this.mapRenderBusy();
+      untracked(() => this.busyFlag.set(busy));
+    });
+    inject(DestroyRef).onDestroy(() => {
+      this.busyFlag.dispose();
+      clearTimeout(this.fadeDisarm);
     });
     effect(() => {
       const s = this.sheetNow();

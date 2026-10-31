@@ -258,3 +258,34 @@ test('1942-11-01：維琪法國在 11-11 前仍為原紀錄（主權），尚無
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('法蘭西國（維琪）');
   await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'de_jure');
 });
+
+test('舊資料修正：1942-11-01 阿爾及利亞仍屬維琪；1942-12-01 阿爾及利亞為盟軍佔領、荷挪丹為非主權', async ({ page }) => {
+  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await waitForBorders(page);
+  const card = page.getByTestId('sovereignty-card');
+  const title = page.getByTestId('sovereignty-card-title');
+  const start = page.getByTestId('sovereignty-card-start');
+  await clickAt(page, [3.06, 36.75]); // 阿爾及爾：法國本土的省份，依事實國界屬維琪
+  await expect(title).toContainText('法蘭西國（維琪）');
+  await expect(card).toHaveAttribute('data-layer-status', 'de_jure');
+
+  await page.goto('/?date=1942-12-01&axis=sovereignty');
+  await waitForBorders(page);
+  await clickAt(page, [3.06, 36.75]); // 阿爾及爾：11-08 盟軍登陸後
+  await expect(title).toContainText('盟軍佔領下的法屬北非');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+
+  await clickAt(page, [4.9, 52.37]); // 阿姆斯特丹
+  await expect(title).toContainText('德國佔領下的荷蘭');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+
+  await clickAt(page, [10.75, 59.91]); // 奧斯陸
+  await expect(title).toContainText('德國佔領下的挪威');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+
+  await clickAt(page, [9.5, 56.2]); // 日德蘭：政府仍在，政權仍記為丹麥王國，但標非主權
+  await expect(title).toContainText('丹麥');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+});

@@ -142,6 +142,31 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         await k.Id(await Post(k, Body(pl, ohm, "1924-06-22", "1938-11-01", version: 215)));
     }
 
+    [Fact] // 效能快取（DateIntervalCache）：同一區間的結果會快取，但任何寫入都讓快取作廢，不會讀到舊資料
+    public async Task Cached_dates_see_new_and_retracted_records_immediately()
+    {
+        var k = new ApiTestKit(fx);
+        var hu = await k.Regime("hungary");
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var first = await k.Id(await Post(k, Body(hu, ohm, "1920-06-04", "1938-11-02")));
+        Assert.NotNull(await FeatureOn(k, "1930-01-01", first)); // 先讀，讓區間進快取
+        var second = await k.Id(await Post(k, Body(hu, ohm, "1938-11-02", "1939-03-15")));
+        Assert.NotNull(await FeatureOn(k, "1939-01-01", second));
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-records/{first}/retraction", new { reason = "測試快取作廢" }), HttpStatusCode.OK);
+        Assert.Null(await FeatureOn(k, "1930-01-01", first));
+    }
+
+    [Fact] // 回應壓縮：要求 gzip 時回傳壓縮內容
+    public async Task Sovereignty_response_is_compressed_when_asked()
+    {
+        var k = new ApiTestKit(fx);
+        var req = new HttpRequestMessage(HttpMethod.Get, "/api/v1/sovereignty?date=1939-01-01");
+        req.Headers.AcceptEncoding.ParseAdd("gzip");
+        var res = await k.R.SendAsync(req);
+        Assert.Equal(HttpStatusCode.OK, res.StatusCode);
+        Assert.Contains("gzip", res.Content.Headers.ContentEncoding);
+    }
+
     [Fact] // 授權：幾何來源授權須在允許清單；cc_by 必須署名；OHM 關係必須釘版本
     public async Task Licence_and_pinning_rules()
     {

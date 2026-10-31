@@ -91,10 +91,17 @@ public static class ConflictsEndpoints
         return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
-    public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, CancellationToken ct)
+    public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
     {
         if (date is not { } d)
             throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
+        // 同一變動區間內每天結果相同：依區間快取（寫入即作廢，見 DateIntervalCache）
+        var features = await cache.GetOrAddAsync("conflicts", d, db, () => BuildOnDateAsync(d, db, ct), ct);
+        return ApiResults.Ok(new ConflictMapDto(d, new ConflictFeatureCollection(features)));
+    }
+
+    private static async Task<List<ConflictFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, CancellationToken ct)
+    {
         var rows = await (
                 from r in db.ConflictRecords.AsNoTracking()
                 join ga in db.Regimes on r.RegimeAId equals ga.Id
@@ -117,7 +124,7 @@ public static class ConflictsEndpoints
                     x.r.LocationMethod, Mapping.ReadLocalizedOrNull(x.r.Note), has ? g.Adjacent : null, has ? g.Arc : null));
             })
             .ToList();
-        return ApiResults.Ok(new ConflictMapDto(d, new ConflictFeatureCollection(features)));
+        return features;
     }
 
     /// <summary>

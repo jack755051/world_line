@@ -119,10 +119,17 @@ public static class SovereigntyEndpoints
         return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
-    public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, CancellationToken ct)
+    public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
     {
         if (date is not { } d)
             throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
+        // 同一變動區間內每天結果相同：依區間快取（寫入即作廢，見 DateIntervalCache）
+        var features = await cache.GetOrAddAsync("sovereignty", d, db, () => BuildOnDateAsync(d, db, ct), ct);
+        return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
+    }
+
+    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, CancellationToken ct)
+    {
 
         var rows = await (
                 from r in db.SovereigntyRecords.AsNoTracking()
@@ -154,7 +161,7 @@ public static class SovereigntyEndpoints
                 alignments.GetValueOrDefault(r.RegimeId),
                 occupations.GetValueOrDefault(r.RegimeId)));
         }).ToList();
-        return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
+        return features;
     }
 
     /// <summary>回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。</summary>

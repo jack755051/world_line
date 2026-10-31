@@ -1,0 +1,41 @@
+{
+ "_placeholder": "EV_DE_BE_INV",
+ "_post": "/api/v1/events",
+ "_meta": {
+  "verification": "verified"
+ },
+ "body": {
+  "eventKind": "war",
+  "occurred": {
+   "start": "1914-08-04",
+   "end": "1914-08-05"
+  },
+  "datePrecision": "day",
+  "summary": {
+   "zh-Hant": "德軍入侵比利時",
+   "en": "Germany invades Belgium"
+  },
+  "participants": [
+   {
+    "regimeId": "{{REGIME_DE_EMP}}",
+    "role": "belligerent"
+   },
+   {
+    "regimeId": "{{REGIME_BE}}",
+    "role": "belligerent"
+   }
+  ],
+  "citations": [
+   {
+    "sourceId": "{{SRC_FRUS_1914S}}",
+    "locator": "Doc. 98, p. 45",
+    "evidenceNote": "國務院 1914-08-05 備忘錄：比利時政府通知德軍已進入比利時領土、中立被破壞，比利時將以武力抵抗。"
+   },
+   {
+    "sourceId": "{{SRC_FRUS_1914S}}",
+    "locator": "Doc. 157, pp. 71–72",
+    "evidenceNote": "比利時公使 1914-08-20 照會：依 1839 年條約，德國破壞比利時中立。"
+   }
+  ]
+ }
+}

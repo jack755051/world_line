@@ -1,0 +1,21 @@
+{
+ "_placeholder": "CF_AH_RS_R",
+ "_post": "/api/v1/conflict-records",
+ "_meta": {
+  "replaces": "CF_AH_RS"
+ },
+ "body": {
+  "regimeAId": "{{REGIME_AH}}",
+  "regimeBId": "{{REGIME_RS}}",
+  "startEventId": "{{EV_AH_RS_WAR}}",
+  "endEventId": "{{EV_VILLA_GIUSTI}}",
+  "location": {
+   "type": "Point",
+   "coordinates": [
+    19.6402,
+    44.96
+   ]
+  },
+  "locationMethod": "本批主權紀錄在開戰日 1914-07-28 的兩國共同邊界，最長一段的中點（build/make_requests.py border_mid）"
+ }
+}

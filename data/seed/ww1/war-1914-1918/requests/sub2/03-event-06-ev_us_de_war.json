@@ -1,0 +1,36 @@
+{
+ "_placeholder": "EV_US_DE_WAR",
+ "_post": "/api/v1/events",
+ "_meta": {
+  "verification": "verified"
+ },
+ "body": {
+  "eventKind": "war",
+  "occurred": {
+   "start": "1917-04-06",
+   "end": "1917-04-07"
+  },
+  "datePrecision": "day",
+  "summary": {
+   "zh-Hant": "美國對德國宣戰",
+   "en": "The United States declares war on Germany"
+  },
+  "participants": [
+   {
+    "regimeId": "{{REGIME_US}}",
+    "role": "belligerent"
+   },
+   {
+    "regimeId": "{{REGIME_DE_EMP}}",
+    "role": "belligerent"
+   }
+  ],
+  "citations": [
+   {
+    "sourceId": "{{SRC_FRUS_1917S1}}",
+    "locator": "Doc. 240, pp. 207–208",
+    "evidenceNote": "1917-04-06 總統宣告：美德之間存在戰爭狀態。"
+   }
+  ]
+ }
+}

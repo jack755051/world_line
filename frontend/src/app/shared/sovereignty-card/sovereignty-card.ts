@@ -15,6 +15,10 @@ const TXT = {
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期',
+    occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
+    occSuffix: '（非主權）',
+    kind: { annexed: '併入（正式或事實；國際未承認割讓）', civil_administration: '民政管理（帝國專員轄區、保護國、總督府等）', military_administration: '軍事管理' } as Record<string, string>,
+    occupation: '佔領', occKind: '控制程度', occBasis: '依據', occPending: '待查證（依據事件尚無合格出處）', occNoBasis: '待查證（尚無依據事件）', coOccupied: '共同佔領：缺分區幾何，標示主要佔領方',
     role: { belligerent: '交戰方', signatory: '簽署方', other: '相關', border_start: '國界起始', border_end: '國界結束', conflict_start: '開戰', conflict_end: '停戰／投降' } as Record<string, string>,
   },
   en: {
@@ -24,10 +28,21 @@ const TXT = {
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date',
+    occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
+    occSuffix: ' (not sovereign)',
+    kind: { annexed: 'Annexed (formal or de facto; not internationally recognised)', civil_administration: 'Civil administration (Reichskommissariat, protectorate, General Government…)', military_administration: 'Military administration' } as Record<string, string>,
+    occupation: 'Occupation', occKind: 'Control', occBasis: 'Basis', occPending: 'Pending (basis event has no qualified source)', occNoBasis: 'Pending (no basis event)', coOccupied: 'Joint occupation: no zone geometry, main occupier shown',
     role: { belligerent: 'Belligerent', signatory: 'Signatory', other: 'Related', border_start: 'Border begins', border_end: 'Border ends', conflict_start: 'War begins', conflict_end: 'War ends' } as Record<string, string>,
   },
 } as const;
 export type SovereigntyTab = 'overview' | 'events';
+/** 佔領方簡稱（面板性質用：「德國佔領（非主權）」）；沒列的用政權名。 */
+const OCCUPIER_SHORT: Record<string, { 'zh-Hant': string; en: string }> = {
+  'deutsches-reich': { 'zh-Hant': '德國', en: 'German' }, 'kingdom-of-italy': { 'zh-Hant': '義大利', en: 'Italian' },
+  'kingdom-of-romania': { 'zh-Hant': '羅馬尼亞', en: 'Romanian' }, 'tsardom-of-bulgaria': { 'zh-Hant': '保加利亞', en: 'Bulgarian' },
+  'united-states-of-america': { 'zh-Hant': '美國', en: 'US' }, 'united-kingdom': { 'zh-Hant': '英國', en: 'British' },
+  'soviet-union': { 'zh-Hant': '蘇聯', en: 'Soviet' }, 'empire-of-japan': { 'zh-Hant': '日本', en: 'Japanese' },
+};
 const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
   axis: { 'zh-Hant': '軸心', en: 'Axis' }, allies: { 'zh-Hant': '同盟', en: 'Allies' },
   cobelligerent: { 'zh-Hant': '共同交戰／合作', en: 'Co-belligerent' }, neutral: { 'zh-Hant': '中立／未結盟', en: 'Neutral' },
@@ -127,7 +142,22 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
       <ng-template #overview>
       <dl class="grid grid-cols-[76px_1fr] gap-x-2 gap-y-1.5 wl-text2">
         <dt class="text-wl-on-surface-variant">{{ t().status }}</dt>
-        <dd data-testid="sovereignty-card-status">{{ props().layerStatus === 'not_sovereign' ? t().notSovereign : t().deJure }}</dd>
+        <dd data-testid="sovereignty-card-status" [attr.data-control-kind]="occupation()?.controlKind ?? null">{{ statusText() }}</dd>
+        @if (occupation(); as o) {
+          <!-- 佔領歸屬：佔領方、控制程度、依據事件（沒有合格出處＝待查證）、共同佔領註記 -->
+          <dt class="text-wl-on-surface-variant">{{ t().occKind }}</dt>
+          <dd data-testid="sovereignty-card-occupation" class="min-w-0">
+            <div>{{ t().kind[o.controlKind] ?? o.controlKind }}</div>
+            @if (o.coOccupied) { <div data-testid="sovereignty-card-co-occupied" class="text-wl-on-surface-variant">{{ t().coOccupied }}</div> }
+            @if (occNote(); as n) { <div class="text-wl-on-surface-variant whitespace-pre-line">{{ n }}</div> }
+          </dd>
+          <dt class="text-wl-on-surface-variant">{{ t().occBasis }}</dt>
+          <dd data-testid="sovereignty-card-occupation-basis" class="min-w-0" [attr.data-verification]="o.verification">
+            @if (o.basisEvent; as ev) {
+              <wl-event-ref [ev]="ev" prefix="sovereignty-card-occupation" [lang]="lang()" />
+            } @else { <span class="text-wl-on-surface-variant">{{ t().occNoBasis }}</span> }
+          </dd>
+        }
         <dt class="text-wl-on-surface-variant">{{ t().period }}</dt>
         <dd>{{ props().validPeriod.start }} {{ t().until }} {{ props().validPeriod.end ?? '—' }}</dd>
         @if (noteText(); as n) {
@@ -167,6 +197,8 @@ export class SovereigntyCard {
   readonly regimeName = input('');
   readonly originalName = input('');
   readonly originalLang = input('');
+  /** 佔領方政權名（沒有簡稱時用） */
+  readonly occupierName = input('');
   readonly lang = input<Lang>('zh-Hant');
   /** 放在側邊面板（wl-regime-sheet）裡：不畫紙卡外框與標題列（標題、關閉鈕由面板提供）。 */
   readonly embedded = input(false);
@@ -200,6 +232,24 @@ export class SovereigntyCard {
   });
 
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
+  protected readonly occupation = computed(() => this.props().occupation ?? null);
+  /** 性質：一般國界／非主權；有佔領歸屬時顯示「德國佔領（非主權）」「德國併入（非主權）」 */
+  protected readonly statusText = computed(() => {
+    const p = this.props();
+    const o = this.occupation();
+    if (o) {
+      const en = this.lang() === 'en';
+      const who = OCCUPIER_SHORT[o.occupierSlug]?.[en ? 'en' : 'zh-Hant'] ?? (this.occupierName() || o.occupierSlug);
+      return en ? `${who} ${this.t().occ[o.controlKind] ?? 'occupation'}${this.t().occSuffix}` : `${who}${this.t().occ[o.controlKind] ?? '佔領'}${this.t().occSuffix}`;
+    }
+    return p.layerStatus === 'not_sovereign' ? this.t().notSovereign : this.t().deJure;
+  });
+  protected readonly occNote = computed(() => {
+    const n = this.occupation()?.note;
+    if (!n) return '';
+    const v = (this.lang() === 'en' ? n['en'] || n['zh-Hant'] : n['zh-Hant'] || n['en']) ?? '';
+    return v.startsWith('Occupation attribution (see') ? n['zh-Hant'] ?? '' : v;
+  });
   protected readonly camp = computed(() => campOf(this.props().regimeAlignment ?? null));
   protected readonly campText = computed(() => {
     const c = this.camp();

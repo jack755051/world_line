@@ -1,6 +1,6 @@
 import type { SovereigntyMapDto } from '../../core/api/api-types';
-import { CAMP_FILL, hatchImageId } from './map-style';
-import { REGIME_COLORS, decorateSovereignty, regimeColor, sovereigntyLabels } from './sovereignty-style';
+import { CAMP_FILL, hatchImageId, MAP_COLORS } from './map-style';
+import { REGIME_COLORS, decorateSovereignty, mixHex, occupationTint, regimeColor, sovereigntyLabels } from './sovereignty-style';
 
 // 測試用假資料（只存在於測試檔，不進畫面、不寫入資料庫）
 function feature(id: string, slug: string, opts: { status?: string; camp?: string; pending?: boolean } = {}) {
@@ -81,5 +81,57 @@ describe('sovereigntyLabels：國名標籤放寬尺寸門檻（fit=1）並由大
     const out = sovereigntyLabels(dto, (id) => `名${id}`);
     expect(out.map((l) => l.regimeId)).toEqual(['B', 'A']);
     expect(out.every((l) => l.fit === 1)).toBe(true);
+  });
+});
+
+const feat = (slug: string, layerStatus: string, occupation: unknown = null) => ({
+  type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 0]]] },
+  properties: { recordId: slug, regimeId: `id-${slug}`, regimeSlug: slug, layerStatus, startEvent: null, endEvent: null, regimeAlignment: null, occupation },
+});
+const occ = (occupierSlug: string, controlKind: string) => ({
+  id: 'o', occupierRegimeId: `id-${occupierSlug}`, occupierSlug, controlKind, coOccupied: false, validPeriod: { start: '1940-01-01', end: null }, basisEvent: null, verification: 'pending', note: null,
+});
+const dto2 = (...features: unknown[]) => ({ date: '1942-11-01', featureCollection: { type: 'FeatureCollection', features } }) as unknown as SovereigntyMapDto;
+const lum = (hex: string) => [16, 8, 0].reduce((a, sh) => a + ((parseInt(hex.slice(1), 16) >> sh) & 255), 0);
+
+describe('佔領區依佔領國上色（2026-10-31）', () => {
+  it('mixHex：0＝原色、1＝目標色', () => {
+    expect(mixHex('#000000', '#ffffff', 0)).toBe('#000000');
+    expect(mixHex('#000000', '#ffffff', 1)).toBe('#ffffff');
+    expect(mixHex('#000000', '#ffffff', 0.5)).toBe('#808080');
+  });
+
+  it('三種深淺：併入最深（接近本土色）＞民政＞軍事管理最淺', () => {
+    const home = regimeColor('deutsches-reich');
+    const [a, c, m] = ['annexed', 'civil_administration', 'military_administration'].map((k) => occupationTint('deutsches-reich', k));
+    expect(lum(home)).toBeLessThan(lum(a));
+    expect(lum(a)).toBeLessThan(lum(c));
+    expect(lum(c)).toBeLessThan(lum(m));
+    expect(lum(m)).toBeLessThan(lum(MAP_COLORS.land));
+  });
+
+  it('有佔領歸屬：底色＝佔領國色（淡化）、斜線用佔領國色；沒有歸屬的非主權（滿洲國）維持紙底＋自己顏色', () => {
+    const fc = decorateSovereignty(dto2(
+      feat('reichskommissariat-ukraine', 'not_sovereign', occ('deutsches-reich', 'civil_administration')),
+      feat('manchukuo', 'not_sovereign'),
+      feat('deutsches-reich', 'de_jure'),
+    ));
+    const [rk, mk, de] = fc.features.map((f) => f.properties);
+    expect(rk.wlBase).toBe(occupationTint('deutsches-reich', 'civil_administration'));
+    expect(rk.occupierRegimeId).toBe('id-deutsches-reich');
+    expect(rk.controlKind).toBe('civil_administration');
+    expect(rk.wlPattern).toMatch(/^wl-hatch-contested-[0-9a-f]{6}$/);
+    expect(rk.wlPattern).not.toBe(mk.wlPattern);
+    expect(mk.wlBase).toBe(MAP_COLORS.land);
+    expect(mk.occupierRegimeId).toBe('');
+    expect(mk.wlPattern).toBe(`wl-hatch-contested-${regimeColor('manchukuo').slice(1)}`);
+    expect(de.wlPattern).toBe('');
+    expect(de.wlFill).toBe(regimeColor('deutsches-reich'));
+  });
+
+  it('芬蘭維持自己的顏色（不是佔領區）', () => {
+    const [fi] = decorateSovereignty(dto2(feat('republic-of-finland', 'de_jure'))).features.map((f) => f.properties);
+    expect(fi.wlFill).toBe(regimeColor('republic-of-finland'));
+    expect(fi.occupierSlug).toBe('');
   });
 });

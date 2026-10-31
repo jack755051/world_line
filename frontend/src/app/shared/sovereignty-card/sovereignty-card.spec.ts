@@ -206,4 +206,28 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     const r2 = await render(props());
     expect(q(r2.el, 'sovereignty-card-note')).toBeNull();
   });
+
+  it('佔領區：性質顯示「德國佔領（非主權）」、控制程度、依據事件；依據沒有出處＝待查證', async () => {
+    const o = { id: 'o', occupierRegimeId: 'de', occupierSlug: 'deutsches-reich', controlKind: 'civil_administration', coOccupied: false,
+      validPeriod: { start: '1941-09-01', end: null }, basisEvent: ev('pending'), verification: 'pending', note: { 'zh-Hant': '帝國專員轄區。', en: '' } };
+    const { el } = await render(props({ layerStatus: 'not_sovereign', regimeSlug: 'reichskommissariat-ukraine', occupation: o }));
+    expect(q(el, 'sovereignty-card-status')?.textContent?.trim()).toBe('德國佔領（非主權）');
+    expect(q(el, 'sovereignty-card-occupation')?.textContent).toContain('民政管理');
+    expect(q(el, 'sovereignty-card-occupation')?.textContent).toContain('帝國專員轄區');
+    expect(q(el, 'sovereignty-card-occupation-basis')?.querySelector('[data-testid="sovereignty-card-occupation-pending"]')?.textContent).toBe('待查證');
+    expect(q(el, 'sovereignty-card-co-occupied')).toBeNull();
+  });
+
+  it('併入＝「德國併入（非主權）」；共同佔領標主要佔領方並註記；英文', async () => {
+    const o = { id: 'o', occupierRegimeId: 'it', occupierSlug: 'kingdom-of-italy', controlKind: 'military_administration', coOccupied: true,
+      validPeriod: { start: '1941-04-30', end: '1943-09-08' }, basisEvent: null, verification: 'pending', note: null };
+    const { el } = await render(props({ layerStatus: 'not_sovereign', occupation: o }));
+    expect(q(el, 'sovereignty-card-status')?.textContent?.trim()).toBe('義大利佔領（非主權）');
+    expect(q(el, 'sovereignty-card-co-occupied')?.textContent).toContain('主要佔領方');
+    expect(q(el, 'sovereignty-card-occupation-basis')?.textContent).toContain('待查證');
+    const a = await render(props({ layerStatus: 'not_sovereign', occupation: { ...o, occupierSlug: 'deutsches-reich', controlKind: 'annexed', coOccupied: false } }));
+    expect(q(a.el, 'sovereignty-card-status')?.textContent?.trim()).toBe('德國併入（非主權）');
+    const en = await render(props({ layerStatus: 'not_sovereign', occupation: { ...o, occupierSlug: 'deutsches-reich' } }), 'en');
+    expect(q(en.el, 'sovereignty-card-status')?.textContent?.trim()).toBe('German occupation (not sovereign)');
+  });
 });

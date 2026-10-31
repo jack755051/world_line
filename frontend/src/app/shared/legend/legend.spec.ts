@@ -71,6 +71,10 @@ describe('Legend：主權圖層與收合動畫', () => {
     expect(el.textContent).not.toContain('目前畫面中的政權');
     expect(el.querySelector('[data-testid="legend-sov-fill"]')).not.toBeNull();
     expect(el.querySelector('[data-testid="legend-sov-not-sovereign"]')).not.toBeNull();
+    // 佔領區三種深淺
+    expect(el.querySelector('[data-testid="legend-sov-occupation-annexed"]')?.textContent).toContain('併入');
+    expect(el.querySelector('[data-testid="legend-sov-occupation-civil_administration"]')?.textContent).toContain('總督府');
+    expect(el.querySelector('[data-testid="legend-sov-occupation-military_administration"]')?.textContent).toContain('軍事管理');
     expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('待查證');
   });
 

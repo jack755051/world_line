@@ -260,6 +260,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/occupation-attributions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateOccupationAttribution"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/occupation-attributions/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractOccupationAttribution"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sources/{id}": {
         parameters: {
             query?: never;
@@ -503,6 +535,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: unknown;
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfOccupationAttributionDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["OccupationAttributionDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -817,6 +859,20 @@ export interface components {
             participants?: null | components["schemas"]["EventParticipantInput"][];
             citations?: null | components["schemas"]["EventCitationInput"][];
         };
+        CreateOccupationAttributionRequest: {
+            /** Format: uuid */
+            occupiedRegimeId: null | string;
+            /** Format: uuid */
+            occupierRegimeId: null | string;
+            controlKind: null | string;
+            validPeriod: null | components["schemas"]["DatePeriodDto"];
+            /** Format: uuid */
+            basisEventId?: null | string;
+            coOccupied?: null | boolean;
+            note?: null | {
+                [key: string]: string;
+            };
+        };
         CreateRegimeAlignmentRequest: {
             camp: null | string;
             validPeriod: null | components["schemas"]["DatePeriodDto"];
@@ -962,6 +1018,37 @@ export interface components {
             endUncertainty?: null | components["schemas"]["DatePeriodDto"];
         };
         JsonElement: unknown;
+        OccupationAttributionDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            occupiedRegimeId: string;
+            /** Format: uuid */
+            occupierRegimeId: string;
+            controlKind: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            /** Format: uuid */
+            basisEventId: null | string;
+            coOccupied: boolean;
+            note: null | {
+                [key: string]: string;
+            };
+        };
+        OccupationRefDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            occupierRegimeId: string;
+            occupierSlug: string;
+            controlKind: string;
+            coOccupied: boolean;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            basisEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            verification: string;
+            note: null | {
+                [key: string]: string;
+            };
+        };
         PaginatedResponseOfTimelineSnapshotDto: {
             items: components["schemas"]["TimelineSnapshotDto"][];
             /** Format: int32 */
@@ -1134,6 +1221,7 @@ export interface components {
                 [key: string]: string;
             };
             regimeAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
+            occupation?: null | components["schemas"]["OccupationRefDto"];
         };
         SovereigntyMapDto: {
             /** Format: date */
@@ -2028,6 +2116,119 @@ export interface operations {
         };
     };
     RetractConflictRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateOccupationAttribution: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateOccupationAttributionRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfOccupationAttributionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractOccupationAttribution: {
         parameters: {
             query?: never;
             header?: never;

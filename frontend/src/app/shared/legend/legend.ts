@@ -6,6 +6,7 @@ import type { LoadStatus } from '../../core/atlas-data';
 import { MOTION_DURATION, MotionService } from '../../core/motion';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { CAMP_FILL, CAMP_TONES, CAMP_UNASSIGNED_TONE, CONTROL_TYPES, darken, type Camp } from '../map/map-style';
+import { occupationTint, regimeColor } from '../map/sovereignty-style';
 
 export interface LegendRegime {
   id: string;
@@ -59,7 +60,11 @@ export interface LegendRegime {
               @if (axis() === 'control') { <span class="font-normal text-wl-on-surface-variant">{{ lang() === 'en' ? '· faded backdrop' : '・淡色底圖' }}</span> }</h3>
             <ul class="flex flex-col gap-1.5">
               <li class="row" data-testid="legend-sov-fill"><span class="sw" [style.background]="sovSample" style="border:0.75px solid rgba(58,47,40,.75)"></span>{{ lang() === 'en' ? 'Fill = regime (one colour each)' : '填色＝政權（一政權一色）' }}</li>
-              <li class="row" data-testid="legend-sov-not-sovereign"><span class="sw" [style.background]="sovHatch" style="border:1px dashed #3a2f28"></span>{{ lang() === 'en' ? 'Hatched, dashed edge = not sovereign (occupation administration)' : '斜線＋虛線邊＝非主權（佔領行政區）' }}</li>
+              <li class="row" data-testid="legend-sov-not-sovereign"><span class="sw" [style.background]="sovHatch" style="border:1px dashed #3a2f28"></span>{{ lang() === 'en' ? 'Hatched, dashed edge = not sovereign' : '斜線＋虛線邊＝非主權' }}</li>
+              <!-- 佔領區：底色＝佔領國色，依控制程度三種深淺（以德國色示範） -->
+              @for (k of occKinds; track k.kind) {
+                <li class="row" [attr.data-testid]="'legend-sov-occupation-' + k.kind"><span class="sw" [style.background]="k.bg" style="border:1px dashed #3a2f28"></span>{{ lang() === 'en' ? k.en : k.zh }}</li>
+              }
               <li class="row" data-testid="legend-sov-blank"><span class="sw border border-wl-outline-variant" style="background:#ece4d2"></span>{{ lang() === 'en' ? 'Blank = no qualified source yet (pending)' : '空白＝尚無合格出處（待查證）' }}</li>
             </ul>
             <p class="mt-1 text-wl-on-surface-variant">{{ lang() === 'en' ? 'Borders as drawn by OpenHistoricalMap (de facto). Camp is a supplement only.' : '國界依 OpenHistoricalMap 所畫的事實國界；陣營只作補充。' }}</p>
@@ -150,6 +155,17 @@ export class Legend {
 
   protected readonly sovSample = 'linear-gradient(90deg, #a99dc4 0 33%, #c9a87c 33% 66%, #8fb39a 66% 100%)';
   protected readonly sovHatch = 'repeating-linear-gradient(-45deg, #a99dc4 0 1.5px, #ece4d2 1.5px 5px)';
+  /** 佔領區三種深淺（德國色示範）：併入最深、民政中等、軍事管理最淺；都疊佔領國色加深的斜線 */
+  protected readonly occKinds = (
+    [
+      ['annexed', '佔領國色・深＝併入（正式或事實）', 'Occupier colour, dark = annexed (formal or de facto)'],
+      ['civil_administration', '中＝民政（帝國專員轄區、保護國、總督府）', 'Medium = civil administration (Reichskommissariat, protectorate, General Government)'],
+      ['military_administration', '淺＝軍事管理', 'Light = military administration'],
+    ] as const
+  ).map(([kind, zh, en]) => ({
+    kind, zh, en,
+    bg: `repeating-linear-gradient(-45deg, ${darken(regimeColor('deutsches-reich'), 0.3)} 0 1.5px, transparent 1.5px 5px), ${occupationTint('deutsches-reich', kind)}`,
+  }));
 
   constructor() {
     effect(() => {

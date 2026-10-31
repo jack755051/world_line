@@ -107,7 +107,7 @@ export function buildBaseStyle(): StyleSpecification {
       { id: 'coast', type: 'line', source: 'land', paint: { 'line-color': MAP_COLORS.coast, 'line-width': 0.75 } },
       // 主權圖層（國界）：填色依政權；非主權實體（佔領軍政府）用斜線；控制區疊在上面
       { id: 'sov-fill', type: 'fill', source: 'sovereignty', filter: ['==', ['get', 'wlPattern'], ''], paint: { 'fill-color': ['get', 'wlFill'], 'fill-opacity': 0.9 } },
-      { id: 'sov-hatch-base', type: 'fill', source: 'sovereignty', filter: ['!=', ['get', 'wlPattern'], ''], paint: { 'fill-color': MAP_COLORS.land, 'fill-opacity': 1 } },
+      { id: 'sov-hatch-base', type: 'fill', source: 'sovereignty', filter: ['!=', ['get', 'wlPattern'], ''], paint: { 'fill-color': ['get', 'wlBase'], 'fill-opacity': 1 } },
       { id: 'sov-hatch', type: 'fill', source: 'sovereignty', filter: ['!=', ['get', 'wlPattern'], ''], paint: { 'fill-pattern': ['get', 'wlPattern'] } },
       { id: 'sov-line', type: 'line', source: 'sovereignty', filter: ['==', ['get', 'wlPattern'], ''], paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.75 } },
       {
@@ -221,7 +221,7 @@ export interface MapConflictEvent {
     <div #canvas data-testid="map-canvas" class="h-full w-full" [attr.data-rendered-features]="renderedCount()"
       [attr.data-rendered-gaps]="renderedGaps()" [attr.data-rendered-sovereignty]="renderedSovereignty()"
       [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null"
-      [attr.data-focus-record]="focusedRecord()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'"
+      [attr.data-focus-record]="focusedRecord()" [attr.data-focus-occupied]="focusOccupied()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'"
       [attr.data-render]="renderBusySig() ? 'busy' : 'idle'" [attr.data-sov-fade]="fadeCount()" aria-label="主地圖" role="region"></div>
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -284,6 +284,8 @@ export class AtlasMap {
   /** 聚焦置中時要避開的面板大小（右側面板寬或底部面板高）。 */
   readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
   protected readonly focusedRecord = signal<string | null>(null);
+  /** 聚焦時一起挖亮的佔領區數（聚焦政權是佔領方） */
+  protected readonly focusOccupied = signal(0);
   protected readonly maskFading = signal(false);
   protected readonly cameraMoving = signal(false);
   private readonly focusMask = viewChild<ElementRef<HTMLDivElement>>('focusMask');
@@ -518,7 +520,10 @@ export class AtlasMap {
     }
     clearTimeout(this.fadeTimer);
     this.maskFading.set(false);
-    this.focusRings = polygonRings(f.geometry);
+    // 聚焦佔領國（例：德國）時，它佔領／併入的地區一起挖亮（仍保留斜線，看得出不是本土）；鏡頭只框本土，不會拉到全歐
+    const occupied = fc?.features.filter((x) => x.properties.occupierRegimeId && x.properties.occupierRegimeId === f.properties.regimeId) ?? [];
+    this.focusOccupied.set(occupied.length);
+    this.focusRings = [f, ...occupied].flatMap((x) => polygonRings(x.geometry));
     this.focusedRecord.set(id);
     const el = map.getContainer();
     const padding = focusPadding(inset, el.clientWidth, el.clientHeight);
@@ -532,6 +537,7 @@ export class AtlasMap {
     if (!map || !this.focusedRecord()) return;
     this.focusKey = '';
     this.focusedRecord.set(null);
+    this.focusOccupied.set(0);
     this.focusRings = [];
     // 遮罩淡出（200ms）期間保留原本的挖空路徑
     this.maskFading.set(duration > 0);

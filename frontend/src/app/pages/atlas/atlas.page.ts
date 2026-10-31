@@ -31,7 +31,7 @@ interface SheetInfo {
   title: string;
   description: string;
   descriptionLang: string;
-  sov: { props: SovereigntyFeatureProperties; name: string; original: string; originalLang: string } | null;
+  sov: { props: SovereigntyFeatureProperties; name: string; original: string; originalLang: string; occupierName: string } | null;
   conflict: { props: ConflictFeatureProperties; nameA: string; nameB: string } | null;
 }
 
@@ -162,7 +162,7 @@ interface SheetInfo {
                 (closed)="clearSelection()" (hidden)="onSheetHidden()">
                 @if (sheet(); as sh) {
                   @if (sh.sov; as s) {
-                    <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [lang]="lang()"
+                    <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
                       [currentDate]="state.date()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
                   } @else if (sh.conflict; as c) {
@@ -240,6 +240,7 @@ export class AtlasPage {
       name: name?.display ?? f.properties.regimeSlug,
       original: name?.original ?? '',
       originalLang: reg?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '',
+      occupierName: f.properties.occupation ? this.regimeName(f.properties.occupation.occupierRegimeId, f.properties.occupation.occupierSlug) : '',
     };
   });
   private regimeName(id: string, slug: string): string {

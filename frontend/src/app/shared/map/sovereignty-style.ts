@@ -1,12 +1,16 @@
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import type { SovereigntyMapDto } from '../../core/api/api-types';
-import { CAMP_FILL, campOf, hatchImageId, labelPoint, type Camp, type ControlLabel } from './map-style';
+import { CAMP_FILL, campOf, darken, hatchImageId, labelPoint, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
 
 /**
  * 主權圖層（國界）樣式（2026-10-31 試驗）：
  * - 填色依政權（Tai：政權優先於陣營），一個政權一種顏色；同一政權換版（疆界變動）顏色不變。
  * - 陣營只作補充：資訊卡顯示，或開「陣營外框」圖層時以陣營色描外框；不改填色。
  * - layerStatus = not_sovereign（例：比利時與北法軍政府）以斜線＋虛線外框表示「非主權」。
+ * - 佔領區（Tai 2026-10-31「德國佔領大半歐陸但地圖上看不出來」）：有佔領歸屬（properties.occupation）時，
+ *   底色改用佔領國的顏色，依控制程度分三種深淺（參考 Wikipedia Greater German Reich 1942 圖）：
+ *   併入（正式或事實）最深、接近本土色；民政（帝國專員轄區、保護國、總督府）中等；軍事管理最淺。仍疊斜線＋虛線邊（非主權）。
+ *   沒有佔領歸屬的非主權政權（例：滿洲國）維持原樣（紙底＋自己顏色的斜線）。
  */
 
 /** 政權 slug → 填色。手動指定主要政權，讓相鄰國家明顯不同；其餘依 slug 雜湊取色盤。 */
@@ -61,6 +65,23 @@ const SAME_COLOR_AS: Record<string, string> = {
   'bailiwick-of-jersey': 'united-kingdom',
   'italian-aegean-islands': 'kingdom-of-italy',
 };
+/** 佔領國色往紙底（陸地色）混合的比例：0＝本土色，越大越淡。 */
+export const OCCUPATION_TINT: Record<string, number> = { annexed: 0.12, civil_administration: 0.42, military_administration: 0.68 };
+export const OCCUPATION_KINDS = ['annexed', 'civil_administration', 'military_administration'] as const;
+
+/** 兩色線性混合：t=0 → a，t=1 → b。 */
+export function mixHex(a: string, b: string, t: number): string {
+  const pa = parseInt(a.slice(1), 16);
+  const pb = parseInt(b.slice(1), 16);
+  const ch = (sh: number) => Math.round(((pa >> sh) & 255) * (1 - t) + ((pb >> sh) & 255) * t);
+  return `#${((1 << 24) | (ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).slice(1)}`;
+}
+
+/** 佔領區底色：佔領國色依控制程度淡化（未知程度當軍事管理，最淡）。 */
+export function occupationTint(occupierSlug: string, controlKind: string): string {
+  return mixHex(regimeColor(occupierSlug), MAP_COLORS.land, OCCUPATION_TINT[controlKind] ?? OCCUPATION_TINT['military_administration']);
+}
+
 const FALLBACK = ['#cdb8a0', '#b8c8b0', '#c0b8d0', '#d0c0a8', '#a8c0c8', '#d0b0b8', '#b8d0c0', '#c8c0a0'];
 
 /** 測試資料的 slug 會帶 `-<tag>` 尾碼；比對時先試完整 slug，再去掉最後一段。 */
@@ -83,6 +104,13 @@ export interface SovereigntyProps {
   wlFill: string;
   /** not_sovereign → 斜線圖樣 id；否則空字串 */
   wlPattern: string;
+  /** 斜線圖層的底色：佔領區＝佔領國色（依控制程度淡化）；其他非主權＝紙底 */
+  wlBase: string;
+  /** 佔領方（沒有佔領歸屬 → 空字串） */
+  occupierRegimeId: string;
+  occupierSlug: string;
+  /** annexed／civil_administration／military_administration；沒有 → 空字串 */
+  controlKind: string;
   /** 陣營外框色（沒有陣營切片 → 空字串，不推定） */
   wlCampLine: string;
   camp: Camp | '';
@@ -96,6 +124,10 @@ export function decorateSovereignty(dto: SovereigntyMapDto | null | undefined): 
     const fill = regimeColor(p.regimeSlug);
     const camp = campOf(p.regimeAlignment ?? null);
     const notSovereign = p.layerStatus === 'not_sovereign';
+    const occ = p.occupation ?? null;
+    // 佔領區：底色＝佔領國色（淡化），斜線用佔領國色加深，在底色上仍看得出來
+    const base = occ ? occupationTint(occ.occupierSlug, occ.controlKind) : MAP_COLORS.land;
+    const hatchColor = occ ? darken(regimeColor(occ.occupierSlug), 0.3) : fill;
     return {
       type: 'Feature',
       id: p.recordId,
@@ -106,7 +138,11 @@ export function decorateSovereignty(dto: SovereigntyMapDto | null | undefined): 
         regimeSlug: p.regimeSlug,
         layerStatus: p.layerStatus,
         wlFill: fill,
-        wlPattern: notSovereign ? hatchImageId(fill, 'contested') : '',
+        wlPattern: notSovereign ? hatchImageId(hatchColor, 'contested') : '',
+        wlBase: base,
+        occupierRegimeId: occ?.occupierRegimeId ?? '',
+        occupierSlug: occ?.occupierSlug ?? '',
+        controlKind: occ?.controlKind ?? '',
         wlCampLine: camp ? CAMP_FILL[camp] : '',
         camp: camp ?? '',
         pending: p.startEvent?.verification === 'pending' || p.endEvent?.verification === 'pending',

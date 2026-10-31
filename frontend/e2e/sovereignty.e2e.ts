@@ -462,11 +462,76 @@ test('1943-07-01／1944-10-01／1945-03-01：補空白第二段（德國、蘇�
   await expect(title).toContainText('蘇維埃');
   await clickAt(page, [30.52, 50.45]); // 基輔
   await expect(title).toContainText('蘇維埃');
-  await clickAt(page, [21.01, 52.23]); // 華沙
-  await expect(title).toContainText('德意志國');
+  await clickAt(page, [21.01, 52.23]); // 華沙：總督府（occupation-1 從德國紀錄拆出）
+  await expect(title).toContainText('總督府');
+  await expect(page.getByTestId('sovereignty-card-status')).toHaveText('德國佔領（非主權）');
   await page.goto('/?date=1945-03-01&axis=sovereignty');
   await waitForBorders(page);
   await clickAt(page, [21.01, 52.23]); // 華沙
   await expect(title).toContainText('波蘭臨時政府');
   await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+});
+
+async function baseColorAt(page: Page, lngLat: [number, number]): Promise<string | null> {
+  return page.evaluate((ll) => {
+    const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number }; queryRenderedFeatures: (p: [number, number], o: object) => { properties: Record<string, string> }[] } }).__wlMap;
+    const p = map.project(ll);
+    return map.queryRenderedFeatures([p.x, p.y], { layers: ['sov-hatch-base'] })[0]?.properties['wlBase'] ?? null;
+  }, lngLat);
+}
+const lum = (hex: string | null) => (hex ? [16, 8, 0].reduce((a, sh) => a + ((parseInt(hex.slice(1), 16) >> sh) & 255), 0) : NaN);
+
+test('1942-11-01：佔領區依佔領國上色（併入最深、總督府／專員轄區中等、軍事管理最淺）；性質「德國佔領（非主權）」；芬蘭維持自己的色；點德國時佔領區一起亮起', async ({ page }) => {
+  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await waitForBorders(page);
+  const card = page.getByTestId('sovereignty-card');
+  const title = page.getByTestId('sovereignty-card-title');
+  const status = page.getByTestId('sovereignty-card-status');
+
+  await clickAt(page, [7.75, 48.58]); // 史特拉斯堡
+  await expect(title).toContainText('亞爾薩斯');
+  await expect(status).toHaveText('德國併入（非主權）');
+  await expect(status).toHaveAttribute('data-control-kind', 'annexed');
+  await expect(page.getByTestId('sovereignty-card-occupation-basis')).toContainText('待查證');
+  const annexed = await baseColorAt(page, [7.75, 48.58]);
+
+  await clickAt(page, [6.13, 49.61]); // 盧森堡
+  await expect(title).toContainText('盧森堡');
+  await expect(status).toHaveText('德國併入（非主權）');
+
+  await clickAt(page, [14.42, 50.08]); // 布拉格
+  await expect(title).toContainText('保護國');
+  await expect(status).toHaveText('德國佔領（非主權）');
+  await expect(status).toHaveAttribute('data-control-kind', 'civil_administration');
+
+  await clickAt(page, [21.01, 52.23]); // 華沙
+  await expect(title).toContainText('總督府');
+  await expect(status).toHaveAttribute('data-control-kind', 'civil_administration');
+  const civil = await baseColorAt(page, [21.01, 52.23]);
+
+  await clickAt(page, [20.46, 44.82]); // 貝爾格勒
+  await expect(title).toContainText('塞爾維亞');
+  await expect(status).toHaveText('德國佔領（非主權）');
+  await expect(status).toHaveAttribute('data-control-kind', 'military_administration');
+  const military = await baseColorAt(page, [20.46, 44.82]);
+  expect(lum(annexed)).toBeLessThan(lum(civil));
+  expect(lum(civil)).toBeLessThan(lum(military));
+
+  await clickAt(page, [23.73, 37.98]); // 雅典：德義保共同佔領，缺分區 → 標主要佔領方並註記
+  await expect(status).toHaveText('義大利佔領（非主權）');
+  await expect(page.getByTestId('sovereignty-card-co-occupied')).toContainText('主要佔領方');
+
+  await clickAt(page, [24.94, 60.17]); // 赫爾辛基：芬蘭不是佔領區
+  await expect(card).toHaveAttribute('data-layer-status', 'de_jure');
+  await expect(page.getByTestId('sovereignty-card-occupation')).toHaveCount(0);
+
+  await clickAt(page, [13.4, 52.5]); // 柏林：德國本土；佔領／併入區一起挖亮
+  await expect(title).toContainText('德意志國');
+  await expect(status).toHaveText('國界');
+  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-focus-occupied')) ?? 0)).toBeGreaterThan(10);
+  // 圖例：三種深淺（面板開著時圖例可能被收合，只驗存在於 DOM 或展開後可見）
+  await page.keyboard.press('Escape');
+  if (await page.getByTestId('legend-expand').isVisible()) await page.getByTestId('legend-expand').click();
+  await expect(page.getByTestId('legend-sov-occupation-annexed')).toHaveCount(1);
+  await expect(page.getByTestId('legend-sov-occupation-military_administration')).toContainText('軍事管理');
 });

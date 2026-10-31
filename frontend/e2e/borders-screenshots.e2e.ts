@@ -77,8 +77,11 @@ for (const date of ['1941-12-01', '1942-11-01', '1942-12-01', '1943-07-01', '194
 for (const [name, date, center, zoom] of [
   ['world', '1942-12-01', [-20, 30], 1.5],
   ['us', '1942-12-01', [-110, 40], 2.4],
+  ['asia', '1941-12-15', [118, 28], 2.6],
+  ['asia', '1943-06-01', [118, 28], 2.6],
+  ['asia', '1945-08-01', [118, 28], 2.6],
 ] as const) {
-  test(`截圖：${date} ${name === 'world' ? '全圖' : '美國本土與屬地'}`, async ({ page }) => {
+  test(`截圖：${date} ${{ world: '全圖', us: '美國本土與屬地', asia: '亞洲太平洋' }[name]}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/?date=${date}&axis=sovereignty`);
     const canvas = page.getByTestId('map-canvas');

@@ -129,6 +129,35 @@ test('美國：1941-12-01 堪薩斯屬美利堅合眾國、馬尼拉屬菲律賓
   expect(slugs).toContain('deutsches-reich/united-states-of-america');
 });
 
+test('亞洲第一批：1941-12-15 東京與首爾屬大日本帝國、重慶屬中華民國、長春屬滿洲國（非主權）、曼谷屬泰國；1945-08-30 平壤屬蘇聯民政署（非主權）', async ({ page }) => {
+  for (const [date, at, title, layer] of [
+    ['1941-12-15', [139.7, 35.7], '大日本帝國', 'de_jure'],
+    ['1941-12-15', [126.98, 37.57], '大日本帝國', 'de_jure'],
+    ['1941-12-15', [106.55, 29.56], '中華民國', 'de_jure'],
+    ['1941-12-15', [125.32, 43.88], '滿洲國', 'not_sovereign'],
+    ['1941-12-15', [100.5, 13.75], '泰國', 'de_jure'],
+    ['1945-08-30', [125.75, 39.03], '蘇聯民政署', 'not_sovereign'],
+  ] as const) {
+    await page.goto(`/?date=${date}`);
+    await waitForBorders(page);
+    await jump(page, [...at], 5);
+    await clickLngLat(page, [...at]);
+    await expect(page.getByTestId('sovereignty-card-title')).toContainText(title);
+    await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', layer);
+  }
+  // 日本佔領區 OHM 沒有邊界、未分出：華中（安徽）仍畫為中華民國
+  await page.goto('/?date=1940-01-01');
+  await waitForBorders(page);
+  await jump(page, [116.4, 32], 5);
+  await clickLngLat(page, [116.4, 32]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('中華民國');
+  const res = await page.request.get('/api/v1/conflicts?date=1943-06-01');
+  const slugs = ((await res.json()).data.featureCollection.features as { properties: { regimeASlug: string; regimeBSlug: string } }[])
+    .map((f) => `${f.properties.regimeASlug}/${f.properties.regimeBSlug}`);
+  expect(slugs).toEqual(expect.arrayContaining(['empire-of-japan/republic-of-china-nationalist', 'empire-of-japan/united-states-of-america', 'empire-of-japan/united-kingdom']));
+  expect(slugs).not.toContain('soviet-union/empire-of-japan');
+});
+
 test('陣營外框圖層可開關，預設關閉', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);

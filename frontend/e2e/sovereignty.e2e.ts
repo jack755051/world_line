@@ -311,3 +311,30 @@ test('1941-12-01：補空白第一段（德國、蘇聯、東方與烏克蘭總�
   await clickAt(page, [28.86, 47.01]); // 基希涅夫
   await expect(title).toContainText('羅馬尼亞王國');
 });
+
+test('1943-07-01／1944-10-01／1945-03-01：補空白第二段（德國、蘇聯、總督轄區、波蘭臨時政府）', async ({ page }) => {
+  const card = page.getByTestId('sovereignty-card');
+  const title = page.getByTestId('sovereignty-card-title');
+  await page.goto('/?date=1943-07-01&axis=sovereignty');
+  await waitForBorders(page);
+  await clickAt(page, [30.52, 50.45]); // 基輔
+  await expect(title).toContainText('烏克蘭總督轄區');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await clickAt(page, [37.62, 55.75]); // 莫斯科
+  await expect(title).toContainText('蘇維埃');
+  await page.goto('/?date=1944-10-01&axis=sovereignty');
+  await waitForBorders(page);
+  await clickAt(page, [24.1, 56.95]); // 里加
+  await expect(title).toContainText('東方總督轄區');
+  await clickAt(page, [25.28, 54.69]); // 維爾紐斯
+  await expect(title).toContainText('蘇維埃');
+  await clickAt(page, [30.52, 50.45]); // 基輔
+  await expect(title).toContainText('蘇維埃');
+  await clickAt(page, [21.01, 52.23]); // 華沙
+  await expect(title).toContainText('德意志國');
+  await page.goto('/?date=1945-03-01&axis=sovereignty');
+  await waitForBorders(page);
+  await clickAt(page, [21.01, 52.23]); // 華沙
+  await expect(title).toContainText('波蘭臨時政府');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+});

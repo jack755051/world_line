@@ -73,3 +73,22 @@ for (const date of ['1941-12-01', '1942-11-01', '1942-12-01', '1943-07-01', '194
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-${date}.png` });
   });
 }
+
+for (const [name, date, center, zoom] of [
+  ['world', '1942-12-01', [-20, 30], 1.5],
+  ['us', '1942-12-01', [-110, 40], 2.4],
+] as const) {
+  test(`截圖：${date} ${name === 'world' ? '全圖' : '美國本土與屬地'}`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/?date=${date}&axis=sovereignty`);
+    const canvas = page.getByTestId('map-canvas');
+    await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+    await page.evaluate(([c, z]) => {
+      const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+      map.jumpTo({ center: c, zoom: z });
+    }, [center, zoom] as const);
+    await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(0);
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-${name}-${date}.png` });
+  });
+}

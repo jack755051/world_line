@@ -110,6 +110,25 @@ test('1940 波羅的海：06-20 里加屬拉脫維亞共和國（補空白）、
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('蘇維埃');
 });
 
+test('美國：1941-12-01 堪薩斯屬美利堅合眾國、馬尼拉屬菲律賓自治邦；1942-12-01 對德宣戰的衝突已開始', async ({ page }) => {
+  await page.goto('/?date=1941-12-01');
+  await waitForBorders(page);
+  await jump(page, [-98, 39], 3.2);
+  await clickLngLat(page, [-98.5, 38.5]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('美利堅合眾國');
+  await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'de_jure');
+  // 關閉面板後鏡頭會回到原位，所以重新開頁再看菲律賓
+  await page.goto('/?date=1941-12-01');
+  await waitForBorders(page);
+  await jump(page, [121, 14.6], 5);
+  await clickLngLat(page, [121.1, 14.7]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('菲律賓自治邦');
+  const res = await page.request.get('/api/v1/conflicts?date=1942-12-01') // 經 4201 的 proxy 到開發 API;
+  const slugs = ((await res.json()).data.featureCollection.features as { properties: { regimeASlug: string; regimeBSlug: string } }[])
+    .map((f) => `${f.properties.regimeASlug}/${f.properties.regimeBSlug}`);
+  expect(slugs).toContain('deutsches-reich/united-states-of-america');
+});
+
 test('陣營外框圖層可開關，預設關閉', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);
@@ -195,7 +214,7 @@ test('1939-10-23：德佔波蘭資訊卡不被時間軸／視窗邊緣擋住；�
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德佔波蘭軍事管理');
   const area = (await page.getByTestId('map-area').boundingBox())!;
   // 面板滑入動畫中量測會差幾 px：等位置穩定在地圖區內
-  await expect.poll(async () => { const b = (await card.boundingBox())!; return b.y + b.height - (area.y + area.height); }, { timeout: 3000 }).toBeLessThanOrEqual(0.5);
+  await expect.poll(async () => { const b = (await card.boundingBox())!; return Math.max(b.y + b.height - (area.y + area.height), b.x + b.width - (area.x + area.width)); }, { timeout: 3000 }).toBeLessThanOrEqual(0.5);
   const box = (await card.boundingBox())!;
   expect(box.y).toBeGreaterThanOrEqual(area.y);
   expect(box.x).toBeGreaterThanOrEqual(area.x);

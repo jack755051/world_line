@@ -24,7 +24,8 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } }],
   webServer: {
-    command: `pnpm exec ng serve --port ${port} --host 127.0.0.1`,
+    // WL_E2E_BORDERS=1：一律 proxy 到開發 API（5052，proxy.borders-dev.json），避免自動啟動的 dev server 誤連 5051／appdb_ww2
+    command: `pnpm exec ng serve --port ${port} --host 127.0.0.1${process.env['WL_E2E_BORDERS'] ? ' --proxy-config proxy.borders-dev.json' : ''}`,
     url: `http://127.0.0.1:${port}`,
     reuseExistingServer: true,
     timeout: 180_000,

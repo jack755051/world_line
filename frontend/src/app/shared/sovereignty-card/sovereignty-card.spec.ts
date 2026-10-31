@@ -148,6 +148,28 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(jumped).toBe('1938-03-13');
   });
 
+  it('事件時間線：事後追加的參與方顯示「事後追加・角色（追加於 日期）」與理由；隨事件寫入的不顯示', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('tab', 'events');
+    fixture.componentRef.setInput('regimeEvents', [
+      { ...ev('verified'), id: 'a', occurred: { start: '1942-11-08', end: '1942-11-09' }, roles: ['belligerent'],
+        additions: [{ role: 'belligerent', addedAt: '2026-10-31T14:46:35Z', note: { 'zh-Hant': '美軍為火炬行動登陸主力', en: 'US forces led Torch' } }] },
+      { ...ev('verified'), id: 'b', occurred: { start: '1943-09-08', end: '1943-09-09' }, roles: ['signatory'] },
+    ]);
+    fixture.componentRef.setInput('eventsStatus', 'ok');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
+    const add = items[0].querySelector('[data-testid="sovereignty-card-timeline-addition"]');
+    expect(add?.getAttribute('data-role')).toBe('belligerent');
+    expect(add?.textContent).toContain('事後追加・交戰方');
+    expect(add?.textContent).toContain('2026-10-31');
+    expect(add?.textContent).toContain('美軍為火炬行動登陸主力');
+    expect(items[1].querySelector('[data-testid="sovereignty-card-timeline-addition"]')).toBeNull();
+  });
+
   it('面板內分頁：概要（含相關衝突）與事件；tablist／tab／tabpanel 的 aria、方向鍵切換、送出 tabChange、依 tab 輸入開在指定分頁', async () => {
     const fixture = TestBed.createComponent(SovereigntyCard);
     fixture.componentRef.setInput('props', props());

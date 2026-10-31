@@ -1087,6 +1087,14 @@ export interface components {
             /** Format: int32 */
             total: number | string;
         };
+        ParticipantAdditionDto: {
+            role: string;
+            /** Format: date-time */
+            addedAt: string;
+            note: null | {
+                [key: string]: string;
+            };
+        };
         RegimeAlignmentDto: {
             /** Format: uuid */
             id: string;
@@ -1119,6 +1127,7 @@ export interface components {
             verification: string;
             citations: components["schemas"]["CitationDto"][];
             roles: string[];
+            additions?: null | components["schemas"]["ParticipantAdditionDto"][];
         };
         RegimeInteractionDto: {
             /** Format: uuid */

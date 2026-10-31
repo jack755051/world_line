@@ -142,8 +142,17 @@ public static class EventsEndpoints
             if (!roles.TryGetValue(g, out var set)) roles[g] = set = new SortedSet<string>(StringComparer.Ordinal);
             set.Add(role);
         }
-        foreach (var p in await db.EventParticipants.AsNoTracking().Where(p => p.RegimeId == id).Select(p => new { p.EventId, p.Role }).ToListAsync(ct))
+        var additions = new Dictionary<Guid, List<ParticipantAdditionDto>>();
+        foreach (var p in await db.EventParticipants.AsNoTracking().Where(p => p.RegimeId == id)
+                     .Select(p => new { p.EventId, p.Role, p.AddedAt, p.AdditionNote }).ToListAsync(ct))
+        {
             Add(p.EventId, p.Role);
+            if (p.AddedAt is { } at)
+            {
+                if (!additions.TryGetValue(p.EventId, out var l)) additions[p.EventId] = l = [];
+                l.Add(new ParticipantAdditionDto(p.Role, at, Mapping.ReadLocalizedOrNull(p.AdditionNote)));
+            }
+        }
         foreach (var r in await db.SovereigntyRecords.AsNoTracking().Where(r => r.RegimeId == id && r.RetractedAt == null)
                      .Select(r => new { r.StartEventId, r.EndEventId }).ToListAsync(ct))
         {
@@ -159,7 +168,8 @@ public static class EventsEndpoints
         var refs = await SovereigntyEndpoints.EventRefsAsync(db, roles.Keys.ToList(), ct);
         IReadOnlyList<RegimeEventDto> list = refs.Values
             .OrderBy(e => e.Occurred.Start).ThenBy(e => e.Id)
-            .Select(e => new RegimeEventDto(e.Id, e.EventKind, e.Occurred, e.Summary, e.Verification, e.Citations, roles[e.Id].ToList()))
+            .Select(e => new RegimeEventDto(e.Id, e.EventKind, e.Occurred, e.Summary, e.Verification, e.Citations, roles[e.Id].ToList(),
+                additions.TryGetValue(e.Id, out var adds) ? adds.OrderBy(a => a.AddedAt).ThenBy(a => a.Role, StringComparer.Ordinal).ToList() : null))
             .ToList();
         return ApiResults.Ok(list);
     }

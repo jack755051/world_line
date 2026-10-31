@@ -4649,6 +4649,32 @@
           }
         }
       },
+      "ParticipantAdditionDto": {
+        "required": [
+          "role",
+          "addedAt",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "addedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "RegimeAlignmentDto": {
         "required": [
           "id",
@@ -4773,6 +4799,15 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "additions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ParticipantAdditionDto"
             }
           }
         }

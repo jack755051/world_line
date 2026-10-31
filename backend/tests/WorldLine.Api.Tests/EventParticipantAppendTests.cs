@@ -48,7 +48,15 @@ public sealed class EventParticipantAppendTests(PostGisFixture fx)
 
         // 政權事件清單也看得到（參與方角色）
         var list = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/regimes/{us}/events"), HttpStatusCode.OK)).GetProperty("data");
-        Assert.Contains(list.EnumerateArray(), e => e.GetProperty("id").GetGuid() == ev);
+        var item = list.EnumerateArray().Single(e => e.GetProperty("id").GetGuid() == ev);
+        var adds = item.GetProperty("additions").EnumerateArray().ToList();
+        var add = Assert.Single(adds);
+        Assert.Equal("belligerent", add.GetProperty("role").GetString());
+        Assert.Contains("FRUS", add.GetProperty("note").GetProperty("zh-Hant").GetString());
+        // 隨事件寫入的參與方：沒有追加紀錄
+        var ukList = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/regimes/{uk}/events"), HttpStatusCode.OK)).GetProperty("data");
+        var ukItem = ukList.EnumerateArray().Single(e => e.GetProperty("id").GetGuid() == ev);
+        Assert.True(!ukItem.TryGetProperty("additions", out var ua) || ua.ValueKind == JsonValueKind.Null);
     }
 
     [Fact]

@@ -219,7 +219,11 @@ public sealed record SovereigntyEventRefDto(
 /// </summary>
 public sealed record RegimeEventDto(
     Guid Id, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
-    string Verification, IReadOnlyList<CitationDto> Citations, IReadOnlyList<string> Roles);
+    string Verification, IReadOnlyList<CitationDto> Citations, IReadOnlyList<string> Roles,
+    IReadOnlyList<ParticipantAdditionDto>? Additions = null);
+
+/// <summary>此政權在該事件中「事後追加」（方案 A）的參與紀錄：角色、追加時間、理由；隨事件寫入的參與方不列。</summary>
+public sealed record ParticipantAdditionDto(string Role, DateTimeOffset AddedAt, IReadOnlyDictionary<string, string>? Note);
 
 /// <summary>幾何出處：來源（資料集）＋locator（關係 id／版本）＋此筆幾何授權與署名。</summary>
 public sealed record GeometryProvenanceDto(

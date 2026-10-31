@@ -14,7 +14,7 @@ const TXT = {
     campNone: '陣營未建置', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
-    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期',
+    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於',
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
     kind: { annexed: '併入（正式或事實；國際未承認割讓）', civil_administration: '民政管理（帝國專員轄區、保護國、總督府等）', military_administration: '軍事管理' } as Record<string, string>,
@@ -27,7 +27,7 @@ const TXT = {
     campNone: 'Camp not set', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
-    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date',
+    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added',
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
     kind: { annexed: 'Annexed (formal or de facto; not internationally recognised)', civil_administration: 'Civil administration (Reichskommissariat, protectorate, General Government…)', military_administration: 'Military administration' } as Record<string, string>,
@@ -122,6 +122,14 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                       @if (e.when === 'now') { <span class="text-[11px] text-wl-secondary">{{ t().now }}</span> }
                     </div>
                     <wl-event-ref [ev]="e.ev" prefix="sovereignty-card-timeline" [lang]="lang()" />
+                    @for (a of e.additions; track a.role) {
+                      <!-- 事後追加的參與方（方案 A）：角色、追加日期、理由；原有參與方與引用不變 -->
+                      <p data-testid="sovereignty-card-timeline-addition" [attr.data-role]="a.role" class="mt-1 rounded-sm border-l-2 border-wl-outline pl-2 text-[11px] text-wl-on-surface-variant">
+                        <span class="font-semibold">{{ t().appended }}・{{ a.roleText }}</span>
+                        <span class="tabular-nums">（{{ t().appendedAt }} {{ a.addedOn }}）</span>
+                        @if (a.note) { <span class="block">{{ a.note }}</span> }
+                      </p>
+                    }
                   </li>
                 } @empty {
                   <li class="pl-4 wl-text2 text-wl-on-surface-variant">{{ t().noEvents }}</li>
@@ -227,6 +235,12 @@ export class SovereigntyCard {
     return list.map((ev, i) => ({
       ev,
       roles: [...new Set(ev.roles.map((r) => this.t().role[r] ?? r))],
+      additions: (ev.additions ?? []).map((a) => ({
+        role: a.role,
+        roleText: this.t().role[a.role] ?? a.role,
+        addedOn: (a.addedAt ?? '').slice(0, 10),
+        note: a.note ? ((this.lang() === 'en' ? a.note['en'] || a.note['zh-Hant'] : a.note['zh-Hant'] || a.note['en']) ?? '') : '',
+      })),
       when: (i === nowIdx ? 'now' : i < nowIdx ? 'past' : 'future') as 'past' | 'now' | 'future',
     }));
   });

@@ -1,0 +1,74 @@
+{
+ "_placeholder": "SOVP_SU_B",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "P45_SU_B",
+ "body": {
+  "regimeId": "01a18e71-cc2e-7f80-8d62-81879da43d7b",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1945-08-02",
+   "end": "1945-09-03"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "{{SRC_OHM_45PW}}",
+  "geometryLocator": "relation/2957472 v19 − (relation/2692712 v266 − relation/2693084 v96)（完整，不受歐陸框裁切） ∪ (relation/2851943 v91 ∩ 盟軍佔領德國／波蘭臨時政府範圍)",
+  "geometryLicense": "cc_by",
+  "attribution": "OCHA／HDX COD-AB Ukraine（OHM 線段標示 CC BY 4.0）; © Geodetska uprava Republike Slovenije（GURS），CC BY 4.0; © Kartverket（挪威測繪局，Administrative enheter），CC BY 4.0",
+  "startEventId": "{{EV_POTSDAM}}",
+  "endEventId": null,
+  "ohmRelationId": 2957472,
+  "ohmVersion": 19,
+  "ohmFetchedAt": "2026-10-31T09:00:03+00:00",
+  "ohmStartRaw": "1944-10-11",
+  "ohmEndRaw": "1945-08-01",
+  "provenance": {
+   "unclip": {
+    "batch": "unclip-su-tr",
+    "method": "框內幾何沿用原紀錄；框外部分取同一 OHM 版本全球重組（Natural Earth 10m 陸地裁切）後併入",
+    "cutNote": "與同期其他政權共有邊界上的細碎重疊（<0.001 平方度）亦一併扣除",
+    "replaces": "01a1913b-93a6-74c9-8933-dcc7b28b12bb",
+    "frameRemoved": "box(-12,34,42,72)",
+    "cutAgainstExisting": [
+     {
+      "slug": "republic-of-china-nationalist",
+      "area_deg2": 0.076
+     },
+     {
+      "slug": "manchukuo",
+      "area_deg2": 0.1509
+     },
+     {
+      "slug": "mongolian-peoples-republic",
+      "area_deg2": 0.0831
+     }
+    ],
+    "outsideMemberWayLicense": {
+     "untagged(OHM CC0)": 787
+    }
+   },
+   "ohmFixme": null,
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "derivation": "relation/2957472 v19 − (relation/2692712 v266 − relation/2693084 v96)（完整，不受歐陸框裁切） ∪ (relation/2851943 v91 ∩ 盟軍佔領德國／波蘭臨時政府範圍)",
+   "derivedFrom": [
+    "relation/2957472 v19 − (relation/2692712 v266 − relation/2693084 v96)（完整，不受歐陸框裁切）",
+    "relation/2851943 v91"
+   ],
+   "trialWindow": "延伸至 1945-09-02（europe-1945-postwar）",
+   "ohmChangeset": 273106,
+   "ohmTimestamp": "2026-09-27T19:37:08Z",
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "hdx_ukr": 5,
+    "kartverket": 23,
+    "untagged(OHM CC0)": 1083
+   },
+   "osmDerivedWayCount": 0,
+   "geometryBasedOnRecord": "01a191da-3040-7b31-b7eb-8661f97792ed",
+   "alsoGeometrySourceId": "01a1913b-8f51-7db3-bed3-f6873c7f5a33"
+  },
+  "note": {
+   "en": "Soviet Union (OHM) minus Germany, the remaining Reichskommissariat areas and Romanian-held territory; other German-held areas have no OHM geometry. (Fixed 2026-10-31: geometry outside the European trial frame restored.) From 2 Aug 1945 adds the Königsberg area (Potsdam Protocol sec. vi), Memel and the Grodno area per OHM relation/2851943; the 16 Aug Soviet–Polish border treaty is not split (pending).",
+   "zh-Hant": "蘇聯事實國界（OHM）扣掉德國、當時仍在的總督轄區與羅馬尼亞控制區；德軍在總督轄區以東佔領或據守的地區 OHM 沒有幾何，仍畫入蘇聯。（2026-10-31 修正：補回歐陸試驗框外的幾何；黑龍江／烏蘇里江江中島與滿洲國重疊處依既有滿洲國紀錄扣除。）1945-08-02 起加上 OHM 蘇聯 1945-08-01 版（2851943）中原屬德國與德併波蘭地區的部分：柯尼斯堡及鄰近地區（波茨坦議定書第 vi 節）、梅梅爾，以及比亞韋斯托克以東的格羅德諾一帶。1945-08-16 蘇波邊界條約未分段（待查證）。延伸至 1945-09-02。"
+  }
+ }
+}

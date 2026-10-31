@@ -81,8 +81,10 @@ for (const [name, date, center, zoom] of [
   ['asia', '1941-12-15', [118, 28], 2.6],
   ['asia', '1943-06-01', [118, 28], 2.6],
   ['asia', '1945-08-01', [118, 28], 2.6],
+  ['europe', '1945-06-01', [16, 50], 3.3],
+  ['europe', '1945-09-01', [16, 50], 3.3],
 ] as const) {
-  test(`截圖：${date} ${{ world: '全圖', us: '美國本土與屬地', asia: '亞洲太平洋' }[name]}`, async ({ page }) => {
+  test(`截圖：${date} ${{ world: '全圖', us: '美國本土與屬地', asia: '亞洲太平洋', europe: '歐洲（德國投降後）' }[name]}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/?date=${date}&axis=sovereignty`);
     const canvas = page.getByTestId('map-canvas');

@@ -535,3 +535,41 @@ test('1942-11-01：佔領區依佔領國上色（併入最深、總督府／專�
   await expect(page.getByTestId('legend-sov-occupation-annexed')).toHaveCount(1);
   await expect(page.getByTestId('legend-sov-occupation-military_administration')).toContainText('軍事管理');
 });
+
+test('API：德國投降後到 1945-09-02 歐洲不留白（盟軍佔領德國、奧地利、盧森堡、多德卡尼斯；波茨坦後波蘭含奧得—尼斯河以東、蘇聯含柯尼斯堡）', async ({ page }) => {
+  type F = { properties: { regimeSlug: string; layerStatus: string; occupation: unknown; endEvent: { id: string } | null } };
+  const on = async (d: string) => ((await (await page.request.get(`/api/v1/sovereignty?date=${d}`)).json()).data.featureCollection.features as F[]);
+  const slugs = (fs: F[]) => fs.map((f) => f.properties.regimeSlug);
+  const jun = await on('1945-06-01');
+  for (const s of ['allied-occupied-germany', 'republic-of-austria-1945', 'grand-duchy-of-luxembourg', 'british-military-administration-dodecanese', 'polish-provisional-government-1945',
+    'democratic-federal-yugoslavia', 'czechoslovak-republic', 'kingdom-of-italy', 'provisional-government-french-republic', 'soviet-union', 'kingdom-of-romania'])
+    expect(slugs(jun)).toContain(s);
+  expect(slugs(jun)).not.toContain('deutsches-reich');
+  expect(slugs(jun)).not.toContain('independent-state-of-croatia');
+  const de = jun.find((f) => f.properties.regimeSlug === 'allied-occupied-germany')!;
+  expect(de.properties.layerStatus).toBe('not_sovereign');
+  expect(de.properties.occupation).toBeTruthy();
+  const sep = await on('1945-09-02');
+  for (const s of ['allied-occupied-germany', 'polish-provisional-government-national-unity', 'soviet-union', 'kingdom-of-greece', 'republic-of-finland'])
+    expect(slugs(sep)).toContain(s);
+  expect(slugs(sep)).not.toContain('polish-provisional-government-1945');
+  // 波茨坦後：布雷斯勞（弗羅茨瓦夫）屬波蘭、柯尼斯堡屬蘇聯
+  const at = async (d: string, lng: number, lat: number) => (await (await page.request.get(`/api/v1/sovereignty?date=${d}`)).json()).data.featureCollection.features
+    .filter((f: { geometry: { type: string; coordinates: number[][][][] } }) => inside(f.geometry, lng, lat)).map((f: F) => f.properties.regimeSlug);
+  expect(await at('1945-07-01', 17.04, 51.11)).toEqual(['allied-occupied-germany']);
+  expect(await at('1945-08-10', 17.04, 51.11)).toEqual(['polish-provisional-government-national-unity']);
+  expect(await at('1945-08-10', 20.51, 54.71)).toEqual(['soviet-union']);
+});
+
+function inside(g: { type: string; coordinates: number[][][][] | number[][][] }, x: number, y: number): boolean {
+  const polys = (g.type === 'Polygon' ? [g.coordinates] : g.coordinates) as number[][][][];
+  return polys.some((rings) => {
+    let c = false;
+    for (const ring of rings)
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const [xi, yi] = ring[i], [xj, yj] = ring[j];
+        if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
+      }
+    return c;
+  });
+}

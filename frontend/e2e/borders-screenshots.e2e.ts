@@ -58,16 +58,18 @@ test('截圖：展開的圖例（主權檢視只留國界說明）', async ({ pa
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-legend-1939-10-23.png` });
 });
 
-test('截圖：1942-11-01 德國、蘇聯國界與東方佔領行政區', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/?date=1942-11-01&axis=sovereignty');
-  const canvas = page.getByTestId('map-canvas');
-  await expect(canvas).toHaveAttribute('data-map-ready', 'true');
-  await page.evaluate(() => {
-    const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
-    map.jumpTo({ center: [24, 52], zoom: 3.4 });
+for (const date of ['1942-11-01', '1942-12-01']) {
+  test(`截圖：${date} 歐洲國界與佔領行政區（德、蘇、南歐、東南歐、法國）`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/?date=${date}&axis=sovereignty`);
+    const canvas = page.getByTestId('map-canvas');
+    await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+    await page.evaluate(() => {
+      const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+      map.jumpTo({ center: [16, 48], zoom: 3.3 });
+    });
+    await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-${date}.png` });
   });
-  await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
-  await page.waitForTimeout(1500);
-  await page.screenshot({ path: `tmp/borders-shots/${prefix}-1942-11-01.png` });
-});
+}

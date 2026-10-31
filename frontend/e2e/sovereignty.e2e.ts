@@ -209,3 +209,52 @@ test('1942-11-01：德國、蘇聯國界與東方佔領行政區（非主權斜�
   await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
   await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-no-citation')).toBeVisible();
 });
+
+/** 先把地圖中心移到該點再點擊，避免資訊卡蓋住點擊位置。 */
+async function clickAt(page: Page, lngLat: [number, number]): Promise<void> {
+  await jump(page, lngLat, 5);
+  await clickLngLat(page, lngLat);
+}
+
+test('1942-12-01：南歐、東南歐與法國（佔領行政區為非主權斜線）；出處或待查證', async ({ page }) => {
+  await page.goto('/?date=1942-12-01&axis=sovereignty');
+  await waitForBorders(page);
+  const card = page.getByTestId('sovereignty-card');
+  const title = page.getByTestId('sovereignty-card-title');
+  const start = page.getByTestId('sovereignty-card-start');
+
+  await clickAt(page, [15.98, 45.81]); // 札格雷布
+  await expect(title).toContainText('克羅埃西亞獨立國');
+  await expect(card).toHaveAttribute('data-layer-status', 'de_jure');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+
+  await clickAt(page, [20.46, 44.82]); // 貝爾格勒
+  await expect(title).toContainText('塞爾維亞軍事指揮官轄區');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+
+  await clickAt(page, [19.26, 42.44]); // 波德戈里察：總督轄區設立沒有正式出處 → 待查證
+  await expect(title).toContainText('蒙特內哥羅總督轄區');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(start.getByTestId('sovereignty-card-pending')).toHaveText('待查證');
+
+  await clickAt(page, [3.43, 46.13]); // 維琪：1942-11-11 起全境佔領
+  await expect(title).toContainText('法蘭西國（維琪）');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+
+  await clickAt(page, [30.73, 46.48]); // 敖德薩
+  await expect(title).toContainText('外涅斯特里亞');
+  await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
+  await clickAt(page, [28.86, 47.01]); // 基希涅夫（比薩拉比亞）
+  await expect(title).toContainText('羅馬尼亞王國');
+  await expect(card).toHaveAttribute('data-layer-status', 'de_jure');
+});
+
+test('1942-11-01：維琪法國在 11-11 前仍為原紀錄（主權），尚無義大利佔領的法國地區', async ({ page }) => {
+  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await waitForBorders(page);
+  await clickAt(page, [3.43, 46.13]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('法蘭西國（維琪）');
+  await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'de_jure');
+});

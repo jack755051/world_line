@@ -48,7 +48,7 @@ def readd_body(rd, override):
     if ug: gexpr = f"ST_Union({gexpr}, {ug})"
     if sg: gexpr = f"ST_Difference({gexpr}, {sg})"
     if ug or sg: gexpr = f"ST_Multi(ST_CollectionExtract(ST_MakeValid({gexpr}),3))"
-    q = f"""select json_build_object('regimeId',s.regime_id,'geometry',ST_AsGeoJSON({gexpr})::json,
+    q = f"""select json_build_object('regimeId',s.regime_id,'geometry',ST_AsGeoJSON({gexpr},15)::json,
       'validPeriod',json_build_object('start',lower(s.valid_period),'end',upper(s.valid_period)),'layerStatus',s.layer_status,
       'geometrySourceId',s.geometry_source_id,'geometryLocator',s.geometry_locator,'geometryLicense',s.geometry_license,'attribution',s.attribution,
       'startEventId',s.start_event_id,'endEventId',s.end_event_id,'ohmRelationId',s.ohm_relation_id,'ohmVersion',s.ohm_version,

@@ -214,3 +214,35 @@ for (const [date, focus, waitConflict] of [
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-interwar-${date}.png` });
   });
 }
+
+// 兩次大戰之間 B 批（1924～1938）：洛迦諾與萊茵蘭撤軍、薩爾回歸、西班牙內戰、德奧合併（接二戰既有資料）
+for (const [date, focus, waitConflict] of [
+  ['1926-01-01', [6.95, 50.9], false], // 萊茵蘭科隆區（英軍佔領，1926-01-31 撤出）
+  ['1935-03-01', [7.0, 49.3], false], // 薩爾回歸德國當天
+  ['1937-06-01', [-0.8, 39.5], true], // 西班牙共和國：西班牙內戰
+  ['1938-03-13', [14.5, 47.6], false], // 德奧合併當天（二戰既有紀錄）
+] as const) {
+  test(`截圖：${date} 歐洲與近東（兩次大戰之間 B 批）`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/?date=${date}&axis=sovereignty`);
+    const canvas = page.getByTestId('map-canvas');
+    await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+    await page.evaluate(() => {
+      const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+      map.jumpTo({ center: [12, 45], zoom: 3.3 });
+    });
+    await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+    await page.waitForTimeout(1000);
+    const box = await canvas.boundingBox();
+    const p = await page.evaluate((ll) => {
+      const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
+      return map.project([ll[0], ll[1]]);
+    }, focus);
+    await page.mouse.click((box?.x ?? 0) + p.x, (box?.y ?? 0) + p.y);
+    await expect(page.getByTestId('sovereignty-card')).toBeVisible();
+    if (waitConflict) await expect(page.getByTestId('sovereignty-card-conflict').first()).toBeVisible({ timeout: 40_000 });
+    await page.mouse.move(5, 5);
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-interwar-${date}.png` });
+  });
+}

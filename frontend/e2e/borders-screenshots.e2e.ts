@@ -58,7 +58,7 @@ test('截圖：展開的圖例（主權檢視只留國界說明）', async ({ pa
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-legend-1939-10-23.png` });
 });
 
-for (const date of ['1941-12-01', '1942-11-01', '1942-12-01', '1943-07-01', '1944-10-01']) {
+for (const date of ['1941-12-01', '1942-11-01', '1942-12-01', '1943-07-01', '1943-10-01', '1944-10-01', '1945-05-01']) {
   test(`截圖：${date} 歐洲國界與佔領行政區（德、蘇、南歐、東南歐、法國）`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/?date=${date}&axis=sovereignty`);

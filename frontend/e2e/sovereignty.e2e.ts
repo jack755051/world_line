@@ -69,6 +69,47 @@ test('1938-10-05：蘇台德為德軍分區進駐中（非主權斜線，慕尼�
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
 });
 
+test('1943-10-01：羅馬屬義大利社會共和國（非主權）、南義屬義大利王國（AMGOT 分段待查證）；1944-10-01 雅典屬希臘王國、巴黎屬法國臨時政府', async ({ page }) => {
+  await page.goto('/?date=1943-10-01');
+  await waitForBorders(page);
+  await jump(page, [13, 42], 5.5);
+  await clickLngLat(page, [12.5, 41.9]); // 羅馬
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('義大利社會共和國');
+  await expect(page.getByTestId('sovereignty-card-status')).toContainText('非主權');
+  await page.keyboard.press('Escape');
+  await clickLngLat(page, [15.0, 40.6]); // 薩萊諾以東
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('義大利');
+  await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'de_jure');
+  // 起始變動（AMGOT 分段日）只有 OHM 日期：待查證，不補造出處
+  await expect(page.getByTestId('sovereignty-card-start')).toContainText('待查證');
+  await page.goto('/?date=1944-10-01');
+  await waitForBorders(page);
+  await jump(page, [2.35, 48.86], 5.5);
+  await clickLngLat(page, [2.35, 48.86]);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('法蘭西共和國臨時政府');
+  await page.goto('/?date=1944-11-01');
+  await waitForBorders(page);
+  await jump(page, [23.7, 38.2], 5.5);
+  await clickLngLat(page, [23.4, 38.3]); // 雅典西北
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('希臘');
+  await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'de_jure');
+});
+
+test('1940 波羅的海：06-20 里加屬拉脫維亞共和國（補空白）、07-25 考納斯屬立陶宛蘇維埃共和國（不再重疊）、08-04 里加仍屬拉脫維亞蘇維埃共和國', async ({ page }) => {
+  for (const [date, at, title] of [
+    ['1940-06-20', [24.1, 56.95], '拉脫維亞'],
+    ['1940-07-25', [23.9, 54.9], '立陶宛'],
+    ['1940-08-04', [24.1, 56.95], '拉脫維亞'],
+  ] as const) {
+    await page.goto(`/?date=${date}`);
+    await waitForBorders(page);
+    await jump(page, [24, 56], 5.5);
+    await clickLngLat(page, [...at]);
+    await expect(page.getByTestId('sovereignty-card-title')).toContainText(title);
+  }
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('蘇維埃');
+});
+
 test('陣營外框圖層可開關，預設關閉', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);
@@ -153,9 +194,10 @@ test('1939-10-23：德佔波蘭資訊卡不被時間軸／視窗邊緣擋住；�
   await expect(card).toBeVisible();
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德佔波蘭軍事管理');
   const area = (await page.getByTestId('map-area').boundingBox())!;
+  // 面板滑入動畫中量測會差幾 px：等位置穩定在地圖區內
+  await expect.poll(async () => { const b = (await card.boundingBox())!; return b.y + b.height - (area.y + area.height); }, { timeout: 3000 }).toBeLessThanOrEqual(0.5);
   const box = (await card.boundingBox())!;
   expect(box.y).toBeGreaterThanOrEqual(area.y);
-  expect(box.y + box.height).toBeLessThanOrEqual(area.y + area.height + 0.5);
   expect(box.x).toBeGreaterThanOrEqual(area.x);
   expect(box.x + box.width).toBeLessThanOrEqual(area.x + area.width + 0.5);
 

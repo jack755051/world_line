@@ -41,6 +41,49 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(q(el, 'sovereignty-card-end')?.querySelector('[data-testid="sovereignty-card-pending"]')?.textContent).toBe('待查證');
   });
 
+  it('起訖變動同一結構：事件名稱 → 日期 → 徽章＋出處；徽章在名稱下方、與出處同一區塊', async () => {
+    const { el } = await render(props());
+    for (const key of ['start', 'end']) {
+      const row = q(el, 'sovereignty-card-' + key)!;
+      const kids = [...row.children].map((c) => c.getAttribute('data-testid'));
+      expect(kids).toEqual(['sovereignty-card-event-name', 'sovereignty-card-event-date', 'sovereignty-card-evidence']);
+      expect(row.querySelector('[data-testid="sovereignty-card-event-date"]')?.textContent?.trim()).toBe('1938-09-29');
+      const evidence = row.querySelector('[data-testid="sovereignty-card-evidence"]')!;
+      expect(evidence.firstElementChild?.getAttribute('data-testid')).toMatch(/^sovereignty-card-(verified|pending)$/);
+    }
+    // 結束變動沒有出處：只標待查證與「尚無正式出處」，不補造
+    const end = q(el, 'sovereignty-card-end')!;
+    expect(end.querySelector('[data-testid="sovereignty-card-citation"]')).toBeNull();
+    expect(end.querySelector('[data-testid="sovereignty-card-no-citation"]')?.textContent).toContain('尚無正式出處');
+  });
+
+  it('出處預設只顯示簡短引用，點一下展開完整書目、再點收合', async () => {
+    const title = 'Documents on German Foreign Policy 1918–1945, Series D (1937–1945), Volume VIII: The War Years, September 4, 1939–March 18, 1940（美國國務院版）';
+    const { fixture, el } = await render(props({
+      startEvent: ev('verified', [{ sourceId: 's', sourceTitle: title, publisher: 'U.S. Department of State', licenseCode: 'us_federal_pd', locator: 'Doc. 157, pp. 164–165', role: 'primary', evidenceNote: '' }]),
+    }));
+    const start = q(el, 'sovereignty-card-start')!;
+    const toggle = start.querySelector('[data-testid="sovereignty-card-citation-toggle"]') as HTMLButtonElement;
+    expect(toggle.textContent?.trim()).toBe('DGFP D/VIII, Doc. 157, pp. 164–165');
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')).toBeNull();
+    expect(start.textContent).not.toContain('The War Years');
+    toggle.click();
+    await fixture.whenStable();
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')?.textContent).toContain(title);
+    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')?.textContent).toContain('U.S. Department of State');
+    toggle.click();
+    await fixture.whenStable();
+    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')).toBeNull();
+  });
+
+  it('卡片內容可捲動（太高時不超出外框）', async () => {
+    const { el } = await render(props());
+    expect(q(el, 'sovereignty-card')?.className).toContain('max-h-[inherit]');
+    expect(q(el, 'sovereignty-card-body')?.className).toContain('overflow-y-auto');
+  });
+
   it('幾何出處：OHM 關係／版本、授權與署名；含 OSM 線段時標 ODbL', async () => {
     const { el } = await render(props());
     const g = q(el, 'sovereignty-card-geometry')!.textContent!;

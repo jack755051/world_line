@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject, signal, untracked } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LucideCircleAlert, LucideCloudOff, LucideInfo, LucideRotateCw } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
@@ -11,10 +11,11 @@ import { regimeSelfName } from '../../core/regime-names';
 import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { GapCard } from '../../shared/gap-card/gap-card';
-import { Legend, type LegendRegime, type LegendSovereigntyRegime } from '../../shared/legend/legend';
+import { Legend, type LegendRegime } from '../../shared/legend/legend';
 import { MotionService } from '../../core/motion';
+import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
 import { AtlasMap, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
-import { decorateSovereignty, regimeColor, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
 import { SovereigntyCard } from '../../shared/sovereignty-card/sovereignty-card';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
@@ -69,7 +70,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
             <wl-top-bar [date]="state.date()" [lang]="lang()" [legendOpen]="state.legendOpen()" [controlStatus]="data.controlStatus()"
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()" [axis]="state.axis()" (axisChange)="setAxis($event)"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
-            <div class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
+            <div #mapArea data-testid="map-area" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="selectedSov()?.recordId ?? null"
@@ -125,28 +126,28 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               }
 
               @if (selectedInfo(); as s) {
-                <div class="absolute z-20" [style.left.px]="s.x" [style.top.px]="s.y">
+                <div data-testid="feature-card-anchor" class="absolute z-20 overflow-y-auto" [style.left.px]="s.pos.left" [style.top.px]="s.pos.top" [style.bottom.px]="s.pos.bottom" [style.max-height.px]="s.pos.maxHeight">
                   <wl-feature-card [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang"
                     [evidence]="s.evidence" [theaterState]="s.theater" [lang]="lang()" (closed)="selected.set(null)" />
                 </div>
               }
 
               @if (selectedSovInfo(); as s) {
-                <div class="absolute z-20" [style.left.px]="s.x" [style.top.px]="s.y">
-                  <wl-sovereignty-card [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [lang]="lang()"
+                <div data-testid="sovereignty-card-anchor" class="absolute z-20 flex flex-col" [style.left.px]="s.pos.left" [style.top.px]="s.pos.top" [style.bottom.px]="s.pos.bottom" [style.max-height.px]="s.pos.maxHeight">
+                  <wl-sovereignty-card class="flex max-h-[inherit] min-h-0 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [lang]="lang()"
                     (closed)="selectedSov.set(null)" />
                 </div>
               }
 
               @if (selectedGapInfo(); as g) {
-                <div class="absolute z-20" [style.left.px]="g.x" [style.top.px]="g.y">
+                <div data-testid="gap-card-anchor" class="absolute z-20 overflow-y-auto" [style.left.px]="g.pos.left" [style.top.px]="g.pos.top" [style.bottom.px]="g.pos.bottom" [style.max-height.px]="g.pos.maxHeight">
                   <wl-gap-card [note]="g.note" [lang]="lang()" (closed)="selectedGap.set(null)" />
                 </div>
               }
 
               <div class="absolute bottom-4 left-4 z-10">
                 <wl-legend [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
-                  [axis]="state.axis()" [sovRegimes]="legendSovRegimes()" [sovRegimesStatus]="data.sovereigntyStatus()"
+                  [axis]="state.axis()"
                   (toggle)="state.legendOpen.set(!state.legendOpen())" />
               </div>
             </div>
@@ -174,26 +175,15 @@ export class AtlasPage {
   protected readonly hover = signal<MapFeatureEvent | null>(null);
   protected readonly selectedGap = signal<MapGapEvent | null>(null);
   protected readonly selectedSov = signal<MapSovereigntyEvent | null>(null);
+  /** 地圖區（時間軸上方）大小：資訊卡依此避開時間軸與視窗邊緣。 */
+  private readonly mapArea = viewChild<ElementRef<HTMLElement>>('mapArea');
+  private readonly areaSize = signal({ w: 0, h: 0 });
+  private place(x: number, y: number, cardW = 340): CardPlacement {
+    const { w, h } = this.areaSize();
+    return placeCard(x, y, w || window.innerWidth, h || window.innerHeight, cardW);
+  }
   protected readonly showCamps = signal(false);
   protected readonly motion = inject(MotionService);
-  /** 圖例：主權圖層中的政權（一政權一列；同政權多筆合併）。 */
-  protected readonly legendSovRegimes = computed<LegendSovereigntyRegime[]>(() => {
-    const regs = this.data.regimes();
-    const out = new Map<string, LegendSovereigntyRegime>();
-    for (const f of this.data.sovereignty()?.featureCollection.features ?? []) {
-      const p = f.properties;
-      const prev = out.get(p.regimeId);
-      const pending = p.startEvent?.verification === 'pending' || p.endEvent?.verification === 'pending';
-      out.set(p.regimeId, {
-        id: p.regimeId,
-        name: regimeSelfName(regs[p.regimeId], this.lang())?.display ?? p.regimeSlug,
-        color: regimeColor(p.regimeSlug),
-        notSovereign: (prev?.notSovereign ?? false) || p.layerStatus === 'not_sovereign',
-        pending: (prev?.pending ?? false) || pending,
-      });
-    }
-    return [...out.values()].sort((a, b) => a.name.localeCompare(b.name, this.lang() === 'en' ? 'en' : 'zh-Hant'));
-  });
   /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
   protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
   protected readonly sovereigntyCount = computed(() => this.data.sovereignty()?.featureCollection.features.length ?? 0);
@@ -204,8 +194,7 @@ export class AtlasPage {
     const reg = this.data.regimes()[f.properties.regimeId];
     const name = regimeSelfName(reg, this.lang());
     return {
-      x: Math.max(8, Math.min(e.x + 12, window.innerWidth - 360)),
-      y: Math.max(8, Math.min(e.y - 40, window.innerHeight - 560)),
+      pos: this.place(e.x, e.y),
       props: f.properties,
       name: name?.display ?? f.properties.regimeSlug,
       original: name?.original ?? '',
@@ -230,7 +219,7 @@ export class AtlasPage {
   protected readonly selectedGapInfo = computed(() => {
     const g = this.selectedGap();
     const note = g && this.data.control()?.coverageNotes?.find((n) => n.id === g.gapId);
-    return g && note ? { x: Math.max(8, g.x + 12), y: Math.max(8, g.y - 40), note } : null;
+    return g && note ? { pos: this.place(g.x, g.y, 300), note } : null;
   });
   protected readonly featureCount = computed(() => this.data.control()?.featureCollection.features.length ?? 0);
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
@@ -307,8 +296,7 @@ export class AtlasPage {
     const d = this.describe(s.versionId);
     if (!d) return null;
     return {
-      x: Math.max(8, s.x + 12),
-      y: Math.max(8, s.y - 40),
+      pos: this.place(s.x, s.y, 300),
       props: d.p,
       name: d.name?.display ?? '',
       original: d.name?.original ?? '',
@@ -366,7 +354,24 @@ export class AtlasPage {
       );
     });
 
-    inject(DestroyRef).onDestroy(() => clearTimeout(this.debounce));
+    // 地圖區大小（視窗縮放、時間軸高度變動）→ 資訊卡重新定位
+    let ro: ResizeObserver | undefined;
+    effect(() => {
+      const el = this.mapArea()?.nativeElement;
+      ro?.disconnect();
+      ro = undefined;
+      if (!el) return;
+      const update = () => this.areaSize.set({ w: el.clientWidth, h: el.clientHeight });
+      update();
+      if (typeof ResizeObserver !== 'undefined') {
+        ro = new ResizeObserver(update);
+        ro.observe(el);
+      }
+    });
+    inject(DestroyRef).onDestroy(() => {
+      clearTimeout(this.debounce);
+      ro?.disconnect();
+    });
     void this.boot();
   }
 

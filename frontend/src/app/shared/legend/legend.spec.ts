@@ -57,24 +57,20 @@ describe('Legend：主權圖層與收合動畫', () => {
   }
   const state = (f: { nativeElement: HTMLElement }) => f.nativeElement.querySelector('[data-testid="legend"]')?.getAttribute('data-state');
 
-  it('實際控制檢視：國界說明（淡色底圖）＋原本控制類型；主權檢視：國界政權清單取代控制區清單', async () => {
+  it('實際控制檢視：國界說明（淡色底圖）＋原本控制類型；主權檢視：只留國界（主權圖層）說明，不列政權清單', async () => {
     const { fixture } = setup(true);
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
     expect(el.querySelector('[data-testid="legend-sovereignty"]')?.textContent).toContain('淡色底圖');
     expect(el.querySelector('[data-testid="legend-control-type-direct_rule"]')).not.toBeNull();
     fixture.componentRef.setInput('axis', 'sovereignty');
-    fixture.componentRef.setInput('sovRegimesStatus', 'ok');
-    fixture.componentRef.setInput('sovRegimes', [
-      { id: 'a', name: '德意志國', color: '#a99dc4', pending: true },
-      { id: 'b', name: '比利時與北法軍政府', color: '#a99dc4', notSovereign: true },
-    ]);
     await fixture.whenStable();
     expect(el.querySelector('[data-testid="legend-control-type-direct_rule"]')).toBeNull();
-    const items = el.querySelectorAll('[data-testid="legend-sov-regime-item"]');
-    expect(items.length).toBe(2);
-    expect(items[0].textContent).toContain('變動待查證');
-    expect(items[1].getAttribute('data-not-sovereign')).toBe('true');
+    expect(el.querySelector('[data-testid="legend-sov-regimes"]')).toBeNull();
+    expect(el.querySelectorAll('[data-testid="legend-sov-regime-item"]').length).toBe(0);
+    expect(el.textContent).not.toContain('目前畫面中的政權');
+    expect(el.querySelector('[data-testid="legend-sov-fill"]')).not.toBeNull();
+    expect(el.querySelector('[data-testid="legend-sov-not-sovereign"]')).not.toBeNull();
     expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('待查證');
   });
 

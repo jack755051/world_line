@@ -23,3 +23,37 @@ for (const date of ['1938-01-01', '1938-10-15', '1939-04-15', '1939-10-15', '194
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-${date}.png` });
   });
 }
+
+test('截圖：1939-10-23 德佔波蘭資訊卡（出處收合、徽章在事件名稱下方）', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?date=1939-10-23&axis=sovereignty');
+  const canvas = page.getByTestId('map-canvas');
+  await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+  await page.evaluate(() => {
+    const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+    map.jumpTo({ center: [16, 52], zoom: 3.55 });
+  });
+  await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+  await page.waitForTimeout(1000);
+  const box = await canvas.boundingBox();
+  const p = await page.evaluate(() => {
+    const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
+    return map.project([19.94, 50.06]);
+  });
+  await page.mouse.click((box?.x ?? 0) + p.x, (box?.y ?? 0) + p.y);
+  await expect(page.getByTestId('sovereignty-card')).toBeVisible();
+  await page.mouse.move(5, 5);
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: `tmp/borders-shots/${prefix}-card-1939-10-23.png` });
+});
+
+test('截圖：展開的圖例（主權檢視只留國界說明）', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?date=1939-10-23&axis=sovereignty');
+  const canvas = page.getByTestId('map-canvas');
+  await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+  await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: `tmp/borders-shots/${prefix}-legend-1939-10-23.png` });
+});

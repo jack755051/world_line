@@ -144,7 +144,8 @@ public static class ConflictsEndpoints
               UNION ALL
               SELECT o.occupier_regime_id, s.geom FROM occupation_attributions o JOIN own s ON s.regime_id = o.occupied_regime_id
               WHERE o.retracted_at IS NULL AND o.valid_period @> @d),
-            q AS (
+            -- MATERIALIZED：q 在 k、m 裡被引用多次，不物化時每個 CASE 分支都會重算一次子查詢（計畫裡上百個 SubPlan）
+            q AS MATERIALIZED (
               SELECT c.id, c.ev,
                 EXISTS (SELECT 1 FROM ctl x JOIN ctl y ON x.geom && y.geom AND ST_Intersects(x.geom, y.geom) WHERE x.holder = c.a AND y.holder = c.b) AS adjacent,
                 (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.a LIMIT 1) AS pa,

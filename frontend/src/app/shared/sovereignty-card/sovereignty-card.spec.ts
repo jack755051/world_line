@@ -137,6 +137,8 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     fixture.componentInstance.eventJump.subscribe((d) => (jumped = d));
     (q(el, 'sovereignty-card-conflict') as HTMLButtonElement).click();
     expect(picked).toBe('c1');
+    (q(el, 'sovereignty-card-tab-events') as HTMLElement).click();
+    await fixture.whenStable();
     const items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
     expect(items.map((i) => i.getAttribute('data-when'))).toEqual(['past', 'now', 'future']);
     expect(items[1].textContent).toContain('交戰方');
@@ -145,4 +147,57 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     (items[0].querySelector('[data-testid="sovereignty-card-timeline-jump"]') as HTMLButtonElement).click();
     expect(jumped).toBe('1938-03-13');
   });
+
+  it('面板內分頁：概要（含相關衝突）與事件；tablist／tab／tabpanel 的 aria、方向鍵切換、送出 tabChange、依 tab 輸入開在指定分頁', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('conflicts', [{ recordId: 'c1', title: '德意志國 — 波蘭共和國', since: '1939-09-01' }]);
+    fixture.componentRef.setInput('regimeEvents', [{ ...ev('verified'), id: 'a', occurred: { start: '1938-03-13', end: '1938-03-13' }, roles: ['border_start'] }]);
+    fixture.componentRef.setInput('eventsStatus', 'ok');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const tabs: string[] = [];
+    fixture.componentInstance.tabChange.subscribe((t) => tabs.push(t));
+    const list = el.querySelector('[role="tablist"]') as HTMLElement;
+    expect(list).not.toBeNull();
+    expect(list.getAttribute('aria-label')).toBe('政權資訊分頁');
+    const ov = q(el, 'sovereignty-card-tab-overview') as HTMLElement;
+    const evt = q(el, 'sovereignty-card-tab-events') as HTMLElement;
+    expect(ov.getAttribute('role')).toBe('tab');
+    expect(ov.getAttribute('aria-selected')).toBe('true');
+    expect(evt.getAttribute('aria-selected')).toBe('false');
+    expect(evt.textContent).toContain('事件');
+    expect(q(el, 'sovereignty-card-tab-events-count')?.textContent?.trim()).toBe('1');
+    const panelOf = (tab: HTMLElement) => el.querySelector('#' + tab.getAttribute('aria-controls')) as HTMLElement;
+    expect(panelOf(ov).getAttribute('role')).toBe('tabpanel');
+    expect(panelOf(ov).hidden).toBe(false);
+    expect(panelOf(evt).hidden).toBe(true);
+    expect(q(el, 'sovereignty-card-status')).not.toBeNull();
+    expect(q(el, 'sovereignty-card-conflicts')).not.toBeNull();
+    // 方向鍵（follow 模式：焦點移動即切換）
+    ov.focus();
+    ov.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    await fixture.whenStable();
+    expect(evt.getAttribute('aria-selected')).toBe('true');
+    expect(panelOf(evt).hidden).toBe(false);
+    expect(panelOf(ov).hidden).toBe(true);
+    expect(tabs).toEqual(['events']);
+    expect(el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]').length).toBe(1);
+    // 點擊切回概要
+    ov.click();
+    await fixture.whenStable();
+    expect(ov.getAttribute('aria-selected')).toBe('true');
+    expect(tabs).toEqual(['events', 'overview']);
+
+    // 頁面保存的分頁：新建卡片時直接開在「事件」
+    const f2 = TestBed.createComponent(SovereigntyCard);
+    f2.componentRef.setInput('props', props());
+    f2.componentRef.setInput('embedded', true);
+    f2.componentRef.setInput('tab', 'events');
+    await f2.whenStable();
+    const e2 = f2.nativeElement as HTMLElement;
+    expect(q(e2, 'sovereignty-card-tab-events')?.getAttribute('aria-selected')).toBe('true');
+  });
 });
+

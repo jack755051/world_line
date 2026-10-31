@@ -111,6 +111,7 @@ test('面板內：相關衝突（與地圖雙劍同步、點項目切到衝突�
   // 時間線：德國 1939-10-23，事件有已查證／待查證徽章；點 1939-09-01 跳過去，德國仍聚焦
   await open(page, '1939-10-23');
   await clickLngLat(page, BERLIN);
+  await page.getByTestId('sovereignty-card-tab-events').click();
   const tl = page.getByTestId('sovereignty-card-timeline-item');
   await expect.poll(() => tl.count()).toBeGreaterThan(5);
   await expect(page.getByTestId('sovereignty-card-timeline').getByTestId('sovereignty-card-timeline-verified').first()).toBeVisible();
@@ -121,6 +122,52 @@ test('面板內：相關衝突（與地圖雙劍同步、點項目切到衝突�
   await expect(sheet).toHaveAttribute('data-state', 'open');
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
   await expect(page.getByTestId('map-focus-mask')).toHaveAttribute('data-active', 'true');
+  // 跳日期後仍在「事件」分頁
+  await expect(page.getByTestId('sovereignty-card-tab-events')).toHaveAttribute('aria-selected', 'true');
+});
+
+test('面板分頁：概要／事件（tablist、aria-selected、aria-controls、方向鍵與 Home／End）；換政權保留分頁，關閉後重開回到概要', async ({ page }) => {
+  await open(page, '1939-10-23');
+  await clickLngLat(page, BERLIN);
+  const sheet = page.getByTestId('regime-sheet');
+  await expect(sheet).toHaveAttribute('data-state', 'open');
+  const list = sheet.getByRole('tablist', { name: '政權資訊分頁' });
+  await expect(list).toBeVisible();
+  const ov = page.getByTestId('sovereignty-card-tab-overview');
+  const evt = page.getByTestId('sovereignty-card-tab-events');
+  await expect(ov).toHaveAttribute('role', 'tab');
+  await expect(ov).toHaveAttribute('aria-selected', 'true');
+  await expect(evt).toHaveAttribute('aria-selected', 'false');
+  // 概要：性質、期間、起訖變動、陣營、國界來源與相關衝突；事件分頁內容隱藏
+  await expect(page.getByTestId('sovereignty-card-status')).toBeVisible();
+  await expect(page.getByTestId('sovereignty-card-geometry')).toBeVisible();
+  await expect(page.getByTestId('sovereignty-card-conflicts')).toBeVisible();
+  await expect(page.getByTestId('sovereignty-card-timeline')).toBeHidden();
+  const panel = page.locator('#' + (await evt.getAttribute('aria-controls')));
+  await expect(panel).toHaveAttribute('role', 'tabpanel');
+  // 鍵盤：方向鍵切換（焦點即選取）、Home 回第一個
+  await ov.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(evt).toBeFocused();
+  await expect(evt).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByTestId('sovereignty-card-timeline')).toBeVisible();
+  await expect(page.getByTestId('sovereignty-card-status')).toBeHidden();
+  await expect(page.getByTestId('sovereignty-card-tab-events-count')).toHaveText(/\d+/);
+  await page.keyboard.press('Home');
+  await expect(ov).toHaveAttribute('aria-selected', 'true');
+  await page.keyboard.press('End');
+  await expect(evt).toHaveAttribute('aria-selected', 'true');
+  // 換政權（面板開著）：保留「事件」分頁
+  await clickLngLat(page, KRAKOW);
+  await expect(page.getByTestId('sovereignty-card-title')).not.toContainText('德意志國');
+  await expect(evt).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByTestId('sovereignty-card-timeline')).toBeVisible();
+  // 關閉後重開：回到概要
+  await page.keyboard.press('Escape');
+  await expect(sheet).toHaveCount(0);
+  await clickLngLat(page, BERLIN);
+  await expect(sheet).toHaveAttribute('data-state', 'open');
+  await expect(ov).toHaveAttribute('aria-selected', 'true');
 });
 
 test('減少動態：面板直接出現（不播滑入動畫、motion 不改元素樣式），鏡頭直接跳到政權', async ({ page }) => {
@@ -149,5 +196,21 @@ for (const [name, ll] of [['germany', BERLIN], ['poland', KRAKOW]] as const) {
     await page.mouse.move(5, 5);
     await page.waitForTimeout(800);
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-focus-1939-10-23-${name}.png` });
+  });
+}
+
+for (const tab of ['overview', 'events'] as const) {
+  test(`截圖：1939-10-23 德國面板「${tab === 'overview' ? '概要' : '事件'}」分頁`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await open(page, '1939-10-23');
+    await page.waitForTimeout(800);
+    await clickLngLat(page, BERLIN);
+    await expect(page.getByTestId('regime-sheet')).toHaveAttribute('data-state', 'open');
+    await page.getByTestId(`sovereignty-card-tab-${tab}`).click();
+    if (tab === 'events') await expect.poll(() => page.getByTestId('sovereignty-card-timeline-item').count()).toBeGreaterThan(5);
+    await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+    await page.mouse.move(5, 5);
+    await page.waitForTimeout(800);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-sheet-tab-${tab}-1939-10-23-germany.png` });
   });
 }

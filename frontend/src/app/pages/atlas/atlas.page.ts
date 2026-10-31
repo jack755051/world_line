@@ -18,7 +18,7 @@ import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
 import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
 import { ConflictCard } from '../../shared/conflict-card/conflict-card';
 import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
-import { SovereigntyCard } from '../../shared/sovereignty-card/sovereignty-card';
+import { SovereigntyCard, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
 import { sheetLayout, type FocusInset } from '../../shared/map/focus';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
@@ -152,12 +152,12 @@ interface SheetInfo {
                 [title]="sheet()?.title ?? ''" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : 'sovereignty-card-title'"
                 [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : 'sovereignty-card-close'"
-                (closed)="clearSelection()" (hidden)="sheet.set(null)">
+                (closed)="clearSelection()" (hidden)="onSheetHidden()">
                 @if (sheet(); as sh) {
                   @if (sh.sov; as s) {
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
+                      [currentDate]="state.date()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
                       <button type="button" data-testid="regime-sheet-back" class="mb-2 flex flex-none items-center gap-1 self-start wl-text2 text-wl-on-surface-variant hover:text-wl-on-surface" (click)="backToRegime()">
@@ -281,6 +281,8 @@ export class AtlasPage {
   });
   /** 面板顯示的內容：關閉時保留最後一筆，讓滑出動畫期間內容不消失；面板移除後（hidden）才清掉。 */
   protected readonly sheet = signal<SheetInfo | null>(null);
+  /** 政權面板目前分頁：面板開著時切換政權、跳日期、看完衝突返回都保留（方便連續比較事件）；面板完全關閉後回到「概要」。 */
+  protected readonly sovTab = signal<SovereigntyTab>('overview');
   protected readonly sheetOpen = computed(() => this.sheetNow() !== null);
   protected readonly focusInset = computed<FocusInset>(
     () => {
@@ -542,6 +544,12 @@ export class AtlasPage {
   }
 
   /** 時間線點事件：跳到該日期；新日期資料載入後，若此政權仍有國界紀錄就重新聚焦。 */
+  /** 面板滑出完成：清掉內容；若不是「跳到事件日期後要重新聚焦」的暫時關閉，分頁回到概要。 */
+  protected onSheetHidden(): void {
+    this.sheet.set(null);
+    if (!this.pendingRegime() && !this.sheetNow()) this.sovTab.set('overview');
+  }
+
   protected jumpToEvent(date: string): void {
     const regime = this.focusRegimeId();
     this.clearSelection();

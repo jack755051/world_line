@@ -246,3 +246,33 @@ for (const [date, focus, waitConflict] of [
     await page.screenshot({ path: `tmp/borders-shots/${prefix}-interwar-${date}.png` });
   });
 }
+
+// 北非、近東與冰島 1939～1945：利比亞戰役、火炬行動、突尼西亞戰役、敘黎、伊拉克、伊朗
+for (const [date, focus] of [
+  ['1941-07-01', [23.96, 32.0]], // 托布魯克被圍（英軍佔領區）；敘利亞戰役將結束
+  ['1942-11-15', [10.17, 36.8]], // 火炬行動後，軸心國佔領突尼斯
+  ['1943-06-01', [14.0, 26.0]], // 突尼西亞戰役結束：法國軍管費贊、英國軍政府
+] as const) {
+  test(`截圖：${date} 北非與近東（北非、近東與冰島批）`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(`/?date=${date}&axis=sovereignty`);
+    const canvas = page.getByTestId('map-canvas');
+    await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+    await page.evaluate(() => {
+      const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
+      map.jumpTo({ center: [22, 32], zoom: 3.0 });
+    });
+    await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+    await page.waitForTimeout(1000);
+    const box = await canvas.boundingBox();
+    const p = await page.evaluate((ll) => {
+      const map = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap;
+      return map.project([ll[0], ll[1]]);
+    }, focus);
+    await page.mouse.click((box?.x ?? 0) + p.x, (box?.y ?? 0) + p.y);
+    await expect(page.getByTestId('sovereignty-card')).toBeVisible();
+    await page.mouse.move(5, 5);
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: `tmp/borders-shots/${prefix}-nafrica-${date}.png` });
+  });
+}

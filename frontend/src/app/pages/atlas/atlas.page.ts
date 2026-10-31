@@ -189,7 +189,7 @@ interface SheetInfo {
               </div>
             </div>
             <div class="h-[var(--wl-timeline-height)] flex-none">
-              <wl-timeline [date]="state.date()" [snapshots]="data.snapshots()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
+              <wl-timeline [date]="state.date()" [snapshots]="data.snapshots()" [earliestData]="data.earliestEvent()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
           </div>
@@ -518,6 +518,7 @@ export class AtlasPage {
   protected async boot(): Promise<void> {
     if (!(await this.data.checkHealth())) return;
     void this.data.loadSnapshots();
+    void this.data.loadExtent();
     void this.data.loadControl(this.state.date());
     void this.data.loadSovereignty(this.state.date());
     void this.data.loadConflicts(this.state.date());

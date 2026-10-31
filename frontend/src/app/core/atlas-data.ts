@@ -52,6 +52,8 @@ export class AtlasData {
 
   readonly snapshots = signal<TimelineSnapshotDto[]>([]);
   readonly snapshotsStatus = signal<LoadStatus>('idle');
+  /** 最早事件日（GET /timeline/extent）；時間軸起點依此往前延伸（WW1 試驗，1908 起）。失敗時維持 null（用預設範圍）。 */
+  readonly earliestEvent = signal<string | null>(null);
 
   readonly regimes = signal<Record<string, RegimeDto>>({});
   readonly regimesStatus = signal<LoadStatus>('idle');
@@ -161,6 +163,14 @@ export class AtlasData {
     this.sovereignty.set(dto);
     this.sovereigntyStatus.set('ok');
     void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId));
+  }
+
+  async loadExtent(): Promise<void> {
+    try {
+      this.earliestEvent.set((await this.api.timelineExtent()).earliestEvent ?? null);
+    } catch {
+      this.earliestEvent.set(null);
+    }
   }
 
   async loadSnapshots(): Promise<void> {

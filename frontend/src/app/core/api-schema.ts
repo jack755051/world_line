@@ -388,6 +388,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/timeline/extent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetTimelineExtent"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/regimes/{id}/interactions": {
         parameters: {
             query?: never;
@@ -677,6 +693,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["TheaterDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfTimelineExtentDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["TimelineExtentDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -1337,6 +1363,12 @@ export interface components {
             attestingSnapshot: null | components["schemas"]["SnapshotRefDto"];
             prevSnapshot: null | components["schemas"]["SnapshotRefDto"];
             nextSnapshot: null | components["schemas"]["SnapshotRefDto"];
+        };
+        TimelineExtentDto: {
+            /** Format: date */
+            earliestEvent: null | string;
+            /** Format: date */
+            latestEvent: null | string;
         };
         TimelineSnapshotDto: {
             /** Format: uuid */
@@ -2598,6 +2630,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetTimelineExtent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfTimelineExtentDto"];
                 };
             };
         };

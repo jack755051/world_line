@@ -10,6 +10,7 @@ import type {
   SourceDto,
   SovereigntyMapDto,
   TimelineSnapshotDto,
+  TimelineExtentDto,
   RegimeEventDto,
 } from './api-types';
 
@@ -61,6 +62,12 @@ export class WorldLineApi {
         aborted();
       }, { once: true });
     });
+  }
+
+  /** GET /timeline/extent：未撤回事件的最早／最晚日期（時間軸起點往前延伸用）。 */
+  async timelineExtent(): Promise<TimelineExtentDto> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<TimelineExtentDto>>(`${WorldLineApi.base}/timeline/extent`));
+    return res.data;
   }
 
   /** GET /timeline/snapshots：全部快照（逐頁取完，pageSize 上限 500）。 */

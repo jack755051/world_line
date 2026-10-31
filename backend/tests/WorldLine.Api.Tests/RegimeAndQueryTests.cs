@@ -144,6 +144,24 @@ public sealed class RegimeAndQueryTests(PostGisFixture fx)
     }
 
     [Fact]
+    public async Task Timeline_extent_reports_earliest_unretracted_event()
+    {
+        var k = new ApiTestKit(fx);
+        var id = await k.Id(await k.W.PostAsJsonAsync("/api/v1/events", new
+        {
+            eventKind = "battle", occurred = new { start = "1066-10-14", end = "1066-10-15" }, datePrecision = "day",
+            summary = new Dictionary<string, string> { ["zh-Hant"] = $"黑斯廷斯 {k.Tag}", ["en"] = $"Hastings {k.Tag}" },
+        }));
+        var data = (await ApiTestKit.Expect(await k.R.GetAsync("/api/v1/timeline/extent"), HttpStatusCode.OK)).GetProperty("data");
+        Assert.Equal("1066-10-14", data.GetProperty("earliestEvent").GetString());
+        Assert.True(string.CompareOrdinal(data.GetProperty("latestEvent").GetString(), "1066-10-14") >= 0);
+
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/events/{id}/retraction", new { reason = "測試：撤回後不再算入範圍" }), HttpStatusCode.OK);
+        var after = (await ApiTestKit.Expect(await k.R.GetAsync("/api/v1/timeline/extent"), HttpStatusCode.OK)).GetProperty("data");
+        Assert.NotEqual("1066-10-14", after.GetProperty("earliestEvent").GetString());
+    }
+
+    [Fact]
     public async Task Bad_query_parameters_use_unified_error_format()
     {
         var k = new ApiTestKit(fx);

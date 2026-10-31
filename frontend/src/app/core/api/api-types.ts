@@ -17,6 +17,7 @@ export type SnapshotRefDto = Schemas['SnapshotRefDto'];
 export type IntervalDto = Schemas['IntervalDto'];
 export type TimelineSnapshotDto = Schemas['TimelineSnapshotDto'];
 export type SnapshotSourceDto = Schemas['SnapshotSourceDto'];
+export type TimelineExtentDto = Schemas['TimelineExtentDto'];
 export type PaginatedSnapshots = Schemas['PaginatedResponseOfTimelineSnapshotDto'];
 export type SourceDto = Schemas['SourceDto'];
 export type RegimeDto = Schemas['RegimeDto'];

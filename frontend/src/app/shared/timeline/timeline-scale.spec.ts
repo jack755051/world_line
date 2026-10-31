@@ -22,6 +22,15 @@ describe('timeline-scale', () => {
     expect(monthTicks(r)[0].date).toBe('1937-07-01');
   });
 
+  it('範圍很長時（1908 起）年份每 5 年標一次，刻線照畫', () => {
+    const w = rangeFor('1908-10-05');
+    expect(w.start).toBe('1908-10-05');
+    const ys = yearTicks(w);
+    expect(ys[0].date).toBe('1909-01-01');
+    expect(ys.length).toBe(37);
+    expect(ys.filter((y) => y.label).map((y) => y.label)).toEqual(['1910', '1915', '1920', '1925', '1930', '1935', '1940', '1945']);
+  });
+
   it('上一個／下一個／最近的快照', () => {
     const d = ['1940-07-15', '1940-08-15'];
     expect(prevSnapshotDate(d, '1940-07-30')).toBe('1940-07-15');

@@ -119,6 +119,9 @@ public sealed record CoverageNoteDto(
 // ───────────── 時間軸 ─────────────
 public sealed record SnapshotSourceDto(Guid SourceId, string Title, string Locator);
 
+/// <summary>時間軸資料範圍：未撤回事件的最早／最晚發生日（前端據此把時間軸往前延伸到 1937 以前，WW1 試驗）。</summary>
+public sealed record TimelineExtentDto(DateOnly? EarliestEvent, DateOnly? LatestEvent);
+
 public sealed record TimelineSnapshotDto(
     Guid Id, string TheaterCode, DateOnly AsOf, string Attestation, DatePeriodDto? AttestedPeriod,
     IReadOnlyDictionary<string, string>? Title, IReadOnlyList<SnapshotSourceDto> PrimarySources);

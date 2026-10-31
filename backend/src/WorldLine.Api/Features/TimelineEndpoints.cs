@@ -11,8 +11,20 @@ public static class TimelineEndpoints
 {
     public const int MaxPageSize = 500;
 
-    public static void Map(RouteGroupBuilder read) =>
+    public static void Map(RouteGroupBuilder read)
+    {
         read.MapGet("/timeline/snapshots", GetSnapshots).WithTags("Timeline").WithName("GetTimelineSnapshots").Ok<PaginatedResponse<TimelineSnapshotDto>>().Errors(400);
+        read.MapGet("/timeline/extent", GetExtent).WithTags("Timeline").WithName("GetTimelineExtent").Ok<TimelineExtentDto>();
+    }
+
+    /// <summary>未撤回事件的最早發生日（occurred 下界）與最晚發生日；沒有事件時兩者為 null。</summary>
+    public static async Task<IResult> GetExtent(WorldLineDbContext db, CancellationToken ct)
+    {
+        var q = db.HistoricalEvents.AsNoTracking().Where(e => e.RetractedAt == null);
+        var earliest = await q.MinAsync(e => (DateOnly?)e.Occurred.LowerBound, ct);
+        var latest = await q.MaxAsync(e => (DateOnly?)e.Occurred.LowerBound, ct);
+        return ApiResults.Ok(new TimelineExtentDto(earliest, latest));
+    }
 
     public static async Task<IResult> GetSnapshots(DateOnly? from, DateOnly? to, int? page, int? pageSize,
         WorldLineDbContext db, CancellationToken ct)

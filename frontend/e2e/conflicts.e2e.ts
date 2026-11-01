@@ -110,6 +110,34 @@ test('1939-09-20：點波蘭 → 德—波、蘇—波兩個圖示；1940-06-15 
   await expect(page.getByTestId('conflict-card-end').getByTestId('conflict-card-verified')).toBeVisible();
 });
 
+test('1920-10-01／1921-06-01：安納托利亞屬安卡拉大國民議會政府（非主權），點它出現希土、法土（1920 年秋另有亞美尼亞—土耳其）雙劍；伊斯坦堡仍屬鄂圖曼帝國', async ({ page }) => {
+  const ANKARA: [number, number] = [32.85, 39.93];
+  const ISTANBUL: [number, number] = [28.98, 41.01];
+  for (const [date, icons] of [['1920-10-01', 3], ['1921-06-01', 2]] as const) {
+    await open(page, date);
+    await page.evaluate(() => (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap.jumpTo({ center: [33, 39.5], zoom: 4.6 }));
+    await page.waitForTimeout(300);
+    await clickLngLat(page, ANKARA);
+    await expect(page.getByTestId('sovereignty-card-title')).toContainText('大國民議會');
+    await expect(page.getByTestId('sovereignty-card')).toHaveAttribute('data-layer-status', 'not_sovereign');
+    await expect(page.getByTestId('map-conflict-icon')).toHaveCount(icons);
+    await page.getByTestId('sovereignty-card-close').click();
+    await expect(page.getByTestId('map-conflict-icon')).toHaveCount(0);
+    await page.evaluate(() => (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap.jumpTo({ center: [29, 41], zoom: 6 }));
+    await page.waitForTimeout(300);
+    await clickLngLat(page, ISTANBUL);
+    await expect(page.getByTestId('sovereignty-card-title')).toContainText('鄂圖曼帝國');
+  }
+  await page.getByTestId('sovereignty-card-close').click();
+  await page.evaluate(() => (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap.jumpTo({ center: [33, 39.5], zoom: 4.6 }));
+  await page.waitForTimeout(300);
+  await clickLngLat(page, ANKARA);
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await page.mouse.move(5, 5);
+  await page.waitForTimeout(1200);
+  await page.screenshot({ path: `tmp/borders-shots/${prefix}-anatolia-ankara-1921-06-01.png` });
+});
+
 test('截圖：1939-09-15 點波蘭後的衝突圖示與衝突卡', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await open(page, '1939-09-15');

@@ -99,18 +99,24 @@ async function conflictsOn(page: Page, date: string): Promise<ArcFeature[]> {
 }
 const pick = (fs: ArcFeature[], a: string, b: string) => fs.find((f) => f.properties.regimeASlug === a && f.properties.regimeBSlug === b)!;
 
-test('API：屬地算宗主國的控制範圍——日英經英屬緬甸與日佔印度支那相鄰；緬甸失陷後英國在亞洲沒有控制範圍，不畫跨歐亞的弧；日美 1941-12 接到珍珠港、1942-12 經阿留申相鄰', async ({ page }) => {
+test('API：屬地算宗主國的控制範圍——日英經英屬緬甸與日佔印度支那相鄰；緬甸失陷後經英屬印度與日佔緬甸相鄰；泰英弧從美塞接到英屬印度；日美 1941-12 接到珍珠港、1942-12 經阿留申相鄰', async ({ page }) => {
   // 1941-12-10：英屬緬甸（regime_dependencies → 英國）與日本軍事管理下的法屬印度支那相接 → 相鄰，雙劍在開戰地點哥打巴魯
   let jpUk = pick(await conflictsOn(page, '1941-12-10'), 'empire-of-japan', 'united-kingdom');
   expect(jpUk.properties.adjacent).toBe(true);
   expect(jpUk.properties.arc).toBeNull();
   expect(jpUk.geometry.coordinates).toEqual([102.24, 6.13]);
-  // 1942-12-01：馬來亞、緬甸都已是日佔區；英國最近的控制範圍在伊朗（約 46°）→ 超過上限，不畫弧，雙劍仍在哥打巴魯
+  // 1942-12-01：馬來亞、緬甸都已是日佔區；英屬印度（regime_dependencies → 英國）與日佔緬甸相接 → 相鄰，不畫弧，雙劍仍在哥打巴魯
   const d1201 = await conflictsOn(page, '1942-12-01');
   jpUk = pick(d1201, 'empire-of-japan', 'united-kingdom');
-  expect(jpUk.properties.adjacent).toBe(false);
+  expect(jpUk.properties.adjacent).toBe(true);
   expect(jpUk.properties.arc).toBeNull();
   expect(jpUk.geometry.coordinates).toEqual([102.24, 6.13]);
+  // 泰英：開戰地點在泰緬邊境美塞，弧從美塞接到最近的英國控制範圍（英屬印度東北），不再接到英國本土
+  const thUk = pick(d1201, 'kingdom-of-thailand', 'united-kingdom').properties.arc!;
+  expect(thUk.from).toEqual([99.88, 20.43]);
+  expect(thUk.eventEnd).toBe('from');
+  expect(Math.hypot(thUk.to[0] - thUk.from[0], thUk.to[1] - thUk.from[1])).toBeLessThan(10);
+  expect(thUk.to[0]).toBeGreaterThan(88); // 在印度東北，不在歐洲
   // 日美：1941-12-10 從日本控制區（南洋群島）接到珍珠港；1942-12-01 日佔阿留申與阿拉斯加相接 → 相鄰、不畫弧
   const jpUs41 = pick(await conflictsOn(page, '1941-12-10'), 'empire-of-japan', 'united-states-of-america').properties.arc!;
   expect(jpUs41.to).toEqual([-157.95, 21.36]);
@@ -164,7 +170,7 @@ test('1941-12-08：點日本 → 日本—英國相鄰（英屬緬甸接日佔�
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-jp-uk-1941-12-08.png` });
 });
 
-test('截圖：1942-12-01 點英國（英德、英義、泰英畫弧；日英只剩哥打巴魯的雙劍）', async ({ page }) => {
+test('截圖：1942-12-01 點英國（英德、英義畫弧，泰英短弧從美塞接到英屬印度；日英相鄰只剩哥打巴魯的雙劍）', async ({ page }) => {
   const fs = (await conflictsOn(page, '1942-12-01')).filter((x) => x.properties.regimeASlug === 'united-kingdom' || x.properties.regimeBSlug === 'united-kingdom');
   const withArc = fs.filter((x) => x.properties.arc).length;
   await page.emulateMedia({ reducedMotion: 'reduce' });

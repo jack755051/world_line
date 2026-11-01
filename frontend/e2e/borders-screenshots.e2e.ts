@@ -85,10 +85,13 @@ for (const [name, date, center, zoom] of [
   ['asia', '1942-06-01', [122, 20], 2.6],
   ['asia', '1944-10-01', [122, 20], 2.6],
   ['asia', '1945-08-15', [122, 20], 2.6],
+  // 亞洲第三批（填補）：阿拉伯半島、英屬印度、婆羅洲、帝汶到新幾內亞與澳洲北部都在框內
+  ['asia-fill', '1942-06-01', [98, 12], 2.7],
+  ['asia-fill', '1944-06-01', [98, 12], 2.7],
   ['europe', '1945-06-01', [16, 50], 3.3],
   ['europe', '1945-09-01', [16, 50], 3.3],
 ] as const) {
-  test(`截圖：${date} ${{ world: '全圖', us: '美國本土與屬地', asia: '亞洲太平洋', europe: '歐洲（德國投降後）' }[name]}`, async ({ page }) => {
+  test(`截圖：${date} ${{ world: '全圖', us: '美國本土與屬地', asia: '亞洲太平洋', 'asia-fill': '亞洲太平洋（第三批填補）', europe: '歐洲（德國投降後）' }[name]}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/?date=${date}&axis=sovereignty`);
     const canvas = page.getByTestId('map-canvas');

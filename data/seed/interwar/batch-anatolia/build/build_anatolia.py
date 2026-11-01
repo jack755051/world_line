@@ -23,7 +23,7 @@ assert STRAITS | THRACE <= set(prov), set(prov)
 OTHER = make_valid(unary_union([g for n, g in prov.items() if n not in STRAITS | THRACE]).buffer(0))
 STR = make_valid(unary_union([prov[n] for n in STRAITS]))
 NW = make_valid(unary_union([prov[n] for n in STRAITS | THRACE]))
-BOX = box(20, 30, 50, 46)
+BOX = box(-30, -10, 90, 70)   # 要大於原紀錄範圍（1920-08 前含阿拉伯半島）
 # 現代省界與 OHM 1920 年海岸、邊界不完全一致：各往外擴 0.05°（約 5 km）吸收沿岸碎片。
 KEEP = make_valid(NW.buffer(0.05).difference(OTHER))                 # 留給鄂圖曼的西北區（海峽區＋色雷斯）
 ANK1 = make_valid(OTHER.buffer(0.05).difference(KEEP))               # 1920-04-23～08-10：原紀錄含阿拉伯地區，只取安納托利亞

@@ -132,6 +132,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/events/{id}/participants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AppendEventParticipant"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/events/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/regimes/{id}/alignments": {
         parameters: {
             query?: never;
@@ -190,6 +222,102 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["RetractControlCoverageNote"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateSovereigntyRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty-records/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractSovereigntyRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conflict-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateConflictRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conflict-records/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractConflictRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/occupation-attributions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateOccupationAttribution"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/occupation-attributions/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractOccupationAttribution"];
         delete?: never;
         options?: never;
         head?: never;
@@ -260,6 +388,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/timeline/extent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetTimelineExtent"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/timeline/change-points": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetTimelineChangePoints"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/regimes/{id}/interactions": {
         parameters: {
             query?: never;
@@ -292,10 +452,78 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/regimes/{id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ListRegimeEvents"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetSovereignty"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conflicts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetConflicts"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ApiResponseOfConflictMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["ConflictMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfConflictRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["ConflictRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfControlMapDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -356,11 +584,31 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfIReadOnlyListOfRegimeEventDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["RegimeEventDto"][];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfObject: {
             /** Format: int32 */
             statusCode: number | string;
             message: string;
             data: unknown;
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfOccupationAttributionDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["OccupationAttributionDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -436,6 +684,26 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfSovereigntyMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["SovereigntyMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfSovereigntyRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["SovereigntyRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfTheaterDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -444,6 +712,34 @@ export interface components {
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
+            };
+        };
+        ApiResponseOfTimelineChangePointsDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["TimelineChangePointsDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfTimelineExtentDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["TimelineExtentDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        AppendEventParticipantRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            role: null | string;
+            note: null | {
+                [key: string]: string;
             };
         };
         CitationDto: {
@@ -462,6 +758,61 @@ export interface components {
             locator: null | string;
             role: null | string;
             evidenceNote: null | string;
+        };
+        ConflictArcDto: {
+            from: (number | string)[];
+            to: (number | string)[];
+            eventEnd?: null | string;
+        };
+        ConflictFeature: {
+            /** Format: uuid */
+            id: string;
+            geometry: components["schemas"]["JsonElement"];
+            properties: components["schemas"]["ConflictFeatureProperties"];
+            type?: null | string;
+        };
+        ConflictFeatureCollection: {
+            features: components["schemas"]["ConflictFeature"][];
+            type?: null | string;
+        };
+        ConflictFeatureProperties: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeAId: string;
+            regimeASlug: string;
+            /** Format: uuid */
+            regimeBId: string;
+            regimeBSlug: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            startEvent: components["schemas"]["SovereigntyEventRefDto"];
+            endEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            locationMethod: string;
+            note: null | {
+                [key: string]: string;
+            };
+            adjacent?: null | boolean;
+            arc?: null | components["schemas"]["ConflictArcDto"];
+        };
+        ConflictMapDto: {
+            /** Format: date */
+            date: string;
+            featureCollection: components["schemas"]["ConflictFeatureCollection"];
+        };
+        ConflictRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeAId: string;
+            /** Format: uuid */
+            regimeBId: string;
+            /** Format: uuid */
+            startEventId: string;
+            /** Format: uuid */
+            endEventId: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            location: components["schemas"]["JsonElement"];
+            locationMethod: string;
         };
         ControlFeature: {
             /** Format: uuid */
@@ -535,6 +886,21 @@ export interface components {
             };
             researchRef: null | string;
         };
+        CreateConflictRecordRequest: {
+            /** Format: uuid */
+            regimeAId: null | string;
+            /** Format: uuid */
+            regimeBId: null | string;
+            /** Format: uuid */
+            startEventId: null | string;
+            /** Format: uuid */
+            endEventId: null | string;
+            location: null | components["schemas"]["JsonElement"];
+            locationMethod: null | string;
+            note?: null | {
+                [key: string]: string;
+            };
+        };
         CreateControlRecordRequest: {
             /** Format: uuid */
             controllerRegimeId: null | string;
@@ -592,6 +958,20 @@ export interface components {
             participants?: null | components["schemas"]["EventParticipantInput"][];
             citations?: null | components["schemas"]["EventCitationInput"][];
         };
+        CreateOccupationAttributionRequest: {
+            /** Format: uuid */
+            occupiedRegimeId: null | string;
+            /** Format: uuid */
+            occupierRegimeId: null | string;
+            controlKind: null | string;
+            validPeriod: null | components["schemas"]["DatePeriodDto"];
+            /** Format: uuid */
+            basisEventId?: null | string;
+            coOccupied?: null | boolean;
+            note?: null | {
+                [key: string]: string;
+            };
+        };
         CreateRegimeAlignmentRequest: {
             camp: null | string;
             validPeriod: null | components["schemas"]["DatePeriodDto"];
@@ -634,6 +1014,34 @@ export interface components {
             catalogId?: null | string;
             note?: null | string;
         };
+        CreateSovereigntyRecordRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            geometry: null | components["schemas"]["JsonElement"];
+            validPeriod: null | components["schemas"]["DatePeriodDto"];
+            layerStatus: null | string;
+            /** Format: uuid */
+            geometrySourceId: null | string;
+            geometryLocator: null | string;
+            geometryLicense: null | string;
+            attribution?: null | string;
+            /** Format: uuid */
+            startEventId?: null | string;
+            /** Format: uuid */
+            endEventId?: null | string;
+            /** Format: int64 */
+            ohmRelationId?: null | number | string;
+            /** Format: int32 */
+            ohmVersion?: null | number | string;
+            /** Format: date-time */
+            ohmFetchedAt?: null | string;
+            ohmStartRaw?: null | string;
+            ohmEndRaw?: null | string;
+            provenance?: unknown;
+            note?: null | {
+                [key: string]: string;
+            };
+        };
         CreateTheaterRequest: {
             code: null | string;
             name: null | {
@@ -675,11 +1083,35 @@ export interface components {
             /** Format: uuid */
             regimeId: string;
             role: string;
+            /** Format: date-time */
+            addedAt?: null | string;
+            additionNote?: null | {
+                [key: string]: string;
+            };
         };
         EventParticipantInput: {
             /** Format: uuid */
             regimeId: null | string;
             role: null | string;
+        };
+        GeometryProvenanceDto: {
+            /** Format: uuid */
+            sourceId: string;
+            sourceTitle: string;
+            publisher: string;
+            sourceLicenseCode: null | string;
+            locator: string;
+            geometryLicense: string;
+            attribution: null | string;
+            /** Format: int64 */
+            ohmRelationId: null | number | string;
+            /** Format: int32 */
+            ohmVersion: null | number | string;
+            /** Format: date-time */
+            ohmFetchedAt: null | string;
+            ohmStartRaw: null | string;
+            ohmEndRaw: null | string;
+            flags: null | components["schemas"]["JsonElement"];
         };
         IntervalDto: {
             /** Format: date */
@@ -690,6 +1122,37 @@ export interface components {
             endUncertainty?: null | components["schemas"]["DatePeriodDto"];
         };
         JsonElement: unknown;
+        OccupationAttributionDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            occupiedRegimeId: string;
+            /** Format: uuid */
+            occupierRegimeId: string;
+            controlKind: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            /** Format: uuid */
+            basisEventId: null | string;
+            coOccupied: boolean;
+            note: null | {
+                [key: string]: string;
+            };
+        };
+        OccupationRefDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            occupierRegimeId: string;
+            occupierSlug: string;
+            controlKind: string;
+            coOccupied: boolean;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            basisEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            verification: string;
+            note: null | {
+                [key: string]: string;
+            };
+        };
         PaginatedResponseOfTimelineSnapshotDto: {
             items: components["schemas"]["TimelineSnapshotDto"][];
             /** Format: int32 */
@@ -698,6 +1161,14 @@ export interface components {
             pageSize: number | string;
             /** Format: int32 */
             total: number | string;
+        };
+        ParticipantAdditionDto: {
+            role: string;
+            /** Format: date-time */
+            addedAt: string;
+            note: null | {
+                [key: string]: string;
+            };
         };
         RegimeAlignmentDto: {
             /** Format: uuid */
@@ -719,6 +1190,19 @@ export interface components {
             slug: string;
             wikidataQid: null | string;
             names: components["schemas"]["RegimeNameDto"][];
+        };
+        RegimeEventDto: {
+            /** Format: uuid */
+            id: string;
+            eventKind: string;
+            occurred: components["schemas"]["DatePeriodDto"];
+            summary: null | {
+                [key: string]: string;
+            };
+            verification: string;
+            citations: components["schemas"]["CitationDto"][];
+            roles: string[];
+            additions?: null | components["schemas"]["ParticipantAdditionDto"][];
         };
         RegimeInteractionDto: {
             /** Format: uuid */
@@ -813,6 +1297,73 @@ export interface components {
             catalogId: null | string;
             note: null | string;
         };
+        SovereigntyEventRefDto: {
+            /** Format: uuid */
+            id: string;
+            eventKind: string;
+            occurred: components["schemas"]["DatePeriodDto"];
+            summary: null | {
+                [key: string]: string;
+            };
+            verification: string;
+            citations: components["schemas"]["CitationDto"][];
+        };
+        SovereigntyFeature: {
+            /** Format: uuid */
+            id: string;
+            geometry: components["schemas"]["JsonElement"];
+            properties: components["schemas"]["SovereigntyFeatureProperties"];
+            type?: null | string;
+        };
+        SovereigntyFeatureCollection: {
+            features: components["schemas"]["SovereigntyFeature"][];
+            type?: null | string;
+        };
+        SovereigntyFeatureProperties: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            layerStatus: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            startEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            endEvent: null | components["schemas"]["SovereigntyEventRefDto"];
+            geometry: components["schemas"]["GeometryProvenanceDto"];
+            note: null | {
+                [key: string]: string;
+            };
+            regimeAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
+            occupation?: null | components["schemas"]["OccupationRefDto"];
+        };
+        SovereigntyMapDto: {
+            /** Format: date */
+            date: string;
+            featureCollection: components["schemas"]["SovereigntyFeatureCollection"];
+        };
+        SovereigntyRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            layerStatus: string;
+            /** Format: uuid */
+            startEventId: null | string;
+            /** Format: uuid */
+            endEventId: null | string;
+            /** Format: uuid */
+            geometrySourceId: string;
+            geometryLocator: string;
+            geometryLicense: string;
+            attribution: null | string;
+            /** Format: int64 */
+            ohmRelationId: null | number | string;
+            /** Format: int32 */
+            ohmVersion: null | number | string;
+            /** Format: date-time */
+            ohmFetchedAt: null | string;
+        };
         SupplementEventDto: {
             /** Format: uuid */
             eventId: string;
@@ -838,6 +1389,18 @@ export interface components {
             attestingSnapshot: null | components["schemas"]["SnapshotRefDto"];
             prevSnapshot: null | components["schemas"]["SnapshotRefDto"];
             nextSnapshot: null | components["schemas"]["SnapshotRefDto"];
+        };
+        TimelineChangePointsDto: {
+            /** Format: int64 */
+            version: number | string;
+            points: string[];
+            controlPoints: string[];
+        };
+        TimelineExtentDto: {
+            /** Format: date */
+            earliestEvent: null | string;
+            /** Format: date */
+            latestEvent: null | string;
         };
         TimelineSnapshotDto: {
             /** Format: uuid */
@@ -1253,6 +1816,130 @@ export interface operations {
             };
         };
     };
+    AppendEventParticipant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AppendEventParticipantRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfEventDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
     GetRegimeAlignments: {
         parameters: {
             query?: never;
@@ -1522,6 +2209,336 @@ export interface operations {
             };
         };
     };
+    CreateSovereigntyRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSovereigntyRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractSovereigntyRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateConflictRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateConflictRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfConflictRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractConflictRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateOccupationAttribution: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateOccupationAttributionRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfOccupationAttributionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractOccupationAttribution: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
     GetSource: {
         parameters: {
             query?: never;
@@ -1649,6 +2666,46 @@ export interface operations {
             };
         };
     };
+    GetTimelineExtent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfTimelineExtentDto"];
+                };
+            };
+        };
+    };
+    GetTimelineChangePoints: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfTimelineChangePointsDto"];
+                };
+            };
+        };
+    };
     GetRegimeInteractions: {
         parameters: {
             query?: {
@@ -1713,6 +2770,99 @@ export interface operations {
             };
             /** @description Not Found */
             404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    ListRegimeEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfIReadOnlyListOfRegimeEventDto"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetSovereignty: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetConflicts: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfConflictMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };

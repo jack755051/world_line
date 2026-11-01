@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject, signal, untracked } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LucideCircleAlert, LucideCloudOff, LucideInfo, LucideRotateCw } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
 import { ToastService } from '../../components/ui/toast';
+import type { ConflictFeatureProperties, SovereigntyFeatureProperties } from '../../core/api/api-types';
 import { AtlasData } from '../../core/atlas-data';
 import { AtlasState, parseAtlasQuery } from '../../core/atlas-state';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
@@ -12,10 +13,28 @@ import { TopBar } from '../../layout/top-bar/top-bar';
 import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
-import { AtlasMap, type MapFeatureEvent, type MapGapEvent } from '../../shared/map/atlas-map';
+import { MotionService } from '../../core/motion';
+import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
+import { conflictArc } from '../../shared/map/conflict-arc';
+import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
+import { ConflictCard } from '../../shared/conflict-card/conflict-card';
+import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { DelayedFlag } from '../../core/delayed-flag';
+import { SovereigntyCard, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
+import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
+import { sheetLayout, type FocusInset } from '../../shared/map/focus';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
+
+interface SheetInfo {
+  kind: 'sov' | 'conflict';
+  title: string;
+  description: string;
+  descriptionLang: string;
+  sov: { props: SovereigntyFeatureProperties; name: string; original: string; originalLang: string; occupierName: string } | null;
+  conflict: { props: ConflictFeatureProperties; nameA: string; nameB: string } | null;
+}
 
 /**
  * 主地圖頁（`/`，PRD §8.0）。版面：頂部列 56px＋全幅地圖＋左下圖例 280px＋底部時間軸 112px。
@@ -24,7 +43,7 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
+  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -64,18 +83,35 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
         @default {
           <div class="flex h-full flex-col">
             <wl-top-bar [date]="state.date()" [lang]="lang()" [legendOpen]="state.legendOpen()" [controlStatus]="data.controlStatus()"
-              [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()"
+              [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()" [axis]="state.axis()" (axisChange)="setAxis($event)"
               (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
-            <div class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
-              <wl-atlas-map [collection]="collection()" [labels]="labels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
-                (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
+            <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
+              <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+ [axis]="state.axis()" [reducedMotion]="motion.reduced()"
+                [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)"
+                [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
+                [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
+                [focusRecordId]="focusRecord()" [focusInset]="focusInset()"
+                (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
+                (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
+
+              <!-- 陣營外框圖層（補充，可開關；Tai 2026-10-31：政權優先於陣營，填色不變） -->
+              <button type="button" data-testid="camp-layer-toggle" class="wl-paper absolute right-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2"
+                [attr.aria-pressed]="showCamps()" (click)="showCamps.set(!showCamps())">
+                <span class="inline-block size-3 border border-wl-outline" [class.bg-wl-secondary]="showCamps()"></span>{{ lang() === 'en' ? 'Camp outlines (supplement)' : '陣營外框（補充）' }}
+              </button>
 
               @if (firstLoad()) {
                 <div data-testid="map-loading" class="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <span class="wl-paper flex items-center gap-2 px-4 py-2 wl-text1"><sanring-spinner size="sm" ariaLabel="loading" />{{ tr('map.loading', { date: state.date() }) }}</span>
                 </div>
-              } @else if (data.controlStatus() === 'loading') {
-                <div class="absolute inset-x-0 top-0 h-0.5 overflow-hidden bg-wl-surface-container-high" aria-hidden="true"><div class="h-full w-1/3 animate-pulse bg-wl-secondary"></div></div>
+              } @else if (busyVisible()) {
+                <!-- 載入指示（非阻擋）：國界／控制區請求或 MapLibre 切片超過 300ms 未完成才出現在左上角，不擋地圖操作 -->
+                <div data-testid="map-busy" role="status" aria-live="polite"
+                  class="wl-paper pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2 text-wl-on-surface-variant">
+                  <sanring-spinner size="sm" speed="normal" [ariaLabel]="tr('map.busy')" />
+                  <span>{{ tr('map.busy') }}</span>
+                </div>
               }
 
               @if (data.controlStatus() === 'error') {
@@ -113,25 +149,48 @@ import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale
               }
 
               @if (selectedInfo(); as s) {
-                <div class="absolute z-20" [style.left.px]="s.x" [style.top.px]="s.y">
+                <div data-testid="feature-card-anchor" class="absolute z-20 overflow-y-auto" [style.left.px]="s.pos.left" [style.top.px]="s.pos.top" [style.bottom.px]="s.pos.bottom" [style.max-height.px]="s.pos.maxHeight">
                   <wl-feature-card [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang"
-                    [evidence]="s.evidence" [theaterState]="s.theater" [lang]="lang()" (closed)="selected.set(null)" />
+                    [evidence]="s.evidence" [theaterState]="s.theater" [lang]="lang()" (closed)="clearSelection()" />
                 </div>
               }
 
+              <!-- 政權／衝突資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
+              <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
+                [title]="sheet()?.title ?? ''" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
+                [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : 'sovereignty-card-title'"
+                [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : 'sovereignty-card-close'"
+                (closed)="clearSelection()" (hidden)="onSheetHidden()">
+                @if (sheet(); as sh) {
+                  @if (sh.sov; as s) {
+                    <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
+                      [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
+                      [currentDate]="state.date()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
+                  } @else if (sh.conflict; as c) {
+                    @if (returnSov(); as back) {
+                      <button type="button" data-testid="regime-sheet-back" class="mb-2 flex flex-none items-center gap-1 self-start wl-text2 text-wl-on-surface-variant hover:text-wl-on-surface" (click)="backToRegime()">
+                        ← {{ lang() === 'en' ? 'Back to' : '返回' }} {{ back.name }}</button>
+                    }
+                    <wl-conflict-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="c.props" [nameA]="c.nameA" [nameB]="c.nameB" [lang]="lang()" />
+                  }
+                }
+              </wl-regime-sheet>
+
               @if (selectedGapInfo(); as g) {
-                <div class="absolute z-20" [style.left.px]="g.x" [style.top.px]="g.y">
+                <div data-testid="gap-card-anchor" class="absolute z-20 overflow-y-auto" [style.left.px]="g.pos.left" [style.top.px]="g.pos.top" [style.bottom.px]="g.pos.bottom" [style.max-height.px]="g.pos.maxHeight">
                   <wl-gap-card [note]="g.note" [lang]="lang()" (closed)="selectedGap.set(null)" />
                 </div>
               }
 
               <div class="absolute bottom-4 left-4 z-10">
                 <wl-legend [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
+                  [axis]="state.axis()"
                   (toggle)="state.legendOpen.set(!state.legendOpen())" />
               </div>
             </div>
             <div class="h-[var(--wl-timeline-height)] flex-none">
-              <wl-timeline [date]="state.date()" [snapshots]="data.snapshots()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
+              <wl-timeline [date]="state.date()" [snapshots]="data.snapshots()" [earliestData]="data.earliestEvent()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
+                [ready]="mapReady()" (playingChange)="playing.set($event)"
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
           </div>
@@ -153,6 +212,120 @@ export class AtlasPage {
   protected readonly selected = signal<MapFeatureEvent | null>(null);
   protected readonly hover = signal<MapFeatureEvent | null>(null);
   protected readonly selectedGap = signal<MapGapEvent | null>(null);
+  protected readonly selectedSov = signal<MapSovereigntyEvent | null>(null);
+  /**
+   * 衝突圖示的焦點政權（Tai 2026-10-31）：平時不顯示衝突圖示；點選某個政權（開出資訊卡）後，
+   * 只顯示與該政權相關的衝突；關掉資訊卡（或點空白處、換日期）就清掉焦點、圖示隱藏。
+   */
+  protected readonly focusRegimeId = signal<string | null>(null);
+  protected readonly selectedConflict = signal<MapConflictEvent | null>(null);
+  /** 地圖區（時間軸上方）大小：資訊卡依此避開時間軸與視窗邊緣。 */
+  private readonly mapArea = viewChild<ElementRef<HTMLElement>>('mapArea');
+  private readonly areaSize = signal({ w: 0, h: 0 });
+  private place(x: number, y: number, cardW = 340): CardPlacement {
+    const { w, h } = this.areaSize();
+    return placeCard(x, y, w || window.innerWidth, h || window.innerHeight, cardW);
+  }
+  protected readonly showCamps = signal(false);
+  protected readonly motion = inject(MotionService);
+  /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
+  protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
+  protected readonly sovereigntyCount = computed(() => this.data.sovereignty()?.featureCollection.features.length ?? 0);
+  protected readonly selectedSovInfo = computed(() => {
+    const e = this.selectedSov();
+    const f = e && this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.recordId === e.recordId);
+    if (!e || !f) return null;
+    const reg = this.data.regimes()[f.properties.regimeId];
+    const name = regimeSelfName(reg, this.lang());
+    return {
+      props: f.properties,
+      name: name?.display ?? f.properties.regimeSlug,
+      original: name?.original ?? '',
+      originalLang: reg?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '',
+      occupierName: f.properties.occupation ? this.regimeName(f.properties.occupation.occupierRegimeId, f.properties.occupation.occupierSlug) : '',
+    };
+  });
+  private regimeName(id: string, slug: string): string {
+    return regimeSelfName(this.data.regimes()[id], this.lang())?.display ?? slug;
+  }
+  protected readonly focusedConflicts = computed(() => {
+    const focus = this.focusRegimeId();
+    if (!focus) return [];
+    return (this.data.conflicts()?.featureCollection.features ?? []).filter(
+      (f) => f.properties.regimeAId === focus || f.properties.regimeBId === focus,
+    );
+  });
+  protected readonly conflictIcons = computed<MapConflictIcon[]>(() =>
+    this.focusedConflicts().map((f) => {
+      const p = f.properties;
+      const c = (f.geometry as { coordinates: number[] }).coordinates;
+      const label = `${this.regimeName(p.regimeAId, p.regimeASlug)} — ${this.regimeName(p.regimeBId, p.regimeBSlug)}`;
+      // 雙方當日不相鄰（API arc）：畫虛線弧，雙劍改放弧線中點
+      const a = p.arc?.from?.length === 2 && p.arc.to?.length === 2 ? conflictArc([Number(p.arc.from[0]), Number(p.arc.from[1])], [Number(p.arc.to[0]), Number(p.arc.to[1])]) : null;
+      if (a) return { recordId: p.recordId, lngLat: a.mid, arc: a.path, focusEnd: p.regimeAId === this.focusRegimeId() ? 0 : p.regimeBId === this.focusRegimeId() ? 1 : null, label };
+      return { recordId: p.recordId, lngLat: [c[0], c[1]] as [number, number], label };
+    }),
+  );
+  protected readonly selectedConflictInfo = computed(() => {
+    const e = this.selectedConflict();
+    const f = e && this.focusedConflicts().find((x) => x.properties.recordId === e.recordId);
+    if (!e || !f) return null;
+    const p = f.properties;
+    return { props: p, nameA: this.regimeName(p.regimeAId, p.regimeASlug), nameB: this.regimeName(p.regimeBId, p.regimeBSlug) };
+  });
+  /** 從政權面板切到衝突詳情時記住原政權，可「返回」。 */
+  protected readonly returnSov = signal<{ e: MapSovereigntyEvent; name: string } | null>(null);
+  /** 點時間線事件跳日期後，要在新日期重新聚焦的政權。 */
+  private readonly pendingRegime = signal<string | null>(null);
+  protected readonly sovConflicts = computed(() =>
+    this.focusedConflicts().map((f) => {
+      const p = f.properties;
+      return { recordId: p.recordId, title: `${this.regimeName(p.regimeAId, p.regimeASlug)} — ${this.regimeName(p.regimeBId, p.regimeBSlug)}`, since: p.startEvent.occurred.start ?? '' };
+    }),
+  );
+  /** 聚焦的主權紀錄：點政權時設定；開衝突卡時保留（仍聚焦在該政權）；關閉、點空白、換日期時清掉。 */
+  protected readonly focusRecord = signal<string | null>(null);
+  protected readonly layout = computed(() => sheetLayout(this.areaSize().w, this.areaSize().h));
+  protected readonly sheetNow = computed<SheetInfo | null>(() => {
+    const s = this.selectedSovInfo();
+    if (s) return { kind: 'sov', title: s.name, description: s.original, descriptionLang: s.originalLang, sov: s, conflict: null };
+    const c = this.selectedConflictInfo();
+    if (c) return { kind: 'conflict', title: `${c.nameA} — ${c.nameB}`, description: this.lang() === 'en' ? 'Hostilities (conflict marker)' : '交戰（衝突圖示）', descriptionLang: '', sov: null, conflict: c };
+    return null;
+  });
+  /** 面板顯示的內容：關閉時保留最後一筆，讓滑出動畫期間內容不消失；面板移除後（hidden）才清掉。 */
+  protected readonly sheet = signal<SheetInfo | null>(null);
+  /** 政權面板目前分頁：面板開著時切換政權、跳日期、看完衝突返回都保留（方便連續比較事件）；面板完全關閉後回到「概要」。 */
+  protected readonly sovTab = signal<SovereigntyTab>('overview');
+  /** MapLibre 是否還在載入／切片（setData 後、平移到新區域時）。 */
+  protected readonly mapRenderBusy = signal(false);
+  /** 時間軸是否在播放：播放時等資料（mapReady）才前進，不顯示地圖載入指示。 */
+  protected readonly playing = signal(false);
+  /** 目前日期的地圖資料已到、地圖也畫完（含 120ms 去抖動期間：日期剛變但還沒開始載入也算未就緒）。 */
+  private readonly loadsStartedFor = signal<string | null>(null);
+  protected readonly mapReady = computed(
+    () => this.loadsStartedFor() === this.state.date() && !this.data.mapDataLoading() && !this.mapRenderBusy(),
+  );
+  /** 地圖角落載入指示：資料請求或地圖切片持續 300ms 以上才顯示（DelayedFlag），完成即隱藏。 */
+  protected readonly busyVisible = signal(false);
+  /** 載入指示出現過 → 下一次抵達的國界淡入；指示隱藏後短暫保留，讓同一輪的資料仍能淡入。 */
+  protected readonly fadeArmed = signal(false);
+  private fadeDisarm: ReturnType<typeof setTimeout> | undefined;
+  private readonly busyFlag = new DelayedFlag((v) => {
+    this.busyVisible.set(v);
+    clearTimeout(this.fadeDisarm);
+    if (v) this.fadeArmed.set(true);
+    else this.fadeDisarm = setTimeout(() => this.fadeArmed.set(false), 400);
+  }, 300);
+  protected readonly sheetOpen = computed(() => this.sheetNow() !== null);
+  protected readonly focusInset = computed<FocusInset>(
+    () => {
+      if (!this.sheetOpen()) return { right: 0, bottom: 0 };
+      const l = this.layout();
+      return l.side === 'right' ? { right: l.size, bottom: 0 } : { right: 0, bottom: l.size };
+    },
+    { equal: (a, b) => a.right === b.right && a.bottom === b.bottom },
+  );
   private readonly everLoaded = signal(false);
 
   /** 載入失敗而顯示舊日期資料時，不沿用舊的史料判斷：一律以推估（不明）樣式呈現（PRD §8.5 error 保守原則）。 */
@@ -171,12 +344,13 @@ export class AtlasPage {
   protected readonly selectedGapInfo = computed(() => {
     const g = this.selectedGap();
     const note = g && this.data.control()?.coverageNotes?.find((n) => n.id === g.gapId);
-    return g && note ? { x: Math.max(8, g.x + 12), y: Math.max(8, g.y - 40), note } : null;
+    return g && note ? { pos: this.place(g.x, g.y, 300), note } : null;
   });
   protected readonly featureCount = computed(() => this.data.control()?.featureCollection.features.length ?? 0);
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
   protected readonly isEmpty = computed(
-    () => this.data.controlStatus() === 'ok' && this.featureCount() === 0 && !this.data.showingStale(),
+    () => this.data.controlStatus() === 'ok' && this.featureCount() === 0 && !this.data.showingStale()
+      && this.data.sovereigntyStatus() !== 'loading' && this.sovereigntyCount() === 0,
   );
   protected readonly nearest = computed(() => nearestDate(this.data.snapshots().map((s) => s.asOf), this.state.date()));
 
@@ -205,6 +379,14 @@ export class AtlasPage {
     const dto = this.data.control();
     if (!dto || (this.data.controlStatus() === 'error' && this.data.showingStale())) return [];
     return controlLabels(dto, (id) => regimeSelfName(regs[id], this.lang())?.display ?? null);
+  });
+
+  /** 國名標籤＋控制區政權標籤（控制區標籤在後，畫在國名上面）。 */
+  protected readonly allLabels = computed(() => {
+    const regs = this.data.regimes();
+    const sov = sovereigntyLabels(this.data.sovereignty(), (id) => regimeSelfName(regs[id], this.lang())?.display ?? null);
+    // 主權檢視只標國名；實際控制檢視國名在下、控制區政權標籤在上
+    return this.state.axis() === 'sovereignty' ? sov : [...sov, ...this.labels()];
   });
 
   private findFeature(versionId: string) {
@@ -239,8 +421,7 @@ export class AtlasPage {
     const d = this.describe(s.versionId);
     if (!d) return null;
     return {
-      x: Math.max(8, s.x + 12),
-      y: Math.max(8, s.y - 40),
+      pos: this.place(s.x, s.y, 300),
       props: d.p,
       name: d.name?.display ?? '',
       original: d.name?.original ?? '',
@@ -262,33 +443,100 @@ export class AtlasPage {
     effect(() => {
       if (this.data.controlStatus() === 'ok') untracked(() => this.everLoaded.set(true));
     });
+    effect(() => {
+      const dto = this.data.sovereignty();
+      const want = this.pendingRegime();
+      if (!want || !dto || this.data.sovereigntyShownFor() !== this.state.date()) return;
+      untracked(() => {
+        this.pendingRegime.set(null);
+        const f = dto.featureCollection.features.find((x) => x.properties.regimeId === want);
+        if (f) this.onSovereigntyClick({ recordId: f.properties.recordId, x: 0, y: 0 });
+      });
+    });
+    effect(() => {
+      const busy = !this.playing() && (this.data.mapDataLoading() || this.mapRenderBusy());
+      untracked(() => this.busyFlag.set(busy));
+    });
+    inject(DestroyRef).onDestroy(() => {
+      this.busyFlag.dispose();
+      clearTimeout(this.fadeDisarm);
+    });
+    effect(() => {
+      const s = this.sheetNow();
+      if (s) untracked(() => this.sheet.set(s));
+    });
 
     // 日期改變 → 載入控制區（拖動時去抖動 120ms）＋寫回 URL
     effect(() => {
       const date = this.state.date();
       const lang = this.state.lang();
+      const axis = untracked(() => this.state.axis());
       untracked(() => {
         if (this.data.health() === 'up') {
           clearTimeout(this.debounce);
-          this.debounce = setTimeout(() => void this.data.loadControl(date), this.everLoaded() ? 120 : 0);
+          this.debounce = setTimeout(() => {
+            this.loadDate(date);
+          }, this.everLoaded() ? (this.playing() ? 0 : 120) : 0);
         }
         void this.router.navigate([], {
           relativeTo: this.route,
-          queryParams: { date, lang: lang === 'en' ? 'en' : null },
+          queryParams: { date, lang: lang === 'en' ? 'en' : null, axis: axis === 'sovereignty' ? 'sovereignty' : null },
           queryParamsHandling: 'merge',
           replaceUrl: true,
         });
       });
     });
 
-    inject(DestroyRef).onDestroy(() => clearTimeout(this.debounce));
+    // 檢視軸改變 → 只寫回 URL（不重新載入資料）
+    effect(() => {
+      const axis = this.state.axis();
+      untracked(() =>
+        void this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { axis: axis === 'sovereignty' ? 'sovereignty' : null },
+          queryParamsHandling: 'merge',
+          replaceUrl: true,
+        }),
+      );
+    });
+
+    // 地圖區大小（視窗縮放、時間軸高度變動）→ 資訊卡重新定位
+    let ro: ResizeObserver | undefined;
+    effect(() => {
+      const el = this.mapArea()?.nativeElement;
+      ro?.disconnect();
+      ro = undefined;
+      if (!el) return;
+      const update = () => this.areaSize.set({ w: el.clientWidth, h: el.clientHeight });
+      update();
+      if (typeof ResizeObserver !== 'undefined') {
+        ro = new ResizeObserver(update);
+        ro.observe(el);
+      }
+    });
+    inject(DestroyRef).onDestroy(() => {
+      clearTimeout(this.debounce);
+      ro?.disconnect();
+    });
     void this.boot();
   }
 
   protected async boot(): Promise<void> {
     if (!(await this.data.checkHealth())) return;
     void this.data.loadSnapshots();
-    void this.data.loadControl(this.state.date());
+    void this.data.loadExtent();
+    // 變動點很小（數百個日期）：先拿到，主權／衝突就能依區間快取
+    await this.data.loadChangePoints();
+    this.loadDate(this.state.date());
+  }
+
+  /** 載入某日的控制區／主權／衝突；主權與衝突都到了之後，預先載入接下來幾格（播放、往後跳都順）。 */
+  private loadDate(date: string): void {
+    this.loadsStartedFor.set(date);
+    void this.data.loadControl(date);
+    void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
+      if (this.state.date() === date) void this.data.prefetch(date, this.playing() ? 4 : 2);
+    });
   }
 
   protected reloadControl(): void {
@@ -297,24 +545,96 @@ export class AtlasPage {
 
   protected setDate(d: string): void {
     this.clearSelection();
+    this.pendingRegime.set(null);
     this.state.setDate(d);
   }
 
   protected onFeatureClick(e: MapFeatureEvent): void {
     this.hover.set(null);
+    this.selectedSov.set(null);
     this.selectedGap.set(null);
+    this.selectedConflict.set(null);
     this.selected.set(e);
+    this.focusRecord.set(null);
+    this.focusRegimeId.set(this.findFeature(e.versionId)?.properties.controllerRegimeId ?? null);
+  }
+
+  protected setAxis(axis: 'control' | 'sovereignty'): void {
+    this.state.axis.set(axis);
+    if (axis === 'sovereignty') {
+      // 控制區卡片關掉時，連帶清掉它帶出的衝突圖示焦點（政權卡／衝突卡仍開著就保留）
+      if (this.selected() && !this.selectedConflict()) this.focusRegimeId.set(null);
+      this.selected.set(null);
+      this.selectedGap.set(null);
+    }
+  }
+
+  protected onSovereigntyClick(e: MapSovereigntyEvent): void {
+    this.hover.set(null);
+    this.selected.set(null);
+    this.selectedGap.set(null);
+    this.selectedConflict.set(null);
+    this.selectedSov.set(e);
+    this.focusRecord.set(e.recordId);
+    this.returnSov.set(null);
+    const f = this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.recordId === e.recordId);
+    if (f) void this.data.loadRegimeEvents(f.properties.regimeId);
+    this.focusRegimeId.set(f?.properties.regimeId ?? null);
+  }
+
+  /** 政權面板「相關衝突」點一項：切到衝突詳情（仍聚焦原政權），可返回。 */
+  protected selectConflict(recordId: string): void {
+    this.onConflictClick({ recordId, x: 0, y: 0 });
+  }
+
+  protected backToRegime(): void {
+    const back = this.returnSov();
+    if (!back) return;
+    this.onSovereigntyClick(back.e);
+  }
+
+  /** 時間線點事件：跳到該日期；新日期資料載入後，若此政權仍有國界紀錄就重新聚焦。 */
+  /** 面板滑出完成：清掉內容；若不是「跳到事件日期後要重新聚焦」的暫時關閉，分頁回到概要。 */
+  protected onSheetHidden(): void {
+    this.sheet.set(null);
+    if (!this.pendingRegime() && !this.sheetNow()) this.sovTab.set('overview');
+  }
+
+  protected jumpToEvent(date: string): void {
+    const regime = this.focusRegimeId();
+    this.clearSelection();
+    this.pendingRegime.set(regime);
+    this.state.setDate(date);
+  }
+
+  /** 點衝突圖示：換成衝突卡，焦點政權不變（圖示保持顯示）。 */
+  protected onConflictClick(e: MapConflictEvent): void {
+    this.hover.set(null);
+    this.selected.set(null);
+    this.selectedGap.set(null);
+    const sov = this.selectedSovInfo();
+    if (sov) this.returnSov.set({ e: this.selectedSov()!, name: sov.name });
+    this.selectedSov.set(null);
+    this.selectedConflict.set(e);
   }
 
   protected onGapClick(e: MapGapEvent): void {
     this.hover.set(null);
     this.selected.set(null);
+    this.selectedConflict.set(null);
+    this.focusRegimeId.set(null);
+    this.focusRecord.set(null);
     this.selectedGap.set(e);
   }
 
   protected clearSelection(): void {
     this.selected.set(null);
     this.selectedGap.set(null);
+    this.selectedSov.set(null);
+    this.selectedConflict.set(null);
+    this.focusRegimeId.set(null);
+    this.focusRecord.set(null);
+    this.returnSov.set(null);
   }
 
   protected onInvalidInput(): void {

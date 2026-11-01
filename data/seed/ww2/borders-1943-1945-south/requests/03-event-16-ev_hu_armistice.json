@@ -1,0 +1,49 @@
+{
+ "_placeholder": "EV_HU_ARMISTICE",
+ "_post": "/api/v1/events",
+ "_meta": {
+  "verification": "verified"
+ },
+ "body": {
+  "eventKind": "armistice",
+  "occurred": {
+   "start": "1945-01-20",
+   "end": "1945-01-21"
+  },
+  "datePrecision": "day",
+  "summary": {
+   "zh-Hant": "匈牙利臨時國民政府與盟國在莫斯科簽訂停戰協定",
+   "en": "Armistice between Hungary (provisional government) and the Allies signed in Moscow"
+  },
+  "participants": [
+   {
+    "regimeId": "{{REGIME_HU_PROV}}",
+    "role": "signatory"
+   },
+   {
+    "regimeId": "{{REGIME_SU}}",
+    "role": "signatory"
+   },
+   {
+    "regimeId": "{{REGIME_UK}}",
+    "role": "signatory"
+   }
+  ],
+  "citations": [
+   {
+    "sourceId": "{{SRC_FRUS_1944_III}}",
+    "locator": "Doc. 899, pp. 980–981",
+    "evidenceNote": "1945-01-20 電：談判結束，1 月 20 日簽訂對匈牙利停戰協定，伏羅希洛夫代表簽字。"
+   },
+   {
+    "sourceId": "{{SRC_FRUS_1945_IV}}",
+    "locator": "Doc. 761, pp. 800–801",
+    "evidenceNote": "英國駐蘇代辦 1945-01-20 函：談及對匈牙利停戰協定條款。"
+   }
+  ],
+  "timeNote": {
+   "zh-Hant": "紀錄的國界變動依 OHM relation/2878067 start_date（1945-02-01）。美國是主要參與方，但政權表尚無美國（下一批補）。",
+   "en": "Border change in the records follows OHM (1 Feb 1945). The US was a principal party but is not yet in the regime table."
+  }
+ }
+}

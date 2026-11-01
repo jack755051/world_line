@@ -1,0 +1,83 @@
+{
+ "_placeholder": "UNCLIP_SU_13",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "U_01a19134-d1fc-7743-ac06-c8d7575a3398",
+ "_meta": {
+  "replaces": "01a19134-d1fc-7743-ac06-c8d7575a3398",
+  "old_area": 305.047,
+  "new_area": 3450.628,
+  "inside_change": 0.0
+ },
+ "body": {
+  "regimeId": "01a18e71-cc2e-7f80-8d62-81879da43d7b",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1941-08-19",
+   "end": "1941-09-01"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a19134-d090-74c6-8ce9-a0450fdff3ab",
+  "geometryLocator": "relation/2851156 v94 − relation/2692712 v266 − relation/2692529 v46 − relation/2693255 v79（完整，不受歐陸框裁切）",
+  "geometryLicense": "cc_by",
+  "attribution": "OCHA／HDX COD-AB Ukraine（OHM 線段標示 CC BY 4.0）; © Geodetska uprava Republike Slovenije（GURS），CC BY 4.0",
+  "startEventId": "01a19041-09e9-79aa-9e34-e00adf393cfb",
+  "endEventId": "01a18ff5-a298-736e-8a8f-d94281b0a89a",
+  "ohmRelationId": 2851156,
+  "ohmVersion": 94,
+  "ohmFetchedAt": "2026-10-31T03:09:12+00:00",
+  "ohmStartRaw": "1941-07-17",
+  "ohmEndRaw": "1944-09-19",
+  "provenance": {
+   "ohmFixme": "needs source for boundary lines",
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "derivation": "relation/2851156 v94 − relation/2692712 v266 − relation/2692529 v46 − relation/2693255 v79",
+   "derivedFrom": [
+    "relation/2851156 v94",
+    "relation/2692712 v266",
+    "relation/2692529 v46",
+    "relation/2693255 v79"
+   ],
+   "trialWindow": "1941-04-14～1942-06-30（補空白）",
+   "ohmChangeset": 273106,
+   "ohmTimestamp": "2026-09-27T19:36:16Z",
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "hdx_ukr": 5,
+    "untagged(OHM CC0)": 1076
+   },
+   "osmDerivedWayCount": 0,
+   "unclip": {
+    "batch": "unclip-su-tr",
+    "replaces": "01a19134-d1fc-7743-ac06-c8d7575a3398",
+    "frameRemoved": "box(-12,34,42,72)",
+    "method": "框內幾何沿用原紀錄；框外部分取同一 OHM 版本全球重組（Natural Earth 10m 陸地裁切）後併入",
+    "outsideMemberWayLicense": {
+     "untagged(OHM CC0)": 780
+    },
+    "cutAgainstExisting": [
+     {
+      "slug": "republic-of-china-nationalist",
+      "area_deg2": 0.0747
+     },
+     {
+      "slug": "manchukuo",
+      "area_deg2": 0.151
+     },
+     {
+      "slug": "mongolian-peoples-republic",
+      "area_deg2": 0.0474
+     },
+     {
+      "slug": "tuvan-peoples-republic",
+      "area_deg2": 0.0467
+     }
+    ],
+    "cutNote": "與同期其他政權共有邊界上的細碎重疊（<0.001 平方度）亦一併扣除"
+   }
+  },
+  "note": {
+   "zh-Hant": "蘇聯事實國界（OHM 1941 年國界）扣掉德國、已設的總督轄區與羅馬尼亞收回的領土；總督轄區以東的德佔地區（軍事管理區）OHM 沒有幾何，仍畫入蘇聯。（2026-10-31 修正：補回歐陸試驗框外的幾何；黑龍江／烏蘇里江江中島與滿洲國重疊處依既有滿洲國紀錄扣除。）",
+   "en": "Soviet Union (OHM 1941 borders) minus Germany, the Reichskommissariats and Romanian-held territory; German-held military areas further east have no OHM geometry and stay in the USSR. (Fixed 2026-10-31: geometry outside the European trial frame restored.)"
+  }
+ }
+}

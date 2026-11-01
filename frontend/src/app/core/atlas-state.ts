@@ -40,7 +40,7 @@ export function parseAtlasQuery(q: Record<string, string | undefined>): ParsedQu
     date: dateOk ? rawDate : AtlasState.defaultDate,
     invalidDate: rawDate !== undefined && !dateOk,
     lang: q['lang'] === 'en' ? 'en' : 'zh-Hant',
-    // 主權檢視尚未建置（無主權 API），一律回到實際控制
-    axis: 'control',
+    // 主權檢視（國界試驗 1938–1940）：只認得 sovereignty，其他一律實際控制
+    axis: q['axis'] === 'sovereignty' ? 'sovereignty' : 'control',
   };
 }

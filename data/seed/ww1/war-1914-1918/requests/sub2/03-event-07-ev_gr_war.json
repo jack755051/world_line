@@ -1,0 +1,49 @@
+{
+ "_placeholder": "EV_GR_WAR",
+ "_post": "/api/v1/events",
+ "_meta": {
+  "verification": "verified"
+ },
+ "body": {
+  "eventKind": "war",
+  "occurred": {
+   "start": "1917-07-02",
+   "end": "1917-07-03"
+  },
+  "datePrecision": "day",
+  "summary": {
+   "zh-Hant": "希臘（統一政府）對德國、保加利亞處於戰爭狀態",
+   "en": "Greece (reunited government) at war with Germany and Bulgaria"
+  },
+  "participants": [
+   {
+    "regimeId": "{{REGIME_GR}}",
+    "role": "belligerent"
+   },
+   {
+    "regimeId": "{{REGIME_DE_EMP}}",
+    "role": "belligerent"
+   },
+   {
+    "regimeId": "{{REGIME_BG}}",
+    "role": "belligerent"
+   }
+  ],
+  "citations": [
+   {
+    "sourceId": "{{SRC_FRUS_1917S2}}",
+    "locator": "Doc. 165, p. 117",
+    "evidenceNote": "駐雅典公使 1917-07-02 電：外交大臣告知希臘與德國、保加利亞處於戰爭狀態，與其他同盟國斷交。"
+   },
+   {
+    "sourceId": "{{SRC_FRUS_1917S2}}",
+    "locator": "Doc. 159, p. 113",
+    "evidenceNote": "同使 6 月 30 日電：統一後的希臘承擔原臨時政府（已對德、保宣戰）的政策。"
+   }
+  ],
+  "timeNote": {
+   "zh-Hant": "韋尼澤洛斯的國防臨時政府 1916-11 已對德、保宣戰（不在本表）；本表取 FRUS 所記希臘政府宣告日。",
+   "en": "The Venizelist provisional government had declared war in Nov 1916 (not modeled)."
+  }
+ }
+}

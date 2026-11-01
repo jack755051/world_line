@@ -71,16 +71,32 @@ test('時間軸：五條戰區軌道，無快照的軌道標為控制資料缺',
 });
 
 test('日期格式無效 → 回到預設日期並提示', async ({ page }) => {
+  // toast 數秒後自動消失；--workers=2 時開頁較慢，先開始等 toast 再導頁，避免 toast 已消失才檢查
+  const toastSeen = expect(page.getByTestId('toast')).toContainText('日期格式無效', { timeout: 30_000 });
   await page.goto('/?date=1940-13-99');
   await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
-  await expect(page.getByTestId('toast')).toContainText('日期格式無效');
+  await toastSeen;
 });
 
 test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page, request }) => {
   const [first] = await snapshotDates(request);
   const [y, m, d] = first.split('-').map(Number);
+  // borders 設定（開發庫 5442）：主權層從 1908 起連續有資料，時間軸範圍內沒有真正「無資料」的日期。
+  // 改為攔截這次開頁的主權／控制回應、清空圖徵，只驗證空白狀態的畫面與「跳到最近快照」（快照日期仍來自開發 API）。
+  const empty = async (route: import('@playwright/test').Route) => {
+    const res = await route.fetch();
+    const body = await res.json();
+    if (body?.data?.featureCollection) body.data.featureCollection.features = [];
+    if (body?.data) body.data.coverageNotes = [];
+    await route.fulfill({ response: res, json: body });
+  };
+  if (process.env['WL_E2E_BORDERS']) {
+    await page.route('**/api/v1/sovereignty?*', empty);
+    await page.route('**/api/v1/control?*', empty);
+  }
   await page.goto('/?date=1938-03-01');
   await expect(page.getByTestId('map-empty')).toBeVisible();
+  await page.unrouteAll({ behavior: 'wait' });
   await page.getByTestId('map-empty-jump').click();
   await expect(page.getByTestId('topbar-date')).toHaveText(`${y}年${m}月${d}日`);
 });
@@ -176,19 +192,31 @@ test('找不到頁面：置中紙卡＋回主地圖', async ({ page }) => {
   await expect(page.getByTestId('atlas-page')).toBeVisible();
 });
 
-test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點 1937-07', async ({ page, request }) => {
+/** 時間軸起點＝min(預設 1937-07-01, 最早快照, 最早事件)；不是 1 月 1 日時標「YYYY-MM」（timeline-scale rangeFor）。 */
+async function expectedStartLabel(request: import('@playwright/test').APIRequestContext): Promise<string> {
+  const ext = (await (await request.get('/api/v1/timeline/extent')).json()).data as { earliestEvent?: string | null };
+  const start = [...(await snapshotDates(request)), ext.earliestEvent ?? '9999-12-31', '1937-07-01'].reduce((a, b) => (a < b ? a : b));
+  return start.slice(0, 7);
+}
+
+test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點（正式庫 1937-07；borders 依最早事件）', async ({ page, request }) => {
+  const startLabel = await expectedStartLabel(request);
   const res = await request.get('/api/v1/control?date=1940-07-15');
   const features = (await res.json()).data.featureCollection.features as { properties: { controllerRegimeId: string; controlType: string } }[];
   await page.goto('/?date=1940-07-15');
   await waitForPolygons(page);
-  await expect(page.getByTestId('timeline-start-label')).toHaveText('1937-07');
+  await expect(page.getByTestId('timeline-start-label')).toHaveText(startLabel);
   // 圖例：每個政權至少一個邊框樣本，樣本的控制類型都出現在 API 資料中
   const types = new Set(features.map((f) => f.properties.controlType));
   const sw = page.getByTestId('legend-regime-swatch');
   await expect(sw.first()).toBeVisible();
   for (const t of await sw.evaluateAll((els) => els.map((e) => e.getAttribute('data-control-type') ?? ''))) expect(types.has(t)).toBe(true);
-  // 地圖標籤：只標 API 資料中的控制方政權
+  // 地圖標籤：只標 API 資料中的政權（控制方；borders 設定另有主權層的國名標籤，一併取自 /sovereignty）
   const ids = new Set(features.map((f) => f.properties.controllerRegimeId));
+  if (process.env['WL_E2E_BORDERS']) {
+    const sov = (await (await request.get('/api/v1/sovereignty?date=1940-07-15')).json()).data.featureCollection.features as { properties: { regimeId: string } }[];
+    for (const f of sov) ids.add(f.properties.regimeId);
+  }
   const labels = page.getByTestId('map-regime-label');
   await expect(labels.first()).toBeVisible();
   for (const id of await labels.evaluateAll((els) => els.map((e) => e.getAttribute('data-regime-id') ?? ''))) expect(ids.has(id)).toBe(true);

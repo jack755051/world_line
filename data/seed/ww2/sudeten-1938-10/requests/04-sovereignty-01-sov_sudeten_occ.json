@@ -1,0 +1,53 @@
+{
+ "_placeholder": "SOV_SUDETEN_OCC",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "SUD_1001",
+ "_meta": {
+  "ohmName": "German Reich（2704711 ∩ 2692764 部分）"
+ },
+ "body": {
+  "geometry": null,
+  "geometrySourceId": "{{SRC_OHM}}",
+  "geometryLicense": "cc_by",
+  "attribution": "© Geodetska uprava Republike Slovenije（GURS），CC BY 4.0",
+  "ohmRelationId": 2704712,
+  "ohmVersion": 208,
+  "ohmFetchedAt": "2026-10-30T19:27:35Z",
+  "ohmStartRaw": "1938-03-13",
+  "ohmEndRaw": "1938-11-21",
+  "regimeId": "{{REGIME_SUDETEN_OCC}}",
+  "validPeriod": {
+   "start": "1938-10-01",
+   "end": "1938-10-10"
+  },
+  "layerStatus": "not_sovereign",
+  "geometryLocator": "((relation/2704711 v199 ∩ relation/2692764 v97) − 1938-10-15 其他紀錄)，即德國 1938-10-10 紀錄 − 1938-03-13 紀錄（< 0.01 平方度碎片不納入）",
+  "startEventId": "{{EV_MUNICH_ZONES}}",
+  "endEventId": "{{EV_SUDETEN_OCCUPATION}}",
+  "provenance": {
+   "ohmFixme": "needs source for boundary lines",
+   "coastline": "{{SRC_NE_LAND}}",
+   "ohmChangeset": 272226,
+   "ohmTimestamp": "2026-09-22T01:48:40Z",
+   "licenseReview": "osm_derived_ways",
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "gurs": 25,
+    "untagged(OHM CC0)": 1774
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 464,
+   "derivedFrom": [
+    "relation/2704712 v208",
+    "relation/2704711 v199",
+    "relation/2692764 v97"
+   ],
+   "derivation": "德國 1938-10-10 紀錄幾何 − 德國 1938-03-13 紀錄幾何；去掉 < 0.01 平方度碎片",
+   "simplification": "whole_area_from_first_day"
+  },
+  "note": {
+   "zh-Hant": "非主權：慕尼黑協定（DGFP D/II No. 675）規定 10-01 起德軍分四區進駐、其餘地區由國際委員會劃定並於 10-10 前佔領。OHM 沒有分區幾何，這裡簡化為整塊蘇台德自 10-01 起標為德軍分區進駐中，至 10-10 佔領大致完成、劃入德國（FRUS 1938 I Doc. 710）。實際上 10-01 時多數地區尚未進駐；佩特爾扎爾卡一小片不在此範圍（OHM 自 10-10 劃入德國）。",
+   "en": "Not sovereign: under the Munich Agreement (DGFP D/II No. 675) German troops occupied four zones from 1 Oct and the rest, fixed by the international commission, by 10 Oct. OHM has no zone geometry, so the whole Sudeten area is shown as under German occupation from 1 Oct (simplification) until it is drawn as German from 10 Oct (FRUS 1938 I Doc. 710)."
+  }
+ }
+}

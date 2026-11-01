@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi;
@@ -40,6 +42,18 @@ builder.Services.AddOpenApi(o => o.AddDocumentTransformer((doc, _, _) =>
 var connectionString = builder.Configuration.GetConnectionString(DbSetup.ConnectionStringName)
                        ?? "Host=127.0.0.1;Port=5432;Database=appdb_ww2;Username=unset;Password=unset";
 builder.Services.AddDbContext<WorldLineDbContext>(o => DbSetup.Configure(o, connectionString));
+// 效能（Tai 2026-11-01：播放、跳日期不順）：
+// - 回應壓縮：主權圖層一天約 3.4 MB JSON，br／gzip 用最快等級（壓縮本身不能變成瓶頸）
+// - 逐日查詢依變動區間快取（DateIntervalCache；寫入即作廢）
+builder.Services.AddResponseCompression(o =>
+{
+    o.EnableForHttps = true;
+    o.Providers.Add<BrotliCompressionProvider>();
+    o.Providers.Add<GzipCompressionProvider>();
+});
+builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = CompressionLevel.Fastest);
+builder.Services.Configure<GzipCompressionProviderOptions>(o => o.Level = CompressionLevel.Fastest);
+builder.Services.AddSingleton<DateIntervalCache>();
 builder.Services.AddHealthChecks().AddDbContextCheck<WorldLineDbContext>("db");
 
 var app = builder.Build();
@@ -50,7 +64,9 @@ if (app.Configuration.GetValue<bool>("WORLDLINE_MIGRATE_ON_STARTUP"))
     await scope.ServiceProvider.GetRequiredService<WorldLineDbContext>().Database.MigrateAsync();
 }
 
+app.UseResponseCompression();
 app.UseExceptionHandler();
+app.UseMiddleware<BumpOnWriteMiddleware>();
 app.MapOpenApi("/openapi/{documentName}.json");
 
 app.MapHealthChecks("/healthz", new HealthCheckOptions

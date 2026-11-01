@@ -119,6 +119,16 @@ public sealed record CoverageNoteDto(
 // ───────────── 時間軸 ─────────────
 public sealed record SnapshotSourceDto(Guid SourceId, string Title, string Locator);
 
+/// <summary>時間軸資料範圍：未撤回事件的最早／最晚發生日（前端據此把時間軸往前延伸到 1937 以前，WW1 試驗）。</summary>
+public sealed record TimelineExtentDto(DateOnly? EarliestEvent, DateOnly? LatestEvent);
+
+/// <summary>
+/// 主權／衝突圖層的變動點（各紀錄有效期間的起訖日，遞增）。兩個相鄰變動點之間每天的 /sovereignty、/conflicts 結果相同；
+/// 前端據此判斷換日期是否需要重新載入、播放時預先載入下一段。Version 在任何寫入後改變。
+/// ControlPoints：控制區（/control）的變動點，另成一組（控制區的日期條件與主權不同；移植自 992baba）。
+/// </summary>
+public sealed record TimelineChangePointsDto(long Version, IReadOnlyList<DateOnly> Points, IReadOnlyList<DateOnly> ControlPoints);
+
 public sealed record TimelineSnapshotDto(
     Guid Id, string TheaterCode, DateOnly AsOf, string Attestation, DatePeriodDto? AttestedPeriod,
     IReadOnlyDictionary<string, string>? Title, IReadOnlyList<SnapshotSourceDto> PrimarySources);
@@ -157,7 +167,14 @@ public sealed record EventParticipantInput(Guid? RegimeId, string? Role);
 /// <summary>事件引用（PRD §6.3 event_citations）：來源＋locator（頁碼、文件號）＋審查依據。</summary>
 public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote);
 
-public sealed record EventParticipantDto(Guid RegimeId, string Role);
+/// <summary>addedAt／additionNote：事後追加（方案 A）的參與方才有；隨事件寫入的為 null。</summary>
+public sealed record EventParticipantDto(Guid RegimeId, string Role, DateTimeOffset? AddedAt = null, IReadOnlyDictionary<string, string>? AdditionNote = null);
+
+/// <summary>
+/// 事後追加事件參與方（方案 A，Tai 2026-10-31）：只新增、不改不刪原有參與方；note 為追加理由（多語，必填）。
+/// 事件本身與引用不變；要改事件內容仍走撤回再新增。
+/// </summary>
+public sealed record AppendEventParticipantRequest(Guid? RegimeId, string? Role, IReadOnlyDictionary<string, string>? Note);
 
 public sealed record EventDto(
     Guid Id, string EventKind, Guid? ParentEventId, IReadOnlyDictionary<string, string>? Summary,
@@ -182,3 +199,123 @@ public sealed record RegimeAlignmentDto(
 public sealed record RetractionRequest(string? Reason);
 
 public sealed record RetractionDto(Guid Id, DateTimeOffset RetractedAt, string Reason);
+
+// ───────────── 主權圖層（法理國界；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增主權紀錄。validPeriod.start 必填，迄日未知可留空。geometrySourceId 必須是授權在允許清單的資料集來源；
+/// geometryLicense 為此筆幾何的授權（cc0／cc_by…），cc_by／cc_by_sa 必須附 attribution。
+/// </summary>
+public sealed record CreateSovereigntyRecordRequest(
+    Guid? RegimeId, JsonElement? Geometry, DatePeriodDto? ValidPeriod, string? LayerStatus,
+    Guid? GeometrySourceId, string? GeometryLocator, string? GeometryLicense, string? Attribution = null,
+    Guid? StartEventId = null, Guid? EndEventId = null,
+    long? OhmRelationId = null, int? OhmVersion = null, DateTimeOffset? OhmFetchedAt = null,
+    string? OhmStartRaw = null, string? OhmEndRaw = null,
+    JsonElement? Provenance = null, IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record SovereigntyRecordDto(
+    Guid Id, Guid RegimeId, DatePeriodDto ValidPeriod, string LayerStatus, Guid? StartEventId, Guid? EndEventId,
+    Guid GeometrySourceId, string GeometryLocator, string GeometryLicense, string? Attribution,
+    long? OhmRelationId, int? OhmVersion, DateTimeOffset? OhmFetchedAt);
+
+/// <summary>疆界變動事件摘要。verification：verified（有合格引用）| pending（待查證：尚無合格引用）。</summary>
+public sealed record SovereigntyEventRefDto(
+    Guid Id, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
+    string Verification, IReadOnlyList<CitationDto> Citations);
+
+/// <summary>
+/// 政權相關事件（政權面板的「事件」時間線）：事件結構同主權卡起訖事件（沒有引用＝待查證）；
+/// roles＝此政權與事件的關係：參與方角色（belligerent／signatory／other…），或 border_start／border_end（此政權某段國界的起訖變動）。
+/// </summary>
+public sealed record RegimeEventDto(
+    Guid Id, string EventKind, DatePeriodDto Occurred, IReadOnlyDictionary<string, string>? Summary,
+    string Verification, IReadOnlyList<CitationDto> Citations, IReadOnlyList<string> Roles,
+    IReadOnlyList<ParticipantAdditionDto>? Additions = null);
+
+/// <summary>此政權在該事件中「事後追加」（方案 A）的參與紀錄：角色、追加時間、理由；隨事件寫入的參與方不列。</summary>
+public sealed record ParticipantAdditionDto(string Role, DateTimeOffset AddedAt, IReadOnlyDictionary<string, string>? Note);
+
+/// <summary>幾何出處：來源（資料集）＋locator（關係 id／版本）＋此筆幾何授權與署名。</summary>
+public sealed record GeometryProvenanceDto(
+    Guid SourceId, string SourceTitle, string Publisher, string? SourceLicenseCode, string Locator,
+    string GeometryLicense, string? Attribution, long? OhmRelationId, int? OhmVersion, DateTimeOffset? OhmFetchedAt,
+    string? OhmStartRaw, string? OhmEndRaw, JsonElement? Flags);
+
+/// <summary>
+/// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
+/// </summary>
+public sealed record SovereigntyFeatureProperties(
+    Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
+    SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
+    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null);
+
+/// <summary>
+/// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|
+/// military_administration（軍事管理，最淺）。verification：依據事件有引用＝verified，否則 pending（待查證）。
+/// coOccupied＝共同佔領但缺分區幾何，只記主要佔領方。
+/// </summary>
+public sealed record OccupationRefDto(
+    Guid Id, Guid OccupierRegimeId, string OccupierSlug, string ControlKind, bool CoOccupied, DatePeriodDto ValidPeriod,
+    SovereigntyEventRefDto? BasisEvent, string Verification, IReadOnlyDictionary<string, string>? Note);
+
+/// <summary>新增佔領歸屬（依被佔領政權＋期間；同政權有效期間不可重疊）。</summary>
+public sealed record CreateOccupationAttributionRequest(
+    Guid? OccupiedRegimeId, Guid? OccupierRegimeId, string? ControlKind, DatePeriodDto? ValidPeriod,
+    Guid? BasisEventId = null, bool? CoOccupied = null, IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record OccupationAttributionDto(
+    Guid Id, Guid OccupiedRegimeId, Guid OccupierRegimeId, string ControlKind, DatePeriodDto ValidPeriod,
+    Guid? BasisEventId, bool CoOccupied, IReadOnlyDictionary<string, string>? Note);
+
+public sealed record SovereigntyFeature(Guid Id, JsonElement Geometry, SovereigntyFeatureProperties Properties)
+{
+    public string Type => "Feature";
+}
+
+public sealed record SovereigntyFeatureCollection(IReadOnlyList<SovereigntyFeature> Features)
+{
+    public string Type => "FeatureCollection";
+}
+
+public sealed record SovereigntyMapDto(DateOnly Date, SovereigntyFeatureCollection FeatureCollection);
+
+// ───────────── 衝突圖示（交叉雙劍；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增衝突。regimeAId／regimeBId＝交戰雙方；startEventId（開戰事件）必填，endEventId（停戰／投降）可空。
+/// 顯示期間由事件推得：[開戰日, 結束日 + 1)。location＝圖示位置（GeoJSON Point），locationMethod 說明位置怎麼算的。
+/// </summary>
+public sealed record CreateConflictRecordRequest(
+    Guid? RegimeAId, Guid? RegimeBId, Guid? StartEventId, Guid? EndEventId,
+    JsonElement? Location, string? LocationMethod, IReadOnlyDictionary<string, string>? Note = null);
+
+public sealed record ConflictRecordDto(
+    Guid Id, Guid RegimeAId, Guid RegimeBId, Guid StartEventId, Guid? EndEventId, DatePeriodDto ValidPeriod,
+    JsonElement Location, string LocationMethod);
+
+/// <summary>衝突圖示屬性：起訖事件與主權卡同一結構（事件名稱、日期、查證狀態、出處）。</summary>
+public sealed record ConflictFeatureProperties(
+    Guid RecordId, Guid RegimeAId, string RegimeASlug, Guid RegimeBId, string RegimeBSlug, DatePeriodDto ValidPeriod,
+    SovereigntyEventRefDto StartEvent, SovereigntyEventRefDto? EndEvent, string LocationMethod,
+    IReadOnlyDictionary<string, string>? Note, bool? Adjacent = null, ConflictArcDto? Arc = null);
+
+/// <summary>
+/// 遠距交戰虛線弧（Tai 2026-10-31）：當日雙方「控制範圍」（自身主權紀錄＋以其為佔領方的佔領區）不相接時才有；
+/// from／to＝雙方當日主權紀錄的 ST_PointOnSurface（[經度, 緯度]）。雙劍放在弧線中點（前端計算）。
+/// 有事件地點時（開戰事件的 location，或 locationMethod 以「開戰地點」開頭的衝突位置）優先用事件地點當其中一端：
+/// 地點在某方控制範圍內或 1 度內（例：珍珠港在美國夏威夷）→ 該方端點＝事件地點；都不在（例：哥打巴魯在英屬馬來亞，殖民地尚未建置）
+/// → 端點離事件地點較遠的一方（殖民宗主國）改用事件地點。另一端改用該方控制範圍中離事件地點最近的點（弧線短、雙劍在事件附近）。
+/// eventEnd＝"from"／"to" 標示哪一端是事件地點，沒有則為 null。
+/// </summary>
+public sealed record ConflictArcDto(double[] From, double[] To, string? EventEnd = null);
+
+public sealed record ConflictFeature(Guid Id, JsonElement Geometry, ConflictFeatureProperties Properties)
+{
+    public string Type => "Feature";
+}
+
+public sealed record ConflictFeatureCollection(IReadOnlyList<ConflictFeature> Features)
+{
+    public string Type => "FeatureCollection";
+}
+
+public sealed record ConflictMapDto(DateOnly Date, ConflictFeatureCollection FeatureCollection);

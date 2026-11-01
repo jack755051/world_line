@@ -501,6 +501,174 @@
         ]
       }
     },
+    "/api/v1/events/{id}/participants": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "AppendEventParticipant",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppendEventParticipantRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfEventDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/events/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "RetractEvent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/regimes/{id}/alignments": {
       "post": {
         "tags": [
@@ -864,6 +1032,437 @@
         ]
       }
     },
+    "/api/v1/sovereignty-records": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "CreateSovereigntyRecord",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSovereigntyRecordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfSovereigntyRecordDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/sovereignty-records/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "RetractSovereigntyRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/conflict-records": {
+      "post": {
+        "tags": [
+          "Conflicts"
+        ],
+        "operationId": "CreateConflictRecord",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConflictRecordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfConflictRecordDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/conflict-records/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Conflicts"
+        ],
+        "operationId": "RetractConflictRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/occupation-attributions": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "CreateOccupationAttribution",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOccupationAttributionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfOccupationAttributionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/occupation-attributions/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "RetractOccupationAttribution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/sources/{id}": {
       "get": {
         "tags": [
@@ -1058,6 +1657,46 @@
         }
       }
     },
+    "/api/v1/timeline/extent": {
+      "get": {
+        "tags": [
+          "Timeline"
+        ],
+        "operationId": "GetTimelineExtent",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfTimelineExtentDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/timeline/change-points": {
+      "get": {
+        "tags": [
+          "Timeline"
+        ],
+        "operationId": "GetTimelineChangePoints",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfTimelineChangePointsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/regimes/{id}/interactions": {
       "get": {
         "tags": [
@@ -1157,10 +1796,229 @@
           }
         }
       }
+    },
+    "/api/v1/regimes/{id}/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "ListRegimeEvents",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfIReadOnlyListOfRegimeEventDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sovereignty": {
+      "get": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "GetSovereignty",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfSovereigntyMapDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/conflicts": {
+      "get": {
+        "tags": [
+          "Conflicts"
+        ],
+        "operationId": "GetConflicts",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfConflictMapDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "ApiResponseOfConflictMapDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ConflictMapDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfConflictRecordDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ConflictRecordDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "ApiResponseOfControlMapDto": {
         "required": [
           "statusCode",
@@ -1454,6 +2312,54 @@
           }
         }
       },
+      "ApiResponseOfIReadOnlyListOfRegimeEventDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/RegimeEventDto"
+            }
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "ApiResponseOfObject": {
         "required": [
           "statusCode",
@@ -1474,6 +2380,55 @@
             "type": "string"
           },
           "data": { },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfOccupationAttributionDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OccupationAttributionDto"
+              }
+            ]
+          },
           "code": {
             "type": [
               "null",
@@ -1837,6 +2792,104 @@
           }
         }
       },
+      "ApiResponseOfSovereigntyMapDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyMapDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfSovereigntyRecordDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyRecordDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "ApiResponseOfTheaterDto": {
         "required": [
           "statusCode",
@@ -1882,6 +2935,136 @@
               "items": {
                 "type": "string"
               }
+            }
+          }
+        }
+      },
+      "ApiResponseOfTimelineChangePointsDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/TimelineChangePointsDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfTimelineExtentDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/TimelineExtentDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "AppendEventParticipantRequest": {
+        "required": [
+          "regimeId",
+          "role",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "role": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
             }
           }
         }
@@ -1958,6 +3141,231 @@
               "null",
               "string"
             ]
+          }
+        }
+      },
+      "ConflictArcDto": {
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "array",
+            "items": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+              "type": [
+                "number",
+                "string"
+              ],
+              "format": "double"
+            }
+          },
+          "to": {
+            "type": "array",
+            "items": {
+              "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+              "type": [
+                "number",
+                "string"
+              ],
+              "format": "double"
+            }
+          },
+          "eventEnd": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "ConflictFeature": {
+        "required": [
+          "id",
+          "geometry",
+          "properties"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/JsonElement"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/ConflictFeatureProperties"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "ConflictFeatureCollection": {
+        "required": [
+          "features"
+        ],
+        "type": "object",
+        "properties": {
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConflictFeature"
+            }
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "ConflictFeatureProperties": {
+        "required": [
+          "recordId",
+          "regimeAId",
+          "regimeASlug",
+          "regimeBId",
+          "regimeBSlug",
+          "validPeriod",
+          "startEvent",
+          "endEvent",
+          "locationMethod",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeAId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeASlug": {
+            "type": "string"
+          },
+          "regimeBId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeBSlug": {
+            "type": "string"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "startEvent": {
+            "$ref": "#/components/schemas/SovereigntyEventRefDto"
+          },
+          "endEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "locationMethod": {
+            "type": "string"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "adjacent": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "arc": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ConflictArcDto"
+              }
+            ]
+          }
+        }
+      },
+      "ConflictMapDto": {
+        "required": [
+          "date",
+          "featureCollection"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "featureCollection": {
+            "$ref": "#/components/schemas/ConflictFeatureCollection"
+          }
+        }
+      },
+      "ConflictRecordDto": {
+        "required": [
+          "id",
+          "regimeAId",
+          "regimeBId",
+          "startEventId",
+          "endEventId",
+          "validPeriod",
+          "location",
+          "locationMethod"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeAId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeBId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "startEventId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "endEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "location": {
+            "$ref": "#/components/schemas/JsonElement"
+          },
+          "locationMethod": {
+            "type": "string"
           }
         }
       },
@@ -2236,6 +3644,72 @@
               "null",
               "string"
             ]
+          }
+        }
+      },
+      "CreateConflictRecordRequest": {
+        "required": [
+          "regimeAId",
+          "regimeBId",
+          "startEventId",
+          "endEventId",
+          "location",
+          "locationMethod"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeAId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "regimeBId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "startEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "endEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "location": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
+            ]
+          },
+          "locationMethod": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       },
@@ -2524,6 +3998,69 @@
           }
         }
       },
+      "CreateOccupationAttributionRequest": {
+        "required": [
+          "occupiedRegimeId",
+          "occupierRegimeId",
+          "controlKind",
+          "validPeriod"
+        ],
+        "type": "object",
+        "properties": {
+          "occupiedRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "occupierRegimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "controlKind": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "basisEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "coOccupied": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "CreateRegimeAlignmentRequest": {
         "required": [
           "camp",
@@ -2758,6 +4295,139 @@
           }
         }
       },
+      "CreateSovereigntyRecordRequest": {
+        "required": [
+          "regimeId",
+          "geometry",
+          "validPeriod",
+          "layerStatus",
+          "geometrySourceId",
+          "geometryLocator",
+          "geometryLicense"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometry": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
+            ]
+          },
+          "validPeriod": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "layerStatus": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geometrySourceId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometryLocator": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "geometryLicense": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "startEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "endEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "ohmRelationId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "ohmVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "ohmFetchedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "ohmStartRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmEndRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "provenance": { },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "CreateTheaterRequest": {
         "required": [
           "code",
@@ -2929,6 +4599,22 @@
           },
           "role": {
             "type": "string"
+          },
+          "addedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "additionNote": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       },
@@ -2950,6 +4636,101 @@
             "type": [
               "null",
               "string"
+            ]
+          }
+        }
+      },
+      "GeometryProvenanceDto": {
+        "required": [
+          "sourceId",
+          "sourceTitle",
+          "publisher",
+          "sourceLicenseCode",
+          "locator",
+          "geometryLicense",
+          "attribution",
+          "ohmRelationId",
+          "ohmVersion",
+          "ohmFetchedAt",
+          "ohmStartRaw",
+          "ohmEndRaw",
+          "flags"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sourceTitle": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "sourceLicenseCode": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "locator": {
+            "type": "string"
+          },
+          "geometryLicense": {
+            "type": "string"
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmRelationId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "ohmVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "ohmFetchedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          },
+          "ohmStartRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmEndRaw": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "flags": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonElement"
+              }
             ]
           }
         }
@@ -2992,6 +4773,116 @@
         }
       },
       "JsonElement": { },
+      "OccupationAttributionDto": {
+        "required": [
+          "id",
+          "occupiedRegimeId",
+          "occupierRegimeId",
+          "controlKind",
+          "validPeriod",
+          "basisEventId",
+          "coOccupied",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupiedRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupierRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "controlKind": {
+            "type": "string"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "basisEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "coOccupied": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "OccupationRefDto": {
+        "required": [
+          "id",
+          "occupierRegimeId",
+          "occupierSlug",
+          "controlKind",
+          "coOccupied",
+          "validPeriod",
+          "basisEvent",
+          "verification",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupierRegimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occupierSlug": {
+            "type": "string"
+          },
+          "controlKind": {
+            "type": "string"
+          },
+          "coOccupied": {
+            "type": "boolean"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "basisEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "verification": {
+            "type": "string"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "PaginatedResponseOfTimelineSnapshotDto": {
         "required": [
           "items",
@@ -3030,6 +4921,32 @@
               "string"
             ],
             "format": "int32"
+          }
+        }
+      },
+      "ParticipantAdditionDto": {
+        "required": [
+          "role",
+          "addedAt",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "addedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       },
@@ -3109,6 +5026,63 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RegimeNameDto"
+            }
+          }
+        }
+      },
+      "RegimeEventDto": {
+        "required": [
+          "id",
+          "eventKind",
+          "occurred",
+          "summary",
+          "verification",
+          "citations",
+          "roles"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventKind": {
+            "type": "string"
+          },
+          "occurred": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "summary": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "verification": {
+            "type": "string"
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "additions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/ParticipantAdditionDto"
             }
           }
         }
@@ -3491,6 +5465,283 @@
           }
         }
       },
+      "SovereigntyEventRefDto": {
+        "required": [
+          "id",
+          "eventKind",
+          "occurred",
+          "summary",
+          "verification",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventKind": {
+            "type": "string"
+          },
+          "occurred": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "summary": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "verification": {
+            "type": "string"
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
+          }
+        }
+      },
+      "SovereigntyFeature": {
+        "required": [
+          "id",
+          "geometry",
+          "properties"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/JsonElement"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/SovereigntyFeatureProperties"
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "SovereigntyFeatureCollection": {
+        "required": [
+          "features"
+        ],
+        "type": "object",
+        "properties": {
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SovereigntyFeature"
+            }
+          },
+          "type": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "SovereigntyFeatureProperties": {
+        "required": [
+          "recordId",
+          "regimeId",
+          "regimeSlug",
+          "layerStatus",
+          "validPeriod",
+          "startEvent",
+          "endEvent",
+          "geometry",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeSlug": {
+            "type": "string"
+          },
+          "layerStatus": {
+            "type": "string"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "startEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "endEvent": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SovereigntyEventRefDto"
+              }
+            ]
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeometryProvenanceDto"
+          },
+          "note": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "regimeAlignment": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RegimeAlignmentDto"
+              }
+            ]
+          },
+          "occupation": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/OccupationRefDto"
+              }
+            ]
+          }
+        }
+      },
+      "SovereigntyMapDto": {
+        "required": [
+          "date",
+          "featureCollection"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "featureCollection": {
+            "$ref": "#/components/schemas/SovereigntyFeatureCollection"
+          }
+        }
+      },
+      "SovereigntyRecordDto": {
+        "required": [
+          "id",
+          "regimeId",
+          "validPeriod",
+          "layerStatus",
+          "startEventId",
+          "endEventId",
+          "geometrySourceId",
+          "geometryLocator",
+          "geometryLicense",
+          "attribution",
+          "ohmRelationId",
+          "ohmVersion",
+          "ohmFetchedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "layerStatus": {
+            "type": "string"
+          },
+          "startEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "endEventId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "geometrySourceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "geometryLocator": {
+            "type": "string"
+          },
+          "geometryLicense": {
+            "type": "string"
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "ohmRelationId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "ohmVersion": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "ohmFetchedAt": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          }
+        }
+      },
       "SupplementEventDto": {
         "required": [
           "eventId",
@@ -3606,6 +5857,61 @@
           }
         }
       },
+      "TimelineChangePointsDto": {
+        "required": [
+          "version",
+          "points",
+          "controlPoints"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "controlPoints": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      },
+      "TimelineExtentDto": {
+        "required": [
+          "earliestEvent",
+          "latestEvent"
+        ],
+        "type": "object",
+        "properties": {
+          "earliestEvent": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date"
+          },
+          "latestEvent": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date"
+          }
+        }
+      },
       "TimelineSnapshotDto": {
         "required": [
           "id",
@@ -3684,6 +5990,12 @@
     },
     {
       "name": "Events"
+    },
+    {
+      "name": "Sovereignty"
+    },
+    {
+      "name": "Conflicts"
     },
     {
       "name": "Timeline"

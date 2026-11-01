@@ -3,11 +3,16 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import type {
   ApiEnvelope,
+  ConflictMapDto,
   ControlMapDto,
   PaginatedSnapshots,
   RegimeDto,
   SourceDto,
+  SovereigntyMapDto,
   TimelineSnapshotDto,
+  TimelineExtentDto,
+  TimelineChangePointsDto,
+  RegimeEventDto,
 } from './api-types';
 
 /** 健康檢查回應（`/healthz`，不在 OpenAPI 內）。 */
@@ -27,12 +32,48 @@ export class WorldLineApi {
   static readonly base = '/api/v1';
 
   /** GET /control?date=：該日控制區＋各戰區史料／推估狀態。 */
-  async control(date: string): Promise<ControlMapDto> {
-    const res = await firstValueFrom(
-      this.http.get<ApiEnvelope<ControlMapDto>>(`${WorldLineApi.base}/control`, {
-        params: new HttpParams().set('date', date),
-      }),
-    );
+  async control(date: string, signal?: AbortSignal): Promise<ControlMapDto> {
+    return this.getByDate<ControlMapDto>('/control', date, signal);
+  }
+
+  /** GET /sovereignty?date=：該日主權圖層（國界，依政權上色；陣營只作補充）。 */
+  async sovereignty(date: string, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal);
+  }
+
+  /** GET /conflicts?date=：該日進行中的衝突（雙方政權、起訖事件與出處、圖示位置）。 */
+  async conflicts(date: string, signal?: AbortSignal): Promise<ConflictMapDto> {
+    return this.getByDate<ConflictMapDto>('/conflicts', date, signal);
+  }
+
+  /**
+   * 依日期查詢；signal 中止時取消 HTTP 請求（unsubscribe → XHR abort）並以 AbortError 拒絕，
+   * 讓快速連續跳日期時過時的請求不佔頻寬、也不會晚到蓋掉新資料。
+   */
+  private getByDate<T>(path: string, date: string, signal?: AbortSignal): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      const aborted = () => reject(new DOMException('Aborted', 'AbortError'));
+      if (signal?.aborted) return aborted();
+      const sub = this.http.get<ApiEnvelope<T>>(`${WorldLineApi.base}${path}`, { params: new HttpParams().set('date', date) }).subscribe({
+        next: (res) => resolve(res.data),
+        error: (e: unknown) => reject(e),
+      });
+      signal?.addEventListener('abort', () => {
+        sub.unsubscribe();
+        aborted();
+      }, { once: true });
+    });
+  }
+
+  /** GET /timeline/extent：未撤回事件的最早／最晚日期（時間軸起點往前延伸用）。 */
+  /** GET /timeline/change-points：主權／衝突圖層的變動點（相鄰兩點之間每天結果相同）。 */
+  async timelineChangePoints(): Promise<TimelineChangePointsDto> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<TimelineChangePointsDto>>(`${WorldLineApi.base}/timeline/change-points`));
+    return res.data;
+  }
+
+  async timelineExtent(): Promise<TimelineExtentDto> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<TimelineExtentDto>>(`${WorldLineApi.base}/timeline/extent`));
     return res.data;
   }
 
@@ -49,6 +90,12 @@ export class WorldLineApi {
       if (items.length >= Number(res.data.total) || res.data.items.length === 0) break;
     }
     return items;
+  }
+
+  /** GET /regimes/{id}/events：政權相關事件（參與方事件＋國界／衝突紀錄的起訖事件），依日期排序。 */
+  async regimeEvents(id: string): Promise<RegimeEventDto[]> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<RegimeEventDto[]>>(`${WorldLineApi.base}/regimes/${id}/events`));
+    return res.data;
   }
 
   async regime(id: string): Promise<RegimeDto> {

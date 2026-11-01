@@ -199,6 +199,10 @@ public sealed class EventParticipant
     public Guid EventId { get; set; }
     public Guid RegimeId { get; set; }
     public string Role { get; set; } = "";
+    /// <summary>事後追加（方案 A，Tai 2026-10-31）的時間；隨事件一起寫入的為 null。</summary>
+    public DateTimeOffset? AddedAt { get; set; }
+    /// <summary>追加理由（多語 jsonb，追加時必填）。</summary>
+    public string? AdditionNote { get; set; }
 }
 
 /// <summary>事件引用（PRD §6.3 event_citations；格式同其他 citation 表）。寫入後不可改、不可刪（I5）。</summary>
@@ -223,6 +227,89 @@ public sealed class ControlCoverageNote
     public string Reason { get; set; } = "";
     public string? Note { get; set; }
     public string? ResearchRef { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 主權圖層（法理國界，sovereignty_records）：某政權在某期間的國土範圍，與控制區圖層（control_records）分開。
+/// - 幾何來自外部資料集（目前為 OpenHistoricalMap admin_level=2 關係），釘選關係 id＋版本＋抓取時間。
+/// - 疆界變動由起訖事件（historical_events）說明；事件沒有合格引用即為「待查證」，不推測。
+/// - 同一政權的有效紀錄期間不可重疊（EXCLUDE）；修正走軟撤回（I5），不硬刪。
+/// 2026-10-31 試驗（feature/borders-1938-1940），AI 提案・待拍板。
+/// </summary>
+public sealed class SovereigntyRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    public MultiPolygon Geom { get; set; } = null!;
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    /// <summary>de_jure（法理國土）| not_sovereign（資料集列為國家層級、但其實是佔領行政區，非主權）。</summary>
+    public string LayerStatus { get; set; } = SovereigntyLayerStatuses.DeJure;
+    public Guid? StartEventId { get; set; }
+    public Guid? EndEventId { get; set; }
+    public Guid GeometrySourceId { get; set; }
+    public string GeometryLocator { get; set; } = "";
+    /// <summary>幾何本身的授權（逐筆判定：成員線段帶 CC BY 標籤者為 cc_by，否則依 OHM 整體的 cc0）。</summary>
+    public string GeometryLicense { get; set; } = "";
+    public string? Attribution { get; set; }
+    public long? OhmRelationId { get; set; }
+    public int? OhmVersion { get; set; }
+    public DateTimeOffset? OhmFetchedAt { get; set; }
+    public string? OhmStartRaw { get; set; }
+    public string? OhmEndRaw { get; set; }
+    /// <summary>出處旗標（jsonb 物件）：成員線段的授權／來源統計、需人工審查的項目。</summary>
+    public string? Provenance { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 佔領歸屬（occupation_attributions）：某政權（非主權的佔領區、併入區）在某期間由哪個政權佔領、控制程度為何。
+/// 依政權＋期間（不綁單筆主權紀錄，國界修正撤回再新增時不必重寫）；同一被佔領政權的有效紀錄期間不可重疊（EXCLUDE）。
+/// basis_event_id＝有出處的事件；沒有事件或事件沒有引用＝「待查證」。共同佔領缺分區幾何時記主要佔領方並 co_occupied＝true、在 note 註記。
+/// I5：不可刪；只允許一次撤回。2026-10-31 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class OccupationAttribution
+{
+    public Guid Id { get; set; }
+    public Guid OccupiedRegimeId { get; set; }
+    public Guid OccupierRegimeId { get; set; }
+    public string ControlKind { get; set; } = "";
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public Guid? BasisEventId { get; set; }
+    public bool CoOccupied { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 衝突（conflict_records）：兩個政權之間的交戰，地圖上在兩國交界畫「交叉雙劍」圖示（Tai 2026-10-31）。
+/// - 每筆衝突一定對應有日期的開戰事件（start_event_id 必填）；停戰／投降事件可空（試驗範圍內未結束）。
+/// - 顯示期間由事件推得：[開戰日, 停戰或投降日 + 1)，結束日當天仍顯示；不另存可與事件不一致的日期。
+/// - 事件沒有合格引用即「待查證」，不推測；圖示位置與算法（location_method）一併存放。
+/// - 修正走軟撤回（I5），不硬刪。2026-10-31 試驗（feature/borders-1938-1940），AI 提案・待拍板。
+/// </summary>
+public sealed class ConflictRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeAId { get; set; }
+    public Guid RegimeBId { get; set; }
+    public Guid StartEventId { get; set; }
+    public Guid? EndEventId { get; set; }
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    public Point Location { get; set; } = null!;
+    /// <summary>圖示位置怎麼來的（例：兩國主權圖層在開戰日的共同邊界中點）。</summary>
+    public string LocationMethod { get; set; } = "";
+    public string? Note { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }

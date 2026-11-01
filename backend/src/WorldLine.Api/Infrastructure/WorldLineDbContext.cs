@@ -23,6 +23,9 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
+    public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
+    public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
+    public DbSet<OccupationAttribution> OccupationAttributions => Set<OccupationAttribution>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -243,9 +246,14 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
         b.Entity<EventParticipant>(e =>
         {
             e.ToTable("event_participants", t =>
-                t.HasCheckConstraint("ck_event_participants_role", InList("role", EventParticipantRoles.All)));
+            {
+                t.HasCheckConstraint("ck_event_participants_role", InList("role", EventParticipantRoles.All));
+                // 事後追加（方案 A）：追加時間與理由必須同時有或同時沒有
+                t.HasCheckConstraint("ck_event_participants_addition", "(added_at IS NULL) = (addition_note IS NULL) AND (addition_note IS NULL OR jsonb_typeof(addition_note) = 'object')");
+            });
             e.HasKey(x => new { x.EventId, x.RegimeId, x.Role });
             e.Property(x => x.Role).HasMaxLength(16);
+            e.Property(x => x.AdditionNote).HasColumnType("jsonb");
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
         });
@@ -276,6 +284,81 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.Version).HasDefaultValue(0);
             e.HasOne<Theater>().WithMany().HasForeignKey(x => x.TheaterId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.Geom).HasMethod("gist");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 主權圖層（法理國界；2026-10-31 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyRecord>(e =>
+        {
+            e.ToTable("sovereignty_records", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_records_layer_status", InList("layer_status", SovereigntyLayerStatuses.All));
+                t.HasCheckConstraint("ck_sovereignty_records_geometry_license", InList("geometry_license", CitationPolicy.PrimaryLicenseAllowlist.Order()));
+                t.HasCheckConstraint("ck_sovereignty_records_attribution", "geometry_license NOT IN ('cc_by', 'cc_by_sa') OR attribution IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_sovereignty_records_provenance_object", "provenance IS NULL OR jsonb_typeof(provenance) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_records_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_records_ohm_pinned", "ohm_relation_id IS NULL OR (ohm_version IS NOT NULL AND ohm_fetched_at IS NOT NULL)");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Geom).HasColumnType("geometry(MultiPolygon,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.LayerStatus).HasMaxLength(16);
+            e.Property(x => x.GeometryLicense).HasMaxLength(16);
+            e.Property(x => x.Provenance).HasColumnType("jsonb");
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.GeometrySourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.Geom).HasMethod("gist");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 衝突圖示（交叉雙劍；2026-10-31 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<ConflictRecord>(e =>
+        {
+            e.ToTable("conflict_records", t =>
+            {
+                t.HasCheckConstraint("ck_conflict_records_distinct_regimes", "regime_a_id <> regime_b_id");
+                t.HasCheckConstraint("ck_conflict_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_conflict_records_location_method_not_blank", "btrim(location_method) <> ''");
+                t.HasCheckConstraint("ck_conflict_records_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_conflict_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Location).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeAId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeBId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 佔領歸屬（主權圖層依佔領國上色；2026-10-31 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<OccupationAttribution>(e =>
+        {
+            e.ToTable("occupation_attributions", t =>
+            {
+                t.HasCheckConstraint("ck_occupation_attributions_distinct_regimes", "occupied_regime_id <> occupier_regime_id");
+                t.HasCheckConstraint("ck_occupation_attributions_control_kind", InList("control_kind", OccupationControlKinds.All));
+                t.HasCheckConstraint("ck_occupation_attributions_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_occupation_attributions_note_object", "note IS NULL OR jsonb_typeof(note) = 'object'");
+                t.HasCheckConstraint("ck_occupation_attributions_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.ControlKind).HasMaxLength(24);
+            e.Property(x => x.Note).HasColumnType("jsonb");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.OccupiedRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.OccupierRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.BasisEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

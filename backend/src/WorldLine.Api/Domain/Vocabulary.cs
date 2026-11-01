@@ -93,3 +93,27 @@ public static class CoverageReasons
 {
     public static readonly string[] All = ["no_qualified_source", "not_yet_digitized"];
 }
+
+/// <summary>主權圖層紀錄的性質（sovereignty_records.layer_status；2026-10-31 試驗，待拍板）。</summary>
+public static class SovereigntyLayerStatuses
+{
+    /// <summary>法理國土。</summary>
+    public const string DeJure = "de_jure";
+    /// <summary>資料集列為國家層級、但實為佔領行政區（例：比利時與北法軍政府），不是主權；只為避免地圖空白而顯示，前端另以斜線標示。</summary>
+    public const string NotSovereign = "not_sovereign";
+    public static readonly string[] All = [DeJure, NotSovereign];
+}
+
+/// <summary>
+/// 佔領的控制程度（2026-10-31 Tai：主權圖層依佔領國上色，深淺分三級；AI 提案・待拍板）。
+/// annexed＝併入（正式或事實併入，最深）；civil_administration＝帝國專員轄區／總督轄區／總督府等民政管理（中等）；
+/// military_administration＝軍事管理（最淺）。
+/// </summary>
+public static class OccupationControlKinds
+{
+    public const string Annexed = "annexed";
+    public const string CivilAdministration = "civil_administration";
+    public const string MilitaryAdministration = "military_administration";
+    public static readonly string[] All = [Annexed, CivilAdministration, MilitaryAdministration];
+}
+

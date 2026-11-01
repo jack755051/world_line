@@ -20,7 +20,13 @@ public static class EventsEndpoints
     {
         write.MapPost("/events", Create).WithTags("Events").WithName("CreateEvent")
             .RequiresApiKey().Created<EventDto>().Errors(400, 401);
+        write.MapPost("/events/{id:guid}/participants", AppendParticipant).WithTags("Events").WithName("AppendEventParticipant")
+            .RequiresApiKey().Created<EventDto>().Errors(400, 401, 404, 409);
+        write.MapPost("/events/{id:guid}/retraction", Retract).WithTags("Events").WithName("RetractEvent")
+            .RequiresApiKey().Ok<RetractionDto>().Errors(400, 401, 404, 409);
         read.MapGet("/events/{id:guid}", Get).WithTags("Events").WithName("GetEvent").Ok<EventDto>().Errors(404);
+        read.MapGet("/regimes/{id:guid}/events", ListForRegime).WithTags("Events").WithName("ListRegimeEvents")
+            .Ok<IReadOnlyList<RegimeEventDto>>().Errors(404);
     }
 
     public static async Task<IResult> Create(CreateEventRequest req, WorldLineDbContext db, CancellationToken ct)
@@ -90,6 +96,60 @@ public static class EventsEndpoints
         return ApiResults.Created($"/api/v1/events/{e.Id}", (await ToDtosAsync(db, [e], ct)).Single());
     }
 
+    /// <summary>
+    /// 事後追加參與方（方案 A）：事件存在且未撤回、政權存在且未撤回、角色在清單內、理由必填；
+    /// 同一政權＋角色已存在 → 409（不重複、不覆蓋）。原有參與方、引用、事件欄位都不動（I5）。
+    /// </summary>
+    public static async Task<IResult> AppendParticipant(Guid id, AppendEventParticipantRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        var e = await db.HistoricalEvents.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.RetractedAt == null, ct)
+                ?? throw ApiError.NotFound("事件");
+        if (req.RegimeId is not { } rid || !await db.Regimes.AnyAsync(r => r.Id == rid && r.RetractedAt == null, ct))
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "參與方政權不存在。", "regimeId");
+        var role = Mapping.RequireOneOf(req.Role, EventParticipantRoles.All, "role");
+        var note = Mapping.RequireLocalized(req.Note, "note");
+        if (await db.EventParticipants.AnyAsync(p => p.EventId == id && p.RegimeId == rid && p.Role == role, ct))
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, "此事件已有同一政權與角色的參與方。");
+        db.EventParticipants.Add(new EventParticipant { EventId = id, RegimeId = rid, Role = role, AddedAt = DateTimeOffset.UtcNow, AdditionNote = note });
+        try
+        {
+            await db.SaveChangesAsync(ct);
+        }
+        catch (DbUpdateException ex) when (ex.InnerException is Npgsql.PostgresException { SqlState: "23505" })
+        {
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, "此事件已有同一政權與角色的參與方。");
+        }
+        return ApiResults.Created($"/api/v1/events/{id}", (await ToDtosAsync(db, [e], ct)).Single());
+    }
+
+    /// <summary>
+    /// 撤回事件（I5：不刪除，只寫一次 retracted_at＋原因；修正＝新增新事件後撤回舊的）。
+    /// 仍被有效紀錄引用（國界起訖、衝突起訖、佔領依據、陣營依據、子事件）時拒絕（409），要先把引用紀錄撤回再新增指向新事件。
+    /// 參與方與引用隨事件保留（不可改刪），只是不再出現在任何清單。
+    /// </summary>
+    public static async Task<IResult> Retract(Guid id, RetractionRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        var reason = Mapping.RequireText(req.Reason, "reason");
+        var row = await db.HistoricalEvents.AsNoTracking().Select(x => new { x.Id, x.RetractedAt }).FirstOrDefaultAsync(x => x.Id == id, ct)
+                  ?? throw ApiError.NotFound("事件");
+        if (row.RetractedAt is not null)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"事件 {id} 已於 {row.RetractedAt:O} 撤回。");
+        var refs = new List<string>();
+        if (await db.SovereigntyRecords.AnyAsync(r => r.RetractedAt == null && (r.StartEventId == id || r.EndEventId == id), ct)) refs.Add("國界紀錄");
+        if (await db.ConflictRecords.AnyAsync(r => r.RetractedAt == null && (r.StartEventId == id || r.EndEventId == id), ct)) refs.Add("衝突紀錄");
+        if (await db.OccupationAttributions.AnyAsync(r => r.RetractedAt == null && r.BasisEventId == id, ct)) refs.Add("佔領歸屬");
+        if (await db.RegimeAlignments.AnyAsync(r => r.RetractedAt == null && r.BasisEventId == id, ct)) refs.Add("陣營");
+        if (await db.HistoricalEvents.AnyAsync(e => e.RetractedAt == null && e.ParentEventId == id, ct)) refs.Add("子事件");
+        if (refs.Count > 0)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"事件 {id} 仍被有效的{string.Join("、", refs)}引用；請先撤回引用紀錄並改指向新事件。");
+        var now = DateTimeOffset.UtcNow;
+        var n = await db.HistoricalEvents.Where(x => x.Id == id && x.RetractedAt == null)
+            .ExecuteUpdateAsync(u => u.SetProperty(x => x.RetractedAt, now).SetProperty(x => x.RetractionReason, reason), ct);
+        if (n != 1)
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ConflictingOfficialVersion, $"事件 {id} 已被撤回。");
+        return ApiResults.Ok(new RetractionDto(id, now, reason));
+    }
+
     public static async Task<IResult> Get(Guid id, WorldLineDbContext db, CancellationToken ct)
     {
         var e = await db.HistoricalEvents.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.RetractedAt == null, ct)
@@ -97,12 +157,59 @@ public static class EventsEndpoints
         return ApiResults.Ok((await ToDtosAsync(db, [e], ct)).Single());
     }
 
+    /// <summary>
+    /// 政權相關事件（依日期排序）：此政權為參與方的事件，加上此政權國界紀錄、衝突紀錄的起訖事件（皆排除已撤回）。
+    /// 不推測、不補造：沒有引用的事件 verification = pending。
+    /// </summary>
+    public static async Task<IResult> ListForRegime(Guid id, WorldLineDbContext db, CancellationToken ct)
+    {
+        if (!await db.Regimes.AsNoTracking().AnyAsync(r => r.Id == id && r.RetractedAt == null, ct))
+            throw ApiError.NotFound("政權");
+        var roles = new Dictionary<Guid, SortedSet<string>>();
+        void Add(Guid? ev, string role)
+        {
+            if (ev is not { } g) return;
+            if (!roles.TryGetValue(g, out var set)) roles[g] = set = new SortedSet<string>(StringComparer.Ordinal);
+            set.Add(role);
+        }
+        var additions = new Dictionary<Guid, List<ParticipantAdditionDto>>();
+        foreach (var p in await db.EventParticipants.AsNoTracking().Where(p => p.RegimeId == id && db.HistoricalEvents.Any(e => e.Id == p.EventId && e.RetractedAt == null))
+                     .Select(p => new { p.EventId, p.Role, p.AddedAt, p.AdditionNote }).ToListAsync(ct))
+        {
+            Add(p.EventId, p.Role);
+            if (p.AddedAt is { } at)
+            {
+                if (!additions.TryGetValue(p.EventId, out var l)) additions[p.EventId] = l = [];
+                l.Add(new ParticipantAdditionDto(p.Role, at, Mapping.ReadLocalizedOrNull(p.AdditionNote)));
+            }
+        }
+        foreach (var r in await db.SovereigntyRecords.AsNoTracking().Where(r => r.RegimeId == id && r.RetractedAt == null)
+                     .Select(r => new { r.StartEventId, r.EndEventId }).ToListAsync(ct))
+        {
+            Add(r.StartEventId, "border_start");
+            Add(r.EndEventId, "border_end");
+        }
+        foreach (var c in await db.ConflictRecords.AsNoTracking().Where(c => (c.RegimeAId == id || c.RegimeBId == id) && c.RetractedAt == null)
+                     .Select(c => new { c.StartEventId, c.EndEventId }).ToListAsync(ct))
+        {
+            Add(c.StartEventId, "conflict_start");
+            Add(c.EndEventId, "conflict_end");
+        }
+        var refs = await SovereigntyEndpoints.EventRefsAsync(db, roles.Keys.ToList(), ct);
+        IReadOnlyList<RegimeEventDto> list = refs.Values
+            .OrderBy(e => e.Occurred.Start).ThenBy(e => e.Id)
+            .Select(e => new RegimeEventDto(e.Id, e.EventKind, e.Occurred, e.Summary, e.Verification, e.Citations, roles[e.Id].ToList(),
+                additions.TryGetValue(e.Id, out var adds) ? adds.OrderBy(a => a.AddedAt).ThenBy(a => a.Role, StringComparer.Ordinal).ToList() : null))
+            .ToList();
+        return ApiResults.Ok(list);
+    }
+
     internal static async Task<List<EventDto>> ToDtosAsync(WorldLineDbContext db, List<HistoricalEvent> rows, CancellationToken ct)
     {
         var ids = rows.Select(r => r.Id).ToList();
         var parts = (await db.EventParticipants.AsNoTracking().Where(p => ids.Contains(p.EventId))
                 .OrderBy(p => p.Role).ThenBy(p => p.RegimeId).ToListAsync(ct))
-            .ToLookup(p => p.EventId, p => new EventParticipantDto(p.RegimeId, p.Role));
+            .ToLookup(p => p.EventId, p => new EventParticipantDto(p.RegimeId, p.Role, p.AddedAt, Mapping.ReadLocalizedOrNull(p.AdditionNote)));
         var cites = (await (
                 from c in db.EventCitations.AsNoTracking()
                 join s in db.Sources on c.SourceId equals s.Id

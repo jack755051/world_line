@@ -1,0 +1,77 @@
+{
+ "_placeholder": "UNCLIP_SU_10",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "U_01a18e71-de8a-7dd3-a6c6-ebe706747597",
+ "_meta": {
+  "replaces": "01a18e71-de8a-7dd3-a6c6-ebe706747597",
+  "old_area": 361.466,
+  "new_area": 3507.047,
+  "inside_change": 0.0
+ },
+ "body": {
+  "regimeId": "01a18e71-cc2e-7f80-8d62-81879da43d7b",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1940-08-06",
+   "end": "1941-07-17"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a18e71-c8a6-74a4-b3a1-e0e3a3762eac",
+  "geometryLocator": "relation/2848812 v98（完整，不受歐陸框裁切）",
+  "geometryLicense": "cc_by",
+  "attribution": "OCHA／HDX COD-AB Ukraine（OHM 線段標示 CC BY 4.0）",
+  "startEventId": "01a18e71-d002-7d7a-8a55-3bd2ad77ae41",
+  "endEventId": null,
+  "ohmRelationId": 2848812,
+  "ohmVersion": 98,
+  "ohmFetchedAt": "2026-10-30T19:28:07+00:00",
+  "ohmStartRaw": "1940-08-06",
+  "ohmEndRaw": "1941-07-17",
+  "provenance": {
+   "ohmFixme": "needs source for boundary lines",
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "ohmChangeset": 273106,
+   "ohmTimestamp": "2026-09-27T19:35:49Z",
+   "licenseReview": null,
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "hdx_ukr": 5,
+    "untagged(OHM CC0)": 1076
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 0,
+   "unclip": {
+    "batch": "unclip-su-tr",
+    "replaces": "01a18e71-de8a-7dd3-a6c6-ebe706747597",
+    "frameRemoved": "box(-12,34,42,72)",
+    "method": "框內幾何沿用原紀錄；框外部分取同一 OHM 版本全球重組（Natural Earth 10m 陸地裁切）後併入",
+    "outsideMemberWayLicense": {
+     "untagged(OHM CC0)": 780
+    },
+    "cutAgainstExisting": [
+     {
+      "slug": "republic-of-china-nationalist",
+      "area_deg2": 0.0747
+     },
+     {
+      "slug": "manchukuo",
+      "area_deg2": 0.151
+     },
+     {
+      "slug": "mongolian-peoples-republic",
+      "area_deg2": 0.0474
+     },
+     {
+      "slug": "tuvan-peoples-republic",
+      "area_deg2": 0.0467
+     }
+    ],
+    "cutNote": "與同期其他政權共有邊界上的細碎重疊（<0.001 平方度）亦一併扣除"
+   }
+  },
+  "note": {
+   "zh-Hant": "（2026-10-31 修正：補回歐陸試驗框外的幾何；黑龍江／烏蘇里江江中島與滿洲國重疊處依既有滿洲國紀錄扣除。）",
+   "en": "(Fixed 2026-10-31: geometry outside the European trial frame restored.)"
+  }
+ }
+}

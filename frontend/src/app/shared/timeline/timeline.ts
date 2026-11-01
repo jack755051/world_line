@@ -85,12 +85,10 @@ interface Marker {
           @for (lt of tracks(); track lt.code) { <li data-testid="timeline-track-label" class="h-[14px] text-[12px] leading-[14px] whitespace-nowrap">{{ lt.label[lang()] }}</li> }
         </ul>
         <div #bar class="relative flex-1 cursor-pointer select-none touch-none" (pointerdown)="onPointerDown($event)">
-          <!-- 早於 1937-07 的期間：淡底＋「資料不保證完整」 -->
+          <!-- 早於 1937-07 的期間（WW1 試驗資料也在這段，仍標不保證完整）：淡底＋「資料不保證完整」 -->
           @if (incompleteWidth() > 0) {
             <div data-testid="timeline-incomplete" class="absolute top-[12px] left-0 flex items-center justify-center bg-wl-surface-dim/60 border-r border-dashed border-wl-outline"
-              [style.height.px]="tracks().length * 14" [style.width.%]="incompleteWidth() * 100">
-              <span class="wl-text2 text-wl-on-surface-variant">{{ tr('timeline.incomplete') }}</span>
-            </div>
+              [style.height.px]="tracks().length * 14" [style.width.%]="incompleteWidth() * 100"></div>
           }
           <div class="absolute inset-x-0 top-[12px] flex flex-col">
             @for (tk of tracks(); track tk.code) {
@@ -109,14 +107,22 @@ interface Marker {
               </div>
             }
           </div>
+          <!-- 「資料不保證完整」標籤：畫在軌道之後（蓋在軌道線上，實底不透字），在把手之前；區段太窄（< 8%）就不標字，只留淡底（Tai 2026-11-01：標籤和戰區軌道疊在一起） -->
+          @if (incompleteWidth() >= 0.08) {
+            <div class="pointer-events-none absolute top-[12px] left-0 flex items-center justify-center" [style.height.px]="tracks().length * 14" [style.width.%]="incompleteWidth() * 100">
+              <span data-testid="timeline-incomplete-label" class="whitespace-nowrap rounded-wl-md border border-wl-outline-variant bg-wl-surface-bright px-1.5 wl-text2 leading-[18px] text-wl-on-surface-variant">{{ tr('timeline.incomplete') }}</span>
+            </div>
+          }
           <!-- 年刻度：軌道下方 4px 刻線＋襯線 12px 年份（不與軌道重疊）；月刻度為軌道下方 2px 細線（Stitch W1：軌道內不畫格線） -->
           @for (m of months(); track m.date) {
             <div class="pointer-events-none absolute h-[2px] w-px bg-wl-outline-variant" [style.top.px]="12 + tracks().length * 14" [style.left.%]="m.f * 100"></div>
           }
           @for (y of years(); track y.date) {
             <div class="pointer-events-none absolute h-[4px] w-px bg-wl-outline" [style.top.px]="12 + tracks().length * 14" [style.left.%]="y.f * 100"></div>
-            <span data-testid="timeline-year-label" class="pointer-events-none absolute -translate-x-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface tabular-nums"
-              [style.top.px]="12 + tracks().length * 14 + 4" [style.left.%]="y.f * 100">{{ y.label }}</span>
+            @if (y.label) {
+              <span data-testid="timeline-year-label" class="pointer-events-none absolute -translate-x-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface tabular-nums"
+                [style.top.px]="12 + tracks().length * 14 + 4" [style.left.%]="y.f * 100">{{ y.label }}</span>
+            }
           }
 
           <!-- 起點標籤（Tai 2026-10-31）：範圍不是從 1 月 1 日開始時，在最左端標「YYYY-MM」 -->
@@ -160,8 +166,14 @@ export class Timeline {
   readonly date = input.required<string>();
   readonly snapshots = input<TimelineSnapshotDto[]>([]);
   readonly snapshotsStatus = input<LoadStatus>('idle');
+  /** 其他資料（事件）的最早日期；早於快照與預設起點時，時間軸起點往前延伸（WW1 試驗）。 */
+  readonly earliestData = input<string | null>(null);
   readonly lang = input<Lang>('zh-Hant');
+  /** 地圖資料與繪製都完成（播放等它為真才前進下一格，不會一路閃載入中）。 */
+  readonly ready = input(true);
   readonly dateChange = output<string>();
+  /** 播放開始／停止（頁面據此在播放時不顯示地圖載入指示）。 */
+  readonly playingChange = output<boolean>();
   readonly retry = output<void>();
   readonly invalidInput = output<string>();
 
@@ -174,10 +186,16 @@ export class Timeline {
 
   protected readonly range = computed(() => {
     const dates = this.snapshots().map((s) => s.attestedPeriod?.start ?? s.asOf);
+    const extra = this.earliestData();
+    if (extra && isIsoDate(extra)) dates.push(extra);
     const earliest = dates.length ? dates.reduce((a, b) => (a < b ? a : b)) : null;
     return rangeFor(earliest);
   });
-  protected readonly years = computed(() => yearTicks(this.range()));
+  /** 有起點標籤（YYYY-MM）時，最左端 5% 內的年份不標字，避免和起點標籤疊在一起（刻線照畫）。 */
+  protected readonly years = computed(() => {
+    const ys = yearTicks(this.range());
+    return this.startLabel() ? ys.map((y) => (y.f < 0.05 ? { ...y, label: undefined } : y)) : ys;
+  });
   protected readonly startLabel = computed(() => (this.range().start.slice(5) === '01-01' ? null : this.range().start.slice(0, 7)));
   protected readonly months = computed(() => monthTicks(this.range()));
   protected readonly handleF = computed(() => fraction(this.date(), this.range()));
@@ -256,7 +274,12 @@ export class Timeline {
       return;
     }
     this.playing.set(true);
+    this.playingChange.emit(true);
+    // 每 100ms 檢查一次：距上一格至少 1 秒「而且」上一格的地圖已畫好才前進（資料慢時等資料，不跳過、不閃載入中）
+    let last = Date.now();
     this.timer = setInterval(() => {
+      if (Date.now() - last < Timeline.STEP_MS || !this.ready()) return;
+      last = Date.now();
       const cur = this.date();
       const next = this.speed() === 'week' ? addDays(cur, 7) : addMonths(cur, 1);
       if (next > this.range().end) {
@@ -265,12 +288,15 @@ export class Timeline {
         return;
       }
       this.emit(next);
-    }, 1000);
+    }, 100);
   }
+
+  static readonly STEP_MS = 1000;
 
   private stop(): void {
     clearInterval(this.timer);
     this.timer = undefined;
+    if (this.playing()) this.playingChange.emit(false);
     this.playing.set(false);
   }
 

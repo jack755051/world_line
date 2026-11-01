@@ -1,6 +1,6 @@
 import { toDayNumber, fromDayNumber } from '../../core/dates';
 
-/** 時間軸預設範圍（PRD §8.3）：1937-07-01～1945-09-30；起點可依資料最早日期往前延伸（§12 Q15 已拍板）。 */
+/** 時間軸預設範圍（PRD §8.3）：1937-07-01～1945-09-30；起點可依資料最早日期往前延伸（§12 Q15 已拍板；WW1 試驗 1908 起靠事件最早日延伸）。 */
 export const DEFAULT_RANGE = { start: '1937-07-01', end: '1945-09-30' } as const;
 /** 早於此日的期間以淡色底標示「資料不保證完整」（憲法 §1、DESIGN.md Timeline） */
 export const COMPLETE_FROM = '1937-07-01';
@@ -35,13 +35,15 @@ export interface Tick {
   label?: string;
 }
 
-export function yearTicks(r: Range): Tick[] {
+/** 年刻度；範圍很長（例：WW1 試驗 1908 起）時只每 N 年標年份，最多約 maxLabels 個（刻線照畫）。 */
+export function yearTicks(r: Range, maxLabels = 16): Tick[] {
   const ticks: Tick[] = [];
   const y0 = +r.start.slice(0, 4);
   const y1 = +r.end.slice(0, 4);
+  const step = [1, 2, 5, 10, 20, 50, 100].find((s) => (y1 - y0 + 1) / s <= maxLabels) ?? 100;
   for (let y = y0; y <= y1; y++) {
     const d = `${y}-01-01`;
-    if (d >= r.start && d <= r.end) ticks.push({ date: d, f: fraction(d, r), label: String(y) });
+    if (d >= r.start && d <= r.end) ticks.push({ date: d, f: fraction(d, r), label: y % step === 0 ? String(y) : undefined });
   }
   return ticks;
 }

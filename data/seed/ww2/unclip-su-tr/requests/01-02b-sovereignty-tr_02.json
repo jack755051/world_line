@@ -1,0 +1,59 @@
+{
+ "_placeholder": "UNCLIP_TR_02",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "U_01a18e71-deda-7f6b-9109-6dc9588318ef",
+ "_meta": {
+  "replaces": "01a18e71-deda-7f6b-9109-6dc9588318ef",
+  "old_area": 72.314,
+  "new_area": 81.257,
+  "inside_change": 0.0
+ },
+ "body": {
+  "regimeId": "01a18e71-ccaa-7e5f-8e69-06921e5214cc",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1939-06-29",
+   "end": "1964-05-15"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a18e71-c8a6-74a4-b3a1-e0e3a3762eac",
+  "geometryLocator": "relation/2864004 v20（完整，不受歐陸框裁切）",
+  "geometryLicense": "cc0",
+  "attribution": null,
+  "startEventId": "01a18e71-cf02-7b9f-842a-dd8ceea7c326",
+  "endEventId": null,
+  "ohmRelationId": 2864004,
+  "ohmVersion": 20,
+  "ohmFetchedAt": "2026-10-30T19:28:20+00:00",
+  "ohmStartRaw": "1939-06-29",
+  "ohmEndRaw": "1964-05-15",
+  "provenance": {
+   "ohmFixme": null,
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "ohmChangeset": 272117,
+   "ohmTimestamp": "2026-09-21T03:22:17Z",
+   "licenseReview": null,
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "untagged(OHM CC0)": 138
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 0,
+   "unclip": {
+    "batch": "unclip-su-tr",
+    "replaces": "01a18e71-deda-7f6b-9109-6dc9588318ef",
+    "frameRemoved": "box(-12,34,42,72)",
+    "method": "框內幾何沿用原紀錄；框外部分取同一 OHM 版本全球重組（Natural Earth 10m 陸地裁切）後併入",
+    "outsideMemberWayLicense": {
+     "untagged(OHM CC0)": 45
+    },
+    "cutAgainstExisting": [],
+    "cutNote": "與同期其他政權共有邊界上的細碎重疊（<0.001 平方度）亦一併扣除"
+   }
+  },
+  "note": {
+   "zh-Hant": "（2026-10-31 修正：補回歐陸試驗框外的幾何。）",
+   "en": "(Fixed 2026-10-31: geometry outside the European trial frame restored.)"
+  }
+ }
+}

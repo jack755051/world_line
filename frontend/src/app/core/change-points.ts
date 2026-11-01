@@ -25,3 +25,38 @@ export function addDaysIso(date: string, n: number): string {
   const t = new Date(Date.UTC(y, m - 1, d + n));
   return `${String(t.getUTCFullYear()).padStart(4, '0')}-${String(t.getUTCMonth() + 1).padStart(2, '0')}-${String(t.getUTCDate()).padStart(2, '0')}`;
 }
+
+/** 區間前後相鄰各取一個日期（預先載入用，移植自 992baba）：next＝下一個變動點；prev＝本區間起點的前一天（第一個區間則 null）。 */
+export function neighborDates(points: readonly string[], date: string): { prev: string | null; next: string | null } {
+  const start = intervalKey(points, date);
+  const next = points.find((d) => d > date) ?? null;
+  return { prev: start === '-' ? null : addDaysIso(start, -1), next };
+}
+
+/** 有上限的 LRU 快取（移植自 992baba）：命中時移到最新，超過上限丟掉最久沒用的。 */
+export class LruCache<T> {
+  private readonly map = new Map<string, T>();
+  constructor(readonly max: number) {}
+
+  get(key: string): T | undefined {
+    const v = this.map.get(key);
+    if (v === undefined) return undefined;
+    this.map.delete(key);
+    this.map.set(key, v);
+    return v;
+  }
+
+  has(key: string): boolean {
+    return this.map.has(key);
+  }
+
+  set(key: string, value: T): void {
+    this.map.delete(key);
+    this.map.set(key, value);
+    while (this.map.size > this.max) this.map.delete(this.map.keys().next().value as string);
+  }
+
+  get size(): number {
+    return this.map.size;
+  }
+}

@@ -68,6 +68,40 @@ public sealed class DateIntervalCache
         finally { _pointsLock.Release(); }
     }
 
+    private (long Version, DateOnly[] Points)? _controlPoints;
+
+    /// <summary>
+    /// 控制區圖層（/control）的變動點（移植自 992baba「依變動日區段快取」的控制區部分）：兩個相鄰變動點之間每天的 /control 回應除 date 外相同。
+    /// 涵蓋 /control 用到的所有日期條件（保守：寧可多切，不可少切）：控制紀錄現行版本、涵蓋備註、陣營的有效期間起訖；
+    /// 快照 as_of 當天與隔天（戰區狀態 attested／interpolated、前後快照參照在這兩天切換）、快照 attested_period 起訖；事件發生日（陣營「補充」事件以 occurred 起日篩選）。
+    /// 新增依日期查詢的條件時，這裡也要一起加。
+    /// </summary>
+    public async Task<DateOnly[]> ControlPointsAsync(WorldLineDbContext db, CancellationToken ct)
+    {
+        var v = Version;
+        if (_controlPoints is { } p && p.Version == v) return p.Points;
+        await _pointsLock.WaitAsync(ct);
+        try
+        {
+            if (_controlPoints is { } p2 && p2.Version == v) return p2.Points;
+            const string sql = """
+                SELECT d FROM (
+                  SELECT lower(valid_period) AS d FROM control_record_versions WHERE superseded_by IS NULL AND NOT is_retraction
+                  UNION SELECT upper(valid_period) FROM control_record_versions WHERE superseded_by IS NULL AND NOT is_retraction
+                  UNION SELECT lower(valid_period) FROM control_coverage_notes UNION SELECT upper(valid_period) FROM control_coverage_notes
+                  UNION SELECT lower(valid_period) FROM regime_alignments UNION SELECT upper(valid_period) FROM regime_alignments
+                  UNION SELECT as_of FROM control_snapshots UNION SELECT as_of + 1 FROM control_snapshots
+                  UNION SELECT lower(attested_period) FROM control_snapshots UNION SELECT upper(attested_period) FROM control_snapshots
+                  UNION SELECT lower(occurred) FROM historical_events
+                ) x WHERE d IS NOT NULL ORDER BY d
+                """;
+            var arr = (await db.Database.SqlQueryRaw<DateOnly>(sql).ToListAsync(ct)).ToArray();
+            _controlPoints = (v, arr);
+            return arr;
+        }
+        finally { _pointsLock.Release(); }
+    }
+
     /// <summary>
     /// 取 kind 在 d 所在區間的結果；沒有就用這個請求自己的 DbContext 算一次再存。
     /// 不共用進行中的計算：前端會取消過時的請求，共用的話一個請求被取消會連帶讓別的請求失敗。

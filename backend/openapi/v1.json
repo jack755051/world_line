@@ -5860,7 +5860,8 @@
       "TimelineChangePointsDto": {
         "required": [
           "version",
-          "points"
+          "points",
+          "controlPoints"
         ],
         "type": "object",
         "properties": {
@@ -5873,6 +5874,13 @@
             "format": "int64"
           },
           "points": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "controlPoints": {
             "type": "array",
             "items": {
               "type": "string",

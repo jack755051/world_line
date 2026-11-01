@@ -125,8 +125,9 @@ public sealed record TimelineExtentDto(DateOnly? EarliestEvent, DateOnly? Latest
 /// <summary>
 /// 主權／衝突圖層的變動點（各紀錄有效期間的起訖日，遞增）。兩個相鄰變動點之間每天的 /sovereignty、/conflicts 結果相同；
 /// 前端據此判斷換日期是否需要重新載入、播放時預先載入下一段。Version 在任何寫入後改變。
+/// ControlPoints：控制區（/control）的變動點，另成一組（控制區的日期條件與主權不同；移植自 992baba）。
 /// </summary>
-public sealed record TimelineChangePointsDto(long Version, IReadOnlyList<DateOnly> Points);
+public sealed record TimelineChangePointsDto(long Version, IReadOnlyList<DateOnly> Points, IReadOnlyList<DateOnly> ControlPoints);
 
 public sealed record TimelineSnapshotDto(
     Guid Id, string TheaterCode, DateOnly AsOf, string Attestation, DatePeriodDto? AttestedPeriod,

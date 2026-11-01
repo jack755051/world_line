@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
-import { addDaysIso, intervalKey } from './change-points';
+import { LruCache, addDaysIso, intervalKey, neighborDates } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
 import { isAbort } from './delayed-flag';
 
@@ -10,6 +10,8 @@ export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
  * 主地圖資料（只讀 API，不產生任何示意資料）。
  * - 控制區：保留上一次成功的結果，失敗時不清空（PRD §8.2 error：保留上一次成功的圖層並標示日期）。
  * - 依日期快取，拖動時間軸不重複請求。
+ * - 控制區也依變動區間快取（change-points 的 controlPoints；移植自 992baba）：同區間換日期重用同一份資料、不顯示載入中，
+ *   套用後預先載入前後相鄰區間；變動點還沒載到時退回逐日快取。
  */
 @Injectable({ providedIn: 'root' })
 export class AtlasData {
@@ -44,15 +46,19 @@ export class AtlasData {
    * 還沒載入（或失敗）時退回依日期快取。
    */
   readonly changePoints = signal<string[] | null>(null);
-  private readonly sovCache = new Map<string, SovereigntyMapDto>();
-  private readonly cfCache = new Map<string, ConflictMapDto>();
+  /** 控制區的變動點（/control 的日期條件：控制紀錄、涵蓋備註、陣營、快照、事件日）。 */
+  readonly controlPoints = signal<string[] | null>(null);
+  private readonly sovCache = new LruCache<SovereigntyMapDto>(40);
+  private readonly cfCache = new LruCache<ConflictMapDto>(40);
   private sovKey: string | null = null;
   private cfKey: string | null = null;
   /** 進行中的請求（前景或預先載入），同一區間只發一次。 */
   private readonly pending = new Map<string, Promise<unknown>>();
-  private static readonly CACHE_MAX = 40;
   private key(date: string): string {
     return intervalKey(this.changePoints(), date);
+  }
+  private controlKey(date: string): string {
+    return intervalKey(this.controlPoints(), date);
   }
 
   /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
@@ -83,7 +89,7 @@ export class AtlasData {
     return shown !== null && shown !== this.requestedDate();
   });
 
-  private readonly cache = new Map<string, ControlMapDto>();
+  private readonly cache = new LruCache<ControlMapDto>(60);
   private seq = 0;
 
   async checkHealth(): Promise<boolean> {
@@ -104,17 +110,20 @@ export class AtlasData {
     const my = ++this.seq;
     this.requestedDate.set(date);
     this.restart('control');
-    const hit = this.cache.get(date);
+    const key = this.controlKey(date);
+    const hit = this.cache.get(key);
     if (hit) {
       this.apply(date, hit);
+      this.prefetchControlAround(date);
       return;
     }
     this.controlStatus.set('loading');
     try {
-      const dto = await this.api.control(date, this.begin('control'));
-      this.cache.set(date, dto);
-      if (this.cache.size > 60) this.cache.delete(this.cache.keys().next().value as string);
-      if (my === this.seq) this.apply(date, dto);
+      const dto = await this.fetchControl(key, date, this.begin('control'));
+      if (my === this.seq) {
+        this.apply(date, dto);
+        this.prefetchControlAround(date);
+      }
     } catch (e) {
       if (isAbort(e)) return;
       if (my === this.seq) this.controlStatus.set('error');
@@ -125,13 +134,46 @@ export class AtlasData {
     try {
       const cp = await this.api.timelineChangePoints();
       this.changePoints.set(cp.points.map(String));
+      this.controlPoints.set(cp.controlPoints ? cp.controlPoints.map(String) : null);
     } catch {
       this.changePoints.set(null);
+      this.controlPoints.set(null);
+    }
+  }
+
+  /** 控制區某區間：快取 → 進行中的同區間請求（含預先載入）→ 新請求。 */
+  private fetchControl(key: string, date: string, signal?: AbortSignal): Promise<ControlMapDto> {
+    const hit = this.cache.get(key);
+    if (hit) return Promise.resolve(hit);
+    const pk = `control:${key}`;
+    const inflight = this.pending.get(pk) as Promise<ControlMapDto> | undefined;
+    if (inflight) return inflight;
+    const p = this.api.control(date, signal);
+    this.pending.set(pk, p);
+    signal?.addEventListener('abort', () => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    p.then((dto) => this.cache.set(key, dto), () => undefined).finally(() => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    return p;
+  }
+
+  /** 預先載入控制區前後相鄰區間（只在有控制區變動點時；不改載入狀態，失敗安靜忽略）。 */
+  prefetchControlAround(date: string): void {
+    const pts = this.controlPoints();
+    if (!pts) return;
+    const { prev, next } = neighborDates(pts, date);
+    for (const d of [next, prev]) {
+      if (!d) continue;
+      const key = this.controlKey(d);
+      if (this.cache.has(key)) continue;
+      this.fetchControl(key, d).catch(() => undefined);
     }
   }
 
   /** 取某區間的資料：快取 → 進行中的同區間請求 → 新請求（前景請求可被中止；預先載入不中止）。 */
-  private fetchInterval<T>(kind: 'sov' | 'cf', key: string, date: string, cache: Map<string, T>, signal?: AbortSignal): Promise<T> {
+  private fetchInterval<T>(kind: 'sov' | 'cf', key: string, date: string, cache: LruCache<T>, signal?: AbortSignal): Promise<T> {
     const hit = cache.get(key);
     if (hit) return Promise.resolve(hit);
     const pk = `${kind}:${key}`;
@@ -144,10 +186,7 @@ export class AtlasData {
       if (this.pending.get(pk) === p) this.pending.delete(pk);
     });
     p.then(
-      (dto) => {
-        cache.set(key, dto);
-        if (cache.size > AtlasData.CACHE_MAX) cache.delete(cache.keys().next().value as string);
-      },
+      (dto) => cache.set(key, dto),
       () => undefined,
     ).finally(() => {
       if (this.pending.get(pk) === p) this.pending.delete(pk);
@@ -224,10 +263,11 @@ export class AtlasData {
       const key = this.key(d);
       if (seen.has(key)) continue;
       seen.add(key);
-      if (this.sovCache.has(key) && this.cfCache.has(key)) continue;
+      const ck = this.controlKey(d);
+      if (this.sovCache.has(key) && this.cfCache.has(key) && this.cache.has(ck)) continue;
       fetched++;
       try {
-        await Promise.all([this.fetchInterval('sov', key, d, this.sovCache), this.fetchInterval('cf', key, d, this.cfCache)]);
+        await Promise.all([this.fetchInterval('sov', key, d, this.sovCache), this.fetchInterval('cf', key, d, this.cfCache), this.fetchControl(ck, d)]);
       } catch {
         /* 預先載入失敗不影響畫面 */
       }

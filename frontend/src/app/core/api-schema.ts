@@ -1394,6 +1394,7 @@ export interface components {
             /** Format: int64 */
             version: number | string;
             points: string[];
+            controlPoints: string[];
         };
         TimelineExtentDto: {
             /** Format: date */

@@ -32,7 +32,8 @@ public static class TimelineEndpoints
     {
         var v = cache.Version;
         var points = await cache.ChangePointsAsync(db, ct);
-        return ApiResults.Ok(new TimelineChangePointsDto(v, points));
+        var control = await cache.ControlPointsAsync(db, ct);
+        return ApiResults.Ok(new TimelineChangePointsDto(v, points, control));
     }
 
     public static async Task<IResult> GetSnapshots(DateOnly? from, DateOnly? to, int? page, int? pageSize,

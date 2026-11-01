@@ -752,13 +752,27 @@ export class AtlasMap {
     // 參考經度：第一條弧線在被選政權那一端（不用目前畫面中心：美國這類跨換日線的政權聚焦後中心可能在 0 度）
     const a0 = arcs[0];
     const center = a0.focusEnd === 0 || a0.focusEnd === 1 ? a0.arc![a0.focusEnd === 0 ? 0 : a0.arc!.length - 1][0] : map.getCenter().lng;
-    // 只框弧線（兩端分別在被選政權與對方領土內）；不併入政權外框，避免美國這類跨換日線的屬地把範圍撐成全世界
+    // 先框弧線（兩端分別在被選政權與對方領土內），下面再併入被選政權外框（跨換日線的大外框除外）
     let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
     let inside = true;
     for (const c of arcs) {
       const k = worldShiftArc(c.arc!, center, c.focusEnd);
       for (const [x, y] of c.arc!) {
         const lng = x + k;
+        x0 = Math.min(x0, lng);
+        x1 = Math.max(x1, lng);
+        y0 = Math.min(y0, y);
+        y1 = Math.max(y1, y);
+        const p = map.project([lng, y]);
+        if (p.x < pad.left || p.x > w - pad.right || p.y < pad.top || p.y > h - pad.bottom) inside = false;
+      }
+    }
+    // 被選政權本身也要完整入鏡（例：德國聚焦後框英德虛線弧時，德國不能被推到面板底下）。
+    // 外框跨度 ≥ 180° 的政權（美國這類跨換日線、屬地把外框撐成全世界）不併入，維持只框弧線
+    const fb = this.focusBounds as [[number, number], [number, number]];
+    if (fb[1][0] - fb[0][0] < 180) {
+      const k = Math.round((center - (fb[0][0] + fb[1][0]) / 2) / 360) * 360;
+      for (const [lng, y] of [[fb[0][0] + k, fb[0][1]], [fb[1][0] + k, fb[1][1]], [fb[0][0] + k, fb[1][1]], [fb[1][0] + k, fb[0][1]]]) {
         x0 = Math.min(x0, lng);
         x1 = Math.max(x1, lng);
         y0 = Math.min(y0, y);

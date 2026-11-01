@@ -68,16 +68,17 @@ test('1939-09-15：平時沒有衝突圖示；點波蘭 → 只出現德—波�
   await expect(icons).toHaveCount(0);
 });
 
-test('1939-09-15：點德國 → 德—波、法—德兩個圖示；關掉政權卡就隱藏', async ({ page }) => {
+test('1939-09-15：點德國 → 德—波、法—德、英—德三個圖示；關掉政權卡就隱藏', async ({ page }) => {
   await open(page, '1939-09-15');
   await clickLngLat(page, BERLIN);
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
-  await expect(page.getByTestId('map-conflict-icon')).toHaveCount(2);
+  // 英國 1939-09-03 對德宣戰（北非批 N3 補上的英德交戰；兩國不相鄰，畫虛線弧）
+  await expect(page.getByTestId('map-conflict-icon')).toHaveCount(3);
   await page.getByTestId('sovereignty-card-close').click();
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(0);
 });
 
-test('1939-09-20：點波蘭 → 德—波、蘇—波兩個圖示；1940-06-15 點法國有法—德、義—法；1940-06-23 法德停戰後點義大利只剩義—法', async ({ page }) => {
+test('1939-09-20：點波蘭 → 德—波、蘇—波兩個圖示；1940-06-15 點法國有法—德、義—法；1940-06-23 法德停戰後點義大利剩義—法與英—義', async ({ page }) => {
   await open(page, '1939-09-20');
   await clickLngLat(page, WARSAW);
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(2);
@@ -101,8 +102,10 @@ test('1939-09-20：點波蘭 → 德—波、蘇—波兩個圖示；1940-06-15 
   await clickLngLat(page, [12.5, 42.5]);
   await expect(page.getByTestId('sovereignty-card')).toBeVisible();
   const icons = page.getByTestId('map-conflict-icon');
-  await expect(icons).toHaveCount(1);
-  await icons.first().click();
+  await expect(icons).toHaveCount(2); // 義—法，以及英國 1940-06-10 起的英—義（北非批 N3）
+  const fs = (await (await page.request.get('/api/v1/conflicts?date=1940-06-23')).json()).data.featureCollection.features as { properties: { recordId: string; regimeASlug: string; regimeBSlug: string } }[];
+  const itFr = fs.find((x) => x.properties.regimeASlug === 'kingdom-of-italy' && x.properties.regimeBSlug === 'french-third-republic')!.properties.recordId;
+  await page.locator(`[data-testid="map-conflict-icon"][data-record-id="${itFr}"]`).click();
   await expect(page.getByTestId('conflict-card-end').getByTestId('conflict-card-event-date')).toHaveText('1940-06-24');
   await expect(page.getByTestId('conflict-card-end').getByTestId('conflict-card-verified')).toBeVisible();
 });

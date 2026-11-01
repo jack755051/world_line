@@ -132,8 +132,13 @@ public static class ConflictsEndpoints
     /// - 控制範圍＝該政權當日主權紀錄＋當日以它為佔領方（occupation_attributions）的政權紀錄；
     /// - 相鄰＝雙方控制範圍有任何幾何相交（OHM 共用邊界線段，相接即相交；用 ST_Intersects 而非 ST_DWithin，大國幾何下快約 50 倍）；
     /// - 端點＝雙方當日主權紀錄的 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）；
-    /// - 有事件地點時其中一端改用事件地點（規則見 ConflictArcDto）。
+    /// - 有事件地點時其中一端改用事件地點（規則見 ConflictArcDto）；
+    /// - 控制範圍也包含當日屬地（regime_dependencies：殖民地、委任統治地 → 宗主國），用於相鄰判定與最近端點；
+    /// - 事件地點只在一方控制範圍內、另一方最近的控制範圍超過 ArcFarDegrees 時不畫弧（雙劍留在事件地點）。
     /// </summary>
+    /// <summary>事件地點到另一方最近控制範圍的上限（度）。1941-12 日本南洋群島→珍珠港約 33°（保留）；1942-12 英國→哥打巴魯約 46°、英國→泰緬邊界約 40°（不畫）。</summary>
+    internal const double ArcFarDegrees = 36.0;
+
     internal static async Task<Dictionary<Guid, (bool Adjacent, ConflictArcDto? Arc)>> ArcsOnAsync(
         WorldLineDbContext db, List<Guid> ids, DateOnly d, CancellationToken ct)
     {
@@ -150,10 +155,14 @@ public static class ConflictsEndpoints
               SELECT regime_id AS holder, geom FROM own
               UNION ALL
               SELECT o.occupier_regime_id, s.geom FROM occupation_attributions o JOIN own s ON s.regime_id = o.occupied_regime_id
-              WHERE o.retracted_at IS NULL AND o.valid_period @> @d),
+              WHERE o.retracted_at IS NULL AND o.valid_period @> @d
+              UNION ALL
+              -- 殖民地、委任統治地等屬地（regime_dependencies）算進宗主國的控制範圍（例：英屬馬來亞、緬甸算英國）
+              SELECT dp.administering_regime_id, s.geom FROM regime_dependencies dp JOIN own s ON s.regime_id = dp.dependency_regime_id
+              WHERE dp.valid_period @> @d),
             -- MATERIALIZED：q 在 k、m 裡被引用多次，不物化時每個 CASE 分支都會重算一次子查詢（計畫裡上百個 SubPlan）
             q AS MATERIALIZED (
-              SELECT c.id, c.ev,
+              SELECT c.id, c.a, c.b, c.ev,
                 EXISTS (SELECT 1 FROM ctl x JOIN ctl y ON x.geom && y.geom AND ST_Intersects(x.geom, y.geom) WHERE x.holder = c.a AND y.holder = c.b) AS adjacent,
                 (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.a LIMIT 1) AS pa,
                 (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.b LIMIT 1) AS pb,
@@ -171,17 +180,21 @@ public static class ConflictsEndpoints
             -- 有事件地點時，另一端改用「該方控制範圍中離事件地點最近的點」（例：日—英從日本控制區接到哥打巴魯，而不是北海道），
             -- 弧線短、雙劍（弧線中點）落在事件附近，線與圖示一致；距離把事件點 ±360° 一起比，跨換日線（日本→珍珠港）取東邊而不是繞地球一圈
             m AS (
-              SELECT k.*,
-                CASE WHEN ev_end = 'to' THEN (SELECT ST_ClosestPoint(x.geom, ST_Translate(k.ev, w, 0)) FROM ctl x JOIN c ON c.id = k.id CROSS JOIN (VALUES (-360.0), (0.0), (360.0)) sh(w) WHERE x.holder = c.a ORDER BY ST_Distance(x.geom, ST_Translate(k.ev, w, 0)) LIMIT 1)
-                     WHEN ev_end = 'from' THEN (SELECT ST_ClosestPoint(x.geom, ST_Translate(k.ev, w, 0)) FROM ctl x JOIN c ON c.id = k.id CROSS JOIN (VALUES (-360.0), (0.0), (360.0)) sh(w) WHERE x.holder = c.b ORDER BY ST_Distance(x.geom, ST_Translate(k.ev, w, 0)) LIMIT 1)
-                END AS near_other
-              FROM k)
+              SELECT k.*, n.pt AS near_other, n.dist AS near_dist
+              FROM k LEFT JOIN LATERAL (
+                SELECT ST_ClosestPoint(x.geom, ST_Translate(k.ev, w, 0)) AS pt, ST_Distance(x.geom, ST_Translate(k.ev, w, 0)) AS dist
+                FROM ctl x CROSS JOIN (VALUES (-360.0), (0.0), (360.0)) sh(w)
+                WHERE k.ev_end IS NOT NULL AND x.holder = CASE WHEN k.ev_end = 'to' THEN k.a ELSE k.b END
+                ORDER BY 2 LIMIT 1) n ON true)
             SELECT id, adjacent,
               ST_X(CASE WHEN ev_end = 'from' THEN ev WHEN ev_end = 'to' THEN COALESCE(near_other, pa) ELSE pa END),
               ST_Y(CASE WHEN ev_end = 'from' THEN ev WHEN ev_end = 'to' THEN COALESCE(near_other, pa) ELSE pa END),
               ST_X(CASE WHEN ev_end = 'to' THEN ev WHEN ev_end = 'from' THEN COALESCE(near_other, pb) ELSE pb END),
               ST_Y(CASE WHEN ev_end = 'to' THEN ev WHEN ev_end = 'from' THEN COALESCE(near_other, pb) ELSE pb END),
-              ev_end
+              ev_end,
+              -- 事件地點由一方控制、另一方當日最近的控制範圍卻離事件地點很遠（例：1942-12 日佔馬來亞的哥打巴魯，英國最近只剩伊朗）：
+              -- 不畫弧，雙劍留在事件地點（印度等英國屬地尚未建置時，避免橫跨歐亞的長弧）
+              (near_a <> near_b) AND near_dist > @farDeg AS too_far
             FROM m
             """;
         var conn = (Npgsql.NpgsqlConnection)db.Database.GetDbConnection();
@@ -192,12 +205,13 @@ public static class ConflictsEndpoints
             await using var cmd = new Npgsql.NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("ids", ids.ToArray());
             cmd.Parameters.AddWithValue("d", d);
+            cmd.Parameters.AddWithValue("farDeg", ArcFarDegrees);
             await using var rd = await cmd.ExecuteReaderAsync(ct);
             while (await rd.ReadAsync(ct))
             {
                 var adjacent = rd.GetBoolean(1);
                 ConflictArcDto? arc = null;
-                if (!adjacent && !rd.IsDBNull(2) && !rd.IsDBNull(4))
+                if (!adjacent && !rd.IsDBNull(2) && !rd.IsDBNull(4) && !(!rd.IsDBNull(7) && rd.GetBoolean(7)))
                     arc = new ConflictArcDto([Math.Round(rd.GetDouble(2), 4), Math.Round(rd.GetDouble(3), 4)], [Math.Round(rd.GetDouble(4), 4), Math.Round(rd.GetDouble(5), 4)],
                         rd.IsDBNull(6) ? null : rd.GetString(6));
                 result[rd.GetGuid(0)] = (adjacent, arc);

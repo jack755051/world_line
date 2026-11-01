@@ -28,7 +28,7 @@ async function clickLngLat(page: Page, lngLat: [number, number]): Promise<void> 
 
 const US: [number, number] = [-98, 39];
 
-test('1942-12-01：平時沒有虛線弧；點美國 → 與德、義、羅、保、匈、日的交戰都畫虛線弧；雙劍在弧線上且錯開、鏡頭自動框入所有弧線、在聚焦遮罩上可見；關閉就隱藏', async ({ page }) => {
+test('1942-12-01：平時沒有虛線弧；點美國 → 與德、義、羅、保、匈的交戰畫虛線弧（日美經阿留申相鄰，只有雙劍）；雙劍在弧線上且錯開、鏡頭自動框入所有弧線、在聚焦遮罩上可見；關閉就隱藏', async ({ page }) => {
   await open(page, '1942-12-01', [-45, 42], 2.2);
   const arcs = page.getByTestId('map-conflict-arc');
   await expect(arcs).toHaveCount(0);
@@ -37,7 +37,8 @@ test('1942-12-01：平時沒有虛線弧；點美國 → 與德、義、羅、�
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('美利堅');
   await expect(page.getByTestId('map-focus-mask')).toHaveAttribute('data-active', 'true');
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
-  await expect(arcs).toHaveCount(6);
+  // 日佔阿留申（1942-06 起）與美國阿拉斯加相接，日美算相鄰：不畫弧，雙劍留在珍珠港；其餘 5 個交戰仍畫弧
+  await expect(arcs).toHaveCount(5);
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(6);
 
   // 鏡頭自動框入所有弧線（Japan—US 不再跑出畫面）：等 arc-fit 完成、鏡頭停下
@@ -91,17 +92,33 @@ test('1942-12-01：相鄰的交戰（日本—中華民國）不畫弧，雙劍�
   await expect(page.getByTestId('map-conflict-arc')).toHaveCount(0);
 });
 
-test('API：日本—英國的弧接到開戰地點哥打巴魯（英屬馬來亞，殖民地尚未建置），日本—美國接到珍珠港', async ({ page }) => {
-  const res = await page.request.get('/api/v1/conflicts?date=1942-12-01');
-  const fs = (await res.json()).data.featureCollection.features as { properties: { regimeASlug: string; regimeBSlug: string; arc: { from: number[]; to: number[]; eventEnd: string | null } | null } }[];
-  const pick = (a: string, b: string) => fs.find((f) => f.properties.regimeASlug === a && f.properties.regimeBSlug === b)!.properties.arc!;
-  expect(pick('empire-of-japan', 'united-kingdom').to).toEqual([102.24, 6.13]);
-  expect(pick('empire-of-japan', 'united-kingdom').eventEnd).toBe('to');
-  // 另一端＝日本控制區中離哥打巴魯最近的點（不是日本本土），弧線短、雙劍在馬來亞附近
-  const jpUkFrom = pick('empire-of-japan', 'united-kingdom').from;
-  expect(Math.hypot(jpUkFrom[0] - 102.24, jpUkFrom[1] - 6.13)).toBeLessThan(15);
-  expect(pick('empire-of-japan', 'united-states-of-america').to).toEqual([-157.95, 21.36]);
-  expect(pick('deutsches-reich', 'united-states-of-america').eventEnd).toBeNull();
+type ArcFeature = { geometry: { coordinates: number[] }; properties: { recordId: string; regimeASlug: string; regimeBSlug: string; adjacent: boolean | null; arc: { from: number[]; to: number[]; eventEnd: string | null } | null } };
+async function conflictsOn(page: Page, date: string): Promise<ArcFeature[]> {
+  const res = await page.request.get(`/api/v1/conflicts?date=${date}`);
+  return (await res.json()).data.featureCollection.features as ArcFeature[];
+}
+const pick = (fs: ArcFeature[], a: string, b: string) => fs.find((f) => f.properties.regimeASlug === a && f.properties.regimeBSlug === b)!;
+
+test('API：屬地算宗主國的控制範圍——日英經英屬緬甸與日佔印度支那相鄰；緬甸失陷後英國在亞洲沒有控制範圍，不畫跨歐亞的弧；日美 1941-12 接到珍珠港、1942-12 經阿留申相鄰', async ({ page }) => {
+  // 1941-12-10：英屬緬甸（regime_dependencies → 英國）與日本軍事管理下的法屬印度支那相接 → 相鄰，雙劍在開戰地點哥打巴魯
+  let jpUk = pick(await conflictsOn(page, '1941-12-10'), 'empire-of-japan', 'united-kingdom');
+  expect(jpUk.properties.adjacent).toBe(true);
+  expect(jpUk.properties.arc).toBeNull();
+  expect(jpUk.geometry.coordinates).toEqual([102.24, 6.13]);
+  // 1942-12-01：馬來亞、緬甸都已是日佔區；英國最近的控制範圍在伊朗（約 46°）→ 超過上限，不畫弧，雙劍仍在哥打巴魯
+  const d1201 = await conflictsOn(page, '1942-12-01');
+  jpUk = pick(d1201, 'empire-of-japan', 'united-kingdom');
+  expect(jpUk.properties.adjacent).toBe(false);
+  expect(jpUk.properties.arc).toBeNull();
+  expect(jpUk.geometry.coordinates).toEqual([102.24, 6.13]);
+  // 日美：1941-12-10 從日本控制區（南洋群島）接到珍珠港；1942-12-01 日佔阿留申與阿拉斯加相接 → 相鄰、不畫弧
+  const jpUs41 = pick(await conflictsOn(page, '1941-12-10'), 'empire-of-japan', 'united-states-of-america').properties.arc!;
+  expect(jpUs41.to).toEqual([-157.95, 21.36]);
+  expect(jpUs41.eventEnd).toBe('to');
+  const jpUs42 = pick(d1201, 'empire-of-japan', 'united-states-of-america');
+  expect(jpUs42.properties.adjacent).toBe(true);
+  expect(jpUs42.properties.arc).toBeNull();
+  expect(pick(d1201, 'deutsches-reich', 'united-states-of-america').properties.arc!.eventEnd).toBeNull();
 });
 
 test('截圖：1942-12-01 點美國的遠距交戰虛線弧', async ({ page }) => {
@@ -109,7 +126,7 @@ test('截圖：1942-12-01 點美國的遠距交戰虛線弧', async ({ page }) =
   await open(page, '1942-12-01', [-45, 42], 2.2);
   await page.waitForTimeout(800);
   await clickLngLat(page, US);
-  await expect(page.getByTestId('map-conflict-arc')).toHaveCount(6);
+  await expect(page.getByTestId('map-conflict-arc')).toHaveCount(5); // 日美經阿留申相鄰，不畫弧
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
   await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-arc-fit')) ?? 0)).toBeGreaterThan(0);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
@@ -118,40 +135,49 @@ test('截圖：1942-12-01 點美國的遠距交戰虛線弧', async ({ page }) =
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-us-arcs-1942-12-01.png` });
 });
 
-test('1941-12-08：點日本 → 日本—英國的弧從日本控制區接到哥打巴魯，雙劍在弧線中點、在馬來亞附近（線與圖示一致）；開戰事件有正式出處', async ({ page }) => {
+test('1941-12-08：點日本 → 日本—英國相鄰（英屬緬甸接日佔印度支那）不畫弧，雙劍在開戰地點哥打巴魯；開戰事件有正式出處', async ({ page }) => {
+  const f = pick(await conflictsOn(page, '1941-12-08'), 'empire-of-japan', 'united-kingdom');
+  expect(f.properties.adjacent).toBe(true);
   const res = await page.request.get('/api/v1/conflicts?date=1941-12-08');
-  const f = ((await res.json()).data.featureCollection.features as { properties: { recordId: string; regimeASlug: string; regimeBSlug: string; startEvent: { id: string } } }[])
-    .find((x) => x.properties.regimeASlug === 'empire-of-japan' && x.properties.regimeBSlug === 'united-kingdom')!;
-  const ev = (await (await page.request.get(`/api/v1/events/${f.properties.startEvent.id}`)).json()).data as { citations: { locator: string }[] };
+  const startId = ((await res.json()).data.featureCollection.features as { properties: { recordId: string; startEvent: { id: string } } }[])
+    .find((x) => x.properties.recordId === f.properties.recordId)!.properties.startEvent.id;
+  const ev = (await (await page.request.get(`/api/v1/events/${startId}`)).json()).data as { citations: { locator: string }[] };
   expect(ev.citations.length).toBeGreaterThan(0);
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await open(page, '1941-12-08', [125, 25], 3);
   await clickLngLat(page, [138, 36]);
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('日本');
-  const arc = page.locator(`[data-testid="map-conflict-arc"][data-record-id="${f.properties.recordId}"]`);
-  await expect(arc).toHaveCount(1);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
-  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-arc-fit')) ?? 0)).toBeGreaterThan(0);
-  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await expect(page.locator(`[data-testid="map-conflict-arc"][data-record-id="${f.properties.recordId}"]`)).toHaveCount(0);
+  const icon = page.locator(`[data-testid="map-conflict-icon"][data-record-id="${f.properties.recordId}"]`);
+  await expect(icon).toHaveCount(1);
   await page.waitForTimeout(400);
-  const r = await page.evaluate((id) => {
-    const pts = document.querySelector(`[data-testid="map-conflict-arc"][data-record-id="${id}"]`)!.getAttribute('points')!.split(' ').map((s) => s.split(',').map(Number));
-    const icon = document.querySelector(`[data-testid="map-conflict-icon"][data-record-id="${id}"]`) as HTMLElement;
-    const p = { x: parseFloat(icon.style.left), y: parseFloat(icon.style.top) };
+  const d = await page.evaluate((id) => {
+    const el = document.querySelector(`[data-testid="map-conflict-icon"][data-record-id="${id}"]`) as HTMLElement;
     const kb = (window as unknown as { __wlMap: { project: (l: [number, number]) => { x: number; y: number } } }).__wlMap.project([102.24, 6.13]);
-    const end = pts[pts.length - 1];
-    const len = Math.hypot(pts[0][0] - end[0], pts[0][1] - end[1]);
-    const lg = document.querySelector('[data-testid="legend"]')!.getBoundingClientRect();
-    const cv = document.querySelector('[data-testid="map-canvas"]')!.getBoundingClientRect();
-    const kbVisible = !(cv.left + kb.x >= lg.left && cv.left + kb.x <= lg.right && cv.top + kb.y >= lg.top && cv.top + kb.y <= lg.bottom);
-    return { kbVisible, endToKb: Math.hypot(end[0] - kb.x, end[1] - kb.y), iconOnArc: pts.some(([x, y]) => Math.hypot(x - p.x, y - p.y) < 2), iconToKb: Math.hypot(p.x - kb.x, p.y - kb.y), len };
+    return Math.hypot(parseFloat(el.style.left) - kb.x, parseFloat(el.style.top) - kb.y);
   }, f.properties.recordId);
-  expect(r.endToKb).toBeLessThan(3); // 弧線終點＝哥打巴魯
-  expect(r.kbVisible).toBe(true); // 哥打巴魯端不被圖例蓋住
-  expect(r.iconOnArc).toBe(true);
-  expect(r.iconToKb).toBeLessThanOrEqual(r.len); // 雙劍在弧線上、離事件地點不超過弧長（不在日本本土）
+  expect(d).toBeLessThan(40); // 雙劍在哥打巴魯（容許錯開位移）
   await page.mouse.move(5, 5);
   await page.waitForTimeout(1000);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-jp-uk-1941-12-08.png` });
+});
+
+test('截圖：1942-12-01 點英國（英德、英義、泰英畫弧；日英只剩哥打巴魯的雙劍）', async ({ page }) => {
+  const fs = (await conflictsOn(page, '1942-12-01')).filter((x) => x.properties.regimeASlug === 'united-kingdom' || x.properties.regimeBSlug === 'united-kingdom');
+  const withArc = fs.filter((x) => x.properties.arc).length;
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await open(page, '1942-12-01', [40, 40], 1.8);
+  await page.waitForTimeout(800);
+  await clickLngLat(page, [-1.5, 52.5]); // 英格蘭中部
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('聯合王國');
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await expect(page.getByTestId('map-conflict-icon')).toHaveCount(fs.length);
+  await expect(page.getByTestId('map-conflict-arc')).toHaveCount(withArc);
+  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-arc-fit')) ?? 0)).toBeGreaterThan(0);
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await page.mouse.move(5, 5);
+  await page.waitForTimeout(1200);
+  await page.screenshot({ path: `tmp/borders-shots/${prefix}-arcs-1942-12-01-uk.png` });
 });

@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Npgsql;
 
 namespace WorldLine.Api.Tests;
 
@@ -139,14 +140,16 @@ public sealed class ConflictTests(PostGisFixture fx)
 
         // 事件地點在一方領土內（珍珠港在美國夏威夷）→ 該方端點＝事件地點
         var jp = await k.Regime("nippon");
-        await Territory(k, jp, ohm, 140, 36);
-        var cPearl = await k.Id(await Post(k, jp, us, start, null, Point(-99.5, 37.5), "開戰地點：測試（在美國領土內）"));
+        var hi = await k.Regime("hawaii");
+        await Territory(k, jp, ohm, 170, 20);
+        await Territory(k, hi, ohm, -158, 21);
+        var cPearl = await k.Id(await Post(k, jp, hi, start, null, Point(-157.5, 21.5), "開戰地點：測試（在夏威夷領土內）"));
         var aPearl = (await FeatureOn(k, "1942-12-01", cPearl))!.Value.GetProperty("properties").GetProperty("arc");
         Assert.Equal("to", aPearl.GetProperty("eventEnd").GetString());
-        Assert.Equal(new[] { -99.5, 37.5 }, aPearl.GetProperty("to").EnumerateArray().Select(v => v.GetDouble()).ToArray());
-        // 另一端＝日本領土（140–141E、36–37N）中離事件地點最近的點；-99.5 往東走（換日線）比往西近，所以取東緣 141E
-        Assert.Equal(141, aPearl.GetProperty("from")[0].GetDouble(), 3);
-        Assert.Equal(37, aPearl.GetProperty("from")[1].GetDouble(), 3);
+        Assert.Equal(new[] { -157.5, 21.5 }, aPearl.GetProperty("to").EnumerateArray().Select(v => v.GetDouble()).ToArray());
+        // 另一端＝日本領土（170–171E、20–21N）中離事件地點最近的點；-157.5 往西跨換日線（約 31.5°）比往東繞近，所以取東緣 171E
+        Assert.Equal(171, aPearl.GetProperty("from")[0].GetDouble(), 3);
+        Assert.Equal(21, aPearl.GetProperty("from")[1].GetDouble(), 3);
 
         // 事件地點不在任何一方（哥打巴魯在尚未建置的英屬馬來亞）→ 離事件地點較遠的一方（宗主國 de）改用事件地點
         var cKota = await k.Id(await Post(k, jp, de, start, null, Point(102.24, 6.13), "開戰地點：哥打巴魯"));
@@ -158,6 +161,57 @@ public sealed class ConflictTests(PostGisFixture fx)
         var pNone = (await FeatureOn(k, "1942-12-01", cNone))!.Value.GetProperty("properties");
         Assert.False(pNone.GetProperty("adjacent").GetBoolean());
         Assert.Equal(JsonValueKind.Null, pNone.GetProperty("arc").ValueKind);
+    }
+
+    [Fact]
+    public async Task Colonies_count_as_the_administering_powers_territory_and_far_event_endpoints_get_no_arc()
+    {
+        var k = new ApiTestKit(fx);
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var uk = await k.Regime("mutterland");
+        var col = await k.Regime("kolonie");
+        var th = await k.Regime("siam");
+        var jp = await k.Regime("nippon-sued");
+        var fern = await k.Regime("fern");
+        await Territory(k, uk, ohm, -3, 53);
+        await Territory(k, col, ohm, 100, 5);        // 宗主國 uk 的屬地
+        await Territory(k, th, ohm, 101, 5);         // 與屬地共邊（與 uk 本土不相鄰）
+        await Territory(k, jp, ohm, 104, 5);         // 離屬地 3°
+        await Territory(k, fern, ohm, -60, 5);       // 離日本很遠
+        // 屬地對照（migration 依 slug 寫入正式資料；測試政權 slug 帶 tag，所以直接寫一列）
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand(
+                "INSERT INTO regime_dependencies (dependency_regime_id, administering_regime_id, valid_period) VALUES (@d, @a, '[1941-01-01,1944-01-01)')", c);
+            cmd.Parameters.AddWithValue("d", col);
+            cmd.Parameters.AddWithValue("a", uk);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        var start = await Event(k, "war", "1941-12-08");
+        // 以下 POST 都是寫入，會作廢衝突的日期快取（上面直接寫 SQL 不會）
+        var cJpUk = await k.Id(await Post(k, jp, uk, start, null, Point(100.5, 5.5), "開戰地點：測試（在屬地內）"));
+        var cThUk = await k.Id(await Post(k, th, uk, start, null));
+        var cJpFern = await k.Id(await Post(k, jp, fern, start, null, Point(104.5, 5.5), "開戰地點：測試（在日本領土內）"));
+
+        // 事件地點在屬地內 → 算宗主國那一端；另一端＝日本控制範圍中最近的點（104E），不是宗主國本土
+        var pJpUk = (await FeatureOn(k, "1942-12-01", cJpUk))!.Value.GetProperty("properties");
+        Assert.False(pJpUk.GetProperty("adjacent").GetBoolean());
+        var a = pJpUk.GetProperty("arc");
+        Assert.Equal("to", a.GetProperty("eventEnd").GetString());
+        Assert.Equal(new[] { 100.5, 5.5 }, a.GetProperty("to").EnumerateArray().Select(v => v.GetDouble()).ToArray());
+        Assert.Equal(new[] { 104.0, 5.5 }, a.GetProperty("from").EnumerateArray().Select(v => v.GetDouble()).ToArray());
+
+        // 與屬地共邊＝與宗主國相鄰：不畫弧
+        var pThUk = (await FeatureOn(k, "1942-12-01", cThUk))!.Value.GetProperty("properties");
+        Assert.True(pThUk.GetProperty("adjacent").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, pThUk.GetProperty("arc").ValueKind);
+
+        // 事件地點在日本領土內、另一方最近的控制範圍超過上限 → 不畫弧（雙劍留在事件地點）
+        var fJpFern = (await FeatureOn(k, "1942-12-01", cJpFern))!.Value;
+        Assert.False(fJpFern.GetProperty("properties").GetProperty("adjacent").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, fJpFern.GetProperty("properties").GetProperty("arc").ValueKind);
+        Assert.Equal(104.5, fJpFern.GetProperty("geometry").GetProperty("coordinates")[0].GetDouble(), 3);
     }
 
     [Fact]

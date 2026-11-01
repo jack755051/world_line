@@ -25,6 +25,43 @@ async function clickLngLat(page: Page, lngLat: [number, number]): Promise<void> 
 }
 const project = (page: Page, ll: [number, number]) => page.evaluate((l) => (window as unknown as { __wlMap: WlMap }).__wlMap.project(l), ll);
 
+/**
+ * 被選政權（data-focus-record）的整個領土都在面板左側的地圖可見區內。
+ * 鏡頭除了政權本身，還會框入它的交戰虛線弧（例：1939 起英德交戰），所以不要求政權置中，只要求完整入鏡。
+ */
+async function expectFocusedRegimeInView(page: Page, date: string): Promise<void> {
+  const canvas = page.getByTestId('map-canvas');
+  await expect(canvas).toHaveAttribute('data-camera', 'idle');
+  await page.waitForTimeout(400);
+  await expect(canvas).toHaveAttribute('data-camera', 'idle');
+  const rec = (await canvas.getAttribute('data-focus-record'))!;
+  const fs = (await (await page.request.get(`/api/v1/sovereignty?date=${date}`)).json()).data.featureCollection.features as { geometry: { coordinates: unknown }; properties: { recordId: string } }[];
+  const f = fs.find((x) => x.properties.recordId === rec)!;
+  expect(f).toBeTruthy();
+  const pts: number[][] = [];
+  const walk = (c: unknown): void => {
+    if (Array.isArray(c) && typeof c[0] === 'number') pts.push(c as number[]);
+    else if (Array.isArray(c)) c.forEach(walk);
+  };
+  walk(f.geometry.coordinates);
+  const xs = pts.map((p) => p[0]);
+  const ys = pts.map((p) => p[1]);
+  const corners: [number, number][] = [
+    [Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)],
+    [Math.min(...xs), Math.max(...ys)], [Math.max(...xs), Math.min(...ys)],
+  ];
+  const scr = await Promise.all(corners.map((c) => project(page, c)));
+  const area = (await page.getByTestId('map-area').boundingBox())!;
+  const sbox = (await page.getByTestId('regime-sheet').boundingBox())!;
+  const right = sbox.x - area.x;
+  for (const p of scr) {
+    expect(p.x).toBeGreaterThanOrEqual(-2);
+    expect(p.x).toBeLessThanOrEqual(right + 2);
+    expect(p.y).toBeGreaterThanOrEqual(-2);
+    expect(p.y).toBeLessThanOrEqual(area.height + 2);
+  }
+}
+
 const BERLIN: [number, number] = [13.4, 52.5];
 const KRAKOW: [number, number] = [19.94, 50.06];
 
@@ -48,12 +85,8 @@ test('點德國 → 飛到德國、置於面板左側可見區中央；遮罩模
   const style = await mask.evaluate((el) => ({ f: getComputedStyle(el).backdropFilter, c: (el as HTMLElement).style.clipPath }));
   expect(style.f).toContain('blur');
   expect(style.c).toMatch(/^path\(evenodd/);
-  // 置中：柏林落在面板左側的可見區內、大致居中
-  const area = (await page.getByTestId('map-area').boundingBox())!;
-  const sbox = (await sheet.boundingBox())!;
-  const p = await project(page, BERLIN);
-  expect(p.x).toBeLessThan(sbox.x - area.x);
-  expect(Math.abs(p.x - (sbox.x - area.x) / 2)).toBeLessThan((sbox.x - area.x) * 0.3);
+  // 入鏡：德國整個領土在面板左側的可見區內（鏡頭也會框入英德交戰的虛線弧，所以不要求柏林置中）
+  await expectFocusedRegimeInView(page, '1939-10-23');
   expect(await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.getZoom())).toBeGreaterThan(zoom0);
 
   // 點空白處（北海）：面板滑出、遮罩取消、飛回原視角
@@ -157,7 +190,9 @@ test('面板分頁：概要／事件（tablist、aria-selected、aria-controls�
   await expect(ov).toHaveAttribute('aria-selected', 'true');
   await page.keyboard.press('End');
   await expect(evt).toHaveAttribute('aria-selected', 'true');
-  // 換政權（面板開著）：保留「事件」分頁
+  // 換政權（面板開著）：保留「事件」分頁。鏡頭框入英德虛線弧後克拉科夫可能在面板底下，先把它移到可見區
+  await page.evaluate((c) => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: c, zoom: 4 }), KRAKOW);
+  await page.waitForTimeout(300);
   await clickLngLat(page, KRAKOW);
   await expect(page.getByTestId('sovereignty-card-title')).not.toContainText('德意志國');
   await expect(evt).toHaveAttribute('aria-selected', 'true');
@@ -179,10 +214,7 @@ test('減少動態：面板直接出現（不播滑入動畫、motion 不改元�
   await expect(sheet).toHaveAttribute('data-state', 'open');
   await expect(sheet).toHaveAttribute('data-side', 'right');
   expect(await sheet.evaluate((el) => (el as HTMLElement).style.transform)).toBe('');
-  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
-  const area = (await page.getByTestId('map-area').boundingBox())!;
-  const sbox = (await sheet.boundingBox())!;
-  expect((await project(page, BERLIN)).x).toBeLessThan(sbox.x - area.x);
+  await expectFocusedRegimeInView(page, '1939-10-23');
 });
 
 for (const [name, ll] of [['germany', BERLIN], ['poland', KRAKOW]] as const) {

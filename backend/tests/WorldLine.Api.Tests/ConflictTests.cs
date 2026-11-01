@@ -215,6 +215,38 @@ public sealed class ConflictTests(PostGisFixture fx)
     }
 
     [Fact]
+    public async Task Puppet_states_count_as_the_patrons_territory_while_the_relation_is_valid()
+    {
+        var k = new ApiTestKit(fx);
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var patron = await k.Regime("patron");
+        var puppet = await k.Regime("puppet");
+        var foe = await k.Regime("foe");
+        await Territory(k, patron, ohm, 140, 36);
+        await Territory(k, puppet, ohm, 96, 20);     // 扶植政權
+        await Territory(k, foe, ohm, 95, 20);        // 與扶植政權共邊（與扶植方本土不相鄰）
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand(
+                "INSERT INTO regime_relations (regime_a_id, regime_b_id, relation_type, valid_period) VALUES (@a, @b, 'patron_puppet', '[1942-01-01,1943-01-01)')", c);
+            cmd.Parameters.AddWithValue("a", patron);
+            cmd.Parameters.AddWithValue("b", puppet);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        var start = await Event(k, "war", "1941-12-08");
+        var cf = await k.Id(await Post(k, patron, foe, start, null));
+
+        // 關係期間內：扶植政權算扶植方 → 相鄰，不畫弧
+        var inside = (await FeatureOn(k, "1942-06-01", cf))!.Value.GetProperty("properties");
+        Assert.True(inside.GetProperty("adjacent").GetBoolean());
+        Assert.Equal(JsonValueKind.Null, inside.GetProperty("arc").ValueKind);
+        // 關係期間外：不相鄰
+        var outside = (await FeatureOn(k, "1943-06-01", cf))!.Value.GetProperty("properties");
+        Assert.False(outside.GetProperty("adjacent").GetBoolean());
+    }
+
+    [Fact]
     public async Task Event_retraction_refuses_while_referenced_then_hides_event_from_regime_list()
     {
         var k = new ApiTestKit(fx);

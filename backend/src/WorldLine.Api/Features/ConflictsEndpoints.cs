@@ -134,6 +134,7 @@ public static class ConflictsEndpoints
     /// - 端點＝雙方當日主權紀錄的 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）；
     /// - 有事件地點時其中一端改用事件地點（規則見 ConflictArcDto）；
     /// - 控制範圍也包含當日屬地（regime_dependencies：殖民地、委任統治地 → 宗主國），用於相鄰判定與最近端點；
+    /// - 控制範圍也包含當日扶植政權（regime_relations 的 patron_puppet，regime_a＝扶植方）；
     /// - 事件地點只在一方控制範圍內、另一方最近的控制範圍超過 ArcFarDegrees 時不畫弧（雙劍留在事件地點）。
     /// </summary>
     /// <summary>事件地點到另一方最近控制範圍的上限（度）。1941-12 日本南洋群島→珍珠港約 33°（保留）；1942-12 英國→哥打巴魯約 46°、英國→泰緬邊界約 40°（不畫）。</summary>
@@ -159,7 +160,11 @@ public static class ConflictsEndpoints
               UNION ALL
               -- 殖民地、委任統治地等屬地（regime_dependencies）算進宗主國的控制範圍（例：英屬馬來亞、緬甸算英國）
               SELECT dp.administering_regime_id, s.geom FROM regime_dependencies dp JOIN own s ON s.regime_id = dp.dependency_regime_id
-              WHERE dp.valid_period @> @d),
+              WHERE dp.valid_period @> @d
+              UNION ALL
+              -- 扶植政權（regime_relations patron_puppet：regime_a＝扶植方）算進扶植方的控制範圍（例：滿洲國、緬甸國、菲律賓第二共和國算日本）
+              SELECT rr.regime_a_id, s.geom FROM regime_relations rr JOIN own s ON s.regime_id = rr.regime_b_id
+              WHERE rr.relation_type = 'patron_puppet' AND rr.retracted_at IS NULL AND rr.valid_period @> @d),
             -- MATERIALIZED：q 在 k、m 裡被引用多次，不物化時每個 CASE 分支都會重算一次子查詢（計畫裡上百個 SubPlan）
             q AS MATERIALIZED (
               SELECT c.id, c.a, c.b, c.ev,

@@ -54,6 +54,10 @@ public sealed class DateIntervalCache
                   UNION SELECT lower(valid_period) FROM occupation_attributions UNION SELECT upper(valid_period) FROM occupation_attributions
                   UNION SELECT lower(valid_period) FROM regime_alignments UNION SELECT upper(valid_period) FROM regime_alignments
                   UNION SELECT lower(valid_period) FROM conflict_records UNION SELECT upper(valid_period) FROM conflict_records
+                  -- 衝突相鄰判定與弧端點用到的屬地對照、扶植關係
+                  UNION SELECT lower(valid_period) FROM regime_dependencies UNION SELECT upper(valid_period) FROM regime_dependencies
+                  UNION SELECT lower(valid_period) FROM regime_relations WHERE relation_type = 'patron_puppet'
+                  UNION SELECT upper(valid_period) FROM regime_relations WHERE relation_type = 'patron_puppet'
                 ) x WHERE d IS NOT NULL ORDER BY d
                 """;
             var list = await db.Database.SqlQueryRaw<DateOnly>(sql).ToListAsync(ct);

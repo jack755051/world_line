@@ -319,3 +319,25 @@ public sealed record ConflictFeatureCollection(IReadOnlyList<ConflictFeature> Fe
 }
 
 public sealed record ConflictMapDto(DateOnly Date, ConflictFeatureCollection FeatureCollection);
+
+// ───────────── 首都（capital_records；2026-11-02 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增首都紀錄。regimeId＝政權；cityName＝雙語城市名；location＝GeoJSON Point（WGS84）；
+/// validPeriod＝半開區間 [start, end)，end 為 null 表示至今仍有效；sourceRef＝出處文字（查不到標「待查證」）。
+/// </summary>
+public sealed record CreateCapitalRecordRequest(
+    Guid? RegimeId, IReadOnlyDictionary<string, string>? CityName, JsonElement? Location,
+    string? ValidStart, string? ValidEnd, string? SourceRef, string? Note = null);
+
+public sealed record CapitalRecordDto(
+    Guid Id, Guid RegimeId, IReadOnlyDictionary<string, string> CityName,
+    JsonElement Location, DatePeriodDto ValidPeriod, string? SourceRef, string? Note);
+
+/// <summary>地圖首都圖層：依日期查，每筆含城市名（多語）、座標（GeoJSON Point）與出處查證狀態。</summary>
+public sealed record CapitalFeature(
+    Guid RecordId, Guid RegimeId, string RegimeSlug,
+    IReadOnlyDictionary<string, string> CityName,
+    JsonElement Location, DatePeriodDto ValidPeriod,
+    string? SourceRef);
+
+public sealed record CapitalMapDto(DateOnly Date, IReadOnlyList<CapitalFeature> Features);

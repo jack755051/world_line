@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { staggerOnArcs, worldShiftArc } from './conflict-arc';
 import type { FeatureCollection, Geometry, Position } from 'geojson';
-import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
+import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import type { Axis } from '../../core/atlas-state';
@@ -341,6 +341,9 @@ export class AtlasMap {
   private readonly canvas = viewChild.required<ElementRef<HTMLDivElement>>('canvas');
   private map: MlMap | null = null;
   private readonly destroyRef = inject(DestroyRef);
+  /** 目前已推送進 sovereignty source 的 feature ID 集合（promoteId = recordId）。
+   *  非空時改用 updateData() 差異更新，僅傳送增減的 feature，略過未變的幾何。 */
+  private _sovIds = new Set<string>();
 
   constructor() {
     afterNextRender(() => void this.init());
@@ -348,6 +351,7 @@ export class AtlasMap {
       clearTimeout(this.axisTimer);
       clearTimeout(this.fadeTimer);
       cancelAnimationFrame(this.maskFrame);
+      this._sovIds = new Set();
       this.map?.remove();
     });
 
@@ -383,7 +387,7 @@ export class AtlasMap {
         if (armed) this.fadeConsumed.emit();
         if (fade) this.fadeSovereignty('start');
         this.ensurePatterns(data);
-        (this.map?.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
+        this.applySovereigntyData(data);
         if (fade) this.fadeSovereignty('end');
       });
     });
@@ -453,7 +457,7 @@ export class AtlasMap {
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
         this.addHatch(GAP_IMAGE_ID);
         this.ensurePatterns(this.sovereignty());
-        (map.getSource('sovereignty') as GeoJSONSource | undefined)?.setData(this.sovereignty() ?? EMPTY);
+        this.applySovereigntyData(this.sovereignty());
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion());
@@ -598,6 +602,32 @@ export class AtlasMap {
     if (!src) return;
     this.ensurePatterns(data);
     src.setData(data ?? EMPTY);
+  }
+
+  /**
+   * 更新 sovereignty source：
+   * - 首次（_sovIds 空）或清空（新資料無 feature）→ setData 全量替換並重設 ID 集合。
+   * - 否則計算增/刪 diff，以 updateData() 只傳送異動 feature，不重建未改變的幾何。
+   *   同一個 recordId 代表相同 DB 紀錄（固定幾何與屬性），出現在兩份資料中即表示不需更新。
+   */
+  private applySovereigntyData(data: FeatureCollection<Geometry, SovereigntyProps> | null): void {
+    const src = this.map?.getSource('sovereignty') as GeoJSONSource | undefined;
+    if (!src) return;
+    const newFeatures = data?.features ?? [];
+    if (this._sovIds.size === 0 || newFeatures.length === 0) {
+      src.setData(data ?? EMPTY);
+      this._sovIds = new Set(newFeatures.map((f) => f.properties.recordId));
+      return;
+    }
+    const newIds = new Set(newFeatures.map((f) => f.properties.recordId));
+    const add = newFeatures.filter((f) => !this._sovIds.has(f.properties.recordId));
+    const remove = [...this._sovIds].filter((id) => !newIds.has(id));
+    if (add.length === 0 && remove.length === 0) return; // 完全相同（atlas-data sovKey 已去重，此路應極少觸發）
+    const diff: GeoJSONSourceDiff = {};
+    if (add.length) diff.add = add;
+    if (remove.length) diff.remove = remove;
+    void src.updateData(diff);
+    this._sovIds = newIds;
   }
 
   /**

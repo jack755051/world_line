@@ -81,8 +81,8 @@ test('日期格式無效 → 回到預設日期並提示', async ({ page }) => {
 test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page, request }) => {
   const [first] = await snapshotDates(request);
   const [y, m, d] = first.split('-').map(Number);
-  // borders 設定（開發庫 5442）：主權層從 1908 起連續有資料，時間軸範圍內沒有真正「無資料」的日期。
-  // 改為攔截這次開頁的主權／控制回應、清空圖徵，只驗證空白狀態的畫面與「跳到最近快照」（快照日期仍來自開發 API）。
+  // 開發庫（5442）與正式庫（5051）的主權層都已從 1908-10-05 起連續有資料，時間軸範圍內沒有真正「無資料」的日期。
+  // 兩種設定都攔截這次開頁的主權／控制回應、清空圖徵，只驗證空白狀態的畫面與「跳到最近快照」（快照日期仍來自 API，不寫入資料）。
   const empty = async (route: import('@playwright/test').Route) => {
     const res = await route.fetch();
     const body = await res.json();
@@ -90,10 +90,8 @@ test('早於所有資料的日期顯示「此日期尚無資料」並可跳到�
     if (body?.data) body.data.coverageNotes = [];
     await route.fulfill({ response: res, json: body });
   };
-  if (process.env['WL_E2E_BORDERS']) {
-    await page.route('**/api/v1/sovereignty?*', empty);
-    await page.route('**/api/v1/control?*', empty);
-  }
+  await page.route('**/api/v1/sovereignty?*', empty);
+  await page.route('**/api/v1/control?*', empty);
   await page.goto('/?date=1938-03-01');
   await expect(page.getByTestId('map-empty')).toBeVisible();
   await page.unrouteAll({ behavior: 'wait' });
@@ -199,7 +197,7 @@ async function expectedStartLabel(request: import('@playwright/test').APIRequest
   return start.slice(0, 7);
 }
 
-test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點（正式庫 1937-07；borders 依最早事件）', async ({ page, request }) => {
+test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點（依最早快照／事件，兩庫皆為 1908-10）', async ({ page, request }) => {
   const startLabel = await expectedStartLabel(request);
   const res = await request.get('/api/v1/control?date=1940-07-15');
   const features = (await res.json()).data.featureCollection.features as { properties: { controllerRegimeId: string; controlType: string } }[];
@@ -211,12 +209,10 @@ test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯�
   const sw = page.getByTestId('legend-regime-swatch');
   await expect(sw.first()).toBeVisible();
   for (const t of await sw.evaluateAll((els) => els.map((e) => e.getAttribute('data-control-type') ?? ''))) expect(types.has(t)).toBe(true);
-  // 地圖標籤：只標 API 資料中的政權（控制方；borders 設定另有主權層的國名標籤，一併取自 /sovereignty）
+  // 地圖標籤：控制方政權＋主權層國名（兩庫皆有主權資料，一律加入）
   const ids = new Set(features.map((f) => f.properties.controllerRegimeId));
-  if (process.env['WL_E2E_BORDERS']) {
-    const sov = (await (await request.get('/api/v1/sovereignty?date=1940-07-15')).json()).data.featureCollection.features as { properties: { regimeId: string } }[];
-    for (const f of sov) ids.add(f.properties.regimeId);
-  }
+  const sov = (await (await request.get('/api/v1/sovereignty?date=1940-07-15')).json()).data.featureCollection.features as { properties: { regimeId: string } }[];
+  for (const f of sov) ids.add(f.properties.regimeId);
   const labels = page.getByTestId('map-regime-label');
   await expect(labels.first()).toBeVisible();
   for (const id of await labels.evaluateAll((els) => els.map((e) => e.getAttribute('data-regime-id') ?? ''))) expect(ids.has(id)).toBe(true);

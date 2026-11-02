@@ -186,13 +186,13 @@ export class AtlasData {
   }
 
   /** 取某區間的資料：快取 → 進行中的同區間請求 → 新請求（前景請求可被中止；預先載入不中止）。 */
-  private fetchInterval<T>(kind: 'sov' | 'cf', key: string, date: string, cache: LruCache<T>, signal?: AbortSignal): Promise<T> {
+  private fetchInterval<T>(kind: 'cf', key: string, date: string, cache: LruCache<T>, signal?: AbortSignal): Promise<T> {
     const hit = cache.get(key);
     if (hit) return Promise.resolve(hit);
     const pk = `${kind}:${key}`;
     const inflight = this.pending.get(pk) as Promise<T> | undefined;
     if (inflight) return inflight;
-    const p = (kind === 'sov' ? this.api.sovereignty(date, signal) : this.api.conflicts(date, signal)) as Promise<T>;
+    const p = this.api.conflicts(date, signal) as Promise<T>;
     this.pending.set(pk, p);
     // 前景請求被中止時立刻移除，讓緊接著的新請求不會撿到已中止的那個
     signal?.addEventListener('abort', () => {

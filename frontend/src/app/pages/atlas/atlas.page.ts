@@ -552,12 +552,13 @@ export class AtlasPage {
     this.loadDate(this.state.date());
   }
 
-  /** 載入某日的控制區／主權／衝突；主權與衝突都到了之後，預先載入接下來幾格（播放、往後跳都順）。 */
+  /** 載入某日的控制區／主權／衝突；主權與衝突都到了之後，預先載入相鄰格（播放往前 4；手動跳前後各一步）。 */
   private loadDate(date: string): void {
     this.loadsStartedFor.set(date);
     void this.data.loadControl(date);
+    const playing = this.playing();
     void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
-      if (this.state.date() === date) void this.data.prefetch(date, this.playing() ? 4 : 2);
+      if (this.state.date() === date) void this.data.prefetch(date, playing ? 4 : 2, !playing);
     });
   }
 

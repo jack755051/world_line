@@ -287,14 +287,21 @@ export class AtlasData {
     this.conflictsStatus.set('ok');
   }
 
-  /** 預先載入接下來的日期（播放一週／一個月一格；也涵蓋接下來兩個變動點），依序送、不中止，失敗就算了。 */
+  /**
+   * 預先載入相鄰日期（播放往前 4 步；手動跳年前後各 2 步）。
+   * backward=true 時同時預取前面的相鄰變動點（往回跳的下一跳必命中快取）。
+   */
   private prefetchRun = 0;
-  async prefetch(date: string, maxIntervals = 4, offsets: number[] = [7, 14, 21, 31, 62]): Promise<void> {
+  async prefetch(date: string, maxIntervals = 4, backward = false): Promise<void> {
     const run = ++this.prefetchRun;
     const zoom = this.state.mapZoom();
+    const offsets = backward ? [7, 14, 21, 31, -7, -14, -21, -31] : [7, 14, 21, 31, 62];
     const dates = offsets.map((n) => addDaysIso(date, n));
     const pts = this.changePoints();
-    if (pts) dates.push(...pts.filter((p) => p > date).slice(0, 2));
+    if (pts) {
+      dates.push(...pts.filter((p) => p > date).slice(0, 2));
+      if (backward) dates.push(...pts.filter((p) => p < date).slice(-2));
+    }
     const seen = new Set<string>([this.sovIntervalKey(date)]);
     let fetched = 0;
     for (const d of dates.sort()) {

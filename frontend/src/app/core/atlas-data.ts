@@ -328,7 +328,13 @@ export class AtlasData {
     }
     this.regimesStatus.set('loading');
     try {
-      const loaded = await Promise.all(missing.map((id) => this.api.regime(id)));
+      // 批次拉（最多 200，超過分批）；避免 N 個逐一請求導致前端換年份卡頓
+      const BATCH = 200;
+      const loaded: import('./api/api-types').RegimeDto[] = [];
+      for (let i = 0; i < missing.length; i += BATCH) {
+        const chunk = missing.slice(i, i + BATCH);
+        loaded.push(...await this.api.regimesBatch(chunk));
+      }
       this.regimes.update((m) => ({ ...m, ...Object.fromEntries(loaded.map((r) => [r.id, r])) }));
       this.regimesStatus.set('ok');
     } catch {

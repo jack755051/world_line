@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
@@ -146,10 +147,13 @@ public static class SovereigntyEndpoints
         var alignments = await RegimeAlignmentsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
         var occupations = await OccupationsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
 
-        var features = rows.Select(x =>
+        // 幾何簡化（TopologyPreservingSimplifier）與 GeoJSON 序列化皆為純 CPU 無副作用，
+        // 以 PLINQ 平行執行可大幅縮短含大幾何（如俄國）的冷快取首次計算時間。
+        // AsOrdered() 維持資料庫排序（regimeSlug, id），讓回應順序具確定性。
+        var features = rows.AsParallel().AsOrdered().Select(x =>
         {
             var r = x.r;
-            var simplified = Simplify(r.Geom);
+            var simplified = GetOrSimplify(r.Id, r.Geom);
             JsonElement? flags = r.Provenance is null ? null : JsonDocument.Parse(r.Provenance).RootElement.Clone();
             return new SovereigntyFeature(r.Id, Mapping.ToGeoJson(simplified), new SovereigntyFeatureProperties(
                 r.Id, r.RegimeId, x.Slug, r.LayerStatus, Mapping.ToDto((NpgsqlRange<DateOnly>?)r.ValidPeriod)!,
@@ -164,6 +168,18 @@ public static class SovereigntyEndpoints
         return features;
     }
 
+    /// <summary>
+    /// 已簡化幾何的行程內快取（recordId → simplified）。主權紀錄不可變（只能撤回不能修改），
+    /// 同一筆 record 在任何日期的簡化結果永遠相同，可安全跨日期區間重用。
+    /// 寫入作廢（DateIntervalCache.Invalidate）只影響 FeatureCollection 快取，此簡化快取不清除：
+    /// 撤回後的 record 不會再被查詢，舊項目最終 GC；數量上限不超過 sovereignty_records 總筆數（目前 ~200）。
+    /// </summary>
+    private static readonly ConcurrentDictionary<Guid, MultiPolygon> _simplifiedCache = new();
+
+    /// <summary>回應用的簡化幾何：優先取快取；快取未命中才執行 TopologyPreservingSimplifier。</summary>
+    internal static MultiPolygon GetOrSimplify(Guid id, MultiPolygon g) =>
+        _simplifiedCache.GetOrAdd(id, _ => Simplify(g));
+
     /// <summary>回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。</summary>
     internal static MultiPolygon Simplify(MultiPolygon g)
     {
@@ -176,6 +192,10 @@ public static class SovereigntyEndpoints
             _ => g,
         };
     }
+
+    /// <summary>預熱單一日期（供啟動背景任務呼叫）；不更新 HTTP 回應，只填充快取。</summary>
+    public static Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache) =>
+        cache.GetOrAddAsync("sovereignty", d, db, () => BuildOnDateAsync(d, db, CancellationToken.None), CancellationToken.None);
 
     /// <summary>事件摘要＋引用；沒有任何引用的事件 verification = pending（「待查證」）。</summary>
     internal static async Task<Dictionary<Guid, SovereigntyEventRefDto>> EventRefsAsync(WorldLineDbContext db, IReadOnlyCollection<Guid> ids, CancellationToken ct)

@@ -89,6 +89,41 @@ app.MapHealthChecks("/healthz", new HealthCheckOptions
 var api = app.MapGroup("/api/v1");
 WorldLine.Api.Features.EndpointRegistry.Map(api);
 
+// 啟動預熱（Tai 2026-11-02 效能：重啟後前端第一次點擊直接命中快取）：
+// 背景預計算關鍵歷史日期；失敗只記 Warning，不阻斷啟動。
+_ = Task.Run(async () =>
+{
+    await Task.Delay(500); // 等 Kestrel 就緒後再開始，不搶啟動資源
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+    var cache = scope.ServiceProvider.GetRequiredService<DateIntervalCache>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    // 關鍵年份代表日（涵蓋 1908 試驗起點、WWI、WW2 主要階段）
+    var warmupDates = new[]
+    {
+        new DateOnly(1908, 10, 6),
+        new DateOnly(1914, 8, 1),
+        new DateOnly(1918, 11, 11),
+        new DateOnly(1925, 6, 1),
+        new DateOnly(1939, 9, 1),
+        new DateOnly(1941, 6, 22),
+        new DateOnly(1942, 11, 1),
+        new DateOnly(1945, 5, 9),
+    };
+    foreach (var d in warmupDates)
+    {
+        try
+        {
+            await WorldLine.Api.Features.SovereigntyEndpoints.WarmupAsync(d, db, cache);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "啟動預熱 {Date} 失敗（不影響服務）", d);
+        }
+    }
+    logger.LogInformation("啟動預熱完成（{Count} 個日期）", warmupDates.Length);
+});
+
 app.Run();
 
 /// <summary>讓整合測試的 WebApplicationFactory 可以參照。</summary>

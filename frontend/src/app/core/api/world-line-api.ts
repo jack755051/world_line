@@ -103,6 +103,14 @@ export class WorldLineApi {
     return res.data;
   }
 
+  /** GET /regimes?ids=…：批次取政權（最多 200）。避免 N 個逐一請求。 */
+  async regimesBatch(ids: string[]): Promise<RegimeDto[]> {
+    let params = new HttpParams();
+    for (const id of ids) params = params.append('ids', id);
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<RegimeDto[]>>(`${WorldLineApi.base}/regimes`, { params }));
+    return res.data;
+  }
+
   async source(id: string): Promise<SourceDto> {
     const res = await firstValueFrom(this.http.get<ApiEnvelope<SourceDto>>(`${WorldLineApi.base}/sources/${id}`));
     return res.data;

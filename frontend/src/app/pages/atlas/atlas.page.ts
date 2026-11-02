@@ -493,6 +493,7 @@ export class AtlasPage {
       const axis = untracked(() => this.state.axis());
       untracked(() => {
         if (this.data.health() === 'up') {
+          performance.mark('wl:sov:date-change');
           clearTimeout(this.debounce);
           this.debounce = setTimeout(() => {
             this.loadDate(date);

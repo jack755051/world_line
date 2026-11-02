@@ -23,18 +23,16 @@ const SEQUENCE: [string, string][] = [
   ['1918-06-01', '1939-09-01'],
 ];
 
-/** 等地圖就緒（data-ready-for === forDate && render=idle && no map-busy）；回傳等待毫秒。 */
+/**
+ * 等地圖就緒（data-ready-for === forDate）；回傳等待毫秒。
+ * 量測終點：新日期國界已畫完（mapReady = loadsStartedFor===date && !mapDataLoading && !mapRenderBusy），
+ * 不等蒙版淡出動畫（舊版等 map-busy 消失導致多計 220ms）。
+ */
 async function waitMapReady(page: Page, forDate: string, timeout = 25000): Promise<number> {
   const t0 = Date.now();
   const area = page.getByTestId('map-area');
-  const canvas = page.getByTestId('map-canvas');
   for (let i = 0; i < Math.ceil(timeout / 25); i++) {
-    const [readyFor, render, busyCount] = await Promise.all([
-      area.getAttribute('data-ready-for'),
-      canvas.getAttribute('data-render'),
-      page.getByTestId('map-busy').count(),
-    ]);
-    if (readyFor === forDate && render === 'idle' && busyCount === 0) return Date.now() - t0;
+    if ((await area.getAttribute('data-ready-for')) === forDate) return Date.now() - t0;
     await page.waitForTimeout(25);
   }
   return Date.now() - t0; // 超時仍回傳（不拋）
@@ -59,9 +57,9 @@ async function oneRun(page: Page, capturePhases = false): Promise<number[]> {
     const t0 = Date.now();
     await input.fill(to);
     await input.press('Enter');
-    await page.waitForTimeout(50); // 讓 Angular effect 觸發
-    const elapsed = await waitMapReady(page, to, 25000);
-    times.push(Date.now() - t0 - 50 + elapsed); // 加回等待前的 50ms
+    // 量測從 fill+Enter 完成到 mapReady（data-ready-for===to）的總時間
+    await waitMapReady(page, to, 25000);
+    times.push(Date.now() - t0);
   }
 
   if (capturePhases) {

@@ -208,6 +208,7 @@ export class AtlasData {
   }
 
   async loadSovereignty(date: string): Promise<void> {
+    performance.mark('wl:sov:load-start');
     const my = ++this.sovSeq;
     const key = this.sovIntervalKey(date);
     this.restart('sov');

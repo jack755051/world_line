@@ -659,14 +659,16 @@ export class AtlasMap {
       const workerRenderMs = Math.round(performance.now() - this._sovSetDataTs);
       this._sovSetDataTs = 0;
       performance.mark('wl:sov:idle');
-      try {
-        performance.measure('wl:sov:fetch',   'wl:sov:fetch-start',  'wl:sov:fetch-end');
-        performance.measure('wl:sov:signal',  'wl:sov:fetch-end',    'wl:sov:signal-set');
-        performance.measure('wl:sov:effect',  'wl:sov:signal-set',   'wl:sov:effect');
-        performance.measure('wl:sov:setdata', 'wl:sov:effect',       'wl:sov:setdata');
-        performance.measure('wl:sov:worker',  'wl:sov:setdata',      'wl:sov:idle');
-      } catch { /* marks 可能因中止或快取命中而缺失 */ }
-      console.log(`[wl:perf:sov] worker+render=${workerRenderMs}ms`, performance.getEntriesByType('measure').filter(m => m.name.startsWith('wl:sov:')).map(m => `${m.name.replace('wl:sov:', '')}=${Math.round(m.duration)}ms`).join(' '));
+      try { performance.measure('wl:sov:debounce',       'wl:sov:date-change',  'wl:sov:load-start'); } catch { /* 播放模式 debounce=0 時 date-change 可能缺 */ }
+      try { performance.measure('wl:sov:cache-or-fetch', 'wl:sov:load-start',   'wl:sov:signal-set'); } catch { /* 首次載入前可能缺 load-start */ }
+      try { performance.measure('wl:sov:fetch',          'wl:sov:fetch-start',  'wl:sov:fetch-end'); } catch { /* 快取命中時無 fetch marks */ }
+      try { performance.measure('wl:sov:signal',         'wl:sov:fetch-end',    'wl:sov:signal-set'); } catch {}
+      try { performance.measure('wl:sov:effect',         'wl:sov:signal-set',   'wl:sov:effect'); } catch {}
+      try { performance.measure('wl:sov:setdata',        'wl:sov:effect',       'wl:sov:setdata'); } catch {}
+      try { performance.measure('wl:sov:worker',         'wl:sov:setdata',      'wl:sov:idle'); } catch {}
+      const ms = (name: string) => { const e = performance.getEntriesByName(name, 'measure')[0]; return e ? `${name.replace('wl:sov:', '')}=${Math.round(e.duration)}ms` : null; };
+      const parts = ['debounce','cache-or-fetch','fetch','effect','setdata','worker'].map(n => ms(`wl:sov:${n}`)).filter(Boolean);
+      console.log(`[wl:perf:sov] worker+render=${workerRenderMs}ms`, parts.join(' '));
       performance.clearMarks(); performance.clearMeasures();
     }
     this.renderBusySig.set(v);

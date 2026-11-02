@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
+using NetTopologySuite.Precision;
 using NetTopologySuite.Simplify;
 using NpgsqlTypes;
 using WorldLine.Api.Common;
@@ -195,15 +196,22 @@ public static class SovereigntyEndpoints
     internal static MultiPolygon GetOrSimplify(Guid id, MultiPolygon g, double tolerance) =>
         _simplifiedCache.GetOrAdd((id, tolerance), _ => Simplify(g, tolerance));
 
-    /// <summary>回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。</summary>
+    /// <summary>
+    /// 回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。
+    /// 簡化後再以 5 位小數精度（≈1 m）縮減座標，減少 JSON 大小約 50%；
+    /// 若精度縮減後幾何無效，回退到未縮減的簡化結果。
+    /// </summary>
     internal static MultiPolygon Simplify(MultiPolygon g, double tolerance)
     {
         var s = TopologyPreservingSimplifier.Simplify(g, tolerance);
         if (s is not { IsEmpty: false, IsValid: true }) return g;
-        return s switch
+        // 5dp 精度（PrecisionModel scale=100000）已遠高於簡化容差（≥ 200m），安全截斷多餘小數
+        var r = GeometryPrecisionReducer.Reduce(s, new PrecisionModel(100000));
+        var geom = r is { IsEmpty: false, IsValid: true } ? r : s;
+        return geom switch
         {
             MultiPolygon mp => mp,
-            Polygon p => new MultiPolygon([p], g.Factory),
+            Polygon p => new MultiPolygon([p], geom.Factory),
             _ => g,
         };
     }

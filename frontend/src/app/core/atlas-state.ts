@@ -17,6 +17,8 @@ export class AtlasState {
   readonly axis = signal<Axis>('control');
   readonly lang = signal<Lang>('zh-Hant');
   readonly legendOpen = signal(true);
+  /** 目前地圖縮放（由 AtlasMap zoomend 更新）；主權 API 依此選擇簡化容差。 */
+  readonly mapZoom = signal(4.7);
 
   setDate(value: string): boolean {
     if (!isIsoDate(value)) return false;

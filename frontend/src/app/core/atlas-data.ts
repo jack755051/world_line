@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { LruCache, addDaysIso, intervalKey, neighborDates } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
+import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
@@ -16,6 +17,7 @@ export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 @Injectable({ providedIn: 'root' })
 export class AtlasData {
   private readonly api = inject(WorldLineApi);
+  private readonly state = inject(AtlasState);
 
   readonly health = signal<'checking' | 'up' | 'down'>('checking');
   readonly healthStatus = signal<string | null>(null);
@@ -59,6 +61,17 @@ export class AtlasData {
   }
   private controlKey(date: string): string {
     return intervalKey(this.controlPoints(), date);
+  }
+  /**
+   * 主權資料快取 key：變動區間 + 縮放容差桶（c/m/f）。
+   * zoom ≤ 4.5 → coarse 0.010°；≤ 6.5 → medium 0.004°；else fine 0.002°（原始）。
+   * 同一區間在不同縮放等級下會得到不同幾何精細度，需分開快取。
+   */
+  private sovIntervalKey(date: string): string {
+    const interval = intervalKey(this.changePoints(), date);
+    const zoom = this.state.mapZoom();
+    const bucket = zoom <= 4.5 ? 'c' : zoom <= 6.5 ? 'm' : 'f';
+    return `${interval}:${bucket}`;
   }
 
   /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
@@ -196,9 +209,9 @@ export class AtlasData {
 
   async loadSovereignty(date: string): Promise<void> {
     const my = ++this.sovSeq;
-    const key = this.key(date);
+    const key = this.sovIntervalKey(date);
     this.restart('sov');
-    // 同一變動區間：資料不變，不換物件（地圖不 setData、標籤不重算），只記下目前日期
+    // 同一變動區間（含縮放桶）：資料不變，不換物件（地圖不 setData、標籤不重算），只記下目前日期
     if (key === this.sovKey && this.sovereignty()) {
       this.sovereigntyShownFor.set(date);
       this.sovereigntyStatus.set('ok');
@@ -211,12 +224,33 @@ export class AtlasData {
     }
     this.sovereigntyStatus.set('loading');
     try {
-      const dto = await this.fetchInterval('sov', key, date, this.sovCache, this.begin('sov'));
+      const dto = await this.fetchSov(key, date, this.state.mapZoom(), this.begin('sov'));
       if (my === this.sovSeq) this.applySovereignty(dto, key, date);
     } catch (e) {
       if (isAbort(e)) return;
       if (my === this.sovSeq) this.sovereigntyStatus.set('error');
     }
+  }
+
+  /** 主權資料請求（含 zoom 傳給後端以選擇容差）：快取 → 進行中的同 key 請求 → 新請求。 */
+  private fetchSov(key: string, date: string, zoom: number, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    const hit = this.sovCache.get(key);
+    if (hit) return Promise.resolve(hit);
+    const pk = `sov:${key}`;
+    const inflight = this.pending.get(pk) as Promise<SovereigntyMapDto> | undefined;
+    if (inflight) return inflight;
+    const p = this.api.sovereignty(date, zoom, signal);
+    this.pending.set(pk, p);
+    signal?.addEventListener('abort', () => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    p.then(
+      (dto) => this.sovCache.set(key, dto),
+      () => undefined,
+    ).finally(() => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    return p;
   }
 
   async loadConflicts(date: string): Promise<void> {
@@ -252,22 +286,24 @@ export class AtlasData {
   private prefetchRun = 0;
   async prefetch(date: string, maxIntervals = 4, offsets: number[] = [7, 14, 21, 31, 62]): Promise<void> {
     const run = ++this.prefetchRun;
+    const zoom = this.state.mapZoom();
     const dates = offsets.map((n) => addDaysIso(date, n));
     const pts = this.changePoints();
     if (pts) dates.push(...pts.filter((p) => p > date).slice(0, 2));
-    const seen = new Set<string>([this.key(date)]);
+    const seen = new Set<string>([this.sovIntervalKey(date)]);
     let fetched = 0;
     for (const d of dates.sort()) {
       if (fetched >= maxIntervals) return;
       if (run !== this.prefetchRun) return; // 使用者又換日期：改預先載入新的位置
-      const key = this.key(d);
-      if (seen.has(key)) continue;
-      seen.add(key);
+      const sovKey = this.sovIntervalKey(d);
+      const cfKey = this.key(d);
+      if (seen.has(sovKey)) continue;
+      seen.add(sovKey);
       const ck = this.controlKey(d);
-      if (this.sovCache.has(key) && this.cfCache.has(key) && this.cache.has(ck)) continue;
+      if (this.sovCache.has(sovKey) && this.cfCache.has(cfKey) && this.cache.has(ck)) continue;
       fetched++;
       try {
-        await Promise.all([this.fetchInterval('sov', key, d, this.sovCache), this.fetchInterval('cf', key, d, this.cfCache), this.fetchControl(ck, d)]);
+        await Promise.all([this.fetchSov(sovKey, d, zoom), this.fetchInterval('cf', cfKey, d, this.cfCache), this.fetchControl(ck, d)]);
       } catch {
         /* 預先載入失敗不影響畫面 */
       }

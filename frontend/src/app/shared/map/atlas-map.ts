@@ -18,7 +18,7 @@ import type { FeatureCollection, Geometry, Position } from 'geojson';
 import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
-import type { Axis } from '../../core/atlas-state';
+import { AtlasState, type Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
 import { focusMaskPath, focusPadding, geometryBounds, polygonRings, type FocusInset } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
@@ -341,6 +341,7 @@ export class AtlasMap {
   private readonly canvas = viewChild.required<ElementRef<HTMLDivElement>>('canvas');
   private map: MlMap | null = null;
   private readonly destroyRef = inject(DestroyRef);
+  private readonly state = inject(AtlasState);
   /** 目前已推送進 sovereignty source 的 feature ID 集合（promoteId = recordId）。
    *  非空時改用 updateData() 差異更新，僅傳送增減的 feature，略過未變的幾何。 */
   private _sovIds = new Set<string>();
@@ -476,6 +477,7 @@ export class AtlasMap {
         this.setRenderBusy(false);
       });
       map.on('dataloading', () => this.setRenderBusy(true));
+      map.on('zoomend', () => this.state.mapZoom.set(map.getZoom()));
       map.on('move', () => {
         this.placeLabels();
         this.placeConflicts();

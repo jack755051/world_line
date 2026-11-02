@@ -36,9 +36,10 @@ export class WorldLineApi {
     return this.getByDate<ControlMapDto>('/control', date, signal);
   }
 
-  /** GET /sovereignty?date=：該日主權圖層（國界，依政權上色；陣營只作補充）。 */
-  async sovereignty(date: string, signal?: AbortSignal): Promise<SovereigntyMapDto> {
-    return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal);
+  /** GET /sovereignty?date=&zoom=：該日主權圖層（國界，依政權上色；陣營只作補充）。
+   *  zoom 供後端依縮放層級選擇幾何簡化容差（低縮放容差較大、資料量較小）。 */
+  async sovereignty(date: string, zoom?: number, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal, zoom !== undefined ? { zoom: zoom.toFixed(1) } : undefined);
   }
 
   /** GET /conflicts?date=：該日進行中的衝突（雙方政權、起訖事件與出處、圖示位置）。 */
@@ -50,11 +51,13 @@ export class WorldLineApi {
    * 依日期查詢；signal 中止時取消 HTTP 請求（unsubscribe → XHR abort）並以 AbortError 拒絕，
    * 讓快速連續跳日期時過時的請求不佔頻寬、也不會晚到蓋掉新資料。
    */
-  private getByDate<T>(path: string, date: string, signal?: AbortSignal): Promise<T> {
+  private getByDate<T>(path: string, date: string, signal?: AbortSignal, extra?: Record<string, string>): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       const aborted = () => reject(new DOMException('Aborted', 'AbortError'));
       if (signal?.aborted) return aborted();
-      const sub = this.http.get<ApiEnvelope<T>>(`${WorldLineApi.base}${path}`, { params: new HttpParams().set('date', date) }).subscribe({
+      let params = new HttpParams().set('date', date);
+      if (extra) for (const [k, v] of Object.entries(extra)) params = params.set(k, v);
+      const sub = this.http.get<ApiEnvelope<T>>(`${WorldLineApi.base}${path}`, { params }).subscribe({
         next: (res) => resolve(res.data),
         error: (e: unknown) => reject(e),
       });

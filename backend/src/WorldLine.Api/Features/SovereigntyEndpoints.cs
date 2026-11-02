@@ -19,8 +19,21 @@ namespace WorldLine.Api.Features;
 /// </summary>
 public static class SovereigntyEndpoints
 {
-    /// <summary>GET /sovereignty 回傳幾何的簡化容差（度，約 200 公尺）；原始幾何不變。</summary>
+    /// <summary>GET /sovereignty 回傳幾何的預設簡化容差（度，約 200 公尺）；原始幾何不變。</summary>
     public const double ResponseSimplifyTolerance = 0.002;
+
+    /// <summary>
+    /// 依地圖縮放層級選擇簡化容差：
+    /// zoom ≤ 4.5 → 0.010°（粗，≈1km，低縮歐洲全圖不可見）；
+    /// zoom ≤ 6.5 → 0.004°（中，≈440m）；
+    /// 其餘  → 0.002°（原始精細度）。
+    /// </summary>
+    public static double ToleranceForZoom(float? zoom) => zoom switch
+    {
+        <= 4.5f => 0.010,
+        <= 6.5f => 0.004,
+        _ => ResponseSimplifyTolerance,
+    };
 
     public static void Map(RouteGroupBuilder read, RouteGroupBuilder write)
     {
@@ -120,16 +133,18 @@ public static class SovereigntyEndpoints
         return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
-    public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
+    public static async Task<IResult> GetOnDate(DateOnly? date, float? zoom, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
     {
         if (date is not { } d)
             throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
-        // 同一變動區間內每天結果相同：依區間快取（寫入即作廢，見 DateIntervalCache）
-        var features = await cache.GetOrAddAsync("sovereignty", d, db, () => BuildOnDateAsync(d, db, ct), ct);
+        // 同一變動區間內每天結果相同；不同縮放桶（容差）各自快取，互不影響
+        var tolerance = ToleranceForZoom(zoom);
+        var kind = $"sovereignty:{tolerance:F3}";
+        var features = await cache.GetOrAddAsync(kind, d, db, () => BuildOnDateAsync(d, db, tolerance, ct), ct);
         return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
     }
 
-    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, CancellationToken ct)
+    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, double tolerance, CancellationToken ct)
     {
 
         var rows = await (
@@ -153,7 +168,7 @@ public static class SovereigntyEndpoints
         var features = rows.AsParallel().AsOrdered().Select(x =>
         {
             var r = x.r;
-            var simplified = GetOrSimplify(r.Id, r.Geom);
+            var simplified = GetOrSimplify(r.Id, r.Geom, tolerance);
             JsonElement? flags = r.Provenance is null ? null : JsonDocument.Parse(r.Provenance).RootElement.Clone();
             return new SovereigntyFeature(r.Id, Mapping.ToGeoJson(simplified), new SovereigntyFeatureProperties(
                 r.Id, r.RegimeId, x.Slug, r.LayerStatus, Mapping.ToDto((NpgsqlRange<DateOnly>?)r.ValidPeriod)!,
@@ -169,21 +184,21 @@ public static class SovereigntyEndpoints
     }
 
     /// <summary>
-    /// 已簡化幾何的行程內快取（recordId → simplified）。主權紀錄不可變（只能撤回不能修改），
-    /// 同一筆 record 在任何日期的簡化結果永遠相同，可安全跨日期區間重用。
+    /// 已簡化幾何的行程內快取（(recordId, tolerance) → simplified）。主權紀錄不可變，
+    /// 同一筆 record 在相同容差下的簡化結果永遠相同，可安全跨日期區間重用。
     /// 寫入作廢（DateIntervalCache.Invalidate）只影響 FeatureCollection 快取，此簡化快取不清除：
-    /// 撤回後的 record 不會再被查詢，舊項目最終 GC；數量上限不超過 sovereignty_records 總筆數（目前 ~200）。
+    /// 撤回後的 record 不會再被查詢，舊項目最終 GC；數量上限不超過 sovereignty_records 總筆數 × 容差層數（目前 ~600）。
     /// </summary>
-    private static readonly ConcurrentDictionary<Guid, MultiPolygon> _simplifiedCache = new();
+    private static readonly ConcurrentDictionary<(Guid Id, double Tolerance), MultiPolygon> _simplifiedCache = new();
 
     /// <summary>回應用的簡化幾何：優先取快取；快取未命中才執行 TopologyPreservingSimplifier。</summary>
-    internal static MultiPolygon GetOrSimplify(Guid id, MultiPolygon g) =>
-        _simplifiedCache.GetOrAdd(id, _ => Simplify(g));
+    internal static MultiPolygon GetOrSimplify(Guid id, MultiPolygon g, double tolerance) =>
+        _simplifiedCache.GetOrAdd((id, tolerance), _ => Simplify(g, tolerance));
 
     /// <summary>回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。</summary>
-    internal static MultiPolygon Simplify(MultiPolygon g)
+    internal static MultiPolygon Simplify(MultiPolygon g, double tolerance)
     {
-        var s = TopologyPreservingSimplifier.Simplify(g, ResponseSimplifyTolerance);
+        var s = TopologyPreservingSimplifier.Simplify(g, tolerance);
         if (s is not { IsEmpty: false, IsValid: true }) return g;
         return s switch
         {
@@ -193,9 +208,10 @@ public static class SovereigntyEndpoints
         };
     }
 
-    /// <summary>預熱單一日期（供啟動背景任務呼叫）；不更新 HTTP 回應，只填充快取。</summary>
+    /// <summary>預熱單一日期（供啟動背景任務呼叫）；用預設容差（fine）填充快取。</summary>
     public static Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache) =>
-        cache.GetOrAddAsync("sovereignty", d, db, () => BuildOnDateAsync(d, db, CancellationToken.None), CancellationToken.None);
+        cache.GetOrAddAsync($"sovereignty:{ResponseSimplifyTolerance:F3}", d, db,
+            () => BuildOnDateAsync(d, db, ResponseSimplifyTolerance, CancellationToken.None), CancellationToken.None);
 
     /// <summary>事件摘要＋引用；沒有任何引用的事件 verification = pending（「待查證」）。</summary>
     internal static async Task<Dictionary<Guid, SovereigntyEventRefDto>> EventRefsAsync(WorldLineDbContext db, IReadOnlyCollection<Guid> ids, CancellationToken ct)

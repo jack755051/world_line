@@ -99,6 +99,9 @@ export function buildBaseStyle(): StyleSpecification {
         type: 'geojson',
         data: EMPTY,
         promoteId: 'recordId',
+        /** maxzoom 限制 worker 切片至 zoom 10（預設 18）；zoom>10 時 overzoom 仍使用 zoom-10 tile，
+         *  幾何座標精度不變，視覺無差異。大幅降低 setData 後 worker 的切片計算量。 */
+        maxzoom: 10,
         attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）; CNIG, GURS, Kartverket, OCHA/HDX（CC BY 4.0）; 部分線段源自 OpenStreetMap（ODbL）',
       },
     },

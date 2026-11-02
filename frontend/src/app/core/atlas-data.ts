@@ -371,7 +371,7 @@ export class AtlasData {
     this.sovereignty.set(dto);
     this.sovereigntyShownFor.set(date);
     this.sovereigntyStatus.set('ok');
-    void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId));
+    queueMicrotask(() => void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId)));
   }
 
   async loadExtent(): Promise<void> {

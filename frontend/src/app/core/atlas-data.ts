@@ -325,7 +325,7 @@ export class AtlasData {
   async prefetch(date: string, maxIntervals = 4, backward = false): Promise<void> {
     const run = ++this.prefetchRun;
     const zoom = this.state.mapZoom();
-    const offsets = backward ? [7, 14, 21, 31, -7, -14, -21, -31] : [7, 14, 21, 31, 62];
+    const offsets = backward ? [7, 14, 21, 31, 62, 90, -7, -14, -21, -31, -62, -90] : [7, 14, 21, 31, 62];
     const dates = offsets.map((n) => addDaysIso(date, n));
     const pts = this.changePoints();
     if (pts) {

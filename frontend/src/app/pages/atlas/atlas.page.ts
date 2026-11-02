@@ -585,7 +585,7 @@ export class AtlasPage {
     void this.data.loadCapitals(date);
     const playing = this.playing();
     void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
-      if (this.state.date() === date) void this.data.prefetch(date, playing ? 4 : 2, !playing);
+      if (this.state.date() === date) void this.data.prefetch(date, 4, !playing);
     });
   }
 

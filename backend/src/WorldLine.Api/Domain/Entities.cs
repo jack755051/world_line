@@ -315,3 +315,27 @@ public sealed class ConflictRecord
     public DateTimeOffset CreatedAt { get; set; }
     public int Version { get; set; }
 }
+
+/// <summary>
+/// 首都紀錄（capital_records）：某政權在某期間的首都城市與座標，地圖上顯示小圓點＋城市名。
+/// - 城市名以雙語 JSON 儲存（{"zh-Hant": "...", "en": "..."}）；Location 為 WGS84 點。
+/// - 同一政權在同一時間只能有一筆有效紀錄（EXCLUDE 約束）。
+/// - 每筆附 source_ref（出處文字，簡化引用），查不到標「待查證」。
+/// - 修正走軟撤回（I5），不硬刪。2026-11-02 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class CapitalRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    /// <summary>城市名（jsonb 物件：{"zh-Hant": "...", "en": "..."}）。</summary>
+    public string CityName { get; set; } = "{}";
+    public Point Location { get; set; } = null!;
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    /// <summary>出處文字（「待查證」若未找到文獻）。</summary>
+    public string? SourceRef { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}

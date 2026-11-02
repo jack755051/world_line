@@ -26,6 +26,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
     public DbSet<OccupationAttribution> OccupationAttributions => Set<OccupationAttribution>();
+    public DbSet<CapitalRecord> CapitalRecords => Set<CapitalRecord>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -337,6 +338,24 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeBId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 首都紀錄（capital_records；2026-11-02 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<CapitalRecord>(e =>
+        {
+            e.ToTable("capital_records", t =>
+            {
+                t.HasCheckConstraint("ck_capital_records_city_name_object", "jsonb_typeof(city_name) = 'object'");
+                t.HasCheckConstraint("ck_capital_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_capital_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.CityName).HasColumnType("jsonb");
+            e.Property(x => x.Location).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

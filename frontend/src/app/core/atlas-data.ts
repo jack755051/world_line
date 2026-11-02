@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { LruCache, addDaysIso, intervalKey, neighborDates } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
+import type { CapitalsDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 
@@ -42,6 +43,12 @@ export class AtlasData {
   readonly regimeEventsStatus = signal<Record<string, LoadStatus>>({});
   private cfSeq = 0;
 
+  /** 首都資料：失敗時保留上一次成功的結果（點不見會讓使用者困惑）。 */
+  readonly capitals = signal<CapitalsDto | null>(null);
+  readonly capitalsStatus = signal<LoadStatus>('idle');
+  private readonly capCache = new LruCache<CapitalsDto>(60);
+  private capSeq = 0;
+
   /**
    * 主權／衝突圖層的變動點（GET /timeline/change-points）。兩個相鄰變動點之間每天的結果相同，
    * 所以快取依「區間」而不是日期：播放一週一格、在同一區間裡跳日期都不必重新請求，也不重建地圖圖層。
@@ -75,12 +82,12 @@ export class AtlasData {
   }
 
   /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
-  private readonly inflight: Record<'control' | 'sov' | 'cf', AbortController | null> = { control: null, sov: null, cf: null };
-  private restart(k: 'control' | 'sov' | 'cf'): void {
+  private readonly inflight: Record<'control' | 'sov' | 'cf' | 'cap', AbortController | null> = { control: null, sov: null, cf: null, cap: null };
+  private restart(k: 'control' | 'sov' | 'cf' | 'cap'): void {
     this.inflight[k]?.abort();
     this.inflight[k] = null;
   }
-  private begin(k: 'control' | 'sov' | 'cf'): AbortSignal {
+  private begin(k: 'control' | 'sov' | 'cf' | 'cap'): AbortSignal {
     const c = new AbortController();
     this.inflight[k] = c;
     return c.signal;
@@ -285,6 +292,29 @@ export class AtlasData {
     this.cfKey = key;
     this.conflicts.set(dto);
     this.conflictsStatus.set('ok');
+  }
+
+  async loadCapitals(date: string): Promise<void> {
+    const my = ++this.capSeq;
+    this.restart('cap');
+    const hit = this.capCache.get(date);
+    if (hit) {
+      this.capitals.set(hit);
+      this.capitalsStatus.set('ok');
+      return;
+    }
+    this.capitalsStatus.set('loading');
+    try {
+      const dto = await this.api.capitals(date, this.begin('cap'));
+      this.capCache.set(date, dto);
+      if (my === this.capSeq) {
+        this.capitals.set(dto);
+        this.capitalsStatus.set('ok');
+      }
+    } catch (e) {
+      if (isAbort(e)) return;
+      if (my === this.capSeq) this.capitalsStatus.set('error');
+    }
   }
 
   /**

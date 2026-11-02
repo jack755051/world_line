@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import type { FeatureCollection } from 'geojson';
 import { LucideCircleAlert, LucideCloudOff, LucideInfo, LucideRotateCw } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
@@ -90,6 +91,7 @@ interface SheetInfo {
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
+                [capitals]="capitalsGeoJson()"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
@@ -234,6 +236,23 @@ export class AtlasPage {
   protected readonly motion = inject(MotionService);
   /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
   protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
+  /** 首都 GeoJSON：依目前語系選好 label，直接傳給地圖圖層。 */
+  protected readonly capitalsGeoJson = computed<FeatureCollection>(() => {
+    const dto = this.data.capitals();
+    const lang = this.lang();
+    if (!dto) return { type: 'FeatureCollection', features: [] };
+    return {
+      type: 'FeatureCollection',
+      features: dto.features.map((f) => ({
+        type: 'Feature',
+        geometry: f.location,
+        properties: {
+          recordId: f.recordId,
+          label: f.cityName[lang] ?? f.cityName.en ?? f.cityName['zh-Hant'] ?? f.regimeSlug,
+        },
+      })),
+    };
+  });
   protected readonly sovereigntyCount = computed(() => this.data.sovereignty()?.featureCollection.features.length ?? 0);
   protected readonly selectedSovInfo = computed(() => {
     const e = this.selectedSov();
@@ -556,6 +575,7 @@ export class AtlasPage {
   private loadDate(date: string): void {
     this.loadsStartedFor.set(date);
     void this.data.loadControl(date);
+    void this.data.loadCapitals(date);
     const playing = this.playing();
     void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
       if (this.state.date() === date) void this.data.prefetch(date, playing ? 4 : 2, !playing);

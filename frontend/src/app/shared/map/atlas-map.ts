@@ -91,6 +91,7 @@ const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
 export function buildBaseStyle(): StyleSpecification {
   return {
     version: 8,
+    glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
     sources: {
       land: { type: 'geojson', data: BASEMAP_URL, attribution: '底圖 Base map: Natural Earth（公有領域 public domain）' },
       control: { type: 'geojson', data: EMPTY, promoteId: 'versionId' },
@@ -104,6 +105,7 @@ export function buildBaseStyle(): StyleSpecification {
         maxzoom: 10,
         attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）; CNIG, GURS, Kartverket, OCHA/HDX（CC BY 4.0）; 部分線段源自 OpenStreetMap（ODbL）',
       },
+      capitals: { type: 'geojson', data: EMPTY },
     },
     layers: [
       { id: 'sea', type: 'background', paint: { 'background-color': MAP_COLORS.sea } },
@@ -196,6 +198,39 @@ export function buildBaseStyle(): StyleSpecification {
         source: 'control',
         filter: ['==', ['get', 'versionId'], ''],
         paint: { 'line-color': MAP_COLORS.ink, 'line-width': 1.5 },
+      },
+      {
+        // 首都小圓點：深色實心＋白色外框，始終顯示
+        id: 'capital-dot',
+        type: 'circle',
+        source: 'capitals',
+        paint: {
+          'circle-radius': 3.5,
+          'circle-color': '#2d2a24',
+          'circle-stroke-color': '#faf6ec',
+          'circle-stroke-width': 1.5,
+        },
+      },
+      {
+        // 首都名稱：縮放 < 3.5 時隱藏（地圖太小看不清楚）
+        id: 'capital-label',
+        type: 'symbol',
+        source: 'capitals',
+        minzoom: 3.5,
+        layout: {
+          'text-field': ['get', 'label'],
+          'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+          'text-size': 11,
+          'text-offset': [0.9, 0],
+          'text-anchor': 'left',
+          'text-optional': true,
+          'text-max-width': 8,
+        },
+        paint: {
+          'text-color': '#2d2a24',
+          'text-halo-color': '#faf6ec',
+          'text-halo-width': 1.5,
+        },
       },
     ],
   };
@@ -321,6 +356,8 @@ export class AtlasMap {
   readonly labels = input<ControlLabel[]>([]);
   /** 要畫的衝突圖示（頁面只傳與點選政權相關的衝突；預設空陣列＝不顯示）。 */
   readonly conflicts = input<MapConflictIcon[]>([]);
+  /** 首都 GeoJSON（label 屬性已依語系選好）；null = 不顯示。 */
+  readonly capitals = input<FeatureCollection | null>(null);
   protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number; points: string | null })[]>([]);
   readonly conflictClick = output<MapConflictEvent>();
   protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number }[]>([]);
@@ -430,6 +467,11 @@ export class AtlasMap {
       if (!this.ready()) return;
       this.map?.setFilter('control-selected', ['==', ['get', 'versionId'], id]);
     });
+    effect(() => {
+      const data = this.capitals();
+      if (!this.ready()) return;
+      untracked(() => (this.map?.getSource('capitals') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+    });
   }
 
   private async init(): Promise<void> {
@@ -471,6 +513,7 @@ export class AtlasMap {
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion());
+        (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(this.capitals() ?? EMPTY);
       });
       map.on('movestart', (e) => {
         this.cameraMoving.set(true);

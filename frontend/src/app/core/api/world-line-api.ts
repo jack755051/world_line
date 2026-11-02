@@ -15,6 +15,26 @@ import type {
   RegimeEventDto,
 } from './api-types';
 
+export interface CapitalCityName {
+  en?: string;
+  'zh-Hant'?: string;
+}
+
+export interface CapitalRecord {
+  recordId: string;
+  regimeId: string;
+  regimeSlug: string;
+  cityName: CapitalCityName;
+  location: { type: 'Point'; coordinates: [number, number] };
+  validPeriod: { start: string; end: string | null };
+  sourceRef: string;
+}
+
+export interface CapitalsDto {
+  date: string;
+  features: CapitalRecord[];
+}
+
 /** 健康檢查回應（`/healthz`，不在 OpenAPI 內）。 */
 export interface HealthReport {
   status: string;
@@ -117,6 +137,11 @@ export class WorldLineApi {
   async source(id: string): Promise<SourceDto> {
     const res = await firstValueFrom(this.http.get<ApiEnvelope<SourceDto>>(`${WorldLineApi.base}/sources/${id}`));
     return res.data;
+  }
+
+  /** GET /capitals?date=：該日首都記錄（城市名稱、位置）。 */
+  async capitals(date: string, signal?: AbortSignal): Promise<CapitalsDto> {
+    return this.getByDate<CapitalsDto>('/capitals', date, signal);
   }
 
   async health(): Promise<HealthReport> {

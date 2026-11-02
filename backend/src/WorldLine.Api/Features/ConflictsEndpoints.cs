@@ -91,6 +91,10 @@ public static class ConflictsEndpoints
         return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
+    /// <summary>預熱單一日期的衝突圖層快取（供啟動背景任務呼叫）。</summary>
+    public static Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache) =>
+        cache.GetOrAddAsync("conflicts", d, db, () => BuildOnDateAsync(d, db, CancellationToken.None), CancellationToken.None);
+
     public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
     {
         if (date is not { } d)

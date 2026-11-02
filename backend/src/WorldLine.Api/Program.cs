@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -89,39 +90,75 @@ app.MapHealthChecks("/healthz", new HealthCheckOptions
 var api = app.MapGroup("/api/v1");
 WorldLine.Api.Features.EndpointRegistry.Map(api);
 
-// 啟動預熱（Tai 2026-11-02 效能：重啟後前端第一次點擊直接命中快取）：
-// 背景預計算關鍵歷史日期；失敗只記 Warning，不阻斷啟動。
+// 啟動預熱（Tai 2026-11-03 效能：所有變動點依序背景預熱，覆蓋主權×3容差＋衝突圖層；
+// 快取被 Invalidate 後自動重排一次預熱，保持播放體驗流暢）。
 _ = Task.Run(async () =>
 {
-    await Task.Delay(500); // 等 Kestrel 就緒後再開始，不搶啟動資源
-    using var scope = app.Services.CreateScope();
-    var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
-    var cache = scope.ServiceProvider.GetRequiredService<DateIntervalCache>();
-    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-    // 關鍵年份代表日（涵蓋 1908 試驗起點、WWI、WW2 主要階段）
-    var warmupDates = new[]
+    var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+    var stopping = lifetime.ApplicationStopping;
+    // 等 Kestrel 就緒，不搶啟動資源
+    try { await Task.Delay(500, stopping); } catch (OperationCanceledException) { return; }
+
+    while (!stopping.IsCancellationRequested)
     {
-        new DateOnly(1908, 10, 6),
-        new DateOnly(1914, 8, 1),
-        new DateOnly(1918, 11, 11),
-        new DateOnly(1925, 6, 1),
-        new DateOnly(1939, 9, 1),
-        new DateOnly(1941, 6, 22),
-        new DateOnly(1942, 11, 1),
-        new DateOnly(1945, 5, 9),
-    };
-    foreach (var d in warmupDates)
-    {
+        using var scope = app.Services.CreateScope();
+        var db     = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+        var cache  = scope.ServiceProvider.GetRequiredService<DateIntervalCache>();
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        var version = cache.Version;
+        var sw = Stopwatch.StartNew();
+        int count = 0, total = 0;
+
         try
         {
-            await WorldLine.Api.Features.SovereigntyEndpoints.WarmupAsync(d, db, cache);
+            var points = await cache.ChangePointsAsync(db, stopping);
+            total = points.Length;
+
+            // 3 種主權容差（0.010 / 0.004 / 0.002）＋衝突 ＝ 4 種快取，確認 MaxEntries 足夠
+            const int kinds = 4;
+            var needed = total * kinds;
+            if (needed > DateIntervalCache.MaxEntries)
+            {
+                DateIntervalCache.MaxEntries = needed;
+                // 各種類平均每筆估計約 1.4 MB（fine 主權 ~3.4 MB、中粗各 ~1 MB、衝突 ~0.1 MB）
+                logger.LogInformation(
+                    "MaxEntries 已調高至 {Max}（{Points} 個變動點 × {Kinds} 種），估計快取用量約 {EstMB:F0} MB",
+                    needed, total, kinds, needed * 1.4);
+            }
+
+            foreach (var point in points)
+            {
+                if (stopping.IsCancellationRequested || cache.Version != version) break;
+                try
+                {
+                    await WorldLine.Api.Features.SovereigntyEndpoints.WarmupAsync(point, db, cache);
+                    await WorldLine.Api.Features.ConflictsEndpoints.WarmupAsync(point, db, cache);
+                    count++;
+                }
+                catch (Exception ex)
+                {
+                    logger.LogWarning(ex, "背景預熱 {Date} 失敗（不影響服務）", point);
+                }
+                // 短暫讓出，避免長時間佔用執行緒集區
+                await Task.Delay(50, CancellationToken.None);
+            }
         }
+        catch (OperationCanceledException) { return; }
         catch (Exception ex)
         {
-            logger.LogWarning(ex, "啟動預熱 {Date} 失敗（不影響服務）", d);
+            logger.LogWarning(ex, "背景預熱流程發生錯誤（不影響服務）");
+        }
+
+        sw.Stop();
+        logger.LogInformation("背景預熱完成：{Count}/{Total} 個日期，耗時 {Elapsed:F1} s", count, total, sw.Elapsed.TotalSeconds);
+
+        // 等快取版本更新（寫入觸發 Invalidate）後重排一次預熱；每 2 s 輪詢
+        while (!stopping.IsCancellationRequested && cache.Version == version)
+        {
+            try { await Task.Delay(2000, stopping); }
+            catch (OperationCanceledException) { return; }
         }
     }
-    logger.LogInformation("啟動預熱完成（{Count} 個日期）", warmupDates.Length);
 });
 
 app.Run();

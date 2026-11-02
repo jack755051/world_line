@@ -14,7 +14,12 @@ namespace WorldLine.Api.Common;
 /// </summary>
 public sealed class DateIntervalCache
 {
-    public const int MaxEntries = 400;
+    /// <summary>
+    /// 快取上限（筆數）。啟動背景預熱時若「變動點數 × 種類數」超過此值，會自動調高並寫 log。
+    /// 預設 400。各種類平均每筆估計約 1.4 MB（fine 主權 ~3.4 MB、中粗各 ~1 MB、衝突 ~0.1 MB），
+    /// 400 筆約耗用 ~560 MB；調高前請確認主機可用記憶體。
+    /// </summary>
+    public static int MaxEntries = 400;
     private long _version;
     private (long Version, DateOnly[] Points)? _points;
     private readonly SemaphoreSlim _pointsLock = new(1, 1);

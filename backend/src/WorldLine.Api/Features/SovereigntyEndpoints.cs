@@ -216,10 +216,16 @@ public static class SovereigntyEndpoints
         };
     }
 
-    /// <summary>預熱單一日期（供啟動背景任務呼叫）；用預設容差（fine）填充快取。</summary>
-    public static Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache) =>
-        cache.GetOrAddAsync($"sovereignty:{ResponseSimplifyTolerance:F3}", d, db,
-            () => BuildOnDateAsync(d, db, ResponseSimplifyTolerance, CancellationToken.None), CancellationToken.None);
+    /// <summary>
+    /// 預熱單一日期（供啟動背景任務呼叫）；依序填充三個縮放容差層（0.010 / 0.004 / 0.002）的快取。
+    /// 前兩層先算可複用 <see cref="GetOrSimplify"/> 快取，後續命中幾乎無 CPU 開銷。
+    /// </summary>
+    public static async Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache)
+    {
+        foreach (var tolerance in new[] { 0.010, 0.004, ResponseSimplifyTolerance })
+            await cache.GetOrAddAsync($"sovereignty:{tolerance:F3}", d, db,
+                () => BuildOnDateAsync(d, db, tolerance, CancellationToken.None), CancellationToken.None);
+    }
 
     /// <summary>事件摘要＋引用；沒有任何引用的事件 verification = pending（「待查證」）。</summary>
     internal static async Task<Dictionary<Guid, SovereigntyEventRefDto>> EventRefsAsync(WorldLineDbContext db, IReadOnlyCollection<Guid> ids, CancellationToken ct)

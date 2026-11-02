@@ -514,6 +514,21 @@ export class AtlasMap {
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion());
         (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(this.capitals() ?? EMPTY);
+        // Worker pre-warm：主權資料尚未到達時，推一個最小 feature 讓 tile 計算路徑完成 JIT 熱身；
+        // 真實資料到達後 applySovereigntyData 會呼叫 setData 覆蓋；RAF 後若仍無真實資料則清回 EMPTY。
+        // 不更新 _sovIds，確保不蓋掉已到達的真實資料、也不讓虛擬 id 殘留。
+        if (this._sovIds.size === 0) {
+          const sovSrc = map.getSource('sovereignty') as GeoJSONSource | undefined;
+          const warmData: FeatureCollection = {
+            type: 'FeatureCollection',
+            features: [{ type: 'Feature', properties: { recordId: '__warm__' },
+              geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]] } }],
+          };
+          sovSrc?.setData(warmData);
+          requestAnimationFrame(() => {
+            if (!this._sovIds.size) sovSrc?.setData(EMPTY);
+          });
+        }
       });
       map.on('movestart', (e) => {
         this.cameraMoving.set(true);

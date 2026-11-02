@@ -317,6 +317,34 @@ public sealed class ConflictRecord
 }
 
 /// <summary>
+/// 領導人紀錄（leader_records）：某政權在某期間由誰擔任國家元首或政府首腦。
+/// - role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// - 每筆附出處文字（source），查不到標「待查證」（verified=false）。
+/// - 修正走軟撤回（I5），不硬刪。2026-11-03 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class LeaderRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    public string Name { get; set; } = "";
+    public string? NameZh { get; set; }
+    /// <summary>head_of_state | head_of_government。</summary>
+    public string Role { get; set; } = "";
+    /// <summary>選填職銜（如 Reichspräsident）。</summary>
+    public string? Title { get; set; }
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    /// <summary>出處文字（「待查證」若未找到文獻）。</summary>
+    public string Source { get; set; } = "";
+    public string? SourceUrl { get; set; }
+    /// <summary>true＝已有可信出處；false＝待查證。</summary>
+    public bool Verified { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
 /// 首都紀錄（capital_records）：某政權在某期間的首都城市與座標，地圖上顯示小圓點＋城市名。
 /// - 城市名以雙語 JSON 儲存（{"zh-Hant": "...", "en": "..."}）；Location 為 WGS84 點。
 /// - 同一政權在同一時間只能有一筆有效紀錄（EXCLUDE 約束）。

@@ -27,6 +27,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
     public DbSet<OccupationAttribution> OccupationAttributions => Set<OccupationAttribution>();
     public DbSet<CapitalRecord> CapitalRecords => Set<CapitalRecord>();
+    public DbSet<LeaderRecord> LeaderRecords => Set<LeaderRecord>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -356,6 +357,27 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.ValidPeriod).HasColumnType("daterange");
             e.Property(x => x.Version).HasDefaultValue(0);
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 領導人紀錄（leader_records；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderRecord>(e =>
+        {
+            e.ToTable("leader_records", t =>
+            {
+                t.HasCheckConstraint("ck_leader_records_role", InList("role", LeaderRoles.All));
+                t.HasCheckConstraint("ck_leader_records_name_not_blank", "btrim(name) <> ''");
+                t.HasCheckConstraint("ck_leader_records_source_not_blank", "btrim(source) <> ''");
+                t.HasCheckConstraint("ck_leader_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_leader_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Role).HasMaxLength(32);
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Verified).HasDefaultValue(false);
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RegimeId);
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

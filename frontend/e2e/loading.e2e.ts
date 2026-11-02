@@ -2,7 +2,7 @@ import { expect, test, type Page, type Route } from '@playwright/test';
 
 /**
  * 載入指示（Tai 2026-10-31）：大幅跳日期或拖到其他區域時，國界／控制區請求或 MapLibre 切片超過約 300ms 未完成，
- * 地圖左上角出現非阻擋的小 spinner（「載入中」）；完成後隱藏、新國界淡入（減少動態時直接出現）。
+ * 地圖蓋上半透明蒙版、「載入中」置於地圖正中央（Tai 2026-11-01，原為左上角）；蒙版淡入、不攔截滑鼠；完成後隱藏、新國界淡入（減少動態時直接出現）。
  * 快速連續跳日期：舊請求被中止（不讓舊資料蓋掉新資料）。
  * 需要開發 API（5052），以 `WL_E2E_BORDERS=1 WL_E2E_PORT=4201` 執行；用 page.route 只延遲回應，不 mock 內容、不寫入資料。
  */
@@ -32,7 +32,7 @@ async function delay(page: Page, dates: Record<string, number>): Promise<void> {
   });
 }
 
-test('大幅跳日期且載入慢：300ms 後角落出現「載入中」、不擋操作；完成後隱藏並淡入新國界', async ({ page }) => {
+test('大幅跳日期且載入慢：300ms 後出現半透明蒙版與置中的「載入中」、不擋操作；完成後隱藏並淡入新國界', async ({ page }) => {
   await open(page, '1939-10-23');
   await delay(page, { '1944-10-01': 1800 });
   const canvas = page.getByTestId('map-canvas');
@@ -43,6 +43,22 @@ test('大幅跳日期且載入慢：300ms 後角落出現「載入中」、不�
   await expect(busy).toHaveAttribute('role', 'status');
   await expect(busy).toContainText('載入中');
   await expect(busy).toHaveCSS('pointer-events', 'none');
+  // 蒙版：蓋滿地圖、半透明、不攔截滑鼠；「載入中」置於地圖正中央
+  const scrim = page.getByTestId('map-busy-scrim');
+  await expect(scrim).toBeVisible();
+  await expect(scrim).toHaveCSS('pointer-events', 'none');
+  const bg = await scrim.evaluate((el) => getComputedStyle(el).backgroundColor);
+  expect(bg).not.toBe('rgba(0, 0, 0, 0)');
+  const alpha = Number((/\/\s*([\d.]+)\s*\)$/.exec(bg) ?? /^rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)$/.exec(bg))?.[1]); // 半透明：0 < alpha < 1
+  expect(alpha).toBeGreaterThan(0);
+  expect(alpha).toBeLessThan(1);
+  const cb = (await canvas.boundingBox())!;
+  const sb = (await scrim.boundingBox())!;
+  const bb = (await busy.boundingBox())!;
+  expect(Math.abs(sb.width - cb.width)).toBeLessThan(2);
+  expect(Math.abs(sb.height - cb.height)).toBeLessThan(2);
+  expect(Math.abs(bb.x + bb.width / 2 - (cb.x + cb.width / 2))).toBeLessThan(4);
+  expect(Math.abs(bb.y + bb.height / 2 - (cb.y + cb.height / 2))).toBeLessThan(4);
   await page.mouse.move(5, 5);
   await page.waitForTimeout(200);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-loading-1944-10-01.png` });

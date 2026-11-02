@@ -271,7 +271,7 @@ export interface MapConflictEvent {
       @for (l of placedLabels(); track l.versionId) {
         <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId" class="wl-regime-label absolute whitespace-nowrap"
           [style.left.px]="l.x" [style.top.px]="l.y"
-          [style.transform]="'translate(-50%, -50%)' + (l.rotation ? ' rotate(' + l.rotation + 'deg)' : '')">{{ l.text }}</span>
+          [style.transform]="'translate(-50%, -50%)'">{{ l.text }}</span>
       }
     </div>
     <!--

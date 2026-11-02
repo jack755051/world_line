@@ -1,6 +1,6 @@
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import type { SovereigntyMapDto } from '../../core/api/api-types';
-import { CAMP_FILL, campOf, darken, hatchImageId, labelPoint, labelRotation, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
+import { CAMP_FILL, campOf, darken, hatchImageId, labelPoint, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
 
 /**
  * 主權圖層（國界）樣式（2026-10-31 試驗）：
@@ -190,7 +190,7 @@ function labelGeometry(recordId: string, regimeSlug: string, g: Geometry) {
   }
   const ov = LABEL_OVERRIDES[regimeSlug] ?? {};
   const lngLat = ov.lngLat ?? labelPoint(biggest);
-  const rotation = ov.rotation !== undefined ? ov.rotation : labelRotation(biggest);
+  const rotation = ov.rotation ?? 0;
   const v = { lngLat, bbox: [minX, minY, maxX, maxY] as [number, number, number, number], rotation };
   if (labelCache.size >= LABEL_CACHE_MAX) labelCache.delete(labelCache.keys().next().value as string);
   labelCache.set(recordId, v);

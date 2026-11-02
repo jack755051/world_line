@@ -160,7 +160,7 @@ interface SheetInfo {
                   @if (sh.sov; as s) {
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" [capital]="selectedCapital()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
+                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
                       <button type="button" data-testid="regime-sheet-back" class="mb-2 flex flex-none items-center gap-1 self-start wl-text2 text-wl-on-surface-variant hover:text-wl-on-surface" (click)="backToRegime()">
@@ -277,6 +277,13 @@ export class AtlasPage {
     const caps = this.data.capitals();
     if (!s || !caps) return null;
     return caps.features.find((f) => f.regimeId === s.props.regimeId) ?? null;
+  });
+  /** 目前選中政權的領導人（直接從已載入的 leaders 資料過濾，不額外請求）。 */
+  protected readonly selectedLeaders = computed(() => {
+    const s = this.selectedSovInfo();
+    const lea = this.data.leaders();
+    if (!s || !lea) return [];
+    return lea.features.filter((f) => f.regimeId === s.props.regimeId);
   });
   protected readonly focusedConflicts = computed(() => {
     const focus = this.focusRegimeId();
@@ -583,6 +590,7 @@ export class AtlasPage {
     this.loadsStartedFor.set(date);
     void this.data.loadControl(date);
     void this.data.loadCapitals(date);
+    void this.data.loadLeaders(date);
     const playing = this.playing();
     void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
       if (this.state.date() === date) void this.data.prefetch(date, 4, !playing);

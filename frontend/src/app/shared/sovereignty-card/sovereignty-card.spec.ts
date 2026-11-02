@@ -282,4 +282,80 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(q(el, 'sovereignty-card-capital-none')?.textContent?.trim()).toBe('無資料');
     expect(q(el, 'sovereignty-card-capital-name')).toBeNull();
   });
+
+  it('面板內有「領導人」分頁（data-testid 與文案）', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const tab = q(el, 'sovereignty-card-tab-leaders') as HTMLElement;
+    expect(tab).not.toBeNull();
+    expect(tab.textContent?.trim()).toBe('領導人');
+    expect(tab.getAttribute('role')).toBe('tab');
+  });
+
+  it('領導人分頁：依角色排序（國家元首在前）、顯示姓名與職銜、出處；未驗證顯示「待查證」', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [
+      { recordId: 'l2', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒', role: 'head_of_government', title: '德意志國總理', validPeriod: { start: '1933-01-30', end: null }, source: 'Wikipedia: Adolf Hitler', sourceUrl: null, verified: true },
+      { recordId: 'l1', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒', role: 'head_of_state', title: '元首兼帝國總理', validPeriod: { start: '1934-08-02', end: null }, source: 'BGBL 1934', sourceUrl: null, verified: false },
+    ]);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const leaderTab = q(el, 'sovereignty-card-tab-leaders') as HTMLElement;
+    leaderTab.click();
+    await fixture.whenStable();
+    const panel = q(el, 'sovereignty-card-panel-leaders')!;
+    expect(panel).not.toBeNull();
+    const items = [...panel.querySelectorAll('[data-testid="sovereignty-card-leader"]')];
+    expect(items.length).toBe(2);
+    // 排序：head_of_state 在前
+    expect(items[0].querySelector('[data-role]')?.getAttribute('data-role')).toBe('head_of_state');
+    expect(items[1].querySelector('[data-role]')?.getAttribute('data-role')).toBe('head_of_government');
+    // 姓名（zh 優先）
+    expect(items[0].querySelector('[data-testid="sovereignty-card-leader-name"]')?.textContent?.trim()).toBe('阿道夫·希特勒');
+    // 職銜
+    expect(items[0].querySelector('[data-testid="sovereignty-card-leader-title"]')?.textContent?.trim()).toBe('元首兼帝國總理');
+    // 未驗證顯示「待查證」
+    expect(items[0].querySelector('[data-testid="sovereignty-card-leader-unverified"]')?.textContent?.trim()).toBe('待查證');
+    expect(items[1].querySelector('[data-testid="sovereignty-card-leader-unverified"]')).toBeNull();
+    // 出處
+    expect(items[0].querySelector('[data-testid="sovereignty-card-leader-source"]')?.textContent?.trim()).toBe('BGBL 1934');
+  });
+
+  it('領導人分頁空態：顯示「無資料」文案', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', []);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const panel = q(el, 'sovereignty-card-panel-leaders')!;
+    expect(panel.querySelector('[data-testid="sovereignty-card-leader"]')).toBeNull();
+    expect(panel.textContent).toContain('無資料');
+  });
+
+  it('領導人分頁英文介面：角色標籤英文、名稱用 name 欄位、unverified 顯示 Unverified', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('lang', 'en');
+    fixture.componentRef.setInput('leaders', [
+      { recordId: 'l1', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒', role: 'head_of_state', title: 'Führer und Reichskanzler', validPeriod: { start: '1934-08-02', end: null }, source: 'BGBL 1934', sourceUrl: null, verified: false },
+    ]);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const panel = q(el, 'sovereignty-card-panel-leaders')!;
+    const item = panel.querySelector('[data-testid="sovereignty-card-leader"]')!;
+    expect(item.querySelector('[data-role]')?.textContent?.trim()).toBe('Head of State');
+    expect(item.querySelector('[data-testid="sovereignty-card-leader-name"]')?.textContent?.trim()).toBe('Adolf Hitler');
+    expect(item.querySelector('[data-testid="sovereignty-card-leader-unverified"]')?.textContent?.trim()).toBe('Unverified');
+  });
 });

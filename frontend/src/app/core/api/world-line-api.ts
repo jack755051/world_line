@@ -35,6 +35,25 @@ export interface CapitalsDto {
   features: CapitalRecord[];
 }
 
+export interface LeaderRecord {
+  recordId: string;
+  regimeId: string;
+  regimeSlug: string;
+  name: string;
+  nameZh: string | null;
+  role: 'head_of_state' | 'head_of_government';
+  title: string;
+  validPeriod: { start: string; end: string | null };
+  source: string;
+  sourceUrl: string | null;
+  verified: boolean;
+}
+
+export interface LeadersDto {
+  date: string;
+  features: LeaderRecord[];
+}
+
 /** 健康檢查回應（`/healthz`，不在 OpenAPI 內）。 */
 export interface HealthReport {
   status: string;
@@ -142,6 +161,11 @@ export class WorldLineApi {
   /** GET /capitals?date=：該日首都記錄（城市名稱、位置）。 */
   async capitals(date: string, signal?: AbortSignal): Promise<CapitalsDto> {
     return this.getByDate<CapitalsDto>('/capitals', date, signal);
+  }
+
+  /** GET /leaders?date=：該日領導人記錄（國家元首、政府首腦）。 */
+  async leaders(date: string, signal?: AbortSignal): Promise<LeadersDto> {
+    return this.getByDate<LeadersDto>('/leaders', date, signal);
   }
 
   async health(): Promise<HealthReport> {

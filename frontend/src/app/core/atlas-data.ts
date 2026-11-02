@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { LruCache, addDaysIso, intervalKey, neighborDates } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
-import type { CapitalsDto } from './api/world-line-api';
+import type { CapitalsDto, LeadersDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 
@@ -49,6 +49,12 @@ export class AtlasData {
   private readonly capCache = new LruCache<CapitalsDto>(60);
   private capSeq = 0;
 
+  /** 領導人資料：失敗時保留上一次成功的結果。 */
+  readonly leaders = signal<LeadersDto | null>(null);
+  readonly leadersStatus = signal<LoadStatus>('idle');
+  private readonly leaCache = new LruCache<LeadersDto>(60);
+  private leaSeq = 0;
+
   /**
    * 主權／衝突圖層的變動點（GET /timeline/change-points）。兩個相鄰變動點之間每天的結果相同，
    * 所以快取依「區間」而不是日期：播放一週一格、在同一區間裡跳日期都不必重新請求，也不重建地圖圖層。
@@ -82,12 +88,12 @@ export class AtlasData {
   }
 
   /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
-  private readonly inflight: Record<'control' | 'sov' | 'cf' | 'cap', AbortController | null> = { control: null, sov: null, cf: null, cap: null };
-  private restart(k: 'control' | 'sov' | 'cf' | 'cap'): void {
+  private readonly inflight: Record<'control' | 'sov' | 'cf' | 'cap' | 'lea', AbortController | null> = { control: null, sov: null, cf: null, cap: null, lea: null };
+  private restart(k: 'control' | 'sov' | 'cf' | 'cap' | 'lea'): void {
     this.inflight[k]?.abort();
     this.inflight[k] = null;
   }
-  private begin(k: 'control' | 'sov' | 'cf' | 'cap'): AbortSignal {
+  private begin(k: 'control' | 'sov' | 'cf' | 'cap' | 'lea'): AbortSignal {
     const c = new AbortController();
     this.inflight[k] = c;
     return c.signal;
@@ -314,6 +320,29 @@ export class AtlasData {
     } catch (e) {
       if (isAbort(e)) return;
       if (my === this.capSeq) this.capitalsStatus.set('error');
+    }
+  }
+
+  async loadLeaders(date: string): Promise<void> {
+    const my = ++this.leaSeq;
+    this.restart('lea');
+    const hit = this.leaCache.get(date);
+    if (hit) {
+      this.leaders.set(hit);
+      this.leadersStatus.set('ok');
+      return;
+    }
+    this.leadersStatus.set('loading');
+    try {
+      const dto = await this.api.leaders(date, this.begin('lea'));
+      this.leaCache.set(date, dto);
+      if (my === this.leaSeq) {
+        this.leaders.set(dto);
+        this.leadersStatus.set('ok');
+      }
+    } catch (e) {
+      if (isAbort(e)) return;
+      if (my === this.leaSeq) this.leadersStatus.set('error');
     }
   }
 

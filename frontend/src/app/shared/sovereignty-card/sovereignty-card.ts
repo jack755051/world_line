@@ -2,7 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { LucideX } from '@lucide/angular';
 import type { RegimeEventDto, SovereigntyFeatureProperties } from '../../core/api/api-types';
-import type { CapitalRecord } from '../../core/api/world-line-api';
+import type { CapitalRecord, LeaderRecord } from '../../core/api/world-line-api';
 import type { Lang } from '../../core/i18n';
 import { EventRef } from '../event-ref/event-ref';
 import { SANRING_TABS_IMPORTS } from '../../components/ui/tabs';
@@ -17,6 +17,8 @@ const TXT = {
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於',
     capital: '首都', capitalNone: '無資料',
+    tabLeaders: '領導人', leadersNone: '無資料', leaderUnverified: '待查證',
+    leaderRole: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
     kind: { annexed: '併入（正式或事實；國際未承認割讓）', civil_administration: '民政管理（帝國專員轄區、保護國、總督府等）', military_administration: '軍事管理' } as Record<string, string>,
@@ -31,6 +33,8 @@ const TXT = {
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added',
     capital: 'Capital', capitalNone: 'No data',
+    tabLeaders: 'Leaders', leadersNone: 'No data', leaderUnverified: 'Unverified',
+    leaderRole: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
     kind: { annexed: 'Annexed (formal or de facto; not internationally recognised)', civil_administration: 'Civil administration (Reichskommissariat, protectorate, General Government…)', military_administration: 'Military administration' } as Record<string, string>,
@@ -38,7 +42,7 @@ const TXT = {
     role: { belligerent: 'Belligerent', signatory: 'Signatory', other: 'Related', border_start: 'Border begins', border_end: 'Border ends', conflict_start: 'War begins', conflict_end: 'War ends' } as Record<string, string>,
   },
 } as const;
-export type SovereigntyTab = 'overview' | 'events';
+export type SovereigntyTab = 'overview' | 'events' | 'leaders';
 /** 佔領方簡稱（面板性質用：「德國佔領（非主權）」）；沒列的用政權名。 */
 const OCCUPIER_SHORT: Record<string, { 'zh-Hant': string; en: string }> = {
   'deutsches-reich': { 'zh-Hant': '德國', en: 'German' }, 'kingdom-of-italy': { 'zh-Hant': '義大利', en: 'Italian' },
@@ -82,6 +86,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
               <span data-testid="sovereignty-card-tab-events-count" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] tabular-nums text-wl-on-surface-variant">{{ regimeEvents()?.length }}</span>
             }
           </sanring-tabs-trigger>
+          <sanring-tabs-trigger value="leaders" data-testid="sovereignty-card-tab-leaders">{{ t().tabLeaders }}</sanring-tabs-trigger>
         </sanring-tabs-list>
         <div data-testid="sovereignty-card-body" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
           <sanring-tabs-content value="overview" class="mt-3">
@@ -102,6 +107,33 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
             <p class="wl-text2 text-wl-on-surface-variant">{{ t().noConflicts }}</p>
           }
         </section>
+            </div>
+          </sanring-tabs-content>
+          <sanring-tabs-content value="leaders" class="mt-3">
+            <div data-testid="sovereignty-card-panel-leaders">
+              @if (sortedLeaders().length === 0) {
+                <p class="wl-text2 text-wl-on-surface-variant">{{ t().leadersNone }}</p>
+              } @else {
+                <ul class="space-y-3">
+                  @for (leader of sortedLeaders(); track leader.recordId) {
+                    <li data-testid="sovereignty-card-leader" class="wl-text2">
+                      <div class="flex items-start gap-2">
+                        <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant flex-none" [attr.data-role]="leader.role">{{ t().leaderRole[leader.role] ?? leader.role }}</span>
+                        <div class="min-w-0 flex-1">
+                          <div class="font-semibold" data-testid="sovereignty-card-leader-name">{{ leaderName(leader) }}</div>
+                          <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-leader-title">{{ leader.title }}</div>
+                          @if (!leader.verified) {
+                            <span data-testid="sovereignty-card-leader-unverified" class="text-[11px] text-wl-on-surface-variant">{{ t().leaderUnverified }}</span>
+                          }
+                          @if (leader.source) {
+                            <div data-testid="sovereignty-card-leader-source" class="text-[11px] text-wl-on-surface-variant">{{ leader.source }}</div>
+                          }
+                        </div>
+                      </div>
+                    </li>
+                  }
+                </ul>
+              }
             </div>
           </sanring-tabs-content>
           <sanring-tabs-content value="events" class="mt-3">
@@ -230,6 +262,8 @@ export class SovereigntyCard {
   readonly currentDate = input('');
   /** 該政權在當前日期的首都記錄（由頁面從 capitals 圖層資料取出，不額外請求）。 */
   readonly capital = input<CapitalRecord | null>(null);
+  /** 該政權在當前日期的領導人列表（由頁面從 leaders 資料過濾，不額外請求）。 */
+  readonly leaders = input<LeaderRecord[]>([]);
   /** 目前分頁（embedded 時）：由頁面保存，切換政權時保留（例如連續比較各政權的事件），面板關閉後回到「概要」。 */
   readonly tab = input<SovereigntyTab>('overview');
   readonly tabChange = output<SovereigntyTab>();
@@ -237,7 +271,7 @@ export class SovereigntyCard {
   readonly conflictSelect = output<string>();
   readonly eventJump = output<string>();
   protected onTab(v: string) {
-    if (v === 'overview' || v === 'events') this.tabChange.emit(v);
+    if (v === 'overview' || v === 'events' || v === 'leaders') this.tabChange.emit(v);
   }
   protected readonly timeline = computed(() => {
     const d = this.currentDate();
@@ -259,6 +293,15 @@ export class SovereigntyCard {
     }));
   });
 
+  protected readonly sortedLeaders = computed(() =>
+    [...this.leaders()].sort((a, b) => {
+      const order: Record<string, number> = { head_of_state: 0, head_of_government: 1 };
+      return (order[a.role] ?? 2) - (order[b.role] ?? 2);
+    }),
+  );
+  protected leaderName(l: LeaderRecord): string {
+    return (this.lang() === 'en' ? l.name : l.nameZh || l.name) || l.name;
+  }
   protected readonly capitalName = computed(() => {
     const cap = this.capital();
     if (!cap) return '';

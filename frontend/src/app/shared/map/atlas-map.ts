@@ -234,8 +234,9 @@ export interface MapConflictEvent {
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
-        <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId" class="wl-regime-label absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap"
-          [style.left.px]="l.x" [style.top.px]="l.y">{{ l.text }}</span>
+        <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId" class="wl-regime-label absolute whitespace-nowrap"
+          [style.left.px]="l.x" [style.top.px]="l.y"
+          [style.transform]="'translate(-50%, -50%)' + (l.rotation ? ' rotate(' + l.rotation + 'deg)' : '')">{{ l.text }}</span>
       }
     </div>
     <!--
@@ -322,7 +323,7 @@ export class AtlasMap {
   readonly conflicts = input<MapConflictIcon[]>([]);
   protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number; points: string | null })[]>([]);
   readonly conflictClick = output<MapConflictEvent>();
-  protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number }[]>([]);
+  protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number }[]>([]);
 
   readonly featureClick = output<MapFeatureEvent>();
   readonly emptyClick = output<void>();
@@ -734,7 +735,7 @@ export class AtlasMap {
   private placeLabels(): void {
     const map = this.map;
     if (!map) return;
-    const placed: { versionId: string; regimeId: string; text: string; x: number; y: number }[] = [];
+    const placed: { versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number }[] = [];
     const boxes: { x: number; y: number; w: number; h: number }[] = [];
     for (const l of this.labels()) {
       const a = map.project([l.bbox[0], l.bbox[1]]);
@@ -749,7 +750,7 @@ export class AtlasMap {
       const box = { x: p.x, y: p.y, w: textW + 8, h: 20 };
       if (l.fit !== undefined && boxes.some((b) => overlaps(b, box))) continue;
       boxes.push(box);
-      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y });
+      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y, rotation: l.rotation });
     }
     this.placedLabels.set(placed);
   }

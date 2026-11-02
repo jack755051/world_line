@@ -109,6 +109,17 @@ interface SheetInfo {
                 </div>
               }
 
+              <!-- 掃描線覆蓋層（plan A1）：跳年忙碌 >300ms 且非 firstLoad 時顯示；reducedMotion 時不啟動 -->
+              @for (epoch of scanItems(); track epoch) {
+                <div data-testid="map-scan" [attr.data-scan]="scanFading() ? null : 'active'"
+                  class="absolute inset-0 z-[5] pointer-events-none overflow-hidden"
+                  [class.wl-scan-out]="scanFading()">
+                  <span data-testid="map-busy" class="sr-only" role="status" aria-live="polite">{{ tr('map.busy') }}</span>
+                  <div class="wl-scan-paper absolute inset-0"></div>
+                  <div class="wl-scan-beam absolute inset-0" (animationend)="onScanLineDone($event)"></div>
+                </div>
+              }
+
               @if (data.controlStatus() === 'error') {
                 <div data-testid="map-error" class="absolute left-1/2 top-4 -translate-x-1/2">
                   <div class="wl-alert-error shadow-[var(--wl-shadow-panel)]" role="alert">
@@ -190,7 +201,8 @@ interface SheetInfo {
             </div>
           </div>
           <!-- 全畫面載入蒙版（Tai 2026-11-02）：蓋住整個視窗（含時間軸與側欄），擋住操作；資料就緒後淡出 -->
-          @if (busyVisible() || busyFading()) {
+          <!-- 全畫面遮罩：僅限 firstLoad（第一次載入阻擋操作）或 reducedMotion（維持既有行為）時顯示 -->
+          @if ((busyVisible() || busyFading()) && (firstLoad() || motion.reduced())) {
             <div data-testid="map-busy-scrim" [class.wl-scrim-hiding]="!busyVisible() && busyFading()"
               class="wl-map-scrim absolute inset-0 z-50 flex items-center justify-center">
               <div data-testid="map-busy" role="status" aria-live="polite"
@@ -351,6 +363,14 @@ export class AtlasPage {
   protected readonly fadeArmed = signal(false);
   private fadeDisarm: ReturnType<typeof setTimeout> | undefined;
   private fadeOutTimer: ReturnType<typeof setTimeout> | undefined;
+  /** 掃描線覆蓋層（plan A1）：僅在非首次載入且非 reducedMotion 的跳年忙碌時顯示。 */
+  protected readonly scanActive = signal(false);
+  protected readonly scanFading = signal(false);
+  private readonly scanLineDone = signal(false);
+  /** 每次掃描啟動時遞增；透過 @for track 強制重建 DOM，確保 CSS animation 重置。 */
+  private readonly scanEpoch = signal(0);
+  protected readonly scanItems = computed(() => (this.scanActive() || this.scanFading()) ? [this.scanEpoch()] : []);
+  private scanFadeTimer: ReturnType<typeof setTimeout> | undefined;
   private readonly busyFlag = new DelayedFlag((v) => {
     clearTimeout(this.fadeDisarm);
     if (v) {
@@ -358,6 +378,14 @@ export class AtlasPage {
       this.busyFading.set(false);
       this.busyVisible.set(true);
       this.fadeArmed.set(true);
+      // 掃描覆蓋層：非首次載入且未設定 reducedMotion 才啟動
+      if (!this.firstLoad() && !this.motion.reduced()) {
+        clearTimeout(this.scanFadeTimer);
+        this.scanFading.set(false);
+        this.scanLineDone.set(false);
+        this.scanEpoch.update((k) => k + 1);
+        this.scanActive.set(true);
+      }
     } else {
       clearTimeout(this.fadeOutTimer);
       // 立刻停止遮擋（busyVisible→false 同時 busyFading→true）：
@@ -510,10 +538,23 @@ export class AtlasPage {
       const busy = !this.playing() && (this.data.mapDataLoading() || this.mapRenderBusy());
       untracked(() => this.busyFlag.set(busy));
     });
+    // 掃描結束條件：掃描線到右端（animationend）AND mapReady，兩者都達成才 200ms 淡出
+    effect(() => {
+      if (!this.scanLineDone() || !this.mapReady() || !this.scanActive() || this.scanFading()) return;
+      untracked(() => {
+        clearTimeout(this.scanFadeTimer);
+        this.scanFading.set(true);
+        this.scanFadeTimer = setTimeout(() => {
+          this.scanActive.set(false);
+          this.scanFading.set(false);
+        }, 200);
+      });
+    });
     inject(DestroyRef).onDestroy(() => {
       this.busyFlag.dispose();
       clearTimeout(this.fadeDisarm);
       clearTimeout(this.fadeOutTimer);
+      clearTimeout(this.scanFadeTimer);
     });
     effect(() => {
       const s = this.sheetNow();
@@ -693,6 +734,12 @@ export class AtlasPage {
     this.focusRegimeId.set(null);
     this.focusRecord.set(null);
     this.returnSov.set(null);
+  }
+
+  protected onScanLineDone(event: AnimationEvent): void {
+    if (event.animationName === 'wl-scan-beam') {
+      this.scanLineDone.set(true);
+    }
   }
 
   protected onInvalidInput(): void {

@@ -54,6 +54,16 @@
 @keyframes wl-toast-in-top { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 @keyframes wl-toast-in-bottom { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
+/* 地圖載入蒙版（Tai 2026-11-01）：半透明遮罩＋置中「載入中」；淡入，減少動態時直接出現 */
+@keyframes wl-scrim-in { from { opacity: 0; } to { opacity: 1; } }
+.wl-map-scrim {
+  background: color-mix(in srgb, var(--wl-color-on-surface) 24%, transparent);
+  animation: wl-scrim-in 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wl-map-scrim { animation: none; }
+}
+
 html,
 body {
   height: 100%;

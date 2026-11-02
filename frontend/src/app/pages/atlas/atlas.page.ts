@@ -106,11 +106,14 @@ interface SheetInfo {
                   <span class="wl-paper flex items-center gap-2 px-4 py-2 wl-text1"><sanring-spinner size="sm" ariaLabel="loading" />{{ tr('map.loading', { date: state.date() }) }}</span>
                 </div>
               } @else if (busyVisible()) {
-                <!-- 載入指示（非阻擋）：國界／控制區請求或 MapLibre 切片超過 300ms 未完成才出現在左上角，不擋地圖操作 -->
-                <div data-testid="map-busy" role="status" aria-live="polite"
-                  class="wl-paper pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2 text-wl-on-surface-variant">
-                  <sanring-spinner size="sm" speed="normal" [ariaLabel]="tr('map.busy')" />
-                  <span>{{ tr('map.busy') }}</span>
+                <!-- 載入指示（Tai 2026-11-01）：國界／控制區請求或 MapLibre 切片超過 300ms 未完成，地圖蓋上半透明蒙版、
+                     「載入中」置中；蒙版淡入（減少動態時直接出現），不攔截滑鼠，仍可拖曳縮放 -->
+                <div data-testid="map-busy-scrim" class="wl-map-scrim pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+                  <div data-testid="map-busy" role="status" aria-live="polite"
+                    class="wl-paper pointer-events-none flex items-center gap-2 px-4 py-2 wl-text1 shadow-[var(--wl-shadow-panel)]">
+                    <sanring-spinner size="sm" speed="normal" [ariaLabel]="tr('map.busy')" />
+                    <span>{{ tr('map.busy') }}</span>
+                  </div>
                 </div>
               }
 

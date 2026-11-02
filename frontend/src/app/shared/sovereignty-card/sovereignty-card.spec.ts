@@ -252,4 +252,34 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     const en = await render(props({ layerStatus: 'not_sovereign', occupation: { ...o, occupierSlug: 'deutsches-reich' } }), 'en');
     expect(q(en.el, 'sovereignty-card-status')?.textContent?.trim()).toBe('German occupation (not sovereign)');
   });
+
+  it('概要顯示首都名稱（依語言）與出處文字', async () => {
+    const cap = {
+      recordId: 'cap1', regimeId: 'g1', regimeSlug: 'deutsches-reich',
+      cityName: { 'zh-Hant': '柏林', en: 'Berlin' },
+      location: { type: 'Point' as const, coordinates: [13.4, 52.5] as [number, number] },
+      validPeriod: { start: '1933-01-30', end: null },
+      sourceRef: 'Wikipedia: Berlin',
+    };
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('capital', cap);
+    fixture.componentRef.setInput('lang', 'zh-Hant');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(q(el, 'sovereignty-card-capital-name')?.textContent?.trim()).toBe('柏林');
+    expect(q(el, 'sovereignty-card-capital-source')?.textContent?.trim()).toBe('Wikipedia: Berlin');
+    expect(q(el, 'sovereignty-card-capital-none')).toBeNull();
+    // 英文介面
+    fixture.componentRef.setInput('lang', 'en');
+    await fixture.whenStable();
+    expect(q(el, 'sovereignty-card-capital-name')?.textContent?.trim()).toBe('Berlin');
+  });
+
+  it('首都無資料時概要顯示「無資料」', async () => {
+    const { el } = await render(props());
+    // capital 預設 null
+    expect(q(el, 'sovereignty-card-capital-none')?.textContent?.trim()).toBe('無資料');
+    expect(q(el, 'sovereignty-card-capital-name')).toBeNull();
+  });
 });

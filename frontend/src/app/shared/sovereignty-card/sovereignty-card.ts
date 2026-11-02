@@ -2,6 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { LucideX } from '@lucide/angular';
 import type { RegimeEventDto, SovereigntyFeatureProperties } from '../../core/api/api-types';
+import type { CapitalRecord } from '../../core/api/world-line-api';
 import type { Lang } from '../../core/i18n';
 import { EventRef } from '../event-ref/event-ref';
 import { SANRING_TABS_IMPORTS } from '../../components/ui/tabs';
@@ -15,6 +16,7 @@ const TXT = {
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於',
+    capital: '首都', capitalNone: '無資料',
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
     kind: { annexed: '併入（正式或事實；國際未承認割讓）', civil_administration: '民政管理（帝國專員轄區、保護國、總督府等）', military_administration: '軍事管理' } as Record<string, string>,
@@ -28,6 +30,7 @@ const TXT = {
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added',
+    capital: 'Capital', capitalNone: 'No data',
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
     kind: { annexed: 'Annexed (formal or de facto; not internationally recognised)', civil_administration: 'Civil administration (Reichskommissariat, protectorate, General Government…)', military_administration: 'Military administration' } as Record<string, string>,
@@ -168,6 +171,15 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         }
         <dt class="text-wl-on-surface-variant">{{ t().period }}</dt>
         <dd>{{ props().validPeriod.start }} {{ t().until }} {{ props().validPeriod.end ?? '—' }}</dd>
+        <dt class="text-wl-on-surface-variant">{{ t().capital }}</dt>
+        <dd data-testid="sovereignty-card-capital">
+          @if (capital(); as cap) {
+            <span data-testid="sovereignty-card-capital-name">{{ capitalName() }}</span>
+            @if (cap.sourceRef) { <span class="block text-[11px] text-wl-on-surface-variant" data-testid="sovereignty-card-capital-source">{{ cap.sourceRef }}</span> }
+          } @else {
+            <span class="text-wl-on-surface-variant" data-testid="sovereignty-card-capital-none">{{ t().capitalNone }}</span>
+          }
+        </dd>
         @if (noteText(); as n) {
           <dt class="text-wl-on-surface-variant">{{ t().note }}</dt>
           <dd data-testid="sovereignty-card-note" class="min-w-0 whitespace-pre-line">{{ n }}</dd>
@@ -216,6 +228,8 @@ export class SovereigntyCard {
   readonly eventsStatus = input<'idle' | 'loading' | 'ok' | 'error'>('idle');
   /** 目前日期：時間線標示「目前」（最後一個不晚於此日的事件）與之後的事件。 */
   readonly currentDate = input('');
+  /** 該政權在當前日期的首都記錄（由頁面從 capitals 圖層資料取出，不額外請求）。 */
+  readonly capital = input<CapitalRecord | null>(null);
   /** 目前分頁（embedded 時）：由頁面保存，切換政權時保留（例如連續比較各政權的事件），面板關閉後回到「概要」。 */
   readonly tab = input<SovereigntyTab>('overview');
   readonly tabChange = output<SovereigntyTab>();
@@ -245,6 +259,12 @@ export class SovereigntyCard {
     }));
   });
 
+  protected readonly capitalName = computed(() => {
+    const cap = this.capital();
+    if (!cap) return '';
+    const n = cap.cityName;
+    return (this.lang() === 'en' ? n.en || n['zh-Hant'] : n['zh-Hant'] || n.en) ?? '';
+  });
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
   protected readonly occupation = computed(() => this.props().occupation ?? null);
   /** 性質：一般國界／非主權；有佔領歸屬時顯示「德國佔領（非主權）」「德國併入（非主權）」 */

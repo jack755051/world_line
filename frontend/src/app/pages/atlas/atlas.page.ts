@@ -160,7 +160,7 @@ interface SheetInfo {
                   @if (sh.sov; as s) {
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
+                      [currentDate]="state.date()" [capital]="selectedCapital()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
                       <button type="button" data-testid="regime-sheet-back" class="mb-2 flex flex-none items-center gap-1 self-start wl-text2 text-wl-on-surface-variant hover:text-wl-on-surface" (click)="backToRegime()">
@@ -271,6 +271,13 @@ export class AtlasPage {
   private regimeName(id: string, slug: string): string {
     return regimeSelfName(this.data.regimes()[id], this.lang())?.display ?? slug;
   }
+  /** 目前選中政權的首都（直接從已載入的 capitals 圖層資料取出，不額外請求）。 */
+  protected readonly selectedCapital = computed(() => {
+    const s = this.selectedSovInfo();
+    const caps = this.data.capitals();
+    if (!s || !caps) return null;
+    return caps.features.find((f) => f.regimeId === s.props.regimeId) ?? null;
+  });
   protected readonly focusedConflicts = computed(() => {
     const focus = this.focusRegimeId();
     if (!focus) return [];

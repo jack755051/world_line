@@ -131,7 +131,7 @@ public static class ConflictsEndpoints
     /// 當日相鄰判定與虛線弧端點（只讀）：
     /// - 控制範圍＝該政權當日主權紀錄＋當日以它為佔領方（occupation_attributions）的政權紀錄；
     /// - 相鄰＝雙方控制範圍有任何幾何相交（OHM 共用邊界線段，相接即相交；用 ST_Intersects 而非 ST_DWithin，大國幾何下快約 50 倍）；
-    /// - 端點＝雙方當日主權紀錄的 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）；
+    /// - 端點＝雙方當日首都座標（capital_records，valid_period 包含查詢日）；無首都資料則退回 ST_PointOnSurface；任一方當日沒有主權紀錄就不畫弧（Adjacent 仍回傳）；
     /// - 有事件地點時其中一端改用事件地點（規則見 ConflictArcDto）；
     /// - 控制範圍也包含當日屬地（regime_dependencies：殖民地、委任統治地 → 宗主國），用於相鄰判定與最近端點；
     /// - 控制範圍也包含當日扶植政權（regime_relations 的 patron_puppet，regime_a＝扶植方）；
@@ -169,8 +169,14 @@ public static class ConflictsEndpoints
             q AS MATERIALIZED (
               SELECT c.id, c.a, c.b, c.ev,
                 EXISTS (SELECT 1 FROM ctl x JOIN ctl y ON x.geom && y.geom AND ST_Intersects(x.geom, y.geom) WHERE x.holder = c.a AND y.holder = c.b) AS adjacent,
-                (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.a LIMIT 1) AS pa,
-                (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.b LIMIT 1) AS pb,
+                COALESCE(
+                  (SELECT location FROM capital_records WHERE regime_id = c.a AND retracted_at IS NULL AND valid_period @> @d LIMIT 1),
+                  (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.a LIMIT 1)
+                ) AS pa,
+                COALESCE(
+                  (SELECT location FROM capital_records WHERE regime_id = c.b AND retracted_at IS NULL AND valid_period @> @d LIMIT 1),
+                  (SELECT ST_PointOnSurface(geom) FROM own WHERE regime_id = c.b LIMIT 1)
+                ) AS pb,
                 c.ev IS NOT NULL AND EXISTS (SELECT 1 FROM ctl x WHERE x.holder = c.a AND ST_DWithin(x.geom, c.ev, 1.0)) AS near_a,
                 c.ev IS NOT NULL AND EXISTS (SELECT 1 FROM ctl x WHERE x.holder = c.b AND ST_DWithin(x.geom, c.ev, 1.0)) AS near_b
               FROM c),

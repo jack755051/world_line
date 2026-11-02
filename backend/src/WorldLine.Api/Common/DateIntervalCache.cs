@@ -6,7 +6,7 @@ namespace WorldLine.Api.Common;
 
 /// <summary>
 /// 依「變動區間」快取逐日查詢的結果（主權圖層、衝突）。
-/// - 變動點＝主權紀錄、佔領歸屬、陣營、衝突紀錄所有有效期間的起訖日；兩個相鄰變動點之間每天的結果都一樣，
+/// - 變動點＝主權紀錄、佔領歸屬、陣營、衝突紀錄、首都紀錄所有有效期間的起訖日；兩個相鄰變動點之間每天的結果都一樣，
 ///   所以播放時一週一格、連跳幾十天，只要還在同一區間就直接命中。
 /// - 任何寫入（/api/v1 底下非 GET 且成功的請求，見 <see cref="BumpOnWriteMiddleware"/>）會讓版本 +1，整個快取作廢；
 ///   不會因為快取而讀到舊資料。
@@ -58,6 +58,8 @@ public sealed class DateIntervalCache
                   UNION SELECT lower(valid_period) FROM regime_dependencies UNION SELECT upper(valid_period) FROM regime_dependencies
                   UNION SELECT lower(valid_period) FROM regime_relations WHERE relation_type = 'patron_puppet'
                   UNION SELECT upper(valid_period) FROM regime_relations WHERE relation_type = 'patron_puppet'
+                  -- 衝突弧端點優先用首都座標，首都起訖日也是變動點
+                  UNION SELECT lower(valid_period) FROM capital_records UNION SELECT upper(valid_period) FROM capital_records
                 ) x WHERE d IS NOT NULL ORDER BY d
                 """;
             var list = await db.Database.SqlQueryRaw<DateOnly>(sql).ToListAsync(ct);

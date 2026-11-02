@@ -56,6 +56,7 @@ export const CONTROL_ONLY_LAYERS = ['gap-base', 'gap-fill', 'control-fill', 'con
 export function overlaps(a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }): boolean {
   return Math.abs(a.x - b.x) * 2 < a.w + b.w && Math.abs(a.y - b.y) * 2 < a.h + b.h;
 }
+import { avoidCapitals, capitalObstacleBoxes } from './label-placement';
 import type { SovereigntyProps } from './sovereignty-style';
 
 export interface MapGapEvent {
@@ -221,8 +222,9 @@ export function buildBaseStyle(): StyleSpecification {
           'text-field': ['get', 'label'],
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
           'text-size': 11,
-          'text-offset': [0.9, 0],
-          'text-anchor': 'left',
+          'text-variable-anchor': ['left', 'right', 'top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
+          'text-radial-offset': 0.9,
+          'text-justify': 'auto',
           'text-optional': true,
           'text-max-width': 8,
         },
@@ -470,7 +472,10 @@ export class AtlasMap {
     effect(() => {
       const data = this.capitals();
       if (!this.ready()) return;
-      untracked(() => (this.map?.getSource('capitals') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+      untracked(() => {
+        (this.map?.getSource('capitals') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
+        this.placeLabels();
+      });
     });
   }
 
@@ -514,6 +519,9 @@ export class AtlasMap {
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion());
         (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(this.capitals() ?? EMPTY);
+        // 確保首都圖層永遠在 GL style 最上層（任何後續 addLayer 都須用 beforeId 插在 capital-dot 之下）
+        if (map.getLayer('capital-dot')) map.moveLayer('capital-dot');
+        if (map.getLayer('capital-label')) map.moveLayer('capital-label');
       });
       map.on('movestart', (e) => {
         this.cameraMoving.set(true);
@@ -774,12 +782,21 @@ export class AtlasMap {
     }
   }
 
-  /** 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。 */
+  /** 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。首都保留框優先於國名／控制區標籤。 */
   private placeLabels(): void {
     const map = this.map;
     if (!map) return;
     const placed: { versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number }[] = [];
     const boxes: { x: number; y: number; w: number; h: number }[] = [];
+
+    // 首都保留框（圓點＋名稱估計）：所有國名／控制區標籤需避讓
+    const capitalObs = capitalObstacleBoxes(
+      this.capitals(),
+      (ll) => map.project(ll),
+      map.getCenter().lng,
+      map.getZoom(),
+    );
+
     for (const l of this.labels()) {
       const a = map.project([l.bbox[0], l.bbox[1]]);
       const b = map.project([l.bbox[2], l.bbox[3]]);
@@ -789,11 +806,16 @@ export class AtlasMap {
       const textW = l.text.length * 14;
       if (w < textW * (l.fit ?? 1.6) || h < 32) continue;
       const p = map.project(l.lngLat);
+
+      // 優先避讓首都：嘗試 ±18px、±30px 垂直位移；都不行則略去此標籤
+      const dy = avoidCapitals(p.x, p.y, textW + 8, 20, capitalObs);
+      if (dy === null) continue;
+
       // 國界標籤（fit 有設）放寬了大小門檻，改用互撞檢查避免疊字；控制區標籤維持原規則
-      const box = { x: p.x, y: p.y, w: textW + 8, h: 20 };
+      const box = { x: p.x, y: p.y + dy, w: textW + 8, h: 20 };
       if (l.fit !== undefined && boxes.some((b) => overlaps(b, box))) continue;
       boxes.push(box);
-      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y, rotation: l.rotation });
+      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y + dy, rotation: l.rotation });
     }
     this.placedLabels.set(placed);
   }

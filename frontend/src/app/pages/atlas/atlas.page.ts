@@ -46,7 +46,7 @@ interface SheetInfo {
   imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
-    <main data-testid="atlas-page" class="h-full" [attr.lang]="lang()" aria-label="主地圖">
+    <main data-testid="atlas-page" class="relative h-full" [attr.lang]="lang()" aria-label="主地圖">
       @switch (data.health()) {
         @case ('checking') {
           <!-- Stitch W7-1：頂部列骨架＋紙色地圖區＋時間軸框架骨架（不畫任何資料） -->
@@ -104,16 +104,6 @@ interface SheetInfo {
               @if (firstLoad()) {
                 <div data-testid="map-loading" class="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <span class="wl-paper flex items-center gap-2 px-4 py-2 wl-text1"><sanring-spinner size="sm" ariaLabel="loading" />{{ tr('map.loading', { date: state.date() }) }}</span>
-                </div>
-              } @else if (busyVisible()) {
-                <!-- 載入指示（Tai 2026-11-01）：國界／控制區請求或 MapLibre 切片超過 300ms 未完成，地圖蓋上半透明蒙版、
-                     「載入中」置中；蒙版淡入（減少動態時直接出現），不攔截滑鼠，仍可拖曳縮放 -->
-                <div data-testid="map-busy-scrim" class="wl-map-scrim pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-                  <div data-testid="map-busy" role="status" aria-live="polite"
-                    class="wl-paper pointer-events-none flex items-center gap-2 px-4 py-2 wl-text1 shadow-[var(--wl-shadow-panel)]">
-                    <sanring-spinner size="sm" speed="normal" [ariaLabel]="tr('map.busy')" />
-                    <span>{{ tr('map.busy') }}</span>
-                  </div>
                 </div>
               }
 
@@ -197,6 +187,17 @@ interface SheetInfo {
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
           </div>
+          <!-- 全畫面載入蒙版（Tai 2026-11-02）：蓋住整個視窗（含時間軸與側欄），擋住操作；資料就緒後淡出 -->
+          @if (busyVisible() || busyFading()) {
+            <div data-testid="map-busy-scrim" [class.wl-scrim-hiding]="!busyVisible() && busyFading()"
+              class="wl-map-scrim absolute inset-0 z-50 flex items-center justify-center">
+              <div data-testid="map-busy" role="status" aria-live="polite"
+                class="wl-paper pointer-events-none flex items-center gap-2 px-4 py-2 wl-text1 shadow-[var(--wl-shadow-panel)]">
+                <sanring-spinner size="sm" speed="normal" [ariaLabel]="tr('map.busy')" />
+                <span>{{ tr('map.busy') }}</span>
+              </div>
+            </div>
+          }
         }
       }
     </main>
@@ -309,16 +310,31 @@ export class AtlasPage {
   protected readonly mapReady = computed(
     () => this.loadsStartedFor() === this.state.date() && !this.data.mapDataLoading() && !this.mapRenderBusy(),
   );
-  /** 地圖角落載入指示：資料請求或地圖切片持續 300ms 以上才顯示（DelayedFlag），完成即隱藏。 */
+  /** 全畫面載入蒙版：資料請求或地圖切片持續 300ms 以上才顯示（DelayedFlag），完成後淡出再移除。 */
   protected readonly busyVisible = signal(false);
+  /** 淡出中（資料已到、正在播 wl-scrim-out 動畫，220ms 後從 DOM 移除）。 */
+  protected readonly busyFading = signal(false);
   /** 載入指示出現過 → 下一次抵達的國界淡入；指示隱藏後短暫保留，讓同一輪的資料仍能淡入。 */
   protected readonly fadeArmed = signal(false);
   private fadeDisarm: ReturnType<typeof setTimeout> | undefined;
+  private fadeOutTimer: ReturnType<typeof setTimeout> | undefined;
   private readonly busyFlag = new DelayedFlag((v) => {
-    this.busyVisible.set(v);
     clearTimeout(this.fadeDisarm);
-    if (v) this.fadeArmed.set(true);
-    else this.fadeDisarm = setTimeout(() => this.fadeArmed.set(false), 400);
+    if (v) {
+      clearTimeout(this.fadeOutTimer);
+      this.busyFading.set(false);
+      this.busyVisible.set(true);
+      this.fadeArmed.set(true);
+    } else {
+      clearTimeout(this.fadeOutTimer);
+      this.busyFading.set(true);
+      // 減少動態時跳過淡出動畫，立刻移除
+      this.fadeOutTimer = setTimeout(() => {
+        this.busyVisible.set(false);
+        this.busyFading.set(false);
+      }, this.motion.reduced() ? 0 : 220);
+      this.fadeDisarm = setTimeout(() => this.fadeArmed.set(false), 400);
+    }
   }, 300);
   protected readonly sheetOpen = computed(() => this.sheetNow() !== null);
   protected readonly focusInset = computed<FocusInset>(
@@ -463,6 +479,7 @@ export class AtlasPage {
     inject(DestroyRef).onDestroy(() => {
       this.busyFlag.dispose();
       clearTimeout(this.fadeDisarm);
+      clearTimeout(this.fadeOutTimer);
     });
     effect(() => {
       const s = this.sheetNow();

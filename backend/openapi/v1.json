@@ -1651,6 +1651,59 @@
         ]
       }
     },
+    "/api/v1/leader-records": {
+      "post": {
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "CreateLeaderRecord",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeaderRecordRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfLeaderRecordDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/sources/{id}": {
       "get": {
         "tags": [
@@ -2141,6 +2194,53 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiResponseOfCapitalMapDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/leaders": {
+      "get": {
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "GetLeaders",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "regime",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfLeaderMapDto"
                 }
               }
             }
@@ -2677,6 +2777,104 @@
             "items": {
               "$ref": "#/components/schemas/RegimeEventDto"
             }
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfLeaderMapDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LeaderMapDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfLeaderRecordDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LeaderRecordDto"
+              }
+            ]
           },
           "code": {
             "type": [
@@ -4555,6 +4753,80 @@
           }
         }
       },
+      "CreateLeaderRecordRequest": {
+        "required": [
+          "regimeId",
+          "name",
+          "nameZh",
+          "role",
+          "title",
+          "validFrom",
+          "validTo",
+          "source"
+        ],
+        "type": "object",
+        "properties": {
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "nameZh": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "role": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validFrom": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validTo": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "source": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "verified": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
       "CreateOccupationAttributionRequest": {
         "required": [
           "occupiedRegimeId",
@@ -5330,6 +5602,145 @@
         }
       },
       "JsonElement": { },
+      "LeaderFeature": {
+        "required": [
+          "recordId",
+          "regimeId",
+          "regimeSlug",
+          "name",
+          "nameZh",
+          "role",
+          "title",
+          "validPeriod",
+          "source",
+          "sourceUrl",
+          "verified"
+        ],
+        "type": "object",
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeSlug": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "nameZh": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "role": {
+            "type": "string"
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "source": {
+            "type": "string"
+          },
+          "sourceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LeaderMapDto": {
+        "required": [
+          "date",
+          "features"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LeaderFeature"
+            }
+          }
+        }
+      },
+      "LeaderRecordDto": {
+        "required": [
+          "id",
+          "regimeId",
+          "name",
+          "nameZh",
+          "role",
+          "title",
+          "validPeriod",
+          "source",
+          "sourceUrl",
+          "verified"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "nameZh": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "role": {
+            "type": "string"
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "source": {
+            "type": "string"
+          },
+          "sourceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        }
+      },
       "OccupationAttributionDto": {
         "required": [
           "id",
@@ -6556,6 +6967,9 @@
     },
     {
       "name": "Capitals"
+    },
+    {
+      "name": "Leaders"
     },
     {
       "name": "Timeline"

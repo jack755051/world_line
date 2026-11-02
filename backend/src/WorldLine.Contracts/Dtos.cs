@@ -341,3 +341,27 @@ public sealed record CapitalFeature(
     string? SourceRef);
 
 public sealed record CapitalMapDto(DateOnly Date, IReadOnlyList<CapitalFeature> Features);
+
+// ───────────── 領導人（leader_records；2026-11-03 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增領導人紀錄。role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// validFrom 必填（YYYY-MM-DD）；validTo 可空（開放迄日）。source 必填；verified=false 表示待查證。
+/// </summary>
+public sealed record CreateLeaderRecordRequest(
+    Guid? RegimeId, string? Name, string? NameZh, string? Role, string? Title,
+    string? ValidFrom, string? ValidTo, string? Source, string? SourceUrl = null, bool Verified = true);
+
+public sealed record LeaderRecordDto(
+    Guid Id, Guid RegimeId, string Name, string? NameZh, string Role, string? Title,
+    DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified);
+
+/// <summary>
+/// 領導人紀錄（GET 回應）。role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// verified=false 表示待查證（找不到可信出處）。
+/// </summary>
+public sealed record LeaderFeature(
+    Guid RecordId, Guid RegimeId, string RegimeSlug,
+    string Name, string? NameZh, string Role, string? Title,
+    DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified);
+
+public sealed record LeaderMapDto(DateOnly Date, IReadOnlyList<LeaderFeature> Features);

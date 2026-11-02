@@ -327,10 +327,11 @@ export class AtlasPage {
       this.fadeArmed.set(true);
     } else {
       clearTimeout(this.fadeOutTimer);
+      // 立刻停止遮擋（busyVisible→false 同時 busyFading→true）：
+      // wl-scrim-hiding class 立即生效（pointer-events:none），CSS 淡出 220ms 後清除
+      this.busyVisible.set(false);
       this.busyFading.set(true);
-      // 減少動態時跳過淡出動畫，立刻移除
       this.fadeOutTimer = setTimeout(() => {
-        this.busyVisible.set(false);
         this.busyFading.set(false);
       }, this.motion.reduced() ? 0 : 220);
       this.fadeDisarm = setTimeout(() => this.fadeArmed.set(false), 400);

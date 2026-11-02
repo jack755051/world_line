@@ -239,13 +239,17 @@ export class AtlasData {
     const pk = `sov:${key}`;
     const inflight = this.pending.get(pk) as Promise<SovereigntyMapDto> | undefined;
     if (inflight) return inflight;
+    performance.mark('wl:sov:fetch-start');
     const p = this.api.sovereignty(date, zoom, signal);
     this.pending.set(pk, p);
     signal?.addEventListener('abort', () => {
       if (this.pending.get(pk) === p) this.pending.delete(pk);
     });
     p.then(
-      (dto) => this.sovCache.set(key, dto),
+      (dto) => {
+        performance.mark('wl:sov:fetch-end');
+        this.sovCache.set(key, dto);
+      },
       () => undefined,
     ).finally(() => {
       if (this.pending.get(pk) === p) this.pending.delete(pk);
@@ -324,6 +328,7 @@ export class AtlasData {
   }
 
   private applySovereignty(dto: SovereigntyMapDto, key: string, date: string): void {
+    performance.mark('wl:sov:signal-set');
     this.sovKey = key;
     this.sovereignty.set(dto);
     this.sovereigntyShownFor.set(date);

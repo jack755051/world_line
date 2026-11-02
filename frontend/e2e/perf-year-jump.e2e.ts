@@ -4,9 +4,15 @@
  * 跳年序列：1914-08-01 → 1942-11-01 → 1918-06-01 → 1939-09-01，共 3 跳，
  * 重複 3 次取中位數，結果 append 到 /tmp/wl_perf_report2.md。
  *
+ * 設定 WL_PERF_PHASES=1 可額外在 console 輸出各分段耗時（需後端開啟）。
+ * 各分段由 atlas-map.ts 的 [wl:perf:sov] console.log 提供：
+ *   fetch=API 回應、signal=JSON解析+快取、effect=Angular reactivity、
+ *   setdata=setData dispatch、worker=MapLibre Worker+GPU render
+ *
  * 用法：
  *   WL_PERF=1 npx playwright test perf-year-jump.e2e.ts
  *   WL_PERF=1 WL_PERF_LABEL="優化後" npx playwright test perf-year-jump.e2e.ts
+ *   WL_PERF=1 WL_PERF_PHASES=1 WL_PERF_LABEL="分段量測" npx playwright test perf-year-jump.e2e.ts
  */
 import { test, type Page } from '@playwright/test';
 import { appendFileSync, existsSync, writeFileSync } from 'node:fs';
@@ -34,9 +40,15 @@ async function waitMapReady(page: Page, forDate: string, timeout = 25000): Promi
   return Date.now() - t0; // 超時仍回傳（不拋）
 }
 
-/** 執行一輪跳年序列，回傳各跳時間（ms）。 */
-async function oneRun(page: Page): Promise<number[]> {
+/** 執行一輪跳年序列，回傳各跳時間（ms）。若 capturePhases=true 則同時收集分段 console 訊息。 */
+async function oneRun(page: Page, capturePhases = false): Promise<number[]> {
   const input = page.getByTestId('timeline-date-input');
+  const phases: string[] = [];
+  const listener = (msg: import('@playwright/test').ConsoleMessage) => {
+    if (msg.text().startsWith('[wl:perf:sov]')) phases.push(msg.text());
+  };
+  if (capturePhases) page.on('console', listener);
+
   // 先回到起始日
   await input.fill('1914-08-01');
   await input.press('Enter');
@@ -50,6 +62,11 @@ async function oneRun(page: Page): Promise<number[]> {
     await page.waitForTimeout(50); // 讓 Angular effect 觸發
     const elapsed = await waitMapReady(page, to, 25000);
     times.push(Date.now() - t0 - 50 + elapsed); // 加回等待前的 50ms
+  }
+
+  if (capturePhases) {
+    page.off('console', listener);
+    for (const p of phases) console.log('  📊', p);
   }
   return times;
 }
@@ -70,9 +87,11 @@ test('perf: year jump median (3 runs)', async ({ page }) => {
   // 等第一次就緒（冷快取可能較慢）
   await waitMapReady(page, '1914-08-01', 30000);
 
+  const capturePhases = !!process.env['WL_PERF_PHASES'];
   const allRuns: number[][] = [];
   for (let r = 0; r < 3; r++) {
-    allRuns.push(await oneRun(page));
+    if (capturePhases) console.log(`\n--- run ${r + 1} ---`);
+    allRuns.push(await oneRun(page, capturePhases));
   }
 
   const medians = SEQUENCE.map((_, i) => median(allRuns.map((run) => run[i])));

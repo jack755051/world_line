@@ -345,6 +345,8 @@ export class AtlasMap {
   /** 目前已推送進 sovereignty source 的 feature ID 集合（promoteId = recordId）。
    *  非空時改用 updateData() 差異更新，僅傳送增減的 feature，略過未變的幾何。 */
   private _sovIds = new Set<string>();
+  /** 最後一次呼叫 setData/updateData 的時間點（performance.now()），供 setRenderBusy(false) 計算 worker+render 耗時。 */
+  private _sovSetDataTs = 0;
 
   constructor() {
     afterNextRender(() => void this.init());
@@ -383,12 +385,15 @@ export class AtlasMap {
       const data = this.sovereignty();
       if (!this.ready()) return;
       untracked(() => {
+        performance.mark('wl:sov:effect');
         const armed = this.fadeArmed() && (data?.features.length ?? 0) > 0;
         const fade = armed && !this.reducedMotion();
         if (armed) this.fadeConsumed.emit();
         if (fade) this.fadeSovereignty('start');
         this.ensurePatterns(data);
         this.applySovereigntyData(data);
+        performance.mark('wl:sov:setdata');
+        this._sovSetDataTs = performance.now();
         if (fade) this.fadeSovereignty('end');
       });
     });
@@ -647,6 +652,20 @@ export class AtlasMap {
    */
   private setRenderBusy(v: boolean): void {
     if (this.renderBusySig() === v) return;
+    if (!v && this._sovSetDataTs > 0) {
+      const workerRenderMs = Math.round(performance.now() - this._sovSetDataTs);
+      this._sovSetDataTs = 0;
+      performance.mark('wl:sov:idle');
+      try {
+        performance.measure('wl:sov:fetch',   'wl:sov:fetch-start',  'wl:sov:fetch-end');
+        performance.measure('wl:sov:signal',  'wl:sov:fetch-end',    'wl:sov:signal-set');
+        performance.measure('wl:sov:effect',  'wl:sov:signal-set',   'wl:sov:effect');
+        performance.measure('wl:sov:setdata', 'wl:sov:effect',       'wl:sov:setdata');
+        performance.measure('wl:sov:worker',  'wl:sov:setdata',      'wl:sov:idle');
+      } catch { /* marks 可能因中止或快取命中而缺失 */ }
+      console.log(`[wl:perf:sov] worker+render=${workerRenderMs}ms`, performance.getEntriesByType('measure').filter(m => m.name.startsWith('wl:sov:')).map(m => `${m.name.replace('wl:sov:', '')}=${Math.round(m.duration)}ms`).join(' '));
+      performance.clearMarks(); performance.clearMeasures();
+    }
     this.renderBusySig.set(v);
     this.renderBusy.emit(v);
   }

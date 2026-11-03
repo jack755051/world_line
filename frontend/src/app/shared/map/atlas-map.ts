@@ -30,7 +30,7 @@ import {
   type Box,
 } from './label-placement';
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
-import { geometryPieces, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
+import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -80,6 +80,13 @@ export function regimeLabelSortKey(bbox: [number, number, number, number], fit?:
   return tier - Math.log(area + 1);
 }
 
+/** 首都名選邊：偏好側優先、碰撞時翻到另一側（MapLibre text-variable-anchor-offset，資料驅動）。 */
+export const CAPITAL_ANCHOR_OFFSET = [
+  'match', ['get', 'side'],
+  'left', ['literal', ['right', [-0.9, 0], 'left', [0.9, 0]]],
+  ['literal', ['left', [0.9, 0], 'right', [-0.9, 0]]],
+];
+
 /** 國名依視窗定位：moveend 後去抖動時間與畫面邊距（px）。 */
 export const VIEWPORT_LABEL_DEBOUNCE_MS = 80;
 /** MapLibre 符號淡入淡出時間（ms）。 */
@@ -87,6 +94,23 @@ export const SYMBOL_FADE_MS = 100;
 export const VIEWPORT_LABEL_MARGIN_PX = 8;
 /** 國名框高度（px，含底塊）：polylabel 依名字框長寬比定位用。 */
 export const VIEWPORT_LABEL_HEIGHT_PX = 20;
+/** regime-label 的字級、text-max-width（em）與行高（px）：視窗定位依此算實際行數。 */
+export const REGIME_LABEL_TEXT_SIZE = 12;
+export const REGIME_LABEL_MAX_WIDTH_EM = 10;
+export const REGIME_LABEL_LINE_PX = 15;
+/** 畫面邊障礙列：中心在畫面外 EDGE_OBSTACLE_OUTSIDE_PX，往內只蓋 OBSTACLE_GRID_STEP/2 − 8 = 4px（§4 (c)-6）。 */
+export const EDGE_OBSTACLE_OUTSIDE_PX = 8;
+
+/** 畫面四邊外緣的障礙框（容器座標，中心＋寬高）：名字一碰到邊就和障礙相撞。 */
+export function edgeObstacleBoxes(w: number, h: number): Box[] {
+  const t = OBSTACLE_GRID_STEP, o = EDGE_OBSTACLE_OUTSIDE_PX;
+  return [
+    { x: w / 2, y: -o, w: w + 2 * t, h: t },
+    { x: w / 2, y: h + o, w: w + 2 * t, h: t },
+    { x: -o, y: h / 2, w: t, h: h + 2 * t },
+    { x: w + o, y: h / 2, w: t, h: h + 2 * t },
+  ];
+}
 
 /** 兩次視窗定位結果是否不同（門檻或位置）。 */
 export function placeChanged(
@@ -324,14 +348,14 @@ export function buildBaseStyle(): StyleSpecification {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           'text-field': ['get', 'text'] as any,
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
-          'text-size': 12,
+          'text-size': REGIME_LABEL_TEXT_SIZE,
           'text-allow-overlap': false,
           'text-ignore-placement': false,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'] as any,
           'text-radial-offset': 0.4,
           'text-justify': 'auto',
-          'text-max-width': 10,
+          'text-max-width': REGIME_LABEL_MAX_WIDTH_EM,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           'symbol-sort-key': ['get', 'sortKey'] as any,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -386,14 +410,11 @@ export function buildBaseStyle(): StyleSpecification {
           'text-field': ['get', 'label'],
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
           'text-size': 11,
-          // data-driven 選邊：text-variable-anchor 不支援 data-driven，改用 text-anchor + text-offset。
-          // side='right' → 名稱框在圓點右側（text-anchor='left'，left edge 靠近圓點）
-          // side='left'  → 名稱框在圓點左側（text-anchor='right'，right edge 靠近圓點）
-          // 未設 side → 預設右側（text-anchor='left'）
+          // data-driven 選邊＋碰撞時翻邊（§4 (c)-6）：text-variable-anchor-offset 依序嘗試「偏好側 → 另一側」，
+          // 兩側都撞（含畫面邊障礙列）就隱藏名字（text-optional，圓點保留）。
+          // side='right' → 先試圓點右側（anchor 'left'），再試左側；side='left' 相反；未設 → 右側優先
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          'text-anchor': ['match', ['get', 'side'], 'right', 'left', 'left', 'right', 'left'] as any,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          'text-offset': ['match', ['get', 'side'], 'right', ['literal', [0.9, 0]], 'left', ['literal', [-0.9, 0]], ['literal', [0.9, 0]]] as any,
+          'text-variable-anchor-offset': CAPITAL_ANCHOR_OFFSET as any,
           'text-justify': 'auto',
           'text-optional': true,
           'text-max-width': 8,
@@ -530,7 +551,7 @@ export class AtlasMap {
   private sovGeomSrc: unknown = null;
   private sovGeomById = new Map<string, Geometry>();
   /** versionId → 目前視窗下的國名點與顯示門檻 */
-  private viewportPlace = new Map<string, { lngLat: [number, number]; minZoom: number }>();
+  private viewportPlace = new Map<string, { lngLat: [number, number]; minZoom: number; areaPx?: number }>();
   private viewportTimer: ReturnType<typeof setTimeout> | undefined;
   protected readonly selectedPlaced = signal<{ key: string; kind: 'regime' | 'capital'; text: string; x: number; y: number; rotation: number; side: 'left' | 'right' }[]>([]);
   /** 聚焦時一起挖亮的佔領區數（聚焦政權是佔領方） */
@@ -1168,8 +1189,8 @@ export class AtlasMap {
    * 國名依視窗定位（ARCHITECTURE.md §4 (c)-5，M1-g）：每個國名放在該政權目前可見國土中最大的一塊，
    * 位置用 polylabel（避開圖例／面板等 UI）；可見塊寬度裝不下名字就不顯示（被選政權例外，由 HTML 層畫）。
    */
-  private computeViewportPlace(): Map<string, { lngLat: [number, number]; minZoom: number }> {
-    const out = new Map<string, { lngLat: [number, number]; minZoom: number }>();
+  private computeViewportPlace(): Map<string, { lngLat: [number, number]; minZoom: number; areaPx?: number }> {
+    const out = new Map<string, { lngLat: [number, number]; minZoom: number; areaPx?: number }>();
     const map = this.map;
     if (!map) return out;
     const fc = this.sovereignty();
@@ -1223,12 +1244,14 @@ export class AtlasMap {
         this.sovPieces.set(rid, pieces);
       }
       const labelPx = measureLabelWidth(l.text, false);
-      const p = placeInViewport(pieces, view, worldPx, l.regimeId === sel && selAvoid.length ? [...avoid, ...selAvoid] : avoid, l.rotation ? undefined : { w: labelPx, h: VIEWPORT_LABEL_HEIGHT_PX });
+      // 名字框依 GL 實際換行（text-max-width）算寬高：兩行名用兩行高（§4 (c)-6）
+      const box = labelBoxPx(Math.max(0, labelPx - 12), REGIME_LABEL_MAX_WIDTH_EM * REGIME_LABEL_TEXT_SIZE, REGIME_LABEL_LINE_PX, { x: 6, y: 3 });
+      const p = placeInViewport(pieces, view, worldPx, l.regimeId === sel && selAvoid.length ? [...avoid, ...selAvoid] : avoid, l.rotation ? undefined : { w: box.w, h: box.h });
       if (!p) { out.set(l.versionId, { lngLat: l.lngLat, minZoom: NEVER_ZOOM }); continue; }
       const span = l.rotation ? Math.max(p.widthPx, p.heightPx) : p.widthPx;
       const fits = p.clearPx > 0 && span >= labelPx;
       const lng = ((p.lngLat[0] + 540) % 360) - 180;
-      out.set(l.versionId, { lngLat: [lng, p.lngLat[1]], minZoom: fits || l.regimeId === sel ? -1 : NEVER_ZOOM });
+      out.set(l.versionId, { lngLat: [lng, p.lngLat[1]], minZoom: fits || l.regimeId === sel ? -1 : NEVER_ZOOM, areaPx: p.areaPx });
     }
     return out;
   }
@@ -1239,7 +1262,8 @@ export class AtlasMap {
     const src = map.getSource('regime-obstacles') as GeoJSONSource | undefined;
     if (!src) return;
     const container = map.getContainer();
-    const boxes = uiObstacleBoxes(container);
+    // 畫面四邊障礙列（§4 (c)-6）＋圖例、面板等 UI
+    const boxes = [...edgeObstacleBoxes(container.clientWidth, container.clientHeight), ...uiObstacleBoxes(container)];
     // 被選政權的名字（HTML 層）也是障礙：其他標籤要讓開
     const host = container.parentElement ?? container;
     const cr = container.getBoundingClientRect();
@@ -1287,10 +1311,18 @@ export class AtlasMap {
     const center = map.getCenter().lng;
     const near = (lng: number) => lng + Math.round((center - lng) / 360) * 360;
     const out: { key: string; kind: 'regime' | 'capital'; text: string; x: number; y: number; rotation: number; side: 'left' | 'right' }[] = [];
-    for (const l of this.labels()) {
-      if (l.regimeId !== sel) continue;
+    // 選取政權只顯示一個名字（§4 (c)-7）：國名標籤中可見塊最大的那個（M1-g 位置）；沒有國名標籤才退回第一個控制區名字
+    const mine = this.labels().filter((l) => l.regimeId === sel);
+    let one: ControlLabel | undefined;
+    let bestArea = -1;
+    for (const l of mine) {
       const vp = this.viewportPlace.get(l.versionId);
-      if (vp && vp.minZoom >= NEVER_ZOOM) continue; // 完全不在畫面上
+      if (!vp || vp.minZoom >= NEVER_ZOOM) continue;
+      if ((vp.areaPx ?? 0) > bestArea) { bestArea = vp.areaPx ?? 0; one = l; }
+    }
+    if (!one && !mine.some((l) => l.versionId.startsWith('sov-'))) one = mine[0];
+    for (const l of one ? [one] : []) {
+      const vp = this.viewportPlace.get(l.versionId);
       const ll = vp?.lngLat ?? l.lngLat;
       const p = map.project([near(ll[0]), ll[1]]);
       out.push({ key: `r-${l.versionId}`, kind: 'regime', text: l.text, x: p.x, y: p.y, rotation: l.rotation ?? 0, side: 'right' });

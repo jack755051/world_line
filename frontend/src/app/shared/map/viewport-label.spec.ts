@@ -1,4 +1,4 @@
-import { clipRing, fromWorld, geometryPieces, placeInViewport, polylabel, ringArea, simplifyRing, toWorld, type Ring } from './viewport-label';
+import { clipRing, fromWorld, geometryPieces, placeInViewport, polylabel, ringArea, simplifyRing, labelBoxPx, toWorld, type Ring } from './viewport-label';
 
 const sq = (x: number, y: number, s: number): Ring => [[x, y], [x + s, y], [x + s, y + s], [x, y + s], [x, y]];
 
@@ -83,5 +83,22 @@ describe('viewport-label：依名字框長寬定位', () => {
     const v = placeInViewport(pieces, [0.15, 0.3, 0.6, 0.7], 1000, [], { w: 100, h: 20 })!;
     const [x] = toWorld(v.lngLat[0], v.lngLat[1]);
     expect(x).toBeGreaterThanOrEqual(0.15 + 0.05 - 1e-9);
+  });
+});
+
+describe('viewport-label：上下不超出畫面與實際行數（M1-i-B）', () => {
+  it('名字框不超出畫面上下', () => {
+    const pieces = [{ rings: [sq(0.2, 0.0, 0.4)], bbox: [0.2, 0.0, 0.6, 0.4] as [number, number, number, number] }];
+    // 畫面上緣切在 0.39 → 可見塊只剩一條 0.01 高的帶（10px），名字高 20px → 中心不得高於上緣 + 10px
+    const v = placeInViewport(pieces, [0.0, 0.39, 1.0, 0.9], 1000, [], { w: 60, h: 20 })!;
+    const [, y] = toWorld(v.lngLat[0], v.lngLat[1]);
+    expect(y).toBeGreaterThanOrEqual(0.39 + 0.01 - 1e-9);
+  });
+  it('labelBoxPx：一行與兩行', () => {
+    expect(labelBoxPx(100, 120, 15, { x: 6, y: 3 })).toEqual({ w: 112, h: 21, lines: 1 });
+    const two = labelBoxPx(200, 120, 15, { x: 6, y: 3 });
+    expect(two.lines).toBe(2);
+    expect(two.h).toBe(36);
+    expect(two.w).toBeLessThan(200);
   });
 });

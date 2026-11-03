@@ -134,6 +134,8 @@ export function polylabel(rings: Ring[], precision: number, avoid: Rect[] = []):
 export interface ViewportPlacement {
   /** 標籤點（WGS84，已平移到離畫面中心最近的世界副本） */
   lngLat: Pt;
+  /** 可見塊面積（px²）：選取政權有多個名字時取最大塊 */
+  areaPx: number;
   /** 可見塊的螢幕寬、高（px） */
   widthPx: number;
   heightPx: number;
@@ -176,11 +178,15 @@ export function placeInViewport(
   let px = pl.pt[0] / a;
   const [x0, y0, x1, y1] = ringBbox(best.rings[0]);
   // 名字框不超出畫面左右
+  let py = pl.pt[1];
   if (label) {
     const half = label.w / 2 / worldPx;
     if (view[2] - view[0] > 2 * half) px = Math.min(view[2] - half, Math.max(view[0] + half, px));
+    // 上下也不超出畫面（名字框高度依實際行數）
+    const halfH = label.h / 2 / worldPx;
+    if (view[3] - view[1] > 2 * halfH) py = Math.min(view[3] - halfH, Math.max(view[1] + halfH, py));
   }
-  return { lngLat: fromWorld(px, pl.pt[1]), widthPx: (x1 - x0) * worldPx, heightPx: (y1 - y0) * worldPx, clearPx: pl.dist * worldPx };
+  return { areaPx: best.area * worldPx * worldPx, lngLat: fromWorld(px, py), widthPx: (x1 - x0) * worldPx, heightPx: (y1 - y0) * worldPx, clearPx: pl.dist * worldPx };
 }
 
 /** 小於這個螢幕尺寸（px）的塊直接略過（裝不下任何名字）。 */
@@ -210,4 +216,14 @@ function simplified(p: Piece, worldPx: number): Ring[] {
     m.set(z, hit);
   }
   return hit;
+}
+
+/**
+ * 國名框（GL symbol）的實際大小：依 text-max-width 換行後的行數與寬度（M1-i-B：兩行名用兩行高）。
+ * textPx＝整行文字寬（不含底塊左右留白 padPx）；maxWidthPx＝text-max-width×字級；lineHeightPx＝行高。
+ */
+export function labelBoxPx(textPx: number, maxWidthPx: number, lineHeightPx: number, padPx: { x: number; y: number }): { w: number; h: number; lines: number } {
+  const lines = Math.max(1, Math.ceil(textPx / maxWidthPx - 1e-9));
+  const w = (lines > 1 ? Math.min(textPx, Math.ceil(textPx / lines) + lineHeightPx) : textPx) + 2 * padPx.x;
+  return { w, h: lines * lineHeightPx + 2 * padPx.y, lines };
 }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import type { SovereigntyFeatureProperties } from '../../core/api/api-types';
-import type { LeaderBio } from '../../core/api/world-line-api';
+import type { LeaderBio, LeaderBioSummary } from '../../core/api/world-line-api';
 import { SovereigntyCard } from './sovereignty-card';
 
 const ev = (verification: 'verified' | 'pending', citations: unknown[] = []) => ({
@@ -332,13 +332,17 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     fixture.componentRef.setInput('props', props());
     fixture.componentRef.setInput('embedded', true);
     // 同一個 personId（'p-hitler'），但兩筆不同 recordId（任期）
+    const activeBio: import('../../core/api/world-line-api').LeaderBioSummary = {
+      id: 'p-hitler', name: 'Adolf Hitler', nameZh: null,
+      birthDate: null, birthDatePrecision: null, deathDate: null, summary: null, retractedAt: null,
+    };
     fixture.componentRef.setInput('leaders', [
       { recordId: 'l-hog', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
         role: 'head_of_government', title: '德意志國總理', validPeriod: { start: '1933-01-30', end: '1934-08-02' },
-        source: '', sourceUrl: null, verified: true, personId: 'p-hitler', bio: null },
+        source: '', sourceUrl: null, verified: true, personId: 'p-hitler', bio: activeBio },
       { recordId: 'l-hos', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
         role: 'head_of_state', title: '元首兼帝國總理', validPeriod: { start: '1934-08-02', end: null },
-        source: '', sourceUrl: null, verified: true, personId: 'p-hitler', bio: null },
+        source: '', sourceUrl: null, verified: true, personId: 'p-hitler', bio: activeBio },
     ] satisfies import('../../core/api/world-line-api').LeaderRecord[]);
     // loadBio：永遠等待（只驗展開狀態，不需要資料回傳）
     fixture.componentRef.setInput('loadBio', () => new Promise(() => undefined));
@@ -432,12 +436,18 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     isTest: false, ...over,
   });
 
-  const leaderWithPerson = (personId: string | null = 'p1') => ({
+  const mockBioSummary = (over: Partial<LeaderBioSummary> = {}): LeaderBioSummary => ({
+    id: 'p1', name: 'Adolf Hitler', nameZh: null,
+    birthDate: null, birthDatePrecision: null, deathDate: null, summary: null,
+    retractedAt: null, ...over,
+  });
+
+  const leaderWithPerson = (personId: string | null = 'p1', bio: LeaderBioSummary | null = personId ? mockBioSummary() : null) => ({
     recordId: 'l1', regimeId: 'g1', regimeSlug: 'deutsches-reich',
     name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
     role: 'head_of_state' as const, title: '元首兼帝國總理',
     validPeriod: { start: '1934-08-02', end: null },
-    source: 'BGBL 1934', sourceUrl: null, verified: true, personId,
+    source: 'BGBL 1934', sourceUrl: null, verified: true, personId, bio,
   });
 
   it('有 personId 且 loadBio 設定時，名字為可點按鈕（aria-expanded=false）', async () => {
@@ -541,6 +551,51 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(srcLink).not.toBeNull();
     expect(srcLink.getAttribute('rel')).toBe('noopener');
     expect(srcLink.getAttribute('href')).toBe('https://example.com');
+  });
+
+  it('hasBio：personId 有但 bio 為 null → 名字為純文字（不可點）', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [leaderWithPerson('p1', null)]);
+    fixture.componentRef.setInput('loadBio', () => Promise.resolve(mockBio()));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const nameEl = q(el, 'sovereignty-card-leader-name')!;
+    expect(nameEl.tagName).toBe('DIV');
+    expect(nameEl.getAttribute('aria-expanded')).toBeNull();
+  });
+
+  it('hasBio：bio 帶 retractedAt → 名字為純文字（不可點）', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [leaderWithPerson('p1', mockBioSummary({ retractedAt: '2026-01-01T00:00:00Z' }))]);
+    fixture.componentRef.setInput('loadBio', () => Promise.resolve(mockBio()));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const nameEl = q(el, 'sovereignty-card-leader-name')!;
+    expect(nameEl.tagName).toBe('DIV');
+    expect(nameEl.getAttribute('aria-expanded')).toBeNull();
+  });
+
+  it('hasBio：bio 非 null 且 retractedAt 為 null → 名字為可點按鈕', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [leaderWithPerson('p1', mockBioSummary())]);
+    fixture.componentRef.setInput('loadBio', () => Promise.resolve(mockBio()));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const nameEl = q(el, 'sovereignty-card-leader-name')!;
+    expect(nameEl.tagName).toBe('BUTTON');
+    expect(nameEl.getAttribute('aria-expanded')).toBe('false');
   });
 
   it('英文介面 bio：出生地、黨派、簡介用英文；isTest 顯示 Test data', async () => {

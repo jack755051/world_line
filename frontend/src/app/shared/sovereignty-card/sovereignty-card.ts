@@ -139,7 +139,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                       <div class="flex items-start gap-2">
                         <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant flex-none" [attr.data-role]="leader.role">{{ t().leaderRole[leader.role] ?? leader.role }}</span>
                         <div class="min-w-0 flex-1">
-                          @if (leader.personId && loadBio()) {
+                          @if (hasBio(leader) && loadBio()) {
                             <button type="button" data-testid="sovereignty-card-leader-name" class="font-semibold text-left"
                               [attr.aria-expanded]="expandedIds().has(leader.recordId) ? 'true' : 'false'"
                               (click)="toggleBio(leader.recordId, leader.personId!)">{{ leaderName(leader) }}</button>
@@ -566,6 +566,10 @@ export class SovereigntyCard {
       return (order[a.role] ?? 2) - (order[b.role] ?? 2);
     }),
   );
+  /** bio 非 null 且未撤回（retractedAt 為 null）才顯示可點按鈕。 */
+  protected hasBio(l: LeaderRecord): boolean {
+    return l.personId != null && l.bio != null && l.bio.retractedAt === null;
+  }
   protected leaderName(l: LeaderRecord): string {
     return (this.lang() === 'en' ? l.name : l.nameZh || l.name) || l.name;
   }

@@ -29,7 +29,7 @@ import {
   pickCapitalAnchorSide, pointInProjectedRing,
   type Box,
 } from './label-placement';
-import { labelMinZoom, minZoomFromScreenWidth, visibleIds } from './label-fit';
+import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth } from './label-fit';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -68,8 +68,9 @@ import type { SovereigntyProps } from './sovereignty-style';
 
 export const REGIME_LABEL_BG_ID = 'wl-regime-label-bg';
 export const REGIME_OBSTACLE_ICON_ID = 'wl-obstacle-icon';
-export const REGIME_OBSTACLE_ICON_SIZE = 64;
-const OBSTACLE_GRID_STEP = 48;
+/** 障礙格：24px 方塊無縫鋪滿 UI 框（誤差 ≤ 半格），不讓障礙比 UI 大太多。 */
+export const REGIME_OBSTACLE_ICON_SIZE = 24;
+const OBSTACLE_GRID_STEP = REGIME_OBSTACLE_ICON_SIZE;
 
 /** 政權名稱標籤排序鍵：數值越小越優先。控制區標籤（fit 未設）比國名標籤優先；同類中依 bbox 面積降序。 */
 export function regimeLabelSortKey(bbox: [number, number, number, number], fit?: number): number {
@@ -92,7 +93,7 @@ export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): Featu
         rotation: l.rotation ?? 0,
         sortKey: regimeLabelSortKey(l.bbox, l.fit),
         // 名字寬度 vs 國家螢幕寬度（ARCHITECTURE.md §4 (c)、D9）：裝不下的縮放不顯示
-        minZoom: labelMinZoom(measureLabelWidth(l.text, false), l.bbox, !!l.rotation),
+        minZoom: clampMinZoom(labelMinZoom(measureLabelWidth(l.text, false), l.bbox, !!l.rotation)),
       },
     })),
   };
@@ -129,12 +130,13 @@ export function obstacleGridFeatures(
   for (const box of boxes) {
     const x0 = box.x - box.w / 2;
     const y0 = box.y - box.h / 2;
-    const cols = Math.ceil(box.w / OBSTACLE_GRID_STEP) + 1;
-    const rows = Math.ceil(box.h / OBSTACLE_GRID_STEP) + 1;
+    const cols = Math.max(1, Math.ceil(box.w / OBSTACLE_GRID_STEP));
+    const rows = Math.max(1, Math.ceil(box.h / OBSTACLE_GRID_STEP));
+    const half = OBSTACLE_GRID_STEP / 2;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         try {
-          const coords = unproject([x0 + c * OBSTACLE_GRID_STEP, y0 + r * OBSTACLE_GRID_STEP]);
+          const coords = unproject([x0 + half + c * OBSTACLE_GRID_STEP, y0 + half + r * OBSTACLE_GRID_STEP]);
           features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: coords }, properties: {} as Record<string, never> });
         } catch { /* skip */ }
       }
@@ -290,6 +292,8 @@ export function buildBaseStyle(): StyleSpecification {
         id: 'regime-label',
         type: 'symbol',
         source: 'regime-labels',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        filter: labelFilterExpr(null) as any,
         layout: {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           'text-field': ['get', 'text'] as any,
@@ -350,6 +354,8 @@ export function buildBaseStyle(): StyleSpecification {
         id: 'capital-label',
         type: 'symbol',
         source: 'capitals',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        filter: labelFilterExpr(null) as any,
         layout: {
           'text-field': ['get', 'label'],
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
@@ -712,10 +718,7 @@ export class AtlasMap {
         this.setRenderBusy(false);
       });
       map.on('dataloading', () => this.setRenderBusy(true));
-      map.on('zoomend', () => {
-        this.state.mapZoom.set(map.getZoom());
-        this.applyLabelFilters();
-      });
+      map.on('zoomend', () => this.state.mapZoom.set(map.getZoom()));
       map.on('move', () => {
         this.placeConflicts();
         this.placeSelectedLabels();
@@ -1055,14 +1058,14 @@ export class AtlasMap {
         // 找包含此首都點的政權外環，依此決定優先側
         let side: 'right' | 'left' = 'right';
         // 所在國沒找到時無法比寬度 → 不顯示名字（圓點照常）
-        let minZoom = Infinity;
+        let minZoom = 99;
         for (const ring of sovRings) {
           if (pointInProjectedRing(dotPx.x, dotPx.y, ring)) {
             side = pickCapitalAnchorSide(dotPx, labelW, ring);
             let x0 = Infinity, x1 = -Infinity;
             for (const p of ring) { if (p.x < x0) x0 = p.x; if (p.x > x1) x1 = p.x; }
             // 名字＋圓點間距（約 10px）要放得進所在國的螢幕寬度
-            minZoom = minZoomFromScreenWidth(labelW + 10, x1 - x0, map.getZoom());
+            minZoom = clampMinZoom(minZoomFromScreenWidth(labelW + 10, x1 - x0, map.getZoom()));
             break;
           }
         }
@@ -1128,23 +1131,21 @@ export class AtlasMap {
   }
 
   /**
-   * 一般層 filter（ARCHITECTURE.md §4 (b)(c)）：只顯示目前縮放裝得下的名字；被選政權的國名、首都與圓點改由 HTML 層畫。
-   * 用 id 清單而不是 ['zoom'] filter：MapLibre 的 filter 依圖磚整數縮放評估，這裡要對連續縮放精準比寬度。
+   * 一般層 filter（ARCHITECTURE.md §4 (b)(c)）：縮放門檻寫在 filter 裡（['zoom']），只有選取政權改變時才 setFilter，
+   * 把被選政權的國名、首都與圓點從一般層排除（改由 HTML 層畫）。
    */
+  private appliedFilterSel: string | null | undefined = undefined;
   private applyLabelFilters(): void {
     const map = this.map;
     if (!map || !map.getLayer('regime-label')) return;
-    const z = map.getZoom();
     const sel = this.focusRegimeId;
-    const labelFs = buildRegimeLabelFeatureCollection(this.labels()).features.map((f) => ({
-      id: String(f.properties?.['versionId']), regimeId: f.properties?.['regimeId'] as string, minZoom: Number(f.properties?.['minZoom']),
-    }));
-    map.setFilter('regime-label', ['in', ['get', 'versionId'], ['literal', visibleIds(labelFs, z, sel)]]);
-    const caps = (this._enrichedCapitals?.features ?? []).map((f) => ({
-      id: String(f.properties?.['recordId']), regimeId: f.properties?.['regimeId'] as string, minZoom: Number(f.properties?.['minZoom'] ?? Infinity),
-    }));
-    map.setFilter('capital-label', ['in', ['get', 'recordId'], ['literal', visibleIds(caps, z, sel)]]);
-    map.setFilter('capital-dot', ['!=', ['coalesce', ['get', 'regimeId'], ''], sel ?? '__none__']);
+    if (sel === this.appliedFilterSel) return;
+    this.appliedFilterSel = sel;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    map.setFilter('regime-label', labelFilterExpr(sel) as any);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    map.setFilter('capital-label', labelFilterExpr(sel) as any);
+    map.setFilter('capital-dot', sel ? ['!=', ['coalesce', ['get', 'regimeId'], ''], sel] : null);
   }
 
   /** 被選政權的國名（含它的控制區名稱）與首都：投影到螢幕座標，畫在蒙版上方；放好後更新障礙符號。 */

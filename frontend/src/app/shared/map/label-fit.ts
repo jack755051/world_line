@@ -31,18 +31,20 @@ export function minZoomFromScreenWidth(labelPx: number, regimeWidthPx: number, z
   return zoom + Math.log2(labelPx / regimeWidthPx);
 }
 
-export interface FitFeature {
-  id: string;
-  regimeId: string | null | undefined;
-  minZoom: number;
+/** 門檻上限：外框無效或找不到所在國時用（GeoJSON 屬性不放 Infinity）。 */
+export const NEVER_ZOOM = 99;
+
+/** 屬性用的最小縮放（Infinity／NaN → NEVER_ZOOM）。 */
+export function clampMinZoom(z: number): number {
+  return Number.isFinite(z) ? Math.min(z, NEVER_ZOOM) : NEVER_ZOOM;
 }
 
-/** 一般層要顯示的 id：目前縮放裝得下，且不是被選政權（被選政權改由蒙版上方的 HTML 層畫，避免重複）。 */
-export function visibleIds(features: readonly FitFeature[], zoom: number, selectedRegimeId: string | null): string[] {
-  const out: string[] = [];
-  for (const f of features) {
-    if (selectedRegimeId && f.regimeId === selectedRegimeId) continue;
-    if (f.minZoom <= zoom + 1e-9) out.push(f.id);
-  }
-  return out;
+/**
+ * 一般層（GL）的 filter：目前縮放裝得下才顯示（['zoom'] 由 MapLibre 在 worker 依圖磚縮放評估，不必每次縮放 setFilter），
+ * 並排除被選政權（它改由蒙版上方的 HTML 層畫，避免重複）。
+ */
+export function labelFilterExpr(selectedRegimeId: string | null): unknown[] {
+  const fits = ['>=', ['zoom'], ['coalesce', ['get', 'minZoom'], NEVER_ZOOM]];
+  if (!selectedRegimeId) return fits;
+  return ['all', fits, ['!=', ['coalesce', ['get', 'regimeId'], ''], selectedRegimeId]];
 }

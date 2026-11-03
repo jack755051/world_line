@@ -103,6 +103,16 @@ describe('obstacleGridFeatures', () => {
     expect(features.length).toBeGreaterThan(0);
   });
 
+  it('24px 方塊無縫鋪滿 UI 框：格心從框內半格開始，不超出框外半格以上', () => {
+    const box = { x: 100, y: 100, w: 96, h: 48 }; // x0=52, y0=76
+    const features = obstacleGridFeatures([box], identityUnproject);
+    expect(REGIME_OBSTACLE_ICON_SIZE).toBe(24);
+    expect(features).toHaveLength(4 * 2);
+    const xs = features.map((f) => f.geometry.coordinates[0]);
+    expect(Math.min(...xs)).toBe(64);
+    expect(Math.max(...xs)).toBe(136);
+  });
+
   it('所有 feature 都是 Point 型別', () => {
     const box = { x: 100, y: 100, w: 200, h: 150 };
     const features = obstacleGridFeatures([box], identityUnproject);

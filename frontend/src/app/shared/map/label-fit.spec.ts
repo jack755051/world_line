@@ -1,4 +1,4 @@
-import { labelMinZoom, mercatorY, minZoomFromScreenWidth, visibleIds } from './label-fit';
+import { NEVER_ZOOM, clampMinZoom, labelFilterExpr, labelMinZoom, mercatorY, minZoomFromScreenWidth } from './label-fit';
 
 describe('label-fit（名字寬度 vs 國家螢幕寬度）', () => {
   it('國家寬度剛好等於名字寬度時的縮放', () => {
@@ -25,14 +25,15 @@ describe('label-fit（名字寬度 vs 國家螢幕寬度）', () => {
     expect(minZoomFromScreenWidth(50, 100, 3)).toBeCloseTo(2, 9);
     expect(minZoomFromScreenWidth(50, 0, 3)).toBe(Infinity);
   });
-  it('visibleIds：裝得下才顯示，被選政權一律排除', () => {
-    const fs = [
-      { id: 'a', regimeId: 'R1', minZoom: 2 },
-      { id: 'b', regimeId: 'R2', minZoom: 5 },
-      { id: 'c', regimeId: 'R3', minZoom: 1 },
-    ];
-    expect(visibleIds(fs, 3, null)).toEqual(['a', 'c']);
-    expect(visibleIds(fs, 6, null)).toEqual(['a', 'b', 'c']);
-    expect(visibleIds(fs, 6, 'R1')).toEqual(['b', 'c']);
+  it('clampMinZoom：Infinity／NaN 改成上限', () => {
+    expect(clampMinZoom(Infinity)).toBe(NEVER_ZOOM);
+    expect(clampMinZoom(NaN)).toBe(NEVER_ZOOM);
+    expect(clampMinZoom(3.2)).toBe(3.2);
+  });
+  it('labelFilterExpr：未選取只比縮放；選取時排除該政權', () => {
+    expect(labelFilterExpr(null)).toEqual(['>=', ['zoom'], ['coalesce', ['get', 'minZoom'], NEVER_ZOOM]]);
+    const e = labelFilterExpr('R1') as unknown[];
+    expect(e[0]).toBe('all');
+    expect(e[2]).toEqual(['!=', ['coalesce', ['get', 'regimeId'], ''], 'R1']);
   });
 });

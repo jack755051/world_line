@@ -1003,24 +1003,23 @@ erDiagram
   - success：完整圖層。
 - **data-testid**：`map-canvas`、`map-loading`、`map-empty`、`map-empty-jump`、`map-error`、`map-retry`、`map-incomplete-period-hint`、`map-tooltip`。
 
-### 8.3 時間軸（`shared/timeline`，底部）
+### 8.3 時間軸（`shared/timeline`，底部）——方案 A（使用者 2026-11-03 拍板）
 
-- **元素**：
-  - 時間範圍：1908-01-01 ～ 1945-09-30（憲法 §1；§12 Q15 已由 2026-11-03 範圍決定取代）。預設停留日期：待定。尚未補全的期間是否以淡色底標示「不保證完整」：待定。
-  - 主刻度為年，次刻度為月；拖拉桿可停在任意一天（§9「拖拉桿」）。
-  - **快照標記**：每個史料快照一個小標記。AI 提案：依戰區分多條細軌（西歐、東線、太平洋、中國……），一眼就能看出哪些戰區、哪些時段密或稀，以及哪裡是缺口。hover 顯示快照日期、戰區、主要來源（例：「WWII Europe Map 15」）；點擊就跳到該日期。
-  - interval 快照（若 §12 Q4 採用）以橫條呈現整段期間。
-  - **事件標記**：重大事件的細刻度，可在圖例中關閉。
-  - 控制鈕：「上一個快照」「播放／暫停」「下一個快照」、播放速度（AI 提案：每秒 1 週、1 月）、日期輸入框（直接輸入 YYYY-MM-DD）。
-  - 鍵盤：左右鍵 ±1 日、Shift＋左右鍵 ±1 月、PageUp／PageDown 跳快照（AI 提案；用 `@angular/aria`／`@angular/cdk` 處理焦點與無障礙）。
-- **注意**：middle-platform 已安裝的 sanring UI 元件中**沒有 slider**，時間軸需要自建於 `shared/timeline`。`TODO`：`@sanring/cli` 是否提供 slider 元件，未驗證。
-- **規則**：§9（連續變化、快照日期由來源決定）、§1；Story 1、3。
+- **元素**（單行，高約 48px，由左到右）：
+  - **播放／暫停**鍵。
+  - **日期按鈕**：顯示目前日期（YYYY-MM-DD），點開可直接輸入日期。旁邊有 **ⓘ**：資料不完整的期間 hover／點擊說明「本時段資料不保證完整」；首次造訪另出現一次性 toast（之後不再自動出現）。
+  - **全寬滑桿**：範圍 1908-01-01 ～ 1945-09-30（憲法 §1）；每 5 年一個文字刻度，每年一個小點；拖拉桿可停在任意一天（憲法 §9「拖拉桿」）。
+  - **「⋯」選單**：播放速度（預設每秒 1 週；可選每秒 1 月）。
+- **拿掉**：依戰區分的多條軌道、事件色帶與事件刻度。事件與戰役的起訖日期只存在資料中，不畫在時間軸上；戰役由右側面板「事件」分頁的「戰役」標籤進入彈窗（不自動彈出）。
+- **快照標記**：方案 A 不在時間軸上畫快照標記；「史料快照／推估過渡」的區分仍由推估 chip（8.5）與地圖樣式呈現（憲法 §9）。快照標記之後是否以其他形式回到時間軸：待定。
+- **鍵盤**：空白鍵播放／暫停；←／→ ±1 週；Shift＋←／→ ±1 年（用 `@angular/aria`／`@angular/cdk` 處理焦點與無障礙）。
+- **規則**：§9（連續變化）、§1；Story 1、3。
 - **四態**：
-  - loading：軌道顯示 skeleton，拖拉桿可用（日期仍可改）。
-  - empty：某戰區軌道沒有任何快照時，軌道整條以「控制資料缺」同款樣式顯示，並標註戰區名（R9）。
-  - error：快照標記載入失敗時，拖拉桿與日期輸入仍可用；軌道區顯示「快照標記載入失敗・重試」。
+  - loading：滑桿顯示 skeleton，日期仍可改。
+  - empty：不適用（範圍固定）。
+  - error：快照資訊載入失敗不影響時間軸操作。
   - success：完整顯示。
-- **data-testid**：`timeline`、`timeline-handle`、`timeline-date-input`、`timeline-prev-snapshot`、`timeline-next-snapshot`、`timeline-play`、`timeline-speed`、`timeline-track-<theaterCode>`、`timeline-snapshot-marker`、`timeline-error`。
+- **data-testid**：`timeline`、`timeline-handle`、`timeline-date-button`、`timeline-date-input`、`timeline-play`、`timeline-menu`、`timeline-speed`、`timeline-incomplete-info`、`timeline-error`。
 
 ### 8.4 圖例（`shared/legend`，左下浮動，可收合）
 
@@ -1230,7 +1229,7 @@ erDiagram
 
 **來自憲法 §10（不由 AI 拍板）**
 - [ ] **Q0** TODO（使用者自行判斷）：R7 主權軸採用哪一份開放資料集。史料調查建議以 OHM（CC0）為骨架、CShapes 2.0 只核對日期、historical-basemaps 不採用，但未拍板。影響 S 軌開工時間。
-- [ ] **Q0b** TODO（使用者自行判斷）：一級行政區（R1）採用哪一份資料來源（憲法 §10）。初步調查：OpenHistoricalMap（CC0）可大量取得；CHGIS、NHGIS、MPIDR 多限非商業或禁止轉散布，只能對照考證。未拍板。
+- [x] **Q0b** 一級行政區（R1）採用哪一份資料來源（憲法 §10）。初步調查：OpenHistoricalMap（CC0）可大量取得；CHGIS、NHGIS、MPIDR 多限非商業或禁止轉散布，只能對照考證。 → **2026-11-03 使用者拍板：OpenHistoricalMap（CC0），其餘只對照考證；已回寫憲法 §10**
 
 **資料模型**
 - [x] **Q1** 控制資料缺的表達（6.4）：A 沒有紀錄即缺／B 明確 coverage 紀錄／C A＋選填備註。**AI 建議 C**，待拍板。 → **2026-10-27 使用者拍板：選 C**
@@ -1272,6 +1271,10 @@ erDiagram
 ---
 
 ## 修訂紀錄
+
+### 2026-11-03：時間軸改方案 A、一級行政區資料來源
+
+Tai 2026-11-03 16:35 選定時間軸方案 A，20:54 回覆「依據建議」同意寫回 PRD：§8.3 改為單行時間軸（播放、日期、全寬滑桿、「⋯」選單），拿掉戰區軌道與事件色帶，鍵盤改為 ±1 週／Shift ±1 年。舊 §8.3（戰區細軌、快照標記、±1 日／±1 月）見 git 歷史。§12 Q0b 已拍板（OHM CC0）。
 
 ### 2026-11-03：同步憲法第一階段擴為 1908-01-01～1945-09-30、納入一級行政區
 

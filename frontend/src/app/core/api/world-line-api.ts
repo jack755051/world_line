@@ -35,6 +35,17 @@ export interface CapitalsDto {
   features: CapitalRecord[];
 }
 
+/** 生平摘要（GET /leaders 回應內嵌，不含 fieldSources）。 */
+export interface LeaderBioSummary {
+  id: string;
+  name: string;
+  nameZh: string | null;
+  birthDate: string | null;
+  birthDatePrecision: 'day' | 'month' | 'year' | null;
+  deathDate: string | null;
+  summary: Record<string, string> | null;
+}
+
 export interface LeaderRecord {
   recordId: string;
   regimeId: string;
@@ -47,6 +58,8 @@ export interface LeaderRecord {
   source: string;
   sourceUrl: string | null;
   verified: boolean;
+  personId: string | null;
+  bio: LeaderBioSummary | null;
 }
 
 export interface LeadersDto {

@@ -668,6 +668,99 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderBio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly?>("BirthDate")
+                        .HasColumnType("date")
+                        .HasColumnName("birth_date");
+
+                    b.Property<string>("BirthDatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("birth_date_precision");
+
+                    b.Property<string>("BirthPlace")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("birth_place");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateOnly?>("DeathDate")
+                        .HasColumnType("date")
+                        .HasColumnName("death_date");
+
+                    b.Property<string>("FieldSources")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("field_sources");
+
+                    b.Property<bool>("IsTest")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("is_test");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("NameZh")
+                        .HasColumnType("text")
+                        .HasColumnName("name_zh");
+
+                    b.Property<string>("Party")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("party");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("summary");
+
+                    b.Property<int>("Version")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("version");
+
+                    b.HasKey("Id")
+                        .HasName("pk_leader_bios");
+
+                    b.ToTable("leader_bios", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_leader_bios_birth_date_precision", "birth_date_precision IS NULL OR birth_date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_leader_bios_birth_place_object", "birth_place IS NULL OR jsonb_typeof(birth_place) = 'object'");
+
+                            t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
+
+                            t.HasCheckConstraint("ck_leader_bios_name_not_blank", "btrim(name) <> ''");
+
+                            t.HasCheckConstraint("ck_leader_bios_party_object", "party IS NULL OR jsonb_typeof(party) = 'object'");
+
+                            t.HasCheckConstraint("ck_leader_bios_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_leader_bios_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.LeaderRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -690,6 +783,10 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     b.Property<string>("NameZh")
                         .HasColumnType("text")
                         .HasColumnName("name_zh");
+
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("person_id");
 
                     b.Property<Guid>("RegimeId")
                         .HasColumnType("uuid")
@@ -740,6 +837,10 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_leader_records");
+
+                    b.HasIndex("PersonId")
+                        .HasDatabaseName("ix_leader_records_person_id")
+                        .HasFilter("person_id IS NOT NULL");
 
                     b.HasIndex("RegimeId")
                         .HasDatabaseName("ix_leader_records_regime_id");
@@ -1658,6 +1759,12 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
             modelBuilder.Entity("WorldLine.Api.Domain.LeaderRecord", b =>
                 {
+                    b.HasOne("WorldLine.Api.Domain.LeaderBio", null)
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_leader_records_leader_bios_person_id");
+
                     b.HasOne("WorldLine.Api.Domain.Regime", null)
                         .WithMany()
                         .HasForeignKey("RegimeId")

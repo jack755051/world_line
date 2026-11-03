@@ -326,6 +326,8 @@ public sealed class LeaderRecord
 {
     public Guid Id { get; set; }
     public Guid RegimeId { get; set; }
+    /// <summary>FK → leader_bios.id（選填，同一人多筆任期共用一份生平）。</summary>
+    public Guid? PersonId { get; set; }
     public string Name { get; set; } = "";
     public string? NameZh { get; set; }
     /// <summary>head_of_state | head_of_government。</summary>
@@ -338,6 +340,39 @@ public sealed class LeaderRecord
     public string? SourceUrl { get; set; }
     /// <summary>true＝已有可信出處；false＝待查證。</summary>
     public bool Verified { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 領導人生平（leader_bios）：一人一筆，跨越多個任期共用。
+/// - 與 leader_records（任期粒度）分開，避免同一人多筆任期重複儲存生平且出處難維護。
+/// - LeaderRecord.PersonId（nullable FK）指向此表。
+/// - birth_place / party / summary：jsonb 雙語 {"zh-Hant": "...", "en": "..."}。
+/// - field_sources：各欄位出處 {"birthDate": {"source": "...", "url": "..."}, ...}。
+/// - is_test=true 標記測試資料；修正走軟撤回（I5）。2026-11-03 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class LeaderBio
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = "";
+    public string? NameZh { get; set; }
+    public DateOnly? BirthDate { get; set; }
+    /// <summary>day | month | year（NULL 表示精確度未知）。</summary>
+    public string? BirthDatePrecision { get; set; }
+    public DateOnly? DeathDate { get; set; }
+    /// <summary>出生地（jsonb 雙語）。</summary>
+    public string? BirthPlace { get; set; }
+    /// <summary>黨籍（jsonb 雙語）。</summary>
+    public string? Party { get; set; }
+    /// <summary>簡介（jsonb 雙語）。</summary>
+    public string? Summary { get; set; }
+    /// <summary>各欄位出處 {"birthDate": {"source": "...", "url": "..."}, ...}。</summary>
+    public string? FieldSources { get; set; }
+    /// <summary>測試資料標記，測試完成後可依此批次撤回。</summary>
+    public bool IsTest { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }

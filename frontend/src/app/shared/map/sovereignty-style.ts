@@ -1,6 +1,6 @@
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import type { SovereigntyMapDto } from '../../core/api/api-types';
-import { CAMP_FILL, campOf, darken, hatchImageId, labelPoint, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
+import { CAMP_FILL, campOf, darken, hatchImageId, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
 
 /**
  * 主權圖層（國界）樣式（2026-10-31 試驗）：
@@ -159,26 +159,14 @@ function ringArea(r: Ring): number {
   return Math.abs(a / 2);
 }
 
-/**
- * 手動指定標籤點與旋轉角度覆寫（鍵為 regimeSlug）。
- * 用於自動算法仍有偏差的政權（如資料特殊的狹長形）；優先於自動計算。
- * 座標為 WGS84 [lng, lat]；rotation 為 CSS 度（順時針為正）。
- */
-export const LABEL_OVERRIDES: Record<string, { lngLat?: [number, number]; rotation?: number }> = {
-  // 第二次世界大戰期間西藏：東西向極狹長，自動算法偏西
-  'tibet': { lngLat: [88.5, 32.2] },
-  // 西藏地方（各歷史時期 slug 可能不同）
-  'tibetan-local-government': { lngLat: [88.5, 32.2] },
-};
-
 /** 國名標籤：每筆主權紀錄取最大的多邊形放標籤（地圖元件再依畫面大小決定顯示與否）。 */
 /**
  * 標籤位置快取（依主權紀錄 id）：紀錄只會撤回、不會改幾何，所以同一筆紀錄在每個日期的標籤點都一樣。
- * labelPoint 對大多邊形要數百毫秒；播放、跳日期時重算全部會卡住主執行緒（Tai 2026-11-01 效能問題）。
+ * （舊版在這裡跑 labelPoint，大多邊形要數百毫秒；M1-g 起改由地圖元件依視窗 polylabel。）
  */
 const LABEL_CACHE_MAX = 3000;
 const labelCache = new Map<string, { lngLat: [number, number]; bbox: [number, number, number, number]; rotation: number; ring: number[][] }>();
-function labelGeometry(recordId: string, regimeSlug: string, g: Geometry) {
+function labelGeometry(recordId: string, g: Geometry) {
   const hit = labelCache.get(recordId);
   if (hit) return hit;
   const polys: Ring[][] = g.type === 'Polygon' ? [g.coordinates as Ring[]] : g.type === 'MultiPolygon' ? (g.coordinates as Ring[][]) : [];
@@ -188,9 +176,9 @@ function labelGeometry(recordId: string, regimeSlug: string, g: Geometry) {
   for (const [x, y] of biggest[0]) {
     minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
   }
-  const ov = LABEL_OVERRIDES[regimeSlug] ?? {};
-  const lngLat = ov.lngLat ?? labelPoint(biggest);
-  const rotation = ov.rotation ?? 0;
+  // 真正的位置由地圖元件依視窗計算（§4 (c)-5 國名依視窗定位，polylabel）；這裡只給 bbox 中心當後備，零國家特例
+  const lngLat: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2];
+  const rotation = 0;
   const v = { lngLat, bbox: [minX, minY, maxX, maxY] as [number, number, number, number], rotation, ring: biggest[0] };
   if (labelCache.size >= LABEL_CACHE_MAX) labelCache.delete(labelCache.keys().next().value as string);
   labelCache.set(recordId, v);
@@ -203,7 +191,7 @@ export function sovereigntyLabels(dto: SovereigntyMapDto | null | undefined, nam
     const p = f.properties;
     const text = nameFor(p.regimeId);
     if (!text) continue;
-    const lg = labelGeometry(p.recordId, p.regimeSlug, f.geometry as unknown as Geometry);
+    const lg = labelGeometry(p.recordId, f.geometry as unknown as Geometry);
     if (!lg) continue;
     out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: lg.lngLat, bbox: lg.bbox, fit: 1, rotation: lg.rotation || undefined, ring: lg.ring });
   }

@@ -29,7 +29,8 @@ import {
   pickCapitalAnchorSide, pointInProjectedRing,
   type Box,
 } from './label-placement';
-import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth } from './label-fit';
+import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
+import { geometryPieces, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -79,13 +80,37 @@ export function regimeLabelSortKey(bbox: [number, number, number, number], fit?:
   return tier - Math.log(area + 1);
 }
 
+/** 國名依視窗定位：moveend 後去抖動時間與畫面邊距（px）。 */
+export const VIEWPORT_LABEL_DEBOUNCE_MS = 80;
+/** MapLibre 符號淡入淡出時間（ms）。 */
+export const SYMBOL_FADE_MS = 100;
+export const VIEWPORT_LABEL_MARGIN_PX = 8;
+/** 國名框高度（px，含底塊）：polylabel 依名字框長寬比定位用。 */
+export const VIEWPORT_LABEL_HEIGHT_PX = 20;
+
+/** 兩次視窗定位結果是否不同（門檻或位置）。 */
+export function placeChanged(
+  a: ReadonlyMap<string, { lngLat: [number, number]; minZoom: number }>,
+  b: ReadonlyMap<string, { lngLat: [number, number]; minZoom: number }>,
+): boolean {
+  if (a.size !== b.size) return true;
+  for (const [k, v] of b) {
+    const o = a.get(k);
+    if (!o || o.minZoom !== v.minZoom || o.lngLat[0] !== v.lngLat[0] || o.lngLat[1] !== v.lngLat[1]) return true;
+  }
+  return false;
+}
+
 /** 政權名稱標籤的 GeoJSON FeatureCollection（Point，供 regime-labels source 使用）。 */
-export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): FeatureCollection {
+export function buildRegimeLabelFeatureCollection(
+  labels: ControlLabel[],
+  place?: ReadonlyMap<string, { lngLat: [number, number]; minZoom: number }>,
+): FeatureCollection {
   return {
     type: 'FeatureCollection',
     features: labels.map((l) => ({
       type: 'Feature' as const,
-      geometry: { type: 'Point' as const, coordinates: l.lngLat },
+      geometry: { type: 'Point' as const, coordinates: place?.get(l.versionId)?.lngLat ?? l.lngLat },
       properties: {
         versionId: l.versionId,
         regimeId: l.regimeId,
@@ -93,7 +118,8 @@ export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): Featu
         rotation: l.rotation ?? 0,
         sortKey: regimeLabelSortKey(l.bbox, l.fit),
         // 名字寬度 vs 國家螢幕寬度（ARCHITECTURE.md §4 (c)、D9）：裝不下的縮放不顯示
-        minZoom: clampMinZoom(labelMinZoom(measureLabelWidth(l.text, false), l.bbox, !!l.rotation)),
+        // 國名依視窗定位（§4 (c)-5）：有可見塊結果就用它（裝得下 -1、裝不下 99）
+        minZoom: place?.get(l.versionId)?.minZoom ?? clampMinZoom(labelMinZoom(measureLabelWidth(l.text, false), l.bbox, !!l.rotation)),
       },
     })),
   };
@@ -499,6 +525,13 @@ export class AtlasMap {
   protected readonly focusedRecord = signal<string | null>(null);
   /** 被選政權的 regimeId（聚焦時）；一般層排除它、HTML 層畫它。 */
   private focusRegimeId: string | null = null;
+  /** 國名依視窗定位（§4 (c)-5）：主權紀錄 → 世界座標多塊國土（紀錄只撤回不改幾何，可長期快取）。 */
+  private readonly sovPieces = new Map<string, Piece[]>();
+  private sovGeomSrc: unknown = null;
+  private sovGeomById = new Map<string, Geometry>();
+  /** versionId → 目前視窗下的國名點與顯示門檻 */
+  private viewportPlace = new Map<string, { lngLat: [number, number]; minZoom: number }>();
+  private viewportTimer: ReturnType<typeof setTimeout> | undefined;
   protected readonly selectedPlaced = signal<{ key: string; kind: 'regime' | 'capital'; text: string; x: number; y: number; rotation: number; side: 'left' | 'right' }[]>([]);
   /** 聚焦時一起挖亮的佔領區數（聚焦政權是佔領方） */
   protected readonly focusOccupied = signal(0);
@@ -561,6 +594,7 @@ export class AtlasMap {
     this.destroyRef.onDestroy(() => {
       clearTimeout(this.axisTimer);
       clearTimeout(this.fadeTimer);
+      clearTimeout(this.viewportTimer);
       cancelAnimationFrame(this.maskFrame);
       this._sovIds = new Set();
       this.map?.remove();
@@ -668,6 +702,8 @@ export class AtlasMap {
         minZoom: 1.5,
         maxZoom: 9,
         attributionControl: { compact: false },
+        // 符號碰撞淡入淡出：預設 300ms 會讓地圖晚約一個淡入週期才 idle（熱跳 ready 慢 ~255ms 的主因，2026-11-03 量測）
+        fadeDuration: SYMBOL_FADE_MS,
         dragRotate: false,
         pitchWithRotate: false,
       });
@@ -712,6 +748,7 @@ export class AtlasMap {
         this.fitArcs();
         this.scheduleMask();
         this.updateObstacleSymbols();
+        this.scheduleViewportLabels();
       });
       map.on('idle', () => {
         this.countRendered();
@@ -819,6 +856,7 @@ export class AtlasMap {
     this.focusRings = [f, ...occupied].flatMap((x) => polygonRings(x.geometry));
     this.focusedRecord.set(id);
     this.focusRegimeId = f.properties.regimeId ?? null;
+    this.scheduleViewportLabels();
     this.applyLabelFilters();
     this.placeSelectedLabels();
     this.focusBounds = cameraBounds;
@@ -854,6 +892,7 @@ export class AtlasMap {
     this.focusHasOverride = false;
     this.focusedRecord.set(null);
     this.focusRegimeId = null;
+    this.scheduleViewportLabels();
     this.applyLabelFilters();
     this.placeSelectedLabels();
     this.focusOccupied.set(0);
@@ -1105,7 +1144,93 @@ export class AtlasMap {
   private updateRegimeLabels(): void {
     const src = this.map?.getSource('regime-labels') as GeoJSONSource | undefined;
     if (!src) return;
-    src.setData(buildRegimeLabelFeatureCollection(this.labels()));
+    this.viewportPlace = this.computeViewportPlace();
+    src.setData(buildRegimeLabelFeatureCollection(this.labels(), this.viewportPlace));
+  }
+
+  private scheduleViewportLabels(): void {
+    clearTimeout(this.viewportTimer);
+    this.viewportTimer = setTimeout(() => this.refreshViewportLabels(), VIEWPORT_LABEL_DEBOUNCE_MS);
+  }
+
+  /** moveend 後（去抖動）重算國名位置；結果沒變就不 setData（避免重排符號）。 */
+  private refreshViewportLabels(): void {
+    const src = this.map?.getSource('regime-labels') as GeoJSONSource | undefined;
+    if (!src || this.cameraMoving()) return;
+    const next = this.computeViewportPlace();
+    if (!placeChanged(this.viewportPlace, next)) return;
+    this.viewportPlace = next;
+    src.setData(buildRegimeLabelFeatureCollection(this.labels(), next));
+    this.placeSelectedLabels();
+  }
+
+  /**
+   * 國名依視窗定位（ARCHITECTURE.md §4 (c)-5，M1-g）：每個國名放在該政權目前可見國土中最大的一塊，
+   * 位置用 polylabel（避開圖例／面板等 UI）；可見塊寬度裝不下名字就不顯示（被選政權例外，由 HTML 層畫）。
+   */
+  private computeViewportPlace(): Map<string, { lngLat: [number, number]; minZoom: number }> {
+    const out = new Map<string, { lngLat: [number, number]; minZoom: number }>();
+    const map = this.map;
+    if (!map) return out;
+    const fc = this.sovereignty();
+    if (fc !== this.sovGeomSrc) {
+      this.sovGeomSrc = fc;
+      this.sovGeomById = new Map();
+      for (const f of fc?.features ?? []) {
+        const id = (f.properties as { recordId?: string } | null)?.recordId;
+        if (id && f.geometry) this.sovGeomById.set(id, f.geometry as Geometry);
+      }
+    }
+    const el = map.getContainer();
+    const w = el.clientWidth, h = el.clientHeight;
+    if (!w || !h) return out;
+    const worldPx = 512 * 2 ** map.getZoom();
+    const c = map.getCenter();
+    const [cx, cy] = toWorld(c.lng, c.lat);
+    const cp = map.project(c);
+    const wx = (px: number) => cx + (px - cp.x) / worldPx;
+    const wy = (py: number) => cy + (py - cp.y) / worldPx;
+    const cr = el.getBoundingClientRect();
+    const sheet = document.querySelector('wl-regime-sheet [data-testid="regime-sheet"]')?.getBoundingClientRect();
+    const right = sheet && sheet.width > 0 && sheet.left < cr.right ? Math.min(w, sheet.left - cr.left) : w;
+    const m = VIEWPORT_LABEL_MARGIN_PX;
+    const view: Rect = [wx(m), wy(m), wx(right - m), wy(h - m)];
+    const avoid: Rect[] = uiObstacleBoxes(el).map((b) => [wx(b.x - b.w / 2), wy(b.y - b.h / 2), wx(b.x + b.w / 2), wy(b.y + b.h / 2)]);
+    const sel = this.focusRegimeId;
+    // 被選政權的國名與首都都畫在 HTML 層（不經 GL 碰撞）：國名要避開自己的首都標籤
+    const selAvoid: Rect[] = [];
+    if (sel) {
+      const near = (lng: number) => lng + Math.round((c.lng - lng) / 360) * 360;
+      for (const f of this._enrichedCapitals?.features ?? []) {
+        const pr = (f.properties ?? {}) as Record<string, unknown>;
+        if (pr['regimeId'] !== sel || f.geometry.type !== 'Point') continue;
+        const [lng, lat] = (f.geometry as GeoJSONPoint).coordinates;
+        const p = map.project([near(lng), lat]);
+        const tw = measureLabelWidth(String(pr['label'] ?? ''), false) + 10;
+        const [x0, x1] = pr['side'] === 'left' ? [p.x - tw, p.x + 6] : [p.x - 6, p.x + tw];
+        selAvoid.push([wx(x0), wy(p.y - 10), wx(x1), wy(p.y + 10)]);
+      }
+    }
+    for (const l of this.labels()) {
+      if (!l.versionId.startsWith('sov-')) continue;
+      const rid = l.versionId.slice(4);
+      let pieces = this.sovPieces.get(rid);
+      if (!pieces) {
+        const g = this.sovGeomById.get(rid);
+        if (!g) continue;
+        pieces = geometryPieces(g);
+        if (this.sovPieces.size > 3000) this.sovPieces.delete(this.sovPieces.keys().next().value as string);
+        this.sovPieces.set(rid, pieces);
+      }
+      const labelPx = measureLabelWidth(l.text, false);
+      const p = placeInViewport(pieces, view, worldPx, l.regimeId === sel && selAvoid.length ? [...avoid, ...selAvoid] : avoid, l.rotation ? undefined : { w: labelPx, h: VIEWPORT_LABEL_HEIGHT_PX });
+      if (!p) { out.set(l.versionId, { lngLat: l.lngLat, minZoom: NEVER_ZOOM }); continue; }
+      const span = l.rotation ? Math.max(p.widthPx, p.heightPx) : p.widthPx;
+      const fits = p.clearPx > 0 && span >= labelPx;
+      const lng = ((p.lngLat[0] + 540) % 360) - 180;
+      out.set(l.versionId, { lngLat: [lng, p.lngLat[1]], minZoom: fits || l.regimeId === sel ? -1 : NEVER_ZOOM });
+    }
+    return out;
   }
 
   private updateObstacleSymbols(): void {
@@ -1164,7 +1289,10 @@ export class AtlasMap {
     const out: { key: string; kind: 'regime' | 'capital'; text: string; x: number; y: number; rotation: number; side: 'left' | 'right' }[] = [];
     for (const l of this.labels()) {
       if (l.regimeId !== sel) continue;
-      const p = map.project([near(l.lngLat[0]), l.lngLat[1]]);
+      const vp = this.viewportPlace.get(l.versionId);
+      if (vp && vp.minZoom >= NEVER_ZOOM) continue; // 完全不在畫面上
+      const ll = vp?.lngLat ?? l.lngLat;
+      const p = map.project([near(ll[0]), ll[1]]);
       out.push({ key: `r-${l.versionId}`, kind: 'regime', text: l.text, x: p.x, y: p.y, rotation: l.rotation ?? 0, side: 'right' });
     }
     for (const f of this._enrichedCapitals?.features ?? []) {

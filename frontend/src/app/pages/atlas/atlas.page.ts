@@ -261,6 +261,7 @@ export class AtlasPage {
         geometry: f.location,
         properties: {
           recordId: f.recordId,
+          regimeId: f.regimeId,
           label: f.cityName[lang] ?? f.cityName.en ?? f.cityName['zh-Hant'] ?? f.regimeSlug,
         },
       })),

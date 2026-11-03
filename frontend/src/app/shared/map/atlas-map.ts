@@ -29,6 +29,7 @@ import {
   pickCapitalAnchorSide, pointInProjectedRing,
   type Box,
 } from './label-placement';
+import { labelMinZoom, minZoomFromScreenWidth, visibleIds } from './label-fit';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -90,6 +91,8 @@ export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): Featu
         text: l.text,
         rotation: l.rotation ?? 0,
         sortKey: regimeLabelSortKey(l.bbox, l.fit),
+        // 名字寬度 vs 國家螢幕寬度（ARCHITECTURE.md §4 (c)、D9）：裝不下的縮放不顯示
+        minZoom: labelMinZoom(measureLabelWidth(l.text, false), l.bbox, !!l.rotation),
       },
     })),
   };
@@ -343,11 +346,10 @@ export function buildBaseStyle(): StyleSpecification {
         },
       },
       {
-        // 首都名稱：縮放 < 3.5 時隱藏（地圖太小看不清楚）
+        // 首都名稱：與國名同一條規則（名字寬度 vs 所在國螢幕寬度，ARCHITECTURE.md D9），由 applyLabelFilters 設 filter
         id: 'capital-label',
         type: 'symbol',
         source: 'capitals',
-        minzoom: 3.5,
         layout: {
           'text-field': ['get', 'label'],
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
@@ -412,6 +414,25 @@ export interface MapConflictEvent {
     <div #focusMask data-testid="map-focus-mask" aria-hidden="true" [attr.data-active]="focusedRecord() ? 'true' : 'false'"
       class="pointer-events-none absolute inset-0 bg-[rgb(236_228_210/0.42)] backdrop-blur-[3px] transition-opacity duration-200 motion-reduce:transition-none"
       [class.opacity-0]="!focusedRecord()" [class.invisible]="!focusedRecord() && !maskFading()"></div>
+    <!--
+      被選政權的名字（ARCHITECTURE.md §4 (b)、D2）：畫在聚焦蒙版之上的 HTML 層，一定顯示、不被模糊；
+      一般層（GL）同政權的國名與首都用 filter 隱藏避免重複；這些框也加進障礙符號，讓其他標籤讓開。
+    -->
+    <div data-testid="map-selected-labels" class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      @for (l of selectedPlaced(); track l.key) {
+        @if (l.kind === 'regime') {
+          <div data-testid="map-selected-label" data-kind="regime" class="absolute whitespace-nowrap rounded-[3px] bg-[rgb(250_246_236/0.92)] px-1.5 text-[13px] font-semibold leading-[20px] text-[rgb(45_42_36)] shadow-[0_0_0_1px_rgb(45_42_36/0.25)]"
+            [style.left.px]="l.x" [style.top.px]="l.y" [style.transform]="'translate(-50%, -50%) rotate(' + l.rotation + 'deg)'">{{ l.text }}</div>
+        } @else {
+          <div data-testid="map-selected-label" data-kind="capital" class="absolute flex items-center gap-1 whitespace-nowrap text-[11px] leading-[16px] text-[rgb(45_42_36)]"
+            [style.left.px]="l.x" [style.top.px]="l.y" [style.transform]="l.side === 'left' ? 'translate(calc(-100% + 5px), -50%)' : 'translate(-5px, -50%)'"
+            [class.flex-row-reverse]="l.side === 'left'">
+            <span class="inline-block size-[10px] shrink-0 rounded-full border-[1.5px] border-[#faf6ec] bg-[#2d2a24]"></span>
+            <span class="rounded-[3px] bg-[rgb(250_246_236/0.92)] px-1">{{ l.text }}</span>
+          </div>
+        }
+      }
+    </div>
     <!-- 衝突圖示（交叉雙劍，自繪 SVG）：只在點選政權後由頁面傳入相關衝突；放在兩國交界，跟著地圖移動 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden">
       <!-- 遠距交戰虛線弧（雙方不相鄰）：SVG 疊在聚焦遮罩之上，跟著地圖移動；底下一條紙色寬線當描邊，模糊遮罩上也看得清楚 -->
@@ -470,6 +491,9 @@ export class AtlasMap {
   /** 鏡頭聚焦 bounds override（控制區點擊時傳入該控制區 bbox；主權／清除時為 null）。 */
   readonly focusFitBounds = input<LngLatBounds | null>(null);
   protected readonly focusedRecord = signal<string | null>(null);
+  /** 被選政權的 regimeId（聚焦時）；一般層排除它、HTML 層畫它。 */
+  private focusRegimeId: string | null = null;
+  protected readonly selectedPlaced = signal<{ key: string; kind: 'regime' | 'capital'; text: string; x: number; y: number; rotation: number; side: 'left' | 'right' }[]>([]);
   /** 聚焦時一起挖亮的佔領區數（聚焦政權是佔領方） */
   protected readonly focusOccupied = signal(0);
   protected readonly maskFading = signal(false);
@@ -544,7 +568,11 @@ export class AtlasMap {
     effect(() => {
       this.labels();
       if (!this.ready()) return;
-      untracked(() => this.updateRegimeLabels());
+      untracked(() => {
+        this.updateRegimeLabels();
+        this.applyLabelFilters();
+        this.placeSelectedLabels();
+      });
     });
     effect(() => {
       this.conflicts();
@@ -611,6 +639,8 @@ export class AtlasMap {
       if (!this.ready()) return;
       untracked(() => {
         this.computeAndApplyCapitalSides(capitals, sovereignty);
+        this.applyLabelFilters();
+        this.placeSelectedLabels();
       });
     });
   }
@@ -660,6 +690,9 @@ export class AtlasMap {
         // 確保首都圖層永遠在 GL style 最上層（任何後續 addLayer 都須用 beforeId 插在 capital-dot 之下）
         if (map.getLayer('capital-dot')) map.moveLayer('capital-dot');
         if (map.getLayer('capital-label')) map.moveLayer('capital-label');
+        // 障礙符號放最上層：碰撞由上往下放置，障礙先佔位，首都與國名都會避開圖例、面板與被選政權名字
+        if (map.getLayer('regime-label-obstacles')) map.moveLayer('regime-label-obstacles');
+        this.applyLabelFilters();
       });
       map.on('movestart', (e) => {
         this.cameraMoving.set(true);
@@ -679,9 +712,13 @@ export class AtlasMap {
         this.setRenderBusy(false);
       });
       map.on('dataloading', () => this.setRenderBusy(true));
-      map.on('zoomend', () => this.state.mapZoom.set(map.getZoom()));
+      map.on('zoomend', () => {
+        this.state.mapZoom.set(map.getZoom());
+        this.applyLabelFilters();
+      });
       map.on('move', () => {
         this.placeConflicts();
+        this.placeSelectedLabels();
         this.scheduleMask();
       });
       map.on('resize', () => {
@@ -778,6 +815,9 @@ export class AtlasMap {
     this.focusOccupied.set(occupied.length);
     this.focusRings = [f, ...occupied].flatMap((x) => polygonRings(x.geometry));
     this.focusedRecord.set(id);
+    this.focusRegimeId = f.properties.regimeId ?? null;
+    this.applyLabelFilters();
+    this.placeSelectedLabels();
     this.focusBounds = cameraBounds;
     this.focusHasOverride = overrideBounds != null;
     const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
@@ -810,6 +850,9 @@ export class AtlasMap {
     this.focusBounds = null;
     this.focusHasOverride = false;
     this.focusedRecord.set(null);
+    this.focusRegimeId = null;
+    this.applyLabelFilters();
+    this.placeSelectedLabels();
     this.focusOccupied.set(0);
     this.focusRings = [];
     // 遮罩淡出（200ms）期間保留原本的挖空路徑
@@ -1011,14 +1054,20 @@ export class AtlasMap {
 
         // 找包含此首都點的政權外環，依此決定優先側
         let side: 'right' | 'left' = 'right';
+        // 所在國沒找到時無法比寬度 → 不顯示名字（圓點照常）
+        let minZoom = Infinity;
         for (const ring of sovRings) {
           if (pointInProjectedRing(dotPx.x, dotPx.y, ring)) {
             side = pickCapitalAnchorSide(dotPx, labelW, ring);
+            let x0 = Infinity, x1 = -Infinity;
+            for (const p of ring) { if (p.x < x0) x0 = p.x; if (p.x > x1) x1 = p.x; }
+            // 名字＋圓點間距（約 10px）要放得進所在國的螢幕寬度
+            minZoom = minZoomFromScreenWidth(labelW + 10, x1 - x0, map.getZoom());
             break;
           }
         }
 
-        return { ...f, properties: { ...(f.properties ?? {}), side } };
+        return { ...f, properties: { ...(f.properties ?? {}), side, minZoom } };
       }),
     };
 
@@ -1061,13 +1110,73 @@ export class AtlasMap {
     if (!map) return;
     const src = map.getSource('regime-obstacles') as GeoJSONSource | undefined;
     if (!src) return;
-    const boxes = uiObstacleBoxes(map.getContainer());
+    const container = map.getContainer();
+    const boxes = uiObstacleBoxes(container);
+    // 被選政權的名字（HTML 層）也是障礙：其他標籤要讓開
+    const host = container.parentElement ?? container;
+    const cr = container.getBoundingClientRect();
+    host.querySelectorAll<HTMLElement>('[data-testid="map-selected-label"]').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.width && r.height) boxes.push({ x: (r.left + r.right) / 2 - cr.left, y: (r.top + r.bottom) / 2 - cr.top, w: r.width + 4, h: r.height + 4 });
+    });
     const features = obstacleGridFeatures(boxes, (px) => {
       const ll = map.unproject(px);
       return [ll.lng, ll.lat];
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     src.setData({ type: 'FeatureCollection', features } as any);
+  }
+
+  /**
+   * 一般層 filter（ARCHITECTURE.md §4 (b)(c)）：只顯示目前縮放裝得下的名字；被選政權的國名、首都與圓點改由 HTML 層畫。
+   * 用 id 清單而不是 ['zoom'] filter：MapLibre 的 filter 依圖磚整數縮放評估，這裡要對連續縮放精準比寬度。
+   */
+  private applyLabelFilters(): void {
+    const map = this.map;
+    if (!map || !map.getLayer('regime-label')) return;
+    const z = map.getZoom();
+    const sel = this.focusRegimeId;
+    const labelFs = buildRegimeLabelFeatureCollection(this.labels()).features.map((f) => ({
+      id: String(f.properties?.['versionId']), regimeId: f.properties?.['regimeId'] as string, minZoom: Number(f.properties?.['minZoom']),
+    }));
+    map.setFilter('regime-label', ['in', ['get', 'versionId'], ['literal', visibleIds(labelFs, z, sel)]]);
+    const caps = (this._enrichedCapitals?.features ?? []).map((f) => ({
+      id: String(f.properties?.['recordId']), regimeId: f.properties?.['regimeId'] as string, minZoom: Number(f.properties?.['minZoom'] ?? Infinity),
+    }));
+    map.setFilter('capital-label', ['in', ['get', 'recordId'], ['literal', visibleIds(caps, z, sel)]]);
+    map.setFilter('capital-dot', ['!=', ['coalesce', ['get', 'regimeId'], ''], sel ?? '__none__']);
+  }
+
+  /** 被選政權的國名（含它的控制區名稱）與首都：投影到螢幕座標，畫在蒙版上方；放好後更新障礙符號。 */
+  private placeSelectedLabels(): void {
+    const map = this.map;
+    const sel = this.focusRegimeId;
+    if (!map || !sel) {
+      if (this.selectedPlaced().length) {
+        this.selectedPlaced.set([]);
+        requestAnimationFrame(() => this.updateObstacleSymbols());
+      }
+      return;
+    }
+    const center = map.getCenter().lng;
+    const near = (lng: number) => lng + Math.round((center - lng) / 360) * 360;
+    const out: { key: string; kind: 'regime' | 'capital'; text: string; x: number; y: number; rotation: number; side: 'left' | 'right' }[] = [];
+    for (const l of this.labels()) {
+      if (l.regimeId !== sel) continue;
+      const p = map.project([near(l.lngLat[0]), l.lngLat[1]]);
+      out.push({ key: `r-${l.versionId}`, kind: 'regime', text: l.text, x: p.x, y: p.y, rotation: l.rotation ?? 0, side: 'right' });
+    }
+    for (const f of this._enrichedCapitals?.features ?? []) {
+      const pr = (f.properties ?? {}) as Record<string, unknown>;
+      if (pr['regimeId'] !== sel || f.geometry.type !== 'Point') continue;
+      const [lng, lat] = (f.geometry as GeoJSONPoint).coordinates;
+      const p = map.project([near(lng), lat]);
+      out.push({ key: `c-${String(pr['recordId'])}`, kind: 'capital', text: String(pr['label'] ?? ''), x: p.x, y: p.y, rotation: 0, side: pr['side'] === 'left' ? 'left' : 'right' });
+    }
+    const wasEmpty = this.selectedPlaced().length === 0;
+    this.selectedPlaced.set(out);
+    // 第一次出現（或換政權）時，等 DOM 畫好再把框加進障礙；移動中由 moveend 更新
+    if (wasEmpty || !this.cameraMoving()) requestAnimationFrame(() => this.updateObstacleSymbols());
   }
 
   private placeConflicts(): void {

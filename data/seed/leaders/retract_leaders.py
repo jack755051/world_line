@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-撤回 leaders_batch2 的舊領導人記錄（改記錄＝撤回＋新增；新版由 send_leaders_batch2.py 寫入）。
+撤回舊領導人記錄（leaders_batch2 與德國批）（改記錄＝撤回＋新增；新版由 send_leaders_batch2.py 寫入）。
   --batch v4_sourceurl：v3 sourceUrl 抽取錯誤的 80 筆（新版 *_V2）。
+  --batch v6_german_clip：德國批超出政權期間的 4 筆（威廉二世、比洛、鄧尼茨、施韋林；新版 *_CLIP，在 send_leaders.py）。
   --batch v5_clip    ：超出政權存在期間的 16 筆（9 筆新版 *_CLIP，7 筆整段在政權外、不再新增）。
 
 leader_records 目前沒有撤回 API（LeadersEndpoints 只有 POST /leader-records），
@@ -18,7 +19,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--send", action="store_true")
 ap.add_argument("--dry-run", action="store_true")
 ap.add_argument("--ids", default=os.path.join(HERE, "sent-leaders.json"))
-ap.add_argument("--batch", required=True, choices=["v4_sourceurl", "v5_clip"])
+ap.add_argument("--batch", required=True, choices=["v4_sourceurl", "v5_clip", "v6_german_clip"])
 ap.add_argument("--container", default="worldline-borders-dev-db")
 a = ap.parse_args()
 if a.container != "worldline-borders-dev-db":
@@ -32,6 +33,9 @@ BATCHES = {
     "v5_clip": ("依 dev DB 政權存在期間截斷：原期間超出政權範圍；截後仍有期間者由同 _id 加 _CLIP 的新記錄取代，"
                 "整段在政權外者不再新增（leaders_batch2 v5）。",
                 ["LS_HOG_KINGDOM_ITALY_19060529_V2", "LS_HOG_KINGDOM_ITALY_19450621_V2", "LS_HOG_KINGDOM_ITALY_19451210_V2", "LS_HOG_RUSSIAN_SFSR_19171108_V2", "LS_HOG_SOVIET_UNION_19410506_V2", "LS_HOS_USA_19010914", "LS_HOG_USA_19010914", "LS_HOS_USA_19090304", "LS_HOG_USA_19090304", "LS_HOS_USA_19130304", "LS_HOG_USA_19130304", "LS_HOG_EMPIRE_JAPAN_19060107_V2", "LS_HOG_EMPIRE_JAPAN_19080714_V2", "LS_HOG_EMPIRE_JAPAN_19450817_V2", "LS_HOG_EMPIRE_JAPAN_19451009_V2", "LS_HOG_ROC_NATIONALIST_19450604_V2"]),
+    "v6_german_clip": ("依 dev DB 政權存在期間截斷：原期間超出 german-empire／deutsches-reich 的存在期間；"
+                       "由同 _id 加 _CLIP 的新記錄取代（send_leaders.py）。",
+                       ["LS_HOS_GERMAN_EMPIRE_WILHELM_II", "LS_HOG_GERMAN_EMPIRE_BUELOW", "LS_HOS_DEUTSCHES_REICH_DOENITZ", "LS_HOG_DEUTSCHES_REICH_SCHWERIN"]),
 }
 REASON, RETRACT = BATCHES[a.batch]
 

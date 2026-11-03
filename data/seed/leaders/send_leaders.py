@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 德國領導人紀錄 seed（1908–1945）。
+2026-11-03：威廉二世、比洛、鄧尼茨、施韋林依政權存在期間截斷，舊記錄以 retract_leaders.py --batch v6_german_clip 撤回，新版 *_CLIP。
 涵蓋：German Empire（德意志帝國）與 Deutsches Reich（威瑪共和／第三帝國）
       的國家元首（head_of_state）與政府首腦（head_of_government）。
 
@@ -53,17 +54,17 @@ RECORDS = [
     # 國家元首 head_of_state ── German Empire（德意志帝國）
     # ═══════════════════════════════════════════════════════════════════════════
     {
-        "_id":       "LS_HOS_GERMAN_EMPIRE_WILHELM_II",
+        "_id":       "LS_HOS_GERMAN_EMPIRE_WILHELM_II_CLIP",
         "regimeId":  GERMAN_EMPIRE,
         "name":      "Wilhelm II",
         "nameZh":    "威廉二世",
         "role":      "head_of_state",
         "title":     "Deutscher Kaiser und König von Preußen",
-        "validFrom": "1908-01-01",
+        "validFrom": "1908-10-06",
         "validTo":   "1918-11-09",
         "source":    "Verfassung des Deutschen Reiches, 16. April 1871, Art. 11 — Kaiser als Oberhaupt; Abdankungserklärung Wilhelms II., 9. November 1918 (veröffentlicht durch Reichskanzler Max von Baden). Vgl. Röhl, John C. G.: Wilhelm II. Der Weg in den Abgrund 1900–1941, München 2008.",
         "verified":  True,
-        "note":      "1908-01-01 為本批起點，非即位日（1888-06-15）。空檔 1918-11-09～1919-02-11：Rat der Volksbeauftragten 集體執政，無單一正式 Reichspräsident；略去此段並於 Ebert 記錄中附注。",
+        "note":      "依 dev DB 政權存在期間（german-empire：1908-10-06～1918-11-12）截斷：原寫入期間 1908-01-01～1918-11-09，本筆為 1908-10-06～1918-11-09。1908-01-01 為本批起點，非即位日（1888-06-15）。空檔 1918-11-09～1919-02-11：Rat der Volksbeauftragten 集體執政，無單一正式 Reichspräsident；略去此段並於 Ebert 記錄中附注。",
     },
 
     # ═══════════════════════════════════════════════════════════════════════════
@@ -126,34 +127,34 @@ RECORDS = [
         "note":      "1934-08-01 法律於 Hindenburg 逝世（1934-08-02）同日生效，合併 Reichspräsident 與 Reichskanzler 為 Führer und Reichskanzler。",
     },
     {
-        "_id":       "LS_HOS_DEUTSCHES_REICH_DOENITZ",
+        "_id":       "LS_HOS_DEUTSCHES_REICH_DOENITZ_CLIP",
         "regimeId":  DEUTSCHES_REICH,
         "name":      "Karl Dönitz",
         "nameZh":    "卡爾·鄧尼茨",
         "role":      "head_of_state",
         "title":     "Reichspräsident",
         "validFrom": "1945-04-30",
-        "validTo":   "1945-05-23",
+        "validTo":   "1945-05-08",
         "source":    "Hitlers Politisches Testament, 29. April 1945 (abgedruckt in: Das Deutsche Reich und der Zweite Weltkrieg, MGFA, Bd. 10/2, München 2008, S. 1968); Verhaftung Dönitz' und Auflösung der Flensburger Regierung durch brit. Streitkräfte, 23. Mai 1945.",
         "verified":  True,
-        "note":      "依希特勒政治遺囑任命為 Reichspräsident。1945-05-08 德國無條件投降後殘餘政府續存至 1945-05-23 被盟軍在 Flensburg 逮捕解散。",
+        "note":      "依 dev DB 政權存在期間（deutsches-reich：1918-11-09～1945-05-08）截斷：原寫入期間 1945-04-30～1945-05-23，本筆為 1945-04-30～1945-05-08。依希特勒政治遺囑任命為 Reichspräsident。1945-05-08 德國無條件投降後殘餘政府續存至 1945-05-23 被盟軍在 Flensburg 逮捕解散。",
     },
 
     # ═══════════════════════════════════════════════════════════════════════════
     # 政府首腦 head_of_government ── German Empire（德意志帝國）
     # ═══════════════════════════════════════════════════════════════════════════
     {
-        "_id":       "LS_HOG_GERMAN_EMPIRE_BUELOW",
+        "_id":       "LS_HOG_GERMAN_EMPIRE_BUELOW_CLIP",
         "regimeId":  GERMAN_EMPIRE,
         "name":      "Bernhard von Bülow",
         "nameZh":    "伯恩哈德·馮·比洛",
         "role":      "head_of_government",
         "title":     "Reichskanzler",
-        "validFrom": "1908-01-01",
+        "validFrom": "1908-10-06",
         "validTo":   "1909-07-14",
         "source":    "Kaiserliche Entlassungsurkunde, 14. Juli 1909; Ernennung 17. Oktober 1900 (RGBl. 1900, S. 643). Vgl. Röhl, John C. G.: Wilhelm II. Der Weg in den Abgrund, München 2008.",
         "verified":  True,
-        "note":      "1908-01-01 為本批起點，非就任日（1900-10-17）。1909-07-14 獲 Kaiser 批准辭職，Bethmann Hollweg 同日就任。",
+        "note":      "依 dev DB 政權存在期間（german-empire：1908-10-06～1918-11-12）截斷：原寫入期間 1908-01-01～1909-07-14，本筆為 1908-10-06～1909-07-14。1908-01-01 為本批起點，非就任日（1900-10-17）。1909-07-14 獲 Kaiser 批准辭職，Bethmann Hollweg 同日就任。",
     },
     {
         "_id":       "LS_HOG_GERMAN_EMPIRE_BETHMANN",
@@ -433,17 +434,17 @@ RECORDS = [
         "note":      "依希特勒政治遺囑任命；自殺身亡（1945-05-01）前未實際執行職務。validTo 設至 Schwerin von Krosigk 就任日（1945-05-02）。",
     },
     {
-        "_id":       "LS_HOG_DEUTSCHES_REICH_SCHWERIN",
+        "_id":       "LS_HOG_DEUTSCHES_REICH_SCHWERIN_CLIP",
         "regimeId":  DEUTSCHES_REICH,
         "name":      "Lutz Graf Schwerin von Krosigk",
         "nameZh":    "盧茨·施韋林·馮·克羅西克",
         "role":      "head_of_government",
         "title":     "Leitender Minister",
         "validFrom": "1945-05-02",
-        "validTo":   "1945-05-23",
+        "validTo":   "1945-05-08",
         "source":    "Ernennung durch Dönitz als 'Leitender Minister' ab 2. Mai 1945; Verhaftung der Flensburger Regierung durch britische Streitkräfte, 23. Mai 1945. Vgl. Steinert, Marlis: 23 Tage — die Regierung Dönitz, Hamburg 1967.",
         "verified":  True,
-        "note":      "Dönitz 拒絕另任 Reichskanzler，以「首席部長」（Leitender Minister）名義領導殘餘政府，至 1945-05-23 在 Flensburg 被盟軍逮捕解散。",
+        "note":      "依 dev DB 政權存在期間（deutsches-reich：1918-11-09～1945-05-08）截斷：原寫入期間 1945-05-02～1945-05-23，本筆為 1945-05-02～1945-05-08。Dönitz 拒絕另任 Reichskanzler，以「首席部長」（Leitender Minister）名義領導殘餘政府，至 1945-05-23 在 Flensburg 被盟軍逮捕解散。",
     },
 ]
 

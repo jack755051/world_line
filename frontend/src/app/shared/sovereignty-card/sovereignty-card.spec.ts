@@ -598,6 +598,74 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(nameEl.getAttribute('aria-expanded')).toBe('false');
   });
 
+  it('hasBio：bio 摘要沒有 retractedAt 欄位（後端已過濾，欄位缺失）→ 視為活躍，名字為可點按鈕', async () => {
+    const bioNoRetracted = {
+      id: 'p1', name: 'Adolf Hitler', nameZh: null,
+      birthDate: null, birthDatePrecision: null, deathDate: null, summary: null,
+      // retractedAt 欄位刻意省略，模擬 GET /leaders 實際回應
+    } as LeaderBioSummary;
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [leaderWithPerson('p1', bioNoRetracted)]);
+    fixture.componentRef.setInput('loadBio', () => Promise.resolve(mockBio()));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const nameEl = q(el, 'sovereignty-card-leader-name')!;
+    expect(nameEl.tagName).toBe('BUTTON');
+    expect(nameEl.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('生平欄位缺失：birthDate null 不出現「出生」列；party 空物件不出現「政黨」列', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [leaderWithPerson('p1')]);
+    fixture.componentRef.setInput('loadBio', () => Promise.resolve(mockBio({
+      birthDate: null,
+      party: {},
+    })));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    (q(el, 'sovereignty-card-leader-name') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    const bio = q(el, 'sovereignty-card-leader-bio')!;
+    expect(bio).not.toBeNull();
+    // birthDate null → 不顯示出生日期（1889-04-20）
+    expect(bio.textContent).not.toContain('1889-04-20');
+    // party 空物件 → localizedBioField 回傳 '' → 不顯示「政黨」標籤
+    expect(bio.textContent).not.toContain('政黨');
+    // 其他有值的欄位仍顯示（去世日期）
+    expect(bio.textContent).toContain('1945-04-30');
+  });
+
+  it('生平全部欄位為空時顯示占位文字「尚無生平資料」', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [leaderWithPerson('p1')]);
+    fixture.componentRef.setInput('loadBio', () => Promise.resolve(mockBio({
+      birthDate: null, deathDate: null,
+      birthPlace: null, party: null, summary: null,
+      fieldSources: null,
+    })));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    (q(el, 'sovereignty-card-leader-name') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    const bio = q(el, 'sovereignty-card-leader-bio')!;
+    expect(bio).not.toBeNull();
+    expect(q(el, 'sovereignty-card-leader-bio-empty')?.textContent?.trim()).toBe('尚無生平資料');
+    // 不應有空的 dl
+    expect(bio.querySelector('dl')).toBeNull();
+  });
+
   it('英文介面 bio：出生地、黨派、簡介用英文；isTest 顯示 Test data', async () => {
     const fixture = TestBed.createComponent(SovereigntyCard);
     fixture.componentRef.setInput('props', props());

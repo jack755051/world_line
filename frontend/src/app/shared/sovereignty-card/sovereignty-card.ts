@@ -27,7 +27,7 @@ const TXT = {
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於',
     capital: '首都', capitalNone: '無資料',
     tabLeaders: '領導人', leadersNone: '無資料', leaderUnverified: '待查證',
-    bioError: '生平載入失敗', bioBirth: '出生', bioDeath: '去世', bioBirthPlace: '出生地', bioParty: '政黨', bioSource: '出處', bioTestBadge: '測試資料',
+    bioError: '生平載入失敗', bioBirth: '出生', bioDeath: '去世', bioBirthPlace: '出生地', bioParty: '政黨', bioSource: '出處', bioTestBadge: '測試資料', bioEmpty: '尚無生平資料',
     leaderRole: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
@@ -48,7 +48,7 @@ const TXT = {
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added',
     capital: 'Capital', capitalNone: 'No data',
     tabLeaders: 'Leaders', leadersNone: 'No data', leaderUnverified: 'Unverified',
-    bioError: 'Could not load biography', bioBirth: 'Born', bioDeath: 'Died', bioBirthPlace: 'Birthplace', bioParty: 'Party', bioSource: 'Source', bioTestBadge: 'Test data',
+    bioError: 'Could not load biography', bioBirth: 'Born', bioDeath: 'Died', bioBirthPlace: 'Birthplace', bioParty: 'Party', bioSource: 'Source', bioTestBadge: 'Test data', bioEmpty: 'No biography data',
     leaderRole: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
@@ -163,66 +163,50 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                                     @if (bio.isTest) {
                                       <span data-testid="sovereignty-card-leader-bio-test" class="mb-1 inline-block rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant">{{ t().bioTestBadge }}</span>
                                     }
-                                    <dl class="grid grid-cols-[60px_1fr] gap-x-2 gap-y-0.5">
-                                      @if (bio.birthDate) {
-                                        <dt class="text-wl-on-surface-variant">{{ t().bioBirth }}</dt>
-                                        <dd>{{ formatBioDate(bio.birthDate, bio.birthDatePrecision) }}
-                                          @if (bio.fieldSources?.['birthDate']; as fs) {
-                                            @if (fs.url) {
-                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
-                                            } @else {
-                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
+                                    @if (bioHasContent(bio)) {
+                                      <dl class="grid grid-cols-[60px_1fr] gap-x-2 gap-y-0.5">
+                                        @if (bio.birthDate) {
+                                          <dt class="text-wl-on-surface-variant">{{ t().bioBirth }}</dt>
+                                          <dd>{{ formatBioDate(bio.birthDate, bio.birthDatePrecision) }}
+                                            @if (bio.fieldSources?.['birthDate']?.url; as url) {
+                                              <a [href]="url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
                                             }
-                                          }
-                                        </dd>
-                                      }
-                                      @if (bio.deathDate) {
-                                        <dt class="text-wl-on-surface-variant">{{ t().bioDeath }}</dt>
-                                        <dd>{{ bio.deathDate.slice(0, 10) }}
-                                          @if (bio.fieldSources?.['deathDate']; as fs) {
-                                            @if (fs.url) {
-                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
-                                            } @else {
-                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
-                                            }
-                                          }
-                                        </dd>
-                                      }
-                                      @if (localizedBioField(bio.birthPlace); as bp) {
-                                        <dt class="text-wl-on-surface-variant">{{ t().bioBirthPlace }}</dt>
-                                        <dd>{{ bp }}
-                                          @if (bio.fieldSources?.['birthPlace']; as fs) {
-                                            @if (fs.url) {
-                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
-                                            } @else {
-                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
-                                            }
-                                          }
-                                        </dd>
-                                      }
-                                      @if (localizedBioField(bio.party); as party) {
-                                        <dt class="text-wl-on-surface-variant">{{ t().bioParty }}</dt>
-                                        <dd>{{ party }}
-                                          @if (bio.fieldSources?.['party']; as fs) {
-                                            @if (fs.url) {
-                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
-                                            } @else {
-                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
-                                            }
-                                          }
-                                        </dd>
-                                      }
-                                    </dl>
-                                    @if (localizedBioField(bio.summary); as summary) {
-                                      <p class="mt-1.5">{{ summary }}
-                                        @if (bio.fieldSources?.['summary']; as fs) {
-                                          @if (fs.url) {
-                                            <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
-                                          } @else {
-                                            <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
-                                          }
+                                          </dd>
                                         }
-                                      </p>
+                                        @if (bio.deathDate) {
+                                          <dt class="text-wl-on-surface-variant">{{ t().bioDeath }}</dt>
+                                          <dd>{{ bio.deathDate.slice(0, 10) }}
+                                            @if (bio.fieldSources?.['deathDate']?.url; as url) {
+                                              <a [href]="url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            }
+                                          </dd>
+                                        }
+                                        @if (localizedBioField(bio.birthPlace); as bp) {
+                                          <dt class="text-wl-on-surface-variant">{{ t().bioBirthPlace }}</dt>
+                                          <dd>{{ bp }}
+                                            @if (bio.fieldSources?.['birthPlace']?.url; as url) {
+                                              <a [href]="url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            }
+                                          </dd>
+                                        }
+                                        @if (localizedBioField(bio.party); as party) {
+                                          <dt class="text-wl-on-surface-variant">{{ t().bioParty }}</dt>
+                                          <dd>{{ party }}
+                                            @if (bio.fieldSources?.['party']?.url; as url) {
+                                              <a [href]="url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            }
+                                          </dd>
+                                        }
+                                      </dl>
+                                      @if (localizedBioField(bio.summary); as summary) {
+                                        <p class="mt-1.5">{{ summary }}
+                                          @if (bio.fieldSources?.['summary']?.url; as url) {
+                                            <a [href]="url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                          }
+                                        </p>
+                                      }
+                                    } @else {
+                                      <p data-testid="sovereignty-card-leader-bio-empty" class="text-wl-on-surface-variant">{{ t().bioEmpty }}</p>
                                     }
                                   }
                                 }
@@ -566,9 +550,16 @@ export class SovereigntyCard {
       return (order[a.role] ?? 2) - (order[b.role] ?? 2);
     }),
   );
-  /** bio 非 null 且未撤回（retractedAt 為 null）才顯示可點按鈕。 */
+  /** bio 非 null 且未撤回（retractedAt 為 undefined 或 null 皆視為活躍）才顯示可點按鈕。 */
   protected hasBio(l: LeaderRecord): boolean {
-    return l.personId != null && l.bio != null && l.bio.retractedAt === null;
+    return l.personId != null && l.bio != null && !l.bio.retractedAt;
+  }
+  /** 生平至少有一個可顯示的欄位（用於決定是否顯示占位文字）。 */
+  protected bioHasContent(bio: LeaderBio): boolean {
+    return !!(bio.birthDate || bio.deathDate ||
+      this.localizedBioField(bio.birthPlace) ||
+      this.localizedBioField(bio.party) ||
+      this.localizedBioField(bio.summary));
   }
   protected leaderName(l: LeaderRecord): string {
     return (this.lang() === 'en' ? l.name : l.nameZh || l.name) || l.name;

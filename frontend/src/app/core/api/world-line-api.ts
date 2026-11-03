@@ -64,7 +64,7 @@ export interface LeaderBioSummary {
   birthDatePrecision: 'day' | 'month' | 'year' | null;
   deathDate: string | null;
   summary: Record<string, string> | null;
-  retractedAt: string | null;
+  retractedAt?: string | null;
 }
 
 export interface LeaderRecord {

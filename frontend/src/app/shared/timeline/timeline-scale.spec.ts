@@ -31,6 +31,12 @@ describe('timeline-scale', () => {
     expect(ys.filter((y) => y.label).map((y) => y.label)).toEqual(['1910', '1915', '1920', '1925', '1930', '1935', '1940', '1945']);
   });
 
+  it('固定每 5 年標字（方案 A），短範圍也一樣；每年都有刻點', () => {
+    const ys = yearTicks(r, 16, 5);
+    expect(ys.length).toBe(8);
+    expect(ys.filter((y) => y.label).map((y) => y.label)).toEqual(['1940', '1945']);
+  });
+
   it('上一個／下一個／最近的快照', () => {
     const d = ['1940-07-15', '1940-08-15'];
     expect(prevSnapshotDate(d, '1940-07-30')).toBe('1940-07-15');

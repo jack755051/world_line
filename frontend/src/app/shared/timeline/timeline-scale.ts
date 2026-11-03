@@ -36,11 +36,12 @@ export interface Tick {
 }
 
 /** 年刻度；範圍很長（例：WW1 試驗 1908 起）時只每 N 年標年份，最多約 maxLabels 個（刻線照畫）。 */
-export function yearTicks(r: Range, maxLabels = 16): Tick[] {
+/** `labelEvery` 指定時固定每 N 年標字（M3-a 方案 A：每 5 年一個文字刻度、每年一個小點）。 */
+export function yearTicks(r: Range, maxLabels = 16, labelEvery?: number): Tick[] {
   const ticks: Tick[] = [];
   const y0 = +r.start.slice(0, 4);
   const y1 = +r.end.slice(0, 4);
-  const step = [1, 2, 5, 10, 20, 50, 100].find((s) => (y1 - y0 + 1) / s <= maxLabels) ?? 100;
+  const step = labelEvery ?? [1, 2, 5, 10, 20, 50, 100].find((s) => (y1 - y0 + 1) / s <= maxLabels) ?? 100;
   for (let y = y0; y <= y1; y++) {
     const d = `${y}-01-01`;
     if (d >= r.start && d <= r.end) ticks.push({ date: d, f: fraction(d, r), label: y % step === 0 ? String(y) : undefined });

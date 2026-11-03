@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import type { FeatureCollection, Geometry } from 'geojson';
-import { LucideCircleAlert, LucideCloudOff, LucideInfo, LucideRotateCw } from '@lucide/angular';
+import { LucideCircleAlert, LucideCloudOff, LucideRotateCw } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
 import { ToastService } from '../../components/ui/toast';
@@ -46,7 +46,7 @@ interface SheetInfo {
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
+  imports: [TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="relative h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -60,15 +60,9 @@ interface SheetInfo {
               <div class="ml-auto flex items-center gap-3"><div sanringSkeleton class="h-7 w-36"></div><div sanringSkeleton class="h-7 w-16"></div><div sanringSkeleton class="size-7"></div></div>
             </div>
             <div class="flex-1 bg-[#ece4d2]"></div>
-            <div class="flex h-[var(--wl-timeline-height)] items-center gap-4 border-t border-wl-outline-variant bg-wl-surface px-4">
-              <div class="flex w-[300px] flex-none items-center gap-1.5">
-                <div sanringSkeleton class="size-7"></div><div sanringSkeleton class="size-7"></div><div sanringSkeleton class="size-7"></div>
-                <span class="mx-1 h-5 w-px bg-wl-outline-variant" aria-hidden="true"></span><div sanringSkeleton class="h-7 w-14"></div><div sanringSkeleton class="h-7 w-28"></div>
-              </div>
-              <div class="flex flex-1 gap-2">
-                <div class="flex w-[48px] flex-none flex-col gap-[6px]">@for (i of skeletonRows; track i) { <div sanringSkeleton class="h-[6px] w-full"></div> }</div>
-                <div class="flex flex-1 flex-col gap-[6px]">@for (i of skeletonRows; track i) { <div sanringSkeleton class="h-[6px] w-full"></div> }</div>
-              </div>
+            <div class="flex h-[var(--wl-timeline-height)] items-center gap-2 border-t border-wl-outline-variant bg-wl-surface px-3">
+              <div sanringSkeleton class="size-7"></div><div sanringSkeleton class="h-7 w-28"></div>
+              <div sanringSkeleton class="mx-2 h-[4px] flex-1"></div><div sanringSkeleton class="size-7"></div>
             </div>
           </div>
         }
@@ -142,9 +136,7 @@ interface SheetInfo {
                 </div>
               }
 
-              @if (state.date() < completeFrom) {
-                <div data-testid="map-incomplete-period-hint" class="absolute left-4 top-4 wl-paper flex items-center gap-1.5 px-3 py-1.5 wl-text2"><svg lucideInfo class="size-3.5 text-wl-on-surface-variant" aria-hidden="true"></svg>{{ tr('map.incomplete') }}</div>
-              }
+              <!-- 「本時段資料不保證完整」改為時間軸日期旁的 ⓘ＋首次造訪一次 toast（M3-a 方案 A） -->
 
               @if (hoverInfo(); as h) {
                 <div data-testid="map-tooltip" role="tooltip" class="wl-paper pointer-events-none absolute z-10 px-3 py-2 wl-text2"
@@ -225,7 +217,6 @@ export class AtlasPage {
   private readonly toast = inject(ToastService, { optional: true });
 
   protected readonly completeFrom = COMPLETE_FROM;
-  protected readonly skeletonRows = [0, 1, 2, 3, 4];
   protected readonly lang = this.state.lang;
   protected readonly selected = signal<MapFeatureEvent | null>(null);
   protected readonly hover = signal<MapFeatureEvent | null>(null);
@@ -545,6 +536,15 @@ export class AtlasPage {
     effect(() => {
       if (this.data.controlStatus() === 'ok') untracked(() => this.everLoaded.set(true));
     });
+    // 資料不完整提示（M3-a 方案 A）：第一次進到 1937-07 以前的日期時顯示一次 toast，之後只留時間軸日期旁的 ⓘ
+    effect(() => {
+      if (!this.everLoaded() || this.state.date() >= COMPLETE_FROM) return;
+      untracked(() => {
+        if (incompleteToastSeen()) return;
+        markIncompleteToastSeen();
+        this.toast?.info(t('timeline.incomplete.toast', this.lang()));
+      });
+    });
     effect(() => {
       const dto = this.data.sovereignty();
       const want = this.pendingRegime();
@@ -816,5 +816,24 @@ export class AtlasPage {
 
   protected tr(key: I18nKey, vars?: Record<string, string | number>): string {
     return t(key, this.lang() as Lang, vars);
+  }
+}
+
+const INCOMPLETE_TOAST_KEY = 'wl.incompleteToastSeen';
+/** 首次造訪才顯示（localStorage；無法使用時視為本次已看過，不重複跳出）。 */
+let incompleteToastSeenFallback = false;
+function incompleteToastSeen(): boolean {
+  try {
+    return globalThis.localStorage?.getItem(INCOMPLETE_TOAST_KEY) === '1' || incompleteToastSeenFallback;
+  } catch {
+    return incompleteToastSeenFallback;
+  }
+}
+function markIncompleteToastSeen(): void {
+  incompleteToastSeenFallback = true;
+  try {
+    globalThis.localStorage?.setItem(INCOMPLETE_TOAST_KEY, '1');
+  } catch {
+    /* 無 localStorage：只在本次執行期間記住 */
   }
 }

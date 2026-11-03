@@ -350,6 +350,8 @@ export class AtlasMap {
   private focusRings: Position[][] = [];
   private focusKey = '';
   private focusBounds: unknown = null;
+  /** 目前聚焦由 focusFitBounds override（控制區 bbox）觸發時為 true；此時 fitArcs 不重移鏡頭。 */
+  private focusHasOverride = false;
   /** 聚焦前的視角；關掉聚焦時飛回（使用者聚焦後自己拖過／縮放過就不飛回，只還原邊距）。 */
   private savedCamera: { center: LngLat; zoom: number; padding: PaddingOptions } | null = null;
   private userMoved = false;
@@ -629,6 +631,7 @@ export class AtlasMap {
     this.focusRings = [f, ...occupied].flatMap((x) => polygonRings(x.geometry));
     this.focusedRecord.set(id);
     this.focusBounds = cameraBounds;
+    this.focusHasOverride = overrideBounds != null;
     const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
     if (cam) map.easeTo({ ...cam, duration, essential: false });
     this.drawMask();
@@ -641,6 +644,7 @@ export class AtlasMap {
     this.focusKey = '';
     this.arcFitKey = '';
     this.focusBounds = null;
+    this.focusHasOverride = false;
     this.focusedRecord.set(null);
     this.focusOccupied.set(0);
     this.focusRings = [];
@@ -866,6 +870,8 @@ export class AtlasMap {
   protected readonly arcFit = signal(0);
   private fitArcs(): void {
     const map = this.map;
+    // 控制區聚焦（focusFitBounds override）時鏡頭已對準控制區，不再因弧線重移鏡頭；弧線照常顯示。
+    if (this.focusHasOverride) return;
     if (!map || !this.focusedRecord() || this.userMoved || this.cameraMoving() || !this.focusBounds) return;
     const arcs = this.conflicts().filter((c) => c.arc?.length);
     if (!arcs.length) return;

@@ -19,7 +19,9 @@ export const CAPITAL_DOT_GAP = 3;
 // 對應 buildBaseStyle capital-label 圖層的 text-size / text-halo-width / text-radial-offset
 const _CAP_LABEL_FONT_PX = 11;
 const _CAP_LABEL_HALO_PX = 1.5;
-const _CAP_LABEL_RADIAL_PX = Math.round(0.9 * _CAP_LABEL_FONT_PX); // ≈10px
+/** MapLibre capital-label 渲染的徑向偏移（像素，對應 text-radial-offset: 0.9 × text-size: 11px ≈ 10px）。 */
+export const CAP_LABEL_RADIAL_PX = Math.round(0.9 * _CAP_LABEL_FONT_PX); // ≈10px
+const _CAP_LABEL_RADIAL_PX = CAP_LABEL_RADIAL_PX; // 內部相容別名
 const _CAP_LABEL_AVG_CHAR_PX = 6.5; // 11px Open Sans 平均字寬估計
 /** 首都名稱 MapLibre 渲染估計高度（含 halo，px）。 */
 export const CAP_LABEL_H = 16;
@@ -300,4 +302,26 @@ export function findLabelPlacement(
   }
 
   return null;
+}
+
+/**
+ * 決定首都名稱標籤優先側（right/left）：
+ * 分別計算名稱框中心在右側與左側時的像素座標，
+ * 利用 pointInProjectedRing 檢查是否落在政權多邊形的外環內。
+ * 右側在內 → 'right'；否則左側在內 → 'left'；兩側皆不在或環不足 → 'right'（預設）。
+ * 通用幾何邏輯，不含任何國家座標特例。
+ *
+ * @param dotPx  首都圓點的投影座標（px）
+ * @param labelW 名稱框估計寬度（px）；用於計算名稱框中心偏移
+ * @param ring   政權外環（已投影到像素座標；{x, y} 陣列）
+ */
+export function pickCapitalAnchorSide(
+  dotPx: { x: number; y: number },
+  labelW: number,
+  ring: ReadonlyArray<{ x: number; y: number }>,
+): 'right' | 'left' {
+  const offset = CAP_LABEL_RADIAL_PX + labelW / 2;
+  if (pointInProjectedRing(dotPx.x + offset, dotPx.y, ring)) return 'right';
+  if (pointInProjectedRing(dotPx.x - offset, dotPx.y, ring)) return 'left';
+  return 'right';
 }

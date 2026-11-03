@@ -14,7 +14,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { staggerOnArcs, worldShiftArc } from './conflict-arc';
-import type { FeatureCollection, Geometry, Position } from 'geojson';
+import type { FeatureCollection, Geometry, Point as GeoJSONPoint, Position } from 'geojson';
 import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
@@ -25,6 +25,7 @@ import type { LngLat, PaddingOptions } from 'maplibre-gl';
 import {
   LABEL_CHAR_PX, LABEL_H, LABEL_SMALL_H,
   capitalObstacleBoxes, findLabelPlacement, gridCandidates, measureLabelWidth, uiObstacleBoxes,
+  pickCapitalAnchorSide, pointInProjectedRing,
 } from './label-placement';
 
 /**
@@ -225,8 +226,14 @@ export function buildBaseStyle(): StyleSpecification {
           'text-field': ['get', 'label'],
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
           'text-size': 11,
-          'text-variable-anchor': ['right', 'left'],
-          'text-radial-offset': 0.9,
+          // data-driven 選邊：text-variable-anchor 不支援 data-driven，改用 text-anchor + text-offset。
+          // side='right' → 名稱框在圓點右側（text-anchor='left'，left edge 靠近圓點）
+          // side='left'  → 名稱框在圓點左側（text-anchor='right'，right edge 靠近圓點）
+          // 未設 side → 預設右側（text-anchor='left'）
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'text-anchor': ['match', ['get', 'side'], 'right', 'left', 'left', 'right', 'left'] as any,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'text-offset': ['match', ['get', 'side'], 'right', ['literal', [0.9, 0]], 'left', ['literal', [-0.9, 0]], ['literal', [0.9, 0]]] as any,
           'text-justify': 'auto',
           'text-optional': true,
           'text-max-width': 8,
@@ -398,6 +405,8 @@ export class AtlasMap {
   private _sovIds = new Set<string>();
   /** 最後一次呼叫 setData/updateData 的時間點（performance.now()），供 setRenderBusy(false) 計算 worker+render 耗時。 */
   private _sovSetDataTs = 0;
+  /** 注入 side 屬性後的首都 GeoJSON（供 capital-label data-driven 選邊使用）；null 表示尚未計算。 */
+  private _enrichedCapitals: FeatureCollection | null = null;
 
   constructor() {
     afterNextRender(() => void this.init());
@@ -479,10 +488,11 @@ export class AtlasMap {
       this.map?.setFilter('control-selected', ['==', ['get', 'versionId'], id]);
     });
     effect(() => {
-      const data = this.capitals();
+      const capitals = this.capitals();
+      const sovereignty = this.sovereignty(); // 主權幾何改變時也需重算首都選邊
       if (!this.ready()) return;
       untracked(() => {
-        (this.map?.getSource('capitals') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
+        this.computeAndApplyCapitalSides(capitals, sovereignty);
         this.placeLabels();
       });
     });
@@ -527,7 +537,7 @@ export class AtlasMap {
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion(), this.focusFitBounds());
-        (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(this.capitals() ?? EMPTY);
+        this.computeAndApplyCapitalSides(this.capitals(), this.sovereignty());
         // 確保首都圖層永遠在 GL style 最上層（任何後續 addLayer 都須用 beforeId 插在 capital-dot 之下）
         if (map.getLayer('capital-dot')) map.moveLayer('capital-dot');
         if (map.getLayer('capital-label')) map.moveLayer('capital-label');
@@ -824,6 +834,71 @@ export class AtlasMap {
   }
 
   /**
+   * 為每座首都計算名稱標籤優先側（right/left），將 side 屬性注入 GeoJSON 並推送至 capitals source。
+   * 當 capitals 或 sovereignty（政權外環）改變時呼叫。
+   * 策略：在目前 zoom 下以像素座標將政權外環投影，再用 pickCapitalAnchorSide 判斷哪側名稱框中心落在環內。
+   * capitalObstacleBoxes 仍保留左右兩側障礙框（確保 HTML 國名標籤在兩側退路下均能避讓）。
+   */
+  private computeAndApplyCapitalSides(
+    capitals: FeatureCollection | null,
+    sovereignty: FeatureCollection<Geometry, SovereigntyProps> | null,
+  ): void {
+    const map = this.map;
+    if (!map) return;
+
+    if (!capitals?.features.length) {
+      this._enrichedCapitals = null;
+      (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(EMPTY);
+      return;
+    }
+
+    // 投影所有政權多邊形的外環（用於後續點在環內測試）
+    const sovRings: ReadonlyArray<{ x: number; y: number }>[] = [];
+    for (const sf of sovereignty?.features ?? []) {
+      const g = sf.geometry;
+      if (g.type === 'Polygon') {
+        sovRings.push(g.coordinates[0].map(([lng, lat]) => map.project([lng, lat] as [number, number])));
+      } else if (g.type === 'MultiPolygon') {
+        for (const poly of g.coordinates) {
+          sovRings.push(poly[0].map(([lng, lat]) => map.project([lng, lat] as [number, number])));
+        }
+      }
+    }
+
+    const mapCenterLng = map.getCenter().lng;
+
+    const enriched: FeatureCollection = {
+      type: 'FeatureCollection',
+      features: capitals.features.map((f) => {
+        if (f.geometry.type !== 'Point') {
+          return { ...f, properties: { ...(f.properties ?? {}), side: 'right' } };
+        }
+        const coords = (f.geometry as GeoJSONPoint).coordinates;
+        const rawLng = coords[0];
+        const lat = coords[1];
+        const k = Math.round((mapCenterLng - rawLng) / 360) * 360;
+        const dotPx = map.project([rawLng + k, lat] as [number, number]);
+        const label = ((f.properties as Record<string, unknown> | null)?.['label'] as string | undefined) ?? '';
+        const labelW = measureLabelWidth(label, false);
+
+        // 找包含此首都點的政權外環，依此決定優先側
+        let side: 'right' | 'left' = 'right';
+        for (const ring of sovRings) {
+          if (pointInProjectedRing(dotPx.x, dotPx.y, ring)) {
+            side = pickCapitalAnchorSide(dotPx, labelW, ring);
+            break;
+          }
+        }
+
+        return { ...f, properties: { ...(f.properties ?? {}), side } };
+      }),
+    };
+
+    this._enrichedCapitals = enriched;
+    (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(enriched);
+  }
+
+  /**
    * 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。
    * 首都保留框 + 浮動 UI 障礙物優先於國名／控制區標籤。
    * 若 5 個垂直位移都撞，嘗試多邊形內網格候選點；全部失敗再以縮小字體重試；仍不行才略去。
@@ -838,8 +913,9 @@ export class AtlasMap {
     const mapH = el.clientHeight;
 
     // 首都保留框（圓點＋名稱估計）：所有國名／控制區標籤需避讓
+    // 使用注入 side 屬性後的版本（若尚未計算則退回原始資料）
     const capitalObs = capitalObstacleBoxes(
-      this.capitals(),
+      this._enrichedCapitals ?? this.capitals(),
       (ll) => map.project(ll),
       map.getCenter().lng,
       map.getZoom(),

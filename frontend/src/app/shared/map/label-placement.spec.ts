@@ -2,10 +2,10 @@ import { FeatureCollection } from 'geojson';
 import {
   avoidCapitals, capitalObstacleBoxes, findLabelPlacement, gridCandidates,
   CAPITAL_DOT_RADIUS, CAPITAL_DOT_STROKE, CAPITAL_DOT_GAP,
-  CAP_LABEL_H,
+  CAP_LABEL_H, CAP_LABEL_RADIAL_PX,
   LABEL_CHAR_PX, LABEL_H, LABEL_PAD, LABEL_SMALL_CHAR_PX, LABEL_SMALL_H,
   VIEWPORT_MARGIN, measureLabelWidth, clearLabelWidthCache,
-  pointInProjectedRing, rectsOverlap,
+  pickCapitalAnchorSide, pointInProjectedRing, rectsOverlap,
 } from './label-placement';
 
 /** 單點 GeoJSON helper */
@@ -332,5 +332,40 @@ describe('findLabelPlacement', () => {
     const r = findLabelPlacement(95, 300, 80, [], [], undefined, 100, 600);
     // 全部超出，回傳 null
     expect(r).toBeNull();
+  });
+});
+
+describe('pickCapitalAnchorSide', () => {
+  // 使用 100×100 正方形政權外環（投影座標）
+  const square: { x: number; y: number }[] = [
+    { x: 0, y: 0 }, { x: 100, y: 0 }, { x: 100, y: 100 }, { x: 0, y: 100 },
+  ];
+  // CAP_LABEL_RADIAL_PX ≈ 10（Math.round(0.9 * 11)）
+
+  it('右側名稱框中心在環內 → 回傳 right', () => {
+    // dotPx=(50,50), labelW=20 → offset=CAP_LABEL_RADIAL_PX+10=20
+    // 右側中心=(70,50) 在正方形內 → right
+    const dotPx = { x: 50, y: 50 };
+    expect(pickCapitalAnchorSide(dotPx, 20, square)).toBe('right');
+  });
+
+  it('右側名稱框中心出界、左側在內 → 回傳 left', () => {
+    // dotPx=(95,50), labelW=40 → offset=CAP_LABEL_RADIAL_PX+20=30
+    // 右側中心=(125,50) 超出正方形 → 左側中心=(65,50) 在內 → left
+    const dotPx = { x: 95, y: 50 };
+    expect(pickCapitalAnchorSide(dotPx, 40, square)).toBe('left');
+  });
+
+  it('兩側名稱框中心均在環內 → 優先回傳 right', () => {
+    // dotPx=(50,50), labelW=10 → offset=CAP_LABEL_RADIAL_PX+5≈15
+    // 右側中心=(65,50)、左側中心=(35,50) 均在內 → right（右優先）
+    const dotPx = { x: 50, y: 50 };
+    expect(pickCapitalAnchorSide(dotPx, 10, square)).toBe('right');
+  });
+
+  it('兩側均不在環內（首都在環外） → 回傳 right（預設）', () => {
+    // dotPx=(150,50) 在正方形外，兩側中心也在外
+    const dotPx = { x: 150, y: 50 };
+    expect(pickCapitalAnchorSide(dotPx, 20, square)).toBe('right');
   });
 });

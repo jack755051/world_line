@@ -17,9 +17,12 @@
  * - 冷跳重複 9 次、熱跳 18 次，各取中位數；viewport 1440×900，locale zh-TW。
  * - FPS：每次跳年從 Enter 到視覺完成之間，在頁面內用 requestAnimationFrame 計幀，
  *   記平均 FPS 與最長單幀（ms）；取中位數。
+ * - Sweep FPS：[data-testid=map-scan][data-scan-phase=sweeping] 出現起到
+ *   map-scan 消失為止的 FPS；取中位數。
  * - 結果寫到 WL_SCAN_OUT（預設 /tmp/wl-scan2/baseline.json）
  *   格式：{ label, head, cold:{median_ms, visual_median_ms, runs:[]},
- *           hot:{...}, fps:{median, worst_frame_ms_median} }
+ *           hot:{...}, fps:{median, worst_frame_ms_median},
+ *           sweep_fps:{median, worst_frame_ms_median} }
  */
 
 import { test, type Page } from '@playwright/test';
@@ -43,6 +46,8 @@ interface RunResult {
   visualMs: number;
   avgFps: number;
   worstFrameMs: number;
+  sweepAvgFps: number;
+  sweepWorstFrameMs: number;
 }
 
 /** 輪詢 map-area[data-ready-for] 直到符合目標日期；超時靜默返回。 */
@@ -88,11 +93,47 @@ async function stopFpsTracking(page: Page): Promise<{ avgFps: number; worstFrame
   });
 }
 
+/** 在頁面內啟動 Sweep 專用 rAF 幀計時器（偵測到 data-scan-phase=sweeping 時才呼叫）。 */
+async function startSweepFpsTracking(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    if ((window as any).__wlSweepFps) (window as any).__wlSweepFps.stopped = true;
+    (window as any).__wlSweepFps = {
+      frameTimes: [] as number[],
+      lastTs: performance.now(),
+      stopped: false,
+    };
+    const loop = (ts: number) => {
+      const dt = ts - (window as any).__wlSweepFps.lastTs;
+      if (dt > 0 && dt < 500) (window as any).__wlSweepFps.frameTimes.push(dt);
+      (window as any).__wlSweepFps.lastTs = ts;
+      if (!(window as any).__wlSweepFps.stopped) requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  });
+}
+
+/** 停止 Sweep rAF 計時器並回傳平均 FPS 與最長單幀 ms。 */
+async function stopSweepFpsTracking(
+  page: Page,
+): Promise<{ sweepAvgFps: number; sweepWorstFrameMs: number }> {
+  return page.evaluate(() => {
+    if (!(window as any).__wlSweepFps) return { sweepAvgFps: 0, sweepWorstFrameMs: 0 };
+    (window as any).__wlSweepFps.stopped = true;
+    const frames: number[] = (window as any).__wlSweepFps.frameTimes;
+    if (frames.length < 2) return { sweepAvgFps: 0, sweepWorstFrameMs: 0 };
+    const totalTime = frames.reduce((a, b) => a + b, 0);
+    const sweepAvgFps = totalTime > 0 ? +((frames.length / totalTime) * 1000).toFixed(1) : 0;
+    const sweepWorstFrameMs = +Math.max(...frames).toFixed(1);
+    return { sweepAvgFps, sweepWorstFrameMs };
+  });
+}
+
 /**
  * 執行一次日期跳轉並回傳量測結果：
  * - readyMs：從 Enter 到 data-ready-for 符合目標日期。
  * - visualMs：從 Enter 到畫面無 map-scan 且無 map-busy-scrim（若元素不存在則≈readyMs）。
- * - avgFps / worstFrameMs：rAF 統計。
+ * - avgFps / worstFrameMs：全程（Enter→視覺完成）rAF 統計。
+ * - sweepAvgFps / sweepWorstFrameMs：僅 data-scan-phase=sweeping 期間的 rAF 統計。
  */
 async function doJump(page: Page, toDate: string): Promise<RunResult> {
   const input = page.getByTestId('timeline-date-input');
@@ -107,17 +148,44 @@ async function doJump(page: Page, toDate: string): Promise<RunResult> {
   await waitMapReady(page, toDate, 30000);
   const readyMs = Date.now() - t0;
 
-  // 等視覺指示器消失（若元素不在 DOM 中，isVisible 立即回傳 false → 直接結束）
+  // 等視覺指示器消失，同時偵測 sweeping 期間追蹤專屬 FPS
+  let sweepFpsStarted = false;
+  let sweepResult = { sweepAvgFps: 0, sweepWorstFrameMs: 0 };
+
   for (let i = 0; i < 400; i++) {
-    const scanVis = await page.getByTestId('map-scan').isVisible().catch(() => false);
+    const mapScan = page.getByTestId('map-scan');
+    const scanVisible = await mapScan.isVisible().catch(() => false);
+
+    // 偵測 sweeping 開始
+    if (!sweepFpsStarted && scanVisible) {
+      const phase = await mapScan.getAttribute('data-scan-phase').catch(() => null);
+      if (phase === 'sweeping') {
+        await startSweepFpsTracking(page);
+        sweepFpsStarted = true;
+      }
+    }
+
     const scrimVis = await page.getByTestId('map-busy-scrim').isVisible().catch(() => false);
-    if (!scanVis && !scrimVis) break;
+
+    // map-scan 消失時停止 sweep FPS
+    if (!scanVisible && sweepFpsStarted) {
+      sweepResult = await stopSweepFpsTracking(page);
+      sweepFpsStarted = false;
+    }
+
+    if (!scanVisible && !scrimVis) break;
     await page.waitForTimeout(25);
   }
+
+  // 若 sweep 已啟動但 map-scan 未在迴圈內消失，仍停止計時
+  if (sweepFpsStarted) {
+    sweepResult = await stopSweepFpsTracking(page);
+  }
+
   const visualMs = Date.now() - t0;
 
   const fps = await stopFpsTracking(page);
-  return { readyMs, visualMs, ...fps };
+  return { readyMs, visualMs, ...fps, ...sweepResult };
 }
 
 test('scan: baseline measurement (cold + hot jumps)', async ({ browser }) => {
@@ -167,7 +235,8 @@ test('scan: baseline measurement (cold + hot jumps)', async ({ browser }) => {
       coldRuns.push(result);
       console.log(
         `  冷 #${i + 1}: ready=${result.readyMs}ms visual=${result.visualMs}ms ` +
-          `fps=${result.avgFps} worst=${result.worstFrameMs}ms`,
+          `fps=${result.avgFps} worst=${result.worstFrameMs}ms ` +
+          `sweepFps=${result.sweepAvgFps} sweepWorst=${result.sweepWorstFrameMs}ms`,
       );
     } finally {
       await ctx.close();
@@ -202,7 +271,8 @@ test('scan: baseline measurement (cold + hot jumps)', async ({ browser }) => {
       currentDate = target;
       console.log(
         `  熱 #${i + 1} →${target}: ready=${result.readyMs}ms visual=${result.visualMs}ms ` +
-          `fps=${result.avgFps} worst=${result.worstFrameMs}ms`,
+          `fps=${result.avgFps} worst=${result.worstFrameMs}ms ` +
+          `sweepFps=${result.sweepAvgFps} sweepWorst=${result.sweepWorstFrameMs}ms`,
       );
     }
   } finally {
@@ -219,6 +289,15 @@ test('scan: baseline measurement (cold + hot jumps)', async ({ browser }) => {
   const allWorst = [...coldRuns, ...hotRuns].map((r) => Math.round(r.worstFrameMs));
   const fpsMedian = median(allFps);
   const worstFrameMedian = median(allWorst);
+
+  const allSweepFps = [...coldRuns, ...hotRuns]
+    .map((r) => Math.round(r.sweepAvgFps))
+    .filter((v) => v > 0);
+  const allSweepWorst = [...coldRuns, ...hotRuns]
+    .map((r) => Math.round(r.sweepWorstFrameMs))
+    .filter((v) => v > 0);
+  const sweepFpsMedian = median(allSweepFps);
+  const sweepWorstFrameMedian = median(allSweepWorst);
 
   // ── 寫出 JSON ──────────────────────────────────────────────────────────────
   const output = {
@@ -238,6 +317,10 @@ test('scan: baseline measurement (cold + hot jumps)', async ({ browser }) => {
       median: fpsMedian,
       worst_frame_ms_median: worstFrameMedian,
     },
+    sweep_fps: {
+      median: sweepFpsMedian,
+      worst_frame_ms_median: sweepWorstFrameMedian,
+    },
   };
 
   mkdirSync(path.dirname(outPath), { recursive: true });
@@ -247,7 +330,8 @@ test('scan: baseline measurement (cold + hot jumps)', async ({ browser }) => {
     `[scan-measure] ${label} | HEAD=${head.slice(0, 8)} | ` +
     `冷跳中位數=${coldMedianMs}ms(視覺${coldVisualMedianMs}ms) | ` +
     `熱跳中位數=${hotMedianMs}ms(視覺${hotVisualMedianMs}ms) | ` +
-    `FPS中位數=${fpsMedian} 最長幀中位數=${worstFrameMedian}ms`;
+    `FPS中位數=${fpsMedian} 最長幀中位數=${worstFrameMedian}ms | ` +
+    `Sweep FPS中位數=${sweepFpsMedian} Sweep最長幀中位數=${sweepWorstFrameMedian}ms`;
   console.log('\n' + summary);
   console.log(`\n結果已寫入 ${outPath}`);
 });

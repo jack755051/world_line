@@ -20,7 +20,7 @@ import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import { AtlasState, type Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
-import { focusMaskPath, focusPadding, geometryBounds, polygonRings, type FocusInset, type LngLatBounds } from './focus';
+import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, type FocusInset, type LngLatBounds, type Padding } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
 import { avoidCapitals, capitalObstacleBoxes } from './label-placement';
 
@@ -612,7 +612,7 @@ export class AtlasMap {
     if (key === this.focusKey) return;
     this.focusKey = key;
     const el = map.getContainer();
-    const padding = focusPadding(inset, el.clientWidth, el.clientHeight);
+    const padding = this.measurePadding(el, inset);
     if (!f) {
       // 控制國沒有主權紀錄：純飛鏡頭，不進入聚焦模式（不畫遮罩）
       const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
@@ -636,6 +636,22 @@ export class AtlasMap {
     if (cam) map.easeTo({ ...cam, duration, essential: false });
     this.drawMask();
     if (duration === 0) queueMicrotask(() => this.fitArcs());
+  }
+
+  /** 量測圖例與 sheet 面板後計算實際 padding（在 easeTo 前呼叫）。 */
+  private measurePadding(el: HTMLElement, inset: FocusInset): Padding {
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+    const base = focusPadding(inset, w, h);
+    const box = el.getBoundingClientRect();
+    // 量測展開的圖例（左下角）
+    const legend = document.querySelector('[data-testid="legend"][data-state="open"]')?.getBoundingClientRect();
+    const legendRight = legend ? legend.right - box.left : null;
+    const legendInBounds = legend ? (legend.top - box.top) < h : false;
+    // 量測 sheet 面板左緣到容器右緣距離（量不到則 null，由 measuredPadding 退回 inset.right）
+    const sheetRect = document.querySelector('wl-regime-sheet [data-testid="regime-sheet"]')?.getBoundingClientRect();
+    const sheetGap = sheetRect ? box.right - sheetRect.left : null;
+    return measuredPadding(base, w, legendRight, legendInBounds, sheetGap);
   }
 
   private clearFocus(duration: number): void {
@@ -881,14 +897,7 @@ export class AtlasMap {
     const el = map.getContainer();
     const w = el.clientWidth;
     const h = el.clientHeight;
-    const pad = focusPadding(this.focusInset(), w, h);
-    // 展開的圖例（左下角）會蓋住弧線端點（例：1941-12-08 日—英的哥打巴魯端）：左側留白加到圖例右緣，剩餘寬度不足才不讓
-    const legend = document.querySelector('[data-testid="legend"][data-state="open"]')?.getBoundingClientRect();
-    if (legend) {
-      const box = el.getBoundingClientRect();
-      const left = Math.round(legend.right - box.left + 16);
-      if (legend.top - box.top < h && w - left - pad.right >= 200) pad.left = Math.max(pad.left, left);
-    }
+    const pad = this.measurePadding(el, this.focusInset());
     // 參考經度：第一條弧線在被選政權那一端（不用目前畫面中心：美國這類跨換日線的政權聚焦後中心可能在 0 度）
     const a0 = arcs[0];
     const center = a0.focusEnd === 0 || a0.focusEnd === 1 ? a0.arc![a0.focusEnd === 0 ? 0 : a0.arc!.length - 1][0] : map.getCenter().lng;

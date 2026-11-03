@@ -1,5 +1,5 @@
 import type { Geometry } from 'geojson';
-import { focusMaskPath, focusPadding, geometryBounds, polygonRings, sheetLayout } from './focus';
+import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, sheetLayout } from './focus';
 
 const square = (x: number, y: number, s: number) => [[x, y], [x + s, y], [x + s, y + s], [x, y + s], [x, y]];
 const multi: Geometry = { type: 'MultiPolygon', coordinates: [[square(0, 0, 10), square(2, 2, 2)], [[...square(20, 5, 1)]]] };
@@ -31,6 +31,22 @@ describe('政權聚焦（focus.ts）', () => {
     expect(sheetLayout(1280, 700)).toEqual({ side: 'right', size: 384 });
     expect(sheetLayout(700, 500)).toEqual({ side: 'right', size: 384 });
     expect(sheetLayout(400, 600)).toEqual({ side: 'bottom', size: 330 });
+  });
+
+  it('measuredPadding：圖例展開時左側加到圖例右緣＋16；sheet 量到時右側取最大值；量不到時不變', () => {
+    const base = focusPadding({ right: 384, bottom: 0 }, 1280, 700); // {top:48, right:432, bottom:48, left:48}
+    // 圖例右緣 = 200，在容器內，剩餘寬度 1280-216-432=632 ≥ 200 → left=216
+    expect(measuredPadding(base, 1280, 200, true, null).left).toBe(216);
+    // 圖例在容器外（legendInBounds=false）→ left 不變
+    expect(measuredPadding(base, 1280, 200, false, null).left).toBe(48);
+    // 圖例讓完後剩餘寬度不足 200（legendRight=640）→ left 不動
+    expect(measuredPadding(base, 1280, 640, true, null).left).toBe(48);
+    // sheet 量到（gap=400）→ right = max(432, 400+48) = 448
+    expect(measuredPadding(base, 1280, null, false, 400).right).toBe(448);
+    // sheet gap < base.right（gap=100）→ right 不變（max(432, 148)=432）
+    expect(measuredPadding(base, 1280, null, false, 100).right).toBe(432);
+    // sheet 量不到（null）→ right 不變
+    expect(measuredPadding(base, 1280, null, false, null).right).toBe(432);
   });
 
   it('override bounds 優先：有 override 時用 override，否則退回 feature bounds', () => {

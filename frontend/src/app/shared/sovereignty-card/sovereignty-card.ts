@@ -141,8 +141,8 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                         <div class="min-w-0 flex-1">
                           @if (leader.personId && loadBio()) {
                             <button type="button" data-testid="sovereignty-card-leader-name" class="font-semibold text-left"
-                              [attr.aria-expanded]="expandedIds().has(leader.personId) ? 'true' : 'false'"
-                              (click)="toggleBio(leader.personId!)">{{ leaderName(leader) }}</button>
+                              [attr.aria-expanded]="expandedIds().has(leader.recordId) ? 'true' : 'false'"
+                              (click)="toggleBio(leader.recordId, leader.personId!)">{{ leaderName(leader) }}</button>
                           } @else {
                             <div class="font-semibold" data-testid="sovereignty-card-leader-name">{{ leaderName(leader) }}</div>
                           }
@@ -153,7 +153,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                           @if (leader.source) {
                             <div data-testid="sovereignty-card-leader-source" class="text-[11px] text-wl-on-surface-variant">{{ leader.source }}</div>
                           }
-                          @if (leader.personId && expandedIds().has(leader.personId)) {
+                          @if (leader.personId && expandedIds().has(leader.recordId)) {
                             <div data-testid="sovereignty-card-leader-bio" class="mt-2 border-t border-wl-outline-variant pt-2 text-[12px]">
                               @switch (getBioState(leader.personId)?.status) {
                                 @case ('loading') { <span class="text-wl-on-surface-variant">{{ t().loading }}</span> }
@@ -442,14 +442,14 @@ export class SovereigntyCard {
   protected readonly bioCache = signal<ReadonlyMap<string, { status: 'loading' | 'ok' | 'error'; data?: LeaderBio }>>(new Map());
   protected readonly expandedIds = signal<ReadonlySet<string>>(new Set());
 
-  protected toggleBio(personId: string): void {
+  protected toggleBio(recordId: string, personId: string): void {
     const next = new Set(this.expandedIds());
-    if (next.has(personId)) {
-      next.delete(personId);
+    if (next.has(recordId)) {
+      next.delete(recordId);
       this.expandedIds.set(next);
       return;
     }
-    next.add(personId);
+    next.add(recordId);
     this.expandedIds.set(next);
     if (this.bioMap.has(personId)) return;
     const loader = this.loadBio();

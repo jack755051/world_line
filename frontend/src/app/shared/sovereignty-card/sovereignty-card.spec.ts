@@ -327,6 +327,37 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(items[0].querySelector('[data-testid="sovereignty-card-leader-source"]')?.textContent?.trim()).toBe('BGBL 1934');
   });
 
+  it('同一人多段任期獨立展開：點第一筆只展開第一筆，第二筆 aria-expanded 仍為 false', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    // 同一個 personId（'p-hitler'），但兩筆不同 recordId（任期）
+    fixture.componentRef.setInput('leaders', [
+      { recordId: 'l-hog', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
+        role: 'head_of_government', title: '德意志國總理', validPeriod: { start: '1933-01-30', end: '1934-08-02' },
+        source: '', sourceUrl: null, verified: true, personId: 'p-hitler', bio: null },
+      { recordId: 'l-hos', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
+        role: 'head_of_state', title: '元首兼帝國總理', validPeriod: { start: '1934-08-02', end: null },
+        source: '', sourceUrl: null, verified: true, personId: 'p-hitler', bio: null },
+    ] satisfies import('../../core/api/world-line-api').LeaderRecord[]);
+    // loadBio：永遠等待（只驗展開狀態，不需要資料回傳）
+    fixture.componentRef.setInput('loadBio', () => new Promise(() => undefined));
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const items = [...el.querySelectorAll('[data-testid="sovereignty-card-leader"]')];
+    expect(items.length).toBe(2);
+    const btn0 = items[0].querySelector('[data-testid="sovereignty-card-leader-name"]') as HTMLButtonElement;
+    const btn1 = items[1].querySelector('[data-testid="sovereignty-card-leader-name"]') as HTMLButtonElement;
+    expect(btn0.getAttribute('aria-expanded')).toBe('false');
+    expect(btn1.getAttribute('aria-expanded')).toBe('false');
+    btn0.click();
+    await fixture.whenStable();
+    expect(btn0.getAttribute('aria-expanded')).toBe('true');
+    expect(btn1.getAttribute('aria-expanded')).toBe('false');
+  });
+
   it('領導人分頁空態：顯示「無資料」文案', async () => {
     const fixture = TestBed.createComponent(SovereigntyCard);
     fixture.componentRef.setInput('props', props());

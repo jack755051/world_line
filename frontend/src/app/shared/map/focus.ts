@@ -85,6 +85,32 @@ export function focusPadding(inset: FocusInset, w: number, h: number, margin = 4
   return { top, right, bottom, left };
 }
 
+/**
+ * 根據實際量測結果，在 focusPadding 基礎上調整左右邊距：
+ * - 左側：若圖例已展開（legendRight 非 null）且頂部在容器高度範圍內，
+ *   取 max(base.left, legendRight + 16)，但剩餘可見寬度仍需 ≥ 200。
+ * - 右側：若量到 sheet 面板（sheetGap 非 null，即容器右緣 − sheet 左緣），
+ *   取 max(base.right, sheetGap + margin)。
+ */
+export function measuredPadding(
+  base: Padding,
+  w: number,
+  legendRight: number | null,   // 圖例右緣到容器左緣（px），null = 未展開
+  legendInBounds: boolean,      // 圖例頂部在容器高度範圍內
+  sheetGap: number | null,      // 容器右緣 − sheet 左緣（px），null = 量不到
+  margin = 48,
+): Padding {
+  let { left, right } = base;
+  if (legendRight !== null && legendInBounds) {
+    const proposedLeft = Math.round(legendRight + 16);
+    if (w - proposedLeft - right >= 200) left = Math.max(left, proposedLeft);
+  }
+  if (sheetGap !== null) {
+    right = Math.max(right, sheetGap + margin);
+  }
+  return { ...base, left, right };
+}
+
 /** 面板位置：桌面從右側滑出（寬 3/4、最多 384px，同 sanring sheet 的 w-3/4 sm:max-w-sm）；窄螢幕（< 640px）改從底部，高度 55%。 */
 export function sheetLayout(w: number, h: number): { side: 'right' | 'bottom'; size: number } {
   return w > 0 && w < 640 ? { side: 'bottom', size: Math.round(h * 0.55) } : { side: 'right', size: Math.min(384, Math.round((w || 1280) * 0.75)) };

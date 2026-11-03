@@ -23,8 +23,8 @@ import { AXIS_TRANSITION_MS } from '../../core/motion';
 import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, type FocusInset, type LngLatBounds, type Padding } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
 import {
-  LABEL_CHAR_PX, LABEL_H, LABEL_PAD, LABEL_SMALL_CHAR_PX, LABEL_SMALL_H,
-  capitalObstacleBoxes, findLabelPlacement, gridCandidates, uiObstacleBoxes,
+  LABEL_CHAR_PX, LABEL_H, LABEL_SMALL_H,
+  capitalObstacleBoxes, findLabelPlacement, gridCandidates, measureLabelWidth, uiObstacleBoxes,
 } from './label-placement';
 
 /**
@@ -868,12 +868,13 @@ export class AtlasMap {
 
       // 所有障礙：首都保留框 + 浮動 UI + 已放置標籤
       const allObs = [...capitalObs, ...uiObs, ...boxes];
-      const result = findLabelPlacement(p.x, p.y, l.text.length, allObs, gPts);
+      const normalW = measureLabelWidth(l.text, false);
+      const result = findLabelPlacement(p.x, p.y, normalW, allObs, gPts, undefined, mapW, mapH);
       if (result === null) continue;
 
-      const charPx = result.small ? LABEL_SMALL_CHAR_PX : LABEL_CHAR_PX;
+      const lw = result.small ? measureLabelWidth(l.text, true) : normalW;
       const lh = result.small ? LABEL_SMALL_H : LABEL_H;
-      boxes.push({ x: result.x, y: result.y, w: l.text.length * charPx + LABEL_PAD, h: lh });
+      boxes.push({ x: result.x, y: result.y, w: lw, h: lh });
       placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: result.x, y: result.y, rotation: l.rotation, small: result.small || undefined });
     }
     this.placedLabels.set(placed);

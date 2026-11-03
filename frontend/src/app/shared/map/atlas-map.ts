@@ -797,7 +797,10 @@ export class AtlasMap {
       map.getZoom(),
     );
 
-    for (const l of this.labels()) {
+    // 控制區標籤（fit 未設）優先於國名標籤（fit 有設）：先放控制區，不被國名擠開
+    const sorted = [...this.labels()].sort((a, b) => (a.fit === undefined ? 0 : 1) - (b.fit === undefined ? 0 : 1));
+
+    for (const l of sorted) {
       const a = map.project([l.bbox[0], l.bbox[1]]);
       const b = map.project([l.bbox[2], l.bbox[3]]);
       const w = Math.abs(b.x - a.x);
@@ -807,14 +810,11 @@ export class AtlasMap {
       if (w < textW * (l.fit ?? 1.6) || h < 32) continue;
       const p = map.project(l.lngLat);
 
-      // 優先避讓首都：嘗試 ±18px、±30px 垂直位移；都不行則略去此標籤
-      const dy = avoidCapitals(p.x, p.y, textW + 8, 20, capitalObs);
+      // 所有標籤（國名與控制區）同時避讓首都與已放置標籤：嘗試 ±18px、±30px 垂直位移；都不行則略去此標籤
+      const dy = avoidCapitals(p.x, p.y, textW + 8, 20, [...capitalObs, ...boxes]);
       if (dy === null) continue;
 
-      // 國界標籤（fit 有設）放寬了大小門檻，改用互撞檢查避免疊字；控制區標籤維持原規則
-      const box = { x: p.x, y: p.y + dy, w: textW + 8, h: 20 };
-      if (l.fit !== undefined && boxes.some((b) => overlaps(b, box))) continue;
-      boxes.push(box);
+      boxes.push({ x: p.x, y: p.y + dy, w: textW + 8, h: 20 });
       placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y + dy, rotation: l.rotation });
     }
     this.placedLabels.set(placed);

@@ -92,3 +92,38 @@ describe('avoidCapitals', () => {
     expect(dy).toBe(50);
   });
 });
+
+describe('avoidCapitals 作為通用位移查找（標籤互撞）', () => {
+  it('兩標籤重疊：後放者以已放置 box 為障礙找位移', () => {
+    // 第一個標籤已放在 (100, 100)，占 80×20
+    const placedBoxes = [{ x: 100, y: 100, w: 80, h: 20 }];
+    // 第二個標籤中心也在 (100, 100)，與第一個重疊 → 必須位移
+    const dy = avoidCapitals(100, 100, 80, 20, placedBoxes);
+    expect(dy).not.toBeNull();
+    expect(dy).not.toBe(0);
+    // 驗證位移後確實不重疊
+    const result = { x: 100, y: 100 + dy!, w: 80, h: 20 };
+    expect(placedBoxes.some((b) => rectsOverlap(result, b))).toBe(false);
+  });
+
+  it('無空位時略去：所有 shifts 都與已放置標籤重疊時回傳 null', () => {
+    // 超大障礙物覆蓋所有候選位移範圍
+    const placedBoxes = [{ x: 100, y: 100, w: 400, h: 400 }];
+    const dy = avoidCapitals(100, 100, 80, 20, placedBoxes, [0, -18, 18, -30, 30]);
+    expect(dy).toBeNull();
+  });
+
+  it('控制區優先：先放控制區可佔原位，後放的國名標籤須位移', () => {
+    const placedBoxes: { x: number; y: number; w: number; h: number }[] = [];
+
+    // 控制區標籤（優先放置）：無既有障礙 → shift=0 即可
+    const controlDy = avoidCapitals(100, 100, 80, 20, placedBoxes);
+    expect(controlDy).toBe(0);
+    placedBoxes.push({ x: 100, y: 100 + controlDy!, w: 80, h: 20 });
+
+    // 國名標籤（次優先）：與控制區標籤重疊 → 必須找非零位移
+    const countryDy = avoidCapitals(100, 100, 80, 20, placedBoxes);
+    expect(countryDy).not.toBeNull();
+    expect(countryDy).not.toBe(0);
+  });
+});

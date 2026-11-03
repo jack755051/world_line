@@ -16,7 +16,7 @@ import {
 import { staggerOnArcs, worldShiftArc } from './conflict-arc';
 import type { FeatureCollection, Geometry, Point as GeoJSONPoint, Position } from 'geojson';
 import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
-import { captureMapCanvas, cloneLabelLayer } from './scan-snapshot';
+import { captureMapCanvas } from './scan-snapshot';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import { AtlasState, type Axis } from '../../core/atlas-state';
@@ -24,9 +24,10 @@ import { AXIS_TRANSITION_MS } from '../../core/motion';
 import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, type FocusInset, type LngLatBounds, type Padding } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
 import {
-  LABEL_CHAR_PX, LABEL_H, LABEL_SMALL_H,
-  capitalObstacleBoxes, findLabelPlacement, gridCandidates, measureLabelWidth, uiObstacleBoxes,
+  measureLabelWidth,
+  uiObstacleBoxes,
   pickCapitalAnchorSide, pointInProjectedRing,
+  type Box,
 } from './label-placement';
 
 /**
@@ -63,6 +64,81 @@ export function overlaps(a: { x: number; y: number; w: number; h: number }, b: {
   return Math.abs(a.x - b.x) * 2 < a.w + b.w && Math.abs(a.y - b.y) * 2 < a.h + b.h;
 }
 import type { SovereigntyProps } from './sovereignty-style';
+
+export const REGIME_LABEL_BG_ID = 'wl-regime-label-bg';
+export const REGIME_OBSTACLE_ICON_ID = 'wl-obstacle-icon';
+export const REGIME_OBSTACLE_ICON_SIZE = 64;
+const OBSTACLE_GRID_STEP = 48;
+
+/** 政權名稱標籤排序鍵：數值越小越優先。控制區標籤（fit 未設）比國名標籤優先；同類中依 bbox 面積降序。 */
+export function regimeLabelSortKey(bbox: [number, number, number, number], fit?: number): number {
+  const area = (bbox[2] - bbox[0]) * (bbox[3] - bbox[1]);
+  const tier = fit === undefined ? 0 : 10000;
+  return tier - Math.log(area + 1);
+}
+
+/** 政權名稱標籤的 GeoJSON FeatureCollection（Point，供 regime-labels source 使用）。 */
+export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): FeatureCollection {
+  return {
+    type: 'FeatureCollection',
+    features: labels.map((l) => ({
+      type: 'Feature' as const,
+      geometry: { type: 'Point' as const, coordinates: l.lngLat },
+      properties: {
+        versionId: l.versionId,
+        regimeId: l.regimeId,
+        text: l.text,
+        rotation: l.rotation ?? 0,
+        sortKey: regimeLabelSortKey(l.bbox, l.fit),
+      },
+    })),
+  };
+}
+
+/** 政權名稱標籤底塊圖像資料（圓角矩形，RGBA Uint8Array，40×24 px，含 3px 圓角）。 */
+export function buildRegimeLabelBgImageData(): { data: Uint8Array; width: number; height: number } {
+  const W = 40, H = 24, R = 3;
+  const arr = new Uint8Array(W * H * 4);
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      let inside = true;
+      const inTL = x < R && y < R, inTR = x >= W - R && y < R;
+      const inBL = x < R && y >= H - R, inBR = x >= W - R && y >= H - R;
+      if (inTL) inside = Math.hypot(x - R + 1, y - R + 1) <= R;
+      else if (inTR) inside = Math.hypot(x - (W - R), y - R + 1) <= R;
+      else if (inBL) inside = Math.hypot(x - R + 1, y - (H - R)) <= R;
+      else if (inBR) inside = Math.hypot(x - (W - R), y - (H - R)) <= R;
+      if (inside) {
+        const idx = (y * W + x) * 4;
+        arr[idx] = 250; arr[idx + 1] = 246; arr[idx + 2] = 236; arr[idx + 3] = 224;
+      }
+    }
+  }
+  return { data: arr, width: W, height: H };
+}
+
+/** UI 障礙框轉成 GeoJSON 障礙符號 features（regime-obstacles source 用）。 */
+export function obstacleGridFeatures(
+  boxes: Box[],
+  unproject: (px: [number, number]) => [number, number],
+): { type: 'Feature'; geometry: { type: 'Point'; coordinates: number[] }; properties: Record<string, never> }[] {
+  const features: { type: 'Feature'; geometry: { type: 'Point'; coordinates: number[] }; properties: Record<string, never> }[] = [];
+  for (const box of boxes) {
+    const x0 = box.x - box.w / 2;
+    const y0 = box.y - box.h / 2;
+    const cols = Math.ceil(box.w / OBSTACLE_GRID_STEP) + 1;
+    const rows = Math.ceil(box.h / OBSTACLE_GRID_STEP) + 1;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        try {
+          const coords = unproject([x0 + c * OBSTACLE_GRID_STEP, y0 + r * OBSTACLE_GRID_STEP]);
+          features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: coords }, properties: {} as Record<string, never> });
+        } catch { /* skip */ }
+      }
+    }
+  }
+  return features;
+}
 
 export interface MapGapEvent {
   gapId: string;
@@ -112,6 +188,8 @@ export function buildBaseStyle(): StyleSpecification {
         attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）; CNIG, GURS, Kartverket, OCHA/HDX（CC BY 4.0）; 部分線段源自 OpenStreetMap（ODbL）',
       },
       capitals: { type: 'geojson', data: EMPTY },
+      'regime-labels': { type: 'geojson', data: EMPTY },
+      'regime-obstacles': { type: 'geojson', data: EMPTY },
     },
     layers: [
       { id: 'sea', type: 'background', paint: { 'background-color': MAP_COLORS.sea } },
@@ -206,6 +284,53 @@ export function buildBaseStyle(): StyleSpecification {
         paint: { 'line-color': MAP_COLORS.ink, 'line-width': 1.5 },
       },
       {
+        id: 'regime-label',
+        type: 'symbol',
+        source: 'regime-labels',
+        layout: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'text-field': ['get', 'text'] as any,
+          'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+          'text-size': 12,
+          'text-allow-overlap': false,
+          'text-ignore-placement': false,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'] as any,
+          'text-radial-offset': 0.4,
+          'text-justify': 'auto',
+          'text-max-width': 10,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'symbol-sort-key': ['get', 'sortKey'] as any,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'text-rotate': ['get', 'rotation'] as any,
+          'icon-image': REGIME_LABEL_BG_ID,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'icon-text-fit': 'both' as any,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'icon-text-fit-padding': [2, 6, 2, 6] as any,
+          'icon-optional': true,
+        },
+        paint: {
+          'text-color': 'rgba(58,47,40,0.85)',
+          'text-halo-color': '#faf6ec',
+          'text-halo-width': 1.5,
+          'icon-opacity': 0.88,
+        },
+      },
+      {
+        id: 'regime-label-obstacles',
+        type: 'symbol',
+        source: 'regime-obstacles',
+        layout: {
+          'icon-image': REGIME_OBSTACLE_ICON_ID,
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': false,
+        },
+        paint: {
+          'icon-opacity': 0,
+        },
+      },
+      {
         // 首都小圓點：深色實心＋白色外框，始終顯示
         id: 'capital-dot',
         type: 'circle',
@@ -254,7 +379,7 @@ export interface MapConflictIcon {
   recordId: string;
   lngLat: [number, number];
   label: string;
-  /** 遠距交戰虛線弧取樣點（雙方不相鄰時才有；lngLat 此時是弧線中點），見 conflict-arc.ts */
+  /** 遠距交戰虛線弧（雙方不相鄰時才有；lngLat 此時是弧線中點），見 conflict-arc.ts */
   arc?: [number, number][] | null;
   /** 弧線哪一端在被選政權（0＝起點、1＝終點）：決定弧線放在哪一份世界副本、鏡頭以哪一端為準 */
   focusEnd?: 0 | 1 | null;
@@ -279,15 +404,6 @@ export interface MapConflictEvent {
       [attr.data-camp-layer]="showCamps() ? 'on' : 'off'" [attr.data-axis]="appliedAxis()" [attr.data-map-ready]="ready() ? 'true' : null"
       [attr.data-focus-record]="focusedRecord()" [attr.data-focus-occupied]="focusOccupied()" [attr.data-camera]="cameraMoving() ? 'moving' : 'idle'"
       [attr.data-render]="renderBusySig() ? 'busy' : 'idle'" [attr.data-sov-fade]="fadeCount()" [attr.data-arc-fit]="arcFit()" aria-label="主地圖" role="region"></div>
-    <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
-    <div #labelLayer class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      @for (l of placedLabels(); track l.versionId) {
-        <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId"
-          class="wl-regime-label absolute whitespace-nowrap" [class.wl-regime-label--sm]="l.small"
-          [style.left.px]="l.x" [style.top.px]="l.y"
-          [style.transform]="'translate(-50%, -50%)'">{{ l.text }}</span>
-      }
-    </div>
     <!--
       聚焦遮罩（Tai 2026-10-31）：點政權後，被選政權以外蓋一層半透明紙色＋backdrop-filter 模糊。
       用一個 HTML 層＋clip-path: path(evenodd, 地圖區矩形＋政權各環) 挖空被選政權：只需一次 GPU 模糊、不必複製地圖，
@@ -378,7 +494,6 @@ export class AtlasMap {
   readonly capitals = input<FeatureCollection | null>(null);
   protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number; points: string | null })[]>([]);
   readonly conflictClick = output<MapConflictEvent>();
-  protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number; small?: boolean }[]>([]);
 
   readonly featureClick = output<MapFeatureEvent>();
   readonly emptyClick = output<void>();
@@ -400,7 +515,6 @@ export class AtlasMap {
   readonly engineError = signal(false);
 
   private readonly canvas = viewChild.required<ElementRef<HTMLDivElement>>('canvas');
-  private readonly labelLayer = viewChild<ElementRef<HTMLDivElement>>('labelLayer');
   private map: MlMap | null = null;
   private readonly destroyRef = inject(DestroyRef);
   private readonly state = inject(AtlasState);
@@ -430,7 +544,7 @@ export class AtlasMap {
     effect(() => {
       this.labels();
       if (!this.ready()) return;
-      untracked(() => this.placeLabels());
+      untracked(() => this.updateRegimeLabels());
     });
     effect(() => {
       this.conflicts();
@@ -497,7 +611,6 @@ export class AtlasMap {
       if (!this.ready()) return;
       untracked(() => {
         this.computeAndApplyCapitalSides(capitals, sovereignty);
-        this.placeLabels();
       });
     });
   }
@@ -531,8 +644,10 @@ export class AtlasMap {
       map.on('styleimagemissing', (e) => this.addHatch(e.id));
       map.on('load', () => {
         this.ready.set(true);
+        this.addRegimeLabelImages();
         this.setData(this.collection());
-        this.placeLabels();
+        this.updateRegimeLabels();
+        this.updateObstacleSymbols();
         this.placeConflicts();
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
         this.addHatch(GAP_IMAGE_ID);
@@ -557,6 +672,7 @@ export class AtlasMap {
         this.cameraMoving.set(false);
         this.fitArcs();
         this.scheduleMask();
+        this.updateObstacleSymbols();
       });
       map.on('idle', () => {
         this.countRendered();
@@ -565,18 +681,17 @@ export class AtlasMap {
       map.on('dataloading', () => this.setRenderBusy(true));
       map.on('zoomend', () => this.state.mapZoom.set(map.getZoom()));
       map.on('move', () => {
-        this.placeLabels();
         this.placeConflicts();
         this.scheduleMask();
       });
       map.on('resize', () => {
-        this.placeLabels();
         this.placeConflicts();
         this.scheduleMask();
+        this.updateObstacleSymbols();
       });
 
-      // 圖例展開/收合、右側 sheet 開關時 data-state 屬性改變 → 重算標籤（UI 障礙框尺寸變了）
-      const mutObs = new MutationObserver(() => this.placeLabels());
+      // 圖例展開/收合、右側 sheet 開關時 data-state 屬性改變 → 重算障礙符號（UI 障礙框尺寸變了）
+      const mutObs = new MutationObserver(() => this.updateObstacleSymbols());
       mutObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-state'], subtree: true });
       this.destroyRef.onDestroy(() => mutObs.disconnect());
 
@@ -612,6 +727,13 @@ export class AtlasMap {
       map.on('mouseleave', 'sov-fill', () => (map.getCanvas().style.cursor = ''));
       map.on('mouseenter', 'gap-base', () => (map.getCanvas().style.cursor = 'pointer'));
       map.on('mouseleave', 'gap-base', () => (map.getCanvas().style.cursor = ''));
+      map.on('click', 'regime-label', (e: MapLayerMouseEvent) => {
+        const f = e.features?.[0];
+        const versionId = f?.properties?.['versionId'] as string | undefined;
+        if (versionId) this.featureClick.emit({ versionId, x: e.point.x, y: e.point.y });
+      });
+      map.on('mouseenter', 'regime-label', () => { map.getCanvas().style.cursor = 'pointer'; });
+      map.on('mouseleave', 'regime-label', () => { map.getCanvas().style.cursor = ''; });
     } catch {
       this.engineError.set(true);
     }
@@ -822,7 +944,6 @@ export class AtlasMap {
     const setControl = (v: 'visible' | 'none') => CONTROL_ONLY_LAYERS.forEach((l) => map.getLayer(l) && map.setLayoutProperty(l, 'visibility', v));
     const done = () => {
       this.appliedAxis.set(axis);
-      this.placeLabels();
       map.triggerRepaint();
     };
     if (axis === 'control') {
@@ -905,62 +1026,48 @@ export class AtlasMap {
     (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(enriched);
   }
 
-  /**
-   * 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。
-   * 首都保留框 + 浮動 UI 障礙物優先於國名／控制區標籤。
-   * 若 5 個垂直位移都撞，嘗試多邊形內網格候選點；全部失敗再以縮小字體重試；仍不行才略去。
-   */
-  private placeLabels(): void {
+  private addRegimeLabelImages(): void {
     const map = this.map;
     if (!map) return;
-    const placed: { versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number; small?: boolean }[] = [];
-    const boxes: { x: number; y: number; w: number; h: number }[] = [];
-    const el = map.getContainer();
-    const mapW = el.clientWidth;
-    const mapH = el.clientHeight;
-
-    // 首都保留框（圓點＋名稱估計）：所有國名／控制區標籤需避讓
-    // 使用注入 side 屬性後的版本（若尚未計算則退回原始資料）
-    const capitalObs = capitalObstacleBoxes(
-      this._enrichedCapitals ?? this.capitals(),
-      (ll) => map.project(ll),
-      map.getCenter().lng,
-      map.getZoom(),
-    );
-
-    // 浮動 UI 障礙框（每次 placeLabels 只量測一次 DOM）
-    const uiObs = uiObstacleBoxes(el);
-
-    // 控制區標籤（fit 未設）優先於國名標籤（fit 有設）：先放控制區，不被國名擠開
-    const sorted = [...this.labels()].sort((a, b) => (a.fit === undefined ? 0 : 1) - (b.fit === undefined ? 0 : 1));
-
-    for (const l of sorted) {
-      const a = map.project([l.bbox[0], l.bbox[1]]);
-      const b = map.project([l.bbox[2], l.bbox[3]]);
-      const w = Math.abs(b.x - a.x);
-      const h = Math.abs(b.y - a.y);
-      // 文字寬約每字 14px（12px＋字距）；外框至少要比字寬 1.6 倍、高 32px，避免標籤壓出小區塊
-      const textW = l.text.length * LABEL_CHAR_PX;
-      if (w < textW * (l.fit ?? 1.6) || h < 32) continue;
-      const p = map.project(l.lngLat);
-
-      // 網格候選點（若有外環幾何）；依離 labelPoint 由近到遠排序
-      const gPts = l.ring
-        ? gridCandidates(l.ring, (ll) => map.project(ll), p, mapW, mapH)
-        : [];
-
-      // 所有障礙：首都保留框 + 浮動 UI + 已放置標籤
-      const allObs = [...capitalObs, ...uiObs, ...boxes];
-      const normalW = measureLabelWidth(l.text, false);
-      const result = findLabelPlacement(p.x, p.y, normalW, allObs, gPts, undefined, mapW, mapH, capitalObs);
-      if (result === null) continue;
-
-      const lw = result.small ? measureLabelWidth(l.text, true) : normalW;
-      const lh = result.small ? LABEL_SMALL_H : LABEL_H;
-      boxes.push({ x: result.x, y: result.y, w: lw, h: lh });
-      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: result.x, y: result.y, rotation: l.rotation, small: result.small || undefined });
+    if (!map.hasImage(REGIME_LABEL_BG_ID)) {
+      const bg = buildRegimeLabelBgImageData();
+      const R = 3;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (map as any).addImage(REGIME_LABEL_BG_ID, bg, {
+        pixelRatio: 1,
+        stretchX: [[R, bg.width - R]],
+        stretchY: [[R, bg.height - R]],
+        content: [R, R, bg.width - R, bg.height - R],
+      });
     }
-    this.placedLabels.set(placed);
+    if (!map.hasImage(REGIME_OBSTACLE_ICON_ID)) {
+      const S = REGIME_OBSTACLE_ICON_SIZE;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (map as any).addImage(REGIME_OBSTACLE_ICON_ID,
+        { data: new Uint8Array(S * S * 4).fill(255), width: S, height: S },
+        { pixelRatio: 1 },
+      );
+    }
+  }
+
+  private updateRegimeLabels(): void {
+    const src = this.map?.getSource('regime-labels') as GeoJSONSource | undefined;
+    if (!src) return;
+    src.setData(buildRegimeLabelFeatureCollection(this.labels()));
+  }
+
+  private updateObstacleSymbols(): void {
+    const map = this.map;
+    if (!map) return;
+    const src = map.getSource('regime-obstacles') as GeoJSONSource | undefined;
+    if (!src) return;
+    const boxes = uiObstacleBoxes(map.getContainer());
+    const features = obstacleGridFeatures(boxes, (px) => {
+      const ll = map.unproject(px);
+      return [ll.lng, ll.lat];
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    src.setData({ type: 'FeatureCollection', features } as any);
   }
 
   private placeConflicts(): void {
@@ -1087,9 +1194,7 @@ export class AtlasMap {
     if (!this.map || this.engineError()) return null;
     const canvas = await captureMapCanvas(this.map);
     if (!canvas) return null;
-    const labelEl = this.labelLayer()?.nativeElement;
-    if (!labelEl) return null;
-    const labels = cloneLabelLayer(labelEl);
-    return { canvas, labels };
+    // 標籤現在在 MapLibre canvas 內，不需要額外的 HTML 標籤快照
+    return { canvas, labels: document.createElement('div') };
   }
 }

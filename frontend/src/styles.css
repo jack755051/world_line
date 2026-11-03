@@ -72,23 +72,34 @@
 }
 
 /* 掃描線覆蓋層（plan A1，Tai 2026-11-03）：跳年忙碌 >300ms 時地圖區從左到右掃描；
-   右側半透明紙色遮罩，掃描線 3px 亮白帶 glow；只走 clip-path keyframes（compositor）。 */
+   右側半透明紙色遮罩，掃描線 3px 亮白帶 glow；用 transform（compositor-only，不觸發重繪）。
+   Paper：inset-0 全寬遮罩往右滑出；Beam：wrapper 以 translateX 移動，::before 為 3px 亮線。 */
 @keyframes wl-scan-paper {
-  from { clip-path: inset(0 0 0 0%); }
-  to   { clip-path: inset(0 0 0 100%); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
 }
 @keyframes wl-scan-beam {
-  from { clip-path: inset(0 calc(100% - 3px) 0 0%); }
-  to   { clip-path: inset(0 0% 0 calc(100% - 3px)); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
 }
 .wl-scan-paper {
   background: rgb(236 228 210 / 0.7);
   animation: wl-scan-paper 700ms linear forwards;
+  will-change: transform;
 }
 .wl-scan-beam {
+  animation: wl-scan-beam 700ms linear forwards;
+  will-change: transform;
+}
+.wl-scan-beam::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
   background: white;
   box-shadow: 0 0 8px 4px rgb(255 255 255 / 0.7);
-  animation: wl-scan-beam 700ms linear forwards;
 }
 /* 掃描結束淡出：複用 wl-scrim-out keyframe */
 .wl-scan-out {

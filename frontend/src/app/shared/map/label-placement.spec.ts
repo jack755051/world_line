@@ -2,6 +2,7 @@ import { FeatureCollection } from 'geojson';
 import {
   avoidCapitals, capitalObstacleBoxes, findLabelPlacement, gridCandidates,
   CAPITAL_DOT_RADIUS, CAPITAL_DOT_STROKE, CAPITAL_DOT_GAP,
+  CAP_LABEL_H,
   LABEL_CHAR_PX, LABEL_H, LABEL_PAD, LABEL_SMALL_CHAR_PX, LABEL_SMALL_H,
   VIEWPORT_MARGIN, measureLabelWidth, clearLabelWidthCache,
   pointInProjectedRing, rectsOverlap,
@@ -52,17 +53,32 @@ describe('capitalObstacleBoxes', () => {
     expect(boxes[0].w).toBe(DOT_OBS_SIZE);
   });
 
-  it('zoom >= 3.5 同時產生圓點框與名稱框', () => {
+  it('zoom >= 3.5 產生圓點框與左右兩個名稱框（共 3 個）', () => {
     const boxes = capitalObstacleBoxes(oneCapital(10, 20, 'AB'), identityProject, 0, 4);
-    expect(boxes).toHaveLength(2);
+    expect(boxes).toHaveLength(3);
     // 圓點框含間距
     expect(boxes[0]).toEqual({ x: 10, y: 20, w: DOT_OBS_SIZE, h: DOT_OBS_SIZE });
-    // 名稱框：以圓點為中心的單一外框，覆蓋所有 text-variable-anchor 方向
-    // 寬度 > DOT_OBS_SIZE（至少包含 radial offset + 文字寬）
-    expect(boxes[1].x).toBe(10); // 以圓點為中心
+    // 右側名稱框：x 大於圓點中心，與圓點同高，高度 = CAP_LABEL_H（不膨脹）
+    expect(boxes[1].x).toBeGreaterThan(10);
     expect(boxes[1].y).toBe(20);
-    expect(boxes[1].w).toBeGreaterThan(DOT_OBS_SIZE);
-    expect(boxes[1].h).toBeGreaterThan(DOT_OBS_SIZE);
+    expect(boxes[1].h).toBe(CAP_LABEL_H);
+    expect(boxes[1].w).toBeGreaterThan(0);
+    // 左側名稱框：x 小於圓點中心，與右側對稱
+    expect(boxes[2].x).toBeLessThan(10);
+    expect(boxes[2].y).toBe(20);
+    expect(boxes[2].w).toBe(boxes[1].w); // 左右對稱
+    expect(boxes[2].h).toBe(CAP_LABEL_H);
+  });
+
+  it('名稱框高度精確（CAP_LABEL_H=16），使 dy=±18 的 HTML 標籤恰好不碰撞', () => {
+    // 圓點在 (0,0)；HTML 國名標籤 w=148, h=20，dy=18
+    // rectsOverlap 條件：|dy|*2=36 < h1+h2=20+16=36 → false（恰好不重疊）
+    const boxes = capitalObstacleBoxes(oneCapital(0, 0, 'Praha'), identityProject, 0, 4);
+    const rightBox = boxes[1]; // right side
+    const nationalLabel = { x: 0, y: 18, w: 148, h: 20 };
+    expect(rectsOverlap(nationalLabel, rightBox)).toBe(false);
+    const leftBox = boxes[2];
+    expect(rectsOverlap(nationalLabel, leftBox)).toBe(false);
   });
 
   it('世界副本：取離地圖中心最近的副本', () => {
@@ -271,6 +287,24 @@ describe('findLabelPlacement', () => {
   it('所有候選（含縮小字）都撞時回傳 null', () => {
     const hugeObs = [{ x: 100, y: 100, w: 10000, h: 10000 }];
     const r = findLabelPlacement(100, 100, fullW, hugeObs, []);
+    expect(r).toBeNull();
+  });
+
+  it('capitalOnlyObs 最後手段：全部障礙擋住但首都障礙不擋時可放置', () => {
+    // 大障礙物蓋住所有位置（含國名、UI 等），但首都障礙集只有一個小圓點框不在候選位置上
+    const hugeObs = [{ x: 100, y: 100, w: 10000, h: 10000 }];
+    const capitalOnlyObs = [{ x: 200, y: 200, w: 16, h: 16 }]; // 首都在別處
+    // 大障礙（hugeObs）阻止所有正常放置，但 capitalOnlyObs 不擋 cx,cy±shifts
+    const r = findLabelPlacement(100, 100, fullW, hugeObs, [], undefined, Infinity, Infinity, capitalOnlyObs);
+    // shifts=[0,-18,18,-30,30] 都不與 capitalOnlyObs 碰撞 → 應有結果
+    expect(r).not.toBeNull();
+    expect(r!.small).toBe(true); // 階段 5 只用縮小字
+  });
+
+  it('capitalOnlyObs 最後手段：首都也擋住時回傳 null', () => {
+    const hugeObs = [{ x: 100, y: 100, w: 10000, h: 10000 }];
+    const capitalOnlyObs = [{ x: 100, y: 100, w: 10000, h: 10000 }]; // 首都障礙也很大
+    const r = findLabelPlacement(100, 100, fullW, hugeObs, [], undefined, Infinity, Infinity, capitalOnlyObs);
     expect(r).toBeNull();
   });
 

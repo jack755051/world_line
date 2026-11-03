@@ -21,7 +21,8 @@ const _CAP_LABEL_FONT_PX = 11;
 const _CAP_LABEL_HALO_PX = 1.5;
 const _CAP_LABEL_RADIAL_PX = Math.round(0.9 * _CAP_LABEL_FONT_PX); // ≈10px
 const _CAP_LABEL_AVG_CHAR_PX = 6.5; // 11px Open Sans 平均字寬估計
-const _CAP_LABEL_H_OBS = 16;        // 估算渲染高度（含 halo）
+/** 首都名稱 MapLibre 渲染估計高度（含 halo，px）。 */
+export const CAP_LABEL_H = 16;
 
 // ─── 標籤字型常數 ─────────────────────────────────────────────────────────────
 
@@ -81,8 +82,10 @@ export function measureLabelWidth(text: string, small: boolean): number {
 /**
  * 計算地圖上所有首都的保留框（像素）：
  * - 每座首都貢獻一個圓點框（以 radius+stroke+gap 計算邊長，確保視覺間距 ≥ CAPITAL_DOT_GAP）。
- * - zoom ≥ 3.5 時額外加上名稱框：MapLibre text-variable-anchor 有 8 個可能位置；
- *   取以圓點為中心、覆蓋所有錨點位置的單一外框（穩健且不需預測 MapLibre 實際選擇方向）。
+ * - zoom ≥ 3.5 時額外加上兩個名稱框（right 與 left 各一）：
+ *   對應 text-variable-anchor: ['right', 'left']，各自以圓點為基準向側方偏移
+ *   （偏移量 = radial_offset + lw/2），寬度 = lw + 2*(halo+3px)，高度 = CAP_LABEL_H（不膨脹，
+ *   確保 dy=±18 的 HTML 國名標籤恰好不與首都名稱框碰撞）。
  * - 世界副本：取離地圖中心 mapCenterLng 最近的副本。
  */
 export function capitalObstacleBoxes(
@@ -105,13 +108,14 @@ export function capitalObstacleBoxes(
     boxes.push({ x: p.x, y: p.y, w: dotObsSize, h: dotObsSize });
     if (showLabel) {
       const label = (f.properties as Record<string, unknown> | null)?.['label'] as string | undefined ?? '';
+      // 名稱框寬度：估計文字寬 + halo×2，再加 3px 每側安全邊距
       const lw = Math.max(label.length * _CAP_LABEL_AVG_CHAR_PX + _CAP_LABEL_HALO_PX * 2, 1);
-      // 單一外框覆蓋 text-variable-anchor 所有 8 方向：
-      //   水平最遠 = radial偏移 + lw/2；垂直最遠 = radial偏移 + 高/2
-      // 以圓點為中心（x=p.x, y=p.y），寬高確保任何方向的名稱都在框內
-      const obsW = lw + 2 * (_CAP_LABEL_RADIAL_PX + _CAP_LABEL_HALO_PX + 3);
-      const obsH = _CAP_LABEL_H_OBS + 2 * (_CAP_LABEL_RADIAL_PX + _CAP_LABEL_HALO_PX + 3);
-      boxes.push({ x: p.x, y: p.y, w: obsW, h: obsH });
+      const obsW = lw + 6; // 3px margin per side
+      const obsH = CAP_LABEL_H; // 16px，不膨脹（使 dy=±18 的 HTML 標籤恰好不碰撞）
+      // 名稱框中心距圓點中心的水平偏移 = radial_offset + 名稱框半寬
+      const offset = _CAP_LABEL_RADIAL_PX + lw / 2;
+      boxes.push({ x: p.x + offset, y: p.y, w: obsW, h: obsH }); // right anchor
+      boxes.push({ x: p.x - offset, y: p.y, w: obsW, h: obsH }); // left anchor
     }
   }
   return boxes;
@@ -231,12 +235,17 @@ export function gridCandidates(
  *   且完全在地圖可視範圍內（含 VIEWPORT_MARGIN）的位置。
  * 階段 2（一般字體）：依序嘗試 gridPts 中每個網格候選點（dy=0）。
  * 階段 3（縮小字體 wl-regime-label--sm）：同樣再試一輪 shifts + gridPts。
+ * 階段 4（縮小字體）：gridPts。
+ * 階段 5（最後手段）：若提供 capitalOnlyObs，以縮小字體、只避開首都圓點與首都名稱框再試一輪
+ *   shifts + gridPts（可與其他國名標籤及 UI 重疊）。
  * 全部失敗則回傳 null（略去標籤）。
  *
  * @param labelW 一般字體的完整標籤寬度（px），由 measureLabelWidth 或估算提供。
  *               縮小字體寬度由此按 LABEL_SMALL_CHAR_PX/LABEL_CHAR_PX 比例推算。
  * @param mapW   地圖容器寬度（px）；預設 Infinity（不做視窗裁切）。
  * @param mapH   地圖容器高度（px）；預設 Infinity。
+ * @param capitalOnlyObs  僅包含首都圓點與首都名稱框的障礙集合（capitalObstacleBoxes 回傳值）；
+ *               提供時啟用階段 5 最後手段——縮小字只避開首都，可與其他標籤重疊。
  */
 export function findLabelPlacement(
   cx: number,
@@ -244,9 +253,10 @@ export function findLabelPlacement(
   labelW: number,
   obstacles: Box[],
   gridPts: ReadonlyArray<{ x: number; y: number }>,
-  shifts: number[] = [0, -18, 18, -30, 30],
+  shifts: number[] = [0, -18, 18, -30, 30, -44, 44],
   mapW = Infinity,
   mapH = Infinity,
+  capitalOnlyObs?: readonly Box[],
 ): { x: number; y: number; small: boolean } | null {
   // 從一般字體寬度反推縮小字體寬度（保持 padding 不變，按字元寬比例縮放）
   const smallW = Math.round((labelW - LABEL_PAD) * LABEL_SMALL_CHAR_PX / LABEL_CHAR_PX) + LABEL_PAD;
@@ -262,14 +272,32 @@ export function findLabelPlacement(
     const w = small ? smallW : labelW;
     const h = small ? LABEL_SMALL_H : LABEL_H;
 
-    // 階段 1：labelPoint ± shifts
+    // 階段 1/3：labelPoint ± shifts
     for (const dy of shifts) {
       if (fits(cx, cy + dy, w, h)) return { x: cx, y: cy + dy, small };
     }
-    // 階段 2：網格候選點
+    // 階段 2/4：網格候選點
     for (const pt of gridPts) {
       if (fits(pt.x, pt.y, w, h)) return { x: pt.x, y: pt.y, small };
     }
   }
+
+  // 階段 5（最後手段）：縮小字、只避開首都圓點與名稱框（可與 UI 及其他國名重疊）
+  if (capitalOnlyObs !== undefined) {
+    const w = smallW;
+    const h = LABEL_SMALL_H;
+    const capFits = (bx: number, by: number, bw: number, bh: number): boolean => {
+      if (mapW !== Infinity && (bx - bw / 2 < VIEWPORT_MARGIN || bx + bw / 2 > mapW - VIEWPORT_MARGIN)) return false;
+      if (mapH !== Infinity && (by - bh / 2 < VIEWPORT_MARGIN || by + bh / 2 > mapH - VIEWPORT_MARGIN)) return false;
+      return !capitalOnlyObs.some((o) => rectsOverlap({ x: bx, y: by, w: bw, h: bh }, o));
+    };
+    for (const dy of shifts) {
+      if (capFits(cx, cy + dy, w, h)) return { x: cx, y: cy + dy, small: true };
+    }
+    for (const pt of gridPts) {
+      if (capFits(pt.x, pt.y, w, h)) return { x: pt.x, y: pt.y, small: true };
+    }
+  }
+
   return null;
 }

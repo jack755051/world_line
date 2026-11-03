@@ -225,7 +225,7 @@ export function buildBaseStyle(): StyleSpecification {
           'text-field': ['get', 'label'],
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
           'text-size': 11,
-          'text-variable-anchor': ['left', 'right', 'top', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right'],
+          'text-variable-anchor': ['right', 'left'],
           'text-radial-offset': 0.9,
           'text-justify': 'auto',
           'text-optional': true,
@@ -869,7 +869,7 @@ export class AtlasMap {
       // 所有障礙：首都保留框 + 浮動 UI + 已放置標籤
       const allObs = [...capitalObs, ...uiObs, ...boxes];
       const normalW = measureLabelWidth(l.text, false);
-      const result = findLabelPlacement(p.x, p.y, normalW, allObs, gPts, undefined, mapW, mapH);
+      const result = findLabelPlacement(p.x, p.y, normalW, allObs, gPts, undefined, mapW, mapH, capitalObs);
       if (result === null) continue;
 
       const lw = result.small ? measureLabelWidth(l.text, true) : normalW;

@@ -828,7 +828,9 @@ export class AtlasMap {
       map.on('click', 'regime-label', (e: MapLayerMouseEvent) => {
         const f = e.features?.[0];
         const versionId = f?.properties?.['versionId'] as string | undefined;
-        if (versionId) this.featureClick.emit({ versionId, x: e.point.x, y: e.point.y });
+        // 主權層國名（versionId＝sov-<regimeId>）交給上面的通用 click（底下的 sov-fill 會開主權卡）；
+        // 這裡若再送 featureClick，會把剛開的主權卡清掉（點國名沒反應）。
+        if (versionId && !versionId.startsWith('sov-')) this.featureClick.emit({ versionId, x: e.point.x, y: e.point.y });
       });
       map.on('mouseenter', 'regime-label', () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', 'regime-label', () => { map.getCanvas().style.cursor = ''; });

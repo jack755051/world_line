@@ -71,12 +71,12 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
         @for (y of years(); track y.date) {
           <div class="dot pointer-events-none" data-testid="timeline-year-dot" [class.major]="!!y.label" [style.left.%]="y.f * 100"></div>
           @if (y.label) {
-            <span data-testid="timeline-year-label" class="pointer-events-none absolute top-1/2 mt-[6px] -translate-x-1/2 font-wl-serif text-[11px] leading-[12px] text-wl-on-surface-variant tabular-nums"
+            <span data-testid="timeline-year-label" class="pointer-events-none absolute top-1/2 mt-[6px] -translate-x-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums"
               [style.left.%]="y.f * 100">{{ y.label }}</span>
           }
         }
         @if (startLabel(); as sl) {
-          <span data-testid="timeline-start-label" class="pointer-events-none absolute left-0 top-1/2 mt-[6px] font-wl-serif text-[11px] leading-[12px] text-wl-on-surface-variant tabular-nums">{{ sl }}</span>
+          <span data-testid="timeline-start-label" class="pointer-events-none absolute left-0 top-1/2 mt-[6px] font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums">{{ sl }}</span>
         }
         <div data-testid="timeline-handle" role="slider" tabindex="0"
           class="absolute top-1/2 -mt-[12px] -ml-[6px] size-3 rounded-full border-2 border-wl-surface bg-wl-primary shadow outline-offset-2 focus-visible:outline-2 focus-visible:outline-wl-primary"

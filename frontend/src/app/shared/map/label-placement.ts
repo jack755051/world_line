@@ -150,7 +150,6 @@ export function avoidCapitals(
 export const UI_OBSTACLE_SELECTORS: readonly string[] = [
   '[data-testid="legend"]',
   '[data-testid="camp-layer-toggle"]',
-  '[data-testid="map-incomplete-period-hint"]',
   '.maplibregl-ctrl-attrib',
   'wl-regime-sheet [data-testid="regime-sheet"]',
 ];

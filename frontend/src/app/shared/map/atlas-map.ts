@@ -387,6 +387,8 @@ export class AtlasMap {
   readonly featureHover = output<MapFeatureEvent | null>();
   /** MapLibre 還在載入／切片 source（setData 後或平移到新區域）：true；畫面 idle 後 false。 */
   readonly renderBusy = output<boolean>();
+  /** 使用者手動拖曳或縮放地圖（originalEvent 存在）時發出；程式化移動（easeTo 等）不發出。 */
+  readonly userMove = output<void>();
   protected readonly renderBusySig = signal(false);
   /** 已播放的國界淡入次數（e2e 檢查用）。 */
   protected readonly fadeCount = signal(0);
@@ -546,7 +548,10 @@ export class AtlasMap {
       });
       map.on('movestart', (e) => {
         this.cameraMoving.set(true);
-        if ((e as { originalEvent?: unknown }).originalEvent && this.focusedRecord()) this.userMoved = true;
+        if ((e as { originalEvent?: unknown }).originalEvent) {
+          if (this.focusedRecord()) this.userMoved = true;
+          this.userMove.emit();
+        }
       });
       map.on('moveend', () => {
         this.cameraMoving.set(false);

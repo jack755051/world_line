@@ -27,6 +27,7 @@ import { geometryBounds, sheetLayout, type FocusInset, type LngLatBounds } from 
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
+import { ScanRevealComponent, type ScanPhase, type ScanSnapshot } from '../../shared/map/scan-reveal';
 
 interface SheetInfo {
   kind: 'sov' | 'conflict' | 'control';
@@ -45,7 +46,7 @@ interface SheetInfo {
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
+  imports: [TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="relative h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -90,7 +91,7 @@ interface SheetInfo {
             <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
-                [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)"
+                [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
@@ -110,15 +111,13 @@ interface SheetInfo {
                 </div>
               }
 
-              <!-- 掃描線覆蓋層（plan A1）：跳年忙碌 >300ms 且非 firstLoad 時顯示；reducedMotion 時不啟動 -->
-              @for (epoch of scanItems(); track epoch) {
-                <div data-testid="map-scan" [attr.data-scan]="scanFading() ? null : 'active'"
-                  class="absolute inset-0 z-[5] pointer-events-none overflow-hidden"
-                  [class.wl-scan-out]="scanFading()">
-                  <span data-testid="map-busy" class="sr-only" role="status" aria-live="polite">{{ tr('map.busy') }}</span>
-                  <div class="wl-scan-paper absolute inset-0"></div>
-                  <div class="wl-scan-beam absolute inset-0" (animationend)="onScanLineDone($event)"></div>
-                </div>
+              <!-- 掃描揭露覆蓋層（plan B，Tai 2026-11-03）：跳年立即拍快照，亮線從左往右掃出新圖 -->
+              @if (scanPhase() !== 'idle') {
+                <wl-scan-reveal
+                  [snapshot]="scanSnapshot()"
+                  [phase]="scanPhase()"
+                  [busyText]="tr('map.busy')"
+                  (done)="onScanDone()" />
               }
 
               @if (data.controlStatus() === 'error') {
@@ -240,6 +239,7 @@ export class AtlasPage {
   protected readonly selectedConflict = signal<MapConflictEvent | null>(null);
   /** 地圖區（時間軸上方）大小：資訊卡依此避開時間軸與視窗邊緣。 */
   private readonly mapArea = viewChild<ElementRef<HTMLElement>>('mapArea');
+  private readonly atlasMapComponent = viewChild(AtlasMap);
   private readonly areaSize = signal({ w: 0, h: 0 });
   private place(x: number, y: number, cardW = 340): CardPlacement {
     const { w, h } = this.areaSize();
@@ -408,14 +408,11 @@ export class AtlasPage {
   protected readonly fadeArmed = signal(false);
   private fadeDisarm: ReturnType<typeof setTimeout> | undefined;
   private fadeOutTimer: ReturnType<typeof setTimeout> | undefined;
-  /** 掃描線覆蓋層（plan A1）：僅在非首次載入且非 reducedMotion 的跳年忙碌時顯示。 */
-  protected readonly scanActive = signal(false);
-  protected readonly scanFading = signal(false);
-  private readonly scanLineDone = signal(false);
-  /** 每次掃描啟動時遞增；透過 @for track 強制重建 DOM，確保 CSS animation 重置。 */
-  private readonly scanEpoch = signal(0);
-  protected readonly scanItems = computed(() => (this.scanActive() || this.scanFading()) ? [this.scanEpoch()] : []);
-  private scanFadeTimer: ReturnType<typeof setTimeout> | undefined;
+  /** 掃描揭露覆蓋層（plan B）：跳年時立即拍快照疊在新圖上，亮線掃出新圖。 */
+  protected readonly scanPhase = signal<ScanPhase>('idle');
+  protected readonly scanSnapshot = signal<ScanSnapshot | null>(null);
+  private scanTargetDate = '';
+  private scanRafHandle = 0;
   private readonly busyFlag = new DelayedFlag((v) => {
     clearTimeout(this.fadeDisarm);
     if (v) {
@@ -423,14 +420,6 @@ export class AtlasPage {
       this.busyFading.set(false);
       this.busyVisible.set(true);
       this.fadeArmed.set(true);
-      // 掃描覆蓋層：非首次載入且未設定 reducedMotion 才啟動
-      if (!this.firstLoad() && !this.motion.reduced()) {
-        clearTimeout(this.scanFadeTimer);
-        this.scanFading.set(false);
-        this.scanLineDone.set(false);
-        this.scanEpoch.update((k) => k + 1);
-        this.scanActive.set(true);
-      }
     } else {
       clearTimeout(this.fadeOutTimer);
       // 立刻停止遮擋（busyVisible→false 同時 busyFading→true）：
@@ -569,23 +558,27 @@ export class AtlasPage {
       const busy = !this.playing() && (this.data.mapDataLoading() || this.mapRenderBusy());
       untracked(() => this.busyFlag.set(busy));
     });
-    // 掃描結束條件：掃描線到右端（animationend）AND mapReady，兩者都達成才 200ms 淡出
+    // 掃描揭露：waiting 且 mapReady 且是目標日期 → 下一幀 sweeping
     effect(() => {
-      if (!this.scanLineDone() || !this.mapReady() || !this.scanActive() || this.scanFading()) return;
+      const phase = this.scanPhase();
+      const ready = this.mapReady();
+      const date = this.state.date();
+      if (phase !== 'waiting' || !ready) return;
       untracked(() => {
-        clearTimeout(this.scanFadeTimer);
-        this.scanFading.set(true);
-        this.scanFadeTimer = setTimeout(() => {
-          this.scanActive.set(false);
-          this.scanFading.set(false);
-        }, 200);
+        if (date !== this.scanTargetDate) return;
+        cancelAnimationFrame(this.scanRafHandle);
+        this.scanRafHandle = requestAnimationFrame(() => {
+          if (this.scanPhase() === 'waiting' && this.state.date() === this.scanTargetDate) {
+            this.scanPhase.set('sweeping');
+          }
+        });
       });
     });
     inject(DestroyRef).onDestroy(() => {
       this.busyFlag.dispose();
       clearTimeout(this.fadeDisarm);
       clearTimeout(this.fadeOutTimer);
-      clearTimeout(this.scanFadeTimer);
+      cancelAnimationFrame(this.scanRafHandle);
     });
     effect(() => {
       const s = this.sheetNow();
@@ -676,6 +669,9 @@ export class AtlasPage {
   protected setDate(d: string): void {
     this.clearSelection();
     this.pendingRegime.set(null);
+    if (this.everLoaded() && !this.motion.reduced() && !this.playing()) {
+      void this.startScan(d);
+    }
     this.state.setDate(d);
   }
 
@@ -783,10 +779,34 @@ export class AtlasPage {
     this.returnSov.set(null);
   }
 
-  protected onScanLineDone(event: AnimationEvent): void {
-    if (event.animationName === 'wl-scan-beam') {
-      this.scanLineDone.set(true);
-    }
+  protected onScanDone(): void {
+    this.scanPhase.set('idle');
+    this.scanSnapshot.set(null);
+    this.scanTargetDate = '';
+  }
+
+  protected onMapUserMove(): void {
+    if (this.scanPhase() === 'idle') return;
+    cancelAnimationFrame(this.scanRafHandle);
+    this.scanRafHandle = 0;
+    this.scanTargetDate = '';
+    this.scanPhase.set('idle');
+    this.scanSnapshot.set(null);
+  }
+
+  private async startScan(targetDate: string): Promise<void> {
+    this.scanTargetDate = targetDate;
+    cancelAnimationFrame(this.scanRafHandle);
+    this.scanRafHandle = 0;
+    this.scanPhase.set('idle');
+    this.scanSnapshot.set(null);
+    const map = this.atlasMapComponent();
+    if (!map) return;
+    const snapshot = await map.captureSnapshot();
+    if (this.scanTargetDate !== targetDate) return;
+    if (!snapshot) return;
+    this.scanSnapshot.set(snapshot);
+    this.scanPhase.set('waiting');
   }
 
   protected onInvalidInput(): void {

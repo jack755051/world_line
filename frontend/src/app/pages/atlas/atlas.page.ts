@@ -6,6 +6,7 @@ import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
 import { ToastService } from '../../components/ui/toast';
 import type { ConflictFeatureProperties, SovereigntyFeatureProperties } from '../../core/api/api-types';
+import { WorldLineApi } from '../../core/api/world-line-api';
 import { AtlasData } from '../../core/atlas-data';
 import { AtlasState, parseAtlasQuery } from '../../core/atlas-state';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
@@ -165,7 +166,7 @@ interface SheetInfo {
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)"
+                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [loadBio]="loadBioFn" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)"
                       [controlZone]="sh.control" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
@@ -218,6 +219,8 @@ interface SheetInfo {
 export class AtlasPage {
   protected readonly state = inject(AtlasState);
   protected readonly data = inject(AtlasData);
+  private readonly api = inject(WorldLineApi);
+  protected readonly loadBioFn = (id: string) => this.api.getLeaderBio(id);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly toast = inject(ToastService, { optional: true });

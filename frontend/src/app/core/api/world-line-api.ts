@@ -35,6 +35,26 @@ export interface CapitalsDto {
   features: CapitalRecord[];
 }
 
+export interface LeaderBioFieldSource {
+  source: string;
+  url: string | null;
+}
+
+/** 領導人完整生平（GET /leader-bios/{id} 回應）。 */
+export interface LeaderBio {
+  id: string;
+  name: string;
+  nameZh: string | null;
+  birthDate: string | null;
+  birthDatePrecision: 'day' | 'month' | 'year' | null;
+  deathDate: string | null;
+  birthPlace: { 'zh-Hant'?: string; en?: string } | null;
+  party: { 'zh-Hant'?: string; en?: string } | null;
+  summary: { 'zh-Hant'?: string; en?: string } | null;
+  fieldSources: Record<string, LeaderBioFieldSource> | null;
+  isTest: boolean;
+}
+
 /** 生平摘要（GET /leaders 回應內嵌，不含 fieldSources）。 */
 export interface LeaderBioSummary {
   id: string;
@@ -179,6 +199,12 @@ export class WorldLineApi {
   /** GET /leaders?date=：該日領導人記錄（國家元首、政府首腦）。 */
   async leaders(date: string, signal?: AbortSignal): Promise<LeadersDto> {
     return this.getByDate<LeadersDto>('/leaders', date, signal);
+  }
+
+  /** GET /leader-bios/{id}：領導人完整生平。 */
+  async getLeaderBio(id: string): Promise<LeaderBio> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<LeaderBio>>(`${WorldLineApi.base}/leader-bios/${id}`));
+    return res.data;
   }
 
   async health(): Promise<HealthReport> {

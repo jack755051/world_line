@@ -1,8 +1,8 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { LucideX } from '@lucide/angular';
 import type { ControlFeatureProperties, RegimeEventDto, SovereigntyFeatureProperties, TheaterStateDto } from '../../core/api/api-types';
-import type { CapitalRecord, LeaderRecord } from '../../core/api/world-line-api';
+import type { CapitalRecord, LeaderBio, LeaderRecord } from '../../core/api/world-line-api';
 import { localized, type Lang } from '../../core/i18n';
 import { theaterLabel } from '../../core/theater-tracks';
 import { EventRef } from '../event-ref/event-ref';
@@ -27,6 +27,7 @@ const TXT = {
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於',
     capital: '首都', capitalNone: '無資料',
     tabLeaders: '領導人', leadersNone: '無資料', leaderUnverified: '待查證',
+    bioError: '生平載入失敗', bioBirth: '出生', bioDeath: '去世', bioBirthPlace: '出生地', bioParty: '政黨', bioSource: '出處', bioTestBadge: '測試資料',
     leaderRole: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
@@ -47,6 +48,7 @@ const TXT = {
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added',
     capital: 'Capital', capitalNone: 'No data',
     tabLeaders: 'Leaders', leadersNone: 'No data', leaderUnverified: 'Unverified',
+    bioError: 'Could not load biography', bioBirth: 'Born', bioDeath: 'Died', bioBirthPlace: 'Birthplace', bioParty: 'Party', bioSource: 'Source', bioTestBadge: 'Test data',
     leaderRole: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
@@ -137,13 +139,96 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                       <div class="flex items-start gap-2">
                         <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant flex-none" [attr.data-role]="leader.role">{{ t().leaderRole[leader.role] ?? leader.role }}</span>
                         <div class="min-w-0 flex-1">
-                          <div class="font-semibold" data-testid="sovereignty-card-leader-name">{{ leaderName(leader) }}</div>
+                          @if (leader.personId && loadBio()) {
+                            <button type="button" data-testid="sovereignty-card-leader-name" class="font-semibold text-left"
+                              [attr.aria-expanded]="expandedIds().has(leader.personId) ? 'true' : 'false'"
+                              (click)="toggleBio(leader.personId!)">{{ leaderName(leader) }}</button>
+                          } @else {
+                            <div class="font-semibold" data-testid="sovereignty-card-leader-name">{{ leaderName(leader) }}</div>
+                          }
                           <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-leader-title">{{ leader.title }}</div>
                           @if (!leader.verified) {
                             <span data-testid="sovereignty-card-leader-unverified" class="text-[11px] text-wl-on-surface-variant">{{ t().leaderUnverified }}</span>
                           }
                           @if (leader.source) {
                             <div data-testid="sovereignty-card-leader-source" class="text-[11px] text-wl-on-surface-variant">{{ leader.source }}</div>
+                          }
+                          @if (leader.personId && expandedIds().has(leader.personId)) {
+                            <div data-testid="sovereignty-card-leader-bio" class="mt-2 border-t border-wl-outline-variant pt-2 text-[12px]">
+                              @switch (getBioState(leader.personId)?.status) {
+                                @case ('loading') { <span class="text-wl-on-surface-variant">{{ t().loading }}</span> }
+                                @case ('error') { <span class="text-wl-error">{{ t().bioError }}</span> }
+                                @case ('ok') {
+                                  @if (getBioState(leader.personId)?.data; as bio) {
+                                    @if (bio.isTest) {
+                                      <span data-testid="sovereignty-card-leader-bio-test" class="mb-1 inline-block rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant">{{ t().bioTestBadge }}</span>
+                                    }
+                                    <dl class="grid grid-cols-[60px_1fr] gap-x-2 gap-y-0.5">
+                                      @if (bio.birthDate) {
+                                        <dt class="text-wl-on-surface-variant">{{ t().bioBirth }}</dt>
+                                        <dd>{{ formatBioDate(bio.birthDate, bio.birthDatePrecision) }}
+                                          @if (bio.fieldSources?.['birthDate']; as fs) {
+                                            @if (fs.url) {
+                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            } @else {
+                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
+                                            }
+                                          }
+                                        </dd>
+                                      }
+                                      @if (bio.deathDate) {
+                                        <dt class="text-wl-on-surface-variant">{{ t().bioDeath }}</dt>
+                                        <dd>{{ bio.deathDate.slice(0, 10) }}
+                                          @if (bio.fieldSources?.['deathDate']; as fs) {
+                                            @if (fs.url) {
+                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            } @else {
+                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
+                                            }
+                                          }
+                                        </dd>
+                                      }
+                                      @if (localizedBioField(bio.birthPlace); as bp) {
+                                        <dt class="text-wl-on-surface-variant">{{ t().bioBirthPlace }}</dt>
+                                        <dd>{{ bp }}
+                                          @if (bio.fieldSources?.['birthPlace']; as fs) {
+                                            @if (fs.url) {
+                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            } @else {
+                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
+                                            }
+                                          }
+                                        </dd>
+                                      }
+                                      @if (localizedBioField(bio.party); as party) {
+                                        <dt class="text-wl-on-surface-variant">{{ t().bioParty }}</dt>
+                                        <dd>{{ party }}
+                                          @if (bio.fieldSources?.['party']; as fs) {
+                                            @if (fs.url) {
+                                              <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                            } @else {
+                                              <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
+                                            }
+                                          }
+                                        </dd>
+                                      }
+                                    </dl>
+                                    @if (localizedBioField(bio.summary); as summary) {
+                                      <p class="mt-1.5">{{ summary }}
+                                        @if (bio.fieldSources?.['summary']; as fs) {
+                                          @if (fs.url) {
+                                            <a [href]="fs.url" target="_blank" rel="noopener" class="ml-1 text-wl-secondary hover:underline">{{ t().bioSource }}</a>
+                                          } @else {
+                                            <span class="ml-1 text-wl-on-surface-variant">{{ fs.source }}</span>
+                                          }
+                                        }
+                                      </p>
+                                    }
+                                  }
+                                }
+                                @default { <span class="text-wl-on-surface-variant">{{ t().loading }}</span> }
+                              }
+                            </div>
                           }
                         </div>
                       </div>
@@ -338,6 +423,8 @@ export class SovereigntyCard {
   readonly capital = input<CapitalRecord | null>(null);
   /** 該政權在當前日期的領導人列表（由頁面從 leaders 資料過濾，不額外請求）。 */
   readonly leaders = input<LeaderRecord[]>([]);
+  /** 載入完整生平的函式（由頁面注入 API 呼叫）；null 時有 personId 的領導人不顯示展開按鈕。 */
+  readonly loadBio = input<((id: string) => Promise<LeaderBio>) | null>(null);
   /** 目前分頁（embedded 時）：由頁面保存，切換政權時保留（例如連續比較各政權的事件），面板關閉後回到「概要」。 */
   readonly tab = input<SovereigntyTab>('overview');
   /** 控制區欄位（點控制區開面板時由頁面傳入，在概要分頁頂部顯示）。 */
@@ -349,6 +436,49 @@ export class SovereigntyCard {
   protected onTab(v: string) {
     if (v === 'overview' || v === 'events' || v === 'leaders') this.tabChange.emit(v);
   }
+
+  // ── 生平展開狀態 ─────────────────────────────────────────────────────────────
+  private readonly bioMap = new Map<string, { status: 'loading' | 'ok' | 'error'; data?: LeaderBio }>();
+  protected readonly bioCache = signal<ReadonlyMap<string, { status: 'loading' | 'ok' | 'error'; data?: LeaderBio }>>(new Map());
+  protected readonly expandedIds = signal<ReadonlySet<string>>(new Set());
+
+  protected toggleBio(personId: string): void {
+    const next = new Set(this.expandedIds());
+    if (next.has(personId)) {
+      next.delete(personId);
+      this.expandedIds.set(next);
+      return;
+    }
+    next.add(personId);
+    this.expandedIds.set(next);
+    if (this.bioMap.has(personId)) return;
+    const loader = this.loadBio();
+    if (!loader) return;
+    this.bioMap.set(personId, { status: 'loading' });
+    this.bioCache.set(new Map(this.bioMap));
+    loader(personId).then(
+      (data) => { this.bioMap.set(personId, { status: 'ok', data }); this.bioCache.set(new Map(this.bioMap)); },
+      () => { this.bioMap.set(personId, { status: 'error' }); this.bioCache.set(new Map(this.bioMap)); },
+    );
+  }
+
+  protected getBioState(personId: string | null): { status: 'loading' | 'ok' | 'error'; data?: LeaderBio } | undefined {
+    return personId ? this.bioCache().get(personId) : undefined;
+  }
+
+  protected formatBioDate(date: string | null, precision: 'day' | 'month' | 'year' | null): string {
+    if (!date) return '';
+    if (precision === 'year') return date.slice(0, 4);
+    if (precision === 'month') return date.slice(0, 7);
+    return date.slice(0, 10);
+  }
+
+  protected localizedBioField(field: { 'zh-Hant'?: string; en?: string } | null | undefined): string {
+    if (!field) return '';
+    const lang = this.lang();
+    return (lang === 'en' ? field.en || field['zh-Hant'] : field['zh-Hant'] || field.en) ?? '';
+  }
+  // ── end 生平展開狀態 ──────────────────────────────────────────────────────────
 
   // ── 控制區 computeds ────────────────────────────────────────────────────────
   protected readonly czEvidence = computed(() => this.controlZone()?.evidence ?? 'unknown');

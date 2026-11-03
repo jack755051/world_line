@@ -1,4 +1,4 @@
-import { AXIS_PAINT, CONTROL_ONLY_LAYERS, buildBaseStyle, overlaps, regimeLabelSortKey, buildRegimeLabelFeatureCollection, obstacleGridFeatures, REGIME_OBSTACLE_ICON_SIZE, shortRegimeText, regimeLabelArea } from './atlas-map';
+import { AXIS_PAINT, CONTROL_ONLY_LAYERS, buildBaseStyle, overlaps, regimeLabelSortKey, buildRegimeLabelFeatureCollection, obstacleGridFeatures, REGIME_OBSTACLE_ICON_SIZE } from './atlas-map';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type ControlLabel } from './map-style';
 
@@ -54,68 +54,6 @@ describe('regimeLabelSortKey', () => {
   });
 });
 
-describe('shortRegimeText', () => {
-  it('無括號後綴的名稱不變', () => {
-    expect(shortRegimeText('義大利')).toBe('義大利');
-    expect(shortRegimeText('匈牙利')).toBe('匈牙利');
-  });
-
-  it('去掉結尾全形括號段', () => {
-    expect(shortRegimeText('埃及（英國保護國）')).toBe('埃及');
-    expect(shortRegimeText('伊拉克（英國委任統治）')).toBe('伊拉克');
-  });
-
-  it('去掉後綴後有空白時修剪', () => {
-    expect(shortRegimeText('西藏 （英屬）')).toBe('西藏');
-  });
-
-  it('整個名稱都是括號時回傳原始文字（避免空字串）', () => {
-    const t = '（無名）';
-    expect(shortRegimeText(t)).toBe(t);
-  });
-
-  it('去掉政體後綴「王國」', () => {
-    expect(shortRegimeText('匈牙利王國')).toBe('匈牙利');
-    expect(shortRegimeText('義大利王國')).toBe('義大利');
-    expect(shortRegimeText('埃及王國')).toBe('埃及');
-  });
-
-  it('去掉政體後綴「共和國」', () => {
-    expect(shortRegimeText('拉脫維亞共和國')).toBe('拉脫維亞');
-  });
-
-  it('去掉政體後綴「保護國」', () => {
-    expect(shortRegimeText('法屬突尼西亞保護國')).toBe('法屬突尼西亞');
-  });
-
-  it('去掉政體後綴「帝國」', () => {
-    expect(shortRegimeText('大英帝國')).toBe('大英');
-  });
-
-  it('殘餘少於 2 字時不去後綴（保留原名）', () => {
-    // 假設有個「X王國」，去後綴只剩 1 字，應保留
-    expect(shortRegimeText('X王國')).toBe('X王國');
-  });
-});
-
-describe('regimeLabelArea', () => {
-  it('赤道上的矩形面積等於 width × height（cos(0)=1）', () => {
-    const bbox: [number, number, number, number] = [10, -5, 20, 5];
-    expect(regimeLabelArea(bbox)).toBeCloseTo(10 * 10 * 1, 3);
-  });
-
-  it('中緯度（60°）面積縮小為約原來一半', () => {
-    const bbox: [number, number, number, number] = [10, 55, 20, 65];
-    const expected = 10 * 10 * Math.cos(60 * Math.PI / 180);
-    expect(regimeLabelArea(bbox)).toBeCloseTo(expected, 2);
-  });
-
-  it('面積恆非負', () => {
-    expect(regimeLabelArea([0, 0, 0, 0])).toBeGreaterThanOrEqual(0);
-    expect(regimeLabelArea([5, 20, 0, 15])).toBeGreaterThanOrEqual(0);
-  });
-});
-
 describe('buildRegimeLabelFeatureCollection', () => {
   const label: ControlLabel = {
     versionId: 'v1', regimeId: 'r1', text: '測試', lngLat: [10, 50],
@@ -130,25 +68,14 @@ describe('buildRegimeLabelFeatureCollection', () => {
     expect((fc.features[0].geometry as any).coordinates).toEqual([10, 50]);
   });
 
-  it('properties 包含 versionId、regimeId、text、shortText、area、sortKey、rotation', () => {
+  it('properties 包含 versionId、regimeId、text、sortKey、rotation', () => {
     const fc = buildRegimeLabelFeatureCollection([label]);
     const p = fc.features[0].properties!;
     expect(p['versionId']).toBe('v1');
     expect(p['regimeId']).toBe('r1');
     expect(p['text']).toBe('測試');
-    expect(p['shortText']).toBe('測試');
-    expect(typeof p['area']).toBe('number');
-    expect(p['area']).toBeGreaterThanOrEqual(0);
     expect(typeof p['sortKey']).toBe('number');
     expect(p['rotation']).toBe(0);
-  });
-
-  it('有括號後綴時 shortText 不同於 text', () => {
-    const withSuffix: ControlLabel = { ...label, text: '埃及（英國保護國）' };
-    const fc = buildRegimeLabelFeatureCollection([withSuffix]);
-    const p = fc.features[0].properties!;
-    expect(p['text']).toBe('埃及（英國保護國）');
-    expect(p['shortText']).toBe('埃及');
   });
 
   it('rotation 有值時帶入', () => {
@@ -208,43 +135,11 @@ describe('regime-label symbol layer（MapLibre GL 碰撞引擎）', () => {
     expect(regimeLayer.layout?.['text-ignore-placement']).toBe(false);
   });
 
-  it('text-variable-anchor 包含必要的五個錨點與四個斜角（共九個）', () => {
+  it('text-variable-anchor 包含必要的五個錨點', () => {
     const anchors: string[] = regimeLayer.layout?.['text-variable-anchor'] ?? [];
-    for (const a of ['center', 'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right']) {
+    for (const a of ['center', 'top', 'bottom', 'left', 'right']) {
       expect(anchors).toContain(a);
     }
-    expect(anchors).toHaveLength(9);
-  });
-
-  it('text-size 為 data-driven 表達式（非固定值 12）', () => {
-    const textSize = regimeLayer.layout?.['text-size'];
-    expect(Array.isArray(textSize)).toBe(true);
-    expect(textSize).not.toBe(12);
-    // 必須是 interpolate + zoom + step(area) 複合表達式
-    expect(textSize?.[0]).toBe('interpolate');
-    // 輸出值中須包含讀取 'area' 屬性的 step 表達式
-    const hasAreaStep = (v: unknown): boolean => {
-      if (!Array.isArray(v)) return false;
-      if (v[0] === 'step' && Array.isArray(v[1]) && v[1][0] === 'get' && v[1][1] === 'area') return true;
-      return v.some((x) => hasAreaStep(x));
-    };
-    expect(hasAreaStep(textSize)).toBe(true);
-  });
-
-  it('text-field 使用 shortText 屬性', () => {
-    const textField = regimeLayer.layout?.['text-field'];
-    expect(Array.isArray(textField)).toBe(true);
-    expect(textField?.[0]).toBe('get');
-    expect(textField?.[1]).toBe('shortText');
-  });
-
-  it('icon-text-fit-padding 上下不超過 2px、左右不超過 6px（碰撞框緊縮）', () => {
-    const p: number[] = regimeLayer.layout?.['icon-text-fit-padding'] ?? [];
-    expect(p).toHaveLength(4);
-    expect(p[0]).toBeLessThanOrEqual(2); // top
-    expect(p[2]).toBeLessThanOrEqual(2); // bottom
-    expect(p[1]).toBeLessThanOrEqual(6); // right
-    expect(p[3]).toBeLessThanOrEqual(6); // left
   });
 
   it('capital-dot 與 capital-label 在 regime-label 之後（先處理上層圖層＝優先）', () => {

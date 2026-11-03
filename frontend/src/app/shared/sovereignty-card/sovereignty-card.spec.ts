@@ -340,6 +340,53 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(panel.textContent).toContain('無資料');
   });
 
+  it('控制區區塊：evidence、有效期間、陣營、補充（預設收合，僅限 currentDate 以前）、爭議、來源', async () => {
+    const czProps = {
+      versionId: 'v1', controllerRegimeId: 'g1', controlType: 'occupation',
+      validPeriod: { start: '1939-09-01', end: '1945-05-08', startUncertainty: null, endUncertainty: null },
+      theaterCode: 'europe',
+      controllerAlignment: {
+        camp: 'axis',
+        validPeriod: { start: '1939-09-01', end: null }, citations: [
+          { sourceId: 's1', sourceTitle: 'FRUS 1939', publisher: 'GPO', licenseCode: 'us_federal_pd', locator: 'p. 1', role: 'primary', evidenceNote: '' },
+        ],
+      },
+      controllerSupplements: [
+        { eventId: 'sup1', occurred: { start: '1940-06-22', end: null }, summary: { 'zh-Hant': '法國停戰', en: 'Fall of France' }, citations: [] },
+        { eventId: 'sup2', occurred: { start: '1946-01-01', end: null }, summary: { 'zh-Hant': '未來事件（不顯示）', en: 'Future' }, citations: [] },
+      ],
+      isDisputed: true,
+      citations: [{ sourceId: 's2', sourceTitle: 'Source', publisher: 'P', licenseCode: 'cc0', locator: 'p.1', role: 'primary', evidenceNote: '' }],
+    } as unknown as import('../../core/api/api-types').ControlFeatureProperties;
+
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('currentDate', '1941-06-22');
+    fixture.componentRef.setInput('controlZone', { props: czProps, evidence: 'attested', theater: { attestingSnapshot: { asOf: '1941-06-22' } } });
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+
+    // 史料狀態：已查證
+    expect(q(el, 'feature-card-evidence')?.textContent).toContain('已查證');
+    // 陣營
+    expect(q(el, 'feature-card-camp')?.getAttribute('data-camp')).not.toBe('unassigned');
+    // 依據
+    expect(q(el, 'feature-card-camp-basis')?.textContent).toContain('FRUS 1939');
+    // 補充：sup2 的日期 1946 > currentDate 1941，不顯示；sup1 顯示
+    const supplements = q(el, 'feature-card-supplements');
+    expect(supplements).not.toBeNull();
+    const supItems = [...el.querySelectorAll('[data-testid="feature-card-supplement"]')];
+    expect(supItems.length).toBe(1);
+    expect(supItems[0].textContent).toContain('法國停戰');
+    // 爭議
+    expect(el.textContent).toContain('爭議領土');
+    // 補充預設收合（details 元素）
+    const details = supplements?.querySelector('details');
+    expect(details).not.toBeNull();
+    expect(details?.hasAttribute('open')).toBe(false);
+  });
+
   it('領導人分頁英文介面：角色標籤英文、名稱用 name 欄位、unverified 顯示 Unverified', async () => {
     const fixture = TestBed.createComponent(SovereigntyCard);
     fixture.componentRef.setInput('props', props());

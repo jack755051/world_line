@@ -11,7 +11,6 @@ import { AtlasState, parseAtlasQuery } from '../../core/atlas-state';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { regimeSelfName } from '../../core/regime-names';
 import { TopBar } from '../../layout/top-bar/top-bar';
-import { FeatureCard } from '../../shared/feature-card/feature-card';
 import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
 import { MotionService } from '../../core/motion';
@@ -21,7 +20,7 @@ import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureE
 import { ConflictCard } from '../../shared/conflict-card/conflict-card';
 import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
 import { DelayedFlag } from '../../core/delayed-flag';
-import { SovereigntyCard, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
+import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
 import { sheetLayout, type FocusInset } from '../../shared/map/focus';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
@@ -29,12 +28,13 @@ import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
 
 interface SheetInfo {
-  kind: 'sov' | 'conflict';
+  kind: 'sov' | 'conflict' | 'control';
   title: string;
   description: string;
   descriptionLang: string;
   sov: { props: SovereigntyFeatureProperties; name: string; original: string; originalLang: string; occupierName: string } | null;
   conflict: { props: ConflictFeatureProperties; nameA: string; nameB: string } | null;
+  control: ControlZoneSection | null;
 }
 
 /**
@@ -44,7 +44,7 @@ interface SheetInfo {
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, Legend, Timeline, FeatureCard, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
+  imports: [TopBar, AtlasMap, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff, LucideInfo],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="relative h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -154,30 +154,28 @@ interface SheetInfo {
                 </div>
               }
 
-              @if (selectedInfo(); as s) {
-                <div data-testid="feature-card-anchor" class="absolute z-20 overflow-y-auto" [style.left.px]="s.pos.left" [style.top.px]="s.pos.top" [style.bottom.px]="s.pos.bottom" [style.max-height.px]="s.pos.maxHeight">
-                  <wl-feature-card [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang"
-                    [evidence]="s.evidence" [theaterState]="s.theater" [lang]="lang()" (closed)="clearSelection()" />
-                </div>
-              }
-
-              <!-- 政權／衝突資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
+              <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
               <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
                 [title]="sheet()?.title ?? ''" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
-                [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : 'sovereignty-card-title'"
-                [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : 'sovereignty-card-close'"
+                [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
+                [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : sheet()?.kind === 'control' ? 'feature-card-close' : 'sovereignty-card-close'"
                 (closed)="clearSelection()" (hidden)="onSheetHidden()">
                 @if (sheet(); as sh) {
                   @if (sh.sov; as s) {
+                    <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" />
+                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)"
+                      [controlZone]="sh.control" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
                       <button type="button" data-testid="regime-sheet-back" class="mb-2 flex flex-none items-center gap-1 self-start wl-text2 text-wl-on-surface-variant hover:text-wl-on-surface" (click)="backToRegime()">
                         ← {{ lang() === 'en' ? 'Back to' : '返回' }} {{ back.name }}</button>
                     }
                     <wl-conflict-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="c.props" [nameA]="c.nameA" [nameB]="c.nameB" [lang]="lang()" />
+                  } @else if (sh.control) {
+                    <!-- 找不到政權主權紀錄：只顯示控制區資訊（無主權相關欄位） -->
+                    <p class="mt-3 wl-text2 text-wl-on-surface-variant">{{ lang() === 'en' ? 'No border record for this regime on this date.' : '此政權當日無主權國界紀錄。' }}</p>
                   }
                 }
               </wl-regime-sheet>
@@ -283,16 +281,37 @@ export class AtlasPage {
   private regimeName(id: string, slug: string): string {
     return regimeSelfName(this.data.regimes()[id], this.lang())?.display ?? slug;
   }
+  /** 點控制區時：依 controllerRegimeId 找出該政權的主權紀錄（供面板顯示）。 */
+  protected readonly selectedControlSovInfo = computed(() => {
+    const sel = this.selected();
+    if (!sel) return null;
+    const d = this.describe(sel.versionId);
+    if (!d) return null;
+    const regimeId = d.p.controllerRegimeId;
+    const f = this.data.sovereignty()?.featureCollection.features.find(
+      (x) => x.properties.regimeId === regimeId,
+    );
+    if (!f) return null;
+    const reg = this.data.regimes()[f.properties.regimeId];
+    const name = regimeSelfName(reg, this.lang());
+    return {
+      props: f.properties,
+      name: name?.display ?? f.properties.regimeSlug,
+      original: name?.original ?? '',
+      originalLang: reg?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '',
+      occupierName: f.properties.occupation ? this.regimeName(f.properties.occupation.occupierRegimeId, f.properties.occupation.occupierSlug) : '',
+    };
+  });
   /** 目前選中政權的首都（直接從已載入的 capitals 圖層資料取出，不額外請求）。 */
   protected readonly selectedCapital = computed(() => {
-    const s = this.selectedSovInfo();
+    const s = this.selectedSovInfo() ?? this.selectedControlSovInfo();
     const caps = this.data.capitals();
     if (!s || !caps) return null;
     return caps.features.find((f) => f.regimeId === s.props.regimeId) ?? null;
   });
   /** 目前選中政權的領導人（直接從已載入的 leaders 資料過濾，不額外請求）。 */
   protected readonly selectedLeaders = computed(() => {
-    const s = this.selectedSovInfo();
+    const s = this.selectedSovInfo() ?? this.selectedControlSovInfo();
     const lea = this.data.leaders();
     if (!s || !lea) return [];
     return lea.features.filter((f) => f.regimeId === s.props.regimeId);
@@ -336,10 +355,31 @@ export class AtlasPage {
   protected readonly focusRecord = signal<string | null>(null);
   protected readonly layout = computed(() => sheetLayout(this.areaSize().w, this.areaSize().h));
   protected readonly sheetNow = computed<SheetInfo | null>(() => {
+    // 控制區優先（點控制區 → 開右側面板，比照主權卡流程）
+    const sel = this.selected();
+    if (sel) {
+      const d = this.describe(sel.versionId);
+      if (d) {
+        const key = `control.${d.p.controlType}` as I18nKey;
+        const type = this.tr(key);
+        const name = d.name?.display ?? '—';
+        const original = d.name?.original ?? '';
+        const originalLang = this.data.regimes()[d.p.controllerRegimeId]?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '';
+        return {
+          kind: 'control',
+          title: `${name}・${type}`,
+          description: original,
+          descriptionLang: originalLang,
+          sov: this.selectedControlSovInfo(),
+          conflict: null,
+          control: { props: d.p, evidence: d.evidence, theater: d.theater },
+        };
+      }
+    }
     const s = this.selectedSovInfo();
-    if (s) return { kind: 'sov', title: s.name, description: s.original, descriptionLang: s.originalLang, sov: s, conflict: null };
+    if (s) return { kind: 'sov', title: s.name, description: s.original, descriptionLang: s.originalLang, sov: s, conflict: null, control: null };
     const c = this.selectedConflictInfo();
-    if (c) return { kind: 'conflict', title: `${c.nameA} — ${c.nameB}`, description: this.lang() === 'en' ? 'Hostilities (conflict marker)' : '交戰（衝突圖示）', descriptionLang: '', sov: null, conflict: c };
+    if (c) return { kind: 'conflict', title: `${c.nameA} — ${c.nameB}`, description: this.lang() === 'en' ? 'Hostilities (conflict marker)' : '交戰（衝突圖示）', descriptionLang: '', sov: null, conflict: c, control: null };
     return null;
   });
   /** 面板顯示的內容：關閉時保留最後一筆，讓滑出動畫期間內容不消失；面板移除後（hidden）才清掉。 */
@@ -496,21 +536,7 @@ export class AtlasPage {
     return { x: h.x, y: h.y, name: d.name?.display ?? '—', type: this.tr(key), evidence: ev, attested: d.evidence === 'attested' };
   });
 
-  protected readonly selectedInfo = computed(() => {
-    const s = this.selected();
-    if (!s) return null;
-    const d = this.describe(s.versionId);
-    if (!d) return null;
-    return {
-      pos: this.place(s.x, s.y, 300),
-      props: d.p,
-      name: d.name?.display ?? '',
-      original: d.name?.original ?? '',
-      originalLang: this.data.regimes()[d.p.controllerRegimeId]?.names.find((n) => n.nameKind === 'self')?.originalLang ?? '',
-      evidence: d.evidence,
-      theater: d.theater,
-    };
-  });
+  // selectedInfo 已移除（浮動小卡已改為右側面板，selectedInfo 不再需要）
 
   private debounce: ReturnType<typeof setTimeout> | undefined;
 
@@ -653,9 +679,18 @@ export class AtlasPage {
     this.selectedSov.set(null);
     this.selectedGap.set(null);
     this.selectedConflict.set(null);
+    this.returnSov.set(null);
     this.selected.set(e);
-    this.focusRecord.set(null);
-    this.focusRegimeId.set(this.findFeature(e.versionId)?.properties.controllerRegimeId ?? null);
+    const f = this.findFeature(e.versionId);
+    const regimeId = f?.properties.controllerRegimeId ?? null;
+    this.focusRegimeId.set(regimeId);
+    // 載入政權事件（與主權點擊一致，供面板事件分頁使用）
+    if (regimeId) void this.data.loadRegimeEvents(regimeId);
+    // 聚焦到該政權的主權紀錄（如有），讓地圖飛至政權領土
+    const sovRecord = regimeId
+      ? this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.regimeId === regimeId)
+      : null;
+    this.focusRecord.set(sovRecord?.properties.recordId ?? null);
   }
 
   protected setAxis(axis: 'control' | 'sovereignty'): void {

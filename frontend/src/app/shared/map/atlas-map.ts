@@ -22,6 +22,7 @@ import { AtlasState, type Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
 import { focusMaskPath, focusPadding, geometryBounds, polygonRings, type FocusInset } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
+import { avoidCapitals, capitalObstacleBoxes } from './label-placement';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -56,7 +57,6 @@ export const CONTROL_ONLY_LAYERS = ['gap-base', 'gap-fill', 'control-fill', 'con
 export function overlaps(a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }): boolean {
   return Math.abs(a.x - b.x) * 2 < a.w + b.w && Math.abs(a.y - b.y) * 2 < a.h + b.h;
 }
-import { avoidCapitals, capitalObstacleBoxes } from './label-placement';
 import type { SovereigntyProps } from './sovereignty-style';
 
 export interface MapGapEvent {

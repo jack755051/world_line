@@ -16,9 +16,16 @@ import { expect, test, type Page } from '@playwright/test';
  *    （分別收窄左/右/上/下邊界，每次查詢精度 0.5px）。
  *    選此方案原因：不依賴 MapLibre 私有 API（`map.style.placement`、`collisionIndex`），
  *    跨版本穩定；每個標籤約 44 次 queryRenderedFeatures 呼叫（同步、快速）。
- * 3. 「應顯示」門檻：政權多邊形投影 bbox 寬 ≥ 文字寬 × 2.5 且高 ≥ 48px 時，
- *    國名 **必須** 被渲染（大到明顯放得下卻被隱藏 → ok=false，原因寫「國名在足夠大的區塊內被隱藏」）。
- *    小於此門檻時隱藏是正常的，記為 ok=true + hidden=true；另輸出 `OUT/days/hidden-<date>.json`。
+ * 3. **大／中型判斷**（兩條任一成立即算大／中型）：
+ *    a) 面積排名：當天所有有標籤的政權，依 GeoJSON bbox 面積 × cos(中緯度) 近似球面面積排序，
+ *       排名在前 40%（rankPct < 0.4，0=最大）。
+ *    b) 畫面大小：在目前縮放下，投影 bbox 寬 ≥ 90px 且高 ≥ 40px，且錨點在安全區內。
+ * 4. **隱藏規則**：
+ *    - 寬容條件 1（保留）：同名標籤已由另一個 versionId 渲染 → ok=true, hidden=true, sizeClass='small'。
+ *    - 大／中型國名沒渲染 → ok=false，reasons=['大／中型國名被隱藏']，failType='label-hidden-major'，
+ *      sizeClass='major'，附 rankPct、projW、projH 供人工核對。
+ *    - 小型（非大／中型）國名沒渲染 → ok=true, hidden=true, sizeClass='small'；
+ *      另輸出 `OUT/days/hidden-<date>.json`。
  *
  * ── verify 1（TypeScript 無錯）──────────────────────────────────────────────────────
  *   cd frontend && pnpm exec tsc --noEmit
@@ -68,8 +75,16 @@ export interface SweepCheck {
   ok: boolean;
   reasons: string[];
   view: number;
-  /** true = 區塊太小依設計隱藏（ok=true；另見 hidden-<date>.json）。 */
+  /** true = 依設計隱藏（ok=true；另見 hidden-<date>.json）。 */
   hidden?: boolean;
+  /** 'small' = 小型政權，正常隱藏（ok=true）；'major' = 大／中型，不應隱藏（ok=false）。僅 regime-label 使用。 */
+  sizeClass?: 'small' | 'major';
+  /** 面積排名百分位（0=最大，1=最小）；僅 sizeClass='major' 時附帶，方便人工核對。 */
+  rankPct?: number;
+  /** 投影 bbox 寬（px）；僅 sizeClass='major' 時附帶。 */
+  projW?: number;
+  /** 投影 bbox 高（px）；僅 sizeClass='major' 時附帶。 */
+  projH?: number;
   shot?: string;
   code?: { head: string; dirtyMap: string; rebuild: string | null };
 }
@@ -209,6 +224,24 @@ async function analyzeView(page: Page, pending: string[], apiCaps: { recordId: s
       const nameOfRegime = new Map<string, string>();
       for (const l of labelsIn) if (!nameOfRegime.has(l.regimeId)) nameOfRegime.set(l.regimeId, l.text);
 
+      // ── 面積排名（當天所有標籤，用 bbox × cos(中緯度) 近似球面面積）───────────────────
+      // 排名百分位 rankPct：0 = 最大，1 = 最小；< 0.4 表示前 40%（大／中型）
+      const regimeApproxArea = new Map<string, number>();
+      for (const ll of labelsIn) {
+        const [minLng, minLat, maxLng, maxLat]: [number, number, number, number] = ll.bbox;
+        const midLatRad = ((minLat + maxLat) / 2) * (Math.PI / 180);
+        const area = Math.abs(maxLng - minLng) * Math.abs(maxLat - minLat) * Math.cos(midLatRad);
+        regimeApproxArea.set(ll.versionId, area);
+      }
+      const sortedAreas: number[] = [...regimeApproxArea.values()].sort((a: number, b: number) => b - a);
+      const totalRegimes = sortedAreas.length;
+      const areaRankOf = (vid: string): number => {
+        if (totalRegimes === 0) return 1;
+        const area = regimeApproxArea.get(vid) ?? 0;
+        const numLarger = sortedAreas.filter((a: number) => a > area).length;
+        return numLarger / totalRegimes;
+      };
+
       // 已渲染的 regime-label features
       const renderedRegimeFeats: any[] = m.queryRenderedFeatures({ layers: ['regime-label'] });
       const renderedRegimeIds = new Set<string>(renderedRegimeFeats.map((f: any) => f.properties.versionId));
@@ -320,12 +353,6 @@ async function analyzeView(page: Page, pending: string[], apiCaps: { recordId: s
       // 文字寬估計：政權名稱皆為繁體中文，CJK 全形字元在 MapLibre text-size:12 下
       // 回退字型 Arial Unicode MS 約 12px/字元（等寬全形），故使用 12px/字元估算。
       const regimeTextW = (text: string) => text.length * 12;
-      // 「應顯示」門檻：投影 bbox 寬 ≥ 文字寬 × 2.5 且高 ≥ 48px
-      const shouldDisplay = (l: any): boolean => {
-        const a = m.project([l.bbox[0], l.bbox[1]]);
-        const b = m.project([l.bbox[2], l.bbox[3]]);
-        return Math.abs(b.x - a.x) >= regimeTextW(l.text) * 2.5 && Math.abs(b.y - a.y) >= 48;
-      };
 
       for (const l of labelsIn) {
         const key = `lab:${l.versionId}`;
@@ -337,34 +364,33 @@ async function analyzeView(page: Page, pending: string[], apiCaps: { recordId: s
         const myBox = allRegimeBboxes.get(l.versionId);
 
         if (!myBox) {
-          // 未渲染：判斷是「應顯示卻隱藏」還是「正常依優先度略去」
-          if (shouldDisplay(l)) {
-            // 寬容條件 1：同名標籤已由另一個版本（通常是控制區標籤）渲染（用 renderedRegimeIds 涵蓋整個畫面）
-            //   → 主權標籤被控制區標籤擠掉，屬於 symbol-sort-key 設計行為，ok=true
-            const sameTextRendered = labelsIn.some(
-              (ll: any) => ll.versionId !== l.versionId && ll.text === l.text && renderedRegimeIds.has(ll.versionId),
-            );
-            // 寬容條件 2：錨點附近（±400px×±200px）已有其他已渲染國名標籤佔位
-            //   → 符號碰撞導致略去，屬於地圖密度問題，ok=true
-            const nearbyOtherLabels =
-              !sameTextRendered &&
-              (m.queryRenderedFeatures([[p.x - 400, p.y - 200], [p.x + 400, p.y + 200]], { layers: ['regime-label'] }) as any[]).some(
-                (f: any) => f.properties.versionId !== l.versionId,
-              );
-            if (sameTextRendered || nearbyOtherLabels) {
-              // 政權已由其他標籤代表，或錨點被鄰近標籤碰撞占走 → ok=true, hidden=true
-              out.push({ key, covered: true, boxes: [], checks: [{ kind: 'regime-label', id: l.versionId, regime: l.text, item, ok: true, reasons: [], hidden: true }] });
-            } else {
-              // 足夠大、附近空曠，仍未渲染 → 真正失敗
-              const a = m.project([l.bbox[0], l.bbox[1]]);
-              const b = m.project([l.bbox[2], l.bbox[3]]);
-              const bw = Math.max(Math.abs(b.x - a.x), regimeTextW(l.text) + 12);
-              const bh = Math.max(Math.abs(b.y - a.y), 20);
-              out.push({ key, covered: true, boxes: [{ x: p.x, y: p.y, w: bw, h: bh, c: 'red' }], checks: [{ kind: 'regime-label', id: l.versionId, regime: l.text, item, ok: false, reasons: ['國名在足夠大的區塊內被隱藏'] }] });
-            }
+          // 寬容條件 1（保留）：同名標籤已由另一個版本渲染（symbol-sort-key 設計行為）→ ok=true
+          const sameTextRendered = labelsIn.some(
+            (ll: any) => ll.versionId !== l.versionId && ll.text === l.text && renderedRegimeIds.has(ll.versionId),
+          );
+          if (sameTextRendered) {
+            out.push({ key, covered: true, boxes: [], checks: [{ kind: 'regime-label', id: l.versionId, regime: l.text, item, ok: true, reasons: [], hidden: true, sizeClass: 'small' }] });
+            continue;
+          }
+
+          // 大／中型判斷：面積前 40% 或畫面 bbox ≥ 90×40px 且錨點在安全區
+          const projA = m.project([l.bbox[0], l.bbox[1]]);
+          const projB = m.project([l.bbox[2], l.bbox[3]]);
+          const projW = Math.abs(projB.x - projA.x);
+          const projH = Math.abs(projB.y - projA.y);
+          const rankPct = areaRankOf(l.versionId);
+          const isMajorByArea = rankPct < 0.4;
+          const isMajorByScreen = projW >= 90 && projH >= 40 && covered(p);
+          const isMajor = isMajorByArea || isMajorByScreen;
+
+          if (isMajor) {
+            // 大／中型國名被隱藏 → 失敗
+            const bw = Math.max(projW, regimeTextW(l.text) + 12);
+            const bh = Math.max(projH, 20);
+            out.push({ key, covered: true, boxes: [{ x: p.x, y: p.y, w: bw, h: bh, c: 'red' }], checks: [{ kind: 'regime-label', id: l.versionId, regime: l.text, item, ok: false, reasons: ['大／中型國名被隱藏'], sizeClass: 'major', rankPct: Math.round(rankPct * 1000) / 1000, projW: Math.round(projW), projH: Math.round(projH) }] });
           } else {
-            // 區塊太小，依設計略去 → ok=true, hidden=true（另輸出 hidden-<date>.json）
-            out.push({ key, covered: true, boxes: [], checks: [{ kind: 'regime-label', id: l.versionId, regime: l.text, item, ok: true, reasons: [], hidden: true }] });
+            // 小型政權：依設計略去 → ok=true, hidden=true（另輸出 hidden-<date>.json）
+            out.push({ key, covered: true, boxes: [], checks: [{ kind: 'regime-label', id: l.versionId, regime: l.text, item, ok: true, reasons: [], hidden: true, sizeClass: 'small' }] });
           }
           continue;
         }
@@ -438,7 +464,8 @@ function failType(c: SweepCheck): string {
   if (r.includes('圓點')) return 'name-over-other-dot';
   if (r.includes('裁切')) return 'clipped-viewport';
   if (r.includes('UI（')) return 'covered-by-ui';
-  if (r.includes('足夠大的區塊內被隱藏')) return 'label-hidden-when-large';
+  if (r.includes('大／中型國名被隱藏')) return 'label-hidden-major';
+  if (r.includes('足夠大的區塊內被隱藏')) return 'label-hidden-when-large'; // legacy
   if (r.includes('互疊')) return 'label-overlaps-label';
   if (r.includes('首都')) return 'label-covers-capital';
   return 'other';

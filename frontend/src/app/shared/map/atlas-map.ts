@@ -77,6 +77,24 @@ export function regimeLabelSortKey(bbox: [number, number, number, number], fit?:
   return tier - Math.log(area + 1);
 }
 
+/** 政權名稱短版：依序去掉結尾的全形括號段「（…）」，再去掉常見政體後綴（王國、共和國…），
+ *  結果須保留至少 2 字；供地圖標籤使用，面板仍顯示全名。 */
+export function shortRegimeText(text: string): string {
+  const SUFFIXES = /(?:王國|共和國|帝國|保護國|合眾國|聯合王國|自治領|自治區)$/;
+  // 1. 去掉全形括號段
+  let s = text.replace(/（[^（）]*）\s*$/, '').trim();
+  // 2. 再去掉政體後綴（不超過 4 字），確保殘餘 ≥ 2 字
+  const m = s.match(SUFFIXES);
+  if (m && s.length - m[0].length >= 2) s = s.slice(0, s.length - m[0].length);
+  return s || text;
+}
+
+/** 政權 bbox 近似球面面積（deg² × cos(midLat)），用於 text-size 資料驅動表達式。 */
+export function regimeLabelArea(bbox: [number, number, number, number]): number {
+  const midLat = (bbox[1] + bbox[3]) / 2;
+  return Math.abs(bbox[2] - bbox[0]) * Math.abs(bbox[3] - bbox[1]) * Math.cos(midLat * Math.PI / 180);
+}
+
 /** 政權名稱標籤的 GeoJSON FeatureCollection（Point，供 regime-labels source 使用）。 */
 export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): FeatureCollection {
   return {
@@ -88,6 +106,8 @@ export function buildRegimeLabelFeatureCollection(labels: ControlLabel[]): Featu
         versionId: l.versionId,
         regimeId: l.regimeId,
         text: l.text,
+        shortText: shortRegimeText(l.text),
+        area: regimeLabelArea(l.bbox),
         rotation: l.rotation ?? 0,
         sortKey: regimeLabelSortKey(l.bbox, l.fit),
       },
@@ -288,17 +308,24 @@ export function buildBaseStyle(): StyleSpecification {
         type: 'symbol',
         source: 'regime-labels',
         layout: {
+          // 地圖標籤用短名（去掉括號後綴）；面板仍用 text 全名。縮短後名稱相同的國家不受影響。
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          'text-field': ['get', 'text'] as any,
+          'text-field': ['get', 'shortText'] as any,
           'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
-          'text-size': 12,
+          // 字級依 zoom ＋ 面積調整：小政權縮小碰撞框，大政權保持原字級
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          'text-size': ['interpolate', ['linear'], ['zoom'],
+            2, ['step', ['get', 'area'], 10, 10, 11, 50, 12],
+            5, ['step', ['get', 'area'], 11, 10, 12, 50, 13],
+          ] as any,
           'text-allow-overlap': false,
           'text-ignore-placement': false,
+          // 九個備選錨點（含四個斜角），給小政權更多碰撞迴避空間
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'] as any,
-          'text-radial-offset': 0.4,
+          'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right'] as any,
+          'text-radial-offset': 0.5,
           'text-justify': 'auto',
-          'text-max-width': 10,
+          'text-max-width': 5,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           'symbol-sort-key': ['get', 'sortKey'] as any,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -306,9 +333,11 @@ export function buildBaseStyle(): StyleSpecification {
           'icon-image': REGIME_LABEL_BG_ID,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           'icon-text-fit': 'both' as any,
+          // 縮小碰撞框（原 [2,6,2,6]）：底塊視覺不變，碰撞範圍更貼近實際文字
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          'icon-text-fit-padding': [2, 6, 2, 6] as any,
+          'icon-text-fit-padding': [1, 4, 1, 4] as any,
           'icon-optional': true,
+          'text-padding': 1,
         },
         paint: {
           'text-color': 'rgba(58,47,40,0.85)',

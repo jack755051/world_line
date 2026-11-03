@@ -22,7 +22,10 @@ import { AtlasState, type Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
 import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, type FocusInset, type LngLatBounds, type Padding } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
-import { avoidCapitals, capitalObstacleBoxes } from './label-placement';
+import {
+  LABEL_CHAR_PX, LABEL_H, LABEL_PAD, LABEL_SMALL_CHAR_PX, LABEL_SMALL_H,
+  capitalObstacleBoxes, findLabelPlacement, gridCandidates, uiObstacleBoxes,
+} from './label-placement';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -271,7 +274,8 @@ export interface MapConflictEvent {
     <!-- 政權名稱標籤（PRD §8.2：預設自稱）：HTML 疊在地圖上，跟著地圖移動；控制區在畫面上太小就不標 -->
     <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       @for (l of placedLabels(); track l.versionId) {
-        <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId" class="wl-regime-label absolute whitespace-nowrap"
+        <span data-testid="map-regime-label" [attr.data-regime-id]="l.regimeId"
+          class="wl-regime-label absolute whitespace-nowrap" [class.wl-regime-label--sm]="l.small"
           [style.left.px]="l.x" [style.top.px]="l.y"
           [style.transform]="'translate(-50%, -50%)'">{{ l.text }}</span>
       }
@@ -366,7 +370,7 @@ export class AtlasMap {
   readonly capitals = input<FeatureCollection | null>(null);
   protected readonly placedConflicts = signal<(MapConflictIcon & { x: number; y: number; points: string | null })[]>([]);
   readonly conflictClick = output<MapConflictEvent>();
-  protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number }[]>([]);
+  protected readonly placedLabels = signal<{ versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number; small?: boolean }[]>([]);
 
   readonly featureClick = output<MapFeatureEvent>();
   readonly emptyClick = output<void>();
@@ -553,6 +557,11 @@ export class AtlasMap {
         this.placeConflicts();
         this.scheduleMask();
       });
+
+      // 圖例展開/收合、右側 sheet 開關時 data-state 屬性改變 → 重算標籤（UI 障礙框尺寸變了）
+      const mutObs = new MutationObserver(() => this.placeLabels());
+      mutObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-state'], subtree: true });
+      this.destroyRef.onDestroy(() => mutObs.disconnect());
 
       const layers = ['control-fill', 'control-hatch'];
       map.on('click', (e) => {
@@ -814,12 +823,19 @@ export class AtlasMap {
     }
   }
 
-  /** 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。首都保留框優先於國名／控制區標籤。 */
+  /**
+   * 標籤只在控制區外框投影後放得下文字時顯示（避免小區塊被字蓋住）。
+   * 首都保留框 + 浮動 UI 障礙物優先於國名／控制區標籤。
+   * 若 5 個垂直位移都撞，嘗試多邊形內網格候選點；全部失敗再以縮小字體重試；仍不行才略去。
+   */
   private placeLabels(): void {
     const map = this.map;
     if (!map) return;
-    const placed: { versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number }[] = [];
+    const placed: { versionId: string; regimeId: string; text: string; x: number; y: number; rotation?: number; small?: boolean }[] = [];
     const boxes: { x: number; y: number; w: number; h: number }[] = [];
+    const el = map.getContainer();
+    const mapW = el.clientWidth;
+    const mapH = el.clientHeight;
 
     // 首都保留框（圓點＋名稱估計）：所有國名／控制區標籤需避讓
     const capitalObs = capitalObstacleBoxes(
@@ -828,6 +844,9 @@ export class AtlasMap {
       map.getCenter().lng,
       map.getZoom(),
     );
+
+    // 浮動 UI 障礙框（每次 placeLabels 只量測一次 DOM）
+    const uiObs = uiObstacleBoxes(el);
 
     // 控制區標籤（fit 未設）優先於國名標籤（fit 有設）：先放控制區，不被國名擠開
     const sorted = [...this.labels()].sort((a, b) => (a.fit === undefined ? 0 : 1) - (b.fit === undefined ? 0 : 1));
@@ -838,16 +857,24 @@ export class AtlasMap {
       const w = Math.abs(b.x - a.x);
       const h = Math.abs(b.y - a.y);
       // 文字寬約每字 14px（12px＋字距）；外框至少要比字寬 1.6 倍、高 32px，避免標籤壓出小區塊
-      const textW = l.text.length * 14;
+      const textW = l.text.length * LABEL_CHAR_PX;
       if (w < textW * (l.fit ?? 1.6) || h < 32) continue;
       const p = map.project(l.lngLat);
 
-      // 所有標籤（國名與控制區）同時避讓首都與已放置標籤：嘗試 ±18px、±30px 垂直位移；都不行則略去此標籤
-      const dy = avoidCapitals(p.x, p.y, textW + 8, 20, [...capitalObs, ...boxes]);
-      if (dy === null) continue;
+      // 網格候選點（若有外環幾何）；依離 labelPoint 由近到遠排序
+      const gPts = l.ring
+        ? gridCandidates(l.ring, (ll) => map.project(ll), p, mapW, mapH)
+        : [];
 
-      boxes.push({ x: p.x, y: p.y + dy, w: textW + 8, h: 20 });
-      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: p.x, y: p.y + dy, rotation: l.rotation });
+      // 所有障礙：首都保留框 + 浮動 UI + 已放置標籤
+      const allObs = [...capitalObs, ...uiObs, ...boxes];
+      const result = findLabelPlacement(p.x, p.y, l.text.length, allObs, gPts);
+      if (result === null) continue;
+
+      const charPx = result.small ? LABEL_SMALL_CHAR_PX : LABEL_CHAR_PX;
+      const lh = result.small ? LABEL_SMALL_H : LABEL_H;
+      boxes.push({ x: result.x, y: result.y, w: l.text.length * charPx + LABEL_PAD, h: lh });
+      placed.push({ versionId: l.versionId, regimeId: l.regimeId, text: l.text, x: result.x, y: result.y, rotation: l.rotation, small: result.small || undefined });
     }
     this.placedLabels.set(placed);
   }

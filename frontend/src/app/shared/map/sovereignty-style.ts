@@ -177,7 +177,7 @@ export const LABEL_OVERRIDES: Record<string, { lngLat?: [number, number]; rotati
  * labelPoint 對大多邊形要數百毫秒；播放、跳日期時重算全部會卡住主執行緒（Tai 2026-11-01 效能問題）。
  */
 const LABEL_CACHE_MAX = 3000;
-const labelCache = new Map<string, { lngLat: [number, number]; bbox: [number, number, number, number]; rotation: number }>();
+const labelCache = new Map<string, { lngLat: [number, number]; bbox: [number, number, number, number]; rotation: number; ring: number[][] }>();
 function labelGeometry(recordId: string, regimeSlug: string, g: Geometry) {
   const hit = labelCache.get(recordId);
   if (hit) return hit;
@@ -191,7 +191,7 @@ function labelGeometry(recordId: string, regimeSlug: string, g: Geometry) {
   const ov = LABEL_OVERRIDES[regimeSlug] ?? {};
   const lngLat = ov.lngLat ?? labelPoint(biggest);
   const rotation = ov.rotation ?? 0;
-  const v = { lngLat, bbox: [minX, minY, maxX, maxY] as [number, number, number, number], rotation };
+  const v = { lngLat, bbox: [minX, minY, maxX, maxY] as [number, number, number, number], rotation, ring: biggest[0] };
   if (labelCache.size >= LABEL_CACHE_MAX) labelCache.delete(labelCache.keys().next().value as string);
   labelCache.set(recordId, v);
   return v;
@@ -205,7 +205,7 @@ export function sovereigntyLabels(dto: SovereigntyMapDto | null | undefined, nam
     if (!text) continue;
     const lg = labelGeometry(p.recordId, p.regimeSlug, f.geometry as unknown as Geometry);
     if (!lg) continue;
-    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: lg.lngLat, bbox: lg.bbox, fit: 1, rotation: lg.rotation || undefined });
+    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: lg.lngLat, bbox: lg.bbox, fit: 1, rotation: lg.rotation || undefined, ring: lg.ring });
   }
   // 大的先放：互撞時保留大國名稱
   return out.sort((a, b) => (b.bbox[2] - b.bbox[0]) * (b.bbox[3] - b.bbox[1]) - (a.bbox[2] - a.bbox[0]) * (a.bbox[3] - a.bbox[1]));

@@ -224,6 +224,8 @@ export interface ControlLabel {
   bbox: [number, number, number, number];
   /** 文字旋轉角度（CSS 度，順時針為正；0 或未設定 = 水平）。狹長國家沿 PCA 主軸旋轉。 */
   rotation?: number;
+  /** 最大多邊形的外環（GeoJSON [lng, lat] 陣列），用於 gridCandidates 候選點篩選；沒有時不做網格搜尋。 */
+  ring?: number[][];
 }
 
 type Ring = number[][];
@@ -395,7 +397,7 @@ export function controlLabels(dto: ControlMapDto | null | undefined, nameFor: (r
     for (const [x, y] of biggest[0]) {
       minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
     }
-    out.push({ versionId: p.versionId, regimeId: p.controllerRegimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY] });
+    out.push({ versionId: p.versionId, regimeId: p.controllerRegimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY], ring: biggest[0] });
   }
   return out;
 }

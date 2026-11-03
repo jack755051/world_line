@@ -32,4 +32,14 @@ describe('政權聚焦（focus.ts）', () => {
     expect(sheetLayout(700, 500)).toEqual({ side: 'right', size: 384 });
     expect(sheetLayout(400, 600)).toEqual({ side: 'bottom', size: 330 });
   });
+
+  it('override bounds 優先：有 override 時用 override，否則退回 feature bounds', () => {
+    const featureBounds = geometryBounds(multi); // [[0,0],[21,10]]
+    // override 非 null：cameraBounds = overrideBounds ?? featureBounds → override
+    const override = geometryBounds({ type: 'Polygon', coordinates: [[[5, 5], [10, 5], [10, 10], [5, 10], [5, 5]]] });
+    expect(override ?? featureBounds).toEqual([[5, 5], [10, 10]]);
+    // override 為 null（無傳入）：退回 feature bounds
+    const noOverride = geometryBounds(null);
+    expect(noOverride ?? featureBounds).toEqual([[0, 0], [21, 10]]);
+  });
 });

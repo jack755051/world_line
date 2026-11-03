@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import type { FeatureCollection } from 'geojson';
+import type { FeatureCollection, Geometry } from 'geojson';
 import { LucideCircleAlert, LucideCloudOff, LucideInfo, LucideRotateCw } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
@@ -22,7 +22,7 @@ import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/soverei
 import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
-import { sheetLayout, type FocusInset } from '../../shared/map/focus';
+import { geometryBounds, sheetLayout, type FocusInset, type LngLatBounds } from '../../shared/map/focus';
 import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
@@ -93,7 +93,7 @@ interface SheetInfo {
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
                 [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
-                [focusRecordId]="focusRecord()" [focusInset]="focusInset()"
+                [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
 
@@ -353,6 +353,8 @@ export class AtlasPage {
   );
   /** 聚焦的主權紀錄：點政權時設定；開衝突卡時保留（仍聚焦在該政權）；關閉、點空白、換日期時清掉。 */
   protected readonly focusRecord = signal<string | null>(null);
+  /** 控制區點擊時的鏡頭 bounds override（點主權／清除時為 null）。 */
+  protected readonly focusFitBounds = signal<LngLatBounds | null>(null);
   protected readonly layout = computed(() => sheetLayout(this.areaSize().w, this.areaSize().h));
   protected readonly sheetNow = computed<SheetInfo | null>(() => {
     // 控制區優先（點控制區 → 開右側面板，比照主權卡流程）
@@ -691,6 +693,8 @@ export class AtlasPage {
       ? this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.regimeId === regimeId)
       : null;
     this.focusRecord.set(sovRecord?.properties.recordId ?? null);
+    // 鏡頭對準「被點的控制區 feature 自己的幾何」，而非控制國整體
+    this.focusFitBounds.set(f ? geometryBounds(f.geometry as unknown as Geometry) : null);
   }
 
   protected setAxis(axis: 'control' | 'sovereignty'): void {
@@ -700,6 +704,7 @@ export class AtlasPage {
       if (this.selected() && !this.selectedConflict()) this.focusRegimeId.set(null);
       this.selected.set(null);
       this.selectedGap.set(null);
+      this.focusFitBounds.set(null);
     }
   }
 
@@ -710,6 +715,7 @@ export class AtlasPage {
     this.selectedConflict.set(null);
     this.selectedSov.set(e);
     this.focusRecord.set(e.recordId);
+    this.focusFitBounds.set(null);
     this.returnSov.set(null);
     const f = this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.recordId === e.recordId);
     if (f) void this.data.loadRegimeEvents(f.properties.regimeId);
@@ -745,6 +751,7 @@ export class AtlasPage {
   protected onConflictClick(e: MapConflictEvent): void {
     this.hover.set(null);
     this.selected.set(null);
+    this.focusFitBounds.set(null);
     this.selectedGap.set(null);
     const sov = this.selectedSovInfo();
     if (sov) this.returnSov.set({ e: this.selectedSov()!, name: sov.name });
@@ -758,6 +765,7 @@ export class AtlasPage {
     this.selectedConflict.set(null);
     this.focusRegimeId.set(null);
     this.focusRecord.set(null);
+    this.focusFitBounds.set(null);
     this.selectedGap.set(e);
   }
 
@@ -768,6 +776,7 @@ export class AtlasPage {
     this.selectedConflict.set(null);
     this.focusRegimeId.set(null);
     this.focusRecord.set(null);
+    this.focusFitBounds.set(null);
     this.returnSov.set(null);
   }
 

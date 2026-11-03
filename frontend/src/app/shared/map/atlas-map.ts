@@ -20,7 +20,7 @@ import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import { AtlasState, type Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
-import { focusMaskPath, focusPadding, geometryBounds, polygonRings, type FocusInset } from './focus';
+import { focusMaskPath, focusPadding, geometryBounds, polygonRings, type FocusInset, type LngLatBounds } from './focus';
 import type { LngLat, PaddingOptions } from 'maplibre-gl';
 import { avoidCapitals, capitalObstacleBoxes } from './label-placement';
 
@@ -339,6 +339,8 @@ export class AtlasMap {
   readonly focusRecordId = input<string | null>(null);
   /** 聚焦置中時要避開的面板大小（右側面板寬或底部面板高）。 */
   readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
+  /** 鏡頭聚焦 bounds override（控制區點擊時傳入該控制區 bbox；主權／清除時為 null）。 */
+  readonly focusFitBounds = input<LngLatBounds | null>(null);
   protected readonly focusedRecord = signal<string | null>(null);
   /** 聚焦時一起挖亮的佔領區數（聚焦政權是佔領方） */
   protected readonly focusOccupied = signal(0);
@@ -461,8 +463,9 @@ export class AtlasMap {
       const fc = this.sovereignty();
       const inset = this.focusInset();
       const reduced = this.reducedMotion();
+      const fitBounds = this.focusFitBounds();
       if (!this.ready()) return;
-      untracked(() => this.applyFocus(id, fc, inset, reduced));
+      untracked(() => this.applyFocus(id, fc, inset, reduced, fitBounds));
     });
     effect(() => {
       const id = this.selectedVersionId() ?? '';
@@ -517,7 +520,7 @@ export class AtlasMap {
         this.applySovereigntyData(this.sovereignty());
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
-        this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion());
+        this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion(), this.focusFitBounds());
         (map.getSource('capitals') as GeoJSONSource | undefined)?.setData(this.capitals() ?? EMPTY);
         // 確保首都圖層永遠在 GL style 最上層（任何後續 addLayer 都須用 beforeId 插在 capital-dot 之下）
         if (map.getLayer('capital-dot')) map.moveLayer('capital-dot');
@@ -590,34 +593,43 @@ export class AtlasMap {
    * 聚焦：飛到被選政權當前領土的外框、置於可見區中央（四周 48px，右側／下方再扣掉面板），最大縮放 6；
    * 換成別的政權時從目前視角接著飛，原視角只記第一次。取消聚焦時飛回原視角。減少動態時直接跳。
    */
-  private applyFocus(id: string | null, fc: FeatureCollection<Geometry, SovereigntyProps> | null, inset: FocusInset, reduced: boolean): void {
+  private applyFocus(id: string | null, fc: FeatureCollection<Geometry, SovereigntyProps> | null, inset: FocusInset, reduced: boolean, overrideBounds: LngLatBounds | null = null): void {
     const map = this.map;
     if (!map) return;
     const f = id ? fc?.features.find((x) => x.properties.recordId === id) : undefined;
-    const bounds = f ? geometryBounds(f.geometry) : null;
+    // 鏡頭 bounds：有 override（點控制區）時用控制區 bbox，否則用主權 feature 外框
+    const cameraBounds = overrideBounds ?? (f ? geometryBounds(f.geometry) : null);
     const duration = reduced ? 0 : 800;
-    if (!f || !bounds) {
+    if (!cameraBounds) {
+      this.focusKey = '';   // 確保後續再點同一目標時能重新飛
       this.clearFocus(duration);
       return;
     }
-    const key = `${id}|${inset.right}|${inset.bottom}`;
+    const overrideKey = overrideBounds ? `${overrideBounds[0][0]},${overrideBounds[0][1]},${overrideBounds[1][0]},${overrideBounds[1][1]}` : '';
+    const key = `${id ?? ''}|${inset.right}|${inset.bottom}|${overrideKey}`;
     if (key === this.focusKey) return;
     this.focusKey = key;
+    const el = map.getContainer();
+    const padding = focusPadding(inset, el.clientWidth, el.clientHeight);
+    if (!f) {
+      // 控制國沒有主權紀錄：純飛鏡頭，不進入聚焦模式（不畫遮罩）
+      const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
+      if (cam) map.easeTo({ ...cam, duration, essential: false });
+      return;
+    }
     if (!this.savedCamera) {
       this.savedCamera = { center: map.getCenter(), zoom: map.getZoom(), padding: map.getPadding() };
       this.userMoved = false;
     }
     clearTimeout(this.fadeTimer);
     this.maskFading.set(false);
-    // 聚焦佔領國（例：德國）時，它佔領／併入的地區一起挖亮（仍保留斜線，看得出不是本土）；鏡頭只框本土，不會拉到全歐
+    // 聚焦佔領國（例：德國）時，它佔領／併入的地區一起挖亮（仍保留斜線，看得出不是本土）；遮罩仍用主權 feature，鏡頭改用控制區 bbox
     const occupied = fc?.features.filter((x) => x.properties.occupierRegimeId && x.properties.occupierRegimeId === f.properties.regimeId) ?? [];
     this.focusOccupied.set(occupied.length);
     this.focusRings = [f, ...occupied].flatMap((x) => polygonRings(x.geometry));
     this.focusedRecord.set(id);
-    const el = map.getContainer();
-    const padding = focusPadding(inset, el.clientWidth, el.clientHeight);
-    this.focusBounds = bounds;
-    const cam = map.cameraForBounds(bounds, { padding, absolutePadding: true, maxZoom: 6 });
+    this.focusBounds = cameraBounds;
+    const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
     if (cam) map.easeTo({ ...cam, duration, essential: false });
     this.drawMask();
     if (duration === 0) queueMicrotask(() => this.fitArcs());

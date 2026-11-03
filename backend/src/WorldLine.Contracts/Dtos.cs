@@ -417,6 +417,7 @@ public sealed record LeaderBioDto(
     JsonElement? FieldSources,
     bool IsTest,
     DateTimeOffset? RetractedAt,
+    string? RetractionReason,
     DateTimeOffset CreatedAt);
 
 /// <summary>把現有 LeaderRecord 連結到 LeaderBio（PATCH /leader-records/{id}/person）。</summary>

@@ -1,6 +1,8 @@
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
+using Microsoft.Extensions.DependencyInjection;
+using WorldLine.Api.Infrastructure;
 
 namespace WorldLine.Api.Tests;
 
@@ -201,6 +203,61 @@ public sealed class LeaderBioTests(PostGisFixture fx)
         var f = features.FirstOrDefault(x => x.GetProperty("recordId").GetGuid() == recordId);
         Assert.True(f.ValueKind != JsonValueKind.Undefined);
         Assert.Equal(JsonValueKind.Null, f.GetProperty("personId").ValueKind);
+        Assert.Equal(JsonValueKind.Null, f.GetProperty("bio").ValueKind);
+    }
+
+    [Fact]
+    public async Task GetBio_retracted_bio_returns_retractedAt_and_retractionReason()
+    {
+        var k = new ApiTestKit(fx);
+
+        // 建立生平後立即在 DB 軟撤回（模擬 retract_test_bios.py 的效果）
+        var (bioId, _) = await CreateBio(k, "Retracted Test Person", isTest: true);
+
+        using (var scope = fx.Factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+            var bio = await db.LeaderBios.FindAsync(bioId);
+            bio!.RetractedAt = DateTimeOffset.UtcNow;
+            bio.RetractionReason = "測試種子，未經考證";
+            await db.SaveChangesAsync();
+        }
+
+        var res = await k.R.GetAsync($"/api/v1/leader-bios/{bioId}");
+        var body = await ApiTestKit.Expect(res, HttpStatusCode.OK);
+        var data = body.GetProperty("data");
+
+        Assert.NotEqual(JsonValueKind.Null, data.GetProperty("retractedAt").ValueKind);
+        Assert.Equal("測試種子，未經考證", data.GetProperty("retractionReason").GetString());
+    }
+
+    [Fact]
+    public async Task GetLeaders_retracted_bio_does_not_appear_as_bio_summary()
+    {
+        var k = new ApiTestKit(fx);
+        var fr = await k.Regime("fr-retracted-bio-test");
+
+        var (bioId, _) = await CreateBio(k, "Retracted Bio Leader", isTest: true);
+        var recordId = await CreateLeader(k, fr, "Retracted Bio Leader", "head_of_government",
+            "1940-01-01", personId: bioId);
+
+        // 軟撤回 bio
+        using (var scope = fx.Factory.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+            var bio = await db.LeaderBios.FindAsync(bioId);
+            bio!.RetractedAt = DateTimeOffset.UtcNow;
+            bio.RetractionReason = "測試種子，未經考證";
+            await db.SaveChangesAsync();
+        }
+
+        // GET /leaders 應回傳該任期，但 bio 應為 null（已撤回）
+        var res = await k.R.GetAsync("/api/v1/leaders?date=1940-06-01");
+        var body = await ApiTestKit.Expect(res, HttpStatusCode.OK);
+        var features = body.GetProperty("data").GetProperty("features").EnumerateArray().ToList();
+        var f = features.FirstOrDefault(x => x.GetProperty("recordId").GetGuid() == recordId);
+
+        Assert.True(f.ValueKind != JsonValueKind.Undefined, "任期紀錄仍應出現");
         Assert.Equal(JsonValueKind.Null, f.GetProperty("bio").ValueKind);
     }
 }

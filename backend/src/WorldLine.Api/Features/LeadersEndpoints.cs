@@ -208,5 +208,5 @@ public static class LeadersEndpoints
             b.Party == null ? null : Mapping.ReadLocalized(b.Party),
             b.Summary == null ? null : Mapping.ReadLocalized(b.Summary),
             b.FieldSources == null ? null : JsonSerializer.Deserialize<JsonElement>(b.FieldSources),
-            b.IsTest, b.RetractedAt, b.CreatedAt);
+            b.IsTest, b.RetractedAt, b.RetractionReason, b.CreatedAt);
 }

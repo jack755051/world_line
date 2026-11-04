@@ -135,3 +135,22 @@ test('§12 L1 圖例手機：沒有 ⓘ 與圖例分頁；⋯ 選單「圖例」
   await page.getByTestId('topbar-menu-legend').click();
   await expect(ls).toBeVisible();
 });
+
+test('§12 手機選取政權：政權名字一定顯示，而且在底部面板上方（peek 與 half）', async ({ page }) => {
+  await open(page, 390);
+  await selectGermany(page);
+  const sheet = page.getByTestId('regime-sheet');
+  for (const snap of ['peek', 'half']) {
+    if (snap === 'half') await page.getByTestId('regime-sheet-snap').click();
+    await expect(page.getByTestId('regime-sheet-snap')).toHaveAttribute('data-snap', snap);
+    await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+    await page.waitForTimeout(600);
+    const name = page.getByTestId('map-selected-label').filter({ hasText: '德意志國' });
+    await expect(name).toHaveCount(1);
+    await expect(name).toBeVisible();
+    const nb = (await name.boundingBox())!;
+    const sb = (await sheet.boundingBox())!;
+    expect(nb.y + nb.height, snap).toBeLessThanOrEqual(sb.y);
+    expect(nb.y).toBeGreaterThanOrEqual(48);
+  }
+});

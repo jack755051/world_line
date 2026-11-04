@@ -1355,9 +1355,12 @@ export class AtlasMap {
     const wy = (py: number) => cy + (py - cp.y) / worldPx;
     const cr = el.getBoundingClientRect();
     const sheet = document.querySelector('wl-regime-sheet [data-testid="regime-sheet"]')?.getBoundingClientRect();
-    const right = sheet && sheet.width > 0 && sheet.left < cr.right ? Math.min(w, sheet.left - cr.left) : w;
+    // 右側面板：可見區到面板左緣；手機底部面板（§12）：可見區到面板上緣，被選政權的名字一定放在面板上方
+    const bottomSheet = !!sheet && sheet.width > 0 && sheet.left <= cr.left + 1 && sheet.top > cr.top && sheet.top < cr.bottom;
+    const right = sheet && !bottomSheet && sheet.width > 0 && sheet.left < cr.right ? Math.min(w, sheet.left - cr.left) : w;
+    const bottom = bottomSheet ? Math.max(0, sheet!.top - cr.top) : h;
     const m = VIEWPORT_LABEL_MARGIN_PX;
-    const view: Rect = [wx(m), wy(m), wx(right - m), wy(h - m)];
+    const view: Rect = [wx(m), wy(m), wx(right - m), wy(bottom - m)];
     const avoid: Rect[] = uiObstacleBoxes(el).map((b) => [wx(b.x - b.w / 2), wy(b.y - b.h / 2), wx(b.x + b.w / 2), wy(b.y + b.h / 2)]);
     const sel = this.focusRegimeId;
     // 被選政權的國名與首都都畫在 HTML 層（不經 GL 碰撞）：國名要避開自己的首都標籤

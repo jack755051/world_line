@@ -458,7 +458,7 @@ export interface MapConflictEvent {
  * 主地圖（PRD §8.2，`shared/map`）。只畫傳入的 API 資料；本元件不產生任何資料。
  * jsdom／無 WebGL 環境下不啟動 MapLibre，改顯示錯誤（單元測試因此不需要 WebGL）。
  */
-import { CAMPAIGN_LAYER_IDS, CAMPAIGN_SOURCES, campaignFilters, campaignLayers, campaignSourceData } from './campaign-layers';
+import { ARROWHEAD_IMAGE, arrowheadImage, CAMPAIGN_LAYER_IDS, CAMPAIGN_SOURCES, campaignFilters, campaignLayers, campaignSourceData } from './campaign-layers';
 import type { Campaign } from '../../core/campaign';
 @Component({
   selector: 'wl-atlas-map',
@@ -477,12 +477,12 @@ import type { Campaign } from '../../core/campaign';
     -->
     <div #focusMask data-testid="map-focus-mask" aria-hidden="true" [attr.data-active]="focusedRecord() ? 'true' : 'false'"
       class="pointer-events-none absolute inset-0 bg-[rgb(236_228_210/0.42)] backdrop-blur-[3px] transition-opacity duration-200 motion-reduce:transition-none"
-      [class.opacity-0]="!focusedRecord()" [class.invisible]="!focusedRecord() && !maskFading()"></div>
+      [class.opacity-0]="!focusedRecord()" [class.invisible]="!focusedRecord() && !maskFading()" [class.hidden]="!!campaign()"></div>
     <!--
       被選政權的名字（ARCHITECTURE.md §4 (b)、D2）：畫在聚焦蒙版之上的 HTML 層，一定顯示、不被模糊；
       一般層（GL）同政權的國名與首都用 filter 隱藏避免重複；這些框也加進障礙符號，讓其他標籤讓開。
     -->
-    <div data-testid="map-selected-labels" class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div data-testid="map-selected-labels" class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true" [class.hidden]="!!campaign()">
       @for (l of selectedPlaced(); track l.key) {
         @if (l.kind === 'regime') {
           <div data-testid="map-selected-label" data-kind="regime" class="absolute whitespace-nowrap rounded-[3px] bg-[rgb(250_246_236/0.92)] px-1.5 text-[13px] font-semibold leading-[20px] text-[rgb(45_42_36)] shadow-[0_0_0_1px_rgb(45_42_36/0.25)]"
@@ -1035,6 +1035,7 @@ export class AtlasMap {
       if (src) src.setData(data[id] as unknown as FeatureCollection);
       else map.addSource(id, { type: 'geojson', data: data[id] as unknown as FeatureCollection });
     }
+    if (!map.hasImage(ARROWHEAD_IMAGE)) map.addImage(ARROWHEAD_IMAGE, arrowheadImage(), { sdf: true });
     const before = map.getLayer('capital-dot') ? 'capital-dot' : undefined;
     const fs = campaignFilters(c, this.campaignPhase());
     for (const l of campaignLayers()) if (!map.getLayer(l.id)) map.addLayer({ ...l, filter: fs[l.id] } as LayerSpecification, before);

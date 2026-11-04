@@ -11,6 +11,18 @@ export const AXIS_COLOR = '#b42318';
 export const ALLIED_COLOR = '#1d4ed8';
 export const FRONT_COLOR = '#7c2d12';
 const UNVERIFIED = '待考證';
+export const ARROWHEAD_IMAGE = 'campaign-arrowhead';
+/** 箭頭符號：SDF 三角形（朝上＝北，icon-rotate 轉到線的方向；icon-color 依陣營上色）。 */
+export function arrowheadImage(size = 40): { width: number; height: number; data: Uint8ClampedArray } {
+  const data = new Uint8ClampedArray(size * size * 4);
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+    const half = ((y + 1) / size) * (size / 2);
+    const inside = Math.abs(x + 0.5 - size / 2) <= half;
+    const i = (y * size + x) * 4;
+    data[i] = data[i + 1] = data[i + 2] = 255; data[i + 3] = inside ? 255 : 0;
+  }
+  return { width: size, height: size, data };
+}
 
 function bearing(a: number[], b: number[]): number {
   const r = Math.PI / 180;
@@ -79,8 +91,8 @@ export function campaignLayers(): LayerSpecification[] {
     { id: 'campaign-arrows', type: 'line', source: 'campaign-arrows', layout: { 'line-cap': 'round' }, paint: { 'line-color': sideColor, 'line-width': 3.5, 'line-opacity': 0.9 } },
     { id: 'campaign-arrows-unverified', type: 'line', source: 'campaign-arrows', paint: { 'line-color': sideColor, 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [2, 1.5] } },
     { id: 'campaign-arrowheads', type: 'symbol', source: 'campaign-arrowheads',
-      layout: { 'text-field': '▲', 'text-font': textFont, 'text-size': 18, 'text-rotate': ['get', 'bearing'], 'text-rotation-alignment': 'map', 'text-allow-overlap': true, 'text-ignore-placement': true },
-      paint: { 'text-color': sideColor } },
+      layout: { 'icon-image': ARROWHEAD_IMAGE, 'icon-size': 0.5, 'icon-rotate': ['get', 'bearing'], 'icon-rotation-alignment': 'map', 'icon-allow-overlap': true, 'icon-ignore-placement': true },
+      paint: { 'icon-color': sideColor } },
     { id: 'campaign-fronts-label', type: 'symbol', source: 'campaign-fronts', layout: { 'symbol-placement': 'line-center', 'text-field': ['get', 'label'], 'text-font': textFont, 'text-size': 12 }, paint: { 'text-color': FRONT_COLOR, ...halo } },
     { id: 'campaign-arrows-label', type: 'symbol', source: 'campaign-arrows', layout: { 'symbol-placement': 'line-center', 'text-field': ['get', 'label'], 'text-font': textFont, 'text-size': 12 }, paint: { 'text-color': sideColor, ...halo } },
     { id: 'campaign-sites', type: 'circle', source: 'campaign-sites',

@@ -94,8 +94,8 @@ import { CampaignService, campaignsForRegime, type CampaignIndexEntry } from '..
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
-                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
-                [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [campaign]="campaigns.campaign()" [campaignPhase]="campaigns.phase()" [campaignInset]="campaignInset()" [focusFitBounds]="focusFitBounds()"
+                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="campaignMode() ? null : focusRecord()"
+                [focusRecordId]="campaignMode() ? null : focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [campaign]="campaigns.campaign()" [campaignPhase]="campaigns.phase()" [campaignInset]="campaignInset()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection(); state.legendOpen.set(false)" (featureHover)="onFeatureHover($event)" />
 

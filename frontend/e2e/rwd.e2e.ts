@@ -155,6 +155,14 @@ test('§12 手機選取政權：政權名字一定顯示，而且在底部面板
   }
 });
 
+test('§12 768–1023：頂列日期字縮小（title1），≥1024 維持大字', async ({ page }) => {
+  await open(page, 768);
+  const md = await page.getByTestId('topbar-date').evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+  await open(page, 1024);
+  const lg = await page.getByTestId('topbar-date').evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+  expect(md).toBeLessThan(lg);
+});
+
 test.describe('§12 觸控（hover: none、pointer: coarse）', () => {
   test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
   test('雙指縮放開、旋轉與 pitch 關（北方朝上）；可點擊目標 ≥44px；出處收成按鈕', async ({ page }) => {

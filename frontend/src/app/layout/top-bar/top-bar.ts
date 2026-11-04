@@ -54,7 +54,7 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
       @if (loading()) {
         <div sanringSkeleton class="h-8 w-48"></div>
       } @else {
-        <h1 data-testid="topbar-date" class="wl-display whitespace-nowrap tabular-nums" [attr.datetime]="date()">{{ display() }}</h1>
+        <h1 data-testid="topbar-date" class="whitespace-nowrap tabular-nums" [class.wl-display]="bp() !== 'md'" [class.wl-title1]="bp() === 'md'" [attr.datetime]="date()">{{ display() }}</h1>
       }
       <wl-interp-chip [status]="controlStatus()" [theaters]="theaters()" [featureCount]="featureCount()" [lang]="lang()" (jump)="jump.emit($event)" />
       <div class="ml-auto flex items-center gap-3">

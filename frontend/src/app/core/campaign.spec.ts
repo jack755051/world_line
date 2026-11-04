@@ -1,0 +1,64 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { CampaignPlayer, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
+
+describe('CampaignPlayer（§11.2 階段播放）', () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
+  it('開啟時停在 P1、不自動播放', () => {
+    const p = new CampaignPlayer(5, () => {});
+    vi.advanceTimersByTime(10000);
+    expect(p.status).toBe('ready');
+    expect(p.phase).toBe(1);
+  });
+  it('播放每 3 秒前進一階段，到最後一階段結束', () => {
+    const p = new CampaignPlayer(3, () => {});
+    p.play();
+    expect(p.status).toBe('playing');
+    vi.advanceTimersByTime(3000);
+    expect(p.phase).toBe(2);
+    vi.advanceTimersByTime(3000);
+    expect(p.phase).toBe(3);
+    expect(p.status).toBe('ended');
+    vi.advanceTimersByTime(9000);
+    expect(p.phase).toBe(3);
+  });
+  it('暫停後不再前進；結束後再播放從 P1 開始', () => {
+    const p = new CampaignPlayer(3, () => {});
+    p.play(); vi.advanceTimersByTime(3000); p.pause();
+    expect(p.status).toBe('paused');
+    vi.advanceTimersByTime(9000);
+    expect(p.phase).toBe(2);
+    p.play(); vi.advanceTimersByTime(3000);
+    expect(p.status).toBe('ended');
+    p.play();
+    expect(p.phase).toBe(1);
+  });
+  it('上一步／下一步夾在範圍內', () => {
+    const p = new CampaignPlayer(2, () => {});
+    p.prev(); expect(p.phase).toBe(1);
+    p.next(); expect(p.phase).toBe(2); expect(p.status).toBe('ended');
+    p.next(); expect(p.phase).toBe(2);
+    p.prev(); expect(p.phase).toBe(1); expect(p.status).toBe('paused');
+  });
+});
+
+describe('戰役查詢', () => {
+  const phases = [
+    { seq: 1, start: '1940-05-26', end: '1940-05-28' },
+    { seq: 2, start: '1940-05-28', end: '1940-06-01' },
+  ] as never;
+  it('phaseForDate：start 含、end 不含，超出夾到首尾', () => {
+    expect(phaseForDate({ phases }, '1940-05-27')).toBe(1);
+    expect(phaseForDate({ phases }, '1940-05-28')).toBe(2);
+    expect(phaseForDate({ phases }, '1939-01-01')).toBe(1);
+    expect(phaseForDate({ phases }, '1941-01-01')).toBe(2);
+  });
+  it('依政權或事件找戰役', () => {
+    const idx = [{ key: 'd', name_zh: 'd', start: '', end: '', regime_slugs: ['united-kingdom'], event_ids: ['e1'] }];
+    expect(campaignsForRegime(idx, 'united-kingdom').length).toBe(1);
+    expect(campaignsForRegime(idx, 'japan').length).toBe(0);
+    expect(campaignsForEvent(idx, 'e1').length).toBe(1);
+    expect(campaignsForEvent(idx, null).length).toBe(0);
+  });
+});

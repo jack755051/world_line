@@ -93,14 +93,14 @@ public static class ConflictsEndpoints
 
     /// <summary>預熱單一日期的衝突圖層快取（供啟動背景任務呼叫）。</summary>
     public static Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache) =>
-        cache.GetOrAddAsync("conflicts", d, db, () => BuildOnDateAsync(d, db, CancellationToken.None), CancellationToken.None);
+        cache.GetOrAddAsync("conflicts", d, db, BuildOnDateAsync, CancellationToken.None);
 
     public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
     {
         if (date is not { } d)
             throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
         // 同一變動區間內每天結果相同：依區間快取（寫入即作廢，見 DateIntervalCache）
-        var features = await cache.GetOrAddAsync("conflicts", d, db, () => BuildOnDateAsync(d, db, ct), ct);
+        var features = await cache.GetOrAddAsync("conflicts", d, db, BuildOnDateAsync, ct);
         return ApiResults.Ok(new ConflictMapDto(d, new ConflictFeatureCollection(features)));
     }
 

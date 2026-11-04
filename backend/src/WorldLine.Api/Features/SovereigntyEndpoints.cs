@@ -141,7 +141,7 @@ public static class SovereigntyEndpoints
         // 同一變動區間內每天結果相同；不同縮放桶（容差）各自快取，互不影響
         var tolerance = ToleranceForZoom(zoom);
         var kind = $"sovereignty:{tolerance:F3}";
-        var features = await cache.GetOrAddAsync(kind, d, db, () => BuildOnDateAsync(d, db, tolerance, ct), ct);
+        var features = await cache.GetOrAddAsync(kind, d, db, (day, ctx, c) => BuildOnDateAsync(day, ctx, tolerance, c), ct);
         return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
     }
 
@@ -224,7 +224,7 @@ public static class SovereigntyEndpoints
     {
         foreach (var tolerance in new[] { 0.010, 0.004, ResponseSimplifyTolerance })
             await cache.GetOrAddAsync($"sovereignty:{tolerance:F3}", d, db,
-                () => BuildOnDateAsync(d, db, tolerance, CancellationToken.None), CancellationToken.None);
+                (day, ctx, c) => BuildOnDateAsync(day, ctx, tolerance, c), CancellationToken.None);
     }
 
     /// <summary>事件摘要＋引用；沒有任何引用的事件 verification = pending（「待查證」）。</summary>

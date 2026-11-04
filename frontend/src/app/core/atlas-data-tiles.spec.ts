@@ -102,4 +102,29 @@ describe('AtlasData（tiles 模式，§9 步驟 5）', () => {
     await data.loadConflicts('1950-01-01');
     expect(calls).toEqual(['control:1950-01-01', 'conflicts:1950-01-01']);
   });
+
+  it('overlay：首都、領導人換日期也不向 API 要；範圍外退回 API', async () => {
+    const calls: string[] = [];
+    const api = {
+      capitals: async (d: string) => { calls.push(`capitals:${d}`); return { date: d, features: [] }; },
+      leaders: async (d: string) => { calls.push(`leaders:${d}`); return { date: d, features: [] }; },
+      regimesBatch: async () => [],
+    };
+    TestBed.configureTestingModule({ providers: [{ provide: WorldLineApi, useValue: api }] });
+    const store = TestBed.inject((await import('./overlay')).OverlayStore);
+    const ov = {
+      version: 'v', range: ['1908-10-05', '1945-12-31'],
+      capitals: { points: ['1908-10-05'], intervals: [{ start: '1908-10-05', ids: ['k'] }], records: { k: { recordId: 'k1' } } },
+      leaders: { points: ['1908-10-05', '1933-01-30'], intervals: [{ start: '1908-10-05', ids: [] }, { start: '1933-01-30', ids: ['l'] }], records: { l: { recordId: 'l1' } } },
+    };
+    store.load = async () => { store.data.set(ov as never); store.status.set('ok'); return ov as never; };
+    const data = TestBed.inject(AtlasData);
+    await data.loadCapitals('1920-01-01');
+    await data.loadLeaders('1940-01-01');
+    expect(data.capitals()?.features.length).toBe(1);
+    expect(data.leaders()?.features.length).toBe(1);
+    expect(calls).toEqual([]);
+    await data.loadCapitals('1900-01-01');
+    expect(calls).toEqual(['capitals:1900-01-01']);
+  });
 });

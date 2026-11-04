@@ -413,6 +413,18 @@ export class AtlasData {
   async loadCapitals(date: string): Promise<void> {
     const my = ++this.capSeq;
     this.restart('cap');
+    // tiles 模式：overlay（逐日掃過併成區間），換日期不取 API；範圍外或 overlay 失敗才取
+    if (this.boundarySource === 'tiles' && (await this.overlayReady())) {
+      if (my !== this.capSeq) return;
+      const o = this.overlay.data();
+      const dto = this.fromOverlay('capitals', date, (d) => overlayCapitals(o, d));
+      if (dto) {
+        this.capitals.set(dto);
+        this.capitalsStatus.set('ok');
+        return;
+      }
+    }
+    if (my !== this.capSeq) return;
     const hit = this.capCache.get(date);
     if (hit) {
       this.capitals.set(hit);
@@ -436,6 +448,18 @@ export class AtlasData {
   async loadLeaders(date: string): Promise<void> {
     const my = ++this.leaSeq;
     this.restart('lea');
+    // tiles 模式：overlay（逐日掃過併成區間），換日期不取 API；範圍外或 overlay 失敗才取
+    if (this.boundarySource === 'tiles' && (await this.overlayReady())) {
+      if (my !== this.leaSeq) return;
+      const o = this.overlay.data();
+      const dto = this.fromOverlay('leaders', date, (d) => overlayLeaders(o, d));
+      if (dto) {
+        this.leaders.set(dto);
+        this.leadersStatus.set('ok');
+        return;
+      }
+    }
+    if (my !== this.leaSeq) return;
     const hit = this.leaCache.get(date);
     if (hit) {
       this.leaders.set(hit);

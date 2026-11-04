@@ -1,8 +1,10 @@
 -- 國名點 label_points（ARCHITECTURE.md §9 模組表；建置產物）：
--- 每段 boundary_periods（＝每個政權的每個時期）一個點，放在該時期「最大塊國土」上，
+-- Tai 2026-11-04 12:41：每段 boundary_periods（＝每個政權的每個時期）的「每塊夠大的國土」各一個候選點，
+-- 只用面積當門檻（20000 km²；最大塊一律保留，讓每個時期至少有一個點），不寫任何國家特例。
 -- 位置用 polylabel（pole of inaccessibility；PostGIS 的 ST_MaximumInscribedCircle 圓心即同一點）。
--- 最大塊以球面面積（geography）比較；area 為該塊面積（km²），供標籤排序（symbol-sort-key）。
+-- 面積以球面面積（geography）計；area 為該塊面積（km²），part＝該時期內依面積由大到小的序號（1＝最大塊）。
 -- span_x：該塊外框的經度寬 ÷ 360（世界寬＝1），前端「名字裝得下才顯示」（§4 D9，與 label-fit.labelMinZoom 同式）用。
+-- 同一個政權畫面上只顯示一個國名：前端在可見且裝得下的候選點中只放行面積最大的一個（見 boundary-tiles.ts pickTileLabels）。
 -- 名稱：自稱（name_kind = self，優先 is_primary）；name_zh＝display 的 zh-Hant，name_local＝原文；name＝name_zh，沒有就用原文。
 WITH parts AS (
   SELECT bp.record_id, bp.regime_id, bp.regime_slug, bp.start_day, bp.end_day, d.geom AS part,
@@ -10,7 +12,7 @@ WITH parts AS (
          row_number() OVER (PARTITION BY bp.record_id ORDER BY ST_Area(d.geom::geography) DESC) AS rn
   FROM boundary_periods bp, LATERAL ST_Dump(bp.geom) d
 )
-SELECT p.record_id, p.regime_id, p.regime_slug, p.start_day, p.end_day,
+SELECT p.record_id, p.regime_id, p.regime_slug, p.start_day, p.end_day, p.rn AS part,
        (ST_MaximumInscribedCircle(p.part)).center AS geom,
        COALESCE(n.display ->> 'zh-Hant', n.original_text) AS name,
        n.display ->> 'zh-Hant' AS name_zh,
@@ -24,4 +26,4 @@ LEFT JOIN LATERAL (
   ORDER BY is_primary DESC, created_at
   LIMIT 1
 ) n ON true
-WHERE p.rn = 1
+WHERE p.rn = 1 OR p.area_m2 >= 20000e6

@@ -1,5 +1,5 @@
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
-import { LucideBookOpen, LucideChevronDown, LucideChevronUp } from '@lucide/angular';
+import { LucideInfo } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import type { Axis } from '../../core/atlas-state';
 import type { LoadStatus } from '../../core/atlas-data';
@@ -29,31 +29,25 @@ export interface LegendRegime {
 @Component({
   selector: 'wl-legend',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideChevronDown, LucideChevronUp, LucideBookOpen, SkeletonDirective],
-  host: { class: 'block' },
+  imports: [LucideInfo, SkeletonDirective],
+  host: { class: 'block', '(document:keydown.escape)': 'onEscape()' },
   styles: `
     .sw { width: 22px; height: 14px; flex: none; border-radius: 2px; }
     .sw-wide { width: 32px; }
     .row { display: flex; align-items: center; gap: 8px; }
   `,
   template: `
-    @if (!open() && !closing()) {
-      <!-- 收合：左下小按鈕「圖例」（Stitch W2／W3／W7-6） -->
-      <section data-testid="legend" data-state="collapsed" [attr.aria-label]="tr('legend.title')">
-        <button type="button" data-testid="legend-expand" class="wl-paper flex h-8 items-center gap-1.5 px-3 wl-text2 text-wl-on-surface hover:bg-wl-surface-container-high"
-          (click)="toggle.emit()" [attr.aria-expanded]="false" aria-controls="wl-legend-body">
-          <svg lucideBookOpen class="size-3.5"></svg>{{ tr('legend.title') }}<svg lucideChevronUp class="size-3.5 text-wl-on-surface-variant"></svg>
-        </button>
-      </section>
-    } @else {
-    <section #panel data-testid="legend" [attr.data-state]="closing() ? 'closing' : 'open'" [attr.data-axis]="axis()" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
-      <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left" (click)="toggle.emit()"
-        [attr.aria-expanded]="open()" aria-controls="wl-legend-body">
+    <!-- 圖例（ARCHITECTURE.md §10-3）：左下 40×40 ⓘ 按鈕，點了在按鈕上方展開 240px 寬浮動面板（最高 50vh，可捲動）；
+         Esc、再點一次按鈕、點地圖空白處收起；開關狀態記在 localStorage（AtlasState）。 -->
+    <section data-testid="legend" [attr.data-state]="!open() && !closing() ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
+      class="flex flex-col items-start gap-2" [attr.aria-label]="tr('legend.title')">
+    @if (open() || closing()) {
+    <div #panel data-testid="legend-panel" id="wl-legend-panel" class="wl-paper flex max-h-[50vh] w-[240px] flex-col overflow-hidden">
+      <div class="flex flex-none items-center justify-between px-4 py-3">
         <span class="wl-title2">{{ tr('legend.title') }}</span>
-        <svg lucideChevronDown class="size-4 text-wl-on-surface-variant"></svg>
-      </button>
+      </div>
       @if (open() || closing()) {
-        <div id="wl-legend-body" class="flex max-h-[calc(100vh-56px-112px-120px)] flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
+        <div id="wl-legend-body" class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
           <!-- 主權圖層（國界試驗 1938–1940） -->
           <div data-testid="legend-sovereignty">
             <h3 class="wl-label mb-2">{{ lang() === 'en' ? 'Borders (sovereignty layer)' : '國界（主權圖層）' }}
@@ -133,12 +127,16 @@ export interface LegendRegime {
           }
         </div>
       }
-    </section>
+    </div>
     }
+      <button type="button" data-testid="legend-expand" class="wl-paper flex size-10 items-center justify-center text-wl-on-surface hover:bg-wl-surface-container-high"
+        [attr.aria-label]="tr('legend.title')" [attr.title]="tr('legend.title')" [attr.aria-expanded]="open()" aria-controls="wl-legend-panel" (click)="toggle.emit()">
+        <svg lucideInfo class="size-5"></svg></button>
+    </section>
   `,
 })
 export class Legend {
-  readonly open = input(true);
+  readonly open = input(false);
   readonly lang = input<Lang>('zh-Hant');
   readonly regimes = input<LegendRegime[]>([]);
   readonly regimesStatus = input<LoadStatus>('idle');
@@ -187,7 +185,7 @@ export class Legend {
         if (!el || run !== this.run || this.motion.reduced()) return;
         const h = el.scrollHeight;
         void this.motion
-          .animate(el, { height: ['32px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
+          .animate(el, { height: ['40px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
           .then(() => run === this.run && (el.style.height = ''));
       },
       { injector: this.injector },
@@ -204,13 +202,17 @@ export class Legend {
     }
     this.closing.set(true);
     void this.motion
-      .animate(el, { height: [`${el.offsetHeight}px`, '32px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
+      .animate(el, { height: [`${el.offsetHeight}px`, '40px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
       .then(() => {
         if (run !== this.run) return;
         el.style.height = '';
         el.style.opacity = '';
         this.closing.set(false);
       });
+  }
+
+  protected onEscape(): void {
+    if (this.open()) this.toggle.emit();
   }
 
   protected readonly controlTypes = CONTROL_TYPES;

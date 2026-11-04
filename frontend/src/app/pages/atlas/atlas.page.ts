@@ -91,7 +91,7 @@ interface SheetInfo {
                 [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
-                (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
+                (emptyClick)="clearSelection(); state.legendOpen.set(false)" (featureHover)="hover.set($event)" />
 
               <!-- 陣營外框圖層（補充，可開關；Tai 2026-10-31：政權優先於陣營，填色不變） -->
               <button type="button" data-testid="camp-layer-toggle" class="wl-paper absolute right-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2"
@@ -179,7 +179,8 @@ interface SheetInfo {
                 </div>
               }
 
-              <div class="absolute bottom-4 left-4 z-10">
+              <!-- 圖例（§10-3）：時間軸上方 12px、距左邊 12px -->
+              <div data-testid="legend-anchor" class="absolute bottom-3 left-3 z-10">
                 <wl-legend [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
                   [axis]="state.axis()"
                   (toggle)="state.legendOpen.set(!state.legendOpen())" />
@@ -400,13 +401,15 @@ export class AtlasPage {
   protected readonly layout = computed(() =>
     sheetLayout(this.areaSize().w, typeof window !== 'undefined' ? window.innerHeight : this.areaSize().h, this.sheetWidthPref(), this.sheetSnap(), this.areaSize().h || Infinity));
   /**
-   * 地圖 padding（§10-2）：面板開啟時 right＝面板寬＋16（768–1023px 蓋在地圖上不推擠，不設），關閉歸零；
+   * 地圖 padding（§10-2、§10-3）：面板開啟時 right＝面板寬＋16（768–1023px 蓋在地圖上不推擠，不設），關閉歸零；
    * 標籤另由 UI 障礙符號避開面板。
    */
   protected readonly uiPadding = computed(
     () => {
       const l = this.layout();
-      return { left: 0, right: this.sheetOpen() && l.side === 'right' && !l.overlay ? l.size + 16 : 0 };
+      // §10-3：圖例開啟時 padding.left＝264（只有視窗寬 ≥1024px 才設）
+      const left = this.state.legendOpen() && this.areaSize().w >= 1024 ? 264 : 0;
+      return { left, right: this.sheetOpen() && l.side === 'right' && !l.overlay ? l.size + 16 : 0 };
     },
     { equal: (a, b) => a.left === b.left && a.right === b.right },
   );

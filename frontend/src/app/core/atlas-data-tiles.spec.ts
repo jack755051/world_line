@@ -127,4 +127,21 @@ describe('AtlasData（tiles 模式，§9 步驟 5）', () => {
     await data.loadCapitals('1900-01-01');
     expect(calls).toEqual(['capitals:1900-01-01']);
   });
+
+  it('overlay：主權圖層日期樣式（佔領歸屬、陣營）依區間，同區間同一個陣列', async () => {
+    TestBed.configureTestingModule({ providers: [{ provide: WorldLineApi, useValue: { regimesBatch: async () => [] } }] });
+    const store = TestBed.inject((await import('./overlay')).OverlayStore);
+    const row = { regimeId: 'pl', regimeSlug: 'gg', layerStatus: 'not_sovereign', camp: null, occupation: { occupierRegimeId: 'de', occupierSlug: 'deutsches-reich', controlKind: 'civil_administration' } };
+    store.data.set({ version: 'v', range: ['1908-10-05', '1945-12-31'], sovstyle: { points: ['1908-10-05', '1939-10-26'], intervals: [{ start: '1908-10-05', ids: [] }, { start: '1939-10-26', ids: ['r'] }], records: { r: row } } } as never);
+    store.status.set('ok');
+    const data = TestBed.inject(AtlasData);
+    const state = TestBed.inject((await import('./atlas-state')).AtlasState);
+    state.setDate('1940-01-01');
+    const a = data.tileSovStyle();
+    expect(a).toEqual([row]);
+    state.setDate('1941-01-01');
+    expect(data.tileSovStyle()).toBe(a);
+    state.setDate('1930-01-01');
+    expect(data.tileSovStyle()).toEqual([]);
+  });
 });

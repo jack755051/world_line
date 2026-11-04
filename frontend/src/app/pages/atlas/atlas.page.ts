@@ -19,12 +19,12 @@ import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
 import { conflictArc } from '../../shared/map/conflict-arc';
 import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
 import { ConflictCard } from '../../shared/conflict-card/conflict-card';
-import { decorateSovereignty, regimeColor, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { decorateSovereignty, occupationTint, regimeColor, sovereigntyLabels } from '../../shared/map/sovereignty-style';
 import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
 import { geometryBounds, sheetLayout, type FocusInset, type LngLatBounds } from '../../shared/map/focus';
-import { campTonesFrom, controlLabels, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
+import { CAMP_FILL, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
 import { ScanRevealComponent, type ScanPhase, type ScanSnapshot } from '../../shared/map/scan-reveal';
@@ -88,7 +88,7 @@ interface SheetInfo {
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
-                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
+                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
@@ -246,6 +246,24 @@ export class AtlasPage {
     const out: Record<string, string> = {};
     for (const [id, r] of Object.entries(this.data.regimes())) out[id] = regimeColor(r.slug);
     return out;
+  });
+  /**
+   * tiles 模式主權圖層的日期相關樣式（§9 步驟 5，與 decorateSovereignty 同一套算法）：
+   * 佔領區斜線底色＝佔領國色依控制程度淡化、斜線＝佔領國色加深；陣營外框色＝陣營色。依 regime_id 對應。
+   */
+  protected readonly tileSovPaint = computed(() => {
+    const base: Record<string, string> = {};
+    const hatch: Record<string, string> = {};
+    const camp: Record<string, string> = {};
+    for (const r of this.data.tileSovStyle() ?? []) {
+      if (r.occupation) {
+        base[r.regimeId] = occupationTint(r.occupation.occupierSlug, r.occupation.controlKind);
+        hatch[r.regimeId] = darken(regimeColor(r.occupation.occupierSlug), 0.3);
+      }
+      const c = campOf((r.camp ? { camp: r.camp } : null) as never);
+      if (c) camp[r.regimeId] = CAMP_FILL[c];
+    }
+    return { base, hatch, camp };
   });
   /** tiles 模式的國名：與 geojson 模式 sovereigntyLabels 相同（API 政權自稱，依語系）。 */
   protected readonly tileRegimeNames = computed(() => {

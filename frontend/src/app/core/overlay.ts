@@ -27,6 +27,20 @@ export interface OverlayFile {
   conflicts?: RecordSection<unknown>;
   capitals?: RecordSection<unknown>;
   leaders?: RecordSection<unknown>;
+  sovstyle?: RecordSection<SovStyleRow>;
+}
+
+/** 主權圖層的日期相關樣式（佔領歸屬、陣營），只收有其中一項或非主權的政權。 */
+export interface SovStyleRow {
+  regimeId: string;
+  regimeSlug: string;
+  layerStatus: string;
+  camp: string | null;
+  occupation: { occupierRegimeId: string; occupierSlug: string; controlKind: string } | null;
+}
+
+export function overlaySovStyle(o: OverlayFile | null, date: string): SovStyleRow[] | null {
+  return records<SovStyleRow>(o, o?.sovstyle as RecordSection<unknown> | undefined, date);
 }
 
 /** 有序日期裡 ≤ date 的最後一個位置（沒有則 -1）。 */
@@ -82,7 +96,7 @@ export function overlayLeaders(o: OverlayFile | null, date: string): LeadersDto 
 }
 
 /** overlay 區間 key（同一區間換日期不換資料物件）。範圍外回傳 null。 */
-export function overlayKey(o: OverlayFile | null, section: 'control' | 'conflicts' | 'capitals' | 'leaders', date: string): string | null {
+export function overlayKey(o: OverlayFile | null, section: 'control' | 'conflicts' | 'capitals' | 'leaders' | 'sovstyle', date: string): string | null {
   const sec = o?.[section];
   if (!sec || !overlayCovers(o, date)) return null;
   return `ov:${o!.version}:${sec.points[intervalIndex(sec.points, date)] ?? ''}`;

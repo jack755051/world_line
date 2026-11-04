@@ -32,7 +32,7 @@ import {
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 import { byIdExpr, dataDrivenPaint, overlayFilter, OVERLAY_CONTROL_LAYERS, OVERLAY_GAP_LAYERS, OVERLAY_KEEP_FILTER, OVERLAY_SOURCE } from './boundary-tiles';
-import { boundaryTileLayers, tileDateFilter, tileFillColor, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
+import { boundaryTileLayers, tileDateFilter, tileFillColor, tileHatchBase, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
 import { dayNumber, readOverlayTilesUrl, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
 import { intervalKey } from '../../core/change-points';
 
@@ -537,6 +537,8 @@ export class AtlasMap {
   readonly sovereignty = input<FeatureCollection<Geometry, SovereigntyProps> | null>(null);
   /** 疆界來源（§9 步驟 4）：tiles 時國界、國名改由向量圖磚畫，換日期只改 filter。 */
   readonly boundarySource = input<BoundarySource>('geojson');
+  /** tiles 模式主權圖層的日期相關樣式（佔領區斜線底色／斜線色、陣營外框色），依 regime_id。 */
+  readonly tileSovPaint = input<{ base: Record<string, string>; hatch: Record<string, string>; camp: Record<string, string> }>({ base: {}, hatch: {}, camp: {} });
   /** 目前日期（tiles 模式的 filter 用）。 */
   readonly date = input<string | null>(null);
   /** 變動點（tiles 模式：同一變動區間內換日期不重設 filter）。 */
@@ -664,6 +666,11 @@ export class AtlasMap {
         this.map.setPaintProperty(TILE_FILL, 'fill-color', tileFillColor(colors));
         this.applyTileHatch();
       });
+    });
+    effect(() => {
+      this.tileSovPaint();
+      if (!this.ready() || this.boundarySource() !== 'tiles') return;
+      untracked(() => this.applyTileHatch());
     });
     effect(() => {
       const names = this.regimeNames();
@@ -1545,6 +1552,7 @@ export class AtlasMap {
     const [fill, hatchBase, hatch, line, lineNs, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
     for (const l of [fill, hatchBase, hatch, line, lineNs]) map.addLayer(l, 'gap-base');
     map.addLayer(label, 'regime-label');
+    this.applyTileHatch();
     this.addOverlayTiles();
     this.tileFilterKey = intervalKey(this.changePoints(), d);
     map.on('mouseenter', TILE_FILL, () => (map.getCanvas().style.cursor = 'pointer'));
@@ -1558,7 +1566,10 @@ export class AtlasMap {
   /** 非主權斜線（顏色跟著政權色；佔領區另外覆蓋）。 */
   private applyTileHatch(): void {
     if (!this.map?.getLayer(TILE_HATCH)) return;
-    this.map.setPaintProperty(TILE_HATCH, 'fill-pattern', tileHatchPattern(this.regimeColors()));
+    const sp = this.tileSovPaint();
+    this.map.setPaintProperty(TILE_HATCH, 'fill-pattern', tileHatchPattern(this.regimeColors(), sp.hatch));
+    // 佔領區著色：斜線底色改用佔領國色（依控制程度淡化），與 decorateSovereignty 的 wlBase 相同
+    this.map.setPaintProperty(TILE_HATCH_BASE, 'fill-color', tileHatchBase(sp.base));
   }
 
   /** tiles 模式換日期：只在跨越變動區間時 setFilter，不發請求。 */

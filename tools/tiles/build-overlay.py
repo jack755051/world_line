@@ -8,7 +8,7 @@
   讓 controlLabels／點選聚焦跟 geojson 模式算出一樣的結果），out/overlay.json 連到它。
 區間外（範圍以外的日期）前端退回 API。
 
-用法：python3 tools/tiles/build-overlay.py [API_BASE] [--sections=control,conflicts,capitals,leaders]
+用法：python3 tools/tiles/build-overlay.py [API_BASE] [--sections=control,conflicts,capitals,leaders,sovstyle]
 """
 import hashlib, json, os, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'out')
 args = [a for a in sys.argv[1:] if not a.startswith('--')]
 API = (args[0] if args else os.environ.get('WL_API', 'http://127.0.0.1:5052/api/v1')).rstrip('/')
-SECTIONS = next((a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith('--sections=')), 'control,conflicts,capitals,leaders').split(',')
+SECTIONS = next((a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith('--sections=')), 'control,conflicts,capitals,leaders,sovstyle').split(',')
 START, END = '1908-10-05', '1945-12-31'  # 時間軸範圍（含）；之外退回 API
 
 
@@ -159,12 +159,45 @@ def build_daily(kind):
     print(f'{kind}：{len(ds)} 天 → {len(intervals)} 區間，{len(recs)} 筆', file=sys.stderr)
 
 
+def build_sovstyle():
+    """主權圖層的日期相關樣式（佔領區著色、陣營外框）：依主權變動點各取一次 /sovereignty（zoom=0，只用屬性）。
+    每個政權只留 layerStatus、佔領歸屬（佔領方、控制程度）、陣營；三者都沒有的政權不存。"""
+    pts = in_range(cp['points'])
+    recs, intervals = {}, []
+
+    def rows(p):
+        dto = get(f'/sovereignty?date={p}&zoom=0')
+        out = []
+        for f in dto['featureCollection']['features']:
+            q = f['properties']
+            occ = q.get('occupation')
+            camp = (q.get('regimeAlignment') or {}).get('camp')
+            ns = q.get('layerStatus') == 'not_sovereign'
+            if not (occ or camp or ns):
+                continue
+            out.append({'regimeId': q['regimeId'], 'regimeSlug': q['regimeSlug'], 'layerStatus': q['layerStatus'], 'camp': camp,
+                        'occupation': {k: occ[k] for k in ('occupierRegimeId', 'occupierSlug', 'controlKind')} if occ else None})
+        return sorted(out, key=lambda r: r['regimeId'])
+
+    for p, rs in zip(pts, pmap(rows, pts, 6)):
+        ids = []
+        for r in rs:
+            k = hkey(r)
+            recs[k] = r
+            ids.append(k)
+        intervals.append({'start': p, 'ids': ids})
+    overlay['sovstyle'] = {'points': pts, 'intervals': intervals, 'records': recs}
+    print(f'sovstyle：{len(pts)} 區間，{len(recs)} 種', file=sys.stderr)
+
+
 t0 = time.time()
 for s in SECTIONS:
     if s == 'control':
         build_control()
     elif s == 'conflicts':
         build_points('conflicts', cp['points'], lambda d: d['featureCollection']['features'], lambda p: f'/conflicts?date={p}')
+    elif s == 'sovstyle':
+        build_sovstyle()
     else:
         build_daily(s)
 os.makedirs(OUT, exist_ok=True)

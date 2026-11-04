@@ -6,7 +6,7 @@ import type { CapitalsDto, LeadersDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 import { readBoundarySource, type BoundarySource } from './boundary-source';
-import { OverlayStore, overlayCapitals, overlayConflicts, overlayControl, overlayCovers, overlayKey, overlayLeaders } from './overlay';
+import { OverlayStore, overlayCapitals, overlayConflicts, overlayControl, overlayCovers, overlayKey, overlayLeaders, overlaySovStyle, type SovStyleRow } from './overlay';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 
@@ -25,7 +25,7 @@ export class AtlasData {
   private readonly overlay = inject(OverlayStore);
   /** overlay 同一區間重用同一個資料物件（地圖不 setData、標籤不重算）。 */
   private readonly ovMemo = new Map<string, unknown>();
-  private fromOverlay<T>(section: 'control' | 'conflicts' | 'capitals' | 'leaders', date: string, make: (date: string) => T | null): T | null {
+  private fromOverlay<T>(section: 'control' | 'conflicts' | 'capitals' | 'leaders' | 'sovstyle', date: string, make: (date: string) => T | null): T | null {
     const o = this.overlay.data();
     const k = overlayKey(o, section, date);
     if (!k) return null;
@@ -35,6 +35,15 @@ export class AtlasData {
     if (v) this.ovMemo.set(`${section}|${k}`, v);
     return v;
   }
+  /**
+   * tiles 模式主權圖層的日期相關樣式（佔領區著色、陣營外框；§9 步驟 5）：從 overlay 依主權變動區間查，同區間同一個陣列。
+   * overlay 沒載到或範圍外時是 null（圖磚只畫政權色與非主權斜線）。
+   */
+  readonly tileSovStyle = computed<SovStyleRow[] | null>(() => {
+    if (this.boundarySource !== 'tiles') return null;
+    const o = this.overlay.data();
+    return this.fromOverlay('sovstyle', this.state.date(), (d) => overlaySovStyle(o, d));
+  });
   /** tiles 模式：等 overlay 載好（只載一次；失敗回 null，呼叫端退回 API）。 */
   private async overlayReady(): Promise<boolean> {
     if (this.boundarySource !== 'tiles') return false;

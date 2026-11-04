@@ -88,7 +88,7 @@ interface SheetInfo {
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
-                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
+                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
@@ -245,6 +245,17 @@ export class AtlasPage {
     if (this.data.boundarySource !== 'tiles') return {};
     const out: Record<string, string> = {};
     for (const [id, r] of Object.entries(this.data.regimes())) out[id] = regimeColor(r.slug);
+    return out;
+  });
+  /** tiles 模式的國名：與 geojson 模式 sovereigntyLabels 相同（API 政權自稱，依語系）。 */
+  protected readonly tileRegimeNames = computed(() => {
+    if (this.data.boundarySource !== 'tiles') return {};
+    const lang = this.lang();
+    const out: Record<string, string> = {};
+    for (const [id, r] of Object.entries(this.data.regimes())) {
+      const t = regimeSelfName(r, lang)?.display;
+      if (t) out[id] = t;
+    }
     return out;
   });
   /** 首都 GeoJSON：依目前語系選好 label，直接傳給地圖圖層。 */

@@ -21,7 +21,7 @@ docker build -t wl-tippecanoe:2.79.0 "https://github.com/felt/tippecanoe.git#2.7
 ```
 
 圖磚 schema 照 §9「介面」：圖層 `boundaries`（regime_id、start_day、end_day、color_idx、disputed、control_type）、
-`labels`（regime_id、start_day、end_day、name_zh、name_local、area）；整數日自 1900-01-01 起算，`end_day` 不含當日。
+`labels`（regime_id、start_day、end_day、name_zh、name_local、area、span_x：最大塊國土外框經度寬 ÷ 360）；整數日自 1900-01-01 起算，`end_day` 不含當日。
 
 `out/` 是建置產物，不進 git。
 

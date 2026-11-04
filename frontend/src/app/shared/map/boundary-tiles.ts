@@ -1,14 +1,14 @@
 import type { ExpressionSpecification, FilterSpecification, LayerSpecification } from 'maplibre-gl';
-import type { Lang } from '../../core/i18n';
 import { MAP_COLORS } from './map-style';
 import { REGIME_FALLBACK_COLORS } from './sovereignty-style';
 
 /**
  * 疆界向量圖磚（ARCHITECTURE.md §9，步驟 4：boundarySource=tiles）。
  * 圖磚 schema：`boundaries`（regime_id、start_day、end_day、color_idx、disputed、control_type）、
- * `labels`（regime_id、start_day、end_day、name_zh、name_local、area）；整數日從 1900-01-01 起算，end_day 不含當日。
+ * `labels`（regime_id、start_day、end_day、name_zh、name_local、area、span_x）；整數日從 1900-01-01 起算，end_day 不含當日。
+ * span_x：該時期最大塊國土外框的經度寬（世界寬＝1），國名「裝得下才顯示」（§4 D9）用。
  * 換日期只呼叫 setFilter（而且只在跨越變動日時），不發任何請求。
- * 步驟 4 只做底色、國界線、國名；佔領淡化色、非主權斜線、選取、蒙版、高亮、掃描動畫屬步驟 5。
+ * 步驟 5：國名比照一般國名層（regime-label）的樣式與「名字寬度 vs 國土螢幕寬度」規則，文字用 API 的政權自稱（與 geojson 模式同一來源）。
  */
 export const TILE_SOURCE = 'boundary-tiles';
 export const TILE_FILL = 'tiles-fill';
@@ -29,14 +29,13 @@ export function tileDateFilter(day: number): ExpressionSpecification {
 }
 
 /** 各圖磚圖層在某日的 filter（國界線依 control_type 分實線／虛線）。 */
-export function tileFilters(day: number): Record<(typeof TILE_LAYER_IDS)[number], FilterSpecification> {
+export function tileFilters(day: number): Record<typeof TILE_FILL | typeof TILE_LINE | typeof TILE_LINE_NOT_SOVEREIGN, FilterSpecification> {
   const when = tileDateFilter(day);
   const notSovereign: ExpressionSpecification = ['==', ['get', 'control_type'], 'not_sovereign'];
   return {
     [TILE_FILL]: when,
     [TILE_LINE]: ['all', when, ['!', notSovereign]],
     [TILE_LINE_NOT_SOVEREIGN]: ['all', when, notSovereign],
-    [TILE_LABEL]: when,
   };
 }
 
@@ -49,12 +48,36 @@ export function tileFillColor(colorsByRegimeId: Record<string, string>): Express
   return ['match', ['get', 'regime_id'], ...pairs.flat(), fallback] as unknown as ExpressionSpecification;
 }
 
-/** 國名：中文介面用 name_zh（沒有就原文），其他語言用原文（自稱）。 */
-export function tileLabelText(lang: Lang): ExpressionSpecification {
-  return lang === 'zh-Hant' ? ['coalesce', ['get', 'name_zh'], ['get', 'name_local']] : ['coalesce', ['get', 'name_local'], ['get', 'name_zh']];
+/** 世界寬（zoom 0）px，與 label-fit 的 WORLD_TILE_PX 相同。 */
+const WORLD_PX = 512;
+
+/**
+ * 國名文字：依 regime_id 對到頁面給的名稱（API 自稱，regimeSelfName，與 geojson 模式相同）；
+ * 名稱還沒載入或查不到的政權不標（與 geojson 模式「查不到名稱就不標」一致）。
+ */
+export function tileLabelText(namesByRegimeId: Record<string, string>): ExpressionSpecification {
+  const pairs = Object.entries(namesByRegimeId).filter(([, t]) => t).sort(([a], [b]) => a.localeCompare(b));
+  if (pairs.length === 0) return ['literal', ''] as unknown as ExpressionSpecification;
+  return ['match', ['get', 'regime_id'], ...pairs.flat(), ''] as unknown as ExpressionSpecification;
 }
 
-export function boundaryTileLayers(day: number, colorsByRegimeId: Record<string, string>, lang: Lang): LayerSpecification[] {
+/**
+ * 國名 filter：當日有效 ∧ 名字裝得下（§4 D9：國土螢幕寬 span_x × 512 × 2^zoom ≥ 名字寬，等同 label-fit 的 labelMinZoom）
+ * ∧ 不是被選政權（被選政權的名字改由蒙版上方的 HTML 層畫）。名字寬度（px）由頁面量好、依 regime_id 對應。
+ */
+export function tileLabelFilter(day: number, labelPxByRegimeId: Record<string, number>, selectedRegimeId: string | null = null): FilterSpecification {
+  const pairs = Object.entries(labelPxByRegimeId).filter(([, px]) => px > 0).sort(([a], [b]) => a.localeCompare(b));
+  if (pairs.length === 0) return ['boolean', false] as unknown as FilterSpecification;
+  const px = ['match', ['get', 'regime_id'], ...pairs.flat(), 1e9];
+  const minZoom = ['/', ['ln', ['/', px, ['*', ['max', ['coalesce', ['get', 'span_x'], 0], 1e-12], WORLD_PX]]], ['ln2']];
+  const parts: unknown[] = [tileDateFilter(day), ['>=', ['zoom'], minZoom]];
+  if (selectedRegimeId) parts.push(['!=', ['get', 'regime_id'], selectedRegimeId]);
+  return ['all', ...parts] as unknown as FilterSpecification;
+}
+
+export interface TileLabelInput { names: Record<string, string>; labelPx: Record<string, number>; selectedRegimeId?: string | null }
+
+export function boundaryTileLayers(day: number, colorsByRegimeId: Record<string, string>, label: TileLabelInput): LayerSpecification[] {
   const f = tileFilters(day);
   return [
     { id: TILE_FILL, type: 'fill', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_FILL],
@@ -63,17 +86,26 @@ export function boundaryTileLayers(day: number, colorsByRegimeId: Record<string,
       paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.75 } },
     { id: TILE_LINE_NOT_SOVEREIGN, type: 'line', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_LINE_NOT_SOVEREIGN],
       paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.8, 'line-dasharray': [3, 2] } },
-    { id: TILE_LABEL, type: 'symbol', source: TILE_SOURCE, 'source-layer': 'labels', filter: f[TILE_LABEL],
+    // 樣式比照 regime-label（底塊、字級、換行、可變錨點、光暈）；面積大的先放（area 供 symbol-sort-key，§9）
+    { id: TILE_LABEL, type: 'symbol', source: TILE_SOURCE, 'source-layer': 'labels',
+      filter: tileLabelFilter(day, label.labelPx, label.selectedRegimeId ?? null),
       layout: {
-        'text-field': tileLabelText(lang),
+        'text-field': tileLabelText(label.names),
         'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
         'text-size': 12,
-        'text-max-width': 8,
-        // 面積大的先放（§9：area 供 symbol-sort-key）
-        'symbol-sort-key': ['-', 0, ['get', 'area']],
         'text-allow-overlap': false,
+        'text-ignore-placement': false,
+        'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'],
+        'text-radial-offset': 0.4,
+        'text-justify': 'auto',
+        'text-max-width': 10,
+        'symbol-sort-key': ['-', 10000, ['ln', ['+', ['get', 'area'], 1]]],
+        'icon-image': 'wl-regime-label-bg',
+        'icon-text-fit': 'both',
+        'icon-text-fit-padding': [2, 6, 2, 6],
+        'icon-optional': true,
       },
-      paint: { 'text-color': MAP_COLORS.ink, 'text-halo-color': '#ffffff', 'text-halo-width': 1.2 } },
+      paint: { 'text-color': 'rgba(58,47,40,0.85)', 'text-halo-color': '#faf6ec', 'text-halo-width': 1.5, 'icon-opacity': 0.88 } },
   ];
 }
 

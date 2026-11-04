@@ -31,7 +31,7 @@ import {
 } from './label-placement';
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
-import { boundaryTileLayers, tileFillColor, tileFilterUpdate, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
+import { boundaryTileLayers, tileDateFilter, tileFillColor, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
 import { dayNumber, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
 import { intervalKey } from '../../core/change-points';
 
@@ -537,6 +537,8 @@ export class AtlasMap {
   readonly changePoints = input<readonly string[] | null>(null);
   /** 已知政權的填色（regimeId → 色），tiles 模式覆寫 color_idx 後備色。 */
   readonly regimeColors = input<Record<string, string>>({});
+  /** tiles 模式：國名（regimeId → API 自稱，已依語系選好；與 geojson 模式的 sovereigntyLabels 同一來源）。 */
+  readonly regimeNames = input<Record<string, string>>({});
   /** tiles 模式：已載入圖磚裡出現的政權 id（新出現時才發），頁面據此補載政權資料（顏色、名稱）。 */
   readonly tileRegimeIds = output<string[]>();
   readonly showCamps = input(false);
@@ -614,6 +616,11 @@ export class AtlasMap {
   private readonly canvas = viewChild.required<ElementRef<HTMLDivElement>>('canvas');
   private map: MlMap | null = null;
   private tileFilterKey: string | null = null;
+  /** tiles 模式目前套用的整數日。 */
+  private tileDay = 0;
+  /** tiles 模式：當日各政權最大塊國土的螢幕寬度基準（span_x，世界寬＝1），首都名門檻用；tileSpanDay＝收集時的整數日。 */
+  private tileSpans = new Map<string, number>();
+  private tileSpanDay: number | null = null;
   private readonly tileIdsSeen = new Set<string>();
   private readonly destroyRef = inject(DestroyRef);
   private readonly state = inject(AtlasState);
@@ -648,9 +655,13 @@ export class AtlasMap {
       untracked(() => this.map?.getLayer(TILE_FILL) && this.map.setPaintProperty(TILE_FILL, 'fill-color', tileFillColor(colors)));
     });
     effect(() => {
-      const lang = this.state.lang();
+      const names = this.regimeNames();
       if (!this.ready() || this.boundarySource() !== 'tiles') return;
-      untracked(() => this.map?.getLayer(TILE_LABEL) && this.map.setLayoutProperty(TILE_LABEL, 'text-field', tileLabelText(lang)));
+      untracked(() => {
+        if (!this.map?.getLayer(TILE_LABEL)) return;
+        this.map.setLayoutProperty(TILE_LABEL, 'text-field', tileLabelText(names));
+        this.applyTileLabelFilter(true);
+      });
     });
     effect(() => {
       const data = this.collection();
@@ -1154,7 +1165,10 @@ export class AtlasMap {
         let side: 'right' | 'left' = 'right';
         // 所在國沒找到時無法比寬度 → 不顯示名字（圓點照常）
         let minZoom = 99;
-        for (const ring of sovRings) {
+        // tiles 模式：國界在圖磚裡（沒有完整多邊形），改用該政權當日最大塊國土的外框寬（圖磚 labels.span_x）比寬度；選邊用預設右側
+        const span = this.boundarySource() === 'tiles' ? this.tileSpans.get(String((f.properties as Record<string, unknown> | null)?.['regimeId'] ?? '')) : undefined;
+        if (span) minZoom = clampMinZoom(Math.log2((labelW + 10) / (span * 512)));
+        for (const ring of span ? [] : sovRings) {
           if (pointInProjectedRing(dotPx.x, dotPx.y, ring)) {
             side = pickCapitalAnchorSide(dotPx, labelW, ring);
             let x0 = Infinity, x1 = -Infinity;
@@ -1330,6 +1344,7 @@ export class AtlasMap {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     map.setFilter('capital-label', labelFilterExpr(sel) as any);
     map.setFilter('capital-dot', sel ? ['!=', ['coalesce', ['get', 'regimeId'], ''], sel] : null);
+    this.applyTileLabelFilter();
   }
 
   /** 被選政權的國名（含它的控制區名稱）與首都：投影到螢幕座標，畫在蒙版上方；放好後更新障礙符號。 */
@@ -1471,7 +1486,8 @@ export class AtlasMap {
     if (!map || map.getSource(TILE_SOURCE)) return;
     map.addSource(TILE_SOURCE, { type: 'vector', url: readTilesUrl(), attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）等' });
     const d = this.date() ?? this.state.date();
-    const [fill, line, lineNs, label] = boundaryTileLayers(dayNumber(d), this.regimeColors(), this.state.lang());
+    this.tileDay = dayNumber(d);
+    const [fill, line, lineNs, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
     for (const l of [fill, line, lineNs]) map.addLayer(l, 'gap-base');
     map.addLayer(label, 'regime-label');
     this.tileFilterKey = intervalKey(this.changePoints(), d);
@@ -1486,19 +1502,54 @@ export class AtlasMap {
     const up = tileFilterUpdate(this.tileFilterKey, intervalKey(points, date), dayNumber(date));
     if (!up) return;
     this.tileFilterKey = up.key;
+    this.tileDay = dayNumber(date);
     performance.mark('wl:tiles:filter');
     for (const [layer, filter] of Object.entries(up.filters)) map.setFilter(layer, filter);
+    this.applyTileLabelFilter(true);
+    this.tileSpanDay = null; // 國土寬度（首都名門檻）換區間後重收
+  }
+
+  /** 名字寬度（px，與 geojson 國名同一量法）：依名稱字串快取。 */
+  private tileLabelPx(): Record<string, number> {
+    const out: Record<string, number> = {};
+    for (const [id, t] of Object.entries(this.regimeNames())) if (t) out[id] = measureLabelWidth(t, false);
+    return out;
+  }
+
+  /** tiles 國名 filter（日期、裝得下、排除被選政權）；names 變了才重量寬度。 */
+  private tileLabelPxCache: Record<string, number> = {};
+  private tileLabelSel: string | null | undefined = undefined;
+  private applyTileLabelFilter(force = false): void {
+    const map = this.map;
+    if (!map?.getLayer(TILE_LABEL)) return;
+    if (!force && this.tileLabelSel === this.focusRegimeId) return;
+    if (force) this.tileLabelPxCache = this.tileLabelPx();
+    this.tileLabelSel = this.focusRegimeId;
+    map.setFilter(TILE_LABEL, tileLabelFilter(this.tileDay, this.tileLabelPxCache, this.focusRegimeId));
   }
 
   private collectTileRegimeIds(): void {
     const map = this.map;
     if (this.boundarySource() !== 'tiles' || !map?.getSource(TILE_SOURCE)) return;
     const fresh: string[] = [];
-    for (const f of map.querySourceFeatures(TILE_SOURCE, { sourceLayer: 'labels' })) {
+    const spans = new Map<string, number>();
+    for (const f of map.querySourceFeatures(TILE_SOURCE, { sourceLayer: 'labels', filter: tileDateFilter(this.tileDay) })) {
       const id = f.properties?.['regime_id'] as string | undefined;
-      if (id && !this.tileIdsSeen.has(id)) { this.tileIdsSeen.add(id); fresh.push(id); }
+      if (!id) continue;
+      if (!this.tileIdsSeen.has(id)) { this.tileIdsSeen.add(id); fresh.push(id); }
+      const span = Number(f.properties?.['span_x'] ?? 0);
+      if (span > (spans.get(id) ?? 0)) spans.set(id, span);
     }
     if (fresh.length) this.tileRegimeIds.emit(fresh);
+    // 國土寬度變了（換區間或新圖磚進來）→ 重算首都名門檻
+    let changed = this.tileSpanDay !== this.tileDay || spans.size !== this.tileSpans.size;
+    if (!changed) for (const [k, v] of spans) if (this.tileSpans.get(k) !== v) { changed = true; break; }
+    if (!changed) return;
+    this.tileSpans = spans;
+    this.tileSpanDay = this.tileDay;
+    this.computeAndApplyCapitalSides(this.capitals(), this.sovereignty());
+    this.applyLabelFilters();
+    this.placeSelectedLabels();
   }
 
   private countRendered(): void {

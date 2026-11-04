@@ -29,7 +29,7 @@ SQL
 
 echo "[2/4] 匯出 labels（label_points：最大塊國土上的 polylabel）"
 { echo "SELECT json_build_object('type','Feature','geometry',ST_AsGeoJSON(geom,6)::json,'properties',json_build_object("
-  echo "'regime_id',regime_id,'start_day',start_day,'end_day',end_day,'name_zh',name_zh,'name_local',name_local,'area',area))"
+  echo "'regime_id',regime_id,'start_day',start_day,'end_day',end_day,'name_zh',name_zh,'name_local',name_local,'area',area,'span_x',span_x))"
   echo "FROM ("; cat $HERE/sql/label_points.sql; echo ") lp ORDER BY start_day, regime_id;"; } | q > $OUT/labels.geojsonseq
 
 # 變動日（manifest.changeDays）：所有段落的起訖日

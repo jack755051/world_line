@@ -147,54 +147,71 @@ public static class SovereigntyEndpoints
 
     private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, double tolerance, CancellationToken ct)
     {
-
+        // 第 1 層（Tai 2026-11-04）：由 PostGIS 依有效期間篩出當天有效的紀錄（valid_period @> d，即 lower <= d AND (upper IS NULL OR upper > d)，
+        // 走 ix_sovereignty_records_valid_period GiST 索引）；這一步不取幾何，只取屬性。
         var rows = await (
                 from r in db.SovereigntyRecords.AsNoTracking()
                 join g in db.Regimes on r.RegimeId equals g.Id
                 join s in db.Sources on r.GeometrySourceId equals s.Id
                 where r.RetractedAt == null && r.ValidPeriod.Contains(d)
                 orderby g.Slug, r.Id
-                select new { r, g.Slug, s.Title, s.Publisher, s.LicenseCode })
+                select new
+                {
+                    r.Id, r.RegimeId, r.LayerStatus, r.ValidPeriod, r.StartEventId, r.EndEventId,
+                    r.GeometrySourceId, r.GeometryLocator, r.GeometryLicense, r.Attribution,
+                    r.OhmRelationId, r.OhmVersion, r.OhmFetchedAt, r.OhmStartRaw, r.OhmEndRaw, r.Provenance, r.Note,
+                    g.Slug, s.Title, s.Publisher, s.LicenseCode,
+                })
             .ToListAsync(ct);
 
-        var eventIds = rows.SelectMany(x => new[] { x.r.StartEventId, x.r.EndEventId }).OfType<Guid>().Distinct().ToList();
+        var eventIds = rows.SelectMany(x => new[] { x.StartEventId, x.EndEventId }).OfType<Guid>().Distinct().ToList();
         var events = await EventRefsAsync(db, eventIds, ct);
-        var regimeIds = rows.Select(x => x.r.RegimeId).Distinct().ToList();
+        var regimeIds = rows.Select(x => x.RegimeId).Distinct().ToList();
         var alignments = await RegimeAlignmentsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
         var occupations = await OccupationsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
 
-        // 幾何簡化（TopologyPreservingSimplifier）與 GeoJSON 序列化皆為純 CPU 無副作用，
-        // 以 PLINQ 平行執行可大幅縮短含大幾何（如俄國）的冷快取首次計算時間。
-        // AsOrdered() 維持資料庫排序（regimeSlug, id），讓回應順序具確定性。
-        var features = rows.AsParallel().AsOrdered().Select(x =>
+        // 幾何只對還沒簡化過的紀錄才從 PostGIS 取原始幾何（以前每次都把當天全部原始幾何讀進來，一天約 80 萬點）
+        var geometries = await GeoJsonForAsync(db, rows.Select(x => x.Id).ToList(), tolerance, ct);
+
+        return rows.Select(r =>
         {
-            var r = x.r;
-            var simplified = GetOrSimplify(r.Id, r.Geom, tolerance);
             JsonElement? flags = r.Provenance is null ? null : JsonDocument.Parse(r.Provenance).RootElement.Clone();
-            return new SovereigntyFeature(r.Id, Mapping.ToGeoJson(simplified), new SovereigntyFeatureProperties(
-                r.Id, r.RegimeId, x.Slug, r.LayerStatus, Mapping.ToDto((NpgsqlRange<DateOnly>?)r.ValidPeriod)!,
+            return new SovereigntyFeature(r.Id, geometries[r.Id], new SovereigntyFeatureProperties(
+                r.Id, r.RegimeId, r.Slug, r.LayerStatus, Mapping.ToDto((NpgsqlRange<DateOnly>?)r.ValidPeriod)!,
                 r.StartEventId is { } se ? events.GetValueOrDefault(se) : null,
                 r.EndEventId is { } ee ? events.GetValueOrDefault(ee) : null,
-                new GeometryProvenanceDto(r.GeometrySourceId, x.Title, x.Publisher, x.LicenseCode, r.GeometryLocator,
+                new GeometryProvenanceDto(r.GeometrySourceId, r.Title, r.Publisher, r.LicenseCode, r.GeometryLocator,
                     r.GeometryLicense, r.Attribution, r.OhmRelationId, r.OhmVersion, r.OhmFetchedAt, r.OhmStartRaw, r.OhmEndRaw, flags),
                 Mapping.ReadLocalizedOrNull(r.Note),
                 alignments.GetValueOrDefault(r.RegimeId),
                 occupations.GetValueOrDefault(r.RegimeId)));
         }).ToList();
-        return features;
     }
 
     /// <summary>
-    /// 已簡化幾何的行程內快取（(recordId, tolerance) → simplified）。主權紀錄不可變，
-    /// 同一筆 record 在相同容差下的簡化結果永遠相同，可安全跨日期區間重用。
-    /// 寫入作廢（DateIntervalCache.Invalidate）只影響 FeatureCollection 快取，此簡化快取不清除：
-    /// 撤回後的 record 不會再被查詢，舊項目最終 GC；數量上限不超過 sovereignty_records 總筆數 × 容差層數（目前 ~600）。
+    /// 回應用幾何（已簡化、已序列化成 GeoJSON）的行程內快取（(recordId, tolerance) → JsonElement）。主權紀錄不可變，
+    /// 同一筆 record 在相同容差下的結果永遠相同，可跨日期區間共用：各日期快取的 FeatureCollection 參照同一份幾何，不再各存一份。
+    /// 寫入作廢（DateIntervalCache.Invalidate）不清除此快取：撤回後的 record 不會再被查詢。
+    /// 上限＝sovereignty_records 筆數 × 容差層數。
     /// </summary>
-    private static readonly ConcurrentDictionary<(Guid Id, double Tolerance), MultiPolygon> _simplifiedCache = new();
+    private static readonly ConcurrentDictionary<(Guid Id, double Tolerance), JsonElement> _geoJsonCache = new();
 
-    /// <summary>回應用的簡化幾何：優先取快取；快取未命中才執行 TopologyPreservingSimplifier。</summary>
-    internal static MultiPolygon GetOrSimplify(Guid id, MultiPolygon g, double tolerance) =>
-        _simplifiedCache.GetOrAdd((id, tolerance), _ => Simplify(g, tolerance));
+    /// <summary>ids 各自的回應用幾何：命中快取直接用；其餘一次向 PostGIS 取原始幾何，平行簡化＋序列化後存入快取。</summary>
+    internal static async Task<Dictionary<Guid, JsonElement>> GeoJsonForAsync(WorldLineDbContext db, IReadOnlyCollection<Guid> ids, double tolerance, CancellationToken ct)
+    {
+        var result = new Dictionary<Guid, JsonElement>(ids.Count);
+        var missing = new List<Guid>();
+        foreach (var id in ids)
+            if (_geoJsonCache.TryGetValue((id, tolerance), out var hit)) result[id] = hit; else missing.Add(id);
+        if (missing.Count == 0) return result;
+
+        var raw = await db.SovereigntyRecords.AsNoTracking().Where(r => missing.Contains(r.Id))
+            .Select(r => new { r.Id, r.Geom }).ToListAsync(ct);
+        // 簡化（TopologyPreservingSimplifier）與 GeoJSON 序列化皆為純 CPU 無副作用，平行執行縮短含大幾何（如俄國）的首次計算
+        foreach (var (id, json) in raw.AsParallel().Select(x => (x.Id, _geoJsonCache.GetOrAdd((x.Id, tolerance), _ => Mapping.ToGeoJson(Simplify(x.Geom, tolerance))))).ToList())
+            result[id] = json;
+        return result;
+    }
 
     /// <summary>
     /// 回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。
@@ -218,7 +235,7 @@ public static class SovereigntyEndpoints
 
     /// <summary>
     /// 預熱單一日期（供啟動背景任務呼叫）；依序填充三個縮放容差層（0.010 / 0.004 / 0.002）的快取。
-    /// 前兩層先算可複用 <see cref="GetOrSimplify"/> 快取，後續命中幾乎無 CPU 開銷。
+    /// 幾何共用 <see cref="GeoJsonForAsync"/> 的快取，已算過的紀錄不再讀原始幾何。
     /// </summary>
     public static async Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache)
     {

@@ -103,3 +103,35 @@ test('§12 政權面板手機：點國家開到 peek 120px；拖把手（可點�
   const sb = (await sheet.boundingBox())!;
   expect(Math.abs(sb.y + sb.height - tl.y)).toBeLessThanOrEqual(1);
 });
+
+test('§12 L1 圖例手機：沒有 ⓘ 與圖例分頁；⋯ 選單「圖例」開獨立 bottom sheet（≤60vh、兩欄、色票 20px、13px）；往下滑或點地圖關閉；選政權時也能開', async ({ page }) => {
+  await open(page, 390);
+  await expect(page.getByTestId('legend-expand')).toHaveCount(0);
+  await page.getByTestId('topbar-menu-button').click();
+  await page.getByTestId('topbar-menu-legend').click();
+  const ls = page.getByTestId('legend-sheet');
+  await expect(ls).toBeVisible();
+  expect((await ls.boundingBox())!.height).toBeLessThanOrEqual(844 * 0.6 + 1);
+  const sw = (await page.getByTestId('legend-sov-fill').locator('.sw').boundingBox())!;
+  expect(Math.round(sw.width)).toBe(20);
+  expect(await page.getByTestId('legend-sov-fill').evaluate((e) => getComputedStyle(e).fontSize)).toBe('13px');
+  expect(await page.getByTestId('legend-sov-fill').evaluate((e) => getComputedStyle(e.parentElement!).gridTemplateColumns.split(' ').length)).toBe(2);
+  // 往下滑關閉
+  const h = (await page.getByTestId('legend-sheet-handle').boundingBox())!;
+  await page.mouse.move(h.x + h.width / 2, h.y + 20);
+  await page.mouse.down();
+  await page.mouse.move(h.x + h.width / 2, h.y + 140, { steps: 6 });
+  await page.mouse.up();
+  await expect(ls).toHaveCount(0);
+  // 點地圖關閉；選了政權也能開，不是政權面板的分頁
+  await page.getByTestId('topbar-menu-button').click();
+  await page.getByTestId('topbar-menu-legend').click();
+  await expect(ls).toBeVisible();
+  await page.mouse.click(195, 80);
+  await expect(ls).toHaveCount(0);
+  await selectGermany(page);
+  await expect(page.getByTestId('sheet-tab-legend')).toHaveCount(0);
+  await page.getByTestId('topbar-menu-button').click();
+  await page.getByTestId('topbar-menu-legend').click();
+  await expect(ls).toBeVisible();
+});

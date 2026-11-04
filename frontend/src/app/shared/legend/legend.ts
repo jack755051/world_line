@@ -36,19 +36,36 @@ export interface LegendRegime {
     .sw { width: 22px; height: 14px; flex: none; border-radius: 2px; }
     .sw-wide { width: 32px; }
     .row { display: flex; align-items: center; gap: 8px; }
+    /* §12 L1 手機：獨立 bottom sheet，兩欄 grid、色票 20px、說明 13px */
+    .sheet-body, .sheet-body li, .sheet-body p { font-size: 13px; line-height: 18px; }
+    .sheet-body ul { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .sheet-body .sw { width: 20px; height: 20px; }
+    .sheet-body .sw-wide { width: 20px; }
   `,
   template: `
     <!-- 圖例（ARCHITECTURE.md §10-3）：左下 40×40 ⓘ 按鈕，點了在按鈕上方展開 240px 寬浮動面板（最高 50vh，可捲動）；
          Esc、再點一次按鈕、點地圖空白處收起；開關狀態記在 localStorage（AtlasState）。 -->
-    @if (mode() === 'embedded') {
-      <!-- 小於 768px：圖例是底部面板裡的一個分頁（§10-3） -->
-      <section data-testid="legend-tab-panel" data-state="embedded" [attr.data-axis]="axis()" class="flex min-h-0 flex-1 flex-col" [attr.aria-label]="tr('legend.title')">
-        <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: true }" />
-      </section>
+    @if (mode() === 'sheet') {
+      <!-- §12 L1：手機版圖例＝從頂列 ⋯ 選單打開的獨立 bottom sheet（最高 60vh；往下滑或點地圖關閉） -->
+      @if (open()) {
+        <section data-testid="legend-sheet" role="dialog" aria-modal="false" [attr.aria-label]="tr('legend.title')" [attr.data-axis]="axis()"
+          class="wl-paper flex max-h-[60vh] flex-col overflow-hidden rounded-b-none shadow-[var(--wl-shadow-panel)]"
+          [style.transform]="dragY() ? 'translateY(' + dragY() + 'px)' : null">
+          <div data-testid="legend-sheet-handle" class="flex h-11 flex-none cursor-grab touch-none items-center justify-center" (pointerdown)="startSheetDrag($event)">
+            <span class="h-1 w-8 rounded-full bg-wl-outline-variant"></span></div>
+          <div class="flex flex-none items-center justify-between px-4 pb-2">
+            <span class="wl-title2">{{ tr('legend.title') }}</span>
+            <button type="button" data-testid="legend-sheet-close" class="wl-icon-btn size-11" [attr.aria-label]="lang() === 'en' ? 'Close' : '關閉'" (click)="toggle.emit()">✕</button>
+          </div>
+          <div class="sheet-body flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-4">
+            <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: true }" />
+          </div>
+        </section>
+      }
     } @else {
-    <section data-testid="legend" [attr.data-state]="mode() === 'button' || (!open() && !closing()) ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
+    <section data-testid="legend" [attr.data-state]="(!open() && !closing()) ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
       class="flex flex-col items-start gap-2" [attr.aria-label]="tr('legend.title')">
-    @if (mode() === 'floating' && (open() || closing())) {
+    @if (open() || closing()) {
     <div #panel data-testid="legend-panel" id="wl-legend-panel" class="wl-paper flex max-h-[50vh] w-[240px] flex-col overflow-hidden">
       <div class="flex flex-none items-center justify-between px-4 py-3">
         <span class="wl-title2">{{ tr('legend.title') }}</span>
@@ -147,7 +164,7 @@ export interface LegendRegime {
 export class Legend {
   readonly open = input(false);
   /** floating＝左下按鈕＋浮動面板；button＝只有按鈕（小於 768px，圖例在底部面板分頁）；embedded＝放在底部面板分頁裡。 */
-  readonly mode = input<'floating' | 'button' | 'embedded'>('floating');
+  readonly mode = input<'floating' | 'sheet'>('floating');
   readonly lang = input<Lang>('zh-Hant');
   readonly regimes = input<LegendRegime[]>([]);
   readonly regimesStatus = input<LoadStatus>('idle');
@@ -222,8 +239,24 @@ export class Legend {
       });
   }
 
+  /** §12 L1：往下滑關閉（拖超過 60px）。 */
+  protected readonly dragY = signal(0);
+  protected startSheetDrag(e: PointerEvent): void {
+    const y0 = e.clientY;
+    const move = (ev: PointerEvent) => this.dragY.set(Math.max(0, ev.clientY - y0));
+    const up = (ev: PointerEvent) => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      this.dragY.set(0);
+      if (ev.clientY - y0 > 60) this.toggle.emit();
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
   protected onEscape(): void {
-    if (this.open() && this.mode() === 'floating') this.toggle.emit();
+    if (this.open()) this.toggle.emit();
   }
 
   protected readonly controlTypes = CONTROL_TYPES;

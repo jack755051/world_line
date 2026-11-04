@@ -146,24 +146,11 @@ interface SheetInfo {
               <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
               <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
                 [snap]="sheetSnap()" [snapFor]="snapFor" (snapChange)="sheetSnap.set($event)"
-                [title]="sheetTitle()" [subtitle]="sheetCapital()" [description]="sheetLegendOnly() ? '' : sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
+                [title]="sheetTitle()" [subtitle]="sheetCapital()" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
                 [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : sheet()?.kind === 'control' ? 'feature-card-close' : 'sovereignty-card-close'"
                 (closed)="onSheetClosed()" (hidden)="onSheetHidden()">
-                @if (mobile() && sheet() && !sheetLegendOnly()) {
-                  <!-- 小於 768px：底部面板加「圖例」分頁（§10-3） -->
-                  <div role="tablist" data-testid="sheet-tabs" class="mb-2 flex flex-none gap-4 border-b border-wl-outline-variant wl-text2">
-                    <button type="button" role="tab" data-testid="sheet-tab-info" class="pb-1.5" [attr.aria-selected]="mobileTab() === 'info'"
-                      [class.font-semibold]="mobileTab() === 'info'" [class.border-b-2]="mobileTab() === 'info'" [class.border-wl-secondary]="mobileTab() === 'info'" (click)="mobileTab.set('info')">{{ lang() === 'en' ? 'Details' : '資訊' }}</button>
-                    <button type="button" role="tab" data-testid="sheet-tab-legend" class="pb-1.5" [attr.aria-selected]="mobileTab() === 'legend'"
-                      [class.font-semibold]="mobileTab() === 'legend'" [class.border-b-2]="mobileTab() === 'legend'" [class.border-wl-secondary]="mobileTab() === 'legend'" (click)="mobileTab.set('legend')">{{ tr('legend.title') }}</button>
-                  </div>
-                }
-                @if (mobile() && (sheetLegendOnly() || mobileTab() === 'legend')) {
-                  <div class="min-h-0 flex-1 overflow-y-auto">
-                    <wl-legend mode="embedded" [open]="true" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()" [axis]="state.axis()" />
-                  </div>
-                } @else if (sheet(); as sh) {
+                @if (sheet(); as sh) {
                   @if (sh.sov; as s) {
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
@@ -189,9 +176,9 @@ interface SheetInfo {
                 </div>
               }
 
-              <!-- 圖例（§10-3）：時間軸上方 12px、距左邊 12px -->
-              <div data-testid="legend-anchor" class="absolute bottom-3 left-3 z-10">
-                <wl-legend [mode]="mobile() ? 'button' : 'floating'" [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
+              <!-- 圖例（§10-3）：時間軸上方 12px、距左邊 12px；§12 L1 手機：從頂列 ⋯ 選單打開的獨立 bottom sheet（ⓘ 不顯示） -->
+              <div data-testid="legend-anchor" class="absolute z-30" [class.bottom-3]="!mobile()" [class.left-3]="!mobile()" [class.inset-x-0]="mobile()" [class.bottom-0]="mobile()">
+                <wl-legend [mode]="mobile() ? 'sheet' : 'floating'" [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
                   [axis]="state.axis()"
                   (toggle)="toggleLegend()" />
               </div>
@@ -250,6 +237,8 @@ export class AtlasPage {
   }
   protected readonly showCamps = signal(false);
   protected readonly vp = inject(ViewportService);
+  /** §12 L1：手機開頁時圖例 sheet 一律關著（桌機記住的開關狀態不套用）。 */
+  private readonly phoneLegendReset = this.vp.phone() ? this.state.legendOpen.set(false) : undefined;
   /** 手機頂列點日期：聚焦時間軸的日期輸入（同一個日期選擇器）。 */
   protected openDatePicker(): void {
     const el = document.querySelector<HTMLInputElement>('[data-testid="timeline-date-input"]');
@@ -499,28 +488,22 @@ export class AtlasPage {
       this.fadeDisarm = setTimeout(() => this.fadeArmed.set(false), 400);
     }
   }, 300);
-  /** 小於 768px：圖例改成底部面板的一個分頁（§10-3）。 */
+  /** 小於 768px（§12 手機）：圖例是獨立 bottom sheet（L1）。 */
   protected readonly mobile = computed(() => this.areaSize().w > 0 && this.areaSize().w < 768);
-  protected readonly mobileTab = signal<'info' | 'legend'>('info');
-  /** 底部面板只有圖例（沒有選取政權時按 ⓘ）。 */
-  protected readonly sheetLegendOnly = computed(() => this.mobile() && this.state.legendOpen() && this.sheetNow() === null);
-  protected readonly sheetOpen = computed(() => this.sheetNow() !== null || this.sheetLegendOnly());
-  protected readonly sheetTitle = computed(() => (this.sheetLegendOnly() ? this.tr('legend.title') : this.sheet()?.title ?? ''));
+  protected readonly sheetOpen = computed(() => this.sheetNow() !== null);
+  protected readonly sheetTitle = computed(() => this.sheet()?.title ?? '');
   /** §10：政權面板標頭顯示首都（只有主權政權、且當前日期有首都資料時）。 */
   protected readonly sheetCapital = computed(() => {
-    if (this.sheetLegendOnly() || this.sheet()?.kind !== 'sov') return '';
+    if (this.sheet()?.kind !== 'sov') return '';
     const n = this.selectedCapital()?.cityName;
     if (!n) return '';
     const name = (this.lang() === 'en' ? n.en || n['zh-Hant'] : n['zh-Hant'] || n.en) ?? '';
     return name ? (this.lang() === 'en' ? `Capital: ${name}` : `首都・${name}`) : '';
   });
   protected toggleLegend(): void {
-    const open = !this.state.legendOpen() || (this.mobile() && this.mobileTab() !== 'legend' && this.sheetNow() !== null);
-    this.state.legendOpen.set(open);
-    if (this.mobile() && open) this.mobileTab.set('legend');
+    this.state.legendOpen.set(!this.state.legendOpen());
   }
   protected onSheetClosed(): void {
-    if (this.mobile()) this.state.legendOpen.set(false);
     this.clearSelection();
   }
   protected readonly focusInset = computed<FocusInset>(
@@ -782,7 +765,7 @@ export class AtlasPage {
   }
 
   protected onFeatureClick(e: MapFeatureEvent): void {
-    this.mobileTab.set('info');
+    if (this.mobile()) this.state.legendOpen.set(false); // §12 L1：點地圖關閉圖例 sheet
     if (this.mobile() && this.sheetNow() === null) this.sheetSnap.set('peek'); // §12：點國家開到 peek
     this.hover.set(null);
     this.selectedSov.set(null);
@@ -826,7 +809,7 @@ export class AtlasPage {
   }
 
   protected onSovereigntyClick(e: MapSovereigntyEvent): void {
-    this.mobileTab.set('info');
+    if (this.mobile()) this.state.legendOpen.set(false); // §12 L1：點地圖關閉圖例 sheet
     if (this.mobile() && this.sheetNow() === null) this.sheetSnap.set('peek'); // §12：點國家開到 peek
     this.hover.set(null);
     this.selected.set(null);

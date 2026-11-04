@@ -581,3 +581,93 @@ flowchart LR
 2. C1：取消收合後，出處要放在選取後才顯示的內容裡，還是一律固定顯示？
 3. T1：尚未發生的事件要不要變淡？
 4. T2：用目前日期標線取代卡片上的「目前日期」文字？
+
+## §11 事件座標、戰役模式、疆界分頁（章節稿 v1，2026-11-04，待 Tai 確認）
+基準尺寸取自 §10：右側 sheet 寬 400px；底部時間軸 48px，在 900px 高的視窗中頂端位於 y=852。其他現有尺寸未重讀 repo，實作時再對照修正。
+
+### 11.0 決定
+| 編號 | 決定 |
+|---|---|
+| D-U1 (A1) | 一個事件只對應一個地點，不建 event_locations 表 |
+| D-U2 (A2) | 沒有座標就不閃動，卡片上標「無座標」，不用其他位置代替 |
+| D-U3 (A3) | 自動比對的座標先上線，標成待考證（geom_status=auto） |
+| D-U4 (B1) | 主地圖本身進入戰役模式，左側放一張 360px 的說明卡 |
+| D-U5 (B2) | 不自動播放，由使用者按播放鍵開始 |
+| D-U6 (B3) | 手機版（寬度小於 768px）的戰役模式改成全螢幕 |
+| D-U7 (C1) | 做面積折線圖 |
+| D-U8 (C2) | 爭議領土延到 1945 年以後的階段再做 |
+| D-U9 (C3) | 鄰國預先計算 |
+
+### 11.1 事件座標
+**Schema**（events 表新增欄位）
+```sql
+ALTER TABLE events ADD COLUMN geom geometry(Point,4326),
+  ADD COLUMN geom_precision text CHECK (geom_precision IN ('exact','city','region','country')),
+  ADD COLUMN geom_source text,          -- wikidata:Qxxx | geonames:id | manual
+  ADD COLUMN geom_status text NOT NULL DEFAULT 'pending'
+    CHECK (geom_status IN ('verified','auto','pending'));
+CREATE INDEX ON events USING GIST (geom);
+```
+**補資料流程**
+1. 匯入腳本 `tools/geocode-events`：先用 Wikidata 的 P625（座標）；沒有的話，取 P276（地點）指向的實體的 P625；還沒有就用 GeoNames 地名比對。比對到的寫入 geom，標成 `auto`。執行後輸出比對率報表。
+2. 比對失敗的事件，以及精確度只到 country 的事件，列成清單交給 World Line 史料考證補，補完標成 `verified`。
+3. World Line 測試驗收抽查 5% 的 `verified`。
+
+**API**：`GET /events?regime=&from=&to=` 的回應新增 `lng, lat, geom_precision, geom_status` 四個欄位；沒有座標時 lng 和 lat 回傳 null。
+
+**前端**
+- 新增 source `event-pulse`（GeoJSON，最多一個點）和 circle layer：半徑從 8px 放大到 24px、透明度從 0.8 降到 0，1.2 秒一輪，播放 2 輪後清空。
+- 沒有座標的事件，滑過卡片時不做任何事，卡片上顯示灰色的「無座標」tag。
+- `geom_status=auto` 的事件，卡片上顯示「座標待考證」tag。
+- 點落在可見範圍外時，在畫面邊緣顯示 24px 的方向箭頭。可見範圍要扣掉右側 400px 的 sheet 和底部 48px 的時間軸。
+- 「在地圖上看」用 flyTo，exact 和 city 用 zoom 6，region 用 zoom 5，country 用 zoom 4，padding 為 {right:416, bottom:64}。
+
+### 11.2 戰役模式
+- 進入方式：點 ⚔ tag。狀態機從 browse 轉到 campaign，進入後不自動播放，停在 P1。
+- 版面（桌機）：
+  - 左側說明卡寬 360px，top 16、left 16，底部停在時間軸上方 12px（bottom = 48 + 12），內容可捲動。
+  - 右側 sheet 維持 400px 寬，可以收起。
+  - 地圖 padding 為 {left: 392, right: 416（sheet 開啟時）, bottom: 64}，用 fitBounds 對準戰役範圍。
+- 說明卡內容依序為：標題、日期範圍、交戰方色票、階段膠囊（P1…Pn）、播放／暫停／上一階段／下一階段、階段說明、兵力與結果（沒有出處就顯示「待考證」）、引用來源。
+- 圖層（都是主地圖上的 layer）：
+  - `campaign-fronts`：line，戰線。
+  - `campaign-arrows`：line 加 symbol，進攻箭頭。
+  - `campaign-sites`：symbol，據點。
+  - 三個圖層都依 `phase` 過濾。
+- 播放：每個階段停 3 秒，播完停在最後一個階段（ended）。
+- 時間軸：鎖定在戰役日期範圍，並顯示目前階段的日期。
+- 狀態：loading → ready(P1) → playing ↔ paused → ended。出錯時說明卡只顯示文字摘要，戰役圖層不顯示。
+- 離開戰役模式（按 Esc 或點 ×）：回到 browse 狀態，恢復進入前的日期、地圖視角和 sheet 狀態。
+- 標籤：被選政權的名稱維持在蒙版之上。地圖 padding 的左側增加 392px，讓國名標籤避開說明卡。
+- 手機版（寬度小於 768px）：全螢幕。地圖佔上方 60vh；說明卡在下方，可以拖拉；時間軸隱藏，改用階段膠囊切換。
+
+### 11.3 疆界分頁
+1. 摘要列：當日面積（km²），以及和上一個時期相比的增減（±km²、±%）。
+2. 面積折線圖：x 軸是 1908–1945，y 軸是面積；目前日期用一條直線標示。滑過折線時顯示該日面積，點擊折線會熱跳到該日期。高 120px，畫在 SVG 上。
+3. 疆界變遷列表：依 boundary_periods 列出每段時期的起訖日、變化原因和出處，點一列會熱跳到該時期的起始日。
+4. 鄰國：當日與哪些政權接壤，點了切換成該政權的面板。
+5. 爭議領土：這一版不做，延到 1945 年以後的階段。
+
+**預先計算**（在建 PMTiles 的批次中一起執行）
+```sql
+CREATE TABLE boundary_period_stats (
+  period_id bigint PRIMARY KEY REFERENCES boundary_periods,
+  area_km2 numeric, area_delta_km2 numeric);
+CREATE TABLE boundary_period_neighbors (
+  period_id bigint, neighbor_regime_id bigint, during daterange,
+  PRIMARY KEY (period_id, neighbor_regime_id, during));
+-- 面積用 ST_Area(geom::geography)/1e6
+-- 鄰國用 ST_Touches，或 ST_Intersects 搭配 0.5 km 容差，並取雙方時期日期範圍的交集
+```
+**API**：`GET /regimes/{id}/boundary-summary?date=` 回傳 `{area_km2, delta, series:[{day, area}], periods:[...], neighbors:[...]}`；series 每個時期一點。
+
+### 11.4 驗收
+- 有座標的事件，滑過卡片後 100ms 內開始閃動；沒有座標的不閃動。
+- 戰役模式中，說明卡、sheet、時間軸互不重疊；被選政權的名稱一定看得見；離開後完全恢復進入前的狀態。
+- 播放時維持 55fps 以上。
+- 疆界分頁的資料 300ms 內載入。鄰國清單和 PostGIS 抽查的結果一致。
+- 寬度小於 768px 時，戰役模式為全螢幕。
+
+### 11.5 未決定
+- GeoNames 要用線上 API，還是下載資料庫放在本機？兩種都免費。
+- 鄰國的容差要用多少（暫定 0.5 km）。

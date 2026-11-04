@@ -93,7 +93,7 @@ interface SheetInfo {
                 [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
-                (emptyClick)="clearSelection(); state.legendOpen.set(false)" (featureHover)="hover.set($event)" />
+                (emptyClick)="clearSelection(); state.legendOpen.set(false)" (featureHover)="onFeatureHover($event)" />
 
 
               @if (firstLoad()) {
@@ -595,7 +595,7 @@ export class AtlasPage {
 
   protected readonly hoverInfo = computed(() => {
     const h = this.hover();
-    if (!h || this.selected()) return null;
+    if (!h || (this.selected() && !this.vp.touch())) return null; // §12 觸控：點擊後的 tooltip 也顯示
     const d = this.describe(h.versionId);
     if (!d) return null;
     const key = `control.${d.p.controlType}` as I18nKey;
@@ -764,7 +764,19 @@ export class AtlasPage {
     this.state.setDate(d);
   }
 
+  /** §12 觸控：沒有 hover，地圖 tooltip 改成點擊後出現、3 秒後消失。 */
+  private tapTipTimer: ReturnType<typeof setTimeout> | undefined;
+  protected onFeatureHover(e: MapFeatureEvent | null): void {
+    if (!this.vp.touch()) this.hover.set(e);
+  }
+  private showTapTip(e: MapFeatureEvent): void {
+    if (!this.vp.touch()) return;
+    clearTimeout(this.tapTipTimer);
+    this.hover.set(e);
+    this.tapTipTimer = setTimeout(() => this.hover.set(null), 3000);
+  }
   protected onFeatureClick(e: MapFeatureEvent): void {
+    this.showTapTip(e);
     if (this.mobile()) this.state.legendOpen.set(false); // §12 L1：點地圖關閉圖例 sheet
     if (this.mobile() && this.sheetNow() === null) this.sheetSnap.set('peek'); // §12：點國家開到 peek
     this.hover.set(null);

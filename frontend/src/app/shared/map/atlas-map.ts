@@ -811,13 +811,15 @@ export class AtlasMap {
         // 不畫世界副本：同一政權的候選點在副本上會再出現一次（一政權一名，Tai 2026-11-04）
         renderWorldCopies: false,
         maxZoom: 9,
-        attributionControl: { compact: false },
+        // §12：手機（<768px）出處收成 ⓘ（點開才展開），避免佔掉地圖底部
+        attributionControl: { compact: typeof window !== 'undefined' && window.innerWidth < 768 },
         // 符號碰撞淡入淡出：預設 300ms 會讓地圖晚約一個淡入週期才 idle（熱跳 ready 慢 ~255ms 的主因，2026-11-03 量測）
         fadeDuration: SYMBOL_FADE_MS,
         dragRotate: false,
         pitchWithRotate: false,
       });
-      map.touchZoomRotate.disableRotation();
+      // §12 觸控：雙指縮放與旋轉、單指拖動；關閉 pitch（雙指上下拖不傾斜地圖）
+      map.touchPitch.disable();
       // 面板／圖例的 padding 由 uiPadding 決定（§10）
       map.setPadding({ left: this.uiPadding().left, top: 0, right: this.uiPadding().right, bottom: this.uiPadding().bottom ?? 0 });
       this.map = map;

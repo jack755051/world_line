@@ -149,7 +149,7 @@ interface SheetInfo {
               <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
               <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
                 [resizable]="layout().resizable" [minSize]="sheetMin" [maxSize]="sheetMax" [snap]="sheetSnap()" (resized)="setSheetWidth($event)" (snapChange)="sheetSnap.set($event)"
-                [title]="sheetTitle()" [description]="sheetLegendOnly() ? '' : sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
+                [title]="sheetTitle()" [subtitle]="sheetCapital()" [description]="sheetLegendOnly() ? '' : sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
                 [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : sheet()?.kind === 'control' ? 'feature-card-close' : 'sovereignty-card-close'"
                 (closed)="onSheetClosed()" (hidden)="onSheetHidden()">
@@ -506,6 +506,14 @@ export class AtlasPage {
   protected readonly sheetLegendOnly = computed(() => this.mobile() && this.state.legendOpen() && this.sheetNow() === null);
   protected readonly sheetOpen = computed(() => this.sheetNow() !== null || this.sheetLegendOnly());
   protected readonly sheetTitle = computed(() => (this.sheetLegendOnly() ? this.tr('legend.title') : this.sheet()?.title ?? ''));
+  /** §10：政權面板標頭顯示首都（只有主權政權、且當前日期有首都資料時）。 */
+  protected readonly sheetCapital = computed(() => {
+    if (this.sheetLegendOnly() || this.sheet()?.kind !== 'sov') return '';
+    const n = this.selectedCapital()?.cityName;
+    if (!n) return '';
+    const name = (this.lang() === 'en' ? n.en || n['zh-Hant'] : n['zh-Hant'] || n.en) ?? '';
+    return name ? (this.lang() === 'en' ? `Capital: ${name}` : `首都・${name}`) : '';
+  });
   protected toggleLegend(): void {
     const open = !this.state.legendOpen() || (this.mobile() && this.mobileTab() !== 'legend' && this.sheetNow() !== null);
     this.state.legendOpen.set(open);

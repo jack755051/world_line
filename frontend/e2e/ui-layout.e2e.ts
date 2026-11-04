@@ -152,3 +152,12 @@ test('§10-3：小於 768px 圖例是底部面板的一個分頁；沒選政權�
   await page.getByTestId('sheet-tab-info').click();
   await expect(page.getByTestId('legend-tab-panel')).toHaveCount(0);
 });
+
+test('§10：政權面板標頭顯示首都', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/?date=1940-06-01&axis=sovereignty');
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
+  await selectGermany(page);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
+  await expect(page.getByTestId('regime-sheet-capital')).toHaveText('首都・柏林');
+});

@@ -51,7 +51,11 @@ const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
               <span class="h-1 w-10 rounded-full bg-wl-outline-variant"></span></button>
           }
           <sanring-sheet-header align="start" class="min-h-[56px] flex-none pr-8">
-            <sanring-sheet-title [attr.data-testid]="titleTestId()">{{ title() }}</sanring-sheet-title>
+            <div class="flex min-w-0 flex-wrap items-baseline gap-x-2">
+              <sanring-sheet-title [attr.data-testid]="titleTestId()">{{ title() }}</sanring-sheet-title>
+              <!-- §10：標頭顯示首都（政權名稱、首都、關閉按鈕） -->
+              @if (subtitle()) { <span data-testid="regime-sheet-capital" class="wl-text2 text-wl-on-surface-variant">{{ subtitle() }}</span> }
+            </div>
             @if (description()) {
               <sanring-sheet-description data-testid="regime-sheet-description" [attr.lang]="descriptionLang() || null">{{ description() }}</sanring-sheet-description>
             }
@@ -81,6 +85,8 @@ export class RegimeSheet {
   readonly snapChange = output<'peek' | 'half' | 'full'>();
   readonly title = input('');
   readonly description = input('');
+  /** 標頭第二資訊（政權的首都，§10）。 */
+  readonly subtitle = input('');
   readonly descriptionLang = input('');
   readonly titleTestId = input('regime-sheet-title');
   readonly closeTestId = input('regime-sheet-close');

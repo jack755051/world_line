@@ -33,7 +33,8 @@ test('§10 v2 W1／§10-4：≥1440 面板寬 432、不能拖拉；面板底部�
   expect(Math.abs(sb.y + sb.height - tl.y)).toBeLessThanOrEqual(1);
   expect(Math.round(tl.width)).toBe(1440);
   await expect(page.getByTestId('regime-sheet-resize')).toHaveCount(0);
-  expect((await padding(page)).right).toBeGreaterThanOrEqual(448);
+  // padding 以 easeTo 200ms 套用：等動畫結束再讀
+  await expect.poll(async () => (await padding(page)).right).toBeGreaterThanOrEqual(448);
   await page.getByTestId('sovereignty-card-close').click();
   await expect(sheet).toHaveCount(0);
   await expect.poll(async () => (await padding(page)).right).toBe(0);

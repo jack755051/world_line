@@ -713,6 +713,14 @@ export class AtlasPage {
       ? this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.regimeId === regimeId)
       : null;
     this.focusRecord.set(sovRecord?.properties.recordId ?? null);
+    // tiles 模式：控制國的主權幾何不在前端，點選時才取，取到後再聚焦（仍是同一個控制區選取才套用）
+    if (!sovRecord && regimeId && this.data.boundarySource === 'tiles') {
+      void this.data.loadRegimeSovereignty(regimeId, this.state.date()).then((dto) => {
+        if (this.selected() !== e) return;
+        const rec = dto?.featureCollection.features.find((x) => x.properties.regimeId === regimeId);
+        if (rec) this.focusRecord.set(rec.properties.recordId);
+      });
+    }
     // 鏡頭對準「被點的控制區 feature 自己的幾何」，而非控制國整體
     this.focusFitBounds.set(f ? geometryBounds(f.geometry as unknown as Geometry) : null);
   }
@@ -738,8 +746,21 @@ export class AtlasPage {
     this.focusFitBounds.set(null);
     this.returnSov.set(null);
     const f = this.data.sovereignty()?.featureCollection.features.find((x) => x.properties.recordId === e.recordId);
-    if (f) void this.data.loadRegimeEvents(f.properties.regimeId);
-    this.focusRegimeId.set(f?.properties.regimeId ?? null);
+    const regimeId = f?.properties.regimeId ?? e.regimeId ?? null;
+    if (regimeId) void this.data.loadRegimeEvents(regimeId);
+    this.focusRegimeId.set(regimeId);
+    // tiles 模式：點到圖磚時才取被選政權的完整幾何（面板、蒙版、可見國名、高亮用），取到後對回 recordId
+    // （同一政權同一天只有一筆主權紀錄）
+    if (!f && regimeId && this.data.boundarySource === 'tiles') {
+      void this.data.loadRegimeSovereignty(regimeId, this.state.date()).then((dto) => {
+        if (this.selectedSov() !== e) return;
+        const rec = dto?.featureCollection.features.find((x) => x.properties.regimeId === regimeId)?.properties.recordId;
+        if (!rec) return;
+        const resolved = { ...e, recordId: rec };
+        this.selectedSov.set(resolved);
+        this.focusRecord.set(rec);
+      });
+    }
   }
 
   /** 政權面板「相關衝突」點一項：切到衝突詳情（仍聚焦原政權），可返回。 */
@@ -765,6 +786,8 @@ export class AtlasPage {
     this.clearSelection();
     this.pendingRegime.set(regime);
     this.state.setDate(date);
+    // tiles 模式：新日期該政權的幾何要另外取（取到後由 pendingRegime effect 重新聚焦）
+    if (regime && this.data.boundarySource === 'tiles') void this.data.loadRegimeSovereignty(regime, date);
   }
 
   /** 點衝突圖示：換成衝突卡，焦點政權不變（圖示保持顯示）。 */
@@ -798,6 +821,7 @@ export class AtlasPage {
     this.focusRecord.set(null);
     this.focusFitBounds.set(null);
     this.returnSov.set(null);
+    this.data.clearRegimeSovereignty();
   }
 
   protected onScanDone(): void {

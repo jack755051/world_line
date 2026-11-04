@@ -207,6 +207,11 @@ export interface MapGapEvent {
 /** 點主權圖層（國界）上的國家。 */
 export interface MapSovereigntyEvent {
   recordId: string;
+  /**
+   * tiles 模式：點到的圖磚只帶 regime_id（recordId 為空字串）；同一政權同一天只有一筆主權紀錄（DB EXCLUDE），
+   * 頁面取得被選政權幾何後再對回 recordId。圖磚不放 record_id（每塊都帶 UUID 會讓 PMTiles 大約 40%）。
+   */
+  regimeId?: string;
   x: number;
   y: number;
 }
@@ -851,7 +856,10 @@ export class AtlasMap {
           return;
         }
         const rec = map.queryRenderedFeatures(e.point, { layers: ['sov-fill', 'sov-hatch-base'] })[0]?.properties?.['recordId'] as string | undefined;
+        // tiles 模式：國界在圖磚（tiles-fill），圖磚帶 regime_id
+        const tile = !rec && map.getLayer(TILE_FILL) ? map.queryRenderedFeatures(e.point, { layers: [TILE_FILL] })[0]?.properties : undefined;
         if (rec) this.sovereigntyClick.emit({ recordId: rec, x: e.point.x, y: e.point.y });
+        else if (tile?.['regime_id']) this.sovereigntyClick.emit({ recordId: '', regimeId: String(tile['regime_id']), x: e.point.x, y: e.point.y });
         else this.emptyClick.emit();
       });
       for (const layer of layers) {
@@ -1491,6 +1499,8 @@ export class AtlasMap {
     for (const l of [fill, line, lineNs]) map.addLayer(l, 'gap-base');
     map.addLayer(label, 'regime-label');
     this.tileFilterKey = intervalKey(this.changePoints(), d);
+    map.on('mouseenter', TILE_FILL, () => (map.getCanvas().style.cursor = 'pointer'));
+    map.on('mouseleave', TILE_FILL, () => (map.getCanvas().style.cursor = ''));
     // geojson 主權圖層在 tiles 模式下沒有資料；保持隱藏，避免與圖磚重疊
     for (const id of ['sov-fill', 'sov-hatch-base', 'sov-hatch', 'sov-line', 'sov-line-not-sovereign']) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
   }

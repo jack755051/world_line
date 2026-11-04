@@ -40,6 +40,9 @@ public static class SovereigntyEndpoints
     {
         read.MapGet("/sovereignty", GetOnDate).WithTags("Sovereignty").WithName("GetSovereignty")
             .Ok<SovereigntyMapDto>().Errors(400);
+        // ARCHITECTURE.md §9「介面」：被選政權的完整幾何（tiles 模式點選政權時取，供蒙版、可見國名重算、高亮）；不提供全世界疆界
+        read.MapGet("/regimes/{id:guid}/geometry", GetRegimeGeometry).WithTags("Sovereignty").WithName("GetRegimeGeometry")
+            .Ok<SovereigntyMapDto>().Errors(400, 404);
         write.MapPost("/sovereignty-records", Create).WithTags("Sovereignty").WithName("CreateSovereigntyRecord")
             .RequiresApiKey().Created<SovereigntyRecordDto>().Errors(400, 401, 409);
         write.MapPost("/sovereignty-records/{id:guid}/retraction", Retract).WithTags("Sovereignty").WithName("RetractSovereigntyRecord")
@@ -145,7 +148,28 @@ public static class SovereigntyEndpoints
         return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
     }
 
-    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, double tolerance, CancellationToken ct)
+    /// <summary>
+    /// GET /regimes/{id}/geometry?date=&amp;zoom=：該政權當天的主權紀錄，加上當天由它佔領的政權的紀錄（聚焦時一起挖亮）。
+    /// 每筆 feature 與 GET /sovereignty 同一天、同一縮放桶回傳的那筆完全相同（同一個建構函式、同一份幾何快取）。
+    /// </summary>
+    public static async Task<IResult> GetRegimeGeometry(Guid id, DateOnly? date, float? zoom, WorldLineDbContext db, CancellationToken ct)
+    {
+        if (date is not { } d)
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
+        if (!await db.Regimes.AnyAsync(x => x.Id == id && x.RetractedAt == null, ct))
+            throw ApiError.NotFound("政權");
+        var occupied = await db.OccupationAttributions.AsNoTracking()
+            .Where(o => o.RetractedAt == null && o.OccupierRegimeId == id && o.ValidPeriod.Contains(d))
+            .Select(o => o.OccupiedRegimeId).Distinct().ToListAsync(ct);
+        var regimes = new HashSet<Guid>(occupied) { id };
+        var features = await BuildOnDateAsync(d, db, ToleranceForZoom(zoom), ct, regimes);
+        // 佔領方不是 id 的被佔領紀錄（同一被佔領政權在當天換手等）不算
+        features = features.Where(f => f.Properties.RegimeId == id || f.Properties.Occupation?.OccupierRegimeId == id).ToList();
+        return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
+    }
+
+    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, double tolerance, CancellationToken ct,
+        IReadOnlyCollection<Guid>? onlyRegimes = null)
     {
         // 第 1 層（Tai 2026-11-04）：由 PostGIS 依有效期間篩出當天有效的紀錄（valid_period @> d，即 lower <= d AND (upper IS NULL OR upper > d)，
         // 走 ix_sovereignty_records_valid_period GiST 索引）；這一步不取幾何，只取屬性。
@@ -153,7 +177,7 @@ public static class SovereigntyEndpoints
                 from r in db.SovereigntyRecords.AsNoTracking()
                 join g in db.Regimes on r.RegimeId equals g.Id
                 join s in db.Sources on r.GeometrySourceId equals s.Id
-                where r.RetractedAt == null && r.ValidPeriod.Contains(d)
+                where r.RetractedAt == null && r.ValidPeriod.Contains(d) && (onlyRegimes == null || onlyRegimes.Contains(r.RegimeId))
                 orderby g.Slug, r.Id
                 select new
                 {

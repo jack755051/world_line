@@ -276,6 +276,44 @@ export class AtlasData {
     return p;
   }
 
+  /**
+   * tiles 模式的被選政權（§9 步驟 5）：疆界在圖磚裡，點選政權時才向 API 取該政權（含它佔領的政權）的完整幾何，
+   * 放進 sovereignty（只有這幾筆）：面板、蒙版、可見國名重算、高亮沿用 geojson 模式的同一套程式。換日期不取。
+   */
+  private readonly selCache = new LruCache<SovereigntyMapDto>(40);
+  private selSeq = 0;
+  async loadRegimeSovereignty(regimeId: string, date: string): Promise<SovereigntyMapDto | null> {
+    if (this.boundarySource !== 'tiles') return this.sovereignty();
+    const my = ++this.selSeq;
+    const zoom = this.state.mapZoom();
+    const key = `${regimeId}|${date}|${zoom <= 4.5 ? 'c' : zoom <= 6.5 ? 'm' : 'f'}`;
+    let dto = this.selCache.get(key) ?? null;
+    if (!dto) {
+      this.sovereigntyStatus.set('loading');
+      try {
+        dto = await this.api.regimeGeometry(regimeId, date, zoom);
+        this.selCache.set(key, dto);
+      } catch {
+        if (my === this.selSeq) this.sovereigntyStatus.set('error');
+        return null;
+      }
+    }
+    if (my !== this.selSeq) return null;
+    this.sovereignty.set(dto);
+    this.sovereigntyShownFor.set(date);
+    this.sovereigntyStatus.set('ok');
+    void this.loadRegimes(dto.featureCollection.features.flatMap((f) => [f.properties.regimeId, f.properties.occupation?.occupierRegimeId ?? '']).filter(Boolean));
+    return dto;
+  }
+
+  /** tiles 模式取消選取：清掉被選政權的幾何。 */
+  clearRegimeSovereignty(): void {
+    if (this.boundarySource !== 'tiles') return;
+    ++this.selSeq;
+    this.sovereignty.set(null);
+    this.sovereigntyStatus.set('idle');
+  }
+
   async loadConflicts(date: string): Promise<void> {
     const my = ++this.cfSeq;
     const key = this.key(date);

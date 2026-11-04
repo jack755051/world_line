@@ -115,6 +115,14 @@ export class WorldLineApi {
     return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal, zoom !== undefined ? { zoom: zoom.toFixed(1) } : undefined);
   }
 
+  /**
+   * GET /regimes/{id}/geometry?date=&zoom=（ARCHITECTURE.md §9）：被選政權當天的主權紀錄＋它佔領的政權紀錄；
+   * 每筆與同日 /sovereignty 的那筆相同。tiles 模式點選政權時才取（換日期不取）。
+   */
+  async regimeGeometry(regimeId: string, date: string, zoom?: number, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    return this.getByDate<SovereigntyMapDto>(`/regimes/${encodeURIComponent(regimeId)}/geometry`, date, signal, zoom !== undefined ? { zoom: zoom.toFixed(1) } : undefined);
+  }
+
   /** GET /conflicts?date=：該日進行中的衝突（雙方政權、起訖事件與出處、圖示位置）。 */
   async conflicts(date: string, signal?: AbortSignal): Promise<ConflictMapDto> {
     return this.getByDate<ConflictMapDto>('/conflicts', date, signal);

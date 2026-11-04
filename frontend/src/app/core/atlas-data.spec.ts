@@ -1,4 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { BOUNDARY_SOURCE_KEY } from './boundary-source';
+
+// 這兩組測試針對 GeoJSON 備援路徑（開發環境 ?boundarySource=geojson）；預設已改 tiles（2026-11-04）
+beforeEach(() => localStorage.setItem(BOUNDARY_SOURCE_KEY, 'geojson'));
+afterEach(() => localStorage.removeItem(BOUNDARY_SOURCE_KEY));
 import { AtlasData } from './atlas-data';
 import { WorldLineApi } from './api/world-line-api';
 import type { ControlMapDto, SovereigntyMapDto } from './api/api-types';

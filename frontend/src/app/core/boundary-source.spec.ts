@@ -7,17 +7,22 @@ function mem(init: Record<string, string> = {}) {
 }
 
 describe('boundary source flag', () => {
-  it('defaults to geojson', () => {
-    expect(readBoundarySource('', mem())).toBe('geojson');
-    expect(readBoundarySource('?boundarySource=bogus', mem())).toBe('geojson');
+  it('defaults to tiles (dev)', () => {
+    expect(readBoundarySource('', mem(), false)).toBe('tiles');
+    expect(readBoundarySource('?boundarySource=bogus', mem(), false)).toBe('tiles');
+  });
+  it('production always tiles: ignores ?boundarySource=geojson and stored geojson', () => {
+    const s = mem({ [BOUNDARY_SOURCE_KEY]: 'geojson' });
+    expect(readBoundarySource('?boundarySource=geojson', s, true)).toBe('tiles');
+    expect(readBoundarySource('', s, true)).toBe('tiles');
   });
   it('query param wins and is remembered; geojson switches back', () => {
     const s = mem();
-    expect(readBoundarySource('?date=1940-07-15&boundarySource=tiles', s)).toBe('tiles');
-    expect(s.m.get(BOUNDARY_SOURCE_KEY)).toBe('tiles');
-    expect(readBoundarySource('', s)).toBe('tiles');
-    expect(readBoundarySource('?boundarySource=geojson', s)).toBe('geojson');
-    expect(readBoundarySource('', s)).toBe('geojson');
+    expect(readBoundarySource('?date=1940-07-15&boundarySource=geojson', s, false)).toBe('geojson');
+    expect(s.m.get(BOUNDARY_SOURCE_KEY)).toBe('geojson');
+    expect(readBoundarySource('', s, false)).toBe('geojson');
+    expect(readBoundarySource('?boundarySource=tiles', s, false)).toBe('tiles');
+    expect(readBoundarySource('', s, false)).toBe('tiles');
   });
   it('tiles url: param, then stored, then default Martin', () => {
     const s = mem();

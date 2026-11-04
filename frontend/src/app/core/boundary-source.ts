@@ -1,5 +1,7 @@
+import { isDevMode } from '@angular/core';
 /**
- * 疆界來源功能開關（ARCHITECTURE.md §9 遷移步驟 4）：`boundarySource=geojson|tiles`，預設 geojson。
+ * 疆界來源功能開關（ARCHITECTURE.md §9 遷移步驟 4）：`boundarySource=geojson|tiles`，預設 tiles（Tai 2026-11-04 18:46）。
+ * 正式上線（production build，isDevMode()=false）一律 tiles，忽略網址與 localStorage；開發環境保留 geojson 當備援。
  * - geojson：第 1 層，依日期向 API 取 /sovereignty（現行）。
  * - tiles：第 2、3 層，向量圖磚（開發期由 Martin 提供），換日期只改 filter，不向 API 取主權資料。
  * 設定方式：網址 `?boundarySource=tiles`（同時記到 localStorage，之後不帶參數也沿用；`?boundarySource=geojson` 切回）。
@@ -22,14 +24,15 @@ function safeStore(): Store | null {
   }
 }
 
-export function readBoundarySource(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): BoundarySource {
+export function readBoundarySource(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore(), production = !isDevMode()): BoundarySource {
+  if (production) return 'tiles';
   const q = new URLSearchParams(search).get('boundarySource');
   if (q === 'tiles' || q === 'geojson') {
     try { store?.setItem(BOUNDARY_SOURCE_KEY, q); } catch { /* 無法記住也照常 */ }
     return q;
   }
   const saved = store?.getItem(BOUNDARY_SOURCE_KEY);
-  return saved === 'tiles' ? 'tiles' : 'geojson';
+  return saved === 'geojson' ? 'geojson' : 'tiles';
 }
 
 export function readTilesUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): string {

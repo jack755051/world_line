@@ -458,6 +458,8 @@ export interface MapConflictEvent {
  * 主地圖（PRD §8.2，`shared/map`）。只畫傳入的 API 資料；本元件不產生任何資料。
  * jsdom／無 WebGL 環境下不啟動 MapLibre，改顯示錯誤（單元測試因此不需要 WebGL）。
  */
+import { CAMPAIGN_LAYER_IDS, CAMPAIGN_SOURCES, campaignFilters, campaignLayers, campaignSourceData } from './campaign-layers';
+import type { Campaign } from '../../core/campaign';
 @Component({
   selector: 'wl-atlas-map',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -565,6 +567,12 @@ export class AtlasMap {
   /** 聚焦置中時要避開的面板大小（右側面板寬或底部面板高）。 */
   readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
   /** 面板／圖例開啟時的地圖 padding（§10-2／§10-3）：沒有聚焦時 easeTo 200ms（減少動態時直接套用）。 */
+  /** 戰役模式（§11.2）：目前開啟的戰役、階段，以及 fitBounds 時要避開的 UI（左側說明卡／手機下方卡片）。 */
+  readonly campaign = input<Campaign | null>(null);
+  readonly campaignPhase = input(1);
+  readonly campaignInset = input<{ top: number; right: number; bottom: number; left: number }>({ top: 24, right: 24, bottom: 80, left: 392 });
+  private campaignCamera: { center: [number, number]; zoom: number; bearing: number; pitch: number } | null = null;
+  private campaignShown: string | null = null;
   readonly uiPadding = input<{ left: number; right: number; bottom?: number }>({ left: 0, right: 0 });
   /** 鏡頭聚焦 bounds override（控制區點擊時傳入該控制區 bbox；主權／清除時為 null）。 */
   readonly focusFitBounds = input<LngLatBounds | null>(null);
@@ -653,6 +661,19 @@ export class AtlasMap {
       this.map?.remove();
     });
 
+    effect(() => {
+      const c = this.campaign();
+      const inset = this.campaignInset();
+      if (!this.ready()) return;
+      untracked(() => this.applyCampaign(c, inset));
+    });
+    effect(() => {
+      const c = this.campaign();
+      const ph = this.campaignPhase();
+      if (!this.ready() || !c || !this.map) return;
+      const fs = campaignFilters(c, ph);
+      for (const id of CAMPAIGN_LAYER_IDS) if (this.map.getLayer(id)) this.map.setFilter(id, fs[id] ?? null);
+    });
     effect(() => {
       const d = this.date();
       const pts = this.changePoints();
@@ -988,6 +1009,43 @@ export class AtlasMap {
     if (cam) map.easeTo({ ...cam, duration, essential: false });
     this.drawMask();
     if (duration === 0) queueMicrotask(() => this.fitArcs());
+  }
+
+  private applyCampaign(c: Campaign | null, inset: { top: number; right: number; bottom: number; left: number }): void {
+    const map = this.map;
+    if (!map) return;
+    const duration = this.reducedMotion() ? 0 : 600;
+    if (!c) {
+      if (!this.campaignShown) return;
+      for (const id of CAMPAIGN_LAYER_IDS) if (map.getLayer(id)) map.removeLayer(id);
+      for (const id of CAMPAIGN_SOURCES) if (map.getSource(id)) map.removeSource(id);
+      this.campaignShown = null;
+      const cam = this.campaignCamera;
+      this.campaignCamera = null;
+      if (cam) map.easeTo({ ...cam, duration, essential: false });
+      return;
+    }
+    if (!this.campaignShown) {
+      const ctr = map.getCenter();
+      this.campaignCamera = { center: [ctr.lng, ctr.lat], zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() };
+    }
+    const data = campaignSourceData(c);
+    for (const id of CAMPAIGN_SOURCES) {
+      const src = map.getSource(id) as GeoJSONSource | undefined;
+      if (src) src.setData(data[id] as unknown as FeatureCollection);
+      else map.addSource(id, { type: 'geojson', data: data[id] as unknown as FeatureCollection });
+    }
+    const before = map.getLayer('capital-dot') ? 'capital-dot' : undefined;
+    const fs = campaignFilters(c, this.campaignPhase());
+    for (const l of campaignLayers()) if (!map.getLayer(l.id)) map.addLayer({ ...l, filter: fs[l.id] } as LayerSpecification, before);
+    // fitBounds 的 padding 會疊加在地圖目前的 padding 上，所以只補差額
+    const p = map.getPadding();
+    const d = (want: number, have: number | undefined) => Math.max(8, want - (have ?? 0));
+    map.fitBounds(c.bounds, {
+      padding: { top: d(inset.top, p.top), right: d(inset.right, p.right), bottom: d(inset.bottom, p.bottom), left: d(inset.left, p.left) },
+      duration, essential: false, maxZoom: 10,
+    });
+    this.campaignShown = c.key;
   }
 
   /** 量測圖例與 sheet 面板後計算實際 padding（在 easeTo 前呼叫）。 */

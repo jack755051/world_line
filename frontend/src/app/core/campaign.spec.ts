@@ -1,4 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { TestBed } from '@angular/core/testing';
+import { CAMPAIGNS_ENABLED, CampaignService } from './campaign';
 import { CampaignPlayer, campaignsForConflict, formatCampaignDate, inclusiveEnd, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
 
 describe('CampaignPlayer（§11.2 階段播放）', () => {
@@ -80,4 +82,24 @@ describe('衝突是否符合戰役定義（§13 K2）', () => {
     expect(campaignsForConflict(idx, 'soviet-union', 'republic-of-finland', '1939-11-30', '1940-03-13').length).toBe(0);
     expect(campaignsForConflict(idx, 'deutsches-reich', 'polish-republic', '1940-01-01', '1940-02-01').length).toBe(0);
   });
+});
+
+describe('戰役功能開關（production 關閉）', () => {
+  const idx = { campaigns: [{ key: 'dunkirk_1940', name_zh: 'd', start: '1940-05-26', end: '1940-06-05', regime_slugs: ['united-kingdom'], event_ids: [] }] };
+  afterEach(() => vi.unstubAllGlobals());
+  for (const enabled of [true, false]) {
+    it(enabled ? '開啟：載入 index、可開啟戰役' : '關閉：不載入任何戰役 JSON、open 無作用', async () => {
+      const fetchMock = vi.fn(async (u: string) => ({ ok: true, json: async () => (u.endsWith('index.json') ? idx : { key: 'dunkirk_1940', phases: [{ seq: 1 }] }) }));
+      vi.stubGlobal('fetch', fetchMock);
+      TestBed.resetTestingModule();
+      TestBed.configureTestingModule({ providers: [{ provide: CAMPAIGNS_ENABLED, useValue: enabled }] });
+      const svc = TestBed.inject(CampaignService);
+      await svc.loadIndex();
+      await svc.open('dunkirk_1940');
+      expect(svc.index().length).toBe(enabled ? 1 : 0);
+      expect(svc.status()).toBe(enabled ? 'ready' : 'idle');
+      expect(fetchMock).toHaveBeenCalledTimes(enabled ? 2 : 0);
+      svc.close();
+    });
+  }
 });

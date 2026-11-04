@@ -536,12 +536,14 @@ export class AtlasPage {
     : { top: 24, right: 24, bottom: 24, left: 392 });
   /** 面板入口：交戰方的政權面板，且目前日期在戰役前後一年內。 */
   protected readonly regimeCampaigns = computed<CampaignIndexEntry[]>(() => {
+    if (!this.campaigns.enabled) return []; // 戰役功能開關（production 關閉）
     const slug = this.sheet()?.sov?.props.regimeSlug;
     const y = Number(this.state.date().slice(0, 4));
     return campaignsForRegime(this.campaigns.index(), slug).filter((c) => Math.abs(Number(c.start.slice(0, 4)) - y) <= 1);
   });
   private campaignSaved: { date: string } | null = null;
   protected openCampaign(key: string): void {
+    if (!this.campaigns.enabled) return;
     if (!this.campaignSaved) this.campaignSaved = { date: this.state.date() };
     void this.campaigns.open(key);
   }
@@ -574,7 +576,7 @@ export class AtlasPage {
   });
   protected readonly conflictCampaigns = computed(() => {
     const c = this.selectedConflictInfo();
-    if (!c) return [];
+    if (!c || !this.campaigns.enabled) return [];
     const p = c.props;
     return campaignsForConflict(this.campaigns.index(), p.regimeASlug, p.regimeBSlug, p.startEvent.occurred.start ?? p.validPeriod.start ?? '', p.endEvent?.occurred?.start ?? p.validPeriod.end ?? null);
   });

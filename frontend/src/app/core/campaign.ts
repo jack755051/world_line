@@ -1,4 +1,11 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, InjectionToken, computed, inject, isDevMode, signal } from '@angular/core';
+
+/**
+ * 戰役功能開關（Tai 2026-11-04 18:48：戰役不上第一版）：production build 關閉——不載入戰役 JSON、
+ * 所有入口（政權面板「戰役簡報」、衝突小卡「戰役簡報」、日後事件卡 ⚔）都不出現；開發環境開啟。
+ * 測試可用 `{ provide: CAMPAIGNS_ENABLED, useValue: false }` 覆寫。
+ */
+export const CAMPAIGNS_ENABLED = new InjectionToken<boolean>('CAMPAIGNS_ENABLED', { providedIn: 'root', factory: () => isDevMode() });
 
 /**
  * 戰役模式（ARCHITECTURE.md §11.2）：靜態戰役 JSON（public/campaigns/<key>.json，schema wl-campaign-web/0.1）
@@ -110,6 +117,7 @@ export function campaignsForConflict(index: CampaignIndexEntry[], slugA: string,
 
 @Injectable({ providedIn: 'root' })
 export class CampaignService {
+  readonly enabled = inject(CAMPAIGNS_ENABLED);
   readonly index = signal<CampaignIndexEntry[]>([]);
   readonly campaign = signal<Campaign | null>(null);
   readonly status = signal<CampaignStatus>('idle');
@@ -120,7 +128,7 @@ export class CampaignService {
   private base = 'campaigns/';
 
   async loadIndex(): Promise<void> {
-    if (this.loaded) return;
+    if (!this.enabled || this.loaded) return;
     this.loaded = true;
     try {
       const r = await fetch(this.base + 'index.json');
@@ -131,6 +139,7 @@ export class CampaignService {
   }
 
   async open(key: string): Promise<void> {
+    if (!this.enabled) return;
     this.close();
     this.status.set('loading');
     try {

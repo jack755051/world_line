@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { CampaignPlayer, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
+import { CampaignPlayer, formatCampaignDate, inclusiveEnd, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
 
 describe('CampaignPlayer（§11.2 階段播放）', () => {
   beforeEach(() => vi.useFakeTimers());
@@ -60,5 +60,15 @@ describe('戰役查詢', () => {
     expect(campaignsForRegime(idx, 'japan').length).toBe(0);
     expect(campaignsForEvent(idx, 'e1').length).toBe(1);
     expect(campaignsForEvent(idx, null).length).toBe(0);
+  });
+});
+
+describe('戰役日期精度', () => {
+  it('early-month 顯示為上旬；缺欄位照原樣', () => {
+    expect(formatCampaignDate('1937-10-01', 'early-month')).toBe('1937 年 10 月上旬');
+    expect(formatCampaignDate('1937-10-01', null)).toBe('1937-10-01');
+    expect(formatCampaignDate('1937-10-01', 'weird')).toBe('1937-10-01');
+    expect(formatCampaignDate(null)).toBe('待考證');
+    expect(inclusiveEnd('1937-10-01')).toBe('1937-09-30');
   });
 });

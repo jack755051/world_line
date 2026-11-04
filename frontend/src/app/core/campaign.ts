@@ -9,14 +9,17 @@ export interface CampaignSource { type?: string; citation: string; url?: string 
 export interface CampaignPhase {
   seq: number; key: string; name_zh: string; name_en?: string | null;
   start: string; end: string; summary_zh: string; summary_verified: boolean;
-  sources: CampaignSource[]; notes?: string | null;
+  sources: CampaignSource[]; notes?: string[] | string | null;
+  /** 考證組可選欄位：日期精度（'early-month'＝上旬；缺＝精確到日）、日期是否查證、戰線未核實說明。 */
+  start_precision?: string | null; end_precision?: string | null; dates_verified?: boolean; fronts_note?: string | null; note?: string | null;
 }
 export interface CampaignFeatureProps { id: string; phase: number; verified: boolean; [k: string]: unknown }
 export interface CampaignFC { type: 'FeatureCollection'; features: { type: 'Feature'; properties: CampaignFeatureProps; geometry: { type: string; coordinates: unknown } }[] }
 export interface Campaign {
   schema: string; key: string; name_zh: string; name_en?: string | null;
   start: string; end: string; end_inclusive: string; scale?: string;
-  belligerents: { allied: string[]; axis: string[] };
+  belligerents: Record<string, string[]>;
+  end_verified?: boolean; note?: string | null;
   regime_slugs: string[]; event_ids: string[];
   totals?: { verified?: boolean; sources?: CampaignSource[]; [k: string]: unknown } | null;
   bounds: [[number, number], [number, number]];
@@ -61,6 +64,21 @@ export class CampaignPlayer {
     this.onChange();
   }
   private pauseTimer(): void { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+}
+
+/** 依日期精度顯示：early-month →「YYYY 年 M 月上旬」，mid-month 中旬，late-month 下旬，month 只到月；其他照原樣。 */
+export function formatCampaignDate(iso: string | null | undefined, precision?: string | null): string {
+  if (!iso) return '待考證';
+  const [y, m] = iso.split('-').map(Number);
+  const part: Record<string, string> = { 'early-month': '上旬', 'mid-month': '中旬', 'late-month': '下旬', month: '' };
+  if (precision && precision in part) return `${y} 年 ${m} 月${part[precision]}`;
+  return iso;
+}
+/** exclusive end → 含當日的最後一天。 */
+export function inclusiveEnd(iso: string): string {
+  const d = new Date(iso + 'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate() - 1);
+  return d.toISOString().slice(0, 10);
 }
 
 /** 某日期落在哪個階段（start 含、end 不含）；超出範圍時夾到首尾。 */

@@ -23,35 +23,26 @@ async function selectGermany(page: Page): Promise<void> {
 }
 const padding = (page: Page) => page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.getPadding());
 
-test('§10-2／§10-4：≥1440 面板寬 400、可拖拉到 480 並記住；面板底部停在時間軸上方，時間軸全寬；padding.right＝面板寬＋16', async ({ page }) => {
+test('§10 v2 W1／§10-4：≥1440 面板寬 432、不能拖拉；面板底部停在時間軸上方，時間軸全寬；padding.right＝面板寬＋16', async ({ page }) => {
   await open(page, 1440);
   await selectGermany(page);
   const sheet = page.getByTestId('regime-sheet');
-  await expect.poll(async () => Math.round((await sheet.boundingBox())!.width)).toBe(400);
+  await expect.poll(async () => Math.round((await sheet.boundingBox())!.width)).toBe(432);
   const tl = (await page.locator('wl-timeline').boundingBox())!;
   const sb = (await sheet.boundingBox())!;
   expect(Math.abs(sb.y + sb.height - tl.y)).toBeLessThanOrEqual(1);
   expect(Math.round(tl.width)).toBe(1440);
-  await expect(sheet).toHaveAttribute('data-state', 'open'); // 滑入動畫結束才量把手位置
-  const handle = page.getByTestId('regime-sheet-resize');
-  const hb = (await handle.boundingBox())!;
-  await page.mouse.move(hb.x + hb.width / 2, hb.y + 300);
-  await page.mouse.down();
-  await page.mouse.move(hb.x - 200, hb.y + 300, { steps: 6 });
-  await page.mouse.up();
-  await expect.poll(async () => Math.round((await sheet.boundingBox())!.width)).toBe(480);
-  expect(await page.evaluate(() => localStorage.getItem('wl.sheetWidth'))).toBe('480');
+  await expect(page.getByTestId('regime-sheet-resize')).toHaveCount(0);
+  expect((await padding(page)).right).toBeGreaterThanOrEqual(448);
   await page.getByTestId('sovereignty-card-close').click();
   await expect(sheet).toHaveCount(0);
   await expect.poll(async () => (await padding(page)).right).toBe(0);
-  await selectGermany(page);
-  await expect.poll(async () => Math.round((await sheet.boundingBox())!.width)).toBe(480);
 });
 
-test('§10-2：1024–1439 面板寬 360，不可拖拉', async ({ page }) => {
+test('§10 v2 W1：1024–1439 面板寬 384，不能拖拉', async ({ page }) => {
   await open(page, 1024);
   await selectGermany(page);
-  await expect.poll(async () => Math.round((await page.getByTestId('regime-sheet').boundingBox())!.width)).toBe(360);
+  await expect.poll(async () => Math.round((await page.getByTestId('regime-sheet').boundingBox())!.width)).toBe(384);
   await expect(page.getByTestId('regime-sheet-resize')).toHaveCount(0);
 });
 

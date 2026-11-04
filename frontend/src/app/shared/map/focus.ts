@@ -112,33 +112,29 @@ export function measuredPadding(
 }
 
 /** 政權面板寬度規則（ARCHITECTURE.md §10-2）。 */
-export const SHEET_WIDTH = { wide: 400, min: 360, max: 480, mid: 360, narrow: 320 } as const;
+/** §10 v2 W1（Tai 2026-11-04 15:29）：依螢幕大小固定三種寬度，不拖拉。 */
+export const SHEET_WIDTH = { wide: 432, mid: 384, narrow: 360 } as const;
 /** 小於 768px 的底部 bottom sheet 三段高度：96px、50vh、90vh。 */
 export type SheetSnap = 'peek' | 'half' | 'full';
 export const SHEET_SNAPS: readonly SheetSnap[] = ['peek', 'half', 'full'];
 export function snapHeight(snap: SheetSnap, vh: number): number {
   return snap === 'peek' ? 96 : Math.round(vh * (snap === 'half' ? 0.5 : 0.9));
 }
-export function clampSheetWidth(px: number): number {
-  return Math.round(Math.min(SHEET_WIDTH.max, Math.max(SHEET_WIDTH.min, px)));
-}
 export interface SheetLayout {
   side: 'right' | 'bottom';
   size: number;
-  /** 只有 ≥1440px 可拖拉（360–480px）。 */
-  resizable: boolean;
   /** 768–1023px 蓋在地圖上、不推擠地圖（不設 map padding）。 */
   overlay: boolean;
 }
 /**
  * 面板位置與寬度（§10-2 響應式規則；w＝視窗寬）：
- * ≥1440 寬 400（可拖拉 360–480，記在 localStorage）；1024–1439 寬 360；768–1023 寬 320 蓋在地圖上；
+ * §10 v2 W1：≥1440 寬 432；1024–1439 寬 384；768–1023 寬 360 蓋在地圖上（都不能拖拉）；
  * <768 改成底部 bottom sheet（96px／50vh／90vh，高度不超過可用高 maxH）。
  */
-export function sheetLayout(w: number, vh: number, stored: number | null = null, snap: SheetSnap = 'half', maxH = Infinity): SheetLayout {
+export function sheetLayout(w: number, vh: number, snap: SheetSnap = 'half', maxH = Infinity): SheetLayout {
   const vw = w || 1280;
-  if (vw < 768) return { side: 'bottom', size: Math.min(snapHeight(snap, vh), maxH), resizable: false, overlay: false };
-  if (vw >= 1440) return { side: 'right', size: clampSheetWidth(stored ?? SHEET_WIDTH.wide), resizable: true, overlay: false };
-  if (vw >= 1024) return { side: 'right', size: SHEET_WIDTH.mid, resizable: false, overlay: false };
-  return { side: 'right', size: SHEET_WIDTH.narrow, resizable: false, overlay: true };
+  if (vw < 768) return { side: 'bottom', size: Math.min(snapHeight(snap, vh), maxH), overlay: false };
+  if (vw >= 1440) return { side: 'right', size: SHEET_WIDTH.wide, overlay: false };
+  if (vw >= 1024) return { side: 'right', size: SHEET_WIDTH.mid, overlay: false };
+  return { side: 'right', size: SHEET_WIDTH.narrow, overlay: true };
 }

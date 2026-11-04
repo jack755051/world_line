@@ -38,7 +38,30 @@ describe('ConflictCard（衝突資訊卡）', () => {
     expect(end.querySelector('[data-testid="conflict-card-pending"]')?.textContent).toBe('待查證');
     expect(end.querySelector('[data-testid="conflict-card-no-citation"]')).not.toBeNull();
     expect(end.querySelector('[data-testid="conflict-card-citation"]')).toBeNull();
-    expect(q(el, 'conflict-card-location')?.textContent).toContain('中點');
+    expect(q(el, 'conflict-card-location')).toBeNull(); // §13 K3：一般模式不顯示技術說明
+  });
+
+  it('除錯模式才顯示圖示位置（§13 K3）', async () => {
+    const fixture = TestBed.createComponent(ConflictCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('debug', true);
+    await fixture.whenStable();
+    expect(q(fixture.nativeElement, 'conflict-card-location')?.textContent).toContain('中點');
+  });
+
+  it('動作列（§13 K1／K2）：在時間線上看一定有；戰役簡報只在有符合的戰役時出現；點交戰方名稱切換政權', async () => {
+    const { fixture, el } = await render(props());
+    expect(q(el, 'conflict-card-timeline')).not.toBeNull();
+    expect(q(el, 'conflict-card-campaign')).toBeNull();
+    const seen: string[] = [];
+    fixture.componentInstance.regimeSelect.subscribe((s) => seen.push(s));
+    fixture.componentInstance.timelineShow.subscribe(() => seen.push('tl'));
+    (q(el, 'conflict-card-side-a') as HTMLButtonElement).click();
+    (q(el, 'conflict-card-timeline') as HTMLButtonElement).click();
+    expect(seen).toEqual(['a', 'tl']);
+    fixture.componentRef.setInput('campaigns', [{ key: 'poland_1939', name_zh: '閃擊波蘭' }]);
+    await fixture.whenStable();
+    expect(q(el, 'conflict-card-campaign')?.textContent).toContain('戰役簡報');
   });
 
   it('點簡短引用展開完整書目', async () => {

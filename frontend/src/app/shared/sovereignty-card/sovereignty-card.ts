@@ -484,6 +484,8 @@ export class SovereigntyCard {
   readonly tab = input<SovereigntyTab>('overview');
   /** 控制區欄位（點控制區開面板時由頁面傳入，在概要分頁頂部顯示）。 */
   readonly controlZone = input<ControlZoneSection | null>(null);
+  /** §13「在時間線上看」：選取並捲到這則事件（交戰方之一的面板，同時高亮）。 */
+  readonly highlightEvent = input<string | null>(null);
   readonly tabChange = output<SovereigntyTab>();
   readonly closed = output<void>();
   readonly conflictSelect = output<string>();
@@ -655,6 +657,29 @@ export class SovereigntyCard {
 
   private readonly host = inject(ElementRef<HTMLElement>);
   constructor() {
+    effect(() => {
+      const id = this.highlightEvent();
+      if (!id) return;
+      const items = this.timeline();
+      if (!items.length) return;
+      untracked(() => {
+        this.selectedEvent.set(id);
+        afterNextRender(() => {
+          const host = this.host.nativeElement as HTMLElement;
+          // sanring-tabs 只吃 defaultValue：切到事件分頁用分頁鈕本身（同使用者點擊）
+          const tabBtn = host.querySelector<HTMLElement>('[data-testid="sovereignty-card-tab-events"]');
+          if (tabBtn && tabBtn.getAttribute('aria-selected') !== 'true') tabBtn.click();
+        }, { injector: this.injector });
+        setTimeout(() => {
+          const host = this.host.nativeElement as HTMLElement;
+          const el = host.querySelector<HTMLElement>(`[data-testid="sovereignty-card-timeline-item"][data-event-id="${id}"]`);
+          const box = el?.closest<HTMLElement>('[data-testid="sovereignty-card-body"]');
+          if (!el || !box) return;
+          const delta = el.getBoundingClientRect().top - (box.getBoundingClientRect().top + box.clientHeight / 3);
+          box.scrollTo({ top: box.scrollTop + delta, behavior: 'auto' });
+        }, 120);
+      });
+    });
     // 時間軸日期變動：清單自動捲到最接近的卡片（「目前」那張）
     effect(() => {
       const items = this.timeline();

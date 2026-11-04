@@ -442,9 +442,12 @@ flowchart LR
   - `6cfc4a4`：PostGIS 以 `valid_period @> d`（＝`lower <= d AND (upper IS NULL OR upper > d)`）篩出當天有效紀錄，這步不取幾何；原始幾何只對還沒算過的紀錄才讀；簡化後的 GeoJSON 依（紀錄, 容差）共用，各日期不再各存一份幾何。索引已齊（`sovereignty_records` 的 `valid_period`、`geom` GiST；佔領、衝突 `valid_period` GiST；陣營走 `(regime_id, valid_period)` GiST），不需 migration。回應格式不變（15 個回應改前改後位元組相同）。
   - `32c9275`：逐日快取改滑動視窗（以查詢日期為中心前後各 10 個變動日，往播放方向預先載入 3 個，估算上限 1.5GB 當保險），啟動只預熱預設日期 1940-07-15，不再全量預熱 591 個日期；移除暫時的 GC 上限環境變數。
   - 實測（mac-mini，開發庫 5442）：1908／1924／1933／1940／1945-06-15 全部 200；冷跳 0.22–0.94 秒、熱跳 0.06–0.09 秒（精細縮放）；RSS 啟動約 1.6GB，三種縮放全掃 591 個變動日後最高約 3.05GB（改前 5.9GB）。常駐記憶體尚未達 §7 的「小於 500MB」，留待第 2、3 層。
+- 遷移步驟 2 ✅ `1f87d58`：`boundary_periods` view（migration `20261104013000_BoundaryPeriods`，已套用到開發庫 5442；排除撤回紀錄；整數日暫定自 1900-01-01 起算，持續中者 `end_day`＝2147483647；`color_idx` 由 slug 雜湊取 8 色；`disputed` 暫時一律 false，資料沒有對應欄位）；`tools/tiles/sql/label_points.sql` 在每段時期的最大塊國土上用 `ST_MaximumInscribedCircle`（polylabel）算國名點。`tools/tiles/compare.py`：591 個變動日加 50 個隨機日共 641 天，政權集合和第 1 層 API 不一致 0 天；1015 個國名點，缺名、缺點 0。這是資料層比對，§7 的「渲染出的集合」比對尚未做。
+- 遷移步驟 3 ✅ `5a3bda0`：`tools/tiles/build.sh`（PostGIS → GeoJSONSeq → tippecanoe 2.79.0 docker image → PMTiles，z0–z8，`--detect-shared-borders`）。第一版 `boundaries-vb9e51dc76522.pmtiles` 12,918,791 B（12.3MB），20,796 張圖磚；單一圖磚最大 255,674 B（z1/1/0），超過 500KB 的 0 張；z8 共 14,724 張、8.5MB、最大 9KB。z0 有 3 段小於一個像素的疆界被略去，z2 起 1015 段全在。
+- 遷移步驟 4 ✅ `2190f3c`：`tools/tiles/martin.sh` 用 Martin docker image（1.16.1）在 127.0.0.1:3010 提供 PMTiles；前端開關 `?boundarySource=geojson|tiles`（預設 geojson）。tiles 模式實測（世界視圖、圖磚已載入）：18 次換日期，圖磚請求 0、`/sovereignty` 請求 0，仍有 `/control`、`/conflicts` 請求（這兩項尚未移到圖磚）；setFilter 後第一幀約 5ms，到地圖 idle 約 310ms（主要是國名淡入）；輸入日期到畫面就緒中位數 441ms（geojson 模式 793ms）。國名以外的被選政權標籤、蒙版、高亮、掃描動畫仍屬步驟 5。
 
 **未完成**
-- 遷移步驟 2–7（步驟 1 見上；記憶體目標未達）。
+- 遷移步驟 5–7（步驟 1–4 見上；記憶體目標未達；熱跳「重繪小於 50ms」以 idle 計未達，見步驟 4）。
 
 **未決定**
 - CDN 供應商：已定：Cloudflare R2 加 CDN（上線時開通，費用需要 Tai 本人同意）。

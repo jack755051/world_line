@@ -100,6 +100,14 @@ export function campaignsForEvent(index: CampaignIndexEntry[], eventId: string |
   return index.filter((c) => c.event_ids.includes(eventId));
 }
 
+/**
+ * 衝突是否「符合戰役定義」（§13 K2）：有考證過的戰役資料、交戰雙方都在該戰役的交戰方裡、且期間重疊。
+ * 否則只給「在時間線上看」。
+ */
+export function campaignsForConflict(index: CampaignIndexEntry[], slugA: string, slugB: string, start: string, end: string | null): CampaignIndexEntry[] {
+  return index.filter((c) => c.regime_slugs.includes(slugA) && c.regime_slugs.includes(slugB) && c.start < (end ?? '9999-12-31') && start < c.end);
+}
+
 @Injectable({ providedIn: 'root' })
 export class CampaignService {
   readonly index = signal<CampaignIndexEntry[]>([]);

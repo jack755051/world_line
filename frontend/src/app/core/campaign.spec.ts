@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { CampaignPlayer, formatCampaignDate, inclusiveEnd, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
+import { CampaignPlayer, campaignsForConflict, formatCampaignDate, inclusiveEnd, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
 
 describe('CampaignPlayer（§11.2 階段播放）', () => {
   beforeEach(() => vi.useFakeTimers());
@@ -70,5 +70,14 @@ describe('戰役日期精度', () => {
     expect(formatCampaignDate('1937-10-01', 'weird')).toBe('1937-10-01');
     expect(formatCampaignDate(null)).toBe('待考證');
     expect(inclusiveEnd('1937-10-01')).toBe('1937-09-30');
+  });
+});
+
+describe('衝突是否符合戰役定義（§13 K2）', () => {
+  const idx = [{ key: 'p', name_zh: 'p', start: '1939-09-01', end: '1939-10-07', regime_slugs: ['deutsches-reich', 'polish-republic'], event_ids: [] }];
+  it('雙方都是交戰方且期間重疊才算', () => {
+    expect(campaignsForConflict(idx, 'deutsches-reich', 'polish-republic', '1939-09-01', null).length).toBe(1);
+    expect(campaignsForConflict(idx, 'soviet-union', 'republic-of-finland', '1939-11-30', '1940-03-13').length).toBe(0);
+    expect(campaignsForConflict(idx, 'deutsches-reich', 'polish-republic', '1940-01-01', '1940-02-01').length).toBe(0);
   });
 });

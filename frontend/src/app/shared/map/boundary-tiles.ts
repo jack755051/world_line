@@ -1,5 +1,5 @@
 import type { ExpressionSpecification, FilterSpecification, LayerSpecification } from 'maplibre-gl';
-import { MAP_COLORS } from './map-style';
+import { hatchImageId, MAP_COLORS } from './map-style';
 import { REGIME_FALLBACK_COLORS } from './sovereignty-style';
 
 /**
@@ -15,12 +15,15 @@ export const TILE_FILL = 'tiles-fill';
 export const TILE_LINE = 'tiles-line';
 export const TILE_LINE_NOT_SOVEREIGN = 'tiles-line-not-sovereign';
 export const TILE_LABEL = 'tiles-label';
-export const TILE_LAYER_IDS = [TILE_FILL, TILE_LINE, TILE_LINE_NOT_SOVEREIGN, TILE_LABEL] as const;
+/** 非主權（control_type = not_sovereign）：底色＋斜線，比照 sov-hatch-base／sov-hatch（§9 步驟 5，與 geojson 模式一致）。 */
+export const TILE_HATCH_BASE = 'tiles-hatch-base';
+export const TILE_HATCH = 'tiles-hatch';
+export const TILE_LAYER_IDS = [TILE_FILL, TILE_HATCH_BASE, TILE_HATCH, TILE_LINE, TILE_LINE_NOT_SOVEREIGN, TILE_LABEL] as const;
 
 /** 實際控制／主權檢視切換時的不透明度（常數，可做 transition；比照 AXIS_PAINT 的 sov-* 圖層）。 */
 export const TILE_AXIS_PAINT: Record<'control' | 'sovereignty', [layer: string, prop: string, value: number][]> = {
-  control: [[TILE_FILL, 'fill-opacity', 0.35], [TILE_LINE, 'line-opacity', 0.4], [TILE_LINE_NOT_SOVEREIGN, 'line-opacity', 0.45]],
-  sovereignty: [[TILE_FILL, 'fill-opacity', 0.9], [TILE_LINE, 'line-opacity', 0.75], [TILE_LINE_NOT_SOVEREIGN, 'line-opacity', 0.8]],
+  control: [[TILE_FILL, 'fill-opacity', 0.35], [TILE_HATCH, 'fill-opacity', 0.45], [TILE_HATCH_BASE, 'fill-opacity', 0.45], [TILE_LINE, 'line-opacity', 0.4], [TILE_LINE_NOT_SOVEREIGN, 'line-opacity', 0.45]],
+  sovereignty: [[TILE_FILL, 'fill-opacity', 0.9], [TILE_HATCH, 'fill-opacity', 1], [TILE_HATCH_BASE, 'fill-opacity', 1], [TILE_LINE, 'line-opacity', 0.75], [TILE_LINE_NOT_SOVEREIGN, 'line-opacity', 0.8]],
 };
 
 /** start_day <= d AND end_day > d（與第 1 層 API valid_period @> d 相同）。 */
@@ -29,11 +32,14 @@ export function tileDateFilter(day: number): ExpressionSpecification {
 }
 
 /** 各圖磚圖層在某日的 filter（國界線依 control_type 分實線／虛線）。 */
-export function tileFilters(day: number): Record<typeof TILE_FILL | typeof TILE_LINE | typeof TILE_LINE_NOT_SOVEREIGN, FilterSpecification> {
+export function tileFilters(day: number): Record<typeof TILE_FILL | typeof TILE_HATCH_BASE | typeof TILE_HATCH | typeof TILE_LINE | typeof TILE_LINE_NOT_SOVEREIGN, FilterSpecification> {
   const when = tileDateFilter(day);
   const notSovereign: ExpressionSpecification = ['==', ['get', 'control_type'], 'not_sovereign'];
   return {
-    [TILE_FILL]: when,
+    // 與 geojson 一樣：主權政權填色；非主權改畫底色＋斜線
+    [TILE_FILL]: ['all', when, ['!', notSovereign]],
+    [TILE_HATCH_BASE]: ['all', when, notSovereign],
+    [TILE_HATCH]: ['all', when, notSovereign],
     [TILE_LINE]: ['all', when, ['!', notSovereign]],
     [TILE_LINE_NOT_SOVEREIGN]: ['all', when, notSovereign],
   };
@@ -46,6 +52,25 @@ export function tileFillColor(colorsByRegimeId: Record<string, string>): Express
   const pairs = Object.entries(colorsByRegimeId).sort(([a], [b]) => a.localeCompare(b));
   if (pairs.length === 0) return fallback;
   return ['match', ['get', 'regime_id'], ...pairs.flat(), fallback] as unknown as ExpressionSpecification;
+}
+
+/**
+ * 非主權斜線圖樣：顏色與 decorateSovereignty 相同（沒有佔領歸屬＝自己的填色；有佔領歸屬＝佔領國色加深，由 hatchByRegimeId 覆蓋）。
+ * 圖樣 id 由 styleimagemissing 依 id 畫出（hatchImage）。
+ */
+export function tileHatchPattern(colorsByRegimeId: Record<string, string>, hatchByRegimeId: Record<string, string> = {}): ExpressionSpecification {
+  const fallback = ['match', ['get', 'color_idx'], ...REGIME_FALLBACK_COLORS.flatMap((c, i) => [i, hatchImageId(c, 'contested')]), hatchImageId(REGIME_FALLBACK_COLORS[0], 'contested')];
+  const merged = { ...colorsByRegimeId, ...hatchByRegimeId };
+  const pairs = Object.entries(merged).sort(([a], [b]) => a.localeCompare(b));
+  if (pairs.length === 0) return fallback as unknown as ExpressionSpecification;
+  return ['match', ['get', 'regime_id'], ...pairs.flatMap(([id, c]) => [id, hatchImageId(c, 'contested')]), fallback] as unknown as ExpressionSpecification;
+}
+
+/** 非主權底色：預設紙底；有佔領歸屬的政權用佔領國色（依控制程度淡化，由 baseByRegimeId 給）。 */
+export function tileHatchBase(baseByRegimeId: Record<string, string> = {}): ExpressionSpecification {
+  const pairs = Object.entries(baseByRegimeId).sort(([a], [b]) => a.localeCompare(b));
+  if (pairs.length === 0) return ['literal', MAP_COLORS.land] as unknown as ExpressionSpecification;
+  return ['match', ['get', 'regime_id'], ...pairs.flat(), MAP_COLORS.land] as unknown as ExpressionSpecification;
 }
 
 /** 世界寬（zoom 0）px，與 label-fit 的 WORLD_TILE_PX 相同。 */
@@ -82,10 +107,14 @@ export function boundaryTileLayers(day: number, colorsByRegimeId: Record<string,
   return [
     { id: TILE_FILL, type: 'fill', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_FILL],
       paint: { 'fill-color': tileFillColor(colorsByRegimeId), 'fill-opacity': 0.9 } },
+    { id: TILE_HATCH_BASE, type: 'fill', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_HATCH_BASE],
+      paint: { 'fill-color': tileHatchBase(), 'fill-opacity': 1 } },
+    { id: TILE_HATCH, type: 'fill', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_HATCH],
+      paint: { 'fill-pattern': tileHatchPattern(colorsByRegimeId) } },
     { id: TILE_LINE, type: 'line', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_LINE],
       paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.75 } },
     { id: TILE_LINE_NOT_SOVEREIGN, type: 'line', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_LINE_NOT_SOVEREIGN],
-      paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.8, 'line-dasharray': [3, 2] } },
+      paint: { 'line-color': MAP_COLORS.ink, 'line-width': 1, 'line-opacity': 0.8, 'line-dasharray': [2, 2] } },
     // 樣式比照 regime-label（底塊、字級、換行、可變錨點、光暈）；面積大的先放（area 供 symbol-sort-key，§9）
     { id: TILE_LABEL, type: 'symbol', source: TILE_SOURCE, 'source-layer': 'labels',
       filter: tileLabelFilter(day, label.labelPx, label.selectedRegimeId ?? null),

@@ -32,7 +32,7 @@ import {
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 import { byIdExpr, dataDrivenPaint, overlayFilter, OVERLAY_CONTROL_LAYERS, OVERLAY_GAP_LAYERS, OVERLAY_KEEP_FILTER, OVERLAY_SOURCE } from './boundary-tiles';
-import { boundaryTileLayers, tileDateFilter, tileFillColor, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
+import { boundaryTileLayers, tileDateFilter, tileFillColor, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
 import { dayNumber, readOverlayTilesUrl, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
 import { intervalKey } from '../../core/change-points';
 
@@ -659,7 +659,11 @@ export class AtlasMap {
     effect(() => {
       const colors = this.regimeColors();
       if (!this.ready() || this.boundarySource() !== 'tiles') return;
-      untracked(() => this.map?.getLayer(TILE_FILL) && this.map.setPaintProperty(TILE_FILL, 'fill-color', tileFillColor(colors)));
+      untracked(() => {
+        if (!this.map?.getLayer(TILE_FILL)) return;
+        this.map.setPaintProperty(TILE_FILL, 'fill-color', tileFillColor(colors));
+        this.applyTileHatch();
+      });
     });
     effect(() => {
       const names = this.regimeNames();
@@ -862,7 +866,7 @@ export class AtlasMap {
         }
         const rec = map.queryRenderedFeatures(e.point, { layers: ['sov-fill', 'sov-hatch-base'] })[0]?.properties?.['recordId'] as string | undefined;
         // tiles 模式：國界在圖磚（tiles-fill），圖磚帶 regime_id
-        const tile = !rec && map.getLayer(TILE_FILL) ? map.queryRenderedFeatures(e.point, { layers: [TILE_FILL] })[0]?.properties : undefined;
+        const tile = !rec && map.getLayer(TILE_FILL) ? map.queryRenderedFeatures(e.point, { layers: [TILE_FILL, TILE_HATCH_BASE] })[0]?.properties : undefined;
         if (rec) this.sovereigntyClick.emit({ recordId: rec, x: e.point.x, y: e.point.y });
         else if (tile?.['regime_id']) this.sovereigntyClick.emit({ recordId: '', regimeId: String(tile['regime_id']), x: e.point.x, y: e.point.y });
         else this.emptyClick.emit();
@@ -1538,8 +1542,8 @@ export class AtlasMap {
     map.addSource(TILE_SOURCE, { type: 'vector', url: readTilesUrl(), attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）等' });
     const d = this.date() ?? this.state.date();
     this.tileDay = dayNumber(d);
-    const [fill, line, lineNs, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
-    for (const l of [fill, line, lineNs]) map.addLayer(l, 'gap-base');
+    const [fill, hatchBase, hatch, line, lineNs, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
+    for (const l of [fill, hatchBase, hatch, line, lineNs]) map.addLayer(l, 'gap-base');
     map.addLayer(label, 'regime-label');
     this.addOverlayTiles();
     this.tileFilterKey = intervalKey(this.changePoints(), d);
@@ -1547,6 +1551,14 @@ export class AtlasMap {
     map.on('mouseleave', TILE_FILL, () => (map.getCanvas().style.cursor = ''));
     // geojson 主權圖層在 tiles 模式下沒有資料；保持隱藏，避免與圖磚重疊
     for (const id of ['sov-fill', 'sov-hatch-base', 'sov-hatch', 'sov-line', 'sov-line-not-sovereign']) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+    map.on('mouseenter', TILE_HATCH, () => (map.getCanvas().style.cursor = 'pointer'));
+    map.on('mouseleave', TILE_HATCH, () => (map.getCanvas().style.cursor = ''));
+  }
+
+  /** 非主權斜線（顏色跟著政權色；佔領區另外覆蓋）。 */
+  private applyTileHatch(): void {
+    if (!this.map?.getLayer(TILE_HATCH)) return;
+    this.map.setPaintProperty(TILE_HATCH, 'fill-pattern', tileHatchPattern(this.regimeColors()));
   }
 
   /** tiles 模式換日期：只在跨越變動區間時 setFilter，不發請求。 */
@@ -1613,7 +1625,7 @@ export class AtlasMap {
     const n = this.map.queryRenderedFeatures({ layers: ['control-fill', 'control-hatch'] }).length;
     this.renderedCount.set(n);
     this.renderedGaps.set(this.map.queryRenderedFeatures({ layers: ['gap-fill'] }).length);
-    const sovLayers = this.map.getLayer(TILE_FILL) ? [TILE_FILL] : ['sov-fill', 'sov-hatch-base'];
+    const sovLayers = this.map.getLayer(TILE_FILL) ? [TILE_FILL, TILE_HATCH_BASE] : ['sov-fill', 'sov-hatch-base'];
     this.renderedSovereignty.set(this.map.queryRenderedFeatures({ layers: sovLayers }).length);
   }
 

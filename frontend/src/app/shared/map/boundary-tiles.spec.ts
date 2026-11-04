@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
+import { tileHatchBase, tileHatchPattern, boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
 import { labelMinZoom } from './label-fit';
+import { MAP_COLORS } from './map-style';
 import { REGIME_FALLBACK_COLORS } from './sovereignty-style';
 
 describe('boundary tiles', () => {
@@ -37,11 +38,27 @@ describe('boundary tiles', () => {
     const ls = boundaryTileLayers(100, {}, { names: { a: '甲' }, labelPx: { a: 30 } }) as Array<{ id: string; filter: unknown; 'source-layer': string }>;
     expect(ls.map((l) => l.id)).toEqual([...TILE_LAYER_IDS]);
     for (const l of ls) expect(JSON.stringify(l.filter)).toContain(JSON.stringify(tileDateFilter(100)));
-    expect(ls.map((l) => l['source-layer'])).toEqual(['boundaries', 'boundaries', 'boundaries', 'labels']);
+    expect(ls.map((l) => l['source-layer'])).toEqual(['boundaries', 'boundaries', 'boundaries', 'boundaries', 'boundaries', 'labels']);
   });
   it('filter only updates when the change-point interval changes', () => {
     expect(tileFilterUpdate(null, '1940-06-22', 14783)).toEqual({ key: '1940-06-22', filters: tileFilters(14783) });
     expect(tileFilterUpdate('1940-06-22', '1940-06-22', 14790)).toBeNull();
+  });
+});
+
+describe('非主權斜線（tiles）', () => {
+  it('填色只畫主權政權；非主權畫底色＋斜線（與 sov-fill／sov-hatch 相同分法）', () => {
+    const f = tileFilters(5) as Record<string, unknown>;
+    expect(JSON.stringify(f['tiles-fill'])).toContain('["!",["==",["get","control_type"],"not_sovereign"]]');
+    expect(JSON.stringify(f['tiles-hatch'])).toContain('["==",["get","control_type"],"not_sovereign"]');
+    expect(f['tiles-hatch']).toEqual(f['tiles-hatch-base']);
+  });
+  it('斜線圖樣：政權色（佔領區用覆蓋色），其餘依 color_idx；底色預設紙底', () => {
+    const p = tileHatchPattern({ a: '#aabbcc' }, { b: '#112233' }) as unknown[];
+    expect(p.slice(0, 6)).toEqual(['match', ['get', 'regime_id'], 'a', 'wl-hatch-contested-aabbcc', 'b', 'wl-hatch-contested-112233']);
+    expect(JSON.stringify(p[6])).toContain('color_idx');
+    expect(tileHatchBase()).toEqual(['literal', MAP_COLORS.land]);
+    expect(tileHatchBase({ x: '#123456' })).toEqual(['match', ['get', 'regime_id'], 'x', '#123456', MAP_COLORS.land]);
   });
 });
 

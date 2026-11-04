@@ -14,6 +14,7 @@ import { regimeSelfName } from '../../core/regime-names';
 import { TopBar } from '../../layout/top-bar/top-bar';
 import { GapCard } from '../../shared/gap-card/gap-card';
 import { Legend, type LegendRegime } from '../../shared/legend/legend';
+import { ViewportService } from '../../core/viewport';
 import { MotionService } from '../../core/motion';
 import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
 import { conflictArc } from '../../shared/map/conflict-arc';
@@ -81,7 +82,8 @@ interface SheetInfo {
           <div class="flex h-full flex-col">
             <wl-top-bar [date]="state.date()" [lang]="lang()" [legendOpen]="state.legendOpen()" [controlStatus]="data.controlStatus()"
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()" [axis]="state.axis()" (axisChange)="setAxis($event)"
-              (langChange)="state.lang.set($event)" (legendToggle)="state.legendOpen.set(!state.legendOpen())" (jump)="setDate($event)" />
+              (langChange)="state.lang.set($event)" (legendToggle)="toggleLegend()" (jump)="setDate($event)"
+              [bp]="vp.bp()" [compact]="vp.compact()" [showCamps]="showCamps()" (campsToggle)="showCamps.set(!showCamps())" (datePick)="openDatePicker()" />
             <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
@@ -93,11 +95,6 @@ interface SheetInfo {
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection(); state.legendOpen.set(false)" (featureHover)="hover.set($event)" />
 
-              <!-- 陣營外框圖層（補充，可開關；Tai 2026-10-31：政權優先於陣營，填色不變） -->
-              <button type="button" data-testid="camp-layer-toggle" class="wl-paper absolute right-4 top-4 z-10 flex items-center gap-2 px-3 py-1.5 wl-text2"
-                [attr.aria-pressed]="showCamps()" (click)="showCamps.set(!showCamps())">
-                <span class="inline-block size-3 border border-wl-outline" [class.bg-wl-secondary]="showCamps()"></span>{{ lang() === 'en' ? 'Camp outlines (supplement)' : '陣營外框（補充）' }}
-              </button>
 
               @if (firstLoad()) {
                 <div data-testid="map-loading" class="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -252,6 +249,13 @@ export class AtlasPage {
     return placeCard(x, y, w || window.innerWidth, h || window.innerHeight, cardW);
   }
   protected readonly showCamps = signal(false);
+  protected readonly vp = inject(ViewportService);
+  /** 手機頂列點日期：聚焦時間軸的日期輸入（同一個日期選擇器）。 */
+  protected openDatePicker(): void {
+    const el = document.querySelector<HTMLInputElement>('[data-testid="timeline-date-input"]');
+    el?.focus();
+    el?.select();
+  }
   protected readonly motion = inject(MotionService);
   /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
   protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));

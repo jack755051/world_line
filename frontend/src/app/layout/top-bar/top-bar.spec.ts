@@ -52,3 +52,35 @@ describe('TopBar：實際控制／主權切換', () => {
     expect(thumb.style.transform).toMatch(/^translateX\(/);
   });
 });
+
+describe('TopBar：§12 手機精簡版', () => {
+  it('只放 World Line、ISO 日期（H1）、⋯ 選單；選單裡有檢視、語言、陣營外框、圖例', async () => {
+    const { fixture } = setup(true);
+    fixture.componentRef.setInput('compact', true);
+    fixture.componentRef.setInput('bp', 'xs');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const q = (id: string) => el.querySelector<HTMLElement>(`[data-testid="${id}"]`);
+    expect(q('topbar')?.getAttribute('data-compact')).toBe('true');
+    expect(q('topbar-date')?.textContent?.trim()).toBe('1939-10-15');
+    expect(q('axis-toggle')).toBeNull();
+    let picks = 0;
+    let legends = 0;
+    let camps = 0;
+    fixture.componentInstance.datePick.subscribe(() => picks++);
+    fixture.componentInstance.legendToggle.subscribe(() => legends++);
+    fixture.componentInstance.campsToggle.subscribe(() => camps++);
+    q('topbar-date')!.click();
+    expect(picks).toBe(1);
+    q('topbar-menu-button')!.click();
+    await fixture.whenStable();
+    expect(q('axis-toggle')).not.toBeNull();
+    expect(q('lang-toggle-en')).not.toBeNull();
+    q('camp-layer-toggle')!.click();
+    expect(camps).toBe(1);
+    q('topbar-menu-legend')!.click();
+    await fixture.whenStable();
+    expect(legends).toBe(1);
+    expect(q('topbar-menu')).toBeNull();
+  });
+});

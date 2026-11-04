@@ -97,16 +97,21 @@ test('點德國 → 飛到德國、置於面板左側可見區中央；遮罩模
   expect(Math.abs((await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.getZoom())) - zoom0)).toBeLessThan(0.05);
 });
 
-test('換政權時面板內容直接換；點衝突圖示 → 衝突卡也在面板內、仍聚焦原政權；Esc 關閉；換日期恢復', async ({ page }) => {
+test('換政權時面板內容直接換；點衝突圖示 → 圖示旁小卡（§13 K1）、面板不變、仍聚焦原政權；Esc 先關小卡再關面板；換日期恢復', async ({ page }) => {
   await open(page, '1939-09-15');
   await clickLngLat(page, [21.01, 52.23]); // 華沙
   const sheet = page.getByTestId('regime-sheet');
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('波蘭');
   const rec = await page.getByTestId('map-canvas').getAttribute('data-focus-record');
   await page.getByTestId('map-conflict-icon').first().click();
-  await expect(sheet.getByTestId('conflict-card')).toBeVisible();
+  await expect(page.getByTestId('conflict-card')).toBeVisible();
+  await expect(sheet.getByTestId('conflict-card')).toHaveCount(0);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('波蘭');
   await expect(page.getByTestId('conflict-card-title')).toContainText('—');
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-focus-record', rec!);
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('conflict-card')).toHaveCount(0);
+  await expect(sheet).toHaveAttribute('data-state', 'open');
   await page.keyboard.press('Escape');
   await expect(sheet).toHaveCount(0);
   await expect(page.getByTestId('map-focus-mask')).toHaveAttribute('data-active', 'false');
@@ -119,7 +124,7 @@ test('換政權時面板內容直接換；點衝突圖示 → 衝突卡也在面
   await expect(page.getByTestId('map-focus-mask')).toHaveAttribute('data-active', 'false');
 });
 
-test('面板內：相關衝突（與地圖雙劍同步、點項目切到衝突詳情、可返回）；事件時間線（出處／查證徽章、點日期跳過去並重新聚焦）', async ({ page }) => {
+test('面板內：相關衝突（與地圖雙劍同步、點項目開圖示旁小卡、面板不變）；事件時間線（出處／查證徽章、點日期跳過去並重新聚焦）', async ({ page }) => {
   await open(page, '1939-09-20');
   await clickLngLat(page, [21.01, 52.23]); // 華沙：德—波、蘇—波
   const sheet = page.getByTestId('regime-sheet');
@@ -136,10 +141,10 @@ test('面板內：相關衝突（與地圖雙劍同步、點項目切到衝突�
   });
   expect(topIsIcon).toBe(true);
   await items.first().click();
-  await expect(sheet.getByTestId('conflict-card')).toBeVisible();
+  await expect(page.getByTestId('conflict-card')).toBeVisible();
   await expect(icons).toHaveCount(2);
-  await page.getByTestId('regime-sheet-back').click();
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('波蘭');
+  await page.getByTestId('conflict-card-close').click();
 
   // 時間線：德國 1939-10-23，事件有已查證／待查證徽章；點 1939-09-01 跳過去，德國仍聚焦
   await open(page, '1939-10-23');

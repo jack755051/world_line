@@ -17,7 +17,7 @@ usage() { sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
 
 cmd="${1:-}"; svc="${2:-}"
 case "$cmd" in build|push|build-push) ;; *) usage ;; esac
-case "$svc" in ""|api|web) ;; *) echo "未知服務：$svc（只接受 api、web）" >&2; exit 1 ;; esac
+case "$svc" in ""|api|web) ;; *) echo "未知服務：${svc}（只接受 api、web）" >&2; exit 1 ;; esac
 [ -f "$ENV_FILE" ] || { echo "找不到 ${ENV_FILE}（先 cp env.prod.example .env.prod 並填值）" >&2; exit 1; }
 
 services=(api web); [ -n "$svc" ] && services=("$svc")
@@ -50,5 +50,5 @@ set -a; . "$ef"; set +a
 for s in "${services[@]}"; do
   if [ "$s" = api ]; then img="${API_IMAGE:-registry.digitalocean.com/sanring/worldline-api}:${API_IMAGE_TAG:-latest}"
   else img="${WEB_IMAGE:-jackdai850817/worldline-web}:${WEB_IMAGE_TAG:-latest}"; fi
-  echo "$s → $img（$(docker image inspect -f '{{.Os}}/{{.Architecture}}' "$img" 2>/dev/null || echo 未在本機)）"
+  echo "$s → ${img}（$(docker image inspect -f '{{.Os}}/{{.Architecture}}' "$img" 2>/dev/null || echo 未在本機)）"
 done

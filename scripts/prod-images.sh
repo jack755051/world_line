@@ -18,7 +18,7 @@ usage() { sed -n '2,8p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
 cmd="${1:-}"; svc="${2:-}"
 case "$cmd" in build|push|build-push) ;; *) usage ;; esac
 case "$svc" in ""|api|web) ;; *) echo "未知服務：$svc（只接受 api、web）" >&2; exit 1 ;; esac
-[ -f "$ENV_FILE" ] || { echo "找不到 $ENV_FILE（先 cp env.prod.example .env.prod 並填值）" >&2; exit 1; }
+[ -f "$ENV_FILE" ] || { echo "找不到 ${ENV_FILE}（先 cp env.prod.example .env.prod 並填值）" >&2; exit 1; }
 
 services=(api web); [ -n "$svc" ] && services=("$svc")
 
@@ -29,7 +29,7 @@ set_tag() {  # set_tag API_IMAGE_TAG 202611042130：改 .env.prod 的值（沒�
   else
     printf '%s=%s\n' "$key" "$val" >> "$ENV_FILE"
   fi
-  echo "$ENV_FILE：$key=$val"
+  echo "${ENV_FILE}：$key=$val"
 }
 
 if [ -n "$svc" ] && [ "$cmd" != push ]; then

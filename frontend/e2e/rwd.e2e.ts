@@ -154,3 +154,22 @@ test('§12 手機選取政權：政權名字一定顯示，而且在底部面板
     expect(nb.y).toBeGreaterThanOrEqual(48);
   }
 });
+
+test.describe('§12 觸控（hover: none、pointer: coarse）', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
+  test('雙指縮放開、旋轉與 pitch 關（北方朝上）；可點擊目標 ≥44px；出處收成按鈕', async ({ page }) => {
+    await page.goto('/?date=1940-06-01&axis=sovereignty');
+    await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
+    expect(await page.evaluate(() => matchMedia('(hover: none) and (pointer: coarse)').matches)).toBe(true);
+    const st = await page.evaluate(() => {
+      const m = (window as unknown as { __wlMap: { touchPitch: { isEnabled(): boolean }; touchZoomRotate: { isEnabled(): boolean; _rotationDisabled?: boolean }; getBearing(): number } }).__wlMap;
+      return { pitch: m.touchPitch.isEnabled(), zoom: m.touchZoomRotate.isEnabled(), rotDisabled: m.touchZoomRotate._rotationDisabled ?? null, bearing: m.getBearing() };
+    });
+    expect(st).toEqual({ pitch: false, zoom: true, rotDisabled: true, bearing: 0 });
+    for (const id of ['timeline-play', 'timeline-menu-button', 'topbar-menu-button']) {
+      const b = (await page.getByTestId(id).boundingBox())!;
+      expect(Math.min(b.width, b.height), id).toBeGreaterThanOrEqual(44);
+    }
+    await expect(page.locator('.maplibregl-compact')).toHaveCount(1);
+  });
+});

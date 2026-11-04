@@ -42,8 +42,18 @@ test('1942-12-01：平時沒有虛線弧；點美國 → 與德、義、羅、�
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(6);
 
   // 鏡頭自動框入所有弧線（Japan—US 不再跑出畫面）：等 arc-fit 完成、鏡頭停下
-  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-arc-fit')) ?? 0)).toBeGreaterThan(0);
+  // 弧線都在面板左側的可視區內（聚焦框若已含弧線就不必再移鏡頭，data-arc-fit 可能是 0）
+  await page.waitForTimeout(800);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  const area = (await page.getByTestId('map-area').boundingBox())!;
+  const sheetX = (await page.getByTestId('regime-sheet').boundingBox())!.x;
+  for (const arc of await page.getByTestId('map-conflict-arc').all()) {
+    const bb = (await arc.boundingBox())!;
+    expect(bb.x).toBeGreaterThanOrEqual(area.x - 2);
+    expect(bb.x + bb.width).toBeLessThanOrEqual(sheetX + 2);
+    expect(bb.y).toBeGreaterThanOrEqual(area.y - 2);
+    expect(bb.y + bb.height).toBeLessThanOrEqual(area.y + area.height + 2);
+  }
   await page.waitForTimeout(300);
   // 弧線在遮罩之上；雙劍在自己的弧線上、彼此錯開；每條弧線都有一段、每個雙劍都在地圖可視區內（面板左側）
   const check = await page.evaluate(() => {
@@ -134,8 +144,18 @@ test('截圖：1942-12-01 點美國的遠距交戰虛線弧', async ({ page }) =
   await clickLngLat(page, US);
   await expect(page.getByTestId('map-conflict-arc')).toHaveCount(5); // 日美經阿留申相鄰，不畫弧
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
-  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-arc-fit')) ?? 0)).toBeGreaterThan(0);
+  // 弧線都在面板左側的可視區內（聚焦框若已含弧線就不必再移鏡頭，data-arc-fit 可能是 0）
+  await page.waitForTimeout(800);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  const area = (await page.getByTestId('map-area').boundingBox())!;
+  const sheetX = (await page.getByTestId('regime-sheet').boundingBox())!.x;
+  for (const arc of await page.getByTestId('map-conflict-arc').all()) {
+    const bb = (await arc.boundingBox())!;
+    expect(bb.x).toBeGreaterThanOrEqual(area.x - 2);
+    expect(bb.x + bb.width).toBeLessThanOrEqual(sheetX + 2);
+    expect(bb.y).toBeGreaterThanOrEqual(area.y - 2);
+    expect(bb.y + bb.height).toBeLessThanOrEqual(area.y + area.height + 2);
+  }
   await page.mouse.move(5, 5);
   await page.waitForTimeout(1200);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-us-arcs-1942-12-01.png` });
@@ -181,8 +201,18 @@ test('截圖：1942-12-01 點英國（英德、英義畫弧，泰英短弧從美
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
   await expect(page.getByTestId('map-conflict-icon')).toHaveCount(fs.length);
   await expect(page.getByTestId('map-conflict-arc')).toHaveCount(withArc);
-  await expect.poll(async () => Number((await page.getByTestId('map-canvas').getAttribute('data-arc-fit')) ?? 0)).toBeGreaterThan(0);
+  // 弧線都在面板左側的可視區內（聚焦框若已含弧線就不必再移鏡頭，data-arc-fit 可能是 0）
+  await page.waitForTimeout(800);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  const area = (await page.getByTestId('map-area').boundingBox())!;
+  const sheetX = (await page.getByTestId('regime-sheet').boundingBox())!.x;
+  for (const arc of await page.getByTestId('map-conflict-arc').all()) {
+    const bb = (await arc.boundingBox())!;
+    expect(bb.x).toBeGreaterThanOrEqual(area.x - 2);
+    expect(bb.x + bb.width).toBeLessThanOrEqual(sheetX + 2);
+    expect(bb.y).toBeGreaterThanOrEqual(area.y - 2);
+    expect(bb.y + bb.height).toBeLessThanOrEqual(area.y + area.height + 2);
+  }
   await page.mouse.move(5, 5);
   await page.waitForTimeout(1200);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-arcs-1942-12-01-uk.png` });

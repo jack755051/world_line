@@ -203,6 +203,7 @@ test('實際控制 ↔ 主權切換：地圖過場、URL、圖例跟著換', asy
   await expect(page.getByTestId('axis-toggle-sovereignty')).toHaveAttribute('aria-pressed', 'true');
   await expect(canvas).toHaveAttribute('data-axis', 'sovereignty');
   await expect(page).toHaveURL(/axis=sovereignty/);
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   await expect(page.getByTestId('legend')).toHaveAttribute('data-axis', 'sovereignty');
   // 主權檢視圖例只留國界說明，不列「目前畫面中的政權」（Tai 2026-10-31）
   await expect(page.getByTestId('legend-sov-fill')).toBeVisible();
@@ -221,13 +222,19 @@ test('?axis=sovereignty 直接進主權檢視；1938-10-15 捷克斯洛伐克有
     const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
     map.jumpTo({ center: [16, 52], zoom: 3.55 });
   });
-  await expect(page.getByTestId('map-regime-label').filter({ hasText: '捷克斯洛伐克' })).toHaveCount(1);
+  // 國名已改為 MapLibre symbol layer（M1-a），從畫面上已顯示的標籤讀
+  await expect.poll(() => page.evaluate(() => {
+    const m = (window as unknown as { __wlMap: { getLayer: (id: string) => unknown; queryRenderedFeatures: (o: object) => { properties: Record<string, unknown> }[] } }).__wlMap;
+    const layers = ['regime-label', 'tiles-label'].filter((l) => m.getLayer(l));
+    return m.queryRenderedFeatures({ layers }).filter((f) => JSON.stringify(f.properties).includes('捷克斯洛伐克')).length;
+  })).toBe(1);
 });
 
 test('圖例收合有過場（closing → collapsed）；prefers-reduced-motion 時直接收合', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);
   const legend = page.getByTestId('legend');
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   await expect(legend).toHaveAttribute('data-state', 'open');
   const states: string[] = [];
   await page.exposeFunction('wlState', (s: string) => states.push(s));

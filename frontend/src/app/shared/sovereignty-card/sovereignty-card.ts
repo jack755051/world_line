@@ -254,23 +254,23 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                         @for (e of g.items; track e.ev.id) {
                           <li data-testid="sovereignty-card-timeline-item" [attr.data-event-id]="e.ev.id" [attr.data-when]="e.when"
                             [attr.data-selected]="selectedEvent() === e.ev.id ? 'true' : null" [attr.data-pending]="e.pending ? 'true' : null" [attr.data-battle]="e.battle ? 'true' : null"
-                            [attr.data-expanded]="isExpanded(e.ev.id) ? 'true' : 'false'"
-                            class="wl-event-card relative min-h-[72px] cursor-pointer rounded-wl-sm border bg-wl-surface px-3 py-2 wl-text2 transition-shadow hover:-translate-y-px hover:shadow-[var(--wl-shadow-panel)]"
+                            [attr.data-expanded]="isExpanded(e.ev.id) ? 'true' : 'false'" [class.h-[72px]]="!isExpanded(e.ev.id)" [class.overflow-hidden]="!isExpanded(e.ev.id)"
+                            class="wl-event-card relative cursor-pointer rounded-wl-sm border bg-wl-surface px-3 py-1.5 wl-text2 transition-shadow hover:-translate-y-px hover:shadow-[var(--wl-shadow-panel)]"
                             [class.border-dashed]="e.pending" [class.border-wl-outline]="e.pending" [class.border-wl-outline-variant]="!e.pending"
                             [class.border-l-[3px]]="selectedEvent() === e.ev.id" [class.border-l-wl-secondary]="selectedEvent() === e.ev.id"
                             [class.opacity-60]="e.when === 'future'" [style.content-visibility]="timeline().length > 50 ? 'auto' : null"
                             [style.contain-intrinsic-size]="timeline().length > 50 ? 'auto 72px' : null"
                             (click)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')">
                             <span class="absolute -left-[18px] top-3 size-2.5 rounded-full border border-wl-outline" [class.bg-wl-secondary]="e.when === 'now'" [class.bg-wl-surface]="e.when !== 'now'" aria-hidden="true"></span>
-                            <div class="flex items-center gap-1.5">
+                            <div class="flex h-[18px] items-center gap-1.5 text-[12px] leading-[18px]">
                               <button type="button" data-testid="sovereignty-card-timeline-jump" class="tabular-nums font-semibold underline decoration-dotted underline-offset-2 hover:text-wl-secondary"
                                 [attr.aria-label]="t().jump + ' ' + e.ev.occurred.start" (click)="$event.stopPropagation(); pickEvent(e.ev.id, e.ev.occurred.start ?? '')">{{ e.ev.occurred.start }}</button>
                               @if (e.when === 'now') { <span class="text-[11px] text-wl-secondary">{{ t().now }}</span> }
                               <button type="button" data-testid="sovereignty-card-timeline-toggle" class="ml-auto text-[11px] text-wl-on-surface-variant hover:text-wl-on-surface"
                                 [attr.aria-expanded]="isExpanded(e.ev.id)" (click)="$event.stopPropagation(); toggleEvent(e.ev.id)">{{ isExpanded(e.ev.id) ? t().collapse : t().expand }}</button>
                             </div>
-                            <div data-testid="sovereignty-card-timeline-title" class="line-clamp-1 font-semibold">{{ e.title }}</div>
-                            <div class="mt-0.5 flex flex-wrap items-center gap-1">
+                            <div data-testid="sovereignty-card-timeline-title" class="truncate font-semibold leading-[20px]">{{ e.title }}</div>
+                            <div class="mt-0.5 flex h-[18px] flex-wrap items-center gap-1 overflow-hidden leading-[16px]">
                               @for (r of e.roles; track r) { <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant">{{ r }}</span> }
                               @if (e.battle) { <span data-testid="sovereignty-card-timeline-battle" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px]">⚔ {{ t().battle }}</span> }
                               @if (e.pending) { <span data-testid="sovereignty-card-timeline-pending" class="wl-chip-interp text-[11px]">{{ t().pendingTag }}</span> }
@@ -632,7 +632,13 @@ export class SovereigntyCard {
       if (!now) return;
       untracked(() => afterNextRender(() => {
         const el = (this.host.nativeElement as HTMLElement).querySelector<HTMLElement>(`[data-testid="sovereignty-card-timeline-item"][data-event-id="${now.ev.id}"]`);
-        if (el && el.offsetParent !== null && typeof el.scrollIntoView === 'function') el.scrollIntoView({ block: 'nearest' });
+        // 只捲面板內的捲動區（不用 scrollIntoView，以免連帶捲動地圖區等外層容器）
+        const box = el?.offsetParent !== null ? el?.closest<HTMLElement>('[data-testid="sovereignty-card-body"]') : null;
+        if (!el || !box) return;
+        const er = el.getBoundingClientRect();
+        const br = box.getBoundingClientRect();
+        if (er.top < br.top + 28) box.scrollTop += er.top - br.top - 28; // 28px＝sticky 月份標頭
+        else if (er.bottom > br.bottom) box.scrollTop += er.bottom - br.bottom;
       }, { injector: this.injector }));
     });
   }

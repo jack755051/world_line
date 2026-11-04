@@ -38,35 +38,19 @@ async function jumpForce(page: Page, date: string): Promise<void> {
   await page.getByTestId('timeline-date-input').press('Enter');
 }
 
-test('大幅跳日期且載入慢：300ms 後出現全畫面半透明蒙版與置中的「載入中」、擋住操作；完成後淡出並淡入新國界', async ({ page }) => {
+test('大幅跳日期且載入慢：掃描揭露層播報「載入中」（不再蓋全畫面蒙版）；完成後淡入新國界', async ({ page }) => {
   await open(page, '1939-10-23');
   await delay(page, { '1944-10-01': 1800 });
   const canvas = page.getByTestId('map-canvas');
   const fade0 = Number(await canvas.getAttribute('data-sov-fade'));
   await jump(page, '1944-10-01');
   const busy = page.getByTestId('map-busy');
-  await expect(busy).toBeVisible();
+  await expect(busy).toBeAttached();
   await expect(busy).toHaveAttribute('role', 'status');
   await expect(busy).toContainText('載入中');
-  await expect(busy).toHaveCSS('pointer-events', 'none');
-  // 蒙版：蓋滿整個視窗（含時間軸與側欄）、半透明、擋住操作；「載入中」置於視窗正中央
-  const scrim = page.getByTestId('map-busy-scrim');
-  await expect(scrim).toBeVisible();
-  await expect(scrim).toHaveCSS('pointer-events', 'auto');
-  const bg = await scrim.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(bg).not.toBe('rgba(0, 0, 0, 0)');
-  const alpha = Number((/\/\s*([\d.]+)\s*\)$/.exec(bg) ?? /^rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)$/.exec(bg))?.[1]); // 半透明：0 < alpha < 1
-  expect(alpha).toBeGreaterThan(0);
-  expect(alpha).toBeLessThan(1);
-  const vp = page.viewportSize()!;
-  const sb = (await scrim.boundingBox())!;
-  const bb = (await busy.boundingBox())!;
-  // 蒙版覆蓋整個視窗
-  expect(sb.width).toBeGreaterThanOrEqual(vp.width - 1);
-  expect(sb.height).toBeGreaterThanOrEqual(vp.height - 1);
-  // 「載入中」置於視窗正中央
-  expect(Math.abs(bb.x + bb.width / 2 - vp.width / 2)).toBeLessThan(8);
-  expect(Math.abs(bb.y + bb.height / 2 - vp.height / 2)).toBeLessThan(8);
+  // 跳年改用掃描揭露（06023c2，plan B）：不再蓋全畫面蒙版，改為快照＋亮線掃出新圖，「載入中」由掃描層的 status 播報
+  await expect(page.getByTestId('map-scan')).toBeAttached();
+  await expect(page.getByTestId('map-busy-scrim')).toHaveCount(0);
   await page.mouse.move(5, 5);
   await page.waitForTimeout(200);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-loading-1944-10-01.png` });
@@ -81,8 +65,8 @@ test('延遲顯示：載入開始後約 300ms 內不出現 spinner（避免快�
   const t0 = Date.now();
   await jump(page, '1942-11-01');
   await page.waitForTimeout(200);
-  if (Date.now() - t0 < 380) await expect(page.getByTestId('map-busy')).toHaveCount(0);
-  await expect(page.getByTestId('map-busy')).toBeVisible();
+  if (Date.now() - t0 < 380) await expect(page.getByTestId('map-busy-scrim')).toHaveCount(0);
+  await expect(page.getByTestId('map-busy')).toBeAttached(); // 掃描揭露層的 status（06023c2 後不再有全畫面蒙版）
   await expect(page.getByTestId('map-busy')).toHaveCount(0, { timeout: 8000 });
 });
 

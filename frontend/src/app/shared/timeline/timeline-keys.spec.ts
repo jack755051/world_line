@@ -15,7 +15,7 @@ describe('timelineShortcut', () => {
     expect(timelineShortcut({ key: 'ArrowLeft', shiftKey: true, target: el('BODY') })).toEqual({ kind: 'step', unit: 'year', dir: -1 });
   });
   it('輸入框、textarea、contenteditable、選單裡不作用', () => {
-    for (const t of [el('INPUT'), el('TEXTAREA'), el('SELECT'), el('DIV', {}, true), el('DIV', { role: 'menu' }), el('BUTTON', { role: 'menuitemradio' }), el('DIV', { role: 'slider' })]) {
+    for (const t of [el('INPUT'), el('TEXTAREA'), el('SELECT'), el('DIV', {}, true), el('DIV', { role: 'menu' }), el('BUTTON', { role: 'menuitemradio' }), el('DIV', { role: 'slider' }), el('BUTTON', { role: 'tab' }), el('DIV', { role: 'separator' })]) {
       expect(isTypingTarget(t)).toBe(true);
       expect(timelineShortcut({ key: 'ArrowLeft', target: t })).toBeNull();
       expect(timelineShortcut({ key: ' ', target: t })).toBeNull();

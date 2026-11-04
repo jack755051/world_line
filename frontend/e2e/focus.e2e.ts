@@ -89,8 +89,8 @@ test('點德國 → 飛到德國、置於面板左側可見區中央；遮罩模
   await expectFocusedRegimeInView(page, '1939-10-23');
   expect(await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.getZoom())).toBeGreaterThan(zoom0);
 
-  // 點空白處（北海）：面板滑出、遮罩取消、飛回原視角
-  await clickLngLat(page, [3, 56]);
+  // 點空白處（波羅的海；§10-3 圖例預設關閉後聚焦框不再讓出左側 300px，北海 [3,56] 會在畫面外）：面板滑出、遮罩取消、飛回原視角
+  await clickLngLat(page, [18.5, 55.5]);
   await expect(sheet).toHaveCount(0);
   await expect(mask).toHaveAttribute('data-active', 'false');
   await expect(canvas).toHaveAttribute('data-camera', 'idle');
@@ -147,7 +147,10 @@ test('面板內：相關衝突（與地圖雙劍同步、點項目切到衝突�
   await page.getByTestId('sovereignty-card-tab-events').click();
   const tl = page.getByTestId('sovereignty-card-timeline-item');
   await expect.poll(() => tl.count()).toBeGreaterThan(5);
-  await expect(page.getByTestId('sovereignty-card-timeline').getByTestId('sovereignty-card-timeline-verified').first()).toBeVisible();
+  // §10-1 卡片化：摺疊時只有日期／標題／tag（待考證 tag 直接看得到），查證徽章與出處在展開後
+  const verifiedCard = page.locator('[data-testid="sovereignty-card-timeline-item"]:not([data-pending])').first();
+  await verifiedCard.getByTestId('sovereignty-card-timeline-toggle').click();
+  await expect(verifiedCard.getByTestId('sovereignty-card-timeline-detail-verified')).toBeVisible();
   await expect(page.getByTestId('sovereignty-card-timeline').getByTestId('sovereignty-card-timeline-pending').first()).toBeVisible();
   await expect(tl.locator('xpath=self::*[@data-when="now"]')).toHaveCount(1);
   await page.getByTestId('sovereignty-card-timeline-jump').filter({ hasText: '1939-09-01' }).first().click();
@@ -188,7 +191,9 @@ test('面板分頁：概要／事件（tablist、aria-selected、aria-controls�
   await expect(page.getByTestId('sovereignty-card-tab-events-count')).toHaveText(/\d+/);
   await page.keyboard.press('Home');
   await expect(ov).toHaveAttribute('aria-selected', 'true');
-  await page.keyboard.press('End');
+  await page.keyboard.press('End'); // 最後一個分頁是「領導人」
+  await expect(page.getByTestId('sovereignty-card-tab-leaders')).toHaveAttribute('aria-selected', 'true');
+  await page.keyboard.press('ArrowLeft');
   await expect(evt).toHaveAttribute('aria-selected', 'true');
   // 換政權（面板開著）：保留「事件」分頁。鏡頭框入英德虛線弧後克拉科夫可能在面板底下，先把它移到可見區
   await page.evaluate((c) => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: c, zoom: 4 }), KRAKOW);

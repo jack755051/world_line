@@ -138,6 +138,7 @@ for (const date of ['1940-07-15', '1940-10-01']) {
     const expected = new Set(features.map((f) => (f.properties.controllerAlignment ? CAMP_KEY[f.properties.controllerAlignment.camp] : 'unassigned')));
 
     await page.goto(`/?date=${date}`);
+    await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
     const items = page.getByTestId('legend-regime-item');
     await expect(items.first()).toBeVisible();
     const shown = new Set(await items.evaluateAll((els) => els.map((e) => e.getAttribute('data-camp') ?? '')));
@@ -204,13 +205,15 @@ test('時間軸方案 A：空白鍵播放、←／→ 一週、Shift＋←／→
   await expect(page.getByTestId('timeline-play')).toHaveAttribute('aria-pressed', 'false');
 });
 
-test('Stitch v2：圖例收合成小按鈕，可再展開', async ({ page }) => {
+test('§10-3：圖例預設收合成左下 40×40 按鈕，可展開、可再收合', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'collapsed');
+  const box = await page.getByTestId('legend-expand').boundingBox();
+  expect(Math.round(box!.width)).toBe(40);
+  await page.getByTestId('legend-expand').click();
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
   await page.getByTestId('legend-toggle').click();
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'collapsed');
-  const box = await page.getByTestId('legend-expand').boundingBox();
-  expect(box!.width).toBeLessThan(140);
   await page.getByTestId('legend-expand').click();
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
 });
@@ -238,6 +241,7 @@ test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯�
   await expect(page.getByTestId('timeline-start-label')).toHaveText(startLabel);
   // 圖例：每個政權至少一個邊框樣本，樣本的控制類型都出現在 API 資料中
   const types = new Set(features.map((f) => f.properties.controlType));
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   const sw = page.getByTestId('legend-regime-swatch');
   await expect(sw.first()).toBeVisible();
   for (const t of await sw.evaluateAll((els) => els.map((e) => e.getAttribute('data-control-type') ?? ''))) expect(types.has(t)).toBe(true);

@@ -11,7 +11,7 @@ export interface KeyLike {
   target?: EventTarget | null;
 }
 
-/** 正在打字或操作表單、選單、滑桿把手（把手自己處理方向鍵）的元素：快捷鍵一律不作用，避免和輸入框衝突。 */
+/** 正在打字或操作表單、選單、滑桿把手、分頁、拖拉把手（這些自己處理方向鍵）的元素：快捷鍵一律不作用，避免和輸入框衝突。 */
 export function isTypingTarget(t: EventTarget | null | undefined): boolean {
   const el = t as (HTMLElement & { isContentEditable?: boolean }) | null | undefined;
   if (!el || typeof el !== 'object' || !('tagName' in el)) return false;
@@ -19,7 +19,7 @@ export function isTypingTarget(t: EventTarget | null | undefined): boolean {
   if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
   if (el.isContentEditable) return true;
   const role = el.getAttribute?.('role');
-  return role === 'textbox' || role === 'combobox' || role === 'menu' || role === 'menuitem' || role === 'menuitemradio' || role === 'searchbox' || role === 'slider';
+  return role === 'textbox' || role === 'combobox' || role === 'menu' || role === 'menuitem' || role === 'menuitemradio' || role === 'searchbox' || role === 'slider' || role === 'tab' || role === 'separator';
 }
 
 export function timelineShortcut(e: KeyLike): TimelineShortcut | null {

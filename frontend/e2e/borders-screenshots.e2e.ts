@@ -53,6 +53,7 @@ test('截圖：展開的圖例（主權檢視只留國界說明）', async ({ pa
   const canvas = page.getByTestId('map-canvas');
   await expect(canvas).toHaveAttribute('data-map-ready', 'true');
   await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
   await page.waitForTimeout(1000);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-legend-1939-10-23.png` });

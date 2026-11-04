@@ -81,3 +81,13 @@ test('§10-3：圖例預設關閉；左下按鈕展開 240px 浮動面板、padd
   await expect(legend).toHaveAttribute('data-state', 'collapsed');
   await expect.poll(async () => (await padding(page)).left).toBe(0);
 });
+
+test('出處文字不被左下 ⓘ 圖例按鈕蓋住（1440、1024）', async ({ page }) => {
+  for (const w of [1440, 1024]) {
+    await open(page, w);
+    const btn = (await page.getByTestId('legend-expand').boundingBox())!;
+    const attrib = (await page.locator('.maplibregl-ctrl-attrib').boundingBox())!;
+    const overlap = attrib.x < btn.x + btn.width && attrib.x + attrib.width > btn.x && attrib.y < btn.y + btn.height && attrib.y + attrib.height > btn.y;
+    expect(overlap).toBe(false);
+  }
+});

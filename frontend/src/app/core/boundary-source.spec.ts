@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BOUNDARY_SOURCE_KEY, DEFAULT_TILES_URL, dayNumber, readBoundarySource, readTilesUrl } from './boundary-source';
+import { BOUNDARY_SOURCE_KEY, DEFAULT_TILES_URL, dayNumber, readBoundarySource, readOverlayTilesUrl, readOverlayUrl, readTilesUrl } from './boundary-source';
 
 function mem(init: Record<string, string> = {}) {
   const m = new Map(Object.entries(init));
@@ -26,9 +26,16 @@ describe('boundary source flag', () => {
   });
   it('tiles url: param, then stored, then default Martin', () => {
     const s = mem();
-    expect(readTilesUrl('', s)).toBe(DEFAULT_TILES_URL);
-    expect(readTilesUrl('?tilesUrl=http://x/y', s)).toBe('http://x/y');
-    expect(readTilesUrl('', s)).toBe('http://x/y');
+    expect(readTilesUrl('', s, false)).toBe(DEFAULT_TILES_URL);
+    expect(readTilesUrl('?tilesUrl=http://x/y', s, false)).toBe('http://x/y');
+    expect(readTilesUrl('', s, false)).toBe('http://x/y');
+  });
+  it('production: same-origin /tiles/* defaults, never the local dev servers or stored values', () => {
+    const s = mem({ 'wl.tilesUrl': 'http://127.0.0.1:3010/boundaries' });
+    const o = globalThis.location?.origin ?? '';
+    expect(readTilesUrl('', s, true)).toBe(o + '/tiles/boundaries');
+    expect(readOverlayTilesUrl('', s, true)).toBe(o + '/tiles/overlay');
+    expect(readOverlayUrl('', s, true)).toBe(o + '/tiles/overlay.json');
   });
 });
 

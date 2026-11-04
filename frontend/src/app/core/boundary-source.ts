@@ -13,6 +13,15 @@ export const BOUNDARY_SOURCE_KEY = 'wl.boundarySource';
 export const TILES_URL_KEY = 'wl.tilesUrl';
 /** 開發：tools/tiles/martin.sh 起的 Martin（docker，127.0.0.1:3010），來源名 boundaries。 */
 export const DEFAULT_TILES_URL = 'http://127.0.0.1:3010/boundaries';
+/**
+ * 正式上線（production build）的預設：與網站同源的 `/tiles/boundaries`（TileJSON，例：反向代理到 Martin 或 PMTiles 服務）
+ * 與 `/tiles/overlay.json`；部署方式見 release-checklist。開發環境沿用本機 Martin／nginx。
+ */
+export const PROD_TILES_PATH = '/tiles/boundaries';
+export const PROD_OVERLAY_PATH = '/tiles/overlay.json';
+function prodUrl(path: string): string {
+  return (globalThis.location?.origin ?? '') + path;
+}
 
 type Store = Pick<Storage, 'getItem' | 'setItem'>;
 
@@ -35,7 +44,8 @@ export function readBoundarySource(search: string = globalThis.location?.search 
   return saved === 'geojson' ? 'geojson' : 'tiles';
 }
 
-export function readTilesUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): string {
+export function readTilesUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore(), production = !isDevMode()): string {
+  if (production) return new URLSearchParams(search).get('tilesUrl') || prodUrl(PROD_TILES_PATH);
   const q = new URLSearchParams(search).get('tilesUrl');
   if (q) {
     try { store?.setItem(TILES_URL_KEY, q); } catch { /* 無法記住也照常 */ }
@@ -56,19 +66,21 @@ export function dayNumber(iso: string): number {
 
 /** overlay 圖磚（控制區、控制資料缺；§9 步驟 5）：`?overlayTilesUrl=`，預設與疆界圖磚同一個 Martin 的 overlay 來源。 */
 export const OVERLAY_TILES_URL_KEY = 'wl.overlayTilesUrl';
-export function readOverlayTilesUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): string {
+export function readOverlayTilesUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore(), production = !isDevMode()): string {
+  if (production) return new URLSearchParams(search).get('overlayTilesUrl') || readTilesUrl(search, store, true).replace(/\/boundaries\/?$/, '/overlay');
   const q = new URLSearchParams(search).get('overlayTilesUrl');
   if (q) {
     try { store?.setItem(OVERLAY_TILES_URL_KEY, q); } catch { /* 無法記住也照常 */ }
     return q;
   }
-  return store?.getItem(OVERLAY_TILES_URL_KEY) || readTilesUrl(search, store).replace(/\/boundaries\/?$/, '/overlay');
+  return store?.getItem(OVERLAY_TILES_URL_KEY) || readTilesUrl(search, store, false).replace(/\/boundaries\/?$/, '/overlay');
 }
 
 /** overlay JSON（各區間中繼資料；§9 步驟 5）：`?overlayUrl=`，預設本機 nginx（tools/tiles/overlay-nginx.sh，127.0.0.1:3011）。 */
 export const OVERLAY_URL_KEY = 'wl.overlayUrl';
 export const DEFAULT_OVERLAY_URL = 'http://127.0.0.1:3011/overlay.json';
-export function readOverlayUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): string {
+export function readOverlayUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore(), production = !isDevMode()): string {
+  if (production) return new URLSearchParams(search).get('overlayUrl') || prodUrl(PROD_OVERLAY_PATH);
   const q = new URLSearchParams(search).get('overlayUrl');
   if (q) {
     try { store?.setItem(OVERLAY_URL_KEY, q); } catch { /* 無法記住也照常 */ }

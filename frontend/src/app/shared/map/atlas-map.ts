@@ -652,7 +652,8 @@ export class AtlasMap {
       const d = this.date();
       const pts = this.changePoints();
       if (!this.ready() || this.boundarySource() !== 'tiles' || !d) return;
-      untracked(() => this.applyTileFilter(d, pts));
+      // 掃描揭露（§9 步驟 5-4）：正在拍舊畫面快照時先不換 filter，拍完再換（否則快照拍到的已是新日期）
+      untracked(() => (this.capturing ? void this.capturing.then(() => this.applyTileFilter(this.date() ?? d, this.changePoints())) : this.applyTileFilter(d, pts)));
     });
     effect(() => {
       const colors = this.regimeColors();
@@ -1506,6 +1507,8 @@ export class AtlasMap {
   }
 
   /** tiles 模式換日期：只在跨越變動區間時 setFilter，不發請求。 */
+  /** 進行中的掃描快照（tiles 模式換 filter 要等它拍完）。 */
+  private capturing: Promise<unknown> | null = null;
   private applyTileFilter(date: string, points: readonly string[] | null): void {
     const map = this.map;
     if (!map?.getLayer(TILE_FILL)) return;
@@ -1595,7 +1598,9 @@ export class AtlasMap {
    */
   async captureSnapshot(): Promise<{ canvas: HTMLCanvasElement; labels: HTMLElement } | null> {
     if (!this.map || this.engineError()) return null;
-    const canvas = await captureMapCanvas(this.map);
+    const p = captureMapCanvas(this.map);
+    this.capturing = p;
+    const canvas = await p.finally(() => { if (this.capturing === p) this.capturing = null; });
     if (!canvas) return null;
     // 標籤現在在 MapLibre canvas 內，不需要額外的 HTML 標籤快照
     return { canvas, labels: document.createElement('div') };

@@ -727,7 +727,9 @@ export class AtlasPage {
       });
     }
     // 鏡頭對準「被點的控制區 feature 自己的幾何」，而非控制國整體
-    this.focusFitBounds.set(f ? geometryBounds(f.geometry as unknown as Geometry) : null);
+    // tiles 模式（overlay）：feature 只帶最大多邊形，外框用 overlay 記的全幾何 bbox，與 geojson 模式一樣
+    const bb = (f as { bbox?: number[] } | null)?.bbox;
+    this.focusFitBounds.set(f ? (bb?.length === 4 ? [[bb[0], bb[1]], [bb[2], bb[3]]] : geometryBounds(f.geometry as unknown as Geometry)) : null);
   }
 
   protected setAxis(axis: 'control' | 'sovereignty'): void {

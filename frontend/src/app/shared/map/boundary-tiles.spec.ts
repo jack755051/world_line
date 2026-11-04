@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS } from './boundary-tiles';
+import { boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
 import { labelMinZoom } from './label-fit';
 import { REGIME_FALLBACK_COLORS } from './sovereignty-style';
 
@@ -42,5 +42,30 @@ describe('boundary tiles', () => {
   it('filter only updates when the change-point interval changes', () => {
     expect(tileFilterUpdate(null, '1940-06-22', 14783)).toEqual({ key: '1940-06-22', filters: tileFilters(14783) });
     expect(tileFilterUpdate('1940-06-22', '1940-06-22', 14790)).toBeNull();
+  });
+});
+
+describe('overlay 圖層（§9 步驟 5-5）', () => {
+  const rows = new Map<string, Record<string, unknown>>([
+    ['v2', { wlFill: '#222', wlFillOpacity: 0.6, wlPattern: '' }],
+    ['v1', { wlFill: '#111', wlFillOpacity: 0.85, wlPattern: 'wl-hatch-partial-111111' }],
+  ]);
+  it('byIdExpr：屬性換成依 versionId 的 match（id 排序、預設值依型別），id 本身與 literal 不動', () => {
+    expect(byIdExpr(['get', 'wlFill'], 'versionId', rows)).toEqual(['match', ['get', 'versionId'], 'v1', '#111', 'v2', '#222', '#111']);
+    expect(byIdExpr(['get', 'wlFillOpacity'], 'versionId', rows)).toEqual(['match', ['get', 'versionId'], 'v1', 0.85, 'v2', 0.6, 0.85]);
+    expect(byIdExpr(['==', ['get', 'versionId'], 'x'], 'versionId', rows)).toEqual(['==', ['get', 'versionId'], 'x']);
+    expect(byIdExpr(['literal', ['get', 'a']], 'versionId', rows)).toEqual(['literal', ['get', 'a']]);
+    expect(byIdExpr(['get', 'wlFill'], 'versionId', new Map())).toEqual(['get', 'wlFill']);
+  });
+  it('overlayFilter：當日清單 ∧ 原 filter；清單空時不畫', () => {
+    expect(overlayFilter(['==', ['get', 'wlPattern'], ''], 'versionId', rows)).toEqual([
+      'all', ['in', ['get', 'versionId'], ['literal', ['v1', 'v2']]],
+      ['==', ['match', ['get', 'versionId'], 'v1', 'wl-hatch-partial-111111', 'v2', '', 'wl-hatch-partial-111111'], ''],
+    ]);
+    expect(overlayFilter(undefined, 'gapId', new Map([['g', {}]]))).toEqual(['in', ['get', 'gapId'], ['literal', ['g']]]);
+    expect(overlayFilter(undefined, 'versionId', new Map())).toEqual(['boolean', false]);
+  });
+  it('dataDrivenPaint：只挑有 get 的屬性', () => {
+    expect(dataDrivenPaint({ 'fill-color': ['get', 'wlFill'], 'fill-opacity': 0.5, 'line-width': ['*', 2, ['get', 'w']] })).toEqual(['fill-color', 'line-width']);
   });
 });

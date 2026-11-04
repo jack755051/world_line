@@ -50,3 +50,26 @@ export function dayNumber(iso: string): number {
   t.setUTCHours(0, 0, 0, 0);
   return Math.round((t.getTime() - EPOCH_MS) / 86_400_000);
 }
+
+/** overlay 圖磚（控制區、控制資料缺；§9 步驟 5）：`?overlayTilesUrl=`，預設與疆界圖磚同一個 Martin 的 overlay 來源。 */
+export const OVERLAY_TILES_URL_KEY = 'wl.overlayTilesUrl';
+export function readOverlayTilesUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): string {
+  const q = new URLSearchParams(search).get('overlayTilesUrl');
+  if (q) {
+    try { store?.setItem(OVERLAY_TILES_URL_KEY, q); } catch { /* 無法記住也照常 */ }
+    return q;
+  }
+  return store?.getItem(OVERLAY_TILES_URL_KEY) || readTilesUrl(search, store).replace(/\/boundaries\/?$/, '/overlay');
+}
+
+/** overlay JSON（各區間中繼資料；§9 步驟 5）：`?overlayUrl=`，預設本機 nginx（tools/tiles/overlay-nginx.sh，127.0.0.1:3011）。 */
+export const OVERLAY_URL_KEY = 'wl.overlayUrl';
+export const DEFAULT_OVERLAY_URL = 'http://127.0.0.1:3011/overlay.json';
+export function readOverlayUrl(search: string = globalThis.location?.search ?? '', store: Store | null = safeStore()): string {
+  const q = new URLSearchParams(search).get('overlayUrl');
+  if (q) {
+    try { store?.setItem(OVERLAY_URL_KEY, q); } catch { /* 無法記住也照常 */ }
+    return q;
+  }
+  return store?.getItem(OVERLAY_URL_KEY) || DEFAULT_OVERLAY_URL;
+}

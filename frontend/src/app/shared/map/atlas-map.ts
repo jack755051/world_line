@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { staggerOnArcs, worldShiftArc } from './conflict-arc';
 import type { FeatureCollection, Geometry, Point as GeoJSONPoint, Position } from 'geojson';
-import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification } from 'maplibre-gl';
+import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification, LayerSpecification } from 'maplibre-gl';
 import { captureMapCanvas } from './scan-snapshot';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
 import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
@@ -31,8 +31,9 @@ import {
 } from './label-placement';
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
+import { byIdExpr, dataDrivenPaint, overlayFilter, OVERLAY_CONTROL_LAYERS, OVERLAY_GAP_LAYERS, OVERLAY_KEEP_FILTER, OVERLAY_SOURCE } from './boundary-tiles';
 import { boundaryTileLayers, tileDateFilter, tileFillColor, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
-import { dayNumber, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
+import { dayNumber, readOverlayTilesUrl, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
 import { intervalKey } from '../../core/change-points';
 
 /**
@@ -694,7 +695,10 @@ export class AtlasMap {
     effect(() => {
       const data = this.gaps();
       if (!this.ready()) return;
-      untracked(() => (this.map?.getSource('gaps') as GeoJSONSource | undefined)?.setData(data ?? EMPTY));
+      untracked(() => {
+        (this.map?.getSource('gaps') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
+        this.applyOverlayData();
+      });
     });
     effect(() => {
       const data = this.sovereignty();
@@ -1005,6 +1009,44 @@ export class AtlasMap {
     if (!src) return;
     this.ensurePatterns(data);
     src.setData(data ?? EMPTY);
+    this.applyOverlayData();
+  }
+
+  /** overlay 圖層原始樣式（geojson 版），換日期時依當日資料重算 filter／paint。 */
+  private overlaySpecs = new Map<string, LayerSpecification>();
+  /** tiles 模式（§9 步驟 5-5）：控制區、控制資料缺圖層換成 overlay 圖磚，id 不變。 */
+  private addOverlayTiles(): void {
+    const map = this.map;
+    if (!map || map.getSource(OVERLAY_SOURCE)) return;
+    map.addSource(OVERLAY_SOURCE, { type: 'vector', url: readOverlayTilesUrl() });
+    const order = map.getStyle().layers.map((l) => l.id);
+    for (const [ids, sourceLayer] of [[OVERLAY_CONTROL_LAYERS, 'control'], [OVERLAY_GAP_LAYERS, 'gaps']] as const) {
+      for (const id of ids) {
+        const spec = map.getStyle().layers.find((l) => l.id === id);
+        if (!spec) continue;
+        this.overlaySpecs.set(id, spec);
+        const before = order.slice(order.indexOf(id) + 1).find((x) => map.getLayer(x));
+        map.removeLayer(id);
+        const { source: _s, ...rest } = spec as LayerSpecification & { source?: string };
+        void _s;
+        map.addLayer({ ...rest, source: OVERLAY_SOURCE, 'source-layer': sourceLayer, filter: ['boolean', false] } as LayerSpecification, before);
+      }
+    }
+    this.applyOverlayData();
+  }
+
+  private applyOverlayData(): void {
+    const map = this.map;
+    if (!map?.getSource(OVERLAY_SOURCE)) return;
+    const control = new Map((this.collection()?.features ?? []).map((f) => [f.properties.versionId, f.properties as unknown as Record<string, unknown>]));
+    const gaps = new Map((this.gaps()?.features ?? []).map((f) => [f.properties.gapId, f.properties as unknown as Record<string, unknown>]));
+    for (const [id, spec] of this.overlaySpecs) {
+      if (!map.getLayer(id)) continue;
+      const [idKey, rows] = id.startsWith('gap-') ? ['gapId', gaps] as const : ['versionId', control] as const;
+      if (!OVERLAY_KEEP_FILTER.has(id)) map.setFilter(id, overlayFilter((spec as { filter?: unknown }).filter, idKey, rows));
+      const paint = (spec as { paint?: Record<string, unknown> }).paint;
+      for (const prop of dataDrivenPaint(paint)) map.setPaintProperty(id, prop as never, byIdExpr(paint![prop], idKey, rows) as never);
+    }
   }
 
   /**
@@ -1499,6 +1541,7 @@ export class AtlasMap {
     const [fill, line, lineNs, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
     for (const l of [fill, line, lineNs]) map.addLayer(l, 'gap-base');
     map.addLayer(label, 'regime-label');
+    this.addOverlayTiles();
     this.tileFilterKey = intervalKey(this.changePoints(), d);
     map.on('mouseenter', TILE_FILL, () => (map.getCanvas().style.cursor = 'pointer'));
     map.on('mouseleave', TILE_FILL, () => (map.getCanvas().style.cursor = ''));

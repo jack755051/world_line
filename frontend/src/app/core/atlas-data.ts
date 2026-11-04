@@ -6,6 +6,7 @@ import type { CapitalsDto, LeadersDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 import { readBoundarySource, type BoundarySource } from './boundary-source';
+import { OverlayStore, overlayControl, overlayCovers, overlayKey } from './overlay';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 
@@ -20,6 +21,30 @@ export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 export class AtlasData {
   private readonly api = inject(WorldLineApi);
   private readonly state = inject(AtlasState);
+  /** tiles 模式的 overlay（§9 步驟 5）：控制區、衝突、首都、領導人換日期不向 API 要。 */
+  private readonly overlay = inject(OverlayStore);
+  /** overlay 同一區間重用同一個資料物件（地圖不 setData、標籤不重算）。 */
+  private readonly ovMemo = new Map<string, unknown>();
+  private fromOverlay<T>(section: 'control' | 'conflicts' | 'capitals' | 'leaders', date: string, make: (date: string) => T | null): T | null {
+    const o = this.overlay.data();
+    const k = overlayKey(o, section, date);
+    if (!k) return null;
+    const hit = this.ovMemo.get(`${section}|${k}`) as T | undefined;
+    if (hit) return hit;
+    const v = make(date);
+    if (v) this.ovMemo.set(`${section}|${k}`, v);
+    return v;
+  }
+  /** tiles 模式：等 overlay 載好（只載一次；失敗回 null，呼叫端退回 API）。 */
+  private async overlayReady(): Promise<boolean> {
+    if (this.boundarySource !== 'tiles') return false;
+    if (this.overlay.status() === 'ok') return true;
+    return (await this.overlay.load()) !== null;
+  }
+  /** 這個日期是否由 overlay 提供（tiles 模式、已載入、在範圍內）。 */
+  private overlayHas(date: string): boolean {
+    return this.boundarySource === 'tiles' && overlayCovers(this.overlay.data(), date);
+  }
 
   /** 疆界來源（§9 步驟 4 功能開關）：tiles 時不向 API 取主權資料（換日期由圖磚 filter 處理）。 */
   readonly boundarySource: BoundarySource = readBoundarySource();
@@ -140,6 +165,19 @@ export class AtlasData {
     const my = ++this.seq;
     this.requestedDate.set(date);
     this.restart('control');
+    if (this.boundarySource === 'tiles') {
+      if (this.overlay.status() !== 'ok') this.controlStatus.set('loading');
+      if (await this.overlayReady()) {
+        if (my !== this.seq) return;
+        const o = this.overlay.data();
+        const dto = this.fromOverlay('control', date, (d) => overlayControl(o, d));
+        if (dto) {
+          this.apply(date, dto);
+          return;
+        }
+      }
+      if (my !== this.seq) return;
+    }
     const key = this.controlKey(date);
     const hit = this.cache.get(key);
     if (hit) {
@@ -195,7 +233,7 @@ export class AtlasData {
     if (!pts) return;
     const { prev, next } = neighborDates(pts, date);
     for (const d of [next, prev]) {
-      if (!d) continue;
+      if (!d || this.overlayHas(d)) continue;
       const key = this.controlKey(d);
       if (this.cache.has(key)) continue;
       this.fetchControl(key, d).catch(() => undefined);
@@ -430,6 +468,7 @@ export class AtlasData {
       if (seen.has(sovKey)) continue;
       seen.add(sovKey);
       const ck = this.controlKey(d);
+      if (this.overlayHas(d)) continue; // tiles 模式：overlay 已有這天的控制區與衝突
       if ((this.boundarySource === 'tiles' || this.sovCache.has(sovKey)) && this.cfCache.has(cfKey) && this.cache.has(ck)) continue;
       fetched++;
       try {

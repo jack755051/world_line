@@ -113,3 +113,50 @@ export function boundaryTileLayers(day: number, colorsByRegimeId: Record<string,
 export function tileFilterUpdate(prevKey: string | null, key: string, day: number): { key: string; filters: ReturnType<typeof tileFilters> } | null {
   return prevKey === key ? null : { key, filters: tileFilters(day) };
 }
+
+/**
+ * 控制區、控制資料缺改走 overlay 圖磚（§9 步驟 5-5）：圖層 id、樣式、點選／hover／檢視軸程式都沿用 geojson 版，
+ * 只把 source 換成 overlay 圖磚；圖磚只帶 versionId／gapId，原本 ['get', 屬性] 的地方換成「依 id 對到當日裝飾屬性」的 match，
+ * filter 再加上「id 在當日清單內」。換日期（跨控制變動區間）只 setFilter／setPaintProperty，不發請求。
+ */
+export const OVERLAY_SOURCE = 'overlay-tiles';
+export const OVERLAY_CONTROL_LAYERS = ['control-fill', 'control-hatch', 'control-regime-outline', 'control-line-solid', 'control-line-dotted', 'control-line-dashed', 'control-selected'] as const;
+export const OVERLAY_GAP_LAYERS = ['gap-base', 'gap-fill', 'gap-line'] as const;
+/** 這些圖層的 filter 由程式另外設定（被選控制區），換日期不覆蓋。 */
+export const OVERLAY_KEEP_FILTER = new Set<string>(['control-selected']);
+
+type Rows = ReadonlyMap<string, Readonly<Record<string, unknown>>>;
+
+/** match 的預設值：用第一個值（型別一定合法，例如顏色）；反正 filter 只放清單內的 id，預設值不會被畫出來。 */
+function defaultFor(values: unknown[]): unknown {
+  return values.find((x) => x !== null && x !== undefined) ?? null;
+}
+
+/** 把運算式裡的 ['get', k]（k ≠ idKey）換成 ['match', ['get', idKey], id1, v1, …, 預設]；沒有資料時保留原樣（filter 為 false，不會畫）。 */
+export function byIdExpr(expr: unknown, idKey: string, rows: Rows): unknown {
+  if (!Array.isArray(expr)) return expr;
+  if (expr[0] === 'get' && expr.length === 2 && typeof expr[1] === 'string' && expr[1] !== idKey) {
+    const k = expr[1];
+    const ids = [...rows.keys()].sort();
+    const vals = ids.map((id) => rows.get(id)![k]);
+    if (ids.length === 0) return expr;
+    const def = defaultFor(vals);
+    return ['match', ['get', idKey], ...ids.flatMap((id, i) => [id, vals[i] ?? def]), def];
+  }
+  if (expr[0] === 'literal') return expr;
+  return expr.map((x) => byIdExpr(x, idKey, rows));
+}
+
+/** 當日 filter：id 在清單內 ∧ 原 filter（屬性換成 match）。清單空時什麼都不畫。 */
+export function overlayFilter(orig: unknown, idKey: string, rows: Rows): FilterSpecification {
+  const ids = [...rows.keys()].sort();
+  if (ids.length === 0) return ['boolean', false] as unknown as FilterSpecification;
+  const inList = ['in', ['get', idKey], ['literal', ids]];
+  return (orig ? ['all', inList, byIdExpr(orig, idKey, rows)] : inList) as unknown as FilterSpecification;
+}
+
+/** paint 裡有用到 ['get', …] 的屬性（要依當日資料重設）。 */
+export function dataDrivenPaint(paint: Record<string, unknown> | undefined): string[] {
+  const uses = (e: unknown): boolean => Array.isArray(e) && (e[0] === 'get' || e.some(uses));
+  return Object.entries(paint ?? {}).filter(([, v]) => uses(v)).map(([k]) => k);
+}

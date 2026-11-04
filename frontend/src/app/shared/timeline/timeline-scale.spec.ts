@@ -1,4 +1,4 @@
-import { dateAt, fraction, monthTicks, nearestDate, nextSnapshotDate, prevSnapshotDate, rangeFor, yearTicks } from './timeline-scale';
+import { dateAt, fraction, labelStep, monthTicks, nearestDate, nextSnapshotDate, prevSnapshotDate, rangeFor, yearTicks } from './timeline-scale';
 
 describe('timeline-scale', () => {
   const r = rangeFor(null);
@@ -45,5 +45,18 @@ describe('timeline-scale', () => {
     expect(nextSnapshotDate(d, '1940-08-15')).toBeNull();
     expect(nearestDate(d, '1938-03-01')).toBe('1940-07-15');
     expect(nearestDate([], '1938-03-01')).toBeNull();
+  });
+});
+
+describe('labelStep（§12 年份標籤避讓）', () => {
+  const r = { start: '1908-01-01', end: '1945-09-30' };
+  it('每個標籤至少 36px，從 1／5／10／20 年挑最小可放的間隔；手機至少 10 年', () => {
+    expect(labelStep(1500, r)).toBe(1);
+    expect(labelStep(1100, r)).toBe(5);
+    expect(labelStep(600, r)).toBe(5);
+    expect(labelStep(300, r)).toBe(5);
+    expect(labelStep(200, r)).toBe(10);
+    expect(labelStep(120, r)).toBe(20);
+    expect(labelStep(1100, r, 10)).toBe(10);
   });
 });

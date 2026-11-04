@@ -93,3 +93,13 @@ export function nearestDate(dates: readonly string[], current: string): string |
   }
   return best;
 }
+
+/**
+ * 年份標籤避讓（§12，所有斷點通用）：每個標籤至少 36px；依滑桿實際寬度從 1、5、10、20 年中挑放得下的最小間隔。
+ * minStep：手機版至少每 10 年一個（§12-2）。
+ */
+export function labelStep(widthPx: number, r: Range, minStep = 1, minPx = 36): number {
+  const years = Math.max(1, (toDayNumber(r.end) - toDayNumber(r.start)) / 365.2425);
+  const pxPerYear = widthPx > 0 ? widthPx / years : 0;
+  return [1, 5, 10, 20].find((s) => s >= minStep && s * pxPerYear >= minPx) ?? 20;
+}

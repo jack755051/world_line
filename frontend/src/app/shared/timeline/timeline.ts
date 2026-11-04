@@ -1,4 +1,6 @@
 import {
+  afterRenderEffect,
+  untracked,
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
@@ -16,7 +18,7 @@ import type { TimelineSnapshotDto } from '../../core/api/api-types';
 import type { LoadStatus } from '../../core/atlas-data';
 import { addDays, addMonths, clampDate, isIsoDate, toDayNumber } from '../../core/dates';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
-import { COMPLETE_FROM, dateAt, fraction, nextSnapshotDate, prevSnapshotDate, rangeFor, yearTicks } from './timeline-scale';
+import { COMPLETE_FROM, dateAt, fraction, labelStep, nextSnapshotDate, prevSnapshotDate, rangeFor, yearTicks } from './timeline-scale';
 import { timelineShortcut } from './timeline-keys';
 
 export type TimelineSpeed = 'day' | 'week' | 'month';
@@ -41,9 +43,93 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
     .dot.major { width: 1px; height: 5px; margin: 0 0 0 -0.5px; border-radius: 0; background: var(--wl-color-outline); }
   `,
   template: `
+    @if (compact()) {
+      <!-- §12 手機：56px 兩行（上行 24px：播放 32px、日期 YYYY-MM、⋯；下行 32px：滑桿左右 16px、把手 24px、每 10 年一個年份）；M1：不加上一步／下一步 -->
+      <section data-testid="timeline" data-compact="true" class="relative flex h-full flex-col border-t border-wl-outline-variant bg-wl-surface pb-[var(--wl-safe-bottom)]"
+        [attr.aria-label]="lang() === 'en' ? 'Timeline' : '時間軸'">
+        <div class="flex h-[24px] flex-none items-center gap-2 px-3 pt-1">
+          <button type="button" class="wl-icon-btn wl-outlined flex-none" [class.!size-8]="compact()" data-testid="timeline-play" [attr.aria-pressed]="playing()" [attr.data-playing]="playing() ? 'true' : null"
+            [attr.aria-label]="playing() ? tr('timeline.pause') : tr('timeline.play')" [attr.title]="(playing() ? tr('timeline.pause') : tr('timeline.play')) + '（' + tr('timeline.key.space') + '）'"
+            (click)="togglePlay()">
+            @if (playing()) { <svg lucidePause class="size-3.5"></svg> } @else { <svg lucidePlay class="size-3.5"></svg> }
+          </button>
+
+          <!-- 日期按鈕：外觀是按鈕，點了可直接輸入 YYYY-MM-DD（沿用既有日期欄，Enter／離開時送出） -->
+          <label data-testid="timeline-date-button" class="flex h-7 flex-none cursor-text items-center gap-1.5 rounded-wl-md border border-wl-outline bg-wl-surface-bright px-2 hover:bg-wl-surface-container focus-within:outline-2 focus-within:outline-wl-primary">
+            <svg lucideCalendar class="size-3.5 flex-none text-wl-on-surface-variant" aria-hidden="true"></svg>
+            <span class="sr-only">{{ tr('timeline.dateInput') }}</span>
+            <input data-testid="timeline-date-input" type="text" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10"
+              [class.w-[84px]]="!compact() || editing()" [class.w-[60px]]="compact() && !editing()" class="bg-transparent wl-text2 font-semibold text-wl-on-surface tabular-nums outline-none"
+              [value]="inputValue()" (focus)="editing.set(true)" (keydown.enter)="commitInput($event)" (blur)="editing.set(false); commitInput($event)" (keydown.escape)="cancelInput($event)" />
+          </label>
+          @if (incomplete()) {
+            <span data-testid="timeline-incomplete-info" tabindex="0" role="img" class="flex size-6 flex-none items-center justify-center rounded-full text-wl-on-surface-variant hover:bg-wl-surface-container focus-visible:outline-2 focus-visible:outline-wl-primary"
+              [attr.aria-label]="tr('map.incomplete')" [attr.title]="tr('map.incomplete')"><svg lucideInfo class="size-4" aria-hidden="true"></svg></span>
+          }
+
+          <span class="flex-1"></span>
+          <!-- ⋯ 選單 -->
+          <div class="relative flex-none">
+            <button type="button" #menuBtn class="wl-icon-btn" data-testid="timeline-menu-button" aria-haspopup="menu" [attr.aria-expanded]="menuOpen()"
+              [attr.aria-label]="tr('timeline.menu')" [attr.title]="tr('timeline.menu')" (click)="toggleMenu()"><svg lucideEllipsis class="size-4"></svg></button>
+            @if (menuOpen()) {
+              <div data-testid="timeline-menu" role="menu" class="wl-paper absolute bottom-full right-0 z-30 mb-2 w-[220px] p-1 wl-text2 shadow-[var(--wl-shadow-panel)]">
+                <div class="px-2 pt-1 pb-0.5 wl-label text-wl-on-surface-variant">{{ tr('timeline.speed') }}</div>
+                @for (sp of speeds; track sp) {
+                  <button type="button" role="menuitemradio" data-testid="timeline-speed-option" [attr.data-speed]="sp" [attr.aria-checked]="speed() === sp"
+                    class="flex w-full items-center justify-between rounded-wl-sm px-2 py-1 text-left hover:bg-wl-surface-container" (click)="setSpeed(sp)">
+                    <span class="tabular-nums">{{ speedText(sp) }}</span>@if (speed() === sp) { <span aria-hidden="true">✓</span> }
+                  </button>
+                }
+                <div class="my-1 h-px bg-wl-outline-variant" aria-hidden="true"></div>
+                <button type="button" role="menuitem" data-testid="timeline-prev-snapshot" [disabled]="!prevDate()"
+                  class="flex w-full rounded-wl-sm px-2 py-1 text-left hover:bg-wl-surface-container disabled:opacity-40" (click)="goPrev()">{{ tr('timeline.prev') }}</button>
+                <button type="button" role="menuitem" data-testid="timeline-next-snapshot" [disabled]="!nextDate()"
+                  class="flex w-full rounded-wl-sm px-2 py-1 text-left hover:bg-wl-surface-container disabled:opacity-40" (click)="goNext()">{{ tr('timeline.next') }}</button>
+                @if (snapshotsStatus() === 'error') {
+                  <div data-testid="timeline-error" class="px-2 py-1 text-wl-error">{{ tr('timeline.error') }}・<button type="button" class="wl-link" (click)="retry.emit()">{{ tr('map.retry') }}</button></div>
+                }
+                <div class="my-1 h-px bg-wl-outline-variant" aria-hidden="true"></div>
+                <div data-testid="timeline-keys-help" class="px-2 py-1 text-[11px] leading-[16px] text-wl-on-surface-variant">{{ tr('timeline.keys') }}</div>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="flex h-[32px] flex-none items-stretch">
+          <!-- 全寬滑桿 -->
+          <div #bar data-testid="timeline-slider" class="relative h-full min-w-0 flex-1 cursor-pointer select-none touch-none" [class.mx-2]="!compact()" [class.mx-4]="compact()" (pointerdown)="onPointerDown($event)">
+            <div class="rail"></div>
+            @if (incompleteWidth() > 0) {
+              <div data-testid="timeline-incomplete" class="rail-incomplete" [style.width.%]="incompleteWidth() * 100"></div>
+            }
+            @for (y of years(); track y.date) {
+              <div class="dot pointer-events-none" data-testid="timeline-year-dot" [class.major]="!!y.label" [style.left.%]="y.f * 100"></div>
+              @if (y.label) {
+                <span data-testid="timeline-year-label" [class.mt-[6px]]="!compact()" [class.mt-[1px]]="compact()" class="pointer-events-none absolute top-1/2 -translate-x-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums"
+                  [style.left.%]="y.f * 100">{{ y.label }}</span>
+              }
+            }
+            @if (startLabel(); as sl) {
+              <span data-testid="timeline-start-label" [class.mt-[6px]]="!compact()" [class.mt-[1px]]="compact()" class="pointer-events-none absolute left-0 top-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums">{{ sl }}</span>
+            }
+            <div data-testid="timeline-handle" role="slider" tabindex="0"
+              [class.-mt-[12px]]="!compact()" [class.-ml-[6px]]="!compact()" [class.size-3]="!compact()" [class.-mt-[20px]]="compact()" [class.-ml-[12px]]="compact()" [class.size-6]="compact()"
+              class="absolute top-1/2 rounded-full border-2 border-wl-surface bg-wl-primary shadow outline-offset-2 focus-visible:outline-2 focus-visible:outline-wl-primary"
+              [style.left.%]="handleF() * 100" [attr.aria-label]="tr('timeline.handle')" [attr.aria-valuemin]="dayMin()" [attr.aria-valuemax]="dayMax()"
+              [attr.aria-valuenow]="dayNow()" [attr.aria-valuetext]="date()" (keydown)="onKey($event)" (pointerdown)="onPointerDown($event)"></div>
+            @if (dragging()) {
+              <!-- 拖動時把手上方浮出 YYYY-MM（§12-2） -->
+              <span data-testid="timeline-drag-tip" class="wl-paper pointer-events-none absolute bottom-full z-30 mb-1 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 font-mono text-[12px] tabular-nums"
+                [style.left.%]="handleF() * 100">{{ date().slice(0, 7) }}</span>
+            }
+          </div>
+
+        </div>
+      </section>
+    } @else {
     <section data-testid="timeline" class="relative flex h-full items-center gap-2 border-t border-wl-outline-variant bg-wl-surface px-3"
       [attr.aria-label]="lang() === 'en' ? 'Timeline' : '時間軸'">
-      <button type="button" class="wl-icon-btn wl-outlined flex-none" data-testid="timeline-play" [attr.aria-pressed]="playing()" [attr.data-playing]="playing() ? 'true' : null"
+      <button type="button" class="wl-icon-btn wl-outlined flex-none" [class.!size-8]="compact()" data-testid="timeline-play" [attr.aria-pressed]="playing()" [attr.data-playing]="playing() ? 'true' : null"
         [attr.aria-label]="playing() ? tr('timeline.pause') : tr('timeline.play')" [attr.title]="(playing() ? tr('timeline.pause') : tr('timeline.play')) + '（' + tr('timeline.key.space') + '）'"
         (click)="togglePlay()">
         @if (playing()) { <svg lucidePause class="size-3.5"></svg> } @else { <svg lucidePlay class="size-3.5"></svg> }
@@ -54,8 +140,8 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
         <svg lucideCalendar class="size-3.5 flex-none text-wl-on-surface-variant" aria-hidden="true"></svg>
         <span class="sr-only">{{ tr('timeline.dateInput') }}</span>
         <input data-testid="timeline-date-input" type="text" inputmode="numeric" placeholder="YYYY-MM-DD" maxlength="10"
-          class="w-[84px] bg-transparent wl-text2 font-semibold text-wl-on-surface tabular-nums outline-none"
-          [value]="date()" (keydown.enter)="commitInput($event)" (blur)="commitInput($event)" (keydown.escape)="cancelInput($event)" />
+          [class.w-[84px]]="!compact() || editing()" [class.w-[60px]]="compact() && !editing()" class="bg-transparent wl-text2 font-semibold text-wl-on-surface tabular-nums outline-none"
+          [value]="inputValue()" (focus)="editing.set(true)" (keydown.enter)="commitInput($event)" (blur)="editing.set(false); commitInput($event)" (keydown.escape)="cancelInput($event)" />
       </label>
       @if (incomplete()) {
         <span data-testid="timeline-incomplete-info" tabindex="0" role="img" class="flex size-6 flex-none items-center justify-center rounded-full text-wl-on-surface-variant hover:bg-wl-surface-container focus-visible:outline-2 focus-visible:outline-wl-primary"
@@ -63,7 +149,7 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
       }
 
       <!-- 全寬滑桿 -->
-      <div #bar data-testid="timeline-slider" class="relative mx-2 h-full min-w-0 flex-1 cursor-pointer select-none touch-none" (pointerdown)="onPointerDown($event)">
+      <div #bar data-testid="timeline-slider" class="relative h-full min-w-0 flex-1 cursor-pointer select-none touch-none" [class.mx-2]="!compact()" [class.mx-4]="compact()" (pointerdown)="onPointerDown($event)">
         <div class="rail"></div>
         @if (incompleteWidth() > 0) {
           <div data-testid="timeline-incomplete" class="rail-incomplete" [style.width.%]="incompleteWidth() * 100"></div>
@@ -71,17 +157,23 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
         @for (y of years(); track y.date) {
           <div class="dot pointer-events-none" data-testid="timeline-year-dot" [class.major]="!!y.label" [style.left.%]="y.f * 100"></div>
           @if (y.label) {
-            <span data-testid="timeline-year-label" class="pointer-events-none absolute top-1/2 mt-[6px] -translate-x-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums"
+            <span data-testid="timeline-year-label" [class.mt-[6px]]="!compact()" [class.mt-[1px]]="compact()" class="pointer-events-none absolute top-1/2 -translate-x-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums"
               [style.left.%]="y.f * 100">{{ y.label }}</span>
           }
         }
         @if (startLabel(); as sl) {
-          <span data-testid="timeline-start-label" class="pointer-events-none absolute left-0 top-1/2 mt-[6px] font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums">{{ sl }}</span>
+          <span data-testid="timeline-start-label" [class.mt-[6px]]="!compact()" [class.mt-[1px]]="compact()" class="pointer-events-none absolute left-0 top-1/2 font-wl-serif text-[12px] leading-[14px] text-wl-on-surface-variant tabular-nums">{{ sl }}</span>
         }
         <div data-testid="timeline-handle" role="slider" tabindex="0"
-          class="absolute top-1/2 -mt-[12px] -ml-[6px] size-3 rounded-full border-2 border-wl-surface bg-wl-primary shadow outline-offset-2 focus-visible:outline-2 focus-visible:outline-wl-primary"
+          [class.-mt-[12px]]="!compact()" [class.-ml-[6px]]="!compact()" [class.size-3]="!compact()" [class.-mt-[20px]]="compact()" [class.-ml-[12px]]="compact()" [class.size-6]="compact()"
+          class="absolute top-1/2 rounded-full border-2 border-wl-surface bg-wl-primary shadow outline-offset-2 focus-visible:outline-2 focus-visible:outline-wl-primary"
           [style.left.%]="handleF() * 100" [attr.aria-label]="tr('timeline.handle')" [attr.aria-valuemin]="dayMin()" [attr.aria-valuemax]="dayMax()"
           [attr.aria-valuenow]="dayNow()" [attr.aria-valuetext]="date()" (keydown)="onKey($event)" (pointerdown)="onPointerDown($event)"></div>
+        @if (dragging()) {
+          <!-- 拖動時把手上方浮出 YYYY-MM（§12-2） -->
+          <span data-testid="timeline-drag-tip" class="wl-paper pointer-events-none absolute bottom-full z-30 mb-1 -translate-x-1/2 whitespace-nowrap px-1.5 py-0.5 font-mono text-[12px] tabular-nums"
+            [style.left.%]="handleF() * 100">{{ date().slice(0, 7) }}</span>
+        }
       </div>
 
       <!-- ⋯ 選單 -->
@@ -111,6 +203,7 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
         }
       </div>
     </section>
+    }
   `,
 })
 export class Timeline {
@@ -127,6 +220,14 @@ export class Timeline {
   readonly playingChange = output<boolean>();
   readonly retry = output<void>();
   readonly invalidInput = output<string>();
+  /** §12：手機（或高度 <500px）兩行精簡版。 */
+  readonly compact = input(false);
+  protected readonly editing = signal(false);
+  protected readonly dragging = signal(false);
+  /** 滑桿實際寬度（年份標籤避讓用）。 */
+  private readonly barWidth = signal(0);
+  /** 精簡版平常只顯示 YYYY-MM，編輯時顯示完整日期。 */
+  protected readonly inputValue = computed(() => (this.compact() && !this.editing() ? this.date().slice(0, 7) : this.date()));
 
   protected readonly speeds = SPEEDS;
   protected readonly playing = signal(false);
@@ -144,10 +245,19 @@ export class Timeline {
     const earliest = dates.length ? dates.reduce((a, b) => (a < b ? a : b)) : null;
     return rangeFor(earliest);
   });
-  /** 每 5 年一個文字刻度、每年一個小點；有起點標籤時最左端 5% 內的年份不標字（避免疊字，刻點照畫）。 */
+  /**
+   * 年份文字刻度（§12）：每個標籤至少 36px，間隔從 1／5／10／20 年挑放得下的最小者（手機至少 10 年）；每年一個小點。
+   * 有起點標籤時，離左端不到 48px 的年份不標字（避免疊字，刻點照畫）。
+   */
+  protected readonly labelEvery = computed(() => {
+    const w = this.barWidth();
+    return w > 0 ? labelStep(w, this.range(), this.compact() ? 10 : 1) : this.compact() ? 10 : 5;
+  });
   protected readonly years = computed(() => {
-    const ys = yearTicks(this.range(), 16, 5);
-    return this.startLabel() ? ys.map((y) => (y.f < 0.05 ? { ...y, label: undefined } : y)) : ys;
+    const ys = yearTicks(this.range(), 16, this.labelEvery());
+    const w = this.barWidth();
+    const minF = this.startLabel() ? (w > 0 ? 48 / w : 0.05) : -1;
+    return ys.map((y) => (y.label && (y.f < minF || (w > 0 && (1 - y.f) * w < 14)) ? { ...y, label: undefined } : y));
   });
   protected readonly startLabel = computed(() => (this.range().start.slice(5) === '01-01' ? null : this.range().start.slice(0, 7)));
   protected readonly handleF = computed(() => fraction(this.date(), this.range()));
@@ -161,6 +271,19 @@ export class Timeline {
   protected readonly nextDate = computed(() => nextSnapshotDate(this.snapDates(), this.date()));
 
   constructor() {
+    // 滑桿寬度（換斷點時 #bar 會重建，所以每次渲染後重新觀察）
+    let ro: ResizeObserver | undefined;
+    let observed: Element | undefined;
+    afterRenderEffect(() => {
+      const el = this.bar().nativeElement;
+      if (el === observed || typeof ResizeObserver === 'undefined') return;
+      ro?.disconnect();
+      observed = el;
+      ro = new ResizeObserver(() => this.barWidth.set(el.getBoundingClientRect().width));
+      ro.observe(el);
+      untracked(() => this.barWidth.set(el.getBoundingClientRect().width));
+    });
+    inject(DestroyRef).onDestroy(() => ro?.disconnect());
     const doc = inject(DOCUMENT);
     const onKeydown = (e: KeyboardEvent) => this.onGlobalKey(e);
     const onPointer = (e: PointerEvent) => {
@@ -264,7 +387,7 @@ export class Timeline {
   protected commitInput(e: Event): void {
     const el = e.target as HTMLInputElement;
     const v = el.value.trim();
-    if (v === this.date()) return;
+    if (v === this.date() || (this.compact() && v === this.date().slice(0, 7))) return;
     if (isIsoDate(v)) this.emit(v);
     else {
       el.value = this.date();
@@ -320,8 +443,10 @@ export class Timeline {
     };
     at(e.clientX);
     el.setPointerCapture?.(e.pointerId);
+    this.dragging.set(true);
     const move = (ev: PointerEvent) => at(ev.clientX);
     const up = () => {
+      this.dragging.set(false);
       el.removeEventListener('pointermove', move);
       el.removeEventListener('pointerup', up);
       el.removeEventListener('pointercancel', up);

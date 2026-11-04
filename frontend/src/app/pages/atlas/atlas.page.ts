@@ -197,7 +197,7 @@ interface SheetInfo {
               </div>
             </div>
             <div class="h-[var(--wl-timeline-height)] flex-none">
-              <wl-timeline [date]="state.date()" [snapshots]="data.snapshots()" [earliestData]="data.earliestEvent()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
+              <wl-timeline [compact]="vp.compact()" [date]="state.date()" [snapshots]="data.snapshots()" [earliestData]="data.earliestEvent()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
                 [ready]="mapReady()" (playingChange)="playing.set($event)"
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>

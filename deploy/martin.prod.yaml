@@ -1,0 +1,7 @@
+# 正式版 Martin：只提供 PMTiles，不連資料庫。由 Caddy 反向代理到 /tiles/。
+listen_addresses: '0.0.0.0:3000'
+base_path: /tiles
+pmtiles:
+  sources:
+    boundaries: /data/boundaries.pmtiles
+    overlay: /data/overlay.pmtiles

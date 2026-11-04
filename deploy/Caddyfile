@@ -1,0 +1,73 @@
+# World Line 正式版 Caddy（Tai 2026-11-04）。網域由 WL_DOMAIN 設定，Caddy 自動申請 HTTPS 憑證；
+# 本機測試 WL_DOMAIN=localhost 時用 Caddy 內部 CA。
+# 不設 ACME email（空值會讓 Caddyfile 解析失敗；Let's Encrypt 不強制要 email）。
+
+{$WL_DOMAIN} {
+	encode zstd gzip
+
+	# 健康檢查（API 的 /healthz；/api/healthz 也接受）
+	handle /healthz {
+		reverse_proxy api:8080
+	}
+	handle /api/healthz {
+		rewrite * /healthz
+		reverse_proxy api:8080
+	}
+
+	# API
+	handle /api/* {
+		header Cache-Control "no-store"
+		reverse_proxy api:8080
+	}
+
+	# overlay 中繼資料：overlay.json 不快取（指向最新版本），overlay-v{hash}.json 永久快取
+	handle /tiles/overlay.json {
+		root * /srv/tiles
+		uri strip_prefix /tiles
+		header Cache-Control "no-cache"
+		file_server
+	}
+	@overlayVersioned path_regexp ^/tiles/overlay-v[0-9a-f]+\.json$
+	handle @overlayVersioned {
+		root * /srv/tiles
+		uri strip_prefix /tiles
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+
+	# 向量圖磚（Martin，base_path=/tiles）：TileJSON 短快取；圖磚一天＋背景更新（重建圖磚後重啟 martin）
+	@tilejson path /tiles/boundaries /tiles/overlay
+	handle @tilejson {
+		header Cache-Control "public, max-age=300"
+		uri strip_prefix /tiles
+		reverse_proxy martin:3000
+	}
+	@tiles path /tiles/boundaries/* /tiles/overlay/*
+	handle @tiles {
+		header Cache-Control "public, max-age=86400, stale-while-revalidate=604800"
+		uri strip_prefix /tiles
+		reverse_proxy martin:3000
+	}
+	handle /tiles/* {
+		respond 404
+	}
+
+	# 前端（SPA fallback）：帶 hash 的資源永久快取，index.html 等其餘檔案 no-cache
+	handle {
+		root * /srv/web
+		@hashed path_regexp -[A-Z0-9]{8}\.(js|css)$
+		header @hashed Cache-Control "public, max-age=31536000, immutable"
+		# 其餘（index.html、SPA 路由、未帶 hash 的檔案）每次以 ETag 驗證
+		@nothashed not path_regexp -[A-Z0-9]{8}\.(js|css)$
+		header @nothashed Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+}

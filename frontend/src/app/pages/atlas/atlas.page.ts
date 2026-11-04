@@ -23,7 +23,7 @@ import { decorateSovereignty, occupationTint, regimeColor, sovereigntyLabels } f
 import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
-import { geometryBounds, sheetLayout, type FocusInset, type LngLatBounds } from '../../shared/map/focus';
+import { clampSheetWidth, geometryBounds, SHEET_WIDTH, sheetLayout, type FocusInset, type LngLatBounds, type SheetSnap } from '../../shared/map/focus';
 import { CAMP_FILL, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
@@ -89,7 +89,7 @@ interface SheetInfo {
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
                 [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
-                [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [focusFitBounds]="focusFitBounds()"
+                [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
 
@@ -148,6 +148,7 @@ interface SheetInfo {
 
               <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
               <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
+                [resizable]="layout().resizable" [minSize]="sheetMin" [maxSize]="sheetMax" [snap]="sheetSnap()" (resized)="setSheetWidth($event)" (snapChange)="sheetSnap.set($event)"
                 [title]="sheet()?.title ?? ''" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
                 [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : sheet()?.kind === 'control' ? 'feature-card-close' : 'sovereignty-card-close'"
@@ -386,7 +387,29 @@ export class AtlasPage {
   protected readonly focusRecord = signal<string | null>(null);
   /** 控制區點擊時的鏡頭 bounds override（點主權／清除時為 null）。 */
   protected readonly focusFitBounds = signal<LngLatBounds | null>(null);
-  protected readonly layout = computed(() => sheetLayout(this.areaSize().w, this.areaSize().h));
+  /** §10-2：≥1440px 時使用者拖拉的面板寬度（localStorage）；底部 bottom sheet 段位。 */
+  protected readonly sheetMin = SHEET_WIDTH.min;
+  protected readonly sheetMax = SHEET_WIDTH.max;
+  private readonly sheetWidthPref = signal<number | null>(readSheetWidth());
+  protected readonly sheetSnap = signal<SheetSnap>('half');
+  protected setSheetWidth(px: number): void {
+    const w = clampSheetWidth(px);
+    this.sheetWidthPref.set(w);
+    writeSheetWidth(w);
+  }
+  protected readonly layout = computed(() =>
+    sheetLayout(this.areaSize().w, typeof window !== 'undefined' ? window.innerHeight : this.areaSize().h, this.sheetWidthPref(), this.sheetSnap(), this.areaSize().h || Infinity));
+  /**
+   * 地圖 padding（§10-2）：面板開啟時 right＝面板寬＋16（768–1023px 蓋在地圖上不推擠，不設），關閉歸零；
+   * 標籤另由 UI 障礙符號避開面板。
+   */
+  protected readonly uiPadding = computed(
+    () => {
+      const l = this.layout();
+      return { left: 0, right: this.sheetOpen() && l.side === 'right' && !l.overlay ? l.size + 16 : 0 };
+    },
+    { equal: (a, b) => a.left === b.left && a.right === b.right },
+  );
   protected readonly sheetNow = computed<SheetInfo | null>(() => {
     // 控制區優先（點控制區 → 開右側面板，比照主權卡流程）
     const sel = this.selected();
@@ -889,6 +912,23 @@ export class AtlasPage {
 }
 
 const INCOMPLETE_TOAST_KEY = 'wl.incompleteToastSeen';
+const SHEET_WIDTH_KEY = 'wl.sheetWidth';
+function readSheetWidth(): number | null {
+  try {
+    const v = Number(globalThis.localStorage?.getItem(SHEET_WIDTH_KEY));
+    return Number.isFinite(v) && v > 0 ? clampSheetWidth(v) : null;
+  } catch {
+    return null;
+  }
+}
+function writeSheetWidth(px: number): void {
+  try {
+    globalThis.localStorage?.setItem(SHEET_WIDTH_KEY, String(px));
+  } catch {
+    /* 無 localStorage：只在本次執行期間記住 */
+  }
+}
+
 /** 首次造訪才顯示（localStorage；無法使用時視為本次已看過，不重複跳出）。 */
 let incompleteToastSeenFallback = false;
 function incompleteToastSeen(): boolean {

@@ -111,7 +111,34 @@ export function measuredPadding(
   return { ...base, left, right };
 }
 
-/** 面板位置：桌面從右側滑出（寬 3/4、最多 384px，同 sanring sheet 的 w-3/4 sm:max-w-sm）；窄螢幕（< 640px）改從底部，高度 55%。 */
-export function sheetLayout(w: number, h: number): { side: 'right' | 'bottom'; size: number } {
-  return w > 0 && w < 640 ? { side: 'bottom', size: Math.round(h * 0.55) } : { side: 'right', size: Math.min(384, Math.round((w || 1280) * 0.75)) };
+/** 政權面板寬度規則（ARCHITECTURE.md §10-2）。 */
+export const SHEET_WIDTH = { wide: 400, min: 360, max: 480, mid: 360, narrow: 320 } as const;
+/** 小於 768px 的底部 bottom sheet 三段高度：96px、50vh、90vh。 */
+export type SheetSnap = 'peek' | 'half' | 'full';
+export const SHEET_SNAPS: readonly SheetSnap[] = ['peek', 'half', 'full'];
+export function snapHeight(snap: SheetSnap, vh: number): number {
+  return snap === 'peek' ? 96 : Math.round(vh * (snap === 'half' ? 0.5 : 0.9));
+}
+export function clampSheetWidth(px: number): number {
+  return Math.round(Math.min(SHEET_WIDTH.max, Math.max(SHEET_WIDTH.min, px)));
+}
+export interface SheetLayout {
+  side: 'right' | 'bottom';
+  size: number;
+  /** 只有 ≥1440px 可拖拉（360–480px）。 */
+  resizable: boolean;
+  /** 768–1023px 蓋在地圖上、不推擠地圖（不設 map padding）。 */
+  overlay: boolean;
+}
+/**
+ * 面板位置與寬度（§10-2 響應式規則；w＝視窗寬）：
+ * ≥1440 寬 400（可拖拉 360–480，記在 localStorage）；1024–1439 寬 360；768–1023 寬 320 蓋在地圖上；
+ * <768 改成底部 bottom sheet（96px／50vh／90vh，高度不超過可用高 maxH）。
+ */
+export function sheetLayout(w: number, vh: number, stored: number | null = null, snap: SheetSnap = 'half', maxH = Infinity): SheetLayout {
+  const vw = w || 1280;
+  if (vw < 768) return { side: 'bottom', size: Math.min(snapHeight(snap, vh), maxH), resizable: false, overlay: false };
+  if (vw >= 1440) return { side: 'right', size: clampSheetWidth(stored ?? SHEET_WIDTH.wide), resizable: true, overlay: false };
+  if (vw >= 1024) return { side: 'right', size: SHEET_WIDTH.mid, resizable: false, overlay: false };
+  return { side: 'right', size: SHEET_WIDTH.narrow, resizable: false, overlay: true };
 }

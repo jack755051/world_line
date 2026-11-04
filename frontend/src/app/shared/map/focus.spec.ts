@@ -1,5 +1,5 @@
 import type { Geometry } from 'geojson';
-import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, sheetLayout } from './focus';
+import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, sheetLayout, clampSheetWidth } from './focus';
 
 const square = (x: number, y: number, s: number) => [[x, y], [x + s, y], [x + s, y + s], [x, y + s], [x, y]];
 const multi: Geometry = { type: 'MultiPolygon', coordinates: [[square(0, 0, 10), square(2, 2, 2)], [[...square(20, 5, 1)]]] };
@@ -27,10 +27,20 @@ describe('政權聚焦（focus.ts）', () => {
     expect(focusPadding({ right: 0, bottom: 300 }, 400, 600).bottom).toBe(348);
   });
 
-  it('面板位置：桌面右側（最多 384px），窄螢幕底部', () => {
-    expect(sheetLayout(1280, 700)).toEqual({ side: 'right', size: 384 });
-    expect(sheetLayout(700, 500)).toEqual({ side: 'right', size: 384 });
-    expect(sheetLayout(400, 600)).toEqual({ side: 'bottom', size: 330 });
+  it('面板寬度（§10-2）：≥1440 寬 400 可拖拉 360–480；1024–1439 寬 360；768–1023 寬 320 蓋在地圖上；<768 底部三段高度', () => {
+    expect(sheetLayout(1440, 900)).toEqual({ side: 'right', size: 400, resizable: true, overlay: false });
+    expect(sheetLayout(1920, 900, 480)).toMatchObject({ size: 480 });
+    expect(sheetLayout(1920, 900, 999)).toMatchObject({ size: 480 });
+    expect(sheetLayout(1920, 900, 100)).toMatchObject({ size: 360 });
+    expect(sheetLayout(1439, 900, 480)).toEqual({ side: 'right', size: 360, resizable: false, overlay: false });
+    expect(sheetLayout(1024, 900)).toMatchObject({ size: 360 });
+    expect(sheetLayout(1023, 900)).toEqual({ side: 'right', size: 320, resizable: false, overlay: true });
+    expect(sheetLayout(768, 900)).toMatchObject({ size: 320 });
+    expect(sheetLayout(767, 800)).toEqual({ side: 'bottom', size: 400, resizable: false, overlay: false });
+    expect(sheetLayout(400, 800, null, 'peek')).toMatchObject({ size: 96 });
+    expect(sheetLayout(400, 800, null, 'full')).toMatchObject({ size: 720 });
+    expect(sheetLayout(400, 800, null, 'full', 600)).toMatchObject({ size: 600 });
+    expect(clampSheetWidth(359.6)).toBe(360);
   });
 
   it('measuredPadding：圖例展開時左側加到圖例右緣＋16；sheet 量到時右側取最大值；量不到時不變', () => {

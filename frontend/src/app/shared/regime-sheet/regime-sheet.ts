@@ -36,8 +36,21 @@ const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
         <section #panel data-testid="regime-sheet" role="dialog" aria-modal="false" tabindex="-1"
           [attr.aria-labelledby]="s.titleId" [attr.aria-describedby]="description() ? s.descId : null"
           [attr.data-side]="side()" [attr.data-state]="state()" [class]="panelClass()"
-          [style.width.px]="side() === 'right' ? size() : null" [style.height.px]="side() === 'bottom' ? size() : null">
-          <sanring-sheet-header align="start" class="flex-none pr-8">
+          [attr.data-size]="size()" [style.width.px]="side() === 'right' ? size() : null" [style.height.px]="side() === 'bottom' ? size() : null">
+          @if (side() === 'right' && resizable()) {
+            <!-- 拖拉調整寬度（§10-2：≥1440px，360–480px，記在 localStorage）；方向鍵 ±8px -->
+            <div data-testid="regime-sheet-resize" role="separator" aria-orientation="vertical" tabindex="0"
+              [attr.aria-label]="resizeLabel()" [attr.aria-valuenow]="size()" [attr.aria-valuemin]="minSize()" [attr.aria-valuemax]="maxSize()"
+              class="absolute inset-y-0 -left-1 z-10 w-2 cursor-col-resize touch-none outline-none hover:bg-wl-outline-variant/60 focus-visible:bg-wl-outline-variant"
+              (pointerdown)="startResize($event)" (keydown)="onResizeKey($event)"></div>
+          }
+          @if (side() === 'bottom') {
+            <!-- bottom sheet 三段高度（96px／50vh／90vh）：點把手或上下拖切換 -->
+            <button type="button" data-testid="regime-sheet-snap" [attr.data-snap]="snap()" [attr.aria-label]="snapLabel()"
+              class="mx-auto mt-1 flex h-4 w-12 flex-none touch-none items-center justify-center" (pointerdown)="startSnapDrag($event)" (click)="cycleSnap()">
+              <span class="h-1 w-10 rounded-full bg-wl-outline-variant"></span></button>
+          }
+          <sanring-sheet-header align="start" class="min-h-[56px] flex-none pr-8">
             <sanring-sheet-title [attr.data-testid]="titleTestId()">{{ title() }}</sanring-sheet-title>
             @if (description()) {
               <sanring-sheet-description data-testid="regime-sheet-description" [attr.lang]="descriptionLang() || null">{{ description() }}</sanring-sheet-description>
@@ -57,6 +70,15 @@ export class RegimeSheet {
   readonly side = input<'right' | 'bottom'>('right');
   /** 右側時是寬度、底部時是高度（px）。 */
   readonly size = input(384);
+  /** 右側面板可拖拉寬度（§10-2，≥1440px）。 */
+  readonly resizable = input(false);
+  readonly minSize = input(360);
+  readonly maxSize = input(480);
+  /** 底部 bottom sheet 目前段位。 */
+  readonly snap = input<'peek' | 'half' | 'full'>('half');
+  /** 拖拉中與放開時送出新寬度（px，已夾在 min–max）。 */
+  readonly resized = output<number>();
+  readonly snapChange = output<'peek' | 'half' | 'full'>();
   readonly title = input('');
   readonly description = input('');
   readonly descriptionLang = input('');
@@ -116,6 +138,51 @@ export class RegimeSheet {
     this.visible.set(false);
     this.state.set('closed');
     this.hidden.emit();
+  }
+
+  protected readonly resizeLabel = computed(() => (this.lang() === 'en' ? 'Resize panel' : '調整面板寬度'));
+  protected readonly snapLabel = computed(() => (this.lang() === 'en' ? 'Change panel height' : '切換面板高度'));
+  private clamp(px: number): number {
+    return Math.round(Math.min(this.maxSize(), Math.max(this.minSize(), px)));
+  }
+  protected startResize(e: PointerEvent): void {
+    const el = this.panel()?.nativeElement;
+    if (!el) return;
+    e.preventDefault();
+    const right = el.getBoundingClientRect().right;
+    const move = (ev: PointerEvent) => this.resized.emit(this.clamp(right - ev.clientX));
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  }
+  protected onResizeKey(e: KeyboardEvent): void {
+    const d = e.key === 'ArrowLeft' ? 8 : e.key === 'ArrowRight' ? -8 : 0;
+    if (!d) return;
+    e.preventDefault();
+    this.resized.emit(this.clamp(this.size() + d));
+  }
+  private snapDragged = false;
+  protected cycleSnap(): void {
+    if (this.snapDragged) return void (this.snapDragged = false);
+    const order = ['peek', 'half', 'full'] as const;
+    this.snapChange.emit(order[(order.indexOf(this.snap()) + 1) % order.length]);
+  }
+  protected startSnapDrag(e: PointerEvent): void {
+    const y0 = e.clientY;
+    this.snapDragged = false;
+    const up = (ev: PointerEvent) => {
+      window.removeEventListener('pointerup', up);
+      const dy = ev.clientY - y0;
+      if (Math.abs(dy) < 24) return;
+      this.snapDragged = true;
+      const order = ['peek', 'half', 'full'] as const;
+      const i = order.indexOf(this.snap()) + (dy < 0 ? 1 : -1);
+      this.snapChange.emit(order[Math.max(0, Math.min(2, i))]);
+    };
+    window.addEventListener('pointerup', up);
   }
 
   protected onEscape(): void {

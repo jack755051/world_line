@@ -564,6 +564,8 @@ export class AtlasMap {
   readonly focusRecordId = input<string | null>(null);
   /** 聚焦置中時要避開的面板大小（右側面板寬或底部面板高）。 */
   readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
+  /** 面板／圖例開啟時的地圖 padding（§10-2／§10-3）：沒有聚焦時 easeTo 200ms（減少動態時直接套用）。 */
+  readonly uiPadding = input<{ left: number; right: number }>({ left: 0, right: 0 });
   /** 鏡頭聚焦 bounds override（控制區點擊時傳入該控制區 bbox；主權／清除時為 null）。 */
   readonly focusFitBounds = input<LngLatBounds | null>(null);
   protected readonly focusedRecord = signal<string | null>(null);
@@ -747,6 +749,22 @@ export class AtlasMap {
       this.map?.setFilter('sov-selected', ['==', ['get', 'recordId'], id]);
     });
     effect(() => {
+      const pad = this.uiPadding();
+      const reduced = this.reducedMotion();
+      if (!this.ready()) return;
+      untracked(() => {
+        const map = this.map;
+        if (!map) return;
+        const next = { left: pad.left, right: pad.right, top: 0, bottom: 0 };
+        // 聚焦中：相機由聚焦邏輯控制（它量測面板與圖例），只更新關閉聚焦時要還原的 padding
+        if (this.savedCamera) {
+          this.savedCamera = { ...this.savedCamera, padding: next };
+          return;
+        }
+        map.easeTo({ padding: next, duration: reduced ? 0 : 200 });
+      });
+    });
+    effect(() => {
       const id = this.focusRecordId();
       const fc = this.sovereignty();
       const inset = this.focusInset();
@@ -797,8 +815,8 @@ export class AtlasMap {
         pitchWithRotate: false,
       });
       map.touchZoomRotate.disableRotation();
-      // 左下圖例 280px＋邊距：讓置中點避開圖例
-      map.setPadding({ left: 300, top: 0, right: 0, bottom: 0 });
+      // 面板／圖例的 padding 由 uiPadding 決定（§10）
+      map.setPadding({ left: this.uiPadding().left, top: 0, right: this.uiPadding().right, bottom: 0 });
       this.map = map;
       if (isDevMode()) (window as unknown as { __wlMap?: MlMap }).__wlMap = map;
 
@@ -863,7 +881,7 @@ export class AtlasMap {
 
       // 圖例展開/收合、右側 sheet 開關時 data-state 屬性改變 → 重算障礙符號（UI 障礙框尺寸變了）
       const mutObs = new MutationObserver(() => this.updateObstacleSymbols());
-      mutObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-state'], subtree: true });
+      mutObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-state', 'data-size'], subtree: true });
       this.destroyRef.onDestroy(() => mutObs.disconnect());
 
       const layers = ['control-fill', 'control-hatch'];

@@ -44,10 +44,12 @@ interface SheetInfo {
  * 主地圖頁（`/`，PRD §8.0）。版面：頂部列 56px＋全幅地圖＋左下圖例 280px＋底部時間軸 112px。
  * 地圖只顯示後端 API 的資料；每個控制區都帶 API 回傳的引用（I6），點區塊 → 卡片 → 「來源」popover。
  */
+import { CampaignCard } from '../../shared/campaign-card/campaign-card';
+import { CampaignService, campaignsForRegime, type CampaignIndexEntry } from '../../core/campaign';
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
+  imports: [TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, CampaignCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="relative h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -80,10 +82,12 @@ interface SheetInfo {
         }
         @default {
           <div class="flex h-full flex-col">
+            @if (!campaignFull()) {
             <wl-top-bar [date]="state.date()" [lang]="lang()" [legendOpen]="state.legendOpen()" [controlStatus]="data.controlStatus()"
               [theaters]="data.control()?.theaters ?? null" [featureCount]="featureCount()" [axis]="state.axis()" (axisChange)="setAxis($event)"
               (langChange)="state.lang.set($event)" (legendToggle)="toggleLegend()" (jump)="setDate($event)"
               [bp]="vp.bp()" [compact]="vp.compact()" [showCamps]="showCamps()" (campsToggle)="showCamps.set(!showCamps())" (datePick)="openDatePicker()" />
+            }
             <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
               <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
@@ -91,7 +95,7 @@ interface SheetInfo {
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
                 [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" [tileSovPaint]="tileSovPaint()" [regimeNames]="tileRegimeNames()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
-                [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [focusFitBounds]="focusFitBounds()"
+                [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [uiPadding]="uiPadding()" [campaign]="campaigns.campaign()" [campaignPhase]="campaigns.phase()" [campaignInset]="campaignInset()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection(); state.legendOpen.set(false)" (featureHover)="onFeatureHover($event)" />
 
@@ -144,7 +148,7 @@ interface SheetInfo {
               }
 
               <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
-              <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
+              <wl-regime-sheet [open]="sheetOpen() && !campaignMode()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
                 [snap]="sheetSnap()" [snapFor]="snapFor" (snapChange)="sheetSnap.set($event)"
                 [title]="sheetTitle()" [subtitle]="sheetCapital()" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
@@ -152,6 +156,10 @@ interface SheetInfo {
                 (closed)="onSheetClosed()" (hidden)="onSheetHidden()">
                 @if (sheet(); as sh) {
                   @if (sh.sov; as s) {
+                    @for (cp of regimeCampaigns(); track cp.key) {
+                      <button type="button" data-testid="campaign-entry" class="mb-2 flex flex-none items-center gap-2 self-start rounded border border-wl-outline-variant px-3 py-1.5 wl-text2 font-semibold hover:bg-wl-surface-container" (click)="openCampaign(cp.key)">
+                        ⚔ 戰役簡報：{{ cp.name_zh }}<span class="font-normal text-wl-on-surface-variant">{{ cp.start }} – {{ cp.end }}</span></button>
+                    }
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
@@ -176,6 +184,13 @@ interface SheetInfo {
                 </div>
               }
 
+              @if (campaignMode()) {
+                <div data-testid="campaign-anchor" class="absolute z-40 flex"
+                  [class]="campaignFull() ? 'inset-x-0 bottom-0 h-[40vh]' : 'left-4 top-4 bottom-3 w-[360px]'">
+                  <wl-campaign-card class="min-h-0 flex-1" [campaign]="campaigns.campaign()" [status]="campaigns.status()" [phase]="campaigns.phase()"
+                    (closed)="closeCampaign()" (play)="campaigns.play()" (prev)="campaigns.prev()" (next)="campaigns.next()" (go)="campaigns.go($event)" />
+                </div>
+              }
               <!-- 圖例（§10-3）：時間軸上方 12px、距左邊 12px；§12 L1 手機：從頂列 ⋯ 選單打開的獨立 bottom sheet（ⓘ 不顯示） -->
               <div data-testid="legend-anchor" class="absolute z-30" [class.bottom-3]="!mobile()" [class.left-3]="!mobile()" [class.inset-x-0]="mobile()" [class.bottom-0]="mobile()">
                 <wl-legend [mode]="mobile() ? 'sheet' : 'floating'" [open]="state.legendOpen()" [lang]="lang()" [regimes]="legendRegimes()" [regimesStatus]="data.regimesStatus()"
@@ -183,7 +198,7 @@ interface SheetInfo {
                   (toggle)="toggleLegend()" />
               </div>
             </div>
-            <div class="h-[var(--wl-timeline-height)] flex-none">
+            <div class="h-[var(--wl-timeline-height)] flex-none" [class.hidden]="campaignFull()" [class.pointer-events-none]="campaignMode()" [class.opacity-60]="campaignMode()" [attr.aria-disabled]="campaignMode() || null" data-testid="timeline-wrap">
               <wl-timeline [compact]="vp.compact()" [date]="state.date()" [snapshots]="data.snapshots()" [earliestData]="data.earliestEvent()" [snapshotsStatus]="data.snapshotsStatus()" [lang]="lang()"
                 [ready]="mapReady()" (playingChange)="playing.set($event)"
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
@@ -411,7 +426,9 @@ export class AtlasPage {
       // §10-3：圖例開啟時 padding.left＝264（只有視窗寬 ≥1024px 才設）
       const left = this.state.legendOpen() && this.areaSize().w >= 1024 ? 264 : 0;
       // §12：手機底部面板開啟時 padding.bottom＝面板目前高度
-      return { left, right: this.sheetOpen() && l.side === 'right' && !l.overlay ? l.size + 16 : 0, bottom: this.sheetOpen() && l.side === 'bottom' ? l.size : 0 };
+      const so = this.sheetOpen() && !this.campaignMode();
+      if (this.campaignMode()) return { left: 0, right: 0, bottom: 0 };
+      return { left, right: so && l.side === 'right' && !l.overlay ? l.size + 16 : 0, bottom: this.sheetOpen() && l.side === 'bottom' ? l.size : 0 };
     },
     { equal: (a, b) => a.left === b.left && a.right === b.right && a.bottom === b.bottom },
   );
@@ -490,6 +507,31 @@ export class AtlasPage {
   }, 300);
   /** 小於 768px（§12 手機）：圖例是獨立 bottom sheet（L1）。 */
   protected readonly mobile = computed(() => this.areaSize().w > 0 && this.areaSize().w < 768);
+  /** 戰役模式（§11.2）。 */
+  protected readonly campaigns = inject(CampaignService);
+  protected readonly campaignMode = computed(() => this.campaigns.status() !== 'idle');
+  protected readonly campaignFull = computed(() => this.campaignMode() && this.mobile());
+  protected readonly campaignInset = computed(() => this.mobile()
+    ? { top: 16, right: 16, left: 16, bottom: Math.round((typeof window !== 'undefined' ? window.innerHeight : 800) * 0.4) + 16 }
+    : { top: 24, right: 24, bottom: 24, left: 392 });
+  /** 面板入口：交戰方的政權面板，且目前日期在戰役前後一年內。 */
+  protected readonly regimeCampaigns = computed<CampaignIndexEntry[]>(() => {
+    const slug = this.sheet()?.sov?.props.regimeSlug;
+    const y = Number(this.state.date().slice(0, 4));
+    return campaignsForRegime(this.campaigns.index(), slug).filter((c) => Math.abs(Number(c.start.slice(0, 4)) - y) <= 1);
+  });
+  private campaignSaved: { date: string } | null = null;
+  protected openCampaign(key: string): void {
+    if (!this.campaignSaved) this.campaignSaved = { date: this.state.date() };
+    void this.campaigns.open(key);
+  }
+  protected closeCampaign(): void {
+    if (!this.campaignMode()) return;
+    this.campaigns.close();
+    const saved = this.campaignSaved;
+    this.campaignSaved = null;
+    if (saved && saved.date !== this.state.date()) this.state.setDate(saved.date);
+  }
   protected readonly sheetOpen = computed(() => this.sheetNow() !== null);
   protected readonly sheetTitle = computed(() => this.sheet()?.title ?? '');
   /** §10：政權面板標頭顯示首都（只有主權政權、且當前日期有首都資料時）。 */
@@ -610,6 +652,15 @@ export class AtlasPage {
   private debounce: ReturnType<typeof setTimeout> | undefined;
 
   constructor() {
+    void this.campaigns.loadIndex();
+    // 戰役階段變動 → 地圖日期跟到該階段起日（不清除選取，關閉時面板原樣恢復）
+    effect(() => {
+      const p = this.campaigns.current();
+      if (p && this.state.date() !== p.start) untracked(() => this.state.setDate(p.start));
+    });
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && this.campaignMode()) { e.stopPropagation(); this.closeCampaign(); } };
+    if (typeof window !== 'undefined') { window.addEventListener('keydown', onKey, true); inject(DestroyRef).onDestroy(() => window.removeEventListener('keydown', onKey, true)); }
+
     const q = parseAtlasQuery(this.route.snapshot.queryParams as Record<string, string | undefined>);
     this.state.date.set(q.date);
     this.state.lang.set(q.lang);

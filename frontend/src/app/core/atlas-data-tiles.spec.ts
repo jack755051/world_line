@@ -49,4 +49,27 @@ describe('AtlasData（tiles 模式，§9 步驟 5）', () => {
     await Promise.all([a, b]);
     expect(data.sovereignty()?.featureCollection.features[0].properties.regimeId).toBe('b');
   });
+
+  it('蒙版：放大到更細的容差桶才重取被選政權幾何（5-3）；縮小或同桶不取', async () => {
+    const calls: string[] = [];
+    const api = {
+      regimeGeometry: async (id: string, date: string, zoom?: number) => { calls.push(`${id}:${zoom}`); return dto(date, feat('r1', id)); },
+      regimesBatch: async () => [],
+    };
+    TestBed.configureTestingModule({ providers: [{ provide: WorldLineApi, useValue: api }] });
+    const data = TestBed.inject(AtlasData);
+    const state = TestBed.inject((await import('./atlas-state')).AtlasState);
+    state.mapZoom.set(4);
+    await data.loadRegimeSovereignty('g1', '1940-07-15');
+    data.refineRegimeSovereignty(4.4);
+    state.mapZoom.set(7);
+    data.refineRegimeSovereignty(7);
+    await new Promise((r) => setTimeout(r, 0));
+    state.mapZoom.set(3);
+    data.refineRegimeSovereignty(3);
+    expect(calls).toEqual(['g1:4', 'g1:7']);
+    data.clearRegimeSovereignty();
+    data.refineRegimeSovereignty(9);
+    expect(calls.length).toBe(2);
+  });
 });

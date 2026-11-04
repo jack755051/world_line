@@ -282,11 +282,25 @@ export class AtlasData {
    */
   private readonly selCache = new LruCache<SovereigntyMapDto>(40);
   private selSeq = 0;
+  /** 目前被選政權幾何的來源（政權、日期、縮放桶）；放大到更細的桶時重取，讓蒙版邊緣貼齊圖磚。 */
+  private selLoaded: { regimeId: string; date: string; bucket: string } | null = null;
+  private static zoomBucket(zoom: number): 'c' | 'm' | 'f' {
+    return zoom <= 4.5 ? 'c' : zoom <= 6.5 ? 'm' : 'f';
+  }
+  /** tiles 模式：縮放跨到更細的容差桶時重取被選政權幾何（同政權、同日期；只往細不往粗）。 */
+  refineRegimeSovereignty(zoom: number): void {
+    const cur = this.selLoaded;
+    if (this.boundarySource !== 'tiles' || !cur) return;
+    const b = AtlasData.zoomBucket(zoom);
+    if ('cmf'.indexOf(b) <= 'cmf'.indexOf(cur.bucket)) return;
+    void this.loadRegimeSovereignty(cur.regimeId, cur.date);
+  }
   async loadRegimeSovereignty(regimeId: string, date: string): Promise<SovereigntyMapDto | null> {
     if (this.boundarySource !== 'tiles') return this.sovereignty();
     const my = ++this.selSeq;
     const zoom = this.state.mapZoom();
-    const key = `${regimeId}|${date}|${zoom <= 4.5 ? 'c' : zoom <= 6.5 ? 'm' : 'f'}`;
+    const bucket = AtlasData.zoomBucket(zoom);
+    const key = `${regimeId}|${date}|${bucket}`;
     let dto = this.selCache.get(key) ?? null;
     if (!dto) {
       this.sovereigntyStatus.set('loading');
@@ -299,6 +313,7 @@ export class AtlasData {
       }
     }
     if (my !== this.selSeq) return null;
+    this.selLoaded = { regimeId, date, bucket };
     this.sovereignty.set(dto);
     this.sovereigntyShownFor.set(date);
     this.sovereigntyStatus.set('ok');
@@ -310,6 +325,7 @@ export class AtlasData {
   clearRegimeSovereignty(): void {
     if (this.boundarySource !== 'tiles') return;
     ++this.selSeq;
+    this.selLoaded = null;
     this.sovereignty.set(null);
     this.sovereigntyStatus.set('idle');
   }

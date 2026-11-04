@@ -579,6 +579,11 @@ export class AtlasPage {
       const busy = !this.playing() && (this.data.mapDataLoading() || this.mapRenderBusy());
       untracked(() => this.busyFlag.set(busy));
     });
+    // tiles 模式蒙版（§9 步驟 5-3）：放大到更細的容差桶時重取被選政權幾何，蒙版邊緣跟圖磚一致
+    effect(() => {
+      const zoom = this.state.mapZoom();
+      untracked(() => this.data.refineRegimeSovereignty(zoom));
+    });
     // 掃描揭露：waiting 且 mapReady 且是目標日期 → 下一幀 sweeping
     effect(() => {
       const phase = this.scanPhase();

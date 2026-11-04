@@ -818,7 +818,8 @@ export class AtlasMap {
         dragRotate: false,
         pitchWithRotate: false,
       });
-      // §12 觸控：雙指縮放與旋轉、單指拖動；關閉 pitch（雙指上下拖不傾斜地圖）
+      // §12 觸控：雙指縮放、單指拖動；關閉旋轉（地圖固定北方朝上，Tai 2026-11-04 17:16）與 pitch
+      map.touchZoomRotate.disableRotation();
       map.touchPitch.disable();
       // 面板／圖例的 padding 由 uiPadding 決定（§10）
       map.setPadding({ left: this.uiPadding().left, top: 0, right: this.uiPadding().right, bottom: this.uiPadding().bottom ?? 0 });

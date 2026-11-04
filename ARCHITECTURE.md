@@ -181,7 +181,7 @@
   2. **碰撞交給 MapLibre**：`text-allow-overlap=false`，用 `symbol-sort-key` 依面積排重要度，撞到時保留重要的，另一個隱藏。
   3. **圖例和右側面板當障礙物**：標籤自動避開。
   4. 不為了硬塞名字而縮字、換行或縮寫；首都標籤沿用同一套規則。
-  5. **國名依視窗定位（M1-g，Tai 2026-11-03 21:27 核准，精神依 Imhof）**：
+  5. ~~**國名依視窗定位（M1-g，Tai 2026-11-03 21:27 核准，精神依 Imhof）**~~ **已由新規則取代（D-B2，Tai 2026-11-04，見 §9）：國名依該時期最大塊國土預先算好，被選政權依畫面可見部分重算。** 以下為舊規則「依畫面可見最大塊即時重算」，僅留存紀錄：
      - 國名放在該政權「目前畫面可見國土」中面積最大的那一塊（多塊國土、殖民地一律同規則）。
      - 「可見」指地圖畫面扣掉圖例與右側面板之後的範圍。
      - 位置用 polylabel（pole of inaccessibility）：該可見塊內離邊界最遠的點。
@@ -348,3 +348,113 @@ PRD §10 與計畫檔的 M0–M6、S 軌（戰區與全球主權骨架）是另�
 | D10 | 掃描亮線和新標籤層的相容性 | `scan-snapshot.ts` 會複製 HTML 國名層，但國名已移進 canvas。要在合併前驗證跳年畫面沒有標籤殘影或缺漏 |
 | D11 | 憲法 status 還是 `in_review`（計畫 A4） | Tai 審查後改成 `active`？ |
 | D12 | 沿用既有的開放問題 | 主權軸資料集（憲法 §10、PRD Q0）；推估過渡插值方式（PRD Q3）；冷跳（目前決定維持現狀） |
+
+---
+
+## 9. 疆界圖磚（第 2、3 層）
+
+> 狀態：草稿，待 Tai 確認。決策日期：2026-11-04。
+> 決策：D-B1 採用預先切好的 PMTiles 加 CDN；D-B2 國名依「該時期最大塊國土」預先算好，被選政權依畫面可見部分重算；D-B3 物件儲存和 CDN 暫不決定，開發期由 Martin 在本地提供。
+
+### 1. 目標
+- 換日期（熱跳、播放，含 1 日/秒）時不發出網路請求，也不碰 API。
+- API 常駐記憶體和疆界資料量脫鉤，不再預算世界快照。
+- 可延伸到 1991 年。
+
+### 2. 模組
+| 模組 | 位置 | 職責 |
+|---|---|---|
+| 真相來源 | PostGIS | 政權、主權、疆界紀錄（第 1 層），由考證流程寫入 |
+| `boundary_periods` | PostGIS view 或導出表 | 每段「不變幾何」一筆：`regime_id, start_day, end_day, geom, color_idx, disputed, control_type` |
+| `label_points` | 建置產物 | 每個政權的每個時期一個點：在最大塊國土上用 polylabel 算出，含 `start_day, end_day, regime_id, name, area` |
+| 圖磚建置 | `tools/tiles/`（CI 作業） | 從 PostGIS 導出 GeoJSONSeq，經 tippecanoe 產生 `boundaries-v{hash}.pmtiles` 和 manifest |
+| 圖磚服務 | 開發：Martin（本地）；正式：物件儲存加 CDN（未決定） | 用 HTTP range 請求提供 PMTiles |
+| API（.NET） | `api/` | 中繼資料查詢、被選政權詳細資料、manifest；不處理疆界幾何的批次輸出 |
+| 前端地圖 | `app/` 的 map 模組 | pmtiles protocol、日期 filter、標籤、蒙版、掃描動畫 |
+
+### 3. 資料流
+```mermaid
+flowchart LR
+  A[考證寫入 PostGIS] --> B[boundary_periods]
+  B --> C[CI 建置: GeoJSONSeq → tippecanoe]
+  C --> D[boundaries-v{hash}.pmtiles<br/>layers: boundaries, labels]
+  C --> E[manifest.json]
+  D --> F[開發: Martin / 正式: CDN]
+  E --> G[API /tiles/manifest]
+  F --> H[前端 MapLibre]
+  G --> H
+  H -- 換日期 --> H2[setFilter only，無請求]
+  H -- 點選政權 --> I[API /regimes/{id}?date=]
+```
+
+### 4. 介面
+**圖磚 schema**（日期一律存成整數日，從 1900-01-01 起算的天數；確切起點於實作時定案）
+- 圖層 `boundaries`（polygon，z0–z8，超過 z8 由前端放大）：`regime_id`、`start_day`、`end_day`（不含當日；仍持續者用最大值）、`color_idx`、`disputed`、`control_type`
+- 圖層 `labels`（point）：`regime_id`、`start_day`、`end_day`、`name_zh`、`name_local`、`area`（標籤排序用，`symbol-sort-key`）
+
+**前端日期篩選**
+```js
+['all', ['<=', ['get','start_day'], d], ['>', ['get','end_day'], d]]
+```
+只有在 d 跨越 manifest 列出的變動日時，才呼叫 `setFilter`。
+
+**API**
+- `GET /tiles/manifest` 回傳 `{ version, url, minDay, maxDay, changeDays[] }`；快取 60 秒。
+- `GET /regimes/{id}?date=` 回傳中繼資料（首都、元首、主權）。
+- `GET /regimes/{id}/geometry?date=` 回傳被選政權的完整幾何，供重算可見標籤、蒙版用；不提供「全世界疆界」端點。
+
+**被選政權的標籤**
+- 另設一個 GeoJSON source `selected-label`，前端依畫面可見部分重算（`queryRenderedFeatures` 或上面的幾何端點，取交集後做 polylabel）。
+- 圖層放在蒙版之上，`text-allow-overlap: true`、`text-ignore-placement: true`。
+- 地圖移動結束後（moveend）重算，加上防抖動。
+
+### 5. 第 3 層快取
+| 層 | 內容 | 策略 |
+|---|---|---|
+| CDN | PMTiles | 檔名帶內容雜湊，`Cache-Control: public, max-age=31536000, immutable`；需支援 range 請求 |
+| CDN 或 API | manifest | `max-age=60` |
+| Redis | API 中繼資料查詢 | 快取鍵 `v{dataVersion}:{endpoint}:{params}`，換版自然失效；不放幾何 |
+| API 程序內 | 熱門小表 | 設上限（例如 50MB），使用 LRU |
+| 瀏覽器 | 圖磚 | 使用 MapLibre 內建快取；Service Worker 為選做 |
+
+### 6. 遷移步驟
+1. 完成第 1 層：PostGIS 依日期查詢，移除 3.3GB 的快照。
+2. 建立 `boundary_periods`，並和第 1 層結果比對（591 個變動日加 50 個隨機日，政權集合要一致）。
+3. 寫建置腳本，產出第一版 PMTiles，記錄總大小和單一圖磚的最大尺寸。
+4. 開發環境用 Martin 提供 PMTiles；前端加功能開關 `boundarySource=geojson|tiles`。
+5. 把國名、被選政權標籤、蒙版、高亮（promoteId 設為 `regime_id`，使用 feature-state）和掃描動畫逐項移到圖磚模式。
+6. 測試驗收團隊跑回歸測試和效能基準。
+7. 選定物件儲存和 CDN（需 Tai 同意）後上線，預設改為 tiles；保留 geojson 模式一個版本後移除。
+
+### 7. 驗收
+- 正確性：在 591 個變動日加 50 個抽樣日上，圖磚模式渲染出的 `regime_id` 集合和第 1 層 API 完全一致（自動化比對）。
+- 記憶體：API 常駐記憶體小於 500MB，且不隨資料量成長。
+- 熱跳：同一個視窗範圍內換日期，網路請求為 0，重繪小於 50ms。
+- 冷跳：CDN 已快取時，一般網路下小於 1 秒。開發期以 Martin 量測，只作參考。
+- 播放：以 1 日/秒連續播放 60 秒，中階筆電維持 55fps 以上。
+- 標籤：每個政權的每個時期只有一個國名；被選政權的名稱在蒙版上 100% 顯示，且位於可見國土內。
+- 圖磚：單一圖磚小於 500KB；記錄總大小，並估算延伸到 1991 年後的量。
+
+### 8. 進度
+**已完成**
+- 決策 D-B1、D-B2、D-B3（2026-11-04，Tai）。
+- 第 1 層 ✅（2026-11-04，feature/russia-unclip-loading，未 push）：
+  - `6cfc4a4`：PostGIS 以 `valid_period @> d`（＝`lower <= d AND (upper IS NULL OR upper > d)`）篩出當天有效紀錄，這步不取幾何；原始幾何只對還沒算過的紀錄才讀；簡化後的 GeoJSON 依（紀錄, 容差）共用，各日期不再各存一份幾何。索引已齊（`sovereignty_records` 的 `valid_period`、`geom` GiST；佔領、衝突 `valid_period` GiST；陣營走 `(regime_id, valid_period)` GiST），不需 migration。回應格式不變（15 個回應改前改後位元組相同）。
+  - `32c9275`：逐日快取改滑動視窗（以查詢日期為中心前後各 10 個變動日，往播放方向預先載入 3 個，估算上限 1.5GB 當保險），啟動只預熱預設日期 1940-07-15，不再全量預熱 591 個日期；移除暫時的 GC 上限環境變數。
+  - 實測（mac-mini，開發庫 5442）：1908／1924／1933／1940／1945-06-15 全部 200；冷跳 0.22–0.94 秒、熱跳 0.06–0.09 秒（精細縮放）；RSS 啟動約 1.6GB，三種縮放全掃 591 個變動日後最高約 3.05GB（改前 5.9GB）。常駐記憶體尚未達 §7 的「小於 500MB」，留待第 2、3 層。
+
+**未完成**
+- 遷移步驟 2–7（步驟 1 見上；記憶體目標未達）。
+
+**未決定**
+- CDN 供應商：已定：Cloudflare R2 加 CDN（上線時開通，費用需要 Tai 本人同意）。
+- 整數日的起算日。
+- 最高縮放級別：目前假設 z8，待實測。
+- 若圖磚過大，是否依年代拆成多個 PMTiles（例如每 10 年一個）。
+- 建置觸發方式：每次合併就建置，或每日一次。
+
+### 9. 風險
+- 圖磚過大：1938–1945 的變動密集，延伸到 1991 年後會更嚴重。對策是加強低縮放級別的簡化、設定圖磚大小上限，必要時依年代拆檔。
+- 簡化後相鄰邊界出現縫隙或重疊：使用 tippecanoe 的 `--detect-shared-borders`；不夠時在 PostGIS 先做拓撲簡化。
+- 資料生效延遲：考證結果要等建置跑完才會上線；開發期用 Martin 預覽。
+- 低階裝置上 filter 的成本：只在變動日更新 filter。

@@ -32,6 +32,7 @@ test('§10-2／§10-4：≥1440 面板寬 400、可拖拉到 480 並記住；面
   const sb = (await sheet.boundingBox())!;
   expect(Math.abs(sb.y + sb.height - tl.y)).toBeLessThanOrEqual(1);
   expect(Math.round(tl.width)).toBe(1440);
+  await expect(sheet).toHaveAttribute('data-state', 'open'); // 滑入動畫結束才量把手位置
   const handle = page.getByTestId('regime-sheet-resize');
   const hb = (await handle.boundingBox())!;
   await page.mouse.move(hb.x + hb.width / 2, hb.y + 300);
@@ -90,4 +91,36 @@ test('出處文字不被左下 ⓘ 圖例按鈕蓋住（1440、1024）', async (
     const overlap = attrib.x < btn.x + btn.width && attrib.x + attrib.width > btn.x && attrib.y < btn.y + btn.height && attrib.y + attrib.height > btn.y;
     expect(overlap).toBe(false);
   }
+});
+
+test('首都名不被面板或蒙版邊緣切到：選取 1940 德意志國（1024）時一般層不畫其他首都名；未選取時首都名不在面板、圖例底下', async ({ page }) => {
+  type M = { queryRenderedFeatures: (o: object) => { geometry: { coordinates: [number, number] }; properties: Record<string, string> }[]; project: (l: [number, number]) => { x: number; y: number }; getContainer: () => HTMLElement };
+  const capitalsUnder = () => page.evaluate(() => {
+    const m = (window as unknown as { __wlMap: M }).__wlMap;
+    const cr = m.getContainer().getBoundingClientRect();
+    const rects = ['wl-regime-sheet [data-testid="regime-sheet"]', '[data-testid="legend"]'].map((s) => document.querySelector(s)?.getBoundingClientRect()).filter((r) => r && r.width) as DOMRect[];
+    const ctx = document.createElement('canvas').getContext('2d')!;
+    ctx.font = '11px sans-serif';
+    const bad: string[] = [];
+    const fs = m.queryRenderedFeatures({ layers: ['capital-label'] });
+    for (const f of fs) {
+      const p = m.project(f.geometry.coordinates);
+      const x = p.x + cr.left, y = p.y + cr.top, w = ctx.measureText(f.properties['label'] ?? '').width + 8;
+      // 名字在圓點左或右（碰撞時翻邊）：兩側都會壓到面板／圖例、或圓點本身在底下，就算被擋住
+      const hit = (l: number, r2: number) => rects.some((r) => l < r.right && r2 > r.left && y - 8 < r.bottom && y + 8 > r.top);
+      const dotUnder = rects.some((r) => x >= r.left && x <= r.right && y >= r.top && y <= r.bottom);
+      if (dotUnder || (hit(x - w, x) && hit(x, x + w))) bad.push(f.properties['label']);
+    }
+    return { n: fs.length, bad };
+  });
+  await open(page, 1024);
+  await page.getByTestId('legend-expand').click();
+  await page.waitForTimeout(800);
+  expect((await capitalsUnder()).bad).toEqual([]);
+  await page.getByTestId('legend-expand').click();
+  await selectGermany(page);
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await page.waitForTimeout(800);
+  expect((await capitalsUnder()).n).toBe(0);
+  await expect(page.getByTestId('map-selected-label').filter({ hasText: '柏林' })).toHaveCount(1);
 });

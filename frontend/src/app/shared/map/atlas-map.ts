@@ -29,7 +29,7 @@ import {
   pickCapitalAnchorSide, pointInProjectedRing,
   type Box,
 } from './label-placement';
-import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
+import { capitalLabelFilterExpr, clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 import { byIdExpr, dataDrivenPaint, overlayFilter, OVERLAY_CONTROL_LAYERS, OVERLAY_GAP_LAYERS, OVERLAY_KEEP_FILTER, OVERLAY_SOURCE } from './boundary-tiles';
 import { boundaryTileLayers, tileCampColor, tileCampFilter, TILE_CAMP_LINE, tileDateFilter, tileFillColor, tileHatchBase, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, pickTileLabels, type TileLabelCandidate, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
@@ -1430,7 +1430,7 @@ export class AtlasMap {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     map.setFilter('regime-label', labelFilterExpr(sel) as any);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    map.setFilter('capital-label', labelFilterExpr(sel) as any);
+    map.setFilter('capital-label', capitalLabelFilterExpr(sel) as any);
     map.setFilter('capital-dot', sel ? ['!=', ['coalesce', ['get', 'regimeId'], ''], sel] : null);
     this.applyTileLabelFilter();
   }

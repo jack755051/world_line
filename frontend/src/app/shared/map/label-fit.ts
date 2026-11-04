@@ -43,6 +43,14 @@ export function clampMinZoom(z: number): number {
  * 一般層（GL）的 filter：目前縮放裝得下才顯示（['zoom'] 由 MapLibre 在 worker 依圖磚縮放評估，不必每次縮放 setFilter），
  * 並排除被選政權（它改由蒙版上方的 HTML 層畫，避免重複）。
  */
+/**
+ * 首都名 filter：沒有被選政權時同 labelFilterExpr；有被選政權時一般層的首都名全部不畫（被選政權的首都由 HTML 層畫），
+ * 其他政權的首都名會跨在聚焦蒙版挖空邊緣，一半清楚一半模糊（例：1024 寬選德國時的考納斯）；圓點照常保留。
+ */
+export function capitalLabelFilterExpr(selectedRegimeId: string | null): unknown[] {
+  return selectedRegimeId ? ['boolean', false] : labelFilterExpr(null);
+}
+
 export function labelFilterExpr(selectedRegimeId: string | null): unknown[] {
   const fits = ['>=', ['zoom'], ['coalesce', ['get', 'minZoom'], NEVER_ZOOM]];
   if (!selectedRegimeId) return fits;

@@ -1,4 +1,4 @@
-import { NEVER_ZOOM, clampMinZoom, labelFilterExpr, labelMinZoom, mercatorY, minZoomFromScreenWidth } from './label-fit';
+import { NEVER_ZOOM, capitalLabelFilterExpr, clampMinZoom, labelFilterExpr, labelMinZoom, mercatorY, minZoomFromScreenWidth } from './label-fit';
 
 describe('label-fit（名字寬度 vs 國家螢幕寬度）', () => {
   it('國家寬度剛好等於名字寬度時的縮放', () => {
@@ -29,6 +29,10 @@ describe('label-fit（名字寬度 vs 國家螢幕寬度）', () => {
     expect(clampMinZoom(Infinity)).toBe(NEVER_ZOOM);
     expect(clampMinZoom(NaN)).toBe(NEVER_ZOOM);
     expect(clampMinZoom(3.2)).toBe(3.2);
+  });
+  it('capitalLabelFilterExpr：未選取同 labelFilterExpr；選取政權時一般層首都名全部不畫（避免跨在蒙版邊緣被切）', () => {
+    expect(capitalLabelFilterExpr(null)).toEqual(labelFilterExpr(null));
+    expect(capitalLabelFilterExpr('de')).toEqual(['boolean', false]);
   });
   it('labelFilterExpr：未選取只比縮放；選取時排除該政權', () => {
     expect(labelFilterExpr(null)).toEqual(['>=', ['zoom'], ['coalesce', ['get', 'minZoom'], NEVER_ZOOM]]);

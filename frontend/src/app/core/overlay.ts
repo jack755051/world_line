@@ -104,6 +104,26 @@ export function overlayKey(o: OverlayFile | null, section: 'control' | 'conflict
   return `ov:${o!.version}:${sec.points[intervalIndex(sec.points, date)] ?? ''}`;
 }
 
+/**
+ * 換日期時畫面上可能出現的字：overlay 內所有字元（政權名、首都、領袖、衝突…）＋ ASCII 可見字元＋日期用字。
+ * 供開機時一次載入 @fontsource 的 unicode-range 子集，換日期才不會再抓 woff2（0 請求，Tai 2026-11-04）。
+ */
+export function overlayGlyphs(o: OverlayFile): string {
+  const set = new Set<string>();
+  for (const ch of JSON.stringify(o)) if (ch.charCodeAt(0) > 0x7e) set.add(ch);
+  for (let c = 0x20; c <= 0x7e; c++) set.add(String.fromCharCode(c));
+  for (const ch of '年月日—–－・，。：（）') set.add(ch);
+  return [...set].sort().join('');
+}
+
+/** 介面字型（styles.css 的 @fontsource 三個字重）。 */
+export const PRELOAD_FONTS = ['400 16px "Noto Sans TC"', '600 16px "Noto Sans TC"', '600 16px "Noto Serif TC"'];
+
+export function preloadFonts(text: string, fonts: FontFaceSet | undefined = typeof document !== 'undefined' ? document.fonts : undefined): Promise<unknown> {
+  if (!fonts?.load || !text) return Promise.resolve();
+  return Promise.all(PRELOAD_FONTS.map((f) => fonts.load(f, text).catch(() => [])));
+}
+
 @Injectable({ providedIn: 'root' })
 export class OverlayStore {
   readonly data = signal<OverlayFile | null>(null);
@@ -119,6 +139,7 @@ export class OverlayStore {
       .then((o) => {
         this.data.set(o);
         this.status.set('ok');
+        void preloadFonts(overlayGlyphs(o));
         return o;
       })
       .catch(() => {

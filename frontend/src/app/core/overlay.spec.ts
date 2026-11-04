@@ -46,3 +46,15 @@ describe('overlay（§9 步驟 5）', () => {
     expect(overlayKey(o, 'leaders', '1915-01-01')).toBeNull();
   });
 });
+
+describe('font preload', () => {
+  it('overlayGlyphs: unique non-ASCII chars from the overlay plus ASCII and date chars', async () => {
+    const { overlayGlyphs, preloadFonts, PRELOAD_FONTS } = await import('./overlay');
+    const g = overlayGlyphs({ version: 'x', regimes: { a: { name: '法蘭西法' } } } as never);
+    expect(g).toContain('法'); expect(g).toContain('蘭'); expect(g).toContain('年'); expect(g).toContain('9');
+    expect(g.split('法').length).toBe(2);
+    const calls: string[] = [];
+    await preloadFonts('法', { load: (f: string) => { calls.push(f); return Promise.resolve([]); } } as never);
+    expect(calls).toEqual(PRELOAD_FONTS);
+  });
+});

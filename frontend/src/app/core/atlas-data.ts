@@ -65,6 +65,11 @@ export class AtlasData {
     return this.boundarySource === 'tiles' && overlayCovers(this.overlay.data(), date);
   }
 
+  /** 預先載入要略過的日期：overlay 已有，或 tiles 模式已載 overlay 而日期在 overlay 範圍外（時間軸到不了，換日期 0 請求）。 */
+  private prefetchSkip(date: string): boolean {
+    return this.overlayHas(date) || (this.boundarySource === 'tiles' && this.overlay.data() !== null);
+  }
+
   /** 疆界來源（§9 步驟 4 功能開關）：tiles 時不向 API 取主權資料（換日期由圖磚 filter 處理）。 */
   readonly boundarySource: BoundarySource = readBoundarySource();
 
@@ -252,7 +257,7 @@ export class AtlasData {
     if (!pts) return;
     const { prev, next } = neighborDates(pts, date);
     for (const d of [next, prev]) {
-      if (!d || this.overlayHas(d)) continue;
+      if (!d || this.prefetchSkip(d)) continue;
       const key = this.controlKey(d);
       if (this.cache.has(key)) continue;
       this.fetchControl(key, d).catch(() => undefined);
@@ -524,7 +529,7 @@ export class AtlasData {
       if (seen.has(sovKey)) continue;
       seen.add(sovKey);
       const ck = this.controlKey(d);
-      if (this.overlayHas(d)) continue; // tiles 模式：overlay 已有這天的控制區與衝突
+      if (this.prefetchSkip(d)) continue; // tiles 模式：overlay 已有這天的控制區與衝突（範圍外時間軸到不了）
       if ((this.boundarySource === 'tiles' || this.sovCache.has(sovKey)) && this.cfCache.has(cfKey) && this.cache.has(ck)) continue;
       fetched++;
       try {

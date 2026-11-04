@@ -804,6 +804,7 @@ export class AtlasMap {
 
       map.on('styleimagemissing', (e) => this.addHatch(e.id));
       map.on('load', () => {
+        this.warmGlyphs(map);
         this.ready.set(true);
         this.addRegimeLabelImages();
         this.setData(this.collection());
@@ -1654,6 +1655,22 @@ export class AtlasMap {
     if (JSON.stringify(next) === JSON.stringify(this.tileLabelAllowed)) return;
     this.tileLabelAllowed = next;
     map.setFilter(TILE_LABEL, tileLabelFilter(this.tileDay, this.tileLabelPxCache, this.focusRegimeId, next));
+  }
+
+  /**
+   * 開機時先把地圖字形的 ASCII 區段（0-255.pbf）載進來：中日韓字由瀏覽器本機字型畫，不抓字形檔；
+   * 名稱裡的數字、拉丁字母若換日期才首次出現，會多一次 glyph 請求（換日期 0 請求，Tai 2026-11-04）。
+   * 放在開機視窗中心（字形只在該點所在圖磚排版時才抓，抓過即整個 map 共用快取）；不可見、不參與碰撞。
+   */
+  private warmGlyphs(map: MlMap): void {
+    if (map.getSource('wl-glyph-warm')) return;
+    let ascii = '';
+    for (let c = 0x21; c <= 0x7e; c++) ascii += String.fromCharCode(c);
+    map.addSource('wl-glyph-warm', { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: map.getCenter().toArray() } } });
+    map.addLayer({ id: 'wl-glyph-warm', type: 'symbol', source: 'wl-glyph-warm',
+      layout: { 'text-field': ascii, 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'], 'text-size': 1,
+        'text-allow-overlap': true, 'text-ignore-placement': true },
+      paint: { 'text-opacity': 0 } });
   }
 
   private collectTileRegimeIds(): void {

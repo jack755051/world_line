@@ -565,7 +565,7 @@ export class AtlasMap {
   /** 聚焦置中時要避開的面板大小（右側面板寬或底部面板高）。 */
   readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
   /** 面板／圖例開啟時的地圖 padding（§10-2／§10-3）：沒有聚焦時 easeTo 200ms（減少動態時直接套用）。 */
-  readonly uiPadding = input<{ left: number; right: number }>({ left: 0, right: 0 });
+  readonly uiPadding = input<{ left: number; right: number; bottom?: number }>({ left: 0, right: 0 });
   /** 鏡頭聚焦 bounds override（控制區點擊時傳入該控制區 bbox；主權／清除時為 null）。 */
   readonly focusFitBounds = input<LngLatBounds | null>(null);
   protected readonly focusedRecord = signal<string | null>(null);
@@ -755,10 +755,13 @@ export class AtlasMap {
       untracked(() => {
         const map = this.map;
         if (!map) return;
-        const next = { left: pad.left, right: pad.right, top: 0, bottom: 0 };
-        // 聚焦中：相機由聚焦邏輯控制（它量測面板與圖例），只更新關閉聚焦時要還原的 padding
+        const next = { left: pad.left, right: pad.right, top: 0, bottom: pad.bottom ?? 0 };
+        // 聚焦中：相機由聚焦邏輯控制（它量測面板與圖例），只更新關閉聚焦時要還原的 padding；
+        // 但手機底部面板換段高度時（§12），padding.bottom 一律跟著面板目前高度
         if (this.savedCamera) {
-          this.savedCamera = { ...this.savedCamera, padding: next };
+          this.savedCamera = { ...this.savedCamera, padding: { ...next, bottom: 0 } };
+          const cur = map.getPadding();
+          if ((pad.bottom ?? 0) > 0 && Math.round(cur.bottom ?? 0) !== pad.bottom) map.easeTo({ padding: { ...cur, bottom: pad.bottom ?? 0 }, duration: reduced ? 0 : 200 });
           return;
         }
         map.easeTo({ padding: next, duration: reduced ? 0 : 200 });
@@ -816,7 +819,7 @@ export class AtlasMap {
       });
       map.touchZoomRotate.disableRotation();
       // 面板／圖例的 padding 由 uiPadding 決定（§10）
-      map.setPadding({ left: this.uiPadding().left, top: 0, right: this.uiPadding().right, bottom: 0 });
+      map.setPadding({ left: this.uiPadding().left, top: 0, right: this.uiPadding().right, bottom: this.uiPadding().bottom ?? 0 });
       this.map = map;
       if (isDevMode()) (window as unknown as { __wlMap?: MlMap }).__wlMap = map;
 

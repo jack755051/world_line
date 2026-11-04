@@ -1,5 +1,5 @@
 import type { Geometry } from 'geojson';
-import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, sheetLayout } from './focus';
+import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, sheetLayout, nearestSnap } from './focus';
 
 const square = (x: number, y: number, s: number) => [[x, y], [x + s, y], [x + s, y + s], [x, y + s], [x, y]];
 const multi: Geometry = { type: 'MultiPolygon', coordinates: [[square(0, 0, 10), square(2, 2, 2)], [[...square(20, 5, 1)]]] };
@@ -31,12 +31,18 @@ describe('政權聚焦（focus.ts）', () => {
     expect(sheetLayout(1440, 900)).toEqual({ side: 'right', size: 432, overlay: false });
     expect(sheetLayout(1920, 900)).toMatchObject({ size: 432 });
     expect(sheetLayout(1439, 900)).toEqual({ side: 'right', size: 384, overlay: false });
-    expect(sheetLayout(1024, 900)).toMatchObject({ size: 384 });
+    expect(sheetLayout(1200, 900)).toEqual({ side: 'right', size: 384, overlay: false });
+    expect(sheetLayout(1199, 900)).toEqual({ side: 'right', size: 360, overlay: true }); // §12 P1
+    expect(sheetLayout(1024, 900)).toEqual({ side: 'right', size: 360, overlay: true });
     expect(sheetLayout(1023, 900)).toEqual({ side: 'right', size: 360, overlay: true });
     expect(sheetLayout(768, 900)).toMatchObject({ size: 360 });
     expect(sheetLayout(767, 800)).toEqual({ side: 'bottom', size: 400, overlay: false });
-    expect(sheetLayout(400, 800, 'peek')).toMatchObject({ size: 96 });
-    expect(sheetLayout(400, 800, 'full')).toMatchObject({ size: 720 });
+    expect(sheetLayout(400, 800, 'peek')).toMatchObject({ size: 120 });
+    expect(sheetLayout(400, 800, 'full')).toMatchObject({ size: 752 });
+    expect(nearestSnap(150, 800)).toBe('peek');
+    expect(nearestSnap(500, 800)).toBe('half');
+    expect(nearestSnap(700, 800)).toBe('full');
+    expect(nearestSnap(700, 800, 450)).toBe('full');
     expect(sheetLayout(400, 800, 'full', 600)).toMatchObject({ size: 600 });
   });
 

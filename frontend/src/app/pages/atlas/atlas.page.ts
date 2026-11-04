@@ -24,7 +24,7 @@ import { decorateSovereignty, occupationTint, regimeColor, sovereigntyLabels } f
 import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
-import { geometryBounds, sheetLayout, type FocusInset, type LngLatBounds, type SheetSnap } from '../../shared/map/focus';
+import { geometryBounds, nearestSnap, sheetLayout, type FocusInset, type LngLatBounds, type SheetSnap } from '../../shared/map/focus';
 import { CAMP_FILL, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
 import { COMPLETE_FROM, nearestDate } from '../../shared/timeline/timeline-scale';
@@ -145,7 +145,7 @@ interface SheetInfo {
 
               <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
               <wl-regime-sheet [open]="sheetOpen()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
-                [snap]="sheetSnap()" (snapChange)="sheetSnap.set($event)"
+                [snap]="sheetSnap()" [snapFor]="snapFor" (snapChange)="sheetSnap.set($event)"
                 [title]="sheetTitle()" [subtitle]="sheetCapital()" [description]="sheetLegendOnly() ? '' : sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
                 [closeTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-close' : sheet()?.kind === 'control' ? 'feature-card-close' : 'sovereignty-card-close'"
@@ -407,6 +407,9 @@ export class AtlasPage {
   protected readonly focusFitBounds = signal<LngLatBounds | null>(null);
   /** 底部 bottom sheet 段位（§10 v2 W1：右側面板寬度固定、不拖拉）。 */
   protected readonly sheetSnap = signal<SheetSnap>('half');
+  /** §12：拖拉放開時吸附到最接近的一段。 */
+  protected readonly snapFor = (px: number): SheetSnap =>
+    nearestSnap(px, typeof window !== 'undefined' ? window.innerHeight : this.areaSize().h, this.areaSize().h || Infinity);
   protected readonly layout = computed(() =>
     sheetLayout(this.areaSize().w, typeof window !== 'undefined' ? window.innerHeight : this.areaSize().h, this.sheetSnap(), this.areaSize().h || Infinity));
   /**
@@ -418,9 +421,10 @@ export class AtlasPage {
       const l = this.layout();
       // §10-3：圖例開啟時 padding.left＝264（只有視窗寬 ≥1024px 才設）
       const left = this.state.legendOpen() && this.areaSize().w >= 1024 ? 264 : 0;
-      return { left, right: this.sheetOpen() && l.side === 'right' && !l.overlay ? l.size + 16 : 0 };
+      // §12：手機底部面板開啟時 padding.bottom＝面板目前高度
+      return { left, right: this.sheetOpen() && l.side === 'right' && !l.overlay ? l.size + 16 : 0, bottom: this.sheetOpen() && l.side === 'bottom' ? l.size : 0 };
     },
-    { equal: (a, b) => a.left === b.left && a.right === b.right },
+    { equal: (a, b) => a.left === b.left && a.right === b.right && a.bottom === b.bottom },
   );
   protected readonly sheetNow = computed<SheetInfo | null>(() => {
     // 控制區優先（點控制區 → 開右側面板，比照主權卡流程）
@@ -779,6 +783,7 @@ export class AtlasPage {
 
   protected onFeatureClick(e: MapFeatureEvent): void {
     this.mobileTab.set('info');
+    if (this.mobile() && this.sheetNow() === null) this.sheetSnap.set('peek'); // §12：點國家開到 peek
     this.hover.set(null);
     this.selectedSov.set(null);
     this.selectedGap.set(null);
@@ -822,6 +827,7 @@ export class AtlasPage {
 
   protected onSovereigntyClick(e: MapSovereigntyEvent): void {
     this.mobileTab.set('info');
+    if (this.mobile() && this.sheetNow() === null) this.sheetSnap.set('peek'); // §12：點國家開到 peek
     this.hover.set(null);
     this.selected.set(null);
     this.selectedGap.set(null);

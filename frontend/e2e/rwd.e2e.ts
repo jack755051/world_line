@@ -71,3 +71,35 @@ test('§12 時間軸手機：年份標籤整個在時間軸內（不被切掉）
   for (const b of await page.getByTestId('timeline-year-label').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().bottom)))
     expect(b).toBeLessThanOrEqual(tl.y + tl.height);
 });
+
+type WlMap = { jumpTo(o: unknown): void; project(ll: [number, number]): { x: number; y: number }; getPadding(): { bottom: number } };
+async function selectGermany(page: Page): Promise<void> {
+  await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: [10.5, 51], zoom: 4 }));
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await page.waitForTimeout(400);
+  const box = (await page.getByTestId('map-canvas').boundingBox())!;
+  const p = await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.project([10.5, 51]));
+  await page.mouse.click(box.x + p.x, box.y + p.y);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
+}
+
+test('§12 政權面板手機：點國家開到 peek 120px；拖把手（可點範圍 44px）往上放開吸附到最近一段；padding.bottom＝面板高；面板停在時間軸上方', async ({ page }) => {
+  await open(page, 390);
+  await selectGermany(page);
+  const sheet = page.getByTestId('regime-sheet');
+  await expect(sheet).toHaveAttribute('data-state', 'open');
+  await expect.poll(async () => Math.round((await sheet.boundingBox())!.height)).toBe(120);
+  const handle = (await page.getByTestId('regime-sheet-snap').boundingBox())!;
+  expect(Math.round(handle.height)).toBe(44);
+  await page.mouse.move(handle.x + handle.width / 2, handle.y + 20);
+  await page.mouse.down();
+  await page.mouse.move(handle.x + handle.width / 2, handle.y - 280, { steps: 8 });
+  expect(Math.round((await sheet.boundingBox())!.height)).toBeGreaterThan(300); // 跟著手指
+  await page.mouse.up();
+  await expect(page.getByTestId('regime-sheet-snap')).toHaveAttribute('data-snap', 'half');
+  await expect.poll(async () => Math.round((await sheet.boundingBox())!.height)).toBe(422);
+  await expect.poll(async () => Math.round((await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.getPadding())).bottom)).toBeGreaterThanOrEqual(422);
+  const tl = (await page.getByTestId('timeline').boundingBox())!;
+  const sb = (await sheet.boundingBox())!;
+  expect(Math.abs(sb.y + sb.height - tl.y)).toBeLessThanOrEqual(1);
+});

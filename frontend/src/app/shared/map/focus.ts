@@ -114,11 +114,21 @@ export function measuredPadding(
 /** 政權面板寬度規則（ARCHITECTURE.md §10-2）。 */
 /** §10 v2 W1（Tai 2026-11-04 15:29）：依螢幕大小固定三種寬度，不拖拉。 */
 export const SHEET_WIDTH = { wide: 432, mid: 384, narrow: 360 } as const;
-/** 小於 768px 的底部 bottom sheet 三段高度：96px、50vh、90vh。 */
+/** 小於 768px 的底部 bottom sheet 三段高度（§12）：peek 120px、half 50vh、full＝100vh 扣頂列 48px。 */
 export type SheetSnap = 'peek' | 'half' | 'full';
 export const SHEET_SNAPS: readonly SheetSnap[] = ['peek', 'half', 'full'];
 export function snapHeight(snap: SheetSnap, vh: number): number {
-  return snap === 'peek' ? 96 : Math.round(vh * (snap === 'half' ? 0.5 : 0.9));
+  return snap === 'peek' ? 120 : snap === 'half' ? Math.round(vh * 0.5) : Math.round(vh - 48);
+}
+/** 拖拉放開時吸附到最接近的一段（§12）。 */
+export function nearestSnap(px: number, vh: number, maxH = Infinity): SheetSnap {
+  let best: SheetSnap = 'half';
+  let d = Infinity;
+  for (const s of SHEET_SNAPS) {
+    const h = Math.min(snapHeight(s, vh), maxH);
+    if (Math.abs(h - px) < d) [best, d] = [s, Math.abs(h - px)];
+  }
+  return best;
 }
 export interface SheetLayout {
   side: 'right' | 'bottom';
@@ -128,13 +138,13 @@ export interface SheetLayout {
 }
 /**
  * 面板位置與寬度（§10-2 響應式規則；w＝視窗寬）：
- * §10 v2 W1：≥1440 寬 432；1024–1439 寬 384；768–1023 寬 360 蓋在地圖上（都不能拖拉）；
+ * §10 v2 W1＋§12 P1：≥1440 寬 432；1200–1439 寬 384；1024–1199 與 768–1023 寬 360 蓋在地圖上（都不能拖拉）；
  * <768 改成底部 bottom sheet（96px／50vh／90vh，高度不超過可用高 maxH）。
  */
 export function sheetLayout(w: number, vh: number, snap: SheetSnap = 'half', maxH = Infinity): SheetLayout {
   const vw = w || 1280;
   if (vw < 768) return { side: 'bottom', size: Math.min(snapHeight(snap, vh), maxH), overlay: false };
   if (vw >= 1440) return { side: 'right', size: SHEET_WIDTH.wide, overlay: false };
-  if (vw >= 1024) return { side: 'right', size: SHEET_WIDTH.mid, overlay: false };
+  if (vw >= 1200) return { side: 'right', size: SHEET_WIDTH.mid, overlay: false };
   return { side: 'right', size: SHEET_WIDTH.narrow, overlay: true };
 }

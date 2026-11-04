@@ -39,11 +39,14 @@ test('§10 v2 W1／§10-4：≥1440 面板寬 432、不能拖拉；面板底部�
   await expect.poll(async () => (await padding(page)).right).toBe(0);
 });
 
-test('§10 v2 W1：1024–1439 面板寬 384，不能拖拉', async ({ page }) => {
+test('§10 v2 W1＋§12 P1：1024–1199 面板寬 360 疊在地圖上（padding.right 0）、1200–1439 寬 384，不能拖拉', async ({ page }) => {
   await open(page, 1024);
   await selectGermany(page);
-  await expect.poll(async () => Math.round((await page.getByTestId('regime-sheet').boundingBox())!.width)).toBe(384);
+  await expect.poll(async () => Math.round((await page.getByTestId('regime-sheet').boundingBox())!.width)).toBe(360);
   await expect(page.getByTestId('regime-sheet-resize')).toHaveCount(0);
+  await open(page, 1280);
+  await selectGermany(page);
+  await expect.poll(async () => Math.round((await page.getByTestId('regime-sheet').boundingBox())!.width)).toBe(384);
 });
 
 test('§10-3：圖例預設關閉；左下按鈕展開 240px 浮動面板、padding.left＝264；Esc 與點地圖空白處收起', async ({ page }) => {

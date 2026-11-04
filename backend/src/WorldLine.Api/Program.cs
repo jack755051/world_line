@@ -102,6 +102,9 @@ WorldLine.Api.Features.EndpointRegistry.Map(api);
 // 之後的預先載入往後補幾格；原本全部 591 個變動點 × 4 種預熱會吃到 ~7 GB 被系統砍掉）。
 // 日期：WORLDLINE_PREWARM_DATE（空字串＝不預熱），預設前端預設日期 1940-07-15。快取被 Invalidate 後自動重排一次。
 var prewarmDate = ParsePrewarmDate(app.Configuration["WORLDLINE_PREWARM_DATE"]);
+// 疆界來源（Tai 2026-11-04 18:46）：正式上線只跑圖磚，不預算 GeoJSON 主權；開發環境預設仍預熱（前端可用 ?boundarySource=geojson 備援）。
+// WORLDLINE_BOUNDARY_SOURCE=tiles|geojson 可覆寫；未設定時 Production＝tiles、其他＝geojson。
+var prewarmSovereignty = PrewarmSovereignty(app.Environment.EnvironmentName, app.Configuration["WORLDLINE_BOUNDARY_SOURCE"]);
 _ = Task.Run(async () =>
 {
     if (prewarmDate is not { } day) return;
@@ -120,7 +123,7 @@ _ = Task.Run(async () =>
         {
             using var scope = app.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
-            await WorldLine.Api.Features.SovereigntyEndpoints.WarmupAsync(day, db, cache);
+            if (prewarmSovereignty) await WorldLine.Api.Features.SovereigntyEndpoints.WarmupAsync(day, db, cache);
             await WorldLine.Api.Features.ConflictsEndpoints.WarmupAsync(day, db, cache);
             logger.LogInformation("背景預熱 {Date} 完成：{Entries} 筆、估計 {MB:F0} MB（視窗 ±{N}、預先載入 {P}、上限 {Max:F0} MB），耗時 {Elapsed:F1} s",
                 day, cache.Count, cache.EstimatedBytes / 1048576.0, cache.WindowRadius, cache.PrefetchCount, cache.MaxBytes / 1048576.0, sw.Elapsed.TotalSeconds);
@@ -151,4 +154,12 @@ public partial class Program
     internal static DateOnly? ParsePrewarmDate(string? raw) => raw is null
         ? DefaultPrewarmDate
         : DateOnly.TryParseExact(raw.Trim(), "yyyy-MM-dd", out var d) ? d : null;
+
+    /// <summary>是否預熱 GeoJSON 主權快取：WORLDLINE_BOUNDARY_SOURCE 明設 tiles／geojson 為準；未設定時 Production 不預熱（只跑圖磚）。</summary>
+    internal static bool PrewarmSovereignty(string environmentName, string? boundarySource) => boundarySource?.Trim().ToLowerInvariant() switch
+    {
+        "tiles" => false,
+        "geojson" => true,
+        _ => !string.Equals(environmentName, "Production", StringComparison.OrdinalIgnoreCase),
+    };
 }

@@ -99,6 +99,15 @@ public class DateIntervalCacheTests
         Assert.Equal(D("1908-06-15"), Program.ParsePrewarmDate(" 1908-06-15 "));
     }
 
+    [Fact]
+    public void Production_only_runs_tiles_so_sovereignty_geojson_is_not_prewarmed()
+    {
+        Assert.False(Program.PrewarmSovereignty("Production", null));
+        Assert.True(Program.PrewarmSovereignty("Development", null));
+        Assert.False(Program.PrewarmSovereignty("Development", "tiles"));
+        Assert.True(Program.PrewarmSovereignty("Production", "geojson"));
+    }
+
     // 30 個變動點：1910-01-01 起每年一個
     private static readonly DateOnly[] Yearly = Enumerable.Range(0, 30).Select(i => new DateOnly(1910 + i, 1, 1)).ToArray();
 

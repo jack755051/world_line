@@ -32,7 +32,7 @@ import {
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 import { byIdExpr, dataDrivenPaint, overlayFilter, OVERLAY_CONTROL_LAYERS, OVERLAY_GAP_LAYERS, OVERLAY_KEEP_FILTER, OVERLAY_SOURCE } from './boundary-tiles';
-import { boundaryTileLayers, tileCampColor, tileCampFilter, TILE_CAMP_LINE, tileDateFilter, tileFillColor, tileHatchBase, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
+import { boundaryTileLayers, tileCampColor, tileCampFilter, TILE_CAMP_LINE, tileDateFilter, tileFillColor, tileHatchBase, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, pickTileLabels, type TileLabelCandidate, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
 import { dayNumber, readOverlayTilesUrl, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
 import { intervalKey } from '../../core/change-points';
 
@@ -787,6 +787,8 @@ export class AtlasMap {
         center: [2.6, 46.6],
         zoom: 4.7,
         minZoom: 1.5,
+        // 不畫世界副本：同一政權的候選點在副本上會再出現一次（一政權一名，Tai 2026-11-04）
+        renderWorldCopies: false,
         maxZoom: 9,
         attributionControl: { compact: false },
         // 符號碰撞淡入淡出：預設 300ms 會讓地圖晚約一個淡入週期才 idle（熱跳 ready 慢 ~255ms 的主因，2026-11-03 量測）
@@ -837,9 +839,11 @@ export class AtlasMap {
         this.scheduleMask();
         this.updateObstacleSymbols();
         this.scheduleViewportLabels();
+        this.refreshTileLabelPick();
       });
       map.on('idle', () => {
         this.collectTileRegimeIds();
+        this.refreshTileLabelPick();
         this.countRendered();
         this.setRenderBusy(false);
       });
@@ -1617,7 +1621,39 @@ export class AtlasMap {
     if (!force && this.tileLabelSel === this.focusRegimeId) return;
     if (force) this.tileLabelPxCache = this.tileLabelPx();
     this.tileLabelSel = this.focusRegimeId;
-    map.setFilter(TILE_LABEL, tileLabelFilter(this.tileDay, this.tileLabelPxCache, this.focusRegimeId));
+    this.tileLabelAllowed = this.pickTileLabelKeys();
+    map.setFilter(TILE_LABEL, tileLabelFilter(this.tileDay, this.tileLabelPxCache, this.focusRegimeId, this.tileLabelAllowed));
+  }
+
+  /**
+   * 每個政權只放行一個候選點（Tai 2026-11-04）：從已載入圖磚取當日候選點，畫面內裝得下的取面積最大者。
+   * 鏡頭停下、換日、新圖磚進來（idle）都重挑；結果沒變就不 setFilter。圖磚還沒來時回 null（只放行最大塊）。
+   */
+  private tileLabelAllowed: string[] | null = null;
+  private pickTileLabelKeys(): string[] | null {
+    const map = this.map;
+    if (!map?.getSource(TILE_SOURCE)) return null;
+    const cands: TileLabelCandidate[] = [];
+    for (const f of map.querySourceFeatures(TILE_SOURCE, { sourceLayer: 'labels', filter: tileDateFilter(this.tileDay) })) {
+      const p = f.properties ?? {};
+      const g = f.geometry;
+      if (!p['regime_id'] || g.type !== 'Point') continue;
+      cands.push({ regimeId: String(p['regime_id']), part: Number(p['part'] ?? 1), area: Number(p['area'] ?? 0),
+        spanX: Number(p['span_x'] ?? 0), lng: g.coordinates[0], lat: g.coordinates[1] });
+    }
+    if (cands.length === 0) return null;
+    const b = map.getBounds();
+    return pickTileLabels(cands, { west: b.getWest(), east: b.getEast(), south: b.getSouth(), north: b.getNorth(), zoom: map.getZoom() },
+      this.tileLabelPxCache, this.focusRegimeId);
+  }
+
+  private refreshTileLabelPick(): void {
+    const map = this.map;
+    if (!map?.getLayer(TILE_LABEL)) return;
+    const next = this.pickTileLabelKeys();
+    if (JSON.stringify(next) === JSON.stringify(this.tileLabelAllowed)) return;
+    this.tileLabelAllowed = next;
+    map.setFilter(TILE_LABEL, tileLabelFilter(this.tileDay, this.tileLabelPxCache, this.focusRegimeId, next));
   }
 
   private collectTileRegimeIds(): void {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { tileCampColor, tileCampFilter, tileHatchBase, tileHatchPattern, boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
+import { tileCampColor, tileCampFilter, tileHatchBase, tileHatchPattern, boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, pickTileLabels, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
 import { labelMinZoom } from './label-fit';
 import { MAP_COLORS } from './map-style';
 import { REGIME_FALLBACK_COLORS } from './sovereignty-style';
@@ -32,7 +32,24 @@ describe('boundary tiles', () => {
     expect(Math.log(64 / (span * 512)) / Math.LN2).toBeCloseTo(expected, 9);
     expect(JSON.stringify(ge[2])).toContain('"span_x"');
     expect(tileLabelFilter(1, {})).toEqual(['boolean', false]);
-    expect((tileLabelFilter(1, { a: 10 }) as unknown[]).length).toBe(3);
+    expect((tileLabelFilter(1, { a: 10 }) as unknown[]).length).toBe(4);
+    // 尚未挑候選點：只放行最大塊
+    expect(f[4]).toEqual(['==', ['coalesce', ['get', 'part'], 1], 1]);
+    const g = tileLabelFilter(1, { a: 10 }, null, ['b:2', 'a:1']) as unknown[];
+    expect(JSON.stringify(g[3])).toContain('["literal",["a:1","b:2"]]');
+  });
+  it('pickTileLabels: one candidate per regime, largest visible part that fits; selected regime skipped', () => {
+    const c = (regimeId: string, part: number, area: number, lng: number, spanX = 0.1) => ({ regimeId, part, area, spanX, lng, lat: 50 });
+    const view = { west: -10, east: 40, south: 30, north: 70, zoom: 3 };
+    const px = { fr: 40, su: 40, se: 40, tiny: 1e6 };
+    const cands = [c('fr', 1, 600000, -60), c('fr', 2, 500000, 2), c('fr', 3, 30000, 5), c('su', 1, 2e7, 100), c('su', 2, 3e5, 30),
+      c('se', 1, 4e5, 15), c('se', 1, 4e5, 15), c('tiny', 1, 10, 0)];
+    expect(pickTileLabels(cands, view, px)).toEqual(['fr:2', 'se:1', 'su:2']);
+    expect(pickTileLabels(cands, view, px, 'fr')).toEqual(['se:1', 'su:2']);
+    // 跨換日線的視窗、與名字裝不下
+    expect(pickTileLabels([c('su', 1, 2e7, 170)], { west: 160, east: 200, south: 0, north: 80, zoom: 3 }, px)).toEqual(['su:1']);
+    expect(pickTileLabels([c('su', 1, 2e7, -175)], { west: 160, east: 200, south: 0, north: 80, zoom: 3 }, px)).toEqual(['su:1']);
+    expect(pickTileLabels([c('fr', 2, 5e5, 2, 1e-4)], view, px)).toEqual([]);
   });
   it('layers: all four use the date filter on the right source-layer', () => {
     const ls = boundaryTileLayers(100, {}, { names: { a: '甲' }, labelPx: { a: 30 } }) as Array<{ id: string; filter: unknown; 'source-layer': string }>;

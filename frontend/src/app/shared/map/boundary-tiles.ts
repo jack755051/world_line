@@ -105,14 +105,52 @@ export function tileLabelText(namesByRegimeId: Record<string, string>): Expressi
  * 國名 filter：當日有效 ∧ 名字裝得下（§4 D9：國土螢幕寬 span_x × 512 × 2^zoom ≥ 名字寬，等同 label-fit 的 labelMinZoom）
  * ∧ 不是被選政權（被選政權的名字改由蒙版上方的 HTML 層畫）。名字寬度（px）由頁面量好、依 regime_id 對應。
  */
-export function tileLabelFilter(day: number, labelPxByRegimeId: Record<string, number>, selectedRegimeId: string | null = null): FilterSpecification {
+/** 候選點的鍵：政權 id + 該時期內的塊序號（part，1＝最大塊；舊圖磚無 part 視為 1）。 */
+export const TILE_LABEL_KEY = ['concat', ['get', 'regime_id'], ':', ['to-string', ['coalesce', ['get', 'part'], 1]]];
+
+/**
+ * tiles 國名 filter：日期、裝得下、排除被選政權，再加「每個政權只放行一個候選點」：
+ * allowed＝pickTileLabels 挑出的鍵；null（尚未挑過）時只放行最大塊（part 1），同樣保證一政權一名。
+ */
+export function tileLabelFilter(day: number, labelPxByRegimeId: Record<string, number>, selectedRegimeId: string | null = null,
+  allowed: readonly string[] | null = null): FilterSpecification {
   const pairs = Object.entries(labelPxByRegimeId).filter(([, px]) => px > 0).sort(([a], [b]) => a.localeCompare(b));
   if (pairs.length === 0) return ['boolean', false] as unknown as FilterSpecification;
   const px = ['match', ['get', 'regime_id'], ...pairs.flat(), 1e9];
   const minZoom = ['/', ['ln', ['/', px, ['*', ['max', ['coalesce', ['get', 'span_x'], 0], 1e-12], WORLD_PX]]], ['ln2']];
   const parts: unknown[] = [tileDateFilter(day), ['>=', ['zoom'], minZoom]];
   if (selectedRegimeId) parts.push(['!=', ['get', 'regime_id'], selectedRegimeId]);
+  parts.push(allowed === null
+    ? ['==', ['coalesce', ['get', 'part'], 1], 1]
+    : ['in', TILE_LABEL_KEY, ['literal', [...allowed].sort()]]);
   return ['all', ...parts] as unknown as FilterSpecification;
+}
+
+export interface TileLabelCandidate { regimeId: string; part: number; area: number; spanX: number; lng: number; lat: number }
+export interface TileLabelView { west: number; east: number; south: number; north: number; zoom: number }
+
+/**
+ * 每個政權挑一個候選點（Tai 2026-11-04）：在畫面內、且名字裝得下（span_x × 512 × 2^zoom ≥ 名字寬）的候選點中取面積最大者。
+ * 被選政權不挑（它的名字由可見部分另算）。回傳排序後的鍵（regimeId:part）。
+ */
+export function pickTileLabels(cands: readonly TileLabelCandidate[], view: TileLabelView,
+  labelPxByRegimeId: Record<string, number>, selectedRegimeId: string | null = null): string[] {
+  const best = new Map<string, TileLabelCandidate>();
+  const width = view.east - view.west;
+  const scale = WORLD_PX * Math.pow(2, view.zoom);
+  for (const c of cands) {
+    if (c.regimeId === selectedRegimeId) continue;
+    const px = labelPxByRegimeId[c.regimeId];
+    if (!(px > 0) || c.spanX * scale < px) continue;
+    if (c.lat < view.south || c.lat > view.north) continue;
+    if (width < 360) {
+      const dx = ((((c.lng - view.west) % 360) + 360) % 360);
+      if (dx > width) continue;
+    }
+    const cur = best.get(c.regimeId);
+    if (!cur || c.area > cur.area || (c.area === cur.area && c.part < cur.part)) best.set(c.regimeId, c);
+  }
+  return [...best.values()].map((c) => `${c.regimeId}:${c.part}`).sort();
 }
 
 export interface TileLabelInput { names: Record<string, string>; labelPx: Record<string, number>; selectedRegimeId?: string | null }

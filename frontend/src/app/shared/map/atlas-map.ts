@@ -32,7 +32,7 @@ import {
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
 import { byIdExpr, dataDrivenPaint, overlayFilter, OVERLAY_CONTROL_LAYERS, OVERLAY_GAP_LAYERS, OVERLAY_KEEP_FILTER, OVERLAY_SOURCE } from './boundary-tiles';
-import { boundaryTileLayers, tileDateFilter, tileFillColor, tileHatchBase, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
+import { boundaryTileLayers, tileCampColor, tileCampFilter, TILE_CAMP_LINE, tileDateFilter, tileFillColor, tileHatchBase, tileHatchPattern, TILE_HATCH, TILE_HATCH_BASE, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
 import { dayNumber, readOverlayTilesUrl, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
 import { intervalKey } from '../../core/change-points';
 
@@ -736,7 +736,10 @@ export class AtlasMap {
     effect(() => {
       const on = this.showCamps();
       if (!this.ready()) return;
-      this.map?.setLayoutProperty('sov-camp-line', 'visibility', on ? 'visible' : 'none');
+      // tiles 模式：陣營外框畫在圖磚層（sovereignty source 只有被選政權，不用 sov-camp-line）
+      const tiles = !!this.map?.getLayer(TILE_CAMP_LINE);
+      this.map?.setLayoutProperty('sov-camp-line', 'visibility', on && !tiles ? 'visible' : 'none');
+      if (tiles) this.map!.setLayoutProperty(TILE_CAMP_LINE, 'visibility', on ? 'visible' : 'none');
     });
     effect(() => {
       const id = this.selectedRecordId() ?? '';
@@ -809,7 +812,7 @@ export class AtlasMap {
         this.addHatch(GAP_IMAGE_ID);
         this.ensurePatterns(this.sovereignty());
         this.applySovereigntyData(this.sovereignty());
-        map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() ? 'visible' : 'none');
+        map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() && this.boundarySource() !== 'tiles' ? 'visible' : 'none');
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion(), this.focusFitBounds());
         this.computeAndApplyCapitalSides(this.capitals(), this.sovereignty());
@@ -1549,8 +1552,11 @@ export class AtlasMap {
     map.addSource(TILE_SOURCE, { type: 'vector', url: readTilesUrl(), attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）等' });
     const d = this.date() ?? this.state.date();
     this.tileDay = dayNumber(d);
-    const [fill, hatchBase, hatch, line, lineNs, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
-    for (const l of [fill, hatchBase, hatch, line, lineNs]) map.addLayer(l, 'gap-base');
+    const [fill, hatchBase, hatch, line, lineNs, camp, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });
+    for (const l of [fill, hatchBase, hatch, line, lineNs, camp]) map.addLayer(l, 'gap-base');
+    // 與 geojson 同一個疊放順序：國界 → 陣營外框 → 被選政權高亮 → 控制資料缺／控制區（sov-selected 移到圖磚之上，否則被填色蓋住）
+    map.moveLayer('sov-selected', 'gap-base');
+    map.setLayoutProperty(TILE_CAMP_LINE, 'visibility', this.showCamps() ? 'visible' : 'none');
     map.addLayer(label, 'regime-label');
     this.applyTileHatch();
     this.addOverlayTiles();
@@ -1570,6 +1576,9 @@ export class AtlasMap {
     this.map.setPaintProperty(TILE_HATCH, 'fill-pattern', tileHatchPattern(this.regimeColors(), sp.hatch));
     // 佔領區著色：斜線底色改用佔領國色（依控制程度淡化），與 decorateSovereignty 的 wlBase 相同
     this.map.setPaintProperty(TILE_HATCH_BASE, 'fill-color', tileHatchBase(sp.base));
+    // 陣營外框：當日有陣營的政權、陣營色
+    this.map.setFilter(TILE_CAMP_LINE, tileCampFilter(this.tileDay, sp.camp));
+    this.map.setPaintProperty(TILE_CAMP_LINE, 'line-color', tileCampColor(sp.camp));
   }
 
   /** tiles 模式換日期：只在跨越變動區間時 setFilter，不發請求。 */
@@ -1585,6 +1594,7 @@ export class AtlasMap {
     performance.mark('wl:tiles:filter');
     for (const [layer, filter] of Object.entries(up.filters)) map.setFilter(layer, filter);
     this.applyTileLabelFilter(true);
+    this.applyTileHatch(); // 陣營外框 filter 帶日期
     this.tileSpanDay = null; // 國土寬度（首都名門檻）換區間後重收
   }
 

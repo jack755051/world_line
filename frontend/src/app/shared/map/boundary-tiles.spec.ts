@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { tileHatchBase, tileHatchPattern, boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
+import { tileCampColor, tileCampFilter, tileHatchBase, tileHatchPattern, boundaryTileLayers, tileDateFilter, tileFillColor, tileFilters, tileFilterUpdate, tileLabelFilter, tileLabelText, TILE_LAYER_IDS, byIdExpr, dataDrivenPaint, overlayFilter } from './boundary-tiles';
 import { labelMinZoom } from './label-fit';
 import { MAP_COLORS } from './map-style';
 import { REGIME_FALLBACK_COLORS } from './sovereignty-style';
@@ -37,8 +37,8 @@ describe('boundary tiles', () => {
   it('layers: all four use the date filter on the right source-layer', () => {
     const ls = boundaryTileLayers(100, {}, { names: { a: '甲' }, labelPx: { a: 30 } }) as Array<{ id: string; filter: unknown; 'source-layer': string }>;
     expect(ls.map((l) => l.id)).toEqual([...TILE_LAYER_IDS]);
-    for (const l of ls) expect(JSON.stringify(l.filter)).toContain(JSON.stringify(tileDateFilter(100)));
-    expect(ls.map((l) => l['source-layer'])).toEqual(['boundaries', 'boundaries', 'boundaries', 'boundaries', 'boundaries', 'labels']);
+    for (const l of ls) if (l.id !== 'tiles-camp-line') expect(JSON.stringify(l.filter)).toContain(JSON.stringify(tileDateFilter(100)));
+    expect(ls.map((l) => l['source-layer'])).toEqual(['boundaries', 'boundaries', 'boundaries', 'boundaries', 'boundaries', 'boundaries', 'labels']);
   });
   it('filter only updates when the change-point interval changes', () => {
     expect(tileFilterUpdate(null, '1940-06-22', 14783)).toEqual({ key: '1940-06-22', filters: tileFilters(14783) });
@@ -59,6 +59,14 @@ describe('非主權斜線（tiles）', () => {
     expect(JSON.stringify(p[6])).toContain('color_idx');
     expect(tileHatchBase()).toEqual(['literal', MAP_COLORS.land]);
     expect(tileHatchBase({ x: '#123456' })).toEqual(['match', ['get', 'regime_id'], 'x', '#123456', MAP_COLORS.land]);
+  });
+});
+
+describe('陣營外框（tiles）', () => {
+  it('只描當日有陣營的政權，顏色依陣營；沒有就不畫', () => {
+    expect(tileCampFilter(9, {})).toEqual(['boolean', false]);
+    expect(tileCampFilter(9, { b: '#2', a: '#1' })).toEqual(['all', tileDateFilter(9), ['in', ['get', 'regime_id'], ['literal', ['a', 'b']]]]);
+    expect(tileCampColor({ b: '#2', a: '#1' })).toEqual(['match', ['get', 'regime_id'], 'a', '#1', 'b', '#2', MAP_COLORS.ink]);
   });
 });
 

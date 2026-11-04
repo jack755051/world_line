@@ -18,7 +18,9 @@ export const TILE_LABEL = 'tiles-label';
 /** 非主權（control_type = not_sovereign）：底色＋斜線，比照 sov-hatch-base／sov-hatch（§9 步驟 5，與 geojson 模式一致）。 */
 export const TILE_HATCH_BASE = 'tiles-hatch-base';
 export const TILE_HATCH = 'tiles-hatch';
-export const TILE_LAYER_IDS = [TILE_FILL, TILE_HATCH_BASE, TILE_HATCH, TILE_LINE, TILE_LINE_NOT_SOVEREIGN, TILE_LABEL] as const;
+/** 陣營外框（補充，可開關，預設關），比照 sov-camp-line：只描當日有陣營切片的政權。 */
+export const TILE_CAMP_LINE = 'tiles-camp-line';
+export const TILE_LAYER_IDS = [TILE_FILL, TILE_HATCH_BASE, TILE_HATCH, TILE_LINE, TILE_LINE_NOT_SOVEREIGN, TILE_CAMP_LINE, TILE_LABEL] as const;
 
 /** 實際控制／主權檢視切換時的不透明度（常數，可做 transition；比照 AXIS_PAINT 的 sov-* 圖層）。 */
 export const TILE_AXIS_PAINT: Record<'control' | 'sovereignty', [layer: string, prop: string, value: number][]> = {
@@ -73,6 +75,19 @@ export function tileHatchBase(baseByRegimeId: Record<string, string> = {}): Expr
   return ['match', ['get', 'regime_id'], ...pairs.flat(), MAP_COLORS.land] as unknown as ExpressionSpecification;
 }
 
+/** 陣營外框 filter：當日 ∧ 政權有陣營（campByRegimeId 由 overlay 依日期給）；沒有就不畫。 */
+export function tileCampFilter(day: number, campByRegimeId: Record<string, string>): FilterSpecification {
+  const ids = Object.keys(campByRegimeId).sort();
+  if (ids.length === 0) return ['boolean', false] as unknown as FilterSpecification;
+  return ['all', tileDateFilter(day), ['in', ['get', 'regime_id'], ['literal', ids]]] as unknown as FilterSpecification;
+}
+
+export function tileCampColor(campByRegimeId: Record<string, string>): ExpressionSpecification {
+  const pairs = Object.entries(campByRegimeId).sort(([a], [b]) => a.localeCompare(b));
+  if (pairs.length === 0) return ['literal', MAP_COLORS.ink] as unknown as ExpressionSpecification;
+  return ['match', ['get', 'regime_id'], ...pairs.flat(), MAP_COLORS.ink] as unknown as ExpressionSpecification;
+}
+
 /** 世界寬（zoom 0）px，與 label-fit 的 WORLD_TILE_PX 相同。 */
 const WORLD_PX = 512;
 
@@ -115,6 +130,8 @@ export function boundaryTileLayers(day: number, colorsByRegimeId: Record<string,
       paint: { 'line-color': MAP_COLORS.ink, 'line-width': 0.8, 'line-opacity': 0.75 } },
     { id: TILE_LINE_NOT_SOVEREIGN, type: 'line', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: f[TILE_LINE_NOT_SOVEREIGN],
       paint: { 'line-color': MAP_COLORS.ink, 'line-width': 1, 'line-opacity': 0.8, 'line-dasharray': [2, 2] } },
+    { id: TILE_CAMP_LINE, type: 'line', source: TILE_SOURCE, 'source-layer': 'boundaries', filter: tileCampFilter(day, {}), layout: { visibility: 'none' },
+      paint: { 'line-color': tileCampColor({}), 'line-width': 3, 'line-opacity': 0.9, 'line-offset': 1.5 } },
     // 樣式比照 regime-label（底塊、字級、換行、可變錨點、光暈）；面積大的先放（area 供 symbol-sort-key，§9）
     { id: TILE_LABEL, type: 'symbol', source: TILE_SOURCE, 'source-layer': 'labels',
       filter: tileLabelFilter(day, label.labelPx, label.selectedRegimeId ?? null),

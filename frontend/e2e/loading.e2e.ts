@@ -12,7 +12,8 @@ const prefix = process.env['WL_SHOT_PREFIX'] ?? 'borders-app-v3';
 type WlMap = { jumpTo: (o: object) => void; querySourceFeatures: (s: string) => { properties: { recordId: string } }[] };
 
 async function open(page: Page, date: string): Promise<void> {
-  await page.goto(`/?date=${date}&axis=sovereignty`);
+  // GeoJSON 備援路徑（開發環境 ?boundarySource=geojson）：這組測的是 /sovereignty 請求的載入狀態；圖磚模式不向 API 取主權
+  await page.goto(`/?date=${date}&axis=sovereignty&boundarySource=geojson`);
   const canvas = page.getByTestId('map-canvas');
   await expect(canvas).toHaveAttribute('data-map-ready', 'true');
   await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: [16, 48], zoom: 3.3 }));

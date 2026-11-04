@@ -306,7 +306,7 @@ test('1939-10-23：德意志國結束變動沒有正式出處 → 待查證＋�
 
 test('小視窗：點下方的政權，側邊面板不超出地圖區、內部可捲動', async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 560 });
-  await page.goto('/?date=1939-10-23&axis=sovereignty');
+  await page.goto('/?date=1939-10-23&axis=sovereignty&boundarySource=geojson'); // 依 GeoJSON 圖徵座標點擊（備援路徑）
   await waitForBorders(page);
   const area = (await page.getByTestId('map-area').boundingBox())!;
   await jump(page, [19.94, 50.06], 4);
@@ -401,7 +401,7 @@ test('1942-11-01：維琪法國在 11-11 前仍為原紀錄（主權），尚無
 });
 
 test('舊資料修正：1942-11-01 阿爾及利亞仍屬維琪；1942-12-01 阿爾及利亞為盟軍佔領、荷挪丹為非主權', async ({ page }) => {
-  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await page.goto('/?date=1942-11-01&axis=sovereignty&boundarySource=geojson'); // 讀 GeoJSON 圖徵的填色（備援路徑）
   await waitForBorders(page);
   const card = page.getByTestId('sovereignty-card');
   const title = page.getByTestId('sovereignty-card-title');
@@ -491,7 +491,7 @@ async function baseColorAt(page: Page, lngLat: [number, number]): Promise<string
 const lum = (hex: string | null) => (hex ? [16, 8, 0].reduce((a, sh) => a + ((parseInt(hex.slice(1), 16) >> sh) & 255), 0) : NaN);
 
 test('1942-11-01：佔領區依佔領國上色（併入最深、總督府／專員轄區中等、軍事管理最淺）；性質「德國佔領（非主權）」；芬蘭維持自己的色；點德國時佔領區一起亮起', async ({ page }) => {
-  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await page.goto('/?date=1942-11-01&axis=sovereignty&boundarySource=geojson'); // 讀 GeoJSON 圖層的填色（備援路徑）
   await waitForBorders(page);
   const card = page.getByTestId('sovereignty-card');
   const title = page.getByTestId('sovereignty-card-title');

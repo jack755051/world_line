@@ -19,9 +19,11 @@ async function openRegime(page: Page, w: number, h: number, date: string, center
 }
 /** 等地圖畫完目前日期（data-ready-for）再截圖。 */
 async function settle(page: Page): Promise<void> {
-  const url = new URL(page.url());
-  const d = url.searchParams.get('date');
-  if (d) await expect(page.getByTestId('map-area')).toHaveAttribute('data-ready-for', d, { timeout: 20000 });
+  // 網址的日期稍晚才更新：一直重讀到 data-ready-for 等於網址日期
+  await expect.poll(async () => {
+    const d = new URL(page.url()).searchParams.get('date');
+    return !!d && (await page.getByTestId('map-area').getAttribute('data-ready-for')) === d;
+  }, { timeout: 20000 }).toBe(true);
   await page.waitForTimeout(1200);
 }
 const mapState = (page: Page) => page.evaluate(() => {

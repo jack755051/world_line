@@ -92,7 +92,8 @@ test('早於所有資料的日期顯示「此日期尚無資料」並可跳到�
   };
   await page.route('**/api/v1/sovereignty?*', empty);
   await page.route('**/api/v1/control?*', empty);
-  await page.goto('/?date=1938-03-01');
+  // 空白狀態只在 GeoJSON 備援路徑出現（圖磚模式疆界在圖磚裡，不算無資料）
+  await page.goto('/?date=1938-03-01&boundarySource=geojson');
   await expect(page.getByTestId('map-empty')).toBeVisible();
   await page.unrouteAll({ behavior: 'wait' });
   await page.getByTestId('map-empty-jump').click();

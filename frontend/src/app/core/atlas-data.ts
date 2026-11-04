@@ -6,7 +6,7 @@ import type { CapitalsDto, LeadersDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 import { readBoundarySource, type BoundarySource } from './boundary-source';
-import { OverlayStore, overlayControl, overlayCovers, overlayKey } from './overlay';
+import { OverlayStore, overlayCapitals, overlayConflicts, overlayControl, overlayCovers, overlayKey, overlayLeaders } from './overlay';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 
@@ -370,8 +370,21 @@ export class AtlasData {
 
   async loadConflicts(date: string): Promise<void> {
     const my = ++this.cfSeq;
-    const key = this.key(date);
     this.restart('cf');
+    // tiles 模式（§9 步驟 5-6）：衝突圖示從 overlay（同一區間同一個物件），範圍外或 overlay 失敗才取 API
+    if (this.boundarySource === 'tiles' && (await this.overlayReady())) {
+      if (my !== this.cfSeq) return;
+      const o = this.overlay.data();
+      const dto = this.fromOverlay('conflicts', date, (d) => overlayConflicts(o, d));
+      if (dto) {
+        this.cfKey = null;
+        this.conflicts.set(dto);
+        this.conflictsStatus.set('ok');
+        return;
+      }
+    }
+    if (my !== this.cfSeq) return;
+    const key = this.key(date);
     if (key === this.cfKey && this.conflicts()) {
       this.conflictsStatus.set('ok');
       return;

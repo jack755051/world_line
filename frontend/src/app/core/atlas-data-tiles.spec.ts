@@ -72,4 +72,34 @@ describe('AtlasData（tiles 模式，§9 步驟 5）', () => {
     data.refineRegimeSovereignty(9);
     expect(calls.length).toBe(2);
   });
+
+  it('overlay：tiles 模式換日期控制區、衝突都不向 API 要（5-5、5-6）；範圍外退回 API', async () => {
+    const calls: string[] = [];
+    const api = {
+      control: async (d: string) => { calls.push(`control:${d}`); return { date: d, featureCollection: { type: 'FeatureCollection', features: [] }, theaters: [], coverageNotes: [] }; },
+      conflicts: async (d: string) => { calls.push(`conflicts:${d}`); return { date: d, featureCollection: { type: 'FeatureCollection', features: [] } }; },
+      regimesBatch: async () => [],
+    };
+    TestBed.configureTestingModule({ providers: [{ provide: WorldLineApi, useValue: api }] });
+    const store = TestBed.inject((await import('./overlay')).OverlayStore);
+    const ov = {
+      version: 'v', range: ['1908-10-05', '1945-12-31'],
+      control: { points: ['1908-10-05', '1940-06-01'], intervals: [{ start: '1908-10-05', features: [], theaters: [], notes: [] }, { start: '1940-06-01', features: ['h'], theaters: [], notes: [] }],
+        features: { h: { type: 'Feature', properties: { versionId: 'v1', controllerRegimeId: 'r1' } } }, shapes: { v1: { largest: null, bbox: null } }, notes: {}, noteShapes: {} },
+      conflicts: { points: ['1908-10-05'], intervals: [{ start: '1908-10-05', ids: ['c'] }], records: { c: { id: 'c1', properties: { recordId: 'c1' } } } },
+    };
+    store.load = async () => { store.data.set(ov as never); store.status.set('ok'); return ov as never; };
+    const data = TestBed.inject(AtlasData);
+    await data.loadControl('1940-07-15');
+    const first = data.control();
+    expect(first?.featureCollection.features.length).toBe(1);
+    await data.loadControl('1941-01-01');
+    expect(data.control()).toBe(first); // 同一區間同一個物件
+    await data.loadConflicts('1940-07-15');
+    expect(data.conflicts()?.featureCollection.features.length).toBe(1);
+    expect(calls).toEqual([]);
+    await data.loadControl('1950-01-01');
+    await data.loadConflicts('1950-01-01');
+    expect(calls).toEqual(['control:1950-01-01', 'conflicts:1950-01-01']);
+  });
 });

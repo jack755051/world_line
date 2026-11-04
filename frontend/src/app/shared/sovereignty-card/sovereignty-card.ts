@@ -24,7 +24,7 @@ const TXT = {
     campNone: '陣營未建置', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
-    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於', expand: '展開', collapse: '收合', showOnMap: '在地圖上看', battle: '戰役', pendingTag: '待考證',
+    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於', verifiedTag: '已查證', showOnMap: '在地圖上看', battle: '戰役', pendingTag: '待考證',
     capital: '首都', capitalNone: '無資料',
     tabLeaders: '領導人', leadersNone: '無資料', leaderUnverified: '待查證',
     bioError: '生平載入失敗', bioBirth: '出生', bioDeath: '去世', bioBirthPlace: '出生地', bioParty: '政黨', bioSource: '出處', bioTestBadge: '測試資料', bioEmpty: '尚無生平資料',
@@ -45,7 +45,7 @@ const TXT = {
     campNone: 'Camp not set', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
-    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added', expand: 'More', collapse: 'Less', showOnMap: 'Show on map', battle: 'Battle', pendingTag: 'Unverified',
+    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added', verifiedTag: 'Verified', showOnMap: 'Show on map', battle: 'Battle', pendingTag: 'Unverified',
     capital: 'Capital', capitalNone: 'No data',
     tabLeaders: 'Leaders', leadersNone: 'No data', leaderUnverified: 'Unverified',
     bioError: 'Could not load biography', bioBirth: 'Born', bioDeath: 'Died', bioBirthPlace: 'Birthplace', bioParty: 'Party', bioSource: 'Source', bioTestBadge: 'Test data', bioEmpty: 'No biography data',
@@ -65,7 +65,9 @@ interface TimelineItem {
   ev: RegimeEventDto;
   roles: string[];
   additions: { role: string; roleText: string; addedOn: string; note: string }[];
-  when: 'past' | 'now' | 'future';
+  when: 'past' | 'future';
+  /** 目前日期標線插在這張卡片前（T2）。 */
+  markerBefore: boolean;
   title: string;
   pending: boolean;
   battle: boolean;
@@ -233,9 +235,11 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           </sanring-tabs-content>
           <sanring-tabs-content value="events" class="mt-3">
             <div data-testid="sovereignty-card-panel-events">
-        <!-- 事件時間線卡片化（ARCHITECTURE.md §10-1）：垂直時間軸（左側 2px 軸線）、每個事件一張卡片（間距 8px，寬＝面板寬扣 32px），
-             同月份一組、組上方 sticky 月份標頭（28px）；摺疊 72px（日期、標題、類型 tag），展開顯示摘要、出處與「在地圖上看」；
-             點卡片把時間軸跳到該日（熱跳），時間軸換日期時清單自動捲到最接近的卡片；超過 50 筆改用虛擬捲動（content-visibility）。 -->
+        <!-- 事件時間線 v2（ARCHITECTURE.md §10 v2 §2–§3）：左側 24px 時間線欄（2px 中灰直線從第一個事件畫到最後一個，每事件一個 10px 節點，
+             6px 短橫線連到卡片；實心＝已查證、空心＝待考證、⚔＝戰役；選取時節點 14px 品牌色＋卡片左 3px 品牌色邊）。
+             卡片不收合：日期列（13px 等寬灰＋考證圖示）、標題（15px 粗體最多兩行）、tag（12px）；點卡片選取（同時只有一張）並熱跳日期，
+             選取時往下延伸：補充參與方、出處（C1：只有選取後才顯示）、「在地圖上看」；再點一次收起。
+             目前日期（T2）：一條品牌色標線插在前後兩個事件之間；晚於目前日期的事件 60% 透明（T1）。月份標頭 sticky 28px，前面 6px 小方塊。 -->
         <section data-testid="sovereignty-card-timeline" class="relative">
           <h3 class="sr-only">{{ t().events }}</h3>
           @switch (eventsStatus()) {
@@ -246,56 +250,82 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
                 <p class="wl-text2 text-wl-on-surface-variant">{{ t().noEvents }}</p>
               } @else {
                 <div class="relative" [attr.data-virtual]="timeline().length > 50 ? 'true' : null">
-                  <span aria-hidden="true" class="absolute bottom-0 left-[7px] top-0 w-[2px] bg-wl-outline-variant"></span>
+                  <!-- 直線：從第一個節點到最後一個節點（節點中心＝卡片頂 + 14px） -->
+                  <span data-testid="sovereignty-card-timeline-rail" aria-hidden="true" class="absolute bottom-[14px] left-[11px] top-[42px] w-[2px] bg-wl-outline"></span>
                   @for (g of timelineGroups(); track g.month) {
+                    <!-- 標線落在月份交界：畫在月份標頭之前（介於前後兩個事件之間） -->
+                    @if (g.items[0].markerBefore) { <ng-container [ngTemplateOutlet]="nowMarker" /> }
                     <div data-testid="sovereignty-card-timeline-group" [attr.data-month]="g.month">
-                      <div data-testid="sovereignty-card-timeline-month" class="sticky top-0 z-[1] flex h-[28px] items-center bg-wl-surface pl-5 wl-label text-wl-on-surface-variant">{{ g.label }}</div>
-                      <ol class="flex flex-col gap-2 pb-2 pl-5">
-                        @for (e of g.items; track e.ev.id) {
+                      <div data-testid="sovereignty-card-timeline-month" class="sticky top-0 z-[2] flex h-[28px] items-center gap-2 bg-wl-surface wl-label text-wl-on-surface-variant">
+                        <span aria-hidden="true" class="ml-[9px] size-[6px] bg-wl-outline"></span>{{ g.label }}</div>
+                      <ol class="flex flex-col gap-2 pb-2">
+                        @for (e of g.items; track e.ev.id; let first = $first) {
+                          @if (e.markerBefore && !first) { <ng-container [ngTemplateOutlet]="nowMarker" /> }
                           <li data-testid="sovereignty-card-timeline-item" [attr.data-event-id]="e.ev.id" [attr.data-when]="e.when"
                             [attr.data-selected]="selectedEvent() === e.ev.id ? 'true' : null" [attr.data-pending]="e.pending ? 'true' : null" [attr.data-battle]="e.battle ? 'true' : null"
-                            [attr.data-expanded]="isExpanded(e.ev.id) ? 'true' : 'false'" [class.h-[72px]]="!isExpanded(e.ev.id)" [class.overflow-hidden]="!isExpanded(e.ev.id)"
-                            class="wl-event-card relative cursor-pointer rounded-wl-sm border bg-wl-surface px-3 py-1.5 wl-text2 transition-shadow hover:-translate-y-px hover:shadow-[var(--wl-shadow-panel)]"
-                            [class.border-dashed]="e.pending" [class.border-wl-outline]="e.pending" [class.border-wl-outline-variant]="!e.pending"
-                            [class.border-l-[3px]]="selectedEvent() === e.ev.id" [class.border-l-wl-secondary]="selectedEvent() === e.ev.id"
-                            [class.opacity-60]="e.when === 'future'" [style.content-visibility]="timeline().length > 50 ? 'auto' : null"
-                            [style.contain-intrinsic-size]="timeline().length > 50 ? 'auto 72px' : null"
-                            (click)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')">
-                            <span class="absolute -left-[18px] top-3 size-2.5 rounded-full border border-wl-outline" [class.bg-wl-secondary]="e.when === 'now'" [class.bg-wl-surface]="e.when !== 'now'" aria-hidden="true"></span>
-                            <div class="flex h-[18px] items-center gap-1.5 text-[12px] leading-[18px]">
-                              <button type="button" data-testid="sovereignty-card-timeline-jump" class="tabular-nums font-semibold underline decoration-dotted underline-offset-2 hover:text-wl-secondary"
-                                [attr.aria-label]="t().jump + ' ' + e.ev.occurred.start" (click)="$event.stopPropagation(); pickEvent(e.ev.id, e.ev.occurred.start ?? '')">{{ e.ev.occurred.start }}</button>
-                              @if (e.when === 'now') { <span class="text-[11px] text-wl-secondary">{{ t().now }}</span> }
-                              <button type="button" data-testid="sovereignty-card-timeline-toggle" class="ml-auto text-[11px] text-wl-on-surface-variant hover:text-wl-on-surface"
-                                [attr.aria-expanded]="isExpanded(e.ev.id)" (click)="$event.stopPropagation(); toggleEvent(e.ev.id)">{{ isExpanded(e.ev.id) ? t().collapse : t().expand }}</button>
-                            </div>
-                            <div data-testid="sovereignty-card-timeline-title" class="truncate font-semibold leading-[20px]">{{ e.title }}</div>
-                            <div class="mt-0.5 flex h-[18px] flex-wrap items-center gap-1 overflow-hidden leading-[16px]">
-                              @for (r of e.roles; track r) { <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant">{{ r }}</span> }
-                              @if (e.battle) { <span data-testid="sovereignty-card-timeline-battle" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px]">⚔ {{ t().battle }}</span> }
-                              @if (e.pending) { <span data-testid="sovereignty-card-timeline-pending" class="wl-chip-interp text-[11px]">{{ t().pendingTag }}</span> }
-                            </div>
-                            @if (isExpanded(e.ev.id)) {
-                              <div data-testid="sovereignty-card-timeline-detail" class="mt-2 border-t border-wl-outline-variant pt-2" (click)="$event.stopPropagation()">
-                                <wl-event-ref [ev]="e.ev" prefix="sovereignty-card-timeline-detail" [lang]="lang()" />
-                                @for (a of e.additions; track a.role) {
-                                  <!-- 事後追加的參與方（方案 A）：角色、追加日期、理由；原有參與方與引用不變 -->
-                                  <p data-testid="sovereignty-card-timeline-addition" [attr.data-role]="a.role" class="mt-1 rounded-sm border-l-2 border-wl-outline pl-2 text-[11px] text-wl-on-surface-variant">
-                                    <span class="font-semibold">{{ t().appended }}・{{ a.roleText }}</span>
-                                    <span class="tabular-nums">（{{ t().appendedAt }} {{ a.addedOn }}）</span>
-                                    @if (a.note) { <span class="block">{{ a.note }}</span> }
-                                  </p>
-                                }
-                                <button type="button" data-testid="sovereignty-card-timeline-map" class="wl-btn-secondary mt-2 h-7 px-3 text-[11px]"
-                                  (click)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')">{{ t().showOnMap }}</button>
+                            class="relative pl-6" [class.opacity-60]="e.when === 'future'"
+                            [style.content-visibility]="timeline().length > 50 ? 'auto' : null" [style.contain-intrinsic-size]="timeline().length > 50 ? 'auto 84px' : null">
+                            <!-- 節點＋6px 短橫線（和日期列垂直對齊） -->
+                            <span data-testid="sovereignty-card-timeline-node" aria-hidden="true" [attr.data-kind]="e.battle ? 'battle' : e.pending ? 'pending' : 'verified'"
+                              class="absolute left-[12px] top-[14px] z-[1] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
+                              [class.size-[10px]]="selectedEvent() !== e.ev.id && !e.battle" [class.size-[14px]]="selectedEvent() === e.ev.id || e.battle"
+                              [class.border-2]="!e.battle" [class.border-wl-outline]="!e.battle && selectedEvent() !== e.ev.id" [class.border-wl-secondary]="!e.battle && selectedEvent() === e.ev.id"
+                              [class.bg-wl-outline]="!e.battle && !e.pending && selectedEvent() !== e.ev.id" [class.bg-wl-secondary]="!e.battle && !e.pending && selectedEvent() === e.ev.id"
+                              [class.bg-wl-surface]="e.battle || e.pending" [class.text-wl-secondary]="e.battle && selectedEvent() === e.ev.id"
+                              [class.text-[12px]]="e.battle" [class.leading-none]="e.battle">@if (e.battle) {⚔}</span>
+                            <span aria-hidden="true" class="absolute left-[17px] top-[13px] h-px w-[7px] bg-wl-outline"></span>
+                            <div role="button" tabindex="0" data-testid="sovereignty-card-timeline-card" [attr.aria-expanded]="selectedEvent() === e.ev.id"
+                              class="wl-event-card cursor-pointer rounded-wl-sm border bg-wl-surface px-3 py-1.5 transition-shadow hover:shadow-[var(--wl-shadow-panel)] focus-visible:outline-2 focus-visible:outline-wl-secondary"
+                              [class.border-dashed]="e.pending" [class.border-wl-outline]="e.pending" [class.border-wl-outline-variant]="!e.pending"
+                              [class.border-l-[3px]]="selectedEvent() === e.ev.id" [class.border-l-wl-secondary]="selectedEvent() === e.ev.id"
+                              (click)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')" (keydown.enter)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')"
+                              (keydown.space)="$event.preventDefault(); pickEvent(e.ev.id, e.ev.occurred.start ?? '')">
+                              <div class="flex h-[20px] items-center gap-1.5 font-mono text-[13px] leading-[20px] text-wl-on-surface-variant">
+                                <span data-testid="sovereignty-card-timeline-date" class="tabular-nums">{{ e.ev.occurred.start }}</span>
+                                <span data-testid="sovereignty-card-timeline-status" class="ml-auto" [attr.title]="e.battle ? t().battle : e.pending ? t().pendingTag : t().verifiedTag"
+                                  [class.text-wl-tertiary]="!e.pending && !e.battle">{{ e.battle ? '⚔' : e.pending ? '?' : '✓' }}</span>
                               </div>
-                            }
+                              <div data-testid="sovereignty-card-timeline-title" class="line-clamp-2 text-[15px] font-semibold leading-[20px] text-wl-on-surface">{{ e.title }}</div>
+                              <div class="mt-1 flex flex-wrap items-center gap-1 text-[12px] leading-[16px]">
+                                @for (r of e.roles; track r) { <span class="rounded-sm bg-wl-surface-container-high px-1 text-wl-on-surface-variant">{{ r }}</span> }
+                                @if (e.battle) { <span data-testid="sovereignty-card-timeline-battle" class="rounded-sm bg-wl-surface-container-high px-1">⚔ {{ t().battle }}</span> }
+                                @if (e.pending) { <span data-testid="sovereignty-card-timeline-pending" class="wl-chip-interp">{{ t().pendingTag }}</span> }
+                              </div>
+                              @if (selectedEvent() === e.ev.id) {
+                                <div data-testid="sovereignty-card-timeline-detail" class="mt-2 border-t border-wl-outline-variant pt-2 wl-text2" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+                                  @for (a of e.additions; track a.role) {
+                                    <!-- 事後追加的參與方（方案 A）：角色、追加日期、理由；原有參與方與引用不變 -->
+                                    <p data-testid="sovereignty-card-timeline-addition" [attr.data-role]="a.role" class="mb-1 rounded-sm border-l-2 border-wl-outline pl-2 text-[11px] text-wl-on-surface-variant">
+                                      <span class="font-semibold">{{ t().appended }}・{{ a.roleText }}</span>
+                                      <span class="tabular-nums">（{{ t().appendedAt }} {{ a.addedOn }}）</span>
+                                      @if (a.note) { <span class="block">{{ a.note }}</span> }
+                                    </p>
+                                  }
+                                  <!-- C1：出處只在選取後顯示（不重複標題與日期） -->
+                                  <wl-event-ref [ev]="e.ev" prefix="sovereignty-card-timeline-detail" [lang]="lang()" [head]="false" />
+                                  <div class="mt-2 flex gap-2">
+                                    <button type="button" data-testid="sovereignty-card-timeline-map" class="wl-btn-secondary h-8 px-3 text-[12px]"
+                                      (click)="showEventOnMap(e.ev.occurred.start ?? '')">{{ t().showOnMap }}</button>
+                                  </div>
+                                </div>
+                              }
+                            </div>
                           </li>
                         }
                       </ol>
                     </div>
                   }
+                  @if (markerAtEnd()) { <ng-container [ngTemplateOutlet]="nowMarker" /> }
                 </div>
+                <ng-template #nowMarker>
+                  <!-- T2：目前日期標線（左 12px 品牌色圓點、右 1px 品牌色虛線＋日期） -->
+                  <div data-testid="sovereignty-card-timeline-now" class="relative z-[1] my-1 flex h-5 items-center" aria-current="date">
+                    <span aria-hidden="true" class="ml-[6px] size-3 flex-none rounded-full bg-wl-secondary"></span>
+                    <span aria-hidden="true" class="mx-1 flex-1 border-t border-dashed border-wl-secondary"></span>
+                    <span class="flex-none font-mono text-[12px] tabular-nums text-wl-secondary">{{ currentDate() }}</span>
+                    <span aria-hidden="true" class="ml-1 w-3 border-t border-dashed border-wl-secondary"></span>
+                  </div>
+                </ng-template>
               }
             }
           }
@@ -568,10 +598,8 @@ export class SovereigntyCard {
   protected readonly timeline = computed((): TimelineItem[] => {
     const d = this.currentDate();
     const list = this.regimeEvents() ?? [];
-    let nowIdx = -1;
-    list.forEach((e, i) => {
-      if (d && (e.occurred.start ?? '') <= d) nowIdx = i;
-    });
+    // 目前日期標線插在第一個「晚於目前日期」的事件前（T2）；全部都早於目前日期時放在清單最後
+    const markerIdx = d ? list.findIndex((e) => (e.occurred.start ?? '') > d) : -1;
     return list.map((ev, i) => ({
       ev,
       roles: [...new Set(ev.roles.map((r) => this.t().role[r] ?? r))],
@@ -581,7 +609,8 @@ export class SovereigntyCard {
         addedOn: (a.addedAt ?? '').slice(0, 10),
         note: a.note ? ((this.lang() === 'en' ? a.note['en'] || a.note['zh-Hant'] : a.note['zh-Hant'] || a.note['en']) ?? '') : '',
       })),
-      when: (i === nowIdx ? 'now' : i < nowIdx ? 'past' : 'future') as 'past' | 'now' | 'future',
+      when: (d && (ev.occurred.start ?? '') > d ? 'future' : 'past') as 'past' | 'future',
+      markerBefore: !!d && i === markerIdx,
       title: localized(ev.summary as Record<string, string> | null, this.lang()).text || ev.eventKind,
       pending: ev.verification === 'pending',
       battle: /battle/i.test(ev.eventKind ?? ''),
@@ -604,21 +633,23 @@ export class SovereigntyCard {
     return out;
   });
 
-  /** 卡片狀態：selected（左側 3px 品牌色邊）、展開。 */
+  /** 全部事件都早於目前日期：標線放在清單最後。 */
+  protected readonly markerAtEnd = computed(() => {
+    const items = this.timeline();
+    return !!this.currentDate() && items.length > 0 && !items.some((e) => e.markerBefore);
+  });
+  /** 卡片選取（同時只有一張；§10 v2 不再有收合按鈕）：選取時往下延伸細節。 */
   protected readonly selectedEvent = signal<string | null>(null);
-  private readonly expandedEvents = signal<ReadonlySet<string>>(new Set());
-  protected isExpanded(id: string): boolean {
-    return this.expandedEvents().has(id);
-  }
-  protected toggleEvent(id: string): void {
-    const next = new Set(this.expandedEvents());
-    if (next.has(id)) next.delete(id);
-    else next.add(id);
-    this.expandedEvents.set(next);
-  }
-  /** 點卡片：選取並把時間軸跳到該日期（熱跳）。 */
+  /** 點卡片：選取並把時間軸跳到該日期（熱跳）；再點一次被選取的卡片就收起。 */
   protected pickEvent(id: string, date: string): void {
+    if (this.selectedEvent() === id) {
+      this.selectedEvent.set(null);
+      return;
+    }
     this.selectedEvent.set(id);
+    if (date) this.eventJump.emit(date);
+  }
+  protected showEventOnMap(date: string): void {
     if (date) this.eventJump.emit(date);
   }
 
@@ -628,17 +659,17 @@ export class SovereigntyCard {
     effect(() => {
       const items = this.timeline();
       if (this.tab() !== 'events' && !this.embedded()) return;
-      const now = items.find((e) => e.when === 'now') ?? items[0];
-      if (!now) return;
+      if (!items.length) return;
       untracked(() => afterNextRender(() => {
-        const el = (this.host.nativeElement as HTMLElement).querySelector<HTMLElement>(`[data-testid="sovereignty-card-timeline-item"][data-event-id="${now.ev.id}"]`);
+        // 清單平滑捲動，讓目前日期標線停在可見區域上方約 1/3 處（§10 v2 §3）
+        const el = (this.host.nativeElement as HTMLElement).querySelector<HTMLElement>('[data-testid="sovereignty-card-timeline-now"]');
         // 只捲面板內的捲動區（不用 scrollIntoView，以免連帶捲動地圖區等外層容器）
-        const box = el?.offsetParent !== null ? el?.closest<HTMLElement>('[data-testid="sovereignty-card-body"]') : null;
+        const box = el && el.offsetParent !== null ? el.closest<HTMLElement>('[data-testid="sovereignty-card-body"]') : null;
         if (!el || !box) return;
         const er = el.getBoundingClientRect();
         const br = box.getBoundingClientRect();
-        if (er.top < br.top + 28) box.scrollTop += er.top - br.top - 28; // 28px＝sticky 月份標頭
-        else if (er.bottom > br.bottom) box.scrollTop += er.bottom - br.bottom;
+        const delta = er.top - (br.top + br.height / 3);
+        if (Math.abs(delta) > 4) box.scrollTo({ top: box.scrollTop + delta, behavior: matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
       }, { injector: this.injector }));
     });
   }

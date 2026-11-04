@@ -18,9 +18,11 @@ const TXT = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @let p = prefix();
-    <div [attr.data-testid]="p + '-event-name'">{{ summary() }}</div>
-    <div class="text-wl-on-surface-variant" [attr.data-testid]="p + '-event-date'">{{ ev().occurred.start }}</div>
-    <div class="mt-1 flex flex-col items-start gap-1" [attr.data-testid]="p + '-evidence'">
+    @if (head()) {
+      <div [attr.data-testid]="p + '-event-name'">{{ summary() }}</div>
+      <div class="text-wl-on-surface-variant" [attr.data-testid]="p + '-event-date'">{{ ev().occurred.start }}</div>
+    }
+    <div class="flex flex-col items-start gap-1" [class.mt-1]="head()" [attr.data-testid]="p + '-evidence'">
       @if (ev().verification === 'pending') {
         <span class="wl-chip-interp" [attr.data-testid]="p + '-pending'">{{ t().pending }}</span>
       } @else {
@@ -50,6 +52,8 @@ export class EventRef {
   readonly ev = input.required<SovereigntyEventRefDto>();
   readonly prefix = input('sovereignty-card');
   readonly lang = input<Lang>('zh-Hant');
+  /** false：不重複事件名稱與日期（§10 v2：卡片已顯示）。 */
+  readonly head = input(true);
 
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
   protected readonly summary = computed(

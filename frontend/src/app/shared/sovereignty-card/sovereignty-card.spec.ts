@@ -141,12 +141,18 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     (q(el, 'sovereignty-card-tab-events') as HTMLElement).click();
     await fixture.whenStable();
     const items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
-    expect(items.map((i) => i.getAttribute('data-when'))).toEqual(['past', 'now', 'future']);
+    expect(items.map((i) => i.getAttribute('data-when'))).toEqual(['past', 'past', 'future']);
+    // T2：目前日期標線插在第一個晚於目前日期的事件前；T1：未發生的事件 60% 透明
+    expect(items[2].compareDocumentPosition(q(el, 'sovereignty-card-timeline-now')!) & Node.DOCUMENT_POSITION_PRECEDING).toBeTruthy();
+    expect(items[1].compareDocumentPosition(q(el, 'sovereignty-card-timeline-now')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(q(el, 'sovereignty-card-timeline-now')?.textContent).toContain('1939-10-23');
+    expect(items[2].classList.contains('opacity-60')).toBe(true);
+    expect(items[0].classList.contains('opacity-60')).toBe(false);
     expect(items[1].textContent).toContain('交戰方');
     expect(items[1].textContent).toContain('開戰');
     expect(items[2].querySelector('[data-testid="sovereignty-card-timeline-pending"]')?.textContent).toBe('待考證');
     expect(items[2].getAttribute('data-pending')).toBe('true');
-    (items[0].querySelector('[data-testid="sovereignty-card-timeline-jump"]') as HTMLButtonElement).click();
+    (items[0].querySelector('[data-testid="sovereignty-card-timeline-card"]') as HTMLElement).click();
     expect(jumped).toBe('1938-03-13');
   });
 
@@ -163,16 +169,20 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     fixture.componentRef.setInput('eventsStatus', 'ok');
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
-    let items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
-    for (const it of items) (it.querySelector('[data-testid="sovereignty-card-timeline-toggle"]') as HTMLButtonElement).click();
+    const items = () => [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
+    const card = (i: number) => items()[i].querySelector('[data-testid="sovereignty-card-timeline-card"]') as HTMLElement;
+    card(0).click();
     await fixture.whenStable();
-    items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
-    const add = items[0].querySelector('[data-testid="sovereignty-card-timeline-addition"]');
+    const add = items()[0].querySelector('[data-testid="sovereignty-card-timeline-addition"]');
     expect(add?.getAttribute('data-role')).toBe('belligerent');
     expect(add?.textContent).toContain('事後追加・交戰方');
     expect(add?.textContent).toContain('2026-10-31');
     expect(add?.textContent).toContain('美軍為火炬行動登陸主力');
-    expect(items[1].querySelector('[data-testid="sovereignty-card-timeline-addition"]')).toBeNull();
+    card(1).click();
+    await fixture.whenStable();
+    expect(items()[0].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).toBeNull(); // 同時只有一張被選取
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).not.toBeNull();
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-addition"]')).toBeNull();
   });
 
   it('面板內分頁：概要（含相關衝突）與事件；tablist／tab／tabpanel 的 aria、方向鍵切換、送出 tabChange、依 tab 輸入開在指定分頁', async () => {
@@ -709,13 +719,13 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(item.querySelector('[data-testid="sovereignty-card-leader-unverified"]')?.textContent?.trim()).toBe('Unverified');
   });
 
-  it('事件卡片（§10-1）：同月份一組、月份標頭；摺疊只顯示日期／標題／tag，展開顯示出處與「在地圖上看」；點卡片選取並跳日期；戰役 tag', async () => {
+  it('事件卡片（§10 v2）：同月份一組、月份標頭；不收合（無展開按鈕）；選取才顯示出處與「在地圖上看」且不重複標題日期；再點一次收起；節點與戰役圖示；目前日期標線', async () => {
     const fixture = TestBed.createComponent(SovereigntyCard);
     fixture.componentRef.setInput('props', props());
     fixture.componentRef.setInput('embedded', true);
     fixture.componentRef.setInput('tab', 'events');
     const tev = (id: string, start: string, kind = 'treaty') => ({ ...ev('verified'), id, eventKind: kind, occurred: { start, end: start }, roles: ['belligerent'] });
-    fixture.componentRef.setInput('regimeEvents', [tev('a', '1940-05-10', 'battle'), tev('b', '1940-05-28'), tev('c', '1940-06-22')]);
+    fixture.componentRef.setInput('regimeEvents', [tev('a', '1940-05-10', 'battle'), tev('b', '1940-05-28'), { ...tev('c', '1940-06-22'), verification: 'pending' }]);
     fixture.componentRef.setInput('eventsStatus', 'ok');
     fixture.componentRef.setInput('currentDate', '1940-06-01');
     await fixture.whenStable();
@@ -724,20 +734,30 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(groups.map((g) => g.getAttribute('data-month'))).toEqual(['1940-05', '1940-06']);
     expect(groups[0].querySelector('[data-testid="sovereignty-card-timeline-month"]')?.textContent?.trim()).toBe('1940年5月');
     const items = () => [...el.querySelectorAll<HTMLElement>('[data-testid="sovereignty-card-timeline-item"]')];
+    const card = (i: number) => items()[i].querySelector<HTMLElement>('[data-testid="sovereignty-card-timeline-card"]')!;
+    expect(el.querySelector('[data-testid="sovereignty-card-timeline-toggle"]')).toBeNull();
+    expect(q(el, 'sovereignty-card-timeline-rail')).not.toBeNull();
+    expect(items().map((i) => i.querySelector('[data-testid="sovereignty-card-timeline-node"]')?.getAttribute('data-kind'))).toEqual(['battle', 'verified', 'pending']);
+    expect(items().map((i) => i.querySelector('[data-testid="sovereignty-card-timeline-status"]')?.textContent?.trim())).toEqual(['⚔', '✓', '?']);
+    expect(groups[1].previousElementSibling?.getAttribute('data-testid')).toBe('sovereignty-card-timeline-now'); // 落在月份交界時畫在月份標頭前
     expect(items()[0].querySelector('[data-testid="sovereignty-card-timeline-battle"]')).not.toBeNull();
-    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-battle"]')).toBeNull();
     expect(items()[0].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).toBeNull();
+    expect(el.querySelector('[data-testid="sovereignty-card-timeline-detail-citation"], [data-testid="sovereignty-card-timeline-detail-no-citation"]')).toBeNull(); // C1
     let jumped = '';
     fixture.componentInstance.eventJump.subscribe((d) => (jumped = d));
-    items()[2].click();
+    card(1).click();
     await fixture.whenStable();
-    expect(jumped).toBe('1940-06-22');
-    expect(items()[2].getAttribute('data-selected')).toBe('true');
-    (items()[1].querySelector('[data-testid="sovereignty-card-timeline-toggle"]') as HTMLButtonElement).click();
-    await fixture.whenStable();
-    expect(items()[1].getAttribute('data-expanded')).toBe('true');
+    expect(jumped).toBe('1940-05-28');
+    expect(items()[1].getAttribute('data-selected')).toBe('true');
     expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail-citation"], [data-testid="sovereignty-card-timeline-detail-no-citation"]')).not.toBeNull();
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail-event-name"]')).toBeNull(); // 不重複標題
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail-event-date"]')).toBeNull();
+    jumped = '';
     (items()[1].querySelector('[data-testid="sovereignty-card-timeline-map"]') as HTMLButtonElement).click();
     expect(jumped).toBe('1940-05-28');
+    card(1).click();
+    await fixture.whenStable();
+    expect(items()[1].getAttribute('data-selected')).toBeNull();
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).toBeNull();
   });
 });

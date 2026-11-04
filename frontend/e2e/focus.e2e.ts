@@ -147,13 +147,13 @@ test('面板內：相關衝突（與地圖雙劍同步、點項目切到衝突�
   await page.getByTestId('sovereignty-card-tab-events').click();
   const tl = page.getByTestId('sovereignty-card-timeline-item');
   await expect.poll(() => tl.count()).toBeGreaterThan(5);
-  // §10-1 卡片化：摺疊時只有日期／標題／tag（待考證 tag 直接看得到），查證徽章與出處在展開後
-  const verifiedCard = page.locator('[data-testid="sovereignty-card-timeline-item"]:not([data-pending])').first();
-  await verifiedCard.getByTestId('sovereignty-card-timeline-toggle').click();
-  await expect(verifiedCard.getByTestId('sovereignty-card-timeline-detail-verified')).toBeVisible();
+  // §10 v2：卡片不收合（待考證 tag 直接看得到）；目前日期標線；查證徽章與出處在選取卡片後（C1）
   await expect(page.getByTestId('sovereignty-card-timeline').getByTestId('sovereignty-card-timeline-pending').first()).toBeVisible();
-  await expect(tl.locator('xpath=self::*[@data-when="now"]')).toHaveCount(1);
-  await page.getByTestId('sovereignty-card-timeline-jump').filter({ hasText: '1939-09-01' }).first().click();
+  await expect(page.getByTestId('sovereignty-card-timeline-now')).toHaveCount(1);
+  await expect(page.getByTestId('sovereignty-card-timeline-detail-verified')).toHaveCount(0);
+  const target = tl.filter({ has: page.getByTestId('sovereignty-card-timeline-date').filter({ hasText: '1939-09-01' }) }).first();
+  await target.getByTestId('sovereignty-card-timeline-card').click();
+  if (!(await target.getAttribute('data-pending'))) await expect(target.getByTestId('sovereignty-card-timeline-detail-verified')).toBeVisible();
   await expect(page).toHaveURL(/date=1939-09-01/);
   await expect(sheet).toHaveAttribute('data-state', 'open');
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');

@@ -8,7 +8,7 @@
   讓 controlLabels／點選聚焦跟 geojson 模式算出一樣的結果），out/overlay.json 連到它。
 區間外（範圍以外的日期）前端退回 API。
 
-用法：python3 tools/tiles/build-overlay.py [API_BASE] [--sections=control,conflicts,capitals,leaders,sovstyle]
+用法：python3 tools/tiles/build-overlay.py [API_BASE] [--sections=control,conflicts,capitals,leaders,sovstyle,regimes]（regimes 放最後，收前面各段提到的政權）
 """
 import hashlib, json, os, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'out')
 args = [a for a in sys.argv[1:] if not a.startswith('--')]
 API = (args[0] if args else os.environ.get('WL_API', 'http://127.0.0.1:5052/api/v1')).rstrip('/')
-SECTIONS = next((a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith('--sections=')), 'control,conflicts,capitals,leaders,sovstyle').split(',')
+SECTIONS = next((a.split('=', 1)[1] for a in sys.argv[1:] if a.startswith('--sections=')), 'control,conflicts,capitals,leaders,sovstyle,regimes').split(',')
 START, END = '1908-10-05', '1945-12-31'  # 時間軸範圍（含）；之外退回 API
 
 
@@ -190,6 +190,37 @@ def build_sovstyle():
     print(f'sovstyle：{len(pts)} 區間，{len(recs)} 種', file=sys.stderr)
 
 
+def build_regimes():
+    """政權資料（名稱、slug；面板、國名、填色用）：圖磚裡所有 regime_id ＋ overlay 各段提到的政權，一次批次取 /regimes。
+    tiles 模式換日期就不必再因為新出現的政權去要 /regimes。"""
+    ids = set()
+    seqf = os.path.join(OUT, 'boundaries.geojsonseq')
+    if os.path.exists(seqf):
+        for line in open(seqf):
+            ids.add(json.loads(line)['properties']['regime_id'])
+    keys = ('regimeId', 'controllerRegimeId', 'patronRegimeId', 'regimeAId', 'regimeBId', 'occupierRegimeId')
+
+    def walk(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k in keys and isinstance(v, str):
+                    ids.add(v)
+                else:
+                    walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk({k: v for k, v in overlay.items() if k != 'regimes'})
+    ids = sorted(ids)
+    out = {}
+    for i in range(0, len(ids), 150):
+        q = '&'.join(f'ids={x}' for x in ids[i:i + 150])
+        for r in get(f'/regimes?{q}'):
+            out[r['id']] = r
+    overlay['regimes'] = out
+    print(f'regimes：{len(ids)} 個 id，取到 {len(out)} 個', file=sys.stderr)
+
+
 t0 = time.time()
 for s in SECTIONS:
     if s == 'control':
@@ -198,6 +229,8 @@ for s in SECTIONS:
         build_points('conflicts', cp['points'], lambda d: d['featureCollection']['features'], lambda p: f'/conflicts?date={p}')
     elif s == 'sovstyle':
         build_sovstyle()
+    elif s == 'regimes':
+        build_regimes()
     else:
         build_daily(s)
 os.makedirs(OUT, exist_ok=True)

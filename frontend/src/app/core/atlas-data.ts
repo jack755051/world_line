@@ -48,7 +48,17 @@ export class AtlasData {
   private async overlayReady(): Promise<boolean> {
     if (this.boundarySource !== 'tiles') return false;
     if (this.overlay.status() === 'ok') return true;
-    return (await this.overlay.load()) !== null;
+    const o = await this.overlay.load();
+    this.mergeOverlayRegimes();
+    return o !== null;
+  }
+  /** overlay 帶的政權資料一次併進 regimes（tiles 模式換日期出現新政權也不必取 /regimes；填色、國名一開始就齊）。 */
+  private overlayRegimesMerged = false;
+  private mergeOverlayRegimes(): void {
+    const rs = this.overlay.data()?.regimes;
+    if (this.overlayRegimesMerged || !rs) return;
+    this.overlayRegimesMerged = true;
+    this.regimes.update((m) => ({ ...(rs as Record<string, RegimeDto>), ...m }));
   }
   /** 這個日期是否由 overlay 提供（tiles 模式、已載入、在範圍內）。 */
   private overlayHas(date: string): boolean {
@@ -573,6 +583,7 @@ export class AtlasData {
   }
 
   async loadRegimes(ids: string[]): Promise<void> {
+    if (this.boundarySource === 'tiles') await this.overlayReady();
     const missing = [...new Set(ids)].filter((id) => !this.regimes()[id]);
     if (missing.length === 0) {
       if (this.regimesStatus() !== 'error') this.regimesStatus.set('ok');

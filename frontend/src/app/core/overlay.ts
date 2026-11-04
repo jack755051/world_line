@@ -28,6 +28,8 @@ export interface OverlayFile {
   capitals?: RecordSection<unknown>;
   leaders?: RecordSection<unknown>;
   sovstyle?: RecordSection<SovStyleRow>;
+  /** 圖磚與 overlay 提到的所有政權（/regimes 的內容），依 id。 */
+  regimes?: Record<string, unknown>;
 }
 
 /** 主權圖層的日期相關樣式（佔領歸屬、陣營），只收有其中一項或非主權的政權。 */

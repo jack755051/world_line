@@ -144,4 +144,18 @@ describe('AtlasData（tiles 模式，§9 步驟 5）', () => {
     state.setDate('1930-01-01');
     expect(data.tileSovStyle()).toEqual([]);
   });
+
+  it('overlay：政權資料一次併入，之後 loadRegimes 不再取 /regimes', async () => {
+    const calls: string[][] = [];
+    TestBed.configureTestingModule({ providers: [{ provide: WorldLineApi, useValue: { regimesBatch: async (ids: string[]) => { calls.push(ids); return []; } } }] });
+    const store = TestBed.inject((await import('./overlay')).OverlayStore);
+    const ov = { version: 'v', range: ['1908-10-05', '1945-12-31'], regimes: { a: { id: 'a', slug: 'aa' }, b: { id: 'b', slug: 'bb' } } };
+    store.load = async () => { store.data.set(ov as never); store.status.set('ok'); return ov as never; };
+    const data = TestBed.inject(AtlasData);
+    await data.loadRegimes(['a', 'b']);
+    expect(Object.keys(data.regimes()).sort()).toEqual(['a', 'b']);
+    expect(calls).toEqual([]);
+    await data.loadRegimes(['a', 'z']);
+    expect(calls).toEqual([['z']]);
+  });
 });

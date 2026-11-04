@@ -1573,7 +1573,10 @@ export class AtlasMap {
   private applyTileHatch(): void {
     if (!this.map?.getLayer(TILE_HATCH)) return;
     const sp = this.tileSovPaint();
-    this.map.setPaintProperty(TILE_HATCH, 'fill-pattern', tileHatchPattern(this.regimeColors(), sp.hatch));
+    const pattern = tileHatchPattern(this.regimeColors(), sp.hatch);
+    // 圖樣先畫好（只靠 styleimagemissing 時，大量新圖樣同時出現會有沒補上的）
+    for (const id of new Set(JSON.stringify(pattern).match(/wl-hatch-contested-[0-9a-f]{6}/g) ?? [])) this.addHatch(id);
+    this.map.setPaintProperty(TILE_HATCH, 'fill-pattern', pattern);
     // 佔領區著色：斜線底色改用佔領國色（依控制程度淡化），與 decorateSovereignty 的 wlBase 相同
     this.map.setPaintProperty(TILE_HATCH_BASE, 'fill-color', tileHatchBase(sp.base));
     // 陣營外框：當日有陣營的政權、陣營色

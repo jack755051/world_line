@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
 import { LucideInfo } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
@@ -29,7 +30,7 @@ export interface LegendRegime {
 @Component({
   selector: 'wl-legend',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideInfo, SkeletonDirective],
+  imports: [LucideInfo, SkeletonDirective, NgTemplateOutlet],
   host: { class: 'block', '(document:keydown.escape)': 'onEscape()' },
   styles: `
     .sw { width: 22px; height: 14px; flex: none; border-radius: 2px; }
@@ -39,15 +40,29 @@ export interface LegendRegime {
   template: `
     <!-- 圖例（ARCHITECTURE.md §10-3）：左下 40×40 ⓘ 按鈕，點了在按鈕上方展開 240px 寬浮動面板（最高 50vh，可捲動）；
          Esc、再點一次按鈕、點地圖空白處收起；開關狀態記在 localStorage（AtlasState）。 -->
-    <section data-testid="legend" [attr.data-state]="!open() && !closing() ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
+    @if (mode() === 'embedded') {
+      <!-- 小於 768px：圖例是底部面板裡的一個分頁（§10-3） -->
+      <section data-testid="legend-tab-panel" data-state="embedded" [attr.data-axis]="axis()" class="flex min-h-0 flex-1 flex-col" [attr.aria-label]="tr('legend.title')">
+        <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: true }" />
+      </section>
+    } @else {
+    <section data-testid="legend" [attr.data-state]="mode() === 'button' || (!open() && !closing()) ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
       class="flex flex-col items-start gap-2" [attr.aria-label]="tr('legend.title')">
-    @if (open() || closing()) {
+    @if (mode() === 'floating' && (open() || closing())) {
     <div #panel data-testid="legend-panel" id="wl-legend-panel" class="wl-paper flex max-h-[50vh] w-[240px] flex-col overflow-hidden">
       <div class="flex flex-none items-center justify-between px-4 py-3">
         <span class="wl-title2">{{ tr('legend.title') }}</span>
       </div>
-      @if (open() || closing()) {
-        <div id="wl-legend-body" class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
+      <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: false }" />
+    </div>
+    }
+      <button type="button" data-testid="legend-expand" class="wl-paper flex size-10 items-center justify-center text-wl-on-surface hover:bg-wl-surface-container-high"
+        [attr.aria-label]="tr('legend.title')" [attr.title]="tr('legend.title')" [attr.aria-expanded]="open()" aria-controls="wl-legend-panel" (click)="toggle.emit()">
+        <svg lucideInfo class="size-5"></svg></button>
+    </section>
+    }
+    <ng-template #bodyTpl let-embedded="embedded">
+        <div id="wl-legend-body" class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto wl-text2" [class.border-t]="!embedded" [class.border-wl-outline-variant]="!embedded" [class.px-4]="!embedded" [class.py-3]="!embedded" [class.pt-2]="embedded">
           <!-- 主權圖層（國界試驗 1938–1940） -->
           <div data-testid="legend-sovereignty">
             <h3 class="wl-label mb-2">{{ lang() === 'en' ? 'Borders (sovereignty layer)' : '國界（主權圖層）' }}
@@ -126,17 +141,13 @@ export interface LegendRegime {
           </div>
           }
         </div>
-      }
-    </div>
-    }
-      <button type="button" data-testid="legend-expand" class="wl-paper flex size-10 items-center justify-center text-wl-on-surface hover:bg-wl-surface-container-high"
-        [attr.aria-label]="tr('legend.title')" [attr.title]="tr('legend.title')" [attr.aria-expanded]="open()" aria-controls="wl-legend-panel" (click)="toggle.emit()">
-        <svg lucideInfo class="size-5"></svg></button>
-    </section>
+    </ng-template>
   `,
 })
 export class Legend {
   readonly open = input(false);
+  /** floating＝左下按鈕＋浮動面板；button＝只有按鈕（小於 768px，圖例在底部面板分頁）；embedded＝放在底部面板分頁裡。 */
+  readonly mode = input<'floating' | 'button' | 'embedded'>('floating');
   readonly lang = input<Lang>('zh-Hant');
   readonly regimes = input<LegendRegime[]>([]);
   readonly regimesStatus = input<LoadStatus>('idle');
@@ -212,7 +223,7 @@ export class Legend {
   }
 
   protected onEscape(): void {
-    if (this.open()) this.toggle.emit();
+    if (this.open() && this.mode() === 'floating') this.toggle.emit();
   }
 
   protected readonly controlTypes = CONTROL_TYPES;

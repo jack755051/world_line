@@ -124,3 +124,31 @@ test('首都名不被面板或蒙版邊緣切到：選取 1940 德意志國（10
   expect((await capitalsUnder()).n).toBe(0);
   await expect(page.getByTestId('map-selected-label').filter({ hasText: '柏林' })).toHaveCount(1);
 });
+
+test('§10-3：小於 768px 圖例是底部面板的一個分頁；沒選政權時 ⓘ 打開只有圖例的底部面板，選了政權後有「資訊／圖例」分頁', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/?date=1940-06-01&axis=sovereignty');
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
+  await expect(page.getByTestId('legend-panel')).toHaveCount(0);
+  await page.getByTestId('legend-expand').click();
+  const sheet = page.getByTestId('regime-sheet');
+  await expect(sheet).toHaveAttribute('data-side', 'bottom');
+  await expect(page.getByTestId('legend-tab-panel')).toBeVisible();
+  await expect(page.getByTestId('legend-panel')).toHaveCount(0); // 不是浮動面板
+  await expect(page.getByTestId('legend-sov-fill')).toBeVisible();
+  await page.getByTestId('sovereignty-card-close').click();
+  await expect(sheet).toHaveCount(0);
+  // 選德國 → 資訊分頁；ⓘ 或「圖例」分頁切到圖例
+  await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: [10.5, 51], zoom: 4 }));
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await page.waitForTimeout(500);
+  const box = (await page.getByTestId('map-canvas').boundingBox())!;
+  const p = await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.project([10.5, 51]));
+  await page.mouse.click(box.x + p.x, box.y + p.y);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
+  await expect(page.getByTestId('sheet-tab-info')).toHaveAttribute('aria-selected', 'true');
+  await page.getByTestId('sheet-tab-legend').click();
+  await expect(page.getByTestId('legend-tab-panel')).toBeVisible();
+  await page.getByTestId('sheet-tab-info').click();
+  await expect(page.getByTestId('legend-tab-panel')).toHaveCount(0);
+});

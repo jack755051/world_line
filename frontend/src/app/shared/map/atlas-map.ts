@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 import { staggerOnArcs, worldShiftArc } from './conflict-arc';
 import type { FeatureCollection, Geometry, Point as GeoJSONPoint, Position } from 'geojson';
+import type { Popup } from 'maplibre-gl';
 import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification, LayerSpecification } from 'maplibre-gl';
 import { captureMapCanvas } from './scan-snapshot';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
@@ -460,6 +461,9 @@ export interface MapConflictEvent {
  */
 import { ARROWHEAD_IMAGE, arrowheadImage, CAMPAIGN_LAYER_IDS, CAMPAIGN_SOURCES, campaignFilters, campaignLayers, campaignSourceData } from './campaign-layers';
 import type { Campaign } from '../../core/campaign';
+/** §13 S1：zoom 小於 3 時比例尺偏差太大，隱藏。 */
+export const SCALE_MIN_ZOOM = 3;
+
 @Component({
   selector: 'wl-atlas-map',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -482,6 +486,8 @@ import type { Campaign } from '../../core/campaign';
       被選政權的名字（ARCHITECTURE.md §4 (b)、D2）：畫在聚焦蒙版之上的 HTML 層，一定顯示、不被模糊；
       一般層（GL）同政權的國名與首都用 filter 隱藏避免重複；這些框也加進障礙符號，讓其他標籤讓開。
     -->
+    <!-- §13 衝突小卡的圖層：在聚焦蒙版之上（與地圖容器同原點，Popup 的 transform 不變） -->
+    <div #popupLayer class="pointer-events-none absolute inset-0 z-[25] overflow-hidden [&_.maplibregl-popup]:pointer-events-auto"></div>
     <div data-testid="map-selected-labels" class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true" [class.hidden]="!!campaign()">
       @for (l of selectedPlaced(); track l.key) {
         @if (l.kind === 'regime') {
@@ -568,6 +574,17 @@ export class AtlasMap {
   readonly focusInset = input<FocusInset>({ right: 0, bottom: 0 });
   /** 面板／圖例開啟時的地圖 padding（§10-2／§10-3）：沒有聚焦時 easeTo 200ms（減少動態時直接套用）。 */
   /** 戰役模式（§11.2）：目前開啟的戰役、階段，以及 fitBounds 時要避開的 UI（左側說明卡／手機下方卡片）。 */
+  /** §13 K1：衝突小卡錨定在圖示上（MapLibre Popup，anchor auto）；內容是頁面渲染好的 DOM。 */
+  readonly popupEl = input<HTMLElement | null>(null);
+  readonly popupLngLat = input<[number, number] | null>(null);
+  private popup: Popup | null = null;
+  private popupAnchor = '';
+  private readonly popupLayer = viewChild<ElementRef<HTMLDivElement>>('popupLayer');
+  private ScaleCtor: (typeof import('maplibre-gl'))['ScaleControl'] | null = null;
+  private PopupCtor: (typeof import('maplibre-gl'))['Popup'] | null = null;
+  /** §13 比例尺（S1／S2）：只用公里、zoom < 3 隱藏；位置由頁面決定（圖例按鈕右邊、戰役模式說明卡右邊、手機面板上方）。 */
+  readonly scalePos = input<{ left: number; bottom: number; hidden: boolean }>({ left: 60, bottom: 12, hidden: false });
+  protected readonly zoomLevel = signal(0);
   readonly campaign = input<Campaign | null>(null);
   readonly campaignPhase = input(1);
   readonly campaignInset = input<{ top: number; right: number; bottom: number; left: number }>({ top: 24, right: 24, bottom: 80, left: 392 });
@@ -661,6 +678,51 @@ export class AtlasMap {
       this.map?.remove();
     });
 
+    effect(() => {
+      const pos = this.scalePos();
+      const z = this.zoomLevel();
+      if (!this.ready()) return;
+      const el = this.map?.getContainer().querySelector<HTMLElement>('.maplibregl-ctrl-scale');
+      if (!el) return;
+      el.style.left = `${pos.left}px`;
+      el.style.bottom = `${pos.bottom}px`;
+      el.style.display = pos.hidden || z < SCALE_MIN_ZOOM ? 'none' : '';
+    });
+    effect(() => {
+      const el = this.popupEl();
+      const ll = this.popupLngLat();
+      if (!this.ready() || !this.map) return;
+      untracked(() => {
+        if (!el || !ll) { this.popup?.remove(); this.popup = null; return; }
+        const map = this.map!;
+        // anchor：避開右側面板與底部時間軸（可見範圍＝地圖扣掉 padding）
+        const pt = map.project(ll);
+        const pad = map.getPadding();
+        const c = map.getContainer();
+        const h = pt.x + 340 > c.clientWidth - (pad.right ?? 0) ? 'right' : 'left';
+        const below = c.clientHeight - (pad.bottom ?? 0) - pt.y - 24;
+        const above = pt.y - 24;
+        const v = above > below ? 'bottom' : 'top';
+        // 小卡高度不超過所在那一側的可見空間（內容自己捲動）
+        el.style.maxHeight = `${Math.max(160, Math.min(480, v === 'bottom' ? above : below))}px`;
+        const anchor = `${v}-${h}` as const;
+        if (this.popup && this.popupAnchor !== anchor) { this.popup.remove(); this.popup = null; }
+        if (!this.popup && this.PopupCtor) {
+          this.popup = new this.PopupCtor({ closeButton: false, closeOnClick: false, closeOnMove: false, maxWidth: '320px', offset: 18, anchor, className: 'wl-conflict-popup' });
+          this.popupAnchor = anchor;
+          // 小卡內的點擊不傳到地圖（否則會被當成點空白處而清掉選取）
+        }
+        if (!this.popup) return;
+        this.popup.setDOMContent(el).setLngLat(ll);
+        if (!this.popup.isOpen()) {
+          this.popup.addTo(map);
+          const root = this.popup.getElement();
+          if (root) this.popupLayer()?.nativeElement.appendChild(root);
+          for (const t of ['mousedown', 'mouseup', 'click', 'dblclick', 'pointerdown', 'pointerup', 'touchstart', 'touchend', 'wheel'])
+            root?.addEventListener(t, (e) => e.stopPropagation());
+        }
+      });
+    });
     effect(() => {
       const c = this.campaign();
       const inset = this.campaignInset();
@@ -821,6 +883,8 @@ export class AtlasMap {
     }
     try {
       const ml = await import('maplibre-gl');
+      this.PopupCtor = ml.Popup;
+      this.ScaleCtor = ml.ScaleControl;
       ml.setWorkerUrl(MAPLIBRE_WORKER_URL);
       const map = new ml.Map({
         container: this.canvas().nativeElement,
@@ -849,6 +913,7 @@ export class AtlasMap {
 
       map.on('styleimagemissing', (e) => this.addHatch(e.id));
       map.on('load', () => {
+        this.addScale(map);
         this.warmGlyphs(map);
         this.ready.set(true);
         this.addRegimeLabelImages();
@@ -879,6 +944,7 @@ export class AtlasMap {
           this.userMove.emit();
         }
       });
+      map.on('zoom', () => this.zoomLevel.set(map.getZoom()));
       map.on('moveend', () => {
         this.cameraMoving.set(false);
         this.fitArcs();
@@ -1009,6 +1075,18 @@ export class AtlasMap {
     if (cam) map.easeTo({ ...cam, duration, essential: false });
     this.drawMask();
     if (duration === 0) queueMicrotask(() => this.fitArcs());
+  }
+
+  private addScale(map: MlMap): void {
+    if (!this.ScaleCtor) return;
+    map.addControl(new this.ScaleCtor({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
+    const el = map.getContainer().querySelector<HTMLElement>('.maplibregl-ctrl-scale');
+    if (!el) return;
+    el.setAttribute('data-testid', 'map-scale');
+    // 移出 MapLibre 的角落容器，直接以地圖區左下為基準定位
+    map.getContainer().appendChild(el);
+    el.classList.add('wl-scale');
+    this.zoomLevel.set(map.getZoom());
   }
 
   private applyCampaign(c: Campaign | null, inset: { top: number; right: number; bottom: number; left: number }): void {

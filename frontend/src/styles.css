@@ -93,3 +93,15 @@ body {
 .maplibregl-ctrl-attrib { background: rgba(250, 247, 240, 0.85) !important; font-size: 10px; }
 /* 出處文字讓開左下 ⓘ 圖例按鈕（§10-3：距左 12px、寬 40px，再留 12px） */
 .maplibregl-ctrl-bottom-right { left: 64px; }
+
+/* §13 K1：衝突小卡用 MapLibre Popup 錨定；卡片自己有紙色底與陰影 */
+.wl-conflict-popup .maplibregl-popup-content { padding: 0; background: transparent; box-shadow: none; }
+.wl-conflict-popup .maplibregl-popup-tip { border-top-color: var(--wl-surface, #fffaf0); border-bottom-color: var(--wl-surface, #fffaf0); }
+
+/* §13 比例尺：公里、2px 線、#5a5146、11px serif、半透明紙色底 */
+.maplibregl-ctrl-scale.wl-scale {
+  position: absolute; z-index: 20; margin: 0; pointer-events: none;
+  border: 2px solid #5a5146; border-top: none; color: #5a5146;
+  font: 11px/1.2 var(--wl-font-serif, serif); background: rgba(255, 250, 240, .8);
+  border-radius: 0 0 4px 4px; padding: 2px 6px; box-sizing: content-box;
+}

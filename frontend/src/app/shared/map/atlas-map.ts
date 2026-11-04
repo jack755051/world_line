@@ -31,6 +31,9 @@ import {
 } from './label-placement';
 import { clampMinZoom, labelFilterExpr, labelMinZoom, minZoomFromScreenWidth, NEVER_ZOOM } from './label-fit';
 import { geometryPieces, labelBoxPx, placeInViewport, toWorld, type Piece, type Rect } from './viewport-label';
+import { boundaryTileLayers, tileFillColor, tileFilterUpdate, tileLabelText, TILE_AXIS_PAINT, TILE_FILL, TILE_LABEL, TILE_SOURCE } from './boundary-tiles';
+import { dayNumber, readTilesUrl, type BoundarySource } from '../../core/boundary-source';
+import { intervalKey } from '../../core/change-points';
 
 /**
  * 「實際控制」↔「主權」切換：常數不透明度的圖層用 MapLibre paint transition 淡入淡出。
@@ -526,6 +529,16 @@ export class AtlasMap {
   readonly collection = input<FeatureCollection<Geometry, DecoratedProps> | null>(null);
   readonly gaps = input<FeatureCollection<Geometry, GapProps> | null>(null);
   readonly sovereignty = input<FeatureCollection<Geometry, SovereigntyProps> | null>(null);
+  /** 疆界來源（§9 步驟 4）：tiles 時國界、國名改由向量圖磚畫，換日期只改 filter。 */
+  readonly boundarySource = input<BoundarySource>('geojson');
+  /** 目前日期（tiles 模式的 filter 用）。 */
+  readonly date = input<string | null>(null);
+  /** 變動點（tiles 模式：同一變動區間內換日期不重設 filter）。 */
+  readonly changePoints = input<readonly string[] | null>(null);
+  /** 已知政權的填色（regimeId → 色），tiles 模式覆寫 color_idx 後備色。 */
+  readonly regimeColors = input<Record<string, string>>({});
+  /** tiles 模式：已載入圖磚裡出現的政權 id（新出現時才發），頁面據此補載政權資料（顏色、名稱）。 */
+  readonly tileRegimeIds = output<string[]>();
   readonly showCamps = input(false);
   /** 目前檢視軸；切換時用 MapLibre transition 淡入淡出（reducedMotion 時 0ms）。 */
   readonly axis = input<Axis>('control');
@@ -600,6 +613,8 @@ export class AtlasMap {
 
   private readonly canvas = viewChild.required<ElementRef<HTMLDivElement>>('canvas');
   private map: MlMap | null = null;
+  private tileFilterKey: string | null = null;
+  private readonly tileIdsSeen = new Set<string>();
   private readonly destroyRef = inject(DestroyRef);
   private readonly state = inject(AtlasState);
   /** 目前已推送進 sovereignty source 的 feature ID 集合（promoteId = recordId）。
@@ -621,6 +636,22 @@ export class AtlasMap {
       this.map?.remove();
     });
 
+    effect(() => {
+      const d = this.date();
+      const pts = this.changePoints();
+      if (!this.ready() || this.boundarySource() !== 'tiles' || !d) return;
+      untracked(() => this.applyTileFilter(d, pts));
+    });
+    effect(() => {
+      const colors = this.regimeColors();
+      if (!this.ready() || this.boundarySource() !== 'tiles') return;
+      untracked(() => this.map?.getLayer(TILE_FILL) && this.map.setPaintProperty(TILE_FILL, 'fill-color', tileFillColor(colors)));
+    });
+    effect(() => {
+      const lang = this.state.lang();
+      if (!this.ready() || this.boundarySource() !== 'tiles') return;
+      untracked(() => this.map?.getLayer(TILE_LABEL) && this.map.setLayoutProperty(TILE_LABEL, 'text-field', tileLabelText(lang)));
+    });
     effect(() => {
       const data = this.collection();
       if (!this.ready()) return;
@@ -750,6 +781,7 @@ export class AtlasMap {
         this.applyAxis(this.axis(), 0);
         this.applyFocus(this.focusRecordId(), this.sovereignty(), this.focusInset(), this.reducedMotion(), this.focusFitBounds());
         this.computeAndApplyCapitalSides(this.capitals(), this.sovereignty());
+        if (this.boundarySource() === 'tiles') this.addBoundaryTiles();
         // 確保首都圖層永遠在 GL style 最上層（任何後續 addLayer 都須用 beforeId 插在 capital-dot 之下）
         if (map.getLayer('capital-dot')) map.moveLayer('capital-dot');
         if (map.getLayer('capital-label')) map.moveLayer('capital-label');
@@ -772,6 +804,7 @@ export class AtlasMap {
         this.scheduleViewportLabels();
       });
       map.on('idle', () => {
+        this.collectTileRegimeIds();
         this.countRendered();
         this.setRenderBusy(false);
       });
@@ -1044,7 +1077,7 @@ export class AtlasMap {
     clearTimeout(this.axisTimer);
     // MapLibre 的型別把屬性名限定為字面值；這裡的屬性名來自 AXIS_PAINT（測試檢查過都是常數不透明度）
     const setPaint = map.setPaintProperty.bind(map) as (layer: string, name: string, value: unknown) => void;
-    for (const [layer, prop, value] of AXIS_PAINT[axis]) {
+    for (const [layer, prop, value] of [...AXIS_PAINT[axis], ...TILE_AXIS_PAINT[axis]]) {
       if (!map.getLayer(layer)) continue;
       setPaint(layer, `${prop}-transition`, { duration, delay: 0 });
       setPaint(layer, prop, value);
@@ -1432,12 +1465,49 @@ export class AtlasMap {
     this.conflictClick.emit({ recordId: c.recordId, x: c.x, y: c.y });
   }
 
+  /** tiles 模式：加入向量圖磚 source 與圖層（底色、國界線、非主權虛線放在缺口層之下；國名放在一般國名層之下）。 */
+  private addBoundaryTiles(): void {
+    const map = this.map;
+    if (!map || map.getSource(TILE_SOURCE)) return;
+    map.addSource(TILE_SOURCE, { type: 'vector', url: readTilesUrl(), attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）等' });
+    const d = this.date() ?? this.state.date();
+    const [fill, line, lineNs, label] = boundaryTileLayers(dayNumber(d), this.regimeColors(), this.state.lang());
+    for (const l of [fill, line, lineNs]) map.addLayer(l, 'gap-base');
+    map.addLayer(label, 'regime-label');
+    this.tileFilterKey = intervalKey(this.changePoints(), d);
+    // geojson 主權圖層在 tiles 模式下沒有資料；保持隱藏，避免與圖磚重疊
+    for (const id of ['sov-fill', 'sov-hatch-base', 'sov-hatch', 'sov-line', 'sov-line-not-sovereign']) if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+  }
+
+  /** tiles 模式換日期：只在跨越變動區間時 setFilter，不發請求。 */
+  private applyTileFilter(date: string, points: readonly string[] | null): void {
+    const map = this.map;
+    if (!map?.getLayer(TILE_FILL)) return;
+    const up = tileFilterUpdate(this.tileFilterKey, intervalKey(points, date), dayNumber(date));
+    if (!up) return;
+    this.tileFilterKey = up.key;
+    performance.mark('wl:tiles:filter');
+    for (const [layer, filter] of Object.entries(up.filters)) map.setFilter(layer, filter);
+  }
+
+  private collectTileRegimeIds(): void {
+    const map = this.map;
+    if (this.boundarySource() !== 'tiles' || !map?.getSource(TILE_SOURCE)) return;
+    const fresh: string[] = [];
+    for (const f of map.querySourceFeatures(TILE_SOURCE, { sourceLayer: 'labels' })) {
+      const id = f.properties?.['regime_id'] as string | undefined;
+      if (id && !this.tileIdsSeen.has(id)) { this.tileIdsSeen.add(id); fresh.push(id); }
+    }
+    if (fresh.length) this.tileRegimeIds.emit(fresh);
+  }
+
   private countRendered(): void {
     if (!this.map || !this.ready()) return;
     const n = this.map.queryRenderedFeatures({ layers: ['control-fill', 'control-hatch'] }).length;
     this.renderedCount.set(n);
     this.renderedGaps.set(this.map.queryRenderedFeatures({ layers: ['gap-fill'] }).length);
-    this.renderedSovereignty.set(this.map.queryRenderedFeatures({ layers: ['sov-fill', 'sov-hatch-base'] }).length);
+    const sovLayers = this.map.getLayer(TILE_FILL) ? [TILE_FILL] : ['sov-fill', 'sov-hatch-base'];
+    this.renderedSovereignty.set(this.map.queryRenderedFeatures({ layers: sovLayers }).length);
   }
 
   private addHatch(id: string): void {

@@ -19,7 +19,7 @@ import { placeCard, type CardPlacement } from '../../shared/map/card-placement';
 import { conflictArc } from '../../shared/map/conflict-arc';
 import { AtlasMap, type MapConflictEvent, type MapConflictIcon, type MapFeatureEvent, type MapGapEvent, type MapSovereigntyEvent } from '../../shared/map/atlas-map';
 import { ConflictCard } from '../../shared/conflict-card/conflict-card';
-import { decorateSovereignty, sovereigntyLabels } from '../../shared/map/sovereignty-style';
+import { decorateSovereignty, regimeColor, sovereigntyLabels } from '../../shared/map/sovereignty-style';
 import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
@@ -88,7 +88,7 @@ interface SheetInfo {
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" (conflictClick)="onConflictClick($event)"
                 [capitals]="capitalsGeoJson()"
-                [sovereignty]="sovereigntyFc()" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
+                [sovereignty]="sovereigntyFc()" [boundarySource]="data.boundarySource" [date]="state.date()" [changePoints]="data.changePoints()" [regimeColors]="tileRegimeColors()" (tileRegimeIds)="data.loadRegimes($event)" [showCamps]="showCamps()" [selectedRecordId]="focusRecord()"
                 [focusRecordId]="focusRecord()" [focusInset]="focusInset()" [focusFitBounds]="focusFitBounds()"
                 (featureClick)="onFeatureClick($event)" (gapClick)="onGapClick($event)" (sovereigntyClick)="onSovereigntyClick($event)"
                 (emptyClick)="clearSelection()" (featureHover)="hover.set($event)" />
@@ -240,6 +240,13 @@ export class AtlasPage {
   protected readonly motion = inject(MotionService);
   /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
   protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
+  /** tiles 模式（§9 步驟 4）：已載入政權的填色（依 slug 用與 geojson 模式相同的 regimeColor）。 */
+  protected readonly tileRegimeColors = computed(() => {
+    if (this.data.boundarySource !== 'tiles') return {};
+    const out: Record<string, string> = {};
+    for (const [id, r] of Object.entries(this.data.regimes())) out[id] = regimeColor(r.slug);
+    return out;
+  });
   /** 首都 GeoJSON：依目前語系選好 label，直接傳給地圖圖層。 */
   protected readonly capitalsGeoJson = computed<FeatureCollection>(() => {
     const dto = this.data.capitals();
@@ -457,6 +464,8 @@ export class AtlasPage {
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
   protected readonly isEmpty = computed(
     () => this.data.controlStatus() === 'ok' && this.featureCount() === 0 && !this.data.showingStale()
+      // tiles 模式不向 API 取主權資料（sovereigntyCount 恆為 0）；疆界在圖磚裡，不算「無資料」
+      && this.data.boundarySource !== 'tiles'
       && this.data.sovereigntyStatus() !== 'loading' && this.sovereigntyCount() === 0,
   );
   protected readonly nearest = computed(() => nearestDate(this.data.snapshots().map((s) => s.asOf), this.state.date()));

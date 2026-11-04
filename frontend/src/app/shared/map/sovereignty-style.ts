@@ -82,7 +82,9 @@ export function occupationTint(occupierSlug: string, controlKind: string): strin
   return mixHex(regimeColor(occupierSlug), MAP_COLORS.land, OCCUPATION_TINT[controlKind] ?? OCCUPATION_TINT['military_administration']);
 }
 
-const FALLBACK = ['#cdb8a0', '#b8c8b0', '#c0b8d0', '#d0c0a8', '#a8c0c8', '#d0b0b8', '#b8d0c0', '#c8c0a0'];
+/** 後備色盤（依 slug 雜湊取色）。圖磚的 color_idx（boundary_periods.wl_color_idx）用同一演算法與色盤，數量改了兩邊要一起改。 */
+export const REGIME_FALLBACK_COLORS = ['#cdb8a0', '#b8c8b0', '#c0b8d0', '#d0c0a8', '#a8c0c8', '#d0b0b8', '#b8d0c0', '#c8c0a0'];
+const FALLBACK = REGIME_FALLBACK_COLORS;
 
 /** 測試資料的 slug 會帶 `-<tag>` 尾碼；比對時先試完整 slug，再去掉最後一段。 */
 export function regimeColor(slug: string): string {

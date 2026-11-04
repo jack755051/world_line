@@ -5,6 +5,7 @@ import { WorldLineApi } from './api/world-line-api';
 import type { CapitalsDto, LeadersDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
+import { readBoundarySource, type BoundarySource } from './boundary-source';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 
@@ -19,6 +20,9 @@ export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 export class AtlasData {
   private readonly api = inject(WorldLineApi);
   private readonly state = inject(AtlasState);
+
+  /** 疆界來源（§9 步驟 4 功能開關）：tiles 時不向 API 取主權資料（換日期由圖磚 filter 處理）。 */
+  readonly boundarySource: BoundarySource = readBoundarySource();
 
   readonly health = signal<'checking' | 'up' | 'down'>('checking');
   readonly healthStatus = signal<string | null>(null);
@@ -221,6 +225,7 @@ export class AtlasData {
   }
 
   async loadSovereignty(date: string): Promise<void> {
+    if (this.boundarySource === 'tiles') return;
     performance.mark('wl:sov:load-start');
     const my = ++this.sovSeq;
     const key = this.sovIntervalKey(date);
@@ -371,10 +376,10 @@ export class AtlasData {
       if (seen.has(sovKey)) continue;
       seen.add(sovKey);
       const ck = this.controlKey(d);
-      if (this.sovCache.has(sovKey) && this.cfCache.has(cfKey) && this.cache.has(ck)) continue;
+      if ((this.boundarySource === 'tiles' || this.sovCache.has(sovKey)) && this.cfCache.has(cfKey) && this.cache.has(ck)) continue;
       fetched++;
       try {
-        await Promise.all([this.fetchSov(sovKey, d, zoom), this.fetchInterval('cf', cfKey, d, this.cfCache), this.fetchControl(ck, d)]);
+        await Promise.all([this.boundarySource === 'tiles' ? null : this.fetchSov(sovKey, d, zoom), this.fetchInterval('cf', cfKey, d, this.cfCache), this.fetchControl(ck, d)]);
       } catch {
         /* 預先載入失敗不影響畫面 */
       }

@@ -24,3 +24,13 @@ docker build -t wl-tippecanoe:2.79.0 "https://github.com/felt/tippecanoe.git#2.7
 `labels`（regime_id、start_day、end_day、name_zh、name_local、area）；整數日自 1900-01-01 起算，`end_day` 不含當日。
 
 `out/` 是建置產物，不進 git。
+
+## 開發期提供圖磚（步驟 4）
+
+```sh
+zsh tools/tiles/martin.sh        # docker 起 Martin（wl-martin-tiles），只綁 127.0.0.1:3010；重建圖磚後再跑一次
+```
+
+前端切換：網址加 `?boundarySource=tiles`（記到 localStorage；`?boundarySource=geojson` 切回，預設 geojson）。
+圖磚位址預設 `http://127.0.0.1:3010/boundaries`，可用 `?tilesUrl=` 改。
+tiles 模式換日期只在跨變動區間時改 filter，不向 API 取 `/sovereignty`。

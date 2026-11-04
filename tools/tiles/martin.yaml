@@ -1,0 +1,7 @@
+# Martin（docker）提供 PMTiles（ARCHITECTURE.md §9 遷移步驟 4，開發用）。由 tools/tiles/martin.sh 啟動。
+listen_addresses: '0.0.0.0:3000'
+cors:
+  origin: ['*']
+pmtiles:
+  sources:
+    boundaries: /data/boundaries.pmtiles

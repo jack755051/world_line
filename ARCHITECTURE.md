@@ -354,7 +354,7 @@ PRD §10 與計畫檔的 M0–M6、S 軌（戰區與全球主權骨架）是另�
 ## 9. 疆界圖磚（第 2、3 層）
 
 > 狀態：草稿，待 Tai 確認。決策日期：2026-11-04。
-> 決策：D-B1 採用預先切好的 PMTiles 加 CDN；D-B2 國名依「該時期最大塊國土」預先算好，被選政權依畫面可見部分重算；D-B3 物件儲存和 CDN 暫不決定，開發期由 Martin 在本地提供。
+> 決策：D-B1 採用預先切好的 PMTiles 加 CDN；D-B2 國名依「該時期最大塊國土」預先算好，被選政權依畫面可見部分重算；D-B3 已定：Cloudflare R2 加 CDN（上線時開通，費用需要 Tai 本人同意），開發期由 Martin 在本地提供。
 
 ### 1. 目標
 - 換日期（熱跳、播放，含 1 日/秒）時不發出網路請求，也不碰 API。
@@ -368,7 +368,7 @@ PRD §10 與計畫檔的 M0–M6、S 軌（戰區與全球主權骨架）是另�
 | `boundary_periods` | PostGIS view 或導出表 | 每段「不變幾何」一筆：`regime_id, start_day, end_day, geom, color_idx, disputed, control_type` |
 | `label_points` | 建置產物 | 每個政權的每個時期一個點：在最大塊國土上用 polylabel 算出，含 `start_day, end_day, regime_id, name, area` |
 | 圖磚建置 | `tools/tiles/`（CI 作業） | 從 PostGIS 導出 GeoJSONSeq，經 tippecanoe 產生 `boundaries-v{hash}.pmtiles` 和 manifest |
-| 圖磚服務 | 開發：Martin（本地）；正式：物件儲存加 CDN（未決定） | 用 HTTP range 請求提供 PMTiles |
+| 圖磚服務 | 開發：Martin（本地）；正式：已定：Cloudflare R2 加 CDN（上線時開通，費用需要 Tai 本人同意） | 用 HTTP range 請求提供 PMTiles |
 | API（.NET） | `api/` | 中繼資料查詢、被選政權詳細資料、manifest；不處理疆界幾何的批次輸出 |
 | 前端地圖 | `app/` 的 map 模組 | pmtiles protocol、日期 filter、標籤、蒙版、掃描動畫 |
 
@@ -424,7 +424,7 @@ flowchart LR
 4. 開發環境用 Martin 提供 PMTiles；前端加功能開關 `boundarySource=geojson|tiles`。
 5. 把國名、被選政權標籤、蒙版、高亮（promoteId 設為 `regime_id`，使用 feature-state）和掃描動畫逐項移到圖磚模式。
 6. 測試驗收團隊跑回歸測試和效能基準。
-7. 選定物件儲存和 CDN（需 Tai 同意）後上線，預設改為 tiles；保留 geojson 模式一個版本後移除。
+7. 已定：Cloudflare R2 加 CDN（上線時開通，費用需要 Tai 本人同意）；開通後上線，預設改為 tiles；保留 geojson 模式一個版本後移除。
 
 ### 7. 驗收
 - 正確性：在 591 個變動日加 50 個抽樣日上，圖磚模式渲染出的 `regime_id` 集合和第 1 層 API 完全一致（自動化比對）。

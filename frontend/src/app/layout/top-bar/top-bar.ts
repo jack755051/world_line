@@ -23,11 +23,11 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
   host: { class: 'block' },
   template: `
     @if (compact()) {
-      <!-- §12 手機（xs、sm）或高度 <500px：48px，只放 logo＋World Line、日期（H1）、⋯ 選單 -->
+      <!-- §12 手機（xs、sm）或高度 <500px：48px，只放 logo＋Sanring World Line、日期（H1）、⋯ 選單 -->
       <header data-testid="topbar" data-compact="true" class="flex h-[var(--wl-topbar-height)] items-center gap-2 border-b border-wl-outline-variant bg-wl-surface px-3">
         <span class="flex flex-none items-center gap-1.5 whitespace-nowrap">
           <svg lucideGlobe class="size-6 text-wl-primary" aria-hidden="true"></svg>
-          <span data-testid="topbar-brand" class="font-wl-serif text-[16px] font-semibold text-wl-on-surface">World Line</span>
+          <span data-testid="topbar-brand" class="font-wl-serif text-[16px] font-semibold text-wl-on-surface">Sanring World Line</span>
         </span>
         <button type="button" data-testid="topbar-date" class="mx-auto h-10 min-w-0 whitespace-nowrap px-2 font-mono text-[16px] font-bold tabular-nums text-wl-on-surface"
           [attr.datetime]="date()" [attr.aria-label]="(lang() === 'en' ? 'Date ' : '日期 ') + date()" (click)="datePick.emit()">{{ date() }}</button>
@@ -49,7 +49,7 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
       </header>
     } @else {
     <header data-testid="topbar" class="flex h-[var(--wl-topbar-height)] items-center gap-4 border-b border-wl-outline-variant bg-wl-surface px-4">
-      <span class="whitespace-nowrap font-wl-serif text-[17px] font-semibold tracking-wide text-wl-on-surface">World Line</span>
+      <span class="whitespace-nowrap font-wl-serif text-[17px] font-semibold tracking-wide text-wl-on-surface">Sanring World Line</span>
       <span class="h-6 w-px bg-wl-outline-variant" aria-hidden="true"></span>
       @if (loading()) {
         <div sanringSkeleton class="h-8 w-48"></div>

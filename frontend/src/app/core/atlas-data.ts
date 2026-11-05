@@ -158,6 +158,17 @@ export class AtlasData {
   readonly snapshotsStatus = signal<LoadStatus>('idle');
   /** 最早事件日（GET /timeline/extent）；時間軸起點依此往前延伸（WW1 試驗，1908 起）。失敗時維持 null（用預設範圍）。 */
   readonly earliestEvent = signal<string | null>(null);
+  /**
+   * tiles 模式資料涵蓋起訖（overlay.range；尚未載入時退回 earliestEvent～null）。
+   * 用來判斷「此日期尚無資料」：範圍外且控制區為空 → 顯示空態（與 geojson 模式對齊）。
+   */
+  readonly tilesCoverage = computed<[string, string] | null>(() => {
+    if (this.boundarySource !== 'tiles') return null;
+    const o = this.overlay.data();
+    if (this.overlay.status() === 'ok' && o?.range) return o.range;
+    const start = this.earliestEvent() ?? this.changePoints()?.[0] ?? null;
+    return start ? [start, '9999-12-31'] : null;
+  });
 
   readonly regimes = signal<Record<string, RegimeDto>>({});
   readonly regimesStatus = signal<LoadStatus>('idle');

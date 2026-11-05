@@ -235,7 +235,12 @@ export const FADE_IN_MS = 280;
 
 const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
 
-export function buildBaseStyle(): StyleSpecification {
+/** 國界出處全文。geojson 模式掛在 sovereignty；tiles 模式掛在圖磚 source——兩邊不可同時寫，否則出處顯示兩次。 */
+export const BORDERS_ATTRIBUTION =
+  '國界 Borders: OpenHistoricalMap contributors（CC0）; CNIG, GURS, Kartverket, OCHA/HDX（CC BY 4.0）; 部分線段源自 OpenStreetMap（ODbL）';
+
+export function buildBaseStyle(opts?: { bordersAttribution?: boolean }): StyleSpecification {
+  const borders = opts?.bordersAttribution !== false;
   return {
     version: 8,
     glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
@@ -250,7 +255,7 @@ export function buildBaseStyle(): StyleSpecification {
         /** maxzoom 限制 worker 切片至 zoom 10（預設 18）；zoom>10 時 overzoom 仍使用 zoom-10 tile，
          *  幾何座標精度不變，視覺無差異。大幅降低 setData 後 worker 的切片計算量。 */
         maxzoom: 10,
-        attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）; CNIG, GURS, Kartverket, OCHA/HDX（CC BY 4.0）; 部分線段源自 OpenStreetMap（ODbL）',
+        ...(borders ? { attribution: BORDERS_ATTRIBUTION } : {}),
       },
       capitals: { type: 'geojson', data: EMPTY },
       'regime-labels': { type: 'geojson', data: EMPTY },
@@ -888,7 +893,7 @@ export class AtlasMap {
       ml.setWorkerUrl(MAPLIBRE_WORKER_URL);
       const map = new ml.Map({
         container: this.canvas().nativeElement,
-        style: buildBaseStyle(),
+        style: buildBaseStyle({ bordersAttribution: this.boundarySource() !== 'tiles' }),
         // 初始鏡頭：1941 年被佔領的波蘭置中（華沙一帶）（Tai 2026-11-05）
         center: [21.0, 51.8],
         zoom: 4.8,
@@ -1718,7 +1723,7 @@ export class AtlasMap {
   private addBoundaryTiles(): void {
     const map = this.map;
     if (!map || map.getSource(TILE_SOURCE)) return;
-    map.addSource(TILE_SOURCE, { type: 'vector', url: readTilesUrl(), attribution: '國界 Borders: OpenHistoricalMap contributors（CC0）等' });
+    map.addSource(TILE_SOURCE, { type: 'vector', url: readTilesUrl(), attribution: BORDERS_ATTRIBUTION });
     const d = this.date() ?? this.state.date();
     this.tileDay = dayNumber(d);
     const [fill, hatchBase, hatch, line, lineNs, camp, label] = boundaryTileLayers(this.tileDay, this.regimeColors(), { names: this.regimeNames(), labelPx: this.tileLabelPx(), selectedRegimeId: this.focusRegimeId });

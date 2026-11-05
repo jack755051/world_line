@@ -654,12 +654,17 @@ export class AtlasPage {
   });
   protected readonly featureCount = computed(() => this.data.control()?.featureCollection.features.length ?? 0);
   protected readonly firstLoad = computed(() => !this.everLoaded() && this.data.controlStatus() !== 'error');
-  protected readonly isEmpty = computed(
-    () => this.data.controlStatus() === 'ok' && this.featureCount() === 0 && !this.data.showingStale()
-      // tiles 模式不向 API 取主權資料（sovereigntyCount 恆為 0）；疆界在圖磚裡，不算「無資料」
-      && this.data.boundarySource !== 'tiles'
-      && this.data.sovereigntyStatus() !== 'loading' && this.sovereigntyCount() === 0,
-  );
+  protected readonly isEmpty = computed(() => {
+    if (this.data.controlStatus() !== 'ok' || this.featureCount() !== 0 || this.data.showingStale()) return false;
+    if (this.data.boundarySource === 'tiles') {
+      // 圖磚模式不取 /sovereignty；以 overlay 涵蓋範圍判斷。範圍內控制區為空仍可能有國界圖磚，不算無資料。
+      const cov = this.data.tilesCoverage();
+      if (!cov) return false; // 範圍尚未載入，避免閃空態
+      const d = this.state.date();
+      return d < cov[0] || d > cov[1];
+    }
+    return this.data.sovereigntyStatus() !== 'loading' && this.sovereigntyCount() === 0;
+  });
   protected readonly nearest = computed(() => nearestDate(this.data.snapshots().map((s) => s.asOf), this.state.date()));
 
   protected readonly legendRegimes = computed<LegendRegime[]>(() => {
@@ -691,6 +696,8 @@ export class AtlasPage {
 
   /** 國名標籤＋控制區政權標籤（控制區標籤在後，畫在國名上面）。 */
   protected readonly allLabels = computed(() => {
+    // tiles 模式國名由 TILE_LABEL（圖磚 labels）畫；再餵 regime-label 會讓同一個政權（如維琪法國）顯示兩次。
+    if (this.data.boundarySource === 'tiles') return [];
     const regs = this.data.regimes();
     const sov = sovereigntyLabels(this.data.sovereignty(), (id) => regimeSelfName(regs[id], this.lang())?.display ?? null);
     // 主權檢視只標國名；實際控制檢視國名在下、控制區政權標籤在上

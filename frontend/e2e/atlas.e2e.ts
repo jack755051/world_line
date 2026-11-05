@@ -81,21 +81,10 @@ test('日期格式無效 → 回到預設日期並提示', async ({ page }) => {
 test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page, request }) => {
   const [first] = await snapshotDates(request);
   const [y, m, d] = first.split('-').map(Number);
-  // 開發庫（5442）與正式庫（5051）的主權層都已從 1908-10-05 起連續有資料，時間軸範圍內沒有真正「無資料」的日期。
-  // 兩種設定都攔截這次開頁的主權／控制回應、清空圖徵，只驗證空白狀態的畫面與「跳到最近快照」（快照日期仍來自 API，不寫入資料）。
-  const empty = async (route: import('@playwright/test').Route) => {
-    const res = await route.fetch();
-    const body = await res.json();
-    if (body?.data?.featureCollection) body.data.featureCollection.features = [];
-    if (body?.data) body.data.coverageNotes = [];
-    await route.fulfill({ response: res, json: body });
-  };
-  await page.route('**/api/v1/sovereignty?*', empty);
-  await page.route('**/api/v1/control?*', empty);
-  // 空白狀態只在 GeoJSON 備援路徑出現（圖磚模式疆界在圖磚裡，不算無資料）
-  await page.goto('/?date=1938-03-01&boundarySource=geojson');
-  await expect(page.getByTestId('map-empty')).toBeVisible();
-  await page.unrouteAll({ behavior: 'wait' });
+  // 用「早於最早資料」的日期：geojson 與 tiles 都會顯示空態（tiles 依 overlay.range／earliestEvent）。
+  const before = `${Number(first.slice(0, 4)) - 1}-01-01`;
+  await page.goto(`/?date=${before}`);
+  await expect(page.getByTestId('map-empty')).toBeVisible({ timeout: 30_000 });
   await page.getByTestId('map-empty-jump').click();
   await expect(page.getByTestId('topbar-date')).toHaveText(`${y}年${m}月${d}日`);
 });

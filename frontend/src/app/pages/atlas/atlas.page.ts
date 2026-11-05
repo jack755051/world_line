@@ -226,8 +226,10 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
             <!-- 署名列（Tai 2026-11-05）：時間軸正下方獨立一列，矮、低調；不疊在地圖、圖例、出處或面板上 -->
-            <footer data-testid="app-footer" class="flex h-[var(--wl-footer-height)] flex-none items-start justify-center border-t border-wl-outline-variant bg-wl-surface pb-[var(--wl-safe-bottom)] text-[11px] leading-[18px] text-wl-on-surface-variant opacity-80 select-none" [class.hidden]="campaignFull()">
-              <span class="pt-px">{{ tr('app.credit') }}</span>
+            <footer data-testid="app-footer" class="flex h-[var(--wl-footer-height)] flex-none items-start justify-center gap-2 border-t border-wl-outline-variant/70 bg-wl-surface px-3 pb-[var(--wl-safe-bottom)] text-[10px] leading-[17px] tracking-[0.04em] whitespace-nowrap text-wl-on-surface-variant/75 select-none md:justify-between md:px-4 md:text-[10.5px] md:leading-[19px] md:tracking-[0.06em]" [class.hidden]="campaignFull()">
+              <span data-testid="app-footer-copyright">{{ tr('app.copyright') }}</span>
+              <span class="text-wl-outline-variant md:hidden" aria-hidden="true">·</span>
+              <span data-testid="app-footer-credit">{{ tr('app.credit') }}</span>
             </footer>
           </div>
           <!-- 全畫面載入蒙版（Tai 2026-11-02）：蓋住整個視窗（含時間軸與側欄），擋住操作；資料就緒後淡出 -->

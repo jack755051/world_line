@@ -82,7 +82,7 @@
 }
 
 /* Stitch W7-4：toast 置中於時間軸上方（toaster 預設 bottom-4 會蓋住時間軸） */
-[data-testid='toast'] .fixed.bottom-4 { bottom: calc(var(--wl-timeline-height) + 12px); }
+[data-testid='toast'] .fixed.bottom-4 { bottom: calc(var(--wl-timeline-height) + var(--wl-footer-height) + 12px); }
 [data-testid='toast'] .fixed.bottom-4 { max-width: 32rem; }
 
 /* 政權名稱標籤（docs/ww2-stitch.md W1：12px、small caps 風格；墨色 85%＋米白半透明底塊） */

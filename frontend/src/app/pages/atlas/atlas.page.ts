@@ -68,6 +68,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
               <div sanringSkeleton class="size-7"></div><div sanringSkeleton class="h-7 w-28"></div>
               <div sanringSkeleton class="mx-2 h-[4px] flex-1"></div><div sanringSkeleton class="size-7"></div>
             </div>
+            <div class="h-[var(--wl-footer-height)] flex-none border-t border-wl-outline-variant bg-wl-surface" aria-hidden="true"></div>
           </div>
         }
         @case ('down') {
@@ -224,6 +225,10 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                 [ready]="mapReady()" (playingChange)="playing.set($event)"
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
+            <!-- 署名列（Tai 2026-11-05）：時間軸正下方獨立一列，矮、低調；不疊在地圖、圖例、出處或面板上 -->
+            <footer data-testid="app-footer" class="flex h-[var(--wl-footer-height)] flex-none items-start justify-center border-t border-wl-outline-variant bg-wl-surface pb-[var(--wl-safe-bottom)] text-[11px] leading-[18px] text-wl-on-surface-variant opacity-80 select-none" [class.hidden]="campaignFull()">
+              <span class="pt-px">{{ tr('app.credit') }}</span>
+            </footer>
           </div>
           <!-- 全畫面載入蒙版（Tai 2026-11-02）：蓋住整個視窗（含時間軸與側欄），擋住操作；資料就緒後淡出 -->
           <!-- 全畫面遮罩：僅限 firstLoad（第一次載入阻擋操作）或 reducedMotion（維持既有行為）時顯示 -->

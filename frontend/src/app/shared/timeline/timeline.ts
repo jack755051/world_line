@@ -45,7 +45,7 @@ const SPEEDS: readonly TimelineSpeed[] = ['day', 'week', 'month'];
   template: `
     @if (compact()) {
       <!-- §12 手機：56px 兩行（上行 24px：播放 32px、日期 YYYY-MM、⋯；下行 32px：滑桿左右 16px、把手 24px、每 10 年一個年份）；M1：不加上一步／下一步 -->
-      <section data-testid="timeline" data-compact="true" class="relative flex h-full flex-col border-t border-wl-outline-variant bg-wl-surface pb-[var(--wl-safe-bottom)]"
+      <section data-testid="timeline" data-compact="true" class="relative flex h-full flex-col border-t border-wl-outline-variant bg-wl-surface"
         [attr.aria-label]="lang() === 'en' ? 'Timeline' : '時間軸'">
         <div class="flex h-[24px] flex-none items-center gap-2 px-3 pt-1">
           <button type="button" class="wl-icon-btn wl-outlined flex-none" [class.!size-8]="compact()" data-testid="timeline-play" [attr.aria-pressed]="playing()" [attr.data-playing]="playing() ? 'true' : null"

@@ -27,7 +27,7 @@ const sourceCache = new Map<string, Promise<SourceDto>>();
       @if (open()) {
         <!-- Stitch W6：360px 檔案目錄卡，停靠在右側（頂部列下方 16px、時間軸上方），不蓋住頂部列 -->
         <section data-testid="citation-popover" role="dialog" [attr.aria-label]="tr('citation.title')" tabindex="-1" (keydown.escape)="open.set(false)"
-          class="wl-paper fixed right-4 top-[calc(var(--wl-topbar-height)+16px)] z-30 flex w-[360px] max-h-[calc(100vh-var(--wl-topbar-height)-var(--wl-timeline-height)-32px)] flex-col">
+          class="wl-paper fixed right-4 top-[calc(var(--wl-topbar-height)+16px)] z-30 flex w-[360px] max-h-[calc(100vh-var(--wl-topbar-height)-var(--wl-timeline-height)-var(--wl-footer-height)-32px)] flex-col">
           <header class="flex items-center justify-between px-4 pt-3 pb-2">
             <h2 class="wl-title2">{{ tr('citation.title') }}（{{ citations().length }}）</h2>
             <button type="button" class="wl-icon-btn" [attr.aria-label]="tr('card.close')" (click)="open.set(false)"><svg lucideX class="size-4"></svg></button>

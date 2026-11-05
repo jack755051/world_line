@@ -30,7 +30,7 @@ import { expect, test, type Page } from '@playwright/test';
  *
  * ── verify 3（check_sweep 0 失敗）────────────────────────────────────────────────────
  *   CHECK_DATES=1930-06-15,1940-06-15 \
- *   python3 ~/cc-queue/queues/wl-occlusion/check_sweep.py /tmp/wl-qa-sweep ~/01_Projects/world_line_russia
+ *   python3 ~/cc-queue/queues/wl-occlusion/check_sweep.py /tmp/wl-qa-sweep ~/01_Projects/world_line
  *
  * ── 完整掃描（56 日期；workers=1）───────────────────────────────────────────────────
  *   WL_SWEEP=1 WL_E2E_PORT=4201 pnpm exec playwright test e2e/capital-label-sweep.e2e.ts --workers=1

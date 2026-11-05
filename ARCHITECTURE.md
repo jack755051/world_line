@@ -44,11 +44,9 @@
 
 ### 1.3 Repo 與分支
 
-- `~/01_Projects/world_line`：目前在 `develop`。`main` 和 `develop` 都指向 `4842636`，兩者相同。
-- `~/01_Projects/world_line_russia`：worktree，分支 `feature/russia-unclip-loading`。
-  - 比 `develop` 多 72 個 commit，都沒有 push。
-  - `stash@{0}`（wl-occl-fix2-html）是舊的 HTML 碰撞修補，**不採用**。
-  - 有一個未追蹤檔 `frontend/e2e/accept-visual.e2e.ts`。
+- `~/01_Projects/world_line`：主工作樹，分支 `feature/russia-unclip-loading`（開發與 4201／5052 都在此）。
+- 舊 worktree 路徑 `~/01_Projects/world_line_russia` 已不再使用；請改以 `~/01_Projects/world_line` 為準。
+- `frontend/e2e/accept-visual.e2e.ts` 若存在且未追蹤，是本機視覺驗收草稿，不納入預設 e2e。
 - 開發流程：Claude Code 經 mac-mini `~/cc-queue`（`start.sh`、`status.sh`）執行。同一個 repo 一次只跑一個佇列。
 
 ---

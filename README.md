@@ -22,7 +22,7 @@
 ## 結構
 
 ```
-world_line_russia/
+world_line/
 ├── backend/                 ASP.NET API（Dockerfile → worldline-api 映像）
 ├── frontend/                Angular 前端（deploy/Dockerfile.web → worldline-web 映像）
 ├── tools/tiles/out/         PMTiles 圖磚與 overlay.json（不進 git，scp/rsync 到 VPS）
@@ -64,10 +64,10 @@ cp env.prod.example .env.prod         # 第一次：填 POSTGRES_USER、POSTGRES
 docker login registry.digitalocean.com   # 推 api 用（DO 讀寫 token）
 docker login                             # 推 web 用（Docker Hub jackdai850817）
 
-scripts/prod-images.sh build-push        # api、web 都建＋推（沿用 .env.prod 標籤）
-scripts/prod-images.sh build-push api    # 只建＋推 api，並把 API_IMAGE_TAG 改成年月日時分
-scripts/prod-images.sh build-push web    # 只建＋推 web，並把 WEB_IMAGE_TAG 改成年月日時分
-scripts/prod-images.sh build             # 只建置不推（驗證用）
+./scripts/prod-images.sh build-push        # api、web 都建＋推（沿用 .env.prod 標籤）
+./scripts/prod-images.sh build-push api    # 只建＋推 api，並把 API_IMAGE_TAG 改成年月日時分
+./scripts/prod-images.sh build-push web    # 只建＋推 web，並把 WEB_IMAGE_TAG 改成年月日時分
+./scripts/prod-images.sh build             # 只建置不推（驗證用）
 
 ssh root@<VPS_IP> 'mkdir -p ~/worldline/tiles ~/worldline/restore'
 scp docker-compose.prod.yml .env.prod root@<VPS_IP>:~/worldline/

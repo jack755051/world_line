@@ -37,13 +37,7 @@ const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
           [attr.aria-labelledby]="s.titleId" [attr.aria-describedby]="description() ? s.descId : null"
           [attr.data-side]="side()" [attr.data-state]="state()" [class]="panelClass()"
           [attr.data-size]="size()" [style.width.px]="side() === 'right' ? size() : null" [style.height.px]="side() === 'bottom' ? (dragSize() ?? size()) : null">
-          @if (side() === 'right' && resizable()) {
-            <!-- 拖拉調整寬度（§10-2：≥1440px，360–480px，記在 localStorage）；方向鍵 ±8px -->
-            <div data-testid="regime-sheet-resize" role="separator" aria-orientation="vertical" tabindex="0"
-              [attr.aria-label]="resizeLabel()" [attr.aria-valuenow]="size()" [attr.aria-valuemin]="minSize()" [attr.aria-valuemax]="maxSize()"
-              class="absolute inset-y-0 -left-1 z-10 w-2 cursor-col-resize touch-none outline-none hover:bg-wl-outline-variant/60 focus-visible:bg-wl-outline-variant"
-              (pointerdown)="startResize($event)" (keydown)="onResizeKey($event)"></div>
-          }
+          <!-- §10 v2：右側面板寬度固定三檔，不再拖拉（Tai 2026-11-04） -->
           @if (side() === 'bottom') {
             <!-- bottom sheet 三段高度（96px／50vh／90vh）：點把手或上下拖切換 -->
             <button type="button" data-testid="regime-sheet-snap" [attr.data-snap]="snap()" [attr.aria-label]="snapLabel()"
@@ -74,14 +68,8 @@ export class RegimeSheet {
   readonly side = input<'right' | 'bottom'>('right');
   /** 右側時是寬度、底部時是高度（px）。 */
   readonly size = input(384);
-  /** 右側面板可拖拉寬度（§10-2，≥1440px）。 */
-  readonly resizable = input(false);
-  readonly minSize = input(360);
-  readonly maxSize = input(480);
   /** 底部 bottom sheet 目前段位。 */
   readonly snap = input<'peek' | 'half' | 'full'>('half');
-  /** 拖拉中與放開時送出新寬度（px，已夾在 min–max）。 */
-  readonly resized = output<number>();
   readonly snapChange = output<'peek' | 'half' | 'full'>();
   readonly title = input('');
   readonly description = input('');
@@ -146,30 +134,7 @@ export class RegimeSheet {
     this.hidden.emit();
   }
 
-  protected readonly resizeLabel = computed(() => (this.lang() === 'en' ? 'Resize panel' : '調整面板寬度'));
   protected readonly snapLabel = computed(() => (this.lang() === 'en' ? 'Change panel height' : '切換面板高度'));
-  private clamp(px: number): number {
-    return Math.round(Math.min(this.maxSize(), Math.max(this.minSize(), px)));
-  }
-  protected startResize(e: PointerEvent): void {
-    const el = this.panel()?.nativeElement;
-    if (!el) return;
-    e.preventDefault();
-    const right = el.getBoundingClientRect().right;
-    const move = (ev: PointerEvent) => this.resized.emit(this.clamp(right - ev.clientX));
-    const up = () => {
-      window.removeEventListener('pointermove', move);
-      window.removeEventListener('pointerup', up);
-    };
-    window.addEventListener('pointermove', move);
-    window.addEventListener('pointerup', up);
-  }
-  protected onResizeKey(e: KeyboardEvent): void {
-    const d = e.key === 'ArrowLeft' ? 8 : e.key === 'ArrowRight' ? -8 : 0;
-    if (!d) return;
-    e.preventDefault();
-    this.resized.emit(this.clamp(this.size() + d));
-  }
   private snapDragged = false;
   protected cycleSnap(): void {
     if (this.snapDragged) return void (this.snapDragged = false);

@@ -889,9 +889,9 @@ export class AtlasMap {
       const map = new ml.Map({
         container: this.canvas().nativeElement,
         style: buildBaseStyle(),
-        // M0／M1 以法國 1940 為主（計畫 C8）
-        center: [2.6, 46.6],
-        zoom: 4.7,
+        // 初始鏡頭：1941 年的波蘭（Tai 2026-11-05）
+        center: [19.4, 52.1],
+        zoom: 4.8,
         minZoom: 1.5,
         // 不畫世界副本：同一政權的候選點在副本上會再出現一次（一政權一名，Tai 2026-11-04）
         renderWorldCopies: false,

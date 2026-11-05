@@ -10,8 +10,8 @@ export type Axis = 'control' | 'sovereignty';
  */
 @Injectable({ providedIn: 'root' })
 export class AtlasState {
-  /** C8／M0 的預設日期：1940-07-15（PRD §8.2 loading 文案、計畫 C8）。 */
-  static readonly defaultDate = '1940-07-15';
+  /** 預設日期：1941-06-01（波蘭，德蘇戰爭前夕；Tai 2026-11-05）。URL ?date= 優先。 */
+  static readonly defaultDate = '1941-06-01';
 
   readonly date = signal(AtlasState.defaultDate);
   readonly axis = signal<Axis>('control');
@@ -22,7 +22,7 @@ export class AtlasState {
     effect(() => writeLegendOpen(this.legendOpen()));
   }
   /** 目前地圖縮放（由 AtlasMap zoomend 更新）；主權 API 依此選擇簡化容差。 */
-  readonly mapZoom = signal(4.7);
+  readonly mapZoom = signal(4.8);
 
   setDate(value: string): boolean {
     if (!isIsoDate(value)) return false;

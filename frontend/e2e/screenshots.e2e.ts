@@ -53,8 +53,8 @@ test('04 1940-08-15 亞爾薩斯－摩澤爾改為直接統治（EN）', async (
   await page.screenshot({ path: out('04-1940-08-15-en-legend-closed') });
 });
 
-test('05 此日期尚無資料 1938-03-01', async ({ page }) => {
-  await page.goto('/?date=1938-03-01');
+test('05 此日期尚無資料 1900-01-01', async ({ page }) => {
+  await page.goto('/?date=1900-01-01');
   await expect(page.getByTestId('map-empty')).toBeVisible();
   await page.waitForTimeout(800);
   await page.screenshot({ path: out('05-empty-1938-03-01') });

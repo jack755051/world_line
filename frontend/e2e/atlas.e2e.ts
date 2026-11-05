@@ -17,12 +17,21 @@ async function screenPointOf(page: Page, lngLat: [number, number]): Promise<{ x:
   return { x: (box?.x ?? 0) + p.x, y: (box?.y ?? 0) + p.y };
 }
 
+/** 地圖預設中心在波蘭（1941）；點巴黎等西歐座標前先跳過去，避免投影點在 canvas 外。 */
+async function jumpTo(page: Page, center: [number, number], zoom = 5): Promise<void> {
+  await page.evaluate(([c, z]) => {
+    (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap.jumpTo({ center: c, zoom: z });
+  }, [center, zoom] as [[number, number], number]);
+  await page.waitForTimeout(500);
+}
+
 test('M0：開頁 → 看到多邊形 → 點開來源', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
   await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
   await waitForPolygons(page);
   await expect(page.getByTestId('interp-chip')).toHaveAttribute('data-state', 'attested');
 
+  await jumpTo(page, [2.35, 48.86], 5);
   const pt = await screenPointOf(page, [2.35, 48.86]);
   await page.mouse.click(pt.x, pt.y);
   // 控制區資訊在右側政權面板裡（M2-b；原本的浮動 feature-card 已移除）
@@ -74,19 +83,24 @@ test('日期格式無效 → 回到預設日期並提示', async ({ page }) => {
   // toast 數秒後自動消失；--workers=2 時開頁較慢，先開始等 toast 再導頁，避免 toast 已消失才檢查
   const toastSeen = expect(page.getByTestId('toast')).toContainText('日期格式無效', { timeout: 30_000 });
   await page.goto('/?date=1940-13-99');
-  await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
+  await expect(page.getByTestId('topbar-date')).toHaveText('1941年6月1日');
   await toastSeen;
 });
 
 test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page, request }) => {
-  const [first] = await snapshotDates(request);
-  const [y, m, d] = first.split('-').map(Number);
-  // 用「早於最早資料」的日期：geojson 與 tiles 都會顯示空態（tiles 依 overlay.range／earliestEvent）。
-  const before = `${Number(first.slice(0, 4)) - 1}-01-01`;
+  // tiles／geojson 都以「早於 earliestEvent／overlay.range」為準；控制快照可能從 1940 才有，不能拿來算 before。
+  const ext = (await (await request.get('/api/v1/timeline/extent')).json()).data as { earliestEvent: string };
+  const earliest = ext.earliestEvent;
+  const y = Number(earliest.slice(0, 4));
+  const before = `${y - 1}-01-01`;
+  const snaps = await snapshotDates(request);
+  const nearest = snaps.reduce((a, b) =>
+    Math.abs(Date.parse(a) - Date.parse(before)) <= Math.abs(Date.parse(b) - Date.parse(before)) ? a : b);
+  const [ny, nm, nd] = nearest.split('-').map(Number);
   await page.goto(`/?date=${before}`);
   await expect(page.getByTestId('map-empty')).toBeVisible({ timeout: 30_000 });
   await page.getByTestId('map-empty-jump').click();
-  await expect(page.getByTestId('topbar-date')).toHaveText(`${y}年${m}月${d}日`);
+  await expect(page.getByTestId('topbar-date')).toHaveText(`${ny}年${nm}月${nd}日`);
 });
 
 test('控制資料缺：點點狀區塊出現資料缺卡片（原因來自 API）；控制區卡片的「補充」列', async ({ page, request }) => {
@@ -108,6 +122,7 @@ test('控制資料缺：點點狀區塊出現資料缺卡片（原因來自 API�
   test.skip(!f, '此日期沒有補充事件');
   await page.goto('/?date=1940-07-15');
   await waitForPolygons(page);
+  await jumpTo(page, [2.35, 48.86], 5);
   const paris = await screenPointOf(page, [2.35, 48.86]);
   await page.mouse.click(paris.x, paris.y);
   await expect(page.getByTestId('regime-sheet')).toBeVisible();
@@ -239,12 +254,14 @@ test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯�
   const ids = new Set(features.map((f) => f.properties.controllerRegimeId));
   const sov = (await (await request.get('/api/v1/sovereignty?date=1940-07-15')).json()).data.featureCollection.features as { properties: { regimeId: string } }[];
   for (const f of sov) ids.add(f.properties.regimeId);
-  // 國名畫在 MapLibre canvas（regime-label 圖層），不再是 HTML 元素：改問地圖已畫出的標籤
+  // 國名：geojson 用 regime-label；tiles 用 tiles-label（regime_id）。兩種都查。
   const labelIds = async () => page.evaluate(() => {
-    const m = (window as unknown as { __wlMap: { queryRenderedFeatures: (o: object) => { properties: { regimeId?: string } }[] } }).__wlMap;
-    return m.queryRenderedFeatures({ layers: ['regime-label'] }).map((f) => f.properties.regimeId ?? '');
+    const m = (window as unknown as { __wlMap: { queryRenderedFeatures: (o: object) => { properties: Record<string, unknown> }[]; getLayer: (id: string) => unknown } }).__wlMap;
+    const layers = ['regime-label', 'tiles-label'].filter((id) => m.getLayer(id));
+    return m.queryRenderedFeatures({ layers }).map((f) =>
+      String(f.properties['regimeId'] ?? f.properties['regime_id'] ?? ''));
   });
   await expect.poll(async () => (await labelIds()).length).toBeGreaterThan(0);
-  for (const id of await labelIds()) expect(ids.has(id)).toBe(true);
+  for (const id of await labelIds()) if (id) expect(ids.has(id)).toBe(true);
   await expect(page.getByTestId('legend-control-types-note')).toContainText('填色＝陣營');
 });

@@ -9,6 +9,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/atlas/atlas.page').then((m) => m.AtlasPage),
   },
   {
+    path: 'version',
+    title: '版本｜Sanring World Line',
+    loadComponent: () => import('./pages/version/version.page').then((m) => m.VersionPage),
+  },
+  {
     path: '**',
     title: '找不到頁面｜Sanring World Line',
     loadComponent: () => import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage),

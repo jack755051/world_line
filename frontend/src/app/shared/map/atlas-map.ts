@@ -550,21 +550,6 @@ export class AtlasMap {
   readonly sovereignty = input<FeatureCollection<Geometry, SovereigntyProps> | null>(null);
   /** 疆界來源（§9 步驟 4）：tiles 時國界、國名改由向量圖磚畫，換日期只改 filter。 */
   readonly boundarySource = input<BoundarySource>('geojson');
-  /** 開發者署名（Tai 2026-11-05），併入地圖出處列，不另佔版面；依語言切換。 */
-  readonly creditText = input<string>('');
-  private AttribCtor: typeof import('maplibre-gl').AttributionControl | null = null;
-  private attribCtl: import('maplibre-gl').AttributionControl | null = null;
-  private attribText: string | null = null;
-  private readonly creditEffect = effect(() => { this.creditText(); this.syncCredit(); });
-  /** §12：手機（<768px）出處收成 ⓘ；署名放在 customAttribution，換語言時重建控制項。 */
-  private syncCredit(): void {
-    const map = this.map, Ctor = this.AttribCtor, text = this.creditText();
-    if (!map || !Ctor || this.attribText === text) return;
-    if (this.attribCtl) map.removeControl(this.attribCtl);
-    this.attribCtl = new Ctor({ compact: typeof window !== 'undefined' && window.innerWidth < 768, customAttribution: text || undefined });
-    map.addControl(this.attribCtl, 'bottom-right');
-    this.attribText = text;
-  }
   /** tiles 模式主權圖層的日期相關樣式（佔領區斜線底色／斜線色、陣營外框色），依 regime_id。 */
   readonly tileSovPaint = input<{ base: Record<string, string>; hatch: Record<string, string>; camp: Record<string, string> }>({ base: {}, hatch: {}, camp: {} });
   /** 目前日期（tiles 模式的 filter 用）。 */
@@ -905,7 +890,6 @@ export class AtlasMap {
       const ml = await import('maplibre-gl');
       this.PopupCtor = ml.Popup;
       this.ScaleCtor = ml.ScaleControl;
-      this.AttribCtor = ml.AttributionControl;
       ml.setWorkerUrl(MAPLIBRE_WORKER_URL);
       const map = new ml.Map({
         container: this.canvas().nativeElement,
@@ -918,7 +902,7 @@ export class AtlasMap {
         renderWorldCopies: false,
         maxZoom: 9,
         // §12：手機（<768px）出處收成 ⓘ（點開才展開），避免佔掉地圖底部
-        attributionControl: false,
+        attributionControl: { compact: typeof window !== 'undefined' && window.innerWidth < 768 },
         // 符號碰撞淡入淡出：預設 300ms 會讓地圖晚約一個淡入週期才 idle（熱跳 ready 慢 ~255ms 的主因，2026-11-03 量測）
         fadeDuration: SYMBOL_FADE_MS,
         dragRotate: false,
@@ -930,7 +914,6 @@ export class AtlasMap {
       // 面板／圖例的 padding 由 uiPadding 決定（§10）
       map.setPadding({ left: this.uiPadding().left, top: 0, right: this.uiPadding().right, bottom: this.uiPadding().bottom ?? 0 });
       this.map = map;
-      this.syncCredit();
       if (isDevMode()) (window as unknown as { __wlMap?: MlMap }).__wlMap = map;
 
       map.on('styleimagemissing', (e) => this.addHatch(e.id));

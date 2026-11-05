@@ -22,4 +22,10 @@ describe('routes', () => {
     await harness.navigateByUrl('/no-such-page');
     expect(harness.routeNativeElement?.querySelector('[data-testid="not-found-page"]')).not.toBeNull();
   });
+
+  it('/version 進版本頁', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/version');
+    expect(harness.routeNativeElement?.querySelector('[data-testid="version-page"]')).not.toBeNull();
+  });
 });

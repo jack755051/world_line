@@ -2,7 +2,11 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { LruCache, addDaysIso, intervalKey, neighborDates } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
+import type { CapitalsDto, LeadersDto } from './api/world-line-api';
+import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
+import { readBoundarySource, type BoundarySource } from './boundary-source';
+import { OverlayStore, overlayCapitals, overlayConflicts, overlayControl, overlayCovers, overlayKey, overlayLeaders, overlaySovStyle, type SovStyleRow } from './overlay';
 
 export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 
@@ -16,6 +20,58 @@ export type LoadStatus = 'idle' | 'loading' | 'ok' | 'error';
 @Injectable({ providedIn: 'root' })
 export class AtlasData {
   private readonly api = inject(WorldLineApi);
+  private readonly state = inject(AtlasState);
+  /** tiles 模式的 overlay（§9 步驟 5）：控制區、衝突、首都、領導人換日期不向 API 要。 */
+  private readonly overlay = inject(OverlayStore);
+  /** overlay 同一區間重用同一個資料物件（地圖不 setData、標籤不重算）。 */
+  private readonly ovMemo = new Map<string, unknown>();
+  private fromOverlay<T>(section: 'control' | 'conflicts' | 'capitals' | 'leaders' | 'sovstyle', date: string, make: (date: string) => T | null): T | null {
+    const o = this.overlay.data();
+    const k = overlayKey(o, section, date);
+    if (!k) return null;
+    const hit = this.ovMemo.get(`${section}|${k}`) as T | undefined;
+    if (hit) return hit;
+    const v = make(date);
+    if (v) this.ovMemo.set(`${section}|${k}`, v);
+    return v;
+  }
+  /**
+   * tiles 模式主權圖層的日期相關樣式（佔領區著色、陣營外框；§9 步驟 5）：從 overlay 依主權變動區間查，同區間同一個陣列。
+   * overlay 沒載到或範圍外時是 null（圖磚只畫政權色與非主權斜線）。
+   */
+  readonly tileSovStyle = computed<SovStyleRow[] | null>(() => {
+    if (this.boundarySource !== 'tiles') return null;
+    const o = this.overlay.data();
+    return this.fromOverlay('sovstyle', this.state.date(), (d) => overlaySovStyle(o, d));
+  });
+  /** tiles 模式：等 overlay 載好（只載一次；失敗回 null，呼叫端退回 API）。 */
+  private async overlayReady(): Promise<boolean> {
+    if (this.boundarySource !== 'tiles') return false;
+    if (this.overlay.status() === 'ok') return true;
+    const o = await this.overlay.load();
+    this.mergeOverlayRegimes();
+    return o !== null;
+  }
+  /** overlay 帶的政權資料一次併進 regimes（tiles 模式換日期出現新政權也不必取 /regimes；填色、國名一開始就齊）。 */
+  private overlayRegimesMerged = false;
+  private mergeOverlayRegimes(): void {
+    const rs = this.overlay.data()?.regimes;
+    if (this.overlayRegimesMerged || !rs) return;
+    this.overlayRegimesMerged = true;
+    this.regimes.update((m) => ({ ...(rs as Record<string, RegimeDto>), ...m }));
+  }
+  /** 這個日期是否由 overlay 提供（tiles 模式、已載入、在範圍內）。 */
+  private overlayHas(date: string): boolean {
+    return this.boundarySource === 'tiles' && overlayCovers(this.overlay.data(), date);
+  }
+
+  /** 預先載入要略過的日期：overlay 已有，或 tiles 模式已載 overlay 而日期在 overlay 範圍外（時間軸到不了，換日期 0 請求）。 */
+  private prefetchSkip(date: string): boolean {
+    return this.overlayHas(date) || (this.boundarySource === 'tiles' && this.overlay.data() !== null);
+  }
+
+  /** 疆界來源（§9 步驟 4 功能開關）：tiles 時不向 API 取主權資料（換日期由圖磚 filter 處理）。 */
+  readonly boundarySource: BoundarySource = readBoundarySource();
 
   readonly health = signal<'checking' | 'up' | 'down'>('checking');
   readonly healthStatus = signal<string | null>(null);
@@ -40,6 +96,18 @@ export class AtlasData {
   readonly regimeEventsStatus = signal<Record<string, LoadStatus>>({});
   private cfSeq = 0;
 
+  /** 首都資料：失敗時保留上一次成功的結果（點不見會讓使用者困惑）。 */
+  readonly capitals = signal<CapitalsDto | null>(null);
+  readonly capitalsStatus = signal<LoadStatus>('idle');
+  private readonly capCache = new LruCache<CapitalsDto>(60);
+  private capSeq = 0;
+
+  /** 領導人資料：失敗時保留上一次成功的結果。 */
+  readonly leaders = signal<LeadersDto | null>(null);
+  readonly leadersStatus = signal<LoadStatus>('idle');
+  private readonly leaCache = new LruCache<LeadersDto>(60);
+  private leaSeq = 0;
+
   /**
    * 主權／衝突圖層的變動點（GET /timeline/change-points）。兩個相鄰變動點之間每天的結果相同，
    * 所以快取依「區間」而不是日期：播放一週一格、在同一區間裡跳日期都不必重新請求，也不重建地圖圖層。
@@ -60,14 +128,25 @@ export class AtlasData {
   private controlKey(date: string): string {
     return intervalKey(this.controlPoints(), date);
   }
+  /**
+   * 主權資料快取 key：變動區間 + 縮放容差桶（c/m/f）。
+   * zoom ≤ 4.5 → coarse 0.010°；≤ 6.5 → medium 0.004°；else fine 0.002°（原始）。
+   * 同一區間在不同縮放等級下會得到不同幾何精細度，需分開快取。
+   */
+  private sovIntervalKey(date: string): string {
+    const interval = intervalKey(this.changePoints(), date);
+    const zoom = this.state.mapZoom();
+    const bucket = zoom <= 4.5 ? 'c' : zoom <= 6.5 ? 'm' : 'f';
+    return `${interval}:${bucket}`;
+  }
 
   /** 每個圖層只保留最新一筆進行中的請求：新日期開始載入時中止舊的（快速連續跳日期不讓舊資料蓋新資料）。 */
-  private readonly inflight: Record<'control' | 'sov' | 'cf', AbortController | null> = { control: null, sov: null, cf: null };
-  private restart(k: 'control' | 'sov' | 'cf'): void {
+  private readonly inflight: Record<'control' | 'sov' | 'cf' | 'cap' | 'lea', AbortController | null> = { control: null, sov: null, cf: null, cap: null, lea: null };
+  private restart(k: 'control' | 'sov' | 'cf' | 'cap' | 'lea'): void {
     this.inflight[k]?.abort();
     this.inflight[k] = null;
   }
-  private begin(k: 'control' | 'sov' | 'cf'): AbortSignal {
+  private begin(k: 'control' | 'sov' | 'cf' | 'cap' | 'lea'): AbortSignal {
     const c = new AbortController();
     this.inflight[k] = c;
     return c.signal;
@@ -79,6 +158,17 @@ export class AtlasData {
   readonly snapshotsStatus = signal<LoadStatus>('idle');
   /** 最早事件日（GET /timeline/extent）；時間軸起點依此往前延伸（WW1 試驗，1908 起）。失敗時維持 null（用預設範圍）。 */
   readonly earliestEvent = signal<string | null>(null);
+  /**
+   * tiles 模式資料涵蓋起訖（overlay.range；尚未載入時退回 earliestEvent～null）。
+   * 用來判斷「此日期尚無資料」：範圍外且控制區為空 → 顯示空態（與 geojson 模式對齊）。
+   */
+  readonly tilesCoverage = computed<[string, string] | null>(() => {
+    if (this.boundarySource !== 'tiles') return null;
+    const o = this.overlay.data();
+    if (this.overlay.status() === 'ok' && o?.range) return o.range;
+    const start = this.earliestEvent() ?? this.changePoints()?.[0] ?? null;
+    return start ? [start, '9999-12-31'] : null;
+  });
 
   readonly regimes = signal<Record<string, RegimeDto>>({});
   readonly regimesStatus = signal<LoadStatus>('idle');
@@ -110,6 +200,19 @@ export class AtlasData {
     const my = ++this.seq;
     this.requestedDate.set(date);
     this.restart('control');
+    if (this.boundarySource === 'tiles') {
+      if (this.overlay.status() !== 'ok') this.controlStatus.set('loading');
+      if (await this.overlayReady()) {
+        if (my !== this.seq) return;
+        const o = this.overlay.data();
+        const dto = this.fromOverlay('control', date, (d) => overlayControl(o, d));
+        if (dto) {
+          this.apply(date, dto);
+          return;
+        }
+      }
+      if (my !== this.seq) return;
+    }
     const key = this.controlKey(date);
     const hit = this.cache.get(key);
     if (hit) {
@@ -165,7 +268,7 @@ export class AtlasData {
     if (!pts) return;
     const { prev, next } = neighborDates(pts, date);
     for (const d of [next, prev]) {
-      if (!d) continue;
+      if (!d || this.prefetchSkip(d)) continue;
       const key = this.controlKey(d);
       if (this.cache.has(key)) continue;
       this.fetchControl(key, d).catch(() => undefined);
@@ -173,13 +276,13 @@ export class AtlasData {
   }
 
   /** 取某區間的資料：快取 → 進行中的同區間請求 → 新請求（前景請求可被中止；預先載入不中止）。 */
-  private fetchInterval<T>(kind: 'sov' | 'cf', key: string, date: string, cache: LruCache<T>, signal?: AbortSignal): Promise<T> {
+  private fetchInterval<T>(kind: 'cf', key: string, date: string, cache: LruCache<T>, signal?: AbortSignal): Promise<T> {
     const hit = cache.get(key);
     if (hit) return Promise.resolve(hit);
     const pk = `${kind}:${key}`;
     const inflight = this.pending.get(pk) as Promise<T> | undefined;
     if (inflight) return inflight;
-    const p = (kind === 'sov' ? this.api.sovereignty(date, signal) : this.api.conflicts(date, signal)) as Promise<T>;
+    const p = this.api.conflicts(date, signal) as Promise<T>;
     this.pending.set(pk, p);
     // 前景請求被中止時立刻移除，讓緊接著的新請求不會撿到已中止的那個
     signal?.addEventListener('abort', () => {
@@ -195,10 +298,12 @@ export class AtlasData {
   }
 
   async loadSovereignty(date: string): Promise<void> {
+    if (this.boundarySource === 'tiles') return;
+    performance.mark('wl:sov:load-start');
     const my = ++this.sovSeq;
-    const key = this.key(date);
+    const key = this.sovIntervalKey(date);
     this.restart('sov');
-    // 同一變動區間：資料不變，不換物件（地圖不 setData、標籤不重算），只記下目前日期
+    // 同一變動區間（含縮放桶）：資料不變，不換物件（地圖不 setData、標籤不重算），只記下目前日期
     if (key === this.sovKey && this.sovereignty()) {
       this.sovereigntyShownFor.set(date);
       this.sovereigntyStatus.set('ok');
@@ -211,7 +316,7 @@ export class AtlasData {
     }
     this.sovereigntyStatus.set('loading');
     try {
-      const dto = await this.fetchInterval('sov', key, date, this.sovCache, this.begin('sov'));
+      const dto = await this.fetchSov(key, date, this.state.mapZoom(), this.begin('sov'));
       if (my === this.sovSeq) this.applySovereignty(dto, key, date);
     } catch (e) {
       if (isAbort(e)) return;
@@ -219,10 +324,102 @@ export class AtlasData {
     }
   }
 
+  /** 主權資料請求（含 zoom 傳給後端以選擇容差）：快取 → 進行中的同 key 請求 → 新請求。 */
+  private fetchSov(key: string, date: string, zoom: number, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    const hit = this.sovCache.get(key);
+    if (hit) return Promise.resolve(hit);
+    const pk = `sov:${key}`;
+    const inflight = this.pending.get(pk) as Promise<SovereigntyMapDto> | undefined;
+    if (inflight) return inflight;
+    performance.mark('wl:sov:fetch-start');
+    const p = this.api.sovereignty(date, zoom, signal);
+    this.pending.set(pk, p);
+    signal?.addEventListener('abort', () => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    p.then(
+      (dto) => {
+        performance.mark('wl:sov:fetch-end');
+        this.sovCache.set(key, dto);
+      },
+      () => undefined,
+    ).finally(() => {
+      if (this.pending.get(pk) === p) this.pending.delete(pk);
+    });
+    return p;
+  }
+
+  /**
+   * tiles 模式的被選政權（§9 步驟 5）：疆界在圖磚裡，點選政權時才向 API 取該政權（含它佔領的政權）的完整幾何，
+   * 放進 sovereignty（只有這幾筆）：面板、蒙版、可見國名重算、高亮沿用 geojson 模式的同一套程式。換日期不取。
+   */
+  private readonly selCache = new LruCache<SovereigntyMapDto>(40);
+  private selSeq = 0;
+  /** 目前被選政權幾何的來源（政權、日期、縮放桶）；放大到更細的桶時重取，讓蒙版邊緣貼齊圖磚。 */
+  private selLoaded: { regimeId: string; date: string; bucket: string } | null = null;
+  private static zoomBucket(zoom: number): 'c' | 'm' | 'f' {
+    return zoom <= 4.5 ? 'c' : zoom <= 6.5 ? 'm' : 'f';
+  }
+  /** tiles 模式：縮放跨到更細的容差桶時重取被選政權幾何（同政權、同日期；只往細不往粗）。 */
+  refineRegimeSovereignty(zoom: number): void {
+    const cur = this.selLoaded;
+    if (this.boundarySource !== 'tiles' || !cur) return;
+    const b = AtlasData.zoomBucket(zoom);
+    if ('cmf'.indexOf(b) <= 'cmf'.indexOf(cur.bucket)) return;
+    void this.loadRegimeSovereignty(cur.regimeId, cur.date);
+  }
+  async loadRegimeSovereignty(regimeId: string, date: string): Promise<SovereigntyMapDto | null> {
+    if (this.boundarySource !== 'tiles') return this.sovereignty();
+    const my = ++this.selSeq;
+    const zoom = this.state.mapZoom();
+    const bucket = AtlasData.zoomBucket(zoom);
+    const key = `${regimeId}|${date}|${bucket}`;
+    let dto = this.selCache.get(key) ?? null;
+    if (!dto) {
+      this.sovereigntyStatus.set('loading');
+      try {
+        dto = await this.api.regimeGeometry(regimeId, date, zoom);
+        this.selCache.set(key, dto);
+      } catch {
+        if (my === this.selSeq) this.sovereigntyStatus.set('error');
+        return null;
+      }
+    }
+    if (my !== this.selSeq) return null;
+    this.selLoaded = { regimeId, date, bucket };
+    this.sovereignty.set(dto);
+    this.sovereigntyShownFor.set(date);
+    this.sovereigntyStatus.set('ok');
+    void this.loadRegimes(dto.featureCollection.features.flatMap((f) => [f.properties.regimeId, f.properties.occupation?.occupierRegimeId ?? '']).filter(Boolean));
+    return dto;
+  }
+
+  /** tiles 模式取消選取：清掉被選政權的幾何。 */
+  clearRegimeSovereignty(): void {
+    if (this.boundarySource !== 'tiles') return;
+    ++this.selSeq;
+    this.selLoaded = null;
+    this.sovereignty.set(null);
+    this.sovereigntyStatus.set('idle');
+  }
+
   async loadConflicts(date: string): Promise<void> {
     const my = ++this.cfSeq;
-    const key = this.key(date);
     this.restart('cf');
+    // tiles 模式（§9 步驟 5-6）：衝突圖示從 overlay（同一區間同一個物件），範圍外或 overlay 失敗才取 API
+    if (this.boundarySource === 'tiles' && (await this.overlayReady())) {
+      if (my !== this.cfSeq) return;
+      const o = this.overlay.data();
+      const dto = this.fromOverlay('conflicts', date, (d) => overlayConflicts(o, d));
+      if (dto) {
+        this.cfKey = null;
+        this.conflicts.set(dto);
+        this.conflictsStatus.set('ok');
+        return;
+      }
+    }
+    if (my !== this.cfSeq) return;
+    const key = this.key(date);
     if (key === this.cfKey && this.conflicts()) {
       this.conflictsStatus.set('ok');
       return;
@@ -248,26 +445,106 @@ export class AtlasData {
     this.conflictsStatus.set('ok');
   }
 
-  /** 預先載入接下來的日期（播放一週／一個月一格；也涵蓋接下來兩個變動點），依序送、不中止，失敗就算了。 */
+  async loadCapitals(date: string): Promise<void> {
+    const my = ++this.capSeq;
+    this.restart('cap');
+    // tiles 模式：overlay（逐日掃過併成區間），換日期不取 API；範圍外或 overlay 失敗才取
+    if (this.boundarySource === 'tiles' && (await this.overlayReady())) {
+      if (my !== this.capSeq) return;
+      const o = this.overlay.data();
+      const dto = this.fromOverlay('capitals', date, (d) => overlayCapitals(o, d));
+      if (dto) {
+        this.capitals.set(dto);
+        this.capitalsStatus.set('ok');
+        return;
+      }
+    }
+    if (my !== this.capSeq) return;
+    const hit = this.capCache.get(date);
+    if (hit) {
+      this.capitals.set(hit);
+      this.capitalsStatus.set('ok');
+      return;
+    }
+    this.capitalsStatus.set('loading');
+    try {
+      const dto = await this.api.capitals(date, this.begin('cap'));
+      this.capCache.set(date, dto);
+      if (my === this.capSeq) {
+        this.capitals.set(dto);
+        this.capitalsStatus.set('ok');
+      }
+    } catch (e) {
+      if (isAbort(e)) return;
+      if (my === this.capSeq) this.capitalsStatus.set('error');
+    }
+  }
+
+  async loadLeaders(date: string): Promise<void> {
+    const my = ++this.leaSeq;
+    this.restart('lea');
+    // tiles 模式：overlay（逐日掃過併成區間），換日期不取 API；範圍外或 overlay 失敗才取
+    if (this.boundarySource === 'tiles' && (await this.overlayReady())) {
+      if (my !== this.leaSeq) return;
+      const o = this.overlay.data();
+      const dto = this.fromOverlay('leaders', date, (d) => overlayLeaders(o, d));
+      if (dto) {
+        this.leaders.set(dto);
+        this.leadersStatus.set('ok');
+        return;
+      }
+    }
+    if (my !== this.leaSeq) return;
+    const hit = this.leaCache.get(date);
+    if (hit) {
+      this.leaders.set(hit);
+      this.leadersStatus.set('ok');
+      return;
+    }
+    this.leadersStatus.set('loading');
+    try {
+      const dto = await this.api.leaders(date, this.begin('lea'));
+      this.leaCache.set(date, dto);
+      if (my === this.leaSeq) {
+        this.leaders.set(dto);
+        this.leadersStatus.set('ok');
+      }
+    } catch (e) {
+      if (isAbort(e)) return;
+      if (my === this.leaSeq) this.leadersStatus.set('error');
+    }
+  }
+
+  /**
+   * 預先載入相鄰日期（播放往前 4 步；手動跳年前後各 2 步）。
+   * backward=true 時同時預取前面的相鄰變動點（往回跳的下一跳必命中快取）。
+   */
   private prefetchRun = 0;
-  async prefetch(date: string, maxIntervals = 4, offsets: number[] = [7, 14, 21, 31, 62]): Promise<void> {
+  async prefetch(date: string, maxIntervals = 4, backward = false): Promise<void> {
     const run = ++this.prefetchRun;
+    const zoom = this.state.mapZoom();
+    const offsets = backward ? [7, 14, 21, 31, 62, 90, -7, -14, -21, -31, -62, -90] : [7, 14, 21, 31, 62];
     const dates = offsets.map((n) => addDaysIso(date, n));
     const pts = this.changePoints();
-    if (pts) dates.push(...pts.filter((p) => p > date).slice(0, 2));
-    const seen = new Set<string>([this.key(date)]);
+    if (pts) {
+      dates.push(...pts.filter((p) => p > date).slice(0, 2));
+      if (backward) dates.push(...pts.filter((p) => p < date).slice(-2));
+    }
+    const seen = new Set<string>([this.sovIntervalKey(date)]);
     let fetched = 0;
     for (const d of dates.sort()) {
       if (fetched >= maxIntervals) return;
       if (run !== this.prefetchRun) return; // 使用者又換日期：改預先載入新的位置
-      const key = this.key(d);
-      if (seen.has(key)) continue;
-      seen.add(key);
+      const sovKey = this.sovIntervalKey(d);
+      const cfKey = this.key(d);
+      if (seen.has(sovKey)) continue;
+      seen.add(sovKey);
       const ck = this.controlKey(d);
-      if (this.sovCache.has(key) && this.cfCache.has(key) && this.cache.has(ck)) continue;
+      if (this.prefetchSkip(d)) continue; // tiles 模式：overlay 已有這天的控制區與衝突（範圍外時間軸到不了）
+      if ((this.boundarySource === 'tiles' || this.sovCache.has(sovKey)) && this.cfCache.has(cfKey) && this.cache.has(ck)) continue;
       fetched++;
       try {
-        await Promise.all([this.fetchInterval('sov', key, d, this.sovCache), this.fetchInterval('cf', key, d, this.cfCache), this.fetchControl(ck, d)]);
+        await Promise.all([this.boundarySource === 'tiles' ? null : this.fetchSov(sovKey, d, zoom), this.fetchInterval('cf', cfKey, d, this.cfCache), this.fetchControl(ck, d)]);
       } catch {
         /* 預先載入失敗不影響畫面 */
       }
@@ -288,11 +565,12 @@ export class AtlasData {
   }
 
   private applySovereignty(dto: SovereigntyMapDto, key: string, date: string): void {
+    performance.mark('wl:sov:signal-set');
     this.sovKey = key;
     this.sovereignty.set(dto);
     this.sovereigntyShownFor.set(date);
     this.sovereigntyStatus.set('ok');
-    void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId));
+    queueMicrotask(() => void this.loadRegimes(dto.featureCollection.features.map((f) => f.properties.regimeId)));
   }
 
   async loadExtent(): Promise<void> {
@@ -321,6 +599,7 @@ export class AtlasData {
   }
 
   async loadRegimes(ids: string[]): Promise<void> {
+    if (this.boundarySource === 'tiles') await this.overlayReady();
     const missing = [...new Set(ids)].filter((id) => !this.regimes()[id]);
     if (missing.length === 0) {
       if (this.regimesStatus() !== 'error') this.regimesStatus.set('ok');
@@ -328,7 +607,13 @@ export class AtlasData {
     }
     this.regimesStatus.set('loading');
     try {
-      const loaded = await Promise.all(missing.map((id) => this.api.regime(id)));
+      // 批次拉（最多 200，超過分批）；避免 N 個逐一請求導致前端換年份卡頓
+      const BATCH = 200;
+      const loaded: import('./api/api-types').RegimeDto[] = [];
+      for (let i = 0; i < missing.length; i += BATCH) {
+        const chunk = missing.slice(i, i + BATCH);
+        loaded.push(...await this.api.regimesBatch(chunk));
+      }
       this.regimes.update((m) => ({ ...m, ...Object.fromEntries(loaded.map((r) => [r.id, r])) }));
       this.regimesStatus.set('ok');
     } catch {

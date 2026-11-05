@@ -1,0 +1,14 @@
+# 前端 production build → nginx 靜態檔（docker-compose.prod.yml 的 web 服務）
+# 建置階段跑在建置機原生平台（產物是靜態檔，與目標平台無關）；執行階段用目標平台（linux/amd64）
+FROM --platform=$BUILDPLATFORM node:24-bookworm-slim AS build
+WORKDIR /app
+RUN corepack enable
+COPY frontend/package.json frontend/pnpm-lock.yaml frontend/pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+COPY frontend/ ./
+RUN pnpm exec ng build --configuration production --output-path /out \
+ && rm -rf /out/browser/campaigns   # 戰役不上第一版：不帶戰役 JSON
+
+FROM nginx:1.27-alpine
+COPY deploy/nginx.web.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /out/browser /usr/share/nginx/html

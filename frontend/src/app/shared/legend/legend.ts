@@ -1,5 +1,6 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
-import { LucideBookOpen, LucideChevronDown, LucideChevronUp } from '@lucide/angular';
+import { LucideInfo } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import type { Axis } from '../../core/atlas-state';
 import type { LoadStatus } from '../../core/atlas-data';
@@ -29,31 +30,56 @@ export interface LegendRegime {
 @Component({
   selector: 'wl-legend',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideChevronDown, LucideChevronUp, LucideBookOpen, SkeletonDirective],
-  host: { class: 'block' },
+  imports: [LucideInfo, SkeletonDirective, NgTemplateOutlet],
+  host: { class: 'block', '(document:keydown.escape)': 'onEscape()' },
   styles: `
     .sw { width: 22px; height: 14px; flex: none; border-radius: 2px; }
     .sw-wide { width: 32px; }
     .row { display: flex; align-items: center; gap: 8px; }
+    /* §12 L1 手機：獨立 bottom sheet，兩欄 grid、色票 20px、說明 13px */
+    .sheet-body, .sheet-body li, .sheet-body p { font-size: 13px; line-height: 18px; }
+    .sheet-body ul { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .sheet-body .sw { width: 20px; height: 20px; }
+    .sheet-body .sw-wide { width: 20px; }
   `,
   template: `
-    @if (!open() && !closing()) {
-      <!-- 收合：左下小按鈕「圖例」（Stitch W2／W3／W7-6） -->
-      <section data-testid="legend" data-state="collapsed" [attr.aria-label]="tr('legend.title')">
-        <button type="button" data-testid="legend-expand" class="wl-paper flex h-8 items-center gap-1.5 px-3 wl-text2 text-wl-on-surface hover:bg-wl-surface-container-high"
-          (click)="toggle.emit()" [attr.aria-expanded]="false" aria-controls="wl-legend-body">
-          <svg lucideBookOpen class="size-3.5"></svg>{{ tr('legend.title') }}<svg lucideChevronUp class="size-3.5 text-wl-on-surface-variant"></svg>
-        </button>
-      </section>
+    <!-- 圖例（ARCHITECTURE.md §10-3）：左下 40×40 ⓘ 按鈕，點了在按鈕上方展開 240px 寬浮動面板（最高 50vh，可捲動）；
+         Esc、再點一次按鈕、點地圖空白處收起；開關狀態記在 localStorage（AtlasState）。 -->
+    @if (mode() === 'sheet') {
+      <!-- §12 L1：手機版圖例＝從頂列 ⋯ 選單打開的獨立 bottom sheet（最高 60vh；往下滑或點地圖關閉） -->
+      @if (open()) {
+        <section data-testid="legend-sheet" role="dialog" aria-modal="false" [attr.aria-label]="tr('legend.title')" [attr.data-axis]="axis()"
+          class="wl-paper flex max-h-[60vh] flex-col overflow-hidden rounded-b-none shadow-[var(--wl-shadow-panel)]"
+          [style.transform]="dragY() ? 'translateY(' + dragY() + 'px)' : null">
+          <div data-testid="legend-sheet-handle" class="flex h-11 flex-none cursor-grab touch-none items-center justify-center" (pointerdown)="startSheetDrag($event)">
+            <span class="h-1 w-8 rounded-full bg-wl-outline-variant"></span></div>
+          <div class="flex flex-none items-center justify-between px-4 pb-2">
+            <span class="wl-title2">{{ tr('legend.title') }}</span>
+            <button type="button" data-testid="legend-sheet-close" class="wl-icon-btn size-11" [attr.aria-label]="lang() === 'en' ? 'Close' : '關閉'" (click)="toggle.emit()">✕</button>
+          </div>
+          <div class="sheet-body flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-4">
+            <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: true }" />
+          </div>
+        </section>
+      }
     } @else {
-    <section #panel data-testid="legend" [attr.data-state]="closing() ? 'closing' : 'open'" [attr.data-axis]="axis()" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
-      <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left" (click)="toggle.emit()"
-        [attr.aria-expanded]="open()" aria-controls="wl-legend-body">
+    <section data-testid="legend" [attr.data-state]="(!open() && !closing()) ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
+      class="flex flex-col items-start gap-2" [attr.aria-label]="tr('legend.title')">
+    @if (open() || closing()) {
+    <div #panel data-testid="legend-panel" id="wl-legend-panel" class="wl-paper flex max-h-[50vh] w-[240px] flex-col overflow-hidden">
+      <div class="flex flex-none items-center justify-between px-4 py-3">
         <span class="wl-title2">{{ tr('legend.title') }}</span>
-        <svg lucideChevronDown class="size-4 text-wl-on-surface-variant"></svg>
-      </button>
-      @if (open() || closing()) {
-        <div id="wl-legend-body" class="flex max-h-[calc(100vh-56px-112px-120px)] flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
+      </div>
+      <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: false }" />
+    </div>
+    }
+      <button type="button" data-testid="legend-expand" class="wl-paper flex size-10 items-center justify-center text-wl-on-surface hover:bg-wl-surface-container-high"
+        [attr.aria-label]="tr('legend.title')" [attr.title]="tr('legend.title')" [attr.aria-expanded]="open()" aria-controls="wl-legend-panel" (click)="toggle.emit()">
+        <svg lucideInfo class="size-5"></svg></button>
+    </section>
+    }
+    <ng-template #bodyTpl let-embedded="embedded">
+        <div id="wl-legend-body" class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto wl-text2" [class.border-t]="!embedded" [class.border-wl-outline-variant]="!embedded" [class.px-4]="!embedded" [class.py-3]="!embedded" [class.pt-2]="embedded">
           <!-- 主權圖層（國界試驗 1938–1940） -->
           <div data-testid="legend-sovereignty">
             <h3 class="wl-label mb-2">{{ lang() === 'en' ? 'Borders (sovereignty layer)' : '國界（主權圖層）' }}
@@ -132,13 +158,13 @@ export interface LegendRegime {
           </div>
           }
         </div>
-      }
-    </section>
-    }
+    </ng-template>
   `,
 })
 export class Legend {
-  readonly open = input(true);
+  readonly open = input(false);
+  /** floating＝左下按鈕＋浮動面板；button＝只有按鈕（小於 768px，圖例在底部面板分頁）；embedded＝放在底部面板分頁裡。 */
+  readonly mode = input<'floating' | 'sheet'>('floating');
   readonly lang = input<Lang>('zh-Hant');
   readonly regimes = input<LegendRegime[]>([]);
   readonly regimesStatus = input<LoadStatus>('idle');
@@ -187,7 +213,7 @@ export class Legend {
         if (!el || run !== this.run || this.motion.reduced()) return;
         const h = el.scrollHeight;
         void this.motion
-          .animate(el, { height: ['32px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
+          .animate(el, { height: ['40px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
           .then(() => run === this.run && (el.style.height = ''));
       },
       { injector: this.injector },
@@ -204,13 +230,33 @@ export class Legend {
     }
     this.closing.set(true);
     void this.motion
-      .animate(el, { height: [`${el.offsetHeight}px`, '32px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
+      .animate(el, { height: [`${el.offsetHeight}px`, '40px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
       .then(() => {
         if (run !== this.run) return;
         el.style.height = '';
         el.style.opacity = '';
         this.closing.set(false);
       });
+  }
+
+  /** §12 L1：往下滑關閉（拖超過 60px）。 */
+  protected readonly dragY = signal(0);
+  protected startSheetDrag(e: PointerEvent): void {
+    const y0 = e.clientY;
+    const move = (ev: PointerEvent) => this.dragY.set(Math.max(0, ev.clientY - y0));
+    const up = (ev: PointerEvent) => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      this.dragY.set(0);
+      if (ev.clientY - y0 > 60) this.toggle.emit();
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+  protected onEscape(): void {
+    if (this.open()) this.toggle.emit();
   }
 
   protected readonly controlTypes = CONTROL_TYPES;

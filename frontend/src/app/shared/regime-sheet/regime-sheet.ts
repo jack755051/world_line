@@ -36,9 +36,20 @@ const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
         <section #panel data-testid="regime-sheet" role="dialog" aria-modal="false" tabindex="-1"
           [attr.aria-labelledby]="s.titleId" [attr.aria-describedby]="description() ? s.descId : null"
           [attr.data-side]="side()" [attr.data-state]="state()" [class]="panelClass()"
-          [style.width.px]="side() === 'right' ? size() : null" [style.height.px]="side() === 'bottom' ? size() : null">
-          <sanring-sheet-header align="start" class="flex-none pr-8">
-            <sanring-sheet-title [attr.data-testid]="titleTestId()">{{ title() }}</sanring-sheet-title>
+          [attr.data-size]="size()" [style.width.px]="side() === 'right' ? size() : null" [style.height.px]="side() === 'bottom' ? (dragSize() ?? size()) : null">
+          <!-- §10 v2：右側面板寬度固定三檔，不再拖拉（Tai 2026-11-04） -->
+          @if (side() === 'bottom') {
+            <!-- bottom sheet 三段高度（96px／50vh／90vh）：點把手或上下拖切換 -->
+            <button type="button" data-testid="regime-sheet-snap" [attr.data-snap]="snap()" [attr.aria-label]="snapLabel()"
+              class="mx-auto flex h-11 w-full flex-none cursor-grab touch-none items-center justify-center" (pointerdown)="startSnapDrag($event)" (click)="cycleSnap()">
+              <span class="h-1 w-8 rounded-full bg-wl-outline-variant"></span></button>
+          }
+          <sanring-sheet-header align="start" class="min-h-[56px] flex-none pr-8">
+            <div class="flex min-w-0 flex-wrap items-baseline gap-x-2">
+              <sanring-sheet-title [attr.data-testid]="titleTestId()">{{ title() }}</sanring-sheet-title>
+              <!-- §10：標頭顯示首都（政權名稱、首都、關閉按鈕） -->
+              @if (subtitle()) { <span data-testid="regime-sheet-capital" class="wl-text2 text-wl-on-surface-variant">{{ subtitle() }}</span> }
+            </div>
             @if (description()) {
               <sanring-sheet-description data-testid="regime-sheet-description" [attr.lang]="descriptionLang() || null">{{ description() }}</sanring-sheet-description>
             }
@@ -57,8 +68,13 @@ export class RegimeSheet {
   readonly side = input<'right' | 'bottom'>('right');
   /** 右側時是寬度、底部時是高度（px）。 */
   readonly size = input(384);
+  /** 底部 bottom sheet 目前段位。 */
+  readonly snap = input<'peek' | 'half' | 'full'>('half');
+  readonly snapChange = output<'peek' | 'half' | 'full'>();
   readonly title = input('');
   readonly description = input('');
+  /** 標頭第二資訊（政權的首都，§10）。 */
+  readonly subtitle = input('');
   readonly descriptionLang = input('');
   readonly titleTestId = input('regime-sheet-title');
   readonly closeTestId = input('regime-sheet-close');
@@ -116,6 +132,44 @@ export class RegimeSheet {
     this.visible.set(false);
     this.state.set('closed');
     this.hidden.emit();
+  }
+
+  protected readonly snapLabel = computed(() => (this.lang() === 'en' ? 'Change panel height' : '切換面板高度'));
+  private snapDragged = false;
+  protected cycleSnap(): void {
+    if (this.snapDragged) return void (this.snapDragged = false);
+    const order = ['peek', 'half', 'full'] as const;
+    this.snapChange.emit(order[(order.indexOf(this.snap()) + 1) % order.length]);
+  }
+  /** §12：拖拉時面板高度跟著手指，放開吸附到最接近的一段（peek／half／full）。 */
+  protected readonly dragSize = signal<number | null>(null);
+  readonly snapFor = input<((px: number) => 'peek' | 'half' | 'full') | null>(null);
+  protected startSnapDrag(e: PointerEvent): void {
+    const y0 = e.clientY;
+    const h0 = this.size();
+    this.snapDragged = false;
+    const move = (ev: PointerEvent) => {
+      const dy = ev.clientY - y0;
+      if (Math.abs(dy) < 4 && this.dragSize() === null) return;
+      this.dragSize.set(Math.max(48, h0 - dy));
+    };
+    const up = (ev: PointerEvent) => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      const dy = ev.clientY - y0;
+      this.dragSize.set(null);
+      if (Math.abs(dy) < 24) return;
+      this.snapDragged = true;
+      const pick = this.snapFor();
+      if (pick) return void this.snapChange.emit(pick(h0 - dy));
+      const order = ['peek', 'half', 'full'] as const;
+      const i = order.indexOf(this.snap()) + (dy < 0 ? 1 : -1);
+      this.snapChange.emit(order[Math.max(0, Math.min(2, i))]);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
   }
 
   protected onEscape(): void {

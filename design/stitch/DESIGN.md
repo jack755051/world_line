@@ -122,7 +122,7 @@ World Line 自有的設計系統，**不屬於 sanring 產品家族，不沿用 
 
 ## Brand & Style
 
-World Line is a historical GIS atlas of the Second World War (1937–1945). The user drags a timeline to any day and sees every regime's territory, sovereignty claims and actual control on one world map, side by side, each record traceable to a cited historical map. Phase 1 has one user, the developer; later it is for education.
+World Line is a historical GIS atlas of 1908-01-01 to 1945-09-30 (the First World War, the interwar years and the Second World War), covering every country and colony in the world; first-level administrative divisions come after global country coverage. The user drags a timeline to any day and sees every regime's territory, sovereignty claims and actual control on one world map, side by side, each record traceable to a cited historical map. Phase 1 has one user, the developer; later it is for education.
 
 - **Feels like a historical atlas or an archive folder**: warm paper background, ink-black text, hairline rules, serif headings. Calm, scholarly, neutral. Never a game, never a "war room" HUD, never a dashboard.
 - **The map is the only colorful thing on screen.** UI chrome stays paper and ink so regime colors read clearly. Panels float over the map as paper cards.
@@ -184,10 +184,10 @@ Only: button, segmented toggle, badge, tag, collapsible, popover, tooltip, input
 
 ## Timeline (custom component)
 
-- Year ticks 1937–1945 in serif `text2`, month ticks as hairlines.
+- Year ticks 1908–1945 in serif `text2`, month ticks as hairlines.
 - Handle: vermilion vertical line with a small vermilion knob; the selected date appears above it.
 - Snapshot tracks: one thin track per theater (「西歐」「東線」「太平洋」「中國」…), labeled at the left in `text2`. Each attested snapshot is a small ink pill; interval snapshots are ink bars spanning their period. A track with no snapshots shows the control-gap pattern.
-- The period before 1937-07 (when data exists) has a faint paper-dim background and the caption 「資料不保證完整」.
+- 待定 (TBD): whether periods not yet covered by global country data get a faint paper-dim background and the caption 「資料不保證完整」. (Replaces the old pre-1937-07 rule.)
 - Controls at left: 「上一個快照」「播放」「下一個快照」, speed, a date input.
 
 ## Map Styles

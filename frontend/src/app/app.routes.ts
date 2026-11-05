@@ -5,12 +5,12 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    title: 'World Line',
+    title: 'Sanring World Line',
     loadComponent: () => import('./pages/atlas/atlas.page').then((m) => m.AtlasPage),
   },
   {
     path: '**',
-    title: '找不到頁面｜World Line',
+    title: '找不到頁面｜Sanring World Line',
     loadComponent: () => import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage),
   },
 ];

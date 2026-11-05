@@ -222,6 +222,10 @@ export interface ControlLabel {
   lngLat: [number, number];
   /** 該多邊形的經緯度外框 [minX, minY, maxX, maxY]，畫面上太小就不標 */
   bbox: [number, number, number, number];
+  /** 文字旋轉角度（CSS 度，順時針為正；0 或未設定 = 水平）。狹長國家沿 PCA 主軸旋轉。 */
+  rotation?: number;
+  /** 最大多邊形的外環（GeoJSON [lng, lat] 陣列），用於 gridCandidates 候選點篩選；沒有時不做網格搜尋。 */
+  ring?: number[][];
 }
 
 type Ring = number[][];
@@ -267,9 +271,28 @@ function thinRing(r: Ring): Ring {
   return out;
 }
 
-/** 多邊形內離邊界最遠的點（格點搜尋＋兩輪細化；標籤用，不需精確）。洞內的點不算。 */
+/**
+ * Web Mercator y 座標（相對值；緯度夾在 ±85° 以防無限大）。
+ * 在 Mercator 投影下計算距離才能還原高緯度多邊形的視覺形狀（PRD §8.2）。
+ */
+function mercY(lat: number): number {
+  const clamped = Math.max(-85, Math.min(85, lat));
+  return Math.log(Math.tan(Math.PI / 4 + (clamped * Math.PI) / 360));
+}
+
+/** Web Mercator y 逆投影回緯度（度）。 */
+function invMercY(my: number): number {
+  return (Math.atan(Math.exp(my)) - Math.PI / 4) * (360 / Math.PI);
+}
+
+/**
+ * 多邊形內離邊界最遠的點（格點搜尋＋三輪細化；在 Web Mercator 投影座標上計算，再逆投影回 WGS84）。
+ * 高緯度國家（蘇聯）與狹長國家（捷克斯洛伐克、西藏）在 Mercator 空間中找到的點比 WGS84 更貼近視覺中心。
+ * 洞內的點不算。
+ */
 export function labelPoint(full: Ring[]): [number, number] {
-  const poly = full.map(thinRing);
+  // 先取點再投影到 Mercator（[lng, mercY(lat)]）
+  const poly = full.map(r => thinRing(r).map(([lng, lat]) => [lng, mercY(lat)] as [number, number]));
   const outer = poly[0];
   let [minX, minY, maxX, maxY] = [Infinity, Infinity, -Infinity, -Infinity];
   for (const [x, y] of outer) {
@@ -310,7 +333,50 @@ export function labelPoint(full: Ring[]): [number, number] {
     w /= 4;
     h /= 4;
   }
-  return best;
+  // 逆投影回 WGS84（lng 不變，my → lat）
+  return [best[0], invMercY(best[1])];
+}
+
+/**
+ * 多邊形文字標籤旋轉角度（CSS 度，順時針為正）。
+ * 只對「橫向狹長」圖形生效（Mercator 視覺長寬比 > ELONGATED_RATIO 且 Mercator 高度 < NARROW_MERC_H）：
+ * 用 PCA 找外環主軸，讓標籤沿主軸放置（捷克斯洛伐克、西藏等）。
+ *
+ * Mercator 視覺比：mw_rad（經度差轉弧度）/ mh（Mercator y 差），兩者同為弧度單位，
+ * 消除高緯度 WGS84 與 Mercator 的單位混淆。
+ */
+export const ELONGATED_RATIO = 1.8;
+/** Mercator 高度閾值（弧度，約 ≤20° 緯距）；超過視為「非狹窄」，不旋轉（蘇聯等大型國家）。 */
+export const NARROW_MERC_H = 0.35;
+
+export function labelRotation(full: Ring[]): number {
+  const outer = full[0];
+  if (!outer || outer.length < 3) return 0;
+  const thinned = thinRing(outer);
+  let [minLng, minMy, maxLng, maxMy] = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const [lng, lat] of thinned) {
+    const my = mercY(lat);
+    minLng = Math.min(minLng, lng); maxLng = Math.max(maxLng, lng);
+    minMy = Math.min(minMy, my); maxMy = Math.max(maxMy, my);
+  }
+  // 統一換算成 Mercator 弧度：經度差乘以 π/180
+  const mwRad = (maxLng - minLng) * Math.PI / 180;
+  const mh = maxMy - minMy;
+  // 只對橫向狹長且高度夠窄的多邊形旋轉
+  if (mh < 1e-9 || mh >= NARROW_MERC_H || mwRad / mh < ELONGATED_RATIO) return 0;
+  // PCA 主軸（Mercator 座標：x = lng_rad, y = mercY）
+  const pts = thinned.map(([lng, lat]) => [lng * Math.PI / 180, mercY(lat)] as [number, number]);
+  let cx = 0, cy = 0;
+  for (const [x, y] of pts) { cx += x; cy += y; }
+  cx /= pts.length; cy /= pts.length;
+  let cxx = 0, cxy = 0, cyy = 0;
+  for (const [x, y] of pts) {
+    const dx = x - cx, dy = y - cy;
+    cxx += dx * dx; cxy += dx * dy; cyy += dy * dy;
+  }
+  // 主軸角度（Mercator y-up）→ CSS 旋轉（screen y-down）需取反
+  const rad = 0.5 * Math.atan2(2 * cxy, cxx - cyy);
+  return -(rad * 180 / Math.PI);
 }
 
 /**
@@ -331,7 +397,7 @@ export function controlLabels(dto: ControlMapDto | null | undefined, nameFor: (r
     for (const [x, y] of biggest[0]) {
       minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
     }
-    out.push({ versionId: p.versionId, regimeId: p.controllerRegimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY] });
+    out.push({ versionId: p.versionId, regimeId: p.controllerRegimeId, text, lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY], ring: biggest[0] });
   }
   return out;
 }

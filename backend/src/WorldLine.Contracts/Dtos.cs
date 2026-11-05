@@ -319,3 +319,106 @@ public sealed record ConflictFeatureCollection(IReadOnlyList<ConflictFeature> Fe
 }
 
 public sealed record ConflictMapDto(DateOnly Date, ConflictFeatureCollection FeatureCollection);
+
+// ───────────── 首都（capital_records；2026-11-02 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增首都紀錄。regimeId＝政權；cityName＝雙語城市名；location＝GeoJSON Point（WGS84）；
+/// validPeriod＝半開區間 [start, end)，end 為 null 表示至今仍有效；sourceRef＝出處文字（查不到標「待查證」）。
+/// </summary>
+public sealed record CreateCapitalRecordRequest(
+    Guid? RegimeId, IReadOnlyDictionary<string, string>? CityName, JsonElement? Location,
+    string? ValidStart, string? ValidEnd, string? SourceRef, string? Note = null);
+
+public sealed record CapitalRecordDto(
+    Guid Id, Guid RegimeId, IReadOnlyDictionary<string, string> CityName,
+    JsonElement Location, DatePeriodDto ValidPeriod, string? SourceRef, string? Note);
+
+/// <summary>地圖首都圖層：依日期查，每筆含城市名（多語）、座標（GeoJSON Point）與出處查證狀態。</summary>
+public sealed record CapitalFeature(
+    Guid RecordId, Guid RegimeId, string RegimeSlug,
+    IReadOnlyDictionary<string, string> CityName,
+    JsonElement Location, DatePeriodDto ValidPeriod,
+    string? SourceRef);
+
+public sealed record CapitalMapDto(DateOnly Date, IReadOnlyList<CapitalFeature> Features);
+
+// ───────────── 領導人（leader_records；2026-11-03 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增領導人紀錄。role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// validFrom 必填（YYYY-MM-DD）；validTo 可空（開放迄日）。source 必填；verified=false 表示待查證。
+/// personId 選填：指向 leader_bios 的現有生平紀錄。
+/// </summary>
+public sealed record CreateLeaderRecordRequest(
+    Guid? RegimeId, string? Name, string? NameZh, string? Role, string? Title,
+    string? ValidFrom, string? ValidTo, string? Source, string? SourceUrl = null,
+    bool Verified = true, Guid? PersonId = null);
+
+public sealed record LeaderRecordDto(
+    Guid Id, Guid RegimeId, string Name, string? NameZh, string Role, string? Title,
+    DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified,
+    Guid? PersonId = null);
+
+/// <summary>
+/// 領導人紀錄（GET 回應）。role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// verified=false 表示待查證（找不到可信出處）。
+/// bio：若已連結 leader_bios，回傳生平摘要（不含 fieldSources）。
+/// </summary>
+public sealed record LeaderFeature(
+    Guid RecordId, Guid RegimeId, string RegimeSlug,
+    string Name, string? NameZh, string Role, string? Title,
+    DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified,
+    Guid? PersonId = null, LeaderBioSummaryDto? Bio = null);
+
+public sealed record LeaderMapDto(DateOnly Date, IReadOnlyList<LeaderFeature> Features);
+
+// ───────────── 領導人生平（leader_bios；2026-11-03 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增領導人生平。一人一筆，多次任期共用。
+/// birthDate 為 YYYY-MM-DD（可只知年份，配合 birthDatePrecision = "year"）。
+/// fieldSources：各欄位出處 {"birthDate": {"source": "...", "url": "..."}, ...}。
+/// isTest=true 標記測試資料；summary 測試資料應以「【測試資料】」開頭。
+/// </summary>
+public sealed record CreateLeaderBioRequest(
+    string? Name,
+    string? NameZh = null,
+    string? BirthDate = null,
+    string? BirthDatePrecision = null,
+    string? DeathDate = null,
+    IReadOnlyDictionary<string, string>? BirthPlace = null,
+    IReadOnlyDictionary<string, string>? Party = null,
+    IReadOnlyDictionary<string, string>? Summary = null,
+    JsonElement? FieldSources = null,
+    bool IsTest = false);
+
+/// <summary>
+/// 生平摘要（GET /leaders 回應內嵌用，不含 fieldSources）。
+/// birthDate 為 YYYY-MM-DD；birthDatePrecision：day | month | year（null＝精確度未知）。
+/// </summary>
+public sealed record LeaderBioSummaryDto(
+    Guid Id,
+    string Name,
+    string? NameZh,
+    string? BirthDate,
+    string? BirthDatePrecision,
+    string? DeathDate,
+    IReadOnlyDictionary<string, string>? Summary);
+
+/// <summary>領導人生平完整資料（GET /leader-bios/{id} 回應，含 fieldSources）。</summary>
+public sealed record LeaderBioDto(
+    Guid Id,
+    string Name,
+    string? NameZh,
+    string? BirthDate,
+    string? BirthDatePrecision,
+    string? DeathDate,
+    IReadOnlyDictionary<string, string>? BirthPlace,
+    IReadOnlyDictionary<string, string>? Party,
+    IReadOnlyDictionary<string, string>? Summary,
+    JsonElement? FieldSources,
+    bool IsTest,
+    DateTimeOffset? RetractedAt,
+    string? RetractionReason,
+    DateTimeOffset CreatedAt);
+
+/// <summary>把現有 LeaderRecord 連結到 LeaderBio（PATCH /leader-records/{id}/person）。</summary>
+public sealed record LinkLeaderPersonRequest(Guid? PersonId);

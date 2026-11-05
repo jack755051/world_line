@@ -117,3 +117,11 @@ public static class OccupationControlKinds
     public static readonly string[] All = [Annexed, CivilAdministration, MilitaryAdministration];
 }
 
+/// <summary>領導人職位（leader_records.role；2026-11-03 試驗，AI 提案・待拍板）。</summary>
+public static class LeaderRoles
+{
+    public const string HeadOfState = "head_of_state";
+    public const string HeadOfGovernment = "head_of_government";
+    public static readonly string[] All = [HeadOfState, HeadOfGovernment];
+}
+

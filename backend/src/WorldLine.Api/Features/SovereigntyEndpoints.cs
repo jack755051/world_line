@@ -1,6 +1,8 @@
+using System.Collections.Concurrent;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
+using NetTopologySuite.Precision;
 using NetTopologySuite.Simplify;
 using NpgsqlTypes;
 using WorldLine.Api.Common;
@@ -18,13 +20,29 @@ namespace WorldLine.Api.Features;
 /// </summary>
 public static class SovereigntyEndpoints
 {
-    /// <summary>GET /sovereignty 回傳幾何的簡化容差（度，約 200 公尺）；原始幾何不變。</summary>
+    /// <summary>GET /sovereignty 回傳幾何的預設簡化容差（度，約 200 公尺）；原始幾何不變。</summary>
     public const double ResponseSimplifyTolerance = 0.002;
+
+    /// <summary>
+    /// 依地圖縮放層級選擇簡化容差：
+    /// zoom ≤ 4.5 → 0.010°（粗，≈1km，低縮歐洲全圖不可見）；
+    /// zoom ≤ 6.5 → 0.004°（中，≈440m）；
+    /// 其餘  → 0.002°（原始精細度）。
+    /// </summary>
+    public static double ToleranceForZoom(float? zoom) => zoom switch
+    {
+        <= 4.5f => 0.010,
+        <= 6.5f => 0.004,
+        _ => ResponseSimplifyTolerance,
+    };
 
     public static void Map(RouteGroupBuilder read, RouteGroupBuilder write)
     {
         read.MapGet("/sovereignty", GetOnDate).WithTags("Sovereignty").WithName("GetSovereignty")
             .Ok<SovereigntyMapDto>().Errors(400);
+        // ARCHITECTURE.md §9「介面」：被選政權的完整幾何（tiles 模式點選政權時取，供蒙版、可見國名重算、高亮）；不提供全世界疆界
+        read.MapGet("/regimes/{id:guid}/geometry", GetRegimeGeometry).WithTags("Sovereignty").WithName("GetRegimeGeometry")
+            .Ok<SovereigntyMapDto>().Errors(400, 404);
         write.MapPost("/sovereignty-records", Create).WithTags("Sovereignty").WithName("CreateSovereigntyRecord")
             .RequiresApiKey().Created<SovereigntyRecordDto>().Errors(400, 401, 409);
         write.MapPost("/sovereignty-records/{id:guid}/retraction", Retract).WithTags("Sovereignty").WithName("RetractSovereigntyRecord")
@@ -119,62 +137,135 @@ public static class SovereigntyEndpoints
         return ApiResults.Ok(new RetractionDto(id, now, reason));
     }
 
-    public static async Task<IResult> GetOnDate(DateOnly? date, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
+    public static async Task<IResult> GetOnDate(DateOnly? date, float? zoom, WorldLineDbContext db, DateIntervalCache cache, CancellationToken ct)
     {
         if (date is not { } d)
             throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
-        // 同一變動區間內每天結果相同：依區間快取（寫入即作廢，見 DateIntervalCache）
-        var features = await cache.GetOrAddAsync("sovereignty", d, db, () => BuildOnDateAsync(d, db, ct), ct);
+        // 同一變動區間內每天結果相同；不同縮放桶（容差）各自快取，互不影響
+        var tolerance = ToleranceForZoom(zoom);
+        var kind = $"sovereignty:{tolerance:F3}";
+        var features = await cache.GetOrAddAsync(kind, d, db, (day, ctx, c) => BuildOnDateAsync(day, ctx, tolerance, c), ct);
         return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
     }
 
-    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, CancellationToken ct)
+    /// <summary>
+    /// GET /regimes/{id}/geometry?date=&amp;zoom=：該政權當天的主權紀錄，加上當天由它佔領的政權的紀錄（聚焦時一起挖亮）。
+    /// 每筆 feature 與 GET /sovereignty 同一天、同一縮放桶回傳的那筆完全相同（同一個建構函式、同一份幾何快取）。
+    /// </summary>
+    public static async Task<IResult> GetRegimeGeometry(Guid id, DateOnly? date, float? zoom, WorldLineDbContext db, CancellationToken ct)
     {
+        if (date is not { } d)
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "date 為必填（YYYY-MM-DD）。", "date");
+        if (!await db.Regimes.AnyAsync(x => x.Id == id && x.RetractedAt == null, ct))
+            throw ApiError.NotFound("政權");
+        var occupied = await db.OccupationAttributions.AsNoTracking()
+            .Where(o => o.RetractedAt == null && o.OccupierRegimeId == id && o.ValidPeriod.Contains(d))
+            .Select(o => o.OccupiedRegimeId).Distinct().ToListAsync(ct);
+        var regimes = new HashSet<Guid>(occupied) { id };
+        var features = await BuildOnDateAsync(d, db, ToleranceForZoom(zoom), ct, regimes);
+        // 佔領方不是 id 的被佔領紀錄（同一被佔領政權在當天換手等）不算
+        features = features.Where(f => f.Properties.RegimeId == id || f.Properties.Occupation?.OccupierRegimeId == id).ToList();
+        return ApiResults.Ok(new SovereigntyMapDto(d, new SovereigntyFeatureCollection(features)));
+    }
 
+    private static async Task<List<SovereigntyFeature>> BuildOnDateAsync(DateOnly d, WorldLineDbContext db, double tolerance, CancellationToken ct,
+        IReadOnlyCollection<Guid>? onlyRegimes = null)
+    {
+        // 第 1 層（Tai 2026-11-04）：由 PostGIS 依有效期間篩出當天有效的紀錄（valid_period @> d，即 lower <= d AND (upper IS NULL OR upper > d)，
+        // 走 ix_sovereignty_records_valid_period GiST 索引）；這一步不取幾何，只取屬性。
         var rows = await (
                 from r in db.SovereigntyRecords.AsNoTracking()
                 join g in db.Regimes on r.RegimeId equals g.Id
                 join s in db.Sources on r.GeometrySourceId equals s.Id
-                where r.RetractedAt == null && r.ValidPeriod.Contains(d)
+                where r.RetractedAt == null && r.ValidPeriod.Contains(d) && (onlyRegimes == null || onlyRegimes.Contains(r.RegimeId))
                 orderby g.Slug, r.Id
-                select new { r, g.Slug, s.Title, s.Publisher, s.LicenseCode })
+                select new
+                {
+                    r.Id, r.RegimeId, r.LayerStatus, r.ValidPeriod, r.StartEventId, r.EndEventId,
+                    r.GeometrySourceId, r.GeometryLocator, r.GeometryLicense, r.Attribution,
+                    r.OhmRelationId, r.OhmVersion, r.OhmFetchedAt, r.OhmStartRaw, r.OhmEndRaw, r.Provenance, r.Note,
+                    g.Slug, s.Title, s.Publisher, s.LicenseCode,
+                })
             .ToListAsync(ct);
 
-        var eventIds = rows.SelectMany(x => new[] { x.r.StartEventId, x.r.EndEventId }).OfType<Guid>().Distinct().ToList();
+        var eventIds = rows.SelectMany(x => new[] { x.StartEventId, x.EndEventId }).OfType<Guid>().Distinct().ToList();
         var events = await EventRefsAsync(db, eventIds, ct);
-        var regimeIds = rows.Select(x => x.r.RegimeId).Distinct().ToList();
+        var regimeIds = rows.Select(x => x.RegimeId).Distinct().ToList();
         var alignments = await RegimeAlignmentsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
         var occupations = await OccupationsEndpoints.ActiveOnAsync(db, regimeIds, d, ct);
 
-        var features = rows.Select(x =>
+        // 幾何只對還沒簡化過的紀錄才從 PostGIS 取原始幾何（以前每次都把當天全部原始幾何讀進來，一天約 80 萬點）
+        var geometries = await GeoJsonForAsync(db, rows.Select(x => x.Id).ToList(), tolerance, ct);
+
+        return rows.Select(r =>
         {
-            var r = x.r;
-            var simplified = Simplify(r.Geom);
             JsonElement? flags = r.Provenance is null ? null : JsonDocument.Parse(r.Provenance).RootElement.Clone();
-            return new SovereigntyFeature(r.Id, Mapping.ToGeoJson(simplified), new SovereigntyFeatureProperties(
-                r.Id, r.RegimeId, x.Slug, r.LayerStatus, Mapping.ToDto((NpgsqlRange<DateOnly>?)r.ValidPeriod)!,
+            return new SovereigntyFeature(r.Id, geometries[r.Id], new SovereigntyFeatureProperties(
+                r.Id, r.RegimeId, r.Slug, r.LayerStatus, Mapping.ToDto((NpgsqlRange<DateOnly>?)r.ValidPeriod)!,
                 r.StartEventId is { } se ? events.GetValueOrDefault(se) : null,
                 r.EndEventId is { } ee ? events.GetValueOrDefault(ee) : null,
-                new GeometryProvenanceDto(r.GeometrySourceId, x.Title, x.Publisher, x.LicenseCode, r.GeometryLocator,
+                new GeometryProvenanceDto(r.GeometrySourceId, r.Title, r.Publisher, r.LicenseCode, r.GeometryLocator,
                     r.GeometryLicense, r.Attribution, r.OhmRelationId, r.OhmVersion, r.OhmFetchedAt, r.OhmStartRaw, r.OhmEndRaw, flags),
                 Mapping.ReadLocalizedOrNull(r.Note),
                 alignments.GetValueOrDefault(r.RegimeId),
                 occupations.GetValueOrDefault(r.RegimeId)));
         }).ToList();
-        return features;
     }
 
-    /// <summary>回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。</summary>
-    internal static MultiPolygon Simplify(MultiPolygon g)
+    /// <summary>
+    /// 回應用幾何（已簡化、已序列化成 GeoJSON）的行程內快取（(recordId, tolerance) → JsonElement）。主權紀錄不可變，
+    /// 同一筆 record 在相同容差下的結果永遠相同，可跨日期區間共用：各日期快取的 FeatureCollection 參照同一份幾何，不再各存一份。
+    /// 寫入作廢（DateIntervalCache.Invalidate）不清除此快取：撤回後的 record 不會再被查詢。
+    /// 上限＝sovereignty_records 筆數 × 容差層數。
+    /// </summary>
+    private static readonly ConcurrentDictionary<(Guid Id, double Tolerance), JsonElement> _geoJsonCache = new();
+
+    /// <summary>ids 各自的回應用幾何：命中快取直接用；其餘一次向 PostGIS 取原始幾何，平行簡化＋序列化後存入快取。</summary>
+    internal static async Task<Dictionary<Guid, JsonElement>> GeoJsonForAsync(WorldLineDbContext db, IReadOnlyCollection<Guid> ids, double tolerance, CancellationToken ct)
     {
-        var s = TopologyPreservingSimplifier.Simplify(g, ResponseSimplifyTolerance);
+        var result = new Dictionary<Guid, JsonElement>(ids.Count);
+        var missing = new List<Guid>();
+        foreach (var id in ids)
+            if (_geoJsonCache.TryGetValue((id, tolerance), out var hit)) result[id] = hit; else missing.Add(id);
+        if (missing.Count == 0) return result;
+
+        var raw = await db.SovereigntyRecords.AsNoTracking().Where(r => missing.Contains(r.Id))
+            .Select(r => new { r.Id, r.Geom }).ToListAsync(ct);
+        // 簡化（TopologyPreservingSimplifier）與 GeoJSON 序列化皆為純 CPU 無副作用，平行執行縮短含大幾何（如俄國）的首次計算
+        foreach (var (id, json) in raw.AsParallel().Select(x => (x.Id, _geoJsonCache.GetOrAdd((x.Id, tolerance), _ => Mapping.ToGeoJson(Simplify(x.Geom, tolerance))))).ToList())
+            result[id] = json;
+        return result;
+    }
+
+    /// <summary>
+    /// 回應用的簡化幾何（保留拓撲，一律回 MultiPolygon）；簡化後無效或變空就回原幾何。
+    /// 簡化後再以 5 位小數精度（≈1 m）縮減座標，減少 JSON 大小約 50%；
+    /// 若精度縮減後幾何無效，回退到未縮減的簡化結果。
+    /// </summary>
+    internal static MultiPolygon Simplify(MultiPolygon g, double tolerance)
+    {
+        var s = TopologyPreservingSimplifier.Simplify(g, tolerance);
         if (s is not { IsEmpty: false, IsValid: true }) return g;
-        return s switch
+        // 5dp 精度（PrecisionModel scale=100000）已遠高於簡化容差（≥ 200m），安全截斷多餘小數
+        var r = GeometryPrecisionReducer.Reduce(s, new PrecisionModel(100000));
+        var geom = r is { IsEmpty: false, IsValid: true } ? r : s;
+        return geom switch
         {
             MultiPolygon mp => mp,
-            Polygon p => new MultiPolygon([p], g.Factory),
+            Polygon p => new MultiPolygon([p], geom.Factory),
             _ => g,
         };
+    }
+
+    /// <summary>
+    /// 預熱單一日期（供啟動背景任務呼叫）；依序填充三個縮放容差層（0.010 / 0.004 / 0.002）的快取。
+    /// 幾何共用 <see cref="GeoJsonForAsync"/> 的快取，已算過的紀錄不再讀原始幾何。
+    /// </summary>
+    public static async Task WarmupAsync(DateOnly d, WorldLineDbContext db, DateIntervalCache cache)
+    {
+        foreach (var tolerance in new[] { 0.010, 0.004, ResponseSimplifyTolerance })
+            await cache.GetOrAddAsync($"sovereignty:{tolerance:F3}", d, db,
+                (day, ctx, c) => BuildOnDateAsync(day, ctx, tolerance, c), CancellationToken.None);
     }
 
     /// <summary>事件摘要＋引用；沒有任何引用的事件 verification = pending（「待查證」）。</summary>

@@ -1,5 +1,5 @@
 import type { ControlMapDto } from '../../core/api/api-types';
-import { CAMP_FILL, CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, evidenceFor, gapFeatures, hatchImageId, labelPoint } from './map-style';
+import { CAMP_FILL, CAMP_TONES, CAMP_UNASSIGNED_TONE, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, evidenceFor, gapFeatures, hatchImageId, labelPoint, labelRotation, ELONGATED_RATIO, NARROW_MERC_H } from './map-style';
 
 // 測試用假資料（只存在於測試檔，不進畫面、不寫入資料庫）
 function fixture(state: string, controlType = 'military_occupation', camp: string | null = null): ControlMapDto {
@@ -117,6 +117,46 @@ describe('map-style', () => {
     const [x, y] = labelPoint([ring]);
     expect(performance.now() - t0).toBeLessThan(500);
     expect((x / 10) ** 2 + (y / 5) ** 2).toBeLessThan(0.2);
+  });
+
+  it('labelPoint（Mercator）：高緯矩形的標籤不偏南（蘇聯問題修正）', () => {
+    // 模擬高緯矩形（緯度 50–70°）：經度跨 20°，緯度跨 20°；在 WGS84 重心 = (10, 60)
+    // Mercator 修正後標籤應落在矩形中央附近（緯度 > 58°），而不是偏南
+    const rect = [[[0, 50], [20, 50], [20, 70], [0, 70], [0, 50]]];
+    const [, lat] = labelPoint(rect);
+    // Mercator 中心點緯度應比 WGS84 平均緯度（60°）略高（Mercator 在高緯壓縮更多）
+    expect(lat).toBeGreaterThan(58);
+    expect(lat).toBeLessThan(72);
+  });
+
+  it('labelRotation：正方形（WGS84 5°×5°）→ 旋轉角 = 0（Mercator 換算後約為 1:1 比例）', () => {
+    // 5°×5° 在 Mercator 視覺接近正方形（mwRad ≈ mh），不觸發旋轉
+    const sq = [[[0, 0], [5, 0], [5, 5], [0, 5], [0, 0]]];
+    expect(labelRotation(sq)).toBe(0);
+  });
+
+  it('labelRotation：捷克斯洛伐克樣本（東西向狹長）→ 觸發旋轉邏輯（回傳數值）', () => {
+    // lng 12–23°（11°），lat 48–51°（3°）；Mercator 比 ≈ 1.95 > ELONGATED_RATIO(1.8)
+    // 且 mh ≈ 0.098 < NARROW_MERC_H(0.35)
+    // 軸對齊矩形 PCA 角 = 0 → CSS rotation = 0，但函式有走過旋轉計算路徑
+    const cz = [[[12, 48], [23, 48], [23, 51], [12, 51], [12, 48]]];
+    const rot = labelRotation(cz);
+    // 軸對齊矩形：PCA 主軸水平，rotation 應為 0（或接近 0）
+    expect(typeof rot).toBe('number');
+    expect(Math.abs(rot)).toBeLessThan(5);
+  });
+
+  it('labelRotation：超大型國家（Mercator 高度超 NARROW_MERC_H）→ 不旋轉', () => {
+    // 模擬蘇聯主體：lng 30–160°（130°），lat 50–70°（20°）
+    // mh = mercY(70) - mercY(50) ≈ 0.43 >= NARROW_MERC_H(0.35) → 不旋轉
+    const ussr = [[[30, 50], [160, 50], [160, 70], [30, 70], [30, 50]]];
+    expect(labelRotation(ussr)).toBe(0);
+  });
+
+  it('labelRotation：ELONGATED_RATIO 與 NARROW_MERC_H 常數有意義', () => {
+    expect(ELONGATED_RATIO).toBeGreaterThan(1);
+    expect(NARROW_MERC_H).toBeGreaterThan(0);
+    expect(NARROW_MERC_H).toBeLessThan(1);
   });
 
   it('controlLabels：文字只來自政權名稱；查不到名稱就不標', () => {

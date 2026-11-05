@@ -45,7 +45,8 @@ test('1939-09-15：平時沒有衝突圖示；點波蘭 → 只出現德—波�
   await expect(icons.first().locator('svg')).toBeVisible();
 
   await icons.first().click();
-  await expect(page.getByTestId('sovereignty-card')).toHaveCount(0);
+  // §13 K1：衝突改成圖示旁的小卡，政權面板保持原本內容
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('波蘭');
   const card = page.getByTestId('conflict-card');
   await expect(card).toBeVisible();
   await expect(page.getByTestId('conflict-card-title')).toContainText('—');
@@ -63,9 +64,11 @@ test('1939-09-15：平時沒有衝突圖示；點波蘭 → 只出現德—波�
   await expect(end.getByTestId('conflict-card-no-citation')).toHaveText('尚無正式出處');
   await expect(icons).toHaveCount(1); // 衝突卡開著，焦點政權不變
 
+  await expect(page.getByTestId('conflict-card-location')).toHaveCount(0); // §13 K3
+  await expect(page.getByTestId('conflict-card-timeline')).toBeVisible(); // §13 K2
   await page.getByTestId('conflict-card-close').click();
   await expect(card).toHaveCount(0);
-  await expect(icons).toHaveCount(0);
+  await expect(icons).toHaveCount(1); // 政權面板仍開著，圖示保留
 });
 
 test('1939-09-15：點德國 → 德—波、法—德、英—德三個圖示；關掉政權卡就隱藏', async ({ page }) => {

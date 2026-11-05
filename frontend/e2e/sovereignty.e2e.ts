@@ -203,6 +203,7 @@ test('實際控制 ↔ 主權切換：地圖過場、URL、圖例跟著換', asy
   await expect(page.getByTestId('axis-toggle-sovereignty')).toHaveAttribute('aria-pressed', 'true');
   await expect(canvas).toHaveAttribute('data-axis', 'sovereignty');
   await expect(page).toHaveURL(/axis=sovereignty/);
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   await expect(page.getByTestId('legend')).toHaveAttribute('data-axis', 'sovereignty');
   // 主權檢視圖例只留國界說明，不列「目前畫面中的政權」（Tai 2026-10-31）
   await expect(page.getByTestId('legend-sov-fill')).toBeVisible();
@@ -221,13 +222,19 @@ test('?axis=sovereignty 直接進主權檢視；1938-10-15 捷克斯洛伐克有
     const map = (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap;
     map.jumpTo({ center: [16, 52], zoom: 3.55 });
   });
-  await expect(page.getByTestId('map-regime-label').filter({ hasText: '捷克斯洛伐克' })).toHaveCount(1);
+  // 國名已改為 MapLibre symbol layer（M1-a），從畫面上已顯示的標籤讀
+  await expect.poll(() => page.evaluate(() => {
+    const m = (window as unknown as { __wlMap: { getLayer: (id: string) => unknown; queryRenderedFeatures: (o: object) => { properties: Record<string, unknown> }[] } }).__wlMap;
+    const layers = ['regime-label', 'tiles-label'].filter((l) => m.getLayer(l));
+    return m.queryRenderedFeatures({ layers }).filter((f) => JSON.stringify(f.properties).includes('捷克斯洛伐克')).length;
+  })).toBe(1);
 });
 
 test('圖例收合有過場（closing → collapsed）；prefers-reduced-motion 時直接收合', async ({ page }) => {
   await page.goto('/?date=1939-04-15');
   await waitForBorders(page);
   const legend = page.getByTestId('legend');
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   await expect(legend).toHaveAttribute('data-state', 'open');
   const states: string[] = [];
   await page.exposeFunction('wlState', (s: string) => states.push(s));
@@ -299,7 +306,7 @@ test('1939-10-23：德意志國結束變動沒有正式出處 → 待查證＋�
 
 test('小視窗：點下方的政權，側邊面板不超出地圖區、內部可捲動', async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 560 });
-  await page.goto('/?date=1939-10-23&axis=sovereignty');
+  await page.goto('/?date=1939-10-23&axis=sovereignty&boundarySource=geojson'); // 依 GeoJSON 圖徵座標點擊（備援路徑）
   await waitForBorders(page);
   const area = (await page.getByTestId('map-area').boundingBox())!;
   await jump(page, [19.94, 50.06], 4);
@@ -394,7 +401,7 @@ test('1942-11-01：維琪法國在 11-11 前仍為原紀錄（主權），尚無
 });
 
 test('舊資料修正：1942-11-01 阿爾及利亞仍屬維琪；1942-12-01 阿爾及利亞為盟軍佔領、荷挪丹為非主權', async ({ page }) => {
-  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await page.goto('/?date=1942-11-01&axis=sovereignty&boundarySource=geojson'); // 讀 GeoJSON 圖徵的填色（備援路徑）
   await waitForBorders(page);
   const card = page.getByTestId('sovereignty-card');
   const title = page.getByTestId('sovereignty-card-title');
@@ -484,7 +491,7 @@ async function baseColorAt(page: Page, lngLat: [number, number]): Promise<string
 const lum = (hex: string | null) => (hex ? [16, 8, 0].reduce((a, sh) => a + ((parseInt(hex.slice(1), 16) >> sh) & 255), 0) : NaN);
 
 test('1942-11-01：佔領區依佔領國上色（併入最深、總督府／專員轄區中等、軍事管理最淺）；性質「德國佔領（非主權）」；芬蘭維持自己的色；點德國時佔領區一起亮起', async ({ page }) => {
-  await page.goto('/?date=1942-11-01&axis=sovereignty');
+  await page.goto('/?date=1942-11-01&axis=sovereignty&boundarySource=geojson'); // 讀 GeoJSON 圖層的填色（備援路徑）
   await waitForBorders(page);
   const card = page.getByTestId('sovereignty-card');
   const title = page.getByTestId('sovereignty-card-title');

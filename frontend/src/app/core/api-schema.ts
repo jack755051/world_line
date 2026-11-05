@@ -27,7 +27,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["GetRegimesBatch"];
         put?: never;
         post: operations["CreateRegime"];
         delete?: never;
@@ -324,6 +324,86 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/capital-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateCapitalRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/capital-records/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractCapitalRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateLeaderRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateLeaderBio"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-records/{id}/person": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["LinkLeaderPerson"];
+        trace?: never;
+    };
     "/api/v1/sources/{id}": {
         parameters: {
             query?: never;
@@ -484,6 +564,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/regimes/{id}/geometry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetRegimeGeometry"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/conflicts": {
         parameters: {
             query?: never;
@@ -500,10 +596,78 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/capitals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetCapitals"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leaders": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetLeaders"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetLeaderBio"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ApiResponseOfCapitalMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CapitalMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfCapitalRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CapitalRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfConflictMapDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -594,6 +758,36 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfLeaderBioDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderBioDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfObject: {
             /** Format: int32 */
             statusCode: number | string;
@@ -639,6 +833,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["RegimeDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        "ApiResponseOfRegimeDto[]": {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["RegimeDto"][];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -741,6 +945,37 @@ export interface components {
             note: null | {
                 [key: string]: string;
             };
+        };
+        CapitalFeature: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            cityName: {
+                [key: string]: string;
+            };
+            location: components["schemas"]["JsonElement"];
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            sourceRef: null | string;
+        };
+        CapitalMapDto: {
+            /** Format: date */
+            date: string;
+            features: components["schemas"]["CapitalFeature"][];
+        };
+        CapitalRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            cityName: {
+                [key: string]: string;
+            };
+            location: components["schemas"]["JsonElement"];
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            sourceRef: null | string;
+            note: null | string;
         };
         CitationDto: {
             /** Format: uuid */
@@ -886,6 +1121,18 @@ export interface components {
             };
             researchRef: null | string;
         };
+        CreateCapitalRecordRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            cityName: null | {
+                [key: string]: string;
+            };
+            location: null | components["schemas"]["JsonElement"];
+            validStart: null | string;
+            validEnd: null | string;
+            sourceRef: null | string;
+            note?: null | string;
+        };
         CreateConflictRecordRequest: {
             /** Format: uuid */
             regimeAId: null | string;
@@ -957,6 +1204,41 @@ export interface components {
             location?: unknown;
             participants?: null | components["schemas"]["EventParticipantInput"][];
             citations?: null | components["schemas"]["EventCitationInput"][];
+        };
+        CreateLeaderBioRequest: {
+            name: null | string;
+            nameZh?: null | string;
+            birthDate?: null | string;
+            birthDatePrecision?: null | string;
+            deathDate?: null | string;
+            birthPlace?: null | {
+                [key: string]: string;
+            };
+            party?: null | {
+                [key: string]: string;
+            };
+            summary?: null | {
+                [key: string]: string;
+            };
+            fieldSources?: unknown;
+            /** @default false */
+            isTest: boolean;
+        };
+        CreateLeaderRecordRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            name: null | string;
+            nameZh: null | string;
+            role: null | string;
+            title: null | string;
+            validFrom: null | string;
+            validTo: null | string;
+            source: null | string;
+            sourceUrl?: null | string;
+            /** @default true */
+            verified: boolean;
+            /** Format: uuid */
+            personId?: null | string;
         };
         CreateOccupationAttributionRequest: {
             /** Format: uuid */
@@ -1122,6 +1404,86 @@ export interface components {
             endUncertainty?: null | components["schemas"]["DatePeriodDto"];
         };
         JsonElement: unknown;
+        LeaderBioDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            nameZh: null | string;
+            birthDate: null | string;
+            birthDatePrecision: null | string;
+            deathDate: null | string;
+            birthPlace: null | {
+                [key: string]: string;
+            };
+            party: null | {
+                [key: string]: string;
+            };
+            summary: null | {
+                [key: string]: string;
+            };
+            fieldSources: null | components["schemas"]["JsonElement"];
+            isTest: boolean;
+            /** Format: date-time */
+            retractedAt: null | string;
+            retractionReason: null | string;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        LeaderBioSummaryDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            nameZh: null | string;
+            birthDate: null | string;
+            birthDatePrecision: null | string;
+            deathDate: null | string;
+            summary: null | {
+                [key: string]: string;
+            };
+        };
+        LeaderFeature: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            name: string;
+            nameZh: null | string;
+            role: string;
+            title: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            source: string;
+            sourceUrl: null | string;
+            verified: boolean;
+            /** Format: uuid */
+            personId?: null | string;
+            bio?: null | components["schemas"]["LeaderBioSummaryDto"];
+        };
+        LeaderMapDto: {
+            /** Format: date */
+            date: string;
+            features: components["schemas"]["LeaderFeature"][];
+        };
+        LeaderRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            name: string;
+            nameZh: null | string;
+            role: string;
+            title: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            source: string;
+            sourceUrl: null | string;
+            verified: boolean;
+            /** Format: uuid */
+            personId?: null | string;
+        };
+        LinkLeaderPersonRequest: {
+            /** Format: uuid */
+            personId: null | string;
+        };
         OccupationAttributionDto: {
             /** Format: uuid */
             id: string;
@@ -1457,6 +1819,37 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetRegimesBatch: {
+        parameters: {
+            query?: {
+                ids?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRegimeDto[]"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2539,6 +2932,256 @@ export interface operations {
             };
         };
     };
+    CreateCapitalRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCapitalRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCapitalRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractCapitalRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateLeaderRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLeaderRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateLeaderBio: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLeaderBioRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    LinkLeaderPerson: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LinkLeaderPersonRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
     GetSource: {
         parameters: {
             query?: never;
@@ -2814,6 +3457,7 @@ export interface operations {
         parameters: {
             query?: {
                 date?: string;
+                zoom?: number | string;
             };
             header?: never;
             path?: never;
@@ -2832,6 +3476,49 @@ export interface operations {
             };
             /** @description Bad Request */
             400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetRegimeGeometry: {
+        parameters: {
+            query?: {
+                date?: string;
+                zoom?: number | string;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2863,6 +3550,100 @@ export interface operations {
             };
             /** @description Bad Request */
             400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetCapitals: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCapitalMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetLeaders: {
+        parameters: {
+            query?: {
+                date?: string;
+                regime?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetLeaderBio: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };

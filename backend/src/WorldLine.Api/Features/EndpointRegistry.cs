@@ -22,6 +22,8 @@ public static class EndpointRegistry
         SovereigntyEndpoints.Map(api, write);
         ConflictsEndpoints.Map(api, write);
         OccupationsEndpoints.Map(api, write);
+        CapitalsEndpoints.Map(api, write);
+        LeadersEndpoints.Map(api, write);
     }
 
     /// <summary>OpenAPI：成功回應為 <c>ApiResponse&lt;T&gt;</c>（200）。</summary>

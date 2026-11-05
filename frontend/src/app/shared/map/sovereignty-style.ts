@@ -1,6 +1,6 @@
 import type { Feature, FeatureCollection, Geometry } from 'geojson';
 import type { SovereigntyMapDto } from '../../core/api/api-types';
-import { CAMP_FILL, campOf, darken, hatchImageId, labelPoint, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
+import { CAMP_FILL, campOf, darken, hatchImageId, MAP_COLORS, type Camp, type ControlLabel } from './map-style';
 
 /**
  * 主權圖層（國界）樣式（2026-10-31 試驗）：
@@ -82,7 +82,9 @@ export function occupationTint(occupierSlug: string, controlKind: string): strin
   return mixHex(regimeColor(occupierSlug), MAP_COLORS.land, OCCUPATION_TINT[controlKind] ?? OCCUPATION_TINT['military_administration']);
 }
 
-const FALLBACK = ['#cdb8a0', '#b8c8b0', '#c0b8d0', '#d0c0a8', '#a8c0c8', '#d0b0b8', '#b8d0c0', '#c8c0a0'];
+/** 後備色盤（依 slug 雜湊取色）。圖磚的 color_idx（boundary_periods.wl_color_idx）用同一演算法與色盤，數量改了兩邊要一起改。 */
+export const REGIME_FALLBACK_COLORS = ['#cdb8a0', '#b8c8b0', '#c0b8d0', '#d0c0a8', '#a8c0c8', '#d0b0b8', '#b8d0c0', '#c8c0a0'];
+const FALLBACK = REGIME_FALLBACK_COLORS;
 
 /** 測試資料的 slug 會帶 `-<tag>` 尾碼；比對時先試完整 slug，再去掉最後一段。 */
 export function regimeColor(slug: string): string {
@@ -162,10 +164,10 @@ function ringArea(r: Ring): number {
 /** 國名標籤：每筆主權紀錄取最大的多邊形放標籤（地圖元件再依畫面大小決定顯示與否）。 */
 /**
  * 標籤位置快取（依主權紀錄 id）：紀錄只會撤回、不會改幾何，所以同一筆紀錄在每個日期的標籤點都一樣。
- * labelPoint 對大多邊形要數百毫秒；播放、跳日期時重算全部會卡住主執行緒（Tai 2026-11-01 效能問題）。
+ * （舊版在這裡跑 labelPoint，大多邊形要數百毫秒；M1-g 起改由地圖元件依視窗 polylabel。）
  */
 const LABEL_CACHE_MAX = 3000;
-const labelCache = new Map<string, { lngLat: [number, number]; bbox: [number, number, number, number] }>();
+const labelCache = new Map<string, { lngLat: [number, number]; bbox: [number, number, number, number]; rotation: number; ring: number[][] }>();
 function labelGeometry(recordId: string, g: Geometry) {
   const hit = labelCache.get(recordId);
   if (hit) return hit;
@@ -176,7 +178,10 @@ function labelGeometry(recordId: string, g: Geometry) {
   for (const [x, y] of biggest[0]) {
     minX = Math.min(minX, x); minY = Math.min(minY, y); maxX = Math.max(maxX, x); maxY = Math.max(maxY, y);
   }
-  const v = { lngLat: labelPoint(biggest), bbox: [minX, minY, maxX, maxY] as [number, number, number, number] };
+  // 真正的位置由地圖元件依視窗計算（§4 (c)-5 國名依視窗定位，polylabel）；這裡只給 bbox 中心當後備，零國家特例
+  const lngLat: [number, number] = [(minX + maxX) / 2, (minY + maxY) / 2];
+  const rotation = 0;
+  const v = { lngLat, bbox: [minX, minY, maxX, maxY] as [number, number, number, number], rotation, ring: biggest[0] };
   if (labelCache.size >= LABEL_CACHE_MAX) labelCache.delete(labelCache.keys().next().value as string);
   labelCache.set(recordId, v);
   return v;
@@ -190,7 +195,7 @@ export function sovereigntyLabels(dto: SovereigntyMapDto | null | undefined, nam
     if (!text) continue;
     const lg = labelGeometry(p.recordId, f.geometry as unknown as Geometry);
     if (!lg) continue;
-    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: lg.lngLat, bbox: lg.bbox, fit: 1 });
+    out.push({ versionId: `sov-${p.recordId}`, regimeId: p.regimeId, text, lngLat: lg.lngLat, bbox: lg.bbox, fit: 1, rotation: lg.rotation || undefined, ring: lg.ring });
   }
   // 大的先放：互撞時保留大國名稱
   return out.sort((a, b) => (b.bbox[2] - b.bbox[0]) * (b.bbox[3] - b.bbox[1]) - (a.bbox[2] - a.bbox[0]) * (a.bbox[3] - a.bbox[1]));

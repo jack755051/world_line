@@ -17,15 +17,25 @@ async function screenPointOf(page: Page, lngLat: [number, number]): Promise<{ x:
   return { x: (box?.x ?? 0) + p.x, y: (box?.y ?? 0) + p.y };
 }
 
+/** 地圖預設中心在波蘭（1941）；點巴黎等西歐座標前先跳過去，避免投影點在 canvas 外。 */
+async function jumpTo(page: Page, center: [number, number], zoom = 5): Promise<void> {
+  await page.evaluate(([c, z]) => {
+    (window as unknown as { __wlMap: { jumpTo: (o: object) => void } }).__wlMap.jumpTo({ center: c, zoom: z });
+  }, [center, zoom] as [[number, number], number]);
+  await page.waitForTimeout(500);
+}
+
 test('M0：開頁 → 看到多邊形 → 點開來源', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
   await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
   await waitForPolygons(page);
   await expect(page.getByTestId('interp-chip')).toHaveAttribute('data-state', 'attested');
 
+  await jumpTo(page, [2.35, 48.86], 5);
   const pt = await screenPointOf(page, [2.35, 48.86]);
   await page.mouse.click(pt.x, pt.y);
-  const card = page.getByTestId('feature-card');
+  // 控制區資訊在右側政權面板裡（M2-b；原本的浮動 feature-card 已移除）
+  const card = page.getByTestId('regime-sheet');
   await expect(card).toBeVisible();
   await expect(page.getByTestId('feature-card-title')).toContainText('軍事佔領');
 
@@ -58,14 +68,13 @@ async function snapshotDates(request: import('@playwright/test').APIRequestConte
   return ((body.data.items ?? body.data) as { asOf: string }[]).map((s) => s.asOf).sort();
 }
 
-test('時間軸：五條戰區軌道，無快照的軌道標為控制資料缺', async ({ page, request }) => {
-  const dates = await snapshotDates(request);
+test('時間軸（方案 A）：單行、無戰區軌道與快照色帶；⋯ 選單可跳下一個快照', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
-  await expect(page.getByTestId('timeline-track-west-europe')).toBeVisible();
-  await expect(page.getByTestId('timeline-snapshot-marker')).toHaveCount(dates.length);
-  for (const code of ['east-front', 'north-africa', 'pacific', 'china']) {
-    await expect(page.getByTestId(`timeline-track-${code}`)).toHaveAttribute('data-empty', 'true');
-  }
+  await expect(page.getByTestId('timeline-slider')).toBeVisible();
+  await expect(page.locator('[data-testid^="timeline-track-"]')).toHaveCount(0);
+  await expect(page.getByTestId('timeline-snapshot-marker')).toHaveCount(0);
+  await page.getByTestId('timeline-menu-button').click();
+  await expect(page.getByTestId('timeline-menu')).toBeVisible();
   await page.getByTestId('timeline-next-snapshot').click();
   await expect(page.getByTestId('topbar-date')).toHaveText('1940年8月15日');
 });
@@ -74,31 +83,24 @@ test('日期格式無效 → 回到預設日期並提示', async ({ page }) => {
   // toast 數秒後自動消失；--workers=2 時開頁較慢，先開始等 toast 再導頁，避免 toast 已消失才檢查
   const toastSeen = expect(page.getByTestId('toast')).toContainText('日期格式無效', { timeout: 30_000 });
   await page.goto('/?date=1940-13-99');
-  await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
+  await expect(page.getByTestId('topbar-date')).toHaveText('1941年6月1日');
   await toastSeen;
 });
 
 test('早於所有資料的日期顯示「此日期尚無資料」並可跳到最近有資料的日期', async ({ page, request }) => {
-  const [first] = await snapshotDates(request);
-  const [y, m, d] = first.split('-').map(Number);
-  // borders 設定（開發庫 5442）：主權層從 1908 起連續有資料，時間軸範圍內沒有真正「無資料」的日期。
-  // 改為攔截這次開頁的主權／控制回應、清空圖徵，只驗證空白狀態的畫面與「跳到最近快照」（快照日期仍來自開發 API）。
-  const empty = async (route: import('@playwright/test').Route) => {
-    const res = await route.fetch();
-    const body = await res.json();
-    if (body?.data?.featureCollection) body.data.featureCollection.features = [];
-    if (body?.data) body.data.coverageNotes = [];
-    await route.fulfill({ response: res, json: body });
-  };
-  if (process.env['WL_E2E_BORDERS']) {
-    await page.route('**/api/v1/sovereignty?*', empty);
-    await page.route('**/api/v1/control?*', empty);
-  }
-  await page.goto('/?date=1938-03-01');
-  await expect(page.getByTestId('map-empty')).toBeVisible();
-  await page.unrouteAll({ behavior: 'wait' });
+  // tiles／geojson 都以「早於 earliestEvent／overlay.range」為準；控制快照可能從 1940 才有，不能拿來算 before。
+  const ext = (await (await request.get('/api/v1/timeline/extent')).json()).data as { earliestEvent: string };
+  const earliest = ext.earliestEvent;
+  const y = Number(earliest.slice(0, 4));
+  const before = `${y - 1}-01-01`;
+  const snaps = await snapshotDates(request);
+  const nearest = snaps.reduce((a, b) =>
+    Math.abs(Date.parse(a) - Date.parse(before)) <= Math.abs(Date.parse(b) - Date.parse(before)) ? a : b);
+  const [ny, nm, nd] = nearest.split('-').map(Number);
+  await page.goto(`/?date=${before}`);
+  await expect(page.getByTestId('map-empty')).toBeVisible({ timeout: 30_000 });
   await page.getByTestId('map-empty-jump').click();
-  await expect(page.getByTestId('topbar-date')).toHaveText(`${y}年${m}月${d}日`);
+  await expect(page.getByTestId('topbar-date')).toHaveText(`${ny}年${nm}月${nd}日`);
 });
 
 test('控制資料缺：點點狀區塊出現資料缺卡片（原因來自 API）；控制區卡片的「補充」列', async ({ page, request }) => {
@@ -120,9 +122,10 @@ test('控制資料缺：點點狀區塊出現資料缺卡片（原因來自 API�
   test.skip(!f, '此日期沒有補充事件');
   await page.goto('/?date=1940-07-15');
   await waitForPolygons(page);
+  await jumpTo(page, [2.35, 48.86], 5);
   const paris = await screenPointOf(page, [2.35, 48.86]);
   await page.mouse.click(paris.x, paris.y);
-  await expect(page.getByTestId('feature-card')).toBeVisible();
+  await expect(page.getByTestId('regime-sheet')).toBeVisible();
   await expect(page.getByTestId('feature-card-supplement-label')).toHaveText('補充');
 });
 
@@ -140,6 +143,7 @@ for (const date of ['1940-07-15', '1940-10-01']) {
     const expected = new Set(features.map((f) => (f.properties.controllerAlignment ? CAMP_KEY[f.properties.controllerAlignment.camp] : 'unassigned')));
 
     await page.goto(`/?date=${date}`);
+    await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
     const items = page.getByTestId('legend-regime-item');
     await expect(items.first()).toBeVisible();
     const shown = new Set(await items.evaluateAll((els) => els.map((e) => e.getAttribute('data-camp') ?? '')));
@@ -150,37 +154,71 @@ for (const date of ['1940-07-15', '1940-10-01']) {
 
 
 // Stitch v2 對齊（DESIGN.md Timeline／Typography：只用 12px 等既有字級；圖例可收成左下小按鈕）
-test('Stitch v2：時間軸標籤與年份 12px、年份不壓在軌道上、播放鈕非朱紅', async ({ page }) => {
+test('時間軸方案 A：高約 48px，依序播放、日期、滑桿、⋯；年份 12px 每 5 年一個、每年一個小點；播放鈕非朱紅', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
-  await expect(page.getByTestId('timeline-track-west-europe')).toBeVisible();
-  const labels = page.getByTestId('timeline-track-label');
-  await expect(labels).toHaveCount(5);
-  for (const fs of await labels.evaluateAll((els) => els.map((e) => getComputedStyle(e).fontSize))) expect(fs).toBe('12px');
-  // 每個標籤與對應軌道垂直置中對齊（誤差 ≤ 2px）
-  const codes = ['west-europe', 'east-front', 'north-africa', 'pacific', 'china'];
-  for (let i = 0; i < codes.length; i++) {
-    const l = await labels.nth(i).boundingBox();
-    const t = await page.getByTestId(`timeline-track-${codes[i]}`).boundingBox();
-    expect(Math.abs(l!.y + l!.height / 2 - (t!.y + t!.height / 2))).toBeLessThanOrEqual(2);
+  const bar = await page.getByTestId('timeline').boundingBox();
+  expect(Math.abs(bar!.height - 48)).toBeLessThanOrEqual(2);
+  const xs = [];
+  for (const id of ['timeline-play', 'timeline-date-button', 'timeline-slider', 'timeline-menu-button']) {
+    const b = await page.getByTestId(id).boundingBox();
+    expect(b!.y + b!.height).toBeLessThanOrEqual(bar!.y + bar!.height + 1);
+    xs.push(b!.x);
   }
+  expect([...xs].sort((a, b) => a - b)).toEqual(xs);
   const years = page.getByTestId('timeline-year-label');
-  expect(await years.first().evaluate((e) => getComputedStyle(e).fontSize)).toBe('12px');
-  const lastTrack = await page.getByTestId('timeline-track-china').boundingBox();
-  const year = await years.first().boundingBox();
-  expect(year!.y).toBeGreaterThanOrEqual(lastTrack!.y + lastTrack!.height);
+  for (const fs of await years.evaluateAll((els) => els.map((e) => getComputedStyle(e).fontSize))) expect(fs).toBe('12px');
+  for (const y of await years.allTextContents()) expect(+y % 5).toBe(0);
+  const first = +(await years.first().textContent())!;
+  const last = +(await years.last().textContent())!;
+  expect(await page.getByTestId('timeline-year-dot').count()).toBeGreaterThanOrEqual(last - first + 1);
   const bg = await page.getByTestId('timeline-play').evaluate((e) => getComputedStyle(e).backgroundColor);
   expect(bg).not.toBe('rgb(178, 58, 38)');
-  await page.getByTestId('timeline-speed').click();
-  await expect(page.getByTestId('timeline-speed')).toHaveAttribute('data-speed', 'month');
 });
 
-test('Stitch v2：圖例收合成小按鈕，可再展開', async ({ page }) => {
+test('時間軸方案 A：⋯ 選單速度預設每秒 1 週，可選 1 日／1 月；Esc 關閉', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
+  await page.getByTestId('timeline-menu-button').click();
+  const opts = page.getByTestId('timeline-speed-option');
+  await expect(opts).toHaveCount(3);
+  await expect(page.locator('[data-testid=timeline-speed-option][data-speed=week]')).toHaveAttribute('aria-checked', 'true');
+  await page.locator('[data-testid=timeline-speed-option][data-speed=month]').click();
+  await expect(page.locator('[data-testid=timeline-speed-option][data-speed=month]')).toHaveAttribute('aria-checked', 'true');
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('timeline-menu')).toHaveCount(0);
+});
+
+test('時間軸方案 A：空白鍵播放、←／→ 一週、Shift＋←／→ 一年；輸入框內不作用', async ({ page }) => {
+  await page.goto('/?date=1940-07-15');
+  await expect(page.getByTestId('topbar-date')).toHaveText('1940年7月15日');
+  await page.locator('body').click({ position: { x: 5, y: 5 } }).catch(() => undefined);
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await page.keyboard.press('ArrowRight');
+  await expect(page).toHaveURL(/date=1940-07-22/);
+  await page.keyboard.press('Shift+ArrowLeft');
+  await expect(page).toHaveURL(/date=1939-07-22/);
+  const input = page.getByTestId('timeline-date-input');
+  await input.click();
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('Space');
+  await expect(page).toHaveURL(/date=1939-07-22/);
+  await expect(page.getByTestId('timeline-play')).toHaveAttribute('aria-pressed', 'false');
+  await input.press('Escape');
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await page.keyboard.press('Space');
+  await expect(page.getByTestId('timeline-play')).toHaveAttribute('aria-pressed', 'true');
+  await page.keyboard.press('Space');
+  await expect(page.getByTestId('timeline-play')).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('§10-3：圖例預設收合成左下 40×40 按鈕，可展開、可再收合', async ({ page }) => {
+  await page.goto('/?date=1940-07-15');
+  await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'collapsed');
+  const box = await page.getByTestId('legend-expand').boundingBox();
+  expect(Math.round(box!.width)).toBe(40);
+  await page.getByTestId('legend-expand').click();
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
   await page.getByTestId('legend-toggle').click();
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'collapsed');
-  const box = await page.getByTestId('legend-expand').boundingBox();
-  expect(box!.width).toBeLessThan(140);
   await page.getByTestId('legend-expand').click();
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
 });
@@ -199,7 +237,7 @@ async function expectedStartLabel(request: import('@playwright/test').APIRequest
   return start.slice(0, 7);
 }
 
-test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點（正式庫 1937-07；borders 依最早事件）', async ({ page, request }) => {
+test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯示邊框樣本、時間軸起點（依最早快照／事件，兩庫皆為 1908-10）', async ({ page, request }) => {
   const startLabel = await expectedStartLabel(request);
   const res = await request.get('/api/v1/control?date=1940-07-15');
   const features = (await res.json()).data.featureCollection.features as { properties: { controllerRegimeId: string; controlType: string } }[];
@@ -208,17 +246,22 @@ test('配色：填色＝陣營、政權名稱標籤來自 API、圖例政權顯�
   await expect(page.getByTestId('timeline-start-label')).toHaveText(startLabel);
   // 圖例：每個政權至少一個邊框樣本，樣本的控制類型都出現在 API 資料中
   const types = new Set(features.map((f) => f.properties.controlType));
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   const sw = page.getByTestId('legend-regime-swatch');
   await expect(sw.first()).toBeVisible();
   for (const t of await sw.evaluateAll((els) => els.map((e) => e.getAttribute('data-control-type') ?? ''))) expect(types.has(t)).toBe(true);
-  // 地圖標籤：只標 API 資料中的政權（控制方；borders 設定另有主權層的國名標籤，一併取自 /sovereignty）
+  // 地圖標籤：控制方政權＋主權層國名（兩庫皆有主權資料，一律加入）
   const ids = new Set(features.map((f) => f.properties.controllerRegimeId));
-  if (process.env['WL_E2E_BORDERS']) {
-    const sov = (await (await request.get('/api/v1/sovereignty?date=1940-07-15')).json()).data.featureCollection.features as { properties: { regimeId: string } }[];
-    for (const f of sov) ids.add(f.properties.regimeId);
-  }
-  const labels = page.getByTestId('map-regime-label');
-  await expect(labels.first()).toBeVisible();
-  for (const id of await labels.evaluateAll((els) => els.map((e) => e.getAttribute('data-regime-id') ?? ''))) expect(ids.has(id)).toBe(true);
+  const sov = (await (await request.get('/api/v1/sovereignty?date=1940-07-15')).json()).data.featureCollection.features as { properties: { regimeId: string } }[];
+  for (const f of sov) ids.add(f.properties.regimeId);
+  // 國名：geojson 用 regime-label；tiles 用 tiles-label（regime_id）。兩種都查。
+  const labelIds = async () => page.evaluate(() => {
+    const m = (window as unknown as { __wlMap: { queryRenderedFeatures: (o: object) => { properties: Record<string, unknown> }[]; getLayer: (id: string) => unknown } }).__wlMap;
+    const layers = ['regime-label', 'tiles-label'].filter((id) => m.getLayer(id));
+    return m.queryRenderedFeatures({ layers }).map((f) =>
+      String(f.properties['regimeId'] ?? f.properties['regime_id'] ?? ''));
+  });
+  await expect.poll(async () => (await labelIds()).length).toBeGreaterThan(0);
+  for (const id of await labelIds()) if (id) expect(ids.has(id)).toBe(true);
   await expect(page.getByTestId('legend-control-types-note')).toContainText('填色＝陣營');
 });

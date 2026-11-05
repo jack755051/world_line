@@ -85,7 +85,66 @@ export function focusPadding(inset: FocusInset, w: number, h: number, margin = 4
   return { top, right, bottom, left };
 }
 
-/** 面板位置：桌面從右側滑出（寬 3/4、最多 384px，同 sanring sheet 的 w-3/4 sm:max-w-sm）；窄螢幕（< 640px）改從底部，高度 55%。 */
-export function sheetLayout(w: number, h: number): { side: 'right' | 'bottom'; size: number } {
-  return w > 0 && w < 640 ? { side: 'bottom', size: Math.round(h * 0.55) } : { side: 'right', size: Math.min(384, Math.round((w || 1280) * 0.75)) };
+/**
+ * 根據實際量測結果，在 focusPadding 基礎上調整左右邊距：
+ * - 左側：若圖例已展開（legendRight 非 null）且頂部在容器高度範圍內，
+ *   取 max(base.left, legendRight + 16)，但剩餘可見寬度仍需 ≥ 200。
+ * - 右側：若量到 sheet 面板（sheetGap 非 null，即容器右緣 − sheet 左緣），
+ *   取 max(base.right, sheetGap + margin)。
+ */
+export function measuredPadding(
+  base: Padding,
+  w: number,
+  legendRight: number | null,   // 圖例右緣到容器左緣（px），null = 未展開
+  legendInBounds: boolean,      // 圖例頂部在容器高度範圍內
+  sheetGap: number | null,      // 容器右緣 − sheet 左緣（px），null = 量不到
+  margin = 48,
+): Padding {
+  let { left, right } = base;
+  if (legendRight !== null && legendInBounds) {
+    const proposedLeft = Math.round(legendRight + 16);
+    if (w - proposedLeft - right >= 200) left = Math.max(left, proposedLeft);
+  }
+  if (sheetGap !== null) {
+    right = Math.max(right, sheetGap + margin);
+  }
+  return { ...base, left, right };
+}
+
+/** 政權面板寬度規則（ARCHITECTURE.md §10-2）。 */
+/** §10 v2 W1（Tai 2026-11-04 15:29）：依螢幕大小固定三種寬度，不拖拉。 */
+export const SHEET_WIDTH = { wide: 432, mid: 384, narrow: 360 } as const;
+/** 小於 768px 的底部 bottom sheet 三段高度（§12）：peek 120px、half 50vh、full＝100vh 扣頂列 48px。 */
+export type SheetSnap = 'peek' | 'half' | 'full';
+export const SHEET_SNAPS: readonly SheetSnap[] = ['peek', 'half', 'full'];
+export function snapHeight(snap: SheetSnap, vh: number): number {
+  return snap === 'peek' ? 120 : snap === 'half' ? Math.round(vh * 0.5) : Math.round(vh - 48);
+}
+/** 拖拉放開時吸附到最接近的一段（§12）。 */
+export function nearestSnap(px: number, vh: number, maxH = Infinity): SheetSnap {
+  let best: SheetSnap = 'half';
+  let d = Infinity;
+  for (const s of SHEET_SNAPS) {
+    const h = Math.min(snapHeight(s, vh), maxH);
+    if (Math.abs(h - px) < d) [best, d] = [s, Math.abs(h - px)];
+  }
+  return best;
+}
+export interface SheetLayout {
+  side: 'right' | 'bottom';
+  size: number;
+  /** 768–1023px 蓋在地圖上、不推擠地圖（不設 map padding）。 */
+  overlay: boolean;
+}
+/**
+ * 面板位置與寬度（§10-2 響應式規則；w＝視窗寬）：
+ * §10 v2 W1＋§12 P1：≥1440 寬 432；1200–1439 寬 384；1024–1199 與 768–1023 寬 360 蓋在地圖上（都不能拖拉）；
+ * <768 改成底部 bottom sheet（96px／50vh／90vh，高度不超過可用高 maxH）。
+ */
+export function sheetLayout(w: number, vh: number, snap: SheetSnap = 'half', maxH = Infinity): SheetLayout {
+  const vw = w || 1280;
+  if (vw < 768) return { side: 'bottom', size: Math.min(snapHeight(snap, vh), maxH), overlay: false };
+  if (vw >= 1440) return { side: 'right', size: SHEET_WIDTH.wide, overlay: false };
+  if (vw >= 1200) return { side: 'right', size: SHEET_WIDTH.mid, overlay: false };
+  return { side: 'right', size: SHEET_WIDTH.narrow, overlay: true };
 }

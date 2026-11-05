@@ -1,0 +1,101 @@
+{
+ "_placeholder": "SOV_RA_RU_19221115",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "SOV_RA_RU_19221115",
+ "_meta": {
+  "segOf": "RU_1922-11-15",
+  "area_deg2": 3312.6223
+ },
+ "body": {
+  "regimeId": "01a19333-9b70-701d-a1e4-464af7aff56c",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1922-11-15",
+   "end": "1922-12-30"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a193a2-bd0c-7ea4-981f-995e1dd2a667",
+  "geometryLocator": "relation/2958035 v35 − 白俄羅斯（完整，不受東經 60 度框裁切）",
+  "geometryLicense": "cc_by",
+  "attribution": "OCHA／HDX COD-AB Ukraine（OHM 線段標示 CC BY 4.0）; OHM 線段標示 CC BY 4.0、未註明原始來源（待查）",
+  "startEventId": "{{EV_FER_END}}",
+  "endEventId": "01a193a2-c1eb-714c-83d8-20344b76c44a",
+  "ohmRelationId": 2958035,
+  "ohmVersion": 35,
+  "ohmFetchedAt": "2026-10-31T19:39:07Z",
+  "ohmStartRaw": "1922-11-15",
+  "ohmEndRaw": "1922-12-30",
+  "provenance": {
+   "ohmFixme": "needs source for boundary lines",
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "derivation": "relation/2958035 v35 − 白俄羅斯",
+   "derivedFrom": [
+    "relation/2958035 v35",
+    "relation/2848186 v17"
+   ],
+   "trialWindow": "俄國與亞洲鄰國 1908-10-05～1937-07-07（russia-asia-1908-1937）",
+   "ohmChangeset": 277898,
+   "ohmTimestamp": "2026-10-23T19:50:26Z",
+   "licenseReview": "osm_derived_ways",
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "hdx_ukr": 3,
+    "cc_by_unknown": 10,
+    "untagged(OHM CC0)": 924
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 1,
+   "replaces": "01a193a3-5d13-785d-9113-b7b0ba9316cd",
+   "unclip": {
+    "batch": "russia-asia-1908-1937",
+    "frameRemoved": "box(-20,15,60,72)",
+    "method": "框內幾何沿用原紀錄（換版段：新版框內幾何扣除原紀錄已扣掉的部分）；框外取同一 OHM 版本全球重組（Natural Earth 10m 陸地裁切；海岸簡化 0.02°，與鄰國陸界 0.05° 內用 0.0005° 原幾何）",
+    "ohmVersionChange": null,
+    "arcticIslandsPatch": null,
+    "boundaryBasis": [
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 12，pp. 74–84（1860-11-02/14 北京續增條約，第 1～3 條）",
+      "evidenceNote": "俄中東段邊界：黑龍江、烏蘇里江、興凱湖至圖們江；西段劃界原則。"
+     },
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 29，pp. 211–221（1881-02-12/24 聖彼得堡條約〔伊犁條約〕）",
+      "evidenceNote": "伊犁地區歸還中國、俄中西段邊界調整。"
+     },
+     {
+      "sourceId": "{{SRC_EICHELMANN1887}}",
+      "locator": "ч. I, с. 383–386（1881-12-09/21 裏海以東劃界專約；頁碼待查證）",
+      "evidenceNote": "俄國與波斯在裏海以東（阿特列克河至捷詹）的邊界。"
+     },
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 37，pp. 264–266（1885-08-29/09-10 俄英阿富汗劃界協定）",
+      "evidenceNote": "俄屬中亞與阿富汗西北段邊界。"
+     },
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 41，pp. 284–286（1895-02-27/03-11 俄英帕米爾勢力範圍劃分協定）",
+      "evidenceNote": "帕米爾地區俄、阿邊界（噴赤河），瓦罕走廊。"
+     }
+    ],
+    "cutAgainst": {
+     "higherPriority": [
+      "bukharan-peoples-soviet-republic",
+      "khorezm-peoples-soviet-republic"
+     ],
+     "sliversRemoved": [
+      "bogd-khanate-of-mongolia",
+      "transcaucasian-sfsr-1922",
+      "tuvan-peoples-republic",
+      "ukrainian-ssr-1919"
+     ]
+    }
+   }
+  },
+  "note": {
+   "zh-Hant": "依 OHM 俄羅斯蘇維埃共和國各版本（框外部分裁掉）；內戰期間白軍控制區只畫南俄政府（1920），其餘未畫（待查證）。扣掉同期：白俄羅斯。（2026-11-01 修正：補回東經 60 度以東的幾何。）",
+   "en": "Per OHM RSFSR versions; White-held areas other than South Russia (1920) not drawn (pending). Minus: SOV_BY_SSR. (Fixed 2026-11-01: geometry east of 60°E restored.)"
+  }
+ }
+}

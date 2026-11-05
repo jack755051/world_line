@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -53,7 +54,15 @@ builder.Services.AddResponseCompression(o =>
 });
 builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = CompressionLevel.Fastest);
 builder.Services.Configure<GzipCompressionProviderOptions>(o => o.Level = CompressionLevel.Fastest);
-builder.Services.AddSingleton<DateIntervalCache>();
+// 逐日快取（Tai 2026-11-04）：滑動視窗，前後各 WORLDLINE_CACHE_WINDOW 個變動區間（預設 10）、
+// 往播放方向預先載入 WORLDLINE_CACHE_PREFETCH 個（預設 3）；估算大小上限 WORLDLINE_CACHE_MAX_MB（預設 1536）當保險
+var cacheMaxMb = builder.Configuration.GetValue<long?>("WORLDLINE_CACHE_MAX_MB") is { } mb and > 0 ? mb : DateIntervalCache.DefaultMaxBytes / (1024 * 1024);
+var cacheWindow = builder.Configuration.GetValue<int?>("WORLDLINE_CACHE_WINDOW") is { } w and >= 0 ? w : DateIntervalCache.DefaultWindowRadius;
+var cachePrefetch = Math.Min(cacheWindow, builder.Configuration.GetValue<int?>("WORLDLINE_CACHE_PREFETCH") is { } pf and >= 0 ? pf : DateIntervalCache.DefaultPrefetchCount);
+builder.Services.AddSingleton(sp => new DateIntervalCache(cacheMaxMb * 1024 * 1024, cacheWindow, cachePrefetch)
+{
+    ScopeFactory = () => sp.GetRequiredService<IServiceScopeFactory>().CreateScope(),
+});
 builder.Services.AddHealthChecks().AddDbContextCheck<WorldLineDbContext>("db");
 
 var app = builder.Build();
@@ -89,7 +98,68 @@ app.MapHealthChecks("/healthz", new HealthCheckOptions
 var api = app.MapGroup("/api/v1");
 WorldLine.Api.Features.EndpointRegistry.Map(api);
 
+// 啟動預熱（Tai 2026-11-04：不全量預熱，只載入預設日期那一格，視窗中心設在那裡，
+// 之後的預先載入往後補幾格；原本全部 591 個變動點 × 4 種預熱會吃到 ~7 GB 被系統砍掉）。
+// 日期：WORLDLINE_PREWARM_DATE（空字串＝不預熱），預設前端預設日期 1940-07-15。快取被 Invalidate 後自動重排一次。
+var prewarmDate = ParsePrewarmDate(app.Configuration["WORLDLINE_PREWARM_DATE"]);
+// 疆界來源（Tai 2026-11-04 18:46）：正式上線只跑圖磚，不預算 GeoJSON 主權；開發環境預設仍預熱（前端可用 ?boundarySource=geojson 備援）。
+// WORLDLINE_BOUNDARY_SOURCE=tiles|geojson 可覆寫；未設定時 Production＝tiles、其他＝geojson。
+var prewarmSovereignty = PrewarmSovereignty(app.Environment.EnvironmentName, app.Configuration["WORLDLINE_BOUNDARY_SOURCE"]);
+_ = Task.Run(async () =>
+{
+    if (prewarmDate is not { } day) return;
+    var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
+    var stopping = lifetime.ApplicationStopping;
+    // 等 Kestrel 就緒，不搶啟動資源
+    try { await Task.Delay(500, stopping); } catch (OperationCanceledException) { return; }
+
+    while (!stopping.IsCancellationRequested)
+    {
+        var cache = app.Services.GetRequiredService<DateIntervalCache>();
+        var logger = app.Services.GetRequiredService<ILogger<Program>>();
+        var version = cache.Version;
+        var sw = Stopwatch.StartNew();
+        try
+        {
+            using var scope = app.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<WorldLineDbContext>();
+            if (prewarmSovereignty) await WorldLine.Api.Features.SovereigntyEndpoints.WarmupAsync(day, db, cache);
+            await WorldLine.Api.Features.ConflictsEndpoints.WarmupAsync(day, db, cache);
+            logger.LogInformation("背景預熱 {Date} 完成：{Entries} 筆、估計 {MB:F0} MB（視窗 ±{N}、預先載入 {P}、上限 {Max:F0} MB），耗時 {Elapsed:F1} s",
+                day, cache.Count, cache.EstimatedBytes / 1048576.0, cache.WindowRadius, cache.PrefetchCount, cache.MaxBytes / 1048576.0, sw.Elapsed.TotalSeconds);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "背景預熱 {Date} 失敗（不影響服務）", day);
+        }
+
+        // 等快取版本更新（寫入觸發 Invalidate）後重排一次預熱；每 2 s 輪詢
+        while (!stopping.IsCancellationRequested && cache.Version == version)
+        {
+            try { await Task.Delay(2000, stopping); }
+            catch (OperationCanceledException) { return; }
+        }
+    }
+});
+
 app.Run();
 
 /// <summary>讓整合測試的 WebApplicationFactory 可以參照。</summary>
-public partial class Program;
+public partial class Program
+{
+    /// <summary>預設預熱日期：前端預設日期（frontend AtlasState.defaultDate）。</summary>
+    internal static readonly DateOnly DefaultPrewarmDate = new(1940, 7, 15);
+
+    /// <summary>解析 WORLDLINE_PREWARM_DATE；未設定用預設，空字串或格式錯＝不預熱。</summary>
+    internal static DateOnly? ParsePrewarmDate(string? raw) => raw is null
+        ? DefaultPrewarmDate
+        : DateOnly.TryParseExact(raw.Trim(), "yyyy-MM-dd", out var d) ? d : null;
+
+    /// <summary>是否預熱 GeoJSON 主權快取：WORLDLINE_BOUNDARY_SOURCE 明設 tiles／geojson 為準；未設定時 Production 不預熱（只跑圖磚）。</summary>
+    internal static bool PrewarmSovereignty(string environmentName, string? boundarySource) => boundarySource?.Trim().ToLowerInvariant() switch
+    {
+        "tiles" => false,
+        "geojson" => true,
+        _ => !string.Equals(environmentName, "Production", StringComparison.OrdinalIgnoreCase),
+    };
+}

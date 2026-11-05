@@ -115,7 +115,16 @@
   --wl-space-unit: 4px;
   --wl-topbar-height: 56px;
   --wl-panel-width: 400px;
-  --wl-timeline-height: 112px;
+  --wl-timeline-height: 48px; /* M3-a 方案 A：單行約 48px（原 112px） */
   --wl-legend-width: 280px;
-  --wl-min-width: 1024px;
+  --wl-min-width: 360px; /* §10：<768px 改用底部面板（原 1024px） */
+  --wl-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* §12 RWD：手機（<768px）或視窗高度小於 500px 時，頂列 48px、時間軸兩行 56px（加底部安全區） */
+@media (max-width: 767.98px), (max-height: 499.98px) {
+  :root {
+    --wl-topbar-height: 48px;
+    --wl-timeline-height: calc(56px + var(--wl-safe-bottom));
+  }
 }

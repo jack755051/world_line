@@ -26,6 +26,9 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
     public DbSet<OccupationAttribution> OccupationAttributions => Set<OccupationAttribution>();
+    public DbSet<CapitalRecord> CapitalRecords => Set<CapitalRecord>();
+    public DbSet<LeaderBio> LeaderBios => Set<LeaderBio>();
+    public DbSet<LeaderRecord> LeaderRecords => Set<LeaderRecord>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -337,6 +340,71 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeBId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EndEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 首都紀錄（capital_records；2026-11-02 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<CapitalRecord>(e =>
+        {
+            e.ToTable("capital_records", t =>
+            {
+                t.HasCheckConstraint("ck_capital_records_city_name_object", "jsonb_typeof(city_name) = 'object'");
+                t.HasCheckConstraint("ck_capital_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_capital_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.CityName).HasColumnType("jsonb");
+            e.Property(x => x.Location).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 領導人生平（leader_bios；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderBio>(e =>
+        {
+            e.ToTable("leader_bios", t =>
+            {
+                t.HasCheckConstraint("ck_leader_bios_name_not_blank", "btrim(name) <> ''");
+                t.HasCheckConstraint("ck_leader_bios_birth_date_precision",
+                    "birth_date_precision IS NULL OR birth_date_precision IN ('day', 'month', 'year')");
+                t.HasCheckConstraint("ck_leader_bios_birth_place_object", "birth_place IS NULL OR jsonb_typeof(birth_place) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_party_object", "party IS NULL OR jsonb_typeof(party) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.BirthDatePrecision).HasMaxLength(8);
+            e.Property(x => x.BirthPlace).HasColumnType("jsonb");
+            e.Property(x => x.Party).HasColumnType("jsonb");
+            e.Property(x => x.Summary).HasColumnType("jsonb");
+            e.Property(x => x.FieldSources).HasColumnType("jsonb");
+            e.Property(x => x.IsTest).HasDefaultValue(false);
+            e.Property(x => x.Version).HasDefaultValue(0);
+            Timestamps(e, updated: false);
+        });
+        // 領導人紀錄（leader_records；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderRecord>(e =>
+        {
+            e.ToTable("leader_records", t =>
+            {
+                t.HasCheckConstraint("ck_leader_records_role", InList("role", LeaderRoles.All));
+                t.HasCheckConstraint("ck_leader_records_name_not_blank", "btrim(name) <> ''");
+                t.HasCheckConstraint("ck_leader_records_source_not_blank", "btrim(source) <> ''");
+                t.HasCheckConstraint("ck_leader_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_leader_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Role).HasMaxLength(32);
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Verified).HasDefaultValue(false);
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.PersonId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RegimeId);
+            e.HasIndex(x => x.PersonId).HasFilter("person_id IS NOT NULL");
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

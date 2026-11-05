@@ -1,4 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { BOUNDARY_SOURCE_KEY } from './boundary-source';
+
+// 這兩組測試針對 GeoJSON 備援路徑（開發環境 ?boundarySource=geojson）；預設已改 tiles（2026-11-04）
+beforeEach(() => localStorage.setItem(BOUNDARY_SOURCE_KEY, 'geojson'));
+afterEach(() => localStorage.removeItem(BOUNDARY_SOURCE_KEY));
 import { AtlasData } from './atlas-data';
 import { WorldLineApi } from './api/world-line-api';
 import type { ControlMapDto, SovereigntyMapDto } from './api/api-types';
@@ -9,7 +14,7 @@ describe('AtlasData：快速連續跳日期', () => {
   it('新日期開始載入時中止舊請求；舊請求晚到也不蓋掉新資料；mapDataLoading 反映載入中', async () => {
     const pending: { date: string; signal?: AbortSignal; resolve: (v: SovereigntyMapDto) => void; reject: (e: unknown) => void }[] = [];
     const api = {
-      sovereignty: (date: string, signal?: AbortSignal) =>
+      sovereignty: (date: string, _zoom?: number, signal?: AbortSignal) =>
         new Promise<SovereigntyMapDto>((resolve, reject) => {
           pending.push({ date, signal, resolve, reject });
           signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')));
@@ -34,7 +39,7 @@ describe('AtlasData：快速連續跳日期', () => {
 
   it('被中止的請求不把狀態標成錯誤', async () => {
     const api = {
-      sovereignty: (_d: string, signal?: AbortSignal) =>
+      sovereignty: (_d: string, _zoom?: number, signal?: AbortSignal) =>
         new Promise<SovereigntyMapDto>((resolve, reject) => {
           signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')));
           if (_d === '1944-10-01') resolve(sov(_d));

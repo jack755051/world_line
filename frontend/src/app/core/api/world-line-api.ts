@@ -15,6 +15,79 @@ import type {
   RegimeEventDto,
 } from './api-types';
 
+export interface CapitalCityName {
+  en?: string;
+  'zh-Hant'?: string;
+}
+
+export interface CapitalRecord {
+  recordId: string;
+  regimeId: string;
+  regimeSlug: string;
+  cityName: CapitalCityName;
+  location: { type: 'Point'; coordinates: [number, number] };
+  validPeriod: { start: string; end: string | null };
+  sourceRef: string;
+}
+
+export interface CapitalsDto {
+  date: string;
+  features: CapitalRecord[];
+}
+
+export interface LeaderBioFieldSource {
+  source: string;
+  url: string | null;
+}
+
+/** 領導人完整生平（GET /leader-bios/{id} 回應）。 */
+export interface LeaderBio {
+  id: string;
+  name: string;
+  nameZh: string | null;
+  birthDate: string | null;
+  birthDatePrecision: 'day' | 'month' | 'year' | null;
+  deathDate: string | null;
+  birthPlace: { 'zh-Hant'?: string; en?: string } | null;
+  party: { 'zh-Hant'?: string; en?: string } | null;
+  summary: { 'zh-Hant'?: string; en?: string } | null;
+  fieldSources: Record<string, LeaderBioFieldSource> | null;
+  isTest: boolean;
+}
+
+/** 生平摘要（GET /leaders 回應內嵌，不含 fieldSources）。 */
+export interface LeaderBioSummary {
+  id: string;
+  name: string;
+  nameZh: string | null;
+  birthDate: string | null;
+  birthDatePrecision: 'day' | 'month' | 'year' | null;
+  deathDate: string | null;
+  summary: Record<string, string> | null;
+  retractedAt?: string | null;
+}
+
+export interface LeaderRecord {
+  recordId: string;
+  regimeId: string;
+  regimeSlug: string;
+  name: string;
+  nameZh: string | null;
+  role: 'head_of_state' | 'head_of_government';
+  title: string;
+  validPeriod: { start: string; end: string | null };
+  source: string;
+  sourceUrl: string | null;
+  verified: boolean;
+  personId: string | null;
+  bio: LeaderBioSummary | null;
+}
+
+export interface LeadersDto {
+  date: string;
+  features: LeaderRecord[];
+}
+
 /** 健康檢查回應（`/healthz`，不在 OpenAPI 內）。 */
 export interface HealthReport {
   status: string;
@@ -36,9 +109,18 @@ export class WorldLineApi {
     return this.getByDate<ControlMapDto>('/control', date, signal);
   }
 
-  /** GET /sovereignty?date=：該日主權圖層（國界，依政權上色；陣營只作補充）。 */
-  async sovereignty(date: string, signal?: AbortSignal): Promise<SovereigntyMapDto> {
-    return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal);
+  /** GET /sovereignty?date=&zoom=：該日主權圖層（國界，依政權上色；陣營只作補充）。
+   *  zoom 供後端依縮放層級選擇幾何簡化容差（低縮放容差較大、資料量較小）。 */
+  async sovereignty(date: string, zoom?: number, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    return this.getByDate<SovereigntyMapDto>('/sovereignty', date, signal, zoom !== undefined ? { zoom: zoom.toFixed(1) } : undefined);
+  }
+
+  /**
+   * GET /regimes/{id}/geometry?date=&zoom=（ARCHITECTURE.md §9）：被選政權當天的主權紀錄＋它佔領的政權紀錄；
+   * 每筆與同日 /sovereignty 的那筆相同。tiles 模式點選政權時才取（換日期不取）。
+   */
+  async regimeGeometry(regimeId: string, date: string, zoom?: number, signal?: AbortSignal): Promise<SovereigntyMapDto> {
+    return this.getByDate<SovereigntyMapDto>(`/regimes/${encodeURIComponent(regimeId)}/geometry`, date, signal, zoom !== undefined ? { zoom: zoom.toFixed(1) } : undefined);
   }
 
   /** GET /conflicts?date=：該日進行中的衝突（雙方政權、起訖事件與出處、圖示位置）。 */
@@ -50,11 +132,13 @@ export class WorldLineApi {
    * 依日期查詢；signal 中止時取消 HTTP 請求（unsubscribe → XHR abort）並以 AbortError 拒絕，
    * 讓快速連續跳日期時過時的請求不佔頻寬、也不會晚到蓋掉新資料。
    */
-  private getByDate<T>(path: string, date: string, signal?: AbortSignal): Promise<T> {
+  private getByDate<T>(path: string, date: string, signal?: AbortSignal, extra?: Record<string, string>): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       const aborted = () => reject(new DOMException('Aborted', 'AbortError'));
       if (signal?.aborted) return aborted();
-      const sub = this.http.get<ApiEnvelope<T>>(`${WorldLineApi.base}${path}`, { params: new HttpParams().set('date', date) }).subscribe({
+      let params = new HttpParams().set('date', date);
+      if (extra) for (const [k, v] of Object.entries(extra)) params = params.set(k, v);
+      const sub = this.http.get<ApiEnvelope<T>>(`${WorldLineApi.base}${path}`, { params }).subscribe({
         next: (res) => resolve(res.data),
         error: (e: unknown) => reject(e),
       });
@@ -103,8 +187,32 @@ export class WorldLineApi {
     return res.data;
   }
 
+  /** GET /regimes?ids=…：批次取政權（最多 200）。避免 N 個逐一請求。 */
+  async regimesBatch(ids: string[]): Promise<RegimeDto[]> {
+    let params = new HttpParams();
+    for (const id of ids) params = params.append('ids', id);
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<RegimeDto[]>>(`${WorldLineApi.base}/regimes`, { params }));
+    return res.data;
+  }
+
   async source(id: string): Promise<SourceDto> {
     const res = await firstValueFrom(this.http.get<ApiEnvelope<SourceDto>>(`${WorldLineApi.base}/sources/${id}`));
+    return res.data;
+  }
+
+  /** GET /capitals?date=：該日首都記錄（城市名稱、位置）。 */
+  async capitals(date: string, signal?: AbortSignal): Promise<CapitalsDto> {
+    return this.getByDate<CapitalsDto>('/capitals', date, signal);
+  }
+
+  /** GET /leaders?date=：該日領導人記錄（國家元首、政府首腦）。 */
+  async leaders(date: string, signal?: AbortSignal): Promise<LeadersDto> {
+    return this.getByDate<LeadersDto>('/leaders', date, signal);
+  }
+
+  /** GET /leader-bios/{id}：領導人完整生平。 */
+  async getLeaderBio(id: string): Promise<LeaderBio> {
+    const res = await firstValueFrom(this.http.get<ApiEnvelope<LeaderBio>>(`${WorldLineApi.base}/leader-bios/${id}`));
     return res.data;
   }
 

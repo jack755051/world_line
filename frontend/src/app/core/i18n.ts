@@ -7,7 +7,7 @@ export type Lang = 'zh-Hant' | 'en';
  * 文案依 PRD §8 與 DESIGN.md；英文為對應翻譯。
  */
 const DICT = {
-  'app.name': { 'zh-Hant': 'World Line', en: 'World Line' },
+  'app.name': { 'zh-Hant': 'Sanring World Line', en: 'Sanring World Line' },
   'axis.control': { 'zh-Hant': '實際控制', en: 'Control' },
   'axis.sovereignty': { 'zh-Hant': '主權', en: 'Sovereignty' },
   'axis.sovereignty.unavailable': { 'zh-Hant': '主權檢視尚未建置（主權資料與 API 屬 M1 之後）', en: 'Sovereignty view not built yet (after M1)' },
@@ -108,7 +108,12 @@ const DICT = {
   'timeline.noSnapshots': { 'zh-Hant': '控制資料缺', en: 'No control data' },
   'timeline.incomplete': { 'zh-Hant': '資料不保證完整', en: 'Data not guaranteed complete' },
   'timeline.handle': { 'zh-Hant': '目前日期', en: 'Current date' },
-  'offline.title': { 'zh-Hant': '無法連線到 World Line API', en: 'Cannot reach the World Line API' },
+  'timeline.speed.day': { 'zh-Hant': '1 日/秒', en: '1 day/s' },
+  'timeline.menu': { 'zh-Hant': '更多選項', en: 'More options' },
+  'timeline.key.space': { 'zh-Hant': '空白鍵', en: 'Space' },
+  'timeline.keys': { 'zh-Hant': '空白鍵 播放／暫停・←／→ 一週・Shift＋←／→ 一年', en: 'Space play/pause · ←/→ one week · Shift+←/→ one year' },
+  'timeline.incomplete.toast': { 'zh-Hant': '1937 年 7 月以前的資料不保證完整；日期旁的 ⓘ 表示目前位於這段期間', en: 'Data before July 1937 may be incomplete; the ⓘ next to the date marks this period' },
+  'offline.title': { 'zh-Hant': '無法連線到 Sanring World Line API', en: 'Cannot reach the Sanring World Line API' },
   'offline.health': { 'zh-Hant': '服務狀態：{status}', en: 'Service status: {status}' },
   'offline.noResponse': { 'zh-Hant': '無回應', en: 'No response' },
   'toast.invalidDate': { 'zh-Hant': '網址中的日期格式無效，已回到預設日期', en: 'Invalid date in URL; reset to the default date' },

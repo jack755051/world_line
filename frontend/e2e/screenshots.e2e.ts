@@ -32,7 +32,7 @@ test('02 控制區卡片＋來源 popover', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
   await ready(page);
   await clickLngLat(page, [2.35, 48.86]);
-  await page.getByTestId('feature-card').getByTestId('citation-button').click();
+  await page.getByTestId('regime-sheet').getByTestId('citation-button').first().click();
   await expect(page.getByTestId('citation-item').first()).toBeVisible();
   await page.waitForTimeout(1500);
   await page.screenshot({ path: out('02-feature-card-citation') });
@@ -53,19 +53,20 @@ test('04 1940-08-15 亞爾薩斯－摩澤爾改為直接統治（EN）', async (
   await page.screenshot({ path: out('04-1940-08-15-en-legend-closed') });
 });
 
-test('05 此日期尚無資料 1938-03-01', async ({ page }) => {
-  await page.goto('/?date=1938-03-01');
+test('05 此日期尚無資料 1900-01-01', async ({ page }) => {
+  await page.goto('/?date=1900-01-01');
   await expect(page.getByTestId('map-empty')).toBeVisible();
   await page.waitForTimeout(800);
   await page.screenshot({ path: out('05-empty-1938-03-01') });
 });
 
-test('06 時間軸快照標記 hover', async ({ page }) => {
+test('06 時間軸 ⋯ 選單打開', async ({ page }) => {
   await page.goto('/?date=1940-07-15');
   await ready(page);
-  await page.getByTestId('timeline-snapshot-marker').first().hover();
-  await page.waitForTimeout(400);
-  await page.screenshot({ path: out('06-timeline-marker-hover'), clip: { x: 0, y: 600, width: 1440, height: 300 } });
+  await page.getByTestId('timeline-menu-button').click();
+  await expect(page.getByTestId('timeline-menu')).toBeVisible();
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: out('06-timeline-menu'), clip: { x: 0, y: 600, width: 1440, height: 300 } });
 });
 
 test('07 API 無法連線（攔截 /healthz）', async ({ page }) => {
@@ -112,7 +113,7 @@ test('11 網址日期無效 → toast', async ({ page }) => {
 
 test('12 早期時段提示 1935-05-01', async ({ page }) => {
   await page.goto('/?date=1935-05-01');
-  await expect(page.getByTestId('map-incomplete-period-hint')).toBeVisible();
+  await expect(page.getByTestId('timeline-incomplete-info')).toBeVisible();
   await page.waitForTimeout(800);
   await page.screenshot({ path: out('12-early-period-1935-05-01') });
 });

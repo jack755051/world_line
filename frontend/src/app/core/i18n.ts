@@ -7,6 +7,7 @@ export type Lang = 'zh-Hant' | 'en';
  * 文案依 PRD §8 與 DESIGN.md；英文為對應翻譯。
  */
 const DICT = {
+  'app.credit': { 'zh-Hant': '開發者：Sanring Tech', en: 'Developed by Sanring Tech' },
   'app.name': { 'zh-Hant': 'Sanring World Line', en: 'Sanring World Line' },
   'axis.control': { 'zh-Hant': '實際控制', en: 'Control' },
   'axis.sovereignty': { 'zh-Hant': '主權', en: 'Sovereignty' },

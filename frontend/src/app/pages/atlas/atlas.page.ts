@@ -90,7 +90,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
               [bp]="vp.bp()" [compact]="vp.compact()" [showCamps]="showCamps()" (campsToggle)="showCamps.set(!showCamps())" (datePick)="openDatePicker()" />
             }
             <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
-              <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+              <wl-atlas-map [creditText]="tr('app.credit')" [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" [popupEl]="mobile() ? null : conflictPopEl()?.nativeElement ?? null" [popupLngLat]="conflictLngLat()" (conflictClick)="onConflictClick($event)"

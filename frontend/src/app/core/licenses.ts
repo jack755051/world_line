@@ -4,6 +4,7 @@ import type { Lang } from './i18n';
 const LICENSES: Record<string, Record<Lang, string>> = {
   cc0: { 'zh-Hant': 'CC0（公有領域貢獻）', en: 'CC0' },
   public_domain: { 'zh-Hant': '公有領域', en: 'Public domain' },
+  pd_expired: { 'zh-Hant': '公有領域（著作權已過期）', en: 'Public domain (copyright expired)' },
   us_federal_pd: { 'zh-Hant': '美國聯邦政府著作（公有領域）', en: 'US federal work (public domain)' },
   cc_by: { 'zh-Hant': 'CC BY', en: 'CC BY' },
   cc_by_sa: { 'zh-Hant': 'CC BY-SA', en: 'CC BY-SA' },

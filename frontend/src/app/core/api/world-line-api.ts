@@ -35,9 +35,60 @@ export interface CapitalsDto {
   features: CapitalRecord[];
 }
 
+/** 舊格式逐欄位出處（自由文字，非結構化引用；不算已查證）。 */
 export interface LeaderBioFieldSource {
-  source: string;
+  source?: string | null;
+  url?: string | null;
+  /** verified | 待查證 | 不適用（建檔時的考證狀態文字）。 */
+  status?: string | null;
+  note?: string | null;
+}
+
+/** 照片（只在授權欄位齊全時由後端回傳）。 */
+export interface LeaderPortrait {
+  url: string;
+  sourceUrl: string;
+  author: string | null;
+  licenseCode: string;
+  licenseUrl: string | null;
+  attribution: string;
+  retrievedOn: string;
+}
+
+export interface LeaderSource {
+  id: string;
+  sourceKind: string;
+  title: string;
+  publisher: string;
+  authors: string | null;
+  publishedText: string | null;
+  licenseCode: string | null;
+  licenseEvidenceUrl: string | null;
   url: string | null;
+  archiveUrl: string | null;
+}
+
+/** 生平欄位引用（接 sources 表）。 */
+export interface LeaderBioFieldCitation {
+  id: string;
+  field: string;
+  locator: string;
+  evidenceNote: string | null;
+  accessedOn: string;
+  source: LeaderSource;
+}
+
+/** 人物詳情的任期（validPeriod.end 不含當天）。 */
+export interface LeaderTerm {
+  recordId: string;
+  regimeId: string;
+  regimeSlug: string;
+  regimeName: Record<string, string> | null;
+  role: 'head_of_state' | 'head_of_government';
+  title: string | null;
+  validPeriod: { start: string; end: string | null };
+  source: string;
+  sourceUrl: string | null;
 }
 
 /** 領導人完整生平（GET /leader-bios/{id} 回應）。 */
@@ -53,6 +104,13 @@ export interface LeaderBio {
   summary: { 'zh-Hant'?: string; en?: string } | null;
   fieldSources: Record<string, LeaderBioFieldSource> | null;
   isTest: boolean;
+  retractedAt?: string | null;
+  deathDatePrecision?: 'day' | 'month' | 'year' | null;
+  wikidataQid?: string | null;
+  portrait?: LeaderPortrait | null;
+  supersededBy?: string | null;
+  fieldCitations?: LeaderBioFieldCitation[] | null;
+  terms?: LeaderTerm[] | null;
 }
 
 /** 生平摘要（GET /leaders 回應內嵌，不含 fieldSources）。 */
@@ -65,6 +123,8 @@ export interface LeaderBioSummary {
   deathDate: string | null;
   summary: Record<string, string> | null;
   retractedAt?: string | null;
+  deathDatePrecision?: 'day' | 'month' | 'year' | null;
+  portrait?: LeaderPortrait | null;
 }
 
 export interface LeaderRecord {

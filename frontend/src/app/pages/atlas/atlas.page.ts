@@ -1,5 +1,6 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import type { FeatureCollection, Geometry } from 'geojson';
 import { LucideCircleAlert, LucideCloudOff, LucideRotateCw } from '@lucide/angular';
@@ -25,6 +26,8 @@ import { decorateSovereignty, occupationTint, regimeColor, sovereigntyLabels } f
 import { DelayedFlag } from '../../core/delayed-flag';
 import { SovereigntyCard, type ControlZoneSection, type SovereigntyTab } from '../../shared/sovereignty-card/sovereignty-card';
 import { RegimeSheet } from '../../shared/regime-sheet/regime-sheet';
+import { PersonDialog, type PersonDialogState } from '../../shared/person-dialog/person-dialog';
+import { OverlayHistory } from '../../core/overlay-history';
 import { geometryBounds, nearestSnap, sheetLayout, type FocusInset, type LngLatBounds, type SheetSnap } from '../../shared/map/focus';
 import { CAMP_FILL, campOf, campTonesFrom, controlLabels, darken, decorateFeatures, gapFeatures } from '../../shared/map/map-style';
 import { Timeline } from '../../shared/timeline/timeline';
@@ -50,7 +53,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgTemplateOutlet, TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, CampaignCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
+  imports: [NgTemplateOutlet, TopBar, AtlasMap, ScanRevealComponent, Legend, Timeline, GapCard, SovereigntyCard, ConflictCard, RegimeSheet, PersonDialog, CampaignCard, SkeletonDirective, SpinnerComponent, LucideCircleAlert, LucideRotateCw, LucideCloudOff],
   host: { class: 'block h-full' },
   template: `
     <main data-testid="atlas-page" class="relative h-full" [attr.lang]="lang()" aria-label="主地圖">
@@ -150,7 +153,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
               }
 
               <!-- 政權／衝突／控制區資訊：側邊滑出面板（桌面右側、窄螢幕底部；參考 sanring Sheet），衝突卡也在同一個面板內 -->
-              <wl-regime-sheet [open]="sheetOpen() && !campaignMode()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
+              <wl-regime-sheet [open]="sheetOpen() && !campaignMode()" [suspended]="!!personId()" [side]="layout().side" [size]="layout().size" [lang]="lang()"
                 [snap]="sheetSnap()" [snapFor]="snapFor" (snapChange)="sheetSnap.set($event)"
                 [title]="sheetTitle()" [subtitle]="sheetCapital()" [description]="sheet()?.description ?? ''" [descriptionLang]="sheet()?.descriptionLang ?? ''"
                 [titleTestId]="sheet()?.kind === 'conflict' ? 'conflict-card-title' : sheet()?.kind === 'control' ? 'feature-card-title' : 'sovereignty-card-title'"
@@ -165,7 +168,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [loadBio]="loadBioFn" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" [highlightEvent]="conflictHighlight()"
+                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" (personOpen)="openPerson($event)" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" [highlightEvent]="conflictHighlight()"
                       [controlZone]="sh.control" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
@@ -246,6 +249,10 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
           }
         }
       }
+      <!-- 人物閱讀對話框（設計 §3.1-2）：?person=<leader_bios.id>；開關不動底下面板的選取、分頁、捲動，也不動地圖日期與鏡頭 -->
+      @if (personId()) {
+        <wl-person-dialog [state]="personState()" [lang]="lang()" (closed)="closePerson()" />
+      }
     </main>
   `,
 })
@@ -253,7 +260,13 @@ export class AtlasPage {
   protected readonly state = inject(AtlasState);
   protected readonly data = inject(AtlasData);
   private readonly api = inject(WorldLineApi);
-  protected readonly loadBioFn = (id: string) => this.api.getLeaderBio(id);
+  private readonly overlay = inject(OverlayHistory);
+  private readonly personInjector = inject(Injector);
+  /** 人物對話框：由 URL `person` 參數決定（上一頁／下一頁會開關對話框）。 */
+  protected readonly personId = signal<string | null>(null);
+  protected readonly personState = signal<PersonDialogState>({ status: 'loading' });
+  /** 開對話框前記下：觸發元素（關閉後還原焦點）、面板捲動位置。 */
+  private personReturn: { trigger: HTMLElement | null; personId: string; scroll: number | null } | null = null;
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly toast = inject(ToastService, { optional: true });
@@ -750,7 +763,8 @@ export class AtlasPage {
     });
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return;
-      if (this.campaignMode()) { e.stopPropagation(); this.closeCampaign(); }
+      if (this.personId()) { e.stopPropagation(); e.preventDefault(); this.closePerson(); }
+      else if (this.campaignMode()) { e.stopPropagation(); this.closeCampaign(); }
       else if (this.selectedConflict()) { e.stopPropagation(); this.closeConflict(); }
     };
     // §13：日期改到衝突期間外 → 小卡關閉（圖示消失時 selectedConflictInfo 也會變 null）
@@ -764,6 +778,18 @@ export class AtlasPage {
     // 選取的政權不是交戰方時清掉高亮
     effect(() => { if (!this.selectedConflict()) untracked(() => this.conflictHighlight.set(null)); });
     if (typeof window !== 'undefined') { window.addEventListener('keydown', onKey, true); inject(DestroyRef).onDestroy(() => window.removeEventListener('keydown', onKey, true)); }
+
+    // 人物對話框跟著 URL `person` 參數開關（只處理 person；date 仍只在初始化讀一次，設計 §4.2）
+    this.route.queryParamMap.pipe(takeUntilDestroyed()).subscribe((m) => {
+      const id = m.get('person');
+      const next = id && /^[0-9a-f-]{36}$/i.test(id) ? id : null;
+      if (id && !next) { queueMicrotask(() => this.personNotFound()); return; }
+      if (next === this.personId()) return;
+      const wasOpen = !!this.personId();
+      this.personId.set(next);
+      if (next) void this.loadPerson(next);
+      else if (wasOpen) this.restoreAfterPerson();
+    });
 
     const q = parseAtlasQuery(this.route.snapshot.queryParams as Record<string, string | undefined>);
     this.state.date.set(q.date);
@@ -1013,6 +1039,61 @@ export class AtlasPage {
     const back = this.returnSov();
     if (!back) return;
     this.onSovereigntyClick(back.e);
+  }
+
+  // ── 人物對話框 ──────────────────────────────────────────────────────────────
+  private sheetBody(): HTMLElement | null {
+    return document.querySelector<HTMLElement>('[data-testid="regime-sheet"] [data-testid="sovereignty-card-body"]');
+  }
+
+  /** 人物卡「查看詳情」：記下觸發元素與面板捲動位置，push `?person=`。 */
+  protected openPerson(e: { personId: string; trigger: HTMLElement }): void {
+    this.personReturn = { trigger: e.trigger, personId: e.personId, scroll: this.sheetBody()?.scrollTop ?? null };
+    this.overlay.open(this.route, e.personId, !!this.personId());
+  }
+
+  /** ×、Esc、背景點擊、手機關閉鈕共用：依設計 §4.3 決定 back 或 replace。 */
+  protected closePerson(): void {
+    if (!this.personId()) return;
+    this.overlay.close(this.route);
+  }
+
+  private async loadPerson(id: string): Promise<void> {
+    this.personState.set({ status: 'loading' });
+    try {
+      const bio = await this.api.getLeaderBio(id);
+      if (this.personId() !== id) return;
+      if (bio.retractedAt) {
+        // 撤回重寫過：改指向新版本（不新增 history）；否則視為找不到
+        if (bio.supersededBy) this.overlay.replacePerson(this.route, bio.supersededBy);
+        else this.personNotFound();
+        return;
+      }
+      this.personState.set({ status: 'ok', data: bio });
+    } catch (err) {
+      if (this.personId() !== id) return;
+      if ((err as { status?: number })?.status === 404) this.personNotFound();
+      else this.personState.set({ status: 'error' });
+    }
+  }
+
+  /** person 參數指向不存在／已撤回的生平：toast，並 replace 移除 person（設計 §4.5）。 */
+  private personNotFound(): void {
+    this.toast?.warning(this.lang() === 'en' ? 'This person could not be found.' : '找不到這位人物的資料');
+    this.overlay.replacePerson(this.route, null);
+  }
+
+  /** 對話框關閉後：還原面板捲動位置，焦點回到觸發的「查看詳情」按鈕（找不到就找同一人的按鈕）。 */
+  private restoreAfterPerson(): void {
+    const ret = this.personReturn;
+    this.personReturn = null;
+    afterNextRender(() => {
+      const body = this.sheetBody();
+      if (ret?.scroll != null && body && body.scrollTop !== ret.scroll) body.scrollTop = ret.scroll;
+      const target = ret?.trigger?.isConnected ? ret.trigger
+        : ret ? document.querySelector<HTMLElement>(`[data-person-trigger="${ret.personId}"]`) : null;
+      target?.focus({ preventScroll: true });
+    }, { injector: this.personInjector });
   }
 
   /** 時間線點事件：跳到該日期；新日期資料載入後，若此政權仍有國界紀錄就重新聚焦。 */

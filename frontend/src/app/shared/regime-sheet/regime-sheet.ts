@@ -33,7 +33,7 @@ const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
   template: `
     @if (visible()) {
       <sanring-sheet #s [isOpen]="open()">
-        <section #panel data-testid="regime-sheet" role="dialog" aria-modal="false" tabindex="-1"
+        <section #panel data-testid="regime-sheet" role="dialog" aria-modal="false" tabindex="-1" [attr.inert]="suspended() ? '' : null"
           [attr.aria-labelledby]="s.titleId" [attr.aria-describedby]="description() ? s.descId : null"
           [attr.data-side]="side()" [attr.data-state]="state()" [class]="panelClass()"
           [attr.data-size]="size()" [style.width.px]="side() === 'right' ? size() : null" [style.height.px]="side() === 'bottom' ? (dragSize() ?? size()) : null">
@@ -65,6 +65,8 @@ const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
 })
 export class RegimeSheet {
   readonly open = input(false);
+  /** 上層有 modal 對話框（人物閱讀）時：面板 inert、Esc 不關面板；選取、分頁、捲動都不動（設計 §4.7）。 */
+  readonly suspended = input(false);
   readonly side = input<'right' | 'bottom'>('right');
   /** 右側時是寬度、底部時是高度（px）。 */
   readonly size = input(384);
@@ -173,6 +175,6 @@ export class RegimeSheet {
   }
 
   protected onEscape(): void {
-    if (this.open()) this.closed.emit();
+    if (this.open() && !this.suspended()) this.closed.emit();
   }
 }

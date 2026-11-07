@@ -196,7 +196,7 @@ test('面板分頁：概要／事件（tablist、aria-selected、aria-controls�
   await expect(page.getByTestId('sovereignty-card-tab-events-count')).toHaveText(/\d+/);
   await page.keyboard.press('Home');
   await expect(ov).toHaveAttribute('aria-selected', 'true');
-  await page.keyboard.press('End'); // 最後一個分頁是「領導人」
+  await page.keyboard.press('End'); // 最後一個分頁是「人物」（原「領導人」，Tai 2026-11-07 改名）
   await expect(page.getByTestId('sovereignty-card-tab-leaders')).toHaveAttribute('aria-selected', 'true');
   await page.keyboard.press('ArrowLeft');
   await expect(evt).toHaveAttribute('aria-selected', 'true');

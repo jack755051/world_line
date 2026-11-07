@@ -29,6 +29,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<CapitalRecord> CapitalRecords => Set<CapitalRecord>();
     public DbSet<LeaderBio> LeaderBios => Set<LeaderBio>();
     public DbSet<LeaderRecord> LeaderRecords => Set<LeaderRecord>();
+    public DbSet<LeaderBioFieldCitation> LeaderBioFieldCitations => Set<LeaderBioFieldCitation>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -374,15 +375,45 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
                 t.HasCheckConstraint("ck_leader_bios_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
                 t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
                 t.HasCheckConstraint("ck_leader_bios_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                t.HasCheckConstraint("ck_leader_bios_death_date_precision",
+                    "death_date_precision IS NULL OR death_date_precision IN ('day', 'month', 'year')");
+                t.HasCheckConstraint("ck_leader_bios_wikidata_qid", "wikidata_qid IS NULL OR wikidata_qid ~ '^Q[1-9][0-9]*$'");
+                // 照片：要有出處頁、授權（允許清單）、署名、查證日期才可寫入 URL。
+                t.HasCheckConstraint("ck_leader_bios_portrait_complete",
+                    "portrait_url IS NULL OR (portrait_source_url IS NOT NULL AND portrait_license_code IS NOT NULL " +
+                    "AND portrait_attribution IS NOT NULL AND portrait_retrieved_on IS NOT NULL)");
+                t.HasCheckConstraint("ck_leader_bios_portrait_license",
+                    "portrait_license_code IS NULL OR " + InList("portrait_license_code", CitationPolicy.PrimaryLicenseAllowlist.Order()));
             });
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.BirthDatePrecision).HasMaxLength(8);
+            e.Property(x => x.DeathDatePrecision).HasMaxLength(8);
+            e.Property(x => x.WikidataQid).HasMaxLength(16);
+            e.Property(x => x.PortraitLicenseCode).HasMaxLength(32);
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.SupersededBy).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.WikidataQid).HasFilter("wikidata_qid IS NOT NULL AND retracted_at IS NULL");
             e.Property(x => x.BirthPlace).HasColumnType("jsonb");
             e.Property(x => x.Party).HasColumnType("jsonb");
             e.Property(x => x.Summary).HasColumnType("jsonb");
             e.Property(x => x.FieldSources).HasColumnType("jsonb");
             e.Property(x => x.IsTest).HasDefaultValue(false);
             e.Property(x => x.Version).HasDefaultValue(0);
+            Timestamps(e, updated: false);
+        });
+        // 生平欄位引用（2026-11-07）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderBioFieldCitation>(e =>
+        {
+            e.ToTable("leader_bio_field_citations", t =>
+            {
+                t.HasCheckConstraint("ck_leader_bio_field_citations_field", InList("field", LeaderBioFields.All));
+                t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
+                t.HasCheckConstraint("ck_leader_bio_field_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Field).HasMaxLength(16);
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.BioId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.BioId);
             Timestamps(e, updated: false);
         });
         // 領導人紀錄（leader_records；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。

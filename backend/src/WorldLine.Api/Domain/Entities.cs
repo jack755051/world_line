@@ -373,10 +373,48 @@ public sealed class LeaderBio
     public string? FieldSources { get; set; }
     /// <summary>測試資料標記，測試完成後可依此批次撤回。</summary>
     public bool IsTest { get; set; }
+    /// <summary>卒日精確度：day | month | year（NULL 表示精確度未知）。2026-11-07 新增。</summary>
+    public string? DeathDatePrecision { get; set; }
+    /// <summary>Wikidata 項目（Q 號），只當辨識線索，不是出處。2026-11-07 新增。</summary>
+    public string? WikidataQid { get; set; }
+    /// <summary>照片檔案 URL（只收允許授權；欄位不全不可寫入，見 CHECK）。2026-11-07 新增。</summary>
+    public string? PortraitUrl { get; set; }
+    /// <summary>照片出處頁（例：Wikimedia Commons 檔案頁）。</summary>
+    public string? PortraitSourceUrl { get; set; }
+    public string? PortraitAuthor { get; set; }
+    /// <summary>授權代碼，限 <see cref="CitationPolicy.PrimaryLicenseAllowlist"/>。</summary>
+    public string? PortraitLicenseCode { get; set; }
+    public string? PortraitLicenseUrl { get; set; }
+    /// <summary>署名文字（顯示用）。</summary>
+    public string? PortraitAttribution { get; set; }
+    /// <summary>查證授權的日期。</summary>
+    public DateOnly? PortraitRetrievedOn { get; set; }
+    /// <summary>撤回重寫時指向取代它的新生平（I5）。2026-11-07 新增。</summary>
+    public Guid? SupersededBy { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
     public int Version { get; set; }
+}
+
+/// <summary>
+/// 生平欄位引用（leader_bio_field_citations；2026-11-07）：把生平的單一欄位（或簡介段落）接到 <see cref="Source"/>。
+/// - 格式照 event_citations：source_id＋locator＋evidence_note，另加查證日期 accessed_on。
+/// - field：name | nameZh | birthDate | deathDate | birthPlace | party | summary | portrait。
+/// - 修正走軟撤回（I5），不硬刪。
+/// </summary>
+public sealed class LeaderBioFieldCitation
+{
+    public Guid Id { get; set; }
+    public Guid BioId { get; set; }
+    public string Field { get; set; } = "";
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string? EvidenceNote { get; set; }
+    public DateOnly AccessedOn { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 }
 
 /// <summary>

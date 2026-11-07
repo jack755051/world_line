@@ -699,6 +699,11 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("date")
                         .HasColumnName("death_date");
 
+                    b.Property<string>("DeathDatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("death_date_precision");
+
                     b.Property<string>("FieldSources")
                         .HasColumnType("jsonb")
                         .HasColumnName("field_sources");
@@ -722,6 +727,35 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("jsonb")
                         .HasColumnName("party");
 
+                    b.Property<string>("PortraitAttribution")
+                        .HasColumnType("text")
+                        .HasColumnName("portrait_attribution");
+
+                    b.Property<string>("PortraitAuthor")
+                        .HasColumnType("text")
+                        .HasColumnName("portrait_author");
+
+                    b.Property<string>("PortraitLicenseCode")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("portrait_license_code");
+
+                    b.Property<string>("PortraitLicenseUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("portrait_license_url");
+
+                    b.Property<DateOnly?>("PortraitRetrievedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("portrait_retrieved_on");
+
+                    b.Property<string>("PortraitSourceUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("portrait_source_url");
+
+                    b.Property<string>("PortraitUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("portrait_url");
+
                     b.Property<DateTimeOffset?>("RetractedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("retracted_at");
@@ -734,14 +768,30 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("jsonb")
                         .HasColumnName("summary");
 
+                    b.Property<Guid?>("SupersededBy")
+                        .HasColumnType("uuid")
+                        .HasColumnName("superseded_by");
+
                     b.Property<int>("Version")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasDefaultValue(0)
                         .HasColumnName("version");
 
+                    b.Property<string>("WikidataQid")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("wikidata_qid");
+
                     b.HasKey("Id")
                         .HasName("pk_leader_bios");
+
+                    b.HasIndex("SupersededBy")
+                        .HasDatabaseName("ix_leader_bios_superseded_by");
+
+                    b.HasIndex("WikidataQid")
+                        .HasDatabaseName("ix_leader_bios_wikidata_qid")
+                        .HasFilter("wikidata_qid IS NOT NULL AND retracted_at IS NULL");
 
                     b.ToTable("leader_bios", null, t =>
                         {
@@ -749,15 +799,91 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_leader_bios_birth_place_object", "birth_place IS NULL OR jsonb_typeof(birth_place) = 'object'");
 
+                            t.HasCheckConstraint("ck_leader_bios_death_date_precision", "death_date_precision IS NULL OR death_date_precision IN ('day', 'month', 'year')");
+
                             t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
 
                             t.HasCheckConstraint("ck_leader_bios_name_not_blank", "btrim(name) <> ''");
 
                             t.HasCheckConstraint("ck_leader_bios_party_object", "party IS NULL OR jsonb_typeof(party) = 'object'");
 
+                            t.HasCheckConstraint("ck_leader_bios_portrait_complete", "portrait_url IS NULL OR (portrait_source_url IS NOT NULL AND portrait_license_code IS NOT NULL AND portrait_attribution IS NOT NULL AND portrait_retrieved_on IS NOT NULL)");
+
+                            t.HasCheckConstraint("ck_leader_bios_portrait_license", "portrait_license_code IS NULL OR portrait_license_code IN ('cc_by', 'cc_by_sa', 'cc0', 'pd_expired', 'us_federal_pd')");
+
                             t.HasCheckConstraint("ck_leader_bios_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
 
                             t.HasCheckConstraint("ck_leader_bios_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
+
+                            t.HasCheckConstraint("ck_leader_bios_wikidata_qid", "wikidata_qid IS NULL OR wikidata_qid ~ '^Q[1-9][0-9]*$'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderBioFieldCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly>("AccessedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("accessed_on");
+
+                    b.Property<Guid>("BioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("bio_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("EvidenceNote")
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Field")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("field");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_leader_bio_field_citations");
+
+                    b.HasIndex("BioId")
+                        .HasDatabaseName("ix_leader_bio_field_citations_bio_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_leader_bio_field_citations_source_id");
+
+                    b.ToTable("leader_bio_field_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_field", "field IN ('name', 'nameZh', 'birthDate', 'deathDate', 'birthPlace', 'party', 'summary', 'portrait')");
+
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
+
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
                         });
                 });
 
@@ -1755,6 +1881,32 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasForeignKey("ParentEventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_historical_events_historical_events_parent_event_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderBio", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.LeaderBio", null)
+                        .WithMany()
+                        .HasForeignKey("SupersededBy")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_leader_bios_leader_bios_superseded_by");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderBioFieldCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.LeaderBio", null)
+                        .WithMany()
+                        .HasForeignKey("BioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_leader_bio_field_citations_leader_bios_bio_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_leader_bio_field_citations_sources_source_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.LeaderRecord", b =>

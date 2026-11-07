@@ -388,7 +388,38 @@ public sealed record CreateLeaderBioRequest(
     IReadOnlyDictionary<string, string>? Party = null,
     IReadOnlyDictionary<string, string>? Summary = null,
     JsonElement? FieldSources = null,
-    bool IsTest = false);
+    bool IsTest = false,
+    string? DeathDatePrecision = null,
+    string? WikidataQid = null,
+    CreateLeaderPortraitRequest? Portrait = null,
+    IReadOnlyList<CreateLeaderBioFieldCitationRequest>? Citations = null);
+
+/// <summary>
+/// 照片（2026-11-07）：只收允許授權（us_federal_pd、pd_expired、cc0、cc_by、cc_by_sa）。
+/// url 為圖檔、sourceUrl 為出處頁（如 Commons 檔案頁）；attribution、retrievedOn（查證授權日期）必填。
+/// </summary>
+public sealed record CreateLeaderPortraitRequest(
+    string? Url, string? SourceUrl, string? Author, string? LicenseCode, string? LicenseUrl,
+    string? Attribution, string? RetrievedOn);
+
+/// <summary>生平欄位引用：field 見 LeaderBioFields；locator 必填（頁碼／條目／段落）；accessedOn 為查證日期。</summary>
+public sealed record CreateLeaderBioFieldCitationRequest(
+    string? Field, Guid? SourceId, string? Locator, string? EvidenceNote = null, string? AccessedOn = null);
+
+/// <summary>撤回重寫生平（I5）：撤回舊筆＋建立新筆＋把任期改連到新筆＋複製舊筆未撤回的引用，一次完成。</summary>
+public sealed record ReviseLeaderBioRequest(string? Reason, CreateLeaderBioRequest? Bio);
+
+public sealed record LeaderPortraitDto(
+    string Url, string SourceUrl, string? Author, string LicenseCode, string? LicenseUrl,
+    string Attribution, string RetrievedOn);
+
+public sealed record LeaderBioFieldCitationDto(
+    Guid Id, string Field, string Locator, string? EvidenceNote, string AccessedOn, SourceDto Source);
+
+/// <summary>人物詳情的任期清單（含已結束任期）。validPeriod.end 不含當天。</summary>
+public sealed record LeaderTermDto(
+    Guid RecordId, Guid RegimeId, string RegimeSlug, IReadOnlyDictionary<string, string>? RegimeName,
+    string Role, string? Title, DatePeriodDto ValidPeriod, string Source, string? SourceUrl);
 
 /// <summary>
 /// 生平摘要（GET /leaders 回應內嵌用，不含 fieldSources）。
@@ -401,7 +432,9 @@ public sealed record LeaderBioSummaryDto(
     string? BirthDate,
     string? BirthDatePrecision,
     string? DeathDate,
-    IReadOnlyDictionary<string, string>? Summary);
+    IReadOnlyDictionary<string, string>? Summary,
+    string? DeathDatePrecision = null,
+    LeaderPortraitDto? Portrait = null);
 
 /// <summary>領導人生平完整資料（GET /leader-bios/{id} 回應，含 fieldSources）。</summary>
 public sealed record LeaderBioDto(
@@ -418,7 +451,13 @@ public sealed record LeaderBioDto(
     bool IsTest,
     DateTimeOffset? RetractedAt,
     string? RetractionReason,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt,
+    string? DeathDatePrecision = null,
+    string? WikidataQid = null,
+    LeaderPortraitDto? Portrait = null,
+    Guid? SupersededBy = null,
+    IReadOnlyList<LeaderBioFieldCitationDto>? FieldCitations = null,
+    IReadOnlyList<LeaderTermDto>? Terms = null);
 
 /// <summary>把現有 LeaderRecord 連結到 LeaderBio（PATCH /leader-records/{id}/person）。</summary>
 public sealed record LinkLeaderPersonRequest(Guid? PersonId);

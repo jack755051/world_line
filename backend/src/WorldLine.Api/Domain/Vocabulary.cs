@@ -125,3 +125,9 @@ public static class LeaderRoles
     public static readonly string[] All = [HeadOfState, HeadOfGovernment];
 }
 
+/// <summary>生平欄位引用可指向的欄位（leader_bio_field_citations.field；2026-11-07）。summary 視為一段簡介。</summary>
+public static class LeaderBioFields
+{
+    public static readonly string[] All = ["name", "nameZh", "birthDate", "deathDate", "birthPlace", "party", "summary", "portrait"];
+}
+

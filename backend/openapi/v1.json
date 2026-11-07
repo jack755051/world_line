@@ -1757,6 +1757,258 @@
         ]
       }
     },
+    "/api/v1/leader-bios/{id}/field-citations": {
+      "post": {
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "AddLeaderBioFieldCitation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeaderBioFieldCitationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfLeaderBioFieldCitationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/leader-bio-field-citations/{id}/retraction": {
+      "post": {
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "RetractLeaderBioFieldCitation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetractionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfRetractionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
+    "/api/v1/leader-bios/{id}/revisions": {
+      "post": {
+        "tags": [
+          "Leaders"
+        ],
+        "operationId": "ReviseLeaderBio",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviseLeaderBioRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfLeaderBioDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/leader-records/{id}/person": {
       "patch": {
         "tags": [
@@ -3063,6 +3315,55 @@
               },
               {
                 "$ref": "#/components/schemas/LeaderBioDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfLeaderBioFieldCitationDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LeaderBioFieldCitationDto"
               }
             ]
           },
@@ -5041,6 +5342,47 @@
           }
         }
       },
+      "CreateLeaderBioFieldCitationRequest": {
+        "required": [
+          "field",
+          "sourceId",
+          "locator"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "locator": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "evidenceNote": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "accessedOn": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "CreateLeaderBioRequest": {
         "required": [
           "name"
@@ -5108,6 +5450,93 @@
           "isTest": {
             "type": "boolean",
             "default": false
+          },
+          "deathDatePrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "wikidataQid": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "portrait": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CreateLeaderPortraitRequest"
+              }
+            ]
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/CreateLeaderBioFieldCitationRequest"
+            }
+          }
+        }
+      },
+      "CreateLeaderPortraitRequest": {
+        "required": [
+          "url",
+          "sourceUrl",
+          "author",
+          "licenseCode",
+          "licenseUrl",
+          "attribution",
+          "retrievedOn"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "sourceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "author": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseCode": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "attribution": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "retrievedOn": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
@@ -6073,6 +6502,88 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "deathDatePrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "wikidataQid": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "portrait": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LeaderPortraitDto"
+              }
+            ]
+          },
+          "supersededBy": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "fieldCitations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/LeaderBioFieldCitationDto"
+            }
+          },
+          "terms": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/LeaderTermDto"
+            }
+          }
+        }
+      },
+      "LeaderBioFieldCitationDto": {
+        "required": [
+          "id",
+          "field",
+          "locator",
+          "evidenceNote",
+          "accessedOn",
+          "source"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "field": {
+            "type": "string"
+          },
+          "locator": {
+            "type": "string"
+          },
+          "evidenceNote": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "accessedOn": {
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceDto"
           }
         }
       },
@@ -6127,6 +6638,22 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "deathDatePrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "portrait": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LeaderPortraitDto"
+              }
+            ]
           }
         }
       },
@@ -6228,6 +6755,47 @@
           }
         }
       },
+      "LeaderPortraitDto": {
+        "required": [
+          "url",
+          "sourceUrl",
+          "author",
+          "licenseCode",
+          "licenseUrl",
+          "attribution",
+          "retrievedOn"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "sourceUrl": {
+            "type": "string"
+          },
+          "author": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "licenseCode": {
+            "type": "string"
+          },
+          "licenseUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "attribution": {
+            "type": "string"
+          },
+          "retrievedOn": {
+            "type": "string"
+          }
+        }
+      },
       "LeaderRecordDto": {
         "required": [
           "id",
@@ -6290,6 +6858,63 @@
               "string"
             ],
             "format": "uuid"
+          }
+        }
+      },
+      "LeaderTermDto": {
+        "required": [
+          "recordId",
+          "regimeId",
+          "regimeSlug",
+          "regimeName",
+          "role",
+          "title",
+          "validPeriod",
+          "source",
+          "sourceUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "recordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regimeSlug": {
+            "type": "string"
+          },
+          "regimeName": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "role": {
+            "type": "string"
+          },
+          "title": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "validPeriod": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "source": {
+            "type": "string"
+          },
+          "sourceUrl": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
@@ -6872,6 +7497,31 @@
             "type": [
               "null",
               "string"
+            ]
+          }
+        }
+      },
+      "ReviseLeaderBioRequest": {
+        "required": [
+          "reason",
+          "bio"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "bio": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CreateLeaderBioRequest"
+              }
             ]
           }
         }

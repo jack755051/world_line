@@ -388,6 +388,54 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/leader-bios/{id}/field-citations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AddLeaderBioFieldCitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bio-field-citations/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractLeaderBioFieldCitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios/{id}/revisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["ReviseLeaderBio"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/leader-records/{id}/person": {
         parameters: {
             query?: never;
@@ -763,6 +811,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["LeaderBioDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderBioFieldCitationDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderBioFieldCitationDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -1205,6 +1263,14 @@ export interface components {
             participants?: null | components["schemas"]["EventParticipantInput"][];
             citations?: null | components["schemas"]["EventCitationInput"][];
         };
+        CreateLeaderBioFieldCitationRequest: {
+            field: null | string;
+            /** Format: uuid */
+            sourceId: null | string;
+            locator: null | string;
+            evidenceNote?: null | string;
+            accessedOn?: null | string;
+        };
         CreateLeaderBioRequest: {
             name: null | string;
             nameZh?: null | string;
@@ -1223,6 +1289,19 @@ export interface components {
             fieldSources?: unknown;
             /** @default false */
             isTest: boolean;
+            deathDatePrecision?: null | string;
+            wikidataQid?: null | string;
+            portrait?: null | components["schemas"]["CreateLeaderPortraitRequest"];
+            citations?: null | components["schemas"]["CreateLeaderBioFieldCitationRequest"][];
+        };
+        CreateLeaderPortraitRequest: {
+            url: null | string;
+            sourceUrl: null | string;
+            author: null | string;
+            licenseCode: null | string;
+            licenseUrl: null | string;
+            attribution: null | string;
+            retrievedOn: null | string;
         };
         CreateLeaderRecordRequest: {
             /** Format: uuid */
@@ -1428,6 +1507,22 @@ export interface components {
             retractionReason: null | string;
             /** Format: date-time */
             createdAt: string;
+            deathDatePrecision?: null | string;
+            wikidataQid?: null | string;
+            portrait?: null | components["schemas"]["LeaderPortraitDto"];
+            /** Format: uuid */
+            supersededBy?: null | string;
+            fieldCitations?: null | components["schemas"]["LeaderBioFieldCitationDto"][];
+            terms?: null | components["schemas"]["LeaderTermDto"][];
+        };
+        LeaderBioFieldCitationDto: {
+            /** Format: uuid */
+            id: string;
+            field: string;
+            locator: string;
+            evidenceNote: null | string;
+            accessedOn: string;
+            source: components["schemas"]["SourceDto"];
         };
         LeaderBioSummaryDto: {
             /** Format: uuid */
@@ -1440,6 +1535,8 @@ export interface components {
             summary: null | {
                 [key: string]: string;
             };
+            deathDatePrecision?: null | string;
+            portrait?: null | components["schemas"]["LeaderPortraitDto"];
         };
         LeaderFeature: {
             /** Format: uuid */
@@ -1464,6 +1561,15 @@ export interface components {
             date: string;
             features: components["schemas"]["LeaderFeature"][];
         };
+        LeaderPortraitDto: {
+            url: string;
+            sourceUrl: string;
+            author: null | string;
+            licenseCode: string;
+            licenseUrl: null | string;
+            attribution: string;
+            retrievedOn: string;
+        };
         LeaderRecordDto: {
             /** Format: uuid */
             id: string;
@@ -1479,6 +1585,21 @@ export interface components {
             verified: boolean;
             /** Format: uuid */
             personId?: null | string;
+        };
+        LeaderTermDto: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            regimeName: null | {
+                [key: string]: string;
+            };
+            role: string;
+            title: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            source: string;
+            sourceUrl: null | string;
         };
         LinkLeaderPersonRequest: {
             /** Format: uuid */
@@ -1630,6 +1751,10 @@ export interface components {
         };
         RetractionRequest: {
             reason: null | string;
+        };
+        ReviseLeaderBioRequest: {
+            reason: null | string;
+            bio: null | components["schemas"]["CreateLeaderBioRequest"];
         };
         SnapshotRefDto: {
             /** Format: uuid */
@@ -3120,6 +3245,192 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    AddLeaderBioFieldCitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLeaderBioFieldCitationRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioFieldCitationDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractLeaderBioFieldCitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    ReviseLeaderBio: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReviseLeaderBioRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };

@@ -812,3 +812,68 @@ CREATE TABLE boundary_period_neighbors (
 
 ## 要 Tai 決定
 K1、K2、K3、S1、S2。
+
+## 14. 人物閱讀與戰役互連（設計中，待 Tai 審）
+
+> 狀態：📝 設計稿（2026-11-07，分支 `feature/person-reading-design`，未實作、未寫 DB）。完整內容：`docs/design/person-reading-campaign-nav.md`。本節只列結論。標記：**現有**＝已核對程式並附路徑；**提案**＝未實作、未拍板。
+
+### 14.1 Tai 已確認的方向（2026-11-07）
+- 人物分頁：P1 只放領導人，軍事人物 P2。卡片：姓名／照片／職位／任期／查看詳情。
+- 大型閱讀對話框：桌機大視窗、手機全螢幕，不要求地圖可見；底下 sheet 的選取、分頁、捲動位置保留。
+- 來源一律預設收合、版面穩定；無來源顯示「待補來源」；逐段／逐欄位溯源；無來源內容不標已查證。
+- 戰役保留專屬頁；有來源的相關事件／戰役卡雙向連結；戰術概念不得自動把部隊／人物放上地圖；「參與」與「因果主張」分開記錄。
+- 生平補齊：先盤點缺口、再逐筆查證、只寫已查證，照備份→試跑→寫入。本次不寫。
+
+### 14.2 現況核對（重點）
+| 項目 | 現況 | 路徑 |
+|---|---|---|
+| 人物資料 | **現有** `leader_records`（任期，`person_id` → `leader_bios`）＋ `leader_bios`（一人一筆；`field_sources` jsonb 逐欄位自由文字來源；無照片、無 slug） | `backend/src/WorldLine.Api/Domain/Entities.cs:325,357` |
+| 來源 | **現有** `sources`＋citation 表格式（`event_citations` 等） | `Entities.cs:9,209`；`Domain/CitationPolicy.cs` |
+| `persons`／`person_roles`／`media`／`parties` | **不存在**（點子工坊提案誤標為既有） | 全 repo 查無 |
+| 路由 | **現有** 只有 `''`、`version`、`**`；無戰役、人物路由 | `frontend/src/app/app.routes.ts` |
+| 戰役 | **現有** 主地圖「戰役模式」，非頁面；不改 URL；production 關閉；3 筆靜態 JSON，`event_ids` 皆空、無人物欄位 | `frontend/src/app/core/campaign.ts:8,11`；`pages/atlas/atlas.page.ts:551–563`；`frontend/public/campaigns/index.json` |
+| URL 參數 | **現有** `date`、`lang`、`axis`（初始化讀一次，之後 `replaceUrl` 寫回）＋開發用 `boundarySource`、`debug`；**無 `cam`、無選取政權／分頁** | `core/atlas-state.ts:42`；`atlas.page.ts:768,845` |
+| sheet／分頁 | **現有** `regime-sheet`（`aria-modal="false"`）、分頁 `overview/events/leaders`；sheet 隱藏時分頁重設；無捲動記憶 | `shared/regime-sheet/regime-sheet.ts:35`；`shared/sovereignty-card/sovereignty-card.ts:75`；`atlas.page.ts:493,1022` |
+| 領導人分頁 | **現有** 清單列、生平在 sheet 內原地展開、欄位後附來源外連 | `sovereignty-card.ts:142–225` |
+| 人物卡、閱讀對話框、dialog 元件 | **缺口**（`components/ui` 無 dialog） | `frontend/src/app/components/ui/` |
+
+### 14.3 範圍
+- **P1**：人物分頁（領導人）＋人物卡＋閱讀對話框＋逐段／逐欄位來源＋只連到**現有**戰役模式（不新建戰役頁、不做戰役改版）＋ history 規則（14.4）。
+- **P2**：軍事人物；人物出現在戰役階段參與清單；（若 Tai 選）獨立戰役路由。
+- **P3+**：行動／影響（因果主張，與參與分表）；`cam` 進 URL。
+- **永不**：由生平或戰術文字自動在地圖畫人或部隊。
+
+### 14.4 導覽與 history 規則（提案）
+- 人物對話框用 query `?person=<leader_bios.id>`（merge 進現有參數，push 一筆），同路由不重建頁面。
+- **關閉**：只有當 app 自己在 `history.state` 標記過、且確認「緊接的前一筆就是對應底層」時才 `history.back()`；不得以「同站有上一頁」為準，也不假設能讀取任意 history。其他情況一律 `replaceUrl` 只移除 `person`，保留 `date` 等其他參數。
+- 人物→戰役→人物：進戰役前關閉對話框；返回目標只存一格（記憶體），重複巢狀時覆寫不累加。
+- 重新整理：`date`／`lang`／`axis`／`person` 由 URL 還原；**sheet 的選取、分頁、捲動位置會遺失**（現況限制，待 Tai 決定是否把 `regime`／`tab` 加進 URL）。
+- 直接 URL 帶 `cam`：提案，不自動改變現行行為。
+
+### 14.5 資料模型提案（沿用既有結構）
+- 生平欄位與任期的來源改接 `sources`：`leader_bio_field_citations`、`leader_record_citations`（格式同現有 citation 表）。
+- 逐段生平：`leader_bio_paragraphs`＋`leader_bio_paragraph_citations`；未查證段落不進 DB（I6）。
+- 參與：`person_event_participations`（`event_id` 或過渡用 `campaign_key`）＋引用表，至少一筆來源才能建立；不從政權參與方推導。
+- 因果（P3）：`person_causal_claims`＋引用表，與參與**分表**。
+- 照片：`media_assets`（出處接 `sources`，另有 `reuse_cleared`）；P1 建議先用佔位圖。
+- 不新建 `persons`、`sources` 等重複表；不替 D13（戰役欄位）拍板。
+
+### 14.6 來源規則
+- 已查證只依「接到 `sources` 的 citation」判斷；舊格式自由文字只當出處備註，不標已查證。
+- 授權 metadata（`sources.license_code`）≠ 重製顯示的權利 ≠ 作為證據引用，三者分開記錄。
+- 保留 A/B/C/X 來源分級（提案各 citation 表加可空 `grade`；值域依考證組既有約定，repo 目前無結構定義）。
+- 日期保留半開區間：`end = 1945-10-01` 表示到 1945-09-30，顯示 `end − 1 天`。
+
+### 14.7 待 Tai 決定
+Q1 戰役專屬頁：沿用現有戰役模式，或新增 `/campaigns/:key`？Q2 重新整理後是否還原 sheet 選取／分頁？Q3 人物 URL 用 UUID 或新增 slug？Q4 P1 照片是否先用佔位圖？Q5 人物生平引用是否套用現有授權允許清單（屬業務規則，需先改憲法）？細節見設計文件 §8。
+
+## 15. 地理圖層（獨立未來提案）
+
+> 狀態：📝 提案（2026-11-07），不阻擋 §14 人物工作。細節見 `docs/design/person-reading-campaign-nav.md` §10。
+
+- 範圍：地形、河流、城市的地圖圖層。**不是**附近搜尋，**不是** RAG；現在不設計也不做搜尋／RAG。
+- 現代高程底圖**不是歷史證據**，只作視覺背景並明示「現代地形，僅供參考」。
+- 會變動的河道、海岸線、城市範圍與名稱要依時間（半開區間），隨時間軸篩選。
+- 不得用無來源的現代資料代替歷史資料；沒有歷史來源就不顯示。城市名依憲法 §6「地名」規則。
+- 來源沿用 `sources`；授權、重製權利、證據引用三者分開；R7 地圖授權規則適用。
+- 不影響 §4 標籤規則與 §9 圖磚效能目標。現有戰役 JSON 用 OSM Nominatim（現代地名庫）定位據點，屬「地名對座標」，不是歷史地理證據，地理圖層上線時需在資料上區分。

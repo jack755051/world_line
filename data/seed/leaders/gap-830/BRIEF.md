@@ -23,6 +23,7 @@ name, nameZh (common zh-Hant rendering; no source needed), birthDate+precision, 
 - Good sources: official state, royal-house, parliament or government pages; national biography dictionaries (Deutsche Biographie, Svenskt biografiskt lexikon, lex.dk, snl.no, parlement.com, historisches-lexikon.li, vle.lt, Dictionary of Irish Biography, Real Academia de la Historia historia-hispanica.rah.es); Encyclopaedia Iranica; Gale reference entries on encyclopedia.com (type them `official_history`); national archives and libraries.
 - Library of Congress authority records (id.loc.gov) can support birth and death years. If the html page is blocked, use `.madsrdf.json`, but keep the normal URL as `url`.
 - Wikidata is for the Q-id only, and never a source. Wikipedia and Baidu are never sources.
+- If an authority record (LoC, BnF and similar) says its own data came from Wikipedia, do not use that record for that fact.
 - Each cited page must be fetched today. Give a verbatim excerpt of 25 words or fewer, a precise locator, and `accessedOn` "2026-11-07".
 - Conflicting sources go to `conflicts` with no value. Anything unconfirmed is omitted and listed in `unverified`. Never fill from memory.
 - The summary is 1–2 neutral sentences in your own words, using only facts in the cited sources. For controversial figures, list only the offices held.

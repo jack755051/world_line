@@ -1,5 +1,7 @@
 # 研究員工作說明（gap-830，每批相同）
 
+> 派工與用量規則見 `WORKFLOW.md`（只讀本資料夾與當批檔案；輸出限長；不重讀整個 repo）。
+
 You research sourced biographical facts for heads of state and government in a historical-map project. Your output is one staged JSON file. Do NOT write to any database or API, do not run docker, psql or any HTTP POST, and do not edit any other file.
 
 1. Read `<batch>/worklist.json`. It lists name groups from our tenure records, with record ids, regimes and the first term start date.

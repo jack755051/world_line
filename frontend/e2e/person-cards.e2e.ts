@@ -13,6 +13,7 @@ mkdirSync(SHOTS, { recursive: true });
 const DATE = '1940-06-01';
 const BERLIN: [number, number] = [13.4, 52.5];
 const BERN: [number, number] = [7.45, 46.95];
+const KANSAS: [number, number] = [-98, 39];
 type WlMap = { jumpTo: (o: object) => void; project: (l: [number, number]) => { x: number; y: number }; getCenter: () => { lng: number; lat: number }; getZoom: () => number };
 
 async function openMap(page: Page, center: [number, number], extra = ''): Promise<void> {
@@ -184,6 +185,38 @@ test('API：人物詳情回傳任期、欄位引用、照片欄位', async ({ pa
   for (const t of d.terms) expect(t.regimeName['zh-Hant']).toBeTruthy();
 });
 
+test('有結構化來源與授權照片的人物（美國 1940：羅斯福）：卡片照片、對話框照片署名、逐欄位來源（結構化）', async ({ page }) => {
+  await page.goto(`/?date=${DATE}&axis=sovereignty`);
+  const canvas = page.getByTestId('map-canvas');
+  await expect(canvas).toHaveAttribute('data-map-ready', 'true');
+  await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: [-98, 39], zoom: 3.2 }));
+  await page.waitForTimeout(600);
+  await selectRegimeAt(page, KANSAS);
+  const card = page.getByTestId('person-card').filter({ hasText: '羅斯福' }).first();
+  await expect(card.getByTestId('person-card-photo')).toBeVisible();
+  await expect.poll(() => card.getByTestId('person-card-photo').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0), { timeout: 20_000 }).toBe(true);
+  await page.screenshot({ path: `${SHOTS}/desktop-05-people-tab-photo.png` });
+  await card.getByTestId('person-card-details').click();
+  const dlg = page.getByTestId('person-dialog');
+  await expect(dlg.getByTestId('person-dialog-photo')).toBeVisible();
+  await expect(dlg.getByTestId('person-dialog-photo-credit')).toContainText('CC BY');
+  await expect(dlg.getByTestId('person-field-birthDate')).toContainText('1882-01-30');
+  const birthToggle = dlg.getByTestId('person-field-birthDate').getByTestId('source-toggle');
+  await expect(birthToggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(birthToggle).toHaveAttribute('data-kind', 'structured');
+  await birthToggle.click();
+  const items = dlg.getByTestId('person-field-birthDate').getByTestId('source-item');
+  await expect(items.first()).toHaveAttribute('data-kind', 'structured');
+  await expect(items).toHaveCount(2);
+  await expect(dlg.getByTestId('person-field-birthDate').locator('a[href*="fdrlibrary.org"]')).toBeVisible();
+  await page.screenshot({ path: `${SHOTS}/desktop-06-dialog-structured-sources.png` });
+  // API：同一筆在 API 也有結構化引用與照片授權
+  const pid = await card.getAttribute('data-person-id');
+  const d = (await (await page.request.get(`/api/v1/leader-bios/${pid}`)).json()).data;
+  expect(d.fieldCitations.some((c: { field: string; source: { url: string } }) => c.field === 'birthDate' && c.source.url.includes('fdrlibrary'))).toBe(true);
+  expect(d.portrait.licenseCode).toBe('cc_by');
+});
+
 test.describe('手機', () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
 
@@ -200,7 +233,10 @@ test.describe('手機', () => {
     const close = (await page.getByTestId('person-dialog-close').boundingBox())!;
     expect(close.width).toBeGreaterThanOrEqual(44);
     expect(close.height).toBeGreaterThanOrEqual(44);
-    for (const t of await dlg.getByTestId('source-toggle').all()) await expect(t).toHaveAttribute('aria-expanded', 'false');
+    for (const t of await dlg.getByTestId('source-toggle').all()) {
+      await expect(t).toHaveAttribute('aria-expanded', 'false');
+      expect((await t.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    }
     await page.screenshot({ path: `${SHOTS}/mobile-01-dialog.png` });
     await page.getByTestId('person-dialog-close').tap();
     await expect(dlg).toHaveCount(0);

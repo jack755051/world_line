@@ -38,7 +38,7 @@ let seq = 0;
     } @else {
       <button type="button" data-testid="source-toggle" [attr.aria-expanded]="open() ? 'true' : 'false'" [attr.aria-controls]="panelId"
         [attr.aria-label]="(label() ? label() + ' — ' : '') + t().sources + '（' + items().length + '）'"
-        class="inline-flex min-h-6 items-center gap-1 rounded-sm px-1 text-[11px] text-wl-secondary hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
+        class="inline-flex min-h-11 items-center gap-1 rounded-sm px-1 text-[11px] text-wl-secondary md:min-h-6 hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
         [attr.data-kind]="hasStructured() ? 'structured' : 'legacy'" (click)="open.set(!open())">
         <span aria-hidden="true" class="inline-block w-2 text-center">{{ open() ? '▾' : '▸' }}</span>{{ t().sources }}（{{ items().length }}）
       </button>

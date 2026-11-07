@@ -415,3 +415,37 @@ leader_bios.portrait_media_id uuid NULL → media_assets.id
 6. **注意現況**：現有戰役 JSON 的據點座標用 OpenStreetMap Nominatim（現代地名庫）定位（例：`frontend/public/campaigns/poland_1939.json`）；這是「把歷史地名對到座標」，不是歷史地理證據。地理圖層上線時需同樣在資料上區分。
 
 不在本提案：一級行政區（已在 M4-c，資料源 OpenHistoricalMap）、任何搜尋功能。
+
+---
+
+## 11. P1 實作採用的做法（2026-11-07，分支 `feature/person-cards`）
+
+依 Tai 2026-11-07 13:12 決定實作人物部分；戰役部分全部延後。以下是與 §5、§6 提案不同或更具體的地方。
+
+### 11.1 資料（新增式 migration `20261107051907_PersonPortraitAndFieldCitations`）
+- `leader_bios` 新增：`death_date_precision`（day／month／year）、`wikidata_qid`（只當辨識線索）、照片欄位 `portrait_url`、`portrait_source_url`、`portrait_author`、`portrait_license_code`、`portrait_license_url`、`portrait_attribution`、`portrait_retrieved_on`，以及 `superseded_by`（撤回重寫後指向新版）。
+  - CHECK：照片 URL 有值時，出處頁、授權、署名、查證日期都必須有；授權限 `CitationPolicy.PrimaryLicenseAllowlist`（us_federal_pd、pd_expired、cc0、cc_by、cc_by_sa）。
+  - 取代 §5.6 的 `media_assets`：P1 一人一張照片，直接放在 `leader_bios` 最簡單；之後要多張照片再改。
+- 新表 `leader_bio_field_citations(id, bio_id, field, source_id, locator, evidence_note, accessed_on, retracted_at, retraction_reason, created_at)`：§5.1 的實作。`field` ∈ name、nameZh、birthDate、deathDate、birthPlace、party、summary、portrait。I5 trigger：不可 DELETE、撤回不可逆。`grade` 欄位**沒有加**（§6.3 值域未定）。
+- **沒有做**：§5.2 逐段表（`leader_bio_paragraphs`）。目前 `summary` 視為一段，以 `field = 'summary'` 掛來源；前端已經按段落渲染（以空行分段，各段都掛同一組 summary 來源），日後有逐段表再拆。§5.1 的 `leader_record_citations` 也沒有做，任期來源仍顯示 `leader_records.source` 自由文字，標為「出處備註」。
+- 沒有刪除或修改任何既有欄位；`field_sources` 保留，前端當舊格式備註顯示。
+
+### 11.2 API
+| 端點 | 說明 |
+|---|---|
+| `GET /leader-bios/{id}`（擴充） | 加 `deathDatePrecision`、`wikidataQid`、`portrait`、`supersededBy`、`fieldCitations[]`（含完整 `source`）、`terms[]`（此人全部有效任期＋政權自稱名）。已撤回的生平仍回傳 |
+| `GET /leaders?date=`（擴充） | `bio` 摘要加 `deathDatePrecision`、`portrait` |
+| `POST /leader-bios`（擴充） | 可帶 `deathDatePrecision`、`wikidataQid`、`portrait`、`citations[]`（同一交易寫入） |
+| `POST /leader-bios/{id}/field-citations` | 補一筆欄位引用；`locator`、`accessedOn` 必填，`sourceId` 必須存在 |
+| `POST /leader-bio-field-citations/{id}/retraction` | 撤回引用（I5） |
+| `POST /leader-bios/{id}/revisions` | 撤回重寫（I5）：同一交易內撤回舊版（記原因、`superseded_by`）、建新版、任期改連新版、複製舊版有效引用 |
+
+### 11.3 前端
+- 分頁值仍是 `leaders`（data-testid 不變），文案改「人物」／People。
+- `shared/person-card`、`shared/person-dialog`、`shared/source-disclosure`、`core/overlay-history`（§4.3 的 token 規則；`canGoBack` 有單元測試）、`core/person-format`（結束日顯示 `end − 1 天`、依精度顯示日期、照片可否顯示）。
+- §4.7 的 `SheetMemory`：沒有另外做 service。對話框是疊層，底下面板不卸載，選取／分頁本來就保留；開啟前記下面板捲動位置，關閉後若有變動才還原，焦點回到觸發的「查看詳情」按鈕。
+- 戰役：沒有任何戰役連結、返回目標、路由（Tai：戰役先不做）。
+- 已撤回且有 `supersededBy` 的 `?person=` 連結會 replace 成新版 id；沒有新版就 toast「找不到這位人物的資料」並移除 `person`。
+
+### 11.4 已查證的判斷
+- 前端**不顯示「已查證」字樣**：結構化引用與舊格式備註都放在「來源（n）」收合區，舊格式那筆另外註明「未接結構化來源，非查證標記」。`leader_records.verified` 不用來判斷任何顯示。

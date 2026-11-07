@@ -21,3 +21,14 @@ echo "trial: $TB → $TA"; echo "dev:   $DB → $DA"
 [[ "$TA" == "$DA" ]] || echo "⚠ 試跑與寫入結果不一致"
 python3 gap_status.py refresh >/dev/null
 python3 gap_status.py log "$(date '+%Y-%m-%d %H:%M') $B：備份 $(basename $F)；生平有效/總、引用、有生平任期、sources、照片：$DB→$DA（試跑 $TB→$TA）"
+# staging 群組標狀態（理由提到來源 → 查無來源；其他 → staging 疑義）
+python3 - $B <<'PY'
+import json, subprocess, sys
+b = sys.argv[1]
+for s in json.load(open(f"{b}/research.json", encoding="utf-8")).get("staging") or []:
+    why = s.get("why", "")
+    st = "查無來源" if any(w in why.lower() for w in ("source", "來源", "unreachable", "no usable")) else "staging 疑義"
+    for k in s.get("groupKeys") or []:
+        subprocess.run(["python3", "gap_status.py", "set", k, st, f"{b}：{why[:140]}"], capture_output=True)
+        print("staging", st, k)
+PY

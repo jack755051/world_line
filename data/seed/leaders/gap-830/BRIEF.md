@@ -12,6 +12,12 @@ You research sourced biographical facts for heads of state and government in a h
 - If identity is uncertain, or the group is a collective body, put it in `staging` with the reason.
 - `recordNameVariants` must contain the exact `name` strings of the groups you assign to that person.
 
+## Already has a biography?
+`existing_bios.tsv` lists everyone who already has a biography, as tab-separated id, name, zh name, birth year and death year.
+- If a worklist group is one of these people (the same person, e.g. the same leader under another regime's record or another spelling), do NOT research them again.
+- Write a people entry with only `key`, `groupKeys`, `recordIds`, `recordNameVariants`, `existingBioId` (the id from the file) and `linkEvidence` (one sentence: name, regime and dates showing it is the same person).
+- If you are unsure, use staging.
+
 ## Fields
 name, nameZh (common zh-Hant rendering; no source needed), birthDate+precision, deathDate+precision, birthPlace {zh-Hant, en}, party {zh-Hant, en}, summary {zh-Hant, en}, wikidataQid, portrait.
 

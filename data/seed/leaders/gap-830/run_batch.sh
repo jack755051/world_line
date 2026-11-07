@@ -9,6 +9,7 @@ cnt() { docker exec worldline-borders-dev-db psql -U worldline -d $1 -tAc "$Q" |
 TS=$(date +%Y%m%d-%H%M%S); F=~/wl-backups/worldline_borders_dev-$TS-pre-gap-$B.dump
 docker exec worldline-borders-dev-db pg_dump -U worldline -d worldline_borders_dev -Fc > $F; echo "backup $F"
 ./trial_env.sh up $F | tail -1
+rm -f $B/sent.5062.json  # 試跑庫每次由最新備份重建，舊的試跑記帳（來源 id）不可沿用
 TB=$(cnt worldline_person_dryrun)
 python3 send_batch.py $B --base http://127.0.0.1:5062/api/v1 --db worldline_person_dryrun --send | grep -E '✗|完成' || true
 TA=$(cnt worldline_person_dryrun)

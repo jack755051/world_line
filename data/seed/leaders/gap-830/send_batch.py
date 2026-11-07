@@ -70,6 +70,16 @@ def check_source(s, where, errs):
 
 def validate(p, records):
     errs, key = [], p.get("key", "?")
+    if p.get("existingBioId"):
+        for rid in p.get("recordIds") or []:
+            r = records.get(rid)
+            if not r:
+                errs.append(f"{key}: 任期 {rid} 不存在或已撤回")
+            elif r["person_id"]:
+                errs.append(f"{key}: 任期 {rid} 已連到生平 {r['person_id']}，不覆蓋")
+        if not (p.get("linkEvidence") or "").strip():
+            errs.append(f"{key}: 連到既有生平需寫 linkEvidence")
+        return errs
     conflict_fields = {c.get("field") for c in p.get("conflicts") or []}
     for f in FIELDS:
         v = p.get(f)
@@ -183,6 +193,8 @@ def main():
     rows = sql(a.db, "select id, name, coalesce(person_id::text,'') from leader_records where retracted_at is null")
     records = {r[0]: {"name": r[1], "person_id": r[2]} for r in rows}
     existing_src = {r[1]: r[0] for r in sql(a.db, "select id, url from sources where url is not null")}
+    live_bios = {r[0] for r in sql(a.db, "select id from leader_bios where retracted_at is null")}
+    live_qids = {r[1]: r[0] for r in sql(a.db, "select id, wikidata_qid from leader_bios where retracted_at is null and wikidata_qid is not null")}
 
     ok, skipped = [], []
     for fn, p in people:
@@ -191,6 +203,10 @@ def main():
             continue
         errs = validate(p, records)
         errs += [f"{p.get('key')}: 任期 {r} 不在 worklist" for r in p.get("recordIds") or [] if r not in allowed]
+        if p.get("existingBioId") and p["existingBioId"] not in live_bios:
+            errs.append(f"{p.get('key')}: existingBioId 不是有效生平")
+        if not p.get("existingBioId") and p.get("wikidataQid") in live_qids:
+            errs.append(f"{p.get('key')}: Wikidata {p['wikidataQid']} 已有生平 {live_qids[p['wikidataQid']]}，應改用 existingBioId 連結")
         (skipped if errs else ok).append((fn, p, errs))
     for fn, p, errs in skipped:
         print(f"✗ {fn}:{p['key']}")
@@ -200,6 +216,8 @@ def main():
     src_ids = {**existing_src, **ledger["sources"]}
     plan_sources = {}
     for _, p, _ in ok:
+        if p.get("existingBioId"):
+            continue
         for f in FIELDS:
             for s in (p.get(f) or {}).get("sources") or []:
                 if s["url"] not in src_ids:
@@ -207,6 +225,9 @@ def main():
     print(f"\n計畫：新來源 {len(plan_sources)}（沿用既有 {sum(1 for _, p, _ in ok for f in FIELDS for s in (p.get(f) or {}).get('sources') or [] if s['url'] in src_ids)} 次）、新生平 {len(ok)}、"
           f"連結任期 {sum(len(p['recordIds']) for _, p, _ in ok)}、略過 {len(skipped)}")
     for _, p, _ in ok:
+        if p.get("existingBioId"):
+            print(f"  ✓ {p['key']}: 連到既有生平 {p['existingBioId']}；任期 {len(p['recordIds'])}")
+            continue
         vals = [f for f in FIELDS if (p.get(f) or {}).get("value")]
         print(f"  ✓ {p['key']}: 欄位 {','.join(vals)}；照片 {'有' if p.get('portrait') else '無'}；任期 {len(p['recordIds'])}")
     if not a.send:
@@ -223,6 +244,16 @@ def main():
         src_ids[url] = ledger["sources"][url] = res["data"]["id"]
         json.dump(ledger, open(ledger_path, "w"), ensure_ascii=False, indent=1)
     for _, p, _ in ok:
+        if p.get("existingBioId"):
+            bid = p["existingBioId"]
+            for rid in p["recordIds"]:
+                st, res = call(a.base, "PATCH", f"/leader-records/{rid}/person", {"personId": bid}, key)
+                if st != 200:
+                    print(f"  ✗ PATCH {rid} 失敗 {st}: {res}")
+            ledger["bios"][p["key"]] = bid
+            json.dump(ledger, open(ledger_path, "w"), ensure_ascii=False, indent=1)
+            print(f"✓ {p['key']} → 既有生平 {bid}（任期 {len(p['recordIds'])}）")
+            continue
         body = build_bio(p, src_ids)
         st, res = call(a.base, "POST", "/leader-bios", body, key)
         if st != 201:

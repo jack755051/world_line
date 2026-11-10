@@ -1,10 +1,12 @@
 # gap-830 交接（只讀本檔即可續做）
 
-- 更新：2026-11-07 17:25（段 1，session 87ef0865 收尾）。分支 feature/person-cards。規則見 `WORKFLOW.md`。
-- 已寫入 5052：b01–b30。生平有效 691、引用 3044、有生平任期 1420、照片 40。無研究中批次。
-- 下一批：`./refresh_bios.sh` → `python3 make_worklist.py b31 0 16`（再 b32、b33…）。待查 300 組。同時跑 ≤3 個研究員 subagent。
-- 研究員 prompt：照 b30（BRIEF＋SCHEMA、不寫 DB、不開瀏覽器、避免新聞/hobby 站、LoC 引 Wikipedia 者不用、摘要寫職位且不提來源名、乾跑驗證、回報 ≤15 行）。
-- 每批：`send_batch.py bNN` 乾跑 → `review.py bNN | cut -c1-200` 審（身分、僅新聞/hobby 來源欄位降精度或移除、摘要勿含 worklist/來源名、只有姓名者改 staging）→ `./urlcheck.sh bNN`（LoC 403 屬正常）→ `./run_batch.sh bNN` → commit → `.dev/person-impl-progress.md` 加一行 → `usage_tally.py <sid> <since>` 記 usage.md。
-- 注意：run_batch 的 staging 標記對「合議體」會標成 staging 疑義或漏標，需手動 `gap_status.py set <key> "合議體（不建）" <note>`。
+- 更新：2026-11-10 09:30（段 2b，session b2a8bc92）。分支 feature/person-cards，HEAD 00447bc 之後的收尾 commit。規則見 `WORKFLOW.md`。
+- 已寫入 5052：b01–b31。生平有效 706、引用 3136、有生平任期 1442、照片 40。無研究中批次。待查 284。
+- 下一批：**b32**（`b32/worklist.json` 已有，與 b31 不重疊，可沿用；b33 同）。一段只做一批。
+- 研究方式（段 2b 起）：**主程序前景依序查證，不用背景任務／subagent**（段 2 的背景子任務逾時被殺、無產出）。
+- 好用來源：valitsus.ee、president.ee（愛沙尼亞元首頁有生卒地）、libr.sejm.gov.pl（波蘭議長）、IPN katalog（PRL 官員）、秘魯 PCM 史 PDF（`pdftotext` 後 grep 人名，locator 寫 PDF 頁）、encyclopedia.com（Gale／Columbia）、LoC marcxml（看 670，引 Wikipedia 者不用）。
+- 擋住的：historia-hispanica.rah.es（需 JS，抓不到內文）、encyclopedia.pwn.pl（停用）、gov.am（captcha）、primeminister.gr／minfin.bg／dzieje.pl（403）。Wikidata API 連打會限流，間隔幾秒。
+- 每批：`send_batch.py bNN` 乾跑 → `review.py bNN | cut -c1-200` → `./urlcheck.sh bNN`（LoC 403 正常）→ `./run_batch.sh bNN` → commit → `.dev/person-impl-progress.md` 加一行 → `usage_tally.py <sid>` 記 usage.md。
+- 注意：run_batch 對「合議體」的 staging 標記可能錯，需手動 `gap_status.py set <key> "合議體（不建）" <note>`。只有通訊社來源者日期降為年精度（b31 Bozhilov）。
 - 阻擋：無。Q5（授權清單是否套用生平引用）未決，未動；照片未補。
-- 可回頭補強：Choibalsan、Aharonyan 摘要偏薄；查無來源 20 組／staging 疑義 3 組見 `.dev/bio-gap-830.md`。
+- 可回頭補強：Michalakopoulos 生卒日（LoC 1875／1938-03-27 vs 他處 1876／03-07，未給）；Osóbka-Morawski 卒日；Largo Caballero 出生地（RAH 可讀時）；Choibalsan、Aharonyan 摘要偏薄；查無來源 20／staging 疑義 3 見 `.dev/bio-gap-830.md`。

@@ -887,3 +887,263 @@ K1、K2、K3、S1、S2。
 - 不得用無來源的現代資料代替歷史資料；沒有歷史來源就不顯示。城市名依憲法 §6「地名」規則。
 - 來源沿用 `sources`；授權、重製權利、證據引用三者分開；R7 地圖授權規則適用。
 - 不影響 §4 標籤規則與 §9 圖磚效能目標。現有戰役 JSON 用 OSM Nominatim（現代地名庫）定位據點，屬「地名對座標」，不是歷史地理證據，地理圖層上線時需在資料上區分。
+
+## 16. 詳細人物生平資料結構（設計稿 v1，2026-11-10，待 Tai 確認）
+
+> 狀態：📝 只做設計。**不建表、不寫 migration、不改程式、不寫庫**。標記同 §14：**現有**＝已核對程式並附路徑；**提案**＝未實作、未拍板。
+> 盤點依據（皆唯讀）：本文件 §7、§14；`docs/design/person-reading-campaign-nav.md` §5–§6；`data/seed/leaders/gap-830/{HANDOFF,WORKFLOW,SCHEMA}.md`；`backend/src/WorldLine.Api/Domain/{Entities,CitationPolicy,Vocabulary}.cs`；`backend/src/WorldLine.Api/Features/LeadersEndpoints.cs`；`frontend/src/app/core/api/world-line-api.ts`；`compose.yaml`。
+
+### 16.0 開工三問與定位
+
+**位置：milestone → module → 步驟**
+- Milestone：**M4 資料**（人物生平屬資料補齊；§5 M4-b「人物小傳」的延伸），呈現端接 §14 人物閱讀（P1 已上線的人物卡／閱讀對話框）。
+- Module：**§14 人物 → 詳細生平**（`leader_bios` 一人一筆的下層：段落、職位、事件關聯、出處、RAG 切段）。
+- 步驟：本節是 **步驟 0「設計」**；實作分 B1–B5 階段（16.7），每階段各自要 Tai 核准。
+
+**Q1 已做過嗎？**
+- **已做（現有）**：`leader_bios`（生卒日＋`*_date_precision`、出生地、黨籍、`summary`、照片授權欄、`superseded_by`、`wikidata_qid`）；`leader_bio_field_citations`（逐欄位接 `sources`，有 `locator`、`evidence_note`、`accessed_on`、軟撤回）；`leader_records`（任期 SSOT，自由文字 `source`／`source_url`＋`verified`）；`historical_events`（`event_kind`、`parent_event_id`、`occurred` daterange、`date_precision`）；`event_citations`。路徑：`Entities.cs:9,149,209,325,357,406`。gap-830 已寫入 728 人、生平有效 923（HANDOFF 2026-11-10）。
+- **只提過、沒做（提案）**：設計文件 §5.2 `leader_bio_paragraphs`、§5.3 `person_event_participations`、§5.4 `person_causal_claims`、§5.1 `leader_record_citations`、各 citation 表的 `grade`。本節**沿用這些名稱與方向**，補上欄位細節、出處模型、職位、RAG，不另起一套。
+- **沒有人做過**：pgvector、chunk、embedding（§15 明說當時不做 RAG；本節只設計，仍不建）。
+- 結論：不是重做；是把 §14.5／設計文件 §5 的提案收斂成可實作規格。
+
+**Q2 與其他模組衝突嗎？**
+- §7 資料規則（I1 拆段、I5 撤回重寫、I6 只寫 verified、半開區間、範圍 1908-01-01～1945-09-30）：全部沿用，無衝突。注意「範圍」只約束**地圖時間軸資料**；生平段落會超出範圍（出生、戰後），見 16.2 與待決 T6。
+- §14.0-3「戰役先不做」：本節的事件／戰役關聯只定資料結構；**P1 介面仍不放任何戰役連結**，直到 Tai 另行解禁。
+- D13（戰役欄位未決）：事件關聯沿用設計文件的 `event_id` 或過渡 `campaign_key` 二擇一，不替 D13 拍板。
+- Q5（生平引用是否套授權允許清單）：未決；出處模型設計成兩種結果都能容納（16.4.4），不預設答案。
+- §15 地理圖層：明文「不是 RAG」；本節 RAG 是人物文字檢索，不碰地圖圖層，不衝突。
+- gap-830 流程（`SCHEMA.md` 的 P／S 格式、`run_batch.sh`）：新增欄位是**向後相容的超集**，舊批次格式仍可寫入（16.7）。
+- 正式部署：PostGIS 映像 `postgis/postgis:18-3.6`（`compose.yaml:11`）**不含 pgvector**，RAG 上線前需換映像或自建擴充（待決 T8）。B1–B4 不需要 pgvector。
+
+**Q3 如何驗收？（本設計稿本身）**
+1. 本 commit 只動 `ARCHITECTURE.md`（`git show --stat` 只有一個檔）。
+2. 每個提案表都能對應到 16.1 的需求 1–7；每個「現有」都附檔案行號。
+3. 沒有任何一條規則跟 §7、§14.0、D13、Q5 的現狀矛盾（逐條見 Q2）。
+4. Tai 逐條回覆 16.9；回覆前不進 B1。
+- 實作後的驗收（每階段）列在 16.7。
+
+### 16.1 設計原則
+
+1. **一人一筆不變**：所有新表都掛在 `leader_bios.id`（下稱 `bio_id`）；不新建 `persons`（§14.5）。P2 軍事人物也用同一張表（設計文件 §5.5）。
+2. **任期只有一個來源真相**：國家元首／政府首腦任期只存在 `leader_records`；其他地方只「引用 id」，不重抄日期（16.3）。
+3. **沒有出處就不存在**：段落、職位、參與、影響，每一列至少一筆 citation 才能寫入（寫入層檢查，比照 I6）；欄位查不到或來源矛盾 → 留空並記錄原因，不猜（沿用 gap-830 `conflicts`／`unverified`）。
+4. **參與 ≠ 影響**：兩張表；影響必須有**自己的**出處，不得沿用參與的出處或由參與推導（16.4）。
+5. **事實表不可刪**：全部走軟撤回（`retracted_at`＋`retraction_reason`），修正用撤回重寫＋`superseded_by`（I5）。RAG chunk 屬可重建的衍生快取，另訂規則（16.5.4）。
+6. **雙語 jsonb**：文字欄沿用 `{"zh-Hant": "...", "en": "..."}`（同 `leader_bios.summary`）。
+
+### 16.2 生平事蹟：時間段落式敘事
+
+**提案** `leader_bio_paragraphs`（沿用設計文件 §5.2 的名稱，補欄位）：
+
+| 欄位 | 型別 | 說明 |
+|---|---|---|
+| `id` | uuid PK | |
+| `bio_id` | uuid FK → `leader_bios.id` | |
+| `ord` | int | 顯示順序；同一 `bio_id` 有效段落內唯一 |
+| `period` | daterange NULL | 段落涵蓋期間，半開區間；整段無法定期間時 NULL |
+| `period_start_precision`／`period_end_precision` | text NULL | `day`｜`month`｜`year`（同 `DatePrecisions`）；NULL＝該端未知 |
+| `heading` | jsonb NULL | 短標題，例：「早年與教育」「第一次組閣」 |
+| `body` | jsonb | 段落正文；1 段只講一個時期，建議 ≤ 400 字（同時是 RAG 切段上限，16.5.1） |
+| `related_record_ids` | uuid[] NULL | 本段談到的任期（→ `leader_records.id`），只引用不重抄日期 |
+| `superseded_by` | uuid NULL | 撤回重寫時指向新段落 |
+| `retracted_at`、`retraction_reason`、`created_at`、`version` | | 同既有慣例 |
+
+規則：
+- 段落正文是「用自己的話改寫、只含來源寫到的事」（沿用 gap-830 `SCHEMA.md` 摘要規則），不抄長段原文。
+- **一段內每個事實句都要能指到該段的某筆 citation**；做不到就拆段或刪句。可選擇在 citation 加 `claim_span`（被支撐的句子序號或字元區間，16.4）讓前端逐句標註；P1 先只做到逐段。
+- `period` 可超出 1908–1945（出生、戰後），但**不進地圖時間軸篩選**；只在閱讀對話框顯示（待決 T6）。
+- 現有 `leader_bios.summary` 維持「一句話簡介」角色，不拆；段落是另一層。前端沒有段落時照舊只顯示 summary。
+- 未查證段落不進 DB，留在 `data/seed/**`（I6）；DB 裡不設 `draft` 狀態。
+
+### 16.3 職位任期（與 `leader_records` 的關係）
+
+現況：`leader_records` 只收兩種角色（`head_of_state`｜`head_of_government`），是地圖「領導人分頁」的資料源，也是 gap-830 的連結目標（`recordIds`）。出處是自由文字欄 `source`／`source_url`。
+
+**決策（提案）**：
+1. **元首／首腦任期**：唯一來源真相仍是 `leader_records`。生平端不另存這類任期；顯示時以 `leader_records WHERE person_id = bio_id` 取得（`GET /leader-bios/{id}` 已回 `terms`，見 `world-line-api.ts` `LeaderBio.terms`）。
+2. **任期出處升級**：實作設計文件 §5.1 已提的 `leader_record_citations(id, record_id, source_id, locator, evidence_note, accessed_on, grade, retracted_at, …)`，格式同 `leader_bio_field_citations`。過渡期 `leader_records.source` 文字只當備註，不算已查證（§14.6）。
+3. **其他職位**（部長、議長、軍職、黨職、駐外使節…）：**提案** `person_positions`，**不得**收元首／首腦（寫入層檢查：若 `role_kind` 屬這兩種 → 拒絕並指向 `leader_records`）。
+
+| 欄位 | 說明 |
+|---|---|
+| `id`、`bio_id` | |
+| `regime_id` NULL → `regimes.id` | 任職政權；外國／國際組織職位可 NULL 並填 `organization` |
+| `organization` jsonb NULL | 機關名（雙語），例：「外交部」「國際聯盟理事會」 |
+| `title` jsonb | 職銜原文與中譯：`{"orig": "...", "zh-Hant": "...", "en": "..."}` |
+| `role_kind` text | 值域（提案）：`minister`、`legislator`、`military_command`、`party`、`diplomat`、`judicial`、`other`；**排除** `head_of_state`／`head_of_government` |
+| `period` daterange、`start_precision`、`end_precision` | 同 16.2；任一端查不到就留無界並標精度 NULL，不猜 |
+| `retracted_at`、`retraction_reason`、`superseded_by`、`created_at`、`version` | |
+
+- 引用表 `person_position_citations`（格式同 16.4.1）。
+- **地圖不讀 `person_positions`**；它只用在閱讀對話框的「經歷」區。這樣元首／首腦的任期不會有兩個來源。
+- 若日後要把某種職位（例：軍事總司令）放上地圖，屬另案，需先改憲法。
+
+### 16.4 出處模型（每段落／每欄位可追溯）
+
+#### 16.4.1 統一的 citation 欄位（所有新 citation 表共用）
+
+格式承接**現有** `leader_bio_field_citations`（`source_id`＋`locator`＋`evidence_note`＋`accessed_on`），補四個欄位：
+
+| 欄位 | 型別 | 說明 |
+|---|---|---|
+| `id` | uuid PK | |
+| `<parent>_id` | uuid | 段落／職位／參與／影響／任期／欄位 |
+| `source_id` | uuid → `sources.id` | URL、書目、出版者、授權都放在 `sources`（**現有**：`url`、`archive_url`、`title`、`authors`、`publisher`、`published_text`、`catalog_id`、`license_code`） |
+| `locator` | text NOT NULL | 頁碼／條目／檔號／URL 錨點 |
+| `quote` | text NOT NULL | 引文原文，≤ 25 字（沿用 gap-830 `evidence` 長度）；這是「證據」，不是顯示用正文 |
+| `quote_lang` | text | 引文語言（BCP 47） |
+| `evidence_note` | text NULL | 查證者說明（例：「BnF 與 GND 卒年不同，採 BnF」） |
+| `accessed_on` | date NOT NULL | 當天實際打開的日期 |
+| `grade` | text NULL | 來源等級；**提案** CHECK IN (`A`,`B`)，值域定義見待決 T1 |
+| `date_precision` | text NULL | 這份來源支撐到的日期精度（`day`｜`month`｜`year`）；兩份來源精度不同時，欄位取**都支持的最粗精度**，不合併推高 |
+| `claim_span` | int4range NULL | 選填：支撐段落中哪幾句（句序號，半開） |
+| `policy_version` | text NULL | 寫入當時套用的來源政策版本（16.4.4） |
+| `retracted_at`、`retraction_reason`、`created_at` | | I5 |
+
+- **書目型來源（無 URL）**：`sources.url` NULL、`catalog_id`／`published_text` 必填，`locator` 寫頁碼；`accessed_on` 填實際翻閱日。
+- 現有 `leader_bio_field_citations` 以**新增式 migration** 補上 `quote`（可空，舊列留空）、`grade`、`date_precision`、`policy_version`；不改既有欄位意義。
+
+#### 16.4.2 矛盾與查無：留空並記錄原因
+
+**提案** `leader_bio_gaps`（記「為什麼空」，避免下一輪重查，也讓前端顯示「來源矛盾」而非只有「待補」）：
+
+| 欄位 | 說明 |
+|---|---|
+| `id`、`bio_id` | |
+| `target` | `field:birthDate`、`field:deathPlace`、`position:<id>`、`paragraph:<topic>` 等 |
+| `gap_kind` | `conflict`（來源互相矛盾）｜`not_found`（查無可開啟來源）｜`identity_uncertain`（身分推定） |
+| `note` | 例：「BnF 1873 vs 遺稿清冊 1874」 |
+| `candidate_citations` | jsonb：各說法的 source/locator/quote（**不是**資料值，只是證據並列） |
+| `checked_on` | date |
+| `resolved_at`、`resolved_by_citation_id` | 解決時填，不刪 |
+
+- 欄位有 `conflict` 紀錄時，該欄**必須**為 NULL（寫入層檢查）。對應 HANDOFF「可回頭補強」清單的大量案例（例：Breisky 生卒地 GND vs ÖBL、Ali Maher 出生年三說）。
+- `identity_uncertain` 但仍寫入者（例：Cebesoy、Jadambaa 由職銜推定身分）要在此記錄推定依據，前端可標「身分由職銜推定」。
+
+#### 16.4.3 參與 vs 影響
+
+沿用設計文件 §5.3／§5.4 的兩張表，補規則：
+
+- **參與** `person_event_participations`：`bio_id`、`event_id` NULL → `historical_events.id`、`campaign_key` NULL（過渡，D13 定案後改 `event_id`；`CHECK num_nonnulls(event_id, campaign_key) = 1`）、`role`（提案值域：`commander`、`participant`、`signatory`、`decision_maker`、`present`、`other`）、`period` daterange NULL、軟撤回欄。引用表 `person_event_participation_citations`。
+  - 只記「在場／擔任什麼角色」這種事實；**不**從 `event_participants`（政權參與方）或任期重疊推導。
+- **影響** `person_causal_claims`（P3）：`subject_bio_id`、`object_type`（`event`｜`campaign`｜`regime`｜`bio`）、`object_id`、`claim_kind`（`acted`｜`influenced`）、`claim_text` jsonb、`perspective` text NULL（多觀點並列時標明是哪一派史學觀點）、軟撤回欄。引用表 `person_causal_claim_citations`。
+  - **獨立出處**：寫入層檢查 (1) 至少一筆 citation；(2) 每筆 citation 的 `quote` 必須是**直接陳述因果／影響**的原文，不能只證明「他在場」；(3) 同一 `(source_id, locator)` 若已用於同人同事件的參與，不能單獨作為影響的唯一出處（同一頁同時講參與與影響時，要在影響 citation 另抄影響句的 `quote`）。
+  - 沒有這樣的出處 → **不寫**，也不在 gap 表留「影響待補」（避免暗示有影響）。
+- 參與與影響互不推導：有影響不代表有參與（例：遠端決策），有參與不代表有影響。
+
+#### 16.4.4 來源白名單（Q5 未定，設計上可容納）
+
+現況：`CitationPolicy.PrimaryLicenseAllowlist` 只擋控制紀錄與陣營的 primary citation（`CitationPolicy.cs:12`），生平未套用；gap-830 另有「不採 Wikipedia／Wikidata／百度、LoC 引自 Wikipedia 者不採、enciclopediadelecuador.com 已被接管」等**實務黑名單**，目前只寫在 HANDOFF。
+
+**提案**：新增程式端 `BioSourcePolicy`（同 `CitationPolicy` 的形式，放 `Domain/`），以版本號管理：
+- `policy_version`：例 `bio-2026-11-v0`。每筆 citation 寫入時記錄當時版本。
+- 規則分兩層：
+  1. **硬性排除**（現在就可以，不用等 Q5）：Wikipedia／Wikidata／百度百科當出處、已知被接管網域、「自製」來源（沿用 `IsSelfMadePublisher`）。這是 gap-830 已在執行的規則，只是把它從文件搬進程式。
+  2. **白名單（Q5 決定後才開）**：(a) 若 Q5 選「套授權允許清單」→ 檢查 `sources.license_code ∈ PrimaryLicenseAllowlist`；(b) 若 Q5 選「不套用，另立史料白名單」→ 檢查 `sources.publisher`／URL 網域是否在白名單（白名單可另建 `source_allowlist(domain_or_publisher, grade_cap, note, decided_on)` 表或程式常數，待決 T2）。
+- Q5 改變時**不改舊列**：以 `policy_version` 找出舊政策寫入的 citation，產出重審清單，不合格者走撤回（I5）。
+- 「授權 metadata ≠ 重製權 ≠ 證據引用」三分（§14.6）維持：白名單管的是「能否當證據」，段落正文本來就是自己改寫，不涉重製。
+
+### 16.5 後續 RAG（只設計，不建表）
+
+目的：讓日後的問答／搜尋能以人物生平回答，且每個回答都能回指到 citation。
+
+#### 16.5.1 切段單位（chunk）
+
+| chunk 類型 | 來源列 | 內容組成 | 說明 |
+|---|---|---|---|
+| `paragraph` | `leader_bio_paragraphs` 一列 × 一語言 | 標頭行（人名、期間、heading）＋正文 | **主要單位**；一段一 chunk，不跨段，確保 chunk ↔ citation 一對多可直接映射 |
+| `facts` | `leader_bios` 一列 × 一語言 | 由欄位**模板生成**的事實卡：姓名、生卒（附精度）、出生地、黨籍、summary | 欄位為 NULL 不寫；有 `conflict` 的欄寫「來源矛盾」而非任何值 |
+| `tenure` | `leader_records`（同人全部）× 一語言 | 模板生成：政權、角色、職銜、起訖 | 只讀 SSOT，不另存日期 |
+| `position` | `person_positions` 一列 × 一語言 | 模板生成 | |
+| `participation`／`claim` | 各一列 × 一語言 | 模板生成；`claim` 帶 `perspective` | 影響 chunk 明示「史學詮釋」 |
+
+- 段落上限 400 字（16.2）即為 chunk 上限；超過就在資料層拆段，不在 RAG 層硬切。
+- 不把 citation 的 `quote` 放進 embedding 內容（避免外語短引文干擾），但放進 chunk metadata 供回答時引用。
+
+#### 16.5.2 與出處的對應
+
+**提案** `person_rag_chunks`（衍生表）：
+
+| 欄位 | 說明 |
+|---|---|
+| `id` uuid | |
+| `bio_id` uuid | 篩選用 |
+| `chunk_kind` text | 16.5.1 類型 |
+| `source_table`、`source_row_id`、`source_row_version` | 回指事實列；版本用來判斷過期 |
+| `lang` text | `zh-Hant`｜`en` |
+| `content` text | 實際送去 embedding 的文字 |
+| `content_hash` text | `sha256(content)`，判斷是否需重算 |
+| `citation_ids` uuid[] | 該事實列當下有效的 citation id；回答時據此列出處 |
+| `period` daterange NULL | 讓檢索可依時間篩選（例：問 1938 年的事） |
+| `embedding` vector(N) | N 依模型定（待決 T7） |
+| `embedding_model` text | 例：`<provider>/<model>@<version>` |
+| `embedded_at` timestamptz | |
+
+- 回答規則（給日後 RAG 服務）：只能引用 `citation_ids` 內的出處；chunk 沒有 citation（理論上不會發生，因為事實列寫入時已強制）就不得作為回答依據。
+
+#### 16.5.3 pgvector 欄位與索引建議
+
+- 擴充：`CREATE EXTENSION vector`；需換成內含 pgvector 的映像（例：在 `postgis/postgis:18-3.6` 上加裝，或改用同時含 PostGIS＋pgvector 的映像），待決 T8。
+- 索引：`HNSW (embedding vector_cosine_ops)`，建議 `m = 16`、`ef_construction = 64`，查詢時 `SET hnsw.ef_search = 40` 起調。資料量估算：923 人 × 平均 ~8 段 × 2 語 ≈ 1.5 萬列，量小，HNSW 建索引成本低；初期甚至可不建索引直接精確搜尋。
+- 輔助索引：`(bio_id)`、`(lang)`、`(source_table, source_row_id)` B-tree；`period` 用 GiST（已有 `btree_gist`）。
+- 多模型並存時：`embedding_model` 加入篩選條件，或每個模型一張 chunk 表，避免不同維度混在一欄。
+
+#### 16.5.4 更新時重算 embedding 的策略
+
+- **觸發**：事實列新增、撤回、撤回重寫（`superseded_by`）、citation 新增或撤回 → 該事實列的 chunk 標記過期（比對 `source_row_version` 或 `content_hash`）。
+- **重算**：背景批次（不在寫入交易內呼叫外部模型）：重新生成 `content` → hash 相同只更新 `citation_ids`，不重算 embedding；hash 不同才重算。
+- **撤回**：事實列撤回後，其 chunk 必須立即不可檢索。chunk 表是**可由事實表完全重建的衍生快取**，提案允許直接 DELETE（不屬 I5 保護的事實資料）；若 Tai 認為仍要軟刪，改加 `retracted_at` 並在查詢篩掉（待決 T9）。
+- **換模型**：新模型寫新欄或新表，雙軌跑完比對後切換，舊的整批丟棄。
+- **全量重建**：提供冪等腳本 `rebuild_person_chunks`（日後實作），可隨時從事實表重建，作為一致性檢查。
+
+### 16.6 欄位補充：`leader_bios` 本身
+
+只加、不改（新增式 migration）：
+- `death_place` jsonb（現況只有出生地；HANDOFF 多處記卒地衝突，例 József、王正廷）＋對應 `field` 值 `deathPlace`。
+- `leader_bio_field_citations.field` 值域加 `deathPlace`。
+- 不加 `paragraph_count` 之類的冗餘欄；由查詢算。
+
+### 16.7 遷移與相容性
+
+**對現有人物卡片／前端的影響**
+- `GET /leaders`（`LeaderBioSummary`）：**不變**。卡片照舊只用姓名、生卒、summary、照片。
+- `GET /leader-bios/{id}`（`LeaderBio`）：**只加可選欄位** `paragraphs?`、`positions?`、`participations?`（戰役解禁前後端可先不回）、`gaps?`、`deathPlace?`。現有型別的欄位全保留；前端沒升級時忽略新欄位即可，不會壞。
+- 閱讀對話框：有段落 → 顯示「生平」段落區（每段可展開來源，預設收合，§14.1）；無段落 → 照舊顯示 summary。`gaps` 用來把「待補來源」細分為「來源矛盾」「查無來源」。
+- `field_sources`（自由文字 jsonb）：保留不刪；繼續只當備註，不算已查證。
+- 地圖、時間軸、領導人分頁的篩選：**完全不讀新表**，零影響。
+- gap-830 腳本：`research.json` 的 P 格式加可選鍵 `paragraphs`、`positions`、`gaps`；S 格式的 `evidence` 對應新欄 `quote`。舊批次不帶新鍵仍可照舊寫入。
+
+**分階段實作計畫**（每階段：備份 → dry-run → 寫入，只寫開發庫 5052；每階段前要 Tai 核准）
+
+| 階段 | 內容 | 驗收 |
+|---|---|---|
+| B1 出處模型 | `leader_bio_field_citations` 補 `quote`／`grade`／`date_precision`／`policy_version`；新增 `leader_record_citations`、`leader_bio_gaps`、`death_place`；`BioSourcePolicy` 硬性排除層 | migration up/down 在本機乾淨庫通過；I5 trigger 測試（DELETE 失敗、撤回不可逆）；舊 API 回應快照不變 |
+| B2 回填 | 把 gap-830 `bNN/research.json` 既有 `evidence` 回填到 `quote`、`conflicts`／`unverified` 回填到 `leader_bio_gaps`（只讀 seed 檔，不重新查證） | 計數比對：回填筆數＝seed 中有 evidence 的 citation 數；抽 20 人人工對照 |
+| B3 段落與職位 | `leader_bio_paragraphs`、`person_positions` 與引用表；API 加可選欄位；閱讀對話框顯示段落 | 無 citation 的段落／職位寫入被拒；`person_positions` 寫入元首／首腦被拒；前端單元測試＋4201 截圖 |
+| B4 事件關聯 | `person_event_participations`；`person_causal_claims`（P3）。**需 Tai 先解除 §14.0-3「戰役先不做」** | 影響無獨立 citation 被拒；參與不會由政權參與方自動產生（測試） |
+| B5 RAG | pgvector 映像、`person_rag_chunks`、重建腳本、重算批次 | 全量重建冪等（兩次結果 hash 相同）；撤回後 chunk 立即查不到；每個 chunk 都有 `citation_ids` |
+
+### 16.8 風險
+
+| # | 風險 | 處理 |
+|---|---|---|
+| R16-1 | A/B 等級沒有書面定義，各批各填各的 | T1 先定義；未定義前 `grade` 一律留 NULL，不推測 |
+| R16-2 | 段落逐句可追溯的人工成本高 | P1 只要求逐段；`claim_span` 選填 |
+| R16-3 | 生平期間超出 1908–1945 與憲法 §1 範圍的關係不明 | T6；未決前只顯示、不進時間軸 |
+| R16-4 | 換 DB 映像（pgvector）影響正式站部署 | 只在 B5 才需要；先在 5052 開發庫驗證 |
+| R16-5 | 影響（因果）主張具爭議 | `perspective` 多觀點並列，每觀點各自附出處（設計文件 R8） |
+
+### 16.9 要 Tai 決定
+
+| # | 事項 | 選項／建議 |
+|---|---|---|
+| T1 | 來源等級 A／B 的定義與是否只收 A／B | 建議：A＝官方檔案、國家級傳記辭典、權威機構人名權威（BnF、GND、ÖBL、SBL…）；B＝學術專書、具名作者的百科條目；C／X 不進 DB（留 seed）。需考證組確認後才加 CHECK |
+| T2 | Q5：生平引用要套授權允許清單，還是另立史料白名單？白名單存程式常數或 DB 表？ | 設計兩者都支援（16.4.4）；建議先上「硬性排除」層，白名單待憲法修改後再開 |
+| T3 | `person_positions` 的 `role_kind` 值域 | 建議先用 16.3 的 7 種，`other` 兜底 |
+| T4 | 段落是否要求逐句標註（`claim_span` 必填） | 建議 P1 選填，只逐段 |
+| T5 | 何時解除 §14.0-3「戰役先不做」以進 B4 | — |
+| T6 | 段落期間可否超出 1908–1945（出生、戰後） | 建議可以，但只在閱讀對話框顯示、不進地圖時間軸；若同意需在憲法 §1 註明 |
+| T7 | embedding 模型與維度（多語：中、英、原文人名） | B5 前再評估；本節不預設 |
+| T8 | 正式站 DB 映像加 pgvector | B5 前決定 |
+| T9 | RAG chunk 衍生表可否硬刪（不受 I5） | 建議可以（可完全重建）；否則加 `retracted_at` 軟刪 |
+| T10 | B1–B5 的優先順序；B2 回填是否在 gap-830 補強批之前做 | 建議 B1→B2 先做，補強批（b50 起）直接用新格式 |

@@ -1140,13 +1140,13 @@ K1、K2、K3、S1、S2。
 
 #### 16.7.1 B1 進度（2026-11-10）
 
-B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11-10 依 Tai 16:20 核准套用到本機開發庫（5442／`worldline_borders_dev`，5052 API 所連）；其餘 migration 只寫檔、**未套用**。
+B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11-10 依 Tai 16:20 核准套用到本機開發庫（5442／`worldline_borders_dev`，5052 API 所連）；`BioCitationFieldsAndGaps` 已於 2026-11-10 21:1x 依 Tai 17:51 核准套用 5442（見下方「套用 5442」）。
 
 | 項目 | 狀態 | 檔案 |
 |---|---|---|
 | `leader_record_citations` | ✅ migration＋entity＋測試；✅ 已套用 5442（2026-11-10 16:2x） | `Infrastructure/Migrations/20261110080453_LeaderRecordCitations.cs`、`Domain/Entities.cs`（`LeaderRecordCitation`）、`Infrastructure/WorldLineDbContext.cs`、`tests/…/LeaderRecordCitation{Model,Guard}Tests.cs` |
-| `leader_bio_field_citations` 補 `quote`／`quote_lang`／`grade`／`date_precision`／`policy_version`；field 值域加 `deathPlace`；兩張 citation 表 `grade` CHECK 只收 A、B | ✅ migration＋entity＋測試已寫；⏳ **未套用任何庫** | `Infrastructure/Migrations/20261110082807_BioCitationFieldsAndGaps.cs`、`Domain/Entities.cs`、`Infrastructure/WorldLineDbContext.cs` |
-| `leader_bio_gaps`、`leader_bios.death_place` | ✅ 同上 migration；⏳ 未套用 | 同上；`Domain/Vocabulary.cs`（`LeaderBioGapKinds`） |
+| `leader_bio_field_citations` 補 `quote`／`quote_lang`／`grade`／`date_precision`／`policy_version`；field 值域加 `deathPlace`；兩張 citation 表 `grade` CHECK 只收 A、B | ✅ migration＋entity＋測試；✅ 已套用 5442（2026-11-10 21:1x） | `Infrastructure/Migrations/20261110082807_BioCitationFieldsAndGaps.cs`、`Domain/Entities.cs`、`Infrastructure/WorldLineDbContext.cs` |
+| `leader_bio_gaps`、`leader_bios.death_place` | ✅ 同上 migration；✅ 已套用 5442 | 同上；`Domain/Vocabulary.cs`（`LeaderBioGapKinds`） |
 | `BioSourcePolicy` 硬性排除層 | ✅ 程式＋單元測試 | `Domain/BioSourcePolicy.cs`、`tests/…/BioSourcePolicyTests.cs` |
 
 `BioCitationFieldsAndGaps` 實作細節（第 2 段，2026-11-10）：
@@ -1160,7 +1160,13 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 
 第 2 段驗收狀態：
 - ✅ build 0 警告 0 錯誤；離線測試（不連任何庫）78 通過／0 失敗／0 略過：`BioSourcePolicyTests` 43、`BioCitationFieldsAndGapsModelTests` 15、`LeaderRecordCitationModelTests` 6（改為 grade 已有 CHECK）、其他離線 14。
-- ⏳ `BioCitationFieldsAndGapsGuardTests`（一次性 PostGIS 容器）已寫、**未執行**：核准範圍規定新 migration 不套用到任何庫（含測試容器）。執行與套用 5442 皆待 Tai 核准。
+- ✅ `BioCitationFieldsAndGapsGuardTests`（一次性 PostGIS 容器 `postgis/postgis:18-3.6`，非 5442）：9 通過／0 失敗／0 略過（2026-11-10 21:2x，Tai 17:51 核准）。
+
+套用 5442（2026-11-10，Tai 17:51 核准；21:10 核准必要時重啟 OrbStack／5052）：
+- 環境恢復：上次（20:50）docker 無回應；本次開工時 docker、5442、5052 均已恢復回應，**未重啟 OrbStack、未重啟 5052**（4200 `app_frontend` 也在同一 OrbStack，重啟會連帶影響，故不做非必要重啟）。容器狀態前後逐行相同（`.dev/containers-{before,after}.txt`，不進版控）。
+- 備份：`~/wl-backups/worldline_borders_dev-20261110-211642-pre-b1-bio-citation-fields-and-gaps.dump`（107,228,146 bytes，`pg_restore -l` 274 項＝B1 備份 265 項＋`leader_record_citations` 9 項）。
+- 套用方式同 B1：`dotnet ef migrations script 20261110080453_LeaderRecordCitations 20261110082807_BioCitationFieldsAndGaps` 產生單一交易 SQL，container 內 `psql -v ON_ERROR_STOP=1` 執行。套用後 `leader_bio_gaps` 0 列、`quote` 非 NULL 0 列；`leader_bio_field_citations` 4319、`leader_bios` 968、`leader_records` 2197 列不變。
+- 5052 舊 API（未重啟）10 個 GET 端點：套用前取兩次一致（且與 B1 套用後快照一致），套用後逐位元比對 10/10 一致（`.dev/b2-api-snap/`，不進版控）。
 
 `leader_record_citations` 實作細節（16.4.1 未明寫、實作時的取捨，Tai 可改）：
 - `quote` NOT NULL、不可空白；**「≤ 25 字」不加 DB CHECK**：gap-830 的「字」對拉丁文是字元還是詞未定，硬限 25 字元會擋掉多數英文引文。暫由寫入流程把關。

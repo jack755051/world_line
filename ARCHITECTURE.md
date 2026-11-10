@@ -1282,4 +1282,5 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；C／X 由 `BioSourcePolicy` 硬性排除 | Tai 2026-11-10 16:20 核准第 2 段範圍 |
 | quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1） | 主管裁定（同上） |
 | B2 寫入範圍 | ≤ 25 字 841 筆回填 `quote`；超過 25 字 3265 筆留空、不截斷（重摘另案）；日精度爭議 10 筆保留現有年份、另記 `conflict`；查不到但已有值 236 筆保留現有值、記 `not_found`；其餘照 dry-run；欄位不在值域 23 筆、重複者跳過。結果見 16.7.3 | Tai 2026-11-10 17:51；21:10 再確認 |
+| 16.7.3 放寬規則 | 沿用：conflict 帶精度限定詞（年份一致、只有日期不同）時可保留現有年份值，另記 `conflict` 缺漏；無限定詞者該欄仍須為 NULL。Tai 2026-11-10 21:36 已確認 | Tai 2026-11-10 21:36 |
 

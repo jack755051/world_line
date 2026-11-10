@@ -418,6 +418,41 @@ public sealed class LeaderBioFieldCitation
 }
 
 /// <summary>
+/// 任期引用（leader_record_citations；ARCHITECTURE §16.3-2、§16.4.1，B1，2026-11-10）：
+/// 每筆 leader_records 任期可接多筆 sources，取代自由文字 leader_records.source（過渡期該欄只當備註）。
+/// 欄位採 §16.4.1 統一 citation 格式；修正走軟撤回（I5，trigger 在 migration 以 SQL 建立）。
+/// - Grade：T1 已決只收 A／B（C／X 不進 DB），但 DB CHECK 依 §16.9.1 等考證組確認後再加；未定前寫入一律留 NULL。
+/// - PolicyVersion：T2（白名單）未決，先只預留欄位，不做任何檢查。
+/// - ClaimSpan：T4 已決選填；任期引用通常不用，保留是為了與其他 citation 表同格式。
+/// </summary>
+public sealed class LeaderRecordCitation
+{
+    public Guid Id { get; set; }
+    public Guid RecordId { get; set; }
+    public Guid SourceId { get; set; }
+    /// <summary>頁碼／條目／檔號／URL 錨點。</summary>
+    public string Locator { get; set; } = "";
+    /// <summary>引文原文（證據，不是顯示用正文）。</summary>
+    public string Quote { get; set; } = "";
+    /// <summary>引文語言（BCP 47）。</summary>
+    public string? QuoteLang { get; set; }
+    public string? EvidenceNote { get; set; }
+    /// <summary>當天實際打開來源的日期。</summary>
+    public DateOnly AccessedOn { get; set; }
+    /// <summary>來源等級（T1：A｜B）；CHECK 待考證組確認。</summary>
+    public string? Grade { get; set; }
+    /// <summary>這份來源支撐到的日期精度：day | month | year。</summary>
+    public string? DatePrecision { get; set; }
+    /// <summary>選填：支撐的句序號（半開區間）。</summary>
+    public NpgsqlRange<int>? ClaimSpan { get; set; }
+    /// <summary>寫入當時套用的來源政策版本（§16.4.4，T2 未決，預留）。</summary>
+    public string? PolicyVersion { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
 /// 首都紀錄（capital_records）：某政權在某期間的首都城市與座標，地圖上顯示小圓點＋城市名。
 /// - 城市名以雙語 JSON 儲存（{"zh-Hant": "...", "en": "..."}）；Location 為 WGS84 點。
 /// - 同一政權在同一時間只能有一筆有效紀錄（EXCLUDE 約束）。

@@ -30,6 +30,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<LeaderBio> LeaderBios => Set<LeaderBio>();
     public DbSet<LeaderRecord> LeaderRecords => Set<LeaderRecord>();
     public DbSet<LeaderBioFieldCitation> LeaderBioFieldCitations => Set<LeaderBioFieldCitation>();
+    public DbSet<LeaderRecordCitation> LeaderRecordCitations => Set<LeaderRecordCitation>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -414,6 +415,31 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.BioId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.BioId);
+            Timestamps(e, updated: false);
+        });
+        // 任期引用（ARCHITECTURE §16.3-2、§16.4.1，B1）。I5 trigger 在 migration 以 SQL 建立。
+        // grade 不加 CHECK（§16.9.1 T1：考證組確認後再加）；policy_version 只預留（T2 未決）。
+        b.Entity<LeaderRecordCitation>(e =>
+        {
+            e.ToTable("leader_record_citations", t =>
+            {
+                t.HasCheckConstraint("ck_leader_record_citations_locator_not_blank", "btrim(locator) <> ''");
+                t.HasCheckConstraint("ck_leader_record_citations_quote_not_blank", "btrim(quote) <> ''");
+                t.HasCheckConstraint("ck_leader_record_citations_date_precision",
+                    "date_precision IS NULL OR " + InList("date_precision", DatePrecisions.All));
+                t.HasCheckConstraint("ck_leader_record_citations_claim_span",
+                    "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
+                t.HasCheckConstraint("ck_leader_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.QuoteLang).HasMaxLength(35);
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.DatePrecision).HasMaxLength(8);
+            e.Property(x => x.ClaimSpan).HasColumnType("int4range");
+            e.Property(x => x.PolicyVersion).HasMaxLength(32);
+            e.HasOne<LeaderRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RecordId);
             Timestamps(e, updated: false);
         });
         // 領導人紀錄（leader_records；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。

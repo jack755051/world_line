@@ -990,6 +990,101 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderRecordCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly>("AccessedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("accessed_on");
+
+                    b.Property<NpgsqlRange<int>?>("ClaimSpan")
+                        .HasColumnType("int4range")
+                        .HasColumnName("claim_span");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("DatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
+                    b.Property<string>("EvidenceNote")
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Grade")
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<string>("PolicyVersion")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("policy_version");
+
+                    b.Property<string>("Quote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quote");
+
+                    b.Property<string>("QuoteLang")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("quote_lang");
+
+                    b.Property<Guid>("RecordId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("record_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_leader_record_citations");
+
+                    b.HasIndex("RecordId")
+                        .HasDatabaseName("ix_leader_record_citations_record_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_leader_record_citations_source_id");
+
+                    b.ToTable("leader_record_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_leader_record_citations_claim_span", "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
+
+                            t.HasCheckConstraint("ck_leader_record_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_leader_record_citations_locator_not_blank", "btrim(locator) <> ''");
+
+                            t.HasCheckConstraint("ck_leader_record_citations_quote_not_blank", "btrim(quote) <> ''");
+
+                            t.HasCheckConstraint("ck_leader_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.OccupationAttribution", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1923,6 +2018,23 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_leader_records_regimes_regime_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderRecordCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.LeaderRecord", null)
+                        .WithMany()
+                        .HasForeignKey("RecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_leader_record_citations_leader_records_record_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_leader_record_citations_sources_source_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.OccupationAttribution", b =>

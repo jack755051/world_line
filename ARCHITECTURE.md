@@ -902,7 +902,7 @@ K1、K2、K3、S1、S2。
 
 ## 16. 詳細人物生平資料結構（設計稿 v1，2026-11-10，待 Tai 確認）
 
-> 狀態：📝 只做設計。**不建表、不寫 migration、不改程式、不寫庫**。標記同 §14：**現有**＝已核對程式並附路徑；**提案**＝未實作、未拍板。
+> 狀態：📝 設計稿；B1 的 `leader_record_citations` 已寫 migration 檔（**未套用、未寫庫**，見 16.7.1），其餘仍只做設計。標記同 §14：**現有**＝已核對程式並附路徑；**提案**＝未實作、未拍板。
 > 盤點依據（皆唯讀）：本文件 §7、§14；`docs/design/person-reading-campaign-nav.md` §5–§6；`data/seed/leaders/gap-830/{HANDOFF,WORKFLOW,SCHEMA}.md`；`backend/src/WorldLine.Api/Domain/{Entities,CitationPolicy,Vocabulary}.cs`；`backend/src/WorldLine.Api/Features/LeadersEndpoints.cs`；`frontend/src/app/core/api/world-line-api.ts`；`compose.yaml`。
 
 ### 16.0 開工三問與定位
@@ -1134,6 +1134,33 @@ K1、K2、K3、S1、S2。
 | B3 段落與職位 | `leader_bio_paragraphs`、`person_positions` 與引用表；API 加可選欄位；閱讀對話框顯示段落 | 無 citation 的段落／職位寫入被拒；`person_positions` 寫入元首／首腦被拒；前端單元測試＋4201 截圖 |
 | B4 事件關聯 | `person_event_participations`；`person_causal_claims`（P3）。**需 Tai 先解除 §14.0-3「戰役先不做」** | 影響無獨立 citation 被拒；參與不會由政權參與方自動產生（測試） |
 | B5 RAG | pgvector 映像、`person_rag_chunks`、重建腳本、重算批次 | 全量重建冪等（兩次結果 hash 相同）；撤回後 chunk 立即查不到；每個 chunk 都有 `citation_ids` |
+
+#### 16.7.1 B1 進度（2026-11-10）
+
+B1 拆成小步，每步各自 commit。**已寫檔、未套用到任何資料庫**（含 5052）；套用需 Tai 核准。
+
+| 項目 | 狀態 | 檔案 |
+|---|---|---|
+| `leader_record_citations` | ✅ migration＋entity＋測試已寫；⏳ 未套用 | `Infrastructure/Migrations/20261110080453_LeaderRecordCitations.cs`、`Domain/Entities.cs`（`LeaderRecordCitation`）、`Infrastructure/WorldLineDbContext.cs`、`tests/…/LeaderRecordCitation{Model,Guard}Tests.cs` |
+| `leader_bio_field_citations` 補 `quote`／`grade`／`date_precision`／`policy_version` | 未做 | — |
+| `leader_bio_gaps`、`leader_bios.death_place` | 未做 | — |
+| `BioSourcePolicy` 硬性排除層 | 未做 | — |
+
+`leader_record_citations` 實作細節（16.4.1 未明寫、實作時的取捨，Tai 可改）：
+- `quote` NOT NULL、不可空白；**「≤ 25 字」不加 DB CHECK**：gap-830 的「字」對拉丁文是字元還是詞未定，硬限 25 字元會擋掉多數英文引文。暫由寫入流程把關。
+- `quote_lang` 可 NULL（varchar 35，BCP 47 長度上限），不檢查格式。
+- `grade` varchar(1) 可 NULL，**不加 CHECK**：依 16.9.1 T1「考證組確認後再加 CHECK」；未確認前寫入一律留 NULL。
+- `policy_version` varchar(32) 可 NULL，不做任何檢查（T2 未決，只預留）。
+- `claim_span` int4range 可 NULL；CHECK 不可為空區間、下界 ≥ 0（T4 選填）。
+- `date_precision` CHECK ∈ `DatePrecisions`。
+- FK：`record_id` → `leader_records.id`、`source_id` → `sources.id`，皆 RESTRICT；兩欄各有 B-tree 索引。不設唯一約束（同一來源可在不同 locator 支撐同一任期）。
+- I5 trigger `trg_leader_record_citations_guard`：禁 DELETE、撤回不可撤銷（同 `leader_bio_field_citations`）。
+- 不改 `leader_records` 任何欄位；`leader_records.source` 過渡期照舊只當備註（§14.6）。API、前端、地圖零變動。
+
+驗收狀態：
+- ✅ `dotnet build` 0 警告；離線單元測試 `LeaderRecordCitationModelTests`（模型與 snapshot 無落差、欄位可空性、FK、CHECK、Up 為新增式且裝 I5 trigger、Down 只移除新表）通過。不連任何資料庫。
+- ⏳ `LeaderRecordCitationGuardTests`（一次性 PostGIS 容器：CHECK、FK、DELETE 失敗、撤回不可逆）已寫、**未執行**；連同 16.7「migration up/down 在本機乾淨庫通過」待 Tai 核准後跑。
+- ⏳ 舊 API 回應快照不變：本步未動任何端點，待套用後以既有 `LeaderBioTests`／`PersonDetailTests` 確認。
 
 ### 16.8 風險
 

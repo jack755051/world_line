@@ -9,22 +9,25 @@ import { SourceDisclosure } from '../source-disclosure/source-disclosure';
 const TXT = {
   'zh-Hant': {
     role: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
-    term: '任期', details: '查看詳情', noPhoto: '無授權照片', portraitOf: '的肖像', tenureSource: '任期',
+    term: '任期', details: '查看詳情', noPhoto: '無授權照片', portraitOf: '的肖像', tenureSource: '任期', roles: '職位與任期',
   },
   en: {
     role: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
-    term: 'Term', details: 'View details', noPhoto: 'No licensed photo', portraitOf: ' — portrait', tenureSource: 'Term',
+    term: 'Term', details: 'View details', noPhoto: 'No licensed photo', portraitOf: ' — portrait', tenureSource: 'Term', roles: 'Offices and terms',
   },
 } as const;
 
-/** 人物分頁的人物卡：照片（無授權照片＝中性佔位）、姓名、職位、任期、查看詳情、任期來源（預設收合）。 */
+/**
+ * 人物分頁的人物卡：同一人（同 personId）多個角色合併成一張（ARCHITECTURE §14.8）。
+ * 照片（無授權照片＝中性佔位）、姓名、每個角色各自一列（職位、任期、該角色任期來源，預設收合）、查看詳情。
+ */
 @Component({
   selector: 'wl-person-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LucideUserRound, SourceDisclosure],
   host: { class: 'block' },
   template: `
-    <article data-testid="person-card" [attr.data-record-id]="leader().recordId" [attr.data-person-id]="leader().personId"
+    <article data-testid="person-card" [attr.data-record-id]="first().recordId" [attr.data-person-id]="first().personId" [attr.data-role-count]="records().length"
       class="flex gap-3 rounded-wl-sm border border-wl-outline-variant bg-wl-surface p-2.5">
       <div class="h-[76px] w-[60px] flex-none overflow-hidden rounded-sm bg-wl-surface-container-high">
         @if (portrait() && !imgFailed()) {
@@ -38,44 +41,55 @@ const TXT = {
       </div>
       <div class="min-w-0 flex-1">
         <h4 data-testid="person-card-name" class="wl-text1 font-semibold leading-snug">{{ name() }}</h4>
-        <div class="mt-0.5 flex flex-wrap items-center gap-1 text-[12px] text-wl-on-surface-variant">
-          <span data-testid="person-card-role" class="rounded-sm bg-wl-surface-container-high px-1" [attr.data-role]="leader().role">{{ t().role[leader().role] ?? leader().role }}</span>
-          @if (leader().title) { <span data-testid="person-card-title" class="min-w-0 break-words">{{ leader().title }}</span> }
-        </div>
-        <div data-testid="person-card-term" class="mt-0.5 font-mono text-[12px] tabular-nums text-wl-on-surface-variant">
-          <span class="sr-only">{{ t().term }}</span>{{ term() }}</div>
-        <div class="mt-1.5 flex flex-wrap items-start gap-x-3 gap-y-1">
-          @if (canOpen()) {
-            <button type="button" data-testid="person-card-details" [attr.data-person-trigger]="leader().personId"
-              class="wl-btn-secondary inline-flex min-h-11 items-center px-3 text-[13px] md:min-h-8"
-              [attr.aria-label]="t().details + '：' + name()" (click)="open.emit({ personId: leader().personId!, trigger: $any($event.currentTarget) })">{{ t().details }}</button>
+        <ul class="mt-1 space-y-1.5" [attr.aria-label]="t().roles">
+          @for (r of roles(); track r.recordId) {
+            <li data-testid="person-card-role-row" [attr.data-record-id]="r.recordId" [attr.data-role]="r.role"
+              class="text-[12px] text-wl-on-surface-variant" [class.border-t]="!$first" [class.border-wl-outline-variant]="!$first" [class.pt-1.5]="!$first">
+              <div class="flex flex-wrap items-center gap-1">
+                <span data-testid="person-card-role" class="rounded-sm bg-wl-surface-container-high px-1" [attr.data-role]="r.role">{{ r.roleText }}</span>
+                @if (r.title) { <span data-testid="person-card-title" class="min-w-0 break-words">{{ r.title }}</span> }
+              </div>
+              <div data-testid="person-card-term" class="mt-0.5 font-mono tabular-nums">
+                <span class="sr-only">{{ t().term }}</span>{{ r.term }}</div>
+              <wl-source-disclosure class="min-w-0" [items]="r.sources" [lang]="lang()" [label]="r.roleText + ' ' + t().tenureSource" />
+            </li>
           }
-          <wl-source-disclosure class="min-w-0 flex-1 pt-1" [items]="sources()" [lang]="lang()" [label]="t().tenureSource" />
-        </div>
+        </ul>
+        @if (canOpen()) {
+          <button type="button" data-testid="person-card-details" [attr.data-person-trigger]="first().personId"
+            class="wl-btn-secondary mt-1.5 inline-flex min-h-11 items-center px-3 text-[13px] md:min-h-8"
+            [attr.aria-label]="t().details + '：' + name()" (click)="open.emit({ personId: first().personId!, trigger: $any($event.currentTarget) })">{{ t().details }}</button>
+        }
       </div>
     </article>
   `,
 })
 export class PersonCard {
-  readonly leader = input.required<LeaderRecord>();
+  /** 同一人的全部角色（已依角色排序；至少一筆）。 */
+  readonly records = input.required<LeaderRecord[]>();
   readonly lang = input<Lang>('zh-Hant');
   readonly open = output<{ personId: string; trigger: HTMLElement }>();
 
   protected readonly imgFailed = signal(false);
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
+  protected readonly first = computed(() => this.records()[0]);
   protected readonly name = computed(() => {
-    const l = this.leader();
+    const l = this.first();
     return (this.lang() === 'en' ? l.name : l.nameZh || l.name) || l.name;
   });
-  protected readonly term = computed(() => formatTerm(this.leader().validPeriod, this.lang()));
+  protected readonly roles = computed(() => this.records().map((r) => ({
+    recordId: r.recordId, role: r.role, roleText: this.t().role[r.role] ?? r.role, title: r.title,
+    term: formatTerm(r.validPeriod, this.lang()), sources: termSourceItems(r),
+  })));
+  /** 同一人的生平摘要（任一角色帶到即可）。 */
+  private readonly bio = computed(() => this.records().find((r) => r.bio)?.bio ?? null);
   protected readonly portrait = computed(() => {
-    const p = this.leader().bio?.portrait;
+    const p = this.bio()?.portrait;
     return portraitDisplayable(p) ? p : null;
   });
   /** 只有連到有效（未撤回、非測試）生平時才有「查看詳情」。 */
   protected readonly canOpen = computed(() => {
-    const l = this.leader();
-    return l.personId != null && l.bio != null && !l.bio.retractedAt;
+    const b = this.bio();
+    return this.first().personId != null && b != null && !b.retractedAt;
   });
-  protected readonly sources = computed(() => termSourceItems(this.leader()));
 }

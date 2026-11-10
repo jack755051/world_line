@@ -411,7 +411,7 @@ describe('SovereigntyCard（國界資訊卡）', () => {
   });
   const leaderWithPerson = (personId: string | null = 'p1', bio: LeaderBioSummary | null = personId ? bioSummary() : null) => ({
     recordId: 'l1', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
-    role: 'head_of_state' as const, title: 'Führer', validPeriod: { start: '1934-08-02', end: null },
+    role: 'head_of_state' as const, title: 'Führer', validPeriod: { start: '1934-08-02', end: null as string | null },
     source: 'RGBl. 1934', sourceUrl: null, verified: true, personId, bio,
   });
   const renderLeaders = async (leaders: ReturnType<typeof leaderWithPerson>[], lang: 'zh-Hant' | 'en' = 'zh-Hant') => {
@@ -439,13 +439,38 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(opened[0].trigger).toBe(btn);
   });
 
-  it('同一人多段任期：兩張卡片各自有「查看詳情」，都指向同一份生平', async () => {
+  it('同一人多個角色合併成一張卡：每個角色一列（職位、任期、各自來源），只有一個「查看詳情」；分頁數量算不重複人數', async () => {
     const a = leaderWithPerson('p1');
-    const b = { ...leaderWithPerson('p1'), recordId: 'l2', role: 'head_of_government' as 'head_of_state', title: 'Reichskanzler' };
-    const { el } = await renderLeaders([a, b]);
-    const btns = [...el.querySelectorAll('[data-testid="person-card-details"]')];
-    expect(btns.length).toBe(2);
-    expect(btns.map((x) => x.getAttribute('data-person-trigger'))).toEqual(['p1', 'p1']);
+    const b = { ...leaderWithPerson('p1'), recordId: 'l2', role: 'head_of_government' as 'head_of_state', title: 'Reichskanzler', validPeriod: { start: '1933-01-30', end: '1945-04-30' }, source: '' };
+    const c = { ...leaderWithPerson('p2'), recordId: 'l3', role: 'head_of_government' as 'head_of_state', name: 'Other', nameZh: '另一人' };
+    const { el } = await renderLeaders([b, a, c]);
+    const cards = [...el.querySelectorAll('[data-testid="person-card"]')];
+    expect(cards.length).toBe(2);
+    const rows = [...cards[0].querySelectorAll('[data-testid="person-card-role-row"]')];
+    expect(rows.map((r) => r.getAttribute('data-role'))).toEqual(['head_of_state', 'head_of_government']);
+    expect(rows[1].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('1933-01-30 – 1945-04-29');
+    // 來源各自保留：國家元首有出處、政府首腦沒有 → 待補來源
+    expect(rows[0].querySelector('[data-testid="source-toggle"]')).not.toBeNull();
+    expect(rows[1].querySelector('[data-testid="source-pending"]')).not.toBeNull();
+    expect(cards[0].querySelectorAll('[data-testid="person-card-details"]').length).toBe(1);
+    expect(q(el, 'sovereignty-card-tab-leaders-count')?.textContent?.trim()).toBe('2');
+  });
+
+  it('併入地沿用主要政權人物：另起一組並標示「沿用主要政權：<資料顯示名>」，數量算實際列出的人', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', []);
+    fixture.componentRef.setInput('inheritedLeaders', [leaderWithPerson('p1'), { ...leaderWithPerson('p1'), recordId: 'l2', role: 'head_of_government' as 'head_of_state' }]);
+    fixture.componentRef.setInput('inheritedFrom', '測試政權');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(q(el, 'sovereignty-card-tab-leaders-count')?.textContent?.trim()).toBe('1');
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    expect(q(el, 'sovereignty-card-leaders-inherited-note')?.textContent).toContain('沿用主要政權：測試政權');
+    expect(el.querySelectorAll('[data-testid="person-card"]').length).toBe(1);
+    expect(q(el, 'sovereignty-card-panel-leaders')?.textContent).not.toContain('無資料');
   });
 
   it('沒有生平、生平為 null、生平已撤回 → 不顯示「查看詳情」', async () => {
@@ -466,7 +491,7 @@ describe('SovereigntyCard（國界資訊卡）', () => {
 
   it('英文介面：分頁 People、角色英文、姓名用 name', async () => {
     const { el } = await renderLeaders([leaderWithPerson('p1')], 'en');
-    expect(q(el, 'sovereignty-card-tab-leaders')?.textContent?.trim()).toBe('People');
+    expect(q(el, 'sovereignty-card-tab-leaders')?.textContent?.replace(/\s+/g, ' ').trim()).toBe('People 1');
     expect(q(el, 'person-card-name')?.textContent?.trim()).toBe('Adolf Hitler');
     expect(q(el, 'person-card-role')?.textContent?.trim()).toBe('Head of State');
     expect(q(el, 'person-card-details')?.textContent?.trim()).toBe('View details');

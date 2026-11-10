@@ -8,7 +8,7 @@ import { SkeletonDirective } from '../../components/ui/skeleton';
 import { SpinnerComponent } from '../../components/ui/spinner';
 import { ToastService } from '../../components/ui/toast';
 import type { ConflictFeatureProperties, SovereigntyFeatureProperties } from '../../core/api/api-types';
-import { WorldLineApi } from '../../core/api/world-line-api';
+import { WorldLineApi, type LeaderRecord } from '../../core/api/world-line-api';
 import { AtlasData } from '../../core/atlas-data';
 import { AtlasState, parseAtlasQuery } from '../../core/atlas-state';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
@@ -168,7 +168,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
-                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" (personOpen)="openPerson($event)" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" [highlightEvent]="conflictHighlight()"
+                      [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [inheritedLeaders]="inheritedLeaders().leaders" [inheritedFrom]="inheritedLeaders().from" (personOpen)="openPerson($event)" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" [highlightEvent]="conflictHighlight()"
                       [controlZone]="sh.control" />
                   } @else if (sh.conflict; as c) {
                     @if (returnSov(); as back) {
@@ -410,6 +410,19 @@ export class AtlasPage {
     const lea = this.data.leaders();
     if (!s || !lea) return [];
     return lea.features.filter((f) => f.regimeId === s.props.regimeId);
+  });
+  /**
+   * 併入地沿用主要政權的人物（ARCHITECTURE §14.8）：依主權紀錄既有的 occupation 歸屬（occupation_attributions；
+   * controlKind = 'annexed'、occupierRegimeId）判斷，不比對名稱。只在該地自己沒有領導人時沿用；佔領區（民政／軍事管理）不沿用。
+   */
+  protected readonly inheritedLeaders = computed((): { leaders: LeaderRecord[]; from: string } => {
+    const none = { leaders: [], from: '' };
+    const s = this.selectedSovInfo() ?? this.selectedControlSovInfo();
+    const o = s?.props.occupation;
+    const lea = this.data.leaders();
+    if (!s || !o || o.controlKind !== 'annexed' || !lea || this.selectedLeaders().length > 0) return none;
+    const leaders = lea.features.filter((f) => f.regimeId === o.occupierRegimeId);
+    return leaders.length ? { leaders, from: this.regimeName(o.occupierRegimeId, o.occupierSlug) } : none;
   });
   protected readonly focusedConflicts = computed(() => {
     const focus = this.focusRegimeId();

@@ -10,6 +10,7 @@ import { SANRING_TABS_IMPORTS } from '../../components/ui/tabs';
 import { campOf, type Evidence } from '../map/map-style';
 import { CitationPopover } from '../citation/citation-popover';
 import { PersonCard } from '../person-card/person-card';
+import { groupLeaders } from '../../core/person-format';
 
 /** 控制區欄位（從 atlas 頁傳入，顯示在面板「概要」分頁的控制區區塊）。 */
 export interface ControlZoneSection {
@@ -27,7 +28,7 @@ const TXT = {
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於', verifiedTag: '已查證', showOnMap: '在地圖上看', battle: '戰役', pendingTag: '待考證',
     capital: '首都', capitalNone: '無資料',
-    tabLeaders: '人物', leadersNone: '無資料',
+    tabLeaders: '人物', leadersNone: '無資料', inheritFrom: '沿用主要政權：', inheritNote: '此地為併入地，沒有自己的元首或政府首腦，下列為主要政權當日的人物。',
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
     kind: { annexed: '併入（正式或事實；國際未承認割讓）', civil_administration: '民政管理（帝國專員轄區、保護國、總督府等）', military_administration: '軍事管理' } as Record<string, string>,
@@ -46,7 +47,7 @@ const TXT = {
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added', verifiedTag: 'Verified', showOnMap: 'Show on map', battle: 'Battle', pendingTag: 'Unverified',
     capital: 'Capital', capitalNone: 'No data',
-    tabLeaders: 'People', leadersNone: 'No data',
+    tabLeaders: 'People', leadersNone: 'No data', inheritFrom: 'From the governing state: ', inheritNote: 'Annexed territory with no head of state or government of its own; people shown are those of the governing state on this date.',
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
     kind: { annexed: 'Annexed (formal or de facto; not internationally recognised)', civil_administration: 'Civil administration (Reichskommissariat, protectorate, General Government…)', military_administration: 'Military administration' } as Record<string, string>,
@@ -113,7 +114,12 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
               <span data-testid="sovereignty-card-tab-events-count" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] tabular-nums text-wl-on-surface-variant">{{ regimeEvents()?.length }}</span>
             }
           </sanring-tabs-trigger>
-          <sanring-tabs-trigger value="leaders" data-testid="sovereignty-card-tab-leaders">{{ t().tabLeaders }}</sanring-tabs-trigger>
+          <sanring-tabs-trigger value="leaders" data-testid="sovereignty-card-tab-leaders">{{ t().tabLeaders }}
+            @if (personCount() > 0) {
+              <!-- 不重複的人數（同一人多個角色只算 1；沿用主要政權時算實際列出的人） -->
+              <span data-testid="sovereignty-card-tab-leaders-count" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] tabular-nums text-wl-on-surface-variant">{{ personCount() }}</span>
+            }
+          </sanring-tabs-trigger>
         </sanring-tabs-list>
         <div data-testid="sovereignty-card-body" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
           <sanring-tabs-content value="overview" class="mt-3">
@@ -139,14 +145,29 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           <sanring-tabs-content value="leaders" class="mt-3">
             <!-- 人物分頁（Tai 2026-11-07：由「領導人」改名；P1 只放當天在任的領導人）。查看詳情開大型閱讀對話框，不在面板內展開。 -->
             <div data-testid="sovereignty-card-panel-leaders">
-              @if (sortedLeaders().length === 0) {
+              @if (ownGroups().length === 0 && inheritedGroups().length === 0) {
                 <p class="wl-text2 text-wl-on-surface-variant">{{ t().leadersNone }}</p>
-              } @else {
+              }
+              @if (ownGroups().length > 0) {
                 <ul class="space-y-2" [attr.aria-label]="t().tabLeaders">
-                  @for (leader of sortedLeaders(); track leader.recordId) {
-                    <li data-testid="sovereignty-card-leader"><wl-person-card [leader]="leader" [lang]="lang()" (open)="personOpen.emit($event)" /></li>
+                  @for (g of ownGroups(); track g.key) {
+                    <li data-testid="sovereignty-card-leader"><wl-person-card [records]="g.records" [lang]="lang()" (open)="personOpen.emit($event)" /></li>
                   }
                 </ul>
+              }
+              @if (inheritedGroups().length > 0) {
+                <!-- 併入地沒有自己的元首／首腦：沿用主要政權（依 occupation.occupierRegimeId，controlKind = annexed），另起一組並明示 -->
+                <section data-testid="sovereignty-card-leaders-inherited" [class.mt-4]="ownGroups().length > 0">
+                  <p data-testid="sovereignty-card-leaders-inherited-note" class="mb-2 rounded-sm border-l-2 border-wl-primary bg-wl-surface-container px-2 py-1.5 wl-text2">
+                    {{ t().inheritFrom }}{{ inheritedFrom() }}
+                    <span class="block text-[11px] text-wl-on-surface-variant">{{ t().inheritNote }}</span>
+                  </p>
+                  <ul class="space-y-2" [attr.aria-label]="t().inheritFrom + inheritedFrom()">
+                    @for (g of inheritedGroups(); track g.key) {
+                      <li data-testid="sovereignty-card-leader" data-inherited="true"><wl-person-card [records]="g.records" [lang]="lang()" (open)="personOpen.emit($event)" /></li>
+                    }
+                  </ul>
+                </section>
               }
             </div>
           </sanring-tabs-content>
@@ -395,6 +416,10 @@ export class SovereigntyCard {
   readonly capital = input<CapitalRecord | null>(null);
   /** 該政權在當前日期的領導人列表（由頁面從 leaders 資料過濾，不額外請求）。 */
   readonly leaders = input<LeaderRecord[]>([]);
+  /** 併入地沿用的主要政權人物（頁面依 occupation.occupierRegimeId 取出；只在 controlKind = annexed 時傳入）。 */
+  readonly inheritedLeaders = input<LeaderRecord[]>([]);
+  /** 沿用的主要政權顯示名（來自政權資料）；空字串＝不沿用。 */
+  readonly inheritedFrom = input('');
   /** 目前分頁（embedded 時）：由頁面保存，切換政權時保留（例如連續比較各政權的事件），面板關閉後回到「概要」。 */
   readonly tab = input<SovereigntyTab>('overview');
   /** 控制區欄位（點控制區開面板時由頁面傳入，在概要分頁頂部顯示）。 */
@@ -575,12 +600,11 @@ export class SovereigntyCard {
   }
   private readonly injector = inject(Injector);
 
-  protected readonly sortedLeaders = computed(() =>
-    [...this.leaders()].sort((a, b) => {
-      const order: Record<string, number> = { head_of_state: 0, head_of_government: 1 };
-      return (order[a.role] ?? 2) - (order[b.role] ?? 2);
-    }),
-  );
+  /** 同一人多角色合併成一張卡（依 personId）。 */
+  protected readonly ownGroups = computed(() => groupLeaders(this.leaders()));
+  protected readonly inheritedGroups = computed(() => (this.inheritedFrom() ? groupLeaders(this.inheritedLeaders()) : []));
+  /** 分頁數量：實際列出的不重複人數（兩組間同一 personId 也只算一次）。 */
+  protected readonly personCount = computed(() => new Set([...this.ownGroups(), ...this.inheritedGroups()].map((g) => g.key)).size);
   protected readonly capitalName = computed(() => {
     const cap = this.capital();
     if (!cap) return '';

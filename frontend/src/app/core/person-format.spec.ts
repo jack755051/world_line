@@ -1,6 +1,18 @@
-import { formatPartialDate, formatTerm, inclusiveEnd, pickLocalized, portraitDisplayable } from './person-format';
+import type { LeaderRecord } from './api/world-line-api';
+import { formatPartialDate, groupLeaders, formatTerm, inclusiveEnd, pickLocalized, portraitDisplayable } from './person-format';
 
 describe('person-format', () => {
+  const rec = (recordId: string, personId: string | null, role: 'head_of_state' | 'head_of_government'): LeaderRecord => ({
+    recordId, regimeId: 'g', regimeSlug: 'g', name: recordId, nameZh: null, role, title: '', validPeriod: { start: '1933-01-30', end: null },
+    source: '', sourceUrl: null, verified: true, personId, bio: null,
+  });
+
+  it('groupLeaders：同 personId 合併（角色依元首在前）；沒有 personId 各自一張；卡片依最高角色排序', () => {
+    const g = groupLeaders([rec('a', 'p1', 'head_of_government'), rec('b', null, 'head_of_government'), rec('c', 'p1', 'head_of_state'), rec('d', null, 'head_of_government')]);
+    expect(g.map((x) => x.records.map((r) => r.recordId))).toEqual([['c', 'a'], ['b'], ['d']]);
+    expect(g[0].personId).toBe('p1');
+  });
+
   it('inclusiveEnd：半開區間迄日減一天（含跨月、跨年、閏年）', () => {
     expect(inclusiveEnd('1945-10-01')).toBe('1945-09-30');
     expect(inclusiveEnd('1945-01-01')).toBe('1944-12-31');

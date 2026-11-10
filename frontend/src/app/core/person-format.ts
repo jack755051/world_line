@@ -1,6 +1,6 @@
 import { addDays, isIsoDate } from './dates';
 import type { Lang } from './i18n';
-import type { LeaderPortrait } from './api/world-line-api';
+import type { LeaderPortrait, LeaderRecord } from './api/world-line-api';
 
 /** 照片授權允許清單（與後端 CitationPolicy.PrimaryLicenseAllowlist 相同）。 */
 export const PORTRAIT_LICENSES: ReadonlySet<string> = new Set(['us_federal_pd', 'pd_expired', 'cc0', 'cc_by', 'cc_by_sa']);
@@ -29,6 +29,31 @@ export function formatTerm(p: { start: string | null; end: string | null }, lang
   const last = inclusiveEnd(p.end);
   const open = lang === 'en' ? 'end unknown' : '迄今不明';
   return `${p.start ?? '…'} – ${last ?? open}`;
+}
+
+const ROLE_ORDER: Record<string, number> = { head_of_state: 0, head_of_government: 1 };
+const roleRank = (r: string): number => ROLE_ORDER[r] ?? 2;
+
+/** 人物分頁的一張卡：同一人（同 personId）的多個角色合併；沒有 personId 的記錄各自一張（無法確認是同一人）。 */
+export interface PersonGroup {
+  key: string;
+  personId: string | null;
+  /** 依角色排序（國家元首在前）。 */
+  records: LeaderRecord[];
+}
+
+/** 依 personId 合併同一人的多個角色；卡片依最高角色排序，同序保留原順序。 */
+export function groupLeaders(list: readonly LeaderRecord[]): PersonGroup[] {
+  const map = new Map<string, PersonGroup>();
+  for (const r of list) {
+    const key = r.personId ? `p:${r.personId}` : `r:${r.recordId}`;
+    const g = map.get(key) ?? { key, personId: r.personId, records: [] };
+    g.records.push(r);
+    map.set(key, g);
+  }
+  const groups = [...map.values()];
+  for (const g of groups) g.records.sort((a, b) => roleRank(a.role) - roleRank(b.role));
+  return groups.sort((a, b) => roleRank(a.records[0].role) - roleRank(b.records[0].role));
 }
 
 /** 依語言取雙語欄位（沒有就用另一語言）。 */

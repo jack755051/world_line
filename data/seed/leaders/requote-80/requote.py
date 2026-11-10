@@ -91,6 +91,8 @@ def prepare():
     print(f"worklist {len(out)}；≤80 {sum(r['nfcChars'] <= QUOTE_MAX for r in out)}；>80 {sum(r['nfcChars'] > QUOTE_MAX for r in out)}")
 
 
+PUNCT_END = set(".;:!?,)]»”\"'。；：！？，、）」』")
+PUNCT_NEXT = set(".;:!?,)]»”。；：！？，、）」』")
 WORD = re.compile(r"\w", re.UNICODE)
 CJK = re.compile(r"[぀-ヿ㐀-鿿豈-﫿\U00020000-\U0003ffff]")
 
@@ -120,7 +122,10 @@ def check_requote(item, d):
     else:
         if not boundary_ok(ev, pos, pos + len(q)):
             errs.append("quote 起訖切斷字詞")
-        if pos == 0 and len(q) >= QUOTE_MAX - 3:
+        # 從開頭起算且接近 80 字：必須結束在標點／子句邊界（完整句或子句），否則視為取前 80 字的機械截斷
+        end = pos + len(q)
+        at_clause_end = q[-1] in PUNCT_END or (end < len(ev) and ev[end] in PUNCT_NEXT)
+        if pos == 0 and len(q) >= QUOTE_MAX - 3 and not at_clause_end:
             errs.append("疑似取前 80 字的機械截斷")
     if not (d.get("basis") or "").strip():
         errs.append("缺 basis（支持欄位值的理由）")

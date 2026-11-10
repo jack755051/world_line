@@ -36,13 +36,15 @@ let seq = 0;
     @if (items().length === 0) {
       <span data-testid="source-pending" class="inline-flex min-h-6 items-center rounded-sm border border-dashed border-wl-outline px-1.5 text-[11px] text-wl-on-surface-variant">{{ t().pending }}</span>
     } @else {
+      @if (!inline()) {
       <button type="button" data-testid="source-toggle" [attr.aria-expanded]="open() ? 'true' : 'false'" [attr.aria-controls]="panelId"
         [attr.aria-label]="(label() ? label() + ' — ' : '') + t().sources + '（' + items().length + '）'"
         class="inline-flex min-h-11 items-center gap-1 rounded-sm px-1 text-[11px] text-wl-secondary md:min-h-6 hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
         [attr.data-kind]="hasStructured() ? 'structured' : 'legacy'" (click)="open.set(!open())">
         <span aria-hidden="true" class="inline-block w-2 text-center">{{ open() ? '▾' : '▸' }}</span>{{ t().sources }}（{{ items().length }}）
       </button>
-      <div [id]="panelId" data-testid="source-panel" [hidden]="!open()" class="mt-1 space-y-1.5 rounded-sm border-l-2 border-wl-outline-variant bg-wl-surface-container-low py-1 pl-2 pr-1 text-[12px]">
+      }
+      <div [id]="panelId" data-testid="source-panel" [hidden]="!inline() && !open()" [class.mt-1]="!inline()" class="space-y-1.5 rounded-sm border-l-2 border-wl-outline-variant bg-wl-surface-container-low py-1 pl-2 pr-1 text-[12px]">
         @for (s of items(); track $index) {
           <div data-testid="source-item" [attr.data-kind]="s.kind">
             @if (s.kind === 'legacy') { <div class="text-[11px] text-wl-on-surface-variant">{{ t().legacy }}</div> }
@@ -71,6 +73,8 @@ export class SourceDisclosure {
   /** 給螢幕閱讀器的欄位名（例：「出生」）。 */
   readonly label = input('');
   readonly expand = input<ExpandCommand | null>(null);
+  /** 直接列出來源、不渲染收合按鈕（外層已有統一的收合，例如人物詳情底部「資料來源」）。 */
+  readonly inline = input(false);
 
   protected readonly panelId = `wl-src-${++seq}`;
   protected readonly open = signal(false);

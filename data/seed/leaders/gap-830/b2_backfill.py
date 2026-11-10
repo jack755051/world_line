@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
-"""B2 回填（ARCHITECTURE §16.7 B2；Tai 2026-11-10 16:20 核准「只寫腳本＋dry-run，不寫入」）。
+"""B2 回填（ARCHITECTURE §16.7 B2；Tai 2026-11-10 16:20 核准腳本＋dry-run，17:51 核准寫入範圍）。
 
 把 gap-830 `bNN/research.json` 既有資料回填到 B1 新欄位／新表（只讀 seed 檔，不重新查證）：
   1. S.evidence → leader_bio_field_citations.quote（以 bio_id＋field＋source_id＋locator＋evidence_note 對到既有列）
   2. P.conflicts → leader_bio_gaps(gap_kind='conflict')；P.unverified → leader_bio_gaps(gap_kind='not_found')
 
-本腳本**只有 dry-run**：沒有任何寫入程式路徑。讀 5442 時以 `default_transaction_read_only=on` 連線，
-即使誤加寫入語句也會被 DB 拒絕。實際寫入需先套用 migration BioCitationFieldsAndGaps，且需 Tai 另行核准後再補寫入模式。
+預設 dry-run：讀 5442 時以 `default_transaction_read_only=on` 連線。
+`--write` 才寫入（需 migration BioCitationFieldsAndGaps 已套用）：單一交易，只 UPDATE quote（僅限 quote IS NULL
+且 evidence_note 等於該 quote 的列）與 INSERT leader_bio_gaps；交易內逐項核對筆數＝計畫數，任一不符即 ROLLBACK。
+不 DELETE、不改 leader_bios 任何欄位、不改 evidence_note。
 
 規則（對齊 Domain/BioSourcePolicy.cs，版本 bio-2026-11-v0）：
   - quote ≤ 25 字，以 Unicode text element 計（NFC 後）。Python 標準庫沒有 UAX #29 分段，
     這裡用近似：NFC 後的 code point 數，扣掉組合符號（Mn/Mc/Me）、ZWJ 及其後一字、變體選擇符、膚色修飾符。
-    近似與純 code point 數落在 25 兩側者列入 `quoteNeedsCsharpCheck`，寫入前以 C# 規則複核。
+    近似與純 code point 數落在 25 兩側者列入 `quoteNeedsCsharpCheck`，寫入前以 C# 規則複核（有任一筆則拒絕寫入）。
+    超過 25 字者 quote 留 NULL，不截斷。
   - 硬性排除網域／出版者 → 不回填 quote，列入 skip。
-  - conflict 缺口：DB 該欄須為 NULL，否則列入 conflicts（不回填）。
-  - unverified：DB 該欄已有值者不建 not_found 缺口，列入 skip。
+  - conflict 缺口：DB 該欄須為 NULL；例外（Tai 17:51）：帶限定詞（例 `birthDate (day)`）且該欄以較粗精度有值者，
+    保留現有值，另記 conflict 缺口（note 標「保留現有值」）。無限定詞而該欄有值者仍列入 conflicts、不寫。
+  - unverified：DB 該欄已有值者（Tai 17:51）保留現有值，記 not_found 缺口（note 標「保留現有值」）。
+  - 欄位不在值域、與已計畫的缺口重複（bio_id＋target＋gap_kind）者跳過。
 
-用法：python3 b2_backfill.py [--db worldline_borders_dev] [--out b2_dryrun]
+用法：python3 b2_backfill.py [--db worldline_borders_dev] [--out b2_dryrun] [--write --sql-out FILE]
 輸出：<out>/report.json（明細）、<out>/summary.md（數字）。
 """
 import argparse
@@ -131,6 +136,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", default="worldline_borders_dev")
     ap.add_argument("--out", default=os.path.join(HERE, "b2_dryrun"))
+    ap.add_argument("--write", action="store_true", help="實際寫入（單一交易；需 --expect-quotes/--expect-gaps）")
+    ap.add_argument("--expect-quotes", type=int)
+    ap.add_argument("--expect-gaps", type=int)
+    ap.add_argument("--sql-out", help="寫入時另存產生的 SQL")
     a = ap.parse_args()
 
     bios, cits, srcs, has_quote_col, has_gaps = load_db(a.db)
@@ -242,20 +251,22 @@ def main():
                             continue
                         col = DB_COL.get(f) if f else None
                         has_value = col is not None and bio.get(col) not in (None, "", {})
-                        if has_value and gkind == "conflict":
-                            # 有限定詞（例：日精度衝突、年份一致）＝欄位以較粗精度有值；違反「conflict 時該欄須為 NULL」，需裁定
-                            conflict("conflict_qualified_field_has_value" if qual else "conflict_but_field_has_value",
-                                     dbValue=bio.get(col), qualifier=qual, **w)
+                        if has_value and gkind == "conflict" and not qual:
+                            # 無限定詞卻有值：違反「conflict 時該欄須為 NULL」，不寫，需裁定
+                            conflict("conflict_but_field_has_value", dbValue=bio.get(col), qualifier=qual, **w)
                             continue
-                        if has_value and gkind == "not_found":
-                            skip("unverified_qualified_field_has_value" if qual else "unverified_but_field_has_value",
-                                 qualifier=qual, **w)
-                            continue
+                        # Tai 17:51：有值者保留現有值，仍記缺口（conflict 限帶限定詞者，例：日精度衝突、年份一致）
+                        keep = None
+                        if has_value:
+                            keep = ("conflict_qualified_keep_value" if gkind == "conflict"
+                                    else "not_found_qualified_keep_value" if qual else "not_found_keep_value")
                         gk = (bio_id, target, gkind)
                         if gk in gap_keys:
-                            skip("gap_duplicate", firstSeenIn=gap_keys[gk], **w)
+                            skip("gap_duplicate", firstSeenIn=gap_keys[gk], keepCategory=keep, **w)
                             continue
                         gap_keys[gk] = batch
+                        if keep:
+                            C[f"plan:gap_{keep}"] += 1
                         cands = None
                         if gkind == "conflict":
                             cands = []
@@ -272,8 +283,11 @@ def main():
                             note = "；".join(x for x in (it.get("why"), it.get("clue") and f"線索：{it['clue']}") if x) or None
                         if raw != f:
                             note = f"[{raw}] {note or ''}".strip()
+                        if keep:
+                            note = f"保留現有值：{json.dumps(bio.get(col), ensure_ascii=False)}；{note or ''}".rstrip("；")
                         R["gapInserts"].append({"bioId": bio_id, "target": target, "gapKind": gkind, "note": note,
-                                                "candidateCitations": cands, "checkedOn": checked_on, **where})
+                                                "candidateCitations": cands, "checkedOn": checked_on,
+                                                "keepCategory": keep, **where})
 
     # DB 中屬這些人、但沒有被任何 seed 對到的 citation（例：batch p1 或手動寫入）
     unmatched_db = [c for c in cits if c["bio_id"] in touched_bios and not c["retracted"] and c["id"] not in found_cit_ids]
@@ -296,6 +310,75 @@ def main():
              "", "| 項目 | 數量 |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(C.items())]
     open(os.path.join(a.out, "summary.md"), "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print("\n".join(lines))
+
+    if a.write:
+        write(a, R, has_quote_col, has_gaps)
+
+
+def write_sql(R):
+    """產生單一交易的寫入 SQL。資料以 jsonb 字面值帶入；交易內逐項核對筆數，不符即 RAISE（整筆 ROLLBACK）。"""
+    q = [{"id": u["citationId"], "quote": u["quote"]} for u in R["quoteUpdates"]]
+    g = [{"bio_id": x["bioId"], "target": x["target"], "gap_kind": x["gapKind"], "note": x["note"],
+          "candidate_citations": x["candidateCitations"], "checked_on": x["checkedOn"]} for x in R["gapInserts"]]
+    payload = json.dumps({"q": q, "g": g}, ensure_ascii=False)
+    tag = "$b2data$"
+    if tag in payload:
+        sys.exit("資料含界定符，停止")
+    nq, ng = len(q), len(g)
+    return f"""\\set ON_ERROR_STOP on
+BEGIN;
+CREATE TEMP TABLE b2_payload ON COMMIT DROP AS SELECT {tag}{payload}{tag}::jsonb AS j;
+DO $b2$
+DECLARE n bigint;
+BEGIN
+  -- 前置：本腳本只在尚未回填時執行（避免重跑疊加）
+  SELECT count(*) INTO n FROM leader_bio_field_citations WHERE quote IS NOT NULL;
+  IF n <> 0 THEN RAISE EXCEPTION 'B2 前置失敗：已有 % 列 quote 非 NULL', n; END IF;
+  SELECT count(*) INTO n FROM leader_bio_gaps;
+  IF n <> 0 THEN RAISE EXCEPTION 'B2 前置失敗：leader_bio_gaps 已有 % 列', n; END IF;
+
+  UPDATE leader_bio_field_citations c SET quote = x.quote
+  FROM jsonb_to_recordset((SELECT j->'q' FROM b2_payload)) AS x(id uuid, quote text)
+  WHERE c.id = x.id AND c.quote IS NULL AND c.retracted_at IS NULL AND c.evidence_note = x.quote;
+  GET DIAGNOSTICS n = ROW_COUNT;
+  IF n <> {nq} THEN RAISE EXCEPTION 'B2 quote 回填筆數 % ≠ 計畫 {nq}', n; END IF;
+
+  INSERT INTO leader_bio_gaps (bio_id, target, gap_kind, note, candidate_citations, checked_on)
+  SELECT x.bio_id, x.target, x.gap_kind, x.note, x.candidate_citations, x.checked_on
+  FROM jsonb_to_recordset((SELECT j->'g' FROM b2_payload))
+       AS x(bio_id uuid, target text, gap_kind text, note text, candidate_citations jsonb, checked_on date);
+  GET DIAGNOSTICS n = ROW_COUNT;
+  IF n <> {ng} THEN RAISE EXCEPTION 'B2 缺漏寫入筆數 % ≠ 計畫 {ng}', n; END IF;
+  RAISE NOTICE 'B2 OK: quote %, gaps %', {nq}, {ng};
+END
+$b2$;
+COMMIT;
+"""
+
+
+def write(a, R, has_quote_col, has_gaps):
+    if a.db not in ALLOWED_DBS:
+        sys.exit(f"拒絕寫入 {a.db}")
+    if not (has_quote_col and has_gaps):
+        sys.exit("migration BioCitationFieldsAndGaps 未套用，拒絕寫入")
+    blockers = {k: v for k, v in R["counts"].items()
+                if v and (k.startswith("conflict:") or k == "check:quoteNeedsCsharpCheck")}
+    if blockers:
+        sys.exit(f"有未處理的衝突或需 C# 複核項目，拒絕寫入：{blockers}")
+    if a.expect_quotes is None or a.expect_gaps is None:
+        sys.exit("寫入需指定 --expect-quotes 與 --expect-gaps（由 dry-run 得出並經人工核對）")
+    nq, ng = len(R["quoteUpdates"]), len(R["gapInserts"])
+    if (nq, ng) != (a.expect_quotes, a.expect_gaps):
+        sys.exit(f"計畫 (quote {nq}, gaps {ng}) 與預期 ({a.expect_quotes}, {a.expect_gaps}) 不符，停止")
+    sql = write_sql(R)
+    if a.sql_out:
+        open(a.sql_out, "w", encoding="utf-8").write(sql)
+    cmd = ["docker", "exec", "-i", CONTAINER, "psql", "-U", "worldline", "-d", a.db, "-v", "ON_ERROR_STOP=1", "-q"]
+    r = subprocess.run(cmd, input=sql, capture_output=True, text=True)
+    print(r.stdout, r.stderr, sep="\n")
+    if r.returncode != 0 or "B2 OK" not in r.stderr:
+        sys.exit(f"寫入失敗（rc={r.returncode}），交易已回復")
+    print(f"寫入完成：quote {nq}、gaps {ng}")
 
 
 if __name__ == "__main__":

@@ -1213,10 +1213,36 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 
 驗收對帳：4106 ＝ 841（回填）＋ 3265（超長）；dry-run 兩次輸出逐位元相同；跑完 DB 計數不變。
 
-**需 Tai 裁定後才能寫入**：
-1. 25 字上限會讓 80% 的既有證據（3265／4106）無法回填 `quote`。選項：(a) 照規則只回填 841 筆，其餘 `quote` 留 NULL、證據仍在 `evidence_note`；(b) 拉丁文字改以詞計或放寬上限（需改 `BioSourcePolicy`）；(c) 由人工把超長證據改摘 ≤ 25 字（屬重新查證，不在 B2 範圍）。不可自動截斷（會改變證據原文）。
-2. 10 筆「日精度衝突、年份一致」的 conflict：是否改用 `gap_kind=conflict`＋target 標精度（例 `field:birthDate`，note 註明 day），並放寬「該欄須為 NULL」為「該欄精度不得高於各說共同精度」。
-3. 193＋43 筆 unverified 但欄位已有值者（193 筆中生日 88、卒日 71、summary 21、出生地 9；多為「有年份、缺日／月」這類精度缺口）：是否另記 `not_found`（target 標精度）。
+寫入前待裁定的三點已由 Tai 2026-11-10 17:51 裁定（見 16.9.1「B2 寫入範圍」）：(1) 只回填 ≤ 25 字的 841 筆，3265 筆 `quote` 留 NULL、不截斷（重摘另案）；(2) 10 筆日精度爭議保留現有（年精度）值，另記 `conflict` 缺漏；(3) 236 筆「查不到但已有值」保留現有值，記 `not_found` 缺漏。
+
+#### 16.7.3 B2 回填：寫入（2026-11-10，已寫入 5442）
+
+依 Tai 17:51 核准範圍（21:10 再確認）。腳本加 `--write`：單一交易；前置檢查 `quote` 非 NULL 0 列、`leader_bio_gaps` 0 列（避免重跑疊加）；只 `UPDATE … SET quote`（限 `quote IS NULL`、未撤回、`evidence_note`＝該 quote 的列）與 `INSERT leader_bio_gaps`；交易內逐項核對筆數＝計畫數，不符即 RAISE（整筆回復）。需以 `--expect-quotes/--expect-gaps` 傳入人工核對過的預期值；有未處理衝突或需 C# 複核項目時拒絕寫入。不 DELETE、不改 `leader_bios`、`evidence_note`、`grade`、`policy_version`、`quote_lang`、`date_precision`（皆留 NULL）。
+
+規則調整（對應 Tai 裁定）：
+- conflict 帶限定詞（例 `birthDate (day)`）而該欄以較粗精度有值 → 保留現有值，仍記 `conflict` 缺漏，`note` 以「保留現有值：<值>；」開頭。「conflict 時該欄須為 NULL」放寬為：無限定詞者仍須為 NULL（本次 0 筆），帶精度限定詞者該欄可保留較粗精度值。
+- unverified 而該欄有值 → 保留現有值，記 `not_found` 缺漏，`note` 同樣以「保留現有值：」開頭。
+- 重複判定同 `ix_leader_bio_gaps_bio_id_target_gap_kind`（`bio_id`＋`target`＋`gap_kind`）。
+
+預期值（寫入前以更新後的 dry-run 計算；兩次輸出逐位元相同；`b2_dryrun/` 為寫入前狀態）：
+
+| 項目 | 預期 | 實際 |
+|---|---|---|
+| `quote` 回填 | 841 | 841 |
+| 缺漏合計 | 904＋10＋236－重複 1＝**1149** | 1149 |
+| └ `conflict`（其中保留現有值） | 84（10） | 84（10） |
+| └ `not_found`（其中保留現有值） | 1058（235＝192＋43） | 1058（235） |
+| └ `identity_uncertain` | 7 | 7 |
+| 跳過：超過 25 字（`quote` 留 NULL） | 3265 | — |
+| 跳過：欄位不在值域／重複 | 23／7（原 6＋`rs-petar-i` b05 同一 `birthDate` unverified 列兩次） | — |
+
+對帳（寫入後，獨立於腳本以 SQL 查）：
+- `quote` 非 NULL 的列 id 集合與計畫 841 筆逐一相同；`quote`＝`evidence_note` 全數成立；最長 25 字元；其他新欄位全為 NULL。
+- `leader_bio_gaps` 的 (`bio_id`, `target`, `gap_kind`) 集合與計畫 1149 筆逐一相同；無 resolved／retracted。
+- `leader_bio_field_citations` 4319、`leader_bios` 968、`leader_records` 2197、`leader_record_citations` 0 列不變；`death_place` 全 NULL。
+- 抽 20 人（依 `md5(id)` 排序取前 20 個有缺漏者）以獨立程式直接讀 seed 原檔比對 quote 與缺漏欄位：20／20 一致。
+- 5052 舊 API（未重啟）10 個 GET 端點與套用 migration 前快照逐位元比對 10／10 一致。
+- 寫入前備份：`~/wl-backups/worldline_borders_dev-20261110-211940-pre-b2-write.dump`（107,235,667 bytes，`pg_restore -l` 281 項；已含 migration）。
 
 ### 16.8 風險
 
@@ -1255,4 +1281,5 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | T2、T3、T5 | 未決，做到時再問 | — |
 | T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；C／X 由 `BioSourcePolicy` 硬性排除 | Tai 2026-11-10 16:20 核准第 2 段範圍 |
 | quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1） | 主管裁定（同上） |
+| B2 寫入範圍 | ≤ 25 字 841 筆回填 `quote`；超過 25 字 3265 筆留空、不截斷（重摘另案）；日精度爭議 10 筆保留現有年份、另記 `conflict`；查不到但已有值 236 筆保留現有值、記 `not_found`；其餘照 dry-run；欄位不在值域 23 筆、重複者跳過。結果見 16.7.3 | Tai 2026-11-10 17:51；21:10 再確認 |
 

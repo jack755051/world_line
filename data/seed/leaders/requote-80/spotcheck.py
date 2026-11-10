@@ -41,8 +41,11 @@ def fetch(url):
             if os.path.exists(p):
                 os.remove(p)
             return None, f"curl rc={r.returncode} http={r.stdout} {r.stderr.strip()[:120]}"
-    raw = open(p, "rb").read().decode("utf-8", errors="replace")
-    return page_text(raw), "ok"
+    data = open(p, "rb").read()
+    if data[:5] == b"%PDF-":  # PDF：pdftotext 抽字（poppler）
+        r = subprocess.run(["pdftotext", "-enc", "UTF-8", p, "-"], capture_output=True)
+        return norm(r.stdout.decode("utf-8", errors="replace")), "ok(pdf)"
+    return page_text(data.decode("utf-8", errors="replace")), "ok"
 
 
 def main(n):
@@ -58,7 +61,10 @@ def main(n):
         q = norm(r["quote"])
         found = None
         if text is not None:
-            found = "exact" if q in text else ("casefold" if q.casefold() in text.casefold() else "not_found")
+            nows = lambda x: re.sub(r"\s+", "", x)
+            found = ("exact" if q in text else
+                     "exact_ignoring_whitespace" if nows(q) in nows(text) else  # HTML 去標籤／PDF 換行造成的空白差異
+                     "casefold" if q.casefold() in text.casefold() else "not_found")
         out.append({"id": r["id"], "method": r["method"], "field": r["field"], "url": r["url"],
                     "quote": r["quote"], "fetch": st, "verbatimInSource": found,
                     "quoteInStoredEvidence": True if r["method"] == "direct" else norm(r["quote"]) in norm(r["evidence"]),

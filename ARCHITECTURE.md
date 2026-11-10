@@ -1250,7 +1250,21 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 - NFC 後 ≤ 80 字 → **直接採用**原 evidence 為 quote。
 - > 80 字 → **重摘**：只從該筆原本出處的原文或已存 evidence 選 ≤ 80 字、逐字出現、能支持該欄位值的片段；不截斷（不取前 80 字）、不改寫轉述、不換來源。
 - 找不到合適片段 → **留空**並列清單附原因。
-- 產出放 `data/seed/leaders/requote-80/`；本階段不寫 5442（寫入另需 Tai 核准）。結果數字於完成後補記。
+- 產出放 `data/seed/leaders/requote-80/`；本階段不寫 5442（寫入另需 Tai 核准）。
+
+結果（2026-11-10，全部完成；明細見 `requote-80/summary.md`）：
+
+| 處理方式 | 筆數 |
+|---|---|
+| 直接採用（NFC ≤ 80 字） | 2266 |
+| 重摘（> 80 字，取逐字片段） | 946 |
+| 留空（附原因，`requote-80/blanks.md`） | 53（name 23、party 13、deathDate 9、birthDate 3、birthPlace 3、summary 2） |
+| 合計 | 3265 |
+
+- 對應：以 B2 對應鍵唯讀查 5442 取得 `leader_bio_field_citations.id`，3265 筆一對一、皆 `quote IS NULL`。
+- 驗證：`requote.py build` 全量檢查 quote ≤ 80 字、逐字出現於 evidence、起訖不切字、非前 80 字截斷、重摘附依據、留空附原因。
+- 抽查 48 筆（直接採用、重摘各 24）：可取得原文 40 筆全數逐字相符（2 筆僅 HTML 空白差異、1 筆 PDF OCR 差異）；8 筆原站 403 或需 JavaScript，無法核對；支持欄位值 46、部分支持 2（`requote-80/spotcheck.md`）。
+- 判讀準則（重摘）：name 無該人名→留空；party 看不出本人所屬→留空；日期看不出是出生／死亡或精度不足→留空。辭典條目「人名 日期 地點 日期 地點」格式依位置判讀生卒（立陶宛、HLS 條目），待 Tai 確認。
 
 ### 16.8 風險
 

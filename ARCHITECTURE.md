@@ -1180,6 +1180,38 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 - ✅ 套用 5442 前已備份：`~/wl-backups/worldline_borders_dev-20261110-162234-pre-b1-leader-record-citations.dump`（107,222,947 bytes，`pg_restore -l` 280 項）。套用方式：`dotnet ef migrations script` 產生單一 migration 的 SQL（純新增：建表、2 索引、I5 trigger、歷史列），在 container 內 `psql -v ON_ERROR_STOP=1` 執行。套用後 `leader_record_citations` 0 列；`leader_records` 2197、`leader_bios` 968、`leader_bio_field_citations` 4319 列不變。
 - ✅ 舊 API 回應快照不變：5052 只讀 GET 10 個端點（`/leaders?date=1939-09-01`、`/leaders?date=1945-09-15`、`/leader-bios/{id}` ×3、`/regimes/{id}` ×2、`/regimes/{id}/events`、`/sovereignty?date=1939-09-01`、`/sources/{id}`），套用前取兩次確認穩定，套用後逐位元比對 10/10 一致；5052 未重啟（快照存 `.dev/b1-api-snap/`，不進版控）。
 
+#### 16.7.2 B2 回填：腳本與 dry-run（2026-11-10，未寫入）
+
+依 Tai 2026-11-10 16:20 核准：只寫腳本＋dry-run，不寫入。腳本 `data/seed/leaders/gap-830/b2_backfill.py`；輸出 `data/seed/leaders/gap-830/b2_dryrun/{summary.md,report.json}`（明細含計畫寫入、跳過、衝突清單）。
+
+- **只讀**：讀 49 批 `bNN/research.json`＋`sent.5052.json`；讀 5442 以 `default_transaction_read_only=on` 連線並先驗證生效；腳本內沒有任何寫入路徑；只允許 `worldline_borders_dev`。
+- 對應鍵：seed 的 `S` ↔ 既有 `leader_bio_field_citations` 以 `(bio_id, field, source_id, locator, evidence_note＝evidence)` 比對（`send_batch.py` 寫入時把 `evidence` 存進 `evidence_note`）。回填只寫 `quote`，`evidence_note` 不動。
+- seed 的 `field` 寫法不一，正規化規則（確定性、不推測）：斜線拆成多欄（`birthDate/deathDate`）；結尾括號或 `day` 視為限定詞（`birthDate (day)`）；`unverified` 的 `identity` → `target=identity`、`gap_kind=identity_uncertain`；其他不在值域者（`wikidataQid`、`regime`、`recordIds`…）跳過並列清單。
+
+dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitationFieldsAndGaps` 未套用）：
+
+| 項目 | 數 |
+|---|---|
+| seed 人物／staging | 706／59（staging 不在 DB，不處理） |
+| seed citation（有值欄位的 S） | 4106；全部對到 DB 既有列（4106，無「DB 查無」） |
+| **計畫回填 `quote`** | **841** |
+| 跳過：evidence 超過 25 字（text element） | **3265**（中位數 61 字、P25 42 字、最長 169 字；≤ 40 字 757、≤ 60 字 1600） |
+| 跳過：硬性排除來源 | 0 |
+| C# 規則複核清單（Python 近似與 code point 數落在 25 兩側） | 0 |
+| seed conflicts／unverified 條目 | 84／1062 |
+| **計畫新增 `leader_bio_gaps`** | **904**（conflict 74、not_found 823、identity_uncertain 7） |
+| 衝突：conflict 帶限定詞但 DB 該欄以較粗精度有值（違反「conflict 時該欄須為 NULL」） | 10（例：`birthDate (day)`，DB 存 `1872-01-01` 年精度） |
+| 跳過：unverified 但 DB 該欄已有值 | 193（＋帶限定詞者 43） |
+| 跳過：欄位不在值域 | 23；重複缺口 6 |
+| DB 中屬這些人、但 seed 沒對到的 citation | 20（非 gap-830 研究檔寫入，不處理） |
+
+驗收對帳：4106 ＝ 841（回填）＋ 3265（超長）；dry-run 兩次輸出逐位元相同；跑完 DB 計數不變。
+
+**需 Tai 裁定後才能寫入**：
+1. 25 字上限會讓 80% 的既有證據（3265／4106）無法回填 `quote`。選項：(a) 照規則只回填 841 筆，其餘 `quote` 留 NULL、證據仍在 `evidence_note`；(b) 拉丁文字改以詞計或放寬上限（需改 `BioSourcePolicy`）；(c) 由人工把超長證據改摘 ≤ 25 字（屬重新查證，不在 B2 範圍）。不可自動截斷（會改變證據原文）。
+2. 10 筆「日精度衝突、年份一致」的 conflict：是否改用 `gap_kind=conflict`＋target 標精度（例 `field:birthDate`，note 註明 day），並放寬「該欄須為 NULL」為「該欄精度不得高於各說共同精度」。
+3. 193＋43 筆 unverified 但欄位已有值者（193 筆中生日 88、卒日 71、summary 21、出生地 9；多為「有年份、缺日／月」這類精度缺口）：是否另記 `not_found`（target 標精度）。
+
 ### 16.8 風險
 
 | # | 風險 | 處理 |

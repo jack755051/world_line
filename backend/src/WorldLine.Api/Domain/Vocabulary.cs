@@ -125,9 +125,27 @@ public static class LeaderRoles
     public static readonly string[] All = [HeadOfState, HeadOfGovernment];
 }
 
-/// <summary>生平欄位引用可指向的欄位（leader_bio_field_citations.field；2026-11-07）。summary 視為一段簡介。</summary>
+/// <summary>
+/// 生平欄位引用可指向的欄位（leader_bio_field_citations.field；2026-11-07）。summary 視為一段簡介。
+/// deathPlace：ARCHITECTURE §16.6（2026-11-10，B1）。
+/// </summary>
 public static class LeaderBioFields
 {
-    public static readonly string[] All = ["name", "nameZh", "birthDate", "deathDate", "birthPlace", "party", "summary", "portrait"];
+    public static readonly string[] All = ["name", "nameZh", "birthDate", "deathDate", "birthPlace", "deathPlace", "party", "summary", "portrait"];
+}
+
+/// <summary>
+/// 生平缺口種類（leader_bio_gaps.gap_kind；ARCHITECTURE §16.4.2，2026-11-10，B1）：
+/// conflict＝來源互相矛盾（該欄必須為 NULL）；not_found＝查無可開啟來源；identity_uncertain＝身分由職銜等推定。
+/// </summary>
+public static class LeaderBioGapKinds
+{
+    public const string Conflict = "conflict";
+    public const string NotFound = "not_found";
+    public const string IdentityUncertain = "identity_uncertain";
+    public static readonly string[] All = [Conflict, NotFound, IdentityUncertain];
+
+    /// <summary>target 格式：field:&lt;LeaderBioFields&gt;｜position:&lt;id&gt;｜paragraph:&lt;topic&gt;｜identity。</summary>
+    public const string TargetPattern = "^(field|position|paragraph):[^[:space:]].*$|^identity$";
 }
 

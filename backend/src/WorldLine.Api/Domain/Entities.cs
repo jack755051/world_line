@@ -365,6 +365,8 @@ public sealed class LeaderBio
     public DateOnly? DeathDate { get; set; }
     /// <summary>出生地（jsonb 雙語）。</summary>
     public string? BirthPlace { get; set; }
+    /// <summary>卒地（jsonb 雙語）。ARCHITECTURE §16.6，2026-11-10 新增（B1）；有 conflict 缺口時須為 NULL。</summary>
+    public string? DeathPlace { get; set; }
     /// <summary>黨籍（jsonb 雙語）。</summary>
     public string? Party { get; set; }
     /// <summary>簡介（jsonb 雙語）。</summary>
@@ -400,8 +402,10 @@ public sealed class LeaderBio
 /// <summary>
 /// 生平欄位引用（leader_bio_field_citations；2026-11-07）：把生平的單一欄位（或簡介段落）接到 <see cref="Source"/>。
 /// - 格式照 event_citations：source_id＋locator＋evidence_note，另加查證日期 accessed_on。
-/// - field：name | nameZh | birthDate | deathDate | birthPlace | party | summary | portrait。
+/// - field：name | nameZh | birthDate | deathDate | birthPlace | deathPlace | party | summary | portrait。
 /// - 修正走軟撤回（I5），不硬刪。
+/// - 2026-11-10（ARCHITECTURE §16.4.1，B1）新增式補欄：quote、quote_lang、grade、date_precision、policy_version，全部可空（舊列留空）。
+///   quote 給了就不可空白（DB CHECK）；≤ 25 字只在 <see cref="BioSourcePolicy"/> 檢查。grade DB CHECK 只收 A／B。
 /// </summary>
 public sealed class LeaderBioFieldCitation
 {
@@ -412,6 +416,16 @@ public sealed class LeaderBioFieldCitation
     public string Locator { get; set; } = "";
     public string? EvidenceNote { get; set; }
     public DateOnly AccessedOn { get; set; }
+    /// <summary>引文原文（證據）；舊列為 NULL，B2 由 seed evidence 回填。</summary>
+    public string? Quote { get; set; }
+    /// <summary>引文語言（BCP 47），可空。</summary>
+    public string? QuoteLang { get; set; }
+    /// <summary>來源等級 A｜B（T1）；未評等為 NULL。</summary>
+    public string? Grade { get; set; }
+    /// <summary>這份來源支撐到的日期精度：day | month | year。</summary>
+    public string? DatePrecision { get; set; }
+    /// <summary>寫入時的 <see cref="BioSourcePolicy.PolicyVersion"/>。</summary>
+    public string? PolicyVersion { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
@@ -421,8 +435,8 @@ public sealed class LeaderBioFieldCitation
 /// 任期引用（leader_record_citations；ARCHITECTURE §16.3-2、§16.4.1，B1，2026-11-10）：
 /// 每筆 leader_records 任期可接多筆 sources，取代自由文字 leader_records.source（過渡期該欄只當備註）。
 /// 欄位採 §16.4.1 統一 citation 格式；修正走軟撤回（I5，trigger 在 migration 以 SQL 建立）。
-/// - Grade：T1 已決只收 A／B（C／X 不進 DB），但 DB CHECK 依 §16.9.1 等考證組確認後再加；未定前寫入一律留 NULL。
-/// - PolicyVersion：T2（白名單）未決，先只預留欄位，不做任何檢查。
+/// - Grade：T1 已決只收 A／B（C／X 不進 DB）；DB CHECK 依 Tai 2026-11-10 16:20 核准，於 migration BioCitationFieldsAndGaps 加上（未套用前 DB 尚無此 CHECK）。
+/// - PolicyVersion：T2（白名單）未決；寫入時記 <see cref="BioSourcePolicy.PolicyVersion"/>，DB 不檢查。
 /// - ClaimSpan：T4 已決選填；任期引用通常不用，保留是為了與其他 citation 表同格式。
 /// </summary>
 public sealed class LeaderRecordCitation
@@ -439,7 +453,7 @@ public sealed class LeaderRecordCitation
     public string? EvidenceNote { get; set; }
     /// <summary>當天實際打開來源的日期。</summary>
     public DateOnly AccessedOn { get; set; }
-    /// <summary>來源等級（T1：A｜B）；CHECK 待考證組確認。</summary>
+    /// <summary>來源等級（T1：A｜B）；NULL＝未評等。</summary>
     public string? Grade { get; set; }
     /// <summary>這份來源支撐到的日期精度：day | month | year。</summary>
     public string? DatePrecision { get; set; }
@@ -447,6 +461,32 @@ public sealed class LeaderRecordCitation
     public NpgsqlRange<int>? ClaimSpan { get; set; }
     /// <summary>寫入當時套用的來源政策版本（§16.4.4，T2 未決，預留）。</summary>
     public string? PolicyVersion { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 生平缺口（leader_bio_gaps；ARCHITECTURE §16.4.2，B1，2026-11-10）：記錄「為什麼空」——來源矛盾、查無、身分推定。
+/// - 不是資料值：candidate_citations 只並列各說法的證據（source／locator／quote），不得據以填欄位。
+/// - 解決時填 resolved_at（與 resolved_by_citation_id），不刪；登錄錯誤走軟撤回。I5 trigger 在 migration 以 SQL 建立。
+/// - 「欄位有 conflict 時該欄必須為 NULL」屬寫入層檢查（DB 不跨表檢查）。
+/// </summary>
+public sealed class LeaderBioGap
+{
+    public Guid Id { get; set; }
+    public Guid BioId { get; set; }
+    /// <summary>field:birthDate、field:deathPlace、position:&lt;id&gt;、paragraph:&lt;topic&gt;、identity。</summary>
+    public string Target { get; set; } = "";
+    /// <summary><see cref="LeaderBioGapKinds"/>。</summary>
+    public string GapKind { get; set; } = "";
+    public string? Note { get; set; }
+    /// <summary>jsonb 陣列：[{source, url, locator, quote, value}]，只是證據並列。</summary>
+    public string? CandidateCitations { get; set; }
+    public DateOnly CheckedOn { get; set; }
+    public DateTimeOffset? ResolvedAt { get; set; }
+    /// <summary>解決此缺口的 citation id（可能在任一生平 citation 表，故不設 FK）。</summary>
+    public Guid? ResolvedByCitationId { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }

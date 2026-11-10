@@ -704,6 +704,10 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("character varying(8)")
                         .HasColumnName("death_date_precision");
 
+                    b.Property<string>("DeathPlace")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("death_place");
+
                     b.Property<string>("FieldSources")
                         .HasColumnType("jsonb")
                         .HasColumnName("field_sources");
@@ -801,6 +805,8 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_leader_bios_death_date_precision", "death_date_precision IS NULL OR death_date_precision IN ('day', 'month', 'year')");
 
+                            t.HasCheckConstraint("ck_leader_bios_death_place_object", "death_place IS NULL OR jsonb_typeof(death_place) = 'object'");
+
                             t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
 
                             t.HasCheckConstraint("ck_leader_bios_name_not_blank", "btrim(name) <> ''");
@@ -841,6 +847,11 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("now()");
 
+                    b.Property<string>("DatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
                     b.Property<string>("EvidenceNote")
                         .HasColumnType("text")
                         .HasColumnName("evidence_note");
@@ -851,10 +862,29 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("field");
 
+                    b.Property<string>("Grade")
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
                     b.Property<string>("Locator")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("locator");
+
+                    b.Property<string>("PolicyVersion")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("policy_version");
+
+                    b.Property<string>("Quote")
+                        .HasColumnType("text")
+                        .HasColumnName("quote");
+
+                    b.Property<string>("QuoteLang")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("quote_lang");
 
                     b.Property<DateTimeOffset?>("RetractedAt")
                         .HasColumnType("timestamp with time zone")
@@ -879,11 +909,99 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.ToTable("leader_bio_field_citations", null, t =>
                         {
-                            t.HasCheckConstraint("ck_leader_bio_field_citations_field", "field IN ('name', 'nameZh', 'birthDate', 'deathDate', 'birthPlace', 'party', 'summary', 'portrait')");
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_field", "field IN ('name', 'nameZh', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace', 'party', 'summary', 'portrait')");
+
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_grade", "grade IS NULL OR grade IN ('A', 'B')");
 
                             t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
 
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_quote_not_blank", "quote IS NULL OR btrim(quote) <> ''");
+
                             t.HasCheckConstraint("ck_leader_bio_field_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderBioGap", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<Guid>("BioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("bio_id");
+
+                    b.Property<string>("CandidateCitations")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("candidate_citations");
+
+                    b.Property<DateOnly>("CheckedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("checked_on");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("GapKind")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("character varying(24)")
+                        .HasColumnName("gap_kind");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text")
+                        .HasColumnName("note");
+
+                    b.Property<DateTimeOffset?>("ResolvedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("resolved_at");
+
+                    b.Property<Guid?>("ResolvedByCitationId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("resolved_by_citation_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<string>("Target")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("target");
+
+                    b.HasKey("Id")
+                        .HasName("pk_leader_bio_gaps");
+
+                    b.HasIndex("BioId", "Target", "GapKind")
+                        .IsUnique()
+                        .HasDatabaseName("ix_leader_bio_gaps_bio_id_target_gap_kind")
+                        .HasFilter("resolved_at IS NULL AND retracted_at IS NULL");
+
+                    b.ToTable("leader_bio_gaps", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_leader_bio_gaps_candidate_citations_array", "candidate_citations IS NULL OR jsonb_typeof(candidate_citations) = 'array'");
+
+                            t.HasCheckConstraint("ck_leader_bio_gaps_field_target", "target NOT LIKE 'field:%' OR substr(target, 7) IN ('name', 'nameZh', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace', 'party', 'summary', 'portrait')");
+
+                            t.HasCheckConstraint("ck_leader_bio_gaps_gap_kind", "gap_kind IN ('conflict', 'not_found', 'identity_uncertain')");
+
+                            t.HasCheckConstraint("ck_leader_bio_gaps_resolved_by", "resolved_by_citation_id IS NULL OR resolved_at IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_leader_bio_gaps_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_leader_bio_gaps_target", "target ~ '^(field|position|paragraph):[^[:space:]].*$|^identity$'");
                         });
                 });
 
@@ -1076,6 +1194,8 @@ namespace WorldLine.Api.Infrastructure.Migrations
                             t.HasCheckConstraint("ck_leader_record_citations_claim_span", "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
 
                             t.HasCheckConstraint("ck_leader_record_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_leader_record_citations_grade", "grade IS NULL OR grade IN ('A', 'B')");
 
                             t.HasCheckConstraint("ck_leader_record_citations_locator_not_blank", "btrim(locator) <> ''");
 
@@ -2002,6 +2122,16 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_leader_bio_field_citations_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.LeaderBioGap", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.LeaderBio", null)
+                        .WithMany()
+                        .HasForeignKey("BioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_leader_bio_gaps_leader_bios_bio_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.LeaderRecord", b =>

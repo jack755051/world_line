@@ -1002,11 +1002,11 @@ K1、K2、K3、S1、S2。
 | `<parent>_id` | uuid | 段落／職位／參與／影響／任期／欄位 |
 | `source_id` | uuid → `sources.id` | URL、書目、出版者、授權都放在 `sources`（**現有**：`url`、`archive_url`、`title`、`authors`、`publisher`、`published_text`、`catalog_id`、`license_code`） |
 | `locator` | text NOT NULL | 頁碼／條目／檔號／URL 錨點 |
-| `quote` | text NOT NULL | 引文原文，≤ 25 字（沿用 gap-830 `evidence` 長度）；這是「證據」，不是顯示用正文 |
-| `quote_lang` | text | 引文語言（BCP 47） |
+| `quote` | text NOT NULL | 引文原文，≤ 25 字（沿用 gap-830 `evidence` 長度）；這是「證據」，不是顯示用正文。**25 字以 Unicode text element（NFC 後的字素叢集）計，只在程式 `BioSourcePolicy` 檢查，不加 DB 約束**（主管 2026-11-10 裁定） |
+| `quote_lang` | text NULL | 引文語言（BCP 47），可空、不檢查格式 |
 | `evidence_note` | text NULL | 查證者說明（例：「BnF 與 GND 卒年不同，採 BnF」） |
 | `accessed_on` | date NOT NULL | 當天實際打開的日期 |
-| `grade` | text NULL | 來源等級；**提案** CHECK IN (`A`,`B`)，值域定義見待決 T1 |
+| `grade` | text NULL | 來源等級；CHECK `grade IS NULL OR grade IN ('A','B')`（T1 定義；CHECK 依 Tai 2026-11-10 16:20 核准加上）；NULL＝未評等 |
 | `date_precision` | text NULL | 這份來源支撐到的日期精度（`day`｜`month`｜`year`）；兩份來源精度不同時，欄位取**都支持的最粗精度**，不合併推高 |
 | `claim_span` | int4range NULL | 選填：支撐段落中哪幾句（句序號，半開） |
 | `policy_version` | text NULL | 寫入當時套用的來源政策版本（16.4.4） |
@@ -1027,7 +1027,10 @@ K1、K2、K3、S1、S2。
 | `note` | 例：「BnF 1873 vs 遺稿清冊 1874」 |
 | `candidate_citations` | jsonb：各說法的 source/locator/quote（**不是**資料值，只是證據並列） |
 | `checked_on` | date |
-| `resolved_at`、`resolved_by_citation_id` | 解決時填，不刪 |
+| `resolved_at`、`resolved_by_citation_id` | 解決時填，不刪；`resolved_by_citation_id` 可能指向任一生平 citation 表，故不設 FK |
+| `retracted_at`、`retraction_reason`、`created_at` | 登錄錯誤時軟撤回（16.1-5）；I5 trigger 禁 DELETE，撤回與解決皆不可撤銷 |
+
+- 實作（B1，`BioCitationFieldsAndGaps`）：`target` CHECK 格式 `field:<LeaderBioFields>`｜`position:<id>`｜`paragraph:<topic>`｜`identity`；`gap_kind` CHECK 三值；`candidate_citations` 必須是 jsonb 陣列；`(bio_id, target, gap_kind)` 在「未解決且未撤回」範圍內唯一（回填可重跑不重複）。
 
 - 欄位有 `conflict` 紀錄時，該欄**必須**為 NULL（寫入層檢查）。對應 HANDOFF「可回頭補強」清單的大量案例（例：Breisky 生卒地 GND vs ÖBL、Ali Maher 出生年三說）。
 - `identity_uncertain` 但仍寫入者（例：Cebesoy、Jadambaa 由職銜推定身分）要在此記錄推定依據，前端可標「身分由職銜推定」。
@@ -1142,9 +1145,22 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 | 項目 | 狀態 | 檔案 |
 |---|---|---|
 | `leader_record_citations` | ✅ migration＋entity＋測試；✅ 已套用 5442（2026-11-10 16:2x） | `Infrastructure/Migrations/20261110080453_LeaderRecordCitations.cs`、`Domain/Entities.cs`（`LeaderRecordCitation`）、`Infrastructure/WorldLineDbContext.cs`、`tests/…/LeaderRecordCitation{Model,Guard}Tests.cs` |
-| `leader_bio_field_citations` 補 `quote`／`grade`／`date_precision`／`policy_version` | 未做 | — |
-| `leader_bio_gaps`、`leader_bios.death_place` | 未做 | — |
-| `BioSourcePolicy` 硬性排除層 | 未做 | — |
+| `leader_bio_field_citations` 補 `quote`／`quote_lang`／`grade`／`date_precision`／`policy_version`；field 值域加 `deathPlace`；兩張 citation 表 `grade` CHECK 只收 A、B | ✅ migration＋entity＋測試已寫；⏳ **未套用任何庫** | `Infrastructure/Migrations/20261110082807_BioCitationFieldsAndGaps.cs`、`Domain/Entities.cs`、`Infrastructure/WorldLineDbContext.cs` |
+| `leader_bio_gaps`、`leader_bios.death_place` | ✅ 同上 migration；⏳ 未套用 | 同上；`Domain/Vocabulary.cs`（`LeaderBioGapKinds`） |
+| `BioSourcePolicy` 硬性排除層 | ✅ 程式＋單元測試 | `Domain/BioSourcePolicy.cs`、`tests/…/BioSourcePolicyTests.cs` |
+
+`BioCitationFieldsAndGaps` 實作細節（第 2 段，2026-11-10）：
+- `leader_bio_field_citations` 新欄全部可空（舊 4319 列不動）；`quote` 給了就不可空白（CHECK），**25 字只在程式檢查**；`quote_lang` 可空、不檢查。
+- `grade` CHECK `IS NULL OR IN ('A','B')`：同時加在 `leader_bio_field_citations` 與 `leader_record_citations`（後者已套用 5442、0 列）。
+- `field` CHECK 以「先 DROP 再以超集重建」加入 `deathPlace`；這是 Up 腳本唯一的 DROP，既有資料全部仍合法。
+- Down 只供開發／測試：已有 `deathPlace` 引用或 `death_place` 資料時 Down 會失敗或丟失該欄。
+- `BioSourcePolicy`（版本 `bio-2026-11-v0`）：硬性排除網域 `wikipedia.org`、`wikidata.org`、`baidu.com`（含子網域，同 `send_batch.py` 的 `BANNED_HOSTS`）、`enciclopediadelecuador.com`（HANDOFF：已被接管）；出版者含 Wikipedia／Wikidata／百度或只標自製者排除；等級 NULL／A／B 可，C／X 依 T1 拒絕（訊息註明留 seed）；引文 ≤ 25 個 text element。「LoC 引自 Wikipedia」需看內容，程式無法判斷，仍靠人工。
+- 「字」的計法：採 **Unicode text element**（`StringInfo.LengthInTextElements`，NFC 正規化後），不用 C# `char`。理由：`char` 是 UTF-16 碼元，CJK 擴充 B 區字會算 2；text element 讓中文一字＝1、帶組合重音的拉丁字母＝1、emoji 序列＝1，最接近人讀的「字」。
+- 寫入層尚未接上：現有 `POST /leader-bios/{id}/field-citations` 未改（API 零變動）；B2 回填與 B3 起的新寫入流程呼叫 `BioSourcePolicy`。「欄位有 conflict 缺口時該欄必須為 NULL」同屬寫入層檢查。
+
+第 2 段驗收狀態：
+- ✅ build 0 警告 0 錯誤；離線測試（不連任何庫）78 通過／0 失敗／0 略過：`BioSourcePolicyTests` 43、`BioCitationFieldsAndGapsModelTests` 15、`LeaderRecordCitationModelTests` 6（改為 grade 已有 CHECK）、其他離線 14。
+- ⏳ `BioCitationFieldsAndGapsGuardTests`（一次性 PostGIS 容器）已寫、**未執行**：核准範圍規定新 migration 不套用到任何庫（含測試容器）。執行與套用 5442 皆待 Tai 核准。
 
 `leader_record_citations` 實作細節（16.4.1 未明寫、實作時的取捨，Tai 可改）：
 - `quote` NOT NULL、不可空白；**「≤ 25 字」不加 DB CHECK**：gap-830 的「字」對拉丁文是字元還是詞未定，硬限 25 字元會擋掉多數英文引文。暫由寫入流程把關。
@@ -1199,4 +1215,6 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 | T10 | 採建議：先做 B1（出處表）→ B2（回填）；補強批（b50 起）直接用新格式 | 同上 |
 | B5（RAG） | 延後：等詳細生平資料累積後再做；T7、T8、T9 屆時再決定 | Tai 15:19「好」 |
 | T2、T3、T5 | 未決，做到時再問 | — |
+| T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；C／X 由 `BioSourcePolicy` 硬性排除 | Tai 2026-11-10 16:20 核准第 2 段範圍 |
+| quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1） | 主管裁定（同上） |
 

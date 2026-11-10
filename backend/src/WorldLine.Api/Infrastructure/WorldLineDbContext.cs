@@ -31,6 +31,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<LeaderRecord> LeaderRecords => Set<LeaderRecord>();
     public DbSet<LeaderBioFieldCitation> LeaderBioFieldCitations => Set<LeaderBioFieldCitation>();
     public DbSet<LeaderRecordCitation> LeaderRecordCitations => Set<LeaderRecordCitation>();
+    public DbSet<LeaderBioGap> LeaderBioGaps => Set<LeaderBioGap>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -372,6 +373,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
                 t.HasCheckConstraint("ck_leader_bios_birth_date_precision",
                     "birth_date_precision IS NULL OR birth_date_precision IN ('day', 'month', 'year')");
                 t.HasCheckConstraint("ck_leader_bios_birth_place_object", "birth_place IS NULL OR jsonb_typeof(birth_place) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_death_place_object", "death_place IS NULL OR jsonb_typeof(death_place) = 'object'");
                 t.HasCheckConstraint("ck_leader_bios_party_object", "party IS NULL OR jsonb_typeof(party) = 'object'");
                 t.HasCheckConstraint("ck_leader_bios_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
                 t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
@@ -394,6 +396,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.SupersededBy).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.WikidataQid).HasFilter("wikidata_qid IS NOT NULL AND retracted_at IS NULL");
             e.Property(x => x.BirthPlace).HasColumnType("jsonb");
+            e.Property(x => x.DeathPlace).HasColumnType("jsonb");
             e.Property(x => x.Party).HasColumnType("jsonb");
             e.Property(x => x.Summary).HasColumnType("jsonb");
             e.Property(x => x.FieldSources).HasColumnType("jsonb");
@@ -409,16 +412,25 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
                 t.HasCheckConstraint("ck_leader_bio_field_citations_field", InList("field", LeaderBioFields.All));
                 t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
                 t.HasCheckConstraint("ck_leader_bio_field_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                // §16.4.1 補欄（2026-11-10）：quote 可空（舊列），給了不可空白；25 字上限只在 BioSourcePolicy 檢查。
+                t.HasCheckConstraint("ck_leader_bio_field_citations_quote_not_blank", "quote IS NULL OR btrim(quote) <> ''");
+                t.HasCheckConstraint("ck_leader_bio_field_citations_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.AllowedGrades.Order()));
+                t.HasCheckConstraint("ck_leader_bio_field_citations_date_precision",
+                    "date_precision IS NULL OR " + InList("date_precision", DatePrecisions.All));
             });
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.Field).HasMaxLength(16);
+            e.Property(x => x.QuoteLang).HasMaxLength(35);
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.DatePrecision).HasMaxLength(8);
+            e.Property(x => x.PolicyVersion).HasMaxLength(32);
             e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.BioId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.BioId);
             Timestamps(e, updated: false);
         });
         // 任期引用（ARCHITECTURE §16.3-2、§16.4.1，B1）。I5 trigger 在 migration 以 SQL 建立。
-        // grade 不加 CHECK（§16.9.1 T1：考證組確認後再加）；policy_version 只預留（T2 未決）。
+        // grade CHECK 只收 A／B（Tai 2026-11-10 16:20 核准，migration BioCitationFieldsAndGaps）；policy_version 不檢查（T2 未決）。
         b.Entity<LeaderRecordCitation>(e =>
         {
             e.ToTable("leader_record_citations", t =>
@@ -430,6 +442,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
                 t.HasCheckConstraint("ck_leader_record_citations_claim_span",
                     "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
                 t.HasCheckConstraint("ck_leader_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                t.HasCheckConstraint("ck_leader_record_citations_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.AllowedGrades.Order()));
             });
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.QuoteLang).HasMaxLength(35);
@@ -440,6 +453,30 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<LeaderRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.RecordId);
+            Timestamps(e, updated: false);
+        });
+        // 生平缺口（ARCHITECTURE §16.4.2，B1）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderBioGap>(e =>
+        {
+            e.ToTable("leader_bio_gaps", t =>
+            {
+                t.HasCheckConstraint("ck_leader_bio_gaps_gap_kind", InList("gap_kind", LeaderBioGapKinds.All));
+                t.HasCheckConstraint("ck_leader_bio_gaps_target", $"target ~ '{LeaderBioGapKinds.TargetPattern}'");
+                t.HasCheckConstraint("ck_leader_bio_gaps_field_target",
+                    "target NOT LIKE 'field:%' OR " + InList("substr(target, 7)", LeaderBioFields.All));
+                t.HasCheckConstraint("ck_leader_bio_gaps_candidate_citations_array",
+                    "candidate_citations IS NULL OR jsonb_typeof(candidate_citations) = 'array'");
+                t.HasCheckConstraint("ck_leader_bio_gaps_resolved_by", "resolved_by_citation_id IS NULL OR resolved_at IS NOT NULL");
+                t.HasCheckConstraint("ck_leader_bio_gaps_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Target).HasMaxLength(64);
+            e.Property(x => x.GapKind).HasMaxLength(24);
+            e.Property(x => x.CandidateCitations).HasColumnType("jsonb");
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.BioId).OnDelete(DeleteBehavior.Restrict);
+            // 同人同目標同種類，未解決且未撤回者只能一筆（回填可重跑、不重複）。
+            e.HasIndex(x => new { x.BioId, x.Target, x.GapKind }).IsUnique()
+                .HasFilter("resolved_at IS NULL AND retracted_at IS NULL");
             Timestamps(e, updated: false);
         });
         // 領導人紀錄（leader_records；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。

@@ -31,7 +31,7 @@ public class LeaderRecordCitationModelTests
     {
         using var db = NewContext();
         Assert.False(db.Database.HasPendingModelChanges());
-        Assert.Equal(Target, db.Database.GetMigrations().Last());
+        Assert.Contains(Target, db.Database.GetMigrations());
     }
 
     [Fact]
@@ -61,7 +61,7 @@ public class LeaderRecordCitationModelTests
     }
 
     [Fact]
-    public void Check_constraints_exist_and_grade_is_left_unconstrained_until_confirmed()
+    public void Check_constraints_exist_and_grade_only_accepts_A_or_B()
     {
         using var db = NewContext();
         var checks = Entity(db).GetCheckConstraints().ToDictionary(c => c.Name!, c => c.Sql);
@@ -70,14 +70,16 @@ public class LeaderRecordCitationModelTests
             {
                 "ck_leader_record_citations_claim_span",
                 "ck_leader_record_citations_date_precision",
+                "ck_leader_record_citations_grade",
                 "ck_leader_record_citations_locator_not_blank",
                 "ck_leader_record_citations_quote_not_blank",
                 "ck_leader_record_citations_retraction_reason",
             },
             checks.Keys.Order());
         Assert.Equal("date_precision IS NULL OR date_precision IN ('day', 'month', 'year')", checks["ck_leader_record_citations_date_precision"]);
-        // §16.9.1 T1：A／B 的 CHECK 等考證組確認後再加；T2：policy_version 不做檢查。
-        Assert.DoesNotContain(checks.Values, sql => sql.Contains("grade") || sql.Contains("policy_version"));
+        // grade CHECK 由 BioCitationFieldsAndGaps 加上（Tai 2026-11-10 16:20）；T2：policy_version 不做檢查。
+        Assert.Equal("grade IS NULL OR grade IN ('A', 'B')", checks["ck_leader_record_citations_grade"]);
+        Assert.DoesNotContain(checks.Values, sql => sql.Contains("policy_version"));
     }
 
     [Fact]

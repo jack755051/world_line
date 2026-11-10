@@ -1244,7 +1244,7 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 - 5052 舊 API（未重啟）10 個 GET 端點與套用 migration 前快照逐位元比對 10／10 一致。
 - 寫入前備份：`~/wl-backups/worldline_borders_dev-20261110-211940-pre-b2-write.dump`（107,235,667 bytes，`pg_restore -l` 281 項；已含 migration）。
 
-#### 16.7.4 引文重摘（80 字，2026-11-10 起，只產 seed／dry-run，不寫庫）
+#### 16.7.4 引文重摘（80 字，2026-11-10 起；22:28 核准後已寫入 5442，見 16.7.5）
 
 依 Tai 2026-11-10 21:52（16.9.1「quote 上限 80 字」）。對象：16.7.3 中因超過 25 字而 `quote` 留 NULL 的 3265 筆。
 - NFC 後 ≤ 80 字 → **直接採用**原 evidence 為 quote。
@@ -1265,6 +1265,15 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 - 驗證：`requote.py build` 全量檢查 quote ≤ 80 字、逐字出現於 evidence、起訖不切字、非前 80 字截斷、重摘附依據、留空附原因。
 - 抽查 48 筆（直接採用、重摘各 24）：可取得原文 40 筆全數逐字相符（2 筆僅 HTML 空白差異、1 筆 PDF OCR 差異）；8 筆原站 403 或需 JavaScript，無法核對；支持欄位值 46、部分支持 2（`requote-80/spotcheck.md`）。
 - 判讀準則（重摘）：name 無該人名→留空；party 看不出本人所屬→留空；日期看不出是出生／死亡或精度不足→留空。辭典條目「人名 日期 地點 日期 地點」格式依位置判讀生卒（立陶宛、HLS 條目），待 Tai 確認。
+
+#### 16.7.5 80 字引文寫入 5442（2026-11-10，已寫入）
+
+依 Tai 2026-11-10 22:28 核准（考證組核對通過：3265＝直接採用 2266＋重摘 946＋留空 53）。腳本 `requote-80/write_quotes.py`；記錄 `requote-80/write/`（`pre-state.json` dry-run 與寫前狀態、`write-log.json`、`verify.json` 對帳、`api-compare.md`）。
+- 範圍：`results/r01–r10.json` 中 method＝direct／requote 的 3212 筆寫入 `leader_bio_field_citations.quote`（id 對應，寫前 NFC）；留空 53 筆不寫。不碰 `leader_record_citations`。
+- 方式：只連 5442／`worldline_borders_dev`（腳本白名單）；dry-run 唯讀連線，檢查將更新＝3212、id 全存在且 `quote IS NULL`（兩次輸出逐位元相同）；`--write --expect 3212` 須 DB 狀態與資料雜湊同 dry-run，單一交易以暫存表載入、只 `UPDATE … SET quote`（id 相符且 `quote IS NULL`），交易內核對受影響 3212、非空 quote＝寫前＋3212，不符即 RAISE 回復。
+- 寫前備份：`~/wl-backups/worldline_borders_dev-20261110-224041-pre-requote80-quote-write.dump`（107,360,382 bytes，`pg_restore -l` 281 項）。
+- 對帳（寫後，SQL）：3212 筆與結果檔逐筆相等（DB 值本已為 NFC）；非空 quote 841→4053（＝841＋3212）；全表 4319 列不變；除 quote 外各欄雜湊、非目標列 quote 雜湊、`leader_bios` 968／`leader_bio_gaps` 1149／`leader_records` 2197／`leader_record_citations` 0／`sources` 1206 皆不變；留空 53 筆仍 NULL；全表 `char_length(quote)` 最大 80。
+- 5052（未重啟）10 個 GET 端點寫入前後逐位元相同：API 目前不輸出 `quote`，故生平端點亦不變（前端要顯示引文需另案改 DTO）。
 
 ### 16.8 風險
 
@@ -1303,7 +1312,7 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | T2、T3、T5 | 未決，做到時再問 | — |
 | T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；C／X 由 `BioSourcePolicy` 硬性排除 | Tai 2026-11-10 16:20 核准第 2 段範圍 |
 | quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1）。**已由下一列取代上限與計法** | 主管裁定（同上） |
-| quote 上限 80 字 | Tai 2026-11-10 21:52 決定上限 80 字，理由：來源區預設收合，只保留單句短引。以 NFC 正規化後的字元計（取代原 text element 計法）；仍只在程式檢查、不加 DB 約束。取代 21:36 的 25 字重摘範圍：B2 跳過的 3265 筆改依 80 字處理（≤ 80 直接採用原句、> 80 才重摘逐字片段、找不到留空），結果見 16.7.4 | Tai 2026-11-10 21:52 |
+| quote 上限 80 字 | Tai 2026-11-10 21:52 決定上限 80 字，理由：來源區預設收合，只保留單句短引。以 NFC 正規化後的字元計（取代原 text element 計法）；仍只在程式檢查、不加 DB 約束。取代 21:36 的 25 字重摘範圍：B2 跳過的 3265 筆改依 80 字處理（≤ 80 直接採用原句、> 80 才重摘逐字片段、找不到留空），結果見 16.7.4；22:28 核准寫入 5442（3212 筆，留空 53 筆不寫），結果見 16.7.5 | Tai 2026-11-10 21:52；22:28 |
 | B2 寫入範圍 | ≤ 25 字 841 筆回填 `quote`；超過 25 字 3265 筆留空、不截斷（重摘另案）；日精度爭議 10 筆保留現有年份、另記 `conflict`；查不到但已有值 236 筆保留現有值、記 `not_found`；其餘照 dry-run；欄位不在值域 23 筆、重複者跳過。結果見 16.7.3 | Tai 2026-11-10 17:51；21:10 再確認 |
 | 16.7.3 放寬規則 | 沿用：conflict 帶精度限定詞（年份一致、只有日期不同）時可保留現有年份值，另記 `conflict` 缺漏；無限定詞者該欄仍須為 NULL。Tai 2026-11-10 21:36 已確認 | Tai 2026-11-10 21:36 |
 

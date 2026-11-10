@@ -1,0 +1,74 @@
+{
+ "mode": "verify",
+ "ok": true,
+ "checks": {
+  "quotes_match": {
+   "expected": 3212,
+   "matched": 3212,
+   "mismatch": []
+  },
+  "db_quote_already_nfc": true,
+  "sql_quotes_nfc_rows": 4053,
+  "quote_nonnull": {
+   "pre": 841,
+   "post": 4053,
+   "ok": true
+  },
+  "total_rows": {
+   "pre": 4319,
+   "post": 4319,
+   "ok": true
+  },
+  "other_cols_md5": {
+   "pre": "79d7a461b3367cf1548b83af8aef3046",
+   "post": "79d7a461b3367cf1548b83af8aef3046",
+   "ok": true
+  },
+  "non_target_quote_md5": {
+   "pre": "0e2de61c14ce3939e95e19f8ea6f32fd",
+   "post": "0e2de61c14ce3939e95e19f8ea6f32fd",
+   "ok": true
+  },
+  "other_tables": {
+   "pre": {
+    "leader_bios": 968,
+    "leader_bio_gaps": 1149,
+    "leader_records": 2197,
+    "leader_record_citations": 0,
+    "sources": 1206
+   },
+   "post": {
+    "leader_bios": 968,
+    "leader_bio_gaps": 1149,
+    "leader_records": 2197,
+    "leader_record_citations": 0,
+    "sources": 1206
+   },
+   "ok": true
+  },
+  "blanks_still_null": {
+   "expected": 53,
+   "null": 53,
+   "bad": []
+  },
+  "max_char_length": {
+   "mx": 80,
+   "over": 0,
+   "ok": true
+  }
+ },
+ "post": {
+  "total": 4319,
+  "quote_nonnull": 4053,
+  "other_cols_md5": "79d7a461b3367cf1548b83af8aef3046",
+  "non_target_quote_md5": "0e2de61c14ce3939e95e19f8ea6f32fd",
+  "other_tables": {
+   "leader_bios": 968,
+   "leader_bio_gaps": 1149,
+   "leader_records": 2197,
+   "leader_record_citations": 0,
+   "sources": 1206
+  }
+ },
+ "planErrors": []
+}

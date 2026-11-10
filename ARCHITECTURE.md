@@ -902,7 +902,7 @@ K1、K2、K3、S1、S2。
 
 ## 16. 詳細人物生平資料結構（設計稿 v1，2026-11-10，待 Tai 確認）
 
-> 狀態：📝 設計稿；B1 的 `leader_record_citations` 已寫 migration 檔（**未套用、未寫庫**，見 16.7.1），其餘仍只做設計。標記同 §14：**現有**＝已核對程式並附路徑；**提案**＝未實作、未拍板。
+> 狀態：📝 設計稿；B1 的 `leader_record_citations` 已套用到本機開發庫 5442（2026-11-10，見 16.7.1）；其餘仍只做設計或只寫檔。標記同 §14：**現有**＝已核對程式並附路徑；**提案**＝未實作、未拍板。
 > 盤點依據（皆唯讀）：本文件 §7、§14；`docs/design/person-reading-campaign-nav.md` §5–§6；`data/seed/leaders/gap-830/{HANDOFF,WORKFLOW,SCHEMA}.md`；`backend/src/WorldLine.Api/Domain/{Entities,CitationPolicy,Vocabulary}.cs`；`backend/src/WorldLine.Api/Features/LeadersEndpoints.cs`；`frontend/src/app/core/api/world-line-api.ts`；`compose.yaml`。
 
 ### 16.0 開工三問與定位
@@ -1137,11 +1137,11 @@ K1、K2、K3、S1、S2。
 
 #### 16.7.1 B1 進度（2026-11-10）
 
-B1 拆成小步，每步各自 commit。**已寫檔、未套用到任何資料庫**（含 5052）；套用需 Tai 核准。
+B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11-10 依 Tai 16:20 核准套用到本機開發庫（5442／`worldline_borders_dev`，5052 API 所連）；其餘 migration 只寫檔、**未套用**。
 
 | 項目 | 狀態 | 檔案 |
 |---|---|---|
-| `leader_record_citations` | ✅ migration＋entity＋測試已寫；⏳ 未套用 | `Infrastructure/Migrations/20261110080453_LeaderRecordCitations.cs`、`Domain/Entities.cs`（`LeaderRecordCitation`）、`Infrastructure/WorldLineDbContext.cs`、`tests/…/LeaderRecordCitation{Model,Guard}Tests.cs` |
+| `leader_record_citations` | ✅ migration＋entity＋測試；✅ 已套用 5442（2026-11-10 16:2x） | `Infrastructure/Migrations/20261110080453_LeaderRecordCitations.cs`、`Domain/Entities.cs`（`LeaderRecordCitation`）、`Infrastructure/WorldLineDbContext.cs`、`tests/…/LeaderRecordCitation{Model,Guard}Tests.cs` |
 | `leader_bio_field_citations` 補 `quote`／`grade`／`date_precision`／`policy_version` | 未做 | — |
 | `leader_bio_gaps`、`leader_bios.death_place` | 未做 | — |
 | `BioSourcePolicy` 硬性排除層 | 未做 | — |
@@ -1159,8 +1159,10 @@ B1 拆成小步，每步各自 commit。**已寫檔、未套用到任何資料�
 
 驗收狀態：
 - ✅ `dotnet build` 0 警告；離線單元測試 `LeaderRecordCitationModelTests`（模型與 snapshot 無落差、欄位可空性、FK、CHECK、Up 為新增式且裝 I5 trigger、Down 只移除新表）通過。不連任何資料庫。
-- ⏳ `LeaderRecordCitationGuardTests`（一次性 PostGIS 容器：CHECK、FK、DELETE 失敗、撤回不可逆）已寫、**未執行**；連同 16.7「migration up/down 在本機乾淨庫通過」待 Tai 核准後跑。
-- ⏳ 舊 API 回應快照不變：本步未動任何端點，待套用後以既有 `LeaderBioTests`／`PersonDetailTests` 確認。
+- ✅ `LeaderRecordCitationGuardTests`（一次性 PostGIS 容器：CHECK、FK、DELETE 失敗、撤回不可逆）：8 通過／0 失敗／0 略過。
+- ✅ migration up/down（一次性容器 `postgis/postgis:18-3.6`，非 5442）：全套 up → down 到 `PersonPortraitAndFieldCitations`（表、trigger 函式、歷史列皆移除）→ 再 up，皆成功；down 後 schema 與「乾淨庫只套到前一版」逐行相同（唯一差異為映像在初始 DB 自動安裝的 tiger／topology 擴充，與 migration 無關）。
+- ✅ 套用 5442 前已備份：`~/wl-backups/worldline_borders_dev-20261110-162234-pre-b1-leader-record-citations.dump`（107,222,947 bytes，`pg_restore -l` 280 項）。套用方式：`dotnet ef migrations script` 產生單一 migration 的 SQL（純新增：建表、2 索引、I5 trigger、歷史列），在 container 內 `psql -v ON_ERROR_STOP=1` 執行。套用後 `leader_record_citations` 0 列；`leader_records` 2197、`leader_bios` 968、`leader_bio_field_citations` 4319 列不變。
+- ✅ 舊 API 回應快照不變：5052 只讀 GET 10 個端點（`/leaders?date=1939-09-01`、`/leaders?date=1945-09-15`、`/leader-bios/{id}` ×3、`/regimes/{id}` ×2、`/regimes/{id}/events`、`/sovereignty?date=1939-09-01`、`/sources/{id}`），套用前取兩次確認穩定，套用後逐位元比對 10/10 一致；5052 未重啟（快照存 `.dev/b1-api-snap/`，不進版控）。
 
 ### 16.8 風險
 

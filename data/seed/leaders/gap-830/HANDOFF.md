@@ -1,12 +1,13 @@
 # gap-830 交接（只讀本檔即可續做）
 
-- 更新：2026-11-10 10:40（段 3，session cc3cb417）。分支 feature/person-cards，HEAD d234fcc 之後的收尾 commit。規則見 `WORKFLOW.md`。
-- 已寫入 5052：b01–b32。生平有效 719、引用 3220、有生平任期 1458、照片 40。無研究中批次。待查 268、查無來源 23。
-- 下一批：**b33**（`b33/worklist.json` 已有 16 組、全為待查、與 b32 不重疊，沿用即可）。一段只做一批。
-- 研究方式：**主程序前景依序查證，不用背景任務／subagent**。抽原文用 curl＋去標籤後 grep 關鍵字，比 WebFetch 摘要可靠。
-- 好用來源：vle.lt（立陶宛、也收波蘭／羅馬尼亞人物）、vestnesis.lv（拉脫維亞總理系列）、tekst.devb.be（NEVB PDF）、encyclopediaofukraine.com、deutsche-biographie.de（NDB 全文）、portugal.gov.pt「chefes-do-governo-desde-1821」（葡萄牙任期）、秘魯 PCM 史 PDF、encyclopedia.com（Gale）、LoC marcxml（看 670，引 Wikipedia 者不用）、OAC／Hoover 檔案指南。
-- 擋住的：infopedia.pt（403）、adesp.org（連不上；厄瓜多總統傳 PDF 在此）、historia-hispanica.rah.es（需 JS）、gov.am、primeminister.gr／minfin.bg／dzieje.pl（403）。Wikidata API 連打會限流，間隔幾秒。
-- 每批：`send_batch.py bNN` 乾跑 → `review.py bNN | cut -c1-200` → `./urlcheck.sh bNN`（LoC 403 正常）→ `./run_batch.sh bNN` → commit → `.dev/person-impl-progress.md` 加一行 → `usage_tally.py <sid>` 記 usage.md。
-- 注意：send_batch 不接受「欄位在 conflicts 又有值」；兩源只在日不同時，給月／年精度並寫進 unverified。合議體的 staging 標記可能錯，需手動 `gap_status.py set`。
-- 阻擋：無。Q5（授權清單是否套用生平引用）未決，未動；照片未補。
-- 可回頭補強：Estrada Carmona、Borrero González（adesp.org 可連時）、Ponce Vaides 生卒；Mayr 卒日（5-21 或 5-26）；Alberings 生日（曆法）；Štefan Tiso 卒年；Michalakopoulos 生卒日；Osóbka-Morawski 卒日；Largo Caballero 出生地。
+- 更新：2026-11-10 10:55（b33 試驗段，session d5ce48e7）。分支 feature/person-cards，HEAD 621a036 之後的收尾 commit。規則見 `WORKFLOW.md`。
+- 已寫入 5052：b01–b33。生平有效 731、引用 3280、有生平任期 1474、照片 40。無研究中批次。待查 256、查無來源 26、staging 疑義 3。
+- 下一批：**b34**（尚無 worklist，先 `make_worklist.py` 產生 16 組）。一段只做一批。
+- b33 試驗做法：主程序只審核／乾跑／寫入；逐人前景跑 `b33/run_person.sh`（`claude -p --model sonnet`，窄 JSON 存 `bNN/people/<key>.json`、子程序 json 存 `bNN/sub/`）。是否沿用待 Tai 比較 `usage.md` 後決定。
+- 試驗心得：子程序常把 Q 號／一個可開來源以外的東西漏掉；給明確 URL（如 vle.lt slug）能救回（Fierlinger 第 2 次成功）。主程序審查仍須抽查（Bistras 生卒同日屬實；Mironescu 只靠 GND 無總理職→staging）。
+- 好用來源：vle.lt、gob.pe PCM 史 PDF（秘魯，只有生卒年）、islamansiklopedisi.org.tr、encyclopediaofukraine.com、deutsche-biographie.de、LoC madsrdf.json（看 citationSource）、lobid.org GND。
+- 擋住的：infopedia.pt、adesp.org、historia-hispanica.rah.es、hellenicparliament.gr／hellenicnavy.gr（403）、portugal.gov.pt 舊連結 404、vlada.gov.cz DNS 不穩。
+- 每批：`send_batch.py bNN` 乾跑 → `review.py bNN | cut -c1-200` → `./urlcheck.sh bNN` → `./run_batch.sh bNN` → commit → `.dev/person-impl-progress.md` 加一行 → usage.md。
+- 注意：send_batch 不接受「欄位在 conflicts 又有值」；合議體的 staging 標記可能錯，需手動 `gap_status.py set`。
+- 阻擋：無。Q5 未決，未動；照片未補。
+- 可回頭補強：Voulgaris、Ribeiro de Castro、Guerrero Martínez（來源擋住）；Mironescu（需載明總理職的來源）；Cooreman 只有生卒年；秘魯 5 位生卒只到年；先前 Estrada Carmona、Borrero González、Ponce Vaides、Mayr 卒日等照舊。

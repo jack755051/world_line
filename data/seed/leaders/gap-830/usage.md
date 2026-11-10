@@ -12,3 +12,24 @@
 | **段 1 全程合計** | 87ef0865-6297-4daf-bc7e-fc437e9995c6 | 2026-11-07T08:10:09.760Z | 2026-11-07T09:25:07.273Z | 2278 | 646099 | 2281734 | 102549046 | 缺 |
 | b31 研究（主程序前景，無 subagent）＋審查寫入（段 2b） | b2a8bc92-d357-43f0-a815-34600c75e0bb | 2026-11-10T01:11:23.810Z | 2026-11-10T01:25:10.640Z | 169 | 48472 | 152851 | 7884703 | 缺 |
 | b32 研究（主程序前景，無 subagent）＋審查寫入（段 3） | cc3cb417-f81a-484e-ad76-4fcf797410e3 | 2026-11-10T02:23:34.633Z | 2026-11-10T02:35:28.089Z | 148 | 35240 | 131531 | 6447399 | 缺 |
+| b33 試驗：主程序（審核、乾跑、寫入、commit；截至寫 usage 時，其後 HANDOFF／commit 數輪未計） | d5ce48e7-1a2e-4eaf-99f4-0097be90968d | 2026-11-10T02:37:15.035Z | 2026-11-10T02:52:42.164Z | 56 | 15472 | 63999 | 1590457 | 缺 |
+| b33 試驗：Sonnet 子程序 al-wilhelm-zu-wied | 23468e26-47c5-4331-88cb-ebef6a376083 | — | — | 28 | 3658 | 35033 | 578067 | 0.2346（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 be-gerard-cooreman | 90234cf3-7113-4372-b7b6-9ffa521b57d9 | — | — | 16 | 2826 | 28392 | 294985 | 0.1714（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 cs-zdenek-fierlinger | a667c02b-efa3-4b47-81a5-fb6a6cecf684 | — | — | 12 | 2329 | 27803 | 211862 | 0.1557（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 ec-alberto-guerrero-martinez | 3b9ad3f1-8fc4-40d3-ac1a-43d206106682 | — | — | 16 | 2316 | 27249 | 293055 | 0.1615（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 gr-petros-voulgaris | 5a4c0dff-0665-4321-af99-f50b7efc400c | — | — | 14 | 2189 | 29226 | 257888 | 0.1646（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 lt-leonas-bistras | 20212ae2-1ef8-4d4f-9ed9-0db5ee896406 | — | — | 12 | 2168 | 27885 | 189396 | 0.1522（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pe-carlos-abril-galindo | 6a732843-dca9-4d9b-9999-db31cf0dd726 | — | — | 12 | 2735 | 25440 | 191684 | 0.1483（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pe-german-arenas | 6394ef58-41b3-4f22-855b-58ea3f93ca1e | — | — | 12 | 2300 | 27171 | 195818 | 0.1513（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pe-german-schreiber | fbea6e50-9503-44af-8515-a8be6614c7fc | — | — | 12 | 2060 | 24534 | 191780 | 0.1379（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pe-jose-de-la-riva-aguero | 68aaa52d-5360-4ae5-90ad-8bf60324f7c6 | — | — | 14 | 2590 | 30557 | 258009 | 0.1740（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pe-jose-matias-manzanilla | d17b418d-801d-4445-bca8-87c240af5429 | — | — | 14 | 2585 | 24560 | 229465 | 0.1471（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pt-antonio-granjo | 9aae6b12-b890-4a46-bcba-bb76c0e2ee40 | — | — | 16 | 2717 | 28364 | 295017 | 0.1702（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 pt-ribeiro-de-castro | 55d1ef9e-2e88-4543-a2b1-0d8f178d3a23 | — | — | 22 | 2409 | 32632 | 388689 | 0.2177（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 ro-gheorghe-mironescu | 1a40359c-460c-4dba-8528-09383e9ea2ee | — | — | 26 | 4456 | 31441 | 510628 | 0.2214（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 tr-mehmed-kamil-pasa | 12fc3505-c6e7-4f03-aa70-8324217cbcc6 | — | — | 14 | 2455 | 24696 | 228226 | 0.1462（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 ua-fedir-lyzohub | 8b1056b3-2ce9-421f-9bbc-ca9db332e175 | — | — | 8 | 1721 | 22173 | 115799 | 0.1175（json total_cost_usd） |
+| b33 試驗：Sonnet 子程序 cs-zdenek-fierlinger 第 1 次（staging，json 被重跑覆寫；數字取自 transcript） | cfe80ac3-5f72-4954-86c1-36a2bbdb26d9 | 2026-11-10T02:44:32.972Z | 2026-11-10T02:45:53.660Z | 42 | 4269 | 32420 | 859605 | 缺 |
+| **b33 試驗合計（主程序＋17 次子程序）** | — | 2026-11-10T02:37:15Z | 2026-11-10T02:53Z | 346 | 61255 | 543575 | 6880430 | 子程序 16 次 2.6714；Fierlinger 第 1 次與主程序 缺 |
+
+b33 試驗比較（Tai 參考，非結論）：16 組、寫入 12 位。cache_read 合計 6,880,430（主程序 1,590,457＋子程序 5,289,973），約 43 萬／組；b31 主程序前景 7,884,703／16 組約 49 萬／組，b32 6,447,399／16 組。注意：子程序為 Sonnet、主程序為 Opus，單價不同，token 數不能直接等同費用；主程序 cache_read 約 9.9 萬／組。子程序 USD 每位 0.12–0.23。本批 4 組 staging（b31 1、b32 3），產出率不同也影響比較。不宣稱必然更省。

@@ -11,10 +11,10 @@
 不 DELETE、不改 leader_bios 任何欄位、不改 evidence_note。
 
 規則（對齊 Domain/BioSourcePolicy.cs，版本 bio-2026-11-v0）：
-  - quote ≤ 25 字，以 Unicode text element 計（NFC 後）。Python 標準庫沒有 UAX #29 分段，
-    這裡用近似：NFC 後的 code point 數，扣掉組合符號（Mn/Mc/Me）、ZWJ 及其後一字、變體選擇符、膚色修飾符。
-    近似與純 code point 數落在 25 兩側者列入 `quoteNeedsCsharpCheck`，寫入前以 C# 規則複核（有任一筆則拒絕寫入）。
-    超過 25 字者 quote 留 NULL，不截斷。
+  - quote ≤ 80 字，以 NFC 正規化後的字元（Unicode code point）計，同 C# BioSourcePolicy（Tai 2026-11-10 21:52：
+    上限 25→80、改以字元計取代原 text element 計法）。Python `len(NFC(s))` 與 C# Rune 計數一致，
+    不再需要 C# 複核（`quoteNeedsCsharpCheck` 保留欄位、恆為空）。超過上限者 quote 留 NULL，不截斷。
+    （本腳本 2026-11-10 寫入時的上限是 25 字、text element 計；b2_dryrun/ 為當時結果。）
   - 硬性排除網域／出版者 → 不回填 quote，列入 skip。
   - conflict 缺口：DB 該欄須為 NULL；例外（Tai 17:51）：帶限定詞（例 `birthDate (day)`）且該欄以較粗精度有值者，
     保留現有值，另記 conflict 缺口（note 標「保留現有值」）。無限定詞而該欄有值者仍列入 conflicts、不寫。
@@ -39,7 +39,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CONTAINER = "worldline-borders-dev-db"
 ALLOWED_DBS = {"worldline_borders_dev"}  # 只允許 5442 的開發庫；絕不連 appdb_ww2／5432
 POLICY_VERSION = "bio-2026-11-v0"
-QUOTE_MAX = 25
+QUOTE_MAX = 80  # Tai 2026-11-10 21:52（原 25）
 EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "baidu.com", "enciclopediadelecuador.com")
 EXCLUDED_PUBLISHER_FRAGMENTS = ("wikipedia", "wikidata", "百度", "baidu")
 SELF_MADE = {"自製", "自制", "self-made", "self made", "selfmade", "own work"}
@@ -66,26 +66,9 @@ def parse_field(raw):
     return [x.strip() for x in s.split("/") if x.strip()], q
 
 
-# ── 字數（近似 text element）──
+# ── 字數（NFC 後的字元數；Tai 2026-11-10 21:52）──
 def cp_len(s):
     return len(unicodedata.normalize("NFC", s))
-
-
-def te_len(s):
-    s = unicodedata.normalize("NFC", s)
-    n, skip_next = 0, False
-    for ch in s:
-        o = ord(ch)
-        if skip_next:
-            skip_next = False
-            continue
-        if o == 0x200D:  # ZWJ：與下一字併入前一個叢集
-            skip_next = True
-            continue
-        if unicodedata.category(ch) in ("Mn", "Mc", "Me") or 0xFE00 <= o <= 0xFE0F or 0x1F3FB <= o <= 0x1F3FF:
-            continue
-        n += 1
-    return n
 
 
 def host_excluded(url):
@@ -219,11 +202,9 @@ def main():
                     if host_excluded(src.get("url")) or host_excluded(src.get("archive_url")) or publisher_excluded(src.get("publisher")):
                         skip("source_hard_excluded", sourceId=src_id, publisher=src.get("publisher"), **w)
                         continue
-                    n_te, n_cp = te_len(ev), cp_len(ev)
-                    if (n_te <= QUOTE_MAX) != (n_cp <= QUOTE_MAX):
-                        R["quoteNeedsCsharpCheck"].append({**w, "evidence": ev, "approxTextElements": n_te, "codePoints": n_cp})
+                    n_te = cp_len(ev)  # 沿用變數名；現為 NFC 字元數
                     if n_te > QUOTE_MAX:
-                        skip("quote_over_25", length=n_te, evidence=ev, **w)
+                        skip(f"quote_over_{QUOTE_MAX}", length=n_te, evidence=ev, **w)
                         continue
                     for r in live:
                         if r["id"] in matched_cit_ids:

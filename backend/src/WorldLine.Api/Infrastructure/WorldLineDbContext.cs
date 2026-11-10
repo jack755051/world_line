@@ -412,7 +412,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
                 t.HasCheckConstraint("ck_leader_bio_field_citations_field", InList("field", LeaderBioFields.All));
                 t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
                 t.HasCheckConstraint("ck_leader_bio_field_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
-                // §16.4.1 補欄（2026-11-10）：quote 可空（舊列），給了不可空白；25 字上限只在 BioSourcePolicy 檢查。
+                // §16.4.1 補欄（2026-11-10）：quote 可空（舊列），給了不可空白；80 字上限（Tai 2026-11-10 21:52）只在 BioSourcePolicy 檢查。
                 t.HasCheckConstraint("ck_leader_bio_field_citations_quote_not_blank", "quote IS NULL OR btrim(quote) <> ''");
                 t.HasCheckConstraint("ck_leader_bio_field_citations_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.AllowedGrades.Order()));
                 t.HasCheckConstraint("ck_leader_bio_field_citations_date_precision",

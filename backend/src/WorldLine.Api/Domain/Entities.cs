@@ -405,7 +405,7 @@ public sealed class LeaderBio
 /// - field：name | nameZh | birthDate | deathDate | birthPlace | deathPlace | party | summary | portrait。
 /// - 修正走軟撤回（I5），不硬刪。
 /// - 2026-11-10（ARCHITECTURE §16.4.1，B1）新增式補欄：quote、quote_lang、grade、date_precision、policy_version，全部可空（舊列留空）。
-///   quote 給了就不可空白（DB CHECK）；≤ 25 字只在 <see cref="BioSourcePolicy"/> 檢查。grade DB CHECK 只收 A／B。
+///   quote 給了就不可空白（DB CHECK）；≤ 80 字（NFC 後字元，Tai 2026-11-10 21:52）只在 <see cref="BioSourcePolicy"/> 檢查。grade DB CHECK 只收 A／B。
 /// </summary>
 public sealed class LeaderBioFieldCitation
 {

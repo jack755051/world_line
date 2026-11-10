@@ -52,8 +52,8 @@ public sealed class BioCitationFieldsAndGapsGuardTests(PostGisFixture fx)
     {
         await using var c = await OpenAsync();
         var (bio, src) = await SeedAsync(c);
-        // 25 字上限只在程式檢查（BioSourcePolicy），DB 不擋。
-        Assert.NotNull(await ScalarAsync(c, FieldCitation(bio, src, "deathPlace", $"'{new string('x', 80)}'", "'A'")));
+        // 80 字上限只在程式檢查（BioSourcePolicy），DB 不擋。
+        Assert.NotNull(await ScalarAsync(c, FieldCitation(bio, src, "deathPlace", $"'{new string('x', 200)}'", "'A'")));
         Assert.NotNull(await ScalarAsync(c, FieldCitation(bio, src, "deathDate", "NULL", "NULL")));
         await Assert.ThrowsAsync<PostgresException>(() => ScalarAsync(c, FieldCitation(bio, src, "deathDate", "'  '", "NULL")));
     }

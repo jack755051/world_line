@@ -1002,7 +1002,7 @@ K1、K2、K3、S1、S2。
 | `<parent>_id` | uuid | 段落／職位／參與／影響／任期／欄位 |
 | `source_id` | uuid → `sources.id` | URL、書目、出版者、授權都放在 `sources`（**現有**：`url`、`archive_url`、`title`、`authors`、`publisher`、`published_text`、`catalog_id`、`license_code`） |
 | `locator` | text NOT NULL | 頁碼／條目／檔號／URL 錨點 |
-| `quote` | text NOT NULL | 引文原文，≤ 25 字（沿用 gap-830 `evidence` 長度）；這是「證據」，不是顯示用正文。**25 字以 Unicode text element（NFC 後的字素叢集）計，只在程式 `BioSourcePolicy` 檢查，不加 DB 約束**（主管 2026-11-10 裁定） |
+| `quote` | text NOT NULL | 引文原文，≤ 80 字；這是「證據」，不是顯示用正文，只保留單句短引。**80 字以 NFC 正規化後的字元（Unicode code point）計，只在程式 `BioSourcePolicy` 檢查，不加 DB 約束**（Tai 2026-11-10 21:52：上限由 25 放寬為 80、改以字元計取代 text element；不加 DB 約束沿用主管 2026-11-10 裁定） |
 | `quote_lang` | text NULL | 引文語言（BCP 47），可空、不檢查格式 |
 | `evidence_note` | text NULL | 查證者說明（例：「BnF 與 GND 卒年不同，採 BnF」） |
 | `accessed_on` | date NOT NULL | 當天實際打開的日期 |
@@ -1150,12 +1150,12 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 | `BioSourcePolicy` 硬性排除層 | ✅ 程式＋單元測試 | `Domain/BioSourcePolicy.cs`、`tests/…/BioSourcePolicyTests.cs` |
 
 `BioCitationFieldsAndGaps` 實作細節（第 2 段，2026-11-10）：
-- `leader_bio_field_citations` 新欄全部可空（舊 4319 列不動）；`quote` 給了就不可空白（CHECK），**25 字只在程式檢查**；`quote_lang` 可空、不檢查。
+- `leader_bio_field_citations` 新欄全部可空（舊 4319 列不動）；`quote` 給了就不可空白（CHECK），**80 字（原 25 字，Tai 21:52 放寬）只在程式檢查**；`quote_lang` 可空、不檢查。
 - `grade` CHECK `IS NULL OR IN ('A','B')`：同時加在 `leader_bio_field_citations` 與 `leader_record_citations`（後者已套用 5442、0 列）。
 - `field` CHECK 以「先 DROP 再以超集重建」加入 `deathPlace`；這是 Up 腳本唯一的 DROP，既有資料全部仍合法。
 - Down 只供開發／測試：已有 `deathPlace` 引用或 `death_place` 資料時 Down 會失敗或丟失該欄。
-- `BioSourcePolicy`（版本 `bio-2026-11-v0`）：硬性排除網域 `wikipedia.org`、`wikidata.org`、`baidu.com`（含子網域，同 `send_batch.py` 的 `BANNED_HOSTS`）、`enciclopediadelecuador.com`（HANDOFF：已被接管）；出版者含 Wikipedia／Wikidata／百度或只標自製者排除；等級 NULL／A／B 可，C／X 依 T1 拒絕（訊息註明留 seed）；引文 ≤ 25 個 text element。「LoC 引自 Wikipedia」需看內容，程式無法判斷，仍靠人工。
-- 「字」的計法：採 **Unicode text element**（`StringInfo.LengthInTextElements`，NFC 正規化後），不用 C# `char`。理由：`char` 是 UTF-16 碼元，CJK 擴充 B 區字會算 2；text element 讓中文一字＝1、帶組合重音的拉丁字母＝1、emoji 序列＝1，最接近人讀的「字」。
+- `BioSourcePolicy`（版本 `bio-2026-11-v0`）：硬性排除網域 `wikipedia.org`、`wikidata.org`、`baidu.com`（含子網域，同 `send_batch.py` 的 `BANNED_HOSTS`）、`enciclopediadelecuador.com`（HANDOFF：已被接管）；出版者含 Wikipedia／Wikidata／百度或只標自製者排除；等級 NULL／A／B 可，C／X 依 T1 拒絕（訊息註明留 seed）；引文 ≤ 80 字（NFC 後字元；原為 ≤ 25 個 text element，Tai 2026-11-10 21:52 改）。「LoC 引自 Wikipedia」需看內容，程式無法判斷，仍靠人工。
+- 「字」的計法：**NFC 正規化後的字元**（Unicode code point，C# `EnumerateRunes().Count()`、Python `len(unicodedata.normalize("NFC", s))`，兩者一致），不用 C# `char`（UTF-16 碼元，CJK 擴充 B 區字會算 2）。Tai 2026-11-10 21:52 決定取代原本的 Unicode text element 計法（`StringInfo.LengthInTextElements`）；差別只在 NFC 後仍無預組合字的組合符號與 emoji 序列（各碼點分別計數），gap-830 引文實務上不受影響。
 - 寫入層尚未接上：現有 `POST /leader-bios/{id}/field-citations` 未改（API 零變動）；B2 回填與 B3 起的新寫入流程呼叫 `BioSourcePolicy`。「欄位有 conflict 缺口時該欄必須為 NULL」同屬寫入層檢查。
 
 第 2 段驗收狀態：
@@ -1169,7 +1169,7 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 - 5052 舊 API（未重啟）10 個 GET 端點：套用前取兩次一致（且與 B1 套用後快照一致），套用後逐位元比對 10/10 一致（`.dev/b2-api-snap/`，不進版控）。
 
 `leader_record_citations` 實作細節（16.4.1 未明寫、實作時的取捨，Tai 可改）：
-- `quote` NOT NULL、不可空白；**「≤ 25 字」不加 DB CHECK**：gap-830 的「字」對拉丁文是字元還是詞未定，硬限 25 字元會擋掉多數英文引文。暫由寫入流程把關。
+- `quote` NOT NULL、不可空白；**「≤ 80 字」（原 25 字）不加 DB CHECK**，由寫入流程（`BioSourcePolicy`）把關。
 - `quote_lang` 可 NULL（varchar 35，BCP 47 長度上限），不檢查格式。
 - `grade` varchar(1) 可 NULL，**不加 CHECK**：依 16.9.1 T1「考證組確認後再加 CHECK」；未確認前寫入一律留 NULL。
 - `policy_version` varchar(32) 可 NULL，不做任何檢查（T2 未決，只預留）。
@@ -1244,6 +1244,14 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 - 5052 舊 API（未重啟）10 個 GET 端點與套用 migration 前快照逐位元比對 10／10 一致。
 - 寫入前備份：`~/wl-backups/worldline_borders_dev-20261110-211940-pre-b2-write.dump`（107,235,667 bytes，`pg_restore -l` 281 項；已含 migration）。
 
+#### 16.7.4 引文重摘（80 字，2026-11-10 起，只產 seed／dry-run，不寫庫）
+
+依 Tai 2026-11-10 21:52（16.9.1「quote 上限 80 字」）。對象：16.7.3 中因超過 25 字而 `quote` 留 NULL 的 3265 筆。
+- NFC 後 ≤ 80 字 → **直接採用**原 evidence 為 quote。
+- > 80 字 → **重摘**：只從該筆原本出處的原文或已存 evidence 選 ≤ 80 字、逐字出現、能支持該欄位值的片段；不截斷（不取前 80 字）、不改寫轉述、不換來源。
+- 找不到合適片段 → **留空**並列清單附原因。
+- 產出放 `data/seed/leaders/requote-80/`；本階段不寫 5442（寫入另需 Tai 核准）。結果數字於完成後補記。
+
 ### 16.8 風險
 
 | # | 風險 | 處理 |
@@ -1280,7 +1288,8 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | B5（RAG） | 延後：等詳細生平資料累積後再做；T7、T8、T9 屆時再決定 | Tai 15:19「好」 |
 | T2、T3、T5 | 未決，做到時再問 | — |
 | T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；C／X 由 `BioSourcePolicy` 硬性排除 | Tai 2026-11-10 16:20 核准第 2 段範圍 |
-| quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1） | 主管裁定（同上） |
+| quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1）。**已由下一列取代上限與計法** | 主管裁定（同上） |
+| quote 上限 80 字 | Tai 2026-11-10 21:52 決定上限 80 字，理由：來源區預設收合，只保留單句短引。以 NFC 正規化後的字元計（取代原 text element 計法）；仍只在程式檢查、不加 DB 約束。取代 21:36 的 25 字重摘範圍：B2 跳過的 3265 筆改依 80 字處理（≤ 80 直接採用原句、> 80 才重摘逐字片段、找不到留空），結果見 16.7.4 | Tai 2026-11-10 21:52 |
 | B2 寫入範圍 | ≤ 25 字 841 筆回填 `quote`；超過 25 字 3265 筆留空、不截斷（重摘另案）；日精度爭議 10 筆保留現有年份、另記 `conflict`；查不到但已有值 236 筆保留現有值、記 `not_found`；其餘照 dry-run；欄位不在值域 23 筆、重複者跳過。結果見 16.7.3 | Tai 2026-11-10 17:51；21:10 再確認 |
 | 16.7.3 放寬規則 | 沿用：conflict 帶精度限定詞（年份一致、只有日期不同）時可保留現有年份值，另記 `conflict` 缺漏；無限定詞者該欄仍須為 NULL。Tai 2026-11-10 21:36 已確認 | Tai 2026-11-10 21:36 |
 

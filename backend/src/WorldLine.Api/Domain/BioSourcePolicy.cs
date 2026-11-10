@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text;
 
 namespace WorldLine.Api.Domain;
@@ -8,10 +7,9 @@ namespace WorldLine.Api.Domain;
 /// 適用 leader_bio_field_citations、leader_record_citations 與日後的生平 citation 表；只做程式端檢查，寫入流程呼叫。
 /// - 硬性排除：Wikipedia／Wikidata／百度、已知被接管網域、只標「自製」的出版者（沿用 gap-830 send_batch.py 與 HANDOFF 的實務規則）。
 /// - 等級：T1 已決只收 A／B；C／X 不進 DB（留 seed）。未評等（NULL）允許寫入。DB 另有 CHECK（grade IN ('A','B')）。
-/// - 引文 quote：≤ 25 字，只在程式檢查、不加 DB 約束（主管 2026-11-10 裁定）。
-///   「字」採 <b>Unicode text element</b>（擴展字素叢集，UAX #29，.NET <see cref="StringInfo"/>），先做 NFC 正規化：
-///   中文一字＝1、拉丁字母一個＝1（含組合重音，「é」不論是否預組合都＝1）、emoji 序列＝1、空白與標點各＝1。
-///   不用 C# char（UTF-16 碼元）：CJK 擴充 B 區等字會被算成 2；也不用詞數。
+/// - 引文 quote：≤ 80 字，只在程式檢查、不加 DB 約束（Tai 2026-11-10 21:52：來源區預設收合，只保留單句短引；原 25 字）。
+///   「字」＝NFC 正規化後的字元（Unicode code point，.NET <see cref="Rune"/>；Tai 21:52 取代原 text element 計法）：
+///   中文一字＝1、空白與標點各＝1；「é」NFC 後預組合＝1。不用 C# char（UTF-16 碼元）：CJK 擴充 B 區等字會被算成 2；也不用詞數。
 /// - 白名單（Q5／T2 未決）：不在此實作；<see cref="PolicyVersion"/> 寫入 citation 的 policy_version，政策變動時據以重審。
 /// </summary>
 public static class BioSourcePolicy
@@ -19,8 +17,8 @@ public static class BioSourcePolicy
     /// <summary>目前政策版本，寫入 citation.policy_version。規則變動時遞增。</summary>
     public const string PolicyVersion = "bio-2026-11-v0";
 
-    /// <summary>引文上限（text element 數）。</summary>
-    public const int QuoteMaxTextElements = 25;
+    /// <summary>引文上限（NFC 後的字元數，Unicode code point）。</summary>
+    public const int QuoteMaxChars = 80;
 
     /// <summary>可寫入 DB 的等級（T1）。</summary>
     public static readonly IReadOnlySet<string> AllowedGrades = new HashSet<string>(StringComparer.Ordinal) { "A", "B" };
@@ -38,9 +36,9 @@ public static class BioSourcePolicy
     /// <summary>出版者名稱含這些字（不分大小寫）即排除：避免以 Wikipedia／Wikidata／百度百科當出處但沒附網址。</summary>
     private static readonly string[] ExcludedPublisherFragments = ["wikipedia", "wikidata", "百度", "baidu"];
 
-    /// <summary>引文長度（NFC 後的 text element 數）。</summary>
+    /// <summary>引文長度（NFC 後的字元數，Unicode code point）。</summary>
     public static int QuoteLength(string quote) =>
-        new StringInfo(quote.Normalize(NormalizationForm.FormC)).LengthInTextElements;
+        quote.Normalize(NormalizationForm.FormC).EnumerateRunes().Count();
 
     /// <summary>網址是否屬硬性排除網域；無法解析的網址回 false（由其他檢查處理）。</summary>
     public static bool IsExcludedUrl(string? url)
@@ -84,7 +82,7 @@ public static class BioSourcePolicy
         if (quote is null) return required ? "引文 quote 必填。" : null;
         if (string.IsNullOrWhiteSpace(quote)) return "引文 quote 不可空白。";
         var n = QuoteLength(quote);
-        return n > QuoteMaxTextElements ? $"引文 {n} 字，超過 {QuoteMaxTextElements} 字上限（以 Unicode text element 計）。" : null;
+        return n > QuoteMaxChars ? $"引文 {n} 字，超過 {QuoteMaxChars} 字上限（NFC 後以字元計）。" : null;
     }
 
     /// <summary>一筆生平 citation 的整體檢查；回所有不合格原因（空清單＝合格）。</summary>

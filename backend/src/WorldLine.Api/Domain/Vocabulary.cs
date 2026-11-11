@@ -9,8 +9,10 @@ public static class SourceKinds
     public const string Encyclopedia = "encyclopedia";
     /// <summary>官方機構／政府網頁（B3，2026-11-11）。</summary>
     public const string OfficialWebsite = "official_website";
+    /// <summary>檔案典藏（B3，2026-11-11）。</summary>
+    public const string Archive = "archive";
     public static readonly string[] All =
-        [Map, AtlasMap, "treaty", "official_record", "trial_record", "peer_reviewed", "official_history", "dataset", Encyclopedia, OfficialWebsite];
+        [Map, AtlasMap, "treaty", "official_record", "trial_record", "peer_reviewed", "official_history", "dataset", Encyclopedia, OfficialWebsite, Archive];
     /// <summary>R7：控制紀錄的 primary citation 只能用地圖類來源。</summary>
     public static readonly string[] MapKinds = [Map, AtlasMap];
 }

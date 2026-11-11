@@ -3159,7 +3159,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         {
                             t.HasCheckConstraint("ck_sources_publisher_not_blank", "btrim(publisher) <> ''");
 
-                            t.HasCheckConstraint("ck_sources_source_kind", "source_kind IN ('map', 'atlas_map', 'treaty', 'official_record', 'trial_record', 'peer_reviewed', 'official_history', 'dataset', 'encyclopedia', 'official_website')");
+                            t.HasCheckConstraint("ck_sources_source_kind", "source_kind IN ('map', 'atlas_map', 'treaty', 'official_record', 'trial_record', 'peer_reviewed', 'official_history', 'dataset', 'encyclopedia', 'official_website', 'archive')");
                         });
                 });
 

@@ -9,7 +9,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
     /// <inheritdoc />
     /// <summary>
     /// B3 分段生平（ARCHITECTURE §16.2–16.4，2026-11-11；Tai 同意，只寫檔、本回合不套用）：新增 6 表（段落／經歷／角色＋各自 citation）、
-    /// I5 trigger（禁 DELETE／TRUNCATE、撤回不可撤銷）、sources.source_kind 加 encyclopedia／official_website。
+    /// I5 trigger（禁 DELETE／TRUNCATE、撤回不可撤銷）、sources.source_kind 加 encyclopedia／official_website／archive。
     /// person_roles.role_kind CHECK 含 cabinet_minister（對草案 P1 的必要擴充）。leader_records／leader_bio_gaps 不動。
     /// </summary>
     public partial class BioParagraphsPositionsRoles : Migration
@@ -303,7 +303,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
             migrationBuilder.AddCheckConstraint(
                 name: "ck_sources_source_kind",
                 table: "sources",
-                sql: "source_kind IN ('map', 'atlas_map', 'treaty', 'official_record', 'trial_record', 'peer_reviewed', 'official_history', 'dataset', 'encyclopedia', 'official_website')");
+                sql: "source_kind IN ('map', 'atlas_map', 'treaty', 'official_record', 'trial_record', 'peer_reviewed', 'official_history', 'dataset', 'encyclopedia', 'official_website', 'archive')");
 
             migrationBuilder.CreateIndex(
                 name: "ix_leader_bio_paragraph_citations_paragraph_id",

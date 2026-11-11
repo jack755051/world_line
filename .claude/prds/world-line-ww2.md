@@ -344,7 +344,10 @@ CREATE TABLE sources (
     'trial_record',     -- 審判紀錄
     'peer_reviewed',    -- 經同行審查的研究
     'official_history', -- 官方戰史（例：CMH Green Books）
-    'dataset'           -- 開放資料集（例：OHM、Département de l'Ain 分界線）
+    'dataset',          -- 開放資料集（例：OHM、Département de l'Ain 分界線）
+    'encyclopedia',     -- 具名百科條目（B3，2026-11-11）
+    'official_website', -- 官方機構／政府網頁（B3，2026-11-11）
+    'archive'           -- 檔案典藏
   )),                   -- AI 提案・待拍板：分類清單
   title TEXT NOT NULL,
   publisher TEXT NOT NULL,          -- R7：必須有明確出版者／出處；「自製」不可

@@ -1,4 +1,4 @@
-import importlib.util, os, unittest
+import importlib.util, json, os, unittest
 
 spec = importlib.util.spec_from_file_location("wb3", os.path.join(os.path.dirname(os.path.abspath(__file__)), "write_b3_paragraphs.py"))
 w = importlib.util.module_from_spec(spec)
@@ -98,6 +98,13 @@ class SourceKind(unittest.TestCase):
         self.assertEqual(w.guess_kind("https://www.senat.fr/x"), "official_website")
         self.assertIsNone(w.guess_kind("https://rulers.org/x"))
         self.assertEqual(w.guess_kind("https://rulers.org/x", {"rulers.org": "dataset"}), "dataset")
+
+    def test_archive_kind_accepted_and_overridden(self):
+        self.assertIn("archive", w.SOURCE_KINDS)
+        self.assertEqual(w.guess_kind("https://hemerotecadigital.cm-lisboa.pt/x", {"hemerotecadigital.cm-lisboa.pt": "archive"}), "archive")
+        ov = json.load(open(w.OVERRIDES))
+        self.assertEqual(ov["hemerotecadigital.cm-lisboa.pt"], "archive")
+        self.assertTrue(all(v is None or v == "drop" or v in w.SOURCE_KINDS for v in ov.values()))
 
     def test_override_drop(self):
         for v in (None, "drop"):

@@ -47,7 +47,7 @@ POSITION_KINDS = {"minister", "legislator", "diplomat", "military_command", "mil
 ROLE_LAYER = {"head_of_state", "head_of_government", "de_facto_leader"}
 ROLE_KINDS = ROLE_LAYER | {"cabinet_minister"}
 SOURCE_KINDS = {"map", "atlas_map", "treaty", "official_record", "trial_record", "peer_reviewed", "official_history", "dataset",
-                "encyclopedia", "official_website"}
+                "encyclopedia", "official_website", "archive"}
 SKIP_PEOPLE = {"pe-schreiber", "es-allendesalazar"}
 
 _ENC = """encyclopedia.com www.encyclopedia.com esu.com.ua biografiskleksikon.lex.dk lex.dk snl.no tekst.devb.be

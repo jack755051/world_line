@@ -41,10 +41,10 @@ public sealed class BioParagraphsPositionsRolesTests(PostGisFixture fx)
         Scalar(c, $"INSERT INTO person_roles (bio_id, seed_key, title, role_kind, period) VALUES ('{bio}', '{key}', '{{\"orig\":\"x\"}}'::jsonb, '{kind}', '[1920-01-01,1921-01-01)') RETURNING id");
 
     [Fact]
-    public async Task Source_kind_accepts_encyclopedia_and_official_website_only_plus_old_values()
+    public async Task Source_kind_accepts_encyclopedia_official_website_archive_plus_old_values()
     {
         await using var c = await OpenAsync();
-        foreach (var k in new[] { "encyclopedia", "official_website", "peer_reviewed" })
+        foreach (var k in new[] { "encyclopedia", "official_website", "archive", "peer_reviewed" })
             Assert.NotNull(await Scalar(c, $"INSERT INTO sources (source_kind, title, publisher) VALUES ('{k}', 't', 'p') RETURNING id"));
         await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, "INSERT INTO sources (source_kind, title, publisher) VALUES ('blog', 't', 'p') RETURNING id"));
     }

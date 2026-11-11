@@ -6,24 +6,24 @@
 
 - **維基列表／分類頁只當索引，不是出處。** 每筆 `source_status="index_only"`，未以 A/B 來源查證，不得直接當作生平事實使用。
 - Tai 22:51 增列索引頁 [第二次世界大戰各國指揮官列表](https://zh.wikipedia.org/zh-tw/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%B8%96%E7%95%8C%E5%A4%A7%E6%88%B0%E5%90%84%E5%9C%8B%E6%8C%87%E6%8F%AE%E5%AE%98%E5%88%97%E8%A1%A8)：只取「军队指挥官」節之姓名欄（含 {{tsl}} 模板），戰役欄不收入。該頁各國將領至少 A，最高軍階（元帥／五星上將／特級上將等）升 S；與 fame_tiers 取較高者，不降級。純政治人物仍排除。中文維基沒有對應的「第一次世界大戰各國指揮官列表」，一戰未用同類名單頁補（英文 Allied leaders of World War I、Leaders of the Central Powers of World War I 是元首與將領混編，不當對應頁）。
-- 抓取：MediaWiki API（`/w/api.php`），UA `WorldLineGeneralsRoster/0.1 (local research index; not a crawler of article prose)`，限速約 1.2 秒／請求、429 退避重試；未抓任何個人傳記頁，未用 `curl -k`、未登入。
-- 資料來源兩類：(1) zh.wikipedia 列表頁（解析 wikitext 的列表／表格列，取每列第一個人名連結；德國起點 `德国大将` 在內）；(2) 分類頁成員（en 為主、經 langlinks 取中文標題；zh 分類取成員標題）。zh 列表人名再以頁面標題／langlink 元資料解析成英文標題以便合併（只用標題元資料，不讀傳記內文）。
+- 抓取：MediaWiki API（`/w/api.php`），UA `WorldLineGeneralsRoster/0.1 (local research index; not a crawler of article prose)`，限速約 1.2 秒／請求、429 退避重試；未用 `curl -k`、未登入。原則上不抓個人傳記頁；Tai 23:11 例外：伊塔洛·巴爾博（Italo Balbo）的個人頁只取標題與 langlinks 當索引，不用正文當出處。
+- 資料來源三類：(1) zh.wikipedia 列表頁（解析 wikitext 的列表／表格列，取每列第一個人名連結；德國起點 `德国大将` 在內）；(2) 分類頁成員（en 為主、經 langlinks 取中文標題；zh 分類取成員標題）；(3) 少數明示的個人頁（只取標題／langlinks）。zh 列表人名再以頁面標題／langlink 元資料解析成英文標題以便合併（只用標題元資料，不讀傳記內文）。Tai 23:11：原失敗 3 頁（`德國海軍元帥`、`德意志帝国海军将领`、`意大利元帅`）失敗結果不入 cache，每次重跑都會再打 API；若仍 missingtitle，另採現存對應頁 `Category:纳粹德国海军将领`、`Category:義大利元帥`、`Marshal of Italy`（帝國海軍將領主力仍由已採用的英文 admirals 分類覆蓋）。「蓋詩」確認為戈特（John Vereker, 6th Viscount Gort），已是 S，未改級。「董宗文」為筆誤，未列入任何清單；董其武維持 B。
 - 合併鍵：英文標題正規化（去重音、去括號消歧）；僅有中文者用中文標題。同人跨多頁已合併，`index_urls` 列全部。
 - **完整度聲明：本名單是「所採用之列表／分類頁上的將級人物索引」，不是全世界將官普查。** 分類頁對准將／少將不保證完整（例如未採用美國海軍陸戰隊、法國空軍、德國 Waffen-SS 專類、蘇聯一般將官等分類）；不宣稱收齊任何國家的准將／少將。
-- **時期說明：** `window_status=category_scoped`（所在分類／列表已限 WWI/WWII 或 1908–1945 將級頁）共 4489 人；`unverified`（分類時期未限定，例如「Italian generals」「Imperial Russian Army generals」「Royal Air Force air marshals」「Warlords from the Republic of China」）共 3245 人，這些人可能完全在窗外（列表看不出者依規定仍列入，`war` 多為待查證），**進入生平階段前建議先人工篩一遍 unverified**。
+- **時期說明：** `window_status=category_scoped`（所在分類／列表已限 WWI/WWII 或 1908–1945 將級頁）共 4489 人；`unverified`（分類時期未限定，例如「Italian generals」「Imperial Russian Army generals」「Royal Air Force air marshals」「Warlords from the Republic of China」）共 3234 人，這些人可能完全在窗外（列表看不出者依規定仍列入，`war` 多為待查證），**進入生平階段前建議先人工篩一遍 unverified**。
 - `branch` 使用英文枚舉：army / navy / air_force / unknown（全檔一致；unknown＝列表未標示軍種，含警察／黨衛軍／混合列表）。`highest_rank` 多數分類只能看出「將官」類別，無具體軍階時為「待查證」；有明確頁面軍階的（元帥、大將、一級上將、五星上將）才填。
 - 排除（腳本規則）：
   - 列表所見卒年早於 1908：40 筆（例：马克西米利安·冯·魏克斯、普魯士的腓特烈·卡爾、卡爾·馮·比滕費爾德、卡尔·腓特烈·冯·史泰因梅茨、老赫尔穆特·冯·毛奇、阿爾布雷希特·馮·羅恩）
-  - 非人物頁（List／Template）：13 筆（例：List of commanders of the British 1st Armoured Division、List of Royal Navy flag officers who died during the First World War、List of Imperial Japanese Navy admirals、List of Japanese naval commanders、List of warlords and military cliques in the Warlord Era、List of Russian admirals）
+  - 非人物頁（List／Template）：27 筆（例：List of commanders of the British 1st Armoured Division、List of Royal Navy flag officers who died during the First World War、First marshal of the empire、List of Imperial Japanese Navy admirals、List of Japanese naval commanders、List of warlords and military cliques in the Warlord Era）
   - 外國君主／榮譽元帥（不當該國將領）：6 筆（例：Franz Joseph I、George V、Constantine I of Greece、Ferdinand I of Bulgaria、Mehmed V、George V）
-  - 純政治人物：4 筆（例：Benito Mussolini、Joseph Stalin、Joseph Stalin、Heinrich Himmler）
+  - 純政治人物：5 筆（例：Benito Mussolini、Joseph Stalin、Joseph Stalin、Benito Mussolini、Heinrich Himmler）
   - 晉升年早於 1895 之普魯士／帝國元帥（窗外）：3 筆（例：腓特烈三世、阿爾貝特、格奧爾格）
   - 純政治人物以固定清單排除（邱吉爾、希特勒、墨索里尼、希姆萊、戈培爾、海德里希、史達林）；僅在索引上看到才有實際排除。
   - 窗外判斷只用列表上明示的卒年（< 1908）與德意志帝國元帥列表的晉升年；其餘看不出者仍列入。
 
 ### 採用的列表／分類頁（完整明細見 `index_pages.json`）
 
-成功 129 頁；失敗 3 頁。
+成功 133 頁；失敗 3 頁。
 
 | 頁面 | 語言 | 類型 | 國家／政權 | 軍種 | 取得筆數 |
 |---|---|---|---|---|---|
@@ -151,10 +151,14 @@
 | ✅ Category:Grand admirals of the German Empire | en | cat | 德國 | navy | 0 |
 | ❌ 德國海軍元帥 | zh | zhlist | 德國 | navy | — |
 | ❌ 德意志帝国海军将领 | zh | zhlist | 德國 | navy | — |
+| ❌ 意大利元帅 | zh | zhlist | 義大利 | army | — |
+| ✅ Category:纳粹德国海军将领 | zh | cat | 德國 | navy | 2 |
+| ✅ Category:義大利元帥 | zh | cat | 義大利 | unknown | 12 |
+| ✅ Marshal of Italy | en | zhlist | 義大利 | army | 17 |
 | ✅ Category:Marshals of Italy | en | cat | 義大利 | unknown | 0 |
 | ✅ Category:Marshals of the Air of Italy | en | cat | 義大利 | air_force | 0 |
 | ✅ Category:Italian Air Force marshals | en | cat | 義大利 | air_force | 0 |
-| ❌ 意大利元帅 | zh | zhlist | 義大利 | army | — |
+| ✅ 伊塔洛·巴尔博 | zh | person | 義大利 | air_force | 1 |
 | ✅ Category:Marshals of Poland | en | cat | 波蘭 | army | 8 |
 | ✅ Category:Polish field marshals | en | cat | 波蘭 | army | 0 |
 | ✅ Category:Chiefs of the General Staff of the Austro-Hungarian Army | en | cat | 奧匈帝國 | army | 0 |
@@ -169,21 +173,21 @@
 
 ## 2. 人數
 
-**總人數 7734**；`in_leader_bios=true` **39** 人（比對快照 924 人：name 或 name_zh 正規化全等＋少量別名；繁簡字差異可能漏判，見第 5 節）。
+**總人數 7723**；`in_leader_bios=true` **38** 人（比對快照 924 人：name 或 name_zh 正規化全等＋少量別名；繁簡字差異可能漏判，見第 5 節）。
 
-全體：S **102**／A **262**／B **7370**，S+A 合計 **364**（Tai 22:47／22:51 門檻 280：超過則生平先不跑，重估後再定）。war：待查證 3574、WWII 2624、WWI 1488、both 48。branch：army 5576、navy 1595、air_force 559、unknown 4。
+全體：S **103**／A **262**／B **7358**，S+A 合計 **365**（Tai 23:11 門檻 375：超過則生平先不跑，回報人數與新增者；未超過則 commit 後開跑 S／A 生平）。war：待查證 3562、WWII 2625、WWI 1488、both 48。branch：army 5532、navy 1606、air_force 581、unknown 4。
 
 | 國家／政權 | 人數 | S | A | B |
 |---|---|---|---|---|
-| 英國 | 1739 | 14 | 28 | 1697 |
+| 英國 | 1737 | 14 | 28 | 1695 |
 | 美國 | 1358 | 12 | 26 | 1320 |
 | 德國 | 1033 | 26 | 26 | 981 |
 | 俄羅斯帝國 | 644 | 2 | 8 | 634 |
-| 義大利 | 581 | 6 | 4 | 571 |
+| 義大利 | 581 | 7 | 4 | 570 |
 | 中華民國-國民政府 | 543 | 3 | 41 | 499 |
 | 法國 | 407 | 6 | 10 | 391 |
 | 日本 | 398 | 12 | 25 | 361 |
-| 澳洲 | 230 | 0 | 14 | 216 |
+| 澳洲 | 221 | 0 | 14 | 207 |
 | 中國共產黨 | 208 | 3 | 12 | 193 |
 | 蘇聯 | 137 | 8 | 12 | 117 |
 | 奧匈帝國 | 121 | 1 | 4 | 116 |
@@ -205,7 +209,7 @@
 | 緬甸 | 1 | 0 | 1 | 0 |
 | 瑞士 | 1 | 0 | 1 | 0 |
 | 烏克蘭反抗軍 | 1 | 0 | 1 | 0 |
-| **合計** | **7734** | 102 | 262 | 7370 |
+| **合計** | **7723** | 103 | 262 | 7358 |
 
 中國三欄：中華民國-北洋、中華民國-國民政府、中國共產黨 分列如上（北洋欄為「Beiyang Army personnel」＋「軍閥」分類，政權歸屬未逐人核實，含後來投入國民政府者；共軍欄僅含元帥、大將與八路軍／新四軍將領分類，未含 1955 年後授銜者的省分類）。
 
@@ -214,7 +218,7 @@
 - **S**：跨國家喻戶曉的將領／艦隊司令／兼元首的將領（手工清單 `fame_tiers.json`，宜精）。
 - **A**：參謀總長、軍種總司令、集團軍／方面軍／戰區司令、艦隊司令、知名戰役主要指揮（手工清單，未達家喻戶曉）。
 - **B**：其餘列表上的將級人物（預設）。
-- 分級只對真實進 roster 者生效；`fame_tiers.json` 中未命中索引者共 90 個鍵（多為該人不在所採分類或標題寫法不同；不是補人，只是未使用）。
+- 分級只對真實進 roster 者生效；`fame_tiers.json` 中未命中索引者共 91 個鍵（多為該人不在所採分類或標題寫法不同；不是補人，只是未使用）。
 
 ## 3. 生平費用與時間估價
 
@@ -223,12 +227,12 @@ v3 樣本沒有可用成本數據；v3 因要求更高，**假設**單價為實�
 
 | 檔位 | 人數 | 主估費用（1.5×） | 區間（1.3×–1.8×） | 牆上時間（主估；區間） |
 |---|---|---|---|---|
-| 只做 S | 102 | $79（$53 為未加成基準） | $69–$95 | 約 4.4 小時（3.8–5.3） |
-| S + A | 364 | $282（$188 為未加成基準） | $245–$339 | 約 15.8 小時（13.7–18.9） |
-| 全部（含 unverified） | 7734 | $6,001（$4,001 為未加成基準） | $5,201–$7,202 | 約 335.1 小時（290.5–402.2） |
+| 只做 S | 103 | $80（$53 為未加成基準） | $69–$96 | 約 4.5 小時（3.9–5.4） |
+| S + A | 365 | $283（$189 為未加成基準） | $245–$340 | 約 15.8 小時（13.7–19.0） |
+| 全部（含 unverified） | 7723 | $5,993（$3,995 為未加成基準） | $5,194–$7,191 | 約 334.7 小時（290.0–401.6） |
 | 全部（僅 category_scoped，已排除時期未驗者） | 4489 | $3,483（$2,322 為未加成基準） | $3,019–$4,180 | 約 194.5 小時（168.6–233.4） |
 
-註：「全部」含 3245 位 `unverified`（時期未驗）人物；若先人工篩掉窗外者，實際人數與費用會顯著下降。已在庫（`in_leader_bios=true`）39 人若沿用既有生平可免做，上表未扣除。
+註：「全部」含 3234 位 `unverified`（時期未驗）人物；若先人工篩掉窗外者，實際人數與費用會顯著下降。已在庫（`in_leader_bios=true`）38 人若沿用既有生平可免做，上表未扣除。
 
 ## 4. 將領入庫 schema 提案（僅提案；未改任何程式、資料或 ARCHITECTURE.md）
 
@@ -248,8 +252,9 @@ v3 樣本沒有可用成本數據；v3 因要求更高，**假設**單價為實�
 
 ## 5. 注意事項
 
-- 失敗頁：3（德國海軍元帥；德意志帝国海军将领；意大利元帅）。
-- 中文名缺失：`name_zh="待查證"` 共 5655 人（en 分類成員無 zh langlink）；`name_original=null` 共 555 人（zh 列表人名無對應 en 連結）。
+- 失敗頁：3（德國海軍元帥；德意志帝国海军将领；意大利元帅）。Tai 23:11 已重試原 3 個 zh 標題（失敗結果不入 cache）；仍 missingtitle 者見上，並已改採現存對應頁。
+- Tai 23:11 名單更正：「蓋詩」即戈特（John Vereker, 6th Viscount Gort），維持 S；「董宗文」為筆誤，未寫入 fame_tiers 或 roster，董其武維持 B；伊塔洛·巴爾博（Italo Balbo）以個人維基頁當索引列入，S 級。
+- 中文名缺失：`name_zh="待查證"` 共 5646 人（en 分類成員無 zh langlink）；`name_original=null` 共 555 人（zh 列表人名無對應 en 連結）。
 - 同名風險：合併靠標題正規化；同英文標題（去括號後）不同人（如多位 John Smith）會被誤併，反之同一人在 zh／en 標題寫法不同可能重複列兩筆。未逐筆查重，建議入庫前以 name_zh＋生卒年人工核對。
 - 別名不確定：`in_leader_bios` 以 name／name_zh 正規化全等＋少量別名（蔣介石→蔣中正、東條英機等）；快照名稱簡繁混用，簡繁字差異（如「蒋／蔣」）可能漏判。抽查：曼納海姆、蔣中正、東條英機應為 true；貝當、戴高樂、孫中山、袁世凱應為 false（見下）。
   - 抽查結果：Carl Gustaf Emil Mannerheim=True；Chiang Kai-shek=True；Hideki Tojo=True；Philippe Pétain=False；Charles de Gaulle=False；Sun Yat-sen=未在名單；Yuan Shikai=未在名單；Winston Churchill=未在名單。

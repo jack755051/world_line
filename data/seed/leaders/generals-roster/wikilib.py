@@ -70,3 +70,18 @@ def catmembers(lang, cat):
             else: break
         return dict(ok=True, status=200, members=out)
     return cached('cat', lang, cat, fn)
+
+def pageinfo(lang, title):
+    """Title metadata + langlinks only. Article prose is never fetched or stored."""
+    def fn():
+        st, d, err = api(lang, action='query', titles=title, prop='langlinks|info',
+                         lllimit=100, redirects=1)
+        pages = ((d or {}).get('query') or {}).get('pages') or []
+        if not pages or pages[0].get('missing'):
+            return dict(ok=False, status=st,
+                        error=err or json.dumps((d or {}).get('error'), ensure_ascii=False)[:200])
+        pg = pages[0]
+        lls = {x['lang']: x['title'] for x in (pg.get('langlinks') or []) if x.get('lang') and x.get('title')}
+        return dict(ok=True, status=st, title=pg.get('title') or title, langlinks=lls, pageid=pg.get('pageid'))
+    return cached('pi', lang, title, fn)
+

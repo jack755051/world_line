@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """WWI/WWII generals roster builder (index only). Python 3 stdlib.
 
-只讀維基「列表頁／分類頁」做索引（不是出處）；不抓個人傳記頁。
+只讀維基「列表頁／分類頁」做索引（不是出處）。原則上不抓個人傳記頁；例外：Tai 明示要以個人頁當索引補入者，只取標題與 langlinks，不用正文當出處。
 重跑：python3 data/seed/leaders/generals-roster/build_roster.py   （有 cache 時不會再打 API，排序固定）
 產出：roster.json、index_pages.json、SUMMARY.md
 """
@@ -25,6 +25,10 @@ def cat(title, country, branch='unknown', rank='待查證', war='待查證', sco
 def zhlist(title, country, branch='army', rank='待查證', war='待查證', scoped=True, rules=None, regime=None, url=None, lang='zh', **kw):
     S.append(D(type='zhlist', lang=lang, title=title, country=country, branch=branch, rank=rank, war=war,
                scoped=scoped, regime=regime, rules=rules or [], url=url, **kw))
+def person(title, country, branch='unknown', rank='待查證', war='待查證', scoped=True, regime=None, lang='zh', url=None, **kw):
+    # 個人頁只當索引：只取標題／langlinks，不用正文當出處
+    S.append(D(type='person', lang=lang, title=title, country=country, branch=branch, rank=rank, war=war,
+               scoped=scoped, regime=regime, url=url, **kw))
 
 DE, UK, FR, IT, US, JP = '德國', '英國', '法國', '義大利', '美國', '日本'
 KMT, BEI, CCP = '中華民國-國民政府', '中華民國-北洋', '中國共產黨'
@@ -134,13 +138,23 @@ cat('Category:Imperial German Navy admirals', DE, 'navy', regime=EMP, expand_sub
 cat('Category:German admirals of World War I', DE, 'navy', war='WWI', scoped=True, regime=EMP)
 cat('Category:Grand admirals of Germany', DE, 'navy', '元帥')
 cat('Category:Grand admirals of the German Empire', DE, 'navy', '元帥', war='WWI', scoped=True, regime=EMP)
+# 下列 3 個原訂 zh 標題：每次重跑都會再打 API（失敗結果不入 cache）。若仍 missingtitle，另採下方現存對應頁。
 zhlist('德國海軍元帥', DE, branch='navy', rank='元帥', rules=[])
 zhlist('德意志帝国海军将领', DE, branch='navy', rules=[])
-# 義大利空軍元帥（巴爾博）
+zhlist('意大利元帅', IT, rank='元帥', rules=[(r'空軍|空军|空軍元帥', D(branch='air_force')), (r'陸軍|陆军', D(branch='army'))])
+# Tai 23:11 重試後之現存對應索引（不是把失敗頁改寫成傳記正文）
+cat('Category:纳粹德国海军将领', DE, 'navy', war='WWII', scoped=True, regime=NAZI, lang='zh')  # 德國海軍元帥／將領的 zh 現存分類（筆數少；英分類已覆蓋主力）
+cat('Category:義大利元帥', IT, 'unknown', '元帥', lang='zh')
+zhlist('Marshal of Italy', IT, rank='元帥', lang='en', scoped=False, rules=[
+    (r'Kingdom of Italy|List of Marshals|Marshals of Italy', D()),
+    (r'See also|References|Notes|External', None),
+])
+# 義大利空軍元帥（巴爾博）；英分類先前 extracted=0，另用個人頁（只當索引）
 cat('Category:Marshals of Italy', IT, 'unknown', '元帥')
 cat('Category:Marshals of the Air of Italy', IT, 'air_force', '元帥')
 cat('Category:Italian Air Force marshals', IT, 'air_force', '元帥')
-zhlist('意大利元帅', IT, rank='元帥', rules=[(r'空軍|空军|空軍元帥', D(branch='air_force')), (r'陸軍|陆军', D(branch='army'))])
+person('伊塔洛·巴尔博', IT, branch='air_force', rank='元帥', war='WWII', lang='zh',
+       url='https://zh.wikipedia.org/wiki/%E4%BC%8A%E5%A1%94%E6%B4%9B%C2%B7%E5%B7%B4%E5%B0%94%E5%8D%9A')
 # 波蘭元帥（畢蘇斯基）
 cat('Category:Marshals of Poland', '波蘭', 'army', '元帥')
 cat('Category:Polish field marshals', '波蘭', 'army', '元帥')
@@ -171,7 +185,7 @@ COUNTRY_OVERRIDE = {
     'franzconradvonhotzendorf': '奧匈帝國',
 }
 # Tai 22:51：S+A 若超過 280，不自動降級；停下游生平、先回報重估。
-NON_PERSON = re.compile(r'^(List of|Lists of|Template:|Category:)|^(Generalleutnant|Generalmajor|Generaloberst)$')
+NON_PERSON = re.compile(r'^(List of|Lists of|Template:|Category:)|^(Generalleutnant|Generalmajor|Generaloberst)$|^(Deputy |Vice )?Chief of\b|^(Minister|Ministry|Secretary|Office|Staff|First marshal) of\b|Marshal of the [Ee]mpire|最高帝國元帥|最高帝国元帅')
 SKIP_HEAD = re.compile(r'參見|参见|參考|参考|註解|注释|注解|相關|相关|外部|資料來源|来源|歷史|出身|制服|概要|腳註|脚注')
 NS = re.compile(r'^(file|image|category|檔案|文件|文件|分類|分类|圖像|图像|template|模板|wikipedia|help|special|媒體|media)\s*:', re.I)
 
@@ -362,6 +376,22 @@ def main():
                         recs.append(dict(si=si, en=tgt, zh=None, ov=ov, years=years, promo=promo))
                     else:
                         recs.append(dict(si=si, zh_target=tgt, zh_disp=disp, ov=ov, years=years, promo=promo)); zh_pending.append(tgt)
+        elif s['type'] == 'person':
+            # 只取標題與 langlinks；不用正文當出處
+            r = W.pageinfo(s['lang'], s['title'])
+            ent.update(http_status=r.get('status'), fetched_at=r.get('fetched'), ok=bool(r.get('ok')), failure=r.get('error'),
+                       fetched_via='MediaWiki API action=query prop=langlinks|info（只取標題／語言連結；不用正文當出處）')
+            if r.get('ok'):
+                ent['extracted'] = 1
+                title = r.get('title') or s['title']
+                ll = r.get('langlinks') or {}
+                ov = dict(country=s['country'], branch=s['branch'], rank=s['rank'], war=s.get('war','待查證'), scoped=s.get('scoped', True))
+                if s['lang'] == 'en':
+                    recs.append(dict(si=si, en=title, zh=ll.get('zh'), ov=ov, years=None, promo=None))
+                elif ll.get('en'):
+                    recs.append(dict(si=si, en=ll['en'], zh=title, ov=ov, years=None, promo=None))
+                else:
+                    recs.append(dict(si=si, zh_target=title, zh_disp=title, ov=ov, years=None, promo=None)); zh_pending.append(title)
         else:
             r = W.catmembers(s['lang'], s['title'])
             ent.update(http_status=r.get('status'), fetched_at=r.get('fetched'), ok=bool(r.get('ok')), failure=r.get('error'), fetched_via='MediaWiki API generator=categorymembers (+langlinks lllang=zh)' if s['lang'] == 'en' else 'MediaWiki API generator=categorymembers')
@@ -376,6 +406,7 @@ def main():
     # ---- 合併
     people = {}     # key -> dict
     by_zh = {}      # zh canonical -> key
+    by_en = {}      # en:merge_key -> people key（避免先以中文鍵入、後補英文時重複）
     excluded = collections.Counter(); excl_ex = collections.defaultdict(list)
     def excl(reason, name):
         excluded[reason] += 1
@@ -400,10 +431,16 @@ def main():
         if not k: continue
         if k not in people and nm_zh and zh_key(nm_zh) and by_zh.get('zh:' + zh_key(nm_zh)):
             k = by_zh['zh:' + zh_key(nm_zh)]
+        if k not in people and nm_en:
+            ek = person_key(nm_en, None)
+            if by_en.get(ek):
+                k = by_en[ek]
         p = people.setdefault(k, dict(name_en=None, name_zh=None, srcs=[]))
         if nm_en and not p['name_en']: p['name_en'] = nm_en
         if nm_zh and not p['name_zh']: p['name_zh'] = nm_zh
         if nm_zh and zh_key(nm_zh): by_zh.setdefault('zh:' + zh_key(nm_zh), k)
+        if nm_en:
+            by_en.setdefault(person_key(nm_en, None), k)
         p['srcs'].append((r['si'], ov))
     # ---- 欄位彙整
     bios = load_bios()
@@ -438,13 +475,24 @@ def main():
         if ovkey in COUNTRY_OVERRIDE:
             country = COUNTRY_OVERRIDE[ovkey]
         regimes = sorted({(ov.get('regime') or s.get('regime')) for s, ov in srcs if (ov.get('regime') or s.get('regime'))})
-        branch = next((ov.get('branch', s['branch']) for s, ov in srcs if ov.get('branch', s['branch']) != 'unknown'), 'unknown')
+        branches = [ov.get('branch', s['branch']) for s, ov in srcs]
+        person_br = [ov.get('branch', s['branch']) for s, ov in srcs if s.get('type') == 'person' and ov.get('branch', s['branch']) != 'unknown']
+        if person_br:
+            branch = person_br[0]
+        else:
+            uniq = [b for b in branches if b and b != 'unknown']
+            if 'air_force' in uniq: branch = 'air_force'
+            elif 'navy' in uniq: branch = 'navy'
+            elif uniq: branch = uniq[0]
+            else: branch = 'unknown'
         rank = max((ov.get('rank', s['rank']) for s, ov in srcs), key=lambda x: RANK_ORDER.get(x, 0))
         wars = {ov.get('war', s['war']) for s, ov in srcs} - {'待查證'}
         war = 'both' if ('both' in wars or {'WWI', 'WWII'} <= wars) else (next(iter(wars)) if wars else '待查證')
         scoped = any(ov.get('scoped', s['scoped']) for s, ov in srcs)
         urls = sorted({(s.get('url') or wikiurl(s['lang'], s['title'])) for s, ov in srcs})
-        main_url = (first.get('url') or wikiurl(first['lang'], first['title']))
+        person_src = next((s for s, ov in srcs if s.get('type') == 'person'), None)
+        main_url = ((person_src.get('url') or wikiurl(person_src['lang'], person_src['title'])) if person_src
+                    else (first.get('url') or wikiurl(first['lang'], first['title'])))
         other_countries = sorted({ov.get('country', s['country']) for s, ov in srcs} - {country})
         # tier（fame_tiers 與指揮官列表最低級取較高者：S > A > B，不降級）
         tier = 'B'
@@ -539,8 +587,8 @@ def write_summary(out, pages, excluded, excl_ex, unmatched, bios):
     A('## 1. 方法、限制與聲明\n')
     A('- **維基列表／分類頁只當索引，不是出處。** 每筆 `source_status="index_only"`，未以 A/B 來源查證，不得直接當作生平事實使用。')
     A('- Tai 22:51 增列索引頁 [第二次世界大戰各國指揮官列表](https://zh.wikipedia.org/zh-tw/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%B8%96%E7%95%8C%E5%A4%A7%E6%88%B0%E5%90%84%E5%9C%8B%E6%8C%87%E6%8F%AE%E5%AE%98%E5%88%97%E8%A1%A8)：只取「军队指挥官」節之姓名欄（含 {{tsl}} 模板），戰役欄不收入。該頁各國將領至少 A，最高軍階（元帥／五星上將／特級上將等）升 S；與 fame_tiers 取較高者，不降級。純政治人物仍排除。中文維基沒有對應的「第一次世界大戰各國指揮官列表」，一戰未用同類名單頁補（英文 Allied leaders of World War I、Leaders of the Central Powers of World War I 是元首與將領混編，不當對應頁）。')
-    A('- 抓取：MediaWiki API（`/w/api.php`），UA `WorldLineGeneralsRoster/0.1 (local research index; not a crawler of article prose)`，限速約 1.2 秒／請求、429 退避重試；未抓任何個人傳記頁，未用 `curl -k`、未登入。')
-    A('- 資料來源兩類：(1) zh.wikipedia 列表頁（解析 wikitext 的列表／表格列，取每列第一個人名連結；德國起點 `德国大将` 在內）；(2) 分類頁成員（en 為主、經 langlinks 取中文標題；zh 分類取成員標題）。zh 列表人名再以頁面標題／langlink 元資料解析成英文標題以便合併（只用標題元資料，不讀傳記內文）。')
+    A('- 抓取：MediaWiki API（`/w/api.php`），UA `WorldLineGeneralsRoster/0.1 (local research index; not a crawler of article prose)`，限速約 1.2 秒／請求、429 退避重試；未用 `curl -k`、未登入。原則上不抓個人傳記頁；Tai 23:11 例外：伊塔洛·巴爾博（Italo Balbo）的個人頁只取標題與 langlinks 當索引，不用正文當出處。')
+    A('- 資料來源三類：(1) zh.wikipedia 列表頁（解析 wikitext 的列表／表格列，取每列第一個人名連結；德國起點 `德国大将` 在內）；(2) 分類頁成員（en 為主、經 langlinks 取中文標題；zh 分類取成員標題）；(3) 少數明示的個人頁（只取標題／langlinks）。zh 列表人名再以頁面標題／langlink 元資料解析成英文標題以便合併（只用標題元資料，不讀傳記內文）。Tai 23:11：原失敗 3 頁（`德國海軍元帥`、`德意志帝国海军将领`、`意大利元帅`）失敗結果不入 cache，每次重跑都會再打 API；若仍 missingtitle，另採現存對應頁 `Category:纳粹德国海军将领`、`Category:義大利元帥`、`Marshal of Italy`（帝國海軍將領主力仍由已採用的英文 admirals 分類覆蓋）。「蓋詩」確認為戈特（John Vereker, 6th Viscount Gort），已是 S，未改級。「董宗文」為筆誤，未列入任何清單；董其武維持 B。')
     A('- 合併鍵：英文標題正規化（去重音、去括號消歧）；僅有中文者用中文標題。同人跨多頁已合併，`index_urls` 列全部。')
     A('- **完整度聲明：本名單是「所採用之列表／分類頁上的將級人物索引」，不是全世界將官普查。** 分類頁對准將／少將不保證完整（例如未採用美國海軍陸戰隊、法國空軍、德國 Waffen-SS 專類、蘇聯一般將官等分類）；不宣稱收齊任何國家的准將／少將。')
     A('- **時期說明：** `window_status=category_scoped`（所在分類／列表已限 WWI/WWII 或 1908–1945 將級頁）共 {} 人；`unverified`（分類時期未限定，例如「Italian generals」「Imperial Russian Army generals」「Royal Air Force air marshals」「Warlords from the Republic of China」）共 {} 人，這些人可能完全在窗外（列表看不出者依規定仍列入，`war` 多為待查證），**進入生平階段前建議先人工篩一遍 unverified**。'.format(n - unv, unv))
@@ -563,7 +611,7 @@ def write_summary(out, pages, excluded, excl_ex, unmatched, bios):
     A('\n未做／跳過：Waffen-SS 專類、美國海軍陸戰隊、法國空軍、波蘭／加拿大／澳洲／芬蘭等僅採分類頁（未逐子分類展開，除非在上表）；比利時、塞爾維亞、保加利亞等未另建專類；荷蘭、希臘、泰國、加拿大、紐西蘭等若出現在二戰指揮官列表則已收入。zh 德國元帥衍生頁（`德国元帅衔大将`）因列首為頭銜連結、易誤抓，未採用。\n')
     A('## 2. 人數\n')
     A(f'**總人數 {n}**；`in_leader_bios=true` **{inb}** 人（比對快照 924 人：name 或 name_zh 正規化全等＋少量別名；繁簡字差異可能漏判，見第 5 節）。\n')
-    A(f'全體：S **{tt["S"]}**／A **{tt["A"]}**／B **{tt["B"]}**，S+A 合計 **{tt["S"]+tt["A"]}**（Tai 22:47／22:51 門檻 280：超過則生平先不跑，重估後再定）。war：' + '、'.join(f'{k} {v}' for k, v in warc.most_common()) + '。branch：' + '、'.join(f'{k} {v}' for k, v in brc.most_common()) + '。\n')
+    A(f'全體：S **{tt["S"]}**／A **{tt["A"]}**／B **{tt["B"]}**，S+A 合計 **{tt["S"]+tt["A"]}**（Tai 23:11 門檻 375：超過則生平先不跑，回報人數與新增者；未超過則 commit 後開跑 S／A 生平）。war：' + '、'.join(f'{k} {v}' for k, v in warc.most_common()) + '。branch：' + '、'.join(f'{k} {v}' for k, v in brc.most_common()) + '。\n')
     A('| 國家／政權 | 人數 | S | A | B |\n|---|---|---|---|---|')
     for c, v in sorted(cc.items(), key=lambda x: -x[1]):
         A(f'| {c} | {v} | {tier[c]["S"]} | {tier[c]["A"]} | {tier[c]["B"]} |')
@@ -589,7 +637,8 @@ def write_summary(out, pages, excluded, excl_ex, unmatched, bios):
     A('| 三 | 新建 `military_commands` 專表 | 軍職欄位可客製（戰區、部隊、軍階） | 與已有 `person_positions.military_command` 重複；遷移與雙寫成本高；與 T11「角色分表」決議重疊 |')
     A('\n**建議方案一。** 門檻沿用草案：國家級最高軍職，或有出處的戰役 participant 連結（G5）；本 roster 的 S／A 即為首批候選，B 級先只做「經歷」層。\n')
     A('## 5. 注意事項\n')
-    A(f'- 失敗頁：{len(bad)}（{"；".join(p["title"] for p in bad) if bad else "無"}）。')
+    A(f'- 失敗頁：{len(bad)}（{"；".join(p["title"] for p in bad) if bad else "無"}）。Tai 23:11 已重試原 3 個 zh 標題（失敗結果不入 cache）；仍 missingtitle 者見上，並已改採現存對應頁。')
+    A('- Tai 23:11 名單更正：「蓋詩」即戈特（John Vereker, 6th Viscount Gort），維持 S；「董宗文」為筆誤，未寫入 fame_tiers 或 roster，董其武維持 B；伊塔洛·巴爾博（Italo Balbo）以個人維基頁當索引列入，S 級。')
     A(f'- 中文名缺失：`name_zh="待查證"` 共 {nozh} 人（en 分類成員無 zh langlink）；`name_original=null` 共 {noen} 人（zh 列表人名無對應 en 連結）。')
     A('- 同名風險：合併靠標題正規化；同英文標題（去括號後）不同人（如多位 John Smith）會被誤併，反之同一人在 zh／en 標題寫法不同可能重複列兩筆。未逐筆查重，建議入庫前以 name_zh＋生卒年人工核對。')
     A('- 別名不確定：`in_leader_bios` 以 name／name_zh 正規化全等＋少量別名（蔣介石→蔣中正、東條英機等）；快照名稱簡繁混用，簡繁字差異（如「蒋／蔣」）可能漏判。抽查：曼納海姆、蔣中正、東條英機應為 true；貝當、戴高樂、孫中山、袁世凱應為 false（見下）。')

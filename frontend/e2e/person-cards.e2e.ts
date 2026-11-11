@@ -452,20 +452,41 @@ test('§17 P1 動效（桌機）：開啟 opening→open、結束後無殘留位
   await dialogOpened(page);
   const tf = await page.getByTestId('person-dialog').evaluate((el) => getComputedStyle(el).transform);
   expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(tf);
-  const seen = page.evaluate(() => new Promise<string[]>((resolve) => {
+  // 先「裝好」Observer 再按 Esc（page.evaluate 與鍵盤事件走不同通道，不 await 會讓 Esc 先到、漏掉 closing）；
+  // 只記錄根元素 data-motion-state／inert 的屬性變動（body 子樹其他 DOM 變動不算狀態），計時從 Esc 送出起算。
+  await page.evaluate(() => {
     const r = document.querySelector('[data-testid="person-dialog-root"]')!;
+    const w = window as unknown as { __p1: { states: string[]; t0: number; done: Promise<string[]> } };
     const states: string[] = [];
-    const t0 = performance.now();
-    const mo = new MutationObserver(() => {
-      if (!r.isConnected) { mo.disconnect(); resolve([...states, `removed@${Math.round(performance.now() - t0)}`]); return; }
-      states.push(`${r.getAttribute('data-motion-state')}${r.hasAttribute('inert') ? '+inert' : ''}`);
+    const st = { states, t0: 0, done: null as unknown as Promise<string[]> };
+    // 診斷用：關閉期間主執行緒長任務（失敗時印在訊息裡，區分程式延遲與環境卡頓；不影響門檻）
+    new PerformanceObserver((l) => { for (const e of l.getEntries()) if (st.t0 && e.startTime + e.duration >= st.t0) states.push(`longtask${Math.round(e.duration)}@${Math.round(e.startTime - st.t0)}`); }).observe({ type: 'longtask' });
+    st.done = new Promise<string[]>((resolve) => {
+      const mo = new MutationObserver((recs) => {
+        const ms = () => Math.round(performance.now() - st.t0);
+        for (const m of recs) if (m.type === 'attributes' && m.target === r) states.push(`${r.getAttribute('data-motion-state')}${r.hasAttribute('inert') ? '+inert' : ''}@${ms()}`);
+        if (!r.isConnected) { mo.disconnect(); resolve([...states, `removed@${ms()}`]); }
+      });
+      mo.observe(r, { attributes: true, attributeFilter: ['data-motion-state', 'inert'] });
+      mo.observe(document.body, { childList: true, subtree: true });
     });
-    mo.observe(r, { attributes: true });
-    mo.observe(document.body, { childList: true, subtree: true });
-  }));
+    w.__p1 = st;
+    // 頁面 Esc 掛在 window capture 並 stopPropagation：同目標同階段仍會輪到這裡
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !st.t0) st.t0 = performance.now(); }, { capture: true, once: true });
+  });
+  expect(await root.getAttribute('data-motion-state')).toBe('open');
   await page.keyboard.press('Escape');
-  const states = await seen;
-  expect(states[0]).toBe('closing+inert');
-  expect(Number(states.at(-1)!.split('@')[1])).toBeLessThanOrEqual(400);
+  const states = await page.evaluate(() => (window as unknown as { __p1: { done: Promise<string[]> } }).__p1.done);
+  const at = (s: string) => Number(s.split('@')[1]);
+  const msg = states.join(' → ');
+  states.splice(0, states.length, ...states.filter((s) => !s.startsWith('longtask')));
+  // Esc 一到就進 closing（inert），不等動畫：Esc→改 URL→變更偵測是非同步的，上限取 150ms（< 關閉動畫 160ms）；
+  // DOM 要等關閉動畫播完才卸載（從 closing 起算 ≥100ms），且在 300ms 逾時保險（＋排程餘裕，上限 400ms）內
+  expect(states[0].split('@')[0], msg).toBe('closing+inert');
+  expect(at(states[0]), msg).toBeLessThanOrEqual(150);
+  expect(states.at(-1)!.startsWith('removed@'), msg).toBe(true);
+  const unmount = at(states.at(-1)!) - at(states[0]);
+  expect(unmount, msg).toBeGreaterThanOrEqual(100);
+  expect(unmount, msg).toBeLessThanOrEqual(400);
   await expect(root).toHaveCount(0);
 });

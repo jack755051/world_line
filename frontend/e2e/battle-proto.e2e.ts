@@ -17,9 +17,13 @@ test.describe('戰役 P0 原型', () => {
     await expect(page.getByTestId('bp-map')).toHaveAttribute('data-ready', 'true');
     await expect(page.getByTestId('bp-banner')).toContainText('示例資料，非史料');
     await expect(page.getByTestId('bp-legend')).toBeVisible();
+    await expect(page.getByTestId('bp-banner')).toBeVisible(); // 橫幅不被標題／日期擋住
+    await expect(page.getByTestId('bp-title')).toContainText('敦克爾克');
+    for (const k of ['arrows', 'territory', 'glow', 'sparks', 'shock', 'tear', 'title']) await expect(page.getByTestId(`bp-fx-${k}`)).toBeChecked();
+    await expect(page.getByTestId('bp-sparks-note')).toContainText('不代表實際交戰位置');
 
-    // 4 個示例 source、單位符號畫出來
-    await expect.poll(() => page.evaluate(() => win().__bpDebug?.sources().sort())).toEqual(['bp-arrows', 'bp-engagements', 'bp-fronts', 'bp-land', 'bp-theater', 'bp-units']);
+    // 大局動畫層 source（bp-fx-*）＋ 既有示例 source、單位符號畫出來
+    await expect.poll(() => page.evaluate(() => win().__bpDebug?.sources().sort())).toEqual(['bp-arrows', 'bp-engagements', 'bp-fronts', 'bp-fx-shock', 'bp-fx-terr', 'bp-land', 'bp-theater', 'bp-units']);
     await expect.poll(() => page.evaluate(() => win().__bpDebug!.map.queryRenderedFeatures({ layers: ['bp-units-div'] }).length), { timeout: 20000 }).toBeGreaterThan(5);
 
     // 播放 → 出現「位置內插（推估）」

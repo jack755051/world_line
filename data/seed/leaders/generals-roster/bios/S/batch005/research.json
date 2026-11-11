@@ -1,0 +1,4411 @@
+{
+ "batch": "b3-full-v3-batch005",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 政權對應），國家級／戰區級軍職因政權待查證為 R6，軍／戰隊／艦船／地方級與非四部閣員為 R5。戈林（NSDAP 國會議員）、鐵必制（DNVP 國會議員）因來源明寫黨籍席位，寫入 roleCandidates（de_facto_leader，R1）。舍爾僅 NDB 一份可抓原文（LeMO 404）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；直接寫 b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch005，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch005/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "db-bock": {
+   "title": "Deutsche Biographie - Bock, Fedor von",
+   "authors": [
+    "Fritz von Siegler"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften / Bayerische Staatsbibliothek (Deutsche Biographie, NDB)",
+   "published_text": "Fritz von Siegler, Neue Deutsche Biographie 2 (1955), S. 341-342",
+   "url": "https://www.deutsche-biographie.de/pnd119294796.html",
+   "archive_url": null,
+   "catalog_id": "GND 119294796",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，T1 A）"
+  },
+  "lemo-bock": {
+   "title": "LeMO Biografie - Fedor von Bock",
+   "authors": [
+    "Arnulf Scriba"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Arnulf Scriba, LeMO-Biografie",
+   "url": "https://www.dhm.de/lemo/biografie/fedor-von-bock",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "gnd-bock": {
+   "title": "GND - Bock, Fedor von",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek (GND, via lobid.org)",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/119294796.json",
+   "archive_url": null,
+   "catalog_id": "GND 119294796",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（T1 A）"
+  },
+  "db-scheer": {
+   "title": "Deutsche Biographie - Scheer, Reinhard",
+   "authors": [
+    "Michael Epkenhans"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften / Bayerische Staatsbibliothek (Deutsche Biographie, NDB)",
+   "published_text": "Michael Epkenhans, Neue Deutsche Biographie 22 (2005), S. 607",
+   "url": "https://www.deutsche-biographie.de/pnd117184888.html",
+   "archive_url": null,
+   "catalog_id": "GND 117184888",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，T1 A）"
+  },
+  "gnd-scheer": {
+   "title": "GND - Scheer, Reinhard",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek (GND, via lobid.org)",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/117184888.json",
+   "archive_url": null,
+   "catalog_id": "GND 117184888",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（T1 A）"
+  },
+  "db-goering": {
+   "title": "Deutsche Biographie - Göring, Hermann",
+   "authors": [
+    "Gerhard Stoltenberg"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften / Bayerische Staatsbibliothek (Deutsche Biographie, NDB)",
+   "published_text": "Gerhard Stoltenberg, Neue Deutsche Biographie 6 (1964)",
+   "url": "https://www.deutsche-biographie.de/pnd118540157.html",
+   "archive_url": null,
+   "catalog_id": "GND 118540157",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，T1 A）"
+  },
+  "lemo-goering": {
+   "title": "LeMO Biografie - Hermann Göring",
+   "authors": [
+    "Susanne Eckelmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Susanne Eckelmann, LeMO-Biografie",
+   "url": "https://www.dhm.de/lemo/biografie/hermann-goering",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "gnd-goering": {
+   "title": "GND - Göring, Hermann",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek (GND, via lobid.org)",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118540157.json",
+   "archive_url": null,
+   "catalog_id": "GND 118540157",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（T1 A）"
+  },
+  "db-jodl": {
+   "title": "Deutsche Biographie - Jodl, Alfred",
+   "authors": [
+    "Friedrich-Christian Stahl"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften / Bayerische Staatsbibliothek (Deutsche Biographie, NDB)",
+   "published_text": "Friedrich-Christian Stahl, Neue Deutsche Biographie 10 (1974), S. 449 f.",
+   "url": "https://www.deutsche-biographie.de/pnd118557602.html",
+   "archive_url": null,
+   "catalog_id": "GND 118557602",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，T1 A）"
+  },
+  "lemo-jodl": {
+   "title": "LeMO Biografie - Alfred Jodl",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Manfred Wichmann, LeMO-Biografie",
+   "url": "https://www.dhm.de/lemo/biografie/alfred-jodl",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "gnd-jodl": {
+   "title": "GND - Jodl, Alfred",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek (GND, via lobid.org)",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118557602.json",
+   "archive_url": null,
+   "catalog_id": "GND 118557602",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（T1 A）"
+  },
+  "db-tirpitz": {
+   "title": "Deutsche Biographie - Tirpitz, Alfred von",
+   "authors": [
+    "Michael Epkenhans"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften / Bayerische Staatsbibliothek (Deutsche Biographie, NDB)",
+   "published_text": "Michael Epkenhans, Neue Deutsche Biographie 26 (2016), S. 297-299",
+   "url": "https://www.deutsche-biographie.de/pnd118622870.html",
+   "archive_url": null,
+   "catalog_id": "GND 118622870",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，T1 A）"
+  },
+  "lemo-tirpitz": {
+   "title": "LeMO Biografie - Alfred von Tirpitz",
+   "authors": [
+    "Lutz Walther"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Lutz Walther, LeMO-Biografie",
+   "url": "https://www.dhm.de/lemo/biografie/alfred-von-tirpitz",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "gnd-tirpitz": {
+   "title": "GND - Tirpitz, Alfred von",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek (GND, via lobid.org)",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118622870.json",
+   "archive_url": null,
+   "catalog_id": "GND 118622870",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（T1 A）"
+  },
+  "ba-tessin-bd1": {
+   "title": "Verbände und Truppen der deutschen Wehrmacht und Waffen-SS 1939–1945, Bd. 1 (Georg Tessin; digitalisiert vom Bundesarchiv)",
+   "authors": [
+    "Georg Tessin"
+   ],
+   "publisher": "Bundesarchiv",
+   "published_text": "Georg Tessin, Verbände und Truppen der deutschen Wehrmacht und Waffen-SS 1939-1945, Bd. 1, Bundesarchiv 2024（數位版）",
+   "url": "https://www.bundesarchiv.de/assets/bundesarchiv/de/Downloads/Tessin/Bd_1_ocr.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "聯邦檔案館（Bundesarchiv）官方公開之部隊沿革手冊"
+  },
+  "usda-poland-1939": {
+   "title": "Digests and Lessons of Recent Military Operations: The German Campaign in Poland, September 1 to October 5, 1939",
+   "authors": [],
+   "publisher": "U.S. War Department, Military Intelligence Division (HyperWar 數位版)",
+   "published_text": "US War Department MID, 1939–1940",
+   "url": "https://ibiblio.org/hyperwar/Germany/DA-Poland/DA-Poland.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國陸軍部官方文件（政府出版）"
+  }
+ },
+ "people": [
+  {
+   "key": "fedorvonbock",
+   "bioId": null,
+   "name": "Fedor von Bock",
+   "nameZh": "费多尔·冯·博克",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-12-03",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "費多爾·馮·博克1880年12月3日生於屈斯特林，父親莫里茨是少將。1898年他以少尉身分進入第5近衛步兵團；1913年起以上尉身分在近衛軍團參謀部任職，一戰期間在東、西兩線作戰，並獲頒功勳勳章（Pour le Mérite）。1920年他以中校身分出任第3軍區的參謀長。",
+      "en": "Fedor von Bock was born on 3 December 1880 in Küstrin, the son of Major General Moritz von Bock. In 1898 he entered the 5th Guards Foot Regiment as a lieutenant; from 1913 he served as a captain on the staff of the Guards Corps, took part in the war in both East and West, and won the Pour le Mérite. In 1920 he became chief of staff of Wehrkreis III as a lieutenant colonel."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "3.12.1880 Küstrin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Moritz, Generalmajor;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "1898 Nach einer Kadettenausbildung tritt er als Leutnant",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "in das 5. Garderegiment zu Fuß ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "wurde ab 1913 als Hauptmann im Generalstab des Gardekorps verwendet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "mit dem er den Krieg in Ost und West mitmachte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "erhielt er den Pour le mérite",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "wurde 1920 als Oberstleutnant Chef des Generalstabes des Wehrkreises III.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1935-04-01",
+      "end": "1938-11-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "集團司令部與併吞奧地利、蘇台德",
+      "en": "Group Command 3, Austria and the Sudetenland"
+     },
+     "body": {
+      "zh-Hant": "1935年4月，博克出任新設的德累斯頓第3集團司令部總司令。1938年3月他率第8集團軍進入奧地利，同年10月參與進占蘇台德地區；11月1日被任命為柏林第1集團軍群總司令，並同時晉升上將。",
+      "en": "In April 1935 Bock took the supreme command of the newly created Group Command 3 in Dresden. In March 1938 he led the 8th Army into Austria, and in October the march into the Sudetenland. On 1 November 1938 he was appointed commander-in-chief of Army Group 1 in Berlin and promoted to Generaloberst at the same time."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "erhielt im April 1935 den Oberbefehl über das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "neuerrichtete Gruppenkommando 3 in Dresden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Im März 1938 führte B. an der Spitze der 8. Armee den Einmarsch in Österreich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "und im Oktober den in das Sudetenland durch.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Am 1.11.1938 wurde er zum Oberbefehlshaber der Heeresgruppe 1 in Berlin ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "und gleichzeitig zum Generalobersten befördert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-09-01",
+      "end": "1940-07-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭戰役與西線攻勢",
+      "en": "Polish campaign and the Western offensive"
+     },
+     "body": {
+      "zh-Hant": "1939年9至10月的波蘭戰役中，博克指揮自波美拉尼亞與東普魯士推進的北方集團軍群。北方集團軍群司令部其後改編為B集團軍群，自1939年10月12日起列入編制（聯邦檔案館編制手冊），博克出任B集團軍群總司令；1940年5至6月的西線攻勢中，該集團軍群攻入比利時與荷蘭，博克接受兩國投降。6月14日他在巴黎凱旋門前檢閱國防軍閱兵，7月19日晉升元帥。",
+      "en": "In the Polish campaign of September–October 1939 Bock commanded Army Group North, advancing from Pomerania and East Prussia. The Army Group North staff was then reorganised as Army Group B, listed from 12 October 1939 in the Federal Archives handbook, and he became commander-in-chief of Army Group B; in the Western offensive of May–June 1940 it advanced into Belgium and Holland and he took the surrender of those countries. On 14 June he took the Wehrmacht parade at the Arc de Triomphe in Paris, and on 19 July 1940 he was promoted to Generalfeldmarschall."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "September/Oktober: Während des deutschen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "befehligt Bock die aus Pommern und Ostpreußen vorstoßende Heeresgruppe Nord.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "wurde er Oberbefehlshaber der Heeresgruppe B am Nordflügel der Westfront.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "Mai/Juni: Er ist Oberbefehlshaber der Heeresgruppe B",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Diese drang nach Belgien und Holland vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "B. nahm die Kapitulation dieser Länder entgegen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "14. Juni: Beim Einmarsch in Paris",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "nimmt Bock am Arc de Triomphe die Parade der Wehrmacht ab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Am 19.7.1940 wurde er zum Generalfeldmarschall befördert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-tessin-bd1",
+       "locator": "Anlage 6 Übersicht der Kriegsschauplätze",
+       "quote": "Heeresgruppe B (ab 12. 10. 1939)",
+       "quoteLang": "de",
+       "evidenceNote": "Tessin 寫的是B集團軍群自該日起存在；Bock續任由NDB『波蘭戰役後出任B集團軍群總司令』連結，迄日屬推論",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-tessin-bd1",
+       "locator": "I. Heeresgruppen",
+       "quote": "„B“ aus AOK 2 (Hgr. Nord/Polen): rechter Flügel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usda-poland-1939",
+       "locator": "The composition of the two groups of armies",
+       "quote": "Northern group. Headquarters at Bad Polzin Col. Gen. von Bock",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-10-01",
+      "end": "1945-05-04"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "對蘇戰爭、解職與晚年",
+      "en": "Eastern Front, dismissal and death"
+     },
+     "body": {
+      "zh-Hant": "1940年10月博克任德軍占領波蘭地區部隊總司令。1941年6月22日對蘇戰爭開始，他是主攻莫斯科方向的中央集團軍群總司令；莫斯科攻勢受挫後，他於1941年12月離職。1942年1月他接掌南方集團軍群，7月15日因批評在史達林格勒與高加索之間分兵而被解職，此後不再有實際指揮。1945年5月4日他在遭英國低空攻擊重傷後去世。",
+      "en": "In October 1940 Bock became commander of the Wehrmacht troops in the German-occupied part of Poland. When the war against the Soviet Union began on 22 June 1941 he led Army Group Centre, the main weight of the attack towards Moscow; after the failed attack on Moscow he left that command in December 1941. In January 1942 he took over Army Group South and on 15 July 1942 was relieved after criticising the splitting of the group between Stalingrad and the Caucasus; he had no further active employment. He died on 4 May 1945 of injuries from a British low-level air attack."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "Oktober: Bock wird Oberbefehlshaber der Wehrmachtstruppen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "22. Juni: Mit Beginn des deutschen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "Überfalls auf die Sowjetunion ist er Oberbefehlshaber der Heeresgruppe Mitte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "gab er wegen Erkrankung am 18.12.1941 den Oberbefehl ab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "18. Januar: Nach dem plötzlichen Tod von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "übernimmt Bock dessen Heeresgruppe Süd.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "15. Juli: Bock wird seines Kommandos über die Heeresgruppe Süd enthoben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "die Zersplitterung der Heeresgruppe Süd gegen Stalingrad und den Kaukasus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "findet er keine aktive Verwendung im Heer.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "4. Mai: Fedor von Bock erliegt im Marinelazarett Oldenburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "durch einen britischen Tieffliegerangriff erlitten hat.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "bock-gruppenkommando-3",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第3集團司令部（德累斯頓）",
+      "en": "Group Command 3 (Dresden), German Army"
+     },
+     "title": {
+      "orig": "Oberbefehl über das neuerrichtete Gruppenkommando 3",
+      "zh-Hant": "第3集團司令部總司令",
+      "en": "Commander-in-chief, Group Command 3"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1935-04-01",
+      "end": "1938-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "erhielt im April 1935 den Oberbefehl über das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "neuerrichtete Gruppenkommando 3 in Dresden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Im März 1938 führte B. an der Spitze der 8. Armee den Einmarsch in Österreich",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "平時軍區級集團司令部，非國家級最高軍職亦非戰區司令（R5）"
+    },
+    {
+     "key": "bock-8-armee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第8集團軍",
+      "en": "8th Army, German Army"
+     },
+     "title": {
+      "orig": "an der Spitze der 8. Armee",
+      "zh-Hant": "第8集團軍司令",
+      "en": "Commander, 8th Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-03-01",
+      "end": "1938-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Im März 1938 führte B. an der Spitze der 8. Armee den Einmarsch in Österreich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Am 1.11.1938 wurde er zum Oberbefehlshaber der Heeresgruppe 1 in Berlin ernannt",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "bock-heeresgruppe-1-nord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第1集團軍群／北方集團軍群",
+      "en": "Army Group 1 / Army Group North, German Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe 1; Heeresgruppe Nord",
+      "zh-Hant": "第1集團軍群總司令（波蘭戰役中指揮北方集團軍群）",
+      "en": "Commander-in-chief, Army Group 1 (Army Group North in Poland)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-11-01",
+      "end": "1939-10-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Am 1.11.1938 wurde er zum Oberbefehlshaber der Heeresgruppe 1 in Berlin ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "Im Polenfeldzug führte B. die Heeresgruppe Nord",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-tessin-bd1",
+       "locator": "Anlage 6 Übersicht der Kriegsschauplätze",
+       "quote": "Heeresgruppe B (ab 12. 10. 1939)",
+       "quoteLang": "de",
+       "evidenceNote": "Tessin 寫的是B集團軍群自該日起存在；Bock續任由NDB『波蘭戰役後出任B集團軍群總司令』連結，迄日屬推論",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-tessin-bd1",
+       "locator": "I. Heeresgruppen",
+       "quote": "„B“ aus AOK 2 (Hgr. Nord/Polen): rechter Flügel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usda-poland-1939",
+       "locator": "The composition of the two groups of armies",
+       "quote": "Northern group. Headquarters at Bad Polzin Col. Gen. von Bock",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級指揮；迄日取Tessin『B集團軍群自1939-10-12起』（推論），政權對應待查證（regimeId NULL）、波蘭戰役連結未建（戰役只入正文）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "bock-besetztes-polen",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍（占領波蘭地區）",
+      "en": "Wehrmacht troops in occupied Poland"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Wehrmachtstruppen in dem von Deutschen besetzten Teil Polens",
+      "zh-Hant": "占領波蘭地區國防軍部隊總司令",
+      "en": "Commander of Wehrmacht troops in the German-occupied part of Poland"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-10-01",
+      "end": "1941-06-22"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "Oktober: Bock wird Oberbefehlshaber der Wehrmachtstruppen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "22. Juni: Mit Beginn des deutschen",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "占領區地方部隊指揮，非國家級最高軍職（R5）"
+    },
+    {
+     "key": "bock-heeresgruppe-mitte",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍中央集團軍群",
+      "en": "Army Group Centre, German Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe Mitte",
+      "zh-Hant": "中央集團軍群總司令",
+      "en": "Commander-in-chief, Army Group Centre"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-06-22",
+      "end": "1941-12-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "22. Juni: Mit Beginn des deutschen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "Überfalls auf die Sowjetunion ist er Oberbefehlshaber der Heeresgruppe Mitte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-bock",
+       "locator": "NDB Biographie",
+       "quote": "gab er wegen Erkrankung am 18.12.1941 den Oberbefehl ab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮；缺任內有日期＋地點之戰役連結，政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "bock-heeresgruppe-sued",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍南方集團軍群",
+      "en": "Army Group South, German Army"
+     },
+     "title": {
+      "orig": "Heeresgruppe Süd",
+      "zh-Hant": "南方集團軍群總司令",
+      "en": "Commander-in-chief, Army Group South"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-18",
+      "end": "1942-07-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "18. Januar: Nach dem plötzlichen Tod von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "übernimmt Bock dessen Heeresgruppe Süd.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-bock",
+       "locator": "LeMO Biografie",
+       "quote": "15. Juli: Bock wird seines Kommandos über die Heeresgruppe Süd enthoben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮；缺任內有日期＋地點之戰役連結，政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:bock-heeresgruppe-1-nord",
+     "gapKind": "not_found",
+     "note": "待查證：迄日為推論；本檔取Bundesarchiv Tessin『Heeresgruppe B ab 12.10.1939』且北方集團軍群司令部改稱B，並以NDB『波蘭戰役後出任B集團軍群總司令』推定Bock於該日轉任，來源未明寫Bock交接日；另見他處有3、10、12日等不同說法（未取得可抓原文的A／B來源，不採）。已查：NDB、LeMO、GND、Bundesarchiv Tessin Bd.1、美國陸軍部波蘭戰役摘要。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:bock-heeresgruppe-b",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NDB 只寫波蘭戰役後出任B集團軍群總司令，LeMO 只寫1940年5至6月任此職，均無起迄日，故未建職位。已查：NDB、LeMO、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:bock-heeresgruppe-mitte",
+     "gapKind": "conflict",
+     "note": "中央集團軍群任期迄日兩份來源不一：NDB 寫1941-12-18因病交出指揮，LeMO 寫1941-12-12因主張撤退而被免職。本檔取 NDB 日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:bock-heeresgruppe-sued",
+     "gapKind": "conflict",
+     "note": "南方集團軍群任期起日兩份來源不一：LeMO 寫1942-01-18接掌，NDB 寫1942年2月；本檔取 LeMO 日期。迄日 NDB 只寫「攻勢開始時被解職」，取 LeMO 1942-07-15。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Fedor von Bock GND",
+     "url": "https://lobid.org/gnd/search?q=Fedor+von+Bock&format=json",
+     "result": "found_A",
+     "note": "GND 119294796，1880-12-03／1945-05-04"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 2）",
+     "url": "https://www.deutsche-biographie.de/pnd119294796.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Fritz von Siegler，1955）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Fedor von Bock",
+     "url": "https://www.dhm.de/lemo/biografie/fedor-von-bock",
+     "result": "found_B",
+     "note": "curl 抓取（Arnulf Scriba），含逐年任職與日期"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Bock 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/119294796.json",
+     "result": "found_A",
+     "note": "確認生卒"
+    },
+    {
+     "step": 5,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Fedor von Bock Britannica",
+     "url": "https://www.britannica.com/biography/Fedor-von-Bock",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 6,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Fedor von Bock Holocaust Encyclopedia",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/fedor-von-bock",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "Bock, Fedor von LoC name authority",
+     "url": "https://id.loc.gov/search/?q=Bock%2C+Fedor+von",
+     "result": "not_relevant",
+     "note": "搜尋頁無日期資料"
+    },
+    {
+     "step": 8,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "VIAF Bock, Fedor von",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Bock%2C+Fedor+von%22",
+     "result": "blocked_403",
+     "note": "Cloudflare，未繞過"
+    },
+    {
+     "step": 9,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BnF data Fedor von Bock",
+     "url": "https://data.bnf.fr/en/search?term=Fedor+von+Bock",
+     "result": "no_result",
+     "note": "無相關條目"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Bock, Fedor von",
+     "url": "https://www.treccani.it/enciclopedia/fedor-von-bock/",
+     "result": "found_B",
+     "note": "僅一行生卒，無指揮職日期"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "US Army CMH Poland",
+     "url": "https://history.army.mil/html/books/070/70-7_01.htm",
+     "result": "blocked_403",
+     "note": "Access Denied"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "GND d-nb.info lds",
+     "url": "https://d-nb.info/gnd/119294796/about/lds",
+     "result": "not_relevant",
+     "note": "僅權威檔資料"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "NARA catalog Fedor von Bock",
+     "url": "https://catalog.archives.gov/search?q=Fedor%20von%20Bock",
+     "result": "no_result",
+     "note": "需JS，無內容"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO 複查 Heeresgruppe B 日期",
+     "url": "https://www.dhm.de/lemo/biografie/fedor-von-bock",
+     "result": "found_B",
+     "note": "只寫1940年5/6月，無交接日"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv invenio Bock",
+     "url": "https://invenio.bundesarchiv.de/invenio/direktlink/N+Bock",
+     "result": "no_result",
+     "note": "直連功能停用"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie sfz1735",
+     "url": "https://www.deutsche-biographie.de/sfz1735.html",
+     "result": "not_relevant",
+     "note": "為他人條目"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Kalliope Bock Nachlass",
+     "url": "https://kalliope-verbund.info/gnd/119294796",
+     "result": "not_relevant",
+     "note": "無任期日期"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "DDB Bock person page",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/119294796",
+     "result": "challenge_page",
+     "note": "Anubis，未繞過"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "IWM Bock",
+     "url": "https://www.iwm.org.uk/collections/search?query=Fedor+von+Bock",
+     "result": "challenge_page",
+     "note": "Cloudflare，未繞過"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Fedor von Bock",
+     "url": "https://www.encyclopedia.com/people/history/german-history-biographies/fedor-von-bock",
+     "result": "no_result",
+     "note": "無此條目"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "SNAC Bock 1880-1945",
+     "url": "https://snaccooperative.org/view/33198469",
+     "result": "challenge_page",
+     "note": "JS 驗證，未繞過"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "US MID Poland 1939 北方集團",
+     "url": "https://ibiblio.org/hyperwar/Germany/DA-Poland/DA-Poland.html",
+     "result": "found_A",
+     "note": "波蘭戰役北方集團司令為Bock"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Britannica print article 70906",
+     "url": "https://www.britannica.com/print/article/70906",
+     "result": "blocked_403",
+     "note": "Cloudflare"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Army Group B order of battle",
+     "url": "https://www.thesecondworldwar.org/western-front-1939-1940/battle-of-france/axis-order-of-battle/army-group-b",
+     "result": "unrated",
+     "note": "無具名作者，不採"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Hoover OAC 勘找 Bock typescript",
+     "url": "https://oac.cdlib.org/findaid/ark:/13030/kt496nd955",
+     "result": "found_B",
+     "note": "僅年份1939-1945，無任期"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "NDL Bock Fedor von",
+     "url": "https://id.ndl.go.jp/auth/ndlsh/search?searchtype=simple&query=Bock%2C+Fedor+von",
+     "result": "no_result",
+     "note": "查詢錯誤"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bavarikon Bock",
+     "url": "https://www.bavarikon.de/search?q=Fedor%20von%20Bock",
+     "result": "challenge_page",
+     "note": "Anubis"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Westfeldzug 1940 Rechercheleitfaden",
+     "url": "https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/der-westfeldzug-1940-in-den-quellen-des-heeres-und-der-waffen-ss/",
+     "result": "found_A",
+     "note": "無Bock任期，指向Tessin"
+    },
+    {
+     "step": 29,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Visuotinė lietuvių enciklopedija Bock",
+     "url": "https://www.vle.lt/straipsnis/fedor-von-bock/",
+     "result": "found_B",
+     "note": "簡述，無日期"
+    },
+    {
+     "step": 30,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Tessin Bd.1 PDF",
+     "url": "https://www.bundesarchiv.de/assets/bundesarchiv/de/Downloads/Tessin/Bd_1_ocr.pdf",
+     "result": "found_A",
+     "note": "Heeresgruppe B ab 12.10.1939；B 由 Hgr Nord/Polen 改編"
+    },
+    {
+     "step": 31,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Большая российская энциклопедия Бок",
+     "url": "https://bigenc.ru/c/bok-fiodor-fon-804aa1",
+     "result": "blocked_403",
+     "note": "Qrator 驗證，未繞過"
+    },
+    {
+     "step": 32,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "booksite.ru Бок",
+     "url": "https://booksite.ru/FullText/1/001/008/125/699.htm",
+     "result": "unrated",
+     "note": "無署名，不採"
+    },
+    {
+     "step": 33,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "archivportal-d Bock Oberbefehl",
+     "url": "https://www-p2.archivportal-d.de/item/GH3PKEBJ33B2K4W2TBFZIGHRVUVY55NG",
+     "result": "no_result",
+     "note": "系統維護中"
+    },
+    {
+     "step": 34,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Fedor von Bock Heeresgruppe B Oberbefehlshaber 1939 Heeresgruppe Nord Abgabe Oktober 1939",
+     "url": null,
+     "result": "not_relevant",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 35,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Bock Fedor von Generalfeldmarschall Biographie Bundesarchiv Heeresgruppe B 12. Oktober 1939",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 36,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "フェードア・フォン・ボック 元帥 B軍集団 司令官 1939年10月",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 37,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Bundesarchiv RH 19 II Heeresgruppe B Bestand Bock",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 38,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Bock Kriegstagebuch Hoover finding aid Army Group B October 1939",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 39,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Фёдор фон Бок группа армий «Б» октябрь 1939",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 40,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "フェードア・フォン・ボック 国立国会図書館 防衛研究所 アジア歴史資料センター",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 41,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "費多爾·馮·博克 B集團軍群 1939年10月 北方集團軍群",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 42,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Fedor von Bock feldmarszałek Grupa Armii Północ Grupa Armii B 1939",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    },
+    {
+     "step": 43,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Bock Heeresgruppe Mitte 1941 Ablösung Dezember 1941 Deutsche Biographie",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；結果多為維基鏡像／私人站，無可抓A／B原文含Bock交接日；有用線索已另列抓取"
+    }
+   ]
+  },
+  {
+   "key": "reinhardscheer",
+   "bioId": null,
+   "name": "Reinhard Scheer",
+   "nameZh": "赖因哈德·舍尔",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1863-09-30",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與海軍資歷",
+      "en": "Origins and naval career before 1913"
+     },
+     "body": {
+      "zh-Hant": "賴因哈德·舍爾1863年9月30日生於黑森-拿騷的奧伯恩基興。他1879年以軍校生身分加入帝國海軍，1884至1890年多次參與在西非、東非與南太平洋新殖民地的佔領遠征。他在提爾皮茨手下歷任魚雷試驗委員會參謀、帝國海軍部中央部長，並於1907至1909年任戰艦「埃爾薩斯號」艦長。",
+      "en": "Reinhard Scheer was born on 30 September 1863 at Obernkirchen in Hesse-Nassau. He entered the Imperial Navy as a cadet in 1879 and in 1884–90 took part in several expeditions to take full possession of the newly acquired colonies in West and East Africa and the South Seas. He earned the trust of Grand Admiral Tirpitz as a referent in the Torpedo Trials Commission and head of the central department of the Reich Navy Office, and commanded the battleship Elsass in 1907–09."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "30.9.1863 Obernkirchen (Hessen-Nassau)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "trat 1879 als Kadett in die Ksl. Marine ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "1884-90 nahm er an mehreren Expeditionen zur vollständigen Inbesitznahme",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "der neu erworbenen Kolonien in West- und Ostafrika sowie in der Südsee teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Referent in der Torpedoversuchskommission (1890–94)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Chef der Zentralabteilung des Reichsmarineamtes (1903–07)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "erwarb er sich das Vertrauen des Großadmirals",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Als Kommandant des Linienschiffs „Elsaß“ (1907-09)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1913-01-01",
+      "end": "1917-01-09"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "艦隊司令與斯卡格拉克海戰",
+      "en": "Fleet command and the Battle of Jutland (Skagerrak)"
+     },
+     "body": {
+      "zh-Hant": "舍爾自1913年起任第2、後任第3戰隊司令。一戰爆發後，他被視為唯一能把公海艦隊帶出北海戰略困境的司令官，1916年1月接替重病的艦隊司令波爾。1916年5月31日他率艦隊突入斯卡格拉克海峽，與英國主力艦隊遭遇，這場斯卡格拉克（日德蘭）海戰雙方損失慘重；他此後力主無限制潛艇戰，1917年1月9日該戰爭方式正式宣布。",
+      "en": "From 1913 Scheer was chief of the II and later the III Squadron. After the outbreak of the First World War he was regarded as the only commanding admiral able to lead the High Seas Fleet out of its strategic dead end in the North Sea, and in January 1916 he succeeded the gravely ill fleet chief Hugo von Pohl. The thrust into the Skagerrak on 31 May 1916 brought the main forces of both fleets together; the battle ended with heavy losses on both sides. He then pressed for unrestricted submarine warfare, proclaimed on 9 January 1917."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "seit 1913 als Chef des II., später des III. Geschwaders",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "galt er bald als der einzige kommandierende Admiral, der geeignet schien,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "die Hochseeflotte aus der strategischen Sackgasse in der Nordsee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Im Jan. 1916 wurde er zum Nachfolger des schwer erkrankten Flottenchefs Admiral",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "dem Vorstoß in den Skagerrak am 31.5.1916",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Die Schlacht endete mit schweren Verlusten auf beiden Seiten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "drängte er daher auf einen uneingeschränkten U-Boot-Krieg,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "der am 9.1.1917 proklamiert wurde",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-08-01",
+      "end": "1928-11-26"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "海戰指導部與戰後",
+      "en": "Naval War Command and later years"
+     },
+     "body": {
+      "zh-Hant": "1918年8月，舍爾促成設立海戰指導部並任其首長。同年10月他計畫最後一次出擊，但基爾與威廉港水兵的叛變使計畫落空。1918年12月17日他離開海軍。1920年代他以回憶錄與演講為自己的立場辯護，並呼籲重建強大艦隊，1928年11月26日在一次演講旅行途中於馬克特雷德維茨去世。",
+      "en": "In August 1918 Scheer secured the creation of a Naval War Command (Seekriegsleitung), at whose head he stood. In October 1918 he planned a last fleet sortie, which the mutinies of the sailors at Kiel and Wilhelmshaven frustrated. He left the navy on 17 December 1918. In the 1920s he tried through memoirs and lectures to justify his stance and to promote the rebuilding of a strong fleet, and he died on 26 November 1928 at Marktredwitz while on one of these lecture tours."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Aug. 1918 die Bildung einer Seekriegsleitung durch, an deren Spitze er stand.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Okt. 1918 einen letzten Flottenvorstoß",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Die Meuterei der Matrosen in Kiel und Wilhelmshaven vereitelte diesen Plan.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Am 17.12.1918 schied S. aus der Marine aus.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Mit seinen Erinnerungsbänden und in Vorträgen versuchte er gleichwohl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "in den 1920er Jahren, seine Haltung zu rechtfertigen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "für den Wiederaufbau einer starken Flotte zu werben;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "(auf Reisen) 26.11.1928 Marktredwitz (Oberfranken)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "scheer-elsass",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國海軍（戰艦「埃爾薩斯號」）",
+      "en": "Imperial German Navy (battleship Elsass)"
+     },
+     "title": {
+      "orig": "Kommandant des Linienschiffs „Elsaß“",
+      "zh-Hant": "戰艦「埃爾薩斯號」艦長",
+      "en": "Commanding officer, battleship Elsass"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1907-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Als Kommandant des Linienschiffs „Elsaß“ (1907-09)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "艦長，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "scheer-geschwader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國海軍（第2、第3戰隊）",
+      "en": "Imperial German Navy (II and III Squadron)"
+     },
+     "title": {
+      "orig": "Chef des II., später des III. Geschwaders",
+      "zh-Hant": "第2、後第3戰隊司令",
+      "en": "Chief of the II and later the III Squadron"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1913-01-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "seit 1913 als Chef des II., später des III. Geschwaders",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Im Jan. 1916 wurde er zum Nachfolger des schwer erkrankten Flottenchefs Admiral",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰隊級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "scheer-hochseeflotte",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國海軍公海艦隊",
+      "en": "High Seas Fleet, Imperial German Navy"
+     },
+     "title": {
+      "orig": "Flottenchef",
+      "zh-Hant": "公海艦隊司令（艦隊總司令）",
+      "en": "Chief of the High Seas Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-01-01",
+      "end": "1918-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Im Jan. 1916 wurde er zum Nachfolger des schwer erkrankten Flottenchefs Admiral",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Aug. 1918 die Bildung einer Seekriegsleitung durch, an deren Spitze er stand.",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "艦隊司令（戰區級）指揮，有斯卡格拉克海戰連結但未建戰役連結；職位等級未明寫為國家級最高軍職；政權對應待查證（regimeId NULL）；迄日據下一職務起日推得",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "scheer-seekriegsleitung",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國海軍海戰指導部",
+      "en": "Naval War Command (Seekriegsleitung), Imperial German Navy"
+     },
+     "title": {
+      "orig": "Seekriegsleitung（an deren Spitze）",
+      "zh-Hant": "海戰指導部首長",
+      "en": "Head of the Naval War Command"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-08-01",
+      "end": "1918-12-17"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Aug. 1918 die Bildung einer Seekriegsleitung durch, an deren Spitze er stand.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-scheer",
+       "locator": "NDB Biographie",
+       "quote": "Am 17.12.1918 schied S. aus der Marine aus.",
+       "quoteLang": "de",
+       "evidenceNote": "來源只寫離開海軍日；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "海戰指導部首長，來源未寫其為海軍最高軍職（職位等級未明寫）；政權對應待查證（regimeId NULL）；迄日為推論",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime",
+      "dates"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:scheer-hochseeflotte",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 未寫卸任公海艦隊司令的日期，本檔迄日取 NDB 所寫設立海戰指導部的1918年8月（推論）。已查：NDB（Michael Epkenhans）、LeMO（無此人條目，404）、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Reinhard Scheer GND",
+     "url": "https://lobid.org/gnd/search?q=Reinhard+Scheer&format=json",
+     "result": "found_A",
+     "note": "GND 117184888，1863-09-30／1928-11-26"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 22）",
+     "url": "https://www.deutsche-biographie.de/pnd117184888.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Michael Epkenhans，2005）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Reinhard Scheer",
+     "url": "https://www.dhm.de/lemo/biografie/reinhard-scheer",
+     "result": "no_result",
+     "note": "404，LeMO 無此人條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Scheer 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/117184888.json",
+     "result": "found_A",
+     "note": "確認生卒"
+    }
+   ]
+  },
+  {
+   "key": "hermanngoring",
+   "bioId": null,
+   "name": "Hermann Göring",
+   "nameZh": "赫尔曼·戈林",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1893-01-12",
+      "end": "1923-11-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與一戰飛行員、加入納粹黨",
+      "en": "Origins, First World War pilot and the Nazi party"
+     },
+     "body": {
+      "zh-Hant": "赫爾曼·戈林1893年1月12日生於上巴伐利亞的羅森海姆。1915年初他轉入飛行部隊，1917年春接掌第27戰鬥機中隊，1918年7月接任著名的里希特霍芬聯隊指揮，戰爭結束時以22次擊落紀錄成為功勳勳章得主。1922年11月他在慕尼黑結識希特勒並加入納粹黨，希特勒隨即將籌建中的衝鋒隊交給他；1923年11月9日啤酒館政變中他身受重傷。",
+      "en": "Hermann Göring was born on 12 January 1893 at Rosenheim in Upper Bavaria. At the beginning of 1915 he was taken into the air service; in spring 1917 he took over Jagdstaffel 27, and in July 1918 he was given command of the famous Richthofen wing, and by the end of the war he was a Pour le Mérite holder with 22 victories. In November 1922 he met Hitler at a rally in Munich and joined the NSDAP; Hitler at once gave him the leadership of the SA then being built up. In the putsch of 9 November 1923 he was severely wounded."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "12.1.1893",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Rosenheim (Oberbayern),",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Anfang 1915 wurde er in die Fliegertruppe übernommen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "übernahm er im Frühjahr 1917 die Jagdstaffel 27.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Im Juli 1918 wurde ihm das Kommando des berühmten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Richthofen-Geschwaders übertragen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "mit 22 Abschüssen zu den bekanntesten deutschen Jagdfliegern.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Im November 1922 lernte er Adolf Hitler bei einer Kundgebung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "auf dem Münchener Königsplatz kennen und schloß sich der NSDAP an.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Hitler übertrug G. sofort die Führung seiner im Aufbau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "befindlichen Sturmabteilung (SA)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Bei dem Putsch am 9.11.1923 wurde G. schwer verwundet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1928-05-20",
+      "end": "1935-03-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "國會、內閣與空軍部",
+      "en": "Reichstag, cabinet and the Air Ministry"
+     },
+     "body": {
+      "zh-Hant": "1928年5月20日，戈林代表納粹黨進入國會，1932年8月30日當選國會議長。1933年1月30日他成為希特勒政府成員，並藉普魯士內政部掌控警察；同年4月任普魯士總理（來源對日期寫法為10或11日），5月5日任航空部長。1935年3月他接掌新成立的空軍總司令職務。",
+      "en": "On 20 May 1928 Göring entered the Reichstag for the NSDAP and on 30 August 1932 he was elected President of the Reichstag. On 30 January 1933 he became a member of the Reich government and, with the Prussian Interior Ministry, took charge of the police. In April 1933 he became Prussian Minister-President (the sources give the 10th or 11th), and on 5 May 1933 Reich Minister of Aviation. In March 1935 he took over the supreme command of the newly founded Luftwaffe."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 20.5.1928 kam er für die NSDAP in den Reichstag",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 30.8.1932 wurde G. zum Präsidenten des Reichstages gewählt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 30.1.1933 wurde G. Mitglied der Reichsregierung.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "übernahm er mit dem preußischen Innenministerium die Leitung der Polizei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 11. April 1933 wurde G. zum Preußischen Ministerpräsidenten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "10. April: Ernennung zum Preußischen Ministerpräsidenten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "am 5. Mai 1933 zum Reichsminister der Luftfahrt ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Im März 1935 übernahm er als General der Flieger den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "über die neugegründete Luftwaffe.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1936-10-18",
+      "end": "1946-10-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "四年計畫、不列顛空戰與審判",
+      "en": "Four-Year Plan, the Battle of Britain and trial"
+     },
+     "body": {
+      "zh-Hant": "1936年10月18日戈林被任命為四年計畫全權代表。1940年7月19日他獲授帝國元帥軍階，但同年夏天空軍輸掉不列顛空戰，其地位受到動搖；1942至1943年空軍也未能補給被圍於史達林格勒的部隊。1945年4月23日他請求接掌國家事務，希特勒隨即下令免去他一切職務。1946年10月1日紐倫堡法庭判他死刑，10月15日他在行刑前服毒自殺。",
+      "en": "On 18 October 1936 Göring was appointed Reich Plenipotentiary for the Four-Year Plan. On 19 July 1940 he received the rank of Reichsmarschall, but in the summer of 1940 the Luftwaffe lost the Battle of Britain and his standing was shaken; in 1942–43 the Luftwaffe also failed to supply the troops encircled at Stalingrad. On 23 April 1945 he asked to take over the affairs of state, and Hitler had him removed from all offices. On 1 October 1946 the Nuremberg tribunal sentenced him to death and on 15 October he took poison before the execution."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "18. Oktober: Ernennung zum Reichsbeauftragten für den",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "19. Juli: Auf dem Höhepunkt seiner militärischen Erfolge erhält Göring",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "den für ihn geschaffenen höchsten militärischen Dienstgrad",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "die Luftwaffe nach den Erfolgen im Polen- und Frankreichfeldzug im Sommer 1940",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "die „Schlacht um England“ verlor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "Görings Luftwaffe scheitert bei dem Versuch, die bei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "Stalingrad eingeschlossenen Truppen zu unterstützen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "23. April: Von Berchtesgaden aus erbittet er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "seine Enthebung aus allen Ämtern und seinen Parteiausschluss.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 1.10.1946 wurde er in allen Punkten der Anklage für schuldig befunden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "15. Oktober: Wenige Stunden vor der Urteilsvollstreckung begeht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "Hermann Göring durch die Einnahme von Zyankali Selbstmord",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "goering-reichstagspraesident",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "Deutscher Reichstag",
+      "en": "German Reichstag"
+     },
+     "title": {
+      "orig": "Präsident des Reichstages",
+      "zh-Hant": "國會議長",
+      "en": "President of the Reichstag"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1932-08-30",
+      "end": "1945-04-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 30.8.1932 wurde G. zum Präsidenten des Reichstages gewählt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "23. April: Von Berchtesgaden aus erbittet er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "seine Enthebung aus allen Ämtern und seinen Parteiausschluss.",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 寫1945-04-23希特勒下令免除其一切職務；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "goering-reichsminister-ohne-geschaeftsbereich",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國家政府（希特勒內閣）",
+      "en": "Reich government (Hitler cabinet)"
+     },
+     "title": {
+      "orig": "Mitglied der Reichsregierung (Reichsminister ohne Geschäftsbereich)",
+      "zh-Hant": "國務部長（無專管部門）",
+      "en": "Reich Minister without portfolio"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1933-01-30",
+      "end": "1933-05-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 30.1.1933 wurde G. Mitglied der Reichsregierung.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "am 30. Januar wird Göring Reichsminister ohne Geschäftsbereich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "am 5. Mai 1933 zum Reichsminister der Luftfahrt ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "無專管部門之國務部長，非外交、國防、財政、內政四部正職（R5）"
+    },
+    {
+     "key": "goering-preussischer-ministerpraesident",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "普魯士邦政府",
+      "en": "Prussian state government"
+     },
+     "title": {
+      "orig": "Preußischer Ministerpräsident",
+      "zh-Hant": "普魯士總理",
+      "en": "Minister-President of Prussia"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1933-04-11",
+      "end": "1945-04-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 11. April 1933 wurde G. zum Preußischen Ministerpräsidenten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "23. April: Von Berchtesgaden aus erbittet er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "seine Enthebung aus allen Ämtern und seinen Parteiausschluss.",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 寫1945-04-23希特勒下令免除其一切職務；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "普魯士邦（轄區內地方）政府首長，非國家級元首／首腦（R5）"
+    },
+    {
+     "key": "goering-reichsluftfahrtminister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國航空部",
+      "en": "Reich Aviation Ministry"
+     },
+     "title": {
+      "orig": "Reichsminister der Luftfahrt",
+      "zh-Hant": "航空部長",
+      "en": "Reich Minister of Aviation"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1933-05-05",
+      "end": "1945-04-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "am 5. Mai 1933 zum Reichsminister der Luftfahrt ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "23. April: Von Berchtesgaden aus erbittet er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "seine Enthebung aus allen Ämtern und seinen Parteiausschluss.",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 寫1945-04-23希特勒下令免除其一切職務；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "單獨空軍部不屬外交、國防、財政、內政四部（R5）"
+    },
+    {
+     "key": "goering-oberbefehlshaber-luftwaffe",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍",
+      "en": "German Air Force (Luftwaffe)"
+     },
+     "title": {
+      "orig": "Oberbefehl über die neugegründete Luftwaffe",
+      "zh-Hant": "空軍總司令",
+      "en": "Commander-in-chief of the Luftwaffe"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1935-03-01",
+      "end": "1945-04-23"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Im März 1935 übernahm er als General der Flieger den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "über die neugegründete Luftwaffe.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "23. April: Von Berchtesgaden aus erbittet er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "seine Enthebung aus allen Ämtern und seinen Parteiausschluss.",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 寫1945-04-23希特勒下令免除其一切職務；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種總司令，職稱明寫（Oberbefehl über die Luftwaffe）；政權對應待查證（regimeId NULL）；缺任內有日期＋地點之戰役連結；迄日為推論",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "goering-vierjahresplan",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國四年計畫機構",
+      "en": "Four-Year Plan authority"
+     },
+     "title": {
+      "orig": "Reichsbeauftragter für den Vierjahresplan",
+      "zh-Hant": "四年計畫全權代表",
+      "en": "Reich Plenipotentiary for the Four-Year Plan"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1936-10-18",
+      "end": "1945-04-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "18. Oktober: Ernennung zum Reichsbeauftragten für den",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "23. April: Von Berchtesgaden aus erbittet er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "seine Enthebung aus allen Ämtern und seinen Parteiausschluss.",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 寫1945-04-23希特勒下令免除其一切職務；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "goering-reichstag-nsdap",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國會（納粹黨籍）",
+      "en": "German Reichstag (NSDAP)"
+     },
+     "title": {
+      "orig": "Mitglied des Reichstags für die NSDAP",
+      "zh-Hant": "國會議員（納粹黨）",
+      "en": "Member of the Reichstag for the NSDAP"
+     },
+     "originalPositionKind": "legislator",
+     "role_kind": "de_facto_leader",
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）",
+     "period": {
+      "start": "1928-05-20",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-goering",
+       "locator": "NDB Biographie",
+       "quote": "Am 20.5.1928 kam er für die NSDAP in den Reichstag",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-goering",
+       "locator": "LeMO Biografie",
+       "quote": "1928-1945 Mitglied des Reichstags für die NSDAP.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:goering-preussischer-ministerpraesident",
+     "gapKind": "conflict",
+     "note": "普魯士總理任命日兩份來源不一：NDB 寫1933-04-11，LeMO 寫1933-04-10；本檔取 NDB 日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:goering-oberbefehlshaber-luftwaffe",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 與 LeMO 均未直接寫卸任空軍總司令日，本檔迄日取 LeMO 所寫1945-04-23免職日（推論）。已查：NDB（Gerhard Stoltenberg）、LeMO（Susanne Eckelmann）、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Hermann Göring GND",
+     "url": "https://lobid.org/gnd/search?q=Hermann+G%C3%B6ring&format=json",
+     "result": "found_A",
+     "note": "GND 118540157，1893-01-12／1946-10-15"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 6）",
+     "url": "https://www.deutsche-biographie.de/pnd118540157.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Gerhard Stoltenberg，1964）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Hermann Göring",
+     "url": "https://www.dhm.de/lemo/biografie/hermann-goering",
+     "result": "found_B",
+     "note": "curl 抓取（Susanne Eckelmann，Stand 5. Juni 2026）"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Göring 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/118540157.json",
+     "result": "found_A",
+     "note": "確認生卒"
+    }
+   ]
+  },
+  {
+   "key": "alfredjodl",
+   "bioId": null,
+   "name": "Alfred Jodl",
+   "nameZh": "阿爾弗雷德·約德爾",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-05-10",
+      "end": "1935-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "阿爾弗雷德·約德爾1890年5月10日生於維爾茨堡，13歲進入巴伐利亞軍校，1910年成為巴伐利亞第4野戰炮兵團的少尉候補生。一戰期間他至1916年12月在西線任炮兵連軍官與連長，兩度負傷。1919年10月1日他正式編入國防軍，1935年7月1日接掌隸屬國防部長的新設「國土防衛」處。",
+      "en": "Alfred Jodl was born on 10 May 1890 at Würzburg and entered the Bavarian cadet corps at 13; in 1910 he was assigned as an ensign to the Bavarian 4th Field Artillery Regiment. In the First World War he served on the Western Front as battery officer and battery commander until December 1916 and was wounded twice. On 1 October 1919 he was finally taken into the Reichswehr, and on 1 July 1935 he took over the new department \"Landesverteidigung\" under the Reich War Minister."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "10.5.1890 Würzburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "trat J. mit 13 Jahren in das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "1910 wurde er an das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "bayer. 4. Feldartillerie-Regiment als Fähnrich überwiesen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "machte J. bis Dez. 1916 als Batterieoffizier und Batterieführer",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "wurde in dieser Zeit zweimal verwundet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "am 1.10.1919 endgültig in die Reichswehr übernommen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "am 1.7.1935 die Leitung der neuen,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "dem Reichskriegsminister unterstellten Abteilung „Landesverteidigung“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1944-02-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國防軍統帥部作戰指導",
+      "en": "Head of the Wehrmacht operations staff"
+     },
+     "body": {
+      "zh-Hant": "1939年大戰爆發前不久，約德爾出任國防軍最高統帥部（OKW）的國防軍指導局長，1940年該局改稱國防軍指導參謀部，他成為希特勒在整體戰爭指導上最親近的顧問。1940年7月19日他越級晉升炮兵上將，1944年2月1日晉升大將。自1942年起，他同時負責自北角到非洲對西方盟軍的陸上戰役行動。",
+      "en": "Shortly before the outbreak of the Second World War in 1939 Jodl took over the Wehrmacht Operations Office (renamed Wehrmachtführungsstab in 1940) at the OKW, and became Hitler's closest adviser on all questions of overall war direction. On 19 July 1940 he was promoted General of Artillery, skipping the rank of lieutenant general, and on 1 February 1944 Generaloberst. From 1942 he also directed the land operations against the Western Allies from the North Cape to Africa."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "übernahm J. die Leitung des „Wehrmachtführungsamtes“,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "1940 in „Wehrmachtführungsstab“ umbenannt, im OKW.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-jodl",
+       "locator": "LeMO Biografie",
+       "quote": "Chef des Wehrmachtführungsamts (ab 1940: Wehrmachtführungsstab)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "In dieser Stellung wurde er engster Berater",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "in allen Fragen der Gesamtkriegführung.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "zum General d. Art. am 19.7.1940",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "und zum Generaloberst am 1.2.1944",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Ab 1942 leitete er zugleich die Operationen gegen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "die westlichen Alliierten zu Lande",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "vom Nordkap bis nach Afrika.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-05-07",
+      "end": "1946-10-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "投降、審判與處決",
+      "en": "Surrender, trial and execution"
+     },
+     "body": {
+      "zh-Hant": "1945年5月7日，約德爾在蘭斯代表鄧尼茨簽署德軍無條件投降；5月23日他在弗倫斯堡被俘。紐倫堡國際軍事法庭以破壞和平罪、戰爭罪與危害人類罪判他有罪，1946年10月16日他被絞死。",
+      "en": "On 7 May 1945 Jodl signed the unconditional surrender of the Wehrmacht at Reims as Dönitz's plenipotentiary, and on 23 May 1945 he went into British captivity at Flensburg. The International Military Tribunal at Nuremberg found him guilty of crimes against peace, war crimes and crimes against humanity, and he was hanged on 16 October 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-jodl",
+       "locator": "LeMO Biografie",
+       "quote": "7. Mai: Jodl unterzeichnet in Reims",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-jodl",
+       "locator": "LeMO Biografie",
+       "quote": "die bedingungslose Kapitulation der Wehrmacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Am 23.5.1945 trat J. in Flensburg den Weg in die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "britische Kriegsgefangenschaft an",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Das Gericht fand ihn des Verbrechens gegen den Frieden,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "des Kriegsverbrechens und des Verbrechens gegen die Menschlichkeit schuldig.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Am 16.10.1946 wurde J. durch den Strang hingerichtet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "jodl-landesverteidigung",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防部（國土防衛處）",
+      "en": "Reich War Ministry, Department of National Defence (Landesverteidigung)"
+     },
+     "title": {
+      "orig": "Leitung der Abteilung „Landesverteidigung“",
+      "zh-Hant": "國土防衛處處長",
+      "en": "Head of the Landesverteidigung department"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1935-07-01",
+      "end": "1938-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "am 1.7.1935 die Leitung der neuen,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "dem Reichskriegsminister unterstellten Abteilung „Landesverteidigung“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Seine Verwendung als Artilleriekommandeur 44 in Linz/Donau (1938/39)",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "參謀處處長，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "jodl-artilleriekommandeur-44",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍（第44炮兵指揮部，林茨）",
+      "en": "Artillery Command 44, Linz, German Army"
+     },
+     "title": {
+      "orig": "Artilleriekommandeur 44 in Linz/Donau",
+      "zh-Hant": "第44炮兵指揮官（林茨）",
+      "en": "Artillery Commander 44, Linz"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Seine Verwendung als Artilleriekommandeur 44 in Linz/Donau (1938/39)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "炮兵指揮官，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "jodl-wehrmachtfuehrungsamt",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍最高統帥部（OKW）",
+      "en": "Oberkommando der Wehrmacht (OKW)"
+     },
+     "title": {
+      "orig": "Chef des Wehrmachtführungsamts (ab 1940: Wehrmachtführungsstab)",
+      "zh-Hant": "國防軍指導局長（1940年起國防軍指導參謀部長）",
+      "en": "Chief of the Wehrmacht Operations Office (from 1940 Wehrmachtführungsstab)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1945-05-23"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-jodl",
+       "locator": "LeMO Biografie",
+       "quote": "Chef des Wehrmachtführungsamts (ab 1940: Wehrmachtführungsstab)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jodl",
+       "locator": "NDB Biographie",
+       "quote": "Am 23.5.1945 trat J. in Flensburg den Weg in die",
+       "quoteLang": "de",
+       "evidenceNote": "來源只寫被俘日；任期迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "OKW 國防軍指導參謀部長，來源未寫其為國家級最高軍職（職位等級未明寫）；政權對應待查證（regimeId NULL）；起日只有年精度、迄日為推論",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime",
+      "dates"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：NDB 與 LeMO 均只寫約德爾在 OKW 的整體作戰指導與1945年蘭斯投降，未寫其親自指揮的具名戰役；正文只寫來源明寫的作戰指導範圍。已查：NDB（Friedrich-Christian Stahl）、LeMO（Manfred Wichmann）、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:jodl-wehrmachtfuehrungsamt",
+     "gapKind": "not_found",
+     "note": "待查證：缺精確起日；NDB 只寫「大戰爆發前數日」、LeMO 只寫1939年，故起日取1939-01-01（年精度）。已查：NDB、LeMO、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Alfred Jodl GND",
+     "url": "https://lobid.org/gnd/search?q=Alfred+Jodl&format=json",
+     "result": "found_A",
+     "note": "GND 118557602，1890-05-10／1946-10-16"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 10）",
+     "url": "https://www.deutsche-biographie.de/pnd118557602.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Friedrich-Christian Stahl，1974）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Alfred Jodl",
+     "url": "https://www.dhm.de/lemo/biografie/alfred-jodl",
+     "result": "found_B",
+     "note": "curl 抓取（Manfred Wichmann）"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Jodl 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/118557602.json",
+     "result": "found_A",
+     "note": "確認生卒"
+    }
+   ]
+  },
+  {
+   "key": "alfredvontirpitz",
+   "bioId": null,
+   "name": "Alfred von Tirpitz",
+   "nameZh": "阿爾弗雷德·馮·鐵必制",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1849-03-19",
+      "end": "1897-06-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與海軍早年",
+      "en": "Origins and early naval career"
+     },
+     "body": {
+      "zh-Hant": "阿爾弗雷德·馮·鐵必制1849年3月19日生於屈斯特林，1865年加入普魯士海軍，1879至1886年在海軍部負責魚雷事務，1888年以38歲成為最年輕的海軍上校。1892年他任海軍最高司令部參謀長，1896年5月被調為駐遠東的巡洋艦戰隊司令，1897年6月回國接任帝國海軍部國務秘書。",
+      "en": "Alfred von Tirpitz was born on 19 March 1849 in Küstrin and joined the Prussian navy in 1865. In 1879–86 he was the Admiralty's referent for torpedo matters, and in 1888, at 38, he was the youngest Kapitän zur See. From 1892 he was chief of staff at the High Command of the navy; in early May 1896 he was sent to the Far East as chief of the Cruiser Squadron, and in June 1897 he returned to succeed as State Secretary of the Reich Navy Office."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "19. März: Alfred Tirpitz wird in Küstrin als Sohn einer",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "1865 Tirpitz tritt in die preußische Kriegsmarine ein,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "1879–86 Dezernent f. Torpedoangelegenheiten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "1888 war er 38jährig der jüngste Kapitän zur See.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "seit 1892 Stabschef beim Oberkommando",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "Anfang Mai 1896 als Chef des Kreuzergeschwaders in den Fernen Osten versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "um im Juni 1897 die Nachfolge des Vizeadmirals",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "als Staatssekretär des Reichsmarineamts anzutreten;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1897-06-01",
+      "end": "1914-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "海軍部與艦隊擴建",
+      "en": "Reich Navy Office and the fleet programme"
+     },
+     "body": {
+      "zh-Hant": "鐵必制自1897年6月任帝國海軍部國務秘書，1898年成為普魯士國務部長。他推動1898、1900、1908與1912年的艦隊法案，以大型戰艦為核心擴建艦隊；1911年晉升海軍元帥。1905、1906年英國無畏艦出現後，他跟進造艦並於1908年把每年建造的主力艦由三艘增為四艘，引發公開的海軍軍備競賽。",
+      "en": "From June 1897 Tirpitz was State Secretary of the Reich Navy Office, and in 1898 he became a Prussian state minister. He drove through the fleet laws of 1898, 1900, 1908 and 1912, building up a fleet around capital ships, and was promoted Grand Admiral in 1911. His attempt to follow the Royal Navy's change to the Dreadnought type in 1905/06 and, in 1908, to build four instead of three capital ships a year triggered an open arms race."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "um im Juni 1897 die Nachfolge des Vizeadmirals",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "als Staatssekretär des Reichsmarineamts anzutreten;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "1898 wurde er preuß. Staatsminister.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "1898 Tirpitz wird Preußischer Staatsminister.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "in den Flottengesetzen und -novellen von 1898, 1900, 1906, 1908 und 1912",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "1911 Beförderung zum Großadmiral.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "1908 mit dem Bau von vier anstelle von drei Großkampfschiffen pro Jahr",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "lösten ein offenes Wettrüsten aus.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1930-03-06"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰時下台與戰後政治",
+      "en": "Dismissal in the war and later politics"
+     },
+     "body": {
+      "zh-Hant": "一戰爆發後，英國皇家海軍採取遠距封鎖，公海艦隊無力打破，鐵必制的政策失敗已顯而易見。他主張無限制潛艇戰，帝國首相與皇帝出於對美國參戰的顧慮而反對；1916年3月他被解除所有職務（NDB記為16日，LeMO記為15日辭職）。1924至1928年他以德意志民族人民黨代表身分任國會議員，1930年3月6日在埃本豪森去世。",
+      "en": "After the outbreak of war in 1914 the failure of Tirpitz's policy was obvious: the Royal Navy imposed a distant blockade which the High Seas Fleet could not break. He demanded unrestricted submarine warfare, which the Reich Chancellor and the Kaiser rejected for fear of American entry; in March 1916 he was removed from all offices (NDB gives the 16th, LeMO records a resignation on the 15th). In 1924–28 he sat in the Reichstag for the German National People's Party (DNVP), and he died on 6 March 1930 at Ebenhausen."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "verhängte die Royal Navy eine Fernblockade,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "die die Hochseeflotte nicht brechen konnte.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "Nach Kriegsausbruch 1914 war das Scheitern von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "Seine Forderung nach dem uneingeschränkten U-Bootkrieg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "trifft auf die ablehnende Haltung Wilhelms II. und des Reichskanzlers",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "Beide fürchten den Kriegseintritt der USA.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "15. März: Rücktritt von Tirpitz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "am 16. 3. wurde er in Ungnaden aus allen Ämtern entlassen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "als Vertreter der Deutschnationalen Volkspartei (DNVP) Mitglied des Reichstags.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "6. März: Alfred Tirpitz stirbt in Ebenhausen bei München.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tirpitz-kreuzergeschwader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國海軍（東亞巡洋艦戰隊）",
+      "en": "Imperial German Navy (East Asia Cruiser Squadron)"
+     },
+     "title": {
+      "orig": "Chef des Kreuzergeschwaders",
+      "zh-Hant": "東亞巡洋艦戰隊司令",
+      "en": "Chief of the Cruiser Squadron (East Asia)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1896-05-01",
+      "end": "1897-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "Anfang Mai 1896 als Chef des Kreuzergeschwaders in den Fernen Osten versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "um im Juni 1897 die Nachfolge des Vizeadmirals",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰隊級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "tirpitz-reichsmarineamt",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國海軍部（Reichsmarineamt）",
+      "en": "Reich Navy Office, German Empire"
+     },
+     "title": {
+      "orig": "Staatssekretär des Reichsmarineamts",
+      "zh-Hant": "帝國海軍部國務秘書",
+      "en": "State Secretary of the Reich Navy Office"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1897-06-01",
+      "end": "1916-03-16"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "um im Juni 1897 die Nachfolge des Vizeadmirals",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "als Staatssekretär des Reichsmarineamts anzutreten;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "am 16. 3. wurde er in Ungnaden aus allen Ämtern entlassen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "海軍部不屬外交、國防（陸軍／戰爭）、財政、內政四部（單獨海軍部不算）（R5）"
+    },
+    {
+     "key": "tirpitz-staatsminister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "普魯士邦政府",
+      "en": "Prussian state government"
+     },
+     "title": {
+      "orig": "Preußischer Staatsminister",
+      "zh-Hant": "普魯士國務部長",
+      "en": "Prussian State Minister"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1898-01-01",
+      "end": "1916-03-16"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "1898 Tirpitz wird Preußischer Staatsminister.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "am 16. 3. wurde er in Ungnaden aus allen Ämtern entlassen.",
+       "quoteLang": "de",
+       "evidenceNote": "來源稱免除所有職務；迄日據此推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "普魯士邦（轄區內地方）部長，非國家級四部閣員（R5）"
+    },
+    {
+     "key": "tirpitz-herrenhaus",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "普魯士貴族院",
+      "en": "Prussian House of Lords (Herrenhaus)"
+     },
+     "title": {
+      "orig": "Mitglied des preuß. Herrenhauses",
+      "zh-Hant": "普魯士貴族院議員",
+      "en": "Member of the Prussian Herrenhaus"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1908-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-tirpitz",
+       "locator": "NDB Biographie",
+       "quote": "der 1908–18 Mitglied des preuß. Herrenhauses war",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "tirpitz-reichstag-dnvp",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國會（德意志民族人民黨籍）",
+      "en": "German Reichstag (DNVP)"
+     },
+     "title": {
+      "orig": "Mitglied des Reichstags (Deutschnationale Volkspartei)",
+      "zh-Hant": "國會議員（德意志民族人民黨）",
+      "en": "Member of the Reichstag for the DNVP"
+     },
+     "originalPositionKind": "legislator",
+     "role_kind": "de_facto_leader",
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1929-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "1924-1928 Tirpitz ist als Vertreter der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-tirpitz",
+       "locator": "LeMO Biografie",
+       "quote": "als Vertreter der Deutschnationalen Volkspartei (DNVP) Mitglied des Reichstags.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:tirpitz-reichsmarineamt",
+     "gapKind": "conflict",
+     "note": "海軍部國務秘書辭任日兩份來源不一：NDB 寫1916-03-16被免職，LeMO 寫1916-03-15辭職；本檔迄日取 NDB。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：NDB 與 LeMO 均未寫鐵必制本人指揮的具名海戰；他的軍事貢獻在艦隊政策與擴建，一戰期間未領艦隊作戰。已查：NDB（Michael Epkenhans）、LeMO（Lutz Walther）、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Alfred von Tirpitz GND",
+     "url": "https://lobid.org/gnd/search?q=Alfred+von+Tirpitz&format=json",
+     "result": "found_A",
+     "note": "GND 118622870，1849-03-19／1930-03-06"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 26）",
+     "url": "https://www.deutsche-biographie.de/pnd118622870.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Michael Epkenhans，2016）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Alfred von Tirpitz",
+     "url": "https://www.dhm.de/lemo/biografie/alfred-von-tirpitz",
+     "result": "found_B",
+     "note": "curl 抓取（Lutz Walther）"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Tirpitz 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/118622870.json",
+     "result": "found_A",
+     "note": "確認生卒"
+    }
+   ]
+  }
+ ]
+}

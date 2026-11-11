@@ -203,4 +203,77 @@ public sealed class PersonDetailTests(PostGisFixture fx)
         await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/leader-bios/{oldId}/field-citations",
             new { field = "name", sourceId = src, locator = "p", accessedOn = "2026-11-07" }), HttpStatusCode.Conflict);
     }
+
+    [Fact]
+    public async Task Revision_carries_citation_quote_and_b1_fields_verbatim_and_keeps_nulls()
+    {
+        var k = new ApiTestKit(fx);
+        var src = await k.Source("official_record");
+        var oldId = await k.Id(await k.W.PostAsJsonAsync("/api/v1/leader-bios", new
+        {
+            name = "Revise Quote", isTest = true,
+            citations = new object[]
+            {
+                new { field = "birthDate", sourceId = src, locator = "§1", accessedOn = "2026-11-10" },
+                new { field = "name", sourceId = src, locator = "title", accessedOn = "2026-11-10" },
+            },
+        }));
+
+        // quote／B1 欄由批次腳本寫入（POST 不收）；測試容器內直接設值，name 那筆保持 NULL
+        const string quote = "Adolf Hitler (* 20. April 1889 in Braunau am Inn; † 30. April 1945 in Berlin)";
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand(
+                "UPDATE leader_bio_field_citations SET quote = @q, quote_lang = 'de', grade = 'A', date_precision = 'day', policy_version = 'test-policy-v1' "
+                + "WHERE bio_id = @b AND field = 'birthDate'", c);
+            cmd.Parameters.AddWithValue("q", quote);
+            cmd.Parameters.AddWithValue("b", oldId);
+            Assert.Equal(1, await cmd.ExecuteNonQueryAsync());
+        }
+
+        var body = await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/leader-bios/{oldId}/revisions", new
+        {
+            reason = "撤回重寫保留引文",
+            bio = new { name = "Revise Quote", isTest = true },
+        }), HttpStatusCode.Created);
+        var newId = body.GetProperty("data").GetProperty("id").GetGuid();
+        Assert.NotEqual(oldId, newId);
+
+        // Revise 回應與之後的 GET 都要帶著原引文
+        var fromGet = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/leader-bios/{newId}"), HttpStatusCode.OK)).GetProperty("data");
+        foreach (var d in new[] { body.GetProperty("data"), fromGet })
+        {
+            var cits = d.GetProperty("fieldCitations").EnumerateArray().ToList();
+            Assert.Equal(2, cits.Count);
+            var withQuote = Assert.Single(cits, x => x.GetProperty("field").GetString() == "birthDate");
+            Assert.Equal(quote, withQuote.GetProperty("quote").GetString());
+            Assert.Equal("de", withQuote.GetProperty("quoteLang").GetString());
+            var noQuote = Assert.Single(cits, x => x.GetProperty("field").GetString() == "name");
+            Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("quote").ValueKind); // NULL 仍是 null，不轉空字串
+            Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("quoteLang").ValueKind);
+        }
+
+        // grade／date_precision／policy_version 不在 GET 輸出，直接讀 DB 確認新筆逐字沿用
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand(
+                "SELECT field, quote, quote_lang, grade, date_precision, policy_version FROM leader_bio_field_citations "
+                + "WHERE bio_id = @b AND retracted_at IS NULL ORDER BY field", c);
+            cmd.Parameters.AddWithValue("b", newId);
+            await using var r = await cmd.ExecuteReaderAsync();
+            Assert.True(await r.ReadAsync());
+            Assert.Equal("birthDate", r.GetString(0));
+            Assert.Equal(quote, r.GetString(1));
+            Assert.Equal("de", r.GetString(2));
+            Assert.Equal("A", r.GetString(3));
+            Assert.Equal("day", r.GetString(4));
+            Assert.Equal("test-policy-v1", r.GetString(5));
+            Assert.True(await r.ReadAsync());
+            Assert.Equal("name", r.GetString(0));
+            for (var i = 1; i <= 5; i++) Assert.True(r.IsDBNull(i));
+            Assert.False(await r.ReadAsync());
+        }
+    }
 }

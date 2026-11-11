@@ -322,6 +322,9 @@ public static class LeadersEndpoints
         {
             Id = Guid.CreateVersion7(), BioId = bio.Id, Field = c.Field, SourceId = c.SourceId,
             Locator = c.Locator, EvidenceNote = c.EvidenceNote, AccessedOn = c.AccessedOn,
+            // 引文與 B1 評等欄逐字沿用（NULL 仍為 NULL），避免撤回重寫丟失證據
+            Quote = c.Quote, QuoteLang = c.QuoteLang,
+            Grade = c.Grade, DatePrecision = c.DatePrecision, PolicyVersion = c.PolicyVersion,
         }));
         old.RetractedAt = DateTimeOffset.UtcNow;
         old.RetractionReason = reason;

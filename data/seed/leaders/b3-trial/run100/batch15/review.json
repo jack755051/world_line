@@ -1,0 +1,141 @@
+{
+ "batch": "15",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 2,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 9,
+  "editedSentences": 1,
+  "spotRefetched": 5,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "ch-pilet-golaz-marcel",
+   "bioId": "01a1b524-47a5-73f3-a77e-0b9638c98a34",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 2,
+   "gaps": 4,
+   "searchLogSteps": 7,
+   "changes": [
+    "重抓 HLS 德文條目比對：「ersetzte Pilet-Golaz am 2. März 1940」等引文逐字相符",
+    "第 1 段：引文「Ernest Chuard in den Bundesrat gewählt」改為完整片段「als Nachfolger des Waadtländers Ernest Chuard in den Bundesrat gewählt」，支撐中文「沃州人」子句；英文補 the Vaudois",
+    "第 2 段與 R3 候選：引文缺謂語（ersetzte），改為「ersetzte Pilet-Golaz am 2. März 1940 Giuseppe Motta」並補「an der Spitze des Politischen Departements」",
+    "第 2 段：「引發疑慮」子句原無引文，補「lösten grosse Zweifel über seine Absichten aus」；「Der Vertrauensverlust in der Öffentlichkeit」補謂語改為「…führte im Dezember 1944」（month）",
+    "沃州大議員 1921–1928：HLS 明寫「als freisinniger Grossrat」（以自由派／FDP 身分），依 Tai 12:47 薩拉查裁決由 positions（partyPostAmbiguous）改移 roleCandidates：de_facto_leader、R1、originalPositionKind=legislator",
+    "T14 核對：內政部 1929 年精度 R6（dates）正確；郵政鐵路部 R5 正確；政治部（外交）1940-03-02～1944-12 可證明 ≥90 天、HLS 為 A → R3 正確",
+    "日期、Q3 終點（1928→1929-01-01；1944 年 12 月→1945-01-01 month）正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：來源類型只有 national_dictionary／authority／named_encyclopedia 3 類（other 不計，需 ≥4 類），缺 official／treaty_law／academic",
+    "最低嘗試未達：searchLog 僅 7 步（需 ≥8 次查詢）",
+    "建議下一步：admin.ch 聯邦委員歷任名單（官方，補 1929 內政部起訖月日與 1934／1940 聯邦主席年份）；dodis.ch 瑞士外交文件資料庫人物頁 Pilet-Golaz（學術／官方，補 1944 辭職日）；Altermatt《Die Schweizer Bundesräte》學術專書公開頁"
+   ]
+  },
+  {
+   "key": "al-ismail-qemali",
+   "bioId": "01a1b533-d840-73c4-b9bb-962248bab9a7",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 8,
+   "changes": [
+    "重抓 mhk.gov.al 頁比對：「its Prime Minister was Ismail Qemali」逐字相符",
+    "第 1 段：「吉諾卡斯特、特佩萊納與佩爾梅特」地名子句原引文未涵蓋，補「Gjirokastra, Tepelena and Përmet recognised Ismail Qemal Vlora」",
+    "「headed by Ismail Qemali」核對原文（論文摘要，主語為 Vlora Provisional Government）相符",
+    "總理任期在名單 5442 內，不重建，正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：實際來源類型只有 official／academic／named_encyclopedia（被擋）3 類；authority 與 treaty_law 兩步標「未做」不計",
+    "最低嘗試未達：實際查詢 <8 次，且無阿爾巴尼亞文（原文語言）查詢（需 ≥2 次）",
+    "核心事實缺：生卒年、奧斯曼時期經歷、1914 年 1 月辭職皆無 A／B 來源",
+    "建議下一步：LoC／VIAF 權威檔「Vlora, Ismail Kemal, 1844-1919」；İslâm Ansiklopedisi（TDV）「İsmail Kemal Bey」具名條目；阿爾巴尼亞總理府 kryeministria.al 歷任總理頁；阿爾巴尼亞文查詢「Ismail Qemali kryeministër 1912」「Ismail Qemal Vlora jetëshkrim」"
+   ]
+  },
+  {
+   "key": "hu-simonyi-semadam-sandor",
+   "bioId": "01a1c39b-823c-720d-8128-90f6c9d1d458",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 5,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 8,
+   "changes": [
+    "重抓 MEK 條目比對：引文全部逐字相符",
+    "mel-simonyi：條目無署名，但屬 Magyar Életrajzi Lexikon（國家級傳記辭典），依 batch05 mek-karolyi 前例可用；維持 B（保守），gradeBasis 刪「待審查確認」",
+    "1901 年議員：MÉL 明寫「néppárti programmal lett képviselő」（以人民黨綱領當選），依 Tai 12:47 薩拉查裁決由 positions（partyPostAmbiguous）改移 roleCandidates：de_facto_leader、R1、originalPositionKind=legislator",
+    "暫兼內政／外交部：R5 判定正確（day 精度可證明 35 天 <90）；note 補註起日依同句首相起日推得（推論）",
+    "黨領導人 R1 雙 NULL 照原文不補，正確；段落 period 迄 1933-01-01（1932 為最後事件）正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：來源類型只有 named_encyclopedia／academic／official 3 類（需 ≥4 類），缺 authority",
+    "最低嘗試未達：WebSearch／站內查詢僅 2 次（其餘為抓頁），需 ≥8 次",
+    "建議下一步：OSZK／VIAF 權威檔「Simonyi-Semadam Sándor」；Országgyűlési almanach 1901–1906、1920–1922（ogyk.hu 或 Hungaricana 以外的官方鏡像）補議員任期終點；Magyar Nagylexikon 具名條目；學術期刊（Századok）論 1920 年政府"
+   ]
+  },
+  {
+   "key": "ua-vasylenko-mykola",
+   "bioId": "01a1c437-b449-7e5d-98ce-9e66b463a695",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 5,
+   "changes": [
+    "重抓 EOU Vasylenko 條比對：「but was granted amnesty」等逐字相符",
+    "第 1 段 period 迄點原為 1918-01-01，段內最後事件為 1907 → 改 1908-01-01（year）",
+    "第 1 段：「切爾尼戈夫省」子句原無引文，補「in Esman, Hlukhiv county , Chernihiv gubernia」",
+    "第 2 段：「臨時政府任命」補「by the Provisional Government」；「赫特曼政府教育部長」補 eou-hetman「education , Vasylenko」；「minister of education (until 18 October)」含日期，datePrecision 補 day（段落與職位兩處）；段落 period 迄點依最後事件 18 October 改 1918-10-18（day）",
+    "第 3 段：「獲特赦」補「but was granted amnesty」；「1929 年」原引文無年份，改為「In 1929 he was barred from holding directorial positions within the VUAN」",
+    "conflict gap（赫特曼政府首腦）：兩份 EOU 條目皆已抓、確實矛盾，gapKind=conflict 正確，不建首腦候選",
+    "T14：國民教育部副部長 R5（非四部＋副職）、教育部長 R5 正確；無 R0–R4 漏判"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mc-albert-i",
+   "bioId": "01a1b4b0-6f98-789b-87c8-7f50f9a2ada7",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "重抓 Persée Réveillard 文比對：「en confie la direction à Gaston Moch」逐字相符",
+    "第 1 段：「國際和平研究所」子句原引文截掉受詞，補「l’Institut international de la paix (IIP)」",
+    "treccani-albert、oceano-albert 無署名 → 未評等，只在 gap candidateCitations，正確",
+    "1870 法國海軍上尉 R5（軍銜、時間窗外）正確；在位 1889–1922 在名單內不重建",
+    "raw 目錄另有 univ-albert.txt（未解碼的二進位）、palais-albert.txt（宮廷新聞首頁、無關），均未進 sources，無漏用 A／B 來源"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "以政黨身分取得的席位漏判：研究者把「freisinniger Grossrat」「néppárti programmal lett képviselő」標 partyPostAmbiguous，但來源已明寫黨別，依 Tai 12:47 應進 roleCandidates（R1）",
+  "子句缺引文仍常見（地名、主語修飾、「引發疑慮」「獲特赦」等評語／結果子句），本批補 9 筆引文；另有 3 筆引文截掉謂語或受詞（ersetzte、führte、IIP），已改為完整片段",
+  "含日期的引文漏填 datePrecision（until 18 October）；段落 period 迄點未依段內最後事件（Vasylenko 第 1、2 段）",
+  "薄人物 3 人最低嘗試未達（缺 authority 或 official／treaty_law 類、查詢 <8、無原文語言查詢）；searchLog 中標「未做」的步驟不可計入",
+  "Albert I（預估厚）實查僅 1 段：Britannica Cloudflare 擋、gouv.mc Request Rejected，1908–1922 在位期（1911 憲法、海洋學事業）全在 gap；下一輪可試 Monaco Archives du Palais 官方頁、Persée／OpenEdition 具名論文"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

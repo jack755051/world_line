@@ -1,0 +1,2815 @@
+{
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（T11／T12／T14）直接以對齊格式撰寫，未經 align 轉換：positions 用 positionKind；黨職與以政黨身分取得的席位在 roleCandidates（role_kind=de_facto_leader，t14Rule=R1）；T14 R0–R6 於研究時套用，R6 項標 roleEligible。Tai 2026-11-11 12:12／12:47。",
+ "batch": "b3-run100-batch01",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4.1（citation）、§16.4.2（gaps），直接寫 b0b0e0f 對齊格式；兩層互斥，T14 R0–R6 研究時套用；黨職與以政黨身分取得的席位進 roleCandidates（Tai 2026-11-11 12:12／12:47）。recordIds 因不連庫留空；元首／首腦任期假定已在 5442 leader_records，未重建候選。",
+ "rawDir": "/tmp/b3run100/batch01/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "sarraut-bnf": {
+   "title": "Sarraut, Albert (1872-1962)（人名權威檔）",
+   "authors": [],
+   "publisher": "Bibliothèque nationale de France",
+   "published_text": "BnF catalogue général，Notice de personne cb125108461",
+   "url": "https://catalogue.bnf.fr/ark:/12148/cb125108461",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔"
+  },
+  "sarraut-senat": {
+   "title": "SARRAUT Albert（Sénat 第三共和參議員傳記，摘自 Jean Jolly 主編《法國議員辭典 1889–1940》）",
+   "authors": [
+    "Jean Jolly（辭典主編）"
+   ],
+   "publisher": "Sénat (France)",
+   "published_text": "senat.fr 第三共和參議員頁",
+   "url": "https://www.senat.fr/senateur-3eme-republique/sarraut_albert0265r3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方頁"
+  },
+  "sarraut-an": {
+   "title": "Albert Sarraut（Base de données des députés français depuis 1789）",
+   "authors": [],
+   "publisher": "Assemblée nationale",
+   "published_text": "Sycomore 議員資料庫 fiche 6293",
+   "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/6293",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方資料庫"
+  },
+  "sarraut-an-gouv": {
+   "title": "Albert Sarraut（Gouvernements et Parlements depuis 1789）",
+   "authors": [],
+   "publisher": "Assemblée nationale",
+   "published_text": "Gouvernements et Parlements，fiches personnalités",
+   "url": "https://www.assemblee-nationale.fr/gouv_parl/fiches_personnalites/Sarraut.asp",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方頁（歷任政府成員）"
+  },
+  "sarraut-columbia": {
+   "title": "Sarraut, Albert Pierre",
+   "authors": [],
+   "publisher": "The Columbia Encyclopedia, 6th ed.（經 Encyclopedia.com）",
+   "published_text": "The Columbia Encyclopedia",
+   "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/sarraut-albert-pierre",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者的百科條目（Q9：只可放 gap 候選）"
+  },
+  "benav-congreso": {
+   "title": "Presidentes del Perú 1900–1950",
+   "authors": [],
+   "publisher": "Biblioteca del Congreso de la República del Perú \"César Vallejo\"",
+   "published_text": "Biblioteca del Congreso，歷任總統頁",
+   "url": "https://www3.congreso.gob.pe/biblioteca/presidentes/1900-1950",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁（歷任總統名單）"
+  },
+  "benav-encyc": {
+   "title": "Benavides, Oscar Raimundo (1876–1945)",
+   "authors": [
+    "Alfonso W. Quiroz"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/benavides-oscar-raimundo-1876-1945",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Alfonso W. Quiroz）的機構百科條目"
+  },
+  "almeida-cml": {
+   "title": "António José de Almeida（Biografias）",
+   "authors": [
+    "Rita Correia"
+   ],
+   "publisher": "Câmara Municipal de Lisboa，Hemeroteca Digital",
+   "published_text": "Recursos informativos／Biografias，2010-12-13",
+   "url": "https://hemerotecadigital.cm-lisboa.pt/RecursosInformativos/Biografias/Textos/AntonioJosedeAlmeida.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Rita Correia）、市級機構的人物傳記"
+  },
+  "kivimaki-blf": {
+   "title": "KIVIMÄKI, Toivo Mikael",
+   "authors": [
+    "Mikko Uola"
+   ],
+   "publisher": "Svenska litteratursällskapet i Finland",
+   "published_text": "Biografiskt lexikon för Finland 3. Republiken A–L (2011)",
+   "url": "https://www.blf.fi/artikel.php?id=654",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家傳記辭典（具名作者 Mikko Uola）"
+  },
+  "lopez-pres": {
+   "title": "Alfonso López Pumarejo 1934-1938（Presidentes）",
+   "authors": [],
+   "publisher": "Presidencia de la República de Colombia（historico.presidencia.gov.co）",
+   "published_text": "Así es Colombia／Presidentes",
+   "url": "http://historico.presidencia.gov.co/asiescolombia/presidentes/48.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "總統府官方歷任總統頁"
+  },
+  "lopez-banrep": {
+   "title": "Alfonso López Pumarejo（Enciclopedia Banrepcultural）",
+   "authors": [],
+   "publisher": "Banco de la República，Red Cultural",
+   "published_text": "Enciclopedia Banrepcultural",
+   "url": "https://enciclopedia.banrepcultural.org/Alfonso_L%C3%B3pez_Pumarejo",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：條目無署名（參考書目列 Tirado Mejía，但未載為作者）；Q9：只可放 gap 候選"
+  },
+  "lopez-encyc": {
+   "title": "López Pumarejo, Alfonso (1886–1959)",
+   "authors": [],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/lopez-pumarejo-alfonso-1886-1959",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：抓取頁未見署名（Q9：只可放 gap 候選）"
+  }
+ },
+ "people": [
+  {
+   "key": "co-lopez-pumarejo",
+   "bioId": "4714c91b-6a3e-4f20-abf3-32ba6ba435ff",
+   "name": "Alfonso López Pumarejo",
+   "nameZh": "阿方索·洛佩斯·普馬雷霍",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1886-01-31",
+      "end": "1905-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與早年",
+      "en": "Birth and early years"
+     },
+     "body": {
+      "zh-Hant": "洛佩斯·普馬雷霍1886年1月31日生於托利馬省翁達。父親把他送往英格蘭，他在布萊頓學院學習財務；1904年18歲時返回哥倫比亞，開始協助父親管理洛佩斯商行。",
+      "en": "López Pumarejo was born in Honda, Tolima, on 31 January 1886. His father sent him to England, where he studied finance at Brighton College. He returned to Colombia in 1904, aged 18, and began helping his father run the Casa López."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁開頭",
+       "quote": "Nació en Honda, Tolima, el 31 de enero de 1886,",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁第2段",
+       "quote": "lo envió a Inglaterra, donde estudió finanzas en Brighton College",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁第2段",
+       "quote": "Regresó al país en 1904, cuando contaba con 18 años",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁第2段",
+       "quote": "empezó a colaborar con su padre en la administración de la Casa López",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1933-11-06",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "兩度出任總統",
+      "en": "Two presidencies"
+     },
+     "body": {
+      "zh-Hant": "1933年11月6日，他接受總統候選人提名，以接替奧拉亞·埃雷拉；保守派沒有對手，他以近百萬票當選，並於1934年8月7日就職。他的總統任期為1934至1938年及1942至1945年；1944年3月他曾試圖辭職。",
+      "en": "On 6 November 1933 he accepted the presidential candidacy to succeed Olaya Herrera. With no Conservative opponent, he was elected by almost a million votes and began his government on 7 August 1934. He was president in 1934–1938 and 1942–1945, and attempted to resign in March 1944."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁「Primer gobierno」段",
+       "quote": "el 6 de noviembre de 1933, López Pumarejo aceptó la candidatura presidencial",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁「Primer gobierno」段",
+       "quote": "aceptó la candidatura presidencial para suceder a Olaya Herrera",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁「Primer gobierno」段",
+       "quote": "con la ausencia de contendor por parte del conservatismo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁「Primer gobierno」段",
+       "quote": "fue elegido por casi un millón de votos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁「Primer gobierno」段",
+       "quote": "Inició su gobierno el 7 de agosto de 1934",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁開頭",
+       "quote": "presidente de la República durante los períodos 1934-1938 y 1942-1945",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lopez-pres",
+       "locator": "總統府頁「Segundo gobierno」段",
+       "quote": "la renuncia del mando, que intentó en marzo de 1944",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:pre-presidency-posts",
+     "gapKind": "not_found",
+     "note": "總統府頁只概括「銀行業、外交、政治、新聞」，未寫具體職位與起訖；駐倫敦大使、自由黨領導（jefe del partido liberal）等只見於未評等條目。需 A/B 來源（國會、國家圖書館、學術傳記）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lopez-banrep",
+       "locator": "Banrepcultural 條目第1段（未評等，僅候選）",
+       "quote": "de la influencia que ejerció como jefe del partido liberal"
+      },
+      {
+       "sourceKey": "lopez-encyc",
+       "locator": "Encyclopedia.com 條目第2段（未評等，僅候選）",
+       "quote": "He began his career in politics in 1915 with Colombia's Partido Liberal."
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:liberal-party-leadership",
+     "gapKind": "not_found",
+     "note": "若能查到自由黨黨魁／領導職（A/B 來源，含起訖），依 Tai 12:12 應列 roleCandidates（de_facto_leader，R1）；目前只有未評等候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lopez-banrep",
+       "locator": "Banrepcultural 條目第1段（未評等，僅候選）",
+       "quote": "de la influencia que ejerció como jefe del partido liberal"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:presidency-end",
+     "gapKind": "not_found",
+     "note": "總統府頁只寫「1942-1945」與1944年3月試辭，未寫第二任期的確切辭職日期；元首任期（1934–1938、1942–1945）假定已在 5442 leader_records，未重建候選。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "LoC／VIAF／BNC 權威檔未能抓到（站內搜尋頁無可用結果；Britannica 403）；身分以總統府頁生卒年（1886-01-31，1959-11-20）為準，與名單無矛盾。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "López Pumarejo Britannica 條目",
+     "url": "https://www.britannica.com/biography/Alfonso-Lopez-Pumarejo",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "curl 抓取 enciclopedia.banrepcultural.org 條目",
+     "url": "https://enciclopedia.banrepcultural.org/index.php/Alfonso_L%C3%B3pez_Pumarejo",
+     "result": "unrated",
+     "note": "200；條目無署名，Q9 只可作 gap 候選"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "curl encyclopedia.com 條目（猜測網址）",
+     "url": "https://www.encyclopedia.com/people/history/latin-american-history-biographies/alfonso-lopez-pumarejo",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "WebSearch：Tirado Mejía \"López Pumarejo, Alfonso\" Revista Credencial Historia 生平",
+     "url": "None",
+     "result": "no_result",
+     "note": "未找到 Credencial Historia 該文；列出若干學報論文（redalyc 等），未抓"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch（限 banrepcultural／presidencia／cervantesvirtual／encyclopedia.com）：Alfonso López Pumarejo biografía",
+     "url": "None",
+     "result": "found_A",
+     "note": "找到總統府歷任總統頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "curl 總統府歷任總統頁 historico.presidencia.gov.co/asiescolombia/presidentes/48.htm",
+     "url": "http://historico.presidencia.gov.co/asiescolombia/presidentes/48.htm",
+     "result": "found_A",
+     "note": "200，取得生平與兩任期文字；段落出處"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "curl 總統府 wsp.presidencia.gov.co rc_48.html",
+     "url": "http://wsp.presidencia.gov.co/asiescolombia/presidentes/rc_48.html",
+     "result": "blocked_403",
+     "note": "拒絕存取頁（BOT ID），未繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "curl encyclopedia.com López Pumarejo, Alfonso (1886–1959)",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/lopez-pumarejo-alfonso-1886-1959",
+     "result": "unrated",
+     "note": "200；抓取頁未見署名，只作 gap 候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "curl Banrepcultural Credencial Historia 第109期網址",
+     "url": "https://www.banrepcultural.org/biblioteca-virtual/credencial-historia/numero-109/lopez-pumarejo-alfonso",
+     "result": "no_result",
+     "note": "200 但無可抽文字（需 JavaScript）"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "WebSearch：Alfonso López Pumarejo Honda 1886 Londres 1959 authority VIAF／LoC／Biblioteca Nacional",
+     "url": "None",
+     "result": "no_result",
+     "note": "未得權威檔頁；dodis.ch 人名檔可確認生卒（未抓）"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "curl id.loc.gov 站內搜尋 López Pumarejo, Alfonso",
+     "url": "https://id.loc.gov/search/?q=L%C3%B3pez+Pumarejo%2C+Alfonso",
+     "result": "no_result",
+     "note": "200，搜尋頁無結果內容可用"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "WebSearch：López Pumarejo \"jefe del Partido Liberal\" OR \"embajador en Londres\" 學術文章",
+     "url": "None",
+     "result": "no_result",
+     "note": "只得第一任期研究論文，未涉黨魁／大使職務"
+    }
+   ]
+  },
+  {
+   "key": "fr-sarraut",
+   "bioId": "3da55b45-9234-4243-a029-3315719c77a6",
+   "name": "Albert Sarraut",
+   "nameZh": "阿爾貝·薩羅",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1872-07-28",
+      "end": "1924-06-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出生與眾議員生涯",
+      "en": "Birth and years as deputy"
+     },
+     "body": {
+      "zh-Hant": "薩羅1872年7月28日生於波爾多。1902年，他當選奧德省的激進社會黨眾議員，其後連選連任；最後一屆眾議員任期止於1924年5月31日。",
+      "en": "Sarraut was born in Bordeaux on 28 July 1872. In 1902 he was elected radical-socialist deputy for the Aude and was re-elected repeatedly; his last term as deputy ended on 31 May 1924."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 一般資料",
+       "quote": "Né le 28 juillet 1872 à Bordeaux (Gironde - France)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第3段",
+       "quote": "il est élu député radical-socialiste de l'Aude",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第3段",
+       "quote": "sera constamment réélu jusqu'en 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 眾議員任期",
+       "quote": "Du 16 novembre 1919 au 31 mai 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 第一屆任期",
+       "quote": "Du 27 avril 1902 au 31 mai 1906",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1911-07-01",
+      "end": "1919-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "印度支那總督",
+      "en": "Governor-General of Indochina"
+     },
+     "body": {
+      "zh-Hant": "1911年7月1日，他被任命為印度支那總督，在任約三年。1914至1915年，他任公共教育與美術部長。1916年12月，他再度被派往印度支那，並一直擔任總督到1919年6月。",
+      "en": "On 1 July 1911 he was appointed governor-general of Indochina, where he stayed three years. In 1914–1915 he was minister of public instruction and fine arts. In December 1916 he was sent to Indochina again and remained governor-general until June 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第7段",
+       "quote": "Le 1 er juillet 1911, il est nommé gouverneur général de l'Indochine",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第7段",
+       "quote": "Il y restera trois ans",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-bnf",
+       "locator": "BnF 權威檔附註",
+       "quote": "Ministre de l'Instruction publique et des Beaux-Arts (1914-1915)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第8段",
+       "quote": "En décembre 1916, Gaston Doumergue, alors ministre des Colonies",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第8段",
+       "quote": "l'envoie une nouvelle fois en Indochine",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第8段",
+       "quote": "Il reste gouverneur général de la colonie jusqu'en juin 1919.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1920-01-20",
+      "end": "1940-03-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "殖民地部長、總理與內政部長",
+      "en": "Colonies minister, premier and interior minister"
+     },
+     "body": {
+      "zh-Hant": "1920年1月20日至1924年3月，他任殖民地部長（其後1932至1933年再任）。1926年7月18日他成為參議員。1933年10月26日至11月23日與1936年1月24日至6月4日，他兩度出任政府首腦（部長會議主席）。1938年4月10日至1940年3月，他任內政部長。",
+      "en": "He was minister of the colonies from 20 January 1920 to March 1924, and again in 1932–1933. He became a senator on 18 July 1926. He headed the government twice, from 26 October to 23 November 1933 and from 24 January to 4 June 1936. From 10 April 1938 to March 1940 he was minister of the interior."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Colonies ( 20/01/1920 - 18/02/1920 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Colonies ( 15/01/1922 - 29/03/1924 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-bnf",
+       "locator": "BnF 權威檔附註",
+       "quote": "ministre des Colonies (1920-1924 et 1932-1933)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 參議員任期",
+       "quote": "Sénateur du 18 juillet 1926 au 21 octobre 1945",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 政府欄",
+       "quote": "Chef du Gouvernement du 26 octobre 1933 au 23 novembre 1933",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 政府欄",
+       "quote": "Chef du Gouvernement du 24 janvier 1936 au 4 juin 1936",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Intérieur ( 10/04/1938 - 21/03/1940 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "sarraut-ss-war-1909",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "French Government"
+     },
+     "title": {
+      "orig": "sous-secrétaire d'État à la Guerre",
+      "zh-Hant": "陸軍部次長（國務次官）",
+      "en": "Under-Secretary of State for War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1909-07-24",
+      "end": "1910-11-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "S. S. d'État Guerre ( 24/07/1909 - 03/11/1910 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5 副職（次官），不算正職閣員"
+    },
+    {
+     "key": "sarraut-instruction-1914",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "French Government"
+     },
+     "title": {
+      "orig": "Ministre de l'Instruction publique et des Beaux-Arts",
+      "zh-Hant": "公共教育與美術部長",
+      "en": "Minister of Public Instruction and Fine Arts"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1914-08-03",
+      "end": "1915-10-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Instruction publique et Beaux-Arts ( 03/08/1914 - 26/08/1914 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Instruction publique et Beaux-Arts ( 26/08/1914 - 29/10/1915 )",
+       "quoteLang": "fr",
+       "evidenceNote": "兩段相接（26/08/1914），合併為一職",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5 非外交／國防／財政／內政四部"
+    },
+    {
+     "key": "sarraut-colonies-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "French Government"
+     },
+     "title": {
+      "orig": "Ministre des Colonies",
+      "zh-Hant": "殖民地部長",
+      "en": "Minister of the Colonies"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-01-20",
+      "end": "1924-03-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Colonies ( 20/01/1920 - 18/02/1920 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Colonies ( 15/01/1922 - 29/03/1924 )",
+       "quoteLang": "fr",
+       "evidenceNote": "取首段起日與末段迄日；中間各段名單未逐筆引",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5 殖民地部非四部之一"
+    },
+    {
+     "key": "sarraut-colonies-1932",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "French Government"
+     },
+     "title": {
+      "orig": "Ministre des Colonies",
+      "zh-Hant": "殖民地部長",
+      "en": "Minister of the Colonies"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1932-06-03",
+      "end": "1933-09-06"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Colonies ( 03/06/1932 - 18/12/1932 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Colonies ( 31/01/1933 - 06/09/1933 )",
+       "quoteLang": "fr",
+       "evidenceNote": "取首段起日與末段迄日；中間各段未逐筆引",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5 殖民地部非四部之一"
+    },
+    {
+     "key": "sarraut-interior-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "French Government"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-07-23",
+      "end": "1928-11-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Intérieur ( 23/07/1926 - 11/11/1928 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "R3：內政部、正職、日期可證明≥90天；但 regimeId 未能確認（未連庫），政權是否在系統中無法證明→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "sarraut-interior-1938",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "French Government"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1938-04-10",
+      "end": "1940-03-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Ministre Intérieur ( 10/04/1938 - 21/03/1940 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "R3：內政部、正職、日期可證明≥90天；但 regimeId 未能確認，政權是否在系統中無法證明→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "sarraut-govgen-indochina-1911",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法屬印度支那總督府",
+      "en": "Government-General of French Indochina"
+     },
+     "title": {
+      "orig": "gouverneur général de l'Indochine",
+      "zh-Hant": "印度支那總督",
+      "en": "Governor-General of Indochina"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1911-07-01",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第7段",
+       "quote": "Le 1 er juillet 1911, il est nommé gouverneur général de l'Indochine",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第7段",
+       "quote": "Il y restera trois ans",
+       "quoteLang": "fr",
+       "evidenceNote": "「三年」為概數，迄日留空",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "R2：殖民地最高長官；來源只寫「在任三年」概數、無迄日，無法證明任期；regimeId 未能確認→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "sarraut-govgen-indochina-1916",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法屬印度支那總督府",
+      "en": "Government-General of French Indochina"
+     },
+     "title": {
+      "orig": "gouverneur général de l'Indochine",
+      "zh-Hant": "印度支那總督",
+      "en": "Governor-General of Indochina"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1916-12-01",
+      "end": "1919-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第8段",
+       "quote": "En décembre 1916, Gaston Doumergue, alors ministre des Colonies",
+       "quoteLang": "fr",
+       "evidenceNote": "來源寫12月被派往印度支那，起點為派遣而非到任日（推定）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第8段",
+       "quote": "Il reste gouverneur général de la colonie jusqu'en juin 1919.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "R2：殖民地最高長官；起點為「被派往」月份而非明寫的到任日，且 regimeId 未能確認→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "sarraut-deputy-radical-socialist",
+     "title": {
+      "orig": "député radical-socialiste de l'Aude",
+      "zh-Hant": "奧德省眾議員（激進社會黨）",
+      "en": "Deputy for the Aude (Radical-Socialist)"
+     },
+     "originalPositionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（第三共和）",
+      "en": "Chamber of Deputies (Third Republic)"
+     },
+     "period": {
+      "start": "1902-04-27",
+      "end": "1924-06-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sarraut-senat",
+       "locator": "Sénat 傳記第3段",
+       "quote": "il est élu député radical-socialiste de l'Aude",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 第一屆任期",
+       "quote": "Du 27 avril 1902 au 31 mai 1906",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 末屆任期",
+       "quote": "Du 16 novembre 1919 au 31 mai 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "起日取 Sycomore 第一屆任期起日，迄日取末屆任期迄日（半開區間）；中間各屆未逐筆引",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "sarraut-senator",
+     "title": {
+      "orig": "sénateur (1926-1942) radical-socialiste de l'Aude",
+      "zh-Hant": "奧德省參議員（激進社會黨）",
+      "en": "Senator for the Aude (Radical-Socialist)"
+     },
+     "originalPositionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院（第三共和）",
+      "en": "Senate (Third Republic)"
+     },
+     "period": {
+      "start": "1926-07-18",
+      "end": "1945-10-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "note": "迄日採 Sycomore（1945-10-21）；BnF 寫 1942，兩源矛盾見 gap",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BnF 職稱寫「sénateur … radical-socialiste de l'Aude」，與眾議員席位同一寫法（審查由 positions 移入）",
+     "t14Rule": "R1",
+     "citations": [
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 參議員任期",
+       "quote": "Sénateur du 18 juillet 1926 au 21 octobre 1945",
+       "quoteLang": "fr",
+       "evidenceNote": "終點採 Sycomore；BnF 寫 1942，兩源不符，見 gap",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sarraut-bnf",
+       "locator": "BnF 權威檔附註",
+       "quote": "Député (1902-1924), puis sénateur (1926-1942) radical-socialiste de l'Aude.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:sarraut-senator",
+     "gapKind": "conflict",
+     "note": "參議員任期迄日：Sycomore 與 Sénat 寫 1945（至 1945-10-21），BnF 權威檔寫 1926–1942；兩份已抓來源互相矛盾，經歷層暫採 Sycomore。",
+     "candidateCitations": [
+      {
+       "sourceKey": "sarraut-bnf",
+       "locator": "BnF 權威檔附註",
+       "quote": "Député (1902-1924), puis sénateur (1926-1942) radical-socialiste de l'Aude."
+      },
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore",
+       "quote": "Sénateur du 18 juillet 1926 au 21 octobre 1945"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:sarraut-govgen-indochina-1911",
+     "gapKind": "not_found",
+     "note": "第一任印度支那總督迄日未見明寫（Sénat 傳記只寫「三年」）；未列於本檔的另一個總督任期資料僅見未評等 Columbia Encyclopedia（1911–14、1916–19）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "sarraut-columbia",
+       "locator": "Columbia 條目（無署名，未評等，僅候選）",
+       "quote": "he was governor-general (1911–14, 1916–19) of French Indochina"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:head-of-government-terms",
+     "gapKind": "not_found",
+     "note": "兩任政府首腦（1933-10-26至1933-11-23、1936-01-24至1936-06-04）假定已在 5442 leader_records，未重建候選；若名單缺才補。regimeId 全未連庫確認，故內政部長兩段列 R6（regime）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:head-of-government-1933-end",
+     "gapKind": "conflict",
+     "note": "1933 年政府首腦迄日：Sycomore 寫至 1933-11-23，Gouvernements et Parlements 表寫 26/11/1933（兩份已抓官方來源矛盾）；段落暫依 Sycomore。",
+     "candidateCitations": [
+      {
+       "sourceKey": "sarraut-an",
+       "locator": "Sycomore 政府欄",
+       "quote": "Chef du Gouvernement du 26 octobre 1933 au 23 novembre 1933"
+      },
+      {
+       "sourceKey": "sarraut-an-gouv",
+       "locator": "政府成員表",
+       "quote": "Président du Conseil et Marine ( 26/10/1933 - 26/11/1933 )"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "curl senat.fr sarraut_albert0586r3（猜測網址）",
+     "url": "https://www.senat.fr/senateur-3eme-republique/sarraut_albert0586r3.html",
+     "result": "no_result",
+     "note": "404（實為他人頁）"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "curl Assemblée nationale Sycomore 猜測 fiche 6838",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/(num_dept)/6838",
+     "result": "not_relevant",
+     "note": "200 但為他人（Joseph Silbermann）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Britannica Albert Sarraut",
+     "url": "None",
+     "result": "blocked_403",
+     "note": "403，未繞過（僅試 britannica 人名網址類推）"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch：Albert Sarraut sénateur biographie sénat.fr gouverneur général Indochine",
+     "url": "None",
+     "result": "found_A",
+     "note": "得 BnF 權威檔、encyclopedia.com Columbia（未評等）等線索"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "curl BnF 權威檔 cb125108461",
+     "url": "https://catalogue.bnf.fr/ark:/12148/cb125108461",
+     "result": "found_A",
+     "note": "200；取得生卒、議員、部長任期摘要"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "curl encyclopedia.com Columbia Encyclopedia Sarraut",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/sarraut-albert-pierre",
+     "result": "unrated",
+     "note": "無署名，僅 gap 候選"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "WebSearch（限 assemblee-nationale／senat／persee 等）：Sarraut Albert sycomore député de l'Aude",
+     "url": "None",
+     "result": "found_A",
+     "note": "得 Sycomore 6293、Sénat 0265r3、政府 fiche"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "curl Sycomore fiche 6293",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/6293",
+     "result": "found_A",
+     "note": "200；任期與政府首腦日期"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "curl Sénat 傳記 sarraut_albert0265r3",
+     "url": "https://www.senat.fr/senateur-3eme-republique/sarraut_albert0265r3.html",
+     "result": "found_A",
+     "note": "200；摘自 Jolly 議員辭典"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "curl 國民議會 Gouvernements et Parlements Sarraut",
+     "url": "https://www.assemblee-nationale.fr/gouv_parl/fiches_personnalites/Sarraut.asp",
+     "result": "found_A",
+     "note": "200（cp1252 編碼）；歷任政府職務逐筆日期"
+    }
+   ]
+  },
+  {
+   "key": "pe-benavides",
+   "bioId": "59037518-62ab-4446-a9d8-5c42ced7991e",
+   "name": "Óscar Raymundo Benavides Larrea",
+   "nameZh": "奧斯卡·貝納維德斯",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1876-01-01",
+      "end": "1908-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與軍事養成",
+      "en": "Birth and military training"
+     },
+     "body": {
+      "zh-Hant": "貝納維德斯1876年生於利馬。他於1905年在聖馬科斯大學完成科學課程，並於1907年在法國完成軍事訓練。",
+      "en": "Benavides was born in Lima in 1876. He completed studies in science at San Marcos University in 1905 and his military training in France in 1907."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第1段",
+       "quote": "Oscar Raimundo Benavides ( b. 1876; d. 1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第1段",
+       "quote": "Born in Lima",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第1段",
+       "quote": "completed studies in science at the San Marcos University in 1905",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第1段",
+       "quote": "his military training in France in 1907",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1913-01-01",
+      "end": "1939-12-09"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1913年起的參謀長與兩度執政",
+      "en": "Chief of staff and two periods in power"
+     },
+     "body": {
+      "zh-Hant": "1913年他任秘魯陸軍參謀長。1914年2月4日他以政變方式出任政務委員會主席，同年5月15日起任臨時總統，至1915年8月18日。1933年，國會指定他為總統，他於4月30日就任，任期至1939年12月8日。",
+      "en": "In 1913 he was chief of staff of the Peruvian army. On 4 February 1914, by coup d'état, he became president of the Junta de Gobierno, and from 15 May 1914 to 18 August 1915 he was provisional president. In 1933 Congress designated him president; he took office on 30 April 1933 and served until 8 December 1939."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第2段",
+       "quote": "As chief of staff of the Peruvian army in 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-congreso",
+       "locator": "1914 年列",
+       "quote": "93. Óscar Raymundo Benavides Larrea (04.02.1914 - 15.05.1914)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-congreso",
+       "locator": "1914 年列",
+       "quote": "Cargo: Presidente de la Junta de Gobierno",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-congreso",
+       "locator": "1914 年列",
+       "quote": "Origen del cargo: Golpe de Estado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-congreso",
+       "locator": "1914–1915 年列",
+       "quote": "94. Óscar Raymundo Benavides Larrea (15.05.1914 - 18.08.1915)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-congreso",
+       "locator": "1914–1915 年列",
+       "quote": "Cargo: Presidente provisorio",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第3段",
+       "quote": "the Peruvian Congress designated Benavides president of the republic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "benav-congreso",
+       "locator": "1933–1939 年列",
+       "quote": "104. Óscar Raymundo Benavides Larrea (30.04.1933 - 08.12.1939)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "benavides-army-chief-of-staff-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "秘魯陸軍",
+      "en": "Peruvian Army"
+     },
+     "title": {
+      "orig": "chief of staff of the Peruvian army",
+      "zh-Hant": "陸軍參謀長",
+      "en": "Chief of Staff of the Peruvian Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1913-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "benav-encyc",
+       "locator": "條目第2段",
+       "quote": "As chief of staff of the Peruvian army in 1913",
+       "quoteLang": "en",
+       "evidenceNote": "來源只寫1913年，未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "R4：職位等級（是否國家級最高軍職）引文未明寫、迄日未寫、僅 1 筆 B 來源、regimeId 未能確認→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "regime",
+      "source"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:benavides-ambassador",
+     "gapKind": "not_found",
+     "note": "檢索摘要稱曾任駐西班牙、阿根廷大使、1940年受元帥杖，但只有搜尋摘要、未抓到 A/B 原文；需秘魯國會或外交部官方頁、傳記辭典。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:1920s-exile",
+     "gapKind": "not_found",
+     "note": "Quiroz 條目寫1920年代反對萊吉亞而被流放（此處不寫段落，因來源行文簡略）；起訖年份與流放地需另找來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:head-of-state-terms",
+     "gapKind": "not_found",
+     "note": "1914（政務委員會主席、臨時總統）與1933–1939 的元首任期假定已在 5442 leader_records，未重建候選；若名單缺才補（國會名單已有起訖日可用）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Britannica Oscar Raymundo Benavides",
+     "url": "https://www.britannica.com/biography/Oscar-Raymundo-Benavides",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "curl gob.pe 總統府猜測頁",
+     "url": "https://www.gob.pe/institucion/presidencia/informes-publicaciones/",
+     "result": "not_relevant",
+     "note": "200 但無生平內容"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "WebSearch：Óscar R. Benavides presidente del Perú 1914 1933 biografía Congreso de la República",
+     "url": "None",
+     "result": "found_A",
+     "note": "得國會圖書館歷任總統頁與 encyclopedia.com 條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "curl 秘魯國會圖書館歷任總統 1900–1950",
+     "url": "https://www3.congreso.gob.pe/biblioteca/presidentes/1900-1950",
+     "result": "found_A",
+     "note": "200；1914、1933 任期起訖日"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "curl encyclopedia.com Benavides, Oscar Raimundo (1876–1945)",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/benavides-oscar-raimundo-1876-1945",
+     "result": "found_B",
+     "note": "200；作者 Alfonso W. Quiroz"
+    }
+   ]
+  },
+  {
+   "key": "pt-almeida",
+   "bioId": "01a1b4c0-2f42-7c38-9174-04173acd2cfe",
+   "name": "António José de Almeida",
+   "nameZh": "安東尼奧·若澤·德阿爾梅達",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1866-01-01",
+      "end": "1867-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與求學",
+      "en": "Birth and education"
+     },
+     "body": {
+      "zh-Hant": "阿爾梅達1866年生於佩納科瓦縣的瓦萊達維尼亞，畢業於科英布拉大學醫學系。",
+      "en": "Almeida was born in 1866 in Vale da Vinha, in the municipality of Penacova, and graduated in medicine from the University of Coimbra."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第1段",
+       "quote": "Nasceu em Vale da Vinha, concelho de Penacova, no ano de 1866.",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第1段",
+       "quote": "Formou-se em medicina, na Universidade de Coimbra",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1906-01-01",
+      "end": "1923-10-06"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "共和派政治生涯",
+      "en": "Republican political career"
+     },
+     "body": {
+      "zh-Hant": "他1906年當選眾議員。共和國成立後，他進入臨時政府，擔任內政部長。他也自辦宣傳刊物，1911年起為《共和國報》，該報後來成為演進共和黨的機關報。1916年3月15日至1917年4月25日，他領導「神聖聯盟」政府，並兼任殖民地部長。1919年8月6日他當選葡萄牙共和國總統，任期至1923年10月5日。",
+      "en": "He was elected to the Chamber of Deputies in 1906. After the Republic was established he joined the provisional government and held the Interior portfolio. He also created his own propaganda outlets, from 1911 the newspaper República, which became the organ of the Evolutionist Republican Party. From 15 March 1916 to 25 April 1917 he headed the \"Sacred Union\" government and also held the colonies portfolio. He was elected President of the Portuguese Republic on 6 August 1919 and held the office until 5 October 1923."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第3段",
+       "quote": "Na Câmara dos Deputados, para a qual foi eleito em 1906",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第5段",
+       "quote": "fez parte do governo provisório, tendo assumido a difícil pasta do «Interior»",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第4段",
+       "quote": "que será já o órgão do Partido Republicano Evolucionista",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第7段",
+       "quote": "assumiu a chefia do governo, acumulando com a pasta das colónias",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第7段",
+       "quote": "de 15 de Março de 1916 até 25 de Abril de 1917",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第1段",
+       "quote": "em 6 de Agosto de 1919, era eleito Presidente da República Portuguesa",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第1段",
+       "quote": "cargo que ocupou até 5 de Outubro de 1923",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第5段",
+       "quote": "Implantada a República, fez parte do governo provisório",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第4段",
+       "quote": "também criou canais de propaganda próprios",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第4段",
+       "quote": "a partir de 1911, a República14, que será já o órgão",
+       "quoteLang": "pt",
+       "evidenceNote": "「14」為原文註腳號",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第7段",
+       "quote": "no ministério da «União Sagrada»",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1929-10-31",
+      "end": "1929-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "逝世",
+      "en": "Death"
+     },
+     "body": {
+      "zh-Hant": "阿爾梅達於1929年10月31日逝世。",
+      "en": "Almeida died on 31 October 1929."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文末段",
+       "quote": "faleceu em 31 de Outubro de 1929",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "almeida-deputy-1906",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "葡萄牙眾議院",
+      "en": "Chamber of Deputies (Portugal)"
+     },
+     "title": {
+      "orig": "deputado",
+      "zh-Hant": "眾議員",
+      "en": "Deputy"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1906-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第3段",
+       "quote": "Na Câmara dos Deputados, para a qual foi eleito em 1906",
+       "quoteLang": "pt",
+       "evidenceNote": "來源只寫1906年當選，未寫以何黨身分，故不算黨籍席位；迄日未寫",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "almeida-interior-provisional",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "葡萄牙臨時政府",
+      "en": "Provisional Government of Portugal"
+     },
+     "title": {
+      "orig": "pasta do «Interior»",
+      "zh-Hant": "內政部長（臨時政府）",
+      "en": "Minister of the Interior (Provisional Government)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第5段",
+       "quote": "fez parte do governo provisório, tendo assumido a difícil pasta do «Interior»",
+       "quoteLang": "pt",
+       "evidenceNote": "來源未寫起訖日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "R3：內政部、正職，但起訖日皆未明寫、僅 1 筆 B 來源、regimeId 未能確認→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime",
+      "source"
+     ]
+    },
+    {
+     "key": "almeida-colonies-1916",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "葡萄牙政府",
+      "en": "Government of Portugal"
+     },
+     "title": {
+      "orig": "pasta das colónias",
+      "zh-Hant": "殖民地部長（兼政府首腦）",
+      "en": "Minister of the Colonies (also head of government)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1916-03-15",
+      "end": "1917-04-26"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第7段",
+       "quote": "assumiu a chefia do governo, acumulando com a pasta das colónias",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "almeida-cml",
+       "locator": "正文第7段",
+       "quote": "de 15 de Março de 1916 até 25 de Abril de 1917",
+       "quoteLang": "pt",
+       "evidenceNote": "起訖日為政府存續期間，部長任期假定同期",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5 殖民地部非四部之一"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:almeida-evolutionist-party",
+     "gapKind": "not_found",
+     "note": "本檔來源只說《共和國報》是演進共和黨機關報，未明寫他任黨魁／創黨職務；若查到（A/B 來源，含起訖），依 Tai 12:12 應列 roleCandidates（de_facto_leader，R1）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:almeida-interior-provisional",
+     "gapKind": "not_found",
+     "note": "臨時政府內政部長的起訖日未見；需葡萄牙政府公報或議會官方頁。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:head-of-state-and-government-terms",
+     "gapKind": "not_found",
+     "note": "1916–1917 政府首腦與 1919–1923 總統任期假定已在 5442 leader_records，未重建候選；總統任期日期本檔段落已寫（供核對）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "curl presidencia.pt 歷任總統頁（猜測網址）",
+     "url": "https://www.presidencia.pt/arquivo/presidentes-da-republica/antonio-jose-de-almeida/",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Britannica António José de Almeida",
+     "url": "https://www.britannica.com/biography/Antonio-Jose-de-Almeida",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "WebSearch：António José de Almeida Presidente da República 1919 1923 biografia presidencia.pt OR parlamento.pt",
+     "url": "None",
+     "result": "found_B",
+     "note": "官方頁未出現；得 CML 傳記 PDF、Infopédia（無署名）、Archontology（未評等）"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Infopédia António José de Almeida",
+     "url": "https://www.infopedia.pt/$antonio-jose-de-almeida",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "curl CML Hemeroteca Digital 傳記 PDF（Rita Correia）",
+     "url": "https://hemerotecadigital.cm-lisboa.pt/RecursosInformativos/Biografias/Textos/AntonioJosedeAlmeida.pdf",
+     "result": "found_B",
+     "note": "200；9 頁 PDF，作者 Rita Correia，2010-12-13"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "curl museuvirtualdoseguro.pt 條目",
+     "url": "https://museuvirtualdoseguro.pt/en/antonio-jose-de-almeida-2/",
+     "result": "no_result",
+     "note": "500"
+    }
+   ]
+  },
+  {
+   "key": "fi-kivimaki",
+   "bioId": "01a1b4c2-3f00-7e6f-aa7d-311ec00877f3",
+   "name": "Toivo Mikael Kivimäki",
+   "nameZh": "托伊沃·米卡埃爾·基維邁基",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1886-06-05",
+      "end": "1925-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與法律生涯",
+      "en": "Birth and legal career"
+     },
+     "body": {
+      "zh-Hant": "基維邁基1886年6月5日生於塔爾瓦斯約基，父親是小學教師。1912年他取得法學候選人學位，並與同學埃伊諾·圖倫海莫在圖爾庫買下一間律師事務所；1924年他取得法學博士學位。",
+      "en": "Kivimäki was born on 5 June 1886 in Tarvasjoki, the son of a primary-school teacher. After taking his law candidate degree in 1912 he bought a law firm in Turku together with his fellow student Eino Tulenheimo. In 1924 he took his doctorate in law."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "條目末尾生平資料",
+       "quote": "född 5.6.1886 i Tarvasjoki",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第2段",
+       "quote": "Han var son till en folkskollärare från sydvästra Finland",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第3段",
+       "quote": "Sedan Kivimäki 1912 avlagt juris kandidatexamen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第3段",
+       "quote": "köpte han tillsammans med sin studiekamrat Eino Tulenheimo en advokatbyrå i Åbo",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第5段",
+       "quote": "År 1924 disputerade Kivimäki till juris doktor",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1922-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "議員與部長",
+      "en": "Parliament and ministerial posts"
+     },
+     "body": {
+      "zh-Hant": "1922年內政部長里塔武奧里遇刺後，基維邁基以其候補身分進入議會，其後大致任議員到1940年。1928年他出任內政部長，屬進步黨少數政府；1931年他任J. E. 蘇尼拉政府的司法部長。",
+      "en": "When Interior Minister Ritavuori was murdered in 1922, Kivimäki entered parliament as his substitute, and apart from a couple of short interludes he remained an MP until 1940. In 1928 he was called to be interior minister in the Progressive Party minority government, and in 1931 he became justice minister in J. E. Sunila's government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第6段",
+       "quote": "Ritavuori mördades 1922 kom Kivimäki som hans suppleant in i riksdagen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第6段",
+       "quote": "förblev han riksdagsledamot fram till 1940",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第8段",
+       "quote": "År 1928 kallades Kivimäki",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第8段",
+       "quote": "till inrikesminister i Framstegspartiets minoritetsregering",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第10段",
+       "quote": "Han utsågs till justitieminister i J. E. Sunilas borgerliga majoritetsregering",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第10段",
+       "quote": "Under denna regeringsperiod, 1931–1932",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1932-12-01",
+      "end": "1937-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總理任期",
+      "en": "Premiership"
+     },
+     "body": {
+      "zh-Hant": "1932年12月，蘇欣武富德總統委託基維邁基組閣。他的少數政府成為當時芬蘭歷史上最長壽的政府。1936年秋，該政府在一次信任投票中倒台。",
+      "en": "In December 1932 President Svinhufvud commissioned Kivimäki to form a new government. His minority government became the longest-lived in Finland's history up to that time. In autumn 1936 the government was brought down in a vote of confidence."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第12段",
+       "quote": "gav president Svinhufvud i december 1932 i uppdrag åt Kivimäki",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第12段",
+       "quote": "den dittills långvarigaste i Finlands historia",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第17段",
+       "quote": "Hösten 1936 drabbades Kivimäkis regering",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第17段",
+       "quote": "fälldes i en förtroendeomröstning",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1944-10-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "駐柏林公使",
+      "en": "Envoy in Berlin"
+     },
+     "body": {
+      "zh-Hant": "1940年夏，政府決定派基維邁基出任駐柏林公使。1944年9月簽訂停戰協定。他因這一使職而在戰後的戰爭責任審判中被判處徒刑。",
+      "en": "In summer 1940 the government decided to send Kivimäki as the new minister to Berlin. The armistice was concluded in September 1944. Because of this post he was sentenced to prison in the post-war war-responsibility trial."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第20段",
+       "quote": "beslöt man sommaren 1940 att sända Kivimäki som ny minister till Berlin",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第24段",
+       "quote": "Avtalet om vapenstillestånd ingicks i september 1944",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "導言",
+       "quote": "dömd till fängelse i krigsansvarighetsrättegången",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "導言",
+       "quote": "På grund av det senare uppdraget blev han dömd till fängelse",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kivimaki-interior-1928",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭政府",
+      "en": "Government of Finland"
+     },
+     "title": {
+      "orig": "inrikesminister",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1928-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第8段",
+       "quote": "År 1928 kallades Kivimäki",
+       "quoteLang": "sv",
+       "evidenceNote": "來源只寫1928年起，未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第8段",
+       "quote": "till inrikesminister i Framstegspartiets minoritetsregering",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "R3：內政部、正職，但迄日未寫（無法證明≥90天）、regimeId 未能確認→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "kivimaki-justice-1931",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭政府",
+      "en": "Government of Finland"
+     },
+     "title": {
+      "orig": "justitieminister",
+      "zh-Hant": "司法部長",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1931-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第10段",
+       "quote": "Han utsågs till justitieminister i J. E. Sunilas borgerliga majoritetsregering",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第10段",
+       "quote": "Under denna regeringsperiod, 1931–1932",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5 司法部非外交／國防／財政／內政四部"
+    },
+    {
+     "key": "kivimaki-professor-1931",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "赫爾辛基大學",
+      "en": "University of Helsinki"
+     },
+     "title": {
+      "orig": "professor i civilrätt",
+      "zh-Hant": "民法教授",
+      "en": "Professor of civil law"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1931-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第5段",
+       "quote": "År 1931 utnämndes han emellertid till professor i civilrätt",
+       "quoteLang": "sv",
+       "evidenceNote": "迄日未寫",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "kivimaki-envoy-berlin",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭",
+      "en": "Finland"
+     },
+     "title": {
+      "orig": "minister i Berlin",
+      "zh-Hant": "駐柏林公使",
+      "en": "Minister (envoy) to Berlin"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1940-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第20段",
+       "quote": "beslöt man sommaren 1940 att sända Kivimäki som ny minister till Berlin",
+       "quoteLang": "sv",
+       "evidenceNote": "來源寫夏季，起日取年；迄日只知停戰後離境（1944年9月），未寫明卸任日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "kivimaki-mp-1922",
+     "title": {
+      "orig": "riksdagsledamot (Nationella framstegspartiet, från partiets lista)",
+      "zh-Hant": "議員（民族進步黨名單）",
+      "en": "Member of Parliament (National Progressive Party list)"
+     },
+     "originalPositionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭議會",
+      "en": "Parliament of Finland"
+     },
+     "period": {
+      "start": "1922-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BLF 明寫他從民族進步黨名單當選第一候補、1922 年以候補身分入議會（審查由 positions 移入）",
+     "t14Rule": "R1",
+     "citations": [
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第6段",
+       "quote": "Ritavuori mördades 1922 kom Kivimäki som hans suppleant in i riksdagen",
+       "quoteLang": "sv",
+       "evidenceNote": "「大致任到1940年，中間有短暫間斷」，迄日不明，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第6段",
+       "quote": "Han invaldes från partiets lista till första suppleantplats",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kivimaki-blf",
+       "locator": "正文第6段",
+       "quote": "det i december 1918 grundade republikanska Nationella framstegspartiet",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "gaps": [
+    {
+     "target": "paragraph:premiership-dates",
+     "gapKind": "not_found",
+     "note": "BLF 只寫1932年12月受命、1936年秋倒台，未寫任免日；政府官方歷任名單（valtioneuvosto.fi，14.12.1932–7.10.1936）被 Cloudflare 挑戰頁擋住，未繞過。總理任期假定已在 5442 leader_records，未重建候選。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:kivimaki-trial",
+     "gapKind": "not_found",
+     "note": "戰爭責任審判的判決日期與刑期 BLF 只寫「被判徒刑」，未見日期；需芬蘭官方或學術來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:kivimaki-party-posts",
+     "gapKind": "not_found",
+     "note": "BLF 寫他是進步黨領導政治人物之一，但未明寫黨職（主席、書記等）與起訖；若查到依 Tai 12:12 應列 roleCandidates（R1）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Britannica Toivo Kivimäki",
+     "url": "https://www.britannica.com/biography/Toivo-Kivimaki",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "curl Kansallisbiografia 猜測 henkilo/1046",
+     "url": "https://kansallisbiografia.fi/kansallisbiografia/henkilo/1046",
+     "result": "no_result",
+     "note": "200 但無可抽文字（需 JavaScript）；亦非確認為本人"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "WebSearch：Toivo Kivimäki pääministeri 1932 1936 kansallisbiografia OR valtioneuvosto OR eduskunta",
+     "url": "None",
+     "result": "found_A",
+     "note": "得 valtioneuvosto.fi 歷任政府頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "curl valtioneuvosto.fi 部長頁與政府頁（fi／sv）",
+     "url": "https://valtioneuvosto.fi/hallitukset-ja-ministerit/hallitukset/-/gov/kivimaki",
+     "result": "challenge_page",
+     "note": "Cloudflare「Just a moment」挑戰頁，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "curl 芬蘭國家圖書館權威檔 data.nationallibrary.fi",
+     "url": "https://data.nationallibrary.fi/au/pn/000131281",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "curl journal.fi Ennen ja nyt 書評／tuni trepo 論文",
+     "url": "https://journal.fi/ennenjanyt/article/download/152202/102233/381336",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch（限 blf／eduskunta／kansallisbiografia／uppslagsverket）：Kivimäki Toivo Mikael statsminister",
+     "url": "None",
+     "result": "found_A",
+     "note": "得 BLF id=654、Uppslagsverket"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "curl BLF 條目 id=654",
+     "url": "https://www.blf.fi/artikel.php?id=654",
+     "result": "found_A",
+     "note": "200；作者 Mikko Uola；段落與職位出處"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "curl Uppslagsverket Finland 條目",
+     "url": "https://uppslagsverket.fi/sv/view-170045-KivimaekiToivoMikael",
+     "result": "not_relevant",
+     "note": "200；已有 BLF，未引用"
+    }
+   ]
+  }
+ ]
+}

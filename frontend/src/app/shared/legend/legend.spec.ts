@@ -99,13 +99,14 @@ describe('Legend：主權圖層與收合動畫', () => {
     expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('待查證');
   });
 
-  it('收合：先播 motion 收合（data-state=closing），結束後才換成收合按鈕；展開也播', async () => {
+  it('收合：先播淡出收合（data-state=closing），結束後才換成收合按鈕；展開也播；不 tween 高度（§17.5）', async () => {
     const { fixture, calls, finish } = setup(false);
     await fixture.whenStable();
     fixture.componentRef.setInput('open', false);
     await fixture.whenStable();
     expect(state(fixture)).toBe('closing');
     expect(calls.at(-1)?.['opacity']).toEqual([1, 0]);
+    expect(Object.keys(calls.at(-1) ?? {})).not.toContain('height');
     finish();
     await new Promise((r) => setTimeout(r));
     await fixture.whenStable();
@@ -113,7 +114,8 @@ describe('Legend：主權圖層與收合動畫', () => {
     fixture.componentRef.setInput('open', true);
     await fixture.whenStable();
     expect(state(fixture)).toBe('open');
-    expect(calls.at(-1)?.['opacity']).toEqual([0.4, 1]);
+    expect(calls.at(-1)?.['opacity']).toEqual([0, 1]);
+    expect(Object.keys(calls.at(-1) ?? {})).not.toContain('height');
   });
 
   it('prefers-reduced-motion：直接切換，不播動畫', async () => {

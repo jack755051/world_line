@@ -1,12 +1,16 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { NgTemplateOutlet } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, computed, ElementRef, inject, Injector, input, output, signal, viewChild } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
 import { LucideCalendar, LucideChevronDown, LucideIdCard, LucideLandmark, LucideLibrary, LucideScrollText, LucideUserRound, LucideX } from '@lucide/angular';
 import type { LeaderBio } from '../../core/api/world-line-api';
 import type { Lang } from '../../core/i18n';
 import { formatPartialDate, formatTerm, inclusiveEnd, pickLocalized, portraitDisplayable } from '../../core/person-format';
 import { fieldSourceItems, portraitSourceItems, termSourceItems } from '../../core/person-sources';
+import { MOTION_SPEC, MotionService, type MotionContext, type MotionTimeline } from '../../core/motion';
 import { SourceDisclosure, type SourceItem } from '../source-disclosure/source-disclosure';
+
+/** 根元素 data-motion-state（§17.3）；關閉卸載後元素不存在。 */
+export type PersonDialogMotionState = 'opening' | 'open' | 'closing';
 
 export type PersonDialogState =
   | { status: 'loading' }
@@ -46,17 +50,20 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
  * 區塊：標頭（照片 3:4、中文名、原文名、角色、生卒）→ 區塊分頁籤（吸頂）→ 基本資料格 → 生平 → 職位與任期時間軸 → 資料來源（底部統一收合）。
  * 欄位值旁只放上標來源編號；完整出處集中在底部「資料來源 (N)」。沒有來源的欄位明示「待補來源」；舊格式出處只當備註，不標已查證。
  * 戰役／事件：目前沒有人物↔事件資料（§14.0 戰役先不做），不顯示該區塊，也不放假資料。
+ * 開關動效（ARCHITECTURE §17 P1）：`open` 輸入由頁面依 `?person=` 給；關閉時先 `closing`（inert、不可點）播完才送 `hidden` 讓頁面卸載。
+ * 焦點、Esc、history 都在狀態改變當下處理，不等動畫。只動 transform／opacity；一個彈窗只持有一條 timeline。
  */
 @Component({
   selector: 'wl-person-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CdkTrapFocus, NgTemplateOutlet, LucideX, LucideUserRound, LucideCalendar, LucideIdCard, LucideScrollText, LucideLandmark, LucideLibrary, LucideChevronDown, SourceDisclosure],
   template: `
-    <div class="fixed inset-0 z-[70]" data-testid="person-dialog-root">
-      <div class="absolute inset-0 bg-black/45" aria-hidden="true" data-testid="person-dialog-backdrop" (click)="closed.emit()"></div>
+    <div class="fixed inset-0 z-[70]" data-testid="person-dialog-root" [attr.data-motion-state]="motionState()"
+      [attr.inert]="motionState() === 'closing' ? '' : null" [class.pointer-events-none]="motionState() === 'closing'">
+      <div #backdrop class="absolute inset-0 bg-black/45" aria-hidden="true" data-testid="person-dialog-backdrop" (click)="closed.emit()"></div>
       <section #panel data-testid="person-dialog" role="dialog" aria-modal="true" [attr.aria-labelledby]="titleId" tabindex="-1"
         cdkTrapFocus [cdkTrapFocusAutoCapture]="false"
-        class="absolute inset-0 flex flex-col overflow-hidden bg-wl-surface shadow-[var(--wl-shadow-panel)] outline-none md:inset-auto md:left-1/2 md:top-1/2 md:h-[min(90vh,860px)] md:w-[min(920px,94vw)] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-xl md:border md:border-wl-outline-variant">
+        class="absolute inset-0 flex flex-col overflow-hidden bg-wl-surface shadow-[var(--wl-shadow-panel)] outline-none md:m-auto md:h-[min(90vh,860px)] md:w-[min(920px,94vw)] md:rounded-xl md:border md:border-wl-outline-variant">
         <!-- 頂列：檔案標記（政權）＋關閉；不隨內容捲動 -->
         <header class="flex flex-none items-center gap-2 border-b border-wl-outline-variant bg-wl-surface-container px-4 md:px-6">
           <span aria-hidden="true" class="size-2 flex-none bg-wl-primary"></span>
@@ -235,6 +242,11 @@ export class PersonDialog {
   readonly state = input.required<PersonDialogState>();
   readonly lang = input<Lang>('zh-Hant');
   readonly closed = output<void>();
+  /** 頁面狀態：true＝開啟；false＝播關閉動畫，播完（或逾時 300ms）送 hidden。 */
+  readonly open = input(true);
+  /** 關閉動畫結束，頁面可以卸載。 */
+  readonly hidden = output<void>();
+  protected readonly motionState = signal<PersonDialogMotionState>('opening');
 
   protected readonly titleId = 'wl-person-dialog-title';
   private readonly uid = `wl-pd-${++seq}`;
@@ -245,6 +257,17 @@ export class PersonDialog {
   private readonly closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
   private readonly body = viewChild<ElementRef<HTMLElement>>('body');
   private readonly injector = inject(Injector);
+  private readonly backdrop = viewChild<ElementRef<HTMLElement>>('backdrop');
+  private readonly motion = inject(MotionService);
+  private readonly destroyRef = inject(DestroyRef);
+  private ctx: MotionContext | null = null;
+  private tl: MotionTimeline | null = null;
+  /** 目前 timeline 裝的是開啟序列或關閉序列。 */
+  private tlKind: 'open' | 'close' | null = null;
+  private desktop = true;
+  private rendered = false;
+  private done = false;
+  private forceTimer: ReturnType<typeof setTimeout> | undefined;
 
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
   protected readonly bio = computed(() => { const s = this.state(); return s.status === 'ok' ? s.data : null; });
@@ -403,7 +426,117 @@ export class PersonDialog {
   }
 
   constructor() {
-    // 開啟時焦點移到關閉鈕（標題可被讀到：aria-labelledby）
-    afterNextRender(() => (this.closeBtn()?.nativeElement ?? this.panel()?.nativeElement)?.focus({ preventScroll: true }), { injector: this.injector });
+    // 開啟時焦點移到關閉鈕（標題可被讀到：aria-labelledby）；不等動畫
+    afterNextRender(() => {
+      (this.closeBtn()?.nativeElement ?? this.panel()?.nativeElement)?.focus({ preventScroll: true });
+      this.rendered = true;
+      this.sync(this.open());
+    }, { injector: this.injector });
+    effect(() => {
+      const open = this.open();
+      untracked(() => this.rendered && this.sync(open));
+    });
+    this.destroyRef.onDestroy(() => clearTimeout(this.forceTimer));
+  }
+
+  private sync(open: boolean): void {
+    if (open) {
+      this.done = false;
+      this.playOpen();
+    } else if (!this.done) this.playClose();
+  }
+
+  private timeline(): MotionTimeline | null {
+    const root = this.panel()?.nativeElement.parentElement;
+    if (!root) return null;
+    this.ctx ??= this.motion.context(root, this.destroyRef);
+    return (this.tl ??= this.ctx.timeline());
+  }
+
+  /** 讓 timeline 往某方向播，結束時呼叫 cb；同一條 timeline，不疊加。 */
+  private run(tl: MotionTimeline, dir: 'play' | 'reverse', ratio: number, cb: () => void): void {
+    this.motion.outside(() => {
+      tl.eventCallback('onComplete', dir === 'play' ? cb : null);
+      tl.eventCallback('onReverseComplete', dir === 'reverse' ? cb : null);
+      tl.timeScale((this.motion.timeScale || 1) * ratio);
+      if (dir === 'play') tl.play();
+      else tl.reverse();
+    });
+  }
+
+  private playOpen(): void {
+    clearTimeout(this.forceTimer);
+    if (this.motionState() === 'open') return;
+    const wasClosing = this.motionState() === 'closing';
+    this.motionState.set('opening');
+    const panel = this.panel()?.nativeElement;
+    const bd = this.backdrop()?.nativeElement;
+    const reduced = this.motion.reduced();
+    const tl = panel && bd && this.motion.canAnimate() ? this.timeline() : null;
+    if (!tl || !panel || !bd) return this.settleOpen();
+    const opened = () => this.motion.inside(() => this.settleOpen());
+    if (wasClosing && this.tlKind) {
+      // 關到一半又開同一人：同一條 timeline 反向回開啟狀態
+      const spec = this.desktop ? MOTION_SPEC.dialog : MOTION_SPEC.dialogMobile;
+      if (this.tlKind === 'open') this.run(tl, 'play', 1, opened);
+      else this.run(tl, 'reverse', spec.close.duration / spec.open.duration, opened);
+      return;
+    }
+    this.desktop = this.motion.isDesktop();
+    this.motion.outside(() => {
+      tl.clear().progress(0);
+      if (reduced) {
+        tl.fromTo(panel, { opacity: 0 }, { opacity: 1, ...MOTION_SPEC.reducedFade }, 0);
+      } else {
+        tl.fromTo(bd, { opacity: 0 }, { opacity: 1, ...MOTION_SPEC.backdrop.open }, 0);
+        if (this.desktop) tl.fromTo(panel, { opacity: 0, scale: 0.96, y: 8 }, { opacity: 1, scale: 1, y: 0, ...MOTION_SPEC.dialog.open }, 0);
+        else tl.fromTo(panel, { yPercent: 100 }, { yPercent: 0, ...MOTION_SPEC.dialogMobile.open }, 0);
+      }
+      tl.pause(0);
+    });
+    this.tlKind = 'open';
+    this.run(tl, 'play', 1, opened);
+  }
+
+  private settleOpen(): void {
+    this.motionState.set('open');
+  }
+
+  private playClose(): void {
+    if (this.motionState() === 'closing') return;
+    this.motionState.set('closing');
+    const panel = this.panel()?.nativeElement;
+    const bd = this.backdrop()?.nativeElement;
+    const tl = this.tl;
+    if (!panel || !bd || !tl || this.motion.reduced() || !this.motion.canAnimate()) return this.finishClose();
+    clearTimeout(this.forceTimer);
+    this.forceTimer = setTimeout(() => this.motion.inside(() => this.finishClose()), MOTION_SPEC.closeTimeoutMs);
+    const closed = () => this.motion.inside(() => this.finishClose());
+    const spec = this.desktop ? MOTION_SPEC.dialog : MOTION_SPEC.dialogMobile;
+    if (this.tlKind === 'open' && tl.progress() < 1) {
+      // 未開完就關：同一條 timeline 反向，依開／關時長比例加速
+      this.run(tl, 'reverse', spec.open.duration / spec.close.duration, closed);
+      return;
+    }
+    this.motion.outside(() => {
+      tl.clear().progress(0);
+      tl.to(bd, { opacity: 0, ...MOTION_SPEC.backdrop.close }, 0);
+      if (this.desktop) tl.to(panel, { opacity: 0, scale: 0.98, ...MOTION_SPEC.dialog.close }, 0);
+      else tl.to(panel, { yPercent: 100, ...MOTION_SPEC.dialogMobile.close }, 0);
+      tl.pause(0);
+    });
+    this.tlKind = 'close';
+    this.run(tl, 'play', 1, closed);
+  }
+
+  /** 關閉結束（播完、逾時、reduced-motion）：停掉 timeline，通知頁面卸載。 */
+  private finishClose(): void {
+    if (this.done || this.motionState() !== 'closing') return;
+    this.done = true;
+    clearTimeout(this.forceTimer);
+    this.tl?.kill();
+    this.tl = null;
+    this.tlKind = null;
+    this.hidden.emit();
   }
 }

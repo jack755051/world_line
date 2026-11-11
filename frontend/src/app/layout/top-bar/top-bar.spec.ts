@@ -31,7 +31,7 @@ describe('TopBar：實際控制／主權切換', () => {
     expect(el.querySelector('[data-testid="axis-toggle"]')?.getAttribute('data-axis')).toBe('sovereignty');
   });
 
-  it('切換時選取底塊用 motion 滑動', async () => {
+  it('切換時選取底塊滑動：只動 transform（x＋scaleX），不 tween width（§17.5）', async () => {
     const { fixture, calls } = setup(false);
     await fixture.whenStable();
     expect(calls.length).toBe(0); // 第一次直接到位
@@ -39,7 +39,7 @@ describe('TopBar：實際控制／主權切換', () => {
     await fixture.whenStable();
     expect(calls.length).toBe(1);
     expect((calls[0].el as HTMLElement).dataset['testid']).toBe('axis-toggle-thumb');
-    expect(Object.keys(calls[0].kf)).toContain('transform');
+    expect(Object.keys(calls[0].kf).sort()).toEqual(['scaleX', 'x']);
   });
 
   it('prefers-reduced-motion：不播動畫，底塊直接到位', async () => {

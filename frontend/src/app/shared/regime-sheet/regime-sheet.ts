@@ -5,25 +5,25 @@ import { OVERLAY_ABSOLUTE_CLOSE_BUTTON_CLASS, OVERLAY_CLOSE_ICON_CLASS, OVERLAY_
 import { cn } from '../../components/ui/shared/utils';
 import { SHEET_SURFACE_CLASS } from '../../components/ui/sheet/sheet.styles';
 import type { Lang } from '../../core/i18n';
-import { MotionService } from '../../core/motion';
+import { MOTION_SPEC, MotionService } from '../../core/motion';
 
-/** 進場／退場時長與曲線：照 sanring sheet（--animate-sheet-in-*：.35s cubic-bezier(.16,1,.3,1)；out：.2s ease-in）。 */
-export const SHEET_MOTION = { in: { duration: 0.35, ease: [0.16, 1, 0.3, 1] }, out: { duration: 0.2, ease: 'easeIn' } } as const;
+/** 進場／退場時長與曲線：ARCHITECTURE §17.3（開 350ms expo.out，近似 sanring 的 cubic-bezier(.16,1,.3,1)；關 200ms power2.in）。 */
+export const SHEET_MOTION = { in: MOTION_SPEC.sheet.open, out: MOTION_SPEC.sheet.close } as const;
 export type SheetState = 'closed' | 'opening' | 'open' | 'closing';
 
 const SIDE_CLASS = {
   right: 'inset-y-0 right-0 h-full border-l border-[var(--sanring-border)]',
   bottom: 'inset-x-0 bottom-0 border-t border-[var(--sanring-border)]',
 } as const;
-const OFFSCREEN = { right: 'translateX(100%)', bottom: 'translateY(100%)' } as const;
-const ONSCREEN = { right: 'translateX(0%)', bottom: 'translateY(0%)' } as const;
+/** 只動 transform：右側用 xPercent、底部用 yPercent。 */
+const AXIS_PROP = { right: 'xPercent', bottom: 'yPercent' } as const;
 
 /**
  * 政權／衝突資訊的側邊面板（Tai 2026-10-31：參考 sanring UI Sheet 的外觀與互動）。
  * 外觀、標題／描述區、右上角關閉鈕都用 sanring sheet 的同一組 class 與 SheetHeader／Title／Description 元件；
  * 但 sanring 的 SheetContent 是 modal（背景遮罩、鎖捲動、焦點鎖、背景 aria-hidden），會擋住地圖與時間軸，
  * 這裡改成非 modal、放在地圖區內：地圖仍可點（換政權、點空白關閉）、時間軸仍可換日期。
- * 滑入／滑出用 motion，時長曲線同 sanring；prefers-reduced-motion 時直接出現／消失。
+ * 滑入／滑出經 MotionService（GSAP），時長曲線見 §17.3；prefers-reduced-motion 時直接出現／消失。
  */
 @Component({
   selector: 'wl-regime-sheet',
@@ -119,7 +119,7 @@ export class RegimeSheet {
     const el = this.panel()?.nativeElement;
     if (t !== this.token || !el) return;
     el.focus({ preventScroll: true });
-    await this.motion.animate(el, { transform: [OFFSCREEN[side], ONSCREEN[side]] }, SHEET_MOTION.in as never);
+    await this.motion.animate(el, { [AXIS_PROP[side]]: [100, 0] }, { ...SHEET_MOTION.in, clear: true });
     if (t === this.token) this.state.set('open');
   }
 
@@ -129,7 +129,7 @@ export class RegimeSheet {
     const side = this.side();
     this.state.set('closing');
     const el = this.panel()?.nativeElement;
-    if (el) await this.motion.animate(el, { transform: [ONSCREEN[side], OFFSCREEN[side]] }, SHEET_MOTION.out as never);
+    if (el) await this.motion.animate(el, { [AXIS_PROP[side]]: [null, 100] }, SHEET_MOTION.out);
     if (t !== this.token) return;
     this.visible.set(false);
     this.state.set('closed');

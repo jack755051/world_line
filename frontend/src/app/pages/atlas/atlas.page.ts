@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, effect, inject, linkedSignal, signal, untracked, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -250,8 +250,9 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
         }
       }
       <!-- 人物閱讀對話框（設計 §3.1-2）：?person=<leader_bios.id>；開關不動底下面板的選取、分頁、捲動，也不動地圖日期與鏡頭 -->
-      @if (personId()) {
-        <wl-person-dialog [state]="personState()" [lang]="lang()" (closed)="closePerson()" />
+      <!-- §17 P1：關閉時先播退場（open=false），播完 hidden 才卸載；換另一人則以 track 立即換掉舊實例 -->
+      @for (pid of personMounted(); track pid) {
+        <wl-person-dialog [open]="personId() === pid" [state]="personState()" [lang]="lang()" (closed)="closePerson()" (hidden)="onPersonHidden(pid)" />
       }
     </main>
   `,
@@ -265,6 +266,11 @@ export class AtlasPage {
   /** 人物對話框：由 URL `person` 參數決定（上一頁／下一頁會開關對話框）。 */
   protected readonly personId = signal<string | null>(null);
   protected readonly personState = signal<PersonDialogState>({ status: 'loading' });
+  /** 目前掛載的對話框（0 或 1 個）：personId 變 null 時保留到退場動畫結束（onPersonHidden）。 */
+  protected readonly personMounted = linkedSignal<string | null, string[]>({
+    source: this.personId,
+    computation: (id, prev) => (id ? [id] : (prev?.value ?? [])),
+  });
   /** 開對話框前記下：觸發元素（關閉後還原焦點）、面板捲動位置。 */
   private personReturn: { trigger: HTMLElement | null; personId: string; scroll: number | null } | null = null;
   private readonly router = inject(Router);
@@ -1063,6 +1069,11 @@ export class AtlasPage {
   protected openPerson(e: { personId: string; trigger: HTMLElement }): void {
     this.personReturn = { trigger: e.trigger, personId: e.personId, scroll: this.sheetBody()?.scrollTop ?? null };
     this.overlay.open(this.route, e.personId, !!this.personId());
+  }
+
+  /** 對話框退場動畫結束：若期間沒有重新打開同一人就卸載。 */
+  protected onPersonHidden(pid: string): void {
+    if (this.personId() !== pid && this.personMounted()[0] === pid) this.personMounted.set([]);
   }
 
   /** ×、Esc、背景點擊、手機關閉鈕共用：依設計 §4.3 決定 back 或 replace。 */

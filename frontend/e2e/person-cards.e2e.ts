@@ -18,6 +18,8 @@ const QUOTES = '../.dev/screenshots/quotes';
 mkdirSync(QUOTES, { recursive: true });
 const DATE = '1940-06-01';
 const D44 = '1944-09-17';
+/** §17 P1：等彈窗開啟動畫結束（根元素 data-motion-state=open）再量尺寸／截圖；不用固定等待。 */
+const dialogOpened = (page: Page) => expect(page.getByTestId('person-dialog-root')).toHaveAttribute('data-motion-state', 'open');
 const POZNAN: [number, number] = [16.93, 52.41];
 const BERLIN: [number, number] = [13.4, 52.5];
 const BERN: [number, number] = [7.45, 46.95];
@@ -79,6 +81,7 @@ async function checkQuotes(page: Page, shot: 'desktop' | 'mobile'): Promise<void
   await page.goto(`/?date=${DATE}&axis=sovereignty&person=${pid}`);
   const dlg = page.getByTestId('person-dialog');
   await expect(dlg).toBeVisible();
+  await dialogOpened(page);
   const toggle = dlg.getByTestId('person-sources-toggle');
   await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   await expect(dlg.getByTestId('person-sources-panel')).toBeHidden();
@@ -152,6 +155,7 @@ test('人物分頁（1944-09-17 德國）：分頁數量＝不重複人數、希
   await trigger.click();
   const dlg = page.getByTestId('person-dialog');
   await expect(dlg).toBeVisible();
+  await dialogOpened(page);
   await expect(dlg).toHaveAttribute('role', 'dialog');
   await expect(dlg).toHaveAttribute('aria-modal', 'true');
   await expect(dlg).toHaveAttribute('aria-labelledby', /.+/);
@@ -341,6 +345,7 @@ test.describe('手機', () => {
     await page.goto(`/?date=${D44}&axis=sovereignty&person=${pid}`);
     const dlg = page.getByTestId('person-dialog');
     await expect(dlg).toBeVisible();
+    await dialogOpened(page);
     await expect(page.getByTestId('person-dialog-title')).toHaveText('阿道夫·希特勒');
     const box = (await dlg.boundingBox())!;
     expect(box.x).toBe(0);
@@ -412,4 +417,53 @@ test.describe('手機', () => {
       expect(r.center && r.up && r.down).toBe(true);
     }
   });
+});
+
+test.describe('§17 P1 動效：prefers-reduced-motion', () => {
+  for (const vp of [{ name: '桌機', width: 1440, height: 900 }, { name: '手機', width: 390, height: 844 }]) {
+    test(`減少動態（${vp.name}）：彈窗直接出現或 ≤120ms 淡入、無位移；關閉直接卸載`, async ({ page }) => {
+      await page.setViewportSize({ width: vp.width, height: vp.height });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      const pid = await hitlerId(page, D44);
+      await page.goto(`/?date=${D44}&axis=sovereignty&person=${pid}`);
+      const dlg = page.getByTestId('person-dialog');
+      await expect(dlg).toBeVisible();
+      await expect(page.getByTestId('person-dialog-root')).toHaveAttribute('data-motion-state', 'open', { timeout: 400 });
+      // 無位移：panel 與 backdrop 都沒有 transform（reduced-motion 只淡入 opacity）
+      expect(await dlg.evaluate((el) => getComputedStyle(el).transform)).toBe('none');
+      expect(await page.getByTestId('person-dialog-backdrop').evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+      expect(await dlg.evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+      const box = (await dlg.boundingBox())!;
+      if (vp.width < 768) expect(box.y).toBe(0);
+      else expect(Math.abs(box.y + box.height / 2 - vp.height / 2)).toBeLessThanOrEqual(1);
+      await page.keyboard.press('Escape');
+      await expect(page.getByTestId('person-dialog-root')).toHaveCount(0, { timeout: 200 });
+    });
+  }
+});
+
+test('§17 P1 動效（桌機）：開啟 opening→open、結束後無殘留位移；關閉期間 closing（inert）並於 300ms 內卸載', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const pid = await hitlerId(page, D44);
+  await page.goto(`/?date=${D44}&axis=sovereignty&person=${pid}`);
+  const root = page.getByTestId('person-dialog-root');
+  await dialogOpened(page);
+  const tf = await page.getByTestId('person-dialog').evaluate((el) => getComputedStyle(el).transform);
+  expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(tf);
+  const seen = page.evaluate(() => new Promise<string[]>((resolve) => {
+    const r = document.querySelector('[data-testid="person-dialog-root"]')!;
+    const states: string[] = [];
+    const t0 = performance.now();
+    const mo = new MutationObserver(() => {
+      if (!r.isConnected) { mo.disconnect(); resolve([...states, `removed@${Math.round(performance.now() - t0)}`]); return; }
+      states.push(`${r.getAttribute('data-motion-state')}${r.hasAttribute('inert') ? '+inert' : ''}`);
+    });
+    mo.observe(r, { attributes: true });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }));
+  await page.keyboard.press('Escape');
+  const states = await seen;
+  expect(states[0]).toBe('closing+inert');
+  expect(Number(states.at(-1)!.split('@')[1])).toBeLessThanOrEqual(400);
+  await expect(root).toHaveCount(0);
 });

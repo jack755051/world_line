@@ -25,7 +25,7 @@ export interface LegendRegime {
  * 圖例（PRD §8.4，`shared/legend`，左下浮動、可收合）。
  * 樣式說明固定顯示；實際控制檢視的「目前畫面中的政權」來自 API 載入的控制區。
  * 主權檢視只留「國界（主權圖層）」的說明，不列政權清單（全球都顯示時會太擠；Tai 2026-10-31），政權看資訊卡。
- * 收合／展開用 motion 做高度與透明度過場；prefers-reduced-motion 時直接切換。
+ * 收合／展開經 MotionService（GSAP）只做透明度＋位移（§17.5 不 tween 高度；高度立即切換）；prefers-reduced-motion 時直接切換。
  */
 @Component({
   selector: 'wl-legend',
@@ -203,7 +203,7 @@ export class Legend {
     });
   }
 
-  /** 展開：等新面板畫出來後，高度從收合按鈕（32px）長到內容高度、淡入。 */
+  /** 展開：等新面板畫出來後淡入、由下往上 8px（高度立即到位，不動 layout 屬性）。 */
   private animateOpen(): void {
     const run = ++this.run;
     this.closing.set(false);
@@ -211,16 +211,13 @@ export class Legend {
       () => {
         const el = this.panel()?.nativeElement;
         if (!el || run !== this.run || this.motion.reduced()) return;
-        const h = el.scrollHeight;
-        void this.motion
-          .animate(el, { height: ['40px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
-          .then(() => run === this.run && (el.style.height = ''));
+        void this.motion.animate(el, { opacity: [0, 1], y: [8, 0] }, { duration: MOTION_DURATION.base, ease: 'power2.out', clear: true });
       },
       { injector: this.injector },
     );
   }
 
-  /** 收合：面板留在 DOM 播放高度縮回 32px＋淡出，結束後才換成收合按鈕。 */
+  /** 收合：面板留在 DOM 播放淡出＋往下 8px，結束後才換成收合按鈕。 */
   private animateClose(): void {
     const run = ++this.run;
     const el = this.panel()?.nativeElement;
@@ -230,11 +227,9 @@ export class Legend {
     }
     this.closing.set(true);
     void this.motion
-      .animate(el, { height: [`${el.offsetHeight}px`, '40px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
+      .animate(el, { opacity: [1, 0], y: [0, 8] }, { duration: MOTION_DURATION.fast, ease: 'power2.in' })
       .then(() => {
         if (run !== this.run) return;
-        el.style.height = '';
-        el.style.opacity = '';
         this.closing.set(false);
       });
   }

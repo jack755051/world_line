@@ -123,3 +123,20 @@ describe('PersonDialog（Stitch 版面、羊皮紙配色）', () => {
     expect(q(r.el, 'source-pending')).toBeNull();
   });
 });
+
+describe('PersonDialog：§17 P1 開關狀態（測試環境無 matchMedia → 直接到終態）', () => {
+  it('開啟即 data-motion-state=open；open=false 時進入 closing（inert、不可點）並送出 hidden', async () => {
+    const { fixture, el } = await render(bio());
+    const root = q(el, 'person-dialog-root') as HTMLElement;
+    expect(root.getAttribute('data-motion-state')).toBe('open');
+    expect(root.hasAttribute('inert')).toBe(false);
+    let hidden = 0;
+    fixture.componentInstance.hidden.subscribe(() => hidden++);
+    fixture.componentRef.setInput('open', false);
+    await fixture.whenStable();
+    expect(hidden).toBe(1);
+    expect(root.getAttribute('data-motion-state')).toBe('closing');
+    expect(root.hasAttribute('inert')).toBe(true);
+    expect(root.classList.contains('pointer-events-none')).toBe(true);
+  });
+});

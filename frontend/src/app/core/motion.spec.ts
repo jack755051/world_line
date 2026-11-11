@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { MotionService, prefersReducedMotion } from './motion';
+import { MOTION_TIME_SCALE, MotionService, prefersReducedMotion } from './motion';
 
 function mockMatchMedia(matches: boolean) {
   const listeners: ((e: { matches: boolean }) => void)[] = [];
@@ -34,6 +34,40 @@ describe('MotionService（prefers-reduced-motion）', () => {
     const el = document.createElement('div');
     await motion.animate(el, { opacity: [0, 1] });
     expect(el.style.opacity).toBe('');
+  });
+
+  it('沒有 matchMedia 時 canAnimate=false，animate 立即完成', async () => {
+    Object.defineProperty(window, 'matchMedia', { configurable: true, writable: true, value: undefined });
+    const motion = TestBed.inject(MotionService);
+    expect(motion.canAnimate()).toBe(false);
+    const el = document.createElement('div');
+    await motion.animate(el, { opacity: [0, 1] });
+    expect(el.style.opacity).toBe('');
+  });
+
+  it('時間倍率 0（測試用）：一律走終態', () => {
+    mockMatchMedia(false);
+    TestBed.configureTestingModule({ providers: [{ provide: MOTION_TIME_SCALE, useValue: 0 }] });
+    expect(TestBed.inject(MotionService).canAnimate()).toBe(false);
+  });
+
+  it('GSAP 補間只動 transform／opacity，結束時 resolve；同元素再呼叫會接手、舊 promise 立即 resolve', async () => {
+    mockMatchMedia(false);
+    TestBed.configureTestingModule({ providers: [{ provide: MOTION_TIME_SCALE, useValue: 1000 }] });
+    const motion = TestBed.inject(MotionService);
+    expect(motion.canAnimate()).toBe(true);
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    const first = motion.animate(el, { opacity: [0, 1] }, { duration: 10 });
+    const second = motion.animate(el, { opacity: [0, 1], y: [8, 0] }, { duration: 0.2 });
+    await first;
+    await second;
+    expect(el.style.opacity).toBe('1');
+    el.remove();
+  });
+
+  it('P5 頁面轉場只預留介面（no-op）', async () => {
+    await expect(TestBed.inject(MotionService).pageTransition(null, null)).resolves.toBeUndefined();
   });
 
   it('系統設定改變時即時更新', () => {

@@ -14,7 +14,7 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
 /**
  * 頂部列（PRD §8.1，`layout/top-bar`）。
  * 紀年：目前沒有紀年 API（`/eras` 未實作），依 §8.1 empty 規則只顯示西元，不顯示空白括號。
- * 檢視切換（實際控制／主權）：選取底塊用 motion 滑動（prefers-reduced-motion 時直接到位）。
+ * 檢視切換（實際控制／主權）：選取底塊經 MotionService（GSAP）用 translateX＋scaleX 滑動，不 tween width（§17.5；prefers-reduced-motion 時直接到位）。
  */
 @Component({
   selector: 'wl-top-bar',
@@ -117,7 +117,7 @@ export class TopBar {
   private readonly thumb = viewChild<ElementRef<HTMLElement>>('thumb');
   private readonly btnControl = viewChild<ElementRef<HTMLElement>>('btnControl');
   private readonly btnSov = viewChild<ElementRef<HTMLElement>>('btnSov');
-  private placed = false;
+  private placed: { x: number; width: number } | null = null;
 
   constructor() {
     // ⋯ 選單：點外面或 Esc 收起
@@ -134,7 +134,7 @@ export class TopBar {
       doc.removeEventListener('pointerdown', onDown, true);
       doc.removeEventListener('keydown', onKey);
     });
-    // 選取底塊：第一次直接到位；之後切換用 motion 滑過去（減少動態時 MotionService 直接略過，這裡補上終態）
+    // 選取底塊：第一次直接到位；之後 width 立即設成終值，視覺上用 translateX＋scaleX 從舊位置／寬度補間（只動 transform）
     afterRenderEffect(() => {
       const axis = this.axis();
       this.lang();
@@ -143,16 +143,17 @@ export class TopBar {
       if (!thumb || !btn) return;
       untracked(() => {
         const to = { x: btn.offsetLeft, width: btn.offsetWidth };
+        const from = this.placed;
+        this.placed = to;
         const settle = () => {
           thumb.style.transform = `translateX(${to.x}px)`;
           thumb.style.width = `${to.width}px`;
         };
-        if (!this.placed || this.motion.reduced()) {
-          this.placed = true;
-          settle();
-          return;
-        }
-        void this.motion.animate(thumb, { transform: `translateX(${to.x}px)`, width: `${to.width}px` }, { duration: MOTION_DURATION.fast }).then(settle);
+        if (!from || this.motion.reduced()) return settle();
+        thumb.style.width = `${to.width}px`;
+        void this.motion
+          .animate(thumb, { x: [from.x, to.x], scaleX: [to.width ? from.width / to.width : 1, 1] }, { duration: MOTION_DURATION.fast, ease: 'power2.out', transformOrigin: '0% 50%' })
+          .then(settle);
       });
     });
   }

@@ -2,6 +2,8 @@ import { expect, test, type Page } from '@playwright/test';
 
 /** §11.2 戰役模式：入口、階段播放（不自動播放）、Esc 恢復、手機全螢幕；截圖存 WL_SHOT_DIR（預設 tmp/campaign）。 */
 const DIR = process.env['WL_SHOT_DIR'] ?? 'tmp/campaign';
+// §19 C2a：⚔／衝突小卡入口改連獨立頁 /campaign/:slug（見 campaign-page.e2e.ts），主地圖內的戰役模式不再有入口。
+test.skip(true, '§19 C2a：入口改連戰役獨立頁，由 campaign-page.e2e.ts 取代');
 
 async function openRegime(page: Page, w: number, h: number, date: string, center: [number, number], at: [number, number]): Promise<void> {
   await page.setViewportSize({ width: w, height: h });

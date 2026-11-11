@@ -36,6 +36,9 @@ export interface ParsedQuery {
   lang: Lang;
   axis: Axis;
   invalidDate: boolean;
+  /** §19.2.2 Q4＝b：選取政權（regime id）與面板分頁；重新整理、分享連結時還原。 */
+  regime: string | null;
+  tab: 'events' | 'leaders' | null;
 }
 
 /** 解析 `?date=&axis=&lang=`；日期格式錯時回預設日期並標記 invalidDate（PRD §8.11）。 */
@@ -48,6 +51,8 @@ export function parseAtlasQuery(q: Record<string, string | undefined>): ParsedQu
     lang: q['lang'] === 'en' ? 'en' : 'zh-Hant',
     // 主權檢視（國界試驗 1938–1940）：只認得 sovereignty，其他一律實際控制
     axis: q['axis'] === 'sovereignty' ? 'sovereignty' : 'control',
+    regime: q['regime'] && /^[0-9a-f-]{36}$/i.test(q['regime']) ? q['regime'] : null,
+    tab: q['tab'] === 'events' || q['tab'] === 'leaders' ? q['tab'] : null,
   };
 }
 

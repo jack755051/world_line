@@ -917,6 +917,8 @@ export class AtlasMap {
       if (isDevMode()) (window as unknown as { __wlMap?: MlMap }).__wlMap = map;
 
       map.on('styleimagemissing', (e) => this.addHatch(e.id));
+      map.on('movestart', (e) => { if ((e as { originalEvent?: unknown }).originalEvent) this.pinnedCamera = null; });
+      if (this.pinnedCamera) map.jumpTo(this.pinnedCamera);
       map.on('load', () => {
         this.addScale(map);
         this.warmGlyphs(map);
@@ -1035,6 +1037,27 @@ export class AtlasMap {
    * 聚焦：飛到被選政權當前領土的外框、置於可見區中央（四周 48px，右側／下方再扣掉面板），最大縮放 6；
    * 換成別的政權時從目前視角接著飛，原視角只記第一次。取消聚焦時飛回原視角。減少動態時直接跳。
    */
+  /** §19.2.5 ReturnSnapshot：目前鏡頭（從戰役頁返回時還原用）。 */
+  camera(): { center: [number, number]; zoom: number; bearing: number } | null {
+    const m = this.map;
+    if (!m) return null;
+    const c = m.getCenter();
+    return { center: [c.lng, c.lat], zoom: m.getZoom(), bearing: m.getBearing() };
+  }
+  /**
+   * 從戰役頁返回：把鏡頭固定在快照位置。還原選取政權時聚焦不再飛鏡頭（避免蓋掉快照），
+   * 使用者自己拖動或縮放後解除。
+   */
+  pinCamera(cam: { center: [number, number]; zoom: number; bearing: number }): void {
+    this.pinnedCamera = cam;
+    this.map?.jumpTo(cam);
+  }
+  private pinnedCamera: { center: [number, number]; zoom: number; bearing: number } | null = null;
+  private moveCamera(map: MlMap, cam: object, duration: number): void {
+    if (this.pinnedCamera) { map.jumpTo(this.pinnedCamera); return; }
+    map.easeTo({ ...cam, duration, essential: false });
+  }
+
   private applyFocus(id: string | null, fc: FeatureCollection<Geometry, SovereigntyProps> | null, inset: FocusInset, reduced: boolean, overrideBounds: LngLatBounds | null = null): void {
     const map = this.map;
     if (!map) return;
@@ -1056,7 +1079,7 @@ export class AtlasMap {
     if (!f) {
       // 控制國沒有主權紀錄：純飛鏡頭，不進入聚焦模式（不畫遮罩）
       const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
-      if (cam) map.easeTo({ ...cam, duration, essential: false });
+      if (cam) this.moveCamera(map, cam, duration);
       return;
     }
     if (!this.savedCamera) {
@@ -1077,7 +1100,7 @@ export class AtlasMap {
     this.focusBounds = cameraBounds;
     this.focusHasOverride = overrideBounds != null;
     const cam = map.cameraForBounds(cameraBounds, { padding, absolutePadding: true, maxZoom: 6 });
-    if (cam) map.easeTo({ ...cam, duration, essential: false });
+    if (cam) this.moveCamera(map, cam, duration);
     this.drawMask();
     if (duration === 0) queueMicrotask(() => this.fitArcs());
   }

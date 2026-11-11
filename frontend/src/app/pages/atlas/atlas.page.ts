@@ -11,6 +11,7 @@ import type { ConflictFeatureProperties, SovereigntyFeatureProperties } from '..
 import { WorldLineApi, type LeaderRecord } from '../../core/api/world-line-api';
 import { AtlasData } from '../../core/atlas-data';
 import { AtlasState, parseAtlasQuery } from '../../core/atlas-state';
+import { CampaignReturn, RETURN_STATE_KEY, type ReturnSnapshot } from '../../core/campaign-return';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { regimeSelfName } from '../../core/regime-names';
 import { TopBar } from '../../layout/top-bar/top-bar';
@@ -581,10 +582,24 @@ export class AtlasPage {
     return campaignsForRegime(this.campaigns.index(), slug).filter((c) => Math.abs(Number(c.start.slice(0, 4)) - y) <= 1);
   });
   private campaignSaved: { date: string } | null = null;
+  private readonly returns = inject(CampaignReturn);
+  /** §19.2.5：從 URL（regime／tab）或返回快照還原時，等政權選上後再套分頁與面板捲動。 */
+  private pendingTab: SovereigntyTab | null = null;
+  private pendingScroll: number | null = null;
+  /** C2：入口改連獨立頁 /campaign/:slug。離開前存 ReturnSnapshot（記憶體＋本頁 history.state），再 push 戰役頁。 */
   protected openCampaign(key: string): void {
     if (!this.campaigns.enabled) return;
-    if (!this.campaignSaved) this.campaignSaved = { date: this.state.date() };
-    void this.campaigns.open(key);
+    const snap: ReturnSnapshot = {
+      route: 'atlas', date: this.state.date(), lang: this.state.lang(), axis: this.state.axis(),
+      camera: this.atlasMapComponent()?.camera() ?? null,
+      regimeId: this.sheetNow()?.sov?.props.regimeId ?? null,
+      sheetTab: this.sheetNow()?.sov ? this.sovTab() : null,
+      sheetScrollTop: this.sheetBody()?.scrollTop ?? null,
+      personId: this.personId(),
+    };
+    this.returns.save(snap);
+    if (typeof history !== 'undefined') history.replaceState({ ...(history.state ?? {}), [RETURN_STATE_KEY]: snap }, '');
+    void this.router.navigate(['/campaign', key], { state: { [RETURN_STATE_KEY]: snap } });
   }
   protected closeCampaign(): void {
     if (!this.campaignMode()) return;
@@ -814,6 +829,35 @@ export class AtlasPage {
     this.state.date.set(q.date);
     this.state.lang.set(q.lang);
     this.state.axis.set(q.axis);
+    // §19.2.5：從戰役頁返回（「返回」鈕或瀏覽器上一頁）→ 還原選取政權、分頁、面板捲動、鏡頭；日期等仍以 URL 為準
+    const back = this.returns.takeRestore();
+    const restore = back && back.date === q.date ? back : null;
+    const regime = restore ? restore.regimeId : q.regime;
+    if (regime) {
+      this.pendingRegime.set(regime);
+      this.pendingTab = (restore ? (restore.sheetTab as SovereigntyTab | null) : q.tab) ?? null;
+      this.pendingScroll = restore?.sheetScrollTop ?? null;
+      if (this.data.boundarySource === 'tiles') void this.data.loadRegimeSovereignty(regime, q.date);
+    }
+    if (restore?.camera) {
+      // 地圖元件要等健康檢查通過才建立：出現後立刻釘住鏡頭（聚焦還原的政權時不再飛鏡頭）
+      const cam = restore.camera;
+      const pin = effect(() => {
+        const m = this.atlasMapComponent();
+        if (m) { untracked(() => m.pinCamera(cam)); pin.destroy(); }
+      });
+    }
+    // Q4＝b：選取政權與分頁寫回 URL（replaceUrl；捲動位置不存）
+    effect(() => {
+      const sel = this.sheetNow()?.sov?.props.regimeId ?? null;
+      const tab = this.sovTab();
+      untracked(() => {
+        const pend = sel ? null : this.pendingRegime();
+        const regimeQ = sel ?? pend;
+        const tabQ = sel ? (tab !== 'overview' ? tab : null) : pend ? this.pendingTab : null;
+        void this.router.navigate([], { relativeTo: this.route, queryParams: { regime: regimeQ, tab: tabQ }, queryParamsHandling: 'merge', replaceUrl: true });
+      });
+    });
     if (q.invalidDate) queueMicrotask(() => this.toast?.info(t('toast.invalidDate', q.lang)));
 
     effect(() => {
@@ -836,6 +880,12 @@ export class AtlasPage {
         this.pendingRegime.set(null);
         const f = dto.featureCollection.features.find((x) => x.properties.regimeId === want);
         if (f) this.onSovereigntyClick({ recordId: f.properties.recordId, x: 0, y: 0 });
+        const tab = this.pendingTab;
+        this.pendingTab = null;
+        if (f && tab) this.sovTab.set(tab);
+        const scroll = this.pendingScroll;
+        this.pendingScroll = null;
+        if (f && scroll) this.restoreSheetScroll(scroll);
       });
     });
     effect(() => {
@@ -1058,6 +1108,18 @@ export class AtlasPage {
     const back = this.returnSov();
     if (!back) return;
     this.onSovereigntyClick(back.e);
+  }
+
+  /** 面板內容（事件、人物）是非同步載入的：等到可以捲到目標位置（最多 5 秒）。 */
+  private restoreSheetScroll(top: number): void {
+    const t0 = performance.now();
+    const tick = () => {
+      const body = this.sheetBody();
+      if (body && body.scrollHeight - body.clientHeight >= top) { body.scrollTop = top; if (body.scrollTop === top) return; }
+      if (performance.now() - t0 < 5000) setTimeout(tick, 100);
+      else if (body) body.scrollTop = top;
+    };
+    setTimeout(tick, 0);
   }
 
   // ── 人物對話框 ──────────────────────────────────────────────────────────────

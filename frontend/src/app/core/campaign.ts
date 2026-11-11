@@ -115,6 +115,26 @@ export function campaignsForConflict(index: CampaignIndexEntry[], slugA: string,
   return index.filter((c) => c.regime_slugs.includes(slugA) && c.regime_slugs.includes(slugB) && c.start < (end ?? '9999-12-31') && start < c.end);
 }
 
+/** 戰役資料來源（§19.5 C1）：先讀唯讀 API；API 讀不到時退回靜態 JSON，畫面上明確標示。 */
+export type CampaignSourceKind = 'api' | 'static';
+export const CAMPAIGN_API_BASE = '/api/v1/campaigns/';
+
+/** 讀一場戰役：API（`{ data: Campaign }` 信封）→ 失敗時靜態 `campaigns/<slug>.json`；兩者都失敗就丟錯。 */
+export async function fetchCampaign(slug: string, staticBase = 'campaigns/', f: typeof fetch = fetch): Promise<{ campaign: Campaign; source: CampaignSourceKind }> {
+  const key = encodeURIComponent(slug);
+  try {
+    const r = await f(CAMPAIGN_API_BASE + key, { headers: { accept: 'application/json' } });
+    if (r.ok) {
+      const j = await r.json();
+      const c = (j && typeof j === 'object' && 'data' in j ? j.data : j) as Campaign | null;
+      if (c && Array.isArray(c.phases) && c.layers) return { campaign: c, source: 'api' };
+    }
+  } catch { /* 退回靜態 JSON */ }
+  const r = await f(staticBase + key + '.json');
+  if (!r.ok) throw new Error(String(r.status));
+  return { campaign: (await r.json()) as Campaign, source: 'static' };
+}
+
 @Injectable({ providedIn: 'root' })
 export class CampaignService {
   readonly enabled = inject(CAMPAIGNS_ENABLED);
@@ -122,6 +142,7 @@ export class CampaignService {
   readonly campaign = signal<Campaign | null>(null);
   readonly status = signal<CampaignStatus>('idle');
   readonly phase = signal(1);
+  readonly source = signal<CampaignSourceKind | null>(null);
   readonly current = computed(() => this.campaign()?.phases.find((p) => p.seq === this.phase()) ?? null);
   private player: CampaignPlayer | null = null;
   private loaded = false;
@@ -143,10 +164,9 @@ export class CampaignService {
     this.close();
     this.status.set('loading');
     try {
-      const r = await fetch(this.base + encodeURIComponent(key) + '.json');
-      if (!r.ok) throw new Error(String(r.status));
-      const c = (await r.json()) as Campaign;
+      const { campaign: c, source } = await fetchCampaign(key, this.base);
       if (this.status() !== 'loading') return;
+      this.source.set(source);
       this.campaign.set(c);
       this.player = new CampaignPlayer(c.phases.length, () => this.sync());
       this.sync();
@@ -158,6 +178,7 @@ export class CampaignService {
     this.player?.dispose();
     this.player = null;
     this.campaign.set(null);
+    this.source.set(null);
     this.status.set('idle');
     this.phase.set(1);
   }

@@ -98,7 +98,9 @@ describe('戰役功能開關（production 關閉）', () => {
       await svc.open('dunkirk_1940');
       expect(svc.index().length).toBe(enabled ? 1 : 0);
       expect(svc.status()).toBe(enabled ? 'ready' : 'idle');
-      expect(fetchMock).toHaveBeenCalledTimes(enabled ? 2 : 0);
+      // index.json＋API（回應缺 layers → 不採用）＋靜態 JSON 備援（§19.5 C1）
+      expect(fetchMock).toHaveBeenCalledTimes(enabled ? 3 : 0);
+      if (enabled) { expect(String(fetchMock.mock.calls[1][0])).toBe('/api/v1/campaigns/dunkirk_1940'); expect(svc.source()).toBe('static'); }
       svc.close();
     });
   }

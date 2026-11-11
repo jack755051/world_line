@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """B3 生卒 12 筆矛盾修正（Tai 2026-11-11 21:24；依 consistency-check.md／findings.json 建議與五項預設做法）。
 
-只產生 patch 與 SQL 計畫，不寫庫：
+產生 patch 與 SQL 計畫；預設與 --dry-run 都不寫庫：
   python3 -I patch_fix12.py            → fix12.json、paragraphs.patched.json、plan.sql、fix12-diff.md（唯讀 SELECT 核對 5442 現況）
   python3 -I patch_fix12.py --dry-run  → 另把 plan.sql 送進 5442 執行（plan.sql 以 ROLLBACK 結尾，不留任何變更），輸出存 dryrun.txt
-plan.sql 沒有 COMMIT；本腳本沒有寫庫選項。連線同 run100/write_b3_paragraphs.py（docker exec worldline-borders-dev-db，5442）。
+  python3 -I patch_fix12.py --apply    → 用現有 plan.sql，在記憶體把結尾 ROLLBACK 換成 COMMIT 後寫入 5442；種子檔不改。先再跑一次 ROLLBACK 對照 dryrun.txt，不一致則不寫庫。輸出存 apply.txt
+連線同 run100/write_b3_paragraphs.py（docker exec worldline-borders-dev-db，5442）。
 新列 id 以 uuid5 固定（可重跑、輸出相同）。修正依 I5：段落撤回重寫＋superseded_by；缺漏、引文只撤回不刪。
 """
 import json, subprocess, sys, uuid
@@ -54,8 +55,29 @@ EXPECT_BIOS = {  # key: (birth_date, birth_prec, death_date, death_prec)
 OLD_PAR = {"wu": "37d0857a-9d93-462a-931b-05bb2c756887", "hansson": "6456dabd-c1ae-4bf2-a3b7-f79d036c9c9b"}
 SEED = {"wu": ("batch12", "cn-wu-tingfang", 1), "hansson": ("batch02", "se-per-albin-hansson", 3)}
 
+def run_plan(sql):
+    return subprocess.run(["docker", "exec", "-i", CONTAINER, "psql", "-U", DBUSER, "-d", DBNAME, "-X", "-A", "-F", " | ", "-v", "ON_ERROR_STOP=1"],
+                          input=sql, capture_output=True, text=True)
+
+def stdout_core(s):
+    if "--- stdout ---" in s:
+        s = s.split("--- stdout ---\n", 1)[1]
+        if "\n--- stderr ---" in s:
+            s = s.split("\n--- stderr ---", 1)[0]
+    s = s.replace("\r\n", "\n").rstrip() + "\n"
+    for end in ("ROLLBACK\n", "COMMIT\n"):
+        if s.endswith(end):
+            return s[:-len(end)]
+    return s
+
 def main():
-    dry = "--dry-run" in sys.argv[1:]
+    args = sys.argv[1:]
+    dry = "--dry-run" in args
+    apply = "--apply" in args
+    if dry and apply:
+        sys.exit("不可同時 --dry-run 與 --apply")
+    if apply and any(a != "--apply" for a in args):
+        sys.exit("--apply 不可搭配其他參數")
     ids = ",".join(lit(v[0]) for v in P.values())
     bios = {r[0]: r[1:] for r in psql(f"select id, coalesce(birth_date::text,''), coalesce(birth_date_precision,''), coalesce(death_date::text,''), coalesce(death_date_precision,''), version from leader_bios where id in ({ids}) and retracted_at is null")}
     for k, exp in EXPECT_BIOS.items():
@@ -194,16 +216,52 @@ def main():
     A("SELECT 'paragraph', bio_id, ord, period, left(body->>'en', 90), left(body->>'zh-Hant', 40), (SELECT count(*) FROM leader_bio_paragraph_citations c WHERE c.paragraph_id=p.id) FROM leader_bio_paragraphs p WHERE id IN (%s);" % ",".join(lit(x["new"]) for x in ops["par_supersede"]))
     A("SELECT 'gaps', b.name, g.target, g.gap_kind, g.resolved_at IS NOT NULL AS resolved FROM leader_bio_gaps g JOIN leader_bios b ON b.id=g.bio_id WHERE g.bio_id IN (%s) AND g.retracted_at IS NULL AND g.target IN ('field:birthDate','field:deathDate','field:birthPlace') ORDER BY 2,3,4;" % ids)
     A("ROLLBACK;")
-    (HERE / "plan.sql").write_text("\n".join(sql) + "\n", encoding="utf-8")
+    plan_text = "\n".join(sql) + "\n"
+    counts = "bios_update=%d field_cit_insert=%d field_cit_retract=%d gap_retract=%d gap_insert=%d par_supersede=%d par_cit_copy=%d par_cit_new=%d noop=%d" % (
+        len(ops["bios_update"]), len(ops["field_cit_insert"]), len(ops["field_cit_retract"]), len(ops["gap_retract"]), len(ops["gap_insert"]),
+        len(ops["par_supersede"]), ops["par_cit_copy"], len(ops["par_cit_new"]), len(ops["noop"]))
+    if apply:
+        existing = (HERE / "plan.sql").read_text(encoding="utf-8")
+        if existing != plan_text:
+            sys.exit("產生的 plan.sql 與現有檔不一致，拒絕寫庫（未改檔、未寫庫）")
+        if not existing.rstrip().endswith("ROLLBACK;"):
+            sys.exit("plan.sql 結尾不是 ROLLBACK，拒絕寫庫")
+        print(counts)
+        confirm = run_plan(existing)
+        confirm_out = "exit=%d\n--- stdout ---\n%s\n--- stderr ---\n%s" % (confirm.returncode, confirm.stdout, confirm.stderr)
+        saved = (HERE / "dryrun.txt").read_text(encoding="utf-8")
+        if confirm.returncode:
+            (HERE / "apply.txt").write_text("precheck failed (still ROLLBACK)\n" + confirm_out, encoding="utf-8")
+            sys.exit("套用前再跑 dry-run 失敗，未寫庫")
+        if not confirm.stdout.rstrip().endswith("ROLLBACK"):
+            sys.exit("套用前再跑未以 ROLLBACK 結束，未寫庫")
+        if stdout_core(confirm.stdout) != stdout_core(saved):
+            (HERE / "apply.txt").write_text("precheck mismatch vs dryrun.txt, not applied\n" + confirm_out, encoding="utf-8")
+            sys.exit("交易內檢查／筆數與 dry-run 不一致，未寫庫（已 ROLLBACK）")
+        # 只在記憶體把結尾 ROLLBACK 換成 COMMIT，不改種子檔
+        body, sep, end = existing.rstrip().rpartition("ROLLBACK;")
+        if sep != "ROLLBACK;" or end.strip():
+            sys.exit("無法安全地替換 plan.sql 結尾的 ROLLBACK")
+        apply_sql = body + "COMMIT;" + ("\n" if existing.endswith("\n") else "")
+        r = run_plan(apply_sql)
+        out = "exit=%d\n--- stdout ---\n%s\n--- stderr ---\n%s" % (r.returncode, r.stdout, r.stderr)
+        (HERE / "apply.txt").write_text(out, encoding="utf-8")
+        print(out[-3000:])
+        if r.returncode:
+            sys.exit("寫庫失敗，交易應已中止／ROLLBACK")
+        if not r.stdout.rstrip().endswith("COMMIT"):
+            sys.exit("寫庫未以 COMMIT 結束")
+        if stdout_core(r.stdout) != stdout_core(saved):
+            sys.exit("COMMIT 後筆數與 dry-run 不一致（資料已寫入，請檢查）")
+        print("已寫入 5442（fix12）。")
+        return
+    (HERE / "plan.sql").write_text(plan_text, encoding="utf-8")
     (HERE / "fix12.json").write_text(json.dumps({"decision": DECISION, "ops": ops}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     (HERE / "paragraphs.patched.json").write_text(json.dumps(patched, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     write_diff(ops, src)
-    print("bios_update=%d field_cit_insert=%d field_cit_retract=%d gap_retract=%d gap_insert=%d par_supersede=%d par_cit_copy=%d par_cit_new=%d noop=%d" % (
-        len(ops["bios_update"]), len(ops["field_cit_insert"]), len(ops["field_cit_retract"]), len(ops["gap_retract"]), len(ops["gap_insert"]),
-        len(ops["par_supersede"]), ops["par_cit_copy"], len(ops["par_cit_new"]), len(ops["noop"])))
+    print(counts)
     if dry:
-        r = subprocess.run(["docker", "exec", "-i", CONTAINER, "psql", "-U", DBUSER, "-d", DBNAME, "-X", "-A", "-F", " | ", "-v", "ON_ERROR_STOP=1"],
-                           input=(HERE / "plan.sql").read_text(encoding="utf-8"), capture_output=True, text=True)
+        r = run_plan((HERE / "plan.sql").read_text(encoding="utf-8"))
         out = "exit=%d\n--- stdout ---\n%s\n--- stderr ---\n%s" % (r.returncode, r.stdout, r.stderr)
         (HERE / "dryrun.txt").write_text(out, encoding="utf-8")
         print(out[-3000:])

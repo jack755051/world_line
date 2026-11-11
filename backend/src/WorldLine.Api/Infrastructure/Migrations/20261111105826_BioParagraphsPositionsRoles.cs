@@ -131,7 +131,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     start_precision = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
                     end_precision = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
                     acting = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    t14rule = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
+                    t14_rule = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
                     note = table.Column<string>(type: "text", nullable: true),
                     superseded_by = table.Column<Guid>(type: "uuid", nullable: true),
                     retracted_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),

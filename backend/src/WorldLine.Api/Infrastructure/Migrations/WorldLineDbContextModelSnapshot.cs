@@ -2556,7 +2556,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     b.Property<string>("T14Rule")
                         .HasMaxLength(8)
                         .HasColumnType("character varying(8)")
-                        .HasColumnName("t14rule");
+                        .HasColumnName("t14_rule");
 
                     b.Property<string>("Title")
                         .IsRequired()

@@ -101,7 +101,7 @@ internal static class BioDetailModel
             e.Property(x => x.Period).HasColumnType("daterange");
             e.Property(x => x.StartPrecision).HasMaxLength(8);
             e.Property(x => x.EndPrecision).HasMaxLength(8);
-            e.Property(x => x.T14Rule).HasMaxLength(8);
+            e.Property(x => x.T14Rule).HasColumnName("t14_rule").HasMaxLength(8);
             e.Property(x => x.Organization).HasColumnType("jsonb");
             e.Property(x => x.Title).HasColumnType("jsonb");
             e.Property(x => x.Acting).HasDefaultValue(false);

@@ -1,7 +1,8 @@
 """b3-sample 補邱吉爾 bioId／任期 id（Tai 2026-11-11 10:13 第 ⑤ 項；寫庫 commit f665946）。
 
 用法：python3 -I patch_churchill_ids.py [research.json]
-- 只改 key=gb-winston-churchill 的 bioId、recordIds、paragraphs[].relatedRecordIds。
+- 只改 key=gb-winston-churchill 的 bioId、recordIds、paragraphs[].relatedRecordIds、dbNote。
+- dbNote 只接受舊文字（以「5442 僅有 3 筆已撤回的測試種子 bio」開頭）或已是新值；其他值停下報錯不覆蓋。
 - 段落 period 與任期 [1940-05-10,1945-07-26) 重疊（半開區間）者掛新任期 id；已撤回任期 id 一律替換。
 - 冪等：已套用則不寫檔。不連網、不連資料庫。
 - 寫回格式同原檔：json.dumps(indent=1, ensure_ascii=False)，結尾無換行；寫前先確認原檔可逐位元組 round-trip。
@@ -14,6 +15,14 @@ BIO_ID = "01a1c86e-c89b-70af-afe0-1ad0f4be2bf8"
 RECORD_ID = "01a1c86e-c9a8-774a-92a1-bcf284ffe54d"
 RETRACTED_RECORD_ID = "01a19efa-769a-7615-9705-89c66d803905"
 TERM = ("1940-05-10", "1945-07-26")  # [start, end)
+# dbNote 更新（Tai 2026-11-11 10:13 第 ⑤ 項；World Line 主管 10:33 決定）
+DBNOTE_OLD_PREFIX = "5442 僅有 3 筆已撤回的測試種子 bio"
+DBNOTE_NEW = (
+    "有效 bio 01a1c86e-c89b-70af-afe0-1ad0f4be2bf8 與 1940–45 首相任期 "
+    "01a1c86e-c9a8-774a-92a1-bcf284ffe54d 已於 2026-11-11 依 churchill-rebuild 寫入開發庫"
+    "（commit f665946）；舊 3 筆測試 bio（01a19efa-758c-718a-b1ec-27916469f239 等）與 "
+    "1 筆任期 01a19efa-769a-7615-9705-89c66d803905 維持撤回。"
+)
 
 
 def dump(d):
@@ -61,6 +70,13 @@ def main():
         if new != para.get("relatedRecordIds"):
             changes.append(f"段{para.get('ord')} {para.get('period')} relatedRecordIds: {old} → {new}")
             para["relatedRecordIds"] = new
+
+    note = p.get("dbNote")
+    if note != DBNOTE_NEW:
+        if not (isinstance(note, str) and note.startswith(DBNOTE_OLD_PREFIX)):
+            sys.exit(f"dbNote 非預期值，停止不覆蓋：{note!r}")
+        changes.append(f"dbNote: {note} → {DBNOTE_NEW}")
+        p["dbNote"] = DBNOTE_NEW
 
     out = dump(data)
     # 只檢 id 欄位（dbNote 說明文字本身提到撤回 id，不在本腳本範圍）

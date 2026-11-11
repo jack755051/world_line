@@ -37,7 +37,8 @@ public class BattleC1ModelTests
     {
         using var db = NewContext();
         Assert.False(db.Database.HasPendingModelChanges());
-        Assert.Equal(Target, db.Database.GetMigrations().Last());
+        // 之後的 migration（例如 B3 BioParagraphsPositionsRoles）排在 BattleC1 後面，故只檢查 BattleC1 仍在清單內。
+        Assert.Contains(Target, db.Database.GetMigrations());
     }
 
     [Fact]

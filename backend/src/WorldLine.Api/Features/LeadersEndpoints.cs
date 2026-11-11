@@ -368,6 +368,8 @@ public static class LeadersEndpoints
             .GroupBy(n => n.RegimeId)
             .ToDictionary(g => g.Key, g => Mapping.ReadLocalizedOrNull(g.First().Display));
 
+        var detail = await LoadDetailAsync(id, db, ct);
+
         return new LeaderBioDto(bio.Id, bio.Name, bio.NameZh,
             bio.BirthDate?.ToString("yyyy-MM-dd"), bio.BirthDatePrecision,
             bio.DeathDate?.ToString("yyyy-MM-dd"),
@@ -381,7 +383,62 @@ public static class LeadersEndpoints
             terms.OrderBy(t => t.l.ValidPeriod.LowerBound).ThenBy(t => t.l.Role)
                 .Select(t => new LeaderTermDto(t.l.Id, t.l.RegimeId, t.Slug, names.GetValueOrDefault(t.l.RegimeId),
                     t.l.Role, t.l.Title, Mapping.ToDto(t.l.ValidPeriod)!, t.l.Source, t.l.SourceUrl))
-                .ToList());
+                .ToList(),
+            detail.Paragraphs, detail.Positions, detail.Roles, detail.Gaps);
+    }
+
+    /// <summary>B3：有效（未撤回）的段落、經歷、角色與各自引文，另附未解決缺口。無資料時各清單為空，前端回落到 summary。</summary>
+    private static async Task<(List<BioParagraphDto> Paragraphs, List<BioPositionDto> Positions, List<BioRoleDto> Roles, List<BioGapDto> Gaps)>
+        LoadDetailAsync(Guid id, WorldLineDbContext db, CancellationToken ct)
+    {
+        static BioDetailCitationDto C(BioDetailCitationBase c, Source s) =>
+            new(c.Id, c.Locator, c.Quote, c.QuoteLang, c.EvidenceNote, c.AccessedOn.ToString("yyyy-MM-dd"), c.Grade, c.DatePrecision,
+                SourcesEndpoints.ToDto(s));
+
+        var pars = await db.LeaderBioParagraphs.AsNoTracking().Where(x => x.BioId == id && x.RetractedAt == null).OrderBy(x => x.Ord).ToListAsync(ct);
+        var parIds = pars.Select(x => x.Id).ToList();
+        var parCites = (await (from c in db.LeaderBioParagraphCitations.AsNoTracking()
+                               join s in db.Sources.AsNoTracking() on c.SourceId equals s.Id
+                               where parIds.Contains(c.ParagraphId) && c.RetractedAt == null
+                               orderby c.CreatedAt, c.Id
+                               select new { c, s }).ToListAsync(ct))
+            .ToLookup(x => x.c.ParagraphId, x => C(x.c, x.s));
+
+        var poss = await db.PersonPositions.AsNoTracking().Where(x => x.BioId == id && x.RetractedAt == null).ToListAsync(ct);
+        poss = poss.OrderBy(x => x.Period.LowerBound).ThenBy(x => x.SeedKey, StringComparer.Ordinal).ToList();
+        var posIds = poss.Select(x => x.Id).ToList();
+        var posCites = (await (from c in db.PersonPositionCitations.AsNoTracking()
+                               join s in db.Sources.AsNoTracking() on c.SourceId equals s.Id
+                               where posIds.Contains(c.PositionId) && c.RetractedAt == null
+                               orderby c.CreatedAt, c.Id
+                               select new { c, s }).ToListAsync(ct))
+            .ToLookup(x => x.c.PositionId, x => C(x.c, x.s));
+
+        var roles = await db.PersonRoles.AsNoTracking().Where(x => x.BioId == id && x.RetractedAt == null).ToListAsync(ct);
+        roles = roles.OrderBy(x => x.Period.LowerBound).ThenBy(x => x.SeedKey, StringComparer.Ordinal).ToList();
+        var roleIds = roles.Select(x => x.Id).ToList();
+        var roleCites = (await (from c in db.PersonRoleCitations.AsNoTracking()
+                                join s in db.Sources.AsNoTracking() on c.SourceId equals s.Id
+                                where roleIds.Contains(c.RoleId) && c.RetractedAt == null
+                                orderby c.CreatedAt, c.Id
+                                select new { c, s }).ToListAsync(ct))
+            .ToLookup(x => x.c.RoleId, x => C(x.c, x.s));
+
+        var gaps = await db.LeaderBioGaps.AsNoTracking()
+            .Where(x => x.BioId == id && x.RetractedAt == null && x.ResolvedAt == null)
+            .OrderBy(x => x.Target).ThenBy(x => x.GapKind).ToListAsync(ct);
+
+        return (
+            pars.Select(p => new BioParagraphDto(p.Id, p.Ord, p.Period is { } pp ? Mapping.ToDto(pp) : null,
+                p.PeriodStartPrecision, p.PeriodEndPrecision, Mapping.ReadLocalizedOrNull(p.Heading), Mapping.ReadLocalized(p.Body),
+                parCites[p.Id].ToList())).ToList(),
+            poss.Select(p => new BioPositionDto(p.Id, p.SeedKey, p.RegimeId, Mapping.ReadLocalizedOrNull(p.Organization),
+                Mapping.ReadLocalized(p.Title), p.PositionKind, Mapping.ToDto(p.Period)!, p.StartPrecision, p.EndPrecision, p.Note,
+                posCites[p.Id].ToList())).ToList(),
+            roles.Select(r => new BioRoleDto(r.Id, r.SeedKey, r.RegimeId, Mapping.ReadLocalizedOrNull(r.Organization),
+                Mapping.ReadLocalized(r.Title), r.RoleKind, Mapping.ToDto(r.Period)!, r.StartPrecision, r.EndPrecision, r.Acting, r.T14Rule, r.Note,
+                roleCites[r.Id].ToList())).ToList(),
+            gaps.Select(g => new BioGapDto(g.Id, g.Target, g.GapKind, g.Note, g.CheckedOn.ToString("yyyy-MM-dd"))).ToList());
     }
 
     // ── Mapping helpers ──

@@ -4331,6 +4331,328 @@
           }
         }
       },
+      "BioDetailCitationDto": {
+        "required": [
+          "id",
+          "locator",
+          "quote",
+          "quoteLang",
+          "evidenceNote",
+          "accessedOn",
+          "grade",
+          "datePrecision",
+          "source"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "locator": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          },
+          "quoteLang": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "evidenceNote": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "accessedOn": {
+            "type": "string"
+          },
+          "grade": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "datePrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceDto"
+          }
+        }
+      },
+      "BioGapDto": {
+        "required": [
+          "id",
+          "target",
+          "gapKind",
+          "note",
+          "checkedOn"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "target": {
+            "type": "string"
+          },
+          "gapKind": {
+            "type": "string"
+          },
+          "note": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "checkedOn": {
+            "type": "string"
+          }
+        }
+      },
+      "BioParagraphDto": {
+        "required": [
+          "id",
+          "ord",
+          "period",
+          "periodStartPrecision",
+          "periodEndPrecision",
+          "heading",
+          "body",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ord": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "period": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DatePeriodDto"
+              }
+            ]
+          },
+          "periodStartPrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "periodEndPrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "heading": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BioDetailCitationDto"
+            }
+          }
+        }
+      },
+      "BioPositionDto": {
+        "required": [
+          "id",
+          "seedKey",
+          "regimeId",
+          "organization",
+          "title",
+          "positionKind",
+          "period",
+          "startPrecision",
+          "endPrecision",
+          "note",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "seedKey": {
+            "type": "string"
+          },
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "organization": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "positionKind": {
+            "type": "string"
+          },
+          "period": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "startPrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "endPrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BioDetailCitationDto"
+            }
+          }
+        }
+      },
+      "BioRoleDto": {
+        "required": [
+          "id",
+          "seedKey",
+          "regimeId",
+          "organization",
+          "title",
+          "roleKind",
+          "period",
+          "startPrecision",
+          "endPrecision",
+          "acting",
+          "t14Rule",
+          "note",
+          "citations"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "seedKey": {
+            "type": "string"
+          },
+          "regimeId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "organization": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "roleKind": {
+            "type": "string"
+          },
+          "period": {
+            "$ref": "#/components/schemas/DatePeriodDto"
+          },
+          "startPrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "endPrecision": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "acting": {
+            "type": "boolean"
+          },
+          "t14Rule": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "note": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "citations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BioDetailCitationDto"
+            }
+          }
+        }
+      },
       "CapitalFeature": {
         "required": [
           "recordId",
@@ -6640,6 +6962,42 @@
             ],
             "items": {
               "$ref": "#/components/schemas/LeaderTermDto"
+            }
+          },
+          "paragraphs": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BioParagraphDto"
+            }
+          },
+          "positions": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BioPositionDto"
+            }
+          },
+          "roles": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BioRoleDto"
+            }
+          },
+          "gaps": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BioGapDto"
             }
           }
         }

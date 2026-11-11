@@ -462,7 +462,38 @@ public sealed record LeaderBioDto(
     LeaderPortraitDto? Portrait = null,
     Guid? SupersededBy = null,
     IReadOnlyList<LeaderBioFieldCitationDto>? FieldCitations = null,
-    IReadOnlyList<LeaderTermDto>? Terms = null);
+    IReadOnlyList<LeaderTermDto>? Terms = null,
+    IReadOnlyList<BioParagraphDto>? Paragraphs = null,
+    IReadOnlyList<BioPositionDto>? Positions = null,
+    IReadOnlyList<BioRoleDto>? Roles = null,
+    IReadOnlyList<BioGapDto>? Gaps = null);
+
+/// <summary>B3 段落／經歷／角色引文（§16.4.1）：Source 含 title／url／publisher。claimSpan 本批全空。</summary>
+public sealed record BioDetailCitationDto(
+    Guid Id, string Locator, string Quote, string? QuoteLang, string? EvidenceNote, string AccessedOn,
+    string? Grade, string? DatePrecision, SourceDto Source);
+
+/// <summary>生平段落（只在詳情；不進 GET /leaders／overlay）。heading／body 為雙語物件。</summary>
+public sealed record BioParagraphDto(
+    Guid Id, int Ord, DatePeriodDto? Period, string? PeriodStartPrecision, string? PeriodEndPrecision,
+    IReadOnlyDictionary<string, string>? Heading, IReadOnlyDictionary<string, string> Body,
+    IReadOnlyList<BioDetailCitationDto> Citations);
+
+/// <summary>經歷（不決定出卡、地圖不讀）。period.end 為 null＝無界。</summary>
+public sealed record BioPositionDto(
+    Guid Id, string SeedKey, Guid? RegimeId, IReadOnlyDictionary<string, string>? Organization,
+    IReadOnlyDictionary<string, string> Title, string PositionKind, DatePeriodDto Period,
+    string? StartPrecision, string? EndPrecision, string? Note, IReadOnlyList<BioDetailCitationDto> Citations);
+
+/// <summary>角色（元首／首腦／實質領導／閣員）；非地圖出卡資料（T13 未決）。</summary>
+public sealed record BioRoleDto(
+    Guid Id, string SeedKey, Guid? RegimeId, IReadOnlyDictionary<string, string>? Organization,
+    IReadOnlyDictionary<string, string> Title, string RoleKind, DatePeriodDto Period,
+    string? StartPrecision, string? EndPrecision, bool Acting, string? T14Rule, string? Note,
+    IReadOnlyList<BioDetailCitationDto> Citations);
+
+/// <summary>未解決缺口（來源矛盾／待補）。</summary>
+public sealed record BioGapDto(Guid Id, string Target, string GapKind, string? Note, string CheckedOn);
 
 /// <summary>把現有 LeaderRecord 連結到 LeaderBio（PATCH /leader-records/{id}/person）。</summary>
 public sealed record LinkLeaderPersonRequest(Guid? PersonId);

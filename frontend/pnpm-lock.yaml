@@ -50,6 +50,9 @@ importers:
       d3-delaunay:
         specifier: 6.0.6
         version: 6.0.6
+      flubber:
+        specifier: 0.4.2
+        version: 0.4.2
       gsap:
         specifier: ^3.15.1
         version: 3.15.1
@@ -87,6 +90,9 @@ importers:
       '@types/d3-delaunay':
         specifier: ^6.0.4
         version: 6.0.4
+      '@types/flubber':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16
@@ -1781,6 +1787,9 @@ packages:
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
 
+  '@types/flubber@0.4.0':
+    resolution: {integrity: sha512-q9u6zseKgOBc0sAn/aPyi0vMNtXiLrNHSvj/tMXg+X2vk0jwX7obXgLISBmryGFvfszbId1JGT/8CcwB3vC6yg==}
+
   '@types/gensync@1.0.5':
     resolution: {integrity: sha512-MbsRCT7mTikHwKZ0X+LVUTLRrZZRLipTuXEO9qOYO+zmjMVk81axyClMROf6uoPD9MRVu46bx8zoR0Ad9q3NAg==}
 
@@ -1967,6 +1976,9 @@ packages:
     resolution: {integrity: sha512-DH0Bqq3DNp5tdOReuNyAA+Ev4Y2GS5FMbZpeTLP6C4CDi0h5nL0BmUPChXw3o/qbHLDWHl49sbNqQVY7bMSDdw==}
     engines: {node: '>=20.19.0'}
 
+  d3-array@1.2.4:
+    resolution: {integrity: sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==}
+
   d3-array@2.12.1:
     resolution: {integrity: sha512-B0ErZK/66mHtEsR1TkPEEkwdy+WDesimkM5gpZr5Dsg54BiTA5RXtYW5qTLIAcekaS9xfZrzBLF/OAkB3Qn1YQ==}
 
@@ -1976,6 +1988,9 @@ packages:
 
   d3-geo@2.0.2:
     resolution: {integrity: sha512-8pM1WGMLGFuhq9S+FpPURxic+gKzjluCD/CHTuUF3mXMeiCo0i6R0tO1s4+GArRFde96SLcW/kOFRjoAosPsFA==}
+
+  d3-polygon@1.0.6:
+    resolution: {integrity: sha512-k+RF7WvI08PC8reEoXa/w2nSg5AUMTi+peBD9cmFc+0ixHfbs4QmxxkarVal1IkVkgxVuk9JSHhJURHiyHKAuQ==}
 
   d3-voronoi@1.1.2:
     resolution: {integrity: sha512-RhGS1u2vavcO7ay7ZNAPo4xeDh/VYeGof3x5ZLJBQgYhLegxr3s5IykvWmJ94FTU6mcbtp4sloqZ54mP6R4Utw==}
@@ -2093,6 +2108,9 @@ packages:
   flru@1.0.2:
     resolution: {integrity: sha512-kWyh8ADvHBFz6ua5xYOPnUroZTT/bwWfrCeL0Wj1dzG4/YOmOcfJ99W8dOVyyynJN35rZ9aCOtHChqQovV7yog==}
     engines: {node: '>=6'}
+
+  flubber@0.4.2:
+    resolution: {integrity: sha512-79RkJe3rA4nvRCVc2uXjj7U/BAUq84TS3KHn6c0Hr9K64vhj83ZNLUziNx4pJoBumSPhOl5VjH+Z0uhi+eE8Uw==}
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -2846,6 +2864,12 @@ packages:
   supports-color@8.1.1:
     resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
     engines: {node: '>=10'}
+
+  svg-path-properties@0.2.2:
+    resolution: {integrity: sha512-GmrB+b6woz6CCdQe6w1GHs/1lt25l7SR5hmhF8jRdarpv/OgjLyuQygLu1makJapixeb1aQhP/Oa1iKi93o/aQ==}
+
+  svgpath@2.6.0:
+    resolution: {integrity: sha512-OIWR6bKzXvdXYyO4DK/UWa1VA1JeKq8E+0ug2DG98Y/vOmMpfZNj+TIG988HjfYSqtcy/hFOtZq/n/j5GSESNg==}
 
   sync-child-process@1.1.1:
     resolution: {integrity: sha512-54zMOnH5qgjdKW8SGpCx3daSP+v+TtTfOxgPdhUE3P0hytMMpknZfP67S4JeRcx5IQRWJERz6890yO4dkTywww==}
@@ -5274,6 +5298,8 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
+  '@types/flubber@0.4.0': {}
+
   '@types/gensync@1.0.5': {}
 
   '@types/geojson@7946.0.16': {}
@@ -5433,6 +5459,8 @@ snapshots:
 
   css-what@8.0.0: {}
 
+  d3-array@1.2.4: {}
+
   d3-array@2.12.1:
     dependencies:
       internmap: 1.0.1
@@ -5444,6 +5472,8 @@ snapshots:
   d3-geo@2.0.2:
     dependencies:
       d3-array: 2.12.1
+
+  d3-polygon@1.0.6: {}
 
   d3-voronoi@1.1.2: {}
 
@@ -5563,6 +5593,15 @@ snapshots:
       picomatch: 4.0.7
 
   flru@1.0.2: {}
+
+  flubber@0.4.2:
+    dependencies:
+      d3-array: 1.2.4
+      d3-polygon: 1.0.6
+      earcut: 2.2.4
+      svg-path-properties: 0.2.2
+      svgpath: 2.6.0
+      topojson-client: 3.1.0
 
   fsevents@2.3.3:
     optional: true
@@ -6272,6 +6311,10 @@ snapshots:
   supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
+
+  svg-path-properties@0.2.2: {}
+
+  svgpath@2.6.0: {}
 
   sync-child-process@1.1.1:
     dependencies:

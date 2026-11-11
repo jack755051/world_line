@@ -1,0 +1,115 @@
+{
+ "batch": "05",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 1,
+  "editedSentences": 17,
+  "spotRefetched": 5
+ },
+ "countsNote": "deletedCitations 1 筆＝克里蒙梭段4「led it to victory. He became immensely popular as a result」（一筆 quote 跨兩句，違反 Q10），拆成兩筆單句引文。schema 沒有欄位記的另外幾項：新增 53 筆引文（段落／職位引文 62 → 114），全部逐字取自研究當天已抓的原文，並在審查重抓的頁面逐字比對到（含 gap 候選共 117 筆），只用來撐住原有句子，沒有加新事實；改寫 3 筆 quote（擴成同一原句的較長片段）；修正 9 筆 citation 的 datePrecision（quote 本身沒有日期的改 null）；1 段 period 起點修正；7 筆 gap target 改成合法格式（field: 只能用 LeaderBioFields，DB 有 CHECK）；3 筆 gap 由 conflict 改 not_found；刪 1 筆 gap（RBGE 等級問題，審查已決）；克里蒙梭段3、段4 補填 relatedRecordIds；1 個來源 url 改為條目正式網址。spotRefetched：5 個來源全部重抓（皆 200），另抓伊本·紹德的正式網址比對。",
+ "people": [
+  {
+   "key": "fr-clemenceau",
+   "bioId": "ef990cdf-5286-44c4-8e0a-1e8aaa1c629b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "gaps": 2,
+   "changes": [
+    "重抓 encyc-clemenceau（200），全部引文逐字比對到；條末署名 Jean-Jacques Becker，B 級合理。",
+    "段2：補「1870 年帝國垮台後政治生涯開始」「阿爾薩斯—洛林割讓」「巴拿馬醜聞」「德雷福斯上尉」4 筆引文；1893 失席引文擴成含「The scandal」的原句片段；區長引文沒有年份，datePrecision 改 null。",
+    "段3：補「壓制社會運動」「被左派工人憎恨」2 筆引文；relatedRecordIds 填第一任期 68a3908d（來源 1906–1909 與 5442 [1908-01-01,1909-07-24) 重疊）。",
+    "段4：正文從 1914 年開戰寫起，period 起點 1917-11-16（day）改 1914-01-01（year），並補「1914 年開戰時本將退休」引文撐起點；「拒絕加入神聖同盟」「意志與決心」「1917 年局勢危急」原本沒有引文，補 3 筆；跨兩句的引文拆成「led it to victory」「immensely popular」兩筆，另補「確保和平困難得多」；「比預期困難得多」照原文改「困難得多」（原文沒有『比預期』）；普恩加萊引文沒有日期，datePrecision 改 null；relatedRecordIds 填第二任期 01a1a20c-b8e3。",
+    "段5：「想督促條約落實」「其他政敵」「旅行與寫作」「未能說服」原本沒有引文，補 5 筆；「落選」原文沒有這樣寫，照原文改「就此退出政壇」（Thus removed from political life）。",
+    "職位 2 筆（1871 議員、1902 參議員）皆為範圍外經歷，regimeId=null＋organization、迄日留空，合規。",
+    "gap：field:premiership_start、field:premiership2_end 不是 LeaderBioFields，改 paragraph:premiership-1906-1909-dates、paragraph:premiership-1917-end；前者只有一份來源，與 5442 不一致不算來源互相矛盾，conflict 改 not_found，note 加審查判讀（5442 起點 1908-01-01 應為收錄範圍起點）。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cn-chiang-kai-shek",
+   "bioId": "01a1b490-dcc7-76dc-82d7-da76fb59d7d2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "gaps": 2,
+   "changes": [
+    "重抓 encyc-chiang（200），全部引文逐字比對到；Encyclopedia of World Biography 無具名作者，比照 batch04 encyc-hirohito（同書）評 B，gradeBasis 已改寫。",
+    "段1：出生地「奇口」是把 Ch'i-k'ou 誤音譯，改「溪口」（英文保留原文拼法）；「日本陸軍士官學校」改照原文「東京的士官學校（Shikan Gakko）」；「武昌起義」改照原文「1911 年 10 月 10 日革命在武漢爆發」；補士官學校、陳其美、同盟會、武漢 1911 共 4 筆引文；「回上海」引文沒有日期，datePrecision 改 null。",
+    "段2：清黨引文擴成含「April 12, 1927」的原句片段，另補「上海」「party purification」2 筆；補「July, 9, 1926」日期引文；補「北伐第二階段」「南京成為首都」2 筆。",
+    "段3：「國民政府建立政治與軍事機器」照原文改主詞為蔣介石；補「1928–1937 十年」「逐出江西」「被迫接受要求」「聯合陣線抗日」「兩週後返回南京」5 筆引文。",
+    "段4：補「1937 年 8–12 月苦戰」「上海與南京周邊」「退往武漢」「1938 年 3 月」「繼總理」「經羅斯福」6 筆引文；總裁引文沒有日期，datePrecision 改 null。",
+    "段5：刪掉後設句「這些是 1908 至 1945 年範圍外的經歷，僅作正文敘述」；補「內戰爆發」「1947-01-01 新憲」「1949-01-21 辭總統」「在台再度當選」4 筆引文，正文日期照引文精確到日。",
+    "職位：北伐軍總司令、國民黨總裁各補 1 筆含日期的引文（原引文沒有日期，datePrecision 改 null）；3 筆職位 regimeId=null＋organization，合規。北伐軍總司令可能屬 §16.3.1 military_commander（角色層 P2），兩層是否重複收待 T14，本批不動。",
+    "gap：field:head_of_state_tenures 改 paragraph:head-of-state-tenures；field:death_place 改 field:deathPlace。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bt-jigme-wangchuck",
+   "bioId": "01a1b4b2-2f5f-789f-a0f3-025285dd9ac1",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "重抓 rbge-wangchuck（200），3 筆引文逐字比對到。",
+    "來源等級：RBGE 檔案館人名權威記錄頁面具名編者（Created: L. Paterson；Revised: C. Kemnitz），比照機構傳記維持 B；gradeBasis 補記編者，並註明記錄沒有列出日期依據（Sources 欄只列照片出處）。研究者自留的 gap paragraph:rbge-grade 已由審查決定，刪除。",
+    "段1：刪掉後設句「以上僅取自檔案館人名權威記錄，其餘生平細節待查」。",
+    "gap：field:reign_start 改 paragraph:reign-start；只有 RBGE 一份來源，與 5442（1926-08-21）不一致不算來源互相矛盾，conflict 改 not_found；field:birth_place 改 field:birthPlace，note 刪掉「搜尋結果多為 Wikipedia 系或旅遊網站」一句。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "sa-ibn-saud",
+   "bioId": "01a1b4b5-fa0c-7978-b7ac-e9ed00d0aa5c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "重抓 encyc-ibnsaud（200）；原 url 是 /people/… 聚合頁，改成頁面「Cite this article」給的正式網址 /history/encyclopedias-almanacs-transcripts-and-maps/abd-al-aziz-ibn-saud（200，內容相同），全部引文逐字比對到；EWB 無具名作者，比照 batch04 評 B。",
+    "段1：補「拉希德家族奪地」「奇襲」2 筆引文；哈薩引文擴成含「on the Persian Gulf」的原句片段；正文改成「當時敵對的拉希德家族奪取了紹德家領地」。",
+    "段2：補「不攻擊英國利益」「麥加的謝里夫侯賽因」「1924 年」「一年後稱內志國王」4 筆引文；圍攻麥加引文沒有年份，datePrecision 改 null。",
+    "段3：補「戰後石油產量與收入迅速成長」2 筆引文。",
+    "gap：field:reign_start 改 paragraph:reign-start，conflict 改 not_found（來源 1932 年與 5442 起點 1937-07-07 不一致，是來源與名簿不一致，不是兩份來源矛盾）；field:death_date 改 field:deathDate。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "py-riart",
+   "bioId": "01a1b54f-2ce7-7c99-b2b3-acac8a77d7ec",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "重抓 lc-riart（id.loc.gov JSON，200），2 筆引文逐字比對到；確認生卒欄位的 citationSource 是 Riart, G.A.《El Dr. Luis A. Riart y la defensa del Chaco》(1987) p. 151 等，不是 Wikipedia，evidenceNote 已註明。",
+    "段1：刪掉後設語「國會圖書館人名權威檔記載」「日期依該檔月／日／年格式判讀」「他的政治生涯與職務尚待查證」（判讀方式已在 evidenceNote）；authoritativeLabel 那筆 quoteLang 由 es 改 null（是 LC 款目標目，不是西班牙文句子）。",
+    "gap：position:minister-war-navy 改 paragraph:political-career，note 刪掉沒有附來源的具體職銜（研究者線索）；identity_uncertain 維持（LC 款目沒有寫曾任臨時總統，只能由姓名、生卒年與查科戰爭書名推得）。"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "延續 batch03／04：很多句子只有日期片段引文或完全沒有引文（本批補了 53 筆），另有引文本身沒有日期卻標 year/day 精度（改了 9 筆）。verify.py 只查引文存不存在，查不出句子沒有依據。",
+  "gap target 格式：研究者用了 field:premiership_start、field:reign_start、field:death_place 等，verify.py 的正規式會放行，但 DB CHECK 只接受 LeaderBioFields（name、nameZh、birthDate、deathDate、birthPlace、deathPlace、party、summary、portrait），寫庫會失敗。建議提示寫明合法值，並讓 verify.py 檢查（本次未改 verify.py）。",
+  "gap 類型誤用（同 batch03／04）：來源與 5442 名簿不一致被記成 conflict（克里蒙梭、旺楚克、伊本·紹德）。conflict 只用於兩份來源互相矛盾。",
+  "名簿和來源對不上（不改資料，只提出）：伊本·紹德 5442 任期起點 1937-07-07，來源寫 1932 年建國起統治；旺楚克 5442 起點 1926-08-21，RBGE 寫 1926-08-26；克里蒙梭第一任 5442 起點 1908-01-01 是範圍裁切。leader_records 的日期依據值得另外查。",
+  "正文後設句（「僅作正文敘述」「以上僅取自…」「尚待查證」）又出現，已刪；缺漏應只寫在 gaps。",
+  "專名音譯：Ch'i-k'ou 被譯成「奇口」，Wade-Giles 地名要查對應漢字，不要直接音譯。",
+  "Encyclopedia.com 要用條目「Cite this article」給的正式網址（伊本·紹德原用 /people/ 聚合頁）。",
+  "來源全部是 A／B，沒有 Wikipedia／Wikidata／百度，沒有未評等來源，沒有繞過防機器人驗證。Q2 字數合規（中文最長 138 字、英文最長 459 字元），沒有元首／首腦職位，沒有 regimeId。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

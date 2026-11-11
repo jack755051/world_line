@@ -1,0 +1,128 @@
+{
+  "batch": "13",
+  "reviewedOn": "2026-11-11",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "run100-v1",
+  "counts": {
+    "returned": 2,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 1,
+    "movedToPositions": 0,
+    "deletedCitations": 0,
+    "addedCitations": 13,
+    "editedSentences": 1,
+    "spotRefetched": 5,
+    "searchLogShort": 2
+  },
+  "people": [
+    {
+      "key": "hn-davila-miguel",
+      "bioId": "01a1b4b5-7248-734f-b009-6c7a31772a8a",
+      "paragraphs": 1,
+      "positions": 0,
+      "roleCandidates": 0,
+      "gaps": 3,
+      "searchLogSteps": 3,
+      "verdict": "returned",
+      "changes": [
+        "段1 補引文「to regain power」支撐「博尼利亞重掌權力」子句",
+        "重抓 encyclopedia.com 條目比對引文一致；具名作者 Héctor Lindo-Fuentes 見於原文，B 級成立"
+      ],
+      "returnedReasons": [
+        "最低嘗試未達：searchLog 僅 3 筆查詢、2 種來源類型（named_encyclopedia、other）、實抓 1 頁；缺權威檔、官方、學術類，查詢數 <8，實抓 <3",
+        "建議下一個來源：LoC Name Authority（id.loc.gov）／VIAF 查「Dávila, Miguel R.」；Congreso Nacional de Honduras 或 Casa Presidencial 歷任總統頁；Real Academia de la Historia DB~e（dbe.rah.es）；Biblioteca Nacional de Honduras 目錄",
+        "既有 1 段內容經核對可保留，退回只為補查生卒日、總統任期確切日與 1907 年前經歷"
+      ]
+    },
+    {
+      "key": "fi-ryti-risto",
+      "bioId": "01a1b512-338b-7bc1-98ab-ed326ec2573e",
+      "paragraphs": 4,
+      "positions": 4,
+      "roleCandidates": 0,
+      "gaps": 3,
+      "searchLogSteps": 10,
+      "verdict": "pass_with_changes",
+      "changes": [
+        "段1 補引文「”Finlands rikaste man”, Alfred Kordelin」「Här inleddes en klientrelation」支撐「芬蘭首富」「委託關係」子句",
+        "段3 補引文「kan ses som en statsmannagärning av Ryti」支撐「政治家之舉」子句",
+        "段4「1944年他再度被任命」改為「其後他再度被任命」（引文沒有年份，原段無法證明 1944）；該引文 datePrecision year→null（Q8）",
+        "段4 死亡引文由截斷的「…död 25.10.」改為逐字的「…död 25.10.­1956 i Helsingfors」（含原文軟連字號），支撐 1956 年",
+        "重抓 blf.fi 原文比對一致",
+        "財政部長（卡利歐內閣）R5 維持：來源明寫任期不超過兩個月，已證明 <90 天（不是無法證明，故非 R6）"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "ch-von-steiger-eduard",
+      "bioId": "01a1b553-64d9-7e79-b4c6-57b6a3972985",
+      "paragraphs": 2,
+      "positions": 5,
+      "roleCandidates": 2,
+      "gaps": 2,
+      "searchLogSteps": 3,
+      "verdict": "pass_with_changes",
+      "changes": [
+        "伯恩市議會議員（1914–1917）由 positions 移到 roleCandidates（de_facto_leader、t14Rule=R1、originalPositionKind=legislator）：NDB 明寫 1914 年「als Vertreter der Konservativen Partei」同時入選大議會與市議會（研究者 note 誤稱兩者為同一席位）；補 NDB 引文 2 筆",
+        "大議會候選的 NDB 引文由「als Vertreter der Konservativen Partei」（datePrecision=year 但無日期，違反 Q8）改為逐字的「1914 wurde er als Vertreter der Konservativen Partei」",
+        "聯邦委員職位與段2 補 NDB 引文「1940 wurde S. als Nachfolger von Rudolf Minger im 1. Wahlgang」（原引文無 1940，起日無支撐）",
+        "聯邦司法與警察部主管：t14Ambiguous 改判 t14Rule=R5——T14 §4 瑞士部門主管依部門逐筆對應，司法與警察部不是外交／國防／財政／內政（內政另有 Departement des Innern）",
+        "重抓 HLS 原文比對一致",
+        "聯邦委員（集體元首）t14Ambiguous、BGB 黨團主席 partyPostAmbiguous 維持，待 Tai 裁決"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "ot-huseyin-hilmi-pasa",
+      "bioId": "01a1c37d-aa7e-7cda-b68d-029070be86f1",
+      "paragraphs": 3,
+      "positions": 5,
+      "roleCandidates": 0,
+      "gaps": 3,
+      "searchLogSteps": 2,
+      "verdict": "pass_with_changes",
+      "changes": [
+        "內政大臣職位起日 1908-11-27（day）改為 NULL：該日是他因任內政大臣返回伊斯坦堡的日子，不是任命日；citation 加 evidenceNote；仍為 R6（roleGap dates、regime）",
+        "段2 補引文「Hüseyin Hilmi Paşa, isyanın ilk günü öğleden sonra」支撐「事發首日請辭」子句",
+        "重抓 TDV 原文比對一致"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "bg-filov-bogdan",
+      "bioId": "01a1b512-3396-7921-b575-e7c7e4c73b6c",
+      "paragraphs": 1,
+      "positions": 1,
+      "roleCandidates": 1,
+      "gaps": 3,
+      "searchLogSteps": 7,
+      "verdict": "returned",
+      "changes": [
+        "段1 補引文 3 筆（「After the unexpected death of king Boris III」「Because of the coalition with Germany during World War II」「after the invasion of Soviet troops」）支撐波里斯三世去世、與德結盟、蘇軍入侵子句；攝政候選補 Boris III 引文",
+        "重抓 CEEOL 摘要頁比對一致；SNL 無具名作者維持未評等、只在 gap 候選"
+      ],
+      "returnedReasons": [
+        "最低嘗試未達：searchLog 7 筆查詢（<8）、3 種來源類型（named_encyclopedia、academic、other；缺權威檔／國家級辭典／官方）、原文語言（保加利亞文）查詢只 1 次（<2）",
+        "預估厚、實查只得 1 份 B 級摘要，對一位 1940–1943 首相、攝政而言明顯查得不夠",
+        "建議下一個來源：LoC Name Authority／VIAF 查「Filov, Bogdan Dimitrov」與「Филов, Богдан」；保加利亞部長會議官網歷任總理頁（gov.bg）；保加利亞科學院（BAN）國家考古研究所的院士傳記；Народно събрание 資料；Encyclopaedia Britannica 被擋可改 Bulgarian Historical Review 全文／其他具名學術傳記"
+      ]
+    }
+  ],
+  "issues": [
+    "以政黨身分取得的席位仍有漏移：Steiger 的伯恩市議會席位 NDB 明寫保守黨代表，研究者只移了大議會",
+    "引文帶 datePrecision 但 quote 本身沒有日期（Q8）：Ryti 再任芬蘭銀行總裁、Steiger NDB 保守黨引文；並出現截斷的日期引文（Ryti「död 25.10.」）",
+    "以推論日期當職位起日（Hilmi 內政大臣用返回伊斯坦堡日當任命日）",
+    "段落子句缺引文仍有（本批補 13 筆），集中在評語、因果與人物描述",
+    "中等厚度人物 searchLog 也很短（Steiger 3 筆、Hilmi 2 筆，各只 1 種來源類型）；因已有 A／B 來源且非薄人物，未退回，但 Filov 預估厚、實查只得 1 份摘要，顯示停得太早",
+    "待 Tai 裁決：瑞士聯邦委員（集體元首）T14 未涵蓋；議會黨團（Fraktion）主席是否算黨職"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 77
+  }
+}

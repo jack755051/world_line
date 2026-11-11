@@ -878,7 +878,8 @@ K1、K2、K3、S1、S2。
 - 仍待決：Q5 人物生平引用是否套用現有授權允許清單（屬業務規則，需先改憲法）。細節見設計文件 §8。
 
 ### 14.8 人物介面 v2（2026-11-10 實作，分支 `feature/person-cards`）
-- **同一人多角色合併一張卡**：依 `leader_records.person_id` 合併（`core/person-format.ts` `groupLeaders`）；卡內每個角色一列（職位、任期、該角色自己的任期來源）；只有一個「查看詳情」。沒有 `person_id` 的記錄無法確認是同一人，各自一張。
+- **同一人多角色合併一張卡**：依**人物 id**（`leader_bios.id`）合併該人的所有**角色**（元首、首腦、實際掌權者等皆為角色，見 16.3.3）；卡內每個角色一列（職位、任期、該角色自己的任期來源）；只有一個「查看詳情」。無法對到人物 id 的角色無法確認是同一人，各自一張。**現行實作**只讀 `leader_records.person_id`（`core/person-format.ts` `groupLeaders`），即目前只合併元首／首腦兩種角色；`leader_records` 與角色層 `person_roles` 的關係待決（16.9 T13）。
+  - 修訂紀錄：原句為「依 `leader_records.person_id` 合併（`groupLeaders`）…沒有 `person_id` 的記錄無法確認是同一人，各自一張」；依 Tai 2026-11-11 10:03（T11／T12）改寫為依人物 id 合併角色，並註明現行實作。程式未改。
 - **「人物」分頁數量**：樣式同「事件 N」，算**不重複人數**（`person_id`，沒有則以記錄計），沿用主要政權時算實際列出的人。
 - **併入地沿用主要政權人物**：依主權紀錄既有的佔領歸屬 `occupation`（`occupation_attributions`：`controlKind = 'annexed'`、`occupierRegimeId`）判斷，**不比對名稱**；只在該地自己沒有領導人時沿用，另起一組並標示「沿用主要政權：<政權資料顯示名>」。民政／軍事管理的佔領區**不**沿用（避免把佔領方人物與當地首長混列；待 P2 軍政首長資料再議）。
 - **人物詳情彈窗**：版面參考 Stitch 人物檔案稿（只取中間彈窗），配色沿用羊皮紙 `--wl-*` 變數（不採 Stitch 深藍／金）。區塊：頂列（檔案標記＋關閉）→ 標頭（照片 3:4／中性佔位、中文名、原文名、角色標籤、生卒）→ 區塊分頁籤（基本資料／生平／職位與任期／資料來源，吸頂、點了只捲對話框內容區）→ 基本資料格 → 生平（約 68ch、行高 1.9）→ 任期時間軸 → 底部「資料來源 (N)」。
@@ -937,7 +938,7 @@ K1、K2、K3、S1、S2。
 ### 16.1 設計原則
 
 1. **一人一筆不變**：所有新表都掛在 `leader_bios.id`（下稱 `bio_id`）；不新建 `persons`（§14.5）。P2 軍事人物也用同一張表（設計文件 §5.5）。
-2. **任期只有一個來源真相**：國家元首／政府首腦任期只存在 `leader_records`；其他地方只「引用 id」，不重抄日期（16.3）。
+2. **任期只有一個來源真相**：國家元首／政府首腦是**角色**（16.3.3）；其任期目前只存在 `leader_records`（現行實作），其他地方只「引用 id」，不重抄日期（16.3）。`leader_records` 是否即為角色層 `person_roles` 中這兩種角色的實作、是否遷移，待決（16.9 T13）；遷移前不得在別處另存一份。〔修訂紀錄：原句「國家元首／政府首腦任期只存在 `leader_records`；其他地方只『引用 id』，不重抄日期」；依 Tai 2026-11-11 10:03（T11／T12）改寫。〕
 3. **沒有出處就不存在**：段落、職位、參與、影響，每一列至少一筆 citation 才能寫入（寫入層檢查，比照 I6）；欄位查不到或來源矛盾 → 留空並記錄原因，不猜（沿用 gap-830 `conflicts`／`unverified`）。
 4. **參與 ≠ 影響**：兩張表；影響必須有**自己的**出處，不得沿用參與的出處或由參與推導（16.4）。
 5. **事實表不可刪**：全部走軟撤回（`retracted_at`＋`retraction_reason`），修正用撤回重寫＋`superseded_by`（I5）。RAG chunk 屬可重建的衍生快取，另訂規則（16.5.4）。
@@ -970,12 +971,14 @@ K1、K2、K3、S1、S2。
 
 ### 16.3 職位任期（與 `leader_records` 的關係）
 
-現況：`leader_records` 只收兩種角色（`head_of_state`｜`head_of_government`），是地圖「領導人分頁」的資料源，也是 gap-830 的連結目標（`recordIds`）。出處是自由文字欄 `source`／`source_url`。
+> 本節已依 Tai 2026-11-11 10:03（T11／T12）改寫，三層關係見 16.3.3；改寫前原句摘要見 16.3.3 修訂紀錄。
+
+現況：`leader_records` 只收兩種角色（`head_of_state`｜`head_of_government`），是地圖「領導人分頁」的資料源，也是 gap-830 的連結目標（`recordIds`）。出處是自由文字欄 `source`／`source_url`。依 T11，元首／首腦是**角色**（角色層 `person_roles` 的 `role_kind`），`leader_records` 是這兩種角色任期的**既有實作**；它是否即為 `person_roles` 中這兩種角色的實作、是否遷移／如何遷移，待決（16.9 T13）。
 
 **決策（提案）**：
-1. **元首／首腦任期**：唯一來源真相仍是 `leader_records`。生平端不另存這類任期；顯示時以 `leader_records WHERE person_id = bio_id` 取得（`GET /leader-bios/{id}` 已回 `terms`，見 `world-line-api.ts` `LeaderBio.terms`）。
+1. **元首／首腦任期**（角色層）：在 T13 定案前，唯一儲存處仍是 `leader_records`（現行實作）。生平端（經歷層、段落）不另存這類任期；顯示時以 `leader_records WHERE person_id = bio_id` 取得（`GET /leader-bios/{id}` 已回 `terms`，見 `world-line-api.ts` `LeaderBio.terms`）。`de_facto_leader` 同屬角色層，存放處隨 T13 一併定。
 2. **任期出處升級**：實作設計文件 §5.1 已提的 `leader_record_citations(id, record_id, source_id, locator, evidence_note, accessed_on, grade, retracted_at, …)`，格式同 `leader_bio_field_citations`。過渡期 `leader_records.source` 文字只當備註，不算已查證（§14.6）。
-3. **其他職位**（部長、議長、軍職、黨職、駐外使節…）：**提案** `person_positions`，**不得**收元首／首腦（寫入層檢查：若 `role_kind` 屬這兩種 → 拒絕並指向 `leader_records`）。
+3. **經歷**（部長、議長、議員、地方首長、次官、軍職、黨職、駐外使節…）：**提案** `person_positions`（經歷層，生平經歷全集，16.3.2 第 3 點）。元首、首腦、實際掌權者屬**角色層**，經歷層不重複收（寫入層檢查：經歷層值域不含這三種；誤送這三種 → 拒絕並指向角色層，現行即 `leader_records`）。其他與角色層重疊的類別（閣員、將領、佔領／殖民長官）是否兩層都收，待決（16.9 T14）。
 
 | 欄位 | 說明 |
 |---|---|
@@ -983,18 +986,19 @@ K1、K2、K3、S1、S2。
 | `regime_id` NULL → `regimes.id` | 任職政權；外國／國際組織職位可 NULL 並填 `organization` |
 | `organization` jsonb NULL | 機關名（雙語），例：「外交部」「國際聯盟理事會」 |
 | `title` jsonb | 職銜原文與中譯：`{"orig": "...", "zh-Hant": "...", "en": "..."}` |
-| `role_kind` text | 值域（提案）：`minister`、`legislator`、`military_command`、`party`、`diplomat`、`judicial`、`other`；**排除** `head_of_state`／`head_of_government` |
+| `position_kind` text | 經歷層值域，與角色層 `person_roles.role_kind` **分開命名**、不共用字串（16.3.2 第 3 點）；具體值域實作時再定（原提案 7 種僅供參考）；**不含**元首／首腦／實際掌權者（屬角色層） |
 | `period` daterange、`start_precision`、`end_precision` | 同 16.2；任一端查不到就留無界並標精度 NULL，不猜 |
 | `retracted_at`、`retraction_reason`、`superseded_by`、`created_at`、`version` | |
 
 - 引用表 `person_position_citations`（格式同 16.4.1）。
-- **地圖不讀 `person_positions`**；它只用在閱讀對話框的「經歷」區。這樣元首／首腦的任期不會有兩個來源。
+- **地圖不讀 `person_positions`**；它只用在閱讀對話框的「經歷」區，不決定收錄與出卡（出卡由角色層決定）。這樣元首／首腦的任期不會有兩個來源。
 - 若日後要把某種職位（例：軍事總司令）放上地圖，屬另案，需先改憲法。
 
 ### 16.3.1 人物範圍與 role_kind（Tai 2026-11-11 09:11 已決範圍；資料模型仍為提案）
 
 > 狀態：✅ 範圍、門檻、排序、關聯規則已決（Tai 2026-11-11 09:11，Asia/Taipei：「7 題全照點子工坊建議，寫進 ARCHITECTURE §16」，見 16.9.1）；`person_roles` 表結構為**提案**，未實作、未建表。草案來源：點子工坊人物範圍草案（repo 內未追蹤檔，不入版控）。本節所有人數、工作量、倍數皆為**粗估**。
 > 與 §14.8、§16.1、§16.3 既有條文的關係／差異另列於本次報告，**未改既有條文**；兩者不一致時，以本節記錄的 2026-11-11 決議為本次範圍，既有條文的調整另待 Tai 確認。
+> 補註（Tai 2026-11-11 10:03，T11／T12 已決）：§14.8、§16.1-2、§16.3 已依三層分工改寫，見 16.3.3（含修訂紀錄 R1–R12）；上一行「未改既有條文」為 09:11 當時狀態，保留不刪。
 
 **1. role_kind 分類**
 
@@ -1027,7 +1031,7 @@ K1、K2、K3、S1、S2。
 - 同一人同政權多段任期＝多列。卡片依 `bio_id` 合併（同 §14.8「多角色合併一張卡」）：職務顯示「最高位 role_kind＋次數」，任期依 `start_date` 列出各段。
 - **卡片主標題排序**（取最高位者）：`head_of_state` > `de_facto_leader` > `head_of_government` > `occupation_administrator` > `colonial_governor` > `military_commander` > `cabinet_minister` > `resistance_leader`。
 - 日期查詢以 `daterange(start, end)` 與當前日期取交集；`end` 為空表示「未知」，**不等於**在任，需標精度。
-- 與 `leader_records`（16.3-1）、`person_positions`（16.3-3）的分工：未定，見本次報告；本節不改 16.3 提案文字。
+- 與 `leader_records`（16.3-1）、`person_positions`（16.3-3）的分工：依 T11／T12（Tai 2026-11-11 10:03）採人物／角色／經歷三層，見 16.3.3：本表為**角色層**（元首、首腦、實際掌權者皆在此層）；`person_positions` 為**經歷層**；`leader_records` 是現行元首／首腦任期的既有實作，是否即為本表這兩種角色的實作、是否遷移，待決（16.9 T13）。〔修訂紀錄：原句「分工：未定，見本次報告；本節不改 16.3 提案文字」；依 Tai 2026-11-11 10:03（T11／T12）改寫。〕
 
 **4. 關聯規則**
 - 人物↔政權：只經 `person_roles`（元首／首腦現況經 `leader_records`）；沒有角色的人不掛政權。
@@ -1052,6 +1056,7 @@ K1、K2、K3、S1、S2。
 
 > 狀態：✅ 寫法已決（Tai 2026-11-11 09:35，Asia/Taipei：「Q1–Q10 和 7 條 §16 建議全照史料考證的建議，記進 ARCHITECTURE §16，不 push」，見 16.9.1）；Q6、Q8 另依 Tai 2026-11-11 09:30。來源：`data/seed/leaders/b3-sample/SUMMARY.md`（`747d06f`）的「待決問題」Q1–Q10 與「對 §16 的建議」1–7。本節只記錄 B3 段落與職位的寫法規則；表結構仍為提案、未建表。
 > 與 §14.8、§16.2、§16.3、§16.3.1 既有條文的差異另列於本次報告，**未改既有條文**；不一致之處以本節記錄的 2026-11-11 09:35 決議為 B3 的寫法，既有條文是否改寫另待 Tai 確認（見本節第 6 點）。
+> 補註（Tai 2026-11-11 10:03）：第 6 點兩項（T11、T12）已決，既有條文已改寫，見 16.3.3；上一行為 09:35 當時狀態，保留不刪。
 
 **1. 段落正文**
 - **長度（Q2／建議 1）**：中文 ≤ 400 字；英文等拉丁文字 ≤ 800 字元。兩者皆以 NFC 正規化後的字元（Unicode code point）計，與 16.4.1 `quote` 計法一致。本條補充並取代 16.2 `body`「建議 ≤ 400 字」與 16.5.1「段落上限 400 字」對英文未定義的計法；16.2、16.5.1 原文未改。
@@ -1081,10 +1086,40 @@ K1、K2、K3、S1、S2。
 - **`bioId`（建議 6）**：B3 研究檔（gap-830 `research.json` 的 P 格式）加 `bioId` 鍵：段落與職位是掛在**既有**生平（`leader_bios.id`）下，不是建立新生平。對應 16.7 P 格式的可選鍵 `paragraphs`、`positions`、`gaps`。
 - **庫裡沒有有效生平的人（Q8）**：例如邱吉爾，先照 gap-830 流程補建有效生平（含範圍內任期），**寫庫前問 Tai**；在那之前 B3 段落只留 seed、`bioId` 為 null，不寫庫。
 
-**6. 仍待決（本次不決定）**
-- 元首／首腦與 `de_facto_leader` 存在哪張表：`leader_records`、`person_roles`，或其他。
-- 是否改寫 §14.8、§16.3 原文（含 16.3「`person_positions` 不得收元首／首腦」、16.3 原 7 種值域與寫入層拒絕規則、16.7 B3 驗收「`person_positions` 寫入元首／首腦被拒」），使之與 16.3.1 及本節一致。
+**6. 仍待決（本次不決定）**〔09:35 當時狀態；兩項已於 Tai 2026-11-11 10:03 決定，見 16.3.3〕
+- 元首／首腦與 `de_facto_leader` 存在哪張表：`leader_records`、`person_roles`，或其他。→ ✅ T11 已決：三者皆為**角色**（`person_roles.role_kind`），人物與角色分表；`leader_records` 作為既有實作的定位與遷移另列 T13（未決）。
+- 是否改寫 §14.8、§16.3 原文（含 16.3「`person_positions` 不得收元首／首腦」、16.3 原 7 種值域與寫入層拒絕規則、16.7 B3 驗收「`person_positions` 寫入元首／首腦被拒」），使之與 16.3.1 及本節一致。→ ✅ T12 已決：已改寫，修訂紀錄見 16.3.3。
 - 以上兩項列於 16.9 T11、T12。
+
+### 16.3.3 人物／角色／經歷三層（T11／T12 已決，Tai 2026-11-11 10:03）
+
+> 狀態：✅ 三層分工已決（Tai 2026-11-11 10:03，Asia/Taipei，T11：「這三個可能是不同人，但可能是同一個人，對我來說這個是角色，角色跟人物似乎是不太依樣的表」；T12：「好」，同意改寫 §14.8／§16.3 原文）。表結構仍為**提案**，未建表；`leader_records` 定位未決（T13）。
+
+| 層 | 實體 | 用途 | 備註 |
+|---|---|---|---|
+| **人物** | 既有 `leader_bios.id`（`bio_id`） | 一人一筆；生卒、照片、summary、段落都掛在這裡 | 不新建 `persons`（16.1-1、§14.5） |
+| **角色** | 提案 `person_roles`（16.3.1 第 3 點） | 收錄、出卡、卡片主標題排序（16.3.1）；一個人物可有多個角色 | 元首 `head_of_state`、首腦 `head_of_government`、實際掌權者 `de_facto_leader` 都是此層的 `role_kind`，**不是人物的屬性**；元首與首腦可能是不同人，也可能是同一人 |
+| **經歷** | 提案 `person_positions`（16.3-3） | 生平經歷全集，只在詳情「經歷」區顯示，**不決定出卡** | 值域與 `person_roles.role_kind` 分開命名；不重複收元首／首腦／實際掌權者 |
+
+- **`leader_records`**：是現行元首／首腦任期的既有實作（地圖人物分頁資料源、gap-830 連結目標）。是否即為 `person_roles` 中這兩種角色的實作、是否遷移／如何遷移，**實作時先出遷移方案供 Tai 確認**（16.9 T13）；在那之前不改 `leader_records`、不另建一份元首／首腦任期。
+- 卡片合併：依人物 id 合併該人的角色（§14.8；現行實作仍讀 `leader_records.person_id`）。
+
+**修訂紀錄（依 Tai 2026-11-11 10:03（T11／T12）改寫）**
+
+| # | 位置 | 原句摘要 | 改寫後 |
+|---|---|---|---|
+| R1 | §14.8 第 1 點 | 「依 `leader_records.person_id` 合併（`groupLeaders`）…沒有 `person_id` 的記錄各自一張」 | 依人物 id 合併角色；註明現行實作讀 `leader_records.person_id`（該處另有行內修訂紀錄） |
+| R2 | 16.1-2 | 「國家元首／政府首腦任期只存在 `leader_records`」 | 元首／首腦是角色；任期目前只存在 `leader_records`（現行實作），定位待 T13（該處另有行內修訂紀錄） |
+| R3 | 16.3 現況段 | 只述 `leader_records` 收兩種角色 | 補「元首／首腦是角色、`leader_records` 是既有實作、遷移待 T13」 |
+| R4 | 16.3-1 | 「唯一來源真相仍是 `leader_records`。生平端不另存這類任期」 | 改為 T13 定案前唯一儲存處仍是 `leader_records`；生平端（經歷層、段落）不另存；`de_facto_leader` 存放處隨 T13 |
+| R5 | 16.3-3 | 「其他職位（部長、議長、軍職、黨職、駐外使節…）：`person_positions`，**不得**收元首／首腦（寫入層檢查：若 `role_kind` 屬這兩種 → 拒絕並指向 `leader_records`）」 | 改稱經歷層（生平經歷全集）；元首／首腦／實際掌權者屬角色層、經歷層不重複收；拒絕時指向角色層（現行即 `leader_records`）；其他重疊類別待 T14 |
+| R6 | 16.3 表 `role_kind` 列 | 「`role_kind` 值域（提案）：`minister`、`legislator`、`military_command`、`party`、`diplomat`、`judicial`、`other`；排除 `head_of_state`／`head_of_government`」 | 欄名改 `position_kind`，與 `person_roles.role_kind` 分開命名；值域實作時再定（原 7 種僅供參考）；不含元首／首腦／實際掌權者 |
+| R7 | 16.3 「地圖不讀 `person_positions`」 | 「它只用在閱讀對話框的『經歷』區」 | 補「不決定收錄與出卡」 |
+| R8 | 16.3.1 狀態說明第 2 行 | 「與 §14.8、§16.1、§16.3 既有條文的關係／差異另列於本次報告，未改既有條文…」 | 補註：已依 T11／T12 改寫，見本節 |
+| R9 | 16.3.1 第 3 點末條 | 「與 `leader_records`（16.3-1）、`person_positions`（16.3-3）的分工：未定，見本次報告；本節不改 16.3 提案文字」 | 改為指向本節三層分工；`leader_records` 定位待 T13 |
+| R10 | 16.3.2 狀態說明第 2 行、第 6 點 | 「未改既有條文…另待 Tai 確認」；第 6 點列 T11、T12 兩項仍待決 | 補註：T11、T12 已決，見本節；原文保留並標已決 |
+| R11 | 16.7 B3 驗收 | 「`person_positions` 寫入元首／首腦被拒」 | 「`person_positions` 寫入元首／首腦／實際掌權者（角色層）被拒」 |
+| R12 | 16.9 T3 狀態 | 「16.3 原提案文字未改」 | 補「16.3 原文已依 T11／T12 改寫（16.3.3）」 |
 
 ### 16.4 出處模型（每段落／每欄位可追溯）
 
@@ -1233,7 +1268,7 @@ K1、K2、K3、S1、S2。
 |---|---|---|
 | B1 出處模型 | `leader_bio_field_citations` 補 `quote`／`grade`／`date_precision`／`policy_version`；新增 `leader_record_citations`、`leader_bio_gaps`、`death_place`；`BioSourcePolicy` 硬性排除層 | migration up/down 在本機乾淨庫通過；I5 trigger 測試（DELETE 失敗、撤回不可逆）；舊 API 回應快照不變 |
 | B2 回填 | 把 gap-830 `bNN/research.json` 既有 `evidence` 回填到 `quote`、`conflicts`／`unverified` 回填到 `leader_bio_gaps`（只讀 seed 檔，不重新查證） | 計數比對：回填筆數＝seed 中有 evidence 的 citation 數；抽 20 人人工對照 |
-| B3 段落與職位 | `leader_bio_paragraphs`、`person_positions` 與引用表；API 加可選欄位；閱讀對話框顯示段落 | 無 citation 的段落／職位寫入被拒；`person_positions` 寫入元首／首腦被拒；前端單元測試＋4201 截圖 |
+| B3 段落與職位 | `leader_bio_paragraphs`、`person_positions` 與引用表；API 加可選欄位；閱讀對話框顯示段落 | 無 citation 的段落／職位寫入被拒；`person_positions` 寫入元首／首腦／實際掌權者（角色層）被拒（原句「`person_positions` 寫入元首／首腦被拒」，依 Tai 2026-11-11 10:03（T11／T12）改寫，見 16.3.3 R11）；前端單元測試＋4201 截圖 |
 | B4 事件關聯 | `person_event_participations`；`person_causal_claims`（P3）。**需 Tai 先解除 §14.0-3「戰役先不做」** | 影響無獨立 citation 被拒；參與不會由政權參與方自動產生（測試） |
 | B5 RAG | pgvector 映像、`person_rag_chunks`、重建腳本、重算批次 | 全量重建冪等（兩次結果 hash 相同）；撤回後 chunk 立即查不到；每個 chunk 都有 `citation_ids` |
 
@@ -1390,7 +1425,7 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 |---|---|---|---|
 | T1 | 來源等級 A／B 的定義與是否只收 A／B | 建議：A＝官方檔案、國家級傳記辭典、權威機構人名權威（BnF、GND、ÖBL、SBL…）；B＝學術專書、具名作者的百科條目；C／X 不進 DB（留 seed）。需考證組確認後才加 CHECK | ✅ 已決：採建議 |
 | T2 | Q5：生平引用要套授權允許清單，還是另立史料白名單？白名單存程式常數或 DB 表？ | 設計兩者都支援（16.4.4）；建議先上「硬性排除」層，白名單待憲法修改後再開 | ⏳ 未決，做到時再問 |
-| T3 | `person_positions` 的 `role_kind` 值域 | 建議先用 16.3 的 7 種，`other` 兜底 | ✅ 已決（Tai 2026-11-11 09:11）：改採 16.3.1 的人物範圍與 role_kind（見 16.9.1）；16.3 原提案文字未改 |
+| T3 | `person_positions` 的 `role_kind` 值域 | 建議先用 16.3 的 7 種，`other` 兜底 | ✅ 已決（Tai 2026-11-11 09:11）：改採 16.3.1 的人物範圍與 role_kind（見 16.9.1）；16.3 原提案文字未改（2026-11-11 10:03 起：16.3 原文已依 T11／T12 改寫，見 16.3.3） |
 | T4 | 段落是否要求逐句標註（`claim_span` 必填） | 建議 P1 選填，只逐段 | ✅ 已決：採建議 |
 | T5 | 何時解除 §14.0-3「戰役先不做」以進 B4 | — | ⏳ 未決，做到時再問 |
 | T6 | 段落期間可否超出 1908–1945（出生、戰後） | 建議可以，但只在閱讀對話框顯示、不進地圖時間軸；若同意需在憲法 §1 註明 | ✅ 已決：採建議（憲法 §1 已註記） |
@@ -1398,8 +1433,10 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | T8 | 正式站 DB 映像加 pgvector | B5 前決定 | ⏸ 延後（隨 B5） |
 | T9 | RAG chunk 衍生表可否硬刪（不受 I5） | 建議可以（可完全重建）；否則加 `retracted_at` 軟刪 | ⏸ 延後（隨 B5） |
 | T10 | B1–B5 的優先順序；B2 回填是否在 gap-830 補強批之前做 | 建議 B1→B2 先做，補強批（b50 起）直接用新格式 | ✅ 已決：採建議 |
-| T11 | 元首／首腦與 `de_facto_leader` 存在哪張表（`leader_records`、`person_roles` 或其他） | 16.3.2 只定了 `person_positions`／`person_roles` 的分工方向，本項未提建議 | ⏳ 未決 |
-| T12 | 是否改寫 §14.8、§16.3 原文，使之與 16.3.1、16.3.2 一致 | — | ⏳ 未決 |
+| T11 | 元首／首腦與 `de_facto_leader` 存在哪張表（`leader_records`、`person_roles` 或其他） | 16.3.2 只定了 `person_positions`／`person_roles` 的分工方向，本項未提建議 | ✅ 已決（Tai 2026-11-11 10:03）：人物與角色分表，三者皆為角色（`person_roles.role_kind`），見 16.3.3、16.9.1；`leader_records` 定位另列 T13 |
+| T12 | 是否改寫 §14.8、§16.3 原文，使之與 16.3.1、16.3.2 一致 | — | ✅ 已決（Tai 2026-11-11 10:03）：改寫，修訂紀錄見 16.3.3 |
+| T13 | `leader_records` 定位：是否即為 `person_roles` 中 `head_of_state`／`head_of_government` 的實作；是否遷移、如何遷移（含地圖領導人分頁資料源、gap-830 `recordIds`、`leader_record_citations`、`groupLeaders`） | 實作 `person_roles` 前先出遷移方案供 Tai 確認；在那之前 `leader_records` 照舊、不另存一份 | ⏳ 未決 |
+| T14 | 經歷層 `person_positions` 是否也收與角色層重疊的類別（閣員、將領、佔領／殖民長官等，元首／首腦／實際掌權者除外）；詳情「職位與任期」（角色）與「經歷」兩區是否合併顯示 | 本次未提建議 | ⏳ 未決 |
 
 #### 16.9.1 決議紀錄（Tai 2026-11-10，經 World Line 主管轉達）
 
@@ -1420,4 +1457,5 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | T3（role_kind 與人物範圍） | 7 題全採點子工坊建議，細節見 16.3.1：(1) `de_facto_leader` 併入 P1；(2) 代理任期（`acting`）收資料、不出卡，只在詳情列出；(3) 佔領區顯示佔領長官（`occupation_administrator`），並附宗主政權連結；(4) 閣員限外交、國防／陸軍、財政、內政四部，任期 ≥ 90 天，放 P3；(5) 將領需有帶來源的戰役連結，或擔任國家級最高軍職；(6) 不收外交官、思想文化人物、未掌權黨幹部；(7) 卡片主標題排序 `head_of_state` > `de_facto_leader` > `head_of_government` > `occupation_administrator` > `colonial_governor` > `military_commander` > `cabinet_minister` > `resistance_leader`。取代上列「T2、T3、T5 未決」中的 T3；`role_kind` 值域與 16.3 原提案（7 種）不同，16.3 原文與 §14.8 已決文字未改 | Tai 2026-11-11 09:11（Asia/Taipei）「7 題全照點子工坊建議，寫進 ARCHITECTURE §16，不 push」 |
 | B3 段落寫法（Q1–Q10） | 全採史料考證建議，細節見 16.3.2：(Q1) 戰役／事件只寫正文，等 B4／T5；(Q2) 中文 ≤ 400 字、拉丁文字 ≤ 800 字元（NFC 字元）；(Q3) 月／年精度結束日寫下一單位起日（到 1911 年 → `1912-01-01`＋year）；(Q4) 範圍外元首／首腦任期只寫正文，不建職位、不動 `leader_records`；(Q5) 清楚落在範圍內且對得到政權才填 `regime_id`，其餘填 `organization`；(Q6) 16.3.1 範圍外經歷可寫正文、可記入 `person_positions`，不進 `person_roles`；(Q7) 名簿下一任起日可當前任卸任日，`evidenceNote` 註明「依名簿下一任起日推得」，無則留空；(Q8) 無有效生平者先照 gap-830 補建，寫庫前問 Tai；(Q9) 未評等來源只當 gap `candidateCitations`，不當出處；(Q10) 同段可有同來源多筆引文，每筆一句。16.2、16.3、16.3.1、§14.8 原文未改 | Tai 2026-11-11 09:35（Asia/Taipei）「Q1–Q10 和 7 條 §16 建議全照史料考證的建議，記進 ARCHITECTURE §16，不 push」；Q6、Q8 另依 Tai 2026-11-11 09:30 |
 | B3 對 §16 的建議 1–7 | 全採，細節見 16.3.2：(1) 400 字計法同 Q2；(2) 結束日寫法同 Q3；(3) 範圍外元首任期同 Q4；(4) `person_positions`＝生平經歷全集、`person_roles`＝收錄與出卡，兩表值域分開命名（只定分工方向；元首／首腦與 `de_facto_leader` 存哪張表、是否改寫 §14.8／§16.3 原文仍未決，見 16.9 T11、T12）；(5) seed 來源統一用頂層 `sources`＋`sourceKey`；(6) B3 研究檔（P 格式）加 `bioId` 鍵，掛既有生平；(7) 遇防機器人驗證不繞過，只可改用同一權威資料的官方鏡像（GND → lobid），不換來源 | Tai 2026-11-11 09:35（Asia/Taipei） |
+| T11、T12（人物／角色／經歷三層） | T11：人物與角色分兩張表，一個人物可有多個角色；元首（`head_of_state`）、首腦（`head_of_government`）、實際掌權者（`de_facto_leader`）都是**角色**（`person_roles.role_kind`），不是人物的屬性。人物＝既有 `leader_bios.id`；角色＝`person_roles`（收錄、出卡、主標題排序）；經歷＝`person_positions`（生平經歷全集，只在詳情「經歷」，不決定出卡，值域與 `person_roles` 分開命名，不重複收元首／首腦／實際掌權者）。T12：同意改寫 §14.8／§16.3 原文，已改寫，修訂紀錄見 16.3.3。取代上列「B3 對 §16 的建議 1–7」第 (4) 項括號內「存哪張表、是否改寫仍未決」之部分（該列原文保留）。`leader_records` 定位與遷移**未決定**，另列 16.9 T13；重疊類別另列 T14 | Tai 2026-11-11 10:03（Asia/Taipei）T11「這三個可能是不同人，但可能是同一個人，對我來說這個是角色，角色跟人物似乎是不太依樣的表」；T12「好」 |
 

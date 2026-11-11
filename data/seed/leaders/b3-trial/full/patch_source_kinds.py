@@ -17,6 +17,7 @@ POLICY = [  # (domain, source_kind, grade, 依據, 決定)
     ("www.dhm.de", "encyclopedia", "B", "Deutsches Historisches Museum LeMO 傳記（學術機構傳記）", "主管 2026-11-11 21:55"),
     ("millercenter.org", "encyclopedia", "B", "Miller Center, University of Virginia 總統傳記（學術機構傳記）", "主管 2026-11-11 21:55"),
     ("ebsco.com", "encyclopedia", "B", "EBSCO Research Starters（具名作者百科條目）", "主管 2026-11-11 21:55"),
+    ("www.ebsco.com", "encyclopedia", "B", "EBSCO Research Starters（同上；batch003 來源用 www 主機名，寫庫腳本以完整主機名比對）", "主管 2026-11-11 21:55（同一網域補主機名）"),
 ]
 
 def main():

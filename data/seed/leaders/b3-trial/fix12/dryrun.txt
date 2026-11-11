@@ -1,0 +1,78 @@
+exit=0
+--- stdout ---
+BEGIN
+UPDATE 1
+INSERT 0 1
+UPDATE 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+UPDATE 1
+INSERT 0 1
+UPDATE 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+DO
+?column? | name | birth_date | birth_date_precision | death_date | death_date_precision
+bios | Fedir Lyzohub | 1851-01-01 | year | 1928-01-01 | year
+bios | Georges Leygues |  |  | 1933-09-02 | 
+bios | Hüseyin Hilmi Paşa | 1855-01-01 | year |  | 
+bios | José Isaías de Noronha | 1873-01-01 | year | 1963-01-29 | 
+bios | Juan Negrín López |  |  | 1956-11-12 | day
+bios | Manuel Ávila Camacho |  |  | 1955-10-13 | 
+bios | Per Albin Hansson | 1885-10-28 | day | 1946-10-06 | day
+bios | Said Halim Pasha |  |  |  | 
+bios | Vladas Mironas | 1880-06-22 | day | 1953-02-18 | day
+bios | Wu Tingfang | 1842-07-30 | day | 1922-06-23 | day
+bios | Zigfrīds Anna Meierovics |  |  | 1925-08-22 | day
+(11 rows)
+?column? | bio_id | ord | period | left | left | count
+paragraph | 01a1c437-b43f-7116-bd87-22313035593e | 1 | [1842-07-30,1898-01-01) | According to the BnF authority record, Wu Tingfang was born on 30 July 1842 in Malacca. He | 據法國國家圖書館（BnF）權威記錄，伍廷芳於1842年7月30日生於馬六甲；18 | 4
+paragraph | 01a1b4b0-6fe9-72db-be2c-915cf61baa62 | 3 | [1932-01-01,1946-10-07) | In 1932, in the midst of the economic crisis, Hansson became leader of a Social Democratic | 1932年經濟危機中，漢森出任社會民主黨少數政府的領導人，1933年與農民聯盟達 | 10
+(2 rows)
+?column? | name | target | gap_kind | resolved
+gaps | Fedir Lyzohub | field:birthDate | conflict | f
+gaps | Georges Leygues | field:birthDate | conflict | f
+gaps | Hüseyin Hilmi Paşa | field:birthDate | not_found | f
+gaps | Hüseyin Hilmi Paşa | field:deathDate | conflict | f
+gaps | José Isaías de Noronha | field:birthDate | conflict | f
+gaps | Juan Negrín López | field:birthDate | conflict | f
+gaps | Juan Negrín López | field:birthDate | not_found | f
+gaps | Manuel Ávila Camacho | field:birthDate | conflict | f
+gaps | Per Albin Hansson | field:deathDate | conflict | t
+gaps | Said Halim Pasha | field:birthDate | conflict | f
+gaps | Said Halim Pasha | field:deathDate | conflict | f
+gaps | Vladas Mironas | field:deathDate | conflict | t
+gaps | Wu Tingfang | field:birthDate | conflict | t
+gaps | Wu Tingfang | field:birthPlace | conflict | t
+gaps | Zigfrīds Anna Meierovics | field:birthDate | conflict | f
+(15 rows)
+ROLLBACK
+
+--- stderr ---

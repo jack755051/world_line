@@ -149,8 +149,8 @@ public static class LeaderBioGapKinds
     public const string IdentityUncertain = "identity_uncertain";
     public static readonly string[] All = [Conflict, NotFound, IdentityUncertain];
 
-    /// <summary>target 格式：field:&lt;LeaderBioFields&gt;｜position:&lt;id&gt;｜paragraph:&lt;topic&gt;｜identity。</summary>
-    public const string TargetPattern = "^(field|position|paragraph):[^[:space:]].*$|^identity$";
+    /// <summary>target 格式：field:&lt;LeaderBioFields&gt;｜position:&lt;id&gt;｜paragraph:&lt;topic&gt;｜role:&lt;seed_key&gt;｜identity。</summary>
+    public const string TargetPattern = "^(field|position|paragraph|role):[^[:space:]].*$|^identity$";
 }
 
 

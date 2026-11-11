@@ -1778,7 +1778,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_leader_bio_gaps_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
 
-                            t.HasCheckConstraint("ck_leader_bio_gaps_target", "target ~ '^(field|position|paragraph):[^[:space:]].*$|^identity$'");
+                            t.HasCheckConstraint("ck_leader_bio_gaps_target", "target ~ '^(field|position|paragraph|role):[^[:space:]].*$|^identity$'");
                         });
                 });
 

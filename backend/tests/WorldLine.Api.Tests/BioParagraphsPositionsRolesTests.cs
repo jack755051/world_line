@@ -50,6 +50,16 @@ public sealed class BioParagraphsPositionsRolesTests(PostGisFixture fx)
     }
 
     [Fact]
+    public async Task Gap_target_accepts_role_prefix_for_roles_missing_period_start()
+    {
+        await using var c = await OpenAsync();
+        var (bio, _) = await Seed(c);
+        Assert.NotNull(await Scalar(c, $"INSERT INTO leader_bio_gaps (bio_id, target, gap_kind, note, checked_on, candidate_citations) VALUES ('{bio}', 'role:k-role-1', 'not_found', '缺 period.start', '2026-11-11', '[]') RETURNING id"));
+        await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, $"INSERT INTO leader_bio_gaps (bio_id, target, gap_kind, note, checked_on, candidate_citations) VALUES ('{bio}', 'role: x', 'not_found', 'n', '2026-11-11', '[]') RETURNING id"));
+        await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, $"INSERT INTO leader_bio_gaps (bio_id, target, gap_kind, note, checked_on, candidate_citations) VALUES ('{bio}', 'job:k', 'not_found', 'n', '2026-11-11', '[]') RETURNING id"));
+    }
+
+    [Fact]
     public async Task Paragraph_ord_unique_among_active_rows_and_body_must_be_object()
     {
         await using var c = await OpenAsync();

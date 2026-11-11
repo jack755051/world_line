@@ -1,0 +1,4482 @@
+{
+ "batch": "b3-full-v3-batch003",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；本批 5 人皆無黨職或黨籍席位；regimeId 一律 NULL（未查 5442 政權對應），集團軍群／戰區級指揮因政權待查證為 R6，軍／集團軍級與參謀職位為 R5。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；直接寫 b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch003，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch003/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "lemo-leeb": {
+   "title": "LeMO Biografie - Wilhelm Ritter von Leeb",
+   "authors": [
+    "Claudia Prinz"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Claudia Prinz, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/wilhelm-ritter-von-leeb",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-leeb": {
+   "title": "Deutsche Biographie - Wilhelm Ritter von Leeb（NDB 全文）",
+   "authors": [
+    "Georg Meyer"
+   ],
+   "publisher": "人名權威檔頁面含 NDB 全文：Georg Meyer，NDB 14 (1985)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Georg Meyer，NDB 14 (1985), S. 51-53",
+   "url": "https://www.deutsche-biographie.de/pnd118570870.html",
+   "archive_url": null,
+   "catalog_id": "GND 118570870",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "lemo-moltke": {
+   "title": "LeMO Biografie - Helmuth von Moltke",
+   "authors": [
+    "Kai-Britt Albrecht"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Kai-Britt Albrecht, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/helmuth-von-moltke",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-moltke": {
+   "title": "Deutsche Biographie - Helmuth Graf von Moltke（NDB 全文）",
+   "authors": [
+    "Heinrich Walle"
+   ],
+   "publisher": "人名權威檔頁面含 NDB 全文：Heinrich Walle，NDB 18 (1997)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Heinrich Walle，NDB 18 (1997), S. 17-18",
+   "url": "https://www.deutsche-biographie.de/pnd118854801.html",
+   "archive_url": null,
+   "catalog_id": "GND 118854801",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "lemo-paulus": {
+   "title": "LeMO Biografie - Friedrich Paulus",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Manfred Wichmann, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/friedrich-paulus",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-paulus": {
+   "title": "Deutsche Biographie - Friedrich Wilhelm Ernst Paulus（NDB 全文）",
+   "authors": [
+    "Manfred Kehrig"
+   ],
+   "publisher": "人名權威檔頁面含 NDB 全文：Manfred Kehrig，NDB 20 (2001)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Manfred Kehrig，NDB 20 (2001), S. 133 f.",
+   "url": "https://www.deutsche-biographie.de/pnd118739654.html",
+   "archive_url": null,
+   "catalog_id": "GND 118739654",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "lemo-kuechler": {
+   "title": "LeMO Biografie - Georg von Küchler",
+   "authors": [
+    "Robert Thoms"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Robert Thoms, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/georg-von-kuechler",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-kuechler": {
+   "title": "Deutsche Biographie - Georg von Küchler（NDB 全文）",
+   "authors": [
+    "Georg Meyer"
+   ],
+   "publisher": "人名權威檔頁面含 NDB 全文：Georg Meyer，NDB 13 (1982)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Georg Meyer，NDB 13 (1982), S. 180 f.",
+   "url": "https://www.deutsche-biographie.de/pnd124554245.html",
+   "archive_url": null,
+   "catalog_id": "GND 124554245",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "lemo-rundstedt": {
+   "title": "LeMO Biografie - Gerd von Rundstedt",
+   "authors": [
+    "Alexander Mühle",
+    "Arnulf Scriba"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Alexander Mühle, Arnulf Scriba, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/gerd-von-rundstedt",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-rundstedt": {
+   "title": "Deutsche Biographie - Karl Rudolf Gerd von Rundstedt（NDB 全文）",
+   "authors": [
+    "Sönke Neitzel"
+   ],
+   "publisher": "人名權威檔頁面含 NDB 全文：Sönke Neitzel，NDB 22 (2005)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Sönke Neitzel，NDB 22 (2005), S. 258-259",
+   "url": "https://www.deutsche-biographie.de/pnd118939327.html",
+   "archive_url": null,
+   "catalog_id": "GND 118939327",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "imt-rundstedt-testimony": {
+   "title": "Transcript for IMT: Trial of Major War Criminals（Rundstedt 證詞，1946-08-12）",
+   "authors": [
+    "International Military Tribunal（審訊紀錄）"
+   ],
+   "publisher": "Harvard Law School Library, Nuremberg Trials Project",
+   "published_text": "IMT transcript, 12 August 1946, HLSL Seq. No. 15494",
+   "url": "https://nuremberg.law.harvard.edu/transcripts/7?seq=15501",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學圖書館數位化之國際軍事法庭官方審訊紀錄，本人證詞（學術機構來源）"
+  },
+  "ebsco-rundstedt": {
+   "title": "Gerd von Rundstedt（Research Starters）",
+   "authors": [
+    "Frederick Dumin"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "Dumin, Frederick, 2024",
+   "url": "https://www.ebsco.com/research-starters/biography/gerd-von-rundstedt",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之學術資料庫傳記條目"
+  },
+  "generalsdk-rundstedt": {
+   "title": "Generals.dk: von Rundstedt, Karl Rudolf Gerd",
+   "authors": [],
+   "publisher": "generals.dk",
+   "published_text": null,
+   "url": "https://generals.dk/general/von_Rundstedt/Karl_Rudolf_Gerd/Germany.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等私人彙編，只放搜尋紀錄與 gap 線索，不當出處"
+  }
+ },
+ "people": [
+  {
+   "key": "wilhelmrittervonleeb",
+   "bioId": null,
+   "name": "Wilhelm Ritter von Leeb",
+   "nameZh": "威廉·馮·里布",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1876-09-05",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1876年9月5日生於巴伐利亞的蘭茨貝格。1895年7月進入奧格斯堡的第4野戰砲兵團，1900至1901年隨東亞遠征軍的野戰砲兵團赴中國，任山砲連排長。第一次世界大戰期間，自1915年春起任第11巴伐利亞步兵師的第1總參軍官，1918年多半被排除於重大決策之外，改受命研究戰史。",
+      "en": "Born on 5 September 1876 in Landsberg am Lech, Bavaria, he joined the 4th Field Artillery Regiment in Augsburg in July 1895 and in 1900–01 served as a platoon leader with the East Asian field artillery regiment in China. From spring 1915 he was first general staff officer of the 11th Bavarian Infantry Division; in 1918 he was mostly kept away from key decisions and given war-history studies."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Kopf",
+       "quote": "5.9.1876 Landsberg/Lech",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1895",
+       "quote": "1895 Juli: Er tritt in das 4. Feldartillerie-Regiment",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1900/01",
+       "quote": "1900/01 Nach der Kriegserklärung Chinas an mehrere westliche Staaten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1900/01",
+       "quote": "ist Leeb Zugführer bei der 1. Gebirgsbatterie des ostasiatischen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf ab 1915",
+       "quote": "Frühjahr: Als 1. Generalstabsoffizier der 11. Bayerischen Infanterie-Division",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1918",
+       "quote": "Leeb wird von kriegswichtigen Entscheidungen meist ferngehalten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1918",
+       "quote": "stattdessen mit kriegsgeschichtlichen Studien beauftragt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1938-03-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "國防軍時期的參謀與軍區職務",
+      "en": "Reichswehr staff and command posts"
+     },
+     "body": {
+      "zh-Hant": "1919至1921年他在國防部任參謀，1921至1923年任第2軍區（什切青）參謀長，1923至1924年任第7軍區（慕尼黑）參謀長，1924至1928年任第7砲兵團的營長與團長。1930至1933年任慕尼黑的師長，1933至1938年任卡塞爾第2集團司令部司令。1938年2月底，他在布隆貝格—弗里奇危機中被免職。",
+      "en": "In 1919–21 he was a staff officer in the Reichswehr ministry, in 1921–23 chief of staff of Wehrkreis II (Stettin) and in 1923–24 of Wehrkreis VII (Munich), and in 1924–28 battalion and regiment commander of Artillery Regiment 7. He commanded a division in Munich in 1930–33 and Group Command 2 in Kassel in 1933–38. At the end of February 1938 he was dismissed in the Blomberg–Fritsch crisis."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1919-1921",
+       "quote": "1919-1921 Tätigkeit als Referent im Reichswehrministerium.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1921-1923",
+       "quote": "1921-1923 Er ist Chef des Stabs im Wehrkreis II Stettin.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1923/24",
+       "quote": "1923/24 Leeb ist Stabschef im Wehrkreis VII München.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1924-1928",
+       "quote": "1924-1928 Er ist Abteilungs- und Regimentskommandeur des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1930-1933",
+       "quote": "1930-1933 Er ist als Divisionskommandeur in München tätig.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1933-1938",
+       "quote": "1933-1938 Leeb ist Oberbefehlshaber des Gruppenkommandos 2 in Kassel.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1938",
+       "quote": "Ende Februar: Im Zusammenhang mit der Blomberg-Fritsch-Krise",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1938",
+       "quote": "wird auch Leeb verabschiedet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1938-10-01",
+      "end": "1940-07-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "蘇台德與西線戰役",
+      "en": "Sudetenland and the Western campaign"
+     },
+     "body": {
+      "zh-Hant": "1938年10月他被重新起用，參與進入蘇台德地區，11月晉升上將。1940年西線攻勢期間他任C集團軍群總司令；據NDB，他的第7集團軍成功渡過上萊茵河，第1集團軍突破馬其諾防線，他隨即下令停止戰鬥以免無謂損失。1940年7月19日他晉升元帥。",
+      "en": "In October 1938 he was reactivated and took part in the march into the Sudetenland, and in November he was promoted Generaloberst. During the 1940 offensive in the west he was commander-in-chief of Army Group C; according to the NDB, after the Seventh Army crossed the Upper Rhine and the First Army broke through the Maginot Line he soon had the fighting stopped to avoid needless losses. On 19 July 1940 he was promoted Generalfeldmarschall."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1938",
+       "quote": "Oktober: Leeb wird reaktiviert und nimmt am Einmarsch in das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1938",
+       "quote": "November: Beförderung zum Generaloberst.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1940",
+       "quote": "Während der Westoffensive ist Leeb Oberbefehlshaber der Heeresgruppe C.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "Nach dem geglückten Übergang über den Oberrhein (7. Armee)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "erfolgreichen Durchbrechen der Maginot-Befestigungen (1. Armee)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "die Kämpfe alsbald einstellen, um unnötige Verluste zu vermeiden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1940",
+       "quote": "19. Juli: Er wird zum Generalfeldmarschall befördert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-06-22",
+      "end": "1942-01-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "北方集團軍群與列寧格勒",
+      "en": "Army Group North and Leningrad"
+     },
+     "body": {
+      "zh-Hant": "1941年6月22日德軍進攻蘇聯，里布任北方集團軍群司令。他的部隊在波羅的海地區初期有進展，但列寧格勒之圍未能成功，他與希特勒因而失和；據NDB，他逼使自己去職，1942年1月16日轉入陸軍總司令部的元首預備隊，此後未再任職。",
+      "en": "When the attack on the Soviet Union began on 22 June 1941, Leeb commanded Army Group North. After early successes in the Baltic region the siege of Leningrad failed and he fell out with Hitler; according to the NDB he forced his own dismissal and on 16 January 1942 went into the Führer reserve of the army high command, and was not employed again."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1941",
+       "quote": "22. Juni: Zu Beginn des Überfalls auf die Sowjetunion ist Leeb",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1941/42",
+       "quote": "Nach anfänglichen Erfolgen im Baltikum ist die Belagerung von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1941/42",
+       "quote": "Es kommt zu einem Zerwürfnis zwischen Leeb und Hitler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "L. erzwang seine Entlassung (16.1.1942 Führerreserve Oberkommando des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "nicht wieder verwendet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1945-05-02",
+      "end": "1956-04-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後審判與晚年",
+      "en": "Trial and later life"
+     },
+     "body": {
+      "zh-Hant": "1945年5月2日，德國投降前不久，他被美軍俘虜。1948年10月27、28日，紐倫堡審判以轉發命令為由判他三年徒刑，10月29日獲釋；LeMO指出該判決基於文件混淆。1954年他任巴伐利亞軍事馬克斯·約瑟夫勳章的大總管，1956年4月29日逝世。",
+      "en": "On 2 May 1945, shortly before the German surrender, he was taken prisoner by the Americans. On 27–28 October 1948 the Nuremberg trial sentenced him to three years for passing on an order, and he was released on 29 October; LeMO notes the verdict rested on a confusion of documents. In 1954 he became grand chancellor of the Bavarian Military Max Joseph Order, and he died on 29 April 1956."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1945",
+       "quote": "2. Mai: Kurz vor der deutschen Kapitulation gerät Leeb in amerikanische",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1948",
+       "quote": "27./28. Oktober: In den Nürnberger Prozessen wird er wegen Weiterleitung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1948",
+       "quote": "zu drei Jahren Haft verurteilt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1948",
+       "quote": "Die Verurteilung beruht auf einer Dokumentenverwechslung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1948",
+       "quote": "29. Oktober: Entlassung aus der Gefangenschaft.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1954",
+       "quote": "Leeb wird Großkanzler des bayerischen Militär-Max-Joseph-Ordens.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1956",
+       "quote": "29. April: Wilhelm Ritter von Leeb stirbt in Hohenschwangau bei Füssen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "leeb-div7",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍第7師（慕尼黑）",
+      "en": "7th Division, Reichswehr (Munich)"
+     },
+     "title": {
+      "orig": "Divisionskommandeur in München",
+      "zh-Hant": "第7師師長",
+      "en": "Division commander in Munich"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1930-01-01",
+      "end": "1934-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1930-1933",
+       "quote": "1930-1933 Er ist als Divisionskommandeur in München tätig.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "als Divisionskommandeur in München 1930-33 (7. Division/Wehrkreis VII)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "leeb-gruppe2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍第2集團司令部（卡塞爾）",
+      "en": "Group Command 2, Reichswehr/Wehrmacht (Kassel)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber des Gruppenkommandos 2 in Kassel",
+      "zh-Hant": "第2集團司令部司令",
+      "en": "Commander of Group Command 2 (Kassel)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1933-01-01",
+      "end": "1938-03-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1933-1938",
+       "quote": "1933-1938 Leeb ist Oberbefehlshaber des Gruppenkommandos 2 in Kassel.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1938",
+       "quote": "Ende Februar: Im Zusammenhang mit der Blomberg-Fritsch-Krise",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取免職月份的下一月起日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "leeb-hg-nord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍北方集團軍群",
+      "en": "German Army Group North"
+     },
+     "title": {
+      "orig": "Befehlshaber der Heeresgruppe Nord",
+      "zh-Hant": "北方集團軍群司令",
+      "en": "Commander of Army Group North"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-06-22",
+      "end": "1942-01-16"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-leeb",
+       "locator": "Lebenslauf 1941",
+       "quote": "22. Juni: Zu Beginn des Überfalls auf die Sowjetunion ist Leeb",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-leeb",
+       "locator": "NDB Text",
+       "quote": "L. erzwang seine Entlassung (16.1.1942 Führerreserve Oberkommando des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（蘇德戰爭 1941-06-22、列寧格勒），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:leeb-hg-c",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；LeMO 只寫「1940 年西線攻勢期間任C集團軍群總司令」，NDB 只寫「大戰初期復職，任西線總司令」，兩者皆無任命日與卸任日，未建職位，僅寫入正文。已查：LeMO、NDB（Deutsche Biographie）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；1938-10 復職後至 1939 年的具體職務（含 NDB 所稱「西線總司令」）與任期無日期，未建職位。已查：LeMO、NDB（Deutsche Biographie）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wilhelm Ritter von Leeb GND",
+     "url": "https://lobid.org/gnd/search?q=Wilhelm+Ritter+von+Leeb&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118570870，確認姓名與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（含 NDB 全文）",
+     "url": "https://www.deutsche-biographie.de/pnd118570870.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文，已存原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": null,
+     "result": "found_B",
+     "note": "curl 抓取 LeMO 傳記與年表，已存原文"
+    }
+   ]
+  },
+  {
+   "key": "helmuthvonmoltketheyounger",
+   "bioId": null,
+   "name": "Helmuth von Moltke the Younger",
+   "nameZh": "小赫爾穆特·馮·毛奇",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1848-05-01",
+      "end": "1892-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1848年5月生於梅克倫堡的格索多夫莊園。1869年入第86燧發槍兵團，1870至1871年參加對法戰爭，1875至1878年在柏林戰爭學院受總參軍官訓練。1882年起任其叔父、總參謀長老毛奇的副官，1888年升為首席副官；1891年叔父去世後，成為威廉二世的侍從副官。",
+      "en": "He was born in May 1848 on the Gersdorf estate in Mecklenburg. He joined Fusilier Regiment 86 in 1869, took part in the Franco-Prussian War of 1870–71 and trained as a general staff officer at the Berlin War Academy in 1875–78. From 1882 he was adjutant to his uncle, the elder Moltke, becoming first adjutant in 1888, and after his uncle's death in 1891 he became a wing adjutant of Wilhelm II."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1848",
+       "quote": "25. Mai: Helmuth von Moltke wird als Sohn des dänischen Beamten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1848",
+       "quote": "auf dem Rittergut Gersdorf in Mecklenburg geboren.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1869",
+       "quote": "1869 Nach bestandener Fähnrichsprüfung tritt er als Fahnenjunker in das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1870/71",
+       "quote": "1870/71 Als Sekonde-Adjutant nimmt er am Feldzug gegen Frankreich teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1875-1878",
+       "quote": "1875-1878 An der Kriegsakademie Berlin absolviert er die Ausbildung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1882",
+       "quote": "1882 Im Rang des 2. Adjutanten wird er seinem Onkel, dem Chef des Großen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1888",
+       "quote": "1888 Er rückt zum 1. Adjutanten des Generalfeldmarschalls Moltke auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1891",
+       "quote": "Nach dem Tod seines Onkels wird er Flügeladjutant Kaiser Wilhelms II.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1893-01-01",
+      "end": "1904-02-16"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "宮廷軍職與升遷",
+      "en": "Court posts and promotions"
+     },
+     "body": {
+      "zh-Hant": "1893年他升中校，任宮廷衛兵連連長，據NDB此後十一年他都在皇帝身邊；1899年升少將，1902年升中將並任第1近衛步兵師師長，同時成為皇帝的總侍從武官。1904年2月16日，他被任命為軍需總監，成為接替施里芬的人選。",
+      "en": "Promoted lieutenant colonel in 1893, he commanded the Palace Guard Company and, according to the NDB, for eleven years remained in the emperor's immediate circle; he became major general in 1899 and lieutenant general in 1902, commanding the 1st Guards Infantry Division and serving as adjutant general to the emperor. On 16 February 1904 he was appointed Generalquartiermeister, which made him a candidate to succeed Schlieffen."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1893",
+       "quote": "1893 Zum Oberstleutnant befördert, wird er Kommandeur der Schlossgarde-Kompanie.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "Für die nächsten elf Jahre gehörte M. somit zur unmittelbaren Umgebung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "1899 erfolgte die Beförderung zum Generalmajor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "1902 wurde er zum Generalleutnant befördert und erhielt das Kommando über die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "gleichzeitig wurde er zum Generaladjutanten des Kaisers ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "ernannte ihn am 16.2.1904 zum Generalquartiermeister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "M. war damit zum Kandidaten für die Nachfolge des Generalobersten Alfred",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1906-01-01",
+      "end": "1914-01-27"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出任總參謀長",
+      "en": "Chief of the General Staff"
+     },
+     "body": {
+      "zh-Hant": "1906年1月1日，威廉二世任命他為陸軍總參謀長，接替施里芬。NDB指出，他是主要因與皇帝的友誼而獲選，過去在大總參謀部的工作經驗不多。1912年，應魯登道夫之請，他設法擴充陸軍；1914年1月27日晉升上將。",
+      "en": "On 1 January 1906 Wilhelm II appointed him Chief of the General Staff of the Army, succeeding Schlieffen. The NDB notes that he was chosen chiefly because of his friendship with the emperor and had little experience in the work of the Great General Staff. In 1912, at Ludendorff's urging, he sought to strengthen the army, and on 27 January 1914 he was promoted Generaloberst."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "ernannte ihn am 1.1.1906 zum Chef des Generalstabes der Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1906",
+       "quote": "1906 1. Januar: Moltke wird der Nachfolger Alfred Graf von Schlieffens",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "M. wurde in erster Linie aufgrund seiner freundschaftlichen Beziehungen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "verfügte der neue Generalstabschef nur über wenig Erfahrung in der Arbeit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1912",
+       "quote": "1912 Auf Drängen Erich Ludendorffs bemüht er sich um eine Verstärkung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "Am 27.1.1914 wurde M. zum Generaloberst befördert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-08-01",
+      "end": "1914-11-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1914年戰事與馬恩河戰役",
+      "en": "1914 operations and the Marne"
+     },
+     "body": {
+      "zh-Hant": "1914年8月1日戰爭爆發，他負責指揮德軍的作戰。對法作戰計畫以施里芬的研究為基礎，須穿越中立的比利時；同時代人批評他削弱了右翼。9月9日馬恩河戰役中，他下令撤回艾斯訥河後方。9月14日他把作戰指揮交給法爾肯海因，11月3日法爾肯海因正式接任總參謀長。",
+      "en": "From 1 August 1914 he directed the operations of the German army. The German plan against France, based on Schlieffen's studies, called for an advance through neutral Belgium; contemporaries blamed him for weakening the right wing. On 9 September at the Marne he ordered the retreat behind the Aisne. On 14 September he handed the direction of operations to Falkenhayn, who formally succeeded him on 3 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1914",
+       "quote": "1. August: Als Chef des Generalstabs obliegt ihm bei Kriegsbeginn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "Der deutsche Operationsplan gegen Frankreich basierte auf den Studien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "mit einem Durchmarsch durch das neutrale Belgien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "warfen M. die Verwässerung des Schlieffenplanes vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "erteilte M. den Befehl zum Rückzug hinter die Aisne",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "Als am 9.9.1914 den bis zur Marne etwa 50 km vor Paris vorgedrungenen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "mußte M. am 14.9.1914 die Leitung der Operationen an General Erich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1914",
+       "quote": "3. November: Falkenhayn wird auch formell Moltkes Nachfolger.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1914-12-30",
+      "end": "1916-06-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚期與去世",
+      "en": "Last post and death"
+     },
+     "body": {
+      "zh-Hant": "1914年12月30日他改任柏林留守總參謀部部長，負責確保德國的糧食供應。NDB形容他在馬恩河挫敗後成為一個精神崩潰的人；1916年6月18日他因中風在柏林去世。",
+      "en": "On 30 December 1914 he became chief of the deputy general staff in Berlin, responsible for securing German food supplies. The NDB describes him as a spiritually broken man after the setback on the Marne; he died of a stroke in Berlin on 18 June 1916."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1914",
+       "quote": "30. Dezember: Moltke wird Chef des stellvertretenden Generalstabs in Berlin.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1914",
+       "quote": "Sein Aufgabenbereich ist die Sicherung der deutschen Ernährungswirtschaft.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "Durch den Rückschlag vom September 1914 ein seelisch gebrochener Mann",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1916",
+       "quote": "18. Juni: Helmuth von Moltke erliegt in Berlin einem Schlaganfall.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "moltke-cgs",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍大總參謀部",
+      "en": "Great General Staff, German Imperial Army"
+     },
+     "title": {
+      "orig": "Chef des Generalstabes der Armee",
+      "zh-Hant": "陸軍總參謀長",
+      "en": "Chief of the General Staff of the Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1906-01-01",
+      "end": "1914-11-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "ernannte ihn am 1.1.1906 zum Chef des Generalstabes der Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1914",
+       "quote": "3. November: Falkenhayn wird auch formell Moltkes Nachfolger.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取繼任者正式接任日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "總參謀長（國家級最高軍職性質）且有戰役連結（馬恩河 1914-09-09），但來源未明寫該職為全軍最高職位（rank）且政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "moltke-deputy-gs",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍留守總參謀部（柏林）",
+      "en": "Deputy General Staff, German Imperial Army (Berlin)"
+     },
+     "title": {
+      "orig": "Chef des stellvertretenden Generalstabs in Berlin",
+      "zh-Hant": "柏林留守總參謀部部長",
+      "en": "Chief of the deputy general staff in Berlin"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-12-30",
+      "end": "1916-06-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1914",
+       "quote": "30. Dezember: Moltke wird Chef des stellvertretenden Generalstabs in Berlin.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1916",
+       "quote": "18. Juni: Helmuth von Moltke erliegt in Berlin einem Schlaganfall.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取死亡日（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:1",
+     "gapKind": "conflict",
+     "note": "出生日：LeMO 寫 1848-05-25，NDB 寫 1848-05-23，兩份已抓來源不一致；正文只寫「5月」。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-moltke",
+       "locator": "Lebenslauf 1848",
+       "quote": "25. Mai: Helmuth von Moltke wird als Sohn des dänischen Beamten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Kopf",
+       "quote": "* 23.5.1848 Gersdorf (Mecklenburg)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:moltke-cgs",
+     "gapKind": "conflict",
+     "note": "迄日：LeMO 寫 1914-09-14 作戰指揮權移交、1914-11-03 法爾肯海因正式接任；NDB 寫 9-14 移交作戰指揮但「名義上仍任總參謀長至年底」。本檔取 LeMO 的 11-03，兩者並陳。已查：LeMO、NDB（Deutsche Biographie）",
+     "candidateCitations": [
+      {
+       "sourceKey": "db-moltke",
+       "locator": "NDB Text",
+       "quote": "blieb aber bis zum Jahresende nominell noch Chef des Generalstabes",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Helmuth von Moltke 1848 GND",
+     "url": "https://lobid.org/gnd/search?q=Helmuth+von+Moltke+1848&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118854801，確認姓名與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（含 NDB 全文）",
+     "url": "https://www.deutsche-biographie.de/pnd118854801.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文，已存原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": null,
+     "result": "found_B",
+     "note": "curl 抓取 LeMO 傳記與年表，已存原文"
+    }
+   ]
+  },
+  {
+   "key": "friedrichpaulus",
+   "bioId": null,
+   "name": "Friedrich Paulus",
+   "nameZh": "弗里德里希·保盧斯",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-09-23",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1890年9月23日生於黑森的布賴特瑙，父親是會計人員。1910年2月入普魯士陸軍任見習軍官，第一次世界大戰期間自1915年起在多個總參部擔任傳令軍官，獲鐵十字勳章，大戰結束時為上尉及總參軍官。",
+      "en": "He was born on 23 September 1890 in Breitenau, Hesse, the son of an accounts clerk. He entered the Prussian army as an officer cadet in February 1910 and from 1915, in the First World War, served as orderly officer in various general staffs; decorated with the Iron Cross, he ended the war as a captain and general staff officer."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1890",
+       "quote": "23. September: Friedrich Paulus wird in Breitenau (Hessen) als Sohn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1890",
+       "quote": "des Rechnungsprüfers Ernst Paulus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1910",
+       "quote": "1910 Februar: Er tritt als Fahnenjunker in die preußische Armee ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1915-1918",
+       "quote": "1915-1918 Er dient als Ordonnanzoffizier in verschiedenen Generalstäben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "ausgezeichnet mit den Eisernen Kreuzen I. und II. Klasse, als Hauptmann",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "und Generalstabsoffizier im Stabe der 48. Reserve-Infanteriedivision",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國防軍時期與裝甲兵參謀",
+      "en": "Reichswehr years and the motorised arm"
+     },
+     "body": {
+      "zh-Hant": "1920年他留在國防軍。1934年他任柏林近郊溫斯多夫的第3汽車化營營長，1935年9月1日任汽車部隊司令部參謀長，該機構負責建立裝甲兵；1939年1月1日升少將，任第16裝甲軍參謀長。",
+      "en": "He stayed on in the Reichswehr in 1920. In 1934 he commanded Motor Vehicle Battalion 3 at Wünsdorf near Berlin, and on 1 September 1935 became chief of staff of the Command of Motorised Troops, the body forming the panzer arm. On 1 January 1939 he became major general and chief of staff of the XVI Panzer Corps."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1920",
+       "quote": "1920 Als Hauptmann bleibt er in der Reichswehr",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1934",
+       "quote": "1934 Er übernimmt die Kraftfahrzeugabteilung 3 in Wünsdorf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "am 1.9.1935 Chef des Stabes des Kommandos der Kraftfahrtruppen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1935",
+       "quote": "Dieses Kommando ist die Zentralstelle für die Formierung der Panzerwaffe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Am 1.1.1939 wurde P. Generalmajor und Chef des Generalstabes des XVI.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-09-26",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "波蘭、法國戰役與入侵蘇聯的籌劃",
+      "en": "Poland, France and planning against the USSR"
+     },
+     "body": {
+      "zh-Hant": "1939年9月26日，他任第10集團軍（後改稱第6集團軍）的參謀長，隨該軍參加波蘭、法國與比利時的戰役。自1940年9月3日起他任陸軍總參謀部第一軍需長，是參謀總長哈爾德的副手，參與了「巴巴羅薩」作戰的各階段規劃。",
+      "en": "On 26 September 1939 he became chief of staff of the Tenth Army (later renamed Sixth Army) and took part in the campaigns in Poland, France and Belgium. From 3 September 1940 he was Oberquartiermeister I in the army general staff, deputy to chief of staff Halder, and was involved in every phase of the operational planning for Barbarossa."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "am 26.9.1939 Chef des Generalstabes der 10. Armee (später in 6. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "An dessen Seite machte P. die Feldzüge in Polen, Frankreich und Belgien mit.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "seit 3.9.1940 Generalleutnant und Oberquartiermeister I im Generalstab des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "(damit Stellv. d. Generalstabschefs Franz Halder [1884–1972])",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "in allen Phasen an den militärischen Operationsplanungen „Barbarossa“ beteiligt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1942-12-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第6集團軍與史達林格勒",
+      "en": "Sixth Army and Stalingrad"
+     },
+     "body": {
+      "zh-Hant": "1942年1月他受命統率第6集團軍，哈爾科夫戰役獲勝後獲騎士鐵十字勳章。6月28日夏季攻勢開始，第6集團軍於8月21日渡過頓河向史達林格勒進攻；11月22日蘇軍反攻使該軍被包圍，曼施坦因的解圍攻勢「冬季風暴」12月19日受阻於梅什科瓦河。",
+      "en": "In January 1942 he was given command of the Sixth Army and, after the victorious Kharkov battle, received the Knight's Cross. The summer offensive began on 28 June, and on 21 August the Sixth Army attacked across the Don toward Stalingrad. The Soviet attack encircled the army on 22 November, and Manstein's relief attempt Wintergewitter stalled at the Myshkova on 19 December."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Im Jan. 1942 wurde P. zum General der Panzertruppen befördert und mit der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1942",
+       "quote": "Paulus übernimmt in der Winterkrise des Russlandfeldzugs den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "erfolgreich durchfochtenen Charkow-Schlacht wurde er mit dem Ritterkreuz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Die am 28.6.1942 beginnende Sommeroffensive (BLAU I-IV)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "erst am 21. August und geschwächt zum Angriff über den Don",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "führte der Sowjet. Angriff bereits am 22. November zur Einschließung der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Dieser lief sich jedoch am 19.12.1942 an der Myschkowa fest",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1943-01-08",
+      "end": "1957-02-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "投降、戰俘歲月與晚年",
+      "en": "Surrender, captivity and later life"
+     },
+     "body": {
+      "zh-Hant": "1943年1月8日他拒絕蘇軍的投降要求；他請求的投降被希特勒否決，1月30至31日夜間他被晉升元帥，31日入蘇軍戰俘營。1944年8月8日他在蘇方安排下加入德國軍官聯盟，並依LeMO在德意志自由全國委員會的委託下多次發出對國防軍的投降呼籲。1953年獲釋後定居德勒斯登，1957年2月1日在當地去世。",
+      "en": "On 8 January 1943 he rejected a Soviet call to surrender; Hitler refused the capitulation he requested, he was promoted Generalfeldmarschall on the night of 30–31 January, and on 31 January he went into Soviet captivity. On 8 August 1944 he joined the League of German Officers and made several appeals to the Wehrmacht to capitulate on behalf of the National Committee Free Germany, according to LeMO. Released in 1953, he settled in Dresden and died there on 1 February 1957."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1943",
+       "quote": "8. Januar: Paulus lehnt eine Kapitulationsaufforderung der Roten Armee ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Waffenstreckung („um das Sterben zu regeln“) von Hitler abgelehnt worden war",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "in der Nacht 30./31.1.1943 zum Generalfeldmarschall beförderte P.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Am 31.1.1943 begab sich P. in Sowjet. Kriegsgefangenschaft.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "ihn am 8.8.1944 zum Beitritt in den „Bund deutscher Offiziere“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1944",
+       "quote": "im Auftrag des Nationalkomitees \"Freies Deutschland\" (NKFD)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1944",
+       "quote": "an mehreren Kapitulationsaufrufen an die Wehrmacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1953",
+       "quote": "1953 Nach seiner Entlassung aus sowjetischer Kriegsgefangenschaft lässt er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1953",
+       "quote": "lässt er sich in Dresden nieder.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1957",
+       "quote": "1. Februar: Friedrich Paulus stirbt in Dresden.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "paulus-cos-10a",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第10集團軍（後第6集團軍）",
+      "en": "German Tenth Army (later Sixth Army)"
+     },
+     "title": {
+      "orig": "Chef des Generalstabes der 10. Armee",
+      "zh-Hant": "第10集團軍參謀長",
+      "en": "Chief of staff of the Tenth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-26",
+      "end": "1940-09-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "am 26.9.1939 Chef des Generalstabes der 10. Armee (später in 6. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "seit 3.9.1940 Generalleutnant und Oberquartiermeister I im Generalstab des",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "paulus-oqm1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍總參謀部",
+      "en": "German Army General Staff"
+     },
+     "title": {
+      "orig": "Oberquartiermeister I im Generalstab des Heeres",
+      "zh-Hant": "陸軍總參謀部第一軍需長",
+      "en": "Oberquartiermeister I, Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-09-03",
+      "end": "1942-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "seit 3.9.1940 Generalleutnant und Oberquartiermeister I im Generalstab des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Im Jan. 1942 wurde P. zum General der Panzertruppen befördert und mit der",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "paulus-6a",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第6集團軍",
+      "en": "German Sixth Army"
+     },
+     "title": {
+      "orig": "Führung der 6. Armee（Oberbefehl über die 6. Armee）",
+      "zh-Hant": "第6集團軍司令",
+      "en": "Commander of the Sixth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1943-01-31"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1942",
+       "quote": "Paulus übernimmt in der Winterkrise des Russlandfeldzugs den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-paulus",
+       "locator": "NDB Text",
+       "quote": "Am 31.1.1943 begab sich P. in Sowjet. Kriegsgefangenschaft.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取入蘇軍戰俘營日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1943",
+       "quote": "31. Januar: Paulus kapituliert mit 90.000 Mann im Südteil des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:paulus-cos-10a",
+     "gapKind": "conflict",
+     "note": "起日：LeMO 寫 1939 年 8 月（秘密動員時）接任第10集團軍參謀長，NDB 寫 1939-09-26；本檔取 NDB 的日期，兩者並陳。已查：LeMO、NDB（Deutsche Biographie）",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1939",
+       "quote": "1939 August: Im Zuge der geheimen Mobilmachung übernimmt Paulus das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:4",
+     "gapKind": "conflict",
+     "note": "被包圍日期：NDB 寫 1942-11-22，LeMO 寫 1942-11-29（6集團軍被包圍於頓河）；正文取 NDB。已查：LeMO、NDB",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1942",
+       "quote": "29. November: Die 6. Armee wird mit insgesamt 220.000 Mann am Don",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "conflict",
+     "note": "1938 年參謀長職務：LeMO 寫 1938 年任第16軍參謀長，NDB 寫 1939-01-01 升少將並任該軍參謀長；正文取 NDB。已查：LeMO、NDB",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-paulus",
+       "locator": "Lebenslauf 1938",
+       "quote": "1938 Generalstabschef des XVI. Armeekorps in Berlin, des ersten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Friedrich Paulus 1890 GND",
+     "url": "https://lobid.org/gnd/search?q=Friedrich+Paulus+1890&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118739654，確認姓名與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（含 NDB 全文）",
+     "url": "https://www.deutsche-biographie.de/pnd118739654.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文，已存原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": null,
+     "result": "found_B",
+     "note": "curl 抓取 LeMO 傳記與年表，已存原文"
+    }
+   ]
+  },
+  {
+   "key": "georgvonkuchler",
+   "bioId": null,
+   "name": "Georg von Küchler",
+   "nameZh": "格奧爾格·馮·屈希勒",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1881-05-30",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1881年5月30日生於哈瑙附近的菲利普斯魯厄宮，父親是軍官。1901年任砲兵少尉，1914年調入大總參謀部；大戰爆發時他率砲兵連攻佔比利時的迪克斯穆德，其後在西線各軍參謀部任職。1919年他在庫爾蘭旅的自由軍團中戰鬥。",
+      "en": "He was born on 30 May 1881 at Schloss Philippsruhe near Hanau, the son of an officer. He became an artillery lieutenant in 1901 and was posted to the Great General Staff in 1914; at the outbreak of the First World War he led an artillery battery that took the Belgian town of Dixmuide, and he later served in staffs on the Western Front. In 1919 he fought in the Freikorps Brigade Kurland."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Kopf",
+       "quote": "30.5.1881 Philippsruhe bei Hanau (Hessen)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1881",
+       "quote": "Georg von Küchler wird als Sohn eines Offiziers auf Schloss Philippsruhe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1901",
+       "quote": "1901 Dem Besuch der Kadettenanstalt folgt die Beförderung zum Leutnant",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1914",
+       "quote": "erfolgt die Versetzung in den Großen Generalstab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1914",
+       "quote": "erobert mit dieser die belgische Stadt Dixmuiden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1915-1918",
+       "quote": "dient er während des Kriegs in verschiedenen Armeestäben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1919",
+       "quote": "1919 Küchler kämpft im Baltikum im Freikorps",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1939-03-23"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國防軍時期",
+      "en": "Reichswehr years"
+     },
+     "body": {
+      "zh-Hant": "1920年他被併入國防軍，1924至1929年任德勒斯登步兵學校教官。1933年10月1日任柯尼斯堡的第1砲兵指揮官，1935年任軍校督察，1937年4月1日晉升砲兵上將並任駐東普魯士的第1軍軍長；1939年3月23日進入梅梅爾地區的部隊屬其軍。",
+      "en": "In 1920 he was taken into the Reichswehr and from 1924 to 1929 taught at the infantry school in Dresden. On 1 October 1933 he became Artillerieführer I in Königsberg, in 1935 inspector of the war schools, and on 1 April 1937 he was promoted General der Artillerie and made commanding general of I Army Corps in East Prussia; the troops that entered the Memel region on 23 March 1939 belonged to his corps."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1920",
+       "quote": "1920 Übernahme in die Reichswehr",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1924-1929",
+       "quote": "1924-1929 Er wird Lehrer an der Infanterieschule Dresden.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1933",
+       "quote": "1933 1. Oktober: Küchler wird in Königsberg Artillerieführer I.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1935",
+       "quote": "1935 Ernennung zum Inspekteur der Kriegsschulen in Berlin.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1937",
+       "quote": "Kommandierender General des in Ostpreußen stationierten I. Armeekorps",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "23. März: Die ins Memelland einmarschierenden Truppen gehören zu",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-09-01",
+      "end": "1940-07-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭與西線戰役",
+      "en": "Poland and the western campaign"
+     },
+     "body": {
+      "zh-Hant": "1939年9月動員時，他受命統率北方集團軍群中的第3集團軍，攻佔格勞登茨並渡過布格河與納雷夫河，包圍華沙。據LeMO，他拒絕調派部隊迫害猶太人與波蘭平民而被撤職，後改調西線的第18集團軍。1940年5月10日該軍攻入荷蘭，6月14日未戰入巴黎；7月19日他升上將。",
+      "en": "At mobilisation in September 1939 he took command of the Third Army in Army Group North, which took Graudenz and crossed the Bug and Narew to encircle Warsaw. According to LeMO he refused to commit troops to the persecution of Jews and Polish civilians and was relieved, but was moved instead to command the Eighteenth Army in the west. On 10 May 1940 that army invaded the Netherlands, on 14 June it entered Paris without a fight, and on 19 July he became Generaloberst."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "September: Bei der Mobilmachung für den beginnenden Zweiten Weltkrieg erhält",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "Küchler das Kommando über die 3. Armee in der Heeresgruppe Nord.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "Diese ostpreußischen Truppen erobern Graudenz und überschreiten schnell",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "Bug und Narew zur Einkreisung Warschaus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "Küchler weigert sich, seine Soldaten für die Verfolgung von Juden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "in eine Versetzung als Oberbefehlshaber der im Westen stehenden 18. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1940",
+       "quote": "10. Mai: Im Rahmen der Westoffensive marschiert die 18. Armee in die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1940",
+       "quote": "14. Juni: Küchlers Truppen marschieren kampflos in Paris ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1940",
+       "quote": "19. Juli: Beförderung zum Generaloberst.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-06-22",
+      "end": "1944-02-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "北方集團軍群與列寧格勒",
+      "en": "Army Group North and Leningrad"
+     },
+     "body": {
+      "zh-Hant": "1941年6月22日進攻蘇聯時，第18集團軍編入北方集團軍群。1942年1月他接替里布，掌北方集團軍群並指揮列寧格勒之圍，同年晉升元帥。1944年1月14日蘇軍攻勢使集團軍群遭到重創並退回波羅的海地區；2月1日他被免職，由莫德爾接替。",
+      "en": "When the Soviet Union was attacked on 22 June 1941 the Eighteenth Army was part of Army Group North. In January 1942 he succeeded Leeb in command of the army group and so directed the siege of Leningrad, and was promoted Generalfeldmarschall that year. A Russian attack beginning on 14 January 1944 inflicted a heavy defeat and pushed the army group back into the Baltic; on 1 February he was dismissed and replaced by Model."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1941",
+       "quote": "22. Juni: Beim Überfall auf die Sowjetunion ist die 18. Armee eingegliedert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "übernahm er am 16.1. (8.7. Generalfeldmarschall) 1942 als Nachfolger Leebs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1942",
+       "quote": "leitet damit u.a. die Belagerung von Leningrad",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1942",
+       "quote": "30. Juni: Beförderung zum Generalfeldmarschall.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "ein am 14.1.1944 beginnender russ. Angriff",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "zu einer schweren Niederlage der dann in das Baltikum zurückgedrängten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1944",
+       "quote": "1. Februar: Küchler wird aus der Wehrmacht entlassen und durch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1945-05-01",
+      "end": "1968-05-25"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後審判與晚年",
+      "en": "Trial and later life"
+     },
+     "body": {
+      "zh-Hant": "1945年5月他被美軍逮捕。1948年10月28日，他在紐倫堡的最高統帥部案中被判二十年徒刑，1951年減為十二年，1953年2月18日獲釋。他晚年隱居，拒絕撰寫回憶錄，1968年5月25日在加米施-帕滕基興去世。",
+      "en": "He was arrested by the Americans in May 1945. On 28 October 1948 he was sentenced to twenty years' imprisonment in the Nuremberg High Command case; the sentence was reduced to twelve years in 1951 and he was released on 18 February 1953. He lived in retirement, declined to write memoirs, and died in Garmisch-Partenkirchen on 25 May 1968."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1945",
+       "quote": "1945 Mai: Verhaftung durch die Amerikaner.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "am 28.10.1948 zu 20 Jahren Haft verurteilt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "Das Strafmaß ist am 1.2.1951 auf 12 Jahre reduziert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "am 18.2.1953 auf freien Fuß gesetzt worden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "K. lehnte es ab, Erinnerungen zu schreiben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1968",
+       "quote": "25. Mai: Georg von Küchler stirbt in Garmisch-Partenkirchen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kuechler-i-korps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第1軍（東普魯士）",
+      "en": "I Army Corps, German Army (East Prussia)"
+     },
+     "title": {
+      "orig": "Kommandierender General des I. Armeekorps",
+      "zh-Hant": "第1軍軍長",
+      "en": "Commanding general of I Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-04-01",
+      "end": "1939-09-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1937",
+       "quote": "Kommandierender General des in Ostpreußen stationierten I. Armeekorps",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "September: Bei der Mobilmachung für den beginnenden Zweiten Weltkrieg erhält",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "kuechler-3-18a",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第3集團軍（1940年起第18集團軍）",
+      "en": "German Third Army (from 1940 Eighteenth Army)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 3./18. Armee",
+      "zh-Hant": "第3集團軍司令（後改任第18集團軍司令）",
+      "en": "Commander of the Third Army, later the Eighteenth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-01",
+      "end": "1942-01-16"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1939",
+       "quote": "Küchler das Kommando über die 3. Armee in der Heeresgruppe Nord.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "Im Polen-, West- und zu Beginn des Rußlandfeldzuges Oberbefehlshaber der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "übernahm er am 16.1. (8.7. Generalfeldmarschall) 1942 als Nachfolger Leebs",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "kuechler-hg-nord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍北方集團軍群",
+      "en": "German Army Group North"
+     },
+     "title": {
+      "orig": "Oberbefehl über die Heeresgruppe Nord",
+      "zh-Hant": "北方集團軍群司令",
+      "en": "Commander of Army Group North"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-16",
+      "end": "1944-02-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "übernahm er am 16.1. (8.7. Generalfeldmarschall) 1942 als Nachfolger Leebs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1944",
+       "quote": "1. Februar: Küchler wird aus der Wehrmacht entlassen und durch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（列寧格勒戰役、1944-01-14 蘇軍攻勢），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:kuechler-hg-nord",
+     "gapKind": "conflict",
+     "note": "日期不一：接掌北方集團軍群 NDB 寫 1942-01-16、LeMO 寫 1942-01-17；元帥晉升 NDB 寫 1942-07-08、LeMO 寫 1942-06-30（正文取 LeMO）；卸任 NDB 寫 1944 年 1 月底被莫德爾接替、LeMO 寫 1944-02-01 免職。本檔起日取 NDB、迄日取 LeMO，兩者並陳。已查：LeMO、NDB",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-kuechler",
+       "locator": "Lebenslauf 1942",
+       "quote": "17. Januar: Nach der Entlassung Leebs erhält Küchler das Kommando",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kuechler",
+       "locator": "NDB Text",
+       "quote": "Ende Jan. 1944 durch Generaloberst Model ersetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Georg von Küchler GND",
+     "url": "https://lobid.org/gnd/search?q=Georg+von+Küchler&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 124554245，確認姓名與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（含 NDB 全文）",
+     "url": "https://www.deutsche-biographie.de/pnd124554245.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文，已存原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": null,
+     "result": "found_B",
+     "note": "curl 抓取 LeMO 傳記與年表，已存原文"
+    }
+   ]
+  },
+  {
+   "key": "gerdvonrundstedt",
+   "bioId": null,
+   "name": "Gerd von Rundstedt",
+   "nameZh": "格特·馮·倫德施泰特",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1875-12-12",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1875年12月12日生於阿舍斯萊本，父親是少將。1892年中學畢業後入卡塞爾的普魯士步兵第83團，1909年升為總參謀部上尉。第一次世界大戰期間，他以總參軍官身分在土耳其與法國作戰，在規劃與調動部隊上有貢獻。",
+      "en": "He was born on 12 December 1875 in Aschersleben, the son of a major general. After his school-leaving exam he joined Prussian Infantry Regiment 83 in Kassel in 1892 and became a captain on the general staff in 1909. In the First World War he served as a general staff officer in Turkey and France and earned credit for the planning and movement of army formations."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1875",
+       "quote": "12. Dezember: Gerd von Rundstedt wird in Aschersleben (Sachsen-Anhalt)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Kopf",
+       "quote": "12.12.1875 Aschersleben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1875",
+       "quote": "als Sohn des Generalmajors Gerd von Rundstedt geboren.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "trat nach dem Abitur 1892 in das Preuß. Infanterie- Rgt. 83 in Kassel ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1909",
+       "quote": "1909 Rundstedt wird Hauptmann im Generalstab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1914-1918",
+       "quote": "1914-1918 Am Ersten Weltkrieg nimmt Rundstedt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1914-1918",
+       "quote": "als Generalstabsoffizier in der Türkei und in Frankreich teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1914-1918",
+       "quote": "Er erwirbt sich Verdienste bei der Planung und Bewegung von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1938-11-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "國防軍時期與1938年退役",
+      "en": "Reichswehr years and retirement in 1938"
+     },
+     "body": {
+      "zh-Hant": "1919年他被併入國防軍。1932年10月起任柏林第1集團司令部總司令並晉升步兵上將；1938年3月1日在布隆貝格—弗里奇危機中升為大將，10月1日在占領蘇台德地區時統率一個集團軍群。1938年11月他因抗議進軍時機、認為國防軍尚未備戰而被免職。",
+      "en": "In 1919 he was taken into the Reichswehr. From October 1932 he was commander-in-chief of Group Command 1 in Berlin and General der Infanterie; on 1 March 1938, in the Blomberg–Fritsch crisis, he was promoted Generaloberst, and on 1 October during the occupation of the Sudetenland he led an army group. In November 1938 he was retired because he protested the timing of the advance, holding that the Wehrmacht was not yet ready for war."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1919",
+       "quote": "1919 Er wird in die Reichswehr übernommen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1932",
+       "quote": "1932 Oktober: Er wird Oberbefehlshaber des Gruppenkommandos 1 in Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1938",
+       "quote": "1. März: Im Zuge der Blomberg-Fritsch-Krise wird Rundstedt zum Generaloberst",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1938",
+       "quote": "Während der deutschen Besetzung des Sudetenlands führt er eine Heeresgruppe.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1938",
+       "quote": "November: Rundstedt wird aus der Wehrmacht verabschiedet, weil er gegen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1938",
+       "quote": "Nach seiner Auffassung ist die Wehrmacht noch nicht kriegsbereit.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "Im Nov. 1938 verabschiedet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-09-01",
+      "end": "1940-07-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭與法國戰役",
+      "en": "Poland and France"
+     },
+     "body": {
+      "zh-Hant": "1939年夏他被重新起用，9月1日大戰爆發時任南方集團軍群總司令，參與進攻波蘭；NDB補充他在1939年10月短暫任東線總司令。1940年5至6月法國戰役中，他任A集團軍群總司令，統率裝甲部隊穿過阿登直抵海峽沿岸；1940年7月19日晉升元帥。",
+      "en": "He was reactivated in the summer of 1939 and, when the Second World War began on 1 September, took part in the attack on Poland as commander-in-chief of Army Group South; the NDB adds that he briefly served as Oberbefehlshaber Ost in October 1939. In the French campaign of May–June 1940 he commanded Army Group A, leading the armoured thrust through the Ardennes to the Channel coast, and on 19 July 1940 he was promoted Generalfeldmarschall."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1939",
+       "quote": "1939 Sommer: Er wird reaktiviert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1939",
+       "quote": "1. September: Zu Beginn des Zweiten Weltkriegs ist Rundstedt am Überfall auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1939",
+       "quote": "Als Oberbefehlshaber der Heeresgruppe Süd umgeht er das Zentrum der polnischen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "Nach einer kurzen Verwendung als Oberbefehlshaber Ost im Okt. 1939",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1940",
+       "quote": "1940 Mai-Juni: Während des Frankreichfeldzugs ist Rundstedt Oberbefehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1940",
+       "quote": "Er führt den Vorstoß der Panzerkräfte durch die Ardennen bis zur Kanalküste",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "Am 19.7.1940 zum Generalfeldmarschall befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-06-22",
+      "end": "1942-03-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "南方集團軍群與羅斯托夫撤退",
+      "en": "Army Group South and the Rostov withdrawal"
+     },
+     "body": {
+      "zh-Hant": "1941年6月22日進攻蘇聯時，他任烏克蘭的南方集團軍群總司令，部隊攻佔克里米亞與頓涅茨盆地，並推進到頓河畔的羅斯托夫。12月3日他違抗希特勒的命令自羅斯托夫撤軍，12月5日被賴歇瑙取代；1942年3月15日他被任命為西線總司令。",
+      "en": "When the Soviet Union was attacked on 22 June 1941 he took the supreme command of Army Group South in Ukraine; under his leadership the Crimea and the Donets basin were taken and his troops reached Rostov on the Don. On 3 December, against Hitler's order, he pulled the army group back from Rostov, and on 5 December he was replaced by Reichenau; on 15 March 1942 he was appointed Oberbefehlshaber West."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1941",
+       "quote": "22. Juni: Rundstedt nimmt am Überfall auf die Sowjetunion teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1941",
+       "quote": "Er erhält den Oberbefehl über die Heeresgruppe Süd in der Ukraine.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1941",
+       "quote": "Unter seiner Führung werden die Krim und das Donezbecken erobert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1941",
+       "quote": "Seine Truppen dringen bis Rostow am Don vor.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1941",
+       "quote": "3. Dezember: Gegen Hitlers Befehl zieht Rundstedt die Heeresgruppe aus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "am 5.12.1941 durch Reichenau ersetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "wurde R. am 15.3.1942 zum Oberbefehlshaber West ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1942-03-15",
+      "end": "1945-03-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "西線總司令與登陸戰",
+      "en": "Commander-in-chief West and the Allied landings"
+     },
+     "body": {
+      "zh-Hant": "任西線總司令期間，1942年8月盟軍在迪耶普的登陸行動失敗。據NDB，他未能發展出有效策略對抗盟軍登陸；1944年6月登陸成功後，他於7月被免職，1944年8至9月主持「榮譽法庭」，9月5日奉命返回西線，1945年1月又奉命以阿登攻勢反擊盟軍但告失敗，1945年3月9日退休。",
+      "en": "During his time as commander-in-chief West, an Allied landing at Dieppe failed in August 1942. According to the NDB he failed to devise an effective strategy against the Allied invasion; after it succeeded in June 1944 he was removed in July, chaired the court of honour in August and September 1944, was recalled to the West on 5 September, and in January 1945 was ordered to push the Allies back in the Ardennes offensive, which failed; he was retired on 9 March 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1942",
+       "quote": "1942 März: Reaktiviert wird er Oberbefehlshaber West und Chef der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1942",
+       "quote": "August: Ein alliiertes Landeunternehmen bei Dieppe (Frankreich) misslingt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "Hier gelang es ihm nicht, eine wirksame Strategie zur Abwehr der alliierten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1944",
+       "quote": "3. Juli: Rundstedt muß nach der Landung der Alliierten in Frankreich auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "R. war im Aug. und Sept. 1944 Vorsitzender des „Ehrenhofes“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1944",
+       "quote": "5. September: Rundstedt wird an die Westfront zurückbeordert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1945",
+       "quote": "Er soll während der Ardennenoffensive die Alliierten zurückdrängen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1945",
+       "quote": "Das Vorhaben scheitert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "am 9.3.1945 wurde er in den Ruhestand versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1945-05-01",
+      "end": "1953-02-24"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後歲月",
+      "en": "After the war"
+     },
+     "body": {
+      "zh-Hant": "1945年5月他在巴特托爾茨被美軍逮捕，移交英國戰俘營，因被控戰爭罪行受審，但因健康不佳而中止，並未被定罪。1949年5月5日他因心臟病獲釋，遷居策勒附近，1953年2月24日去世。",
+      "en": "In May 1945 he was arrested by American troops in Bad Tölz and handed over to British captivity, where he was charged with war crimes; because of his poor health the proceedings were suspended and he was never convicted. On 5 May 1949 he was released because of a heart condition and moved near Celle; he died on 24 February 1953."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1945",
+       "quote": "Mai: Er wird von amerikanischen Truppen in Bad Tölz verhaftet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1945",
+       "quote": "Aufgrund seines schlechten Gesundheitszustands wird das Verfahren jedoch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1945",
+       "quote": "Es kommt zu keiner Verurteilung.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1949",
+       "quote": "1949 5. Mai: Wegen einer Herzerkrankung wird er aus britischer Haft entlassen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1953",
+       "quote": "1953 24. Februar: Gerd von Rundstedt stirbt in Hannover.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Kopf",
+       "quote": "24.2.1953 Schloß Oppershausen bei Celle",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "rundstedt-gruppe1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍第1集團司令部（柏林）",
+      "en": "Group Command 1, German armed forces (Berlin)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber des Gruppenkommandos 1 in Berlin",
+      "zh-Hant": "第1集團司令部總司令",
+      "en": "Commander-in-chief of Group Command 1 (Berlin)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1932-10-01",
+      "end": "1938-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1932",
+       "quote": "1932 Oktober: Er wird Oberbefehlshaber des Gruppenkommandos 1 in Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0",
+       "quoteLang": "en",
+       "sourceKey": "imt-rundstedt-testimony",
+       "locator": "IMT transcript 1946-08-12, direct examination",
+       "quote": "From the first of October, 1932, until the 31st of October, 1938.",
+       "evidenceNote": "本人於國際軍事法庭作證，答「Commander-in-Chief in Berlin」任期；半開區間迄日取 1938-10-31 之次日",
+       "datePrecision": "day"
+      },
+      {
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0",
+       "quoteLang": "en",
+       "sourceKey": "ebsco-rundstedt",
+       "locator": "Research Starters 本文",
+       "quote": "In late October, 1938, Rundstedt accepted retirement",
+       "evidenceNote": "月精度，與 IMT 證詞一致",
+       "datePrecision": "month"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級、軍級、參謀或和平時期軍區職位，非國家級最高軍職或戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "rundstedt-hg-sued-1939",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍南方集團軍群",
+      "en": "German Army Group South (1939)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe Süd",
+      "zh-Hant": "南方集團軍群總司令（波蘭戰役）",
+      "en": "Commander-in-chief of Army Group South (Poland)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-01",
+      "end": "1939-10-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1939",
+       "quote": "1. September: Zu Beginn des Zweiten Weltkriegs ist Rundstedt am Überfall auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "Nach einer kurzen Verwendung als Oberbefehlshaber Ost im Okt. 1939",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務（東線總司令）起月推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（波蘭戰役 1939-09-01），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "rundstedt-hg-a",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍A集團軍群",
+      "en": "German Army Group A"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe A",
+      "zh-Hant": "A集團軍群總司令（法國戰役）",
+      "en": "Commander-in-chief of Army Group A (France)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-05-01",
+      "end": "1940-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1940",
+       "quote": "1940 Mai-Juni: Während des Frankreichfeldzugs ist Rundstedt Oberbefehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": "任期取來源所寫的法國戰役期間（5–6月），迄日取6月下一月起日；實際任命與卸任日來源未載",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（法國戰役 1940-05（阿登突破）），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "rundstedt-hg-sued-1941",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍南方集團軍群",
+      "en": "German Army Group South (1941)"
+     },
+     "title": {
+      "orig": "Oberbefehl über die Heeresgruppe Süd in der Ukraine",
+      "zh-Hant": "南方集團軍群總司令（蘇德戰爭）",
+      "en": "Commander-in-chief of Army Group South (USSR)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-06-22",
+      "end": "1941-12-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1941",
+       "quote": "22. Juni: Rundstedt nimmt am Überfall auf die Sowjetunion teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "am 5.12.1941 durch Reichenau ersetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（蘇德戰爭 1941-06-22、羅斯托夫），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "rundstedt-ob-west",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍西線總司令部（兼D集團軍群）",
+      "en": "Oberbefehlshaber West (and Army Group D)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber West und Chef der Heeresgruppe D",
+      "zh-Hant": "西線總司令（兼D集團軍群）",
+      "en": "Commander-in-chief West (and Army Group D)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-03-15",
+      "end": "1944-07-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "wurde R. am 15.3.1942 zum Oberbefehlshaber West ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1944",
+       "quote": "3. Juli: Rundstedt muß nach der Landung der Alliierten in Frankreich auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（迪耶普 1942-08、諾曼第登陸 1944-06），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "rundstedt-ob-west-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍西線總司令部",
+      "en": "Oberbefehlshaber West (second tenure)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber West",
+      "zh-Hant": "西線總司令（第二次）",
+      "en": "Commander-in-chief West (second tenure)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-09-05",
+      "end": "1945-03-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1944",
+       "quote": "5. September: Rundstedt wird an die Westfront zurückbeordert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Text",
+       "quote": "am 9.3.1945 wurde er in den Ruhestand versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮，有戰役連結（阿登攻勢 1945-01），但政權對應待查證（regimeId NULL）（來源有衝突）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:rundstedt-ob-west-2",
+     "gapKind": "conflict",
+     "note": "第二次西線任期：LeMO 寫 1944-10 被解職、1945-01 再度起用、1945-03-03 被免；NDB 寫 1944-09-05 起連續任職至 1945-03-09 退休。本檔取 NDB 的連續任期（起日兩者一致），兩者並陳。已查：LeMO、NDB",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1945",
+       "quote": "3. März: Wegen Differenzen mit dem Oberkommando der Wehrmacht (OKW)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1944",
+       "quote": "Daraufhin wird Rundstedt von seinem Posten abgelöst.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:6",
+     "gapKind": "conflict",
+     "note": "去世地：LeMO 寫 Hannover，NDB 寫「Schloß Oppershausen bei Celle」；正文不寫去世地。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-rundstedt",
+       "locator": "Lebenslauf 1953",
+       "quote": "1953 24. Februar: Gerd von Rundstedt stirbt in Hannover.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rundstedt",
+       "locator": "NDB Kopf",
+       "quote": "24.2.1953 Schloß Oppershausen bei Celle",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:rundstedt-ob-ost",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NDB 只寫 1939 年 10 月「短暫任東線總司令」，無日期與迄日，且 A集團軍群的接任日來源未載，未建職位。已查：LeMO、NDB",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Gerd von Rundstedt 1875 GND",
+     "url": "https://lobid.org/gnd/search?q=Gerd+von+Rundstedt+1875&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118939327，確認姓名與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（含 NDB 全文）",
+     "url": "https://www.deutsche-biographie.de/pnd118939327.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文，已存原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": null,
+     "result": "found_B",
+     "note": "curl 抓取 LeMO 傳記與年表，已存原文"
+    },
+    {
+     "sourceType": "other",
+     "query": "Rundstedt Gruppenkommando 1 Berlin 1938 Oktober Abschied Generaloberst Befehlshaber",
+     "url": null,
+     "result": "unrated",
+     "note": "搜尋結果多為私人彙編／維基鏡像，無 A/B 迄日",
+     "round": "retry",
+     "step": 4
+    },
+    {
+     "sourceType": "academic",
+     "query": "Rundstedt Gerd von Hessische Biografie LAGIS Gruppenkommando",
+     "url": null,
+     "result": "no_result",
+     "note": "無 LAGIS 條目",
+     "round": "retry",
+     "step": 5
+    },
+    {
+     "sourceType": "official",
+     "query": "ルントシュテット 元帥 第1軍集団司令官 1938年 退役 防衛研究所",
+     "url": null,
+     "result": "no_result",
+     "note": "日文查無 NIDS 條目",
+     "round": "retry",
+     "step": 6
+    },
+    {
+     "sourceType": "other",
+     "query": "Рундштедт Герд фон командующий группой армий 1 Берлин 1938 отставка",
+     "url": null,
+     "result": "unrated",
+     "note": "俄文結果引 generals.dk，無 A/B",
+     "round": "retry",
+     "step": 7
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Gerd von Rundstedt",
+     "url": "https://www.britannica.com/biography/Gerd-von-Rundstedt",
+     "result": "challenge_page",
+     "note": "curl 僅得 5KB 殼頁，無正文",
+     "round": "retry",
+     "step": 8
+    },
+    {
+     "sourceType": "academic",
+     "query": "EBSCO Research Starters Gerd von Rundstedt",
+     "url": "https://www.ebsco.com/research-starters/biography/gerd-von-rundstedt",
+     "result": "found_B",
+     "note": "Dumin 2024 具名；寫「late October, 1938 accepted retirement」",
+     "round": "retry",
+     "step": 9
+    },
+    {
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Rundstedt Gerd",
+     "url": "https://lobid.org/gnd/search?q=Rundstedt+Gerd&format=json",
+     "result": "found_A",
+     "note": "僅身分確認，無任期",
+     "round": "retry",
+     "step": 10
+    },
+    {
+     "sourceType": "authority",
+     "query": "LoC name authority Rundstedt Gerd",
+     "url": "https://id.loc.gov/search/?q=Rundstedt+Gerd",
+     "result": "not_relevant",
+     "note": "權威檔無任期",
+     "round": "retry",
+     "step": 11
+    },
+    {
+     "sourceType": "authority",
+     "query": "VIAF Rundstedt, Gerd",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Rundstedt%2C+Gerd%22",
+     "result": "not_relevant",
+     "note": "無任期",
+     "round": "retry",
+     "step": 12
+    },
+    {
+     "sourceType": "other",
+     "query": "Heuer, Die Generalobersten des Heeres（prussia.online PDF）",
+     "url": "https://prussia.online/Data/Book/di/die-generalobersten-des-heeres-inhaber-hoechster-deutscher-kommandostellen/Heuer%20G.%20Die%20Generalobersten%20des%20Heeres%20(1988),%20OCR.pdf",
+     "result": "blocked_403",
+     "note": "curl 僅 1KB，無法取得",
+     "round": "retry",
+     "step": 13
+    },
+    {
+     "sourceType": "other",
+     "query": "generals.dk Rundstedt",
+     "url": "https://generals.dk/general/von_Rundstedt/Karl_Rudolf_Gerd/Germany.html",
+     "result": "unrated",
+     "note": "寫 1932-10-01–1938-10-31 Group Command 1；未評等私人彙編，僅作線索",
+     "round": "retry",
+     "step": 14
+    },
+    {
+     "sourceType": "authority",
+     "query": "DDB 搜尋 Rundstedt Gruppenkommando",
+     "url": "https://www.deutsche-digitale-bibliothek.de/searchresults?query=Rundstedt+Gruppenkommando",
+     "result": "no_result",
+     "note": "動態頁無內容",
+     "round": "retry",
+     "step": 15
+    },
+    {
+     "sourceType": "authority",
+     "query": "BnF data Rundstedt Gerd",
+     "url": "https://data.bnf.fr/en/search?term=Rundstedt+Gerd",
+     "result": "no_result",
+     "note": "動態頁無內容",
+     "round": "retry",
+     "step": 16
+    },
+    {
+     "sourceType": "authority",
+     "query": "NDL Rundstedt",
+     "url": "https://id.ndl.go.jp/auth/ndla/?searchmode=simple&any=Rundstedt",
+     "result": "not_relevant",
+     "note": "權威檔無任期",
+     "round": "retry",
+     "step": 17
+    },
+    {
+     "sourceType": "academic",
+     "query": "USHMM Encyclopedia Rundstedt",
+     "url": "https://encyclopedia.ushmm.org/search?q=Rundstedt",
+     "result": "no_result",
+     "note": "無傳記條目",
+     "round": "retry",
+     "step": 18
+    },
+    {
+     "sourceType": "official",
+     "query": "IWM Rundstedt",
+     "url": "https://www.iwm.org.uk/search/global?query=Rundstedt",
+     "result": "no_result",
+     "note": "動態頁無內容",
+     "round": "retry",
+     "step": 19
+    },
+    {
+     "sourceType": "other",
+     "query": "Gerd von Rundstedt Generaloberst 31. Oktober 1938 verabschiedet Gruppenkommando 1",
+     "url": null,
+     "result": "unrated",
+     "note": "德文；結果指向 LeMO（已用）與私人彙編",
+     "round": "retry",
+     "step": 20
+    },
+    {
+     "sourceType": "official",
+     "query": "Rundstedt Bundesarchiv Personalakte Gruppenkommando 1 Ausscheiden 1938",
+     "url": null,
+     "result": "no_result",
+     "note": "僅 Nachlass N 977 目錄，無任期",
+     "round": "retry",
+     "step": 21
+    },
+    {
+     "sourceType": "other",
+     "query": "Rundstedt Gruppenkommando 1 Berlin Reichswehr 1932 Wehrkreis III",
+     "url": null,
+     "result": "unrated",
+     "note": "德文脈絡；無 A/B 迄日",
+     "round": "retry",
+     "step": 22
+    },
+    {
+     "sourceType": "academic",
+     "query": "Rundstedt retired October 1938 Army Group 1 Berlin tenure",
+     "url": null,
+     "result": "unrated",
+     "note": "引向 EBSCO／encyclopedia.com",
+     "round": "retry",
+     "step": 23
+    },
+    {
+     "sourceType": "national_dictionary",
+     "query": "龍德施泰特 第一集團軍群 司令 1938年 退役 國史館",
+     "url": null,
+     "result": "no_result",
+     "note": "中文查無國史館條目",
+     "round": "retry",
+     "step": 24
+    },
+    {
+     "sourceType": "treaty_law",
+     "query": "Rundstedt London Gazette OR Nuremberg trial OR IMT retired 1938",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Harvard IMT 逐字稿",
+     "round": "retry",
+     "step": 25
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Rundstedt",
+     "url": "https://encyclopedia.com/people/history/german-history-biographies/karl-rudolf-gerd-von-rundstedt",
+     "result": "unrated",
+     "note": "Gale 無署名條目，不當出處",
+     "round": "retry",
+     "step": 26
+    },
+    {
+     "sourceType": "authority",
+     "query": "Niedersächsische Personen Rundstedt",
+     "url": "https://personen.niedersaechsische-bibliographie.de/person/export/1786773155",
+     "result": "not_relevant",
+     "note": "書目連結，無任期",
+     "round": "retry",
+     "step": 27
+    },
+    {
+     "sourceType": "other",
+     "query": "DDB item Rundstedt",
+     "url": "https://www.deutsche-digitale-bibliothek.de/item/C5S7JOKXD2WYMPRG3YLHWHA5MMH5VEMM",
+     "result": "not_relevant",
+     "note": "無任期",
+     "round": "retry",
+     "step": 28
+    },
+    {
+     "sourceType": "treaty_law",
+     "query": "Harvard Nuremberg IMT transcript 1946-08-12 Rundstedt testimony",
+     "url": "https://nuremberg.law.harvard.edu/transcripts/7?seq=15501",
+     "result": "found_B",
+     "note": "證詞：Commander-in-Chief in Berlin 1932-10-01 至 1938-10-31",
+     "round": "retry",
+     "step": 29
+    },
+    {
+     "sourceType": "other",
+     "query": "Spartacus Educational Rundstedt",
+     "url": "https://spartacus-educational.com/GERrundstedt.htm",
+     "result": "unrated",
+     "note": "寫 resigned 31 Oct 1938，未評等",
+     "round": "retry",
+     "step": 30
+    },
+    {
+     "sourceType": "other",
+     "query": "Jewish Virtual Library Rundstedt",
+     "url": "https://www.jewishvirtuallibrary.org/gerd-von-rundstedt",
+     "result": "unrated",
+     "note": "同上，未評等",
+     "round": "retry",
+     "step": 31
+    }
+   ]
+  }
+ ]
+}

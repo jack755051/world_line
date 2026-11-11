@@ -1,0 +1,4753 @@
+{
+ "batch": "b3-full-v3-batch015",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 對應），故閣員與國家級軍職為 R6（roleGap 含 regime）、師團級以下與次官等為 R5。5 位中僅山本五十六有 NDL 近代日本人の肖像條目，其餘以防衛研究所、JACAR、首相官邸、NDL 憲政資料室為主。未使用 Wikipedia／維基鏡像／百度。名單屬性（國家／軍種／軍階）與實查無不符處。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式。將領 S 級 batch015，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch015/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndl-yamamoto": {
+   "title": "山本五十六｜近代日本人の肖像",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "電子展示会「近代日本人の肖像」",
+   "url": "https://www.ndl.go.jp/portrait/datas/344",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館（国家機関）の人物解説（A）"
+  },
+  "nids-news201406": {
+   "title": "NIDS NEWS 2014年6月号 史料紹介コーナー 山本五十六",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "NIDS NEWS 2014年6月号",
+   "url": "https://www.nids.mod.go.jp/military_archives/news/2014/201406.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）の史料紹介（A）"
+  },
+  "nids-pacificwar3": {
+   "title": "太平洋戦争③ 連合艦隊司令長官・山本五十六戦死８０年",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "デジタル史料展示",
+   "url": "https://www.nids.mod.go.jp/military_archives/digital_siryo/pacificwar80th/pacificwar3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）のデジタル史料展示（A）"
+  },
+  "jacar-navystaff": {
+   "title": "軍令部、連合艦隊、支那方面艦隊の主要職務の歴任者（昭和15年10月～昭和16年12月）",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "日米開戦 参考資料",
+   "url": "https://jacar.go.jp/nichibei/reference/navystaff.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の職務歴任者表（A）"
+  },
+  "jacar-armystaff": {
+   "title": "参謀本部（大本営陸軍部）の主要職務の歴任者（昭和15年10月～昭和16年12月）",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "日米開戦 参考資料",
+   "url": "https://jacar.go.jp/nichibei/reference/armystaff.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の職務歴任者表（A）"
+  },
+  "ndl-sugiyama-bunsho": {
+   "title": "杉山元関係文書｜憲政資料（憲政資料室）",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "リサーチ・ナビ",
+   "url": "https://ndlsearch.ndl.go.jp/rnavi/kensei/sugiyamahajime",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館（国家機関）の憲政資料室旧蔵者履歴（A）"
+  },
+  "nids-news201405": {
+   "title": "NIDS NEWS 2014年5月号 史料紹介コーナー 杉山元",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "NIDS NEWS 2014年5月号",
+   "url": "https://www.nids.mod.go.jp/military_archives/news/2014/201405.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）の史料紹介（A）"
+  },
+  "jacar-rikugun-daijin": {
+   "title": "陸軍大臣｜アジ歴グロッサリー",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "アジ歴グロッサリー",
+   "url": "https://www.jacar.go.jp/exhibition/glossary/term1/0090-0010-0060-0010-0010.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の用語解説（A）"
+  },
+  "kantei032": {
+   "title": "第32代 廣田 弘毅｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": "首相官邸ホームページ 歴代内閣",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/032.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（首相官邸 歴代内閣）（A）"
+  },
+  "kantei034": {
+   "title": "第34代 近衞 文麿｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": "首相官邸ホームページ 歴代内閣",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/034.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（首相官邸 歴代内閣）（A）"
+  },
+  "kantei041": {
+   "title": "第41代 小磯 國昭｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": "首相官邸ホームページ 歴代内閣",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/041.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（首相官邸 歴代内閣）（A）"
+  },
+  "nids-news201112": {
+   "title": "NIDS NEWS 2011年12月号 史料紹介コーナー 永野修身",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "NIDS NEWS 2011年12月号",
+   "url": "https://www.nids.mod.go.jp/military_archives/news/pdf/nids_news/nids_news201112.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）の史料紹介（A）"
+  },
+  "nids-terauchi": {
+   "title": "陸軍元帥 寺内寿一 明治12年～昭和21年〔山口〕｜史料のなかの軍人たち",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "史料のなかの軍人たち ―知られざる素顔― 第35回",
+   "url": "https://www.nids.mod.go.jp/military_archives/siryo/siryo_35.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）の人物解説（A）"
+  },
+  "nids-news201604": {
+   "title": "NIDS NEWS 2016年4月号 史料紹介コーナー 山下奉文",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "NIDS NEWS 2016年4月号",
+   "url": "https://www.nids.mod.go.jp/military_archives/news/2016/201604.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）の史料紹介（A）"
+  },
+  "jacar-14army": {
+   "title": "第14方面軍（尚武）｜アジ歴グロッサリー",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "アジ歴グロッサリー",
+   "url": "https://www.jacar.go.jp/glossary/term/0100-0040-0140-0010-0010-0010.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の用語解説（A）"
+  },
+  "nids-forum-tachikawa": {
+   "title": "マレー・シンガポール作戦―山下奉文を中心に―",
+   "authors": [
+    "立川京一"
+   ],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "戦争史研究国際フォーラム報告書 2002",
+   "url": "https://www.nids.mod.go.jp/event/proceedings/forum/pdf/2002/forum_j2002_9.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "防衛研究所（学術研究機関）の研究報告、具名作者（立川京一）（B）"
+  },
+  "jacar-nanpogun": {
+   "title": "南方軍（威）｜アジ歴グロッサリー",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "アジ歴グロッサリー",
+   "url": "https://www.jacar.go.jp/exhibition/glossary/term/0100-0040-0160-0010-0010.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の用語解説（A）"
+  },
+  "ndl-terauchi-bunsho": {
+   "title": "寺内寿一関係文書（憲政資料室）",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "リサーチ・ナビ 憲政資料",
+   "url": "https://ndlsearch.ndl.go.jp/rnavi/kensei/terauchihisaichi",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館（国家図書館官方頁）の人物解説（A）"
+  },
+  "tna-surrender1945": {
+   "title": "Japanese Instrument of Surrender, 1945",
+   "authors": [],
+   "publisher": "The National Archives (UK)",
+   "published_text": "Record revealed (FO 371/46415)",
+   "url": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/japanese-instrument-of-surrender-1945",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館（政府機關）官方頁（A）"
+  },
+  "loc-lawreports4": {
+   "title": "Law Reports of Trials of War Criminals, Vol. IV (Case No. 21: Trial of General Tomoyuki Yamashita)",
+   "authors": [],
+   "publisher": "United Nations War Crimes Commission／His Majesty's Stationery Office（Library of Congress 數位版）",
+   "published_text": "1948",
+   "url": "https://tile.loc.gov/storage-services/service/ll/llmlp/Law-Reports_Vol-4/Law-Reports_Vol-4.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "聯合國戰爭罪行委員會官方法律報告彙編（A；條約、法律彙編類）"
+  },
+  "nids-news201709": {
+   "title": "史料紹介コーナー 鈴木宗作 1891～1945年（NIDS NEWS 2017年9月号）",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "NIDS NEWS 2017年9月号",
+   "url": "https://www.nids.mod.go.jp/military_archives/news/2017/201709.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機関）の史料紹介（A）"
+  }
+ },
+ "people": [
+  {
+   "key": "hisaichiterauchi",
+   "bioId": null,
+   "name": "Hisaichi Terauchi",
+   "nameZh": "寺内寿一",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1899-11-01",
+      "end": "1934-09-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與歷任陸軍職務",
+      "en": "Background and army career"
+     },
+     "body": {
+      "zh-Hant": "寺內壽一（1879–1946）是山口縣出身，與父親寺內正毅一樣成為元帥與陸軍大臣。他於明治32年（1899年）11月自陸軍士官學校（第11期）畢業，明治42年12月畢業於陸軍大學校，1919年7月任大佐、近衛步兵第3聯隊長，1924年2月任少將、步兵第19旅團長，1927年8月任朝鮮軍參謀長，1929年8月任中將、獨立守備隊司令官，歷任第5師團長、第4師團長，1934年8月任台灣軍司令官。",
+      "en": "Terauchi Hisaichi (1879–1946) was from Yamaguchi and, like his father Terauchi Masatake, became a field marshal and army minister. He graduated from the Army Officers School (11th class) in November 1899 and the Army War College in December 1909; he became a colonel and commander of the 3rd Imperial Guard Infantry Regiment in July 1919, a major general and commander of the 19th Infantry Brigade in February 1924, chief of staff of the Korea Army in August 1927, and a lieutenant general and commander of the Independent Garrison Unit in August 1929. He then led the 5th and 4th Divisions and became commander of the Taiwan Army in August 1934."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "明治12年～昭和21年〔山口〕",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "父寺内正毅とともに、元帥、陸軍大臣となりました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "明治32年11月陸軍士官学校卒業（11期）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "42年12月陸軍大学校卒業（21期）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "大正8年7月大佐・近衛歩兵第3連隊長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "13年2月少将・歩兵第19旅団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "昭和2年8月朝鮮軍参謀長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "4年8月中将・独立守備隊司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "5年8月第5師団長、7年1月第4師団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "9年8月台湾軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1936-03-09",
+      "end": "1937-02-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍大臣與肅軍",
+      "en": "Army Minister and the purge of the army"
+     },
+     "body": {
+      "zh-Hant": "二二六事件之後，寺內於昭和11年（1936年）3月出任陸軍大臣，首相官邸資料顯示該內閣（廣田內閣）於3月9日成立，在職至昭和12年（1937年）2月2日。他的主要工作是為肅軍而刷新人事與修改陸軍省官制，其中復活軍部大臣現役武官制影響最大。",
+      "en": "After the February 26 Incident Terauchi became Army Minister in March 1936; the Prime Minister's Office records that the Hirota cabinet was formed on 9 March and remained in office until 2 February 1937. His main work was personnel reshuffling to purge the army and revising the Army Ministry's organization regulations, the revival of the rule that service ministers be active-duty officers being the most significant."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "二・二六事件の後、11年3月、陸軍大臣となります",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "陸軍大臣 寺内 壽一",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "廣田内閣 昭和11年3月9日成立",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "昭和12年2月2日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "寺内の大きな仕事は、粛軍のための人事刷新と陸軍省官制の改正でしたが",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "軍部大臣現役武官制復活は大きなものでした",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1937-02-01",
+      "end": "1939-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "教育總監與北支那方面軍",
+      "en": "Inspector General and North China Area Army"
+     },
+     "body": {
+      "zh-Hant": "1937年2月，寺內任軍事參議官兼教育總監；同年8月任北支那方面軍司令官，1938年12月再任軍事參議官；1939年7月至11月前往德國、義大利出差。",
+      "en": "In February 1937 Terauchi became a Supreme War Councillor and Inspector General of Military Training; in August of that year he became commander of the North China Area Army, and in December 1938 a Supreme War Councillor again; from July to November 1939 he travelled on a mission to Germany and Italy."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "12年2月軍事参議官・教育総監",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "8月北支那方面軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "13年12月軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "14年7～11月ドイツ・イタリア出張",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-11-01",
+      "end": "1943-07-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出任南方軍總司令官",
+      "en": "Commander-in-Chief of the Southern Army"
+     },
+     "body": {
+      "zh-Hant": "昭和16年（1941年）11月寺內就任南方軍總司令官，昭和18年（1943年）6月晉升元帥。太平洋戰爭期間，他以南方軍總司令官身分在廣大戰區指揮超過一百萬名官兵；身為司令官，他除了大綱的決心與屬下各軍意見的裁決外，似乎多交由總參謀長以下處理。",
+      "en": "In November 1941 Terauchi became commander-in-chief of the Southern Army and in June 1943 was promoted to field marshal. During the Pacific War he commanded more than a million officers and men over a vast theatre as commander-in-chief of the Southern Army; besides deciding broad outlines and ruling on opinions from subordinate armies, he is said to have left most matters to the chief of staff and below."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "16年11月南方軍総司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "18年6月元帥",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "太平洋戦争間は、南方軍総司令官として広大な戦域で百万を超える将兵を指揮します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "大綱の決心、隷下軍からの意見上申の裁決などのほかは総参謀長以下に任せていたようです",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1944-04-05",
+      "end": "1946-03-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "南方軍總司令部的遷移與降伏",
+      "en": "Southern Army headquarters moves and the surrender"
+     },
+     "body": {
+      "zh-Hant": "南方軍總司令部於1944年4月5日遷往馬尼拉，同年5月11日再遷往西貢（胡志明市）。1945年9月12日在新加坡簽署的降伏文書載明，南方軍最高司令官寺內元帥向東南亞盟軍最高司令官無條件投降。戰後南方軍總司令部移至新加坡，1946年3月15日再遷往柔佛巴魯辦理復員業務。",
+      "en": "The Southern Army headquarters moved to Manila on 5 April 1944 and to Saigon (Ho Chi Minh City) on 11 May 1944. The instrument of surrender signed at Singapore on 12 September 1945 records Field Marshal Count Terauchi, Supreme Commander of the Japanese Expeditionary Forces, Southern Regions, surrendering unconditionally to the Supreme Allied Commander, South East Asia. After the war the headquarters moved to Singapore, and on 15 March 1946 it relocated to Johor Bahru to carry out demobilisation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "jacar-nanpogun",
+       "locator": "アジ歴グロッサリー 南方軍",
+       "quote": "1944年4月5日マニラ、同年5月11日にサイゴン（ホーチミン）に移転する",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-surrender1945",
+       "locator": "Record revealed: Japanese Instrument of Surrender, 1945",
+       "quote": "This one was signed in Singapore on 12 September, ten days after the first",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-surrender1945",
+       "locator": "Record revealed: Japanese Instrument of Surrender, 1945",
+       "quote": "Field Marshal Count Terauchi) does hereby surrender unconditionally",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-nanpogun",
+       "locator": "アジ歴グロッサリー 南方軍",
+       "quote": "終戦後は、東南アジア連合国軍最高司令部の所在地であるシンガポールに移り",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-nanpogun",
+       "locator": "アジ歴グロッサリー 南方軍",
+       "quote": "1946年3月15日にはジョホールバルに移転して復員業務を行った",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1943-08-07",
+      "end": "1946-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "英帕爾戰役準備與戰敗",
+      "en": "Preparing the Imphal operation and defeat"
+     },
+     "body": {
+      "zh-Hant": "昭和18年（1943年）2月瓜達康納爾島撤退後，太平洋方面戰局惡化，但南方軍正面的緬甸第一次阿恰布作戰有望進展。8月7日，寺內命令緬甸方面軍準備反擊作戰（英帕爾戰役）。昭和19年7月英帕爾作戰失敗，昭和20年4月仰光陷落，他於昭和21年（1946年）6月在馬來西亞的連甘病逝。",
+      "en": "After the withdrawal from Guadalcanal in February 1943 the war situation on the Pacific front worsened, but the first Akyab operation in Burma on the Southern Army front looked promising. On 7 August Terauchi ordered the Burma Area Army to prepare a counter-offensive, the Imphal campaign. The Imphal operation failed in July 1944, Rangoon fell in April 1945, and he died of illness at Rengam in Malaysia in June 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "18年2月のガダルカナル島撤退以降、太平洋正面の戦局は悪化します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "ビルマにおける第1次アキャブ作戦は進展が望めました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "寺内は、8月7日、ビルマ方面軍に、ビルマの現防衛態勢を強化するために反撃作戦（インパール作戦）準備を命じます",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "19年7月、インパール作戦は失敗",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "20年4月にはラングーンが陥落",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "21年6月にマレーシア（レンガム）で亡くなります",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "terauchi-korea-army-chief-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍朝鮮軍",
+      "en": "Korea Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "朝鮮軍参謀長",
+      "zh-Hant": "朝鮮軍參謀長",
+      "en": "Chief of Staff, Korea Army"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1927-08-01",
+      "end": "1929-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "昭和2年8月朝鮮軍参謀長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "4年8月中将・独立守備隊司令官",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "參謀長（副職），非最高軍職"
+    },
+    {
+     "key": "terauchi-independent-garrison",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍獨立守備隊",
+      "en": "Independent Garrison Unit, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "独立守備隊司令官",
+      "zh-Hant": "獨立守備隊司令官",
+      "en": "Commander, Independent Garrison Unit"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1929-08-01",
+      "end": "1930-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "4年8月中将・独立守備隊司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "5年8月第5師団長",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "守備隊司令官，非國家級最高軍職亦非戰區／方面軍司令",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "terauchi-5th-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第5師團",
+      "en": "5th Division, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第5師団長",
+      "zh-Hant": "第5師團長",
+      "en": "Commander, 5th Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1930-08-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "5年8月第5師団長、7年1月第4師団長",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "師團級指揮官，非國家級最高軍職亦非戰區／方面軍司令",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "terauchi-4th-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第4師團",
+      "en": "4th Division, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第4師団長",
+      "zh-Hant": "第4師團長",
+      "en": "Commander, 4th Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1932-01-01",
+      "end": "1934-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "5年8月第5師団長、7年1月第4師団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "9年8月台湾軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "師團級指揮官，非國家級最高軍職亦非戰區／方面軍司令",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "terauchi-taiwan-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍台灣軍",
+      "en": "Taiwan Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "台湾軍司令官",
+      "zh-Hant": "台灣軍司令官",
+      "en": "Commander, Taiwan Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1934-08-01",
+      "end": "1935-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "9年8月台湾軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "10年10月大将、12月軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "駐屯軍司令官，非國家級最高軍職亦非戰區／方面軍司令（無戰役連結）",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "terauchi-army-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍省",
+      "en": "Army Ministry, Empire of Japan"
+     },
+     "title": {
+      "orig": "陸軍大臣",
+      "zh-Hant": "陸軍大臣",
+      "en": "Minister of the Army"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1936-03-09",
+      "end": "1937-02-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "陸軍大臣 寺内 壽一",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "廣田内閣 昭和11年3月9日成立",
+       "quoteLang": "ja",
+       "evidenceNote": "依廣田內閣成立日推得（推論）：名簿未列個人任期，以內閣成立日作為起日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "昭和12年2月2日",
+       "quoteLang": "ja",
+       "evidenceNote": "依廣田內閣在職期間迄日推得（推論）：名簿未列個人任期",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "二・二六事件の後、11年3月、陸軍大臣となります",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍大臣（四部之一、正職），起訖日依內閣期間推得（1936-03-09～1937-02-02，≥90天），但 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "terauchi-inspector-general",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍教育總監部",
+      "en": "Inspectorate General of Military Training"
+     },
+     "title": {
+      "orig": "教育総監",
+      "zh-Hant": "教育總監",
+      "en": "Inspector General of Military Training"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1937-02-01",
+      "end": "1937-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "12年2月軍事参議官・教育総監",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "8月北支那方面軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "教育總監，非四部閣員亦非全軍總司令"
+    },
+    {
+     "key": "terauchi-north-china-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍北支那方面軍",
+      "en": "North China Area Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "北支那方面軍司令官",
+      "zh-Hant": "北支那方面軍司令官",
+      "en": "Commander, North China Area Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-08-01",
+      "end": "1938-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "8月北支那方面軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "13年12月軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍司令官，起訖日有據（month 精度），但缺有日期地點之戰役連結且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "terauchi-southern-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍南方軍",
+      "en": "Southern Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "南方軍総司令官",
+      "zh-Hant": "南方軍總司令官",
+      "en": "Commander-in-Chief, Southern Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "16年11月南方軍総司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-terauchi",
+       "locator": "史料のなかの軍人たち 陸軍元帥 寺内寿一",
+       "quote": "寺内は、8月7日、ビルマ方面軍に、ビルマの現防衛態勢を強化するために反撃作戦（インパール作戦）準備を命じます",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-terauchi-bunsho",
+       "locator": "寺内寿一関係文書 人物解説",
+       "quote": "1941.11南方軍総司令官、1943.6元帥、1945.11予備役、1946.6.12シンガポール",
+       "quoteLang": "ja",
+       "evidenceNote": "NDL 年譜は1945.11予備役と記すが南方軍総司令官の解任日は載せない",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-nanpogun",
+       "locator": "アジ歴グロッサリー 南方軍",
+       "quote": "総司令官は編成時から終戦まで元帥陸軍大将寺内寿一",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區總司令，起日有據（1941-11, month），有日期地點之作戰連結（1943-08-07 緬甸英帕爾作戰準備命令），但迄日來源未載且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:terauchi-southern-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查防衛研究所「史料のなかの軍人たち」（「20年11月予備役･南方軍総司令官、21年6月病死」）、国立国会図書館憲政資料室人物解説（「1945.11予備役、1946.6.12…病没」）、アジ歴グロッサリー（「編成時から終戦まで」）、アジ歴「南方軍連絡部」（1946-03-08 時仍由寺内以總司令官名義發令）、英國國家檔案館降伏文書、JACAR 主要部隊長一覧（昭和20.12.5）；各來源對「解除南方軍總司令官之日」互不一致或未明載（終戰／1945-11 予備役／1946-03 仍發令），不推論，故不寫迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:burma-regime-link",
+     "gapKind": "not_found",
+     "note": "待查證：英帕爾作戰（1944）之具體日期與地點細節未取自A／B原文，正文僅寫防衛研究所所載之準備命令（1943-08-07）與失敗（1944-07）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 bioId 為 null、recordIds 為空；不連庫，留空待主管補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 6 段／約783字（段數、字數已達最低標準），但任期仍 8／9 筆有迄日，缺南方軍總司令官（1941-11 起）之迄日；指揮職（北支那方面軍、南方軍等）與戰役（英帕爾作戰準備命令 1943-08-07）均已寫入。本輪（retry）已查來源類型：官方（JACAR、NIDS、NDL 憲政資料室、UK National Archives）、國家級檔案目錄、法律彙編（LoC 所載 UNWCC 判例集）、具名學術出版社（未檢得可抓原文）、國史館／中研院（無相關結果）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "寺内寿一 元帥 南方軍総司令官 略歴 jacar OR nids OR 国立公文書館 OR ndl",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NIDS NEWS 2014年5月号（杉山）、其餘為英文彙編（未用）"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "防衛研究所 史料のなかの軍人たち 一覧掃描（siryo_1–60）",
+     "url": "https://www.nids.mod.go.jp/military_archives/siryo/siryo_35.html",
+     "result": "found_A",
+     "note": "curl：siryo_35 為寺内寿一"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "NDL 近代日本人の肖像 datas 1–400 掃描 寺内寿一",
+     "url": "https://www.ndl.go.jp/portrait/datas/",
+     "result": "no_result",
+     "note": "僅寺内正毅（137），無寺内寿一"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 第32代 廣田弘毅 閣僚名簿",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/032.html",
+     "result": "found_A",
+     "note": "curl"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "JACAR 北支那方面軍司令官陸軍大将伯爵寺内寿一外二千七百九十八名叙勲",
+     "url": null,
+     "result": "unrated",
+     "note": "WebSearch 僅見檢索摘要，無生平文字，未用"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "寺内寿一 元帥 略歴 国立公文書館 任免 南方軍総司令官 親補 昭和16年11月6日 官報",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 NDL 憲政資料室「寺内寿一関係文書」人物解説（A）與 JACAR 南方軍職員表；官報原文未見",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "寺内寿一関係文書 憲政資料室 人物解説（curl）",
+     "url": "https://ndlsearch.ndl.go.jp/rnavi/kensei/terauchihisaichi",
+     "result": "found_A",
+     "note": "載 1941.11南方軍総司令官、1945.11予備役、1946.6.12病没；無總司令官解任日",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "寺内寿一 山口 略年譜 昭和21年6月12日 死去 レンガム",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基衍生頁（不採用）",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Terauchi Hisaichi Southern Army biography Oxford OR Cambridge University Press",
+     "url": null,
+     "result": "no_result",
+     "note": "無可抓原文之學術出版社頁",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "寺內壽一 南方軍 總司令官 1945 投降 西貢 國史館 OR 中央研究院 OR 國家圖書館",
+     "url": null,
+     "result": "no_result",
+     "note": "無國史館／中研院相關結果",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Terauchi relieved OR retired reserve list November 1945 Southern Army (TNA/AWM/IWM/LoC)",
+     "url": null,
+     "result": "found_A",
+     "note": "英國國家檔案館降伏文書頁（A）；AWM／IWM 僅載 11 月刀劍交付，未載解任日",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "treaty_law",
+     "query": "TNA Japanese Instrument of Surrender 1945（curl）",
+     "url": "https://www.nationalarchives.gov.uk/explore-the-collection/stories/japanese-instrument-of-surrender-1945",
+     "result": "found_A",
+     "note": "載 1945-09-12 新加坡降伏文書，寺內為降伏方",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "JACAR 南方軍（威）グロッサリー（curl）",
+     "url": "https://www.jacar.go.jp/exhibition/glossary/term/0100-0040-0160-0010-0010.html",
+     "result": "found_A",
+     "note": "載總司令部 1944-04-05 馬尼拉、1944-05-11 西貢、1946-03-15 柔佛巴魯",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "JACAR 南方軍連絡部／主要部隊長一覧（C14110537600、C13070926800）（curl）",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13070926800",
+     "result": "unrated",
+     "note": "職員表僅列 1945-03 總司令官；無任期迄日",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "Australian War Memorial「Spirit of the Samurai」（curl）",
+     "url": "https://wm.awm.gov.au/read/spirit-samurai",
+     "result": "unrated",
+     "note": "無具名作者、屬館藏圖說，只作線索（載 1945-11-30 於西貢交付佩刀），不採為出處",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "LoC Law Reports of Trials of War Criminals Vol.IV（curl PDF）",
+     "url": "https://tile.loc.gov/storage-services/service/ll/llmlp/Law-Reports_Vol-4/Law-Reports_Vol-4.pdf",
+     "result": "found_A",
+     "note": "載 1944 年南方軍總司令部在馬尼拉（本批用於山下條目）",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "NIDS 戦争史研究国際フォーラム／史料のなかの軍人たち 再確認",
+     "url": null,
+     "result": "found_A",
+     "note": "確認已用之 NIDS 記載無迄日",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "treaty_law",
+     "query": "ibiblio HyperWar JM-45 History of Imperial GHQ（curl）",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/JM-45/index.html",
+     "result": "unrated",
+     "note": "US Army 專刊轉載站，僅載 1945 年 Southern Army 總司令為寺內；無迄日，不採",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "寺内寿一 南方軍 インパール作戦 準備命令 昭和18年8月7日（nids/jacar）",
+     "url": null,
+     "result": "found_A",
+     "note": "與既有 NIDS 條目一致",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "Terauchi Hisaichi Kodansha OR Biographical Dictionary OR Oxford Reference",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基衍生頁",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "tomoyukiyamashita",
+   "bioId": null,
+   "name": "Tomoyuki Yamashita",
+   "nameZh": "山下奉文",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1905-11-01",
+      "end": "1941-05-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與德國視察",
+      "en": "Background and the German mission"
+     },
+     "body": {
+      "zh-Hant": "山下奉文（1885–1946）是高知縣出身的陸軍大將。他於明治38年（1905年）11月自陸軍士官學校（第18期）畢業，歷任軍事調查部長等職；昭和16年（1941年）1月起以視察團長身分訪問納粹德國四個月，返國後擔任關東防衛軍司令官等職。",
+      "en": "Yamashita Tomoyuki (1885–1946) was an army general from Kōchi. He graduated from the Army Officers School (18th class) in November 1905, served in posts including chief of the Military Investigation Department, and from January 1941 spent four months in Nazi Germany as head of an inspection mission; after returning he served as commander of the Kantō Defense Army among other posts."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "山下 奉文 1885～1946年",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "高知県出身の陸軍大将",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "明治 38 年 11 月、陸軍士官学校（18 期）を卒業",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "軍事調査部長等の要職",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "昭和 16 年 1 月から 4 か月間",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "ドイツへ視察団長として訪問",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "関東防衛軍 司令官などを務めた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-12-08",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "馬來作戰與新加坡攻略",
+      "en": "The Malaya campaign and Singapore"
+     },
+     "body": {
+      "zh-Hant": "山下在太平洋戰爭初期以第25軍司令官身分指揮馬來作戰。馬來攻略作戰計畫在1941年11月他就任第25軍司令官後確定。昭和16年12月8日，第25軍強襲登陸馬來半島，以70天（預定為100天）攻下英國引以為傲的東洋堡壘新加坡。他因此被稱為「馬來之虎」，與海軍的山本五十六並列為緒戰的戰勝將軍。",
+      "en": "In the early Pacific War Yamashita commanded the Malaya campaign as commander of the 25th Army; the plan was fixed after he took up that command in November 1941. On 8 December 1941 the 25th Army landed by assault on the Malay Peninsula and took Singapore, Britain's Eastern bastion, in 70 days instead of the planned 100. He became known as the \"Tiger of Malaya\" and, with the navy's Yamamoto Isoroku, is rated as a victorious general of the opening phase."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "第 25 軍司令官として マレー作戦を指揮します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-forum-tachikawa",
+       "locator": "立川京一「マレー・シンガポール作戦」",
+       "quote": "マレー攻略作戦計画は 1941 年 11 月に山下が第 25 軍司令官に就任するのを待って確定",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "昭和 16 年 12 月 8 日、マレー半島に強襲上 陸した第 25 軍",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "予定の 100 日よりも早い 70 日で英国が誇る東洋の牙 城シンガポールを攻略しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-forum-tachikawa",
+       "locator": "立川京一「マレー・シンガポール作戦」",
+       "quote": "「マレーの虎」という異名",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-forum-tachikawa",
+       "locator": "立川京一「マレー・シンガポール作戦」",
+       "quote": "山下奉文は緒戦における戦勝将軍として",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-forum-tachikawa",
+       "locator": "立川京一「マレー・シンガポール作戦」",
+       "quote": "海軍の山本五十六と並んで高い評価を受けている",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-02-15",
+      "end": "1942-02-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "新加坡降伏與軍政開始",
+      "en": "Surrender of Singapore and the start of military administration"
+     },
+     "body": {
+      "zh-Hant": "昭和17年（1942年）2月15日，山下奉文中將與英軍司令官珀西瓦爾中將之間完成降伏文書的調印；第25軍翌日16日在新加坡（改稱昭南）設置軍政本部。",
+      "en": "On 15 February 1942 the instrument of surrender was completed between Lieutenant General Yamashita Tomoyuki and the British commander Lieutenant General Percival; on the 16th the 25th Army set up its military government headquarters in Singapore, renamed Shonan."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201709",
+       "locator": "NIDS NEWS 2017年9月号",
+       "quote": "昭和17年2月15日、英軍司令官パーシバル中将と第25軍司令官山下奉文中将との間で降伏文書の調印を終えた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201709",
+       "locator": "NIDS NEWS 2017年9月号",
+       "quote": "翌16日、シンガポール（昭南に改称）に軍政本部を置き",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-09-22",
+      "end": "1944-12-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第14方面軍與雷伊泰、呂宋決戰",
+      "en": "Fourteenth Area Army and the Leyte and Luzon battles"
+     },
+     "body": {
+      "zh-Hant": "昭和19年（1944年）9月22日，陸軍大將山下奉文就任第14方面軍司令官，指揮呂宋決戰與雷伊泰地面決戰。10月20日他抵達呂宋島，約兩週後美軍約10萬人登陸雷伊泰島；方面軍增援第35軍的部隊大多在海上輸送時被擊沉，12月15日美軍又登陸民都洛島，25日雷伊泰作戰中止。",
+      "en": "On 22 September 1944 General Yamashita took command of the Fourteenth Area Army and directed the decisive battles of Luzon and Leyte. He arrived on Luzon on 20 October; about two weeks later roughly 100,000 US troops landed on Leyte. Most reinforcements sent to the 35th Army were sunk in transit, US forces landed on Mindoro on 15 December, and the Leyte operation was cancelled on 25 December."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "jacar-14army",
+       "locator": "アジ歴グロッサリー 第14方面軍",
+       "quote": "1944年9月22日、司令官に陸軍大将山下奉文が就任し、ルソン決戦、レイテ地上決戦を指揮",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "昭和19年10月20日、山下大将が第14方面軍司令官としてフィリピンの ルソン島に着任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "米陸軍4個師団約10万人がレイテ島に上 陸",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "そのほとんどが 海上輸送中に沈められて戦局は悪化",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "12月15日、米軍がルソン島南のミンドロ島に上陸",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "25 日、レイテ作戦は中止になります",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1945-09-02",
+      "end": "1945-09-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "終戰與降伏",
+      "en": "Surrender in 1945"
+     },
+     "body": {
+      "zh-Hant": "戰爭結束後，昭和20年（1945年）9月2日，山下司令官前往坎幹的美軍聯絡所報到；翌3日在呂宋島碧瑤於麥克阿瑟代理人薩瑟蘭中將面前簽署降伏文書，並與參謀長武藤章中將同日被押往馬尼拉收監。",
+      "en": "After the war ended, Commander Yamashita reported to the US liaison post at Kiangan on 2 September 1945; on the 3rd he signed the instrument of surrender at Baguio on Luzon in the presence of Lieutenant General Sutherland, MacArthur's chief of staff, and was escorted to Manila and imprisoned that day together with his chief of staff, Lieutenant General Mutō Akira."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "jacar-14army",
+       "locator": "アジ歴グロッサリー 第14方面軍",
+       "quote": "1945年9月2日、山下司令官はキャンガンの米軍連絡所に出頭し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-14army",
+       "locator": "アジ歴グロッサリー 第14方面軍",
+       "quote": "翌3日、ルソン島バギオにおいてマッカーサー元帥代理の参謀長サザーランド中将の面前で降伏文書に署名",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-14army",
+       "locator": "アジ歴グロッサリー 第14方面軍",
+       "quote": "山下司令官、参謀長武藤章中将はマニラに護送収監",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "yamashita-25th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第25軍",
+      "en": "25th Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第25軍司令官",
+      "zh-Hant": "第25軍司令官",
+      "en": "Commander, 25th Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-forum-tachikawa",
+       "locator": "立川京一「マレー・シンガポール作戦」",
+       "quote": "マレー攻略作戦計画は 1941 年 11 月に山下が第 25 軍司令官に就任するのを待って確定",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "第 25 軍司令官として マレー作戦を指揮します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "昭和 16 年 12 月 8 日、マレー半島に強襲上 陸した第 25 軍",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍級（軍）司令官，起日有據（1941年11月，month 精度）、有日期地點之戰役連結（馬來作戰 1941-12-08 馬來半島北端登陸），但迄日來源未載且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "yamashita-14th-area-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第14方面軍",
+      "en": "14th Area Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第14方面軍司令官",
+      "zh-Hant": "第14方面軍司令官",
+      "en": "Commander, 14th Area Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-09-22",
+      "end": "1945-09-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "jacar-14army",
+       "locator": "アジ歴グロッサリー 第14方面軍",
+       "quote": "1944年9月22日、司令官に陸軍大将山下奉文が就任し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201604",
+       "locator": "NIDS NEWS 2016年4月号",
+       "quote": "昭和19年10月20日、山下大将が第14方面軍司令官としてフィリピンの ルソン島に着任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-lawreports4",
+       "locator": "Law Reports Vol.IV, Case No.21 (Yamashita), Opening of the evidence",
+       "quote": "1944, to 3rdSeptember, 1945, Commanding General of Japanese 14th Army",
+       "quoteLang": "en",
+       "evidenceNote": "雙方約定事實（stipulation）：1944-10-09 至 1945-09-03 任第14方面軍（原文 14th Army Group）司令官；起日與 JACAR 之就任日 1944-09-22 不同，起日仍採 JACAR（就任發令），差異不影響本筆",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍司令官，起訖日有據（1944-09-22～1945-09-03，day 精度，LoC 法律報告彙編載至 1945-09-03），有日期地點之戰役連結（雷伊泰地面決戰、呂宋決戰 1944-10–12 菲律賓），但 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:yamashita-25th-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查防衛研究所 NIDS NEWS 2016年4月号、2017年9月号、立川京一（防衛研究所）報告、JACAR 第14方面軍／第1方面軍解説、JACAR 山下奉文辭條（僅列關聯語「第1方面軍司令官」「第25軍司令官」，無日期）、LoC 法律報告彙編，均未載離任第25軍司令官之日；第1方面軍編成為 1942-06-27（JACAR）但未載司令官任命日。維基系來源有 1942-07-01 說，不採、不推論。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:yamashita-kanto-defense-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；防衛研究所 NIDS NEWS 2016年4月号僅載「帰国後は、関東防衛軍司令官などを務めた」，無起訖日，故未列入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:singapore-surrender-date",
+     "gapKind": "not_found",
+     "note": "待查證：新加坡英軍降伏日（1942-02-15）未見於已抓取之 A／B 原文（NLB Infopedia 頁抓取為空），故正文不寫該日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 bioId 為 null、recordIds 為空；不連庫，留空待主管補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:yamashita-1st-area-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；JACAR 山下奉文辭條關聯語列有「第1方面軍司令官」，JACAR 第1方面軍解説載編成 1942-06-27、編入關東軍 1942-07-04、終戰時司令官為喜多誠一，但未載山下就任／離任日；防衛研究所、LoC 法律報告彙編亦未載，故不列入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 5 段／約566字（段數、字數已達最低標準），指揮職（第25軍、第14方面軍）與戰役（馬來作戰、雷伊泰、呂宋）均已寫入；任期 1／2 筆完整（第14方面軍 1944-09-22～1945-09-03），第25軍缺迄日，且第1方面軍司令官、關東防衛軍司令官缺起日而未列入。本輪（retry）已查來源類型：官方（JACAR、NIDS、NDL）、國家級檔案目錄、法律彙編（LoC 所載 UNWCC 判例集）、具名機構百科（Britannica 擋、NLB Infopedia 抓取為空）、學術（NIDS 立川報告；未檢得其他可抓原文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "NDL 近代日本人の肖像 全400頁掃描 山下奉文",
+     "url": "https://www.ndl.go.jp/portrait/datas/",
+     "result": "no_result",
+     "note": "datas/1–400 無山下奉文條目（僅山本五十六=344、寺内正毅=137）"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "山下奉文 陸軍大将 略歴 第25軍司令官 第14方面軍 防衛研究所 OR jacar OR 国立公文書館",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：JACAR 第14方面軍、文春（未評等）"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "山下奉文 陸軍大将 第25軍司令官 マレー作戦 第1方面軍 第14方面軍（限 nids/jacar/ndl 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NIDS NEWS 2016年4月号、立川京一報告、JACAR 山下奉文詞條"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "NIDS NEWS 2016年4月号 山下奉文",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2016/201604.pdf",
+     "result": "found_A",
+     "note": "curl 取得並 pdftotext"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "JACAR 第14方面軍（尚武）グロッサリー",
+     "url": "https://www.jacar.go.jp/english/glossary_en/term/0100-0040-0140-0010-0010-0010.html",
+     "result": "found_A",
+     "note": "curl 取得"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "立川京一 マレー・シンガポール作戦―山下奉文を中心に―",
+     "url": "https://www.nids.mod.go.jp/event/proceedings/forum/pdf/2002/forum_j2002_9.pdf",
+     "result": "found_B",
+     "note": "curl 取得並 pdftotext，具名作者"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "JACAR 辞書 山下奉文",
+     "url": "https://www.jacar.archives.go.jp/das/term/00001292",
+     "result": "not_relevant",
+     "note": "僅載詞條名稱與關聯語，無生平文字"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Yamashita Tomoyuki Malaya Singapore surrender（限 nlb/roots/nas/awm 等）",
+     "url": "https://eresources.nlb.gov.sg/infopedia/articles/SIP_2013-07-19_113523.html",
+     "result": "no_result",
+     "note": "curl 取得內容為空（疑為動態頁），未用"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "山下奉文 Britannica",
+     "url": null,
+     "result": "no_result",
+     "note": "本輪未再抓取；以 NIDS／JACAR 為主"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "山下奉文 第25軍司令官 昭和17年7月 第1方面軍司令官 転補 満洲",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基衍生頁",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "第25軍 司令官 山下奉文 JACAR 第1方面軍 昭和17年",
+     "url": null,
+     "result": "found_A",
+     "note": "JACAR 辭條與 C04123700800（1941-11-28 發文，署名第二十五軍司令官）",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "山下奉文 第1方面軍司令官 補 昭和17年7月 官報（jacar/ndl/kunaicho/archives）",
+     "url": null,
+     "result": "no_result",
+     "note": "官報未見",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "第25軍司令官 山下奉文 離任 後任 昭和17年7月",
+     "url": null,
+     "result": "no_result",
+     "note": "無日本官方原文",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Yamashita Tomoyuki Britannica（curl）",
+     "url": "https://www.britannica.com/biography/Yamashita-Tomoyuki",
+     "result": "challenge_page",
+     "note": "抓取僅 58 字（挑戰頁），不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "山下奉文 国立国会図書館 近代日本人の肖像",
+     "url": null,
+     "result": "no_result",
+     "note": "近代日本人の肖像未收山下",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "Yamashita 14th Area Army assumed command 1944 (history.army.mil/loc/archives)",
+     "url": null,
+     "result": "found_A",
+     "note": "LoC 法律報告彙編（Case 21）；history.army.mil 回 403",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "treaty_law",
+     "query": "LoC Law Reports of Trials of War Criminals Vol.IV（curl PDF）",
+     "url": "https://tile.loc.gov/storage-services/service/ll/llmlp/Law-Reports_Vol-4/Law-Reports_Vol-4.pdf",
+     "result": "found_A",
+     "note": "雙方約定：1944-10-09 至 1945-09-03 任第14方面軍司令官",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "LoC Yamashita trial records PDF（curl）",
+     "url": "https://tile.loc.gov/storage-services/service/ll/llmlp/Yamashita/Yamashita.pdf",
+     "result": "unrated",
+     "note": "審判紀錄，grep 無 1942 任命／第1方面軍之日期",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "山下奉文 第1方面軍 戦史叢書 防衛研究所 戦史研究センター",
+     "url": null,
+     "result": "found_A",
+     "note": "僅 NIDS 2016-04 與立川報告（已用）",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "山下奉文 1942年7月 調任 第1方面軍 滿洲（中文）",
+     "url": null,
+     "result": "no_result",
+     "note": "僅非官方 Pacific Wrecks 等，不採",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "山下奉文 第25軍司令官 昭和17年7月1日 補 第1方面軍司令官（extended）",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基系（不採）",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "アジ歴 辞書 第1方面軍 満洲 1942年7月 編成 司令官",
+     "url": null,
+     "result": "found_A",
+     "note": "JACAR 第1方面軍解説：1942-06-27 編成，無山下任命日",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "JACAR 第1方面軍（鋭）グロッサリー（curl）",
+     "url": "https://www.jacar.go.jp/exhibition/glossary/term/0100-0040-0070-0010-0010-0010.html",
+     "result": "found_A",
+     "note": "編成日與終戰時司令官喜多誠一；無山下",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "山下奉文 第25軍司令官 昭和16年11月6日 在任期間 司令官一覧",
+     "url": null,
+     "result": "found_A",
+     "note": "NIDS 2017-09：1942-02-15 降伏調印（已用）",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "official",
+     "query": "NIDS NEWS 2017年9月号（curl）",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2017/201709.pdf",
+     "result": "found_A",
+     "note": "載 1942-02-15 降伏、翌16日昭南軍政本部設置",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "official",
+     "query": "山下奉文 関東防衛軍司令官 昭和16年7月 発令 航空総監",
+     "url": null,
+     "result": "found_A",
+     "note": "航空總監任期至 1941-06-09（JACAR 職員表）；關東防衛軍發令日未見",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "official",
+     "query": "JACAR 山下奉文 辭條（curl）",
+     "url": "https://www.jacar.archives.go.jp/das/term/00001292",
+     "result": "found_A",
+     "note": "關聯語含第1方面軍司令官、第25軍司令官；無日期",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "academic",
+     "query": "Yamashita 25th Army Malaya transferred Manchuria 1942 scholarly article",
+     "url": null,
+     "result": "no_result",
+     "note": "僅百科／維基系",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "isorokuyamamoto",
+   "bioId": null,
+   "name": "Isoroku Yamamoto",
+   "nameZh": "山本五十六",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-04-04",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早期經歷",
+      "en": "Birth and early career"
+     },
+     "body": {
+      "zh-Hant": "山本五十六生於明治17年（1884年）4月4日，新潟縣出身，是海軍軍人。他於明治37年（1904年）自海軍兵學校畢業，海軍大學校畢業後歷任駐美大使館付武官、航空母艦赤城艦長等職，昭和4年（1929年）以隨員身分參加第一次倫敦裁軍會議。",
+      "en": "Yamamoto Isoroku was born on 4 April 1884 in Niigata and became a naval officer. He graduated from the Naval Academy in 1904, and after the Naval War College served as naval attaché at the embassy in the United States and captain of the carrier Akagi, among other posts; in 1929 he took part in the first London Naval Conference as a member of the delegation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "明治17年4月4日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "新潟県",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "海軍軍人",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "明治37(1904)年海軍兵学校卒業",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "海軍大学校卒業後、駐米大使館付武官、空母赤城艦長などを歴任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "昭和4(1929)年第一次ロンドン軍縮会議に随員として参加",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-08-30"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "航空部門與海軍次官",
+      "en": "Naval aviation and vice-minister"
+     },
+     "body": {
+      "zh-Hant": "他以第一航空戰隊司令官、海軍航空本部長的身分致力強化海軍航空部門。昭和11年（1936年）起任海軍次官，輔佐海相米內光政，並反對日德義三國同盟。",
+      "en": "As commander of the 1st Carrier Division and head of the Naval Aviation Headquarters he worked to strengthen naval aviation. From 1936 he was vice-minister of the navy, supporting Navy Minister Yonai Mitsumasa and opposing the Tripartite Pact with Germany and Italy."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "第一航空戦隊司令官、海軍航空本部長として海軍航空部門の強化に尽力した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "11年海軍次官となり",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "米内光政 海相を支え日独伊三国同盟に反対した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-08-30",
+      "end": "1941-12-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出任聯合艦隊司令長官",
+      "en": "Commander-in-Chief of the Combined Fleet"
+     },
+     "body": {
+      "zh-Hant": "昭和14年（1939年）8月30日，山本五十六就任聯合艦隊司令長官（任期至昭和18年4月18日）。昭和16年11月5日，他裁決對美英荷作戰的「機密聯合艦隊命令作第一號」；12月2日收到「大海令第十二號」後，從旗艦長門向全部隊發出「登上新高山一二〇八」的暗號電報，下達12月8日開始作戰。",
+      "en": "On 30 August 1939 Yamamoto Isoroku became commander-in-chief of the Combined Fleet, a post he held until 18 April 1943. On 5 November 1941 he approved Combined Fleet Secret Operation Order No. 1 for the war against the United States, Britain and the Netherlands; after receiving Imperial Naval Order No. 12 on 2 December he sent the code signal \"Climb Mount Niitaka 1208\" from the flagship Nagato to all forces, ordering operations to begin on 8 December."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "jacar-navystaff",
+       "locator": "アジ歴 日米開戦 軍令部・連合艦隊職務歴任者表",
+       "quote": "山本五十六（昭和１４年８月３０日～昭和１８年４月１８日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "昭和16 年11 月5 日付",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "対米、英、蘭戦争ニ於ケル連合艦隊ノ作戦",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "12 月 2 日、「十二月八日午前零時以後（中略） 武力ヲ発動スベシ」との「大海令第十二号」を受領した山本長官は",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "旗艦「長門」から全部隊に対し「新高山登レ一二○八」",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "12 月 8 日の作戦開始を発令 しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-12-08",
+      "end": "1941-12-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "真珠灣攻擊",
+      "en": "The attack on Pearl Harbor"
+     },
+     "body": {
+      "zh-Hant": "昭和16年（1941年）12月8日，聯合艦隊司令長官山本五十六在開戰之初以奇襲攻擊真珠灣的美國太平洋艦隊，企圖使美國國民喪失戰爭意志。機動部隊以雷擊隊、戰鬥機隊、俯衝轟炸隊與水平轟炸隊攻擊戰艦群和機場；日本時間3時37分，山本接獲機動部隊「奇襲成功」的消息。",
+      "en": "On 8 December 1941 Combined Fleet commander Yamamoto Isoroku attacked the US Pacific Fleet at Pearl Harbor in a surprise strike at the outset of the war, aiming to destroy the American public's will to fight. The carrier force attacked the battleships and airfields with torpedo, fighter, dive-bomber and level-bomber units; at 3:37 Japan time Yamamoto learned from the force that the surprise had succeeded."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "連合艦隊司令長官山本五十六は、開戦劈頭、真珠湾の米太平洋艦隊に対する奇襲攻撃成功によって、米国民の戦争遂行意欲を喪失させようとしました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "昭和１６（１９４１）年１２月８日、機動部隊は、雷撃隊、戦闘機隊、急降下爆撃隊、水平爆撃隊によって、戦艦群や飛行場などを攻撃します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "８日３時３７分（日本時間）、山本は機動部隊から「奇襲成功」の知らせを受けた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1942-04-18",
+      "end": "1942-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "杜立德空襲與中途島作戰",
+      "en": "The Doolittle Raid and the Midway operation"
+     },
+     "body": {
+      "zh-Hant": "昭和17年（1942年）4月18日，美國陸軍中校杜立德指揮的轟炸機16架空襲東京等本州各地，這是日本本土首次遭空襲。日美開戰前就擔心美軍機空襲本土的山本，以及軍令部與陸軍，在此後正式推進中途島作戰的準備。中途島攻略作戰失敗，日本損失主力航空母艦4艘，海軍卻隱瞞了這件事。",
+      "en": "On 18 April 1942 sixteen bombers under US Army Lieutenant Colonel James Doolittle raided Tokyo and other parts of Honshu, the first air raid on the Japanese home islands. Yamamoto, who had feared such raids since before the war, together with the Naval General Staff and the army, then pressed ahead with preparations for the Midway operation. The Midway invasion operation failed with the loss of four main carriers, and the navy concealed the fact."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "昭和１７（１９４２）年４月１８日正午過ぎ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "米陸軍中佐ジェイムズ・ハロルド・ドゥリトル（James Harold Doolittle）指揮下の爆撃機１６機が空襲を敢行します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "これは、日本本土に対する初めての空襲でした",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "日米開戦前から米軍機の本土空襲を懸念していた連合艦隊司令長官山本五十六のみならず",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "軍令部も陸軍も、本格的にミッドウェー作戦の準備を進めていきました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "「昭和17年6月1日～30日 佐世保鎮守府戦時日誌」",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "ミッドウェー攻略作戦は失敗し、主力空母４隻を失うという大損害を出しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "海軍はこの事実を隠します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1943-04-18",
+      "end": "1943-04-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "前線視察與戰死",
+      "en": "Front-line inspection and death"
+     },
+     "body": {
+      "zh-Hant": "昭和18年（1943年）4月18日，山本長官在「伊」號作戰結束後，搭乘一式陸攻前往視察前線部隊途中遭美國戰鬥機襲擊，在布干維爾島戰死。長官一行早上6時5分自拉包爾機場起飛，約7時40分在布因上空附近與美軍戰鬥機十餘架遭遇；其國葬於同年6月5日舉行。",
+      "en": "On 18 April 1943, after the conclusion of Operation I-Go, Admiral Yamamoto was attacked by US fighters on his way by Type 1 bomber to inspect front-line units and was killed on Bougainville. His party took off from Rabaul airfield at 6:05 a.m. and met a dozen or more enemy fighters near Buin at about 7:40; his state funeral was held on 5 June of that year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "昭和１８（１９４３）年４月１８日、「い」号作戦の終了後、前線部隊視察のため一式陸攻で向かう途中、米戦闘機に襲撃され、ブーゲンビル島にて戦死します",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "午前6時5分、ショートランド諸島方面視察 のため、ラバウル飛行場を発進した山本長官一行",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201406",
+       "locator": "NIDS NEWS 2014年6月号",
+       "quote": "午前7時40分頃、ブイン(QVB)上空付近に於いて敵戦闘機十数機 と遭遇",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "山本の国葬は、ミッドウェー作戦からちょうど１年後の昭和１８年６月５日に執り行われました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "明治17年4月4日 〜 昭和18年4月18日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "yamamoto-combined-fleet",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本帝國海軍聯合艦隊",
+      "en": "Combined Fleet, Imperial Japanese Navy"
+     },
+     "title": {
+      "orig": "連合艦隊司令長官",
+      "zh-Hant": "聯合艦隊司令長官",
+      "en": "Commander-in-Chief, Combined Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-08-30",
+      "end": "1943-04-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "jacar-navystaff",
+       "locator": "アジ歴 日米開戦 軍令部・連合艦隊職務歴任者表",
+       "quote": "山本五十六（昭和１４年８月３０日～昭和１８年４月１８日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-pacificwar3",
+       "locator": "防衛研究所デジタル史料展示 太平洋戦争③",
+       "quote": "昭和１８（１９４３）年４月１８日、「い」号作戦の終了後",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "艦隊級最高指揮官（聯合艦隊），起訖日有據（1939-08-30～1943-04-18，day），有日期地點之作戰連結（真珠灣 1941-12-08、中途島 1942-06），但 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "yamamoto-navy-vice-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本帝國海軍省",
+      "en": "Navy Ministry, Empire of Japan"
+     },
+     "title": {
+      "orig": "海軍次官",
+      "zh-Hant": "海軍次官",
+      "en": "Vice-Minister of the Navy"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-08-30"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndl-yamamoto",
+       "locator": "山本五十六｜近代日本人の肖像",
+       "quote": "11年海軍次官となり",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-navystaff",
+       "locator": "アジ歴 日米開戦 軍令部・連合艦隊職務歴任者表",
+       "quote": "山本五十六（昭和１４年８月３０日～昭和１８年４月１８日）",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "次官（副職），非閣員，R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:yamamoto-navy-vice-minister",
+     "gapKind": "not_found",
+     "note": "待查證：起訖僅年精度；NDL 僅載「11年海軍次官」，月日與離任日未見，迄日依下一職務（聯合艦隊司令長官）起日推得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:yamamoto-air-hq",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NDL 近代日本人の肖像僅載「第一航空戦隊司令官、海軍航空本部長」，無起訖日，未列入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:yamamoto-1st-carrier-division",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；同上，無起訖日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 bioId 為 null、recordIds 為空；不連庫，留空待主管補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "NDL 近代日本人の肖像 datas 1–400 掃描 山本五十六",
+     "url": "https://www.ndl.go.jp/portrait/datas/344",
+     "result": "found_A",
+     "note": "curl 取得"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "山本五十六 連合艦隊司令長官 ブーゲンビル 1943年4月18日 戦死 海軍甲事件 アジ歴",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NIDS NEWS 2014年6月号"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "山本五十六 連合艦隊司令長官 真珠湾攻撃 ミッドウェー海戦 ガダルカナル（限 nids/jacar/mod/ndl）",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NIDS デジタル史料展示 太平洋戦争③"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "NIDS NEWS 2014年6月号 山本五十六",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2014/201406.pdf",
+     "result": "found_A",
+     "note": "curl＋pdftotext"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "NIDS デジタル史料展示 太平洋戦争③",
+     "url": "https://www.nids.mod.go.jp/military_archives/digital_siryo/pacificwar80th/pacificwar3.html",
+     "result": "found_A",
+     "note": "curl"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "JACAR 日米開戦 軍令部・連合艦隊 主要職務歴任者",
+     "url": "https://jacar.go.jp/nichibei/reference/navystaff.html",
+     "result": "found_A",
+     "note": "curl（Shift_JIS）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "海幹校戦略研究 山本五十六 ssg2023_06_06",
+     "url": "https://www.mod.go.jp/msdf/navcol/assets/pdf/ssg2023_06_06.pdf",
+     "result": "no_result",
+     "note": "搜尋列出但本輪未抓取"
+    }
+   ]
+  },
+  {
+   "key": "hajimesugiyama",
+   "bioId": null,
+   "name": "Hajime Sugiyama",
+   "nameZh": "杉山元",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-01-02",
+      "end": "1930-09-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與早期經歷",
+      "en": "Birth and early career"
+     },
+     "body": {
+      "zh-Hant": "杉山元1880年1月2日生於福岡，陸軍士官學校第12期畢業，1904年2月出征日俄戰爭，1910年11月自陸軍大學校畢業，其後歷任參謀本部員、駐印度武官、航空課長、軍事課長、陸軍省軍務局長，1930年8月出任陸軍次官。",
+      "en": "Sugiyama Hajime was born in Fukuoka on 2 January 1880, graduated from the Army Officers School (12th class), went to the Russo-Japanese War in February 1904 and graduated from the Army War College in November 1910. He then served as a General Staff officer, attaché in India, chief of the Aviation Section and the Military Affairs Section, and director of the Army Ministry's Military Affairs Bureau, becoming vice-minister of the army in August 1930."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1880.1.2福岡生まれ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "陸軍士官学校12期卒",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1904.2日露戦争出征",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1910.11陸軍大学校卒",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1910.12参謀本部員、1915.2インド駐在武官、1922.4航空課長、1923.8軍事課長、1925.5航空本部補給部長、1928.8陸軍省軍務局長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1930.8陸軍次官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1932-07-01",
+      "end": "1936-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "師團長、參謀次長與教育總監",
+      "en": "Division, General Staff and Inspectorate"
+     },
+     "body": {
+      "zh-Hant": "1932年7月任第12師團長，1933年3月任航空本部長，1934年8月任參謀次長，1936年8月任教育總監兼軍事參議官，同年11月晉升大將。",
+      "en": "He became commander of the 12th Division in July 1932, head of the Aviation Headquarters in March 1933, deputy chief of the General Staff in August 1934, and Inspector General of Military Training and Supreme War Councillor in August 1936, and was promoted to full general in November 1936."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1932.7第12師団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1933.3航空本部長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1934.8参謀次長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1936.8教育総監兼軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1936.11大将",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1937-02-01",
+      "end": "1938-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "陸軍大臣與北支那方面軍",
+      "en": "Army Minister and North China Area Army"
+     },
+     "body": {
+      "zh-Hant": "1937年2月至1938年6月，他在林內閣與第一次近衛內閣擔任陸軍大臣；首相官邸資料顯示，1938年6月3日板垣征四郎接任陸軍大臣。1938年6月任軍事參議官，同年11月任北支那方面軍司令官。",
+      "en": "From February 1937 to June 1938 he was Army Minister in the Hayashi and first Konoe cabinets; the Prime Minister's Office records that Itagaki Seishirō took over as Army Minister on 3 June 1938. He became a Supreme War Councillor in June 1938 and commander of the North China Area Army in November 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1937.2～38.6林内閣・第1次近衛内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei034",
+       "locator": "首相官邸 歴代内閣 第1次近衞内閣 閣僚名簿",
+       "quote": "陸軍大臣 昭和13年6月3日～ 板垣 征四郎",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1938.6軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1938.11北支方面軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-10-03",
+      "end": "1941-12-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "參謀總長與對美英荷開戰命令",
+      "en": "Chief of the Army General Staff and the order for war"
+     },
+     "body": {
+      "zh-Hant": "1940年10月3日，杉山元就任參謀總長（任期至1944年2月21日）。昭和16年（1941年）12月2日，杉山參謀總長向南方軍總司令官發電，通知「大陸命第五六九號」已發令，其內容為「帝國決定對美國、英國及荷蘭開戰」，並命令南方軍總司令官於12月X日開始進攻（進入）作戰；他以暗號「日出」為「山形」下達12月8日開始作戰。",
+      "en": "Sugiyama became Chief of the Army General Staff on 3 October 1940 and held the post until 21 February 1944. On 2 December 1941 he telegraphed the commander-in-chief of the Southern Army that Imperial Headquarters Army Order No. 569 had been issued, whose content was the decision to open war on the United States, Britain and the Netherlands, and ordered operations to begin on 8 December using the code \"Hinode is Yamagata\"."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "jacar-armystaff",
+       "locator": "アジ歴 参謀本部主要職務歴任者表",
+       "quote": "杉山元（昭和１５年１０月３日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "昭和 16 年 12 月 2 日、杉山参謀総長が南方軍総 司令官に宛てた電報",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "「帝国ハ米国英国及蘭国ニ対シ開戦スルニ決ス」",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "南方軍 総司令官ハ十二月 X 日進攻（進入）作戦ヲ開始スヘシ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "「『ヒノデ』ハ『ヤマガタ』トス」と打電、12 月 8 日の作戦開始を発 令しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1943-06-01",
+      "end": "1945-07-20"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "元帥與再任陸軍大臣",
+      "en": "Field marshal and second term as Army Minister"
+     },
+     "body": {
+      "zh-Hant": "1943年6月晉升元帥。1944年7月任教育總監，並在小磯內閣再任陸軍大臣；依JACAR資料，其陸軍大臣任期為1944年7月22日至1945年7月20日。1945年4月任第1總軍司令官。",
+      "en": "He was promoted to field marshal in June 1943. In July 1944 he became Inspector General of Military Training and again Army Minister in the Koiso cabinet; according to JACAR his term as Army Minister ran from 22 July 1944 to 20 July 1945. In April 1945 he became commander of the First General Army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1943.6元帥",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1944.7教育総監、小磯内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-rikugun-daijin",
+       "locator": "アジ歴グロッサリー 陸軍大臣",
+       "quote": "杉山元陸軍大将（1944年7月22日～1945年7月20日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei041",
+       "locator": "首相官邸 歴代内閣 小磯内閣 閣僚名簿",
+       "quote": "陸軍大臣 杉山 元",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1945.4第1総軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1945-08-15",
+      "end": "1945-09-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "終戰與自決",
+      "en": "The end of the war and suicide"
+     },
+     "body": {
+      "zh-Hant": "1945年8月15日，負責防衛東日本的第1總軍司令官杉山大將向轄下方面軍發電，要求各級指揮官在終戰時堅守團結、依統帥命令行動。9月10日第1總軍下令於9月12日零時解除戰鬥序列，杉山於9月12日在第1總軍司令部自決。",
+      "en": "On 15 August 1945 General Sugiyama, commander of the First General Army responsible for the defence of eastern Japan, telegraphed his subordinate area armies, asking commanders at all levels to maintain solidarity and act strictly on orders from the supreme command at the end of the war. On 10 September the First General Army ordered its order of battle dissolved at midnight on 12 September, and Sugiyama killed himself at its headquarters on 12 September."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "昭和20年8月15日、東日本の防衛 を担当する第1総軍司令官杉山大将が、隷下方面軍に宛てた電報",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "各級指揮官ノ厳正ナル 統率ノ下愈々鞏固ナル団結ヲ堅持シ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "九月十二日零時ヲ以テ第一総軍戦闘序列ヲ解キ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "9月12日、第1総軍司令部において自決しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1945.9.12夫人とともに自決",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "sugiyama-vice-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍省",
+      "en": "Army Ministry, Empire of Japan"
+     },
+     "title": {
+      "orig": "陸軍次官",
+      "zh-Hant": "陸軍次官",
+      "en": "Vice-Minister of the Army"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1930-08-01",
+      "end": "1932-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1930.8陸軍次官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1932.7第12師団長",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "次官（副職），非正職閣員，R5"
+    },
+    {
+     "key": "sugiyama-12th-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第12師團",
+      "en": "12th Division, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第12師団長",
+      "zh-Hant": "第12師團長",
+      "en": "Commander, 12th Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1932-07-01",
+      "end": "1933-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1932.7第12師団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1933.3航空本部長",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "師團級指揮官，非國家級最高軍職亦非戰區／方面軍司令",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "sugiyama-aviation-hq",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍航空本部",
+      "en": "Army Aviation Headquarters"
+     },
+     "title": {
+      "orig": "航空本部長",
+      "zh-Hant": "航空本部長",
+      "en": "Director, Army Aviation Headquarters"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1933-03-01",
+      "end": "1934-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1933.3航空本部長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1934.8参謀次長",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍事機關首長，非國家級最高軍職"
+    },
+    {
+     "key": "sugiyama-deputy-chief-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍參謀本部",
+      "en": "Army General Staff"
+     },
+     "title": {
+      "orig": "参謀次長",
+      "zh-Hant": "參謀次長",
+      "en": "Deputy Chief of the General Staff"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1934-08-01",
+      "end": "1936-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1934.8参謀次長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1936.8教育総監兼軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "參謀次長（副職），非最高軍職"
+    },
+    {
+     "key": "sugiyama-inspector-1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍教育總監部",
+      "en": "Inspectorate General of Military Training"
+     },
+     "title": {
+      "orig": "教育総監",
+      "zh-Hant": "教育總監",
+      "en": "Inspector General of Military Training"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1936-08-01",
+      "end": "1937-02-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1936.8教育総監兼軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1937.2～38.6林内閣・第1次近衛内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務起日作為前一職務迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "教育總監，非四部閣員亦非全軍總司令"
+    },
+    {
+     "key": "sugiyama-army-minister-1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍省",
+      "en": "Army Ministry, Empire of Japan"
+     },
+     "title": {
+      "orig": "陸軍大臣（林内閣・第1次近衛内閣）",
+      "zh-Hant": "陸軍大臣",
+      "en": "Minister of the Army"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1937-02-01",
+      "end": "1938-06-03"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1937.2～38.6林内閣・第1次近衛内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei034",
+       "locator": "首相官邸 歴代内閣 第1次近衞内閣 閣僚名簿",
+       "quote": "陸軍大臣 昭和13年6月3日～ 板垣 征四郎",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以首相官邸名簿所列後任陸軍大臣起日作為迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍大臣（四部之一、正職），起訖日有據（1937-02 month～1938-06-03 day，≥90天），但 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "sugiyama-north-china-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍北支那方面軍",
+      "en": "North China Area Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "北支方面軍司令官",
+      "zh-Hant": "北支那方面軍司令官",
+      "en": "Commander, North China Area Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-11-01",
+      "end": "1940-10-03"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1938.11北支方面軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-armystaff",
+       "locator": "アジ歴 参謀本部主要職務歴任者表",
+       "quote": "杉山元（昭和１５年１０月３日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以來源所列下一職務（參謀總長）起日作為迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍司令官，起訖日有據，但缺有日期地點之戰役連結且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "sugiyama-chief-general-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍參謀本部",
+      "en": "Army General Staff"
+     },
+     "title": {
+      "orig": "参謀総長",
+      "zh-Hant": "參謀總長",
+      "en": "Chief of the Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-10-03",
+      "end": "1944-02-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "jacar-armystaff",
+       "locator": "アジ歴 参謀本部主要職務歴任者表",
+       "quote": "杉山元（昭和１５年１０月３日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "昭和 16 年 12 月 2 日、杉山参謀総長が南方軍総 司令官に宛てた電報",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "參謀總長，起訖日有據（day 精度），有日期之作戰命令連結（1941-12-02 開戰命令），但來源未明寫其為國家級最高軍職（職位等級）且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "sugiyama-inspector-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍教育總監部",
+      "en": "Inspectorate General of Military Training"
+     },
+     "title": {
+      "orig": "教育総監（第二次）",
+      "zh-Hant": "教育總監（第二次）",
+      "en": "Inspector General of Military Training (second term)"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1944-07-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1944.7教育総監、小磯内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "教育總監，非四部閣員亦非全軍總司令"
+    },
+    {
+     "key": "sugiyama-army-minister-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍省",
+      "en": "Army Ministry, Empire of Japan"
+     },
+     "title": {
+      "orig": "陸軍大臣（小磯内閣）",
+      "zh-Hant": "陸軍大臣",
+      "en": "Minister of the Army"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1944-07-22",
+      "end": "1945-07-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "jacar-rikugun-daijin",
+       "locator": "アジ歴グロッサリー 陸軍大臣",
+       "quote": "杉山元陸軍大将（1944年7月22日～1945年7月20日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei041",
+       "locator": "首相官邸 歴代内閣 小磯内閣 閣僚名簿",
+       "quote": "陸軍大臣 杉山 元",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍大臣（四部之一、正職），起訖日有據（1944-07-22～1945-07-20, day），但 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "sugiyama-first-general-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第1總軍",
+      "en": "First General Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第1総軍司令官",
+      "zh-Hant": "第1總軍司令官",
+      "en": "Commander, First General Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-04-01",
+      "end": "1945-09-12"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndl-sugiyama-bunsho",
+       "locator": "杉山元関係文書（NDL 憲政資料室）旧蔵者履歴",
+       "quote": "1945.4第1総軍司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201405",
+       "locator": "NIDS NEWS 2014年5月号",
+       "quote": "九月十二日零時ヲ以テ第一総軍戦闘序列ヲ解キ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "總軍司令官，起訖日有據，但缺有日期地點之戰役連結且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:sugiyama-inspector-2",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDL 杉山元関係文書履歷僅載「1944.7教育総監」，防衛研究所 NIDS NEWS 2014年5月号、JACAR 均未載離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:academy_graduation_month",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源矛盾：防衛研究所 NIDS NEWS 2014年5月号載「明治33年11月、陸軍士官学校（12期）を卒業」，NDL 憲政資料室履歴載「1900.1陸軍士官学校12期卒」；正文僅寫「第12期畢業」不寫月份。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:major-battles",
+     "gapKind": "not_found",
+     "note": "來源不足：未查得杉山元就任參謀總長期間之具體戰役（作戰）敘述；正文僅以防衛研究所載之1941-12-02開戰命令電報為作戰連結，其餘待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 bioId 為 null、recordIds 為空；不連庫，留空待主管補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "杉山元 元帥 陸軍大臣 参謀総長 略歴 nids.mod.go.jp OR jacar.go.jp OR kantei.go.jp",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NIDS NEWS 2014年5月号、JACAR 陸軍大臣"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "杉山元 参謀総長 昭和15年10月3日 昭和19年2月21日（限官方站）",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NDL 杉山元関係文書、JACAR 歴任者表"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "杉山元関係文書 国立国会図書館 憲政資料室",
+     "url": "https://ndlsearch.ndl.go.jp/rnavi/kensei/sugiyamahajime",
+     "result": "found_A",
+     "note": "curl：旧蔵者履歴（月精度年表）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "NIDS NEWS 2014年5月号 杉山元",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2014/201405.pdf",
+     "result": "found_A",
+     "note": "curl＋pdftotext"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "JACAR 日米開戦 参謀本部 主要職務歴任者",
+     "url": "https://jacar.go.jp/nichibei/reference/armystaff.html",
+     "result": "found_A",
+     "note": "curl（Shift_JIS）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "JACAR グロッサリー 陸軍大臣",
+     "url": "https://www.jacar.go.jp/exhibition/glossary/term1/0090-0010-0060-0010-0010.html",
+     "result": "found_A",
+     "note": "curl"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 第34代 第41代 閣僚名簿",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/034.html",
+     "result": "found_A",
+     "note": "curl"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "参謀総長 閑院宮 杉山 JACAR グロッサリー（term4）",
+     "url": "https://jacar.go.jp/english/glossary_en/term4/0010-0030-0030.html",
+     "result": "not_relevant",
+     "note": "未載杉山就任細節"
+    }
+   ]
+  },
+  {
+   "key": "osaminagano",
+   "bioId": null,
+   "name": "Osami Nagano",
+   "nameZh": "永野修身",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1902-01-01",
+      "end": "1905-02-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "任官與旅順攻略",
+      "en": "Commissioning and the siege of Port Arthur"
+     },
+     "body": {
+      "zh-Hant": "永野修身（1880–1947）於明治35年（1902年）1月任海軍少尉。日俄戰爭中他是海軍陸戰重砲隊第3中隊長（當時為中尉），參加圍攻旅順；明治37年12月8日的記錄載，中隊長在203高地上，砲擊命中敵艦「阿穆爾」14發。該中隊自明治37年8月至翌年1月共發砲6,530發，對乃木第3軍攻略旅順有所貢獻。",
+      "en": "Nagano Osami (1880–1947) was commissioned a navy sub-lieutenant in January 1902. In the Russo-Japanese War, as a lieutenant commanding the 3rd Company of the naval land heavy-artillery unit, he took part in the siege of Port Arthur; the entry for 8 December 1904 records that from 203 Meter Hill his fire hit the enemy ship Amur 14 times. From August 1904 to January 1905 the company fired 6,530 rounds and contributed to General Nogi's Third Army taking Port Arthur."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "永野 修身 1880～1947年",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "明治 35 年 1 月、海軍少尉に任官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "海軍陸戦重 砲隊第 3 中隊長であった同元帥（当時中尉）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "旅順攻略に参加し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "明治 37 年 12 月 8 日の記事には",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "中隊長二 〇三髙地ニアリ敵艦砲撃命中「アムール」十四発",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "同中隊は明治 37 年 8 月から翌 38 年 1 月までの間、合計 6，530 発の砲撃を行い",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "乃木第 3 軍の旅順攻略に貢献しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1928-12-01",
+      "end": "1930-07-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "海軍兵學校長",
+      "en": "Superintendent of the Naval Academy"
+     },
+     "body": {
+      "zh-Hant": "永野修身自昭和3年（1928年）12月至昭和5年（1930年）6月擔任海軍兵學校長。他當時為海軍中將，向教職員示達學習方針，以重視意志陶冶、重視個性等為學習方針，並努力改革學習方法。",
+      "en": "Nagano served as superintendent of the Naval Academy from December 1928 to June 1930. As a vice-admiral he issued a study policy to the staff that stressed training of the will and attention to individuality, and he worked to reform learning methods."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "昭和 3 年 12 月から昭和 5 年 6 月の間、海軍兵学校 長として勤務しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "同元帥（当時中将）が学校 職員に示達した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "意志陶冶ニ重キヲ置キ生徒ノ人 格ヲ益向上セシム",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "個性ヲ重視シ生徒ヲシテ其ノ才能ヲ伸ヘ シム",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "学習法の改革に努めました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1936-03-09",
+      "end": "1937-02-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "廣田內閣海軍大臣",
+      "en": "Navy Minister in the Hirota cabinet"
+     },
+     "body": {
+      "zh-Hant": "昭和11年（1936年）3月9日廣田內閣成立，永野修身列名海軍大臣；廣田內閣在職至昭和12年（1937年）2月2日。永野後來也歷任聯合艦隊司令長官、軍令部總長等要職。",
+      "en": "The Hirota cabinet was formed on 9 March 1936 with Nagano Osami listed as Navy Minister; the cabinet remained in office until 2 February 1937. Nagano later also held senior posts including commander-in-chief of the Combined Fleet and Chief of the Naval General Staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "廣田内閣 昭和11年3月9日成立",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "海軍大臣 永野 修身",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "昭和12年2月2日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "連合艦隊司令長官、軍令部総長等の 要職を歴任しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-04-09",
+      "end": "1944-02-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "軍令部總長",
+      "en": "Chief of the Naval General Staff"
+     },
+     "body": {
+      "zh-Hant": "永野修身自昭和16年（1941年）4月9日起任軍令部總長，任期至昭和19年（1944年）2月21日；前任者是伏見宮博恭王（昭和8年10月1日至昭和16年4月9日）。",
+      "en": "Nagano served as Chief of the Naval General Staff from 9 April 1941 until 21 February 1944; his predecessor was Prince Fushimi Hiroyasu (1 October 1933 to 9 April 1941)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "jacar-navystaff",
+       "locator": "アジ歴 軍令部・連合艦隊 主要職務歴任者表",
+       "quote": "永野修身（昭和１６年４月９日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-navystaff",
+       "locator": "アジ歴 軍令部・連合艦隊 主要職務歴任者表",
+       "quote": "伏見宮博恭王（昭和８年１０月１日～昭和１６年４月９日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "nagano-naval-academy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本帝國海軍兵學校",
+      "en": "Imperial Japanese Naval Academy"
+     },
+     "title": {
+      "orig": "海軍兵学校長",
+      "zh-Hant": "海軍兵學校長",
+      "en": "Superintendent, Naval Academy"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1928-12-01",
+      "end": "1930-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nids-news201112",
+       "locator": "NIDS NEWS 2011年12月号",
+       "quote": "昭和 3 年 12 月から昭和 5 年 6 月の間、海軍兵学校 長として勤務しました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍校校長，R5"
+    },
+    {
+     "key": "nagano-navy-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本帝國海軍省",
+      "en": "Navy Ministry, Empire of Japan"
+     },
+     "title": {
+      "orig": "海軍大臣",
+      "zh-Hant": "海軍大臣",
+      "en": "Minister of the Navy"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1936-03-09",
+      "end": "1937-02-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "海軍大臣 永野 修身",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "廣田内閣 昭和11年3月9日成立",
+       "quoteLang": "ja",
+       "evidenceNote": "依廣田內閣成立日推得（推論）：名簿未列個人任期，以內閣成立日作為起日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei032",
+       "locator": "首相官邸 歴代内閣 廣田内閣 閣僚名簿",
+       "quote": "昭和12年2月2日",
+       "quoteLang": "ja",
+       "evidenceNote": "依廣田內閣在職期間迄日推得（推論）：名簿未列個人任期",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "單獨海軍大臣不屬四部（外交、國防／陸軍／戰爭、財政、內政），R5",
+     "t14Overlap": "cabinet"
+    },
+    {
+     "key": "nagano-naval-general-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本帝國海軍軍令部",
+      "en": "Naval General Staff, Imperial Japanese Navy"
+     },
+     "title": {
+      "orig": "軍令部総長",
+      "zh-Hant": "軍令部總長",
+      "en": "Chief of the Naval General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-04-09",
+      "end": "1944-02-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "jacar-navystaff",
+       "locator": "アジ歴 軍令部・連合艦隊 主要職務歴任者表",
+       "quote": "永野修身（昭和１６年４月９日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍令部總長，起訖日有據（day 精度），但來源未明寫其為國家級最高軍職（職位等級）、缺有日期地點之戰役連結且 regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:nagano-combined-fleet",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；防衛研究所 NIDS NEWS 2011年12月号僅載「連合艦隊司令長官」曾任，JACAR 人物詞條（永野修身）僅列關聯語，皆無起訖日，故未列入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:major-battles",
+     "gapKind": "not_found",
+     "note": "來源不足：除日俄戰爭旅順攻略外，未查得永野修身擔任軍令部總長期間之具體作戰敘述，待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 bioId 為 null、recordIds 為空；不連庫，留空待主管補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "永野修身 元帥 海軍大臣 軍令部総長 略歴 jacar OR nids OR kantei OR ndl",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：NIDS NEWS 2011年12月号"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "永野修身 軍令部総長 昭和16年4月9日 昭和19年2月21日 連合艦隊司令長官（限官方站）",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch：JACAR 永野修身詞條、JACAR 歴任者表"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "NIDS NEWS 2011年12月号 永野修身",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/pdf/nids_news/nids_news201112.pdf",
+     "result": "found_A",
+     "note": "curl＋pdftotext"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "JACAR 日米開戦 軍令部 主要職務歴任者",
+     "url": "https://jacar.go.jp/nichibei/reference/navystaff.html",
+     "result": "found_A",
+     "note": "curl（Shift_JIS）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 第32代 廣田弘毅 閣僚名簿",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/032.html",
+     "result": "found_A",
+     "note": "curl"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "JACAR 辞書 永野修身",
+     "url": "https://www.jacar.archives.go.jp/das/term/00000672",
+     "result": "not_relevant",
+     "note": "僅詞條名稱與關聯語，無生平文字"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "NDL 近代日本人の肖像 datas 1–400 掃描 永野修身",
+     "url": "https://www.ndl.go.jp/portrait/datas/",
+     "result": "no_result",
+     "note": "無永野條目"
+    }
+   ]
+  }
+ ]
+}

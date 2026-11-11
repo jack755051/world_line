@@ -1,0 +1,5128 @@
+{
+ "batch": "b3-full-v3-batch001",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；已直接寫 b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6）。將領 S 級 batch001，v3 最低標準。",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫（positionKind／role_kind／T14 R0–R6，兩層互斥）；本批無 roleCandidates（Hindenburg 帝國總統、Dönitz 帝國總統任期屬元首任期，只寫正文，不重建）。；2026-11-11 加強搜尋重跑（round=retry）：僅更新 Hindenburg／Dönitz／Kluge／Rommel／Kleist 五人。",
+ "rawDir": "/tmp/generals-bios/S/batch001/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "lemo-hindenburg": {
+   "title": "LeMO Biografie - Paul von Hindenburg",
+   "authors": [
+    "Kai-Britt Albrecht"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Kai-Britt Albrecht, LeMO-Biografie, Stand: 12. Juni 2015",
+   "url": "https://www.dhm.de/lemo/biografie/paul-von-hindenburg",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "lemo-doenitz": {
+   "title": "LeMO Biografie - Karl Dönitz",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Manfred Wichmann, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/karl-doenitz",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "lemo-kluge": {
+   "title": "LeMO Biografie - Hans Günther von Kluge",
+   "authors": [
+    "Robert Thoms"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Robert Thoms, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/hans-guenther-von-kluge",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "lemo-rommel": {
+   "title": "LeMO Biografie - Erwin Rommel",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Manfred Wichmann, LeMO-Biografie, Stand: 30. Juni 2025",
+   "url": "https://www.dhm.de/lemo/biografie/erwin-rommel",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "lemo-kleist": {
+   "title": "LeMO Biografie - Ewald von Kleist",
+   "authors": [
+    "Robert Thoms"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Robert Thoms, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/ewald-von-kleist",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-hindenburg": {
+   "title": "Deutsche Biographie - Hindenburg, Paul von",
+   "authors": [
+    "Werner Conze"
+   ],
+   "publisher": "Bayerische Staatsbibliothek／Historische Kommission (Deutsche Biographie)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Werner Conze，NDB 9 (1972), S. 178-182",
+   "url": "https://www.deutsche-biographie.de/pnd118551264.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB 全文（Deutsche Biographie 頁面，T1 A）"
+  },
+  "db-doenitz": {
+   "title": "Deutsche Biographie - Dönitz, Karl",
+   "authors": [],
+   "publisher": "Bayerische Staatsbibliothek／Historische Kommission (Deutsche Biographie)",
+   "published_text": "Personenseite mit GND 人名權威檔資料",
+   "url": "https://www.deutsche-biographie.de/pnd118526251.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND／Deutsche Biographie，T1 A）"
+  },
+  "db-kluge": {
+   "title": "Deutsche Biographie - Kluge, Günther von",
+   "authors": [],
+   "publisher": "Bayerische Staatsbibliothek／Historische Kommission (Deutsche Biographie)",
+   "published_text": "人名權威檔頁面含 NDB 全文：NDB 12 (1980), S. 141 f.",
+   "url": "https://www.deutsche-biographie.de/pnd124447775.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB 全文（Deutsche Biographie 頁面，T1 A）"
+  },
+  "db-rommel": {
+   "title": "Deutsche Biographie - Rommel, Erwin",
+   "authors": [
+    "Sönke Neitzel"
+   ],
+   "publisher": "Bayerische Staatsbibliothek／Historische Kommission (Deutsche Biographie)",
+   "published_text": "人名權威檔頁面含 NDB 全文：Sönke Neitzel，NDB 22 (2005), S. 23-24",
+   "url": "https://www.deutsche-biographie.de/pnd118602446.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB 全文（Deutsche Biographie 頁面，T1 A）"
+  },
+  "db-kleist": {
+   "title": "Deutsche Biographie - Kleist, Ewald von",
+   "authors": [],
+   "publisher": "Bayerische Staatsbibliothek／Historische Kommission (Deutsche Biographie)",
+   "published_text": "人名權威檔頁面含 NDB 全文：NDB 12 (1980), S. 12 f.",
+   "url": "https://www.deutsche-biographie.de/pnd118777319.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB 全文（Deutsche Biographie 頁面，T1 A）"
+  },
+  "ndbo-doenitz": {
+   "title": "Deutsche Biographie - Dönitz, Karl（NDB-online）",
+   "authors": [
+    "Jörg Hillmann"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften／Bayerische Staatsbibliothek（NDB-online）",
+   "published_text": "Jörg Hillmann, „Dönitz, Karl“, in: NDB-online, veröffentlicht am 01.07.2022",
+   "url": "https://www.deutsche-biographie.de/dbo031126.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB-online，具名作者，T1 A）"
+  },
+  "avalon-imt-1001": {
+   "title": "Nuremberg Trial Proceedings Vol. 22 - 1 October 1946（IMT Judgment: Doenitz）",
+   "authors": [],
+   "publisher": "Yale Law School, Lillian Goldman Law Library（Avalon Project）",
+   "published_text": "International Military Tribunal judgment of 1 October 1946, 網站重製",
+   "url": "https://avalon.law.yale.edu/imt/10-01-46.asp",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學圖書館重製的國際軍事法庭判決書（官方審判文件之重製，T1 B）"
+  },
+  "harv-doenitz-pos": {
+   "title": "Offices and Positions Held by Defendant Karl Doenitz（PS-2887）",
+   "authors": [],
+   "publisher": "Harvard Law School Library, Nuremberg Trials Project",
+   "published_text": "美國檢方文件 PS-2887，1945-11-08，哈佛大學法學院圖書館紐倫堡審判計畫收錄",
+   "url": "https://nuremberg.law.harvard.edu/documents/1310-list-of-doenitzs-positions?mode=text",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學圖書館數位館藏之審判文件（Dönitz 簽署的職位清單，T1 B）"
+  },
+  "lex-doenitz": {
+   "title": "Karl Dönitz - Tysk storadmiral（lex.dk）",
+   "authors": [
+    "Karl Christian Lammers"
+   ],
+   "publisher": "Lex／Gyldendal（Den Store Danske）",
+   "published_text": "Karl Christian Lammers，lex.dk",
+   "url": "https://lex.dk/Karl_D%C3%B6nitz",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者（歷史學者）的機構百科條目（T1 B）"
+  },
+  "lex-rommel": {
+   "title": "Erwin Rommel - Tysk feltmarskal（lex.dk）",
+   "authors": [
+    "Ole Ventegodt"
+   ],
+   "publisher": "Lex／Gyldendal（Den Store Danske）",
+   "published_text": "Ole Ventegodt，lex.dk",
+   "url": "https://lex.dk/Erwin_Rommel",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目（T1 B）"
+  },
+  "lex-hind": {
+   "title": "Paul von Hindenburg - Tysk politiker（lex.dk）",
+   "authors": [
+    "Johnny N. Laursen"
+   ],
+   "publisher": "Lex／Gyldendal（Den Store Danske）",
+   "published_text": "Johnny N. Laursen，lex.dk",
+   "url": "https://lex.dk/Paul_von_Hindenburg",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目（T1 B）"
+  },
+  "snl-rommel": {
+   "title": "Erwin Rommel（Store norske leksikon）",
+   "authors": [
+    "Petter Haagensen"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "Petter Haagensen，snl.no（fagansvarlig Gunnar D. Hatlehol, NTNU）",
+   "url": "https://snl.no/Erwin_Rommel",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-SA 3.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目（T1 B）"
+  }
+ },
+ "people": [
+  {
+   "key": "paulvonhindenburg",
+   "bioId": "01a19f15-35dd-7e28-83ee-8129f41bbef0",
+   "name": "Paul von Hindenburg",
+   "nameZh": "保罗·冯·兴登堡",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1847-10-02",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1847年10月2日生於波森（今波茲南），為普魯士軍官之子；少年入卡德特學校，1866年參加克尼格雷茨戰役，普法戰爭中參加色當戰役。1870至1911年服役軍中，最後以馬格德堡軍區司令將軍之階退役。",
+      "en": "Born on 2 October 1847 in Posen (today Poznań), son of a Prussian officer; he attended cadet schools, took part in the battle of Königgrätz in 1866 and the battle of Sedan in the Franco-Prussian War. He served in the army from 1870 to 1911 and retired as a commanding general at Magdeburg."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1847 條目",
+       "quote": "2. Oktober: Paul von Beneckendorff und von Hindenburg wird",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1847 條目",
+       "quote": "in Posen (heute: Poznan, Polen) geboren.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1859-1866 條目",
+       "quote": "wechselt Hindenburg zur Kadettenanstalt in Wahlstatt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1866 條目",
+       "quote": "1866 Teilnahme an der Schlacht von Königgrätz.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1870/71 條目",
+       "quote": "nimmt er an der Schlacht von Sedan teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1870-1911 條目",
+       "quote": "1870-1911 Militärlaufbahn.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1870-1911 條目",
+       "quote": "Zuletzt im Rang eines Kommandierenden Generals in Magdeburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1873-01-01",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰爭學院與軍長任內",
+      "en": "War Academy and corps command"
+     },
+     "body": {
+      "zh-Hant": "1873至1876年入戰爭學院並以優異成績結業；1893年任第91步兵團團長（上校），1900年任第28師師長，1903年起任馬格德堡第四軍軍長，1911年以64歲退役。",
+      "en": "He attended the War Academy in 1873–76 and graduated with an excellent certificate; in 1893 he became commander (as a colonel) of Infantry Regiment 91 and in 1900 commander of the 28th Division; from 1903 he was commanding general of the IV Army Corps at Magdeburg, and in 1911, aged 64, he retired."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "1873-76 Kriegsakademie mit vorzüglichem Abgangszeugnis",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "1893 Kommandeur (Oberst) des Infanterie-Regiment 91 in Oldenburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "1900 Kommandeur der 28. Division in Karlsruhe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "1903 Kommandierender General des IV. Armeekorps in Magdeburg.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "Als solcher erhielt er 64jährig 1911 den Abschied.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-08-21",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "第一次世界大戰：東線與最高陸軍指揮部",
+      "en": "World War I: the Eastern Front and the OHL"
+     },
+     "body": {
+      "zh-Hant": "1914年8月21日他重新出任第八集團軍司令，魯登道夫為參謀長；8月26至30日的坦能堡戰役殲滅俄軍第二集團軍，9月6至15日的馬祖里湖區戰役擊敗俄軍第一集團軍。11月1日他取得東線全部德軍的指揮權。1916年8月29日接掌最高陸軍指揮部（OHL）；1919年退休。",
+      "en": "On 21 August 1914 he was reactivated as commander of the Eighth Army with Ludendorff as chief of staff; the battle of Tannenberg (26–30 August) destroyed the Russian Second Army and the battle of the Masurian Lakes (6–15 September) defeated the Russian First Army. On 1 November he received command of all German troops on the Eastern Front. On 29 August 1916 he took over the Supreme Army Command (OHL); he retired in 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "21. August: Drei Wochen nach Beginn des Ersten Weltkriegs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "wird Hindenburg reaktiviert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "übernimmt die 8. Armee als Oberbefehlshaber mit Erich Ludendorff",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "26.-30. August: Schlacht bei Tannenberg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "in der die 2. Russische Armee vernichtend geschlagen wird.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "6.-15. September: Die Schlacht an den Masurischen Seen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "endet mit dem Sieg über die 1. Russische Armee.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "1. November: Mit dem Mythos des \"Siegers von Tannenberg\" erhält er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "Oberkomando über alle deutschen Truppen der Ostfront (OberOst).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1916 條目",
+       "quote": "29. August: Nach der Entlassung Erich von Falkenhayns übernimmt Hindenburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1916 條目",
+       "quote": "die Oberste Heeresleitung (OHL).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1919 條目",
+       "quote": "zieht sich nach Hannover in den Ruhestand zurück.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1925-04-26",
+      "end": "1934-08-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "帝國總統任期（僅記正文）",
+      "en": "Reich presidency (body text only)"
+     },
+     "body": {
+      "zh-Hant": "1925年4月26日他以右翼支持的無黨籍候選人身分當選帝國總統；1932年4月10日連任，擊敗希特勒。1933年1月30日他任命希特勒為帝國總理；1934年8月2日於諾伊德克去世。此任期屬元首任期，本檔不另建候選。",
+      "en": "On 26 April 1925 he was elected Reich President as a non-party candidate pressed on him by the right; on 10 April 1932 he was re-elected, beating Hitler. On 30 January 1933 he appointed Hitler Reich Chancellor; he died at Neudeck on 2 August 1934. This is a head-of-state term and is not built as a candidate here."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1925 條目",
+       "quote": "26. April: Die Rechtsparteien drängen den parteilosen Hindenburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1925 條目",
+       "quote": "bei der Reichspräsidentenwahl im zweiten Wahlgang zu kandidieren.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1932 條目",
+       "quote": "10. April: Bei der Reichspräsidentenwahl wird Hindenburg im zweiten Wahlgang",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1932 條目",
+       "quote": "gewinnt er gegen Adolf Hitler, der 36,8 Prozent der Stimmen erhält.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1933 條目",
+       "quote": "30. Januar: Hindenburg beruft Hitler zum Reichskanzler.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1934 條目",
+       "quote": "2. August: Paul von Hindenburg stirbt in Neudeck",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hindenburg-8th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍第八集團軍",
+      "en": "German Eighth Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 8. Armee",
+      "zh-Hant": "第八集團軍司令",
+      "en": "Commander of the Eighth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-08-21",
+      "end": "1914-10-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "übernimmt die 8. Armee als Oberbefehlshaber mit Erich Ludendorff",
+       "quoteLang": "de",
+       "evidenceNote": "日期見另一筆引文；來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "21. August: Drei Wochen nach Beginn des Ersten Weltkriegs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "wird Hindenburg reaktiviert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（1914）",
+       "quote": "Mitte September 1914 übernahmen H. und Ludendorff als Oberbefehlshaber und",
+       "quoteLang": "de",
+       "evidenceNote": "第八集團軍任期迄點：依下一職務（第九集團軍）起日推得（推論）；來源只寫「九月中」，月精度",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級職位，非國家級最高軍職或方面軍司令（R5）"
+    },
+    {
+     "key": "hindenburg-oberost",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍東線總司令部",
+      "en": "German Eastern Front command (OberOst)"
+     },
+     "title": {
+      "orig": "Oberkomando über alle deutschen Truppen der Ostfront (OberOst)",
+      "zh-Hant": "東線總司令（OberOst）",
+      "en": "Supreme commander, Eastern Front (OberOst)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-11-01",
+      "end": "1916-08-29"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "Oberkomando über alle deutschen Truppen der Ostfront (OberOst).",
+       "quoteLang": "de",
+       "evidenceNote": "月份見另一筆引文；來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1914 條目",
+       "quote": "1. November: Mit dem Mythos des \"Siegers von Tannenberg\" erhält er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（1914）",
+       "quote": "die in Kongreßpolen operierende 9. Armee, am 1.11.1914 den Oberbefehl über",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（1916）",
+       "quote": "H. am 29.8.1916 sein Nachfolger",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取接任 OHL 之日（依下一職務起日推得，推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "東線總司令（軍種／戰區級），政權對應待查證（regimeId NULL）；起迄日已補（NDB）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "hindenburg-ohl",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國最高陸軍指揮部（OHL）",
+      "en": "German Supreme Army Command (OHL)"
+     },
+     "title": {
+      "orig": "Oberste Heeresleitung (OHL)",
+      "zh-Hant": "最高陸軍指揮部（OHL）指揮",
+      "en": "Supreme Army Command (OHL)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-08-29",
+      "end": "1920-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1916 條目",
+       "quote": "29. August: Nach der Entlassung Erich von Falkenhayns übernimmt Hindenburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1916 條目",
+       "quote": "die Oberste Heeresleitung (OHL).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hindenburg",
+       "locator": "1919 條目",
+       "quote": "zieht sich nach Hannover in den Ruhestand zurück.",
+       "quoteLang": "de",
+       "evidenceNote": "終點取退休年份（年精度）；來源未寫具體離任日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "來源未明寫 OHL 的職位等級（是否最高軍職），且德意志帝國政權對應待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "hindenburg-9th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍第九集團軍",
+      "en": "German Ninth Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 9. Armee",
+      "zh-Hant": "第九集團軍司令",
+      "en": "Commander of the Ninth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-09-01",
+      "end": "1914-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（1914）",
+       "quote": "Mitte September 1914 übernahmen H. und Ludendorff als Oberbefehlshaber und",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（1914）",
+       "quote": "die in Kongreßpolen operierende 9. Armee, am 1.11.1914 den Oberbefehl über",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取接任東線總司令之日（1914-11-01，來源明寫）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級職位，非國家級最高軍職（R5）"
+    },
+    {
+     "key": "hindenburg-iv-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍第四軍（馬格德堡）",
+      "en": "IV Army Corps (Magdeburg), Imperial German Army"
+     },
+     "title": {
+      "orig": "Kommandierender General des IV. Armeekorps",
+      "zh-Hant": "第四軍軍長",
+      "en": "Commanding General of the IV Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1903-01-01",
+      "end": "1912-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "1903 Kommandierender General des IV. Armeekorps in Magdeburg.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-hindenburg",
+       "locator": "NDB 正文（軍旅）",
+       "quote": "Als solcher erhielt er 64jährig 1911 den Abschied.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級（軍團）司令，非國家級最高軍職（R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Hindenburg Paul von 1847",
+     "url": "https://lobid.org/gnd/search?q=Hindenburg+Paul+von+1847",
+     "result": "found_A",
+     "note": "GND 118551264，確認姓名／生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（GND）",
+     "url": "https://www.deutsche-biographie.de/pnd118551264.html",
+     "result": "found_A",
+     "note": "僅人名權威檔資料；NDB 全文未於抓取頁出現，未引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": "https://www.dhm.de/lemo/biografie/paul-von-hindenburg",
+     "result": "found_B",
+     "note": "逐年大事年表，具名作者"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 人物條目",
+     "url": null,
+     "result": "blocked_403",
+     "note": "curl 回 403，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Hindenburg Paul von Reichspräsident Generalfeldmarschall",
+     "url": "https://lobid.org/gnd/search?q=Hindenburg+Paul+von+Reichspr%C3%A4sident+Generalfeldmarschall&format=json",
+     "result": "found_A",
+     "note": "200；18461 字；可作 A 級來源／權威檔；raw/r2-hind-lobid.txt",
+     "round": "retry"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "GND 118551264 連結資料（DNB）",
+     "url": "https://d-nb.info/gnd/118551264/about/lds",
+     "result": "found_A",
+     "note": "200；8033 字；可作 A 級來源／權威檔；raw/r2-hind-dnb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "Kalliope GND 118551264",
+     "url": "https://kalliope-verbund.info/gnd/118551264",
+     "result": "found_A",
+     "note": "200；3035 字；可作 A 級來源／權威檔；raw/r2-hind-kal.txt",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Hindenburg,+Paul+von",
+     "url": "https://id.loc.gov/search/?q=Hindenburg%2C+Paul+von&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "found_A",
+     "note": "200；2388 字；可作 A 級來源／權威檔；raw/r2-hind-loc.txt",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "Hindenburg Paul von",
+     "url": "https://data.bnf.fr/en/search?term=Hindenburg+Paul+von",
+     "result": "found_A",
+     "note": "200；393 字；可作 A 級來源／權威檔；raw/r2-hind-bnf.txt",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie GND 118551264 重抓確認 NDB 全文",
+     "url": "https://www.deutsche-biographie.de/gnd118551264.html",
+     "result": "found_A",
+     "note": "200；29699 字；可作 A 級來源／權威檔；raw/r2-hind-ndbweb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Paul_von_Hindenburg",
+     "url": "https://lex.dk/Paul_von_Hindenburg",
+     "result": "found_B",
+     "note": "200；7915 字；具名作者機構百科（B）；raw/r2-hind-lex.txt",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "snl.no Paul_von_Hindenburg",
+     "url": "https://snl.no/Paul_von_Hindenburg",
+     "result": "found_B",
+     "note": "200；4860 字；具名作者機構百科（B）；raw/r2-hind-snl.txt",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 搜尋 hindenburg",
+     "url": "https://www.treccani.it/enciclopedia/ricerca/hindenburg/",
+     "result": "not_relevant",
+     "note": "200；252 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-hind-tre.txt",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "USHMM Holocaust Encyclopedia paul-von-hindenburg",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/paul-von-hindenburg",
+     "result": "unrated",
+     "note": "200；12112 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-hind-ushmm.txt",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Paul-von-Hindenburg",
+     "url": "https://www.britannica.com/biography/Paul-von-Hindenburg",
+     "result": "blocked_403",
+     "note": "403；擋機器人，不繞過；raw/r2-hind-brit.txt",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online hindenburg_paul_von",
+     "url": "https://encyclopedia.1914-1918-online.net/article/hindenburg_paul_von",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-hind-e1418.txt",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "Hindenburg Ludendorff Eighth Army Tannenberg commander",
+     "url": "https://api.crossref.org/works?query=Hindenburg+Ludendorff+Eighth+Army+Tannenberg+commander&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2450 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-hind-cr-en.txt",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Hindenburg Oberbefehlshaber Ost 1914 1916 Oberste Heeresleitung",
+     "url": "https://api.crossref.org/works?query=Hindenburg+Oberbefehlshaber+Ost+1914+1916+Oberste+Heeresleitung&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "blocked_403",
+     "note": "429；擋機器人，不繞過；raw/r2-hind-cr-de.txt",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Hindenburg Ludendorff Eighth Army Tannenberg commander (OpenAlex)",
+     "url": "https://api.openalex.org/works?search=Hindenburg+Ludendorff+Eighth+Army+Tannenberg+commander&per-page=8&select=title,publication_year,doi",
+     "result": "no_result",
+     "note": "503；233 字；無條目或查無結果；raw/r2-hind-oa.txt",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "academic",
+     "query": "Hindenburg Oberbefehlshaber Ost 1914 1916 Oberste Heeresleitung（lobid-resources 館藏）",
+     "url": "https://lobid.org/resources/search?q=Hindenburg+Oberbefehlshaber+Ost+1914+1916+Oberste+Heeresleitung&size=8&format=json",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-hind-lres.txt",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Bundesarchiv 搜尋 Hindenburg",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=Hindenburg",
+     "result": "not_relevant",
+     "note": "200；14068 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-hind-ba.txt",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Archivportal-D Hindenburg Paul von Reichspräsident Generalfeldmarschall",
+     "url": "https://www.archivportal-d.de/objekte?query=Hindenburg+Paul+von+Reichspr%C3%A4sident+Generalfeldmarschall",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-hind-apd.txt",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek 人物 GND 118551264",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/118551264",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-hind-ddb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Hindenburg",
+     "url": "https://dbe.rah.es/biografias/busqueda?q=Hindenburg",
+     "result": "no_result",
+     "note": "200；55 字；無條目或查無結果；raw/r2-hind-dbe.txt",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "karldonitz",
+   "bioId": "6ccf3748-69e1-4fb4-b10a-1e86af25da96",
+   "name": "Karl Dönitz",
+   "nameZh": "卡尔·邓尼茨",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-09-16",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與一戰海軍服役",
+      "en": "Origins and naval service in World War I"
+     },
+     "body": {
+      "zh-Hant": "1891年9月16日生於柏林近郊的格呂瑙；1910年入海軍。一戰中「布雷斯勞」號在土耳其指揮下於黑海作戰；1916年升為上尉後調入潛艇部隊，1918年10月以德國潛艇艇長身分被英軍俘虜。",
+      "en": "Born on 16 September 1891 at Grünau near Berlin; he joined the navy in 1910. In the First World War the cruiser Breslau fought in the Black Sea under Turkish command; promoted in 1916, he was assigned to the U-boat arm, and in October 1918, as commander of a German U-boat, he was taken prisoner by the British."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1891 條目",
+       "quote": "16. September: Karl Dönitz wird in Grünau (bei Berlin)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1910 條目",
+       "quote": "Eintritt in die Marine, wo er zwei Jahre als Seekadett dient.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1914 條目",
+       "quote": "steht die \"Breslau\" unter türkischem Befehl und kämpft im Schwarzen Meer.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1916 條目",
+       "quote": "wird Dönitz zur U-Boot-Flotte berufen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1918 條目",
+       "quote": "Oktober: Als Kommandant eines deutschen U-Bootes",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1918 條目",
+       "quote": "gerät er in britische Kriegsgefangenschaft.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1935-01-01",
+      "end": "1943-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "潛艇部隊與大西洋海戰",
+      "en": "The U-boat arm and the Battle of the Atlantic"
+     },
+     "body": {
+      "zh-Hant": "1935年他以希特勒的擁護者身分負責重建潛艇部隊，1936年任「潛艇領導人」，專注夜間水面攻擊與潛艇群的「狼群戰術」。1939年升少將並任潛艇部隊司令（BdU），統籌組織與作戰；1939至1945年的北大西洋反護航船團潛艇戰（大西洋海戰），使約2800艘船被擊沉。1942年升上將。",
+      "en": "In 1935 he took charge of rebuilding the U-boat arm, and in 1936, as \"Führer der U-Boote\", he focused training on night surface attacks and group attacks (the \"wolfpack\" tactic). In 1939 he became rear admiral and Commander of U-boats (BdU), running both organisation and operations; the U-boat war on Allied convoys in the North Atlantic (Battle of the Atlantic), 1939–1945, sank about 2,800 ships. He was promoted admiral in 1942."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1935 條目",
+       "quote": "den Neuaufbau der U-Boot-Waffe.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1936 條目",
+       "quote": "Als neuernannter \"Führer der U-Boote\" konzentriert er die Ausbildung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1936 條目",
+       "quote": "die sogenannte Rudeltaktik.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1939 條目",
+       "quote": "Ernennung zum Konteradmiral.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1939 條目",
+       "quote": "Berufung zum \"Befehlshaber der U-Boote\" (BdU)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1939-1945 條目",
+       "quote": "1939-1945 Im U-Boot-Krieg gegen die alliierten Geleitzüge im Nordatlantik",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1939-1945 條目",
+       "quote": "werden 2.800 Schiffe mit insgesamt 15 Millionen Bruttoregistertonnen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1942 條目",
+       "quote": "1942 Beförderung zum Admiral.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1980-12-25"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "海軍總司令、末任元首與戰後",
+      "en": "Navy commander-in-chief, last head of state and afterwards"
+     },
+     "body": {
+      "zh-Hant": "1943年他兼任海軍總司令並晉升海軍元帥，接替被希特勒免職的雷德爾。1945年5月1日他依希特勒遺囑成為帝國總統，並取得政府權力與國防軍統帥權，5月8日宣布國防軍無條件投降，5月23日在弗倫斯堡被英軍免職並逮捕。1946年10月紐倫堡審判判十年徒刑；1980年12月24日卒於奧穆勒。此元首任期不另建候選。",
+      "en": "In 1943 he additionally became commander-in-chief of the navy with the rank of Grand Admiral, replacing Raeder, whom Hitler dismissed. On 1 May 1945, named Hitler's successor as Reich President in his testament, he took over governmental power and supreme command of the Wehrmacht; on 8 May he announced the Wehrmacht's unconditional surrender, and on 23 May he was removed from office and arrested by the British at Flensburg. In October 1946 he was sentenced to ten years at Nuremberg; he died at Aumühle on 24 December 1980. This head-of-state term is not built as a candidate here."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1943 條目",
+       "quote": "Oberbefehlshaber der Kriegsmarine und erhält den Rang eines Großadmirals.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1943 條目",
+       "quote": "Er löst Großadmiral Erich Raeder ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1945 條目",
+       "quote": "1. Mai: Von Hitler in dessen Testament zum Nachfolger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1945 條目",
+       "quote": "als Reichspräsident ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1945 條目",
+       "quote": "übernimmt er die Regierungsgewalt und den Oberbefehl der Wehrmacht.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1945 條目",
+       "quote": "8. Mai: Dönitz erklärt über den Rundfunk die bedingungslose Kapitulation",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1945 條目",
+       "quote": "wird er in Flensburg vom britischen Oberkommando abgesetzt und verhaftet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1946 條目",
+       "quote": "Oktober: Im Nürnberger Hauptkriegsverbrecherprozess wird er zu zehn Jahren Haft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1980 條目",
+       "quote": "24. Dezember: Karl Dönitz stirbt in Aumühle (Schleswig-Holstein).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "doenitz-fdu",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國海軍潛艇部隊",
+      "en": "German Navy U-boat arm"
+     },
+     "title": {
+      "orig": "Führer der Unterseeboote (FdU)",
+      "zh-Hant": "潛艇部隊領導人（FdU）",
+      "en": "Leader of U-boats (FdU)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-10-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndbo-doenitz",
+       "locator": "NDB-online 正文",
+       "quote": "wurde Dönitz zum 1. Januar 1936 Führer der Unterseeboote (FdU).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndbo-doenitz",
+       "locator": "NDB-online 正文",
+       "quote": "Seit Oktober 1939 amtierte Dönitz als Befehlshaber der Unterseeboote (BdU),",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取接任 BdU 之月（依下一職務起日推得，推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "avalon-imt-1001",
+       "locator": "Judgment: Doenitz",
+       "quote": "became in 1936 commander of the submarine arm",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍種內兵種司令，來源未明寫為國家級最高軍職（R5）"
+    },
+    {
+     "key": "doenitz-bdu",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國海軍潛艇部隊",
+      "en": "German Navy U-boat arm"
+     },
+     "title": {
+      "orig": "Befehlshaber der U-Boote (BdU)",
+      "zh-Hant": "潛艇部隊司令（BdU）",
+      "en": "Commander of U-boats (BdU)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-10-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndbo-doenitz",
+       "locator": "NDB-online 正文",
+       "quote": "Seit Oktober 1939 amtierte Dönitz als Befehlshaber der Unterseeboote (BdU),",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1939 條目",
+       "quote": "\"Befehlshaber der U-Boote\" (BdU)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1939 條目",
+       "quote": "sowohl die Organisation als auch die Operationsleitung der U-Boot-Waffe.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndbo-doenitz",
+       "locator": "NDB-online 正文",
+       "quote": "Sein Handeln war bis 1943 darauf ausgerichtet, die Bedeutung der U-Boot-Waffe",
+       "quoteLang": "de",
+       "evidenceNote": "迄點取「1943」年（NDB-online 職務表寫 1939–1943，年精度）；LeMO 寫「zusätzlich」兼任海軍總司令，未寫何日卸任 BdU",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍種內兵種司令，來源未明寫為國家級最高軍職（R5）；起迄已補（NDB-online：1939-10 至 1943 年）"
+    },
+    {
+     "key": "doenitz-oberbefehlshaber-kriegsmarine",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國海軍（Kriegsmarine）",
+      "en": "German Navy (Kriegsmarine)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Kriegsmarine",
+      "zh-Hant": "海軍總司令",
+      "en": "Commander-in-Chief of the Navy"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-30",
+      "end": "1945-05-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndbo-doenitz",
+       "locator": "NDB-online 正文",
+       "quote": "ernannte Adolf Hitler (1889–1945) Dönitz am 30. Januar 1943 zum Oberbefehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "avalon-imt-1001",
+       "locator": "Judgment: Doenitz",
+       "quote": "on 30 January 1943 Commander-in-Chief of the German Navy.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1943 條目",
+       "quote": "1943 Dönitz wird als überzeugter Anhänger Hitlers zusätzlich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1943 條目",
+       "quote": "Oberbefehlshaber der Kriegsmarine und erhält den Rang eines Großadmirals.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-doenitz",
+       "locator": "1945 條目",
+       "quote": "wird er in Flensburg vom britischen Oberkommando abgesetzt und verhaftet.",
+       "quoteLang": "de",
+       "evidenceNote": "終點取英軍免職逮捕日；來源寫『連同帝國政府與國防軍領導層』，未單獨寫海軍總司令卸任日（依文意推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種總司令（職稱明寫）但德國政權對應待查證（regimeId NULL）；起日已補日（NDB-online、IMT 判決）；迄日取英軍免職逮捕日（推論）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Dönitz Karl 1891",
+     "url": "https://lobid.org/gnd/search?q=Dönitz+Karl+1891",
+     "result": "found_A",
+     "note": "GND 118526251，確認姓名／生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（GND）",
+     "url": "https://www.deutsche-biographie.de/pnd118526251.html",
+     "result": "found_A",
+     "note": "僅人名權威檔資料；NDB 全文未於抓取頁出現，未引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": "https://www.dhm.de/lemo/biografie/karl-doenitz",
+     "result": "found_B",
+     "note": "逐年大事年表，具名作者"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 人物條目",
+     "url": null,
+     "result": "blocked_403",
+     "note": "curl 回 403，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Dönitz Karl Großadmiral Reichspräsident",
+     "url": "https://lobid.org/gnd/search?q=D%C3%B6nitz+Karl+Gro%C3%9Fadmiral+Reichspr%C3%A4sident&format=json",
+     "result": "found_A",
+     "note": "200；9861 字；可作 A 級來源／權威檔；raw/r2-doenitz-lobid.txt",
+     "round": "retry"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "GND 118526251 連結資料（DNB）",
+     "url": "https://d-nb.info/gnd/118526251/about/lds",
+     "result": "not_relevant",
+     "note": "200；2915 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-doenitz-dnb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "Kalliope GND 118526251",
+     "url": "https://kalliope-verbund.info/gnd/118526251",
+     "result": "found_A",
+     "note": "200；1996 字；可作 A 級來源／權威檔；raw/r2-doenitz-kal.txt",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Doenitz,+Karl",
+     "url": "https://id.loc.gov/search/?q=Doenitz%2C+Karl&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "found_A",
+     "note": "200；1506 字；可作 A 級來源／權威檔；raw/r2-doenitz-loc.txt",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "Donitz Karl",
+     "url": "https://data.bnf.fr/en/search?term=Donitz+Karl",
+     "result": "not_relevant",
+     "note": "200；385 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-doenitz-bnf.txt",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie GND 118526251 重抓確認 NDB 全文",
+     "url": "https://www.deutsche-biographie.de/gnd118526251.html",
+     "result": "found_A",
+     "note": "200；1750 字；可作 A 級來源／權威檔；raw/r2-doenitz-ndbweb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Karl_D%C3%B6nitz",
+     "url": "https://lex.dk/Karl_D%C3%B6nitz",
+     "result": "found_B",
+     "note": "200；5314 字；具名作者機構百科（B）；raw/r2-doenitz-lex.txt",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "snl.no Karl_D%C3%B6nitz",
+     "url": "https://snl.no/Karl_D%C3%B6nitz",
+     "result": "found_B",
+     "note": "200；3441 字；具名作者機構百科（B）；raw/r2-doenitz-snl.txt",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 搜尋 donitz",
+     "url": "https://www.treccani.it/enciclopedia/ricerca/donitz/",
+     "result": "not_relevant",
+     "note": "200；244 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-doenitz-tre.txt",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "USHMM Holocaust Encyclopedia karl-doenitz",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/karl-doenitz",
+     "result": "unrated",
+     "note": "200；6533 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-doenitz-ushmm.txt",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Karl-Donitz",
+     "url": "https://www.britannica.com/biography/Karl-Donitz",
+     "result": "blocked_403",
+     "note": "403；擋機器人，不繞過；raw/r2-doenitz-brit.txt",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "Doenitz U-boat commander Navy Commander-in-Chief 1943 biography",
+     "url": "https://api.crossref.org/works?query=Doenitz+U-boat+commander+Navy+Commander-in-Chief+1943+biography&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2412 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-doenitz-cr-en.txt",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "Dönitz Befehlshaber der Unterseeboote Oberbefehlshaber Kriegsmarine 1943",
+     "url": "https://api.crossref.org/works?query=D%C3%B6nitz+Befehlshaber+der+Unterseeboote+Oberbefehlshaber+Kriegsmarine+1943&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；3650 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-doenitz-cr-de.txt",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Doenitz U-boat commander Navy Commander-in-Chief 1943 biography (OpenAlex)",
+     "url": "https://api.openalex.org/works?search=Doenitz+U-boat+commander+Navy+Commander-in-Chief+1943+biography&per-page=8&select=title,publication_year,doi",
+     "result": "no_result",
+     "note": "503；233 字；無條目或查無結果；raw/r2-doenitz-oa.txt",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Dönitz Befehlshaber der Unterseeboote Oberbefehlshaber Kriegsmarine 1943（lobid-resources 館藏）",
+     "url": "https://lobid.org/resources/search?q=D%C3%B6nitz+Befehlshaber+der+Unterseeboote+Oberbefehlshaber+Kriegsmarine+1943&size=8&format=json",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-doenitz-lres.txt",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Bundesarchiv 搜尋 Dönitz",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=D%C3%B6nitz",
+     "result": "not_relevant",
+     "note": "200；14068 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-doenitz-ba.txt",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Archivportal-D Dönitz Karl Großadmiral Reichspräsident",
+     "url": "https://www.archivportal-d.de/objekte?query=D%C3%B6nitz+Karl+Gro%C3%9Fadmiral+Reichspr%C3%A4sident",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-doenitz-apd.txt",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek 人物 GND 118526251",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/118526251",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-doenitz-ddb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Dönitz",
+     "url": "https://dbe.rah.es/biografias/busqueda?q=D%C3%B6nitz",
+     "result": "no_result",
+     "note": "200；55 字；無條目或查無結果；raw/r2-doenitz-dbe.txt",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "national_dictionary",
+     "query": "Dönitz Karl NDB-online（Deutsche Biographie 全文，WebSearch 線索後以 curl 抓取）",
+     "url": "https://www.deutsche-biographie.de/dbo031126.html",
+     "result": "found_A",
+     "note": "NDB-online，Jörg Hillmann（2022-07-01）；含職務表與 FdU／BdU／海軍總司令日期；原文 raw/ndbo-doenitz.txt",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "official",
+     "query": "Doenitz offices and positions held（Harvard Nuremberg Trials Project PS-2887）",
+     "url": "https://nuremberg.law.harvard.edu/documents/1310-list-of-doenitzs-positions?mode=text",
+     "result": "found_B",
+     "note": "哈佛法學院圖書館紐倫堡審判計畫；僅年份職務表（1936 FdU、1939 BdU）；原文 raw/harv-doenitz-pos.txt",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "official",
+     "query": "Doenitz judgment（IMT 判決書，1946-10-01，Avalon Project）",
+     "url": "https://avalon.law.yale.edu/imt/10-01-46.asp",
+     "result": "found_B",
+     "note": "判決書 Doenitz 段寫 1936 任潛艇部隊指揮官、1943-01-30 任海軍總司令、1945-05-01 任國家元首；原文 raw/avalon-imt-1001.txt",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "official",
+     "query": "Doenitz judgment（IMT，1946-09-30 卷）",
+     "url": "https://avalon.law.yale.edu/imt/09-30-46.asp",
+     "result": "not_relevant",
+     "note": "該日卷未含 Dönitz 判決段；原文 raw/avalon-imt-0930.txt",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "named_encyclopedia",
+     "query": "Karl Dönitz Treccani Dizionario di Storia（無具名作者）",
+     "url": "https://www.treccani.it/enciclopedia/karl-donitz_%28Dizionario-di-Storia%29/",
+     "result": "unrated",
+     "note": "僅 3 句摘要，無署名；未評等不引用；原文 raw/tre-doenitz2.txt",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "other",
+     "query": "Dönitz Befehlshaber der U-Boote bis 30. Januar 1943 Nachfolger Friedeburg（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "搜尋結果指向 Deutsche Biographie NDB-online（dbo031126）與哈佛紐倫堡計畫文件；其餘為維基類鏡像，不用、不記網址",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "gunthervonkluge",
+   "bioId": null,
+   "name": "Günther von Kluge",
+   "nameZh": "君特·馮·克魯格",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-10-30",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1882年10月30日生於波森，為軍官之子。1901年自普魯士卡德特軍團畢業後任野戰砲兵團少尉；第一次世界大戰期間以上尉階級擔任參謀軍官，1919年轉入國防軍。",
+      "en": "Born on 30 October 1882 in Posen, son of an officer. After schooling in the Prussian cadet corps he became a lieutenant in a field artillery regiment in 1901; in the First World War he served as a general staff officer with the rank of captain, and in 1919 he was taken into the Reichswehr."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1882 條目",
+       "quote": "30. Oktober: Hans Günther von Kluge wird in Posen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1882 條目",
+       "quote": "als Sohn des Offiziers Max Kluge geboren.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1901 條目",
+       "quote": "1901 Kluge wird nach der Schulausbildung im preußischen Kadettenkorps Leutnant",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1914-1918 條目",
+       "quote": "Teilnahme am Ersten Weltkrieg als Generalstabsoffizier im Dienstgrad Hauptmann.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1919 條目",
+       "quote": "1919 Übernahme in die Reichswehr.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1930-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰間期晉升與地區指揮",
+      "en": "Interwar promotions and regional commands"
+     },
+     "body": {
+      "zh-Hant": "1930年他晉升上校並出任什未林第二砲兵團團長；1933年升少將，同年任通信兵總監。1934年10月1日任第六師師長兼第六軍區（明斯特）司令，1938年升砲兵上將後任第六集團軍群（漢諾威）首長。",
+      "en": "In 1930 he was promoted colonel and became commander of Artillery Regiment 2 at Schwerin; in 1933 he became major general and, in the same year, Inspector of Signals Troops. On 1 October 1934 he became commander of the 6th Division and of Wehrkreis VI at Münster, and in 1938, by then General of Artillery, chief of Army Group 6 at Hanover."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1930 條目",
+       "quote": "1930 Beförderung zum Oberst.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1930 條目",
+       "quote": "Kluge wird Kommandeur des Artillerieregiments 2 in Schwerin.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1933 條目",
+       "quote": "Beförderung zum Generalmajor.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1933 條目",
+       "quote": "Ernennung zum Inspekteur der Nachrichtentruppen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1934 條目",
+       "quote": "1. Oktober: Kluge wird Kommandeur der 6. Division",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1934 條目",
+       "quote": "und Befehlshaber des Wehrkreis VI in Münster/Westfalen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1938 條目",
+       "quote": "wird Kluge Chef der Heeresgruppe 6 (Hannover).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-12-16"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭、西線與蘇聯戰役",
+      "en": "The Polish, Western and Soviet campaigns"
+     },
+     "body": {
+      "zh-Hant": "1939年波蘭戰役中他率第四集團軍從波美拉尼亞出發征服西普魯士，9月30日獲騎士鐵十字勳章並升上將；1940年5月西線戰役中第四集團軍迅速突破至大西洋。同年7月他與其他十一名將領同獲晉升元帥。1941年6月22日「巴巴羅薩」行動開始，第四集團軍隸屬中央集團軍群，參加比亞韋斯托克、斯摩棱斯克與維亞濟馬的包圍戰。",
+      "en": "In the 1939 attack on Poland he led the Fourth Army from Pomerania to conquer West Prussia, and on 30 September he received the Knight's Cross and was promoted to colonel-general; in the May 1940 Western campaign the Fourth Army broke through quickly to the Atlantic. In July Hitler promoted him field marshal together with eleven other generals. When Operation Barbarossa began on 22 June 1941, the Fourth Army advanced as part of Army Group Centre and took part in the encirclement battles of Białystok, Smolensk and Vyazma."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1939 條目",
+       "quote": "Er führt beim Überfall auf Polen die 4. Armee der Heeresgruppe Nord",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1939 條目",
+       "quote": "die von Pommern aus Westpreußen erobert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1939 條目",
+       "quote": "30. September: Auszeichnung mit dem Ritterkreuz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1939 條目",
+       "quote": "und Beförderung zum Generaloberst.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1940 條目",
+       "quote": "Mai: Im Westfeldzug gelingt Kluges 4. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1940 條目",
+       "quote": "der schnellen Durchbruch zum Atlantik",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1940 條目",
+       "quote": "Juli: Adolf Hitler ernennt Kluge gemeinsam mit elf anderen Generalen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1940 條目",
+       "quote": "zum Generalfeldmarschall.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1941 條目",
+       "quote": "22. Juni: Mit Beginn des Unternehmens \"Barbarossa\" rückt die 4. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1941 條目",
+       "quote": "nimmt an den Kesselschlachten von Bialystok, Smolensk und Wjasma teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-12-16",
+      "end": "1944-08-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "中央集團軍群、西線總司令與死亡",
+      "en": "Army Group Centre, Commander-in-Chief West and death"
+     },
+     "body": {
+      "zh-Hant": "1941年12月16日德軍攻勢停滯，希特勒以克魯格取代博克任中央集團軍群總司令；1942年春他在蘇軍持續進攻下將集團軍群撤至維亞濟馬—勒熱夫突出部。1943年10月12日他遭遇嚴重車禍，繼任者為恩斯特·布施。1944年7月他痊癒後任西線總司令，8月16日被疑為知情者而被召回並由莫德爾接替，8月19日服毒自盡。",
+      "en": "On 16 December 1941, as the advance stalled, Hitler replaced Fedor von Bock with Kluge as commander of Army Group Centre; in spring 1942, under continuing Soviet attacks, he withdrew the army group to the Vyazma–Rzhev salient. On 12 October 1943 he suffered a serious car accident; his successor was Ernst Busch. In July 1944, recovered, he became Commander-in-Chief West; on 16 August he was recalled as a suspected accessory and replaced by Walter Model, and on 19 August he killed himself with a poison capsule."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1941 條目",
+       "quote": "16. Dezember: Nachdem der deutsche Vormarsch ins Stocken gerät",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1941 條目",
+       "quote": "durch Kluge.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1942 條目",
+       "quote": "Frühjahr: Kluge muss die Heeresgruppe Mitte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1943 條目",
+       "quote": "12. Oktober: Er erleidet einen schweren Autounfall",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1943 條目",
+       "quote": "Sein Nachfolger wird Ernst Busch (1885-1945).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "Juli: Wieder genesen, wird Kluge Oberbefehlshaber West.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "16. August: Obwohl nicht an den Vorbereitungen für das Attentat auf Hitler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "von seinem Posten abberufen und durch Walter Model ersetzt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "19. August: Auf der Fahrt ins Führerhauptquartier nimmt sich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kluge-wehrkreis-vi",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第六師／第六軍區",
+      "en": "German Army 6th Division / Wehrkreis VI"
+     },
+     "title": {
+      "orig": "Kommandeur der 6. Division und Befehlshaber des Wehrkreis VI",
+      "zh-Hant": "第六師師長兼第六軍區司令",
+      "en": "Commander of the 6th Division and Wehrkreis VI"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1934-04-01",
+      "end": "1938-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kluge",
+       "locator": "NDB 正文（1934）",
+       "quote": "Am 1.4.1934 übernahm der die 6. Division in Münster",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1934 條目",
+       "quote": "1. Oktober: Kluge wird Kommandeur der 6. Division",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1934 條目",
+       "quote": "und Befehlshaber des Wehrkreis VI in Münster/Westfalen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kluge",
+       "locator": "NDB 正文（1938）",
+       "quote": "stand K. seit 1.12.1938 an der Spitze der Heeresgruppe 6 (Hannover),",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取接任第六集團軍群首長之日（依下一職務起日推得，推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師／軍區級職位，非國家級最高軍職或方面軍（R5）"
+    },
+    {
+     "key": "kluge-4th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志國防軍陸軍第四集團軍",
+      "en": "German Fourth Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 4. Armee",
+      "zh-Hant": "第四集團軍司令",
+      "en": "Commander of the Fourth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-01",
+      "end": "1941-12-18"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kluge",
+       "locator": "NDB 正文（1939）",
+       "quote": "deren Stab zu Kriegsbeginn denjenigen der 4. Armee bildete.",
+       "quoteLang": "de",
+       "evidenceNote": "起日：來源寫「戰爭開始時」，取波蘭戰役開始月（1939-09），月精度（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1939 條目",
+       "quote": "Er führt beim Überfall auf Polen die 4. Armee der Heeresgruppe Nord,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kluge",
+       "locator": "NDB 正文（1941）",
+       "quote": "in den Feldzügen gegen Polen, Frankreich und die Sowjetunion bis zum 18.12.1941",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級職位，非國家級最高軍職（R5）；起日取開戰月（推論）"
+    },
+    {
+     "key": "kluge-heeresgruppe-mitte",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍中央集團軍群",
+      "en": "German Army Group Centre"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe Mitte",
+      "zh-Hant": "中央集團軍群總司令",
+      "en": "Commander-in-Chief of Army Group Centre"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-16",
+      "end": "1943-10-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1941 條目",
+       "quote": "16. Dezember: Nachdem der deutsche Vormarsch ins Stocken gerät",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1941 條目",
+       "quote": "durch Kluge.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1943 條目",
+       "quote": "12. Oktober: Er erleidet einen schweren Autounfall",
+       "quoteLang": "de",
+       "evidenceNote": "終點取事故日；同條目寫『後任為恩斯特·布施』但未寫交接日（依後任推得，推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍級司令；政權對應待查證（regimeId NULL），且戰役連結（日期＋地點）限於出任前的1941-06-22巴巴羅薩，未證明本任內戰役",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "kluge-oberbefehlshaber-west",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國西線總司令部",
+      "en": "German High Command West (OB West)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber West",
+      "zh-Hant": "西線總司令",
+      "en": "Commander-in-Chief West"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-07-01",
+      "end": "1944-08-16"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "Juli: Wieder genesen, wird Kluge Oberbefehlshaber West.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "16. August: Obwohl nicht an den Vorbereitungen für das Attentat auf Hitler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kluge",
+       "locator": "1944 條目",
+       "quote": "von seinem Posten abberufen und durch Walter Model ersetzt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令（西線）；政權對應待查證（regimeId NULL），且來源只寫『法國的盟軍推進』，無具名戰役＋日期＋地點連結",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:kluge-wehrkreis-vi",
+     "gapKind": "conflict",
+     "note": "起日兩份已抓來源不一致：NDB（Deutsche Biographie 頁面）寫「Am 1.4.1934 übernahm der die 6. Division in Münster」，DHM LeMO 同條目寫「1. Oktober: Kluge wird Kommandeur der 6. Division und Befehlshaber des Wehrkreis VI」（年份 1934）。本筆取 NDB（A）1934-04-01，LeMO 1934-10-01 留待裁決。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:kluge-heeresgruppe-mitte",
+     "gapKind": "conflict",
+     "note": "起日兩份已抓來源不一致：DHM LeMO 寫「16. Dezember: … ersetzt Hitler den bisherigen Oberbefehlshaber der Heeresgruppe Mitte, Fedor von Bock, durch Kluge」（1941），NDB 寫第四集團軍由 Kluge 指揮「bis zum 18.12.1941」後接任。本筆維持 LeMO 的 1941-12-16，NDB 18.12 留待裁決。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Kluge Günther von 1882",
+     "url": "https://lobid.org/gnd/search?q=Kluge+Günther+von+1882",
+     "result": "found_A",
+     "note": "GND 124447775，確認姓名／生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（GND）",
+     "url": "https://www.deutsche-biographie.de/pnd124447775.html",
+     "result": "found_A",
+     "note": "僅人名權威檔資料；NDB 全文未於抓取頁出現，未引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": "https://www.dhm.de/lemo/biografie/hans-guenther-von-kluge",
+     "result": "found_B",
+     "note": "逐年大事年表，具名作者"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 以『guenther-von-kluge』猜網址",
+     "url": "https://www.dhm.de/lemo/biografie/guenther-von-kluge",
+     "result": "no_result",
+     "note": "404；改用 LeMO 實際名稱 hans-guenther-von-kluge（由 Deutsche Biographie 頁連結得知）"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 人物條目",
+     "url": null,
+     "result": "blocked_403",
+     "note": "curl 回 403，未繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "Kluge Günther von Generalfeldmarschall Heeresgruppe Mitte",
+     "url": "https://lobid.org/gnd/search?q=Kluge+G%C3%BCnther+von+Generalfeldmarschall+Heeresgruppe+Mitte&format=json",
+     "result": "found_A",
+     "note": "200；389 字；可作 A 級來源／權威檔；raw/r2-kluge-lobid.txt",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "GND 124447775 連結資料（DNB）",
+     "url": "https://d-nb.info/gnd/124447775/about/lds",
+     "result": "found_A",
+     "note": "200；2297 字；可作 A 級來源／權威檔；raw/r2-kluge-dnb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Kalliope GND 124447775",
+     "url": "https://kalliope-verbund.info/gnd/124447775",
+     "result": "found_A",
+     "note": "200；1775 字；可作 A 級來源／權威檔；raw/r2-kluge-kal.txt",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "Kluge,+Gunther+von",
+     "url": "https://id.loc.gov/search/?q=Kluge%2C+Gunther+von&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "found_A",
+     "note": "200；1517 字；可作 A 級來源／權威檔；raw/r2-kluge-loc.txt",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Kluge Gunther von",
+     "url": "https://data.bnf.fr/en/search?term=Kluge+Gunther+von",
+     "result": "found_A",
+     "note": "200；391 字；可作 A 級來源／權威檔；raw/r2-kluge-bnf.txt",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie GND 124447775 重抓確認 NDB 全文",
+     "url": "https://www.deutsche-biographie.de/gnd124447775.html",
+     "result": "found_A",
+     "note": "200；9597 字；可作 A 級來源／權威檔；raw/r2-kluge-ndbweb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk G%C3%BCnther_von_Kluge",
+     "url": "https://lex.dk/G%C3%BCnther_von_Kluge",
+     "result": "no_result",
+     "note": "404；2672 字；無條目或查無結果；raw/r2-kluge-lex.txt",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "snl.no G%C3%BCnther_von_Kluge",
+     "url": "https://snl.no/G%C3%BCnther_von_Kluge",
+     "result": "found_B",
+     "note": "200；3272 字；具名作者機構百科（B）；raw/r2-kluge-snl.txt",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 搜尋 gunther-von-kluge",
+     "url": "https://www.treccani.it/enciclopedia/ricerca/gunther-von-kluge/",
+     "result": "not_relevant",
+     "note": "200；266 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-kluge-tre.txt",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "USHMM Holocaust Encyclopedia gunther-von-kluge",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/gunther-von-kluge",
+     "result": "no_result",
+     "note": "404；4212 字；無條目或查無結果；raw/r2-kluge-ushmm.txt",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Gunther-von-Kluge",
+     "url": "https://www.britannica.com/biography/Gunther-von-Kluge",
+     "result": "blocked_403",
+     "note": "403；擋機器人，不繞過；raw/r2-kluge-brit.txt",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "Kluge Army Group Centre Commander-in-Chief West 1944 biography",
+     "url": "https://api.crossref.org/works?query=Kluge+Army+Group+Centre+Commander-in-Chief+West+1944+biography&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2893 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-kluge-cr-en.txt",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Kluge 4. Armee Oberbefehlshaber West 1944 Heeresgruppe Mitte 1941",
+     "url": "https://api.crossref.org/works?query=Kluge+4.+Armee+Oberbefehlshaber+West+1944+Heeresgruppe+Mitte+1941&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2654 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-kluge-cr-de.txt",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Kluge Army Group Centre Commander-in-Chief West 1944 biography (OpenAlex)",
+     "url": "https://api.openalex.org/works?search=Kluge+Army+Group+Centre+Commander-in-Chief+West+1944+biography&per-page=8&select=title,publication_year,doi",
+     "result": "no_result",
+     "note": "503；233 字；無條目或查無結果；raw/r2-kluge-oa.txt",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "academic",
+     "query": "Kluge 4. Armee Oberbefehlshaber West 1944 Heeresgruppe Mitte 1941（lobid-resources 館藏）",
+     "url": "https://lobid.org/resources/search?q=Kluge+4.+Armee+Oberbefehlshaber+West+1944+Heeresgruppe+Mitte+1941&size=8&format=json",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-kluge-lres.txt",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Bundesarchiv 搜尋 Kluge",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=Kluge",
+     "result": "not_relevant",
+     "note": "200；14068 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-kluge-ba.txt",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Archivportal-D Kluge Günther von Generalfeldmarschall Heeresgruppe Mitte",
+     "url": "https://www.archivportal-d.de/objekte?query=Kluge+G%C3%BCnther+von+Generalfeldmarschall+Heeresgruppe+Mitte",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-kluge-apd.txt",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek 人物 GND 124447775",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/124447775",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-kluge-ddb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Kluge",
+     "url": "https://dbe.rah.es/biografias/busqueda?q=Kluge",
+     "result": "no_result",
+     "note": "200；55 字；無條目或查無結果；raw/r2-kluge-dbe.txt",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "named_encyclopedia",
+     "query": "KLUGE, Günther von Treccani Enciclopedia Italiana II Appendice（1949）",
+     "url": "https://www.treccani.it/enciclopedia/gunther-von-kluge_(Enciclopedia-Italiana)/",
+     "result": "unrated",
+     "note": "無署名，且與其他來源有明顯出入（如稱 1936 佔領萊茵蘭、1944-10 卸任）；未評等不引用；raw/tre-kluge.txt",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "erwinrommel",
+   "bioId": null,
+   "name": "Erwin Rommel",
+   "nameZh": "埃尔温·隆美尔",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-11-15",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與一戰、戰間期",
+      "en": "Origins, World War I and the interwar years"
+     },
+     "body": {
+      "zh-Hant": "1891年11月15日生於海登海姆，為教師之子；1910年入符騰堡軍隊為士官候補生。一戰中先在比利時與凡爾登任排長，1917年12月獲功勳勳章（Pour le Mérite）。1929至1933年他任教於德勒斯登步兵學校，1937年出版《步兵進攻》一書。",
+      "en": "Born on 15 November 1891 in Heidenheim, son of a teacher; in 1910 he entered the Württemberg army as an officer cadet. In the First World War he first served as a platoon leader in Belgium and at Verdun, and in December 1917 he received the Pour le Mérite. From 1929 to 1933 he taught at the Dresden Infantry School, and in 1937 his book \"Infanterie greift an\" was published."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1891 條目",
+       "quote": "15. November: Erwin Rommel wird in Heidenheim",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1910 條目",
+       "quote": "tritt Rommel als Fahnenjunker in das württembergische Heer ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1914 條目",
+       "quote": "dient Rommel zunächst als Zugführer in Belgien und später bei Verdun.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1917 條目",
+       "quote": "Dezember: Verleihung des Ordens Pour le Mérite.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1929-1933 條目",
+       "quote": "1929-1933 Rommel ist Lehrer an der Dresdner Infanterieschule.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1937 條目",
+       "quote": "Sein Buch \"Infanterie greift an\" wird veröffentlicht.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1938-10-01",
+      "end": "1941-02-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "元首護衛營與法國戰役",
+      "en": "The Führer escort and the French campaign"
+     },
+     "body": {
+      "zh-Hant": "1938年10月德軍進入蘇台德地區時，他指揮元首護衛營；1939年9月以少將身分任元首大本營指揮官。1940年5月他以第七裝甲師師長身分參加法國戰役並獲騎士鐵十字勳章。",
+      "en": "In October 1938, during the German entry into the Sudetenland, he commanded the Führer's escort detachment; in September 1939, as a major general, he held the command of the Führer Headquarters. In May 1940, as commander of the 7th Panzer Division, he took part in the French campaign and received the Knight's Cross."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1938 條目",
+       "quote": "Oktober: Beim deutschen Einmarsch in das Sudetengebiet hat Rommel den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1939 條目",
+       "quote": "September: Als Generalmajor hat er bei Beginn des Zweiten Weltkriegs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1939 條目",
+       "quote": "die reguläre Leitung des Führerhauptquartiers inne.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1940 條目",
+       "quote": "Mai: Als Kommandeur der 7. Panzerdivision nimmt er am Frankreichfeldzug teil",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1940 條目",
+       "quote": "und erhält das Ritterkreuz.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-02-01",
+      "end": "1943-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "北非戰役",
+      "en": "The North African campaign"
+     },
+     "body": {
+      "zh-Hant": "1941年2月升中將後，他取得德軍非洲軍團在利比亞的指揮權；3、4月對英軍發動攻勢，奪回昔蘭尼加，7月任「非洲裝甲集群」指揮官。1942年6月22日攻陷托布魯克後被希特勒擢為元帥，6至8月推進至埃及的阿拉曼；10月英軍在阿拉曼發動攻勢，11月英軍突破後他違反希特勒命令開始撤退。1943年2月他任非洲集團軍群總司令，3月離開北非。",
+      "en": "After his promotion to lieutenant general in February 1941 he received command of the German Afrika Korps in Libya; an offensive against British forces in March–April retook Cyrenaica, and in July he became commander of Panzergruppe Afrika. On 22 June 1942, after the capture of Tobruk, Hitler made him field marshal; from June to August he advanced to El Alamein in Egypt. In October the British launched their offensive at El Alamein, and in November, after the British breakthrough, he began to retreat against Hitler's orders. In February 1943 he became commander-in-chief of Army Group Africa, and in March he left North Africa."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "Februar: Nach seiner Beförderung zum Generalleutnant",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "erhält Rommel den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "über das deutsche Afrikakorps in Libyen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "März/April: Mit einer Offensive gegen die britischen Truppen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "gelingt Rommel die Rückeroberung der Cyrenaika (Libyen).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "Juli: Er wird Befehlshaber der \"Panzergruppe Afrika\".",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1942 條目",
+       "quote": "22. Juni: Nach der Eroberung von Tobruk ernennt Hitler Rommel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1942 條目",
+       "quote": "zum Generalfeldmarschall.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1942 條目",
+       "quote": "Juni-August: Rommel rückt bis El Alamein (Ägypten) vor.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1942 條目",
+       "quote": "Oktober: Bei El Alamein startet die britische Offensive.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1942 條目",
+       "quote": "beginnt Rommel, gegen den Befehl Hitlers, den Rückzug.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "Februar: Rommel wird Oberbefehlshaber der Heeresgruppe Afrika.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "März: Er verlässt Nordafrika.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-07-01",
+      "end": "1944-10-15"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "義大利、大西洋壁壘與死亡",
+      "en": "Italy, the Atlantic coast defences and death"
+     },
+     "body": {
+      "zh-Hant": "1943年7月盟軍登陸西西里後，他獲得B集團軍群的指揮權；9月他在北義大利握有最高指揮權；11月受命視察法國大西洋沿岸的防禦。1944年7月他在盟軍於法國推進時於卡昂附近遭低空攻擊重傷。10月14日兩名將軍代表國防軍最高統帥部指控他涉入刺殺希特勒的計畫，他當場服毒自盡。",
+      "en": "In July 1943, after the Allied landing in Sicily, he received command of Army Group B; in September he held the supreme command in northern Italy; in November he was charged with inspecting the defences on the French Atlantic coast. In July 1944, during the Allied advance in France, he was badly wounded in a low-level air attack near Caen. On 14 October two generals acting for the OKW accused him of involvement in the plot to kill Hitler, and in their presence he killed himself with a poison capsule."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "Juli: Nach der alliierten Landung in Sizilien erhält Rommel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "das Kommando über die Heeresgruppe B.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "September: Er hat den Oberbefehl in Norditalien inne",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "November: Rommel bekommt den Auftrag zur Kontrolle der Verteidigungsmaßnahmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1944 條目",
+       "quote": "Juli: Beim alliierten Vormarsch in Frankreich wird Rommel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1944 條目",
+       "quote": "bei einem Tieffliegerangriff bei Caen schwer verwundet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1944 條目",
+       "quote": "14. Oktober: Zwei Generale im Auftrag des OKW überbringen Rommel in Herrlingen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1944 條目",
+       "quote": "tötet Erwin Rommel sich mit einer Giftkapsel.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "rommel-afrikakorps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國非洲軍團",
+      "en": "German Afrika Korps"
+     },
+     "title": {
+      "orig": "Oberbefehl über das deutsche Afrikakorps in Libyen",
+      "zh-Hant": "非洲軍團指揮官",
+      "en": "Commander of the Afrika Korps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-02-01",
+      "end": "1941-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "Februar: Nach seiner Beförderung zum Generalleutnant",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "erhält Rommel den Oberbefehl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "über das deutsche Afrikakorps in Libyen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "Juli: Er wird Befehlshaber der \"Panzergruppe Afrika\".",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取接任非洲裝甲集群指揮官之月（依下一職務起日推得，推論）；來源未單獨寫軍團指揮何日結束",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "非國家級最高軍職／方面軍；政權對應待查證（regimeId NULL）；起日月精度、迄日依下一職務推得",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "rommel-panzergruppe-afrika",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國非洲裝甲集群",
+      "en": "Panzergruppe Afrika"
+     },
+     "title": {
+      "orig": "Befehlshaber der Panzergruppe Afrika",
+      "zh-Hant": "非洲裝甲集群指揮官",
+      "en": "Commander of Panzergruppe Afrika"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-07-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "Juli: Er wird Befehlshaber der \"Panzergruppe Afrika\".",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令；迄日 NULL，政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "rommel-heeresgruppe-afrika",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國非洲集團軍群",
+      "en": "Army Group Africa"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe Afrika",
+      "zh-Hant": "非洲集團軍群總司令",
+      "en": "Commander-in-Chief of Army Group Africa"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-02-01",
+      "end": "1943-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "Februar: Rommel wird Oberbefehlshaber der Heeresgruppe Afrika.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "März: Er verlässt Nordafrika.",
+       "quoteLang": "de",
+       "evidenceNote": "終點取離開北非月份之次月；來源未寫交卸指揮權日（依文意推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區（北非）集團軍群司令；政權對應待查證（regimeId NULL），且來源無本任內具名戰役＋日期＋地點連結",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "rommel-heeresgruppe-b-italien",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍 B 集團軍群（義大利）",
+      "en": "Army Group B (Italy), German Army"
+     },
+     "title": {
+      "orig": "Kommando über die Heeresgruppe B (Italien)",
+      "zh-Hant": "B 集團軍群指揮（義大利）",
+      "en": "Command of Army Group B (Italy)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-07-01",
+      "end": "1943-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "Juli: Nach der alliierten Landung in Sizilien erhält Rommel",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1943 條目",
+       "quote": "das Kommando über die Heeresgruppe B.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rommel",
+       "locator": "NDB 正文（1943）",
+       "quote": "am 1.12.1943 den Oberbefehl über die Heeresgruppe B im Westen.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取改任西線 B 集團軍群之日（依下一職務起日推得，推論）；NDB 另寫「Interimsverwendung in Italien」",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍級（義大利）；政權對應待查證（regimeId NULL），缺戰役連結；起日月精度、迄日依下一職務推得",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "rommel-heeresgruppe-b-west",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍 B 集團軍群（西線）",
+      "en": "Army Group B (West), German Army"
+     },
+     "title": {
+      "orig": "Oberbefehl über die Heeresgruppe B im Westen",
+      "zh-Hant": "B 集團軍群總司令（西線）",
+      "en": "Commander of Army Group B (West)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-12-01",
+      "end": "1944-07-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-rommel",
+       "locator": "NDB 正文（1943）",
+       "quote": "am 1.12.1943 den Oberbefehl über die Heeresgruppe B im Westen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-rommel",
+       "locator": "NDB 正文（1944）",
+       "quote": "Am 17. Juli wurde R. während eines brit. Tieffliegerangriffs schwer verwundet.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取負傷日；Kluge NDB 另寫自 17.7. 由 Kluge 兼領 B 集團軍群（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kluge",
+       "locator": "NDB 正文（1944）",
+       "quote": "hatte seit 17.7. (nach der Verwundung Rommels) auch noch die ihm",
+       "quoteLang": "de",
+       "evidenceNote": "Kluge NDB：自 17.7. 起由 Kluge 兼領 B 集團軍群（推論為 Rommel 任期迄日）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍級司令；政權對應待查證（regimeId NULL），缺戰役連結（日期＋地點）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:rommel-heeresgruppe-b-west",
+     "gapKind": "conflict",
+     "note": "起日兩份已抓來源不一致：NDB 寫「am 1.12.1943 den Oberbefehl über die Heeresgruppe B im Westen」，SNL（Petter Haagensen）寫「I januar 1944 ble Rommel sjef for en armégruppe på vestfronten」，DHM LeMO 寫 1943 年 11 月受命視察大西洋岸防務、直屬希特勒。本筆取 NDB（A）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:rommel-panzergruppe-afrika",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪另查 NDB 全文、SNL（Petter Haagensen）、lex.dk（Ole Ventegodt）、LeMO、Crossref／OpenAlex 檢索、Treccani、USHMM，皆未寫非洲裝甲集群（後改制）指揮何日結束；Britannica 403、1914-1918-online／DDB／Archivportal-D 為挑戰頁。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:rommel-7th-panzer-division",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第七裝甲師師長。本輪另查 NDB 全文（未提）、SNL（只寫「Sitzkrieg 期間獲第 7 裝甲師指揮權」）、lex.dk、LeMO（只寫 1940 年 5 月以師長身分參加法國戰役），皆無就任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 4 段／509 字（達 ≥3 段、≥300 字），任期 5 筆中 4 筆有起迄日，缺非洲裝甲集群（Panzergruppe Afrika）迄日；另第七裝甲師師長缺起日（未寫入）。本輪已查來源類型：權威檔（lobid GND、DNB、Kalliope、LoC、BnF）、國家級傳記辭典（NDB 全文、DB~e）、具名機構百科（lex.dk、SNL、LeMO、Treccani、USHMM、Britannica）、官方（Bundesarchiv、Archivportal-D、DDB、LEO-BW，多為挑戰頁／403）、學術（Crossref、OpenAlex、lobid-resources）；皆未寫上述兩日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Rommel Erwin 1891",
+     "url": "https://lobid.org/gnd/search?q=Rommel+Erwin+1891",
+     "result": "found_A",
+     "note": "GND 118602446，確認姓名／生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（GND）",
+     "url": "https://www.deutsche-biographie.de/pnd118602446.html",
+     "result": "found_A",
+     "note": "僅人名權威檔資料；NDB 全文未於抓取頁出現，未引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": "https://www.dhm.de/lemo/biografie/erwin-rommel",
+     "result": "found_B",
+     "note": "逐年大事年表，具名作者"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 人物條目",
+     "url": null,
+     "result": "blocked_403",
+     "note": "curl 回 403，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Rommel Erwin Generalfeldmarschall Afrikakorps",
+     "url": "https://lobid.org/gnd/search?q=Rommel+Erwin+Generalfeldmarschall+Afrikakorps&format=json",
+     "result": "found_A",
+     "note": "200；372 字；可作 A 級來源／權威檔；raw/r2-rommel-lobid.txt",
+     "round": "retry"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "GND 118602446 連結資料（DNB）",
+     "url": "https://d-nb.info/gnd/118602446/about/lds",
+     "result": "found_A",
+     "note": "200；2992 字；可作 A 級來源／權威檔；raw/r2-rommel-dnb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "Kalliope GND 118602446",
+     "url": "https://kalliope-verbund.info/gnd/118602446",
+     "result": "found_A",
+     "note": "200；1749 字；可作 A 級來源／權威檔；raw/r2-rommel-kal.txt",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Rommel,+Erwin",
+     "url": "https://id.loc.gov/search/?q=Rommel%2C+Erwin&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "found_A",
+     "note": "200；2009 字；可作 A 級來源／權威檔；raw/r2-rommel-loc.txt",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "Rommel Erwin",
+     "url": "https://data.bnf.fr/en/search?term=Rommel+Erwin",
+     "result": "found_A",
+     "note": "200；386 字；可作 A 級來源／權威檔；raw/r2-rommel-bnf.txt",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie GND 118602446 重抓確認 NDB 全文",
+     "url": "https://www.deutsche-biographie.de/gnd118602446.html",
+     "result": "found_A",
+     "note": "200；12481 字；可作 A 級來源／權威檔；raw/r2-rommel-ndbweb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Erwin_Rommel",
+     "url": "https://lex.dk/Erwin_Rommel",
+     "result": "found_B",
+     "note": "200；4585 字；具名作者機構百科（B）；raw/r2-rommel-lex.txt",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "snl.no Erwin_Rommel",
+     "url": "https://snl.no/Erwin_Rommel",
+     "result": "found_B",
+     "note": "200；9106 字；具名作者機構百科（B）；raw/r2-rommel-snl.txt",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 搜尋 erwin-rommel",
+     "url": "https://www.treccani.it/enciclopedia/ricerca/erwin-rommel/",
+     "result": "not_relevant",
+     "note": "200；256 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-rommel-tre.txt",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "USHMM Holocaust Encyclopedia erwin-rommel",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/erwin-rommel",
+     "result": "unrated",
+     "note": "200；12500 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-rommel-ushmm.txt",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Erwin-Rommel",
+     "url": "https://www.britannica.com/biography/Erwin-Rommel",
+     "result": "blocked_403",
+     "note": "403；擋機器人，不繞過；raw/r2-rommel-brit.txt",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "Rommel Afrika Korps Panzer Army Africa Army Group B commander biography",
+     "url": "https://api.crossref.org/works?query=Rommel+Afrika+Korps+Panzer+Army+Africa+Army+Group+B+commander+biography&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2878 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-rommel-cr-en.txt",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "Rommel Panzergruppe Afrika Heeresgruppe B 1943 1944 Oberbefehl",
+     "url": "https://api.crossref.org/works?query=Rommel+Panzergruppe+Afrika+Heeresgruppe+B+1943+1944+Oberbefehl&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2413 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-rommel-cr-de.txt",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Rommel Afrika Korps Panzer Army Africa Army Group B commander biography (OpenAlex)",
+     "url": "https://api.openalex.org/works?search=Rommel+Afrika+Korps+Panzer+Army+Africa+Army+Group+B+commander+biography&per-page=8&select=title,publication_year,doi",
+     "result": "no_result",
+     "note": "503；233 字；無條目或查無結果；raw/r2-rommel-oa.txt",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Rommel Panzergruppe Afrika Heeresgruppe B 1943 1944 Oberbefehl（lobid-resources 館藏）",
+     "url": "https://lobid.org/resources/search?q=Rommel+Panzergruppe+Afrika+Heeresgruppe+B+1943+1944+Oberbefehl&size=8&format=json",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-rommel-lres.txt",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Bundesarchiv 搜尋 Rommel",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=Rommel",
+     "result": "not_relevant",
+     "note": "200；14068 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-rommel-ba.txt",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Archivportal-D Rommel Erwin Generalfeldmarschall Afrikakorps",
+     "url": "https://www.archivportal-d.de/objekte?query=Rommel+Erwin+Generalfeldmarschall+Afrikakorps",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-rommel-apd.txt",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek 人物 GND 118602446",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/118602446",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-rommel-ddb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Rommel",
+     "url": "https://dbe.rah.es/biografias/busqueda?q=Rommel",
+     "result": "no_result",
+     "note": "200；55 字；無條目或查無結果；raw/r2-rommel-dbe.txt",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "LEO-BW 人物頁 Rommel（Kommission für geschichtliche Landeskunde 傳記）",
+     "url": "http://www.leo-bw.de/web/guest/detail/-/Detail/details/PERSON/kgl_biographien/118602446/biografie",
+     "result": "blocked_403",
+     "note": "403 Request forbidden by administrative rules，不繞過；raw/leo-rommel.html",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "named_encyclopedia",
+     "query": "Erwin Rommel Treccani（Dizionario di Storia／Enciclopedia Italiana 網址變體）",
+     "url": "https://www.treccani.it/enciclopedia/erwin-rommel_%28Dizionario-di-Storia%29/",
+     "result": "not_relevant",
+     "note": "回傳 Treccani 通用頁，無條目內容；raw/tre-rommel2.txt、tre-rommel3.txt",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "named_encyclopedia",
+     "query": "Rommel Erwin SNL／lex.dk 具名條目交叉核對 1943–44 日期",
+     "url": "https://snl.no/Erwin_Rommel",
+     "result": "found_B",
+     "note": "SNL 寫「I januar 1944」任西線軍集團，與 NDB 1.12.1943 不一致（已記 conflict gap）；lex.dk（Ole Ventegodt）寫 1941-02 任北非德軍指揮官；raw/snl-rommel.txt、lex-rommel.txt",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "paulludwigewaldvonkleist",
+   "bioId": null,
+   "name": "Paul Ludwig Ewald von Kleist",
+   "nameZh": "埃瓦尔德·冯·克莱斯特",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1881-08-08",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1881年8月8日生於拉恩河畔的勃朗費爾斯；1900年3月9日入野戰砲兵團為士官候補生，1901年8月18日升少尉。一戰開始後他在坦能堡戰役中作戰，1920年被併入國防軍。",
+      "en": "Born on 8 August 1881 at Braunfels on the Lahn; on 9 March 1900 he entered a field artillery regiment as an officer cadet and on 18 August 1901 was promoted lieutenant. At the outbreak of the First World War he fought in the battle of Tannenberg, and in 1920 he was taken into the Reichswehr."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1881 條目",
+       "quote": "8. August: Ewald von Kleist wird als Sohn des Geheimen Studienrats",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1900 條目",
+       "quote": "9. März: Eintritt als Fahnenjunker in das Feldartillerieregiment",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1901 條目",
+       "quote": "18. August: Beförderung zum Leutnant.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1914 條目",
+       "quote": "nimmt Kleist an der Schlacht bei Tannenberg teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1920 條目",
+       "quote": "1920 Übernahme in die Reichswehr.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1932-10-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "將官晉升與軍區指揮",
+      "en": "General rank and corps command"
+     },
+     "body": {
+      "zh-Hant": "1932年10月1日他升少將；1936年8月1日升騎兵上將，並接掌駐布雷斯勞的第八軍。1938年2月4日他被迫退役。",
+      "en": "On 1 October 1932 he was promoted major general; on 1 August 1936 he became General of Cavalry and took command of VIII Corps at Breslau. He was retired on 4 February 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1932 條目",
+       "quote": "1. Oktober: Beförderung zum Generalmajor.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1936 條目",
+       "quote": "1. August: Er wird zum General der Kavallerie befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1936 條目",
+       "quote": "übernimmt das Kommando über das VIII. Korps in Breslau.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1938 條目",
+       "quote": "4. Februar: Kleist wird pensioniert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭、西線、巴爾幹與蘇聯戰役",
+      "en": "The Polish, Western, Balkan and Soviet campaigns"
+     },
+     "body": {
+      "zh-Hant": "1939年大戰開始時他重返現役，以第二十二軍司令身分參加波蘭戰役。1940年5月「克萊斯特裝甲集群」組成西線攻勢的矛頭；7月19日升上將。1941年4月參加巴爾幹戰役，6月起率第一裝甲集群攻入蘇聯，突破斯大林防線並攻佔羅斯托夫；與古德里安的裝甲集群在烏曼與基輔的包圍戰中俘虜約65萬人。",
+      "en": "At the outbreak of war in 1939 he was reactivated and took part in the Polish campaign as commander of XXII Army Corps. In May 1940 \"Panzergruppe Kleist\" formed the spearhead of the western offensive; on 19 July he was promoted colonel-general. In April 1941 he took part in the Balkan campaign, and from June he led Panzergruppe 1 into the Soviet Union, breaking through the Stalin Line and taking Rostov; with Guderian's panzer group the Uman and Kiev encirclement battles took about 650,000 prisoners."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1939 條目",
+       "quote": "wird Kleist, der als bescheiden und als ein typischer Vertreter",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1939 條目",
+       "quote": "als Befehlshaber des motorisierten XXII. Armeekorps",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1939 條目",
+       "quote": "am Angriff auf Polen teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1940 條目",
+       "quote": "Mai: Die \"Panzergruppe Kleist\"",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1940 條目",
+       "quote": "bildet die Spitze der deutschen Westoffensive.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1940 條目",
+       "quote": "19. Juli: Kleist wird zum Generaloberst befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1941 條目",
+       "quote": "April: Teilnahme am Balkanfeldzug",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1941 條目",
+       "quote": "führt Kleist die Panzergruppe I",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1941 條目",
+       "quote": "für den Durchbruch durch die \"Stalin-Linie\" und die Einnahme von Rostov am Don.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1941 條目",
+       "quote": "In den Kesselschlachten von Uman und Kiew",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1941 條目",
+       "quote": "rund 650.000 Kriegsgefangene",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1955-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "集團軍總司令、解職與戰後",
+      "en": "Army and army group command, dismissal and afterwards"
+     },
+     "body": {
+      "zh-Hant": "1942年1月1日他任新成立的第一裝甲集團軍總司令；9月9日接替李斯特任A集團軍群總司令，1943年2月1日升元帥。1944年3月30日他因與希特勒對東線戰事屢有歧見被解職，由莫德爾接替。戰後他被美軍逮捕後引渡南斯拉夫，1946年被判十五年，1948年轉交蘇聯並被判無期徒刑，1954年11月死於戰俘營。",
+      "en": "On 1 January 1942 he became commander-in-chief of the newly formed 1st Panzer Army; on 9 September he succeeded List as commander-in-chief of Army Group A, and on 1 February 1943 he was promoted field marshal. On 30 March 1944, after repeated disagreements with Hitler over the conduct of the war in the East, he was retired and replaced by Walter Model. After the war the Americans arrested him and extradited him to Yugoslavia, where he was sentenced to 15 years in 1946; in 1948 he was handed over to the Soviet Union and sentenced to life, and he died as a prisoner in 1954."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1942 條目",
+       "quote": "1. Januar: Kleist wird Oberbefehlshaber der neugegründeten 1. Panzerarmee.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1942 條目",
+       "quote": "9. September: Kleist wird Nachfolger von Generalfeldmarschall List",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1942 條目",
+       "quote": "als Oberbefehlshaber der Heeresgruppe A.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1943 條目",
+       "quote": "1. Februar: Beförderung zum Generalfeldmarschall.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1944 條目",
+       "quote": "30. März: Nach wiederholten Meinungsverschiedenheiten mit Adolf Hitler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1944 條目",
+       "quote": "in den Ruhestand versetzt und durch Walter Model ersetzt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1945 條目",
+       "quote": "Diese liefern Kleist im gleichen Jahr an Jugoslawien aus.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1946 條目",
+       "quote": "Kleist wird in Jugoslawien als Kriegsverbrecher zu 15 Jahren Haft verurteilt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1948 條目",
+       "quote": "Er wird an die Sowjetunion ausgeliefert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1954 條目",
+       "quote": "13. oder 16. November: Ewald von Kleist stirbt als Gefangener",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kleist-viii-korps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第八軍（布雷斯勞）",
+      "en": "German Army VIII Corps (Breslau)"
+     },
+     "title": {
+      "orig": "Kommando über das VIII. Korps in Breslau",
+      "zh-Hant": "第八軍司令",
+      "en": "Commander of VIII Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-08-01",
+      "end": "1938-02-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1936 條目",
+       "quote": "1. August: Er wird zum General der Kavallerie befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1936 條目",
+       "quote": "übernimmt das Kommando über das VIII. Korps in Breslau.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1938 條目",
+       "quote": "4. Februar: Kleist wird pensioniert.",
+       "quoteLang": "de",
+       "evidenceNote": "終點取退休日；來源未明寫軍司令職何日卸任（依文意推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級職位，非國家級最高軍職或方面軍司令（R5）"
+    },
+    {
+     "key": "kleist-xxii-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第二十二軍",
+      "en": "XXII Army Corps, German Army"
+     },
+     "title": {
+      "orig": "Befehlshaber des XXII. Armeekorps",
+      "zh-Hant": "第二十二軍司令",
+      "en": "Commander of the XXII Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-01",
+      "end": "1940-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1939）",
+       "quote": "übernahm K. für den Feldzug gegen Polen das neu aufgestellte und zum Teil aus",
+       "quoteLang": "de",
+       "evidenceNote": "起日：來源只寫波蘭戰役；取可見作戰月（1939-09），月精度，實際就任日來源未寫（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1939）",
+       "quote": "trug im September 1939 zur raschen Ausschaltung der polnischen Südarmee bei.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1940）",
+       "quote": "März 1940 auf Vorschlag des OKH mit der Führung einer Panzergruppe betraut",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務（裝甲集群）起日「Anfang März 1940」推得，月精度（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級司令，非國家級最高軍職（R5）；起迄日為月精度、起日取可見作戰月"
+    },
+    {
+     "key": "kleist-panzergruppe-kleist",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍克萊斯特裝甲集群（後稱第一裝甲集群）",
+      "en": "Panzergruppe Kleist (later Panzergruppe 1), German Army"
+     },
+     "title": {
+      "orig": "Führer der Panzergruppe Kleist／Panzergruppe 1",
+      "zh-Hant": "克萊斯特裝甲集群／第一裝甲集群指揮官",
+      "en": "Commander of Panzer Group Kleist / Panzer Group 1"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-03-01",
+      "end": "1942-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1940）",
+       "quote": "März 1940 auf Vorschlag des OKH mit der Führung einer Panzergruppe betraut",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1941）",
+       "quote": "führte er im April 1941 während des Balkanfeldzuges die Panzergruppe 1 von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1942 條目",
+       "quote": "1. Januar: Kleist wird Oberbefehlshaber der neugegründeten 1. Panzerarmee.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務（第一裝甲集團軍）起日推得（推論）；兩階段（克萊斯特裝甲集群→第一裝甲集群）合併，來源未寫更名日（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "裝甲集群（方面軍級以下），政權對應待查證（regimeId NULL），缺戰役連結之任內證明；起迄日依來源推得",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "kleist-1st-panzer-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第一裝甲集團軍",
+      "en": "German 1st Panzer Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 1. Panzerarmee",
+      "zh-Hant": "第一裝甲集團軍總司令",
+      "en": "Commander-in-Chief of the 1st Panzer Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1942-11-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1942 條目",
+       "quote": "1. Januar: Kleist wird Oberbefehlshaber der neugegründeten 1. Panzerarmee.",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1942）",
+       "quote": "die verwaiste Heeresgruppe nach mehr als zwei Monaten K. übergeben (22.11.42)",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取接任 A 集團軍群之日（依下一職務起日推得，推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級職位，非國家級最高軍職或方面軍司令（R5）"
+    },
+    {
+     "key": "kleist-heeresgruppe-a",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍A集團軍群",
+      "en": "German Army Group A"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe A",
+      "zh-Hant": "A集團軍群總司令",
+      "en": "Commander-in-Chief of Army Group A"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-11-22",
+      "end": "1944-03-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kleist",
+       "locator": "NDB 正文（1942）",
+       "quote": "die verwaiste Heeresgruppe nach mehr als zwei Monaten K. übergeben (22.11.42)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1942 條目",
+       "quote": "als Oberbefehlshaber der Heeresgruppe A.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1944 條目",
+       "quote": "30. März: Nach wiederholten Meinungsverschiedenheiten mit Adolf Hitler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kleist",
+       "locator": "1944 條目",
+       "quote": "in den Ruhestand versetzt und durch Walter Model ersetzt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍級司令；政權對應待查證（regimeId NULL），且來源無本任內具名戰役＋日期＋地點連結",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:kleist-heeresgruppe-a",
+     "gapKind": "conflict",
+     "note": "起日兩份已抓來源不一致：NDB 寫 List 於 10.9.1942 辭職後，空缺的 A 集團軍群「nach mehr als zwei Monaten K. übergeben (22.11.42)」，DHM LeMO 寫「9. September: Kleist wird Nachfolger von Generalfeldmarschall List als Oberbefehlshaber der Heeresgruppe A」。本筆取 NDB（A）1942-11-22，LeMO 9 月 9 日留待裁決。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Kleist Ewald von 1881",
+     "url": "https://lobid.org/gnd/search?q=Kleist+Ewald+von+1881",
+     "result": "found_A",
+     "note": "GND 118777319，確認姓名／生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（GND）",
+     "url": "https://www.deutsche-biographie.de/pnd118777319.html",
+     "result": "found_A",
+     "note": "僅人名權威檔資料；NDB 全文未於抓取頁出現，未引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記",
+     "url": "https://www.dhm.de/lemo/biografie/ewald-von-kleist",
+     "result": "found_B",
+     "note": "逐年大事年表，具名作者"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 人物條目",
+     "url": null,
+     "result": "blocked_403",
+     "note": "curl 回 403，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Kleist Ewald von Generalfeldmarschall Heeresgruppe A",
+     "url": "https://lobid.org/gnd/search?q=Kleist+Ewald+von+Generalfeldmarschall+Heeresgruppe+A&format=json",
+     "result": "found_A",
+     "note": "200；379 字；可作 A 級來源／權威檔；raw/r2-kleist-lobid.txt",
+     "round": "retry"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "GND 118777319 連結資料（DNB）",
+     "url": "https://d-nb.info/gnd/118777319/about/lds",
+     "result": "found_A",
+     "note": "200；1603 字；可作 A 級來源／權威檔；raw/r2-kleist-dnb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "Kalliope GND 118777319",
+     "url": "https://kalliope-verbund.info/gnd/118777319",
+     "result": "found_A",
+     "note": "200；1202 字；可作 A 級來源／權威檔；raw/r2-kleist-kal.txt",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Kleist,+Ewald+von",
+     "url": "https://id.loc.gov/search/?q=Kleist%2C+Ewald+von&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "found_A",
+     "note": "200；2656 字；可作 A 級來源／權威檔；raw/r2-kleist-loc.txt",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "Kleist Ewald von",
+     "url": "https://data.bnf.fr/en/search?term=Kleist+Ewald+von",
+     "result": "found_A",
+     "note": "200；390 字；可作 A 級來源／權威檔；raw/r2-kleist-bnf.txt",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie GND 118777319 重抓確認 NDB 全文",
+     "url": "https://www.deutsche-biographie.de/gnd118777319.html",
+     "result": "found_A",
+     "note": "200；10190 字；可作 A 級來源／權威檔；raw/r2-kleist-ndbweb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Ewald_von_Kleist",
+     "url": "https://lex.dk/Ewald_von_Kleist",
+     "result": "no_result",
+     "note": "404；2370 字；無條目或查無結果；raw/r2-kleist-lex.txt",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "snl.no Ewald_von_Kleist",
+     "url": "https://snl.no/Ewald_von_Kleist",
+     "result": "no_result",
+     "note": "404；2702 字；無條目或查無結果；raw/r2-kleist-snl.txt",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 搜尋 ewald-von-kleist",
+     "url": "https://www.treccani.it/enciclopedia/ricerca/ewald-von-kleist/",
+     "result": "not_relevant",
+     "note": "200；264 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-kleist-tre.txt",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "USHMM Holocaust Encyclopedia ewald-von-kleist",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/ewald-von-kleist",
+     "result": "not_relevant",
+     "note": "200；4573 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-kleist-ushmm.txt",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Ewald-von-Kleist",
+     "url": "https://www.britannica.com/biography/Ewald-von-Kleist",
+     "result": "blocked_403",
+     "note": "403；擋機器人，不繞過；raw/r2-kleist-brit.txt",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "Kleist Panzer Group 1st Panzer Army Army Group A commander biography",
+     "url": "https://api.crossref.org/works?query=Kleist+Panzer+Group+1st+Panzer+Army+Army+Group+A+commander+biography&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；1541 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-kleist-cr-en.txt",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "Kleist Panzergruppe 1. Panzerarmee Heeresgruppe A 1942 1944 Oberbefehlshaber",
+     "url": "https://api.crossref.org/works?query=Kleist+Panzergruppe+1.+Panzerarmee+Heeresgruppe+A+1942+1944+Oberbefehlshaber&rows=8&select=title,author,issued,publisher,DOI",
+     "result": "unrated",
+     "note": "200；2669 字；無具名作者或僅檢索摘要（未評等，不引用）；raw/r2-kleist-cr-de.txt",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Kleist Panzer Group 1st Panzer Army Army Group A commander biography (OpenAlex)",
+     "url": "https://api.openalex.org/works?search=Kleist+Panzer+Group+1st+Panzer+Army+Army+Group+A+commander+biography&per-page=8&select=title,publication_year,doi",
+     "result": "no_result",
+     "note": "503；233 字；無條目或查無結果；raw/r2-kleist-oa.txt",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Kleist Panzergruppe 1. Panzerarmee Heeresgruppe A 1942 1944 Oberbefehlshaber（lobid-resources 館藏）",
+     "url": "https://lobid.org/resources/search?q=Kleist+Panzergruppe+1.+Panzerarmee+Heeresgruppe+A+1942+1944+Oberbefehlshaber&size=8&format=json",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-kleist-lres.txt",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Bundesarchiv 搜尋 Kleist",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=Kleist",
+     "result": "not_relevant",
+     "note": "200；14068 字；內容與傳主任期無關或僅為檢索殼層；raw/r2-kleist-ba.txt",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Archivportal-D Kleist Ewald von Generalfeldmarschall Heeresgruppe A",
+     "url": "https://www.archivportal-d.de/objekte?query=Kleist+Ewald+von+Generalfeldmarschall+Heeresgruppe+A",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-kleist-apd.txt",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek 人物 GND 118777319",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/118777319",
+     "result": "challenge_page",
+     "note": "200；Anubis／機器人驗證頁，不繞過；可改用官方鏡像（lobid）已另記；raw/r2-kleist-ddb.txt",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Kleist",
+     "url": "https://dbe.rah.es/biografias/busqueda?q=Kleist",
+     "result": "no_result",
+     "note": "200；55 字；無條目或查無結果；raw/r2-kleist-dbe.txt",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "Hessische Biografie（LAGIS Hessen）Kleist, Ewald von",
+     "url": "https://www.lagis-hessen.de/pnd/118777319",
+     "result": "no_result",
+     "note": "頁面為動態載入（僅殼層，無條目文字）；raw/lagis-kleist.txt",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "named_encyclopedia",
+     "query": "KLEIST, Ewald von Treccani Enciclopedia Italiana III Appendice（1961）",
+     "url": "https://www.treccani.it/enciclopedia/ewald-von-kleist_(Enciclopedia-Italiana)/",
+     "result": "unrated",
+     "note": "無署名、僅戰後被俘與死亡摘要；未評等不引用；raw/tre-kleist.txt",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "authority",
+     "query": "Kleist Ewald NDL Web NDL Authorities",
+     "url": "https://id.ndl.go.jp/auth/ndlna/search?q=Kleist+Ewald",
+     "result": "no_result",
+     "note": "404／無對應典據；raw/ndl-kleist.txt",
+     "round": "retry"
+    }
+   ]
+  }
+ ]
+}

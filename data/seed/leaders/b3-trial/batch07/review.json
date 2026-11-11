@@ -1,0 +1,114 @@
+{
+ "batch": "07",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 0,
+  "editedSentences": 17,
+  "spotRefetched": 7
+ },
+ "countsNote": "editedSentences 只計正文句（zh／en 各算一句）；另有 11 筆 citation 的 quote 依原文改長或改段以涵蓋句意（不刪、不改出處），新增 16 筆 citation（引用總數 129 → 145）（全取自已抓原文、支撐既有句子，未加新事實）。7 個來源全部重抓（curl，無 -k），關鍵引文與 /tmp/b3trial/batch07/raw 一致。",
+ "people": [
+  {
+   "key": "pl-pilsudski",
+   "bioId": "01a1b4b5-7275-7a4c-a36c-723359599508",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "段1：「刺殺沙皇亞歷山大三世」原引文未涵蓋 → 流放句 quote 改為「Tsar Alexander III and was sentenced to five years of exile in Siberia」",
+    "段1：「一戰時」原引文未涵蓋 → 步槍兵聯盟 quote 改為「1914, his Union of Riflemen formed the core of Polish legions」，datePrecision=year",
+    "段2：zh「歐洲協約國」→「協約國」（原文 Entente）；relatedRecordIds 補 head_of_state 任期 01a1aa4a-9541-…",
+    "段3：zh 刪無對應引文、且 en 未寫的「透過親信治國」；「在蘇聯與納粹德國之間走中間路線」補引文「steered a middle course between the Soviet Union and Nazi Germany」",
+    "段3：period 起點補 1926-01-01＋year（1926 年政變引文）；relatedRecordIds 補兩段總理任期 9544、9545",
+    "保留 gap：總理任期 Snyder 1926–1927 vs 名簿 conflict、戰爭部長職位 not_found"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mn-choibalsan",
+   "bioId": "01a1b539-97a9-708b-a146-32fcdedf11ad",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 3,
+   "gaps": 3,
+   "changes": [
+    "段1：「與蘇赫巴托爾的圈子合併」補引文「celui de Sükhe-Bātor avec lequel il fusionne en 1920」",
+    "段1：「確立1921年蒙古革命的軍事行動」quote 改為「tous les événements militaires qui consacrent la révolution mongole de 1921」",
+    "段1：「當選中央委員」「1921年」原引文未涵蓋 → quote 改為「Il est élu membre du comité central au premier congrès」與「(P.P.R.M.) en mars 1921 et membre du Gouvernement révolutionnaire provisoire」（month）",
+    "段2：「通日本人」原引文未涵蓋 → 清洗 quote 改為「sous prétexte de « déviationnisme » et d'« intelligence avec les Japonais »」",
+    "positions 3 筆核對無誤：regimeId 01a191c9-0807-… 與 selection.json 蒙古人民共和國一致，三職皆在 1908–1945；Q3 終點（1936-01-01、1940-01-01）正確",
+    "sources.snl-choibalsan：authors 原寫「Gunnar Filseth（fagkonsulent）」，原文作者欄為「Store norske leksikon (2005-2007)」、Filseth 為學科顧問 → 改 authors 並在 gradeBasis 註明；SNL 只用於 gap 候選"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "nl-van-heutsz",
+   "bioId": "01a1b52a-61bc-702e-ba89-f161463fd740",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "gaps": 1,
+   "changes": [
+    "段1：zh 地名誤譯「基坎普」→「坎彭（Kampen）」",
+    "段1：Marechaussee 誤譯為「海軍陸戰警察隊」→ 改「精銳的 Marechaussee 部隊」；「游擊對游擊」改為原文支撐的「以亞齊人自己的戰術」，quote 改為「het keurkorps der Marechaussee bestreed hij de Atjehers met hun eigen tactiek」（zh／en 各一句）",
+    "段1：「巴達維亞」原引文未涵蓋 → quote 補「te Batavia」",
+    "段2：刪無引文的「聲名大噪」（en: made his name）；刪無引文的「亞齊領袖」稱呼與自擬譯名「鄧庫烏瑪」，改寫原名 Teukoe Oemar",
+    "段3：刪無引文的「亞齊問題在任內帶來風波」「范·達倫任總督期間的戰役」，改為引文支撐的「加約與阿拉斯地區整片人口消失，范·赫茨仍袒護范·達倫」；「外島」依原文改「爪哇以外島嶼」；「短聲明」「無條件服從荷蘭統治」quote 改為「'korte verklaringen' alle nog onafhankelijke Indonesische vorsten」＋新增「op de eilanden buiten Java onvoorwaardelijk aan het Nederlands gezag」",
+    "職位 heutsz-chief-general-staff：迄日 1898-12-01 → 1899-01-01（Q3：「tot december 1898」寫下一月起日），evidenceNote 註明",
+    "Q4 正確：荷屬東印度總督（head_of_government）任期只寫段3正文、未建職位；1897–1904 兩職位在範圍外，regimeId=null＋organization 正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "tr-ataturk",
+   "bioId": "01a1b492-3f04-7906-a59b-b9bfcc8f374d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "段1：「1893年進入軍事中學」補引文；zh「數學老師」超出引文（原文只說 teacher，數學是取名理由）→「老師」；「與青年土耳其黨人建立聯繫」補引文",
+    "段2：「展開民族抗爭」quote 改為「moved on to Anatolia in May 1919 to begin his nationalist struggle」；「界定獨立訴求」補引文",
+    "段3：Turgay 寫共和宣布／當選總統為 1923-10-23，名簿共和國 head_of_state 起日為 1923-10-29 → 正文改「1923年10月」、period 起點 1923-10-01＋month、該 citation datePrecision=month 並註明；新增 gap conflict paragraph:republic-proclamation-date",
+    "段3：「在他的主導下」「1934年通過姓氏法」補引文"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cu-machado",
+   "bioId": "01a1b488-13d8-7337-a49a-f44a35ca1e6d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "段1：「1920年代初」quote 改為「by the early 1920s, when he managed to win control of the Liberal Party」；「以重生為號召」補引文",
+    "段2：「保護新興古巴產業」「傾向以武力處理」補引文",
+    "段3：「次年老領袖起事」「靠軍隊鎮壓」「1932年起轉為惡鬥」補引文；刪無引文的「1933年」「調停」，改為「美國隨後派威爾斯出任駐哈瓦那大使；最終一場總罷工癱瘓全國」；en 縮至 796 字元（原 805 超 Q2）",
+    "段4：「對總統採取行動」補引文；period 迄日 1939-03-30 依卒日，補該引文到本段"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只截取句子的一部分當 quote，日期、地名或關鍵限定詞（「刺殺沙皇」「巴達維亞」「1921」「通日本人」「1920年代初」）落在引文外 → 本次靠改長 quote 或新增同來源引文修補；下批研究時，quote 應涵蓋句中的日期與專名",
+  "正文有引文外的潤飾或評價（「聲名大噪」「帶來風波」「透過親信治國」「數學老師」「亞齊領袖」），另有譯名錯誤（基坎普、海軍陸戰警察隊）；荷文來源要特別核對譯名",
+  "Q3 漏套：「tot december 1898」被寫成 1898-12-01，應為 1899-01-01",
+  "來源日期與名簿不一致時應記 conflict、正文降精度（阿塔圖克 1923-10-23 vs 名簿 1923-10-29），研究者未察覺",
+  "sources.authors 要照原文作者欄寫（SNL 將學科顧問誤寫成作者）",
+  "Britannica（brit-heutsz*.txt）、GSE（gse-choibalsan.txt）原文抓到的是 Cloudflare 挑戰頁（Just a moment...），研究者沒繞過也沒引用，合規",
+  "范·赫茨名簿起日 1908-01-01 與來源 1904-10-01 之差，可能是名簿截在收錄起點（推測，未查證），gap 保留 conflict 寫法"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

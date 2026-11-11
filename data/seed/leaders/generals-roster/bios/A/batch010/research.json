@@ -1,0 +1,4005 @@
+{
+ "batch": "b3-full-v3-batch010",
+ "researchedOn": "2026-11-12",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 與 b3-trial/ALIGN.md 直接以對齊格式撰寫；5 人均為英國將領，政權 regimeId 一律待查證（null），軍職依 T14 留 positions 為 R5／R6；無黨職、無元首／首腦任期，roleCandidates 皆空。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch010/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "wfa-robertson": {
+   "title": "'Wully' Field Marshal Sir William Robertson Bart: GCB, KCVO, DSO",
+   "authors": [
+    "John Terraine"
+   ],
+   "publisher": "The Western Front Association",
+   "published_text": "1991 年 WFA 年度研討會講稿；1998 年刊於 Leadership & War（網頁 2022 版）",
+   "url": "https://www.westernfrontassociation.com/world-war-i-articles/wully-field-marshal-sir-william-robertson-bart-gcb-kcvo-part-i",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（歷史學者 John Terraine）、學術性社團出版；依 T1 暫列 B，請主管確認"
+  },
+  "ency-french-sir": {
+   "title": "French, Sir John",
+   "authors": [
+    "David French"
+   ],
+   "publisher": "Oxford University Press（經 Encyclopedia.com 轉載）",
+   "published_text": "The Oxford Companion to British History",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/french-sir-john",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之牛津辭典條目（David French；T1 B）"
+  },
+  "nam-loos": {
+   "title": "Battle of Loos",
+   "authors": [],
+   "publisher": "National Army Museum (London)",
+   "published_text": "官方網頁專文",
+   "url": "https://www.nam.ac.uk/explore/battle-loos",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家陸軍博物館（官方機構）專文；頁面無署名，依 T1 暫列 B（機構傳記），請主管確認"
+  },
+  "ency-cunningham": {
+   "title": "Cunningham, Andrew, 1st Viscount Cunningham",
+   "authors": [
+    "J. A. Cannon"
+   ],
+   "publisher": "Oxford University Press（經 Encyclopedia.com 轉載）",
+   "published_text": "The Oxford Companion to British History",
+   "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/andrew-browne-cunningham-1st-viscount",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之牛津辭典條目（John Cannon；T1 B）"
+  },
+  "rmg-cunningham": {
+   "title": "Admiral Andrew Browne Cunningham (1883-1963)",
+   "authors": [],
+   "publisher": "Royal Museums Greenwich（國家海事博物館）",
+   "published_text": "藏品說明",
+   "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-14115",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家海事博物館（官方機構）藏品解說；無署名，依 T1 暫列 B，請主管確認"
+  },
+  "navyrec-cunningham": {
+   "title": "The Cunningham Papers, Volume I: The Mediterranean Fleet, 1939-1942",
+   "authors": [
+    "M. Simpson"
+   ],
+   "publisher": "The Navy Records Society",
+   "published_text": "出版品簡介（網頁署名 M. Simpson）",
+   "url": "https://www.navyrecords.org.uk/the-cunningham-papers-volume-i-the-mediterranean-fleet-1939-1942/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社團之專書簡介，署名編者；依 T1 暫列 B，請主管確認"
+  },
+  "hw-supcmd-bio": {
+   "title": "The Supreme Command (ETO), Biographical Sketches",
+   "authors": [],
+   "publisher": "美國陸軍官方戰史 US Army in WWII（HyperWar／ibiblio 轉載）",
+   "published_text": "The Supreme Command, Biographical Sketches",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-Bio.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方戰史（T1 A，官方戰史）"
+  },
+  "hw-supcmd-3": {
+   "title": "The Supreme Command (ETO), Chapter 3",
+   "authors": [],
+   "publisher": "美國陸軍官方戰史 US Army in WWII（HyperWar／ibiblio 轉載）",
+   "published_text": "The Supreme Command, Chapter 3",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方戰史（T1 A，官方戰史）"
+  },
+  "ency-tedder": {
+   "title": "Tedder, Sir Arthur",
+   "authors": [
+    "R. A. C. Parker"
+   ],
+   "publisher": "Oxford University Press（經 Encyclopedia.com 轉載）",
+   "published_text": "The Oxford Companion to British History",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/tedder-sir-arthur",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之牛津辭典條目（R. A. C. Parker；T1 B）"
+  },
+  "hw-medII-a8": {
+   "title": "The Mediterranean & Middle East, Vol. II, Appendix 8: Principal Commanders and Staff Officers",
+   "authors": [],
+   "publisher": "英國官方二戰史（HyperWar／ibiblio 轉載）",
+   "published_text": "The Mediterranean and Middle East, Vol. II, Appendix 8",
+   "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-Med-II/UK-Med-2-A8.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方戰史附錄（T1 A，官方戰史）"
+  },
+  "hw-salerno17": {
+   "title": "Salerno to Cassino, Chapter 17",
+   "authors": [],
+   "publisher": "美國陸軍官方戰史 US Army in WWII（HyperWar／ibiblio 轉載）",
+   "published_text": "Salerno to Cassino, Chapter 17",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-MTO-Salerno/USA-MTO-Salerno-17.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方戰史（T1 A，官方戰史）"
+  },
+  "hw-cosbiennial": {
+   "title": "Biennial Reports of the Chief of Staff of the United States Army, July 1, 1943, to June 30, 1945",
+   "authors": [],
+   "publisher": "美國陸軍參謀長官方報告（HyperWar／ibiblio 轉載）",
+   "published_text": "Biennial Reports of the Chief of Staff",
+   "url": "https://ibiblio.org/hyperwar/USA/COS-Biennial/COS-Biennial-3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國陸軍官方報告（T1 A，政府官方文件）"
+  },
+  "gaz-37703": {
+   "title": "Despatch on the Persia and Iraq Command, 21st August 1942 to 17th February 1943（Supplement to The London Gazette 37703）",
+   "authors": [
+    "General Sir H. Maitland Wilson"
+   ],
+   "publisher": "The London Gazette（英國政府官方公報）",
+   "published_text": "Supplement to The London Gazette, 28 August 1946, No. 37703",
+   "url": "https://www.thegazette.co.uk/London/issue/37703",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方公報刊載之戰報（T1 A）；PDF 為 OCR 文字，部分字元辨識有誤（如 2ist＝21st）"
+  },
+  "erenow-wilson": {
+   "title": "Wilson, Field Marshal Sir Henry Maitland, 1881-1964 - Who's Who in World War II",
+   "authors": [],
+   "publisher": "未評等（見 gap）",
+   "published_text": null,
+   "url": "https://erenow.org/ww/whos-who-in-world-war-ii/497.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者或商業／私人彙編（Q9），僅供 gap candidateCitations"
+  },
+  "forces-robertson": {
+   "title": "The unbelievable career of the only British Army soldier to hold every rank",
+   "authors": [],
+   "publisher": "未評等（見 gap）",
+   "published_text": null,
+   "url": "https://www.forcesnews.com/heritage/wwii/private-who-became-field-marshal-who-was-sir-william-robertson",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者或商業／私人彙編（Q9），僅供 gap candidateCitations"
+  },
+  "dmn-cunningham": {
+   "title": "Adm. Sir Andrew Browne Cunningham and His Appointment as First Sea Lord",
+   "authors": [],
+   "publisher": "未評等（見 gap）",
+   "published_text": null,
+   "url": "https://www.defensemedianetwork.com/stories/adm-sir-andrew-browne-cunningham-and-his-appointment-as-first-sea-lord/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者或商業／私人彙編（Q9），僅供 gap candidateCitations"
+  },
+  "rafweb-tedder": {
+   "title": "A W Tedder",
+   "authors": [],
+   "publisher": "未評等（見 gap）",
+   "published_text": null,
+   "url": "https://www.rafweb.org/Biographies/Tedder.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者或商業／私人彙編（Q9），僅供 gap candidateCitations"
+  },
+  "ency-tedder2": {
+   "title": "Arthur Tedder（Gale 無署名條目）",
+   "authors": [],
+   "publisher": "未評等（見 gap）",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/arthur-tedder",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者或商業／私人彙編（Q9），僅供 gap candidateCitations"
+  },
+  "hist-french": {
+   "title": "John French (HISTORY.com Editors)",
+   "authors": [],
+   "publisher": "未評等（見 gap）",
+   "published_text": null,
+   "url": "https://www.history.com/articles/john-french",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無具名作者或商業／私人彙編（Q9），僅供 gap candidateCitations"
+  },
+  "gaz-31822": {
+   "title": "Supplement to the London Gazette, 12 March 1920, p. 3260（Army of the Rhine 總司令任命）",
+   "authors": [],
+   "publisher": "The London Gazette（The Stationery Office）",
+   "published_text": "1920-03-12",
+   "url": "https://www.thegazette.co.uk/London/issue/31822/supplement/3260/data.pdf",
+   "archive_url": null,
+   "catalog_id": "issue 31822, p. 3260",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報（政府公報，依 T1 屬 A）；PDF 以 pdftotext 轉文字，OCR 有錯字，引文逐字保留"
+  },
+  "wehd-robertson": {
+   "title": "W. R. Robertson (1860-1933)，The Reader's Biographical Encyclopaedia",
+   "authors": [],
+   "publisher": "WEHD.com（Chisholm 等編，1922）",
+   "published_text": "1922",
+   "url": "https://wehd.com/bios/William_Robert_Robertson.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：條目無署名作者（Q9），僅供 gap candidateCitations"
+  },
+  "liqui-robertson": {
+   "title": "William Robertson (British Army Officer) - PostWar",
+   "authors": [],
+   "publisher": "LiquiSearch（彙編）",
+   "published_text": null,
+   "url": "https://www.liquisearch.com/william_robertson_british_army_officer/postwar",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：無署名彙編（Q9），不引用"
+  }
+ },
+ "people": [
+  {
+   "key": "sirwilliamrobertson1stbaronet",
+   "bioId": null,
+   "name": "Sir William Robertson, 1st Baronet",
+   "nameZh": "待查證",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1877-11-13",
+      "end": "1913-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "列兵入伍到參謀學院校長",
+      "en": "From trooper to Commandant of the Staff College"
+     },
+     "body": {
+      "zh-Hant": "羅伯遜1860年1月29日生於林肯郡韋爾本，父親是村裡的郵務員兼裁縫。他1877年11月13日入伍，先在第16槍騎兵團服役，1888年底轉任第3龍騎兵衛隊的軍官。1900年1月20日，他抵達開普敦，在波耳戰爭中負責蒐集與研究情報。1910年6月，帝國總參謀長來信邀他回參謀學院擔任校長；1913年10月離開時已是少將，並獲授維多利亞皇家勳章爵級司令，隨後調回陸軍部出任軍事訓練處長。",
+      "en": "Robertson was born on 29 January 1860 in Welbourn, a Lincolnshire village, where his father was postmaster and tailor. He joined the Army on 13 November 1877, first in the 16th Lancers, and at the end of 1888 arrived in his next regiment, the 3rd Dragoon Guards, as an officer. He reached Cape Town on 20 January 1900 and was given the duty of collecting and studying intelligence in the South African War. In June 1910 the CIGS invited him back to the Staff College as Commandant; when he left in October 1913 he was a Major-General and a Knight Commander of the Victorian Order, and was summoned back to the War Office as Director of Military Training."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「What sort of a man」",
+       "quote": "He was born on 29 January 1860 and christened William Robert.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「What sort of a man」",
+       "quote": "His birthplace was Welbourn, a quiet little village not far from Lincoln",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「What sort of a man」",
+       "quote": "was the Welbourn postmaster and also the village tailor.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「1877」",
+       "quote": "On 13 November 1877 he joined the Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「16th Lancers」",
+       "quote": "just over a year after he joined the 16th Lancers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「3rd Dragoon Guards」",
+       "quote": "where Robertson arrived at the end of that year (1888)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「3rd Dragoon Guards」",
+       "quote": "When he joined his new regiment, the 3rd Dragoon Guards",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「South Africa」",
+       "quote": "He arrived in Cape Town on 20 January 1900",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「South Africa」",
+       "quote": "was given the duty of collecting and studying intell",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Commandant」",
+       "quote": "In June 1910 he received a letter from the CIGS",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Commandant」",
+       "quote": "inviting him to return to the Staff College - as Commandant.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Staff College」",
+       "quote": "By October 1913, when he left the Staff College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Staff College」",
+       "quote": "was a Major-General and a Knight Commander of the Victorian Order",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Director」",
+       "quote": "summoned back to the War Office to be Director of Military Training",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1897-01-01",
+      "end": "1899-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身行伍與參謀學院",
+      "en": "Rise from the ranks and the Staff College"
+     },
+     "body": {
+      "zh-Hant": "羅伯遜是英國陸軍史上唯一從列兵入伍、最後官至元帥的人。他因通曉五種語言，被選入印度西姆拉陸軍總部的情報處，那是他初次接觸參謀工作。他在奇特拉爾遠征中獲頒傑出服務勳章，當時這是一種相當罕見的勳章。1897年1月至1898年12月，他就讀於坎伯利參謀學院。",
+      "en": "Robertson was the only man in the army's history to enlist as a private soldier and end as a field marshal. Selected, thanks to his five languages, for the Intelligence Branch at Army Headquarters in Simla, he got his first introduction to staff work there. For the relief of Chitral he received the Distinguished Service Order, then a rather rare decoration. He attended the Staff College from January 1897 to December 1898."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Who was he?」",
+       "quote": "the only man in the Army's history to enlist as a private soldier",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Who was he?」",
+       "quote": "and end as a Field-Marshal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Intelligence Branch」",
+       "quote": "to join the Intelligence Branch at Army Headquarters in Simla",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Intelligence Branch」",
+       "quote": "the reward for his five languages",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Intelligence Branch」",
+       "quote": "This was his first introduction to staff work",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chitral」",
+       "quote": "a Distinguished Service Order which was, he says,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chitral」",
+       "quote": "a rising in Chitral and the isolation of a British garrison",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Staff College」",
+       "quote": "Robertson spent two years (January 1897 to December 1898) at the Staff College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Staff College」",
+       "quote": "graduate at the Staff College at Camberley",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-08-01",
+      "end": "1915-01-25"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "遠征軍軍需總監與蒙斯撤退",
+      "en": "Quartermaster-General of the BEF and the retreat from Mons"
+     },
+     "body": {
+      "zh-Hant": "1914年8月，羅伯遜隨英國遠征軍赴法，在總司令約翰·弗倫奇元帥的參謀部出任軍需總監。蒙斯戰役後的撤退歷時十三天；撤退開始前，他已決定把遠征軍的前進基地由亞眠南遷勒芒。1915年1月25日，他卸下「軍需總監」職務，改任遠征軍的參謀長（總參謀長）。",
+      "en": "In August 1914 Robertson crossed to France on the staff of the Commander-in-Chief, Field-Marshal Sir John French, as Quartermaster-General. The retreat from Mons lasted thirteen days; before it had even begun he had decided to shift the BEF's advanced base from Amiens to Le Mans. On 25 January 1915 he ceased to be the BEF's storekeeper-in-chief and became Chief of its General Staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「August 1914」",
+       "quote": "In August 1914 William Robertson crossed to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「August 1914」",
+       "quote": "in the post of Quartermaster-General",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「August 1914」",
+       "quote": "Field-Marshal Sir John French",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Retreat from Mons」",
+       "quote": "The Retreat from Mons lasted thirteen days",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Retreat from Mons」",
+       "quote": "shift the advanced base of the BEF from Amiens, due north of Paris, to Le Mans",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "On 25 January 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "he ceased to be the BEF's storekeeper-in-chief",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "became Chief of its General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1915-01-25",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1915年的遠征軍參謀長與出任帝國總參謀長",
+      "en": "Chief of the BEF General Staff in 1915 and the call to the War Office"
+     },
+     "body": {
+      "zh-Hant": "泰拉恩稱1915年是英軍最悲慘的一年，癥結在於物資不足。自蒙斯撤退以來，政府部分圈子就對弗倫奇存疑，6月羅伯遜曾對漢基說弗倫奇「總想做魯莽而不可能的事」。12月4日他與基奇納首次面談；隨後他登上事業高峰，出任帝國總參謀長。",
+      "en": "Terraine calls 1915 a miserable year for the British Army, its sorrows summed up in the word shortages. There had been grave doubts about French in some government circles since the retreat from Mons, and in June Robertson told Hankey that French was always wanting to do reckless and impossible things. He held his first interview with Kitchener on 4 December, and then came to the high peak of his career as CIGS."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「1915」",
+       "quote": "The year 1915 was a miserable one for the British Army.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「1915」",
+       "quote": "Its sorrows may be summed up in one dismal word: shortages.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「French removal」",
+       "quote": "had been grave doubts about him in some Government circles",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「French removal」",
+       "quote": "in June Wully had told Lieutenant Colonel Hankey",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「French removal」",
+       "quote": "always wanting to do reckless and impossible things",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「CIGS」",
+       "quote": "went to his first interview with this famous but imperious soldier on 4 December",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「CIGS」",
+       "quote": "So Wully Robertson now came to the high peak of his career - CIGS.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1916-12-01",
+      "end": "1918-02-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "帝國總參謀長與去職",
+      "en": "Chief of the Imperial General Staff and removal"
+     },
+     "body": {
+      "zh-Hant": "1916年12月勞合·喬治出任首相，面對他的種種權宜辦法，羅伯遜是出面反對的人；1918年2月，雙方就最高軍事會議（凡爾賽）的權限公開衝突。他不接受這種他認為危險的制度，不肯改任，1918年2月16日他卸任帝國總參謀長，由威爾遜將軍接替。",
+      "en": "In December 1916 Lloyd George became Prime Minister, and it was Robertson who had to oppose his expedients. In February 1918 the conflict over the Supreme War Council at Versailles came into the open. Refusing to accept as CIGS a system he had condemned as dangerous, he lost the fight, and on 16 February 1918 he ceased to be CIGS and was replaced by General Wilson."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「1917」",
+       "quote": "In December 1916 Lloyd George became Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Supreme War Council」",
+       "quote": "In February 1918, it came to open opposition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Supreme War Council」",
+       "quote": "Supreme War Council",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「1917」",
+       "quote": "it was Robertson who had to make the opposition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Last fight」",
+       "quote": "I could not possibly accept a system as CIGS which I had already condemned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Last fight」",
+       "quote": "On 16 February 1918 Wully ceased to be CIGS and was replaced by General Wilson",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1918-06-05",
+      "end": "1920-03-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "本土部隊、萊茵軍團與晉升元帥",
+      "en": "Home Forces, Army of the Rhine and the field marshal's baton"
+     },
+     "body": {
+      "zh-Hant": "1918年6月5日，羅伯遜出任本土部隊總司令；1919年3月13日接替普盧默，改任萊茵軍團總司令。1920年3月29日，他經邱吉爾推薦獲晉升元帥，那是他軍旅生涯的終點。倫敦憲報載，萊茵軍團總司令一職自1920年3月3日起改由莫蘭中將接替羅伯遜。",
+      "en": "On 5 June 1918 Robertson became commander-in-chief of all Home Forces. On 13 March 1919 he became commander-in-chief of the Army of the Rhine, following General Plumer. On 29 March 1920, on Churchill's recommendation, he was promoted field marshal, which ended his soldiering. The London Gazette notice of 12 March 1920 shows Lieutenant-General Sir T. L. N. Morland appointed to the Army of the Rhine command in Robertson's place from 3 March 1920."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Home Forces」",
+       "quote": "However, on 5 June 1918 Wully began moving upwards again.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Home Forces」",
+       "quote": "of all Home Forces, and then nine months later (13 March 1919)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Army of the Rhine」",
+       "quote": "he became C-in-C of the Army of the Rhine, following General Plumer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Field-Marshal」",
+       "quote": "29 March 1920",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Field-Marshal」",
+       "quote": "His Majesty promoted me to Field-Marshal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-31822",
+       "locator": "「Army of the Rhine」",
+       "quote": "Qeneral Officer Corndg. vn, Chief, Army of the",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-31822",
+       "locator": "「Army of the Rhine」",
+       "quote": "Rhine.—iLb.-Geu. Sir T. L. N. Morland;",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-31822",
+       "locator": "「Army of the Rhine」",
+       "quote": "vice Gen. (Sir W. R. Robertson, G.C.B.,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-31822",
+       "locator": "「Army of the Rhine」",
+       "quote": "to Thei King. 3rd Mar. 1920.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "robertson-qmg-bef",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍（法國戰場）",
+      "en": "British Expeditionary Force (France)"
+     },
+     "title": {
+      "zh-Hant": "英國遠征軍軍需總監",
+      "en": "Quartermaster-General of the BEF",
+      "orig": "Quartermaster-General of the BEF"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-08-01",
+      "end": "1915-01-25"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Quartermaster-General」",
+       "quote": "Robertson became Quartermaster-General of the BEF",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「August 1914」",
+       "quote": "In August 1914 William Robertson crossed to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "On 25 January 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "he ceased to be the BEF's storekeeper-in-chief",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍需（後勤）參謀職，非國家級最高軍職、非戰區司令（T14 R5）"
+    },
+    {
+     "key": "robertson-cgs-bef",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍（法國戰場）",
+      "en": "British Expeditionary Force (France)"
+     },
+     "title": {
+      "zh-Hant": "英國遠征軍參謀長（總參謀長）",
+      "en": "Chief of the General Staff, BEF",
+      "orig": "Chief of its General Staff (BEF)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1915-01-25",
+      "end": "1915-12-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "On 25 January 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Chief of General Staff」",
+       "quote": "became Chief of its General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「CIGS」",
+       "quote": "Four days later, 23 December, Robertson (now a Lieutenant-General)",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依下一任職務（帝國總參謀長）起日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "遠征軍內的參謀長，非國家級最高軍職（T14 R5）；迄日依下一任起日推得"
+    },
+    {
+     "key": "robertson-cigs",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍部（帝國總參謀部）",
+      "en": "British War Office (Imperial General Staff)"
+     },
+     "title": {
+      "zh-Hant": "帝國總參謀長",
+      "en": "Chief of the Imperial General Staff",
+      "orig": "Chief Of the Imperial General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1915-12-23",
+      "end": "1918-02-16"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「CIGS」",
+       "quote": "Four days later, 23 December, Robertson (now a Lieutenant-General)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「CIGS」",
+       "quote": "to take up the Army's highest office, Chief Of the Imperial General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Last fight」",
+       "quote": "On 16 February 1918 Wully ceased to be CIGS and was replaced by General Wilson",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "職位等級『Army's highest office』引文明寫，類別符合 R4，但 regimeId 待查證（政權是否在系統中無法證明）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "robertson-home-forces",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國本土部隊",
+      "en": "British Home Forces"
+     },
+     "title": {
+      "zh-Hant": "本土部隊總司令",
+      "en": "Commander-in-Chief, Home Forces",
+      "orig": "C-in-C of all Home Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-06-05",
+      "end": "1919-03-13"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Home Forces」",
+       "quote": "However, on 5 June 1918 Wully began moving upwards again.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Home Forces」",
+       "quote": "of all Home Forces, and then nine months later (13 March 1919)",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依下一任職務起日（13 March 1919）推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "本土部隊總司令，來源未明寫為國家級最高軍職、亦非戰區司令且無戰役連結（T14 R5）"
+    },
+    {
+     "key": "robertson-army-of-the-rhine",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "萊茵軍團（德國佔領區）",
+      "en": "Army of the Rhine (occupation zone, Germany)"
+     },
+     "title": {
+      "zh-Hant": "萊茵軍團總司令",
+      "en": "Commander-in-Chief, Army of the Rhine",
+      "orig": "C-in-C of the Army of the Rhine"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-03-13",
+      "end": "1920-03-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Army of the Rhine」",
+       "quote": "he became C-in-C of the Army of the Rhine, following General Plumer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wfa-robertson",
+       "locator": "「Home Forces」",
+       "quote": "of all Home Forces, and then nine months later (13 March 1919)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-31822",
+       "locator": "「Army of the Rhine」",
+       "quote": "vice Gen. (Sir W. R. Robertson, G.C.B.,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-31822",
+       "locator": "「Army of the Rhine」",
+       "quote": "to Thei King. 3rd Mar. 1920.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍層級司令，類別符合 R4，但無戰役連結、regimeId 待查證，門檻無法證明（迄日已由倫敦憲報補齊）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:robertson-eastern-command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；WFA 只寫 1918 年 2 月後「暫任東部司令部（本土部隊）總司令」，1918 年 6 月 5 日改任本土部隊總司令，未寫起日。；本輪加查 WFA Part II、倫敦憲報 1920-03-12 補刊、LiquiSearch、WEHD，仍無起日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:robertson-army-of-the-rhine",
+     "gapKind": "not_found",
+     "note": "待查證：起日來源不一；WFA（Terraine）寫 1919-03-13 接替普盧默，另有未評等來源（WEHD 1922 無署名條目、LiquiSearch）寫 1919 年 4 月；倫敦憲報只證實迄日（1920-03-03），暫採 WFA 起日。需官方公報確認任命生效日。",
+     "candidateCitations": [
+      {
+       "sourceKey": "wehd-robertson",
+       "locator": "條目內文",
+       "quote": "From April 1919 to March 1920 he commanded the British troops on the Rhine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Sir William Robertson Chief of the Imperial General Staff 1915 1918 biography",
+     "url": "https://www.britannica.com/biography/Sir-William-Robert-Robertson-1st-Baronet",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Robertson William Robert 1914-1918-online",
+     "url": "https://encyclopedia.1914-1918-online.net/article/robertson-william-robert/",
+     "result": "challenge_page",
+     "note": "Anubis 機器人驗證頁，不繞過；PDF 鏡像亦同"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Robertson papers King's College London",
+     "url": "https://archives.kingscollections.org/index.php/robertson-wr",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Wully Robertson (Terraine) WFA",
+     "url": "https://www.westernfrontassociation.com/world-war-i-articles/wully-field-marshal-sir-william-robertson-bart-gcb-kcvo-part-i",
+     "result": "found_B",
+     "note": "抓取成功並轉成純文字，供段落 1–5 與職位"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Forces News: only soldier to hold every rank",
+     "url": "https://www.forcesnews.com/heritage/wwii/private-who-became-field-marshal-who-was-sir-william-robertson",
+     "result": "unrated",
+     "note": "具名記者但屬媒體，僅供 gap"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Robertson, Sir William Oxford Companion British History（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/robertson-sir-william",
+     "result": "no_result",
+     "note": "404；搜尋亦只得 1721 年同名歷史學家"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "The Big Brain in the Army (WFA 2022)",
+     "url": "https://www.westernfrontassociation.com/world-war-i-articles/2022/april/the-big-brain-in-the-army-the-rise-of-sir-william-robertson-from-trooper-to-cigs/",
+     "result": "found_B",
+     "note": "僅摘要頁，未見 CIGS 起日"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Robertson appointed CIGS 23 December 1915 Kitchener",
+     "url": "https://www.firstworldwar.com/bio/robertson.htm",
+     "result": "unrated",
+     "note": "搜尋結果只見私人／商業站（firstworldwar、history.com 系），不採"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB／London Gazette 任命公告",
+     "url": "https://www.thegazette.co.uk/",
+     "result": "no_result",
+     "note": "未取得 CIGS 任命公告頁"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "UK Parliament Historic Hansard 人物頁 William Robertson",
+     "url": "https://api.parliament.uk/historic-hansard/people/sir-william-robertson",
+     "result": "not_relevant",
+     "note": "同名人物（1825–1889 布萊頓議員），非本人；本人未任議員",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Historic Hansard 人物頁 Mr William Robertson",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-william-robertson",
+     "result": "not_relevant",
+     "note": "同名人物（Lord Robertson of Oakridge），非本人",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "London Gazette 單頁 issue 31918 p.3647",
+     "url": "https://www.thegazette.co.uk/London/issue/31918/page/3647",
+     "result": "no_result",
+     "note": "404，URL 臆測無效",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "National Army Museum William Robertson",
+     "url": "https://www.nam.ac.uk/explore/william-robertson",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Imperial War Museum Robertson 生涯頁",
+     "url": "https://www.iwm.org.uk/history/the-military-career-of-field-marshal-sir-william-robertson",
+     "result": "blocked_403",
+     "note": "403",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "GOV.UK Past Prime Ministers（確認非首相、排除）",
+     "url": "https://www.gov.uk/government/history/past-prime-ministers",
+     "result": "not_relevant",
+     "note": "本人非首相，僅用於排除",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "LoC Name Authority id.loc.gov 搜尋 Robertson, William Robert",
+     "url": "https://id.loc.gov/search/?q=Robertson%2C+William+Robert%2C+Sir",
+     "result": "no_result",
+     "note": "搜尋頁為動態載入；改用 suggest2 API 無命中",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "LoC suggest2 Robertson, William Robert, Sir, 1860-1933",
+     "url": "https://id.loc.gov/authorities/names/suggest2/?q=Robertson,%20William%20Robert,%20Sir,%201860-1933",
+     "result": "no_result",
+     "note": "hits 為空",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "VIAF 41914272 Robertson, William Robert, 1860-1933",
+     "url": "https://viaf.org/viaf/41914272",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "authority",
+     "query": "BnF data Robertson William Robert 1860-1933",
+     "url": "https://data.bnf.fr/en/search?term=Robertson+William+Robert+1860-1933",
+     "result": "no_result",
+     "note": "搜尋頁無可用人物條目",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "NDL Authorities Robertson, William Robert",
+     "url": "https://id.ndl.go.jp/auth/ndla/?searchtype=ndla&keyword=Robertson%2C+William+Robert",
+     "result": "no_result",
+     "note": "無可用生平／任期內容",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB 搜尋 William Robert Robertson 1860-1933",
+     "url": "https://www.oxforddnb.com/search?q=William+Robert+Robertson+1860-1933",
+     "result": "blocked_403",
+     "note": "403",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Archives Hub／KCL Liddell Hart Centre Robertson papers",
+     "url": "https://archiveshub.jisc.ac.uk/search?terms=Robertson%20William%20Robert%201860-1933",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "King's College London archive robertson-wr-6（BAOR 1919–1920 文件）",
+     "url": "https://archives.kingscollections.org/index.php/robertson-wr-6",
+     "result": "blocked_403",
+     "note": "403",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "academic",
+     "query": "Wully (Terraine) Part II 全文",
+     "url": "https://www.westernfrontassociation.com/world-war-i-articles/wully-field-marshal-sir-william-robertson-bart-gcb-kcvo-dso-part-ii",
+     "result": "found_B",
+     "note": "與 Part I 同文；補得 1915-12-23 赴任帝國總參謀長、早年入伍與參謀學院校長等日期（現併入 wfa-robertson 引用）",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "academic",
+     "query": "WFA 2013 Wully Robertson new photographs",
+     "url": "https://www.westernfrontassociation.com/world-war-i-articles/2013/february/wully-robertson-new-photographs-of-his-life/",
+     "result": "not_relevant",
+     "note": "圖說為主，無新任期日期",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "official",
+     "query": "SNAC Robertson, W. R. (William Robert), 1860-1933",
+     "url": "https://snaccooperative.org/details/8460493/1227486",
+     "result": "challenge_page",
+     "note": "驗證頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print 505592",
+     "url": "https://www.britannica.com/print/article/505592",
+     "result": "blocked_403",
+     "note": "403",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Robertson（另一 URL）",
+     "url": "https://encyclopedia.1914-1918-online.net/article/robertson_william_robert",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "other",
+     "query": "LiquiSearch Robertson PostWar",
+     "url": "https://www.liquisearch.com/william_robertson_british_army_officer/postwar",
+     "result": "unrated",
+     "note": "無署名彙編，只作線索（Rhine 1919 年 4 月、1920-03-29 晉升），不引用",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "other",
+     "query": "WEHD Reader's Biographical Encyclopaedia 1922 Robertson",
+     "url": "https://wehd.com/bios/William_Robert_Robertson.html",
+     "result": "unrated",
+     "note": "無署名條目（Q9）；寫 1919 年 4 月至 1920 年 3 月任萊茵軍；僅作 gap 候選",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "treaty_law",
+     "query": "London Gazette 12 March 1920 supplement p.3260（WebSearch 查 Morland 接任萊茵軍）",
+     "url": "https://www.thegazette.co.uk/London/issue/31822/supplement/3260/data.pdf",
+     "result": "found_A",
+     "note": "官方公報：Morland 接任 Army of the Rhine 總司令，vice Robertson，3rd Mar. 1920（OCR 有錯字）→ 補齊萊茵軍團迄日",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "other",
+     "query": "Papers Past 1917／1919／1920 報導（紐西蘭國家圖書館）",
+     "url": "https://paperspast.natlib.govt.nz/newspapers/EP19200331.2.70.10",
+     "result": "blocked_403",
+     "note": "重導迴圈（302），無法抓取",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "academic",
+     "query": "Woodward ed., Military Correspondence of FM Sir William Robertson（Army Records Society）",
+     "url": "https://dev.armyrecordssociety.org.uk/publications/vol-5-the-military-correspondence-of-field-marshal-sir-william-robertson-1915-1918",
+     "result": "no_result",
+     "note": "只見書目資料（CIGS Dec 1915–Feb 1918），未抓原文",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "johnfrench1stearlofypres",
+   "bioId": null,
+   "name": "John French, 1st Earl of Ypres",
+   "nameZh": "第一代伊普爾伯爵約翰·弗倫奇",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1914-08-01",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "英國遠征軍總司令（1914–15）",
+      "en": "Commander of the British army in France, 1914–15"
+     },
+     "body": {
+      "zh-Hant": "弗倫奇原是騎兵將領，曾在第二次波耳戰爭中率領騎兵師，並任帝國總參謀長，1914至15年成為英國駐法軍隊的首任司令。牛津辭典評他並不適任：他是富有魅力的騎兵，卻不懂參謀作業與外交，與法國盟友關係冷淡，面對戰壕僵局只會要求更多砲彈。",
+      "en": "French had led a cavalry division in the second Boer War and served as chief of the imperial general staff before becoming the first commander of the British army in France in 1914–15. The Oxford Companion judges him ill suited to the role: a charismatic cavalryman with little understanding of staff work or diplomacy, whose relations with his French allies were frosty and whose only answer to trench stalemate was ever more shells."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "After leading a cavalry division during the second",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "serving as chief of the imperial general staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "French served as the first commander of the British army in",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "France 1914–15",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "He was ill suited to this role",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "charismatic cavalryman",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "little understanding of staff work or diplomacy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "ever more shells",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-05-01",
+      "end": "1915-06-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1915年5月的砲彈醜聞",
+      "en": "The shell scandal of May 1915"
+     },
+     "body": {
+      "zh-Hant": "到1915年5月，要求更多砲彈的辦法已經失效，弗倫奇便私下鼓動《泰晤士報》與《每日郵報》，指責基奇納供應砲彈不足，意圖找替罪羊。他本人在這場風波中勉強過關。",
+      "en": "By May 1915 the recipe of more shells no longer worked, and French sought a scapegoat by secretly encouraging The Times and the Daily Mail to blame Kitchener for failing to provide enough shells. He himself barely survived the ensuing scandal."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "By May 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "The Times",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "Daily Mail",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "Kitchener for failing to provide the army with enough shells",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "French himself barely survived the subsequent scandal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1915-09-01",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "盧斯戰役與去職",
+      "en": "The Battle of Loos and dismissal"
+     },
+     "body": {
+      "zh-Hant": "1915年9月至10月的盧斯戰役再度失敗，弗倫奇於12月被免去總司令職務。英國國家陸軍博物館稱，這次戰役的失敗迫使他辭去遠征軍司令，由道格拉斯·黑格將軍接替。",
+      "en": "A further failure at Loos in September–October 1915 preceded his dismissal in December 1915. The National Army Museum says the failures of the battle forced French to resign as commander of the British Expeditionary Force, and that General Sir Douglas Haig replaced him."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "another failure at Loos in September–October 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "dismissed in December 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-loos",
+       "locator": "「Aftermath」",
+       "quote": "The failures of the battle forced Field Marshal Sir John French to",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-loos",
+       "locator": "「Aftermath」",
+       "quote": "He was replaced by General Sir Douglas Haig.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1918-01-01",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "愛爾蘭總督與封爵",
+      "en": "Lord-Lieutenant of Ireland and the peerage"
+     },
+     "body": {
+      "zh-Hant": "1918至1921年，弗倫奇出任愛爾蘭總督（Lord-Lieutenant）；1922年受封為第一代伊普爾伯爵。",
+      "en": "From 1918 to 1921 French served as Lord-Lieutenant of Ireland, and in 1922 he was given a peerage as 1st earl of Ypres."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "He served 1918–21 as Lord-Lieutenant of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "was given a peerage in 1922 as 1st earl of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "french-bef-cinc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍（法國戰場）",
+      "en": "British Expeditionary Force (France)"
+     },
+     "title": {
+      "zh-Hant": "英國遠征軍總司令",
+      "en": "Commander of the British army in France (BEF)",
+      "orig": "first commander of the British army in France"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-08-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "French served as the first commander of the British army in",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "France 1914–15",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "dismissed in December 1915",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取免職月之下一單位起日（Q3）；起日月份（1914-08）僅見 WFA 側面敘述，未作引文，月份待官方公報確認",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-loos",
+       "locator": "「Aftermath」",
+       "quote": "He was replaced by General Sir Douglas Haig.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "遠征軍總司令（戰區／方面軍層級），盧斯戰役（1915-09～10，法國盧斯，牛津辭典）可作戰役連結，但職位等級「全軍總司令」未明寫、regimeId 待查證，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "french-lord-lieutenant-ireland",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭（英國統治下）",
+      "en": "Ireland (under British rule)"
+     },
+     "title": {
+      "zh-Hant": "愛爾蘭總督（Lord-Lieutenant）",
+      "en": "Lord-Lieutenant of Ireland",
+      "orig": "Lord-Lieutenant of Ireland"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1918-01-01",
+      "end": "1922-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ency-french-sir",
+       "locator": "「French, Sir John」",
+       "quote": "He served 1918–21 as Lord-Lieutenant of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "Lord-Lieutenant 為愛爾蘭最高行政長官，是否適用 R2 殖民長官、愛爾蘭在系統中的 regimeId 是否存在，文件未涵蓋"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:french-cgs-1912",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；牛津辭典只寫曾任帝國總參謀長，未寫 1912–14 起迄日；Britannica 被擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:french-home-forces",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；未見 A／B 原文寫明本土部隊總司令（1915 年底起）任期；僅見 HISTORY.com（未評等）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "hist-french",
+       "locator": "「Home Forces」",
+       "quote": "French was then appointed as the commander-in-chief of the Home Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:french-bef-cinc",
+     "gapKind": "not_found",
+     "note": "待查證：起日月份（1914-08）僅見間接來源（WFA 稱 1914 年 8 月他已是總司令）；牛津辭典只有年份。已寫 month 精度起日，月份待官方公報確認。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "John French 1st Earl of Ypres Britannica",
+     "url": "https://www.britannica.com/biography/John-French-1st-Earl-of-Ypres",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online French John Denton Pinkstone",
+     "url": "https://encyclopedia.1914-1918-online.net/article/french-john-denton-pinkstone/",
+     "result": "challenge_page",
+     "note": "Anubis 機器人驗證，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "French, Sir John Oxford Companion（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/french-sir-john",
+     "result": "found_B",
+     "note": "David French 署名條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Battle of Loos National Army Museum",
+     "url": "https://www.nam.ac.uk/explore/battle-loos",
+     "result": "found_B",
+     "note": "機構專文，說明弗倫奇辭職與黑格接替"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "French, John Denton Pinkstone Columbia Encyclopedia",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/french-john-denton-pinkstone-1st-earl-ypres",
+     "result": "unrated",
+     "note": "無署名條目（Q9），不採"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "John French HISTORY.com",
+     "url": "https://www.history.com/articles/john-french",
+     "result": "unrated",
+     "note": "編輯部署名、商業站，僅供 gap"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Imperial War Museum French item",
+     "url": "https://www.iwm.org.uk/collections/item/object/205016677",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Western Front Association（Terraine）談 French 撤換",
+     "url": "https://www.westernfrontassociation.com/world-war-i-articles/wully-field-marshal-sir-william-robertson-bart-gcb-kcvo-part-i",
+     "result": "found_B",
+     "note": "只作背景，段落未引"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "French Mons Le Cateau Ypres Loos Home Forces Ireland dates",
+     "url": "https://www.history.com/articles/john-french",
+     "result": "unrated",
+     "note": "僅得未評等彙整，戰役日期缺 A／B 原文"
+    }
+   ]
+  },
+  {
+   "key": "henrymaitlandwilson1stbaronwilson",
+   "bioId": null,
+   "name": "Henry Maitland Wilson, 1st Baron Wilson",
+   "nameZh": "第一代威爾遜男爵亨利·梅特蘭·威爾遜",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1941-05-07",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "1941年：希臘與巴勒斯坦",
+      "en": "1941: Greece and Palestine"
+     },
+     "body": {
+      "zh-Hant": "英國官方戰史附錄把威爾遜列為駐希臘英軍（W Force）的指揮官；並載明他自1941年5月7日起，出任巴勒斯坦與外約旦英軍的司令官。",
+      "en": "The official history's appendix lists Lieutenant-General Sir Henry Maitland Wilson as commander of British troops in Greece (W Force), and records him in command of Palestine and Transjordan from 7 May 1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「The Army」",
+       "quote": "British Troops, Greece (W Force) Lieutenant-General Sir Henry Maitland Wilson",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「The Army」",
+       "quote": "Palestine and Transjordan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「The Army」",
+       "quote": "Lieutenant-General Sir Henry Maitland Wilson (from 7th May 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1942-08-21",
+      "end": "1943-02-17"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波斯與伊拉克司令部",
+      "en": "Persia and Iraq Command"
+     },
+     "body": {
+      "zh-Hant": "1942年8月21日，威爾遜就任波斯與伊拉克司令部總司令，司令部於9月15日在巴格達開設。他的首要任務是不惜一切守住波斯與伊拉克的油田與石油設施；其次是保障由波斯灣港口運往蘇聯的補給。1943年2月17日，他離開前往開羅就任新職。",
+      "en": "Wilson took up his appointment as Commander-in-Chief, Persia and Iraq Command on 21 August 1942, with General Headquarters opening in Baghdad on 15 September. His first task was to secure the oil fields and installations in Persia and Iraq at all costs; the second was to ensure the transport of supplies to Russia from the Persian Gulf ports. On 17 February 1943 he left for Cairo to take up new duties."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "首頁標題",
+       "quote": "THE PERIOD 2iST AUGUST, 1942, TO 17x11 FEBRUARY, 1943.",
+       "quoteLang": "en",
+       "evidenceNote": "PDF 為 OCR 文字，「2iST」＝21ST、「17x11」＝17TH",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "第 1 段",
+       "quote": "took up my appointment as Commander-inChief on 2ist August",
+       "quoteLang": "en",
+       "evidenceNote": "OCR 文字「2ist」＝21st；年份見標題 1942",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "第 1 段",
+       "quote": "opened in Baghdad on I5th September, 1942",
+       "quoteLang": "en",
+       "evidenceNote": "OCR 文字「I5th」＝15th",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "「First」",
+       "quote": "To secure at all costs from land and air attack the oil fields",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "「Second」",
+       "quote": "To ensure the transport from the Persian Gulf ports of supplies to Russia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "第 28 段前",
+       "quote": "On 17th February I left for Cairo to take up",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1943 見標題",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-01-08",
+      "end": "1944-12-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "地中海盟軍最高司令",
+      "en": "Supreme Allied Commander, Mediterranean"
+     },
+     "body": {
+      "zh-Hant": "1944年1月8日，艾森豪威爾預定把地中海戰區的責任移交給威爾遜，由他出任地中海戰區盟軍最高司令，美軍的德弗斯中將是他的副手。1944年12月12日，亞歷山大元帥接替他出任地中海最高司令；威爾遜晉升元帥，改任英國參謀長委員會駐華盛頓的高級代表。",
+      "en": "On 8 January 1944 Eisenhower was to pass his responsibilities to Wilson, who would become Supreme Allied Commander of the Mediterranean theater, with Lieutenant General Devers as his deputy. On 12 December 1944 Field Marshal Alexander replaced him as Supreme Commander in the Mediterranean area; Wilson was promoted to Field Marshal and became senior representative in Washington of the British Chiefs of Staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-salerno17",
+       "locator": "「Command」",
+       "quote": "On 8 January 1944, he would pass his responsibilities to General",
+       "quoteLang": "en",
+       "evidenceNote": "原文為預定交接（would）；未見實際交接日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-salerno17",
+       "locator": "「Command」",
+       "quote": "who would become the Supreme Allied Commander of the Mediterranean theater",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Mediterranean」",
+       "quote": "was named Supreme Commander of Allied Forces in the Mediterranean Area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Mediterranean」",
+       "quote": "U.S. Army, was appointed his deputy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Italy」",
+       "quote": "On 12 December 1944 Field Marshal Alexander replaced Gen. Sir Henry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Italy」",
+       "quote": "General Wilson was promoted to Field Marshal and senior representative",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Italy」",
+       "quote": "in Washington of the British Chiefs of Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "wilson-palestine-transjordan",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴勒斯坦與外約旦英軍",
+      "en": "British forces in Palestine and Transjordan"
+     },
+     "title": {
+      "zh-Hant": "巴勒斯坦與外約旦英軍司令",
+      "en": "GOC Palestine and Transjordan",
+      "orig": "Palestine and Transjordan: Lieutenant-General Sir Henry Maitland Wilson"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-05-07",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「The Army」",
+       "quote": "Palestine and Transjordan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「The Army」",
+       "quote": "Lieutenant-General Sir Henry Maitland Wilson (from 7th May 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地區部隊司令，非國家級最高軍職且無戰役連結（T14 R5）；迄日待查"
+    },
+    {
+     "key": "wilson-persia-iraq-cinc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波斯與伊拉克司令部",
+      "en": "Persia and Iraq Command"
+     },
+     "title": {
+      "zh-Hant": "波斯與伊拉克司令部總司令",
+      "en": "Commander-in-Chief, Persia and Iraq Command",
+      "orig": "Commander-in-Chief, Persia and Iraq Command"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-08-21",
+      "end": "1943-02-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "第 1 段",
+       "quote": "took up my appointment as Commander-inChief on 2ist August",
+       "quoteLang": "en",
+       "evidenceNote": "OCR「2ist」＝21st；年份見標題",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "首頁標題",
+       "quote": "THE PERIOD 2iST AUGUST, 1942, TO 17x11 FEBRUARY, 1943.",
+       "quoteLang": "en",
+       "evidenceNote": "OCR 文字",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-37703",
+       "locator": "第 28 段前",
+       "quote": "On 17th February I left for Cairo to take up",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令（司令部總司令），類別符合 R4，但無有日期＋地點＋出處的戰役連結、regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "wilson-supreme-allied-cmdr-med",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "地中海戰區盟軍",
+      "en": "Allied Forces, Mediterranean Theater"
+     },
+     "title": {
+      "zh-Hant": "地中海戰區盟軍最高司令",
+      "en": "Supreme Allied Commander, Mediterranean",
+      "orig": "Supreme Commander of Allied Forces in the Mediterranean Area"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-01-08",
+      "end": "1944-12-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hw-salerno17",
+       "locator": "「Command」",
+       "quote": "On 8 January 1944, he would pass his responsibilities to General",
+       "quoteLang": "en",
+       "evidenceNote": "原文為預定交接（would）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Italy」",
+       "quote": "On 12 December 1944 Field Marshal Alexander replaced Gen. Sir Henry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-cosbiennial",
+       "locator": "「Mediterranean」",
+       "quote": "was named Supreme Commander of Allied Forces in the Mediterranean Area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區最高司令，類別符合 R4，但缺有日期＋地點＋出處的戰役連結（義大利戰役未見逐日引文）、regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:wilson-palestine-transjordan",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 HyperWar 英國官方戰史附錄 8（只寫 from 7th May 1941）、倫敦公報戰報、美國官方戰史，均未載離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:wilson-w-force-greece",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；官方戰史附錄 8 只列職稱，無任期；希臘戰役（1941）之日期、地點引文亦未取得。",
+     "candidateCitations": [
+      {
+       "sourceKey": "erenow-wilson",
+       "locator": "「Wilson」",
+       "quote": "He then directed both the intervention in and retreat from Greece",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:wilson-middle-east-cinc",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；倫敦公報戰報只寫 1943 年 2 月 17 日離開前往開羅『接任新職』，未寫職稱；中東總司令任期、敘利亞戰役（1941）、凱奧斯／萊羅斯（1943）等戰役日期亦未取得 A／B 原文。",
+     "candidateCitations": [
+      {
+       "sourceKey": "erenow-wilson",
+       "locator": "「Wilson」",
+       "quote": "the occupation of Syria, held by Vichy French forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：威爾遜之希臘（1941）、敘利亞（1941）、義大利（1944）等主要戰役，已查 HyperWar 官方戰史（附錄、Supreme Command、Salerno to Cassino、Biennial Report）與倫敦公報，只得指揮職與交接日，未得戰役經過之 A／B 引文；Britannica、IWM 被擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Henry Maitland Wilson Supreme Allied Commander Mediterranean 1944 Greece Syria Persia Iraq",
+     "url": "https://www.britannica.com/biography/Henry-Maitland-Wilson-1st-Baron-Wilson",
+     "result": "no_result",
+     "note": "Britannica 屬 Cloudflare 擋，搜尋摘要不採"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Wilson Persia and Iraq Command despatch",
+     "url": "https://www.thegazette.co.uk/London/issue/37703",
+     "result": "found_A",
+     "note": "倫敦公報增刊 37703（PDF，OCR）"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Wilson Supreme Allied Commander Mediterranean 8 January 1944 official history",
+     "url": "https://www.ibiblio.org/hyperwar/USA/USA-MTO-Salerno/USA-MTO-Salerno-17.html",
+     "result": "found_A",
+     "note": "美國陸軍官方戰史"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Biennial Reports of the Chief of Staff 1943–45",
+     "url": "https://ibiblio.org/hyperwar/USA/COS-Biennial/COS-Biennial-3.html",
+     "result": "found_A",
+     "note": "12 月 12 日由亞歷山大接替"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Principal Commanders Mediterranean and Middle East",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-Med-II/UK-Med-2-A8.html",
+     "result": "found_A",
+     "note": "W Force／巴勒斯坦與外約旦職稱"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Who's Who in World War II Wilson",
+     "url": "https://erenow.org/ww/whos-who-in-world-war-ii/497.php",
+     "result": "unrated",
+     "note": "轉載站，無條目署名，僅供 gap"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "IWM Wilson visits the Italian front",
+     "url": "https://www.iwm.org.uk/collections/item/object/205188869",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Sir Henry Wilson Oxford Companion（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/wilson-sir-henry",
+     "result": "not_relevant",
+     "note": "抓到的是另一人（Sir Henry Hughes Wilson, 1854–1922），不採"
+    }
+   ]
+  },
+  {
+   "key": "arthurtedder1stbarontedder",
+   "bioId": null,
+   "name": "Arthur Tedder, 1st Baron Tedder",
+   "nameZh": "第一代泰德男爵亚瑟·泰德",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1941-05-01",
+      "end": "1943-03-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "中東皇家空軍總司令",
+      "en": "Air Officer Commanding-in-Chief, RAF Middle East"
+     },
+     "body": {
+      "zh-Hant": "泰德在劍橋讀歷史，一戰時加入皇家飛行團。1941年6月1日起，他接替朗莫爾出任皇家空軍中東司令部的空軍總司令；牛津辭典則把他的中東任期記為1941年5月至1943年2月。美國官方戰史稱，他1942年在中東指揮空軍，協助阻止隆美爾推進埃及，也對蒙哥馬利的阿拉曼進攻之成功有重大貢獻。",
+      "en": "Tedder read history at Cambridge and joined the RFC in the First World War. From 1 June 1941 he succeeded Longmore as Air Officer Commanding-in-Chief of RAF Middle East, though the Oxford Companion dates his Middle East command May 1941 to February 1943. The US official history says he was British air commander in the Middle East in 1942, helping to stop Rommel's advance toward Egypt and contributing significantly to the success of Montgomery's El Alamein attack."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-tedder",
+       "locator": "「Tedder, Sir Arthur」",
+       "quote": "Tedder read history at Cambridge, then joined the RFC in the",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-tedder",
+       "locator": "「Tedder, Sir Arthur」",
+       "quote": "May 1941 to February 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「Royal Air Force」",
+       "quote": "Air Chief Marshal Sir Arthur Longmore;",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「Royal Air Force」",
+       "quote": "Air Marshal A. W. Tedder (from 1st June 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「Royal Air Force」",
+       "quote": "Air Officer Commanding-in-Chief:",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "Tedder had served as British air commander in the Middle East in 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "helping to stop Generalfeldmarschall Erwin Rommel's advance toward Egypt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "significantly to the success of General Montgomery's El Alamein attack",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1943-02-17",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "地中海盟軍空軍總司令",
+      "en": "Commander in Chief, Mediterranean Allied Air Forces"
+     },
+     "body": {
+      "zh-Hant": "1943年2月17日起，泰德出任地中海盟軍空軍總司令，轄皇家空軍中東司令部、馬爾他空軍司令部與西北非空軍，任期至年底。他在地中海的表現，使許多美英空軍將領對他敬重。",
+      "en": "From 17 February 1943 Tedder served as Commander in Chief, Mediterranean Allied Air Forces, which included RAF Middle East, RAF Malta Air Command and the Northwest African Air Forces, until the end of the year. Many U.S. and British airmen came to hold him in high esteem."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "From 17 February 1943 until his appointment as Deputy Supreme Commander",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "served as Commander in Chief, Mediterranean Allied Air Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "RAF Middle East, RAF Malta Air Command, and the Northwest African Air Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Tedder」",
+       "quote": "From February 1943 until the end of the year, he served as Commander in",
+       "quoteLang": "en",
+       "evidenceNote": "「until the end of the year」指 1943 年底，迄日取 1944-01-01（Q3 year 精度）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-01-01",
+      "end": "1944-02-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "最高司令部副司令",
+      "en": "Deputy Supreme Commander, SHAEF"
+     },
+     "body": {
+      "zh-Hant": "1944年1月，泰德獲選為盟軍最高司令部（SHAEF）副最高司令。美國官方戰史稱他是橫渡海峽作戰中盟軍空中力量的總協調人。牛津辭典則稱他負責統籌「霸王行動」入侵中所有盟軍飛機，後來成為皇家空軍元帥。",
+      "en": "In January 1944 Tedder was chosen as Deputy Supreme Commander of SHAEF. The US official history calls him the chief co-ordinator of Allied air efforts in support of the cross-Channel operation. The Oxford Companion says he secured co-ordination of all allied aircraft in the invasion, and that he became marshal of the RAF."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "Tedder was chosen as Deputy Supreme Commander of SHAEF in January 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「Air Chief Marshal Tedder」",
+       "quote": "became the chief co-ordinator of Allied air efforts",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-tedder",
+       "locator": "「Tedder, Sir Arthur」",
+       "quote": "deputy supreme commander of ‘Overlord’",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-tedder",
+       "locator": "「Tedder, Sir Arthur」",
+       "quote": "He became marshal of the RAF",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tedder-aoc-middle-east",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "皇家空軍中東司令部",
+      "en": "RAF Middle East Command"
+     },
+     "title": {
+      "zh-Hant": "皇家空軍中東司令部空軍總司令",
+      "en": "Air Officer Commanding-in-Chief, RAF Middle East",
+      "orig": "Air Officer Commanding-in-Chief: Air Marshal A. W. Tedder"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-06-01",
+      "end": "1943-03-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "「Royal Air Force」",
+       "quote": "Air Marshal A. W. Tedder (from 1st June 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-tedder",
+       "locator": "「Tedder, Sir Arthur」",
+       "quote": "May 1941 to February 1943",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取 1943 年 2 月之下一單位起日（Q3）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "significantly to the success of General Montgomery's El Alamein attack",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區空軍司令，類別符合 R4，阿拉曼攻勢（1942，埃及）可作戰役連結，但 regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "tedder-maaf",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "地中海盟軍空軍",
+      "en": "Mediterranean Allied Air Forces"
+     },
+     "title": {
+      "zh-Hant": "地中海盟軍空軍總司令",
+      "en": "Commander in Chief, Mediterranean Allied Air Forces",
+      "orig": "Commander in Chief, Mediterranean Allied Air Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-02-17",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "From 17 February 1943 until his appointment as Deputy Supreme Commander",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Tedder」",
+       "quote": "From February 1943 until the end of the year, he served as Commander in",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取 1944-01-01（Q3 year 精度）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區空軍總司令，類別符合 R4，但缺有日期＋地點＋出處的戰役連結、regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "tedder-deputy-supreme-shaef",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍最高司令部（SHAEF）",
+      "en": "Supreme Headquarters Allied Expeditionary Force (SHAEF)"
+     },
+     "title": {
+      "zh-Hant": "盟軍最高司令部副最高司令",
+      "en": "Deputy Supreme Commander, SHAEF",
+      "orig": "Deputy Supreme Commander of SHAEF"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "hw-supcmd-3",
+       "locator": "「The Chief Deputies」",
+       "quote": "Tedder was chosen as Deputy Supreme Commander of SHAEF in January 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（Deputy），依 T14 R5 不進角色層；迄日待查"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:tedder-aoc-middle-east",
+     "gapKind": "conflict",
+     "note": "起日兩份已抓來源不同：牛津辭典（R. A. C. Parker）寫「May 1941 to February 1943」，英國官方戰史附錄 8 寫「from 1st June 1941」。職位起日暫採官方附錄 1941-06-01（日精度）；迄日採牛津辭典 1943-02 月（精度 month）。待倫敦公報任命公告核對。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:tedder-deputy-supreme-shaef",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 HyperWar 美國官方戰史（只提 1945 年 1 月赴莫斯科任務）、牛津辭典（只寫皇家空軍元帥），未載卸任日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：克里特撤退（1941-05）、十字軍行動（1941-11）、加查拉（1942）、突尼西亞、西西里、運輸計畫與諾曼第等戰役之日期／地點，僅見未評等 Gale 無署名條目與 rafweb（私人彙編）；A／B 原文只含阿拉曼攻勢。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ency-tedder2",
+       "locator": "「Middle East」",
+       "quote": "Tedder participated in the British evacuation of Crete",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Arthur Tedder Marshal of the RAF Deputy Supreme Commander Overlord biography",
+     "url": null,
+     "result": "not_relevant",
+     "note": "WebSearch 結果首位為維基，只作索引，不採、不抓"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Tedder, Sir Arthur Oxford Companion（encyclopedia.com）",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/tedder-sir-arthur",
+     "result": "found_B",
+     "note": "R. A. C. Parker 署名條目；條目寫「made viscount in 1946」，與名單「男爵」不符，未採該句"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Westminster Abbey Arthur Baron Tedder",
+     "url": "https://www.westminster-abbey.org/our-history/people/arthur,-baron-tedder",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Westminster Abbey / Britannica Tedder",
+     "url": "https://www.britannica.com/biography/Arthur-William-Tedder-Baron-Tedder",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Hall of Fame Tedder National Records of Scotland",
+     "url": "https://nrscotland.gov.uk/research/learning/hall-of-fame/hall-of-fame-a-z/tedder-sir-arthur",
+     "result": "no_result",
+     "note": "頁面不存在（404）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Arthur Tedder（encyclopedia.com Gale）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/arthur-tedder",
+     "result": "unrated",
+     "note": "無署名條目（Q9），僅供 gap"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Tedder Deputy Supreme Commander SHAEF official history",
+     "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-3.html",
+     "result": "found_A",
+     "note": "美國陸軍官方戰史 The Supreme Command"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Principal Commanders Mediterranean and Middle East",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-Med-II/UK-Med-2-A8.html",
+     "result": "found_A",
+     "note": "1941-06-01 接替朗莫爾"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Air of Authority Tedder",
+     "url": "https://www.rafweb.org/Biographies/Tedder.htm",
+     "result": "unrated",
+     "note": "私人彙編，不採"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Eisenhower Foundation Tedder",
+     "url": "https://eisenhowerfoundation.net/soldiers/print/152902",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    }
+   ]
+  },
+  {
+   "key": "andrewcunningham1stviscountcunninghamofhyndhope",
+   "bioId": null,
+   "name": "Andrew Cunningham, 1st Viscount Cunningham of Hyndhope",
+   "nameZh": "第一代海德霍普的康寧漢子爵安德魯·康寧漢",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1897-01-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "從見習生到一戰驅逐艦艦長",
+      "en": "From cadet to destroyer captain in the First World War"
+     },
+     "body": {
+      "zh-Hant": "坎寧安於1897年以見習生身分進入海軍（美國官方戰史則作1898年）。一戰期間他大多擔任驅逐艦「天蠍座號」艦長，並在1915年達達尼爾登陸作戰中表現突出；1918年他轉入多佛巡邏隊；1919年他參加波羅的海對布爾什維克的作戰。",
+      "en": "Cunningham entered the navy as a cadet in 1897 (the US official history gives 1898). He spent most of the First World War as captain of the destroyer Scorpion and distinguished himself at the Dardanelles landings in 1915. In 1918 he joined the Dover patrol, and in 1919 he took part in the Baltic operations against the Bolsheviks."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "Entering the navy in 1897 as a cadet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "entered the Royal Navy in 1898",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "captain of the destroyer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-cunningham",
+       "locator": "「Admiral Andrew Browne Cunningham」",
+       "quote": "distinguished himself at the landings on the Dardanelles in 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-cunningham",
+       "locator": "「Admiral Andrew Browne Cunningham」",
+       "quote": "In 1918 he joined the Dover patrol",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-cunningham",
+       "locator": "「Admiral Andrew Browne Cunningham」",
+       "quote": "In 1919 Cunningham commanded the ‘Seafire’ in the Baltic operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-04-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "地中海艦隊：塔蘭托與馬塔潘角",
+      "en": "Mediterranean Fleet: Taranto and Cape Matapan"
+     },
+     "body": {
+      "zh-Hant": "二戰爆發時，坎寧安已是代理上將、地中海艦隊總司令。美國官方戰史說他在1939至1942年間指揮對義大利艦隊的作戰，包括塔蘭托與馬塔潘，並從希臘撤出英軍。1940年11月，空襲塔蘭托港迫使義大利艦隊北撤；1941年3月，他在夜戰中於馬塔潘角大敗義大利艦隊，旗艦為「厭戰號」。",
+      "en": "When the Second World War began Cunningham was an acting admiral and commander-in-chief Mediterranean. The US official history says that between 1939 and 1942 he directed operations against the Italian fleet at Taranto and Matapan and evacuated British forces from Greece. In November 1940 an air attack on Taranto harbour forced the Italian fleet to withdraw northwards, and in March 1941 he won a decisive night victory off Cape Matapan, his flag in the Warspite."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "acting Admiral as commander-in-chief Mediterranean",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "As Commander-in-Chief, Mediterranean, between 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "and 1942, he directed operations against the Italian Fleet at Taranto and",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "Matapan and evacuated the British forces from Greece",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "In November 1940 an air attack on the harbour of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "in March 1941, in a night attack, Cunningham won a decisive victory",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-cunningham",
+       "locator": "「Admiral Andrew Browne Cunningham」",
+       "quote": "his flag was in the",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "華盛頓、北非登陸與西西里",
+      "en": "Washington, the North African landings and Sicily"
+     },
+     "body": {
+      "zh-Hant": "1942年，坎寧安短暫出任英國海軍部駐華盛頓代表團團長，美國人對他十分欣賞，因此提議由他擔任入侵北非遠征軍的盟軍海軍司令，登陸在1942年11月。1943年他在西西里與義大利作戰，並晉升海軍元帥。",
+      "en": "In 1942 Cunningham briefly headed the British Admiralty Delegation in Washington and so endeared himself to the Americans that they proposed him as Allied Naval Commander of the Expeditionary Force to invade North Africa in November 1942. He was subsequently in Sicily and Italy in 1943 with the rank of Admiral of the Fleet."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "headed the British naval delegation in Washington briefly in 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "brief term as head of the British Admiralty Delegation in Washington",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "was to endear him to the Americans",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "Allied Naval Commander of the Expeditionary Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "invade North Africa in November 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-cunningham",
+       "locator": "「Admiral Andrew Browne Cunningham」",
+       "quote": "subsequently in Sicily and Italy in 1943 with the rank of Admiral of the Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-10-01",
+      "end": "1946-07-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "第一海務大臣（1943–46）",
+      "en": "First Sea Lord, 1943–46"
+     },
+     "body": {
+      "zh-Hant": "1943年10月，坎寧安奉召接替病重的龐德，出任第一海務大臣兼海軍參謀長，直到1946年6月退役。任內他主持諾曼第登陸、地中海作戰與擊沉「沙恩霍斯特號」及「提爾皮茨號」等行動。1945年他受封男爵，次年晉升子爵。",
+      "en": "In October 1943 Cunningham was summoned to replace the dying Pound as First Sea Lord and Chief of the Naval Staff, a position he held until his retirement in June 1946. In that time he presided over the invasion of Normandy, operations in the Mediterranean and the sinking of the Scharnhorst and Tirpitz. In 1945 he was given a barony and advanced to viscount the following year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "In October 1943, Cunningham was summoned to replace the dying Pound as",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "appointed 1st sea lord and chief of the naval staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "a position he held until his retirement from active service in June 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "the invasion of Normandy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "the sinking of the Scharnhorst and Tirpitz",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "In 1945 he was given a barony and advanced to viscount the following",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "cunningham-cinc-mediterranean",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍地中海艦隊",
+      "en": "Royal Navy Mediterranean Fleet"
+     },
+     "title": {
+      "zh-Hant": "地中海艦隊總司令",
+      "en": "Commander-in-Chief, Mediterranean",
+      "orig": "Commander-in-Chief, Mediterranean"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1943-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "As Commander-in-Chief, Mediterranean, between 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-supcmd-bio",
+       "locator": "「Cunningham」",
+       "quote": "and 1942, he directed operations against the Italian Fleet at Taranto and",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取 1943-01-01（Q3：到 1942 年→1943-01-01，year 精度）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "in March 1941, in a night attack, Cunningham won a decisive victory",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區（艦隊）總司令，類別符合 R4，馬塔潘角海戰（1941-03）與塔蘭托（1940-11）可作戰役連結，但 regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "cunningham-first-sea-lord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍／海軍部",
+      "en": "Royal Navy / Admiralty"
+     },
+     "title": {
+      "zh-Hant": "第一海務大臣兼海軍參謀長",
+      "en": "First Sea Lord and Chief of the Naval Staff",
+      "orig": "1st sea lord and chief of the naval staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-01",
+      "end": "1946-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "In October 1943, Cunningham was summoned to replace the dying Pound as",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-cunningham",
+       "locator": "「Cunningham, Andrew」",
+       "quote": "appointed 1st sea lord and chief of the naval staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "navyrec-cunningham",
+       "locator": "「Cunningham Papers」",
+       "quote": "a position he held until his retirement from active service in June 1946",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取 1946 年 6 月之下一單位起日（Q3）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種總司令（引文明寫 chief of the naval staff），類別符合 R4，但 regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:cunningham-naval-cinc-north-africa",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；北非遠征軍海軍總司令（Naval Commander-in-Chief, Expeditionary Force, North Africa）已查美國官方戰史（只寫 1942 年、接在華盛頓代表團之後）、Navy Records Society（只寫提議他任該職、1942 年 11 月入侵北非）、牛津辭典、RMG，起迄日皆未載，故不寫入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cunningham-admiralty-delegation-washington",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；已查美國官方戰史（briefly in 1942）、Navy Records Society（brief term），均無起迄日；故不寫入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:1",
+     "gapKind": "conflict",
+     "note": "入海軍年份兩份已抓來源不同：牛津辭典（J. A. Cannon）寫 1897 年以見習生入海軍，美國官方戰史寫 1898 年。段落採 1897 並附註 1898。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cunningham-cinc-mediterranean-1943",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；1943 年重回地中海（西西里、義大利）之總司令任期，A／B 原文只有 RMG「Sicily and Italy in 1943」，無起迄日；未見 1939 年 6 月就任日之 A／B 原文（僅見未評等 Defense Media Network 等）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "dmn-cunningham",
+       "locator": "「Defense Media Network」",
+       "quote": "Cunningham became First Sea Lord on Oct. 4, 1943.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Cunningham Andrew Browne Britannica",
+     "url": "https://www.britannica.com/biography/Andrew-Browne-Cunningham",
+     "result": "no_result",
+     "note": "Cloudflare 擋，搜尋摘要不採"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Cunningham Andrew 1st Viscount Oxford Companion（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/andrew-browne-cunningham-1st-viscount",
+     "result": "found_B",
+     "note": "J. A. Cannon 署名條目"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Admiral Andrew Browne Cunningham RMG",
+     "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-14115",
+     "result": "found_B",
+     "note": "國家海事博物館藏品說明"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Admiral of the Fleet Viscount Cunningham IWM",
+     "url": "https://www.iwm.org.uk/collections/item/object/11742",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "National Portrait Gallery Cunningham",
+     "url": "https://www.npg.org.uk/collections/search/person/mp05213/andrew-browne-cunningham-viscount-cunningham",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "The Cunningham Papers Volume I Navy Records Society",
+     "url": "https://www.navyrecords.org.uk/the-cunningham-papers-volume-i-the-mediterranean-fleet-1939-1942/",
+     "result": "found_B",
+     "note": "出版簡介"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Supreme Command (ETO) Biographical Sketches",
+     "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-Bio.html",
+     "result": "found_A",
+     "note": "美國陸軍官方戰史人物小傳"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Cunningham First Sea Lord Defense Media Network",
+     "url": "https://www.defensemedianetwork.com/stories/adm-sir-andrew-browne-cunningham-and-his-appointment-as-first-sea-lord/",
+     "result": "unrated",
+     "note": "具名作者之商業媒體，僅供 gap"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Admiral Cunningham military-history.org",
+     "url": "https://www.military-history.org/feature/admiral-cunningham.htm",
+     "result": "unrated",
+     "note": "抓到但內容過短且未評等，不採"
+    }
+   ]
+  }
+ ]
+}

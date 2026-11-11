@@ -27,7 +27,39 @@ POLICY = [  # (domain, source_kind, grade, 依據, 決定)
     ("nids.mod.go.jp", "official_history", "A", "日本防衛省防衛研究所戰史（無 www 主機名；www 已於 21:55 列入）", "主管 2026-11-11 21:55（同一網域補主機名）／主管 2026-11-12 03:03 確認"),
     ("kotobank.jp", "encyclopedia", "B", "Kotobank 具名條目：日本大百科全書、國史大辭典、世界大百科事典", "主管 2026-11-12 03:03"),
     ("www.kotobank.jp", "encyclopedia", "B", "Kotobank 同上（www 主機名）", "主管 2026-11-12 03:03"),
+    # 英語國家將領（主管 2026-11-12 06:32）；主機名皆於 2026-11-12 06:3x 以一般 HTTPS（未用 -k）確認存在
+    ("www.archives.gov", "archive", "A", "美國國家檔案館 NARA 官方頁（含總統圖書館 NARA 頁）", "主管 2026-11-12 06:32"),
+    ("archives.gov", "archive", "A", "NARA 同上（無 www 主機名）", "主管 2026-11-12 06:32"),
+    ("catalog.archives.gov", "archive", "A", "NARA 線上目錄（National Archives Catalog）", "主管 2026-11-12 06:32"),
+    ("www.nationalarchives.gov.uk", "archive", "A", "英國國家檔案館（The National Archives）官方頁", "主管 2026-11-12 06:32"),
+    ("nationalarchives.gov.uk", "archive", "A", "英國國家檔案館同上（無 www 主機名）", "主管 2026-11-12 06:32"),
+    ("discovery.nationalarchives.gov.uk", "archive", "A", "英國國家檔案館 Discovery 目錄", "主管 2026-11-12 06:32"),
+    ("history.army.mil", "official_history", "A", "美國陸軍軍史中心（U.S. Army Center of Military History）官方戰史", "主管 2026-11-12 06:32"),
+    ("www.history.navy.mil", "official_history", "A", "美國海軍歷史與遺產司令部（NHHC）官方戰史", "主管 2026-11-12 06:32"),
+    ("www.afhra.af.mil", "official_history", "A", "美國空軍歷史研究署（AFHRA）官方戰史", "主管 2026-11-12 06:32"),
+    ("www.usmcu.edu", "official_history", "A", "美國陸戰隊大學（含 Marine Corps History Division）官方史料", "主管 2026-11-12 06:32"),
+    ("www.raf.mod.uk", "official_history", "A", "英國皇家空軍官方網站（國防部，含官方歷史頁）", "主管 2026-11-12 06:32"),
+    ("www.thegazette.co.uk", "official_website", "A", "The London Gazette 官方公報（任命公告）", "主管 2026-11-12 06:32"),
+    ("www.oxforddnb.com", "encyclopedia", "B", "Oxford Dictionary of National Biography（訂閱制；只用公開摘要／首段，不登入）", "主管 2026-11-12 06:32"),
+    ("oxforddnb.com", "encyclopedia", "B", "ODNB 同上（無 www 主機名）", "主管 2026-11-12 06:32"),
+    ("www.anb.org", "encyclopedia", "B", "American National Biography（訂閱制；只用公開摘要／首段，不登入）", "主管 2026-11-12 06:32"),
+    ("anb.org", "encyclopedia", "B", "ANB 同上（無 www 主機名）", "主管 2026-11-12 06:32"),
+    ("academic.oup.com", "encyclopedia", "B", "OUP Academic：ODNB／ANB 現轉址主機（只限 /oxford-dictionary-of-national-biography、/american-national-biography 的公開內容）", "主管 2026-11-12 06:32"),
+    ("www.nam.ac.uk", "encyclopedia", "B", "National Army Museum（英國國家陸軍博物館，具名機構）", "主管 2026-11-12 06:32"),
 ]
+
+# 具名 C 級（Tai 本人 2026-11-12 06:34「將領生平來源放寬到具名 C 級」）：依每一頁的具名作者／具名出版機構判定，
+# 不用網域白名單，所以不進 POLICY；規則另輸出 grade-c-policy.json，verify.py 對將領生平檔同步檢查。
+GRADE_C = {
+    "decision": "Tai 本人 2026-11-12 06:34（World Line 主管轉達）：將領生平來源放寬到具名 C 級",
+    "scope": "只限將領生平（data/seed/leaders/generals-roster/bios；research.json 頂層 gradePolicy=ABC-2026-11-12）；B3 其他檔仍只收 A／B",
+    "rule": "C＝有具名作者或具名出版機構的正當來源（報紙／通訊社、大學、博物館、具名作者或出版者的軍事史網站、一般出版社書籍）；逐頁判定，sources.authors 或 publisher 至少一項非空，gradeBasis 寫出具名者",
+    "always_forbidden": ["Wikipedia 及任何維基類（Wikiwand、Fandom 等）", "Wikidata", "百度", "無署名內容", "AI 生成內容站", "論壇／討論區／問答站", "部落格", "個人網站（除非由具名機構發布）"],
+    "source_kind_hint": {"報紙／通訊社": "news", "大學／博物館": "official_website 或 encyclopedia（依頁面性質）", "軍事史網站": "encyclopedia"},
+    "minimum_standard": "可只靠 C 達成 v3 最低標準；不可因缺 A／B 標來源不足",
+    "t14": "T14 R2–R4 門檻（1 筆 A 或 2 筆獨立 B）不變；只有 C 支持者留 positions（必要時 R6 roleGap=source）",
+    "db_note": "write_b3_paragraphs.py 目前會丟棄 grade 非 A/B 的 citation；寫庫前須由 Tai 決定 C 級如何入庫（不在本次範圍，未改）",
+}
 
 def main():
     ovr = json.loads(OVR.read_text(encoding="utf-8"))
@@ -41,6 +73,7 @@ def main():
     OVR.write_text(json.dumps(dict(sorted(ovr.items())), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (HERE / "domain-policy.json").write_text(json.dumps([{"domain": d, "source_kind": k, "grade": g, "basis": b, "decision": x} for d, k, g, b, x in POLICY],
                                                       ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    (HERE / "grade-c-policy.json").write_text(json.dumps(GRADE_C, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print("added:", added or "none", "total overrides:", len(ovr))
 
 if __name__ == "__main__":

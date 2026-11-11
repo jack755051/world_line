@@ -57,7 +57,7 @@
 - Q6 §16.3.1 範圍外的經歷（議員、州長、次官、非四部閣員、非國家級參謀職等）可寫進正文，也可記入 positions（照上方 positionKind／T14 R0–R6 規則）；黨職與 R0–R4 命中者例外，進 roleCandidates。
 - Q7 以名簿下一任起日當前任迄日可以，但 evidenceNote 必須寫「依名簿下一任起日推得（推論）」；沒有下一任資料就留空不猜。
 - Q8 datePrecision 只在 quote 本身含日期時填。
-- Q9 未評等來源（Archontology、rulers.org 類私人彙編；**無具名作者的百科條目，如 Encyclopedia of World Biography 無署名條目；無作者無書目的館藏圖說**）只能放 gap 的 candidateCitations，不能當段落／職位／候選角色出處。出處 grade 只能 A 或 B（A＝國家級傳記辭典、政府／議會／國家圖書館官方頁、人名權威檔；B＝具名作者的機構百科、學術機構傳記、學術出版社專書或期刊論文等；C／X 不收）。
+- Q9 未評等來源（Archontology、rulers.org 類私人彙編；**無具名作者的百科條目，如 Encyclopedia of World Biography 無署名條目；無作者無書目的館藏圖說**）只能放 gap 的 candidateCitations，不能當段落／職位／候選角色出處。出處 grade 只能 A、B 或具名 C（A＝國家級傳記辭典、政府／議會／國家圖書館官方頁、人名權威檔、官方戰史；B＝具名作者的機構百科、學術機構傳記、學術出版社專書或期刊論文等；C＝具名作者或具名出版機構的報紙、大學、博物館、軍事史網站等，見「英語國家官方來源與具名 C 級」節；X 與維基／無署名／AI／論壇／部落格不收）。
 - Q10 同一來源可有多筆 citation，每筆 quote 一句。
 - 引文 quote：NFC ≤80 字元、逐字、不截斷不轉述，必須逐字出現在已抓原文；取完整語意片段，不可截掉受詞或謂語。
 - gapKind：not_found／conflict／identity_uncertain。conflict 只用於**兩份已抓來源**互相矛盾（單一來源 vs 庫值、只有檢索摘要 → not_found）。原文主語與常識不合時不替原文補主語。
@@ -124,6 +124,25 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
 
 未列入上表、首次用到的網域：依 §16 T1 暫分 A／B，寫進該筆 `sources.grade`／`gradeBasis` 與 searchLog，並在批次結尾列出來源網域；不把個人網站或無署名彙編當出處。
 <!-- /DOMAIN_SCOPE_2026-11-12 -->
+
+<!-- GRADE_C_EN_2026-11-12 -->
+## 英語國家官方來源與具名 C 級（主管 2026-11-12 06:32；Tai 本人 2026-11-12 06:34「將領生平來源放寬到具名 C 級」）
+**本節優先於本檔其他「出處只能 A 或 B」「C／X 不收」「至少 1 個 A」的文字（只限將領生平）。**
+
+**英語國家將領（美、英、加、澳、紐、南非、愛爾蘭）必查（可抓原文才可當出處）**
+- **A**：美國國家檔案館 NARA（`www.archives.gov`、`catalog.archives.gov`，含各總統圖書館 NARA 頁）；英國國家檔案館（`www.nationalarchives.gov.uk`、`discovery.nationalarchives.gov.uk`）；各軍種官方戰史：美國陸軍軍史中心（`history.army.mil`）、美國海軍歷史與遺產司令部 NHHC（`www.history.navy.mil`）、美國空軍歷史研究署（`www.afhra.af.mil`）、美國陸戰隊大學史料處（`www.usmcu.edu`）、英國皇家空軍官方歷史頁（`www.raf.mod.uk`）；The London Gazette（`www.thegazette.co.uk`，任命公告）。
+- **B**：Oxford Dictionary of National Biography（`www.oxforddnb.com`；現轉址 `academic.oup.com/oxford-dictionary-of-national-biography`）、American National Biography（`www.anb.org`；現轉址 `academic.oup.com/american-national-biography`）。兩站是訂閱制：**只用未登入即公開可見的內容（摘要／首段／條目標頭）**，不登入、不繞付費牆、不用他人帳號或代理；引文只能取自已抓到的公開文字。National Army Museum（`www.nam.ac.uk`，具名機構）可列 B。
+- 403／逾時照實寫進 searchLog，不繞過（不 `curl -k`、不換 UA 冒充、不用快取鏡像規避防機器人頁）。
+
+**具名 C 級（新）**
+- **C＝有具名作者或具名出版機構的正當來源**：報紙與通訊社、大學（含系所／研究中心頁）、博物館與紀念館、具名作者或具名出版者的軍事史網站、一般出版社書籍等。C 依**每一頁**判斷（看該頁是否具名作者或具名出版機構），不靠網域白名單。`sources.gradeBasis` 必須寫出該頁的具名作者或具名出版機構，`authors` 或 `publisher` 至少一項非空。
+- **一律不收（不論 A／B／C）**：Wikipedia 及任何維基類（含 Wikiwand、Fandom）、Wikidata、百度；無署名內容；AI 生成內容站；論壇、討論區、問答站（Reddit、Quora、知乎、PTT、軸心國歷史論壇等）；部落格（Blogspot、WordPress.com、Medium、Substack 等）；個人網站（除非由具名機構發布）。
+- **每一筆 citation 都要寫 `grade`（A／B／C）**，且須與 `sources[sourceKey].grade` 一致。
+- research.json 頂層加 `"gradePolicy": "ABC-2026-11-12"`（verify.py 依此接受 C）。
+- **最低標準可以只靠 C 級來源達成**（≥3 段、≥300 字、每個職位有起迄日、有指揮職與主要戰役）。**不可因為缺 A／B 就標「來源不足」**；只有在 A／B／C 都查不到足夠內容時才標「來源不足：」。
+- 仍優先 A，其次 B，再用 C 補足任期、戰役、指揮職；同一事實有 A／B 時不要只引 C。
+- T14 角色門檻（R2–R4 的「1 筆 A 或 2 筆獨立 B」）不變：只有 C 支持的職位照寫 positions，必要時標 R6（roleGap=source），不升為 roleCandidates。
+<!-- /GRADE_C_EN_2026-11-12 -->
 
 依序嘗試，查到 A／B 就可停止往下（厚人物 2–4 個來源即可，不要逐頁瀏覽）：
 1. **權威檔**（確認身分、生卒、原文姓名寫法，兼找連結）：LoC Name Authority（id.loc.gov）、VIAF（viaf.org）、GND（d-nb.info／lobid.org）、BnF（data.bnf.fr）、NDL（id.ndl.go.jp）、各國國家圖書館目錄。用權威檔的原文姓名與異寫再搜。

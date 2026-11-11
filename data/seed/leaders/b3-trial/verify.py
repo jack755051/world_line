@@ -7,6 +7,7 @@
 檢查：
  1. 引文 NFC ≤ 80 字元（§16.4.1）；非空；（有原文時）逐字出現。
  2. 每段落、每職位至少 1 筆 citation（§16.1-3）；段落／職位 citation 的 grade 必須是 A 或 B，且與來源一致（Q9：未評等來源只可出現在 gaps 候選）。
+    將領生平檔（gradePolicy=ABC-2026-11-12 或 rawDir 含 /generals-）另收具名 C 級（Tai 2026-11-12 06:34）；C 須具名作者／出版機構，論壇／部落格／維基類不收。
  3. 來源網域不在硬性排除清單（含任何 wikipedia／wikidata／百度）；citation 的 sourceKey 必須存在於頂層 sources（建議 5）。
  4. Q2：段落中文 ≤ 400 字、英文 ≤ 800 字元（NFC code point）。ord 唯一；period 起 < 迄。
  5. Q3：month／year 精度的端點必須是該單位的起日（YYYY-MM-01／YYYY-01-01）。
@@ -35,6 +36,17 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "baidu.com", "enciclopediadelecuador.com")
+# 具名 C 級（Tai 本人 2026-11-12 06:34「將領生平來源放寬到具名 C 級」）：只對將領生平檔開放
+# （頂層 gradePolicy == "ABC-2026-11-12"，或 rawDir 含 "/generals-"）；B3 其他檔仍只收 A／B。
+# C 級來源須有具名作者或具名出版機構，且網域不得是論壇／部落格／維基類／AI 內容農場。
+GRADE_C_POLICY = "ABC-2026-11-12"
+C_BANNED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "wikiwand.com", "wikia.com", "fandom.com",
+                  "everybodywiki.com", "baidu.com", "blogspot.com", "wordpress.com", "medium.com", "substack.com",
+                  "tumblr.com", "livejournal.com", "reddit.com", "quora.com", "stackexchange.com", "zhihu.com",
+                  "tieba.baidu.com", "ptt.cc", "mobile01.com", "pixnet.net", "weebly.com", "wixsite.com",
+                  "sites.google.com", "hubpages.com", "ancestry.com", "findagrave.com", "geni.com",
+                  "fold3.com", "historynet.com/forum", "axishistory.com", "ww2talk.com", "feldgrau.net")
+C_BANNED_HOST_HINTS = ("forum", "bbs.", "blog.", ".blog", "wiki.")
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
 ALIGNED_POSITION_KINDS = ROLE_KINDS | {"police", "military_education"}   # T14 文件 §4 邊界個案
 ROLE_LAYER_KINDS = {"head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister", "military_commander",
@@ -83,13 +95,26 @@ def main():
             texts[k] = norm(b.decode("utf-8", errors="replace"))
             hashes[k] = {"file": f, "sha256": hashlib.sha256(b).hexdigest()}
     srcs = data.get("sources") or {}
+    allow_c = data.get("gradePolicy") == GRADE_C_POLICY or "/generals-" in str(data.get("rawDir") or "")
+    OKG = ("A", "B", "C") if allow_c else ("A", "B")
     for k, s in srcs.items():
         for u in (s.get("url"), s.get("archive_url")):
             host = (urlparse(u).hostname or "") if u else ""
             if any(host == h or host.endswith("." + h) for h in EXCLUDED_HOSTS):
                 errs.append(f"來源 {k} 網域被排除：{host}")
-        if s.get("grade") not in (None, "A", "B"):
+        if s.get("grade") not in (None,) + OKG:
             errs.append(f"來源 {k} grade 非法：{s.get('grade')}")
+        if s.get("grade") == "C":
+            if not ([a for a in (s.get("authors") or []) if str(a).strip()] or str(s.get("publisher") or "").strip()):
+                errs.append(f"來源 {k}：C 級須有具名作者或具名出版機構")
+            for u in (s.get("url"), s.get("archive_url")):
+                if not u:
+                    continue
+                host = (urlparse(u).hostname or "").lower()
+                full = u.lower()
+                if any(host == h or host.endswith("." + h) or (("/" in h) and h in full) for h in C_BANNED_HOSTS) \
+                        or any(x in host for x in C_BANNED_HOST_HINTS):
+                    errs.append(f"來源 {k}：C 級網域不收（論壇／部落格／維基類／內容農場）：{host}")
     blob = json.dumps(data, ensure_ascii=False).lower()
     if "wikipedia" in blob or "wikidata.org" in blob:
         for m in re.finditer(r"https?://[^\s\"']*(wikipedia|wikidata)[^\s\"']*", blob):
@@ -154,8 +179,8 @@ def main():
             for i, c in enumerate(cits):
                 qlens.append(chk_quote(f"{where} c{i}", c.get("sourceKey"), c.get("quote")))
                 st["citations"] += 1; st["sources"].add(c.get("sourceKey"))
-                if c.get("grade") not in ("A", "B"):
-                    errs.append(f"{where} c{i}：段落／職位出處須 A 或 B，實為 {c.get('grade')}（Q9）")
+                if c.get("grade") not in OKG:
+                    errs.append(f"{where} c{i}：段落／職位出處須 {'／'.join(OKG)}，實為 {c.get('grade')}（Q9）")
                 if c.get("sourceKey") in srcs and c.get("grade") != srcs[c["sourceKey"]].get("grade"):
                     errs.append(f"{where} c{i}：grade 與來源不符")
                 if c.get("datePrecision") not in PREC:
@@ -229,8 +254,8 @@ def main():
                     errs.append(f"{w}：沒有 citation（出處）")
                 for i, c in enumerate(cc):
                     chk_quote(f"{w} c{i}", c.get("sourceKey"), c.get("quote"))
-                    if c.get("grade") not in ("A", "B"):
-                        errs.append(f"{w} c{i}：grade 須 A 或 B")
+                    if c.get("grade") not in OKG:
+                        errs.append(f"{w} c{i}：grade 須 {'／'.join(OKG)}")
                     if c.get("sourceKey") in srcs and c.get("grade") != srcs[c["sourceKey"]].get("grade"):
                         errs.append(f"{w} c{i}：grade 與來源不符")
             st["roleCandidates"] = len(p.get("roleCandidates") or [])

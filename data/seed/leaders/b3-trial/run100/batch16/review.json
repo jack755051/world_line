@@ -1,0 +1,138 @@
+{
+ "batch": "16",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 8,
+  "editedSentences": 1,
+  "spotRefetched": 5,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "ch-chuard-ernest",
+   "bioId": "01a1b53d-42f3-7d51-9d02-ff51bd694681",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 2,
+   "changes": [
+    "重抓 HLS 004292 比對：「1919-28 war er Mitglied der Landesregierung」逐字相符",
+    "第 2 段：引文「den offiziellen Kandidaten der Waadtländer Freisinnigen」漏掉可分動詞 lehnte…ab 的「ab」，改為「Paul Maillefer, den offiziellen Kandidaten der Waadtländer Freisinnigen, ab」",
+    "T14 核對：內政部部門主管 HLS 只寫 übernahm、無起訖 → R6（dates、regime）正確；州 Staatsrat 與州級部門屬地方，非 R3；國民院／大議會 HLS 未寫黨籍（只有 1890–97 radikaler Gemeinderat，窗外），留 positions 正確",
+    "日期與 Q3 終點（1907-19→1920-01-01、1919-28→1929-01-01，year）正確；1924 聯邦主席在名單 5442 內未重建"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 僅 2 步（需 ≥8 次查詢，含原文語言 ≥2），來源類型只有 national_dictionary 1 類（需 ≥4 類），實抓頁只有 1 個（需 ≥3）；缺 authority／official／academic／treaty_law",
+    "建議下一步：GND／lobid.org 權威檔 Chuard, Ernest；admin.ch 聯邦委員歷任名單（官方，補內政部 1920-01-01 起與 1928 年底卸任日）；parlament.ch 歷任議員資料庫（官方，補國民院 1907–1919 起訖）；dodis.ch 人物頁；HLS 法文版原文（fr）"
+   ]
+  },
+  {
+   "key": "rs-pasic-nikola",
+   "bioId": "01a1c38a-201e-7de8-b582-2af5d4eedcb8",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 3,
+   "changes": [
+    "重抓 HLS 042936 比對：「1891-92 und 1904-18 (mit drei Unterbrechungen)」逐字相符；HLS 條目確為塞爾維亞政治家 Nikola Pasic（Zaječar 生、1926 貝爾格勒卒），身分無誤",
+    "第 1 段中文：「就讀蘇黎世聯邦理工學院」的「蘇黎世」不在該句引文（am Eidg. Polytechnikum），刪為「就讀聯邦理工學院」（英文本已作 Federal Polytechnic）",
+    "R0 候選（SHS 王國首相 1921–1926）：名單 5442 外、窗內、HLS（A）明寫，role_kind=head_of_government 正確；終點依「bis kurz vor seinem Tod 1926」取 1927-01-01（year）正確；未採原文「erster」正確",
+    "1904–1918 塞爾維亞總理在名單 5442 內未重建，正確；1881 創立激進黨（Gründer）為窗外且非職位，未建候選正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 僅 3 步（需 ≥8），來源類型只有 named_encyclopedia／national_dictionary 2 類（需 ≥4），無任何塞爾維亞文（Никола Пашић）查詢（需原文語言 ≥2），實抓成功頁只有 1 個",
+    "建議下一步：VIAF／GND 權威檔 Pašić, Nikola；塞爾維亞政府官網歷任總理名單 srbija.gov.rs（官方，補 1904–1918 各任起訖）；Matica srpska《Српски биографски речник》；Narodna skupština 官方史料頁；以塞爾維亞文「Никола Пашић председник владе」查詢"
+   ]
+  },
+  {
+   "key": "ua-vynnychenko-volodymyr",
+   "bioId": "01a1c3fb-535a-76b9-8fe2-f6c3aea4307a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 4,
+   "changes": [
+    "重抓 EoU 條目比對：「first president of the General Secretariat」「As leader of the USDRP」「His attempts in 1920 to reach a similar end while in Ukraine」逐字相符",
+    "第 1 段：出生地「赫爾松省韋利基庫特村」原引文只到「in the village」，補引文「in the village Velykyi Kut, Yelysavethrad county, Kherson gubernia」",
+    "第 1 段：「因革命活動被基輔大學開除」原引文只有「owing to his expulsion in 1902」，改為「…in 1902 for ‘revolutionary’ activities」，並補「Vynnychenko began to study law at Kyiv University in 1901」（year）支撐基輔大學",
+    "第 2 段：「在烏克蘭境內再度嘗試達成類似目標」原引文只有「His attempts in 1920」，改為完整片段「His attempts in 1920 to reach a similar end while in Ukraine」",
+    "黨職核對：USDRP 領袖、USDRP 執行委員會成員 → roleCandidates de_facto_leader／R1（Tai 12:12）正確；《Borot’ba》黨刊主編、烏克蘭民族聯盟（跨黨聯盟）留 positions＋partyPostAmbiguous 有理由，維持",
+    "EoU（1918 至 1919-02）與 ESU（1918-11 起）督政府時間互補非矛盾，未列 conflict 正確；總書記處主席與督政府主席在名單 5442 內未重建"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "hu-jozsef-agost",
+   "bioId": "01a1c42c-5f19-7804-9d44-674cf42b0ab7",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 6,
+   "changes": [
+    "重抓 Deutsche Biographie GND 130249823 頁比對：Lebensdaten 1872 – 1962、Sterbeort Straubing 相符",
+    "引文「Straubing」單字未表明是卒地，改為「Sterbeort Straubing」",
+    "「在革命影響下」子句缺引文，補「majd a forradalom hatására ő javasolta az uralkodónak」",
+    "「援引先前的 homo regius 身分」子句缺引文，補「az említett korábbi „homo regius” státuszára való hivatkozással」",
+    "「因國際上的不信任與抗議」子句缺引文，補「a vele szemben megnyilvánuló nemzetközi bizalmatlanság, illetve tiltakozás miatt」",
+    "homo regius（1918 秋）留 positions＋t14Ambiguous（是否屬 R0 代理、無起訖）理由充分，維持；1919-08 kormányzó 在名單 5442 內未重建；MTA 章節（無章節作者）與 Austria-Forum（無署名）只在 gap 候選，正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 6 步（需 ≥8），實際來源類型只有 authority／academic 2 類命中＋national_dictionary 1 步無結果（other 不計，需 ≥4 類），缺 official／treaty_law；匈牙利文查詢只有 1 次（需原文語言 ≥2）",
+    "建議下一步：mta.hu 歷任院長官方頁（官方，補 1936–1944 MTA 院長）；Magyar Életrajzi Lexikon（mek.oszk.hu 公開版）；ÖBL biographien.ac.at；Országgyűlés 上議院（Felsőház）almanach；以匈牙利文「József főherceg kormányzó 1919 augusztus」再查 1919-08 起訖日"
+   ]
+  },
+  {
+   "key": "be-van-zeeland-paul",
+   "bioId": "01a1b520-ef20-7f15-b7c5-2d8ec58b7c8c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 3,
+   "changes": [
+    "重抓 EVB 003610.pdf 比對：「versloeg hij op 11 april 1937 afgetekend Léon Degrelle」逐字相符",
+    "第 2 段與不管部大臣職位：引文缺「1934 年 6 月」與謂語，改為「In juni 1934 werd hij minister zonder portefeuille in de regering-De Broqueville」（month）",
+    "第 2 段：「組成」謂語與「附貶值方案」子句缺引文，改「vormde hij als extra-parlementair een regering van nationale unie」並補「een regering van nationale unie met een devaluatieprogramma」",
+    "第 2 段與外交大臣職位：引文「het ministerie van Buitenlandse Zaken voor」缺主語謂語，改為整句「Hij behield zich in deze regering het ministerie van Buitenlandse Zaken voor」",
+    "第 2 段：「1936 年 6 月第二屆三黨內閣成立」原引文無日期與謂語，改為「In juni 1936 kwam het tweede drieledige kabinet-Van Zeeland tot stand」（month）；「補選」子句補「in de door deze uitgelokte tussentijdse Kamerverkiezingen」",
+    "外交大臣 1935-03～1936-06（R6）：補 Universalis 引文「il est alors en même temps titulaire du portefeuille des Affaires étrangères」，已有兩份獨立 B；月精度可證明 ≥90 天；仍缺 regimeId → 維持 R6、roleGap=[regime]，t14Reason 改寫",
+    "新增 conflict gap：內閣辭職時間 EVB「oktober 1937」與 Universalis「octobre 1936」兩份已抓來源矛盾；段落暫依 EVB",
+    "T14：不管部大臣 R5、國家銀行副總裁（副職、非閣員）留 positions 正確；1935–1937 首相在名單 5442 內未重建；Universalis「Membre influent du Parti catholique」僅黨員身分非黨職，未建候選正確",
+    "實查厚薄為中（預估厚）：已抓 2 份 B，戰時倫敦委員會（1941–44）等未寫入，可於下一輪補"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "薄人物 3 人（Chuard、Pašić、József Ágost）searchLog 只有 2／3／6 步即停：查到 1 個 A／B 就收手，未做最低嘗試（≥4 類、≥8 次查詢、原文語言 ≥2、實抓 ≥3）；厚／中人物（Vynnychenko 4 步、van Zeeland 3 步）依規則不退回",
+  "子句缺引文仍常見：出生地名、「因革命活動」、「援引 homo regius」「國際抗議」、「補選」「附貶值方案」等；本批補 8 筆引文",
+  "引文截掉謂語或可分動詞粒子（lehnte…ab 的 ab、behield…voor 的主語謂語、werd hij／kwam…tot stand、vormde hij）；本批改 10 處為完整語意片段",
+  "有第二份已抓來源可支撐 R6 門檻（Universalis 也寫兼掌外交部）卻未引用；另兩份來源對內閣辭職年份矛盾（1937 vs 1936）未列 conflict gap",
+  "R6 共 2 筆：van Zeeland 外交大臣只缺 regime（研究者無法填 regimeId，主管對照 5442 政權後可轉 R3）；Chuard 內政部另缺 dates"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

@@ -37,7 +37,13 @@ public class BattleC1ModelTests
     {
         using var db = NewContext();
         Assert.False(db.Database.HasPendingModelChanges());
-        Assert.Equal(Target, db.Database.GetMigrations().Last());
+        Assert.Contains(Target, db.Database.GetMigrations());
+        // C2a：之後只接新增式的 BattleEventKindOperation（event_kind 值域加 operation，只放寬 CHECK）。
+        Assert.Equal("20261111065550_BattleEventKindOperation", db.Database.GetMigrations().Last());
+        var script = db.GetService<IMigrator>().GenerateScript(Target, "20261111065550_BattleEventKindOperation");
+        Assert.Contains("'operation'", script);
+        Assert.DoesNotContain("DROP TABLE", script);
+        Assert.DoesNotContain("DROP COLUMN", script);
     }
 
     [Fact]

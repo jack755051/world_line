@@ -244,9 +244,9 @@ def convert(web, res, raw):
             'key': s['key'],
             'parent_event_id': event_id,
             'name': {'zh-Hant': s['nameZh'], 'en': s['nameEn']},
-            'event_kind': None,
-            'event_kind_note': "待決：historical_events.event_kind 值域（war/campaign/battle/treaty/armistice/surrender/political/atrocity）"
-                               "沒有 operation；考證輸入作「operation（子事件）」。未決前 NULL，不可寫庫。",
+            'event_kind': 'operation',
+            'event_kind_note': "Tai 2026-11-11 14:52 決定 event_kind 值域新增 operation（migration BattleEventKindOperation，只寫檔）；"
+                               "考證輸入作「operation（子事件）」。",
             'occurred': {'start': s['start'], 'end': s['endExclusive']},
             'date_precision': 'day',
             'status': 'pending',
@@ -357,7 +357,6 @@ def convert(web, res, raw):
         {'target': 'feature:dunkirk_1940_p4-site-0', 'kind': 'not_found', 'note': 'Bergues：無出處，德軍完全佔領日期待查證'},
         {'target': 'feature:dunkirk_1940_p5-site-1', 'kind': 'not_found', 'note': 'Malo-les-Bains：無出處，日期待查證'},
         {'target': 'unit:arrows', 'kind': 'not_found', 'note': '箭頭部隊番號未逐字對照出處'},
-        {'target': 'subevent:operation-dynamo event_kind', 'kind': 'note', 'note': 'event_kind 值域無 operation，待決'},
     ]
 
     return {
@@ -399,9 +398,8 @@ def convert(web, res, raw):
             'name_verification': 'pending',
             'name_note': 'Tai 2026-11-11 13:47 指定名稱；' + (rec.get('nameNote') or ''),
             'objective': {'zh-Hant': f['objective']['valueZh']},
-            'objective_kind': None,
-            'objective_kind_candidate': 'place',
-            'objective_kind_note': '分類（place/line/regime）不是史實，由人確認；未決前 NULL，不可寫庫',
+            'objective_kind': 'place',
+            'objective_kind_note': '分類（place/line/regime）不是史實；Tai 2026-11-11 14:52 確認填 place',
             'control_change': {'zh-Hant': f['controlChange']['valueZh']},
             'area_text': {'zh-Hant': f['area']['valueZh']},
             'outcome_kind': None, 'outcome_text': None,
@@ -495,13 +493,13 @@ def report(seed):
         w(f"| 交戰方 {p['regime_slug']}{until} | {p['side_camp_hint']} | {n(p['citations'])} | pending |")
     w(f"| name | {pr['name']['zh-Hant']} / {pr['name']['en']} | 0／0 | pending（{pr['name_note']}） |")
     w(f"| objective | {pr['objective']['zh-Hant']} | {n(pr['citations']['objective'])} | pending |")
-    w(f"| objective_kind | null（候選 {pr['objective_kind_candidate']}） | — | 待人確認；NOT NULL，未決前不能寫庫 |")
+    w(f"| objective_kind | {pr['objective_kind']} | — | 分類非史實；Tai 2026-11-11 14:52 確認 |")
     w(f"| control_change | {pr['control_change']['zh-Hant']} | {n(pr['citations']['control_change'])} | pending |")
     w(f"| 範圍（文字） | {pr['area_text']['zh-Hant']} | {n(pr['citations']['theater_area'])} | pending |")
     w('| theater_area（幾何） | 前端 bounds 外框 | 無（derived） | 待依出處圖重畫 |')
     w('| outcome_kind／outcome_text | null | 無 | 沒有出處就留 NULL |')
     for s in seed['sub_events']:
-        w(f"| 子事件 {s['name']['zh-Hant']}（{s['name']['en']}） | {s['occurred']['start']}～{s['occurred']['end']}（半開），parent＝本戰役 | {n(s['citations'])} | pending；event_kind 待決 |")
+        w(f"| 子事件 {s['name']['zh-Hant']}（{s['name']['en']}） | {s['occurred']['start']}～{s['occurred']['end']}（半開），parent＝本戰役 | {n(s['citations'])} | pending；event_kind＝{s['event_kind']}（Tai 2026-11-11 14:52） |")
     w('')
     w('## 階段（battle_phases）')
     w('')
@@ -557,12 +555,11 @@ def report(seed):
     w('## 入庫前還差什麼（blocking）')
     w('')
     w('1. Tai 核准寫庫與 verified 判定（本 seed 全部 pending）。')
-    w('2. `objective_kind`（NOT NULL）：候選 place，需人確認。')
-    w('3. 子事件「發電機行動」的 event_kind：值域沒有 operation，需決定（或擴值域）。')
-    w('4. 戰役名稱的 A／B 出處（Ellis、Ramsay 均未用 “Battle of Dunkirk”）。')
-    w('5. 參戰 regime 是否已在開發庫（united-kingdom、french-third-republic、kingdom-of-belgium、deutsches-reich）與比利時 until 的寫法（event_participants 無期間欄，需決定）。')
-    w('6. 圖形：derived 幾何需依 Ellis situation map 重畫才能 verified；P3、P6 無圖形；Bergues、Malo-les-Bains 無出處；部隊番號待查證。')
-    w('7. Ellis 出版年 1953／1954 分歧待核對；theater_area 待依出處圖重畫。')
+    w('2. migration `BattleEventKindOperation`（event_kind 值域加 operation）需先套用到開發庫，子事件才能寫入。')
+    w('3. 戰役名稱的 A／B 出處（Ellis、Ramsay 均未用 “Battle of Dunkirk”）。')
+    w('4. 參戰 regime 是否已在開發庫（united-kingdom、french-third-republic、kingdom-of-belgium、deutsches-reich）與比利時 until 的寫法（event_participants 無期間欄，需決定）。')
+    w('5. 圖形：derived 幾何需依 Ellis situation map 重畫才能 verified；P3、P6 無圖形；Bergues、Malo-les-Bains 無出處；部隊番號待查證。')
+    w('6. Ellis 出版年 1953／1954 分歧待核對；theater_area 待依出處圖重畫。')
     w('')
     return '\n'.join(L)
 

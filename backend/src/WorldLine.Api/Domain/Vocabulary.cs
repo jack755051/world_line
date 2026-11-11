@@ -58,7 +58,7 @@ public static class RelationTypes
 /// <summary>事件類型（PRD §6.3 AI 提案・待拍板）。</summary>
 public static class EventKinds
 {
-    public static readonly string[] All = ["war", "campaign", "battle", "treaty", "armistice", "surrender", "political", "atrocity"];
+    public static readonly string[] All = ["war", "campaign", "battle", "treaty", "armistice", "surrender", "political", "atrocity", "operation"];
 }
 
 public static class DatePrecisions

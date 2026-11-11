@@ -77,4 +77,19 @@ public sealed class BattleC1MigrationGuardTests(PostGisFixture fx)
             ScalarAsync(c, $"UPDATE battle_phases SET retracted_at = NULL, retraction_reason = NULL WHERE id = '{phase}'"));
         Assert.Contains("I5", ex.MessageText);
     }
+
+    [Fact]
+    public async Task Event_kind_accepts_operation_after_BattleEventKindOperation_migration()
+    {
+        // Tai 2026-11-11 14:52：event_kind 值域新增 operation（新增式 migration，只放寬 CHECK）。
+        await using var c = await OpenAsync();
+        Assert.Equal(1L, await ScalarAsync(c,
+            "SELECT count(*) FROM __ef_migrations_history h WHERE h::text LIKE '%BattleEventKindOperation%'"));
+        var id = await ScalarAsync(c,
+            "INSERT INTO historical_events (event_kind, occurred, date_precision) VALUES ('operation', '[1940-05-26,1940-06-05)', 'day') RETURNING id");
+        Assert.NotNull(id);
+        var ex = await Assert.ThrowsAsync<PostgresException>(() => ScalarAsync(c,
+            "INSERT INTO historical_events (event_kind, occurred, date_precision) VALUES ('skirmish', '[1940-05-26,1940-06-05)', 'day')"));
+        Assert.Equal("ck_historical_events_kind", ex.ConstraintName);
+    }
 }

@@ -42,12 +42,12 @@
 | 交戰方 united-kingdom | allied | 1／1 | pending |
 | name | 敦克爾克橋頭堡戰役 / Battle of Dunkirk bridgehead | 0／0 | pending（Tai 2026-11-11 13:47 指定名稱；Ellis 與 Ramsay 均未用 'Battle of Dunkirk' 一詞；戰役名稱的 A／B 出處待查證（名稱不影響 §6 判定）） |
 | objective | 同盟國：守住掩護敦克爾克的橋頭堡，以便自敦克爾克港與海灘撤出部隊；德國：殲滅被圍於敦克爾克以南、東南之敵軍並奪取該地區 | 5／5 | pending |
-| objective_kind | null（候選 place） | — | 待人確認；NOT NULL，未決前不能寫庫 |
+| objective_kind | place | — | 分類非史實；Tai 2026-11-11 14:52 確認 |
 | control_change | 周界逐步縮小（5/31 夜放棄東段，6/1–6/3 退至 Dunkirk–Furnes 運河線），6/4 上午 9 時殘餘法軍投降，敦克爾克落入德軍控制 | 3／3 | pending |
 | 範圍（文字） | 敦克爾克橋頭堡：沿運河線自 Mardyck 經 Spycker、Bergues、Furnes 至 Nieuport，全長約 30 英里；含敦克爾克港與以東海灘 | 2／2 | pending |
 | theater_area（幾何） | 前端 bounds 外框 | 無（derived） | 待依出處圖重畫 |
 | outcome_kind／outcome_text | null | 無 | 沒有出處就留 NULL |
-| 子事件 發電機行動（Operation Dynamo） | 1940-05-26～1940-06-05（半開），parent＝本戰役 | 4／4 | pending；event_kind 待決 |
+| 子事件 發電機行動（Operation Dynamo） | 1940-05-26～1940-06-05（半開），parent＝本戰役 | 4／4 | pending；event_kind＝operation（Tai 2026-11-11 14:52） |
 
 ## 階段（battle_phases）
 
@@ -135,14 +135,12 @@
 - `feature:dunkirk_1940_p4-site-0`（not_found）：Bergues：無出處，德軍完全佔領日期待查證
 - `feature:dunkirk_1940_p5-site-1`（not_found）：Malo-les-Bains：無出處，日期待查證
 - `unit:arrows`（not_found）：箭頭部隊番號未逐字對照出處
-- `subevent:operation-dynamo event_kind`（note）：event_kind 值域無 operation，待決
 
 ## 入庫前還差什麼（blocking）
 
 1. Tai 核准寫庫與 verified 判定（本 seed 全部 pending）。
-2. `objective_kind`（NOT NULL）：候選 place，需人確認。
-3. 子事件「發電機行動」的 event_kind：值域沒有 operation，需決定（或擴值域）。
-4. 戰役名稱的 A／B 出處（Ellis、Ramsay 均未用 “Battle of Dunkirk”）。
-5. 參戰 regime 是否已在開發庫（united-kingdom、french-third-republic、kingdom-of-belgium、deutsches-reich）與比利時 until 的寫法（event_participants 無期間欄，需決定）。
-6. 圖形：derived 幾何需依 Ellis situation map 重畫才能 verified；P3、P6 無圖形；Bergues、Malo-les-Bains 無出處；部隊番號待查證。
-7. Ellis 出版年 1953／1954 分歧待核對；theater_area 待依出處圖重畫。
+2. migration `BattleEventKindOperation`（event_kind 值域加 operation）需先套用到開發庫，子事件才能寫入。
+3. 戰役名稱的 A／B 出處（Ellis、Ramsay 均未用 “Battle of Dunkirk”）。
+4. 參戰 regime 是否已在開發庫（united-kingdom、french-third-republic、kingdom-of-belgium、deutsches-reich）與比利時 until 的寫法（event_participants 無期間欄，需決定）。
+5. 圖形：derived 幾何需依 Ellis situation map 重畫才能 verified；P3、P6 無圖形；Bergues、Malo-les-Bains 無出處；部隊番號待查證。
+6. Ellis 出版年 1953／1954 分歧待核對；theater_area 待依出處圖重畫。

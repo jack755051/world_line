@@ -1,0 +1,2885 @@
+{
+ "batch": "b3-full-v3-batch009",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "依 ARCHITECTURE b0b0e0f 與 b3-trial/ALIGN.md 直接以對齊格式撰寫；5 人均為英國將領，regimeId 一律 null；Britannica／IWM／NAM／ODNB／UK Parliament 被 403 或挑戰頁擋，TNA 網頁版遇 WAF 挑戰，改用同一目錄的官方 API。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch009/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "rmg-tovey": {
+   "title": "Uncatalogued: Tovey, John Cronyn, Admiral of the Fleet, 1885-1971 (MSS/81/004，Administrative / biographical background)",
+   "authors": [],
+   "publisher": "Royal Museums Greenwich（國家海事博物館）",
+   "published_text": null,
+   "url": "https://rmg.co.uk/collections/archive/rmgc-object-467691",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家海事博物館館藏檔案目錄之人物生平背景（機構學術傳記）"
+  },
+  "rmg-keyes": {
+   "title": "Lord Roger Keyes, Admiral of the Fleet (1872-1945)（BHC2824 館藏說明）",
+   "authors": [],
+   "publisher": "Royal Museums Greenwich（國家海事博物館）",
+   "published_text": null,
+   "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-14297",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家海事博物館館藏畫作之人物生平說明（機構學術傳記）"
+  },
+  "encyc-keyes": {
+   "title": "Keyes, Roger John Brownlow Keyes, 1st Baron",
+   "authors": [],
+   "publisher": "Columbia Encyclopedia, 6th ed.（經 Encyclopedia.com）",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/keyes-roger-john-brownlow-keyes-1st-baron",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "哥倫比亞百科全書條目（機構百科）"
+  },
+  "tna-dempsey": {
+   "title": "War Office: General Miles Christopher Dempsey: Papers（WO 285，Administrative History）",
+   "authors": [],
+   "publisher": "The National Archives (UK)（英國國家檔案館）",
+   "published_text": null,
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C14490",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館官方目錄之行政沿革（以 Discovery API JSON 抓取）"
+  },
+  "gov-caen": {
+   "title": "The Drive on Caen, Northern France 7 June – 22 July 1944（Second World War 60th Anniversary booklet）",
+   "authors": [],
+   "publisher": "UK Ministry of Defence／GOV.UK",
+   "published_text": null,
+   "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/30055/ww2_caen.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國防部官方戰史小冊（GOV.UK 發布）"
+  },
+  "gov-dday": {
+   "title": "The D-Day Landings, Northern France 6 June 1944（Second World War 60th Anniversary booklet）",
+   "authors": [],
+   "publisher": "UK Ministry of Defence／GOV.UK",
+   "published_text": null,
+   "url": "https://assets.publishing.service.gov.uk/media/5a78d775ed915d07d35b2d91/ww2_dday.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國防部官方戰史小冊（GOV.UK 發布）"
+  },
+  "gov-antwerp": {
+   "title": "The Advance from the Seine to Antwerp, 25 August 1944（Second World War 60th Anniversary booklet）",
+   "authors": [],
+   "publisher": "UK Ministry of Defence／GOV.UK",
+   "published_text": null,
+   "url": "https://assets.publishing.service.gov.uk/media/5a79576ee5274a2acd18c045/ww2_antwerp.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國防部官方戰史小冊（GOV.UK 發布）"
+  },
+  "gov-cassino": {
+   "title": "The Battles for Monte Cassino, Central Italy 12 January – 5 June 1944（Second World War 60th Anniversary booklet）",
+   "authors": [],
+   "publisher": "UK Ministry of Defence／GOV.UK",
+   "published_text": null,
+   "url": "https://assets.publishing.service.gov.uk/media/5a79ed35ed915d042206c0aa/ww2_montecass.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國防部官方戰史小冊（GOV.UK 發布）"
+  },
+  "kcl-northafrica": {
+   "title": "Research Guide: World War Two — North Africa（Liddell Hart Centre for Military Archives）",
+   "authors": [],
+   "publisher": "King's College London, Liddell Hart Centre for Military Archives",
+   "published_text": null,
+   "url": "https://www.kcl.ac.uk/library/assets/archives/northafrica.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學軍事檔案中心之館藏研究指南（學術機構傳記）"
+  },
+  "kcl-southasia": {
+   "title": "Research Guide: South Asia（Liddell Hart Centre for Military Archives）",
+   "authors": [],
+   "publisher": "King's College London, Liddell Hart Centre for Military Archives",
+   "published_text": null,
+   "url": "https://www.kcl.ac.uk/library/assets/archives/southasia.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學軍事檔案中心之館藏研究指南（學術機構傳記）"
+  }
+ },
+ "people": [
+  {
+   "key": "johntovey1stbarontovey",
+   "bioId": null,
+   "name": "John Tovey, 1st Baron Tovey",
+   "nameZh": "約翰·托維",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1901-05-15",
+      "end": "1914-08-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "入海軍與早期服役",
+      "en": "Entry into the navy and early service"
+     },
+     "body": {
+      "zh-Hant": "托維於1901年5月15日以海軍候補生身分加入皇家海軍，一個月後被派往海峽艦隊旗艦『威嚴號』戰艦。1906年7月15日晉升上尉；1908年5月18日奉派到裝甲巡洋艦『阿爾弗雷德國王號』。1913年4月2日起在『安菲翁號』服役，擔任大副，直到該艦於1914年8月6日觸雷沉沒；同年7月15日他晉升少校。",
+      "en": "Tovey entered the Royal Navy as a midshipman on 15 May 1901 and a month later was posted to the battleship Majestic, flagship of the Channel Squadron. He was promoted Lieutenant on 15 July 1906 and was appointed to the armoured cruiser King Alfred on 18 May 1908. From 2 April 1913 he served on Amphion as first lieutenant until she was mined and sunk on 6 August 1914; he had been promoted Lieutenant-Commander on 15 July 1914."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey entered the Royal Navy on 15 May 1901 as a midshipman.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "A month later he was posted to the battleship MAJESTIC",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "flagship of the Channel Squadron under Vice-Admiral Arthur Wilson",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey was promoted to Lieutenant on 15 July 1906.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey was appointed, on 18 May 1908, to the armoured cruiser KING ALFRED",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "served on AMPHION from 2 April 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "until she was mined and sunk on 6 August 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "He was promoted to Lieutenant-Commander on 15 July 1914.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-01-13",
+      "end": "1919-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "第一次世界大戰驅逐艦指揮",
+      "en": "Destroyer commands in the First World War"
+     },
+     "body": {
+      "zh-Hant": "托維在1915年1月13日獲得第一個指揮職，出任驅逐艦『傑卡爾號』艦長，該艦參加了1月24日的多格爾沙洲海戰。他其後指揮『昂斯洛號』參加5月31日的日德蘭海戰，1916年6月30日晉升中校，並於1919年獲頒傑出服務勳章（DSO）。1918年4月他接掌新驅逐艦『狼獵犬號』，同時進入驅逐艦監督官的幕僚，這些任命持續到1919年6月。",
+      "en": "Tovey received his first command on 13 January 1915, the destroyer Jackal, which took part in the Battle of Dogger Bank on 24 January. He subsequently commanded HMS Onslow at the Battle of Jutland on 31 May, was promoted Commander on 30 June 1916, and was awarded the DSO in 1919. In April 1918 he took command of the new destroyer Wolfhound and was also appointed to the staff of the Captain Superintendent Torpedo-Boat Destroyers; these appointments lasted until June 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey received his first command on 13 January 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "destroyer JACKAL which took part in the Battle of Dogger Bank on 24 January",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "commanded HMS ONSLOW at the Battle of Jutland on 31 May",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey was promoted to Commander on 30 June 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "awarded the DSO in 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "in April 1918 Tovey took command of another new destroyer WOLFHOUND",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Captain Superintendent Torpedo-Boat Destroyers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "lasted until June 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-06-28",
+      "end": "1946-02-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第二次世界大戰：地中海與本土艦隊",
+      "en": "The Second World War: Mediterranean and Home Fleet"
+     },
+     "body": {
+      "zh-Hant": "1940年6月28日，托維指揮的第7巡洋艦分艦隊攔截了三艘執行緊急補給任務的義大利驅逐艦，即埃斯佩羅船團之戰。1940年11月，他出任本土艦隊總司令，並獲代理上將階級。館藏傳記稱，統籌追擊並擊沉『俾斯麥號』或許是他最大的成就，他也因這次作戰的傑出指揮獲頒KBE。1946年2月11日，他受封托維男爵。",
+      "en": "On 28 June 1940 Tovey's 7th Cruiser Squadron intercepted three Italian destroyers making an urgent supply run, the Battle of the Espero Convoy. In November 1940 he was appointed Commander-in-Chief of the Home Fleet with the acting rank of Admiral. The museum's biography says orchestrating the pursuit and destruction of the Bismarck was perhaps his best achievement, and that he was made a KBE for his conduct in it. He was ennobled as Baron Tovey on 11 February 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey commanded the 7th Cruiser Squadron when, on 28 June 1940, it",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "intercepted three Italian destroyers that were making an urgent supply run",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Battle of the Espero Convoy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "In November 1940 he was appointed Commander-in-Chief of the Home Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "with the acting rank of Admiral",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "orchestrating the pursuit and destruction of the BISMARCK",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "Tovey was made a KBE for his distinguished conduct in this engagement",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "ennobled as Baron Tovey, 11 February 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tovey-home-fleet",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍本土艦隊",
+      "en": "Royal Navy Home Fleet"
+     },
+     "title": {
+      "orig": "Commander-in-Chief of the Home Fleet",
+      "zh-Hant": "本土艦隊總司令",
+      "en": "Commander-in-Chief, Home Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "rmg-tovey",
+       "locator": "生平背景",
+       "quote": "In November 1940 he was appointed Commander-in-Chief of the Home Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）；迄日缺",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "rank"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:tovey-home-fleet",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 RMG 館藏傳記（只寫 1940 年 11 月任命，未寫卸任）、GOV.UK 戰史小冊（未涉及）；Britannica 403、ODNB 未取得可抓原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:tovey-7th-cruiser-squadron",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；RMG 館藏傳記只寫 1940 年 6 月 28 日該分艦隊攔截義大利驅逐艦，未寫任命與卸任日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:tovey-nore",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；1943 年出任諾爾總司令僅見搜尋摘要，未取得可抓原文的 A／B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 3 段（約 400 字）；戰間期（1919–1940）、俾斯麥作戰日期、北極船團與諾爾任職均缺可抓原文來源；已查 RMG、Britannica（403）、ODNB（搜尋未得原文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Admiral Sir John Tovey Home Fleet 1940 1943 biography Bismarck",
+     "url": null,
+     "result": "not_relevant",
+     "note": "搜尋結果多為維基鏡像，不用"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "RMG 館藏 MSS/81/004 Tovey",
+     "url": "https://rmg.co.uk/collections/archive/rmgc-object-467691",
+     "result": "found_B",
+     "note": "curl 抓取，含生平背景"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "RMG Tovey DSO 1910-36",
+     "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-207240",
+     "result": "not_relevant",
+     "note": "僅獎章目錄"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Tovey",
+     "url": "https://www.britannica.com/biography/John-Cronyn-Tovey-Baron-Tovey",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Tovey ODNB 公開摘要",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未得 ODNB 原文"
+    }
+   ]
+  },
+  {
+   "key": "milesdempsey",
+   "bioId": null,
+   "name": "Miles Dempsey",
+   "nameZh": "邁爾斯·鄧普西",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1915-02-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "早期軍旅與英國遠征軍",
+      "en": "Early career and the BEF"
+     },
+     "body": {
+      "zh-Hant": "鄧普西於1915年2月受任為皇家伯克郡團軍官，曾在西線服役；戰間期參與1919至1920年的伊拉克作戰，並在桑德赫斯特與南非軍事學院擔任教官。第二次世界大戰期間，他先後指揮所屬團第1營，並在1939年11月至1940年擔任英國遠征軍第13步兵旅旅長。",
+      "en": "Dempsey was commissioned into the Royal Berkshire Regiment in February 1915 and saw active service on the Western Front. Between the wars he served in operations in Iraq in 1919–1920 and became an instructor at Sandhurst and at the South African Military College. In the Second World War he commanded the 1st Battalion of his regiment and then, from November 1939 to 1940, the 13th Infantry Brigade as part of the BEF."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "commissioned into the Royal Berkshire Regiment in February 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "saw active service on the Western Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "served in operations in Iraq 1919-1920",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "instructor both at Sandhurst and at the South African Military College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "13th Infantry Brigade as part of the BEF (November 1939-1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-08-26"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "西西里、義大利與諾曼第",
+      "en": "Sicily, Italy and Normandy"
+     },
+     "body": {
+      "zh-Hant": "據英國國家檔案館的行政沿革，鄧普西在1942至1943年的西西里與義大利戰役期間指揮第13軍，並在1944至1945年指揮第2集團軍，參與諾曼第登陸與西北歐戰事。英國國防部的戰史小冊把他列為諾曼第登陸時的英軍第2集團軍司令，並寫明其部隊力圖奪取諾曼第首府卡昂。1944年8月26日，蒙哥馬利向他與克雷勒下達指令，要求奪取安特衛普港。",
+      "en": "According to The National Archives' administrative history, Dempsey commanded 13th Corps during the campaigns for Sicily and Italy in 1942–1943 and the 2nd Army in the invasion of Normandy and north-west Europe in 1944–1945. The Ministry of Defence's anniversary booklets list him as commander of the Second (British) Army at the D-Day landings and record that his army sought to capture the Norman capital, Caen. On 26 August 1944 Montgomery issued a directive to him and Crerar that included seizing the port of Antwerp."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "13th Corps during the campaigns for Sicily and Italy (1942-1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "2nd Army in the invasion of Normandy and NW Europe (1944-1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-dday",
+       "locator": "List of commanders",
+       "quote": "SECOND (BRITISH) ARMY Lieutenant General Miles Dempsey",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-caen",
+       "locator": "Introduction",
+       "quote": "Dempsey’s Second (British) Army sought to capture the Norman capital, Caen.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-antwerp",
+       "locator": "Introduction",
+       "quote": "Lieutenant-Generals Harry Crerar (First Canadian Army) and Miles Dempsey",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-antwerp",
+       "locator": "生平背景",
+       "quote": "Montgomery issued a directive on 26 August.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-antwerp",
+       "locator": "生平背景",
+       "quote": "to seize the important port of Antwerp (Belgium)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-01-01",
+      "end": "1948-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "遠東與戰後職務",
+      "en": "Far East and post-war posts"
+     },
+     "body": {
+      "zh-Hant": "檔案館行政沿革記載，鄧普西在1945年指揮第14集團軍，負責重新佔領新加坡與馬來亞，並在1945至1946年擔任盟軍東南亞地面部隊總司令。1946年晉升上將後，他轉任中東總司令，直到1947年退休。",
+      "en": "The administrative history records that in 1945 Dempsey commanded the 14th Army in the reoccupation of Singapore and Malaya, and that he was Commander-in-Chief of Allied Land Forces South-East Asia from 1945 to 1946. On his promotion to General in 1946 he was posted as Commander-in-Chief Middle East, until he retired in 1947."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "14th Army in the reoccupation of Singapore and Malaya (1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "C-in-C Allied Land Forces SE Asia from 1945 to 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "On his promotion to General in 1946 he was posted as C-in-C Middle East",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "until he retired in 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "dempsey-13th-brigade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍第13步兵旅",
+      "en": "13th Infantry Brigade, BEF"
+     },
+     "title": {
+      "orig": "13th Infantry Brigade",
+      "zh-Hant": "第13步兵旅旅長",
+      "en": "Commander, 13th Infantry Brigade"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-11-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "13th Infantry Brigade as part of the BEF (November 1939-1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰區／方面軍以下層級的指揮職，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "dempsey-xiii-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第13軍",
+      "en": "British XIII Corps"
+     },
+     "title": {
+      "orig": "13th Corps",
+      "zh-Hant": "第13軍軍長",
+      "en": "Commander, XIII Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "13th Corps during the campaigns for Sicily and Italy (1942-1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）"
+    },
+    {
+     "key": "dempsey-second-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第2集團軍",
+      "en": "British Second Army"
+     },
+     "title": {
+      "orig": "2nd Army",
+      "zh-Hant": "第2集團軍司令",
+      "en": "Commander, Second Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "2nd Army in the invasion of Normandy and NW Europe (1944-1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-dday",
+       "locator": "List of commanders",
+       "quote": "SECOND (BRITISH) ARMY Lieutenant General Miles Dempsey",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "dempsey-14th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第14集團軍",
+      "en": "British Fourteenth Army"
+     },
+     "title": {
+      "orig": "14th Army",
+      "zh-Hant": "第14集團軍司令",
+      "en": "Commander, Fourteenth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "14th Army in the reoccupation of Singapore and Malaya (1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "dempsey-alfsea",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍東南亞地面部隊",
+      "en": "Allied Land Forces South East Asia"
+     },
+     "title": {
+      "orig": "C-in-C Allied Land Forces SE Asia",
+      "zh-Hant": "盟軍東南亞地面部隊總司令",
+      "en": "Commander-in-Chief, Allied Land Forces South East Asia"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1947-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "C-in-C Allied Land Forces SE Asia from 1945 to 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "dempsey-middle-east",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英軍中東司令部",
+      "en": "British Middle East Command"
+     },
+     "title": {
+      "orig": "C-in-C Middle East",
+      "zh-Hant": "中東總司令",
+      "en": "Commander-in-Chief, Middle East"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1946-01-01",
+      "end": "1948-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "On his promotion to General in 1946 he was posted as C-in-C Middle East",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-dempsey",
+       "locator": "Administrative History",
+       "quote": "until he retired in 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "任期始於 1946 年，與 1908–1945 時間窗無交集（T14 R5 時間窗外）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:dempsey-13th-brigade",
+     "gapKind": "not_found",
+     "note": "待查證：起迄日僅月／年精度（1939-11 至 1940）；日精度未得，已查 TNA 行政沿革、GOV.UK 戰史小冊。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：3 段；Sicily／Italy 戰役日期與地點、Market Garden、萊茵河渡河（1945-03-23）均缺可抓原文的 A／B 來源（TNA Discovery 僅有行政沿革；IWM／Britannica 403；ODNB 未取得）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "General Sir Miles Dempsey Second Army commander Normandy biography",
+     "url": null,
+     "result": "not_relevant",
+     "note": "搜尋結果多為維基與商業網站"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "TNA Discovery WO 285 Dempsey",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C14490",
+     "result": "challenge_page",
+     "note": "網頁版遇 AWS WAF 挑戰，不繞過；改用同一目錄的官方 Discovery API JSON"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "TNA Discovery API C14490",
+     "url": "https://discovery.nationalarchives.gov.uk/API/records/v1/details/C14490",
+     "result": "found_A",
+     "note": "官方 API，含行政沿革"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Dempsey",
+     "url": "https://www.britannica.com:443/print/article/157486",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Dempsey Second Army GOV.UK 戰史小冊",
+     "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/30055/ww2_caen.pdf",
+     "result": "found_A",
+     "note": "抓取 caen／dday／antwerp 三本"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Dempsey ODNB",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未得原文"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Paradata Dempsey",
+     "url": "https://www.paradata.org.uk/people/miles-dempsey",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  },
+  {
+   "key": "oliverleese",
+   "bioId": null,
+   "name": "Oliver Leese",
+   "nameZh": "奧利弗·利斯",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1944-01-12",
+      "end": "1944-06-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "卡西諾戰役中的第8集團軍",
+      "en": "The Eighth Army at Monte Cassino"
+     },
+     "body": {
+      "zh-Hant": "英國國防部戰史小冊記載，1944年1月12日至6月5日的蒙特卡西諾戰役中，盟軍義大利地面部隊由亞歷山大統轄，其下有克拉克中將指揮的美國第5集團軍，以及奧利弗·利斯中將指揮的英國第8集團軍。名單把利斯列在盟軍指揮官之中。",
+      "en": "The Ministry of Defence booklet on the battles for Monte Cassino, 12 January to 5 June 1944, records that Alexander controlled the Allied armies in Italy, comprising the US Fifth Army under Lieutenant-General Mark Clark and the British Eighth Army under Lieutenant-General Sir Oliver Leese. Leese is named in its list of Allied commanders."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "戰史小冊",
+       "quote": "Central Italy 12 January – 5 June 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "戰史小冊",
+       "quote": "Alexander controlled the Allied Armies in Italy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "Background",
+       "quote": "the British Eighth Army commanded by Lieutenant-General Sir Oliver Leese",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "List of commanders",
+       "quote": "Lieutenant-General Sir Oliver Hargreaves Leese",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1944-05-01",
+      "end": "1944-06-05"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "李河谷主攻",
+      "en": "The thrust up the Liri Valley"
+     },
+     "body": {
+      "zh-Hant": "據同一小冊，進攻計畫以利斯的第8集團軍沿6號公路進入李河谷為主攻，由英國第4師與印度第8師先建立橋頭堡，再讓英國第78師、加拿大第1師與加拿大第5裝甲師向前擴張。",
+      "en": "According to the same booklet, the main thrust was to be by Leese's Eighth Army up the Liri Valley along Route 6, with the British 4th and Indian 8th Divisions creating a bridgehead for the British 78th, Canadian 1st and Canadian 5th Armoured Divisions to exploit."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "戰史小冊",
+       "quote": "main thrust was to be by Leese’s Eighth Army up the Liri Valley",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "戰史小冊",
+       "quote": "along Route 6 with 4th British and 8th Indian Divisions creating a bridgehead",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-cassino",
+       "locator": "戰史小冊",
+       "quote": "78th British, 1st Canadian and 5th Canadian Armoured Divisions to exploit",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "東南亞盟軍地面部隊",
+      "en": "Allied Land Forces South East Asia"
+     },
+     "body": {
+      "zh-Hant": "倫敦國王學院利德爾·哈特軍事檔案中心的館藏指南稱利斯為盟軍東南亞地面部隊（ALFSEA）總司令，並著錄他關於盟軍攻佔緬甸曼德勒之後作戰的敘述，以及東非第11師在攻佔仰光中的角色。指南另記，1945年5月他與布魯克、蒙巴頓之間往來電報，涉及撤換第14集團軍司令斯利姆的企圖。",
+      "en": "The Liddell Hart Centre's research guide describes Leese as Commander-in-Chief, Allied Land Forces South East Asia (ALFSEA). It lists his narrative of operations following the Allied capture of Mandalay and of the role of the 11th (East African) Division in the capture of Rangoon. It also records the attempt to remove Slim from command of the 14th Army in May 1945, in which Leese exchanged telegrams with Brooke and Mountbatten."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "Leese 條目",
+       "quote": "Commander-in-Chief, Allied Land Forces South East Asia (ALFSEA)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "Leese 條目",
+       "quote": "the Allied capture of Mandalay, Burma",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "Leese 條目",
+       "quote": "capture of Rangoon, Burma from Japanese forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "Kirby 條目",
+       "quote": "attempt to remove Lt Gen Sir William Joseph Slim",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "Kirby 條目",
+       "quote": "from command of 14 Army, Burma, May 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:leese-eighth-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；GOV.UK 戰史小冊只寫 1944 年作戰期間其為第8集團軍司令，未寫任命與卸任日；IWM、ODNB、Britannica 403 或未得原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:leese-xxx-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第30軍軍長任期（阿拉曼、西西里）未取得可抓原文來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:leese-alfsea",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；KCL 館藏指南寫其為 ALFSEA 總司令，但無任命日與卸任日；已查 KCL 指南、IWM（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：3 段（約 350 字）；阿拉曼、西西里、第30軍、ALFSEA 任期日期均無可抓原文的 A／B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Oliver Leese Eighth Army ALFSEA biography",
+     "url": null,
+     "result": "not_relevant",
+     "note": "搜尋結果多為維基與鏡像"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "GOV.UK Monte Cassino 小冊",
+     "url": "https://assets.publishing.service.gov.uk/media/5a79ed35ed915d042206c0aa/ww2_montecass.pdf",
+     "result": "found_A",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "KCL South Asia research guide",
+     "url": "https://www.kcl.ac.uk/library/assets/archives/southasia.pdf",
+     "result": "found_B",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "IWM Lives of the First World War Leese",
+     "url": "https://livesofthefirstworldwar.iwm.org.uk/lifestory/2354785",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Leese ODNB",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋只見 TNA 人名頁連結，未得原文"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "TNA Discovery F40269",
+     "url": "https://discovery-cdn.nationalarchives.gov.uk/details/c/F40269",
+     "result": "blocked_403",
+     "note": "403"
+    }
+   ]
+  },
+  {
+   "key": "richardoconnor",
+   "bioId": null,
+   "name": "Richard O'Connor",
+   "nameZh": "理查德·奧康納",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1936-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰前與第7師、西部沙漠軍",
+      "en": "Pre-war posts, 7th Division and the Western Desert Force"
+     },
+     "body": {
+      "zh-Hant": "館藏指南記載，奧康納在1936至1938年擔任白沙瓦旅暨白沙瓦軍區司令，1939至1940年指揮駐埃及馬特魯堡壘的第7師，1940年指揮西部沙漠軍（Western Desert Force）。",
+      "en": "The archive guide records that O'Connor commanded the Peshawar Brigade and Peshawar District in India's North West Frontier Province in 1936–1938, commanded the 7th Division at Mersa Matruh in Egypt in 1939–1940, and commanded the Western Desert Force in 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "Commander, Peshawar Brigade and Peshawar District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "North West Frontier Province, India, 1936-1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "Commander, 7 Div, Mersa Metruh Fortress, Egypt, 1939-1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "Commander, Western Desert Force, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "第一次利比亞戰役與被俘",
+      "en": "The First Libyan Campaign and captivity"
+     },
+     "body": {
+      "zh-Hant": "同一指南著錄了與第一次利比亞戰役（1940至1941年）有關的信函、備忘錄與筆記，以及奧康納在義大利戰俘期間（1941至1943年）寫下的戰役詳細敘述。他1941年擔任駐埃及英軍總司令，之後被俘並囚於義大利的溫奇古利亞塔城堡。",
+      "en": "The guide lists correspondence, memoranda and notes on the First Libyan campaign of 1940–1941, and O'Connor's detailed account of it written as a prisoner of war in Italy in 1941–1943. In 1941 he was General Officer Commanding-in-Chief, British Troops in Egypt, and was then captured and imprisoned in Castle Vincigliata, Italy."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "relating to the First Libyan campaign, 1940-1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "written as a POW, Italy, 1941-1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "British Troops in Egypt, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "captured and imprisoned in Castle Vincigliata, Italy, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-06-25",
+      "end": "1944-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "諾曼第：艾普森行動",
+      "en": "Normandy: Operation Epsom"
+     },
+     "body": {
+      "zh-Hant": "英國國防部戰史小冊《卡昂攻勢》把第8軍軍長列為奧康納中將。1944年6月25至30日的艾普森行動，目標就是由奧康納指揮的第8軍渡過奧登河，進入卡昂以西的樹籬地帶，並進一步奪取可俯瞰卡昂南面通路的高地。",
+      "en": "The Ministry of Defence booklet on the Drive on Caen lists Lieutenant-General Richard O'Connor as commander of VIII Corps. Operation Epsom, 25–30 June 1944, aimed to have VIII Corps under O'Connor cross the River Odon in the bocage west of Caen and push on to the high ground commanding the city's southern approaches."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gov-caen",
+       "locator": "List of commanders",
+       "quote": "VIII Corps Lieutenant-General Richard O’Connor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-caen",
+       "locator": "Section heading",
+       "quote": "Operation “Epsom” (25–30 June 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-caen",
+       "locator": "Operation Epsom",
+       "quote": "VIII Corps, commanded by Lieutenant-General O’Connor, to cross the River Odon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1945-01-01",
+      "end": "1947-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰後印度司令部",
+      "en": "Post-war commands in India"
+     },
+     "body": {
+      "zh-Hant": "館藏指南記載，奧康納1945年擔任印度東方司令部總司令，1945至1946年擔任印度西北軍總司令。",
+      "en": "The guide records that O'Connor was General Officer Commanding-in-Chief, Eastern Command in India, in 1945, and General Officer Commanding-in-Chief, North Western Army, India, in 1945–1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "Eastern Command in India, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "North Western Army, India, 1945-1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "oconnor-peshawar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英屬印度白沙瓦旅暨白沙瓦軍區",
+      "en": "Peshawar Brigade and Peshawar District, India"
+     },
+     "title": {
+      "orig": "Commander, Peshawar Brigade and Peshawar District",
+      "zh-Hant": "白沙瓦旅暨白沙瓦軍區司令",
+      "en": "Commander, Peshawar Brigade and Peshawar District"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "Commander, Peshawar Brigade and Peshawar District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "North West Frontier Province, India, 1936-1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰區／方面軍以下層級的指揮職，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "oconnor-7div",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第7師（馬特魯堡壘）",
+      "en": "British 7th Division, Mersa Matruh Fortress"
+     },
+     "title": {
+      "orig": "Commander, 7 Div, Mersa Metruh Fortress",
+      "zh-Hant": "第7師師長（馬特魯堡壘）",
+      "en": "Commander, 7th Division, Mersa Matruh Fortress"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "Commander, 7 Div, Mersa Metruh Fortress, Egypt, 1939-1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰區／方面軍以下層級的指揮職，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "oconnor-wdf",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西部沙漠軍",
+      "en": "Western Desert Force"
+     },
+     "title": {
+      "orig": "Commander, Western Desert Force",
+      "zh-Hant": "西部沙漠軍司令",
+      "en": "Commander, Western Desert Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "Commander, Western Desert Force, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "relating to the First Libyan campaign, 1940-1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "oconnor-british-troops-egypt",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "駐埃及英軍",
+      "en": "British Troops in Egypt"
+     },
+     "title": {
+      "orig": "General Officer Commanding-in-Chief, British Troops in Egypt",
+      "zh-Hant": "駐埃及英軍總司令",
+      "en": "GOC-in-C, British Troops in Egypt"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-01-01",
+      "end": "1942-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kcl-northafrica",
+       "locator": "O’Connor 條目",
+       "quote": "British Troops in Egypt, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "oconnor-eastern-command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "印度東方司令部",
+      "en": "Eastern Command, India"
+     },
+     "title": {
+      "orig": "General Officer Commanding-in-Chief, Eastern Command in India",
+      "zh-Hant": "印度東方司令部總司令",
+      "en": "GOC-in-C, Eastern Command, India"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "Eastern Command in India, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地區司令部，非國家級最高軍職、非戰區／方面軍司令（T14 R5）"
+    },
+    {
+     "key": "oconnor-north-western-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "印度西北軍",
+      "en": "North Western Army, India"
+     },
+     "title": {
+      "orig": "General Officer Commanding-in-Chief, North Western Army, India",
+      "zh-Hant": "印度西北軍總司令",
+      "en": "GOC-in-C, North Western Army, India"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1947-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kcl-southasia",
+       "locator": "O'Connor 條目",
+       "quote": "North Western Army, India, 1945-1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地區軍司令部，非國家級最高軍職、非戰區／方面軍司令（T14 R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:oconnor-viii-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；GOV.UK 小冊只寫 1944 年 6 月艾普森行動時任第8軍軍長，未寫任命與卸任日；IWM 館藏說明 403，未得原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：已 4 段；羅貝爾（Compass，1940-12）日期與地點、被俘日（1941-04-07）、1943 年脫逃、西北歐後續戰役缺可抓原文的 A／B 來源（IWM、Britannica、NAM 403 或 404）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Richard O'Connor Operation Compass Western Desert Force VIII Corps",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋得 IWM、KCL、TNA"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "IWM Interview with Richard Nugent O'Connor",
+     "url": "https://www.iwm.org.uk/collections/item/object/80000012",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "KCL North Africa research guide",
+     "url": "https://www.kcl.ac.uk/library/assets/archives/northafrica.pdf",
+     "result": "found_B",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "KCL South Asia research guide",
+     "url": "https://www.kcl.ac.uk/library/assets/archives/southasia.pdf",
+     "result": "found_B",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "GOV.UK Drive on Caen 小冊",
+     "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/30055/ww2_caen.pdf",
+     "result": "found_A",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "NAM Richard O'Connor",
+     "url": "https://www.nam.ac.uk/explore/richard-oconnor",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "TNA Discovery F60387 / API",
+     "url": "https://discovery.nationalarchives.gov.uk/details/c/F60387",
+     "result": "challenge_page",
+     "note": "網頁版 WAF 挑戰，API 無內容"
+    }
+   ]
+  },
+  {
+   "key": "rogerkeyes1stbaronkeyes",
+   "bioId": null,
+   "name": "Roger Keyes, 1st Baron Keyes",
+   "nameZh": "羅傑·凱斯",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1885-01-01",
+      "end": "1905-07-02"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "早年海軍生涯",
+      "en": "Early naval career"
+     },
+     "body": {
+      "zh-Hant": "凱斯於1885年作為不列顛尼亞號訓練艦學員進入海軍，1900年參加義和團事件的作戰，並於1905年7月1日晉升上校。",
+      "en": "Keyes entered the Navy as a Britannia cadet in 1885, saw action in the Boxer Rebellion of 1900, and was promoted captain on 1 July 1905."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "entered the Navy as a ‘Britannia’ cadet in 1885",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Keyes saw action in the Boxer Rebellion of 1900",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "He was promoted captain on 1 July 1905.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1918-04-24"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "一戰：潛艦、計畫部與澤布呂赫突襲",
+      "en": "The First World War: submarines, plans and the Zeebrugge raid"
+     },
+     "body": {
+      "zh-Hant": "凱斯在1908至1910年指揮大西洋艦隊的巡洋艦『維納斯號』，1912年8月起以潛艦司令（commodore (S)）主管潛艦部隊。1916年6月他在大艦隊第二戰列艦戰隊的『百夫長號』戰艦上回到海上指揮崗位，1917年9月被任命為海軍部計畫處長。館藏說明稱他是組織1918年4月23日澤布呂赫突襲的關鍵人物，戰後隨即受封KCB。",
+      "en": "Keyes commanded the cruiser Venus in the Atlantic Fleet in 1908–10 and in August 1912 became commodore (S) in charge of the Submarine Service. In June 1916 he returned to command at sea in the battleship Centurion of the Second Battle Squadron of the Grand Fleet, and in September 1917 he was appointed director of plans at the Admiralty. The museum text says he was instrumental in organizing the Zeebrugge raid of 23 April 1918 and was made KCB immediately afterwards."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "He commanded the cruiser ‘Venus’ in the Atlantic Fleet, 1908–10",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "commodore (S) in charge of the Submarine Service in August 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Centurion",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "in the second battle squadron of the Grand Fleet in June 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "director of plans at the Admiralty in September 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Keyes was instrumental in organizing the Zeebrugge raid of 23 April 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "made KCB immediately afterwards",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰間期高級指揮職",
+      "en": "Senior commands between the wars"
+     },
+     "body": {
+      "zh-Hant": "館藏說明記載，凱斯在1919至1921年指揮戰鬥巡洋艦戰隊，1921至1925年任海軍副參謀長，1925至1928年任地中海艦隊總司令，1929至1931年任樸次茅斯總司令，並在1930年5月晉升海軍元帥。",
+      "en": "The museum text records that Keyes commanded the battle-cruiser squadron in 1919–21, was deputy chief of the naval staff in 1921–25, commander-in-chief of the Mediterranean station in 1925–28 and commander-in-chief at Portsmouth in 1929–31, and was promoted admiral of the fleet in May 1930."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "commander the battle-cruiser squadron, 1919–21",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "deputy chief of the naval staff, 1921–25",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Mediterranean station, 1925–28",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Portsmouth, 1929–31",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "admiral of the fleet in May 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1934-02-01",
+      "end": "1941-10-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "議員與聯合作戰處長",
+      "en": "MP and Director of Combined Operations"
+     },
+     "body": {
+      "zh-Hant": "凱斯自1934年2月起任保守黨籍樸次茅斯北區下議員，直到1943年進入上議院。1940年7月他被任命為聯合作戰處長，直到1941年9月由蒙巴頓接替。哥倫比亞百科全書稱他任此職期間（1940至1941年）影響了兩棲作戰的早期發展，並說他在1943年被封為澤布呂赫與多佛的凱斯男爵。",
+      "en": "Keyes was Conservative MP for Portsmouth North from February 1934 until he entered the House of Lords in 1943. He was appointed director of combined operations in July 1940 and was replaced by Lord Mountbatten in September 1941. The Columbia Encyclopedia says that as director (1940–41) he influenced the early development of amphibious warfare, and that he was raised to the peerage as Baron Keyes of Zeebrugge and Dover in 1943."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Conservative MP for Portsmouth North from February 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "until he entered the House of Lords in 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "director of combined operations in July 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "replaced by Lord Mountbatten in September 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-keyes",
+       "locator": "條目首段",
+       "quote": "As director of combined operations (1940–41)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-keyes",
+       "locator": "條目首段",
+       "quote": "raised to the peerage as Baron Keyes of Zeebrugge and Dover",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "keyes-venus",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍大西洋艦隊",
+      "en": "Royal Navy Atlantic Fleet"
+     },
+     "title": {
+      "orig": "cruiser Venus",
+      "zh-Hant": "巡洋艦『維納斯號』艦長",
+      "en": "Commanding officer, cruiser Venus"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1908-01-01",
+      "end": "1911-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "He commanded the cruiser ‘Venus’ in the Atlantic Fleet, 1908–10",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰區／方面軍以下層級的指揮職，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "keyes-commodore-submarines",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍潛艦部隊",
+      "en": "Royal Navy Submarine Service"
+     },
+     "title": {
+      "orig": "commodore (S) in charge of the Submarine Service",
+      "zh-Hant": "潛艦司令（commodore (S)）",
+      "en": "Commodore (S), Submarine Service"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1912-08-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "commodore (S) in charge of the Submarine Service in August 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰區／方面軍以下層級的指揮職，非國家級最高軍職（T14 R5）；迄日缺"
+    },
+    {
+     "key": "keyes-director-plans",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國海軍部",
+      "en": "Admiralty"
+     },
+     "title": {
+      "orig": "director of plans at the Admiralty",
+      "zh-Hant": "海軍部計畫處長",
+      "en": "Director of Plans, Admiralty"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1917-09-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "director of plans at the Admiralty in September 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "海軍部參謀職，非國家級最高軍職（T14 R5）；迄日缺"
+    },
+    {
+     "key": "keyes-bc-squadron",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍戰鬥巡洋艦戰隊",
+      "en": "Royal Navy Battle-Cruiser Squadron"
+     },
+     "title": {
+      "orig": "battle-cruiser squadron",
+      "zh-Hant": "戰鬥巡洋艦戰隊司令",
+      "en": "Commander, Battle-Cruiser Squadron"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1922-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "commander the battle-cruiser squadron, 1919–21",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰區／方面軍以下層級的指揮職，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "keyes-dcns",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國海軍部",
+      "en": "Admiralty"
+     },
+     "title": {
+      "orig": "deputy chief of the naval staff",
+      "zh-Hant": "海軍副參謀長",
+      "en": "Deputy Chief of the Naval Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1921-01-01",
+      "end": "1926-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "deputy chief of the naval staff, 1921–25",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（deputy），非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "keyes-cinc-mediterranean",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍地中海艦隊",
+      "en": "Royal Navy Mediterranean Station"
+     },
+     "title": {
+      "orig": "commander-in-chief of the Mediterranean station",
+      "zh-Hant": "地中海艦隊總司令",
+      "en": "Commander-in-Chief, Mediterranean Station"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1925-01-01",
+      "end": "1929-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Mediterranean station, 1925–28",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "army／艦隊級指揮，可能屬戰區／方面軍司令；但英國政權 regimeId 為 null（R4②無法證明）、來源未明寫職位等級（T14 R6）；亦缺戰役連結",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "keyes-cinc-portsmouth",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍樸次茅斯司令部",
+      "en": "Royal Navy Portsmouth Command"
+     },
+     "title": {
+      "orig": "commander-in-chief at Portsmouth",
+      "zh-Hant": "樸次茅斯總司令",
+      "en": "Commander-in-Chief, Portsmouth"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1929-01-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Portsmouth, 1929–31",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍港司令部，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "keyes-director-combined-ops",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國聯合作戰處",
+      "en": "Combined Operations (UK)"
+     },
+     "title": {
+      "orig": "director of combined operations",
+      "zh-Hant": "聯合作戰處長",
+      "en": "Director of Combined Operations"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-07-01",
+      "end": "1941-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "director of combined operations in July 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "replaced by Lord Mountbatten in September 1941",
+       "quoteLang": "en",
+       "evidenceNote": "月精度終點：1941 年 9 月被接替，依 Q3 寫下一單位起日 1941-10-01",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-keyes",
+       "locator": "條目首段",
+       "quote": "As director of combined operations (1940–41)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "特種作戰協調職，非國家級最高軍職、非戰區／方面軍司令（T14 R5）"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "keyes-mp-portsmouth-north",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院（樸次茅斯北區選區，保守黨）",
+      "en": "House of Commons, Portsmouth North (Conservative)"
+     },
+     "title": {
+      "orig": "Conservative MP for Portsmouth North",
+      "zh-Hant": "樸次茅斯北區議員（保守黨）",
+      "en": "Conservative MP for Portsmouth North"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1934-02-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "Conservative MP for Portsmouth North from February 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmg-keyes",
+       "locator": "館藏說明",
+       "quote": "until he entered the House of Lords in 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；來源職稱明寫 Conservative MP",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:keyes-commodore-submarines",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 RMG 館藏說明（只寫 1912 年 8 月任命，未寫卸任）、Columbia 百科。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:keyes-director-plans",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 RMG 館藏說明，只寫 1917 年 9 月任命。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:keyes-dover-patrol",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；多佛巡邏艦隊（Dover Patrol）指揮任期與澤布呂赫突襲的指揮身分，所取得 A／B 來源未寫（RMG 只寫他組織突襲）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：已 4 段（約 460 字），但所取得 A／B 來源只寫他組織澤布呂赫突襲，未涉及日德蘭等海戰或其他作戰的具體敘述；Hansard 人名頁（api.parliament.uk）資料與本人不符（只列上議院頭銜、無 1934–1943 下議院任期），未採用；ODNB、Britannica、IWM 未得原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Admiral of the Fleet Roger Keyes Zeebrugge Dover Patrol Combined Operations",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋得 Encyclopedia.com、RMG"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "RMG Lord Roger Keyes BHC2824",
+     "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-14297",
+     "result": "found_B",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Columbia Encyclopedia Keyes",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/keyes-roger-john-brownlow-keyes-1st-baron",
+     "result": "found_B",
+     "note": "curl 抓取"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Historic Hansard people Roger Keyes",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-roger-keyes",
+     "result": "found_A",
+     "note": "頁面僅列 Lords 頭銜、日期錯置，未採用"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "UK Parliament heraldic shield Keyes",
+     "url": "https://www.parliament.uk/about/living-heritage/building/cultural-collections/memorials/in-the-collection/world-war-ii/wwii-heraldic-shields/keyes/",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    }
+   ]
+  }
+ ]
+}

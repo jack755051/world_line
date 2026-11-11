@@ -22,6 +22,13 @@
 13. t14Overlap 若有，值須為 cabinet／general／occupation_colonial。
 14. positions 不得含 positionKind=party（Tai 2026-11-11 12:12 第 2 項：黨職一律移至 roleCandidates 為 de_facto_leader），
     除非該項標 partyPostAmbiguous=true 且附 partyPostAmbiguousReason；positionKind 不得為三種角色值（同第 11 項）。
+T14 R0–R6（T14_RECOMMENDATION.md；Tai 2026-11-11 12:47 第 5 項）、黨籍席位（同日第 2 項）另加：
+15. roleCandidates.role_kind 值域擴為 ROLE_LAYER_KINDS（元首／首腦／實際掌權者＋cabinet_minister、military_commander、
+    occupation_administrator、colonial_governor）；positions.positionKind 不得為任何角色層值；positionKind 值域加 police、military_education。
+16. 每筆帶 t14Overlap 的 positions 項須有 t14Rule ∈ R0–R6（或 t14Ambiguous=true 附理由）；positions 內 t14Rule 只可為 R5／R6，
+    R0–R4 只能出現在 roleCandidates（兩層互斥），除非 t14Ambiguous=true。
+17. t14Rule=R6 須 roleEligible=true、roleEligibleKind ∈ 角色層值、roleGap 非空、t14Reason 非空；非 R6 不得有 roleEligible。
+18. positions 若有 originalPositionKind（邊界個案改類別），須與 positionKind 不同且屬原值域；roleCandidates 的 t14Rule 若有，須 ∈ R0–R4。
 """
 import hashlib, json, re, sys, unicodedata
 from pathlib import Path
@@ -29,9 +36,14 @@ from urllib.parse import urlparse
 
 EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "baidu.com", "enciclopediadelecuador.com")
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
+ALIGNED_POSITION_KINDS = ROLE_KINDS | {"police", "military_education"}   # T14 文件 §4 邊界個案
+ROLE_LAYER_KINDS = {"head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister", "military_commander",
+                    "occupation_administrator", "colonial_governor"}   # T14 文件 §1 R0–R4
+T14_RULES = {"R0", "R1", "R2", "R3", "R4", "R5", "R6"}
+ROLE_RULES = {"R0", "R1", "R2", "R3", "R4"}
 FORBIDDEN_ROLES = {"head_of_state", "head_of_government"}
 FORBIDDEN_ALIGNED = FORBIDDEN_ROLES | {"de_facto_leader"}
-CANDIDATE_KINDS = {"head_of_state", "head_of_government", "de_facto_leader"}
+CANDIDATE_KINDS = ROLE_LAYER_KINDS
 T14_VALUES = {"cabinet", "general", "occupation_colonial"}
 GAP_KINDS = {"conflict", "not_found", "identity_uncertain"}
 PREC = {None, "day", "month", "year"}
@@ -169,8 +181,29 @@ def main():
                 w = f"{key} 職位 {x.get('key')}"
                 if "roleKind" in x:
                     errs.append(f"{w}：對齊檔不得再用 roleKind，須為 positionKind")
-                if x.get("positionKind") in FORBIDDEN_ALIGNED:
-                    errs.append(f"{w}：經歷層不得含元首／首腦／實際掌權者（屬角色層）")
+                if x.get("positionKind") in ROLE_LAYER_KINDS:
+                    errs.append(f"{w}：經歷層不得含角色層值 {x.get('positionKind')}（兩層互斥）")
+                if "originalPositionKind" in x and (x["originalPositionKind"] == x.get("positionKind")
+                                                    or x["originalPositionKind"] not in ROLE_KINDS):
+                    errs.append(f"{w}：originalPositionKind 須屬原值域且與 positionKind 不同")
+                amb = x.get("t14Ambiguous")
+                if "t14Ambiguous" in x and (amb is not True or not (x.get("t14AmbiguousReason") or "").strip()):
+                    errs.append(f"{w}：t14Ambiguous 須為 true 且附 t14AmbiguousReason")
+                r = x.get("t14Rule")
+                if "t14Overlap" in x and r not in T14_RULES and amb is not True:
+                    errs.append(f"{w}：t14Overlap 項須有 t14Rule（R0–R6）或標 t14Ambiguous")
+                if r is not None and r not in T14_RULES:
+                    errs.append(f"{w}：t14Rule 非法 {r}")
+                if r in ROLE_RULES and amb is not True:
+                    errs.append(f"{w}：t14Rule={r} 屬角色層，須移至 roleCandidates（兩層互斥）")
+                if r and not (x.get("t14Reason") or "").strip():
+                    errs.append(f"{w}：有 t14Rule 須附 t14Reason")
+                if r == "R6":
+                    if x.get("roleEligible") is not True or x.get("roleEligibleKind") not in ROLE_LAYER_KINDS - FORBIDDEN_ALIGNED \
+                            or not x.get("roleGap"):
+                        errs.append(f"{w}：R6 須 roleEligible=true、roleEligibleKind（閣員／將領／佔領殖民長官）、roleGap 非空")
+                elif any(k in x for k in ("roleEligible", "roleEligibleKind", "roleGap")):
+                    errs.append(f"{w}：非 R6 不得有 roleEligible／roleEligibleKind／roleGap")
                 if x.get("positionKind") == "party" and x.get("partyPostAmbiguous") is not True:
                     errs.append(f"{w}：黨職須移至 roleCandidates（de_facto_leader），或標 partyPostAmbiguous")
                 if "partyPostAmbiguous" in x and (x["partyPostAmbiguous"] is not True
@@ -187,6 +220,10 @@ def main():
                         errs.append(f"{w}：不得有 {bad}（統一為 role_kind）")
                 if not (x.get("reason") or "").strip():
                     errs.append(f"{w}：缺 reason")
+                if "t14Rule" in x and x["t14Rule"] not in ROLE_RULES:
+                    errs.append(f"{w}：roleCandidates 的 t14Rule 須為 R0–R4，實為 {x['t14Rule']}")
+                if "positionKind" in x or "roleEligible" in x:
+                    errs.append(f"{w}：roleCandidates 不得有 positionKind／roleEligible（原值存 originalPositionKind）")
                 cc = x.get("citations") or []
                 if not cc:
                     errs.append(f"{w}：沒有 citation（出處）")
@@ -201,7 +238,7 @@ def main():
             rk = x.get("positionKind") if aligned else x.get("roleKind")
             if rk in (FORBIDDEN_ALIGNED if aligned else FORBIDDEN_ROLES):
                 errs.append(f"{key} 職位 {x.get('key')}：不得建元首／首腦職位（§16.3、Q4）")
-            elif rk not in ROLE_KINDS:
+            elif rk not in (ALIGNED_POSITION_KINDS if aligned else ROLE_KINDS):
                 errs.append(f"{key} 職位 {x.get('key')}：role_kind 非法 {rk}")
             per = x.get("period") or {}
             if x.get("regimeId"):

@@ -1466,7 +1466,9 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ],
-     "t14Overlap": "cabinet"
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14_RECOMMENDATION.md §2 #9：教育不屬四部"
     },
     {
      "key": "ginestal-deputy-santarem",
@@ -1624,7 +1626,8 @@
       }
      ],
      "role_kind": "de_facto_leader",
-     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
     }
    ]
   },
@@ -2259,7 +2262,9 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ],
-     "t14Overlap": "cabinet"
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14_RECOMMENDATION.md §2 #10：助理職；海軍部不在四部（文件 §4）"
     },
     {
      "key": "fdr-ny-governor",
@@ -2322,5 +2327,5 @@
   }
  ],
  "alignedTo": "b0b0e0f",
- "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。由 align_b0b0e0f.py 產生，原 research.json 未動。"
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。Tai 2026-11-11 12:47：薩拉查 1921 議員算黨職（以政黨身分取得的席位比照黨職）；T14 R0–R6 套用（兩層互斥，t14Rule／roleEligible，見 T14_RECOMMENDATION.md）。由 align_b0b0e0f.py 產生，原 research.json 未動。"
 }

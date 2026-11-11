@@ -9,7 +9,13 @@
  2b. 黨職（Tai 2026-11-11 12:12 第 2 項「黨職一律算 de_facto_leader」）：positionKind=party 者一律移入 roleCandidates，
     role_kind=de_facto_leader。positionKind 非 party、但標題／機構含政黨字樣者不猜，留在原處加 partyPostAmbiguous、
     partyPostAmbiguousReason。候選角色種類欄位一律為 role_kind（Tai 同日第 4 項），不再有 roleKind／candidateRoleKind。
- 3. T14 重疊類別留在 positions，加 t14Overlap：cabinet｜general｜occupation_colonial。
+ 2c. 以政黨身分取得的議會席位（Tai 2026-11-11 12:47 第 2 項「薩拉查 1921 議員算黨職」規則化）：positionKind=legislator
+    且標題／機構明寫政黨（PARTY_HINT）者，比照黨職移入 roleCandidates，role_kind=de_facto_leader（PARTY_SEAT_REASONS）。
+ 3. T14 重疊類別加 t14Overlap：cabinet｜general｜occupation_colonial；再依 T14_RECOMMENDATION.md R0–R6（Tai 2026-11-11 12:47 第 5 項
+    「T14 建議套用到試跑資料」）加 t14Rule。R0–R4 命中且門檻可證明 → 移入 roleCandidates；R6（類別符合、門檻無法證明）→
+    留 positions 加 roleEligible=true、roleEligibleKind、roleGap；R5 → 留 positions。逐筆判定見 T14_DECISIONS（對應文件 §2 表列號）；
+    文件未涵蓋或有歧義者留原處加 t14Ambiguous。邊界個案依文件 §4 改 positionKind（police／military_education），原值存 originalPositionKind。
+    黨職候選（R1）亦加 t14Rule="R1"。
  4. 頂層加 alignedTo、alignNote。
 判斷規則見下方 PARTY_*／ HEAD_PATTERNS／PERSON_OVERRIDES／T14 規則，可直接審視。
 """
@@ -20,6 +26,7 @@ HERE = Path(__file__).resolve().parent
 ALIGN_NOTE = ("依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；"
               "元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。"
               "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。"
+              "Tai 2026-11-11 12:47：薩拉查 1921 議員算黨職（以政黨身分取得的席位比照黨職）；T14 R0–R6 套用（兩層互斥，t14Rule／roleEligible，見 T14_RECOMMENDATION.md）。"
               "由 align_b0b0e0f.py 產生，原 research.json 未動。")
 
 # 若標題含這些詞，代表是機構內職務／副職／幕僚，不是首腦本身
@@ -50,9 +57,53 @@ PARTY_REASON = "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
 PARTY_HINT = re.compile(r"(黨|\bparty\b|\bpartido\b|\bpartito\b|\bparti\b|kuomintang|communist|union and progress|"
                         r"secretary[- ]general|general secretary|總書記|書記長|黨魁)", re.I)
 # 個案：(人物 key, 職位 key) → 標 ambiguous 的理由；未列者由 PARTY_HINT 自動產生通用理由
-PARTY_AMBIGUOUS_REASONS = {
-    ("pt-salazar", "deputy-1921"): "標題「議員（天主教中央黨）」含政黨名稱，但 positionKind=legislator、機構為葡萄牙議會，"
-                                   "較像以該黨身分當選的議會席位而非黨內職務；依指示不猜，留在 positions，待 Tai 決",
+PARTY_AMBIGUOUS_REASONS = {}
+# 以政黨身分取得的議會席位（Tai 2026-11-11 12:47 第 2 項）：個案理由；未列者用通用理由
+PARTY_SEAT_REASONS = {
+    ("pt-salazar", "deputy-1921"): "Tai 2026-11-11 12:47：薩拉查 1921 議員算黨職",
+}
+PARTY_SEAT_GENERIC = "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決），算 de_facto_leader"
+
+# ---- T14 R0–R6（T14_RECOMMENDATION.md；Tai 2026-11-11 12:47 第 5 項套用）----
+T14_SRC = "T14_RECOMMENDATION.md"
+# (人物 key, 職位 key) → (文件 §2 列號, rule, roleEligibleKind 或 None, roleGap list, 新 positionKind 或 None, 理由)
+# 判定照文件 §1 判斷順序（第一條命中即停）與 §2 逐筆表、§4 邊界個案；本表只是把文件結論機械化，未另加判斷。
+# 文件標「角色*」（#12 #28 #29：類別與日期門檻符合，但 regimeId 為 NULL、政權是否在系統中待查證）：
+#   R3④／R4②「所屬政權在系統中」無法證明 → 依任務定義「類別符合但門檻無法證明」歸 R6，roleGap=regime（文件 §6-2 roleGap 值域含 regime；
+#   文件 §2 註亦寫「現有資料沒有任何一筆能直接進角色層」）。
+CM, MC = "cabinet_minister", "military_commander"
+T14_DECISIONS = {
+    ("it-mussolini-benito", "mussolini-interior-foreign"): (1, "R6", CM, ["dates"], None, "內政＋外交皆屬四部；期間 NULL 無法證明 ≥90 天。文件建議拆兩段，本腳本不拆（拆段需新建 key／標題），兩職同屬 R6、結論相同"),
+    ("au-deakin-alfred", "deakin-ag"): (2, "R5", None, [], None, "總檢察長不屬四部"),
+    ("su-stalin", "stalin-nationalities-commissar"): (3, "R5", None, [], None, "民族事務不屬四部"),
+    ("su-stalin", "stalin-rabkrin-commissar"): (4, "R5", None, [], None, "工農檢查不屬四部"),
+    ("mx-cardenas-lazaro", "cardenas-interior-minister"): (5, "R6", CM, ["dates"], None, "內政屬四部；期間 NULL"),
+    ("mx-cardenas-lazaro", "cardenas-war-minister-1933"): (6, "R6", CM, ["dates"], None, "戰爭兼海軍部算國防／陸軍類（文件 §4）；year/year 精度可證明最短任期 <90 天"),
+    ("mx-cardenas-lazaro", "cardenas-pacific-commander"): (7, "R6", MC, ["battle_link"], None, "戰區司令，缺有日期＋地點＋出處的戰役連結"),
+    ("mx-cardenas-lazaro", "cardenas-war-minister-1942"): (8, "R6", CM, ["dates"], None, "國防（戰爭）屬四部；開始日 NULL"),
+    ("pt-ginestal-machado", "ginestal-minister-instruction"): (9, "R5", None, [], None, "教育不屬四部"),
+    ("us-fdr", "fdr-asst-sec-navy"): (10, "R5", None, [], None, "助理職；海軍部不在四部（文件 §4）"),
+    ("cn-chiang-kai-shek", "chiang-whampoa-commandant"): (11, "R5", None, [], "military_education", "軍校校長不是指揮職（文件 §4：position_kind 改 military_education）"),
+    ("cn-chiang-kai-shek", "chiang-nre-commander"): (12, "R6", MC, ["regime"], None, "全軍總司令（類別符合；R4 無任期門檻）；regimeId NULL，政權是否在系統中待查證（文件「角色*」）"),
+    ("ot-talat", "interior-minister"): (13, "R6", CM, ["dates", "source"], None, "內政屬四部；結束日 NULL；B 級來源僅 1 筆"),
+    ("ar-uriburu", "army-inspector-general"): (14, "R6", MC, ["rank"], None, "來源未明寫陸軍總監是陸軍最高職，不推論（文件 §4）"),
+    ("mn-choibalsan", "choibalsan-army-cic-1924"): (15, "R6", MC, ["source"], None, "全軍總司令；B 級來源僅 1 筆（文件 §2 註）"),
+    ("mn-choibalsan", "choibalsan-rural-economy-minister"): (16, "R5", None, [], None, "農牧經濟不屬四部"),
+    ("mn-choibalsan", "choibalsan-deputy-pm"): (17, "R5", None, [], None, "副總理：副職，不是首腦也不屬四部（文件 §4）"),
+    ("nl-van-heutsz", "heutsz-chief-general-staff"): (18, "R5", None, [], None, "時間窗外（與 1908–1945 無交集）"),
+    ("nl-van-heutsz", "heutsz-aceh-governor"): (19, "R5", None, [], None, "時間窗外；且為殖民地內地方長官，非轄區最高長官"),
+    ("hu-horthy", "fleet-commander-1918"): (20, "R6", MC, ["rank"], None, "艦隊司令是否等於軍種總司令，來源沒寫（文件 §4）"),
+    ("hu-horthy", "war-minister-1919"): (21, "R6", CM, ["dates"], None, "戰爭部屬四部；結束日 NULL"),
+    ("af-zahir", "deputy-defence-1932"): (22, "R5", None, [], None, "副部長：副職"),
+    ("af-zahir", "education-1933"): (23, "R5", None, [], None, "教育不屬四部"),
+    ("ir-reza", "cossack-brigadier-1918"): (24, "R5", None, [], None, "軍銜／旅級，不是國家級職"),
+    ("ir-reza", "war-minister-1921"): (25, "R6", CM, ["dates"], None, "戰爭部屬四部；結束日 NULL"),
+    ("mx-diaz", "brigadier-1861"): (26, "R5", None, [], None, "軍銜；時間窗外"),
+    ("do-trujillo", "natl-police-chief-1924"): (27, "R5", None, [], "police", "警察，不是軍職（文件 §4：position_kind 改 police）"),
+    ("do-trujillo", "armed-forces-cic-1928"): (28, "R6", MC, ["regime"], None, "全軍總司令（類別符合）；regimeId NULL，政權是否在系統中待查證（文件「角色*」）"),
+    ("ch-motta", "head-political-dept"): (29, "R6", CM, ["regime"], None, "政治部＝外交（文件 §4 瑞士部門主管視同部長）；可證明 ≥90 天；regimeId NULL，政權是否在系統中待查證（文件「角色*」）"),
+    ("ch-motta", "head-finance-dept"): (30, "R6", CM, ["dates"], None, "財政與關稅部＝財政；期間 NULL"),
+    ("pe-leguia", "finance-minister-candamo-pardo"): (31, "R6", CM, ["dates", "source"], None, "財政屬四部；期間 NULL；B 級來源僅 1 筆"),
 }
 
 T14_OCC = re.compile(r"(colon|dependenc|netherlands indies|殖民|屬地|佔領|占領|occupation|occupied|protectorate|保護國)", re.I)
@@ -82,12 +133,14 @@ def head_kind(x, pkey):
 
 
 def party_status(x, pkey):
-    """回傳 'move'（黨職→de_facto_leader 候選）、('ambiguous', 理由) 或 None。"""
+    """回傳 'move'（黨職→de_facto_leader 候選）、('seat', 理由)（以政黨身分取得的席位）、('ambiguous', 理由) 或 None。"""
     pk = x.get("positionKind", x.get("roleKind"))
     if pk == "party":
         return "move"
     titles, orgs = texts(x)
     if any(PARTY_HINT.search(t) for t in titles + orgs if t):
+        if pk == "legislator":
+            return ("seat", PARTY_SEAT_REASONS.get((pkey, x.get("key")), PARTY_SEAT_GENERIC))
         return ("ambiguous", PARTY_AMBIGUOUS_REASONS.get((pkey, x.get("key")),
                 f"標題／機構含政黨字樣但 positionKind={pk}，無法確定是否為政黨內職務；依指示不猜，留在 positions，待 Tai 決"))
     return None
@@ -140,7 +193,8 @@ def align_file(path):
     d = json.load(open(path, encoding="utf-8"))
     batch = path.parent.name
     st = {"renamed": 0, "movedToCandidates": {}, "movedPartyPosts": 0, "partyPostAmbiguous": 0, "t14": {},
-          "movedList": [], "ambiguousList": [], "t14List": []}
+          "movedList": [], "ambiguousList": [], "t14List": [],
+          "partySeats": [], "t14AmbiguousList": []}
     for p in d.get("people", []):
         pkey = p.get("key")
         keep, cands = [], [normalize_candidate(c) for c in (p.get("roleCandidates") or [])]
@@ -153,10 +207,21 @@ def align_file(path):
             if ps == "move":
                 hk, rule = ("de_facto_leader", PARTY_REASON), "party_post"
                 st["movedPartyPosts"] += 1
+            elif isinstance(ps, tuple) and ps[0] == "seat":
+                hk, rule = ("de_facto_leader", ps[1]), "party_seat"
+                st["movedPartyPosts"] += 1
+                st["partySeats"].append({"batch": batch, "person": pkey, "position": x.get("key"),
+                                         "title": (x.get("title") or {}).get("zh-Hant")})
+                ps = None
             else:
                 hk, rule = head_kind(x, pkey), "head_pattern"
             if hk:
-                cands.append(to_candidate(y, *hk))
+                c = to_candidate(y, *hk)
+                if rule in ("party_post", "party_seat"):
+                    c["t14Rule"] = "R1"
+                elif hk[0] in ("head_of_state", "head_of_government", "de_facto_leader"):
+                    c["t14Rule"] = "R0"
+                cands.append(c)
                 st["movedToCandidates"][hk[0]] = st["movedToCandidates"].get(hk[0], 0) + 1
                 st["movedList"].append(move_entry(batch, p, x, hk[0], rule, hk[1]))
                 continue
@@ -170,8 +235,32 @@ def align_file(path):
             if tk:
                 y["t14Overlap"] = tk
                 st["t14"][tk] = st["t14"].get(tk, 0) + 1
-                st["t14List"].append({"person": pkey, "position": x.get("key"), "t14Overlap": tk,
-                                      "title": (x.get("title") or {}).get("zh-Hant")})
+                dec = T14_DECISIONS.get((pkey, x.get("key")))
+                per = y.get("period") or {}
+                row = {"batch": batch, "person": pkey, "nameZh": p.get("nameZh"), "position": x.get("key"),
+                       "title": (x.get("title") or {}).get("zh-Hant"), "start": per.get("start"), "end": per.get("end"),
+                       "t14Overlap": tk}
+                if not dec:
+                    y["t14Rule"] = None
+                    y["t14Ambiguous"], y["t14AmbiguousReason"] = True, f"{T14_SRC} §2 未涵蓋此項，不猜，留原處"
+                    row.update(rule=None, dest="positions（ambiguous）")
+                    st["t14AmbiguousList"].append(row)
+                else:
+                    n, r, ek, gap, newpk, why = dec
+                    if newpk:
+                        y["originalPositionKind"], y["positionKind"] = y["positionKind"], newpk   # 依文件 §4 改類別，原值保留
+                    y["t14Rule"] = r
+                    y["t14Reason"] = f"{T14_SRC} §2 #{n}：{why}"
+                    if r == "R6":
+                        y["roleEligible"], y["roleEligibleKind"], y["roleGap"] = True, ek, gap
+                    if r in ("R0", "R1", "R2", "R3", "R4"):   # 門檻可證明 → 移角色層（本批資料目前 0 筆）
+                        cands.append(to_candidate({k: v for k, v in y.items() if k not in ("t14Reason",)}, ek, y["t14Reason"]))
+                        row.update(rule=r, role_kind=ek, dest="roleCandidates")
+                        st["t14List"].append(row)
+                        continue
+                    row.update(rule=r, roleEligibleKind=ek, roleGap=gap, newPositionKind=newpk,
+                               dest="positions（roleEligible）" if r == "R6" else "positions")
+                st["t14List"].append(row)
             keep.append(y)
         p["positions"] = keep
         if cands:
@@ -186,7 +275,7 @@ def align_file(path):
 def main():
     report = {"alignedTo": "b0b0e0f", "partyRule": PARTY_REASON, "batches": {},
               "total": {"renamed": 0, "movedToCandidates": {}, "movedPartyPosts": 0, "partyPostAmbiguous": 0, "t14": {}},
-              "moves": [], "ambiguous": []}
+              "moves": [], "ambiguous": [], "partySeats": [], "t14Decisions": [], "t14Ambiguous": [], "t14Summary": {}}
     for f in sorted(HERE.glob("batch*/research.json")):
         d, st = align_file(f)
         (f.parent / "research.aligned.json").write_text(json.dumps(d, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -197,13 +286,25 @@ def main():
         t["partyPostAmbiguous"] += st["partyPostAmbiguous"]
         report["moves"] += st["movedList"]
         report["ambiguous"] += st["ambiguousList"]
+        report["partySeats"] += st.pop("partySeats")
+        report["t14Decisions"] += st.pop("t14List")
+        report["t14Ambiguous"] += st.pop("t14AmbiguousList")
         for k in ("movedToCandidates", "t14"):
             for kk, v in st[k].items():
                 t[k][kk] = t[k].get(kk, 0) + v
+    sm = report["t14Summary"]
+    for r in report["t14Decisions"]:
+        k = f'{r["rule"]}|{r.get("role_kind") or r.get("roleEligibleKind") or "-"}|{r["dest"]}'
+        sm[k] = sm.get(k, 0) + 1
+    report["t14Summary"] = dict(sorted(sm.items()))
+    missing = set(T14_DECISIONS) - {(r["person"], r["position"]) for r in report["t14Decisions"]}
+    assert not missing, f"T14_DECISIONS 有未對到的項目：{missing}"
     (HERE / "align-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     for b, s in report["batches"].items():
         print(b, "改名", s["renamed"], "移候選", s["movedToCandidates"], "黨職", s["movedPartyPosts"], "ambiguous", s["partyPostAmbiguous"], "T14", s["t14"])
     print("總計", json.dumps(report["total"], ensure_ascii=False))
+    print("黨籍席位", json.dumps(report["partySeats"], ensure_ascii=False))
+    print("T14", json.dumps(report["t14Summary"], ensure_ascii=False), "ambiguous", len(report["t14Ambiguous"]))
 
 
 main()

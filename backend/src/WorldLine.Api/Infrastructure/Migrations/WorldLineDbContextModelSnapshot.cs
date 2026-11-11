@@ -26,6 +26,783 @@ namespace WorldLine.Api.Infrastructure.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "postgis");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleMapFeature", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("FeatureKey")
+                        .IsRequired()
+                        .HasMaxLength(96)
+                        .HasColumnType("character varying(96)")
+                        .HasColumnName("feature_key");
+
+                    b.Property<string>("FeatureKind")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("feature_kind");
+
+                    b.Property<Geometry>("Geom")
+                        .IsRequired()
+                        .HasColumnType("geometry(Geometry,4326)")
+                        .HasColumnName("geom");
+
+                    b.Property<string>("GeomBasis")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("geom_basis");
+
+                    b.Property<string>("Label")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("label");
+
+                    b.Property<Guid>("PhaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("phase_id");
+
+                    b.Property<string>("Props")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("props");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<string>("SideCamp")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("side_camp");
+
+                    b.Property<Guid?>("SideRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("side_regime_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasDefaultValue("pending")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_map_features");
+
+                    b.HasIndex("FeatureKey")
+                        .IsUnique()
+                        .HasDatabaseName("ix_battle_map_features_feature_key")
+                        .HasFilter("retracted_at IS NULL");
+
+                    b.HasIndex("Geom")
+                        .HasDatabaseName("ix_battle_map_features_geom");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("Geom"), "gist");
+
+                    b.HasIndex("SideRegimeId")
+                        .HasDatabaseName("ix_battle_map_features_side_regime_id");
+
+                    b.HasIndex("PhaseId", "FeatureKind")
+                        .HasDatabaseName("ix_battle_map_features_phase_id_feature_kind");
+
+                    b.ToTable("battle_map_features", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_map_features_derived_not_verified", "geom_basis <> 'derived' OR status <> 'verified'");
+
+                            t.HasCheckConstraint("ck_battle_map_features_feature_key_not_blank", "btrim(feature_key) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_map_features_feature_kind", "feature_kind IN ('front', 'arrow', 'site')");
+
+                            t.HasCheckConstraint("ck_battle_map_features_geom_basis", "geom_basis IN ('source_map', 'source_text', 'derived')");
+
+                            t.HasCheckConstraint("ck_battle_map_features_geom_kind", "(feature_kind = 'front' AND GeometryType(geom) IN ('LINESTRING', 'MULTILINESTRING')) OR (feature_kind = 'arrow' AND GeometryType(geom) = 'LINESTRING') OR (feature_kind = 'site' AND GeometryType(geom) = 'POINT')");
+
+                            t.HasCheckConstraint("ck_battle_map_features_geom_srid", "ST_SRID(geom) = 4326");
+
+                            t.HasCheckConstraint("ck_battle_map_features_label_object", "label IS NULL OR jsonb_typeof(label) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_map_features_props_object", "props IS NULL OR jsonb_typeof(props) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_map_features_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_battle_map_features_side_camp", "side_camp IS NULL OR side_camp IN ('allied', 'axis', 'soviet', 'contested', 'unknown')");
+
+                            t.HasCheckConstraint("ck_battle_map_features_status", "status IN ('verified', 'pending')");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleMapFeatureCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly>("AccessedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("accessed_on");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("DatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
+                    b.Property<string>("EvidenceNote")
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<Guid>("FeatureId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("feature_id");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<string>("PolicyVersion")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("policy_version");
+
+                    b.Property<string>("Quote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quote");
+
+                    b.Property<string>("QuoteLang")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("quote_lang");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_map_feature_citations");
+
+                    b.HasIndex("FeatureId")
+                        .HasDatabaseName("ix_battle_map_feature_citations_feature_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_battle_map_feature_citations_source_id");
+
+                    b.ToTable("battle_map_feature_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_map_feature_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_battle_map_feature_citations_grade", "grade IN ('A', 'B')");
+
+                            t.HasCheckConstraint("ck_battle_map_feature_citations_locator_not_blank", "btrim(locator) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_map_feature_citations_quote_not_blank", "btrim(quote) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_map_feature_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattlePhase", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("EndPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("end_precision");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("name");
+
+                    b.Property<NpgsqlRange<DateOnly>>("Period")
+                        .HasColumnType("daterange")
+                        .HasColumnName("period");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<int>("Seq")
+                        .HasColumnType("integer")
+                        .HasColumnName("seq");
+
+                    b.Property<string>("StartPrecision")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("start_precision");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasDefaultValue("pending")
+                        .HasColumnName("status");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("summary");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_phases");
+
+                    b.HasIndex("EventId", "Seq")
+                        .IsUnique()
+                        .HasDatabaseName("ix_battle_phases_event_id_seq")
+                        .HasFilter("retracted_at IS NULL");
+
+                    b.ToTable("battle_phases", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_phases_end_precision", "end_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_battle_phases_name_object", "jsonb_typeof(name) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_phases_period_bounded", "NOT isempty(period) AND NOT lower_inf(period) AND NOT upper_inf(period)");
+
+                            t.HasCheckConstraint("ck_battle_phases_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_battle_phases_seq", "seq >= 1");
+
+                            t.HasCheckConstraint("ck_battle_phases_start_precision", "start_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_battle_phases_status", "status IN ('verified', 'pending')");
+
+                            t.HasCheckConstraint("ck_battle_phases_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattlePhaseCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly>("AccessedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("accessed_on");
+
+                    b.Property<NpgsqlRange<int>?>("ClaimSpan")
+                        .HasColumnType("int4range")
+                        .HasColumnName("claim_span");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("DatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
+                    b.Property<string>("EvidenceNote")
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<Guid>("PhaseId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("phase_id");
+
+                    b.Property<string>("PolicyVersion")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("policy_version");
+
+                    b.Property<string>("Quote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quote");
+
+                    b.Property<string>("QuoteLang")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("quote_lang");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_phase_citations");
+
+                    b.HasIndex("PhaseId")
+                        .HasDatabaseName("ix_battle_phase_citations_phase_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_battle_phase_citations_source_id");
+
+                    b.ToTable("battle_phase_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_phase_citations_claim_span", "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
+
+                            t.HasCheckConstraint("ck_battle_phase_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_battle_phase_citations_grade", "grade IN ('A', 'B')");
+
+                            t.HasCheckConstraint("ck_battle_phase_citations_locator_not_blank", "btrim(locator) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_phase_citations_quote_not_blank", "btrim(quote) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_phase_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleProfile", b =>
+                {
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<Guid?>("ConflictRecordId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("conflict_record_id");
+
+                    b.Property<string>("ControlChange")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("control_change");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Objective")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("objective");
+
+                    b.Property<string>("ObjectiveKind")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("objective_kind");
+
+                    b.Property<string>("OutcomeKind")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("outcome_kind");
+
+                    b.Property<string>("OutcomeText")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("outcome_text");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("slug");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasDefaultValue("pending")
+                        .HasColumnName("status");
+
+                    b.Property<MultiPolygon>("TheaterArea")
+                        .HasColumnType("geometry(MultiPolygon,4326)")
+                        .HasColumnName("theater_area");
+
+                    b.HasKey("EventId")
+                        .HasName("pk_battle_profiles");
+
+                    b.HasIndex("ConflictRecordId")
+                        .HasDatabaseName("ix_battle_profiles_conflict_record_id");
+
+                    b.HasIndex("Slug")
+                        .IsUnique()
+                        .HasDatabaseName("ix_battle_profiles_slug");
+
+                    b.HasIndex("TheaterArea")
+                        .HasDatabaseName("ix_battle_profiles_theater_area");
+
+                    NpgsqlIndexBuilderExtensions.HasMethod(b.HasIndex("TheaterArea"), "gist");
+
+                    b.ToTable("battle_profiles", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_profiles_control_change_object", "jsonb_typeof(control_change) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_profiles_name_object", "jsonb_typeof(name) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_profiles_objective_kind", "objective_kind IN ('place', 'line', 'regime')");
+
+                            t.HasCheckConstraint("ck_battle_profiles_objective_object", "jsonb_typeof(objective) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_profiles_outcome_kind", "outcome_kind IS NULL OR outcome_kind IN ('decisive', 'indecisive', 'withdrawal', 'stalemate', 'other')");
+
+                            t.HasCheckConstraint("ck_battle_profiles_outcome_text_object", "outcome_text IS NULL OR jsonb_typeof(outcome_text) = 'object'");
+
+                            t.HasCheckConstraint("ck_battle_profiles_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_battle_profiles_slug", "slug ~ '^[a-z0-9]+([_-][a-z0-9]+)*$'");
+
+                            t.HasCheckConstraint("ck_battle_profiles_status", "status IN ('verified', 'pending')");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleProfileCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly>("AccessedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("accessed_on");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("DatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<string>("EvidenceNote")
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Field")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("field");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<string>("PolicyVersion")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("policy_version");
+
+                    b.Property<string>("Quote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quote");
+
+                    b.Property<string>("QuoteLang")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("quote_lang");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_profile_citations");
+
+                    b.HasIndex("EventId")
+                        .HasDatabaseName("ix_battle_profile_citations_event_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_battle_profile_citations_source_id");
+
+                    b.ToTable("battle_profile_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_profile_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_battle_profile_citations_field", "field IN ('objective', 'control_change', 'outcome', 'theater_area', 'name')");
+
+                            t.HasCheckConstraint("ck_battle_profile_citations_grade", "grade IN ('A', 'B')");
+
+                            t.HasCheckConstraint("ck_battle_profile_citations_locator_not_blank", "btrim(locator) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_profile_citations_quote_not_blank", "btrim(quote) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_profile_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleUnit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<Guid?>("ParentUnitId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("parent_unit_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SideRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("side_regime_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasDefaultValue("pending")
+                        .HasColumnName("status");
+
+                    b.Property<string>("UnitEchelon")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("unit_echelon");
+
+                    b.Property<string>("UnitName")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("unit_name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_units");
+
+                    b.HasIndex("EventId")
+                        .HasDatabaseName("ix_battle_units_event_id");
+
+                    b.HasIndex("ParentUnitId")
+                        .HasDatabaseName("ix_battle_units_parent_unit_id");
+
+                    b.HasIndex("SideRegimeId")
+                        .HasDatabaseName("ix_battle_units_side_regime_id");
+
+                    b.ToTable("battle_units", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_units_not_own_parent", "parent_unit_id IS NULL OR parent_unit_id <> id");
+
+                            t.HasCheckConstraint("ck_battle_units_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_battle_units_status", "status IN ('verified', 'pending')");
+
+                            t.HasCheckConstraint("ck_battle_units_unit_name_object", "jsonb_typeof(unit_name) = 'object'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleUnitCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateOnly>("AccessedOn")
+                        .HasColumnType("date")
+                        .HasColumnName("accessed_on");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("DatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("date_precision");
+
+                    b.Property<string>("EvidenceNote")
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<string>("PolicyVersion")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
+                        .HasColumnName("policy_version");
+
+                    b.Property<string>("Quote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("quote");
+
+                    b.Property<string>("QuoteLang")
+                        .HasMaxLength(35)
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("quote_lang");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.Property<Guid>("UnitId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("unit_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_battle_unit_citations");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_battle_unit_citations_source_id");
+
+                    b.HasIndex("UnitId")
+                        .HasDatabaseName("ix_battle_unit_citations_unit_id");
+
+                    b.ToTable("battle_unit_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_battle_unit_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
+
+                            t.HasCheckConstraint("ck_battle_unit_citations_grade", "grade IN ('A', 'B')");
+
+                            t.HasCheckConstraint("ck_battle_unit_citations_locator_not_blank", "btrim(locator) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_unit_citations_quote_not_blank", "btrim(quote) <> ''");
+
+                            t.HasCheckConstraint("ck_battle_unit_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.CapitalRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1938,6 +2715,139 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasDatabaseName("ix_theaters_code");
 
                     b.ToTable("theaters", (string)null);
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleMapFeature", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.BattlePhase", null)
+                        .WithMany()
+                        .HasForeignKey("PhaseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_map_features_battle_phases_phase_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("SideRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_battle_map_features_regimes_side_regime_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleMapFeatureCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.BattleMapFeature", null)
+                        .WithMany()
+                        .HasForeignKey("FeatureId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_map_feature_citations_battle_map_features_feature_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_map_feature_citations_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattlePhase", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.BattleProfile", null)
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_phases_battle_profiles_event_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattlePhaseCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.BattlePhase", null)
+                        .WithMany()
+                        .HasForeignKey("PhaseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_phase_citations_battle_phases_phase_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_phase_citations_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleProfile", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.ConflictRecord", null)
+                        .WithMany()
+                        .HasForeignKey("ConflictRecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_battle_profiles_conflict_records_conflict_record_id");
+
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithOne()
+                        .HasForeignKey("WorldLine.Api.Domain.BattleProfile", "EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_profiles_historical_events_event_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleProfileCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.BattleProfile", null)
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_profile_citations_battle_profiles_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_profile_citations_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleUnit", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_units_historical_events_event_id");
+
+                    b.HasOne("WorldLine.Api.Domain.BattleUnit", null)
+                        .WithMany()
+                        .HasForeignKey("ParentUnitId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_battle_units_battle_units_parent_unit_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("SideRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_units_regimes_side_regime_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.BattleUnitCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_unit_citations_sources_source_id");
+
+                    b.HasOne("WorldLine.Api.Domain.BattleUnit", null)
+                        .WithMany()
+                        .HasForeignKey("UnitId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_battle_unit_citations_battle_units_unit_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.CapitalRecord", b =>

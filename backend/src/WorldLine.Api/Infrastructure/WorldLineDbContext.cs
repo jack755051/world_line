@@ -32,6 +32,15 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<LeaderBioFieldCitation> LeaderBioFieldCitations => Set<LeaderBioFieldCitation>();
     public DbSet<LeaderRecordCitation> LeaderRecordCitations => Set<LeaderRecordCitation>();
     public DbSet<LeaderBioGap> LeaderBioGaps => Set<LeaderBioGap>();
+    // 戰役 C1（ARCHITECTURE §19.1）；設定在 BattleModel.cs。
+    public DbSet<BattleProfile> BattleProfiles => Set<BattleProfile>();
+    public DbSet<BattlePhase> BattlePhases => Set<BattlePhase>();
+    public DbSet<BattleMapFeature> BattleMapFeatures => Set<BattleMapFeature>();
+    public DbSet<BattleUnit> BattleUnits => Set<BattleUnit>();
+    public DbSet<BattleProfileCitation> BattleProfileCitations => Set<BattleProfileCitation>();
+    public DbSet<BattlePhaseCitation> BattlePhaseCitations => Set<BattlePhaseCitation>();
+    public DbSet<BattleMapFeatureCitation> BattleMapFeatureCitations => Set<BattleMapFeatureCitation>();
+    public DbSet<BattleUnitCitation> BattleUnitCitations => Set<BattleUnitCitation>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -524,5 +533,6 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });
+        BattleModel.Configure(b);
     }
 }

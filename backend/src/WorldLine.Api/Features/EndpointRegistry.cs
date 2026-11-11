@@ -24,6 +24,7 @@ public static class EndpointRegistry
         OccupationsEndpoints.Map(api, write);
         CapitalsEndpoints.Map(api, write);
         LeadersEndpoints.Map(api, write);
+        CampaignsEndpoints.Map(api); // 戰役 C1（ARCHITECTURE §19.5），唯讀
     }
 
     /// <summary>OpenAPI：成功回應為 <c>ApiResponse&lt;T&gt;</c>（200）。</summary>

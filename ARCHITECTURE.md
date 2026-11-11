@@ -1739,6 +1739,22 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 
 **19.1.7 citation 格式**：所有新 citation 表都用 16.4.1 的統一欄位（`source_id`、`locator`、`quote ≤ 80`、`accessed_on`、`grade IN ('A','B')`、`date_precision`、`policy_version`、軟撤回）。I5：全部禁止 DELETE，只能軟撤回。
 
+**19.1.8 C1 實作註記（World Line 戰役 bot，2026-11-11；migration `20261111053803_BattleC1`，只寫檔、未套用到任何資料庫）**
+
+已建：`battle_profiles`、`battle_phases`、`battle_map_features`、`battle_units` 與 `battle_profile_citations`、`battle_phase_citations`、`battle_map_feature_citations`、`battle_unit_citations`（新增式，不改既有表；8 張表都有 I5 trigger）。`person_event_participations`、`battle_figures` 照計畫留到 C3／C4。跟 19.1 草稿不同的地方（待 Tai 確認）：
+
+| # | 位置 | 草稿 | 實作 | 理由 |
+|---|---|---|---|---|
+| 1 | `battle_map_features` | 無 | 加 `feature_key text NOT NULL`（未撤回列唯一） | 對應 `wl-campaign-web/0.1` 的 `properties.id`；seed 重跑時用來比對，不重複寫入 |
+| 2 | `battle_map_features` | 只有 `side_regime_id` | 加 `side_camp`（`allied`／`axis`／`soviet`／`contested`／`unknown`，可空） | 現行 JSON 的 `group` 是配色組，不是政權（例：`contested`）；不從配色組推導政權（憲法 §6「陣營」），`side_regime_id` 留空 |
+| 3 | `battle_map_features` | 只有 `label` | 加 `props jsonb`（只供顯示：`from`／`to`／`unit`／`name`／`controller`／`date`／`note`／`vertices`／`geometry_refs`） | 保留前端顯示內容。**G3 待確認**：箭頭的 `unit`（部隊番號文字）照現行 JSON 帶在 `props` 裡，沒有建成幾何欄位；如果 Tai 認為違反 G3，C2 時移除 |
+| 4 | 四張 citation 表 | `grade IN ('A','B')` | `grade NOT NULL` ＋ CHECK A／B；`quote NOT NULL` | 19.4.2「A／B 才進庫」；未評等的引用留在 seed（`grade_hint`），不寫庫 |
+| 5 | `battle_profile_citations.field` | 「含 `field` 欄」 | 值域 `objective`／`control_change`／`outcome`／`theater_area`／`name` | 19.4.1 對照表 |
+| 6 | API | `GET /campaigns/:slug` | `GET /api/v1/campaigns/{slug}`，外層照 PRD §7 `{statusCode,message,data}`，`data` 跟 `wl-campaign-web/0.1` 相容 | 跟既有 API 一致。`verified` 一律由 `status='verified'` 決定（C1 全部 pending → 都是 false）；`totals` 回 null（屬 C3 `battle_figures`）；`fronts_note`／`notes` 回 null／空陣列（屬 C3 `event_gaps`）；OSM 等座標參照（`gazetteer`）不是史實出處，不進 citation 表，放在 `props.geometry_refs` |
+| 7 | `BioSourcePolicy` → `SourcePolicy` 改名（Q5） | C1 | **未做** | 本次派工範圍不含；人物 API 同分支有人在改，改名留給後續 session 協調 |
+
+匯入：`tools/battles/import_campaign_seed.py` 把 `frontend/public/campaigns/dunkirk_1940.json` 轉成 `data/seed/battles/dunkirk_1940.seed.json`＋`dunkirk_1940.dry-run.md`（id 用 uuid5、不寫時間戳，可重跑、逐位元相同）。`objective`、`control_change`（NOT NULL）、起訖日與交戰方的 `event_citations`、每筆引用的 `accessed_on`、`sources.publisher` 在現行 JSON 都沒有，seed 留 null 並列入報表「寫庫前必補」；三條件考證結論出來前 status 一律 pending。
+
 ---
 
 ### 19.2 UI 流程

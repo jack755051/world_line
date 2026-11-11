@@ -2748,6 +2748,46 @@
           }
         }
       }
+    },
+    "/api/v1/campaigns/{slug}": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "operationId": "GetCampaign",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfJsonObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3268,6 +3308,55 @@
             "items": {
               "$ref": "#/components/schemas/RegimeEventDto"
             }
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfJsonObject": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/JsonObject"
+              }
+            ]
           },
           "code": {
             "type": [
@@ -6396,6 +6485,9 @@
         }
       },
       "JsonElement": { },
+      "JsonObject": {
+        "type": "object"
+      },
       "LeaderBioDto": {
         "required": [
           "id",
@@ -8202,6 +8294,9 @@
     },
     {
       "name": "Timeline"
+    },
+    {
+      "name": "Campaigns"
     }
   ]
 }

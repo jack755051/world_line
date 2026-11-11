@@ -34,7 +34,8 @@ public class BioCitationFieldsAndGapsModelTests
     {
         using var db = NewContext();
         Assert.False(db.Database.HasPendingModelChanges());
-        Assert.Equal(Target, db.Database.GetMigrations().Last());
+        // 戰役 C1（2026-11-11）之後已有更新的 migration（BattleC1）；這裡只確認本 migration 仍在清單中。
+        Assert.Contains(Target, db.Database.GetMigrations());
     }
 
     [Fact]

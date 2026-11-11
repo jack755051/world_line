@@ -1,11 +1,11 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
-import { LucideChevronDown, LucideLandmark, LucideLibrary, LucideScrollText, LucideUserRound, LucideX } from '@lucide/angular';
-import type { LeaderBio } from '../../core/api/world-line-api';
+import { LucideChevronDown, LucideBriefcase, LucideLandmark, LucideLibrary, LucideScrollText, LucideUserRound, LucideX } from '@lucide/angular';
+import type { BioPosition, BioRole, LeaderBio } from '../../core/api/world-line-api';
 import type { Lang } from '../../core/i18n';
 import { formatPartialDate, formatTerm, inclusiveEnd, pickLocalized, portraitDisplayable } from '../../core/person-format';
-import { fieldSourceItems, portraitSourceItems, termSourceItems } from '../../core/person-sources';
+import { detailCitationItems, fieldSourceItems, portraitSourceItems, termSourceItems } from '../../core/person-sources';
 import { MOTION_SPEC, MotionService, type MotionContext, type MotionTimeline } from '../../core/motion';
 import { SourceDisclosure, type SourceItem } from '../source-disclosure/source-disclosure';
 import { lifeText } from './life-format';
@@ -21,7 +21,7 @@ export type PersonDialogState =
 const TXT = {
   'zh-Hant': {
     close: '關閉', loading: '載入中…', error: '人物資料載入失敗', basics: '基本資料', birth: '出生', death: '逝世',
-    birthPlace: '出生地', party: '黨派', summary: '生平', terms: '職位與任期', noValue: '尚無資料', notApplicable: '不適用',
+    birthPlace: '出生地', party: '黨派', summary: '生平', terms: '職位與任期', positions: '經歷', roles: '角色', acting: '代理', organization: '機構', note: '備註', ongoing: '迄今不明', positionsHint: '經歷全集，不等同於地圖上的任期；地圖任期見「職位與任期」。', rolesHint: '角色資料；不影響地圖出卡與版頭角色標籤。', noValue: '尚無資料', notApplicable: '不適用',
     photo: '照片', noPhoto: '無授權照片', test: '測試資料', name: '姓名', dossier: '人物詳情', sections: '詳情區塊',
     termNote: '任期迄日不含當天，畫面顯示最後在任日。', dialog: '人物詳情', portraitOf: '的肖像',
     sources: '資料來源', pending: '待補來源', usedFor: '用於', missing: '以下欄位待補來源', sourceRef: '來源',
@@ -30,7 +30,7 @@ const TXT = {
   },
   en: {
     close: 'Close', loading: 'Loading…', error: 'Could not load this person', basics: 'Basic facts', birth: 'Born', death: 'Died',
-    birthPlace: 'Birthplace', party: 'Party', summary: 'Biography', terms: 'Offices and terms', noValue: 'No data', notApplicable: 'Not applicable',
+    birthPlace: 'Birthplace', party: 'Party', summary: 'Biography', terms: 'Offices and terms', positions: 'Career', roles: 'Roles', acting: 'Acting', organization: 'Organization', note: 'Note', ongoing: 'end unknown', positionsHint: 'Full career list; not the map terms (see “Offices and terms”).', rolesHint: 'Role data; does not affect map cards or the header role chips.', noValue: 'No data', notApplicable: 'Not applicable',
     photo: 'Photo', noPhoto: 'No licensed photo', test: 'Test data', name: 'Name', dossier: 'Person details', sections: 'Sections',
     termNote: 'Term end dates are exclusive; the last day in office is shown.', dialog: 'Person details', portraitOf: ' — portrait',
     sources: 'Sources', pending: 'Source needed', usedFor: 'Used for', missing: 'Fields without a source', sourceRef: 'Source',
@@ -39,7 +39,7 @@ const TXT = {
   },
 } as const;
 
-type SectionKey = 'basics' | 'bio' | 'terms' | 'sources';
+type SectionKey = 'basics' | 'bio' | 'terms' | 'positions' | 'roles' | 'sources';
 
 /** 一筆去重後的來源（底部註腳）：編號、內容、用在哪些欄位。 */
 interface Footnote { n: number; item: SourceItem; usedFor: string[] }
@@ -60,7 +60,7 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
 @Component({
   selector: 'wl-person-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CdkTrapFocus, NgTemplateOutlet, LucideX, LucideUserRound, LucideScrollText, LucideLandmark, LucideLibrary, LucideChevronDown, SourceDisclosure],
+  imports: [CdkTrapFocus, NgTemplateOutlet, LucideX, LucideUserRound, LucideScrollText, LucideBriefcase, LucideLandmark, LucideLibrary, LucideChevronDown, SourceDisclosure],
   template: `
     <div class="fixed inset-0 z-[70]" data-testid="person-dialog-root" [attr.data-motion-state]="motionState()"
       [attr.inert]="motionState() === 'closing' ? '' : null" [class.pointer-events-none]="motionState() === 'closing'">
@@ -173,6 +173,20 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
               <section [id]="sectionId('bio')" data-section="bio" data-testid="person-dialog-section-bio" [attr.aria-labelledby]="sectionId('bio') + '-h'">
                 <h3 [id]="sectionId('bio') + '-h'" class="mb-3 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
                   <svg lucideScrollText class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().summary }}</h3>
+                @if (segments().length) {
+                  <!-- B3 分段生平：每段 heading／period／正文；引文只以上標指向底部「資料來源」 -->
+                  <div data-testid="person-dialog-section-paragraphs" class="max-w-[68ch] space-y-5">
+                    @for (g of segments(); track g.id) {
+                      <article data-testid="person-segment" [attr.data-ord]="g.ord">
+                        @if (g.heading) { <h4 data-testid="person-segment-heading" class="font-wl-serif text-[16px] font-semibold text-wl-on-surface">{{ g.heading }}</h4> }
+                        @if (g.period) { <div data-testid="person-segment-period" class="mb-1 font-mono text-[12px] tabular-nums text-wl-primary">{{ g.period }}</div> }
+                        @for (para of g.paras; track $index; let last = $last) {
+                          <p data-testid="person-segment-body" class="mb-3 text-[15px] leading-[1.9] text-wl-on-surface last:mb-0 md:text-[16px]">{{ para }}@if (last) {<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('para:' + g.id) }" />}</p>
+                        }
+                      </article>
+                    }
+                  </div>
+                } @else {
                 <div class="max-w-[68ch]">
                   @for (p of paragraphs(); track $index; let last = $last) {
                     <p data-testid="person-paragraph" class="mb-3 text-[15px] leading-[1.9] text-wl-on-surface md:text-[16px]">{{ p }}@if (last) {<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('summary') }" />}</p>
@@ -180,6 +194,7 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
                     <p data-testid="person-paragraph-empty" class="wl-text2 text-wl-on-surface-variant">{{ t().noValue }}</p>
                   }
                 </div>
+                }
               </section>
 
               <!-- 職位與任期時間軸 -->
@@ -204,6 +219,54 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
                   }
                 </ol>
               </section>
+
+              <!-- 經歷（B3 positions）：經歷全集，不是地圖出卡資料；沒有資料就不顯示此區 -->
+              @if (positionRows().length) {
+                <section [id]="sectionId('positions')" data-section="positions" data-testid="person-dialog-section-positions" [attr.aria-labelledby]="sectionId('positions') + '-h'">
+                  <h3 [id]="sectionId('positions') + '-h'" class="mb-1 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
+                    <svg lucideBriefcase class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().positions }}</h3>
+                  <p class="mb-3 text-[11px] text-wl-on-surface-variant">{{ t().positionsHint }}</p>
+                  <ol class="relative ml-2 border-l-2 border-wl-outline-variant">
+                    @for (x of positionRows(); track x.id) {
+                      <li data-testid="person-position" [attr.data-kind]="x.kind" class="relative mb-4 pl-5 last:mb-0">
+                        <span aria-hidden="true" class="absolute -left-[7px] top-1.5 size-3 rounded-full border-2 border-wl-secondary bg-wl-surface"></span>
+                        <div data-testid="person-position-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ x.period }}</div>
+                        <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
+                          <span data-testid="person-position-title" class="font-semibold text-wl-on-surface">{{ x.title }}</span>
+                          <span data-testid="person-position-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kind }}</span>
+                          <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('position:' + x.id) }" />
+                        </div>
+                        @if (x.organization) { <div data-testid="person-position-org" class="text-[13px] text-wl-on-surface-variant">{{ x.organization }}</div> }
+                        @if (x.note) { <div data-testid="person-position-note" class="text-[13px] text-wl-on-surface-variant">{{ x.note }}</div> }
+                      </li>
+                    }
+                  </ol>
+                </section>
+              }
+
+              <!-- 角色（B3 roles）：非地圖出卡資料；版頭角色標籤仍來自任期 -->
+              @if (roleRows().length) {
+                <section [id]="sectionId('roles')" data-section="roles" data-testid="person-dialog-section-roles" [attr.aria-labelledby]="sectionId('roles') + '-h'">
+                  <h3 [id]="sectionId('roles') + '-h'" class="mb-1 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
+                    <svg lucideLandmark class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().roles }}</h3>
+                  <p class="mb-3 text-[11px] text-wl-on-surface-variant">{{ t().rolesHint }}</p>
+                  <ul class="space-y-3">
+                    @for (x of roleRows(); track x.id) {
+                      <li data-testid="person-role-item" [attr.data-kind]="x.kind">
+                        <div data-testid="person-role-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ x.period }}</div>
+                        <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
+                          <span data-testid="person-role-title" class="font-semibold text-wl-on-surface">{{ x.title }}</span>
+                          <span data-testid="person-role-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kind }}</span>
+                          @if (x.acting) { <span data-testid="person-role-acting" class="rounded-sm border border-wl-primary px-1 text-[11px] text-wl-primary">{{ t().acting }}</span> }
+                          <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('role:' + x.id) }" />
+                        </div>
+                        @if (x.organization) { <div class="text-[13px] text-wl-on-surface-variant">{{ x.organization }}</div> }
+                        @if (x.note) { <div class="text-[13px] text-wl-on-surface-variant">{{ x.note }}</div> }
+                      </li>
+                    }
+                  </ul>
+                </section>
+              }
 
               <!-- 資料來源：底部統一收合；N＝去重後的來源數；缺來源明示「待補來源」 -->
               <section [id]="sectionId('sources')" data-section="sources" data-testid="person-dialog-sources" class="rounded-md border border-wl-outline-variant bg-wl-surface-container">
@@ -360,6 +423,35 @@ export class PersonDialog {
     const s = b ? pickLocalized(b.summary, this.lang()) : '';
     return s ? s.split(/\n{2,}/).map((x) => x.trim()).filter(Boolean) : [];
   });
+  /** B3 有效段落（依 ord）：該語言（含另一語言後備）正文非空才算；全部無效＝空陣列，退回一句話摘要。 */
+  protected readonly segments = computed(() => {
+    const lang = this.lang();
+    return [...(this.bio()?.paragraphs ?? [])]
+      .sort((a, b) => Number(a.ord) - Number(b.ord))
+      .map((g) => ({
+        id: g.id, ord: Number(g.ord), heading: pickLocalized(g.heading, lang),
+        period: g.period ? this.periodText(g.period, g.periodStartPrecision, g.periodEndPrecision) : '',
+        paras: pickLocalized(g.body, lang).split(/\n{2,}/).map((x) => x.trim()).filter(Boolean),
+      }))
+      .filter((g) => g.paras.length > 0);
+  });
+  /** 區間顯示：依精度寫年／月／日；迄日不含當天（與任期一致）；沒有迄日＝迄今不明；沒有起日寫「…」。 */
+  private periodText(p: { start: string | null; end: string | null }, sp: string | null | undefined, ep: string | null | undefined): string {
+    const prec = (x: string | null | undefined) => (x === 'year' || x === 'month' || x === 'day' ? x : null);
+    const a = formatPartialDate(p.start, prec(sp)) || '…';
+    const b = formatPartialDate(inclusiveEnd(p.end), prec(ep)) || this.t().ongoing;
+    return `${a} – ${b}`;
+  }
+  private readonly sortedPositions = computed((): BioPosition[] => [...(this.bio()?.positions ?? [])].sort((a, b) => (a.period.start ?? '').localeCompare(b.period.start ?? '')));
+  protected readonly positionRows = computed(() => this.sortedPositions().map((x) => ({
+    id: x.id, kind: x.positionKind, title: pickLocalized(x.title, this.lang()) || x.seedKey,
+    organization: pickLocalized(x.organization, this.lang()), note: x.note ?? '', period: this.periodText(x.period, x.startPrecision, x.endPrecision),
+  })));
+  private readonly sortedRoles = computed((): BioRole[] => [...(this.bio()?.roles ?? [])].sort((a, b) => (a.period.start ?? '').localeCompare(b.period.start ?? '')));
+  protected readonly roleRows = computed(() => this.sortedRoles().map((x) => ({
+    id: x.id, kind: x.roleKind, title: pickLocalized(x.title, this.lang()) || x.seedKey, acting: x.acting,
+    organization: pickLocalized(x.organization, this.lang()), note: x.note ?? '', period: this.periodText(x.period, x.startPrecision, x.endPrecision),
+  })));
   protected readonly terms = computed(() => {
     const t = this.t();
     return this.sortedTerms().map((x) => ({
@@ -377,7 +469,11 @@ export class PersonDialog {
     const out = [
       { key: 'name', label: t.name, items: [...fieldSourceItems(b, 'name'), ...fieldSourceItems(b, 'nameZh')] },
       ...this.rows().map((r) => ({ key: r.key, label: r.label, items: fieldSourceItems(b, r.key) })),
-      { key: 'summary', label: t.summary, items: fieldSourceItems(b, 'summary') },
+      // 有分段時一句話摘要不顯示，也不列它的來源；退回摘要時才列
+      { key: 'summary', label: t.summary, items: this.segments().length ? [] : fieldSourceItems(b, 'summary') },
+      ...this.segments().map((g) => ({ key: `para:${g.id}`, label: g.heading ? `${t.summary}·${g.heading}` : `${t.summary} #${g.ord}`, items: detailCitationItems(b.paragraphs?.find((x) => x.id === g.id)?.citations) })),
+      ...this.positionRows().map((x) => ({ key: `position:${x.id}`, label: `${t.positions}·${x.title}`, items: detailCitationItems(b.positions?.find((y) => y.id === x.id)?.citations) })),
+      ...this.roleRows().map((x) => ({ key: `role:${x.id}`, label: `${t.roles}·${x.title}`, items: detailCitationItems(b.roles?.find((y) => y.id === x.id)?.citations) })),
       ...this.terms().map((x) => ({ key: `term:${x.recordId}`, label: `${t.terms}·${x.roleText}`, items: termSourceItems(this.sortedTerms().find((y) => y.recordId === x.recordId)!) })),
     ];
     const p = this.portrait();
@@ -409,7 +505,10 @@ export class PersonDialog {
     const b = this.bio();
     if (!b) return [];
     const hasValue = new Set<string>(['name', ...this.rows().filter((r) => r.value).map((r) => r.key), ...this.terms().map((x) => `term:${x.recordId}`)]);
-    if (this.paragraphs().length) hasValue.add('summary');
+    if (this.paragraphs().length && !this.segments().length) hasValue.add('summary');
+    for (const g of this.segments()) hasValue.add(`para:${g.id}`);
+    for (const x of this.positionRows()) hasValue.add(`position:${x.id}`);
+    for (const x of this.roleRows()) hasValue.add(`role:${x.id}`);
     return this.fieldItems().filter((f) => hasValue.has(f.key) && f.items.length === 0).map((f) => f.label);
   });
 
@@ -419,6 +518,8 @@ export class PersonDialog {
       { key: 'basics', label: t.basics, count: null },
       { key: 'bio', label: t.summary, count: null },
       { key: 'terms', label: t.terms, count: this.terms().length || null },
+      ...(this.positionRows().length ? [{ key: 'positions' as const, label: t.positions, count: this.positionRows().length }] : []),
+      ...(this.roleRows().length ? [{ key: 'roles' as const, label: t.roles, count: this.roleRows().length }] : []),
       { key: 'sources', label: t.sources, count: this.footnotes().length },
     ];
   });

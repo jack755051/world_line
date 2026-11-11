@@ -1,4 +1,4 @@
-import type { LeaderBio, LeaderBioFieldSource, LeaderPortrait, LeaderRecord, LeaderTerm } from './api/world-line-api';
+import type { BioDetailCitation, LeaderBio, LeaderBioFieldSource, LeaderPortrait, LeaderRecord, LeaderTerm } from './api/world-line-api';
 import type { SourceItem } from '../shared/source-disclosure/source-disclosure';
 
 /** 舊格式自由文字出處 → legacy 來源項（有文字或網址才算；只有「待查證」狀態不算來源）。 */
@@ -36,4 +36,13 @@ export function portraitSourceItems(p: LeaderPortrait): SourceItem[] {
     kind: 'structured', title: p.attribution, publisher: p.author, url: p.sourceUrl,
     licenseCode: p.licenseCode, accessedOn: p.retrievedOn, note: p.licenseUrl ? `License: ${p.licenseUrl}` : null,
   }];
+}
+
+/** B3 段落／經歷／角色的引文 → 來源項（結構化；帶等級）。 */
+export function detailCitationItems(cs: readonly BioDetailCitation[] | null | undefined): SourceItem[] {
+  return (cs ?? []).map((c) => ({
+    kind: 'structured', title: c.source.title, publisher: c.source.publisher, locator: c.locator,
+    licenseCode: c.source.licenseCode, url: c.source.url ?? c.source.archiveUrl, note: c.evidenceNote, accessedOn: c.accessedOn,
+    quote: c.quote || null, quoteLang: c.quoteLang ?? null, grade: c.grade ?? null,
+  }));
 }

@@ -115,6 +115,79 @@ export interface LeaderBio {
   supersededBy?: string | null;
   fieldCitations?: LeaderBioFieldCitation[] | null;
   terms?: LeaderTerm[] | null;
+  /** B3 分段生平（依 ord）；開發庫尚無資料時缺欄或空陣列。 */
+  paragraphs?: BioParagraph[] | null;
+  /** B3 經歷全集（不是地圖出卡資料）。 */
+  positions?: BioPosition[] | null;
+  /** B3 角色（非地圖出卡資料）。 */
+  roles?: BioRole[] | null;
+  /** 未解決缺口。 */
+  gaps?: BioGap[] | null;
+}
+
+/** B3 段落／經歷／角色引文。 */
+export interface BioDetailCitation {
+  id: string;
+  locator: string;
+  quote: string;
+  quoteLang: string | null;
+  evidenceNote: string | null;
+  accessedOn: string;
+  grade: string | null;
+  datePrecision: string | null;
+  source: LeaderSource;
+}
+
+type BioPrecision = string | null;
+type BioPeriod = { start: string | null; end: string | null };
+
+export interface BioParagraph {
+  id: string;
+  ord: number | string;
+  period: BioPeriod | null;
+  periodStartPrecision: BioPrecision;
+  periodEndPrecision: BioPrecision;
+  heading: Record<string, string> | null;
+  body: Record<string, string>;
+  citations: BioDetailCitation[];
+}
+
+export interface BioPosition {
+  id: string;
+  seedKey: string;
+  regimeId: string | null;
+  organization: Record<string, string> | null;
+  title: Record<string, string>;
+  positionKind: string;
+  period: BioPeriod;
+  startPrecision: BioPrecision;
+  endPrecision: BioPrecision;
+  note: string | null;
+  citations: BioDetailCitation[];
+}
+
+export interface BioRole {
+  id: string;
+  seedKey: string;
+  regimeId: string | null;
+  organization: Record<string, string> | null;
+  title: Record<string, string>;
+  roleKind: string;
+  period: BioPeriod;
+  startPrecision: BioPrecision;
+  endPrecision: BioPrecision;
+  acting: boolean;
+  t14Rule: string | null;
+  note: string | null;
+  citations: BioDetailCitation[];
+}
+
+export interface BioGap {
+  id: string;
+  target: string;
+  gapKind: string;
+  note: string | null;
+  checkedOn: string;
 }
 
 /** 生平摘要（GET /leaders 回應內嵌，不含 fieldSources）。 */

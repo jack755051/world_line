@@ -692,6 +692,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/campaigns/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetCampaign"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -801,6 +817,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["RegimeEventDto"][];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfJsonObject: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["JsonObject"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -1003,6 +1029,82 @@ export interface components {
             note: null | {
                 [key: string]: string;
             };
+        };
+        BioDetailCitationDto: {
+            /** Format: uuid */
+            id: string;
+            locator: string;
+            quote: string;
+            quoteLang: null | string;
+            evidenceNote: null | string;
+            accessedOn: string;
+            grade: null | string;
+            datePrecision: null | string;
+            source: components["schemas"]["SourceDto"];
+        };
+        BioGapDto: {
+            /** Format: uuid */
+            id: string;
+            target: string;
+            gapKind: string;
+            note: null | string;
+            checkedOn: string;
+        };
+        BioParagraphDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: int32 */
+            ord: number | string;
+            period: null | components["schemas"]["DatePeriodDto"];
+            periodStartPrecision: null | string;
+            periodEndPrecision: null | string;
+            heading: null | {
+                [key: string]: string;
+            };
+            body: {
+                [key: string]: string;
+            };
+            citations: components["schemas"]["BioDetailCitationDto"][];
+        };
+        BioPositionDto: {
+            /** Format: uuid */
+            id: string;
+            seedKey: string;
+            /** Format: uuid */
+            regimeId: null | string;
+            organization: null | {
+                [key: string]: string;
+            };
+            title: {
+                [key: string]: string;
+            };
+            positionKind: string;
+            period: components["schemas"]["DatePeriodDto"];
+            startPrecision: null | string;
+            endPrecision: null | string;
+            note: null | string;
+            citations: components["schemas"]["BioDetailCitationDto"][];
+        };
+        BioRoleDto: {
+            /** Format: uuid */
+            id: string;
+            seedKey: string;
+            /** Format: uuid */
+            regimeId: null | string;
+            organization: null | {
+                [key: string]: string;
+            };
+            title: {
+                [key: string]: string;
+            };
+            roleKind: string;
+            period: components["schemas"]["DatePeriodDto"];
+            startPrecision: null | string;
+            endPrecision: null | string;
+            acting: boolean;
+            t14Rule: null | string;
+            note: null | string;
+            citations: components["schemas"]["BioDetailCitationDto"][];
         };
         CapitalFeature: {
             /** Format: uuid */
@@ -1483,6 +1585,7 @@ export interface components {
             endUncertainty?: null | components["schemas"]["DatePeriodDto"];
         };
         JsonElement: unknown;
+        JsonObject: Record<string, never>;
         LeaderBioDto: {
             /** Format: uuid */
             id: string;
@@ -1514,6 +1617,10 @@ export interface components {
             supersededBy?: null | string;
             fieldCitations?: null | components["schemas"]["LeaderBioFieldCitationDto"][];
             terms?: null | components["schemas"]["LeaderTermDto"][];
+            paragraphs?: null | components["schemas"]["BioParagraphDto"][];
+            positions?: null | components["schemas"]["BioPositionDto"][];
+            roles?: null | components["schemas"]["BioRoleDto"][];
+            gaps?: null | components["schemas"]["BioGapDto"][];
         };
         LeaderBioFieldCitationDto: {
             /** Format: uuid */
@@ -3953,6 +4060,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetCampaign: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfJsonObject"];
                 };
             };
             /** @description Not Found */

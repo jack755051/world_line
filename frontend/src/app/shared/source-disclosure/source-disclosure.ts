@@ -16,14 +16,16 @@ export interface SourceItem {
   quote?: string | null;
   /** 引文語言（BCP 47），用於 lang 屬性。 */
   quoteLang?: string | null;
+  /** 證據等級（B3 引文；原樣顯示）。 */
+  grade?: string | null;
 }
 
 /** 「全部展開／收合」指令：v 每次遞增才會套用（不保存狀態）。 */
 export interface ExpandCommand { open: boolean; v: number }
 
 const TXT = {
-  'zh-Hant': { sources: '來源', pending: '待補來源', legacy: '出處備註（未接結構化來源，非查證標記）', locator: '位置', license: '授權', accessed: '查證日期', open: '開啟', quote: '引文', qOpen: '「', qClose: '」' },
-  en: { sources: 'Sources', pending: 'Source needed', legacy: 'Source note (not a structured citation; not marked verified)', locator: 'Locator', license: 'Licence', accessed: 'Checked', open: 'Open', quote: 'Quotation', qOpen: '“', qClose: '”' },
+  'zh-Hant': { sources: '來源', pending: '待補來源', legacy: '出處備註（未接結構化來源，非查證標記）', locator: '位置', license: '授權', accessed: '查證日期', grade: '等級', open: '開啟', quote: '引文', qOpen: '「', qClose: '」' },
+  en: { sources: 'Sources', pending: 'Source needed', legacy: 'Source note (not a structured citation; not marked verified)', locator: 'Locator', license: 'Licence', accessed: 'Checked', grade: 'Grade', open: 'Open', quote: 'Quotation', qOpen: '“', qClose: '”' },
 } as const;
 
 let seq = 0;
@@ -57,6 +59,7 @@ let seq = 0;
               @if (s.publisher && s.publisher !== s.title) { <span class="text-wl-on-surface-variant">·{{ s.publisher }}</span> }
             </div>
             @if (s.locator) { <div class="text-wl-on-surface-variant">{{ t().locator }}：{{ s.locator }}</div> }
+            @if (s.grade) { <div data-testid="source-grade" class="text-wl-on-surface-variant">{{ t().grade }}：{{ s.grade }}</div> }
             <!-- 引文：逐字、不截斷；與出處備註相同時只列引文一次 -->
             @if (s.quote) {
               <blockquote data-testid="source-quote" class="my-0.5 whitespace-pre-line break-words border-l-2 border-wl-outline pl-2 font-wl-serif text-[13px] leading-relaxed text-wl-on-surface"><span class="sr-only">{{ t().quote }}：</span><span aria-hidden="true">{{ t().qOpen }}</span><span data-testid="source-quote-text" [attr.lang]="s.quoteLang || null">{{ s.quote }}</span><span aria-hidden="true">{{ t().qClose }}</span></blockquote>

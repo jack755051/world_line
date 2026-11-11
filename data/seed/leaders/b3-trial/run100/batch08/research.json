@@ -1,0 +1,2707 @@
+{
+ "batch": "b3-run100-batch08",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation）、§16.4.2（gaps）；alignedTo=b0b0e0f：positions 用 positionKind、roleCandidates 用 role_kind；T14 R0–R6 與黨職裁決（Tai 2026-11-11 12:12／12:47）已於研究時套用；regimeId 一律 null（本批不連資料庫）。",
+ "alignNote": "依 ARCHITECTURE b0b0e0f 對齊格式直接撰寫（本批研究時即套用，非事後轉換）。",
+ "rawDir": "/tmp/b3run100/batch08/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "sun-aam": {
+   "title": "前立法院院長孫科小傳（1891-1973）",
+   "authors": [],
+   "publisher": "立法院議政博物館（立法院）",
+   "published_text": "小傳 2015.07.30（PDF 附件）",
+   "url": "https://aam.ly.gov.tw/PWFILE.do/58561",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "立法院官方議政博物館出版之小傳（政府機關官方頁）"
+  },
+  "bienert-bsc": {
+   "title": "BIENERT Richard 1881–1949",
+   "authors": [
+    "Vlastislav Lacina",
+    "Josef Tomeš"
+   ],
+   "publisher": "Biografický slovník českých zemí（Historický ústav AV ČR）",
+   "published_text": "Biografický slovník českých zemí 5, Praha 2006, s. 494–495",
+   "url": "https://biography.hiu.cas.cz/wiki/BIENERT_Richard_1881%E2%80%931949",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA",
+   "grade": "A",
+   "gradeBasis": "國家級學術傳記辭典（捷克科學院歷史研究所），具名作者"
+  },
+  "rak-hls": {
+   "title": "Rakovski, Christo Georgiev",
+   "authors": [
+    "Zvetelina Staikov Michel"
+   ],
+   "publisher": "Historisches Lexikon der Schweiz (HLS)",
+   "published_text": "HLS 2009（2011-12-16 版）",
+   "url": "https://hls-dhs-dss.ch/de/articles/042946/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-SA",
+   "grade": "A",
+   "gradeBasis": "瑞士國家歷史辭典（具名作者）"
+  },
+  "rak-ieu": {
+   "title": "Rakovsky, Khristian",
+   "authors": [
+    "John-Paul Himka"
+   ],
+   "publisher": "Internet Encyclopedia of Ukraine / Encyclopedia of Ukraine vol. 4 (1993)",
+   "published_text": "Encyclopedia of Ukraine, vol. 4 (1993)",
+   "url": "https://www.encyclopediaofukraine.com/display.asp?linkpath=pages\\R\\A\\RakovskyKhristian.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Himka）機構百科條目（加拿大烏克蘭研究所）"
+  },
+  "binns-procesos": {
+   "title": "Poesía, pasión y propaganda. El activismo político de los intelectuales ecuatorianos durante la guerra civil española",
+   "authors": [
+    "Niall Binns"
+   ],
+   "publisher": "Procesos: Revista Ecuatoriana de Historia, No. 34 (Universidad Andina Simón Bolívar)",
+   "published_text": "Procesos 34, II semestre 2011, pp. 67ff；DOI 10.29078/rp.v1i34.51",
+   "url": "https://revistas.uasb.edu.ec/index.php/procesos/es/article/download/1875/1664/6242",
+   "archive_url": null,
+   "catalog_id": "doi:10.29078/rp.v1i34.51",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構期刊論文（UASB），具名作者"
+  },
+  "ruiz-procesos": {
+   "title": "Eloy Alfaro y la Diócesis de Portoviejo（Conferencia）",
+   "authors": [
+    "José Mario Ruiz Navas"
+   ],
+   "publisher": "Procesos: Revista Ecuatoriana de Historia, 23 (Universidad Andina Simón Bolívar)",
+   "published_text": "Procesos 23, I semestre 2006, Quito",
+   "url": "https://revistas.uasb.edu.ec/index.php/procesos/article/download/2379/2179/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構期刊（UASB）具名作者論文；內文將 Alfaro 多處拼為 Alfara，引文照原文"
+  },
+  "paez-ec": {
+   "title": "Páez, Federico (1876–1974)",
+   "authors": [],
+   "publisher": "Encyclopedia.com（Gale 轉載，無署名）",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/paez-federico-1876-1974",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名百科條目，未評等（Q9），僅供 gap 候選引文"
+  },
+  "alfaro-ec": {
+   "title": "Alfaro Delgado, José Eloy (1842–1912)",
+   "authors": [],
+   "publisher": "Encyclopedia.com（Gale 轉載，無署名）",
+   "published_text": null,
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/alfaro-delgado-jose-eloy-1842-1912",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名百科條目，未評等（Q9），僅供 gap 候選引文"
+  }
+ },
+ "people": [
+  {
+   "key": "ec-paez-federico",
+   "bioId": "01a1b4c0-c882-7abb-bfbb-035c1632270a",
+   "name": "Federico Páez",
+   "nameZh": "費德里科·派斯",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1935-09-26",
+      "end": "1937-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1935–1937 年任最高領袖",
+      "en": "Jefe supremo, 1935–1937"
+     },
+     "body": {
+      "zh-Hant": "1935年9月26日，軍方擁立工程師費德里科·派斯為最高領袖（jefe supremo）；他在任至1937年10月其國防部長、將軍恩里克斯·加洛（Alberto Enríquez Gallo）發動政變，後者於1937年10月23日接掌最高領導權。",
+      "en": "On 26 September 1935 the military installed the engineer Federico Páez as jefe supremo; he stayed in office until his own defence minister, General Alberto Enríquez Gallo, staged a coup in October 1937, and Enríquez Gallo assumed the supreme leadership on 23 October 1937."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 Los turbulentos años treinta",
+       "quote": "el 26 de septiembre de 1935 consagraron como jefe supremo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "consagraron como jefe supremo al ingeniero Federico Páez",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "hasta el golpe de Estado de su propio ministro de Defensa",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "el general Alberto Enríquez Gallo, en octubre de 1937",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "asumió la jefatura suprema el 23 de octubre de 1937",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1936-01-01",
+      "end": "1937-03-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1936 年起壓制左派",
+      "en": "Repression of the left from 1936"
+     },
+     "body": {
+      "zh-Hant": "依 Binns 的記述，1936年間派斯放慢了社會改革並開始對左派施壓；其下的措施包括關閉基多中央大學，直到1937年2月。",
+      "en": "According to Binns, during 1936 Páez slowed social reforms and began harassing the left; the measures included closing the Universidad Central in Quito until February 1937."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "Páez frenó las reformas sociales y emprendió un hostigamiento a la izquierda",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "clausurar la Universidad Central de Quito (hasta febrero de 1937)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "a lo largo de 1936",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "paez-jefe-supremo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "厄瓜多爾共和國",
+      "en": "Republic of Ecuador"
+     },
+     "title": {
+      "orig": "Jefe supremo",
+      "zh-Hant": "最高領袖（國家元首）",
+      "en": "Supreme Chief (head of state)"
+     },
+     "period": {
+      "start": "1935-09-26",
+      "end": "1937-11-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 Los turbulentos años treinta",
+       "quote": "el 26 de septiembre de 1935 consagraron como jefe supremo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "consagraron como jefe supremo al ingeniero Federico Páez",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "binns-procesos",
+       "locator": "內文 同段",
+       "quote": "el general Alberto Enríquez Gallo, en octubre de 1937",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "R0：Binns 明寫 1935-09-26 軍方擁立為 jefe supremo、1937 年 10 月被其國防部長政變取代；此任期可能已在名單 5442（1930–1939 共和制）內，本批不連資料庫無法對照（見 gaps）",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:paez-jefe-supremo",
+     "gapKind": "not_found",
+     "note": "此元首任期很可能已在名單 5442 內（leader_records），若已含，人工審查時可刪此候選；終點僅有「1937 年 10 月」月精度，Binns 另載 Enríquez Gallo 於 10-23 接任，未明寫 Páez 離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "Encyclopedia.com（無署名，Q9 未評等）載有 1916–1918 年 Pichincha 議員與 1935 年公共工程部長；因無 A／B 來源不可入 positions，待找國家級傳記辭典或具名學術來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "paez-ec",
+       "locator": "條目本文",
+       "quote": "served as deputy of Pichincha (1916–1918)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": null,
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paez-ec",
+       "locator": "條目本文",
+       "quote": "became minister of public works in 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": null,
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:birth",
+     "gapKind": "not_found",
+     "note": "生年待查證：Encyclopedia.com 寫 6 June 1876（無署名未評等）；搜尋摘要另有 1877 說，未抓到 A／B 原文。",
+     "candidateCitations": [
+      {
+       "sourceKey": "paez-ec",
+       "locator": "條目本文",
+       "quote": "b. 6 June 1876; d. 1974",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Federico Páez presidente Ecuador 1935 1937 biografía",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為 Wikipedia 鏡像，不用；Encyclopedia.com 為無署名條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Páez Federico (1876–1974)",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/paez-federico-1876-1974",
+     "result": "unrated",
+     "note": "curl 已抓；無署名，僅 gap 候選"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Federico Páez Chiriboga Jefe Supremo Presidencia de la República galería presidentes",
+     "url": null,
+     "result": "no_result",
+     "note": "無總統府官方頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Los Constructores del Estado Nacional（presidencia.gob.ec PDF）",
+     "url": "https://planificacion.presidencia.gob.ec/wp-content/uploads/downloads/2014/06/Los-Constructores-del-Estado-Nacional.pdf",
+     "result": "challenge_page",
+     "note": "WAF 擋（Check Point），不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "\"Páez Chiriboga\" Federico diccionario biográfico Ecuador Pérez Pimentel",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到可抓條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Federico Páez ingeniero presidente Ecuador 1935 reseña biográfica（限 uasb/flacso 等）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Binns, Procesos 34"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Enrique Ayala Mora, Resumen de historia del Ecuador（UASB PDF）",
+     "url": "https://repositorio.uasb.edu.ec/bitstream/10644/836/1/AYALAE-CON0001-RESUMEN.pdf",
+     "result": "challenge_page",
+     "note": "UASB repositorio 驗證頁，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "revistas.uasb.edu.ec Procesos 34 Binns 論文頁",
+     "url": "https://revistas.uasb.edu.ec/index.php/procesos/article/view/1875",
+     "result": "found_B",
+     "note": "取得摘要頁與 PDF 下載連結"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Binns, Procesos 34 PDF",
+     "url": "https://revistas.uasb.edu.ec/index.php/procesos/es/article/download/1875/1664/6242",
+     "result": "found_B",
+     "note": "curl 已抓並轉文字；引文來源"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Federico Páez 1935 1937 dictadura …（限 scielo/redalyc/dialnet/jstor 等）",
+     "url": null,
+     "result": "found_B",
+     "note": "dialnet 連線失敗（SSL_ERROR_SYSCALL），未取得"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "id.loc.gov Paez Federico 搜尋",
+     "url": "https://id.loc.gov/search/?q=Paez+Federico",
+     "result": "not_relevant",
+     "note": "未得可用權威條目"
+    }
+   ]
+  },
+  {
+   "key": "cz-bienert-richard",
+   "bioId": "01a1c3d8-18df-7e9f-a7ed-af4d1719eb8f",
+   "name": "Richard Bienert",
+   "nameZh": "理查德·比內特",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1881-09-05",
+      "end": "1920-05-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與警界經歷",
+      "en": "Origins and police career"
+     },
+     "body": {
+      "zh-Hant": "1881年9月5日生於布拉格斯米霍夫；在布拉格的捷克大學念法律，1906年進入警界。1918年1月1日調至國家警察總局，1918年10月30日出任布拉格警察局長，1920年5月20日升任布拉格警察總監。",
+      "en": "Born on 5 September 1881 in Smíchov (Prague), he studied law at the Czech university in Prague and joined the police in 1906. He was moved to the state police presidium on 1 January 1918, became Prague police director on 30 October 1918 and Prague police president on 20 May 1920."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "傳主標題行",
+       "quote": "* 5. 9. 1881 Smíchov (Praha), † 3. 2. 1949 Praha",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "vystudoval práva na české univerzitě v Praze a 1906 vstoupil do služeb policie",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "1. 1. 1918 přeložen na prezidium státní policie",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "Po vzniku ČSR byl 30. 10. 1918 jmenován pražským policejním ředitelem",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "20. 5. 1920 pražským policejním prezidentem",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1945-05-06"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "地方行政與保護國政府",
+      "en": "Provincial administration and the Protectorate government"
+     },
+     "body": {
+      "zh-Hant": "1924至1939年任波希米亞地方政務副首長（zemský viceprezident）；1939年11月至1942年1月任波希米亞地方總監（zemský prezident）；1942年1月至1945年5月任保護國內政部長；1945年1月19日至5月5日領導最後一屆保護國政府，並代理重病的國家總統哈查。",
+      "en": "He was vice-president of the provincial political administration in 1924–39, provincial president in Bohemia from November 1939 to January 1942, and interior minister in the Protectorate government from January 1942 to May 1945; from 19 January to 5 May 1945 he headed the last Protectorate government and also acted for the gravely ill State President Hácha."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "1924–39 zastával funkci viceprezidenta zemské správy politické",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "Od listopadu 1939 do ledna 1942 byl zemským prezidentem v Čechách",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "od ledna 1942 do května 1945 ministrem vnitra v protektorátní vládě",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "od 19. 1. do 5. 5. 1945 stál v čele poslední protektorátní vlády",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "a současně zastupoval těžce nemocného státního prezidenta E. Háchu",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-05-05",
+      "end": "1947-05-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後審判",
+      "en": "Post-war trial"
+     },
+     "body": {
+      "zh-Hant": "1945年5月5日他試圖在廣播中發表關於保護國終結的演說未果，不久被捷克民族委員會拘押。1946年4月29日至7月31日在布拉格國民法庭審理保護國政府案，他因有減刑情節被判三年徒刑，1947年5月12日獲附條件釋放。",
+      "en": "On 5 May 1945 he tried without success to broadcast a speech on the end of the Protectorate and was soon detained by the Czech National Council. In the trial of the Protectorate government before the National Court in Prague (29 April – 31 July 1946) he was sentenced to three years in prison given mitigating circumstances, and was conditionally released on 12 May 1947."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "se neúspěšně pokusil pronést v rozhlase projev o zániku protektorátu",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "záhy byl zajištěn Českou národní radou",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "probíhajícím od 29. 4. do 31. 7. 1946 před Národním soudem v Praze",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "byl odsouzen vzhledem k polehčujícím okolnostem",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "ke třem rokům vězení",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "12. 5. 1947 byl podmíněně propuštěn",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "bienert-police-director",
+     "positionKind": "police",
+     "title": {
+      "orig": "pražský policejní ředitel",
+      "zh-Hant": "布拉格警察局長",
+      "en": "Prague police director"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "布拉格警察",
+      "en": "Prague police"
+     },
+     "period": {
+      "start": "1918-10-30",
+      "end": "1920-05-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "Po vzniku ČSR byl 30. 10. 1918 jmenován pražským policejním ředitelem",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "20. 5. 1920 pražským policejním prezidentem",
+       "quoteLang": "cs",
+       "evidenceNote": "迄日依傳主下一職位（布拉格警察總監）起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "警察首長職，R5（邊界個案 police）；迄日依下一職位起日推得"
+    },
+    {
+     "key": "bienert-police-president",
+     "positionKind": "police",
+     "title": {
+      "orig": "pražský policejní prezident",
+      "zh-Hant": "布拉格警察總監",
+      "en": "Prague police president"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "布拉格警察",
+      "en": "Prague police"
+     },
+     "period": {
+      "start": "1920-05-20",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "20. 5. 1920 pražským policejním prezidentem",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "警察首長職，R5（邊界個案 police）；來源未寫迄日"
+    },
+    {
+     "key": "bienert-land-vice-president",
+     "positionKind": "other",
+     "title": {
+      "orig": "viceprezident zemské správy politické",
+      "zh-Hant": "地方政務副首長",
+      "en": "Vice-president of the provincial political administration"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波希米亞地方行政",
+      "en": "Provincial administration of Bohemia"
+     },
+     "period": {
+      "start": "1924-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "1924–39 zastával funkci viceprezidenta zemské správy politické",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "副職且為轄區內地方行政，R5"
+    },
+    {
+     "key": "bienert-land-president",
+     "positionKind": "other",
+     "title": {
+      "orig": "zemský prezident v Čechách",
+      "zh-Hant": "波希米亞地方總監",
+      "en": "Provincial president in Bohemia"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波希米亞地方行政（保護國）",
+      "en": "Provincial administration of Bohemia (Protectorate)"
+     },
+     "period": {
+      "start": "1939-11-01",
+      "end": "1942-02-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "Od listopadu 1939 do ledna 1942 byl zemským prezidentem v Čechách",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "轄區內地方長官（非轄區最高行政長官，不是佔領／殖民長官），R5"
+    },
+    {
+     "key": "bienert-interior-minister",
+     "positionKind": "minister",
+     "title": {
+      "orig": "ministr vnitra",
+      "zh-Hant": "保護國內政部長",
+      "en": "Minister of the Interior of the Protectorate"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波希米亞與摩拉維亞保護國政府",
+      "en": "Government of the Protectorate of Bohemia and Moravia"
+     },
+     "period": {
+      "start": "1942-01-01",
+      "end": "1945-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "od ledna 1942 do května 1945 ministrem vnitra v protektorátní vládě",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部正職、期間可證明 ≥90 天，但保護國是否為 5442 政權待查證（regimeId NULL），門檻無法證明，留 positions",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "bienert-pm",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波希米亞與摩拉維亞保護國",
+      "en": "Protectorate of Bohemia and Moravia"
+     },
+     "title": {
+      "orig": "předseda poslední protektorátní vlády",
+      "zh-Hant": "保護國最後一屆政府首腦",
+      "en": "Head of the last Protectorate government"
+     },
+     "period": {
+      "start": "1945-01-19",
+      "end": "1945-05-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "od 19. 1. do 5. 5. 1945 stál v čele poslední protektorátní vlády",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "R0：BSČZ 明寫 1945-01-19 至 05-05「stál v čele poslední protektorátní vlády」；此任期可能已在名單 5442 內（見 gaps）",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "bienert-acting-state-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波希米亞與摩拉維亞保護國",
+      "en": "Protectorate of Bohemia and Moravia"
+     },
+     "title": {
+      "orig": "zastupoval státního prezidenta E. Háchu",
+      "zh-Hant": "代理國家總統（哈查）",
+      "en": "Acting for State President Hácha"
+     },
+     "period": {
+      "start": "1945-01-19",
+      "end": "1945-05-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bienert-bsc",
+       "locator": "正文",
+       "quote": "a současně zastupoval těžce nemocného státního prezidenta E. Háchu",
+       "quoteLang": "cs",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "R0：來源明寫同期「současně zastupoval těžce nemocného státního prezidenta」；起迄日採同一句的政府首腦期間（推論，來源未另寫代理起迄）",
+     "t14Rule": "R0",
+     "acting": true
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:bienert-pm",
+     "gapKind": "not_found",
+     "note": "首腦任期（1945-01-19–05-05）很可能即名單 5442 的任期，本批不連資料庫無法對照；若已含，人工審查時可刪 bienert-pm 與 bienert-acting-state-president。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:bienert-interior-minister",
+     "gapKind": "not_found",
+     "note": "保護國是否為 5442 政權（regime）待查證；若是，內政部長 1942-01–1945-05（月精度）可由 R6 升 R3。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "警察總監（1920-05-20 起）的迄日、1942 年 1 月與 1945 年 5 月的確切日期，BSČZ 未寫；待找官方公報或第二來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Richard Bienert Protektorat Böhmen und Mähren Ministerpräsident 1945 Biographie",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為 Wikipedia 鏡像，不用"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Bienert Richard 1881 1949 předseda protektorátní vlády Biografický slovník českých zemí",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 biography.hiu.cas.cz 條目"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Richard Bienert předseda vlády 1945 policejní ředitel ministr vnitra（限 hiu.cas.cz 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "同上，確認條目網址"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "androom.home.xs4all.nl Bienert, Richard",
+     "url": "https://androom.home.xs4all.nl/biography/p081364.htm",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "VIAF Bienert, Richard, 1881-1949",
+     "url": "https://viaf.org/viaf/84348868",
+     "result": "not_relevant",
+     "note": "curl 已抓，僅權威檔摘要，無職位資料"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "BSČZ BIENERT Richard 1881–1949",
+     "url": "https://biography.hiu.cas.cz/wiki/BIENERT_Richard_1881%E2%80%931949",
+     "result": "found_A",
+     "note": "curl 已抓並轉文字；引文來源"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "DHM LeMO Reichsprotektorat Böhmen und Mähren（僅見於搜尋結果）",
+     "url": "https://www.dhm.de/lemo/kapitel/ns-regime/aussenpolitik/reichsprotektorat-boehmen-und-maehren",
+     "result": "no_result",
+     "note": "未抓取，與傳主職位無直接關係"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Bibliografie dějin Českých zemí Bienert（僅見搜尋結果）",
+     "url": "https://biblio.hiu.cas.cz/records/08be86be-8710-4191-85ff-59eaf5dd1427?locale=cs",
+     "result": "no_result",
+     "note": "未抓取"
+    }
+   ]
+  },
+  {
+   "key": "cn-sun-fo",
+   "bioId": "01a1b490-dcf8-7ce0-b8a6-a282d17a381a",
+   "name": "Sun Fo (Sūn Kē)",
+   "nameZh": "孫科",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early years"
+     },
+     "body": {
+      "zh-Hant": "1891年生於廣東香山縣；1912年入加州大學柏克萊分校就讀，1916年畢業，1917年獲碩士學位，1918年回國任孫中山的秘書。",
+      "en": "Born in 1891 in Xiangshan county, Guangdong, he entered the University of California, Berkeley in 1912, graduated in 1916, took a master's degree in 1917 and returned to China in 1918 as Sun Yat-sen's secretary."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第1段",
+       "quote": "1891年生於廣東省香山縣（今中山市）",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第1段",
+       "quote": "1912年入加州大學柏克萊校區就讀，1916年畢業",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第1段",
+       "quote": "1917年獲碩士學位",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第1段",
+       "quote": "1918年回國任孫中山先生的秘書",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "廣州市長與國民政府時期",
+      "en": "Guangzhou mayor and the Nationalist Government"
+     },
+     "body": {
+      "zh-Hant": "1921年被任命為廣州市長；1925年廣州國民政府成立後為國府委員，兼廣東省政府委員與建設廳長；1926年當選國民黨第二屆中央執行委員；1928年起任國民政府委員，並先後任財政部長、鐵道部長、考試院副院長。",
+      "en": "He was appointed mayor of Guangzhou in 1921; when the Guangzhou Nationalist Government was founded in 1925 he became a government member and Guangdong provincial government member and head of its construction department; in 1926 he was elected to the KMT's second Central Executive Committee; from 1928 he served as a member of the National Government and successively as finance minister, railways minister and vice-president of the Examination Yuan."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第2段",
+       "quote": "乃於1921年任命孫科的廣州市市長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1925年3月12日孫中山逝世",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "用以確定下句「同年廣州國民政府成立」之年份為 1925 年",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "同年廣州國民政府成立，孫科為國府委員，廣東省政府委員並兼建設廳廳長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1926年當選國民黨第二屆中央執行委員，不久，又兼國民黨的青年部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "孫科出任國民政府委員，並先後出任財政部長、鐵道部長、考試院副院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1928年北伐成功，中國定都南京，國民政府改組",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-02-01",
+      "end": "1939-08-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "行政院長、立法院長與使蘇",
+      "en": "Executive Yuan, Legislative Yuan and the Moscow missions"
+     },
+     "body": {
+      "zh-Hant": "1931年2月，蔣介石因約法問題拘禁胡漢民，孫科辭職；同年12月他出任行政院長，不到百日辭職。1933年1月6日就任立法院院長。1938年3月至1939年7月，他以特使身分三次赴莫斯科交涉抗日貸款。",
+      "en": "In February 1931 Chiang Kai-shek detained Hu Hanmin over the provisional-constitution dispute; in December he became president of the Executive Yuan and resigned in under a hundred days. He took office as president of the Legislative Yuan on 6 January 1933, and as special envoy made three trips to Moscow between March 1938 and July 1939 to negotiate loans for the war against Japan."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1931年2月因蔣介石因約法問題拘禁黨國元老胡漢民",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "孫科辭職到廣州參與反蔣運動，痛批蔣介石的獨裁",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "12月出任行政院長，不及百日辭職",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1933年1月6日就任立法院院長、建設委員會常委",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第5段",
+       "quote": "孫科曾以特使身分三次（1938年3月-1939年7月）到莫斯科交涉貸款抗日",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1947-04-18",
+      "end": "1973-09-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1947 年以後",
+      "en": "From 1947"
+     },
+     "body": {
+      "zh-Hant": "1947年4月18日獲任命為國民政府副主席兼立法院院長；1948年12月23日出任行政院院長；1966年回台擔任考試院院長；1973年逝世。",
+      "en": "On 18 April 1947 he was appointed vice-chairman of the National Government and president of the Legislative Yuan; he became president of the Executive Yuan on 23 December 1948, returned to Taiwan in 1966 as president of the Examination Yuan, and died in 1973."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第6段",
+       "quote": "1947年4月18日國民政府改組，蔣介石任命孫科為國民政府副主席兼立法院院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第6段",
+       "quote": "1948年12月23日出任行政院院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第7段",
+       "quote": "1966年回台擔任考試院院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第7段",
+       "quote": "1973年9月3日因心臟突發而逝世，享年83歲",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "sun-guangzhou-mayor",
+     "positionKind": "other",
+     "title": {
+      "orig": "廣州市市長",
+      "zh-Hant": "廣州市市長",
+      "en": "Mayor of Guangzhou"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "廣州市政府",
+      "en": "Guangzhou municipal government"
+     },
+     "period": {
+      "start": "1921-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第2段",
+       "quote": "乃於1921年任命孫科的廣州市市長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "市級地方首長，R5（轄區內地方長官）"
+    },
+    {
+     "key": "sun-gz-gov-member",
+     "positionKind": "other",
+     "title": {
+      "orig": "國府委員／廣東省政府委員兼建設廳廳長",
+      "zh-Hant": "廣州國民政府委員、廣東省政府委員兼建設廳長",
+      "en": "Member of the Guangzhou Nationalist Government; Guangdong provincial government member and construction department head"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "廣州國民政府與廣東省政府",
+      "en": "Guangzhou Nationalist Government and Guangdong provincial government"
+     },
+     "period": {
+      "start": "1925-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1925年3月12日孫中山逝世",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "用以確定下句「同年廣州國民政府成立」之年份為 1925 年",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "同年廣州國民政府成立，孫科為國府委員，廣東省政府委員並兼建設廳廳長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "委員與省級廳長，非四部閣員，R5"
+    },
+    {
+     "key": "sun-finance-minister",
+     "positionKind": "minister",
+     "title": {
+      "orig": "財政部長",
+      "zh-Hant": "財政部長",
+      "en": "Minister of Finance"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府（南京）",
+      "en": "Nationalist Government (Nanjing)"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "孫科出任國民政府委員，並先後出任財政部長、鐵道部長、考試院副院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部正職，但來源只寫「先後出任」，無起迄日（dates），且政權待查證（regime），門檻無法證明，留 positions",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "sun-railways-minister",
+     "positionKind": "minister",
+     "title": {
+      "orig": "鐵道部長",
+      "zh-Hant": "鐵道部長",
+      "en": "Minister of Railways"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府（南京）",
+      "en": "Nationalist Government (Nanjing)"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "孫科出任國民政府委員，並先後出任財政部長、鐵道部長、考試院副院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "鐵道部不屬外交、國防、財政、內政四部，R5"
+    },
+    {
+     "key": "sun-exam-vice-president",
+     "positionKind": "other",
+     "title": {
+      "orig": "考試院副院長",
+      "zh-Hant": "考試院副院長",
+      "en": "Vice-president of the Examination Yuan"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "考試院（國民政府）",
+      "en": "Examination Yuan (Nationalist Government)"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "孫科出任國民政府委員，並先後出任財政部長、鐵道部長、考試院副院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "副職，R5"
+    },
+    {
+     "key": "sun-leg-president",
+     "positionKind": "legislator",
+     "title": {
+      "orig": "立法院院長",
+      "zh-Hant": "國民政府立法院院長",
+      "en": "President of the Legislative Yuan"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立法院（國民政府）",
+      "en": "Legislative Yuan (Nationalist Government)"
+     },
+     "period": {
+      "start": "1933-01-06",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1933年1月6日就任立法院院長、建設委員會常委",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第6段",
+       "quote": "1947年4月18日國民政府改組，蔣介石任命孫科為國民政府副主席兼立法院院長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "立法機關首長，非四部閣員，R5；本源 1947 年另有再任命，離任日未明寫"
+    },
+    {
+     "key": "sun-moscow-envoy",
+     "positionKind": "diplomat",
+     "title": {
+      "orig": "特使（赴莫斯科）",
+      "zh-Hant": "赴莫斯科特使",
+      "en": "Special envoy to Moscow"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府",
+      "en": "Nationalist Government"
+     },
+     "period": {
+      "start": "1938-03-01",
+      "end": "1939-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第5段",
+       "quote": "孫科曾以特使身分三次（1938年3月-1939年7月）到莫斯科交涉貸款抗日",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "臨時特使，非外交部長，R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "sun-cec-2nd",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "title": {
+      "orig": "國民黨第二屆中央執行委員",
+      "zh-Hant": "中國國民黨第二屆中央執行委員",
+      "en": "Member of the KMT 2nd Central Executive Committee"
+     },
+     "period": {
+      "start": "1926-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1926年當選國民黨第二屆中央執行委員，不久，又兼國民黨的青年部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "sun-kmt-youth-dept",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "title": {
+      "orig": "國民黨青年部長",
+      "zh-Hant": "中國國民黨青年部長",
+      "en": "Head of the KMT Youth Department"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1926年當選國民黨第二屆中央執行委員，不久，又兼國民黨的青年部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（來源只寫「不久，又兼」，無確切起迄日）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "sun-exec-yuan-1931",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府（南京）",
+      "en": "Nationalist Government (Nanjing)"
+     },
+     "title": {
+      "orig": "行政院長",
+      "zh-Hant": "國民政府行政院院長",
+      "en": "President of the Executive Yuan"
+     },
+     "period": {
+      "start": "1931-12-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "12月出任行政院長，不及百日辭職",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sun-aam",
+       "locator": "小傳 PDF 第4段",
+       "quote": "1931年2月因蔣介石因約法問題拘禁黨國元老胡漢民",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "R0：來源明寫 1931 年 12 月出任行政院長、不及百日辭職；迄日未寫，故 end=null",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:sun-exec-yuan-1931",
+     "gapKind": "not_found",
+     "note": "來源只寫「不及百日辭職」，確切迄日待查證（行政院官網歷任院長頁需 JavaScript，本批未取得）；是否與名單 5442 任期重疊亦待對照。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:sun-finance-minister",
+     "gapKind": "not_found",
+     "note": "財政部長、鐵道部長、考試院副院長的起迄日期來源未寫，待查國民政府公報或行政院歷任名單。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:sun-leg-president",
+     "gapKind": "not_found",
+     "note": "立法院院長的離任日（來源只寫 1947 年再任命與 1948 年 5 月當選）待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:bio",
+     "gapKind": "not_found",
+     "note": "死亡日期：本源寫 1973-09-03，搜尋摘要另有 09-13 之說（未抓得原文）；待第二份 A／B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "孫科 立法院長 行政院長 1932 1948 生平 國史館",
+     "url": null,
+     "result": "found_A",
+     "note": "發現行政院、立法院官方頁"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "行政院全球資訊網 歷任院長（孫科）",
+     "url": "https://www.ey.gov.tw/Page/4ED2F231892187F9/73e92b3d-a0ef-4061-a6cf-17e42ff54601",
+     "result": "not_relevant",
+     "note": "curl 已抓，頁面需 JavaScript，僅導覽文字"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "孫科 歷任院長 考試院 簡歷（限 ly/ey/exam 網域）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到立法院議政博物館小傳"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "立法院議政博物館 前立法院院長孫科小傳（網頁）",
+     "url": "https://aam.ly.gov.tw/P000061_02.do/5",
+     "result": "found_A",
+     "note": "curl 已抓；只有簡介，另有 PDF 附件"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "立法院議政博物館 小傳 PDF",
+     "url": "https://aam.ly.gov.tw/PWFILE.do/58561",
+     "result": "found_A",
+     "note": "curl 已抓，pdftotext 轉文字；引文來源"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "前立法院院長孫科傳記（議政博物館）",
+     "url": "https://aam.ly.gov.tw/P000061_02.do/14",
+     "result": "not_relevant",
+     "note": "同一小傳的另一入口"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "立法院全球資訊網 第1屆院長 孫科",
+     "url": "https://www.ly.gov.tw/Pages/Detail.aspx?nodeid=6569&pid=82018",
+     "result": "not_relevant",
+     "note": "curl 已抓，僅頁面框架"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "行政院珍貴史料展示 孫科",
+     "url": "https://history.ey.gov.tw/author/sun-fo/",
+     "result": "not_relevant",
+     "note": "curl 已抓，內容很少"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "孫科 1891 1973 立法院院長 傳 國家教育研究院 OR 國史館",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到國史館人物頁"
+    }
+   ]
+  },
+  {
+   "key": "ec-alfaro-eloy",
+   "bioId": "01a1b4b8-e9ce-79fb-98ad-7b8a9e583d31",
+   "name": "José Eloy Alfaro Delgado",
+   "nameZh": "埃洛伊·阿爾法羅",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1906-10-09",
+      "end": "1911-02-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1906–1911 年與教會關係的片段",
+      "en": "Fragments on Church relations, 1906–1911"
+     },
+     "body": {
+      "zh-Hant": "依 Ruiz Navas 的會議論文，1906年10月9日憲法制定會議開議，阿爾法羅曾向會議致送訊息；1908年有《慈善法》與《永業法（Ley de Manos Muertas）》；1911年2月12日利耶拉主教將一份請求轉呈基多，旨在請阿爾法羅歸還土地。本段只寫該文提及的事，不含其任期與生平。",
+      "en": "According to Ruiz Navas's conference paper, the Constituent Assembly opened on 9 October 1906 and Eloy Alfaro (spelled \"Alfara\" in the text) sent it a message; the Ley de Beneficencia and Ley de Manos Muertas date from 1908; and on 12 February 1911 Bishop Riera forwarded to Quito a request aimed at obtaining from Alfaro the return of land. This paragraph covers only what that paper mentions, not his term of office or biography."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ruiz-procesos",
+       "locator": "內文（Constitución 1906 段）",
+       "quote": "Mensaje de Eloy Alfara a la Asamblea Constituyente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ruiz-procesos",
+       "locator": "內文（Constitución 1906 段）",
+       "quote": "Asamblea Constituyente que se instaló el 9 de octubre de 1906",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ruiz-procesos",
+       "locator": "內文",
+       "quote": "la Ley de Beneficencia de 1908 y la Ley de Manos Muertas de 1908",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ruiz-procesos",
+       "locator": "內文",
+       "quote": "El 12 de febrero de 1911 el Obispo Riera remitió a Quito una solicitud",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ruiz-procesos",
+       "locator": "內文",
+       "quote": "destinado a obtener de Alfaro la devolución del terreno",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:alfaro-head-of-state-1906-1911",
+     "gapKind": "not_found",
+     "note": "1906–1911 年（與 1908–1945 窗口交集 1908–1911）的元首任期：A／B 來源（UASB Ayala Mora 摘要、FLACSO、Britannica、Chauvin 論文）皆被驗證頁／Cloudflare 擋下，不繞過；Encyclopedia.com（無署名，未評等）寫 interim 1906–1907, constitutional 1907–1911，僅供候選。該任期應已在名單 5442 內。",
+     "candidateCitations": [
+      {
+       "sourceKey": "alfaro-ec",
+       "locator": "條目本文",
+       "quote": "interim 1906–1907, constitutional 1907–1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": null,
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:bio",
+     "gapKind": "not_found",
+     "note": "生卒年、出身、1908–1911 任內經歷皆待具名作者或國家級來源（本批只取得 Ruiz Navas 論文片段）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Eloy Alfaro Delgado hijo presidente Ecuador Universidad biografía",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為 Wikipedia 鏡像與無署名站"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "\"Eloy Alfaro Delgado\" dbe.rah.es biografía Real Academia de la Historia",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到 DB~e 條目"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Alfaro Delgado, José Eloy",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/alfaro-delgado-jose-eloy-1842-1912",
+     "result": "unrated",
+     "note": "curl 已抓；無署名，僅 gap 候選"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Eloy Alfaro",
+     "url": "https://www.britannica.com/biography/Eloy-Alfaro",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Alfaro Delgado, Eloy Diccionario Biográfico Español（限 rah.es 等）",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Eloy Alfaro presidente 1906 1911 …（限 cervantesvirtual/uasb/flacso）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Ayala Mora、FLACSO、Procesos 但多數被擋"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Chauvin 論文 UASB T2152",
+     "url": "https://repositorio.uasb.edu.ec/bitstream/10644/5440/1/T2152-MEC-Chauvin-Alfaro.pdf",
+     "result": "challenge_page",
+     "note": "驗證頁，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Ayala Mora, Resumen de historia del Ecuador",
+     "url": "https://repositorio.uasb.edu.ec/bitstream/10644/836/1/AYALAE-CON0001-RESUMEN.pdf",
+     "result": "challenge_page",
+     "note": "驗證頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "FLACSO 59594 La última guerra del Siglo de las Luces",
+     "url": "https://biblio.flacsoandes.edu.ec/libros/digital/59594.pdf",
+     "result": "challenge_page",
+     "note": "回 HTML 驗證頁，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Procesos 23 Ruiz Navas, Eloy Alfaro y la Diócesis de Portoviejo",
+     "url": "https://revistas.uasb.edu.ec/index.php/procesos/article/download/2379/2179/",
+     "result": "found_B",
+     "note": "curl 已抓並轉文字；引文來源（只涉教會關係）"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Eloy Alfaro Oxford/Cambridge/Brill 條目（限學術出版社網域）",
+     "url": null,
+     "result": "no_result",
+     "note": "無可抓條目"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "presidencia.gob.ec Alfaro 頁",
+     "url": "https://www.presidencia.gob.ec/hoy-dia-de-la-revolucion-alfarista/",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "diccionariobiograficoecuador.com",
+     "url": "https://www.diccionariobiograficoecuador.com/",
+     "result": "no_result",
+     "note": "憑證主機名稱不符，不用 -k"
+    }
+   ]
+  },
+  {
+   "key": "ru-rakovsky-christian",
+   "bioId": "01a1b4c2-3eda-7fa4-bdfb-023d97b3c464",
+   "name": "Christian Rakovsky",
+   "nameZh": "克里斯蒂安·拉科夫斯基",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "早年求學與社會主義活動",
+      "en": "Education and early socialist activity"
+     },
+     "body": {
+      "zh-Hant": "1890至1893年在日內瓦習醫，1894年在蘇黎世，1897年在蒙彼利埃取得博士學位；1918年加入布爾什維克黨。",
+      "en": "He studied medicine in Geneva in 1890–93, in Zürich in 1894 and took a doctorate at Montpellier in 1897; in 1918 he joined the Bolshevik party."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rak-hls",
+       "locator": "條目本文",
+       "quote": "1890-93 Medizinstud. in Genf, 1894 in Zürich, 1897 Doktorat in Montpellier.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "In 1918 he joined the Bolshevik party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1928-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "烏克蘭蘇維埃政府首腦與大使任命",
+      "en": "Head of the Soviet Ukrainian government and ambassadorships"
+     },
+     "body": {
+      "zh-Hant": "1919年1月至1923年7月（其間有中斷）他領導蘇維埃烏克蘭政府；其後任（蘇聯）駐英國（1923–25）與法國（1925–27）大使。",
+      "en": "From January 1919 until July 1923, with interruptions, he headed the Soviet Ukrainian government; he was then ambassador to Britain (1923–5) and France (1925–7)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "From January 1919 until July 1923, with interruptions,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "he headed the Soviet Ukrainian government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "USSR ambassador to Britain (1923–5) and France (1925–7)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1927-12-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "被開除、反對派與處決",
+      "en": "Expulsion, opposition and execution"
+     },
+     "body": {
+      "zh-Hant": "據 IEU，1927年12月他被開除出黨，一個月後被流放到阿斯特拉罕；1929年起為蘇聯國內公認的左翼反對派領袖；1934年2月服從黨紀，其後主持衛生人民委員部下的科研機構；1937年秋被捕，1938年3月被判二十年徒刑，後遭槍決（HLS 記為1941年）。",
+      "en": "IEU records that he was expelled from the party in December 1927 and exiled to Astrakhan a month later; from 1929 he was the recognized leader of the Left Opposition within the USSR; in February 1934 he submitted to party discipline and directed research institutes of the Commissariat of Health; arrested in autumn 1937 and sentenced in March 1938 to twenty years, he was shot (HLS gives 1941)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "In December 1927, at the 15th congress of the Russian Communist party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "he was expelled from the party, and a month later he was exiled to Astrakhan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "From 1929 he was the recognized leader of the Left Opposition within the USSR",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "In February 1934 he submitted to party discipline",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "he directed the scientific research institutes of the Commissariat of Health",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "In the fall of 1937 he was arrested as a spy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "in March 1938 he was sentenced to 20 years’ imprisonment",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "He was shot in a Soviet prison.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-hls",
+       "locator": "條目本文",
+       "quote": "1927 wurde er aus der KP ausgeschlossen, 1941 erschossen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "rakovsky-ambassador-uk",
+     "positionKind": "diplomat",
+     "title": {
+      "orig": "ambassador to Britain",
+      "zh-Hant": "駐英國大使（蘇聯）",
+      "en": "USSR ambassador to Britain"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯外交機構",
+      "en": "Soviet diplomatic service"
+     },
+     "period": {
+      "start": "1923-01-01",
+      "end": "1926-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "USSR ambassador to Britain (1923–5) and France (1925–7)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "大使，非外交部長，R5"
+    },
+    {
+     "key": "rakovsky-ambassador-fr",
+     "positionKind": "diplomat",
+     "title": {
+      "orig": "ambassador to France",
+      "zh-Hant": "駐法國大使（蘇聯）",
+      "en": "USSR ambassador to France"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯外交機構",
+      "en": "Soviet diplomatic service"
+     },
+     "period": {
+      "start": "1925-01-01",
+      "end": "1928-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "USSR ambassador to Britain (1923–5) and France (1925–7)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "大使，非外交部長，R5"
+    },
+    {
+     "key": "rakovsky-health-institutes",
+     "positionKind": "other",
+     "title": {
+      "orig": "director of scientific research institutes",
+      "zh-Hant": "衛生人民委員部科研機構主管",
+      "en": "Director of scientific research institutes of the Commissariat of Health"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "衛生人民委員部",
+      "en": "Commissariat of Health"
+     },
+     "period": {
+      "start": "1934-02-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "In February 1934 he submitted to party discipline",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "he directed the scientific research institutes of the Commissariat of Health",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非四部閣員，R5"
+    },
+    {
+     "key": "rakovsky-left-opposition",
+     "positionKind": "other",
+     "title": {
+      "orig": "recognized leader of the Left Opposition",
+      "zh-Hant": "蘇聯國內左翼反對派領袖",
+      "en": "Recognized leader of the Left Opposition within the USSR"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "聯共（布）內左翼反對派",
+      "en": "Left Opposition within the Communist Party"
+     },
+     "period": {
+      "start": "1929-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "From 1929 he was the recognized leader of the Left Opposition within the USSR",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "左翼反對派是黨內派別（Rakovsky 當時已被開除出黨），並非明確的黨職，故不猜為黨職"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "rakovsky-ukr-gov-head",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "烏克蘭蘇維埃社會主義共和國",
+      "en": "Ukrainian Soviet Socialist Republic"
+     },
+     "title": {
+      "orig": "headed the Soviet Ukrainian government",
+      "zh-Hant": "蘇維埃烏克蘭政府首腦",
+      "en": "Head of the Soviet Ukrainian government"
+     },
+     "period": {
+      "start": "1919-01-01",
+      "end": "1923-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "From January 1919 until July 1923, with interruptions,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rak-ieu",
+       "locator": "條目本文",
+       "quote": "he headed the Soviet Ukrainian government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "R0：IEU 明寫 1919-01 至 1923-07「headed the Soviet Ukrainian government」（with interruptions，中斷期間未明寫）；可能已在名單 5442 任期內（見 gaps）",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:rakovsky-ukr-gov-head",
+     "gapKind": "not_found",
+     "note": "「with interruptions」的中斷起訖未寫；此任期可能即名單 5442（1919–1929 蘇維埃）任期，本批不連資料庫無法對照，若已含可刪此候選。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "1918 年奧德薩最高自治委員會主席（chairman of the Supreme Autonomous Collegium）無日期，未列入 positions；1927 年被開除出黨的確切日期與流放地待第二來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:death",
+     "gapKind": "not_found",
+     "note": "死亡日期兩份已抓來源（HLS 11.9.1941、IEU 11 September 1941）一致，非矛盾；Britannica（被 Cloudflare 擋，未取得）摘要曾見「after 1938」說，待取得原文核對（審查：原標 conflict 不符規則，改 not_found）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Christian Rakovsky Ukraine Council of People's Commissars chairman 1919 encyclopedia",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為 Wikipedia 鏡像，不用"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Khristian Georgiyevich Rakovsky",
+     "url": "https://www.britannica.com/biography/Khristian-Georgiyevich-Rakovsky",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Rakovskij … encyclopedia of Ukraine OR iranica OR biographical dictionary",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 HLS 條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "HLS Rakovski, Christo Georgiev",
+     "url": "https://hls-dhs-dss.ch/de/articles/042946/",
+     "result": "found_A",
+     "note": "curl 已抓；引文來源"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Rakovsky Khristian Ukrainian SSR head of government 1919（限 encyclopediaofukraine 等）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 IEU 條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Internet Encyclopedia of Ukraine: Rakovsky, Khristian",
+     "url": "https://www.encyclopediaofukraine.com/display.asp?linkpath=pages\\R\\A\\RakovskyKhristian.htm",
+     "result": "found_B",
+     "note": "curl 已抓；作者 Himka；引文來源"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "IEU Council of People's Commissars",
+     "url": "https://www.encyclopediaofukraine.com/display.asp?linkpath=pages%5CC%5CO%5CCouncilofPeoplesCommissars.htm",
+     "result": "not_relevant",
+     "note": "curl 已抓；機構條目，未提及 Rakovsky 任期，不引"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Doctor Kh. Rakovsky as a Diplomat No. 1 of the Soviet Ukraine（CEEOL，僅見搜尋結果）",
+     "url": "https://www.ceeol.com/search/article-detail?id=1090532",
+     "result": "no_result",
+     "note": "未抓取"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "SNAC Rakovskiĭ, Khristian, 1873-1941（僅見搜尋結果）",
+     "url": "https://snaccooperative.org/view/47568629",
+     "result": "no_result",
+     "note": "未抓取"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2962 @@
+{
+ "batch": "b3-full-v3-batch012",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 對應），故國家級軍職為 R6（roleGap=regime）、旅級／軍校／大使／窗外職務為 R5。美方官網（CMH、JCS、Britannica、LoC、Arlington、NHHC）多被 403 擋或逾時，僅取得 TSHA、USNA、國務院歷史辦公室、Nobel、SHSMO。chesterwnimitz 與 chesternimitz 為同一人。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式。將領 S 級 batch012，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch012/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "tsha-nimitz": {
+   "title": "Nimitz, Chester William",
+   "authors": [
+    "Robert S. Weddle"
+   ],
+   "publisher": "Texas State Historical Association (Handbook of Texas Online)",
+   "published_text": "Handbook of Texas Online, TID FNI05, rev. 2017-01-25",
+   "url": "https://www.tshaonline.org/handbook/entries/nimitz-chester-william",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Robert S. Weddle）之學術機構百科條目（TSHA Handbook of Texas，B）"
+  },
+  "usna-nimitz": {
+   "title": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+   "authors": [],
+   "publisher": "United States Naval Academy",
+   "published_text": "usna.edu Notable Graduates bios（頁尾 Last Updated 2026-04-06）",
+   "url": "https://usna.edu/Notables/Bios/1905nimitz.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國海軍官校官方網頁（政府官方頁，A）；無具名作者"
+  },
+  "usna-leahy": {
+   "title": "Fleet Admiral William D. Leahy — Notable Graduates",
+   "authors": [],
+   "publisher": "United States Naval Academy",
+   "published_text": "usna.edu Notable Graduates bios（頁尾 Last Updated 2026-04-06）",
+   "url": "https://usna.edu/Notables/Bios/1897leahy.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國海軍官校官方網頁（政府官方頁，A）；無具名作者"
+  },
+  "hs-leahy": {
+   "title": "William Daniel Leahy — People — Department History",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Principal Officers and Chiefs of Mission database，last updated 2024-03-14",
+   "url": "https://history.state.gov/departmenthistory/people/leahy-william-daniel",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方資料庫（政府官方頁，A）"
+  },
+  "hs-marshall": {
+   "title": "George Catlett Marshall — People — Department History",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Biographies of the Secretaries of State",
+   "url": "https://history.state.gov/departmenthistory/people/marshall-george-catlett",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方資料庫（政府官方頁，A）"
+  },
+  "nobel-marshall": {
+   "title": "George C. Marshall — Biographical",
+   "authors": [],
+   "publisher": "NobelPrize.org (Nobel Foundation)",
+   "published_text": "Nobel Lectures, Peace 1951-1970 (Elsevier, 1972) 傳記頁",
+   "url": "https://www.nobelprize.org/prizes/peace/1953/marshall/biographical/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "諾貝爾基金會官方人物傳記頁（機構出版；頁面無具名作者，評等待主管確認）"
+  },
+  "shsmo-bradley": {
+   "title": "Omar Bradley — Historic Missourians",
+   "authors": [
+    "Henry D. Landry"
+   ],
+   "publisher": "The State Historical Society of Missouri",
+   "published_text": "SHSMO Historic Missourians（Text and research by Henry D. Landry）",
+   "url": "https://historicmissourians.shsmo.org/historicmissourians/name/b/bradley/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Henry D. Landry）之學術機構（州歷史學會）人物傳記頁（B）"
+  }
+ },
+ "people": [
+  {
+   "key": "chesterwnimitz",
+   "bioId": null,
+   "name": "Chester W. Nimitz",
+   "nameZh": "切斯特·威廉·尼米兹",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1905-01-30",
+      "end": "1941-12-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "早年、潛艦與海軍戰爭學院",
+      "en": "Early career, submarines and the Naval War College"
+     },
+     "body": {
+      "zh-Hant": "尼米茲1905年1月30日在安納波利斯海軍官校畢業，班上114人中名列第七。他其後擔任四個接續的潛艦指揮職，成為「豬艇」（潛艦）方面的權威。1922至1923年，他在海軍戰爭學院研究假想的太平洋戰爭。1939年，他出任海軍航海局局長。",
+      "en": "Nimitz graduated seventh in a class of 114 at Annapolis on 30 January 1905. In four consecutive submarine commands he became a leading authority on the \"pigboat\". In 1922–23 he studied a theoretical Pacific war at the Navy War College. In 1939 he became chief of the Bureau of Navigation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He graduated seventh in his class of 114 at Annapolis on January 30, 1905.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "In four consecutive undersea commands, he became a leading \"pigboat\" authority",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "At the Navy War College, 1922–23, he dealt with a theoretical Pacific war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "In 1939 he became chief of the Bureau of Navigation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-12-25",
+      "end": "1945-09-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "太平洋艦隊與太平洋戰區總司令",
+      "en": "Commander in Chief of the Pacific Fleet and Pacific Ocean Areas"
+     },
+     "body": {
+      "zh-Hant": "珍珠港事件後，金梅爾被免職，尼米茲獲選接替其太平洋艦隊總司令職位，交接於1941年聖誕節在珍珠港舉行。他指揮的艦隊在珊瑚海與中途島取得勝利，他也被任命為太平洋戰區總司令。1944年12月國會晉升他為海軍五星上將。1945年9月2日，他在東京灣的密蘇里號戰艦上代表美國簽署和約。",
+      "en": "After the Pearl Harbor attack, Kimmel was relieved and Nimitz was chosen to replace him; the change of command took place at Pearl Harbor on Christmas Day 1941. Victories followed in the Coral Sea and at Midway, and he was named commander-in-chief of Pacific Ocean Areas. In December 1944 Congress promoted him to fleet admiral. On 2 September 1945 he signed for the United States aboard the battleship Missouri in Tokyo Bay."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Nimitz was chosen to replace him.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "The change of command took place at Pearl Harbor on Christmas Day, 1941.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "victories in the Coral Sea and at Midway Island",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Nimitz was named commander-in-chief of Pacific Ocean Areas",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "in December 1944 Congress promoted him to fleet admiral",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "aboard the battleship Missouri in Tokyo Bay on September 2, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Adm. Husband E. Kimmel was relieved as commander-in-chief of the Pacific Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-12-15",
+      "end": "1966-02-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "海軍作戰部長與晚年",
+      "en": "Chief of Naval Operations and later years"
+     },
+     "body": {
+      "zh-Hant": "1945年12月15日，尼米茲接替金上將，出任美國艦隊總司令。美國海軍官校資料把他的海軍作戰部長任期寫為1945至1947年；德州歷史協會條目說，他在兩年後卸任。他於1966年2月20日去世。",
+      "en": "On 15 December 1945 Nimitz succeeded Admiral King; the Naval Academy page gives his term as Chief of Naval Operations as 1945–1947, and the Texas State Historical Association entry says he withdrew after two years. He died on 20 February 1966."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "On December 15, 1945, Nimitz succeeded Adm. Ernest J. King",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "Chief of Naval Operations, 1945 - 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He withdrew after two years.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He died on February 20, 1966",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "nimitz-cincpac",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國太平洋艦隊",
+      "en": "U.S. Pacific Fleet"
+     },
+     "title": {
+      "orig": "Commander in Chief, U.S. Pacific Fleet",
+      "zh-Hant": "太平洋艦隊總司令",
+      "en": "Commander in Chief, Pacific Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-25",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "The change of command took place at Pearl Harbor on Christmas Day, 1941.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "Commander in Chief, U.S. Pacific Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Nimitz was chosen to replace him.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區／方面級指揮（太平洋艦隊兼太平洋戰區），起日有據，但迄日無來源、戰役僅月份以下精度無日期＋地點連結、regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "nimitz-bureau-navigation",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍航海局",
+      "en": "U.S. Navy Bureau of Navigation"
+     },
+     "title": {
+      "orig": "chief of the Bureau of Navigation",
+      "zh-Hant": "航海局局長",
+      "en": "Chief of the Bureau of Navigation"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-12-26"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "In 1939 he became chief of the Bureau of Navigation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "when the Japanese attacked Pearl Harbor on December 7, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非四部閣員、非國家級最高軍職之行政職（局長）"
+    },
+    {
+     "key": "nimitz-cno",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍",
+      "en": "U.S. Navy"
+     },
+     "title": {
+      "orig": "Chief of Naval Operations",
+      "zh-Hant": "海軍作戰部長",
+      "en": "Chief of Naval Operations"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-12-15",
+      "end": "1948-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "On December 15, 1945, Nimitz succeeded Adm. Ernest J. King",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "Chief of Naval Operations, 1945 - 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He withdrew after two years.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級軍種最高職（海軍作戰部長，USNA 引文明寫），任期與時間窗交集（1945-12-15 起）；但迄日僅年精度、regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:nimitz-cincpac",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；TSHA 與 USNA 只寫1941年聖誕節接任，未寫卸任日。已查：TSHA Handbook of Texas、USNA Notable Graduates；NHHC（history.navy.mil）連線逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:cincpoaStart",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；太平洋戰區總司令（CINCPOA）TSHA 只寫「soon afterward」式先後，未給日期。已查：TSHA、USNA；NHHC 連線逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：TSHA 僅概述杜立德空襲（1942年4月）、珊瑚海、中途島，無日期＋地點的戰役連結，故 R4 戰區司令資格為 R6（battle_link）；待 NHHC／海軍戰史官方頁補日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:contradiction",
+     "gapKind": "not_found",
+     "note": "來源不足：搜尋摘要（未取得原文）稱太平洋艦隊總司令生效日為1941-12-31，與 TSHA 的聖誕節交接不同；僅檢索摘要，不列 conflict。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:identity",
+     "gapKind": "identity_uncertain",
+     "note": "名單重複：chesterwnimitz（切斯特·威廉·尼米兹）與 chesternimitz（切斯特·尼米兹）為同一人 Chester W. Nimitz；兩筆內容相同，建議主管合併。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Chester Nimitz Naval History and Heritage Command biography",
+     "url": "https://history.navy.mil/research/histories/biographies-list/bios-n/nimitz-chester-w.html",
+     "result": "no_result",
+     "note": "curl 逾時（000），兩次重試皆失敗"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Chester W. Nimitz USNA Notable Graduates",
+     "url": "https://usna.edu/Notables/Bios/1905nimitz.php",
+     "result": "found_A",
+     "note": "取得，無日期細節"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "Handbook of Texas Nimitz, Chester William",
+     "url": "https://www.tshaonline.org/handbook/entries/nimitz-chester-william",
+     "result": "found_B",
+     "note": "Robert S. Weddle 具名；取得"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Chester W. Nimitz",
+     "url": "https://www.britannica.com/biography/Chester-W-Nimitz",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Arlington National Cemetery Nimitz",
+     "url": "https://www.arlingtoncemetery.mil/Explore/Notable-Graves/Admirals/Chester-W-Nimitz/",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Chester W. Nimitz biography CINCPAC December 1941 CNO 1945",
+     "url": "null",
+     "result": "unrated",
+     "note": "WebSearch 摘要；結果多為私人彙編／無署名，僅作線索"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "id.loc.gov Nimitz",
+     "url": "null",
+     "result": "no_result",
+     "note": "LoC 權威檔被 403 擋（同批其他 id.loc.gov 查詢）"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "history.state.gov Nimitz",
+     "url": "https://history.state.gov/departmenthistory/people/nimitz-chester-william",
+     "result": "not_relevant",
+     "note": "404，無此人條目"
+    }
+   ]
+  },
+  {
+   "key": "chesternimitz",
+   "bioId": null,
+   "name": "Chester Nimitz",
+   "nameZh": "切斯特·尼米兹",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1905-01-30",
+      "end": "1941-12-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "早年、潛艦與海軍戰爭學院",
+      "en": "Early career, submarines and the Naval War College"
+     },
+     "body": {
+      "zh-Hant": "尼米茲1905年1月30日在安納波利斯海軍官校畢業，班上114人中名列第七。他其後擔任四個接續的潛艦指揮職，成為「豬艇」（潛艦）方面的權威。1922至1923年，他在海軍戰爭學院研究假想的太平洋戰爭。1939年，他出任海軍航海局局長。",
+      "en": "Nimitz graduated seventh in a class of 114 at Annapolis on 30 January 1905. In four consecutive submarine commands he became a leading authority on the \"pigboat\". In 1922–23 he studied a theoretical Pacific war at the Navy War College. In 1939 he became chief of the Bureau of Navigation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He graduated seventh in his class of 114 at Annapolis on January 30, 1905.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "In four consecutive undersea commands, he became a leading \"pigboat\" authority",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "At the Navy War College, 1922–23, he dealt with a theoretical Pacific war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "In 1939 he became chief of the Bureau of Navigation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-12-25",
+      "end": "1945-09-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "太平洋艦隊與太平洋戰區總司令",
+      "en": "Commander in Chief of the Pacific Fleet and Pacific Ocean Areas"
+     },
+     "body": {
+      "zh-Hant": "珍珠港事件後，金梅爾被免職，尼米茲獲選接替其太平洋艦隊總司令職位，交接於1941年聖誕節在珍珠港舉行。他指揮的艦隊在珊瑚海與中途島取得勝利，他也被任命為太平洋戰區總司令。1944年12月國會晉升他為海軍五星上將。1945年9月2日，他在東京灣的密蘇里號戰艦上代表美國簽署和約。",
+      "en": "After the Pearl Harbor attack, Kimmel was relieved and Nimitz was chosen to replace him; the change of command took place at Pearl Harbor on Christmas Day 1941. Victories followed in the Coral Sea and at Midway, and he was named commander-in-chief of Pacific Ocean Areas. In December 1944 Congress promoted him to fleet admiral. On 2 September 1945 he signed for the United States aboard the battleship Missouri in Tokyo Bay."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Nimitz was chosen to replace him.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "The change of command took place at Pearl Harbor on Christmas Day, 1941.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "victories in the Coral Sea and at Midway Island",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Nimitz was named commander-in-chief of Pacific Ocean Areas",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "in December 1944 Congress promoted him to fleet admiral",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "aboard the battleship Missouri in Tokyo Bay on September 2, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Adm. Husband E. Kimmel was relieved as commander-in-chief of the Pacific Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-12-15",
+      "end": "1966-02-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "海軍作戰部長與晚年",
+      "en": "Chief of Naval Operations and later years"
+     },
+     "body": {
+      "zh-Hant": "1945年12月15日，尼米茲接替金上將，出任美國艦隊總司令。美國海軍官校資料把他的海軍作戰部長任期寫為1945至1947年；德州歷史協會條目說，他在兩年後卸任。他於1966年2月20日去世。",
+      "en": "On 15 December 1945 Nimitz succeeded Admiral King; the Naval Academy page gives his term as Chief of Naval Operations as 1945–1947, and the Texas State Historical Association entry says he withdrew after two years. He died on 20 February 1966."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "On December 15, 1945, Nimitz succeeded Adm. Ernest J. King",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "Chief of Naval Operations, 1945 - 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He withdrew after two years.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He died on February 20, 1966",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "nimitz-cincpac",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國太平洋艦隊",
+      "en": "U.S. Pacific Fleet"
+     },
+     "title": {
+      "orig": "Commander in Chief, U.S. Pacific Fleet",
+      "zh-Hant": "太平洋艦隊總司令",
+      "en": "Commander in Chief, Pacific Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-25",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "The change of command took place at Pearl Harbor on Christmas Day, 1941.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "Commander in Chief, U.S. Pacific Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "Nimitz was chosen to replace him.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區／方面級指揮（太平洋艦隊兼太平洋戰區），起日有據，但迄日無來源、戰役僅月份以下精度無日期＋地點連結、regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "nimitz-bureau-navigation",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍航海局",
+      "en": "U.S. Navy Bureau of Navigation"
+     },
+     "title": {
+      "orig": "chief of the Bureau of Navigation",
+      "zh-Hant": "航海局局長",
+      "en": "Chief of the Bureau of Navigation"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-12-26"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "In 1939 he became chief of the Bureau of Navigation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "when the Japanese attacked Pearl Harbor on December 7, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非四部閣員、非國家級最高軍職之行政職（局長）"
+    },
+    {
+     "key": "nimitz-cno",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍",
+      "en": "U.S. Navy"
+     },
+     "title": {
+      "orig": "Chief of Naval Operations",
+      "zh-Hant": "海軍作戰部長",
+      "en": "Chief of Naval Operations"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-12-15",
+      "end": "1948-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "On December 15, 1945, Nimitz succeeded Adm. Ernest J. King",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-nimitz",
+       "locator": "Fleet Admiral Chester W. Nimitz — Notable Graduates",
+       "quote": "Chief of Naval Operations, 1945 - 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tsha-nimitz",
+       "locator": "Nimitz, Chester William",
+       "quote": "He withdrew after two years.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級軍種最高職（海軍作戰部長，USNA 引文明寫），任期與時間窗交集（1945-12-15 起）；但迄日僅年精度、regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:nimitz-cincpac",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；TSHA 與 USNA 只寫1941年聖誕節接任，未寫卸任日。已查：TSHA Handbook of Texas、USNA Notable Graduates；NHHC（history.navy.mil）連線逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:cincpoaStart",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；太平洋戰區總司令（CINCPOA）TSHA 只寫「soon afterward」式先後，未給日期。已查：TSHA、USNA；NHHC 連線逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：TSHA 僅概述杜立德空襲（1942年4月）、珊瑚海、中途島，無日期＋地點的戰役連結，故 R4 戰區司令資格為 R6（battle_link）；待 NHHC／海軍戰史官方頁補日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:contradiction",
+     "gapKind": "not_found",
+     "note": "來源不足：搜尋摘要（未取得原文）稱太平洋艦隊總司令生效日為1941-12-31，與 TSHA 的聖誕節交接不同；僅檢索摘要，不列 conflict。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:identity",
+     "gapKind": "identity_uncertain",
+     "note": "名單重複：chesterwnimitz（切斯特·威廉·尼米兹）與 chesternimitz（切斯特·尼米兹）為同一人 Chester W. Nimitz；兩筆內容相同，建議主管合併。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Chester Nimitz Naval History and Heritage Command biography",
+     "url": "https://history.navy.mil/research/histories/biographies-list/bios-n/nimitz-chester-w.html",
+     "result": "no_result",
+     "note": "curl 逾時（000），兩次重試皆失敗"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Chester W. Nimitz USNA Notable Graduates",
+     "url": "https://usna.edu/Notables/Bios/1905nimitz.php",
+     "result": "found_A",
+     "note": "取得，無日期細節"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "Handbook of Texas Nimitz, Chester William",
+     "url": "https://www.tshaonline.org/handbook/entries/nimitz-chester-william",
+     "result": "found_B",
+     "note": "Robert S. Weddle 具名；取得"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Chester W. Nimitz",
+     "url": "https://www.britannica.com/biography/Chester-W-Nimitz",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Arlington National Cemetery Nimitz",
+     "url": "https://www.arlingtoncemetery.mil/Explore/Notable-Graves/Admirals/Chester-W-Nimitz/",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Chester W. Nimitz biography CINCPAC December 1941 CNO 1945",
+     "url": "null",
+     "result": "unrated",
+     "note": "WebSearch 摘要；結果多為私人彙編／無署名，僅作線索"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "id.loc.gov Nimitz",
+     "url": "null",
+     "result": "no_result",
+     "note": "LoC 權威檔被 403 擋（同批其他 id.loc.gov 查詢）"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "history.state.gov Nimitz",
+     "url": "https://history.state.gov/departmenthistory/people/nimitz-chester-william",
+     "result": "not_relevant",
+     "note": "404，無此人條目"
+    }
+   ]
+  },
+  {
+   "key": "georgecmarshall",
+   "bioId": null,
+   "name": "George C. Marshall",
+   "nameZh": "喬治·馬歇爾",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1901-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "早年與戰間期",
+      "en": "Early career and the interwar years"
+     },
+     "body": {
+      "zh-Hant": "馬歇爾1901年畢業於維吉尼亞軍校。第一次世界大戰期間他隨第一師赴法，因在坎蒂尼、艾斯納—馬恩河、聖米耶勒與默茲—阿爾貢各役中的參謀工作而聞名。1919至1924年他擔任潘興將軍的副官；1936至1938年，他以准將軍階指揮第五步兵旅。",
+      "en": "Marshall graduated from the Virginia Military Institute in 1901. In the First World War he sailed to France with the First Division and became known for his staff work in the battles of Cantigny, Aisne-Marne, St. Mihiel and Meuse-Argonne. He was aide-de-camp to General Pershing in 1919–1924 and, as a brigadier general, commanded the Fifth Infantry Brigade in 1936–1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "enrolled at the Virginia Military Institute from which he was graduated in 1901",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "sailing to France with the First Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "the battles of Cantigny, Aisne-Marne, St. Mihiel, and Meuse-Argonne",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "After acting as aide-de-camp to General Pershing from 1919 to 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "of the Fifth Infantry Brigade from 1936 to 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-09-01",
+      "end": "1945-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "陸軍參謀長",
+      "en": "Chief of Staff of the Army"
+     },
+     "body": {
+      "zh-Hant": "1939年9月，羅斯福總統任命馬歇爾為陸軍參謀長，軍階為上將。1944年他成為陸軍五星上將。諾貝爾基金會的傳記稱他任參謀長至1945年，負責建設、補給並部分負責部署逾八百萬名士兵，且參加卡薩布蘭加、魁北克、開羅—德黑蘭、雅爾達與波茨坦各次會議。他於1945年11月辭去參謀長。",
+      "en": "In September 1939 President Roosevelt named Marshall chief of staff with the rank of general. He became General of the Army in 1944. The Nobel Foundation biography says he served as chief of staff to 1945, was responsible for building, supplying and in part deploying over eight million soldiers, and took part in conferences at Casablanca, Quebec, Cairo-Teheran, Yalta and Potsdam. He resigned in November 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "in September, 1939, was named chief of staff, with the rank of general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "He became general of the army in 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "served as chief of staff from 1939 to 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "building, supplying, and, in part, the deploying of over eight million soldiers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "Casablanca (1943), Quebec (1943), Cairo-Teheran (1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "Yalta (1945), Potsdam (1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "The war over, Marshall resigned in November, 1945.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1945-12-01",
+      "end": "1949-01-21"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "對華特使與國務卿",
+      "en": "Special mission to China and Secretary of State"
+     },
+     "body": {
+      "zh-Hant": "戰後馬歇爾以杜魯門總統代表的身分赴中國執行特別任務。1947年1月21日，他就任國務卿，任期至1949年1月20日。國務院歷史辦公室說，他在1947至1948年主導爭取國會支持對西歐的大規模援助方案，即後來的馬歇爾計畫。",
+      "en": "After the war Marshall represented President Truman on a special mission to China. He entered on duty as Secretary of State on 21 January 1947 and served until 20 January 1949. The State Department Office of the Historian says that in 1947 and 1948 he led the effort to secure congressional support for the large aid package for Western Europe that became the Marshall Plan."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "he represented President Truman on a special mission to China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "Marshall entered on duty on January 21, 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "served as Secretary of State until January 20, 1949",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "In 1947 and 1948, Marshall led the effort to formulate and secure",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "the massive aid package to Western Europe",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "that would become known as the Marshall Plan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "marshall-chief-of-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍",
+      "en": "U.S. Army"
+     },
+     "title": {
+      "orig": "chief of staff",
+      "zh-Hant": "陸軍參謀長",
+      "en": "Chief of Staff of the U.S. Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-01",
+      "end": "1945-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "in September, 1939, was named chief of staff, with the rank of general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "The war over, Marshall resigned in November, 1945.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "served as chief of staff from 1939 to 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級軍種最高職（陸軍參謀長，Nobel 引文明寫），起迄月精度足夠；但 regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "marshall-5th-inf-brigade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第五步兵旅",
+      "en": "U.S. Army 5th Infantry Brigade"
+     },
+     "title": {
+      "orig": "commander of the Fifth Infantry Brigade",
+      "zh-Hant": "第五步兵旅旅長",
+      "en": "Commander, Fifth Infantry Brigade"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "of the Fifth Infantry Brigade from 1936 to 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-marshall",
+       "locator": "George C. Marshall — Biographical",
+       "quote": "with the rank of brigadier general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "旅級指揮官，非國家級最高軍職亦非戰區司令"
+    },
+    {
+     "key": "marshall-sec-state",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國國務院",
+      "en": "U.S. Department of State"
+     },
+     "title": {
+      "orig": "Secretary of State",
+      "zh-Hant": "國務卿",
+      "en": "Secretary of State"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1947-01-21",
+      "end": "1949-01-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "Marshall entered on duty on January 21, 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-marshall",
+       "locator": "George Catlett Marshall — People — Department History",
+       "quote": "served as Secretary of State until January 20, 1949",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "國務卿任期（1947–1949）完全在 1908–1945 時間窗外"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:marshall-china-mission",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Nobel 只寫「late 1945 and in 1946」特使任務，無起迄日。已查：Nobel、history.state.gov。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：馬歇爾為參謀長而非戰場指揮官；已寫第一次大戰各役參謀工作與戰時會議，戰役日期待 CMH／Marshall Foundation（403 被擋）補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:grade",
+     "gapKind": "not_found",
+     "note": "待確認：Nobel 傳記頁無具名作者，gradeBasis 以機構官方頁評 B；若主管認定須具名，應降為未評等並補來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "George C. Marshall biographical Nobel Peace Prize 1953",
+     "url": "https://www.nobelprize.org/prizes/peace/1953/marshall/biographical/",
+     "result": "found_B",
+     "note": "取得"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "George Catlett Marshall history.state.gov",
+     "url": "https://history.state.gov/departmenthistory/people/marshall-george-catlett",
+     "result": "found_A",
+     "note": "取得（國務卿任期）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica George C. Marshall",
+     "url": "https://www.britannica.com/biography/George-C-Marshall",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Marshall Foundation biography",
+     "url": "https://www.marshallfoundation.org/library/collection/george-c-marshall-biography/",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "id.loc.gov Marshall, George C.",
+     "url": "https://id.loc.gov/authorities/names/n79041339.html",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Army CMH Marshall publication",
+     "url": "https://history.army.mil/",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "George C. Marshall Chief of Staff 1939 1945 official",
+     "url": "null",
+     "result": "unrated",
+     "note": "WebSearch 摘要；僅線索"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Arlington Marshall",
+     "url": "https://www.arlingtoncemetery.mil/Explore/Notable-Graves/Army/George-C-Marshall/",
+     "result": "no_result",
+     "note": "逾時"
+    }
+   ]
+  },
+  {
+   "key": "omarbradley",
+   "bioId": null,
+   "name": "Omar Bradley",
+   "nameZh": "奥马尔·布拉德利",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1893-02-12",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與軍校",
+      "en": "Origins and West Point"
+     },
+     "body": {
+      "zh-Hant": "布拉德利1893年2月12日生於密蘇里州克拉克附近。他的父親在1908年1月31日因肺炎去世，母親隨後遷居莫伯利。1911年7月27日他收到電報，得知自己在入學考試中名列第一，並於同年8月1日前往西點軍校報到。他在班上164人中排第44名，艾森豪是同班同學之一。第一次世界大戰期間，他被派到蒙大拿州看守銅礦。",
+      "en": "Bradley was born on 12 February 1893 near Clark, Missouri. His father died of pneumonia on 31 January 1908 and his mother then moved to Moberly. On 27 July 1911 a telegram told him he had placed first in the entrance examination, and he reported to West Point on 1 August 1911. He ranked 44th in a class of 164 and Eisenhower was a classmate. In the First World War he was sent to Montana to guard copper mines."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "was born on February 12, 1893, near Clark, Randolph County, Missouri.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "He died in his bed on January 31, 1908.",
+       "quoteLang": "en",
+       "evidenceNote": "此句主語為其父 John Smith Bradley",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "Shortly after John Bradley’s death, Sarah Bradley moved to Moberly",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "On July 27, 1911, a telegram arrived at Bradley’s home",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "report to the academy on August 1, 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "As a student he ranked 44th in a class of 164",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "One of them was Dwight Eisenhower",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "Bradley was sent to Montana to guard valuable copper mines",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰間期與步兵學校",
+      "en": "Interwar service and the Infantry School"
+     },
+     "body": {
+      "zh-Hant": "大戰後，布拉德利任教於大學並就讀於班寧堡與李文沃斯堡的陸軍進階學校，學習指揮與軍事組織的基本功。1941年，他被任命指揮喬治亞州班寧堡的步兵學校，在海外任職前訓練了數以千計的士兵與軍官。陸軍參謀長馬歇爾正需要能組織大量兵員的領導人，布拉德利是他找來的人之一。",
+      "en": "After the war Bradley taught at colleges and attended advanced Army schools at Fort Benning and Fort Leavenworth, learning the fundamentals of command and military organization. In 1941 he was appointed to command the Infantry School at Fort Benning, Georgia, and trained thousands of men and officers before going overseas. Army Chief of Staff George Marshall needed leaders who could organize large numbers of men, and Bradley was one he turned to."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "he taught at colleges and attended army advanced training schools",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "schools at Fort Benning and Fort Leavenworth",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "He learned the fundamentals of command and military organization",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "command the infantry school at Fort Benning, Georgia, in 1941.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "he directed the training of thousands of men and officers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "Army Chief of Staff George Marshall needed leaders",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "organize large numbers of men",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "One of the men he turned to was Omar Bradley.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1945-06-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "北非、西西里與歐洲戰場",
+      "en": "North Africa, Sicily and the European campaign"
+     },
+     "body": {
+      "zh-Hant": "1943年初，艾森豪派布拉德利去研究美軍第二軍在卡塞林隘口戰敗後的情況；第二軍再度上陣時擊退德軍，俘虜四萬人。布拉德利隨後參加了成功的西西里登陸。西西里之後，他被任命為1944年6月6日登陸日美軍的野戰指揮官。到1945年戰爭結束時，他的部隊已首先攻入德國，並控制該國大部分地區。",
+      "en": "In early 1943 Eisenhower sent Bradley to study the situation after the American II Corps was defeated at Kasserine Pass; when the II Corps next fought it drove the Germans back and captured 40,000. Bradley then served in the successful invasion of Sicily. After Sicily he was named field commander of American soldiers on D-Day, 6 June 1944. When the war ended in May 1945 his forces had been first to invade Germany and controlled much of the country."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "in North Africa in early 1943.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "was defeated at the Kasserine Pass by the Germans.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "General Eisenhower, the American commander, sent for Omar Bradley.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "it drove the Germans back and captured 40,000 soldiers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "General Bradley then served in the successful invasion of Sicily.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "He would be the field commander of American soldiers on June 6, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "Bradley’s forces were the first to invade Germany",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "much of that country when the war ended in May 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1945-01-01",
+      "end": "1981-04-09"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後職務",
+      "en": "Postwar service"
+     },
+     "body": {
+      "zh-Hant": "二戰結束時，杜魯門總統請布拉德利領導退伍軍人管理局，他任職至1948年，轉任陸軍參謀長。次年他成為首任參謀首長聯席會議主席。1950年國會晉升他為五星上將，1953年他以六十歲之齡退役。他於1981年4月8日因心臟衰竭去世，葬於阿靈頓國家公墓。",
+      "en": "As the war ended President Truman asked Bradley to lead the Veterans Administration; he served until 1948, when he became Army chief of staff. The next year he became the first Chairman of the Joint Chiefs of Staff. In 1950 Congress made him General of the Army with five stars, and he retired in 1953 at the age of sixty. He died of heart failure on 8 April 1981 and was buried at Arlington National Cemetery."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "asked General Bradley to lead the Veterans Administration",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "He served the VA until he was asked to take over another big job in 1948",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "in 1948, the chief of staff.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "The next year he became the first ever Chairman of the Joint Chiefs of Staff.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "In 1950, Congress appointed him General of the Army with five stars.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "At the age of sixty in 1953, Bradley retired.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "Omar Bradley died of heart failure on April 8, 1981.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "He was buried with honors at Arlington National Cemetery.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "bradley-infantry-school",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍步兵學校（班寧堡）",
+      "en": "U.S. Army Infantry School, Fort Benning"
+     },
+     "title": {
+      "orig": "command the infantry school",
+      "zh-Hant": "步兵學校校長",
+      "en": "Commandant of the Infantry School"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1941-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "shsmo-bradley",
+       "locator": "Omar Bradley — Historic Missourians",
+       "quote": "command the infantry school at Fort Benning, Georgia, in 1941.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍校校長（military_education 邊界個案）；迄日來源未寫，暫以調往海外之年推得（推論）：SHSMO 只寫「Before being called overseas」，無年份——迄日見 gap"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bradley-infantry-school",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；SHSMO 只寫1941年受命指揮步兵學校，「Before being called overseas」未寫卸任日。已查：SHSMO Historic Missourians；army.mil CMH、JCS、Britannica、LoC 皆 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bradley-12th-army-group",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；SHSMO 只寫戰役敘述（諾曼地、進入德國），未寫第十二集團軍群名稱與就任日。無署名之 Encyclopedia.com（Gale 傳記，未評等）稱 1944-08-01 接任，僅可作線索，不能當出處。已查：SHSMO；CMH／JCS／Britannica 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bradley-first-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；SHSMO 只寫「D-Day 美軍野戰指揮官」，未寫第一集團軍職稱與起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bradley-ii-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；SHSMO 只寫1943年北非第二軍整頓與西西里，無就任日與指揮職稱（軍團長）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bradley-veterans-admin",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；SHSMO 只寫「戰爭結束時」受杜魯門之請並任職至1948年，無就任日（時間窗外亦屬 R5）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：SHSMO 僅概述卡塞林隘口後第二軍、西西里、諾曼地與入德，無各戰役日期與地點細節（D-Day 6 月 6 日除外）；待 CMH 或 Arlington 官方頁（皆被擋）補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 4 段，但僅一個 B 級來源（SHSMO）可抓；已查 CMH／JCS／Britannica／LoC／Arlington 皆 403 或逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "Omar Bradley Historic Missourians",
+     "url": "https://historicmissourians.shsmo.org/historicmissourians/name/b/bradley/",
+     "result": "found_B",
+     "note": "Henry D. Landry 具名；取得"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Army CMH Bradley brochure",
+     "url": "https://www.army.mil/cmh-pg/brochures/bradley/bradley.htm",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "JCS Chairman Bradley",
+     "url": "https://www.jcs.mil/About/TheJointStaff/Chairman/GeneraloftheArmyOmarNelsonBradley.aspx",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Omar Bradley",
+     "url": "https://www.britannica.com/biography/Omar-Nelson-Bradley",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Encyclopedia.com Omar Nelson Bradley",
+     "url": "https://encyclopedia.com/people/history/us-history-biographies/omar-nelson-bradley",
+     "result": "unrated",
+     "note": "Encyclopedia of World Biography 無署名；僅作 gap 線索"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Omar Bradley 12th Army Group biography",
+     "url": "null",
+     "result": "unrated",
+     "note": "WebSearch 摘要；僅線索"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "id.loc.gov Bradley",
+     "url": "https://id.loc.gov/authorities/names/n79141485.html",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "history.state.gov Bradley",
+     "url": "https://history.state.gov/departmenthistory/people/bradley-omar-nelson",
+     "result": "not_relevant",
+     "note": "404"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "historyofwar.org Bradley",
+     "url": "https://www.historyofwar.org/articles/people_bradley.html",
+     "result": "unrated",
+     "note": "私人網站（Rickard），C，不收"
+    }
+   ]
+  },
+  {
+   "key": "williamdanielleahy",
+   "bioId": null,
+   "name": "William Daniel Leahy",
+   "nameZh": "威廉·D·莱希",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1897-01-01",
+      "end": "1937-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "海軍生涯早期",
+      "en": "Early naval career"
+     },
+     "body": {
+      "zh-Hant": "萊希1875年5月6日生於愛荷華州漢普頓，1897年畢業於海軍官校，被派往奧瑞岡號戰艦，並在美西戰爭期間隨該艦服役。1899年他被派往亞洲艦隊，參與鎮壓菲律賓叛亂與中國義和團。1904年返美後，他先後在巡洋艦服役、任海軍官校教官，並擔任駐尼加拉瓜美軍指揮官的參謀長。",
+      "en": "Leahy was born in Hampton, Iowa, on 6 May 1875 and graduated from the Naval Academy in 1897. He was assigned to the battleship Oregon and served in her through the Spanish-American War. In 1899 he was sent to the Asiatic Station, where he took part in suppressing the Philippine Insurrection and the Boxer Rebellion. After returning in 1904 he served in cruisers, taught at the Naval Academy and was chief of staff to the commander of U.S. forces in Nicaragua."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "William Daniel Leahy was born in Hampton, Iowa, on 6 May 1875.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "graduated from the U.S. Naval Academy in 1897",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "was assigned to the battleship Oregon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "serving in her through the Spanish-American War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "In 1899, Ensign Leahy was sent to the Asiatic Station",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "participated in the suppression of the Philippine Insurrection",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "Boxer Rebellion in China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "was an instructor at the Naval Academy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "chief of staff to the commander of U.S. forces in Nicaragua",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1937-01-01",
+      "end": "1942-05-02"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "海軍作戰部長、總督與駐法大使",
+      "en": "Chief of Naval Operations, governor and ambassador to France"
+     },
+     "body": {
+      "zh-Hant": "1937年1月，萊希出任海軍作戰部長，任職兩年多，期間常兼代理海軍部長。1939年8月退役後，他被任命為波多黎各總督。1940年11月29日他被任命為駐法國大使，1941年1月8日呈遞國書，1942年5月1日離開維琪。",
+      "en": "In January 1937 Leahy became Chief of Naval Operations, serving for more than two years and frequently acting as Secretary of the Navy. After retiring in August 1939 he was appointed Governor of Puerto Rico. He was appointed Ambassador to France on 29 November 1940, presented credentials on 8 January 1941 and left Vichy on 1 May 1942."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "In January 1937, Admiral Leahy became Chief of Naval Operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "serving for more than two years",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "he frequently had additional duty as Acting Secretary of the Navy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "Following retirement in August 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "was appointed Governor of Puerto Rico",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-leahy",
+       "locator": "William Daniel Leahy — People — Department History",
+       "quote": "Appointed: November 29, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-leahy",
+       "locator": "William Daniel Leahy — People — Department History",
+       "quote": "Presentation of Credentials: January 8, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-leahy",
+       "locator": "William Daniel Leahy — People — Department History",
+       "quote": "Termination of Mission: Left Vichy May 1, 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-05-01",
+      "end": "1959-07-21"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總統幕僚長與五星上將",
+      "en": "Presidential chief of staff and Fleet Admiral"
+     },
+     "body": {
+      "zh-Hant": "回國後，萊希被召回現役，擔任羅斯福總統的副官與聯合參謀首長會議的資深成員。1944年12月，他晉升海軍五星上將。羅斯福於1945年4月去世後，他繼續留任，協助杜魯門總統。他於1949年退役，但名義上到1959年7月20日去世前仍在現役。",
+      "en": "On returning home Leahy was recalled to Navy service as Aide to President Roosevelt and Senior Member of the Joint Chiefs of Staff. He was promoted to Fleet Admiral in December 1944. After Roosevelt died in April 1945 he continued in his posts, assisting President Truman. He retired in 1949 but technically remained on active duty until his death on 20 July 1959."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "recalled to Navy service as Aide to President Franklin D. Roosevelt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "Senior Member of the Joint Chiefs of Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "he received promotion to the rank of Fleet Admiral in December 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "After Roosevelt's death in April 1945, Leahy continued in his posts",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "Though he retired in 1949",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "remained on active duty until his death on 20 July 1959",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "leahy-cno",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍",
+      "en": "U.S. Navy"
+     },
+     "title": {
+      "orig": "Chief of Naval Operations",
+      "zh-Hant": "海軍作戰部長",
+      "en": "Chief of Naval Operations"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-01-01",
+      "end": "1939-09-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "In January 1937, Admiral Leahy became Chief of Naval Operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-leahy",
+       "locator": "Fleet Admiral William D. Leahy — Notable Graduates",
+       "quote": "Following retirement in August 1939",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依「1939年8月退役」推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級軍種最高職（海軍作戰部長，引文明寫），起迄月精度足夠；迄日為依退役推論；regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "leahy-amb-france",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國駐法國大使館（維琪）",
+      "en": "U.S. Embassy to France (Vichy)"
+     },
+     "title": {
+      "orig": "Ambassador Extraordinary and Plenipotentiary (France)",
+      "zh-Hant": "駐法國特命全權大使",
+      "en": "Ambassador Extraordinary and Plenipotentiary to France"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1940-11-29",
+      "end": "1942-05-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hs-leahy",
+       "locator": "William Daniel Leahy — People — Department History",
+       "quote": "Appointed: November 29, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hs-leahy",
+       "locator": "William Daniel Leahy — People — Department History",
+       "quote": "Termination of Mission: Left Vichy May 1, 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "大使，非四部閣員亦非軍職"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:leahy-governor-puerto-rico",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；USNA 只寫1939年8月退役後被任命為波多黎各總督，未寫就任日與卸任日。已查：USNA、history.state.gov。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:leahy-chief-of-staff-to-cinc",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；USNA 只寫1942年4月返美後被召回擔任總統副官與參謀首長會議資深成員，未寫就職日；迄日僅寫「1949年退役」。已查：USNA；NHHC 查詢逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：莱希戰時為統帥幕僚長／參謀首長會議資深成員，無戰場指揮；USNA 僅記早年菲律賓叛亂、義和團，無日期，故不另立戰役紀錄。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "William D. Leahy USNA Notable Graduates",
+     "url": "https://usna.edu/Notables/Bios/1897leahy.php",
+     "result": "found_A",
+     "note": "取得"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "William Daniel Leahy history.state.gov",
+     "url": "https://history.state.gov/departmenthistory/people/leahy-william-daniel",
+     "result": "found_A",
+     "note": "駐法大使任期"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Leahy NHHC biography",
+     "url": "https://www.history.navy.mil/research/histories/biographies-list/bios-l/leahy-william-d/fleet-admiral-leahy.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica William D. Leahy",
+     "url": "https://www.britannica.com/biography/William-D-Leahy",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "SNAC Leahy",
+     "url": "https://snaccooperative.org/view/76586897/11198037",
+     "result": "unrated",
+     "note": "僅搜尋結果，未抓取"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "William D. Leahy Chief of Staff to the Commander in Chief",
+     "url": "null",
+     "result": "unrated",
+     "note": "WebSearch 摘要；僅線索（任職日期 7/6 或 7/20 兩說，無 A/B 原文）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Arlington Leahy",
+     "url": "https://www.arlingtoncemetery.mil/Explore/Notable-Graves/Admirals/William-D-Leahy/",
+     "result": "no_result",
+     "note": "逾時"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "id.loc.gov Leahy",
+     "url": "null",
+     "result": "no_result",
+     "note": "LoC 403"
+    }
+   ]
+  }
+ ]
+}

@@ -15,6 +15,10 @@
  8. Q7：evidenceNote 提到「下一任」者，必須同時含「推論」。
  9. gaps：target 格式、gap_kind 三值（§16.4.2）。
 10. 每人必須有 bioId 鍵（建議 6；值可為 null）。
+對齊後檔案（頂層 alignedTo == "b0b0e0f"，research.aligned.json；ARCHITECTURE b0b0e0f／T11／T12／T14）另加：
+11. positions 用 positionKind，出現 roleKind 即違規；positionKind 值域沿用原 7 種（僅供參考，實作時再定）；不得為元首／首腦／實際掌權者。
+12. roleCandidates 每筆必須有 citations（逐筆照第 1、2 項檢查）、candidateRoleKind ∈ {head_of_state, head_of_government, de_facto_leader}、reason 非空。
+13. t14Overlap 若有，值須為 cabinet／general／occupation_colonial。
 """
 import hashlib, json, re, sys, unicodedata
 from pathlib import Path
@@ -23,6 +27,9 @@ from urllib.parse import urlparse
 EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "baidu.com", "enciclopediadelecuador.com")
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
 FORBIDDEN_ROLES = {"head_of_state", "head_of_government"}
+FORBIDDEN_ALIGNED = FORBIDDEN_ROLES | {"de_facto_leader"}
+CANDIDATE_KINDS = {"head_of_state", "head_of_government", "de_facto_leader"}
+T14_VALUES = {"cabinet", "general", "occupation_colonial"}
 GAP_KINDS = {"conflict", "not_found", "identity_uncertain"}
 PREC = {None, "day", "month", "year"}
 SCOPE_START, SCOPE_END = "1908-01-01", "1945-10-01"
@@ -98,6 +105,9 @@ def main():
         if prec == "month" and not d.endswith("-01"):
             errs.append(f"{where}：month 精度{'終點' if end else '起點'}須為 YYYY-MM-01（Q3），實為 {d}")
 
+    aligned = data.get("alignedTo") == "b0b0e0f"
+    if aligned and not data.get("alignNote"):
+        errs.append("對齊檔缺 alignNote")
     people = data.get("people") or []
     if not people:
         errs.append("people 為空")
@@ -151,9 +161,34 @@ def main():
                 errs.append(f"{key} 段{x.get('ord')} zh-Hant 正文 {zh} 字 > 400（Q2）")
             if en > 800:
                 errs.append(f"{key} 段{x.get('ord')} en 正文 {en} 字元 > 800（Q2）")
+        if aligned:
+            for x in poss:
+                w = f"{key} 職位 {x.get('key')}"
+                if "roleKind" in x:
+                    errs.append(f"{w}：對齊檔不得再用 roleKind，須為 positionKind")
+                if x.get("positionKind") in FORBIDDEN_ALIGNED:
+                    errs.append(f"{w}：經歷層不得含元首／首腦／實際掌權者（屬角色層）")
+                if "t14Overlap" in x and x["t14Overlap"] not in T14_VALUES:
+                    errs.append(f"{w}：t14Overlap 非法 {x['t14Overlap']}")
+            for x in p.get("roleCandidates") or []:
+                w = f"{key} 候選角色 {x.get('key')}"
+                if x.get("candidateRoleKind") not in CANDIDATE_KINDS:
+                    errs.append(f"{w}：candidateRoleKind 非法 {x.get('candidateRoleKind')}")
+                if not (x.get("reason") or "").strip():
+                    errs.append(f"{w}：缺 reason")
+                cc = x.get("citations") or []
+                if not cc:
+                    errs.append(f"{w}：沒有 citation（出處）")
+                for i, c in enumerate(cc):
+                    chk_quote(f"{w} c{i}", c.get("sourceKey"), c.get("quote"))
+                    if c.get("grade") not in ("A", "B"):
+                        errs.append(f"{w} c{i}：grade 須 A 或 B")
+                    if c.get("sourceKey") in srcs and c.get("grade") != srcs[c["sourceKey"]].get("grade"):
+                        errs.append(f"{w} c{i}：grade 與來源不符")
+            st["roleCandidates"] = len(p.get("roleCandidates") or [])
         for x in poss:
-            rk = x.get("roleKind")
-            if rk in FORBIDDEN_ROLES:
+            rk = x.get("positionKind") if aligned else x.get("roleKind")
+            if rk in (FORBIDDEN_ALIGNED if aligned else FORBIDDEN_ROLES):
                 errs.append(f"{key} 職位 {x.get('key')}：不得建元首／首腦職位（§16.3、Q4）")
             elif rk not in ROLE_KINDS:
                 errs.append(f"{key} 職位 {x.get('key')}：role_kind 非法 {rk}")

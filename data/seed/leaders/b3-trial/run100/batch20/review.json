@@ -1,0 +1,118 @@
+{
+  "batch": "20",
+  "reviewedOn": "2026-11-11",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "run100-v1",
+  "counts": {
+    "returned": 2,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 0,
+    "movedToPositions": 0,
+    "deletedCitations": 0,
+    "addedCitations": 6,
+    "editedSentences": 2,
+    "spotRefetched": 5,
+    "searchLogShort": 2
+  },
+  "people": [
+    {
+      "key": "ua-fedir-lyzohub",
+      "bioId": "01a1c35f-186c-7459-94d9-f5c3a548ec1c",
+      "paragraphs": 2,
+      "positions": 4,
+      "roleCandidates": 0,
+      "gaps": 4,
+      "searchLogSteps": 5,
+      "verdict": "returned",
+      "changes": [
+        "逐條核對 6＋5 筆段落引文與 Пиріг 原文（含 11-07 末日、МВС 接管）無誤；內務部 R6（dates／regime）合理；總理任期 conflict（Пиріг B vs 已抓未評等 EU）兩份皆已抓，用法成立",
+        "重抓 nasu-lyzohub PDF（傳輸中斷，已取得前 163,840 bytes 與原檔逐位元相同）"
+      ],
+      "returnedReasons": [
+        "最低嘗試未達：研究者標「薄」，searchLog 僅 5 步（需 ≥8 次查詢、烏克蘭／俄語原文查詢 ≥2，實際原文查詢僅 1 次），來源類型僅 named_encyclopedia／national_dictionary／academic 3 類（缺 authority、official）；esu-lyzohub.pdf 已抓但未轉 txt（記為 no_result 未說明），raw 目錄的 eu-hetman 抓檔未記入 searchLog",
+        "建議下一步：VIAF／LoC Name Authority「Lyzohub, Fedir, 1851-1928」與 Nat. Library of Ukraine 權威檔（nbuv.gov.ua）、Енциклопедія історії України 網頁版 history.org.ua「Лизогуб Федір Андрійович」、Енциклопедія Сучасної України 網頁版 esu.com.ua（PDF 已抓但未轉 txt）、烏克蘭語查詢「Лизогуб Федір міністр внутрішніх справ 1918 травня липня」「Лизогуб помер 1928 Белград」，以補內務部起訖、地方自治會起訖與卒年"
+      ]
+    },
+    {
+      "key": "ua-ostapenko",
+      "bioId": "01a1c41f-dc49-7916-a922-ed9fd25fc57b",
+      "paragraphs": 1,
+      "positions": 1,
+      "roleCandidates": 0,
+      "gaps": 3,
+      "searchLogSteps": 5,
+      "verdict": "returned",
+      "changes": [
+        "段落補 1 筆引文（「із начальником штабу французьких військ полковником Фрайденбергом」）支撐「與法軍代表談判」子句",
+        "重抓 nasu-ostapenko PDF，與原檔逐位元相同"
+      ],
+      "returnedReasons": [
+        "最低嘗試未達：研究者標「薄」，searchLog 僅 5 步（需 ≥8 次查詢、原文語言 ≥2，實際烏克蘭語查詢 1 次），來源類型 named_encyclopedia／national_dictionary／academic 3 類（缺 authority、official）；esu-ostapenko.pdf 已抓但未轉 txt、記為 no_result 未說明",
+        "建議下一步：VIAF／LoC「Ostapenko, Serhiĭ, 1881-」、Енциклопедія історії України（history.org.ua）「Остапенко Сергій Степанович」、烏克蘭議會／政府歷任總理頁（kmu.gov.ua 歷史頁）、烏克蘭語查詢「Остапенко Сергій міністр торгівлі і промисловості 1918」「Остапенко Української Центральної Ради УПСР」，以補貿易工業部長起訖、中央拉達 UPSR 席位（若明寫以黨身分取得 → R1 候選）與生卒"
+      ]
+    },
+    {
+      "key": "dk-zahle",
+      "bioId": "01a1b4b8-e99e-784e-9551-3f3d95bc3d0b",
+      "paragraphs": 4,
+      "positions": 7,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 3,
+      "verdict": "pass_with_changes",
+      "changes": [
+        "段落1 刪「長期」「直到1928年」子句（超出段落 period 1905-05-21；眾議院任期已在 positions 與段落4）",
+        "段落3 冰島句引文原只到「selvstændig stat」，未涵蓋「與丹麥結盟」→ 改為「hvorved Island blev en selvstændig stat i forbund med Danmark」並另列「ordnet med forbundsloven af 1918」(year)",
+        "段落3「國王向他提出同樣要求」原文指 3/27 反對派要求立即大選，未交代 → 補 2 筆引文（27.3. krævede…／øjeblikkelig udskrivning af valg）並改寫句子",
+        "議會黨團主席 partyPostAmbiguous 保留（見 issues）；司法部 R5 正確",
+        "重抓 DBL 條目，內容一致（頁面大小差 57 bytes，為動態片段）"
+      ]
+    },
+    {
+      "key": "hu-ferenc-szalasi",
+      "bioId": "01a1b54f-2c79-7855-9983-e3a10b288ae2",
+      "paragraphs": 2,
+      "positions": 0,
+      "roleCandidates": 1,
+      "gaps": 3,
+      "searchLogSteps": 5,
+      "verdict": "pass_with_changes",
+      "changes": [
+        "段落1「後來發展出匈牙利主義運動」補引文「and later the Hungarist movement」",
+        "段落2「移交匈牙利政府」補引文「he was handed over to the Hungarian government」",
+        "箭十字黨領袖 R1 de_facto_leader 正確；重抓 encyclopedia.com 條目，與原檔大小相同"
+      ]
+    },
+    {
+      "key": "py-higinio-morinigo",
+      "bioId": "01a1b4ae-0e0f-7d21-9a02-b1f22fb659b0",
+      "paragraphs": 4,
+      "positions": 6,
+      "roleCandidates": 0,
+      "gaps": 3,
+      "searchLogSteps": 4,
+      "verdict": "pass_with_changes",
+      "changes": [
+        "地區野戰指揮官 organization 刪「（查科戰爭）」（原文只說查科戰爭帶來晉升機會，未明寫該職屬查科戰爭）",
+        "3 筆 R6（陸軍參謀長、內政部長、戰爭部長）regimeId=null，roleGap 補 regime 並於 t14Reason 註明",
+        "重抓 encyclopedia.com Whigham 條目，與原檔大小相同"
+      ]
+    }
+  ],
+  "issues": [
+    "薄人物（利佐胡布、奧斯塔片科）searchLog 仍只做 5 步、原文語言查詢各 1 次即停，且 esu PDF 已抓未轉 txt、eu-hetman 未記入 searchLog",
+    "引文仍有未涵蓋子句（奧斯塔片科法軍代表、察勒冰島「與丹麥結盟」與國王要求內容、薩拉希匈牙利主義運動與移交），本批補 6 筆引文、改 2 句",
+    "regimeId 全批皆 null：R6 項目應一律列 regime 缺口（莫里尼戈 3 筆原漏）；待連庫比對後內政／戰爭部長可能升 R3",
+    "議會黨團主席（察勒 formand for den radikale rigsdagsgruppe，及 1905 年「folketingets venstre」派系主席）是否算黨職，規則未涵蓋，暫留 partyPostAmbiguous，建議 Tai 裁定",
+    "名單未附 recordIds；利佐胡布總理末日 Пиріг 據內閣紀錄為 1918-11-07、一般文獻 11-14，leader_records 待核"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 77
+  }
+}

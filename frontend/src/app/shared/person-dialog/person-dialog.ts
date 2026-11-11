@@ -27,6 +27,8 @@ const TXT = {
     sources: '資料來源', pending: '待補來源', usedFor: '用於', missing: '以下欄位待補來源', sourceRef: '來源',
     mainRole: '主要職位', regime: '所屬政權', bornAt: '生於 ', diedAt: '卒於 ', placeSep: '·', lifeGap: '\u3000',
     role: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
+    roleKind: { head_of_state: '國家元首', head_of_government: '政府首腦', de_facto_leader: '實際掌權者', cabinet_minister: '閣員' } as Record<string, string>,
+    positionKind: { minister: '部長', legislator: '議員', diplomat: '外交官', military_command: '軍事指揮', military_education: '軍事教育', judicial: '司法', police: '警察', other: '其他' } as Record<string, string>,
   },
   en: {
     close: 'Close', loading: 'Loading…', error: 'Could not load this person', basics: 'Basic facts', birth: 'Born', death: 'Died',
@@ -36,6 +38,8 @@ const TXT = {
     sources: 'Sources', pending: 'Source needed', usedFor: 'Used for', missing: 'Fields without a source', sourceRef: 'Source',
     mainRole: 'Main office', regime: 'Regime', bornAt: 'Born ', diedAt: 'Died ', placeSep: ', ', lifeGap: '\u2003',
     role: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
+    roleKind: { head_of_state: 'Head of State', head_of_government: 'Head of Government', de_facto_leader: 'De facto leader', cabinet_minister: 'Cabinet minister' } as Record<string, string>,
+    positionKind: { minister: 'Minister', legislator: 'Legislator', diplomat: 'Diplomat', military_command: 'Military command', military_education: 'Military education', judicial: 'Judicial', police: 'Police', other: 'Other' } as Record<string, string>,
   },
 } as const;
 
@@ -77,7 +81,7 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
             class="inline-flex size-11 flex-none items-center justify-center rounded-full hover:bg-wl-surface-container-high focus-visible:outline-2 focus-visible:outline-wl-secondary"
             (click)="closed.emit()"><svg lucideX class="size-5" aria-hidden="true"></svg></button>
         </header>
-        <div #body data-testid="person-dialog-body" class="relative min-h-0 flex-1 overflow-y-auto overscroll-contain" (scroll)="onScroll()">
+        <div #body data-testid="person-dialog-body" class="relative min-h-0 flex-1 overflow-y-auto overscroll-contain" (scroll)="onScroll()" (wheel)="unlockSpy()" (touchmove)="unlockSpy()" (keydown)="unlockSpy()" (pointerdown)="onBodyPointer($event)">
           @switch (state().status) {
             @case ('loading') { <p class="px-4 py-4 wl-text2 text-wl-on-surface-variant md:px-8" role="status">{{ t().loading }}</p> }
             @case ('error') { <p class="px-4 py-4 wl-text2 text-wl-error md:px-8" role="alert">{{ t().error }}</p> }
@@ -233,7 +237,7 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
                         <div data-testid="person-position-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ x.period }}</div>
                         <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
                           <span data-testid="person-position-title" class="font-semibold text-wl-on-surface">{{ x.title }}</span>
-                          <span data-testid="person-position-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kind }}</span>
+                          <span data-testid="person-position-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kindText }}</span>
                           <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('position:' + x.id) }" />
                         </div>
                         @if (x.organization) { <div data-testid="person-position-org" class="text-[13px] text-wl-on-surface-variant">{{ x.organization }}</div> }
@@ -256,7 +260,7 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
                         <div data-testid="person-role-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ x.period }}</div>
                         <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
                           <span data-testid="person-role-title" class="font-semibold text-wl-on-surface">{{ x.title }}</span>
-                          <span data-testid="person-role-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kind }}</span>
+                          <span data-testid="person-role-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kindText }}</span>
                           @if (x.acting) { <span data-testid="person-role-acting" class="rounded-sm border border-wl-primary px-1 text-[11px] text-wl-primary">{{ t().acting }}</span> }
                           <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('role:' + x.id) }" />
                         </div>
@@ -435,21 +439,22 @@ export class PersonDialog {
       }))
       .filter((g) => g.paras.length > 0);
   });
-  /** 區間顯示：依精度寫年／月／日；迄日不含當天（與任期一致）；沒有迄日＝迄今不明；沒有起日寫「…」。 */
+  /** 區間顯示：依精度寫年／月／日；迄日僅日精度才不含當天；沒有迄日＝迄今不明；沒有起日寫「…」。 */
   private periodText(p: { start: string | null; end: string | null }, sp: string | null | undefined, ep: string | null | undefined): string {
     const prec = (x: string | null | undefined) => (x === 'year' || x === 'month' || x === 'day' ? x : null);
     const a = formatPartialDate(p.start, prec(sp)) || '…';
-    const b = formatPartialDate(inclusiveEnd(p.end), prec(ep)) || this.t().ongoing;
+    // 只有日精度才是半開區間（扣一天）；年／月精度與缺省照原樣顯示
+    const b = formatPartialDate(ep === 'day' ? inclusiveEnd(p.end) : p.end, prec(ep)) || this.t().ongoing;
     return `${a} – ${b}`;
   }
   private readonly sortedPositions = computed((): BioPosition[] => [...(this.bio()?.positions ?? [])].sort((a, b) => (a.period.start ?? '').localeCompare(b.period.start ?? '')));
   protected readonly positionRows = computed(() => this.sortedPositions().map((x) => ({
-    id: x.id, kind: x.positionKind, title: pickLocalized(x.title, this.lang()) || x.seedKey,
+    id: x.id, kind: x.positionKind, kindText: this.t().positionKind[x.positionKind] ?? x.positionKind, title: pickLocalized(x.title, this.lang()) || x.seedKey,
     organization: pickLocalized(x.organization, this.lang()), note: x.note ?? '', period: this.periodText(x.period, x.startPrecision, x.endPrecision),
   })));
   private readonly sortedRoles = computed((): BioRole[] => [...(this.bio()?.roles ?? [])].sort((a, b) => (a.period.start ?? '').localeCompare(b.period.start ?? '')));
   protected readonly roleRows = computed(() => this.sortedRoles().map((x) => ({
-    id: x.id, kind: x.roleKind, title: pickLocalized(x.title, this.lang()) || x.seedKey, acting: x.acting,
+    id: x.id, kind: x.roleKind, kindText: this.t().roleKind[x.roleKind] ?? x.roleKind, title: pickLocalized(x.title, this.lang()) || x.seedKey, acting: x.acting,
     organization: pickLocalized(x.organization, this.lang()), note: x.note ?? '', period: this.periodText(x.period, x.startPrecision, x.endPrecision),
   })));
   protected readonly terms = computed(() => {
@@ -527,7 +532,7 @@ export class PersonDialog {
   /** 分頁籤：捲到區塊（只捲對話框內容區，不用 scrollIntoView 以免動到底層）。 */
   protected goTo(k: SectionKey): void {
     this.activeSection.set(k);
-    this.spyPausedUntil = performance.now() + 500;
+    this.spyLocked = true; // 程式捲動期間不讓 scroll-spy 覆寫；使用者手動操作才解鎖
     if (k === 'sources') this.sourcesOpen.set(true);
     afterNextRender(() => this.scrollToEl(document.getElementById(this.sectionId(k))), { injector: this.injector });
   }
@@ -548,10 +553,16 @@ export class PersonDialog {
     box.scrollTo({ top: box.scrollTop + delta, behavior: 'auto' });
   }
   /** 捲動時更新目前區塊（最後一個頂端已過分頁籤的區塊）。 */
-  private spyPausedUntil = 0;
+  private spyLocked = false;
+  /** 使用者自己捲動（滾輪、觸控、鍵盤、拖捲軸）：解除鎖定，高亮重新跟隨捲動位置。 */
+  protected unlockSpy(): void { this.spyLocked = false; }
+  /** 點分頁籤本身不解鎖；其餘區域（含捲軸拖曳）解鎖。 */
+  protected onBodyPointer(e: Event): void {
+    if (!(e.target as HTMLElement).closest?.('[data-testid="person-dialog-tabs"]')) this.spyLocked = false;
+  }
   protected onScroll(): void {
     // 分頁籤點擊造成的捲動：保留使用者點的分頁（區塊太短時捲不到頂，不要被改成下一個）
-    if (performance.now() < this.spyPausedUntil) return;
+    if (this.spyLocked) return;
     const box = this.body()?.nativeElement;
     if (!box) return;
     const nav = box.querySelector<HTMLElement>('[data-testid="person-dialog-tabs"]');

@@ -32,6 +32,12 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<LeaderBioFieldCitation> LeaderBioFieldCitations => Set<LeaderBioFieldCitation>();
     public DbSet<LeaderRecordCitation> LeaderRecordCitations => Set<LeaderRecordCitation>();
     public DbSet<LeaderBioGap> LeaderBioGaps => Set<LeaderBioGap>();
+    public DbSet<LeaderBioParagraph> LeaderBioParagraphs => Set<LeaderBioParagraph>();
+    public DbSet<LeaderBioParagraphCitation> LeaderBioParagraphCitations => Set<LeaderBioParagraphCitation>();
+    public DbSet<PersonPosition> PersonPositions => Set<PersonPosition>();
+    public DbSet<PersonPositionCitation> PersonPositionCitations => Set<PersonPositionCitation>();
+    public DbSet<PersonRole> PersonRoles => Set<PersonRole>();
+    public DbSet<PersonRoleCitation> PersonRoleCitations => Set<PersonRoleCitation>();
     // 戰役 C1（ARCHITECTURE §19.1）；設定在 BattleModel.cs。
     public DbSet<BattleProfile> BattleProfiles => Set<BattleProfile>();
     public DbSet<BattlePhase> BattlePhases => Set<BattlePhase>();
@@ -534,5 +540,6 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             Timestamps(e, updated: false);
         });
         BattleModel.Configure(b);
+        BioDetailModel.Configure(b);
     }
 }

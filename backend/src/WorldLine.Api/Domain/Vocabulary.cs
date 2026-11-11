@@ -5,8 +5,12 @@ public static class SourceKinds
 {
     public const string Map = "map";
     public const string AtlasMap = "atlas_map";
+    /// <summary>具名百科條目（B3，2026-11-11）。</summary>
+    public const string Encyclopedia = "encyclopedia";
+    /// <summary>官方機構／政府網頁（B3，2026-11-11）。</summary>
+    public const string OfficialWebsite = "official_website";
     public static readonly string[] All =
-        [Map, AtlasMap, "treaty", "official_record", "trial_record", "peer_reviewed", "official_history", "dataset"];
+        [Map, AtlasMap, "treaty", "official_record", "trial_record", "peer_reviewed", "official_history", "dataset", Encyclopedia, OfficialWebsite];
     /// <summary>R7：控制紀錄的 primary citation 只能用地圖類來源。</summary>
     public static readonly string[] MapKinds = [Map, AtlasMap];
 }
@@ -149,3 +153,21 @@ public static class LeaderBioGapKinds
     public const string TargetPattern = "^(field|position|paragraph):[^[:space:]].*$|^identity$";
 }
 
+
+/// <summary>經歷種類（person_positions.position_kind；B3 本批已出現值）。元首／首腦／實質領導走 <see cref="PersonRoleKinds"/>。</summary>
+public static class PersonPositionKinds
+{
+    public static readonly string[] All =
+        ["minister", "legislator", "diplomat", "military_command", "military_education", "judicial", "police", "other"];
+    /// <summary>寫入層拒絕：應走角色層。</summary>
+    public static readonly string[] RoleLayerKinds = ["head_of_state", "head_of_government", "de_facto_leader"];
+}
+
+/// <summary>
+/// 角色種類（person_roles.role_kind）。草案 P1 為前三種；本批 82 筆含 1 筆 cabinet_minister，
+/// Tai 要求 82 筆一起寫入，故 CHECK 加上 cabinet_minister（2026-11-11，對草案的必要擴充）。
+/// </summary>
+public static class PersonRoleKinds
+{
+    public static readonly string[] All = ["head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister"];
+}

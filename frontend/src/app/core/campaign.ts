@@ -39,38 +39,61 @@ export interface CampaignIndexEntry { key: string; name_zh: string; start: strin
 export type CampaignStatus = 'idle' | 'loading' | 'ready' | 'playing' | 'paused' | 'ended' | 'error';
 export const PHASE_MS = 3000;
 
-/** 純狀態機：不自動播放；play 每 PHASE_MS 前進一階段，到最後一階段停在 ended。 */
+/**
+ * 播放時鐘：每 stepMs 呼叫一次 onTick。預設用 setInterval；戰役頁改用 GSAP timeline（MotionService.phaseClock，§19.2.4）。
+ * pause／resume 保留本階段已走的時間（GSAP 版），stop 歸零。
+ */
+export interface PhaseClock { start(): void; pause(): void; resume(): void; stop(): void }
+export type PhaseClockFactory = (stepMs: number, onTick: () => void) => PhaseClock;
+export const intervalClock: PhaseClockFactory = (stepMs, onTick) => {
+  let timer: ReturnType<typeof setInterval> | null = null;
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+  const start = () => { stop(); timer = setInterval(onTick, stepMs); };
+  return { start, pause: stop, resume: start, stop };
+};
+
+/**
+ * 純狀態機：不自動播放；play 每 PHASE_MS 前進一階段，到最後一階段停在 ended。
+ * 狀態（status／phase）以這裡為準；時鐘（setInterval 或 GSAP timeline）只負責「時間到了 → step」。
+ */
 export class CampaignPlayer {
   status: CampaignStatus = 'ready';
   phase = 1;
-  private timer: ReturnType<typeof setInterval> | null = null;
-  constructor(readonly count: number, private readonly onChange: () => void, readonly stepMs = PHASE_MS) {}
+  private readonly clock: PhaseClock;
+  /** 暫停後沒有跳轉 → 再播放時接續本階段剩餘時間。 */
+  private resumable = false;
+  constructor(readonly count: number, private readonly onChange: () => void, readonly stepMs = PHASE_MS, clock: PhaseClockFactory = intervalClock) {
+    this.clock = clock(stepMs, () => this.step());
+  }
   go(n: number): void {
+    this.resumable = false;
     this.phase = Math.max(1, Math.min(this.count, n));
     if (this.status !== 'playing') this.status = this.phase === this.count && this.count > 1 ? 'ended' : this.phase === 1 && this.status === 'ready' ? 'ready' : 'paused';
     this.onChange();
   }
-  next(): void { this.pauseTimer(); if (this.status === 'playing') this.status = 'paused'; this.step(); }
-  prev(): void { this.pauseTimer(); if (this.status === 'playing' || this.status === 'ended') this.status = 'paused'; this.go(this.phase - 1); }
+  next(): void { this.stopClock(); if (this.status === 'playing') this.status = 'paused'; this.step(); }
+  prev(): void { this.stopClock(); if (this.status === 'playing' || this.status === 'ended') this.status = 'paused'; this.go(this.phase - 1); }
   play(): void {
     if (this.count <= 1) return;
+    const resume = this.resumable && this.status === 'paused' && this.phase < this.count;
     if (this.phase >= this.count) this.phase = 1;
     this.status = 'playing';
-    this.pauseTimer();
-    this.timer = setInterval(() => this.step(), this.stepMs);
+    if (resume) this.clock.resume(); else { this.clock.stop(); this.clock.start(); }
+    this.resumable = false;
     this.onChange();
   }
-  pause(): void { if (this.status !== 'playing') return; this.pauseTimer(); this.status = 'paused'; this.onChange(); }
+  pause(): void { if (this.status !== 'playing') return; this.clock.pause(); this.resumable = true; this.status = 'paused'; this.onChange(); }
   toggle(): void { this.status === 'playing' ? this.pause() : this.play(); }
-  dispose(): void { this.pauseTimer(); }
+  dispose(): void { this.stopClock(); }
   private step(): void {
-    if (this.phase >= this.count) { this.pauseTimer(); this.status = 'ended'; this.onChange(); return; }
+    this.resumable = false;
+    if (this.phase >= this.count) { this.stopClock(); this.status = 'ended'; this.onChange(); return; }
     this.phase++;
-    if (this.phase >= this.count) { this.pauseTimer(); this.status = 'ended'; }
+    if (this.phase >= this.count) { this.stopClock(); this.status = 'ended'; }
     else if (this.status === 'ready') this.status = 'paused';
     this.onChange();
   }
-  private pauseTimer(): void { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+  private stopClock(): void { this.resumable = false; this.clock.stop(); }
 }
 
 /** 依日期精度顯示：early-month →「YYYY 年 M 月上旬」，mid-month 中旬，late-month 下旬，month 只到月；其他照原樣。 */

@@ -7,6 +7,7 @@ import { CAMPAIGNS_ENABLED, CampaignPlayer, fetchCampaign, type Campaign, type C
 import { CampaignReturn, atlasQueryFor, snapshotFromHistory, type ReturnSnapshot } from '../../core/campaign-return';
 import { WorldLineApi } from '../../core/api/world-line-api';
 import { MotionService } from '../../core/motion';
+import { interpolate, planMorph, sourcedBorders, type BorderFC, type MorphPlan } from '../../core/border-morph';
 import { CampaignCard } from '../../shared/campaign-card/campaign-card';
 import { MAPLIBRE_WORKER_URL, buildBaseStyle } from '../../shared/map/atlas-map';
 import {
@@ -30,9 +31,15 @@ export function parsePhase(raw: string | null | undefined, count: number): numbe
 
 const SOV_FILL = 'campaign-sov-fill';
 const SOV_LINE = 'campaign-sov-line';
+/** §19.2.4 (i)(iii)：漸變中間形狀專用 source／圖層（虛線、半透明；不掛任何點擊或查詢事件）。 */
+export const SOV_TX_SOURCE = 'campaign-sov-tx';
+export const SOV_TX_LAYERS = ['campaign-sov-tx-fill', 'campaign-sov-tx-line'] as const;
+/** 漸變時長（秒）：每階段 3 秒中的前 1.2 秒。 */
+export const MORPH_SEC = 1.2;
+const EMPTY_FC: BorderFC = { type: 'FeatureCollection', features: [] };
 
 /**
- * §19.2 戰役獨立頁 `/campaign/:slug?phase=`（C2a：不含疆界 morph，留 C2b）。
+ * §19.2 戰役獨立頁 `/campaign/:slug?phase=`（C2a 頁面；C2b：GSAP timeline 播放＋疆界漸變）。
  * - 獨立 MapLibre 實例，fitBounds(theater_area)，三個圖層依 phase 過濾；疆界只顯示該階段起日的主權紀錄。
  * - 左欄說明卡（手機：底部面板 peek／half／full）；階段切換沿用 CampaignPlayer，轉場經 MotionService（GSAP）。
  * - 戰術概念不自動畫上地圖；階段中不顯示人物位置；文案只用中性動詞，不寫因果句。
@@ -65,7 +72,7 @@ const SOV_LINE = 'campaign-sov-line';
       }
       <div class="relative min-h-0 min-w-0 flex-1" [style.height]="mobile() && !landscape() ? '60vh' : null" [style.flex]="mobile() && !landscape() ? '0 0 60vh' : null">
         <!-- MapLibre 會把容器設成 position:relative：外層負責定位，內層給地圖 -->
-        <div class="absolute inset-0"><div #mapEl data-testid="campaign-map" class="h-full w-full" [attr.data-map-ready]="mapReady()" [attr.data-borders]="bordersFor()"></div></div>
+        <div class="absolute inset-0"><div #mapEl data-testid="campaign-map" class="h-full w-full" [attr.data-map-ready]="mapReady()" [attr.data-borders]="bordersFor()" [attr.data-transition]="transition()"></div></div>
         @if (status() === 'error') {
           <div data-testid="campaign-page-error" role="alert" class="absolute inset-x-4 top-4 rounded bg-wl-surface p-4 wl-text1 shadow-[var(--wl-shadow-panel)]">
             找不到這場戰役的資料，或資料載入失敗。地圖不顯示戰役圖層。</div>
@@ -79,7 +86,10 @@ const SOV_LINE = 'campaign-sov-line';
             @if (hasPending() && hasVerified()) {
               <div data-testid="campaign-legend-pending" class="flex items-center gap-2"><svg width="28" height="8" aria-hidden="true"><line x1="0" y1="4" x2="28" y2="4" [attr.stroke]="frontColor" stroke-width="3" stroke-dasharray="5 4" /></svg>待考證</div>
             }
-            <div class="flex items-center gap-2"><svg width="28" height="8" aria-hidden="true"><line x1="0" y1="4" x2="28" y2="4" stroke="#6b7280" stroke-width="1.5" /></svg>政權疆界（階段起日）</div>
+            <div class="flex items-center gap-2"><svg width="28" height="8" aria-hidden="true"><line x1="0" y1="4" x2="28" y2="4" stroke="#6b7280" stroke-width="1.5" /></svg>政權疆界（階段起日，有出處）</div>
+            @if (transition() !== 'none') {
+              <div data-testid="campaign-legend-transitional" class="flex items-center gap-2"><svg width="28" height="8" aria-hidden="true"><line x1="0" y1="4" x2="28" y2="4" stroke="#6b7280" stroke-opacity="0.75" stroke-width="1.5" stroke-dasharray="3 3" /></svg>推估過渡，非史料</div>
+            }
           </div>
         }
       </div>
@@ -114,6 +124,12 @@ export class CampaignPage {
   protected readonly phase = signal(1);
   protected readonly mapReady = signal(false);
   protected readonly bordersFor = signal<string | null>(null);
+  /** §19.2.4：目前是否在畫漸變中間形狀（'none'＝停在階段，只顯示有出處的疆界）。 */
+  protected readonly transition = signal<MorphPlan['mode']>('none');
+  private readonly sovCache = new Map<string, Promise<BorderFC>>();
+  /** 地圖上目前「落定」的疆界（已只剩有出處）與其階段。 */
+  private shown: { phase: number; fc: BorderFC } | null = null;
+  private morph: { finish(): void } | null = null;
   /** 返回目標（記憶體一格，其次 history.state；直接開 URL 時為 null → 「開啟地圖」）。 */
   protected readonly snapshot = signal<ReturnSnapshot | null>(this.returns.slot() ?? snapshotFromHistory());
   protected player: CampaignPlayer | null = null;
@@ -143,7 +159,7 @@ export class CampaignPage {
       window.addEventListener('resize', onResize);
       destroy.onDestroy(() => window.removeEventListener('resize', onResize));
     }
-    destroy.onDestroy(() => { this.player?.dispose(); this.map?.remove(); this.map = null; });
+    destroy.onDestroy(() => { this.player?.dispose(); this.morph?.finish(); this.map?.remove(); this.map = null; });
 
     const slug = this.route.snapshot.paramMap.get('slug') ?? '';
     void this.load(slug, this.route.snapshot.queryParamMap.get('phase'));
@@ -173,7 +189,8 @@ export class CampaignPage {
     try {
       const { campaign, source } = await fetchCampaign(slug);
       this.source.set(source);
-      this.player = new CampaignPlayer(campaign.phases.length, () => this.sync());
+      // §19.2.4：播放計時由 GSAP timeline 驅動（經 MotionService）；狀態仍以 player → signal 為準
+      this.player = new CampaignPlayer(campaign.phases.length, () => this.sync(), undefined, (ms, tick) => this.motion.phaseClock(ms, tick));
       this.player.go(parsePhase(rawPhase, campaign.phases.length));
       this.campaign.set(campaign);
       this.sync();
@@ -185,6 +202,8 @@ export class CampaignPage {
     if (!this.player) return;
     this.status.set(this.player.status);
     this.phase.set(this.player.phase);
+    // (ii) 暫停／停止在任一階段 → 漸變立即收尾，只留該階段有出處的疆界
+    if (this.player.status !== 'playing') this.morph?.finish();
   }
   protected goPhase(n: number): void { this.player?.pause(); this.player?.go(n); }
 
@@ -230,6 +249,9 @@ export class CampaignPage {
       map.addSource('campaign-sov', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: SOV_FILL, type: 'fill', source: 'campaign-sov', paint: { 'fill-color': '#94a3b8', 'fill-opacity': 0.08 } });
       map.addLayer({ id: SOV_LINE, type: 'line', source: 'campaign-sov', paint: { 'line-color': '#6b7280', 'line-width': 1.2 } });
+      map.addSource(SOV_TX_SOURCE, { type: 'geojson', data: EMPTY_FC as FeatureCollection });
+      map.addLayer({ id: SOV_TX_LAYERS[0], type: 'fill', source: SOV_TX_SOURCE, paint: { 'fill-color': '#94a3b8', 'fill-opacity': ['*', 0.1, ['get', 'o']] } });
+      map.addLayer({ id: SOV_TX_LAYERS[1], type: 'line', source: SOV_TX_SOURCE, paint: { 'line-color': '#6b7280', 'line-width': 1.4, 'line-opacity': ['*', 0.75, ['get', 'o']], 'line-dasharray': [2, 2] } });
       for (const id of CAMPAIGN_SOURCES) map.addSource(id, { type: 'geojson', data: data[id] as unknown as FeatureCollection });
       if (!map.hasImage(ARROWHEAD_IMAGE)) map.addImage(ARROWHEAD_IMAGE, arrowheadImage(), { sdf: true });
       const fs = campaignFilters(c, this.phase());
@@ -240,20 +262,51 @@ export class CampaignPage {
     });
   }
 
-  /** 依階段過濾三個圖層，並換上該階段起日的政權疆界（C2a：直接切換；morph 留 C2b）。 */
+  /** 依階段過濾三個圖層，並換上該階段起日的政權疆界（§19.2.4：播放中相鄰階段做 morph，其餘直接切換）。 */
   private applyPhase(c: Campaign, ph: number): void {
     const map = this.map;
     if (!map || !map.getLayer(CAMPAIGN_LAYER_IDS[0])) return;
     const fs = campaignFilters(c, ph);
-    // §19.2.7：這個階段沒有 verified 圖形 → 地圖只顯示疆界（連前面階段累積的據點也收起）
+    // §19.2.7（Tai 2026-11-11 15:27 確認）：這個階段沒有 verified 圖形 → 戰役圖層整個收起，只留疆界
     const show = phaseHasVerified(c, ph) ? 'visible' : 'none';
     for (const id of CAMPAIGN_LAYER_IDS) if (map.getLayer(id)) { map.setFilter(id, fs[id] as FilterSpecification); map.setLayoutProperty(id, 'visibility', show); }
+    this.morph?.finish();
     const date = c.phases.find((p) => p.seq === ph)?.start;
     if (!date) return;
-    void this.api.sovereignty(date).then((dto) => {
+    const nextDate = c.phases.find((p) => p.seq === ph + 1)?.start;
+    if (nextDate) void this.borders(nextDate).catch(() => undefined); // 預取下一階段，漸變不用等網路
+    void this.borders(date).then((fc) => {
       if (this.phase() !== ph || !this.map) return;
-      (map.getSource('campaign-sov') as GeoJSONSource | undefined)?.setData(dto.featureCollection as unknown as FeatureCollection);
-      this.bordersFor.set(date);
+      const next = sourcedBorders(fc);
+      const prev = this.shown;
+      const animate = this.status() === 'playing' && prev?.phase === ph - 1 && !this.motion.reduced() && this.motion.canAnimate();
+      const plan = animate ? planMorph(prev!.fc, next) : null;
+      if (!plan || plan.mode === 'none') { this.settle(next, ph, date); return; }
+      this.setSov('campaign-sov', { type: 'FeatureCollection', features: plan.same });
+      this.setSov(SOV_TX_SOURCE, interpolate(plan, 0));
+      this.transition.set(plan.mode);
+      this.morph = this.motion.progress(MORPH_SEC, (t) => this.setSov(SOV_TX_SOURCE, interpolate(plan, t)), () => this.motion.inside(() => this.settle(next, ph, date)));
     }).catch(() => this.bordersFor.set(null));
+  }
+  /** 落定在階段：清掉中間形狀，只畫該階段有出處的疆界。 */
+  private settle(fc: BorderFC, ph: number, date: string): void {
+    this.morph = null;
+    this.setSov(SOV_TX_SOURCE, EMPTY_FC);
+    this.setSov('campaign-sov', fc);
+    this.shown = { phase: ph, fc };
+    this.transition.set('none');
+    this.bordersFor.set(date);
+  }
+  private setSov(id: string, fc: BorderFC): void {
+    (this.map?.getSource(id) as GeoJSONSource | undefined)?.setData(fc as unknown as FeatureCollection);
+  }
+  private borders(date: string): Promise<BorderFC> {
+    let p = this.sovCache.get(date);
+    if (!p) {
+      p = this.api.sovereignty(date).then((dto) => dto.featureCollection as unknown as BorderFC);
+      p.catch(() => this.sovCache.delete(date));
+      this.sovCache.set(date, p);
+    }
+    return p;
   }
 }

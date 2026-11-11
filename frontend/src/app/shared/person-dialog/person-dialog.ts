@@ -1,13 +1,14 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { NgTemplateOutlet } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
-import { LucideCalendar, LucideChevronDown, LucideIdCard, LucideLandmark, LucideLibrary, LucideScrollText, LucideUserRound, LucideX } from '@lucide/angular';
+import { LucideChevronDown, LucideLandmark, LucideLibrary, LucideScrollText, LucideUserRound, LucideX } from '@lucide/angular';
 import type { LeaderBio } from '../../core/api/world-line-api';
 import type { Lang } from '../../core/i18n';
 import { formatPartialDate, formatTerm, inclusiveEnd, pickLocalized, portraitDisplayable } from '../../core/person-format';
 import { fieldSourceItems, portraitSourceItems, termSourceItems } from '../../core/person-sources';
 import { MOTION_SPEC, MotionService, type MotionContext, type MotionTimeline } from '../../core/motion';
 import { SourceDisclosure, type SourceItem } from '../source-disclosure/source-disclosure';
+import { lifeText } from './life-format';
 
 /** 根元素 data-motion-state（§17.3）；關閉卸載後元素不存在。 */
 export type PersonDialogMotionState = 'opening' | 'open' | 'closing';
@@ -24,6 +25,7 @@ const TXT = {
     photo: '照片', noPhoto: '無授權照片', test: '測試資料', name: '姓名', dossier: '人物詳情', sections: '詳情區塊',
     termNote: '任期迄日不含當天，畫面顯示最後在任日。', dialog: '人物詳情', portraitOf: '的肖像',
     sources: '資料來源', pending: '待補來源', usedFor: '用於', missing: '以下欄位待補來源', sourceRef: '來源',
+    mainRole: '主要職位', regime: '所屬政權', bornAt: '生於 ', diedAt: '卒於 ', placeSep: '·', lifeGap: '\u3000',
     role: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
   },
   en: {
@@ -32,6 +34,7 @@ const TXT = {
     photo: 'Photo', noPhoto: 'No licensed photo', test: 'Test data', name: 'Name', dossier: 'Person details', sections: 'Sections',
     termNote: 'Term end dates are exclusive; the last day in office is shown.', dialog: 'Person details', portraitOf: ' — portrait',
     sources: 'Sources', pending: 'Source needed', usedFor: 'Used for', missing: 'Fields without a source', sourceRef: 'Source',
+    mainRole: 'Main office', regime: 'Regime', bornAt: 'Born ', diedAt: 'Died ', placeSep: ', ', lifeGap: '\u2003',
     role: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
   },
 } as const;
@@ -47,7 +50,8 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
 /**
  * 人物詳情對話框（ARCHITECTURE §14.8；版面參考 Stitch 人物檔案稿，配色沿用羊皮紙 --wl-* 變數）。
  * 桌機置中大視窗、手機全螢幕；role="dialog" aria-modal="true"、焦點鎖定、Esc 由頁面統一關閉。
- * 區塊：標頭（照片 3:4、中文名、原文名、角色、生卒）→ 區塊分頁籤（吸頂）→ 基本資料格 → 生平 → 職位與任期時間軸 → 資料來源（底部統一收合）。
+ * 區塊：版頭（照片 3:4、中文名、原文名、角色、傳記式生卒；桌機右側第三欄＝摘要：出生地／黨派／主要職位與任期／所屬政權，手機排在下方）
+ * → 區塊分頁籤（吸頂；「基本資料」捲回版頭）→ 生平 → 職位與任期時間軸 → 資料來源（底部統一收合）。
  * 欄位值旁只放上標來源編號；完整出處集中在底部「資料來源 (N)」。沒有來源的欄位明示「待補來源」；舊格式出處只當備註，不標已查證。
  * 戰役／事件：目前沒有人物↔事件資料（§14.0 戰役先不做），不顯示該區塊，也不放假資料。
  * 開關動效（ARCHITECTURE §17 P1）：`open` 輸入由頁面依 `?person=` 給；關閉時先 `closing`（inert、不可點）播完才送 `hidden` 讓頁面卸載。
@@ -56,7 +60,7 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
 @Component({
   selector: 'wl-person-dialog',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CdkTrapFocus, NgTemplateOutlet, LucideX, LucideUserRound, LucideCalendar, LucideIdCard, LucideScrollText, LucideLandmark, LucideLibrary, LucideChevronDown, SourceDisclosure],
+  imports: [CdkTrapFocus, NgTemplateOutlet, LucideX, LucideUserRound, LucideScrollText, LucideLandmark, LucideLibrary, LucideChevronDown, SourceDisclosure],
   template: `
     <div class="fixed inset-0 z-[70]" data-testid="person-dialog-root" [attr.data-motion-state]="motionState()"
       [attr.inert]="motionState() === 'closing' ? '' : null" [class.pointer-events-none]="motionState() === 'closing'">
@@ -80,7 +84,9 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
           }
           @if (bio(); as b) {
             <!-- 標頭：照片 3:4（無授權＝中性佔位）＋姓名、原文名、角色、生卒 -->
-            <div data-testid="person-dialog-hero" class="flex gap-4 border-b border-wl-outline-variant px-4 py-4 md:gap-6 md:px-8 md:py-6">
+            <!-- 手機：照片｜姓名欄，摘要排在下方整寬；桌機（md）：照片｜姓名＋生卒｜摘要第三欄 -->
+            <div data-testid="person-dialog-hero" [id]="sectionId('basics')" data-section="basics"
+              class="grid grid-cols-[6rem_minmax(0,1fr)] items-start gap-x-4 gap-y-4 border-b border-wl-outline-variant px-4 py-4 md:grid-cols-[10rem_minmax(0,1fr)_minmax(0,17rem)] md:gap-x-6 md:px-8 md:py-6">
               <figure class="w-24 flex-none md:w-40" data-testid="person-dialog-figure">
                 <div class="aspect-[3/4] w-full overflow-hidden rounded-sm border border-wl-outline-variant bg-wl-surface-container-high">
                   @if (portrait() && !imgFailed()) {
@@ -113,11 +119,39 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
                     }
                   </ul>
                 }
-                @if (lifeText()) {
-                  <p data-testid="person-dialog-life" class="mt-3 inline-flex items-center gap-2 rounded-sm border border-wl-outline-variant bg-wl-surface-container-lowest px-2.5 py-1.5 font-mono text-[13px] tabular-nums text-wl-on-surface md:text-[14px]">
-                    <svg lucideCalendar class="size-4 flex-none text-wl-primary" aria-hidden="true"></svg>{{ lifeText() }}</p>
+                @if (life(); as l) {
+                  <!-- 生卒：傳記式（大字年份＋小字生於／卒於＋享年）；值旁上標對應各自欄位 -->
+                  <div data-testid="person-dialog-life" class="mt-3">
+                    <p data-testid="person-dialog-life-years" class="font-wl-serif text-[22px] leading-tight tabular-nums text-wl-on-surface md:text-[26px]">{{ l.years }}</p>
+                    <p data-testid="person-dialog-life-detail" class="mt-1 text-[13px] leading-relaxed text-wl-on-surface-variant md:text-[14px]">
+                      @if (l.born) {
+                        <span class="block"><span data-testid="person-field-birthDate">{{ t().bornAt }}{{ l.born }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthDate') }" /></span>@if (l.place) {<span data-testid="person-life-birthPlace" class="inline-block">{{ t().placeSep }}{{ l.place }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthPlace') }" /></span>}</span>
+                      }
+                      @if (l.born && l.died) {<span class="sr-only">{{ t().lifeGap }}</span>}
+                      @if (l.died) {
+                        <span data-testid="person-field-deathDate" class="block">{{ t().diedAt }}{{ l.died }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('deathDate') }" /></span>
+                      }
+                    </p>
+                    @if (l.age) { <p data-testid="person-dialog-life-age" class="mt-0.5 text-[13px] text-wl-on-surface md:text-[14px]">{{ l.age }}</p> }
+                  </div>
                 }
               </div>
+
+              <!-- 版頭摘要（原「基本資料」）：出生地、黨派、主要職位、任期、所屬政權；值旁只放上標來源編號 -->
+              <dl data-testid="person-dialog-basics" [attr.aria-label]="t().basics"
+                class="col-span-2 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-6 self-start md:gap-y-2.5 border-t border-wl-outline-variant pt-3 text-[14px] md:col-span-1 md:border-l md:border-t-0 md:pl-5 md:pt-1">
+                @for (row of summaryRows(); track row.key) {
+                  <div [attr.data-testid]="'person-field-' + row.key" class="col-span-2 grid grid-cols-subgrid items-baseline">
+                    <dt class="whitespace-nowrap text-[12px] text-wl-on-surface-variant">{{ row.label }}</dt>
+                    <dd class="min-w-0 break-words leading-snug text-wl-on-surface">
+                      @if (row.value) { <span>{{ row.value }}</span> }
+                      @else { <span data-testid="person-field-empty" class="text-wl-on-surface-variant">{{ row.empty }}</span> }
+                      <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor(row.noteKey) }" />
+                      @if (row.sub) { <span class="block font-mono text-[12px] tabular-nums text-wl-on-surface-variant">{{ row.sub }}</span> }
+                    </dd>
+                  </div>
+                }
+              </dl>
             </div>
 
             <!-- 區塊分頁籤：捲動時吸頂；點了捲到該區塊 -->
@@ -135,24 +169,6 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
             </nav>
 
             <div class="space-y-8 px-4 py-6 md:px-8">
-              <!-- 基本資料格：值旁只放上標來源編號 -->
-              <section [id]="sectionId('basics')" data-section="basics" data-testid="person-dialog-section-basics" [attr.aria-labelledby]="sectionId('basics') + '-h'">
-                <h3 [id]="sectionId('basics') + '-h'" class="mb-3 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
-                  <svg lucideIdCard class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().basics }}</h3>
-                <dl data-testid="person-dialog-basics" class="grid grid-cols-2 border-l border-t border-wl-outline-variant md:grid-cols-4">
-                  @for (row of rows(); track row.key) {
-                    <div [attr.data-testid]="'person-field-' + row.key" class="min-w-0 border-b border-r border-wl-outline-variant px-3 py-3">
-                      <dt class="text-[12px] text-wl-on-surface-variant">{{ row.label }}</dt>
-                      <dd class="mt-1 break-words text-[15px] leading-snug text-wl-on-surface md:text-[16px]">
-                        @if (row.value) { <span>{{ row.value }}</span> }
-                        @else { <span data-testid="person-field-empty" class="text-wl-on-surface-variant">{{ row.empty }}</span> }
-                        <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor(row.key) }" />
-                      </dd>
-                    </div>
-                  }
-                </dl>
-              </section>
-
               <!-- 生平：舒適閱讀寬度與行高 -->
               <section [id]="sectionId('bio')" data-section="bio" data-testid="person-dialog-section-bio" [attr.aria-labelledby]="sectionId('bio') + '-h'">
                 <h3 [id]="sectionId('bio') + '-h'" class="mb-3 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
@@ -298,12 +314,12 @@ export class PersonDialog {
     const years = `${(x.validPeriod.start ?? '').slice(0, 4)}–${end ? end.slice(0, 4) : ''}`;
     return { key: x.recordId, text: `${this.t().role[x.role] ?? x.role} ${years}` };
   }));
-  protected readonly lifeText = computed(() => {
+  /** 傳記式生卒（life-format.ts）；生卒都沒有＝null（不顯示區塊）。出生地只在有出生日時接在後面。 */
+  protected readonly life = computed(() => {
     const b = this.bio();
-    if (!b) return '';
-    const born = formatPartialDate(b.birthDate, b.birthDatePrecision);
-    const died = formatPartialDate(b.deathDate, b.deathDatePrecision);
-    return born || died ? `${born || '?'} – ${died || '?'}` : '';
+    if (!b) return null;
+    const l = lifeText(b.birthDate, b.birthDatePrecision, b.deathDate, b.deathDatePrecision, this.lang());
+    return l.years ? { ...l, place: l.born ? pickLocalized(b.birthPlace, this.lang()) : '' } : null;
   });
 
   protected readonly rows = computed(() => {
@@ -318,6 +334,26 @@ export class PersonDialog {
       { key: 'birthPlace', label: t.birthPlace, value: pickLocalized(b.birthPlace, lang), empty: t.noValue },
       { key: 'party', label: t.party, value: pickLocalized(b.party, lang), empty: partyStatus === '不適用' ? t.notApplicable : t.noValue },
     ];
+  });
+  /** 版頭摘要列：出生地、黨派（沒有值寫「尚無資料／不適用」）；主要職位、任期、所屬政權（沒有任期就省略）。 */
+  protected readonly summaryRows = computed(() => {
+    const t = this.t();
+    const byKey = new Map(this.rows().map((r) => [r.key, r]));
+    const out: { key: string; label: string; value: string; empty: string; sub: string; noteKey: string }[] = ['birthPlace', 'party'].map((k) => {
+      const r = byKey.get(k)!;
+      return { key: k, label: r.label, value: r.value, empty: r.empty, sub: '', noteKey: k };
+    });
+    const terms = this.terms();
+    // 主要職位：角色最高（國家元首在前，與角色標籤一致），同角色取任期最長（沒有迄日視為最長）
+    const span = (x: { start: string | null; end: string | null }) => (x.end ? Date.parse(x.end) : Infinity) - Date.parse(x.start ?? '');
+    const byId = new Map(this.sortedTerms().map((x) => [x.recordId, x.validPeriod]));
+    const main = [...terms].sort((a, b) => roleRank(a.role) - roleRank(b.role) || span(byId.get(b.recordId)!) - span(byId.get(a.recordId)!))[0];
+    if (main) {
+      out.push({ key: 'mainRole', label: t.mainRole, value: main.title ? `${main.roleText}·${main.title}` : main.roleText, empty: t.noValue, sub: main.period, noteKey: `term:${main.recordId}` });
+      const regimes = [...new Set(terms.map((x) => x.regime).filter(Boolean))];
+      out.push({ key: 'regime', label: t.regime, value: regimes.join('、'), empty: t.noValue, sub: '', noteKey: '' });
+    }
+    return out;
   });
   protected readonly paragraphs = computed(() => {
     const b = this.bio();

@@ -22,8 +22,8 @@ const D44 = '1944-09-17';
 const dialogOpened = (page: Page) => expect(page.getByTestId('person-dialog-root')).toHaveAttribute('data-motion-state', 'open');
 const POZNAN: [number, number] = [16.93, 52.41];
 const BERLIN: [number, number] = [13.4, 52.5];
-const BERN: [number, number] = [7.45, 46.95];
 const KANSAS: [number, number] = [-98, 39];
+const ICELAND: [number, number] = [-18.5, 64.9];
 type WlMap = { jumpTo: (o: object) => void; project: (l: [number, number]) => { x: number; y: number }; getCenter: () => { lng: number; lat: number }; getZoom: () => number };
 
 async function openMap(page: Page, center: [number, number], extra = '', date = DATE): Promise<void> {
@@ -168,7 +168,7 @@ test('人物分頁（1944-09-17 德國）：分頁數量＝不重複人數、希
   // 版面：標頭、角色、生卒、分頁籤、各區塊
   await expect(dlg.getByTestId('person-dialog-hero')).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-role')).toHaveCount(2);
-  await expect(dlg.getByTestId('person-dialog-life')).toContainText('1889-04-20');
+  await expect(dlg.getByTestId('person-dialog-life')).toContainText('1889年4月20日');
   for (const k of ['basics', 'bio', 'terms', 'sources']) await expect(dlg.getByTestId(`person-dialog-tab-${k}`)).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-basics')).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-section-bio')).toBeAttached();
@@ -277,9 +277,11 @@ test('不存在的人物：toast 並移除 person 參數', async ({ page }) => {
   await expect(page.getByText('找不到這位人物的資料').first()).toBeVisible();
 });
 
-test('沒有生平／照片／來源的人物：中性佔位、無「查看詳情」、待補來源（瑞士 1940）', async ({ page }) => {
-  await openMap(page, [8, 47]);
-  await selectRegimeAt(page, BERN);
+// 原本用瑞士 1940（皮萊－戈拉茲），他已補上生平；改用 1940-06-01 冰島王國（kingdom-of-iceland），
+// 開發 API 該日唯一一筆記錄沒有 personId、bio 為 null（2026-11-11 以 GET /api/v1/leaders?date=1940-06-01 查得）。
+test('沒有生平／照片／來源的人物：中性佔位、無「查看詳情」、待補來源（冰島 1940-06-01）', async ({ page }) => {
+  await openMap(page, ICELAND);
+  await selectRegimeAt(page, ICELAND);
   const cards = page.getByTestId('person-card');
   await expect(cards.first()).toBeVisible();
   const noBio = cards.filter({ hasNot: page.getByTestId('person-card-details') });
@@ -312,7 +314,7 @@ test('有結構化來源與授權照片的人物（美國 1940：羅斯福）：
   const dlg = page.getByTestId('person-dialog');
   await expect(dlg.getByTestId('person-dialog-photo')).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-photo-credit')).toContainText('CC BY');
-  await expect(dlg.getByTestId('person-field-birthDate')).toContainText('1882-01-30');
+  await expect(dlg.getByTestId('person-field-birthDate')).toContainText('1882年1月30日');
   // 出生欄位：上標編號（結構化＋舊格式備註＝2 筆）；點了展開底部來源，該筆是結構化來源並帶連結
   const sups = dlg.getByTestId('person-field-birthDate').getByTestId('person-field-sup');
   await expect(sups).toHaveCount(2);

@@ -1,0 +1,58 @@
+{
+  "batch": "02", "reviewedOn": "2026-11-11", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "run100-v1",
+  "counts": {"returned": 1, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 1, "deletedCitations": 0, "addedCitations": 0, "editedSentences": 5, "spotRefetched": 6, "searchLogShort": 1},
+  "people": [
+    {"key": "uy-baldomir", "bioId": "cd3b0efa-122e-48dc-a9c4-33f7cf0b6243", "verdict": "returned", "paragraphs": 2, "positions": 1, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 3,
+     "changes": [
+       "段1：刪「烏拉圭（Uruguayan）」修飾語（引文只寫 President Gabriel Terra）",
+       "段1：「科羅拉多黨提出兩名候選人」改「該黨提出兩名候選人」（引文 Terra had the party offer two candidates 未寫 Colorado）",
+       "position baldomir-montevideo-police-chief：positionKind other→police（originalPositionKind=other），加 t14Rule=R5＋t14Reason（T14 邊界個案）",
+       "重抓 encyclopedia.com 條目比對，引文一致"
+     ],
+     "returnedReasons": [
+       "最低嘗試未達（薄人物）：searchLog 僅 3 筆、2 種來源類型（other、named_encyclopedia），缺 authority、official／national_dictionary、treaty_law／academic；查詢 <8 次、原文語言（西班牙文）查詢不足 2 次；實抓頁 <3",
+       "建議下一步：①權威檔 id.loc.gov／viaf.org 查 Baldomir, Alfredo（確認生年 1884 或 1894）②Presidencia de la República Oriental del Uruguay 歷任總統頁 ③Parlamento del Uruguay／Biblioteca Nacional de Uruguay 人名資料 ④Frega, Maronna, Trochon《Baldomir y la restauración democrática》（Banda Oriental 1987）出版社書目頁 ⑤國防部長任期（1935 前後）可查 Diario Oficial／IMPO 官方法規彙編",
+       "內容本身經核對無誤，可保留現有 2 段供下一輪擴充"
+     ]},
+    {"key": "co-restrepo-carlos-eugenio", "bioId": "96975f80-bde0-4738-bcaa-76c01a7c21dd", "verdict": "pass", "paragraphs": 3, "positions": 3, "roleCandidates": 1, "gaps": 3, "searchLogSteps": 3,
+     "changes": [
+       "逐條核對 18 筆引文皆逐字見於原文且支撐對應子句；1909 保守黨籍議員已正確入 roleCandidates（R1、originalPositionKind=legislator）；內政部長 1930 R6（dates、regime）判斷正確",
+       "重抓 encyclopedia.com 條目比對，引文一致"
+     ],
+     "returnedReasons": []},
+    {"key": "br-noronha-isaias", "bioId": "c414bfc4-ad7e-4565-b494-541ad432dfa5", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 4, "roleCandidates": 1, "gaps": 3, "searchLogSteps": 5,
+     "changes": [
+       "段3：「1930年革命中，高階軍官於10月24日罷黜總統」改「1930年10月24日總統遭罷黜」（引文未含 alta oficialidade 與 Revolução de 1930；中英同改）",
+       "gap position:noronha-junta-1930：gapKind identity_uncertain→not_found（缺漏與人物身分無關）",
+       "T14 核對：海軍部長 R5（單獨海軍部）、艦隊總司令 R6（rank、regime）、海軍學校校長 military_education R5 皆正確；執政團 R0 head_of_state 候選保留，是否與 5442 既有任期重複待名單確認",
+       "重抓 CPDOC DHBB 條目比對，引文一致"
+     ],
+     "returnedReasons": []},
+    {"key": "se-per-albin-hansson", "bioId": "01a1b4b0-6fe9-72db-be2c-915cf61baa62", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 6, "roleCandidates": 2, "gaps": 5, "searchLogSteps": 5,
+     "changes": [
+       "段3：刪「二戰期間」（引文 udadtil sikredes … neutralitet 未含戰爭時段）；英文改為與引文相符的 formal, later somewhat contested neutrality",
+       "刪 gap field:ssu_join：研究者自承「創辦 vs 加入」為不同事，非兩來源矛盾，不構成 conflict，也非缺漏",
+       "T14 核對：三段國防大臣皆 R6（1920 dates＋source；1921–23、1924–26 分段年份僅 Lex 一筆 B → source）正確；黨中央委員、黨主席 R1 正確；青年聯盟主席、黨報主編 partyPostAmbiguous 理由充分；Riksdag 議員引文未寫以黨籍當選，留 positions 正確",
+       "重抓 lex.dk、snl.no 比對，引文一致"
+     ],
+     "returnedReasons": []},
+    {"key": "pt-manuel-de-arriaga", "bioId": "01a1b4c2-3ef9-77af-a514-39d9a8d2afdd", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 4, "roleCandidates": 0, "gaps": 5, "searchLogSteps": 7,
+     "changes": [
+       "來源 azores-arriaga 等級 A→B（亞速爾自治區文化機關導覽小冊、具名作者，非國家級傳記辭典／國家級官方頁）；所有 citation grade 與 searchLog found_A 同步改 B",
+       "段1：引文「Eleito deputado pela Madeira」本身不含日期，datePrecision year→null（Q8）",
+       "段2：制憲議員引文補 evidenceNote（年份取自編年表 1911 欄）",
+       "段3：刪「將軍／General」（引文 presidido por Pimenta de Castro 未含軍銜；中英同改）",
+       "共和黨指導委員會主席（1897-09 起、迄日不明）由 roleCandidates 移回 positions：positionKind=other、originalPositionKind=party、t14Ambiguous＋理由（無法證明與 1908–1945 交集，不硬判）",
+       "重抓亞速爾 PDF 比對，引文與署名一致"
+     ],
+     "returnedReasons": []}
+  ],
+  "issues": [
+    "Encyclopedia.com（Encyclopedia of Latin American History and Culture）具名作者條目維持 B；但 Baldomir、Restrepo 都只有這一個來源，T14 門檻（1A 或 2 獨立 B）無一可過",
+    "段落 period 迄點遇日精度事件寫法不一：Noronha 段4 寫逝世日＋1（1963-01-30），Hansson 段3、Arriaga 段4、Noronha 段3 寫事件當日；未改，請在 ARCH_TODO 統一半開區間的日精度迄點寫法",
+    "地方政府出版品（非國家級）A／B 歸屬 PROMPT Q9 未明說；本批審查一律按 B 處理",
+    "黨職起點早於 1908、迄日不明時，R1 與「窗外一律 R5」的先後 PROMPT 未明說；本批標 t14Ambiguous 留 positions，請 Tai 裁決",
+    "Noronha 1930 執政團 R0 候選可能與 5442 既有任期重複（名單未給 recordId）"
+  ],
+  "verify": {"ok": true, "rawChecked": true, "quoteMax": 79}
+}

@@ -1,14 +1,14 @@
 # run100 提示 vs 試跑提示（.dev/cc-b3trial-loop.sh 產生的 b06／b10 sonnet／opus task）差異
 
-依據：Tai 2026-11-11 12:12 ①②④（T14 ③仍未決，照現行 b0b0e0f）；段祺瑞（b06）、費薩爾一世（b10）0 段落個案；b06／b10 review.json 的 issues。
+依據：Tai 2026-11-11 12:12 ①②④；Tai 2026-11-11 12:47 ①②⑤（黨職維持一律 de_facto_leader、薩拉查 1921 議員算黨職、T14 建議套用；新規則與 ARCHITECTURE 衝突處見 `../ARCH_TODO.md`，以新規則為準）；段祺瑞（b06）、費薩爾一世（b10）0 段落個案；b06／b10 review.json 的 issues。
 
 ## 研究提示（PROMPT_research.md）
-1. **輸出格式改成 b0b0e0f 對齊格式**：頂層加 `alignedTo="b0b0e0f"`，verify.py 直接跑對齊檢查 11–14；不再事後用 align_b0b0e0f.py 轉換。
+1. **輸出格式改成 b0b0e0f 對齊格式**：頂層加 `alignedTo="b0b0e0f"`，verify.py 直接跑對齊檢查 11–18；不再事後用 align_b0b0e0f.py 轉換。
 2. `positions[].roleKind` → **`positionKind`**；值域不得有 head_of_state／head_of_government／de_facto_leader，也不得有 party；原 7 值只供參考。
 3. 新增 **`roleCandidates[]`**：元首、首腦、實際掌權者與**所有黨職**寫在這裡，種類欄位 **`role_kind`**（不用 roleKind／candidateRoleKind），每筆要有 citations＋reason。試跑的 Q4 是「元首／首腦一律不建」，現在改成：名單 5442 任期不重建，名單外、1908–1945、來源明寫者寫成候選。
-4. **黨職一律 de_facto_leader**（Tai 12:12 ②），reason 寫固定字句；不明確是否黨職 → 留 positions，加 `partyPostAmbiguous`＋理由。
-5. **T14**：閣員／將領／佔領殖民長官留 positions，加 `t14Overlap`（cabinet／general／occupation_colonial），寫明「T14 未決，不要套用 T14_RECOMMENDATION」。
-6. 必讀從 b3-sample 範本改成 ALIGN.md＋試跑的 research.aligned.json，另加讀 ARCHITECTURE T11／T12／T14。
+4. **黨職一律 de_facto_leader**（Tai 12:12 ②、12:47 ①），reason 寫固定字句，`t14Rule: "R1"`；明寫與 §16.3.1「party_official 不收」衝突時以此為準。**12:47 新增**：職稱或來源明寫以某政黨身分取得的席位也算黨職（比照薩拉查 1921 議員），移入 roleCandidates、originalPositionKind 寫原性質；「以某黨身分當選的議席」從 partyPostAmbiguous 例子中移除。其他不明確黨職 → 仍留 positions 加 `partyPostAmbiguous`。
+5. **T14**（12:47 ⑤改寫）：原「T14 未決，不要套用」刪除；改成研究時即套用 T14_RECOMMENDATION.md R0–R6（判斷順序、第一條命中就停、兩層互斥、四部／正職／可證明天數／時間窗／來源／政權／戰役連結門檻）。R0–R4 門檻可證明 → roleCandidates（role_kind 值域擴為 7 種）；R6 → positions 加 `roleEligible: true`、`roleEligibleKind`、`roleGap`；R5 → positions。每筆 t14Overlap 要有 `t14Rule`＋`t14Reason`；軍校→`military_education`、警察→`police`；判斷不了 → `t14Ambiguous`＋理由。輸出格式與試跑對齊檔（commit 2880bf8）一致。
+6. 必讀從 b3-sample 範本改成 ALIGN.md＋試跑的 research.aligned.json，另加讀 ARCHITECTURE T11／T12／T14；12:47 起加讀 ARCH_TODO.md（衝突處以新規則為準）與 T14_RECOMMENDATION.md。
 7. **新增「搜尋策略」一節**：5 類來源（權威檔→國家辭典／官方頁→具名機構百科→條約法律／國聯文件→學術出版），並依地區（歐洲、東歐、東亞、西亞北非、拉美、南亞東南亞）列出具體起點網站；規定要用原文語言和轉寫變體查詢；網站回 403 或挑戰頁時換同類來源。
 8. **新增「最低嘗試」**：寫 0 段之前，至少要做完 4 種來源類型、8 次查詢（原文語言至少 2 次）、實抓 3 頁。
 9. **新增每人 `searchLog[]`**：記錄步驟、來源類型、查詢字串、網址、結果代碼、備註。
@@ -22,7 +22,7 @@
 
 ## 審查提示（PROMPT_review.md）
 1. 規則不再重抄，改成「研究者規則全部同樣適用」，並指向 PROMPT_research.md（避免兩份分歧）。
-2. 新增第 5 項，審查對齊格式：positionKind、roleCandidates.role_kind、黨職是否移入候選、partyPostAmbiguous、t14Overlap。審查可以調整欄位歸類，但不可新增事實。
+2. 新增第 5 項，審查對齊格式：positionKind、roleCandidates.role_kind、黨職是否移入候選、partyPostAmbiguous、t14Overlap。審查可以調整欄位歸類，但不可新增事實。12:47 起：第 5 項加查以政黨身分取得的席位；新增第 5b 項逐條檢查 T14 R0–R6（順序、互斥、門檻、R6 roleEligible、t14Rule、邊界個案、t14Ambiguous）；必讀加 ARCH_TODO.md（衝突以新規則為準）與 T14_RECOMMENDATION.md。
 3. 新增第 6 項，審查薄人物的 searchLog：最低嘗試未達、或手上有 A／B 卻寫 0 段，都判 returned，並寫出建議的下一個具體來源。
 4. 第 3 項明列：無署名百科和館藏圖說要降為未評等（試跑 b06、b08–b10 的做法）。
 5. review.json 新增 `promptVersion`、`deletedRoleCandidates`、`movedToRoleCandidates`、`movedToPositions`、`addedCitations`、`searchLogShort`；people 加 `roleCandidates`、`searchLogSteps`。

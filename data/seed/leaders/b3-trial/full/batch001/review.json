@@ -1,0 +1,61 @@
+{
+ "batch": "001", "reviewedOn": "2026-11-11", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v1（=run100-v1）",
+ "counts": {"returned": 1, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 36, "editedSentences": 1, "spotRefetched": 5, "searchLogShort": 1},
+ "people": [
+  {"key": "gb-churchill", "bioId": "01a1c86e-c89b-70af-afe0-1ad0f4be2bf8", "verdict": "returned", "paragraphs": 5, "positions": 4, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 3,
+   "changes": [
+    "P3 海軍大臣：引文改為含「(the civil/political head of the Royal Navy)」的完整片段，以支撐「皇家海軍的文官首長」子句；補引文「Heavily criticised for this error」支撐「遭嚴厲批評」；中文「前往西線作戰」改「前往西線」（原引文無 to fight）",
+    "P5 戰時首相：補「Following Neville Chamberlain ’s resignation in 1940」（張伯倫名字）與「Labour leader Clement Attlee ’s unexpected General Election victory in 1945」（工黨獲勝）",
+    "職位 churchill-mp-oldham：原 t14Ambiguous → t14Rule=R5。職稱明寫以保守黨身分當選（比照黨職），但同一來源寫 1904 年轉投自由黨，以保守黨身分的任期最晚止於 1904，與 1908–1945 無交集；補引文「before defecting to the Liberal Party in 1904」，迄日不填",
+    "重抓 GOV.UK 頁（200），13 筆引文全數仍在"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 只有 3 步（official／other／national_dictionary 共 3 類，<4 類；查詢 3 次，<8 次；實際抓取 2 頁，<3 頁）；研究者自評「薄」，而且缺少多項職位的起迄日（海軍大臣、財政大臣、國防大臣）",
+    "建議下一步具體來源：①UK Parliament Historic Hansard 人物頁 api.parliament.uk/historic-hansard/people/mr-winston-churchill（官方 A，列有歷任職位與起訖日，可補財政大臣 1924–29、海軍大臣 1911–15／1939–40、內政大臣 1910–11（R3 候選）、國防大臣 1940–45）；②LoC Name Authority／VIAF 權威檔；③Oxford DNB 公開摘要；④Churchill Archive Centre（Churchill College, Cambridge）的機構傳記頁",
+    "現有 5 段經逐條核對可保留；退回只要求補做搜尋並補上職位日期"
+   ]},
+  {"key": "de-hitler", "bioId": "01a19f15-35f4-7d9a-847a-aeccc98305ec", "verdict": "pass_with_changes", "paragraphs": 6, "positions": 1, "roleCandidates": 1, "gaps": 4, "searchLogSteps": 5,
+   "changes": [
+    "LeMO 年表引文原本缺年份（年份只寫在 evidenceNote「取自年表標題」）：凡年表標題與條目在原文相連者，引文改為含年份（1903／1907／1914／1921 29. Juli／1925 27. Februar／1938 4. Februar）",
+    "Q8：年份不在引文裡的引文（1. September、30. April、15. März，以及只有職稱、沒有日期的引文）datePrecision 原為 day，改為 null，evidenceNote 註明年份出處",
+    "補子句引文：außerordentliche Mitgliederversammlung（非常會員大會）、「le cariche … furono unificate」（總統與總理職務合一）、「den \"Anschluss\" Österreichs」（併吞）、「im Bunker unter der Reichskanzlei in Berlin Selbstmord」（總理府掩體）",
+    "職位 Wehrmacht 最高統帥、候選角色 NSDAP 領袖：各補一筆含日期的相連引文；R6（缺 dates、regime）與 R1 判斷正確，維持",
+    "遷居慕尼黑 1912（Treccani）與 1913（LeMO）的 conflict gap 合乎規則（兩份已抓來源互相矛盾），維持",
+    "重抓 LeMO 頁（200），13 筆引文全數仍在"
+   ], "returnedReasons": []},
+  {"key": "su-stalin", "bioId": "01a1b492-3efd-7d05-8a70-3f38fdf9d599", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 2, "roleCandidates": 3, "gaps": 4, "searchLogSteps": 4,
+   "changes": [
+    "LeMO 年表引文全面改為含相連的年份標題（1894、1898、1899、1912、1917-1923、1919、1919-1922、1922、1929、1934-1939、1939、1941、1945）",
+    "補子句引文：Gori (Georgien)（出生地）、Lenin（召入中委的主語）、「zur Schlüsselstellung … ausgebaut」（擴建為關鍵位置）、Allianzen（結盟）、Opposition unterdrücken（壓制黨內反對）、Sozialismus in einem Land（一國社會主義）、rigorose Industrialisierung（嚴酷工業化）、alte Bolschewikenführung（老布爾什維克領導層）、expansionistisches Machtstreben erfolgreich（擴張性權力追求獲得成功）",
+    "職位與候選角色（民族事務人民委員、工農檢查人民委員、總書記、政治局／組織局委員、1912 中委）都補上含年份的引文；R5／R1 判斷正確",
+    "gap field:birthDate 由 conflict 改為 not_found：兩說都出自 LeMO 單一來源，Treccani 只寫 1878，與其中一說相符，不構成兩份已抓來源互相矛盾",
+    "重抓 LeMO 頁（200），20 筆引文全數仍在"
+   ], "returnedReasons": []},
+  {"key": "us-fdr", "bioId": "01a1b48b-c87a-768a-b372-2918df397b6c", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 3, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 2,
+   "changes": [
+    "P2：引文改為「In the 1920s, he invested …」以支撐「1920年代」",
+    "P3：補「In the famous \"First Hundred Days\" of his presidency」（百日新政）、「in which he spoke to the nation via radio」（電台）",
+    "P4：補「officially brought the United States into World War II」（美國正式參戰）、「had turned the tide against both Germany and Japan」（對德日）",
+    "州參議員引文沒有寫以何黨身分當選，依規則留在 positions；海軍助理部長 R5 正確",
+    "Treccani EI 條目作者 Lopez／Brockunier 不在純文字檔中，但已在原始 HTML 的 author 欄位核實（II Appendice 1949），B 級成立",
+    "重抓 Miller Center 頁（200），33 筆引文全數仍在"
+   ], "returnedReasons": []},
+  {"key": "it-mussolini-benito", "bioId": "0ff6f55e-8f9c-49aa-b9ba-5858a17c9dc3", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 3, "roleCandidates": 3, "gaps": 5, "searchLogSteps": 1,
+   "changes": [
+    "Q8：「Il 15 novembre」「Il 29 ottobre」「il 27 aprile」「Il giorno successivo」等引文不含年份，datePrecision 由 day 改為 null；evidenceNote 註明年份所依的前文（18 ottobre 1914／Nell’ottobre 1922／il 25 aprile 1945）",
+    "P3：補「che la guida del governo era affidata al capo di un partito armato」，支撐「交給武裝政黨的領袖」子句",
+    "候選角色「法西斯大委員會主席」：補「un nuovo organo dirigente del PNF, il Gran Consiglio del fascismo」，證明確屬黨的機關，R1 成立",
+    "《前進報》與《意大利人民報》主編都標 partyPostAmbiguous，理由成立，維持；內政兼外交部長 R6（缺 dates）、RSI 首腦 R0 正確",
+    "重抓 Treccani DBI 頁（200），24 筆引文全數仍在"
+   ], "returnedReasons": []}
+ ],
+ "issues": [
+  "LeMO（dhm.de）年表格式：研究者把年份寫在 evidenceNote（「取自年表標題」），引文本身沒有年份，卻填了 datePrecision。由於 verify 會壓縮空白，年表標題與條目相連時可以直接把年份放進引文；不相連時 datePrecision 應為 null。後續批次使用 LeMO／Treccani 時應照此處理",
+  "datePrecision 誤填：引文只有日月（年份在上下文）或根本不含日期時仍填 day／year（違反 Q8），本批 5 人都有",
+  "子句覆蓋不足：人名主語（Chamberlain、Lenin）、評語（遭批評、獨裁成功）、地點（Gori、總理府掩體）常缺引文，本批補了 36 筆",
+  "searchLog 偏薄：FDR 只有 2 步、Mussolini 只有 1 步（沿用試跑批內容；兩人為厚人物，不觸發最低嘗試規則，但未依規定以原文語言再查）；Stalin 沒有俄文（西里爾字母）查詢，違反「斯拉夫語人物必須用原文字查」，建議下輪補",
+  "名單推定的 region／regime／era 全為「不明」，實查結果：英國／德國／蘇聯／美國／義大利，均為 1908–1945 主要領導人；Hitler 名單沒有 recordId（gap 已記）",
+  "Churchill 的財政大臣、國防大臣（R6）與未建立的內政大臣（R3 候選）都需要官方任期資料，詳見 returnedReasons"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

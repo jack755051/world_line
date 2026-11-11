@@ -1,0 +1,108 @@
+{
+ "batch": "01",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 0,
+  "editedSentences": 8,
+  "spotRefetched": 5
+ },
+ "people": [
+  {
+   "key": "it-mussolini-benito",
+   "bioId": "0ff6f55e-8f9c-49aa-b9ba-5858a17c9dc3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "gaps": 3,
+   "changes": [
+    "段2：刪「社會黨機關報」（Treccani 原文未這樣稱《前進報》）；period 起點原為1914-11-15，但本段含更早的《前進報》主編任命，改為起點未知（null）、終點1914-11-16（day，半開區間）",
+    "段4：原引文只撐「承擔責任」、沒撐日期；拆成兩筆逐字引文（『il 3 gennaio 1925 Mussolini, con un discorso alla Camera』＋『si assunse tutta la responsabilità di quanto il fascismo aveva compiuto』），中英正文改成「承擔法西斯所作所為的全部責任」，與原文相符",
+    "段3、4、5：relatedRecordIds 補 5442 首腦任期 01a19eb7-b070-7bd6-9122-7f7eb2606029",
+    "職位 mussolini-avanti-editor：organization 刪「義大利社會黨」字樣（理由同段2）",
+    "gap position:mussolini-avanti-editor：原研究說來源未寫離任日，有誤；Treccani 寫了1914年10月20日辭去主編。note 已更正，日期留給下一輪補，本次不加"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "np-tribhuvan",
+   "bioId": "01a1b4af-e4ae-7ffe-b91b-13f90ca7ea6b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "段1：「拉納世襲首相」改為「最後一位拉納寡頭統治者」（LoC 原文是『the last Rana oligarch』，沒有寫世襲首相），中英正文都改",
+    "段1：relatedRecordIds 補 01a1aa96-cf95-733f-bd17-edc4333a4a0e",
+    "已核：fo-nepal（Facts and Details，未評等）只出現在 gap 候選；bl-tribhuvan 原文 0 位元組、沒被引用，gap note 已註明 BL 的說法因抓不到原文而未採"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "au-deakin-alfred",
+   "bioId": "01a1b54f-2c8f-71a2-a16c-fb34276fb32c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "gaps": 2,
+   "changes": [
+    "段1：period 終點由 null 改為1880-01-01（year），本段最後一件事是1879年當選",
+    "段2：period 原為[1883,1891)，但正文寫到巴頓政府總檢察長、接任總理（1901–03），超出這個期間；終點改為未知（null）。「州總理」改為「總理（Premier）」，照原文用詞（1883–90 年維多利亞還不是州）",
+    "段3：relatedRecordIds 補 4f7a5e5a-9db9-486b-84d7-da9e9d61d0e1",
+    "段5：period 終點由1920-01-01（year）改為1919-10-08（day），卒日來源寫到日",
+    "gap paragraph:term-clipping：補註第三任 1909-06-02—1910-04-29 也落在範圍內，但名單只列一筆任期，leader_records 是否缺這一任待查"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "eg-fuad-i",
+   "bioId": "01a1b4b0-6fa7-77d3-b478-e72f161b3319",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "段2：原正文「1923年4月19日以敕令頒布憲法，福阿德成為埃及國王」把稱王讀成1923年，屬誤讀；Gale 原文只說1922年獨立『為憲法與福阿德稱王鋪路』，沒有寫稱王日期。中英正文照原文改寫，不暗示稱王年份",
+    "段2：period 終點原為1923-01-01，涵蓋不到1923-04-19；改為1924-01-01（year，Q3）；relatedRecordIds 補兩筆元首任期",
+    "段3：period 終點由1936-01-01改為1935-01-01（本段最後一件事在1934年，Q3）；c0 locator 由「Constitutional Crisis 節」更正為「Egypt Independent 節」；relatedRecordIds 補 01a1aa4a-7e36-7c61-a6fd-0422999211d3",
+    "gap paragraph:kingship-date：gapKind 由 conflict 改為 not_found（Gale 沒寫稱王日期，不算兩說矛盾）；note 註明同一網頁另有 Oxford World Encyclopedia 短條寫『first King (1922–36)』，沒有具名作者，未採",
+    "sources encyc-fuad：gradeBasis 改寫；條目沒有具名作者，比照 b3-sample nobel-churchill 保守評 B，維持 B"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ht-vilbrun-guillaume-sam",
+   "bioId": "01a1b488-1424-760c-bdd1-9a20523a5a85",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 4,
+   "changes": [
+    "sources encyc-sam：補 authors＝Pamela Murray（原文條末署名，研究者漏了）；gradeBasis 改為具名作者的機構百科（B）；url 改為重新導向後的 www 網址",
+    "段1：relatedRecordIds 補總統任期 f64c0f70-a756-4152-a863-744ece09b7a2、4a2f0ecb-d08f-4453-809b-d45c81aacb4f",
+    "正文逐句核過，7 筆引文全部對得上；1915年1–3月執行權首長的任期已正確留在 gap"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "期間端點常沒有涵蓋正文裡最早或最晚的事件（墨索里尼段2、迪金段2、福阿德段2）；寫段落時應以正文實際寫到的事件定起訖，涵蓋不了就留 null",
+  "正文會加上原文沒有的修飾或定性（『社會黨機關報』『世襲首相』『州總理』），以及把『為…鋪路』讀成已發生的日期（福阿德稱王）；這類詞語必須能在引文附近原文找到",
+  "引文只撐住句子的一半（墨索里尼段4：日期不在引文裡）；日期句要選帶日期的那一句當引文",
+  "gap note 寫來源未載的事，其實原文有（墨索里尼《前進報》離任日）；寫 not_found 前應先在已抓原文裡搜尋",
+  "Encyclopedia.com 收錄的 Gale 條目要看條末署名：有署名就填 authors（Sam 條署 Pamela Murray）；沒署名的（EWB）比照 nobel-churchill 保守評 B。同一網頁常並列 Oxford 等其他短條，不可混用同一個 sourceKey",
+  "relatedRecordIds 全部留空；寫到名單任期的段落應該填上",
+  "名單和來源的任期數不一致：迪金第三任（1909–10）在範圍內，名單只列一筆，需另查 leader_records",
+  "重抓比對：5 個被引用的來源全部重抓成功（HTTP 200，沒用 -k、沒碰到驗證頁），62 筆引文全部逐字出現在新抓的版本"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

@@ -89,6 +89,7 @@ describe('PersonDialog：B3 分段生平／經歷／角色', () => {
     expect(qa(panel, 'source-quote-text').map(txt)).toEqual(['引文甲', '經歷引文']);
     expect(txt(panel)).toContain('位置：p.12');
     expect(qa(panel, 'source-grade').map(txt)).toEqual(['等級：A', '等級：A']);
+    expect(qa(panel, 'source-kind').map(txt)).toEqual(['種類：百科', '種類：百科']);
     expect(txt(panel)).toContain('來源甲');
     expect(txt(panel)).toContain('來源乙');
   });

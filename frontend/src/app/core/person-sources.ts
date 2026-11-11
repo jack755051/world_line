@@ -17,7 +17,7 @@ export function fieldSourceItems(bio: LeaderBio, field: string): SourceItem[] {
     .map((c) => ({
       kind: 'structured', title: c.source.title, publisher: c.source.publisher, locator: c.locator,
       licenseCode: c.source.licenseCode, url: c.source.url ?? c.source.archiveUrl, note: c.evidenceNote, accessedOn: c.accessedOn,
-      quote: c.quote ?? null, quoteLang: c.quoteLang ?? null,
+      quote: c.quote ?? null, quoteLang: c.quoteLang ?? null, sourceKind: c.source.sourceKind ?? null,
     }));
   const legacy = legacyItem(bio.fieldSources?.[field]);
   return legacy ? [...structured, legacy] : structured;
@@ -43,6 +43,6 @@ export function detailCitationItems(cs: readonly BioDetailCitation[] | null | un
   return (cs ?? []).map((c) => ({
     kind: 'structured', title: c.source.title, publisher: c.source.publisher, locator: c.locator,
     licenseCode: c.source.licenseCode, url: c.source.url ?? c.source.archiveUrl, note: c.evidenceNote, accessedOn: c.accessedOn,
-    quote: c.quote || null, quoteLang: c.quoteLang ?? null, grade: c.grade ?? null,
+    quote: c.quote || null, quoteLang: c.quoteLang ?? null, grade: c.grade ?? null, sourceKind: c.source.sourceKind ?? null,
   }));
 }

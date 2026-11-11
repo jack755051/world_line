@@ -21,6 +21,7 @@ describe('person-sources', () => {
     const items = fieldSourceItems(b, 'birthDate');
     expect(items.map((i) => i.kind)).toEqual(['structured', 'legacy']);
     expect(items[0].locator).toBe('para 1');
+    expect(items[0].sourceKind).toBe('official_record');
     expect(fieldSourceItems(b, 'deathDate')).toEqual([]);
   });
 

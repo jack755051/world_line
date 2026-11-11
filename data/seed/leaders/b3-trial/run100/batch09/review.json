@@ -1,0 +1,121 @@
+{
+ "batch": "09",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 2,
+  "deletedParagraphs": 0,
+  "deletedPositions": 2,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 2,
+  "movedToPositions": 0,
+  "deletedCitations": 22,
+  "addedCitations": 12,
+  "editedSentences": 5,
+  "spotRefetched": 6,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "dk-neergaard",
+   "bioId": "01a1b4c1-cdd3-7987-a211-b2295d2d83af",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 6,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "來源 lex-regeringer（lex.dk「Danske regeringer 1901-1924」）只署 danmarkshistorien.dk 編輯部、無具名作者 → 依 Q9 降為未評等；其 20 筆引文自段落／職位／候選移除，內閣日精度起訖改列新 gap 的 candidateCitations",
+    "刪除職位 finance-1908（J.C. Christensen 第 2 屆內閣，原 key/note 誤寫為 Deuntzer 內閣）與 finance-1909（Holstein-Ledreborg）：唯一出處為已降級名單 → 移 gap 待查證",
+    "defence-1908：起訖改 NULL（DBL 未寫日期），R6 roleGap=[dates,regime]；finance-1910：改年精度 1910-01-01～1914-01-01，補 DBL 原文引文「en post han siden igen påtog sig 1910-13 under regeringen Klaus Berntsen」，R6 roleGap=[regime]；finance-1920 與首相候選 pm-1920-1924 改依 DBL 年精度 1920-01-01～1925-01-01",
+    "段 2：「S.å.」承前文 1907-08，年份不明，datePrecision 改 null；刪「1908年他先被任命」中的年份與內閣起訖句；period 改 1908-09（month）～1909-01-01（year）",
+    "段 3：「戰後經濟危機」子句原無引文 → 補 DBL 引文「som følge af de voldsomme økonomiske kriser efter krigen」；內閣日期句改寫為 1920–24 年精度；period 改 1920-01-01～1925-01-01",
+    "段 4：「1910年7月5日起」改「1910至1913年」（依 lex-neergaard）；period 起點改年精度",
+    "抽查重抓 dbl-neergaard 與 lex-regeringer，內容與存檔一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pe-schreiber",
+   "bioId": "01a1c35f-182f-7d20-b8ef-02776539324c",
+   "paragraphs": 0,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 14,
+   "verdict": "pass",
+   "changes": [
+    "0 段；最低嘗試已達：4 種來源類型（authority／official／named_encyclopedia／other）、14 筆 searchLog（西班牙文查詢 ≥2）、實抓 ≥3 頁；rulers.org／fuenteshistoricasdelperu 正確只作 gap 候選",
+    "抽查重抓 rulers.org indexs2（位元組數與存檔相同，條目在）",
+    "建議下一輪：DBE（dbe.rah.es）、秘魯國會議員名錄、Basadre《Historia de la República del Perú》出版社頁、PCM 歷任名單官方頁"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mx-rodriguez-abelardo",
+   "bioId": "01a1aa4a-da74-710d-8472-8d539f887be4",
+   "paragraphs": 3,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "總統任期 1932–1934 移入 roleCandidates（head_of_state，R0，年精度）：selection100 此人 eraBasis=無、不在 worklist 任期內，研究者「視為已在名單 5442 內」的前提不成立；引文沿用原段落已核對的兩句",
+    "gap 改為 position:president-1932-1934-dates（日精度待查證）",
+    "searchLog step 3 url=null 卻記 found_B → 改 no_result（兩頁皆空殼）",
+    "抽查重抓 enc-rodriguez，一致；其餘段落子句逐一對到引文"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cu-marquez-sterling",
+   "bioId": "01a1c440-bd57-7c7c-93fb-61fc07745e84",
+   "paragraphs": 1,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "FRUS 引文截斷受詞修正：「…at 10 this morning to elect」→「at 10 this morning to elect a new President」；「…who will convoke a meeting of」拆成「the Secretary of State, Doctor Márquez Sterling」＋「who will convoke a meeting of representatives of all the political groups」；「…to the Secretary of」補「State」；「…Plenipotentiary of the」改「Manuel Márquez Sterling, Ambassador Extraordinary and Plenipotentiary」（段落與職位同步）",
+    "Mendieta「當天」獲指定與中午宣誓：補 d100 日期引文「Habana , January 19, 1934」與「meeting yesterday morning at which Colonel Carlos Mendieta was designated」（evidenceNote 註明推論），宣誓引文改為含 yesterday 的「took the oath of office before the Supreme Court at noon yesterday」",
+    "1934-01-18 代理總統：selection eraYear=1934（worklist 任期），維持不建候選",
+    "抽查重抓 frus-d98，一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "su-kalinin",
+   "bioId": "01a1b4c2-3f2b-78f4-a9e6-00624c20f620",
+   "paragraphs": 2,
+   "positions": 1,
+   "roleCandidates": 3,
+   "gaps": 2,
+   "searchLogSteps": 6,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "「president of the USSR (1922)」移入 roleCandidates（head_of_state，R0，起 1922 年、迄日 NULL）：名單任期為 1919 RSFSR 全俄中執委主席，蘇聯屬另一政權，不能推定已在 5442 內；note 註明需比對 leader_records、正式職稱待查證",
+    "段 2 period 迄點 1923-01-01 → 1937-01-01（段內最後事件為 1936 年憲法委員會）",
+    "gap vtsik-chair-dates note 同步更新",
+    "抽查重抓 enc-kalinin，一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "機構編輯部署名（如 lex.dk「danmarkshistorien.dk's redaktion」）不是具名作者：本批依 Q9 降為未評等，導致 Neergaard 日精度起訖全數改列 gap；請 Tai 裁定這類學術機構編輯部署名的政府名單可否算 B（若可，gap 內 candidateCitations 可直接還原）",
+  "研究者把名單（5442）外的元首任期當作「已在名單內」而不建候選（Rodríguez 1932–34、Kalinin 1922 蘇聯）：應以 selection100 的 eraBasis／regimeSlug 判斷，eraBasis=無或政權不同就要建候選並註明需比對 leader_records",
+  "FRUS 等逐行排版的原文，研究者常在行尾截斷引文（截掉受詞），verify.py 不會擋；審查已修正，建議研究提示補一句「引文跨行時要取到語意完整處」",
+  "regimeId 一律 null（不連庫），丹麥／墨西哥閣員 R3 均因 regime 落 R6；待接庫時依 regimeSlug 回填後重判"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 76
+ }
+}

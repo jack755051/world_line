@@ -1,0 +1,2604 @@
+{
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL。名單屬性查證：鐵托（南斯拉夫元帥，HBL 與日本大百科明寫1943年被宣布元帥）相符；史末資名單標「元帥」，SAHO 寫1941年晉升英國陸軍元帥（相符）；披汶名單標「陆海空元帅」，已查來源只見元帥稱呼於論文標題（จอมพล），陸海空元帥未見明寫、陸軍總司令職未取得。",
+ "batch": "b3-full-v3-batch021",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；b0b0e0f 對齊格式。將領 S 級 batch021，v3 最低標準。regimeId 一律 NULL（未查 5442 對應），故國家級軍職／閣員為 R6。鐵托兩筆候選（南共總書記 R1、NKOJ 主席 R0）；史末資與披汶的首相任期應已在 leader_records，未重建。來源：HBL（A）、Kotobank 具名條目（日本大百科全書／世界大百科事典，B）、National Army Museum（B）、British Academy 演講論文（B）、SAHO（B，T1 暫分）、ThaiJO 兩篇泰國學術期刊論文（B）。Britannica 403／驗證頁未繞過。未用 Wikipedia／Wikidata／百度。 註：verify.py 的 gap target 格式不接受 role: 前綴，角色缺漏改用 position:<key>（對應 roleCandidates 同 key）。",
+ "rawDir": "/tmp/generals-bios/S/batch021/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "tito-hbl": {
+   "title": "BROZ, Josip-Tito（Hrvatski biografski leksikon）",
+   "authors": [
+    "Dušan Bilandžić",
+    "Mirko Sentić"
+   ],
+   "publisher": "Leksikografski zavod Miroslav Krleža（Hrvatski biografski leksikon 網路版）",
+   "published_text": "Leksikografski zavod Miroslav Krleža（Hrvatski biografski leksikon 網路版）",
+   "url": "https://hbl.lzmk.hr/clanak/broz-josip-tito",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（克羅埃西亞傳記辭典，具名作者 D. Bilandžić、M. Sentić）"
+  },
+  "tito-kb1": {
+   "title": "チトー（日本大百科全書〈ニッポニカ〉，Kotobank）",
+   "authors": [
+    "木戸蓊"
+   ],
+   "publisher": "小学館 日本大百科全書（Kotobank 轉載）",
+   "published_text": "小学館 日本大百科全書（Kotobank 轉載）",
+   "url": "https://kotobank.jp/word/%E3%81%A1%E3%81%A8%E3%83%BC-3158972",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（木戸蓊）之日本大百科全書條目（Kotobank）"
+  },
+  "smuts-kb1": {
+   "title": "スマッツ（改訂新版 世界大百科事典，Kotobank）",
+   "authors": [
+    "林晃史"
+   ],
+   "publisher": "平凡社 改訂新版 世界大百科事典（Kotobank 轉載）",
+   "published_text": "平凡社 改訂新版 世界大百科事典（Kotobank 轉載）",
+   "url": "https://kotobank.jp/word/%E3%81%99%E3%81%BE%E3%81%A4%E3%81%A4-3182325",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（林晃史）之世界大百科事典條目（Kotobank）"
+  },
+  "smuts-nam": {
+   "title": "Jan Smuts: The warrior-statesman",
+   "authors": [],
+   "publisher": "National Army Museum（英國國家陸軍博物館）",
+   "published_text": "National Army Museum（英國國家陸軍博物館）",
+   "url": "https://www.nam.ac.uk/explore/jan-smuts-warrior-statesman",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "英國國家陸軍博物館官方「Great Commanders」專題頁（機構傳記）"
+  },
+  "smuts-britac": {
+   "title": "White Masculinity: Jan Smuts, Race and the South African War（Raleigh Lecture on History）",
+   "authors": [
+    "Shula Marks"
+   ],
+   "publisher": "Proceedings of the British Academy 111（The British Academy）",
+   "published_text": "Proceedings of the British Academy 111（The British Academy）",
+   "url": "https://britac.ac.uk/documents/2091/111p199.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構（英國國家學術院）出版之具名學者演講論文"
+  },
+  "smuts-sahistory": {
+   "title": "General Jan Christiaan Smuts（South African History Online）",
+   "authors": [],
+   "publisher": "South African History Online",
+   "published_text": "South African History Online",
+   "url": "https://sahistory.org.za/people/general-jan-christiaan-smuts",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "南非公益歷史機構 SAHO 人物條目；首次用到之網域，依 §16 T1 暫分 B（無署名，僅作補充，非唯一出處）"
+  },
+  "phibun-nipponica": {
+   "title": "ピブン（日本大百科全書〈ニッポニカ〉／改訂新版 世界大百科事典，Kotobank）",
+   "authors": [
+    "黒柳米司",
+    "赤木攻"
+   ],
+   "publisher": "小学館 日本大百科全書；平凡社 世界大百科事典（Kotobank 轉載）",
+   "published_text": "小学館 日本大百科全書；平凡社 世界大百科事典（Kotobank 轉載）",
+   "url": "https://kotobank.jp/word/%E3%81%B4%E3%81%B6%E3%82%93-3166285",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（黒柳米司；赤木攻）之日本大百科全書、世界大百科事典條目（Kotobank）"
+  },
+  "phibun-pnru": {
+   "title": "เสถียรภาพทางการเมืองของจอมพล ป. พิบูลสงคราม ช่วง พ.ศ. 2481-2487（學術論文）",
+   "authors": [
+    "ชนะศึก วิเศษชัย"
+   ],
+   "publisher": "วารสารราชภัฏพระนครวิชาการ（Phranakorn Rajabhat University，ThaiJO）",
+   "published_text": "วารสารราชภัฏพระนครวิชาการ（Phranakorn Rajabhat University，ThaiJO）",
+   "url": "https://so07.tci-thaijo.org/index.php/PNRU_ACA/article/download/1154/1014",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學學術期刊具名論文（Phranakorn Rajabhat University，ThaiJO）"
+  },
+  "phibun-psc": {
+   "title": "It should be called “beneficiary” rather than “coercion”: Field Marshal P. Phibunsongkhram’s decision in the case of the Japanese army’s invasion of Thailand in 1941（วารสารรัฐศาสตร์พิจาร，具名論文）",
+   "authors": [
+    "Suphachai Suphaphol"
+   ],
+   "publisher": "วารสารรัฐศาสตร์พิจาร（ThaiJO）",
+   "published_text": "วารสารรัฐศาสตร์พิจาร（ThaiJO）",
+   "url": "https://so01.tci-thaijo.org/index.php/PSC/article/download/261633/179240/1141821",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術期刊具名論文（ThaiJO）"
+  },
+  "tito-lemo": {
+   "title": "Josip Broz Tito 1892-1980（LeMO Biografie）",
+   "authors": [
+    "Manfred Wichman"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO Lebendiges Museum Online）",
+   "published_text": "Deutsches Historisches Museum（LeMO Lebendiges Museum Online）",
+   "url": "https://www.dhm.de/lemo/biografie/josip-broz-tito",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Manfred Wichman）之 DHM 機構傳記（LeMO，B）"
+  },
+  "tito-marijan": {
+   "title": "Rukovođenje i komandovanje Oružanim snagama SFRJ: Vrhovna razina（Časopis za suvremenu povijest 41/3）",
+   "authors": [
+    "Davor Marijan"
+   ],
+   "publisher": "Hrvatski institut za povijest（Časopis za suvremenu povijest, Zagreb 2009）",
+   "published_text": "Hrvatski institut za povijest（Časopis za suvremenu povijest, Zagreb 2009）",
+   "url": "https://hrcak.srce.hr/file/87648",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Davor Marijan，克羅埃西亞歷史研究所）之學術期刊論文"
+  },
+  "smuts-gaz1": {
+   "title": "Supplement to The London Gazette, 20 June 1916（issue 29630, p. 6127，Smuts 東非戰報）",
+   "authors": [
+    "Lieutenant-General J. C. Smuts"
+   ],
+   "publisher": "The London Gazette（英國官方公報）",
+   "published_text": "The London Gazette（英國官方公報）",
+   "url": "https://www.thegazette.co.uk/London/issue/29630/supplement/6127/data.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報（The London Gazette）所刊 Smuts 本人戰報"
+  },
+  "smuts-gaz2": {
+   "title": "Supplement to The London Gazette, 27 December 1917（issue 30447, p. 13555，Hoskins 東非戰報）",
+   "authors": [
+    "Lieutenant-General A. R. Hoskins"
+   ],
+   "publisher": "The London Gazette（英國官方公報）",
+   "published_text": "The London Gazette（英國官方公報）",
+   "url": "https://www.thegazette.co.uk/London/issue/30447/supplement/13555/data.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報（The London Gazette）所刊 Hoskins 戰報，載明接任東非指揮日"
+  },
+  "smuts-house": {
+   "title": "Biographies of Jan and Isie Smuts（The Smuts House Museum）",
+   "authors": [],
+   "publisher": "The Smuts House Museum（Doornkloof，南非史末資故居博物館）",
+   "published_text": "The Smuts House Museum（Doornkloof，南非史末資故居博物館）",
+   "url": "https://www.smutshouse.co.za/biographies-2/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "機構（博物館）官方人物傳記頁"
+  },
+  "smuts-samh-paterson": {
+   "title": "Jan Christian Smuts as a General in East Africa, 1916 — an appraisal（Military History Journal 15/2）",
+   "authors": [
+    "Hamish Paterson"
+   ],
+   "publisher": "The South African Military History Society（Military History Journal, 2010）",
+   "published_text": "The South African Military History Society（Military History Journal, 2010）",
+   "url": "https://www.samilitaryhistory.org/vol152hp.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Hamish Paterson）之學會期刊論文"
+  }
+ },
+ "people": [
+  {
+   "key": "josipbroztito",
+   "bioId": null,
+   "name": "Josip Broz Tito",
+   "nameZh": "约瑟普·布罗兹·铁托",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1939-03-15",
+      "end": "1941-04-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "南共領導與抵抗準備",
+      "en": "Party leadership and preparing resistance"
+     },
+     "body": {
+      "zh-Hant": "1939年3月15日，鐵托自莫斯科返回後組成南共（KPJ）中央委員會；1940年10月19至23日在薩格勒布舉行第五次全國會議，他當選為南共總書記。1941年4月6日軸心國軍隊入侵南斯拉夫，他在4月10日組成軍事委員會，以組織對佔領軍的抵抗。",
+      "en": "On 15 March 1939, after returning from Moscow, Tito constituted the Central Committee of the Communist Party of Yugoslavia (KPJ). The Fifth Land Conference was held in Zagreb on 19–23 October 1940, and he was elected general secretary of the KPJ. After the Axis invasion of Yugoslavia on 6 April 1941, he formed a Military Committee on 10 April to organise resistance to the occupying armies."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Po povratku iz Moskve Tito je 15. III 1939. konstituirao CK KPJ",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "osobno rukovodi pripremama za V zemaljsku konferenciju",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "koja je održana 19–23. X 1940. u Zagrebu",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tada je izabran i CK i Tito za generalnog sekretara KPJ",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Neposredno nakon upada fašističkih armija u Jugoslaviju, 6. IV 1941",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tito već 10. travnja formira Vojni komitet za pružanje otpora",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-06-27",
+      "end": "1942-11-27"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "最高司令與武裝起義",
+      "en": "Supreme commander and the uprising"
+     },
+     "body": {
+      "zh-Hant": "1941年6月27日，他組成GŠ NOPOJ並接任最高司令（vrhovni komandant）職；7月4日南共政治局決定起義，9月16日他離開貝爾格萊德前往塞爾維亞西部的解放區。1942年年中他率主力轉往波斯尼亞西部與克羅埃西亞，在當地建立大片自由領土並編成人民解放軍；11月26至27日在比哈奇成立AVNOJ。",
+      "en": "On 27 June 1941 he formed the GŠ NOPOJ and assumed the function of supreme commander (vrhovni komandant). The Politburo decided on the uprising on 4 July, and on 16 September he left Belgrade for the liberated territory of western Serbia. In mid-1942 he moved the main force to western Bosnia and Croatia, where a large free territory arose and the NOVJ was formed with divisions and corps; AVNOJ was founded at Bihać on 26–27 November 1942."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Već 27. VI 1941. formira GŠ NOPOJ i preuzima funkciju vrhovnog komandanta",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Odluku o početku ustanka donosi Politbiro CK KPJ 4. VII 1941",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tito 16. IX 1941. napušta Beograd",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "dolazi na oslobođeni teritorij zapadne Srbije",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "u polovici 1942. odlazi u zapadnu Bosnu i Hrvatsku",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "gdje se stvara veliki slobodni teritorij, formira NOVJ s divizijama i korpusima",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "osniva se AVNOJ u Bihaću 26. i 27. XI 1942",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1944-06-16"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "攻勢、元帥與德爾瓦爾空降",
+      "en": "Offensives, the marshalcy and the Drvar landing"
+     },
+     "body": {
+      "zh-Hant": "德、義最高統帥部對他的部隊強加一系列戰役，即所謂第四、第五次攻勢，持續至1943年年中，人民解放軍頂住了攻擊。1943年11月29日第二屆AVNOJ會議任命他為NKOJ主席（具臨時政府地位），並宣布他為南斯拉夫元帥。1944年5月德軍空降德爾瓦爾以圖消滅他，之後他轉往維斯島；6月16日他與蘇巴希奇在維斯島簽署協議。",
+      "en": "The German and Italian supreme commands imposed on his force a series of battles known as the IV and V offensives, lasting from the start to the middle of 1943, which the NOV withstood. At the second AVNOJ session on 29 November 1943 he was appointed president of the NKOJ, with the status of provisional government, and proclaimed Marshal of Yugoslavia. In May 1944 the German command staged a landing at Drvar to destroy him; he then moved to the island of Vis, where on 16 June he and Šubašić signed an agreement."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "njemačka i talijanska vrhovna komanda nameću Titovoj grupaciji seriju bitaka",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "poznatih pod imenom IV i V ofenziva",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "koje su trajale od početka do sredine 1943",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "On inicira 29. XI 1943. II zasjedanje AVNOJ-a",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Na istom zasjedanju imenovan je predsjednikom NKOJ-a",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "sa statusom Privremene vlade nove Jugoslavije i proglašen maršalom Jugoslavije",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "njemačka vrhovna komanda je svibnja 1944. izvela desant na Drvar",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Poslije neuspjela desanta Tito je prešao na otok Vis",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tito i I. Šubašić su 16. VI 1944. na Visu potpisali sporazum",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-08-01",
+      "end": "1945-03-08"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "解放貝爾格萊德與臨時政府",
+      "en": "Liberation of Belgrade and the provisional government"
+     },
+     "body": {
+      "zh-Hant": "1944年8月他在義大利與邱吉爾會面，討論戰後南斯拉夫的安排；10月20日貝爾格萊德解放，11月18至19日他自維斯島飛往莫斯科，協調人民解放軍與紅軍的軍事行動。1945年3月7日成立南斯拉夫民主聯邦臨時政府；他以最高司令身分親自參與終局作戰的策劃與執行，並擔任臨時政府主席。",
+      "en": "In August 1944 he met Churchill in Italy and discussed the postwar arrangement of Yugoslavia. Belgrade was liberated on 20 October, and on 18/19 November he flew from Vis to Moscow to coordinate NOV operations with the Red Army. The Provisional Government of the DFJ was created on 7 March 1945. As supreme commander he took part personally in planning and carrying out the final operations, and he served as president of the provisional government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tito se u kolovozu 1944. sastao s Churchillom u Italiji",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Beograd je oslobođen 20. X 1944",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "S Visa je 18/19. XI 1944. odletio u Moskvu",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "koja je kao Privremena vlada DFJ stvorena 7. III 1945",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tito djeluje i kao vrhovni komandant",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Osobno sudjeluje u planiranju i izvođenju završnih operacija",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Kao predsjednik Privremene vlade radi na izgradnji državne vlasti",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tito-supreme-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "南斯拉夫人民解放游擊隊／人民解放軍",
+      "en": "Yugoslav Partisan detachments (NOPOJ) / National Liberation Army (NOVJ)"
+     },
+     "title": {
+      "orig": "vrhovni komandant",
+      "zh-Hant": "最高司令",
+      "en": "Supreme Commander"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-06-27",
+      "end": "1980-05-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Već 27. VI 1941. formira GŠ NOPOJ i preuzima funkciju vrhovnog komandanta",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tito djeluje i kao vrhovni komandant",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-kb1",
+       "locator": "日本大百科全書「チトー」",
+       "quote": "第二次世界大戦ではパルチザン部隊を結成しその最高司令官となり",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-marijan",
+       "locator": "Marijan 2009, I. 引言",
+       "quote": "punih 39 godina bio vrhovni komandant",
+       "quoteLang": "hr",
+       "evidenceNote": "迄日 1980-05-04 依「Od 1941…39 年」與 LeMO 逝世日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-marijan",
+       "locator": "Marijan 2009, II. Vrhovni komandant",
+       "quote": "imala je samo jednoga vrhovnog komandanta, Josipa Broza Tita",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-lemo",
+       "locator": "LeMO 1980 條",
+       "quote": "4. Mai: Nach monatelangem Todeskampf wird Josip Broz Tito in",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "職位等級「vrhovni komandant」引文明寫、有戰役連結（IV／V 攻勢、德爾瓦爾），起迄日已取得（迄日依 Marijan「39 年」與 LeMO 逝世日推得）；僅 regimeId 未查（NULL）→ 門檻無法證明",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "tito-kpj-general-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "南斯拉夫共產黨（KPJ）",
+      "en": "Communist Party of Yugoslavia (KPJ)"
+     },
+     "title": {
+      "orig": "generalni sekretar KPJ; doživotni predsjednik SKJ（1974 起）",
+      "zh-Hant": "南共總書記（1974年起為南共聯盟終身主席）",
+      "en": "General Secretary of the KPJ (from 1974 lifetime President of the SKJ)"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1940-10-01",
+      "end": "1980-05-04"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Tada je izabran i CK i Tito za generalnog sekretara KPJ",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "koja je održana 19–23. X 1940. u Zagrebu",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "U svojstvu generalnog sekretara KPJ usmjerava razvoj Partije",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Na X kongresu SKJ (svibanj 1974) izabran je i za doživotnog predsjednika SKJ",
+       "quoteLang": "hr",
+       "evidenceNote": "迄日 1980-05-04 依「doživotni（終身）」與 LeMO 逝世日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-marijan",
+       "locator": "Marijan 2009, 引言",
+       "quote": "Od 1943. do smrti 1980.",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-lemo",
+       "locator": "LeMO 1980 條",
+       "quote": "4. Mai: Nach monatelangem Todeskampf wird Josip Broz Tito in",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader；迄日 1980-05-04 依終身職與逝世日推得（推論）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "tito-nkoj-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "南斯拉夫民族解放委員會（NKOJ，臨時政府地位）",
+      "en": "National Committee for the Liberation of Yugoslavia (NKOJ, provisional-government status)"
+     },
+     "title": {
+      "orig": "predsjednik NKOJ-a",
+      "zh-Hant": "NKOJ主席",
+      "en": "President of the NKOJ"
+     },
+     "originalPositionKind": "other",
+     "period": {
+      "start": "1943-11-29",
+      "end": "1945-03-07"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "On inicira 29. XI 1943. II zasjedanje AVNOJ-a",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "Na istom zasjedanju imenovan je predsjednikom NKOJ-a",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL「BROZ, Josip-Tito」",
+       "quote": "koja je kao Privremena vlada DFJ stvorena 7. III 1945",
+       "quoteLang": "hr",
+       "evidenceNote": "迄日依臨時政府成立日推得（推論）：HBL 未明寫 NKOJ 主席迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "來源明寫 1943-11-29 起任 NKOJ 主席（具臨時政府地位）（T14 R0）；迄日取臨時政府成立日（推論）；是否已在 leader_records、NKOJ 是否對應 5442 政權未查，合併需去重",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:tito-kpj-general-secretary",
+     "gapKind": "conflict",
+     "note": "起日三份已抓來源不一致：日本大百科全書寫1937年任命為黨書記長，DHM LeMO 寫1938年在莫斯科被任命為總書記，HBL 寫1940年10月第五次全國會議當選總書記（並記1937年8月起實際領導、1939年3月組成以鐵托為首的中央委員會）；本檔依 HBL 明寫之會議日期取 1940-10，1937／1938年說待查證。",
+     "candidateCitations": [
+      {
+       "sourceKey": "tito-kb1",
+       "locator": "日本大百科全書「チトー」",
+       "quote": "1937年に国内組織 再建 の 任務 を負って党書記長に任命された",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-lemo",
+       "locator": "LeMO 1938 條",
+       "quote": "In Moskau wird Tito zum Generalsekretär der KPJ ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tito-hbl",
+       "locator": "HBL",
+       "quote": "Sredinom kolovoza 1937, na traženje članova Politbiroa KPJ",
+       "quoteLang": "hr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "paragraph:positions",
+     "gapKind": "not_found",
+     "note": "待查證：1945年3月後的國防部長兼臨時政府總理任期、1953年起總統任期（窗外或未取得足夠 A／B 起迄日）；本批只寫至1945-03；已查 HBL、日本大百科全書、LeMO、Marijan 論文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "チトー ユーゴスラビア 元帥 コトバンク",
+     "url": "https://kotobank.jp/word/%E3%81%A1%E3%81%A8%E3%83%BC-3158972",
+     "result": "found_B",
+     "note": "日本大百科全書（木戸蓊）取得原文"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "kotobank ティトー（猜測 URL）",
+     "url": "https://kotobank.jp/word/%E3%82%BF%E3%82%A4%E3%83%88-97171",
+     "result": "not_relevant",
+     "note": "猜測之 ID 為無關詞條；改用搜尋結果之正確 ID"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Josip Broz Tito britannica",
+     "url": "https://www.britannica.com/biography/Josip-Broz-Tito",
+     "result": "blocked_403",
+     "note": "Britannica 403，未繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Broz Josip Tito Hrvatski biografski leksikon vrhovni komandant",
+     "url": "https://hbl.lzmk.hr/clanak/broz-josip-tito",
+     "result": "found_A",
+     "note": "curl 取得 HBL 全文（Bilandžić, Sentić）"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Hrvatska enciklopedija Broz, Josip - Tito",
+     "url": "https://www.enciklopedija.hr/clanak/broz-josip-tito",
+     "result": "unrated",
+     "note": "curl 取得；摘要性條目，本批未引用"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "slovenska-biografija Tito（猜測 URL）",
+     "url": "https://www.slovenska-biografija.si/oseba/sbi1011606/",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "ティトー 世界大百科事典（Kotobank 轉向條目）",
+     "url": "https://kotobank.jp/word/%E3%81%A6%E3%81%84%E3%81%A8%E3%83%BC-3232516",
+     "result": "not_relevant",
+     "note": "僅轉向「チトー」，無內文"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "（未做）LoC／VIAF 權威檔",
+     "url": null,
+     "result": "no_result",
+     "note": "本批未查權威檔，名單原文姓名即用 HBL 寫法 Broz, Josip-Tito"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Josip Broz Tito vrhovni komandant Jugoslavenske armije do 1980 doživotni predsjednik SKJ biografija leksikon（hr）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "WebSearch 僅得 encyclopedia.com、Wikipedia 鏡像等；無 A／B 原文新增",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Tito Josip Broz Enciclopedia Treccani maresciallo segretario generale partito comunista jugoslavo（it）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 未回 Treccani 條目",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Josip Broz Tito DHM LeMO Biografie Marschall Generalsekretär KPJ（de）",
+     "url": "https://www.dhm.de/lemo/biografie/josip-broz-tito",
+     "result": "found_B",
+     "note": "LeMO 傳記（Manfred Wichman，DHM）",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Јосип Броз Тито Српска енциклопедија врховни командант генерални секретар КПЈ 1937 маршал 1943（sr）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "未回塞爾維亞語 A／B 條目；回傳為維基鏡像與 marxists.org",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "curl LeMO Josip Broz Tito",
+     "url": "https://www.dhm.de/lemo/biografie/josip-broz-tito",
+     "result": "found_B",
+     "note": "取得原文：1938 任總書記、1945-03-08 新政府、1980-05-04 逝世",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Gran Enciclopèdia Catalana「Tito」",
+     "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/tito",
+     "result": "unrated",
+     "note": "頁面僅導覽文字，條目正文與作者未取得；不引用",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "curl encyclopedia.com Tito（兩頁）",
+     "url": "https://www.encyclopedia.com/people/history/yugoslavian-history-biographies/josip-broz-tito",
+     "result": "unrated",
+     "note": "Encyclopedia of World Biography 無署名條目；不當出處（Q9）",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "curl krugosvet.ru Tito／Smuts",
+     "url": "https://www.krugosvet.ru/enc/istoriya/TITO_YOSIP_BROZ.html",
+     "result": "no_result",
+     "note": "DNS 無法解析",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "curl id.loc.gov Tito, Josip Broz, 1892-1980 標目",
+     "url": "https://id.loc.gov/authorities/names/label/Tito,%20Josip%20Broz,%201892-1980",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "national_dictionary",
+     "query": "curl enciklopedija.hr 搜尋 tito-josip-broz",
+     "url": "https://www.enciklopedija.hr/Abecedarij?q=tito-josip-broz",
+     "result": "not_relevant",
+     "note": "僅得索引頁，無條目正文",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "other",
+     "query": "curl hrleksikon.info Tito",
+     "url": "https://hrleksikon.info/definicija/tito.html",
+     "result": "no_result",
+     "note": "網域停放頁",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "curl treccani.it Tito（兩個 URL 猜測）",
+     "url": "https://www.treccani.it/enciclopedia/tito-josip-broz_(Enciclopedia-Italiana)/",
+     "result": "no_result",
+     "note": "一為首頁轉址、一為空頁；無條目文字",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "authority",
+     "query": "curl id.ndl.go.jp Web NDL Authorities（Tito 搜尋／猜測 ID）",
+     "url": "https://id.ndl.go.jp/auth/ndlsh?search=Tito",
+     "result": "not_relevant",
+     "note": "回傳他人典據或空檢索頁，無 Tito 記錄可用",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "authority",
+     "query": "curl lobid.org GND 搜尋 Tito Josip Broz",
+     "url": "https://lobid.org/gnd/search?q=Tito+Josip+Broz&format=json",
+     "result": "found_A",
+     "note": "GND 確認 preferredName「Tito, Josip Broz」，僅作身分確認，無任期資料",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "authority",
+     "query": "curl data.bnf.fr 搜尋 Tito Josip Broz",
+     "url": "https://data.bnf.fr/en/search?term=Tito+Josip+Broz",
+     "result": "no_result",
+     "note": "搜尋頁為動態載入，無結果文字",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "authority",
+     "query": "curl viaf.org 搜尋 Tito",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Tito%2C%20Josip%20Broz%22",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "national_dictionary",
+     "query": "curl slovenska-biografija.si 搜尋 Tito",
+     "url": "https://www.slovenska-biografija.si/iskanje/?q=Tito",
+     "result": "no_result",
+     "note": "搜尋頁無 Tito 條目",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "named_encyclopedia",
+     "query": "curl kotobank 其他條目（チトー 其他 URL）",
+     "url": "https://kotobank.jp/word/%E3%83%81%E3%83%88%E3%83%BC-3158972",
+     "result": "not_relevant",
+     "note": "404 或不同條目；既有 tito-kb1 已用",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "academic",
+     "query": "Tito vrhovni komandant Oružanih snaga SFRJ do smrti 1980 Predsjedništvo SFRJ ustav 1974（hr）",
+     "url": "https://hrcak.srce.hr/file/87648",
+     "result": "found_B",
+     "note": "找到 Marijan 2009 論文",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "academic",
+     "query": "curl hrcak.srce.hr Marijan, Rukovođenje i komandovanje Oružanim snagama SFRJ",
+     "url": "https://hrcak.srce.hr/file/87648",
+     "result": "found_B",
+     "note": "取得原文 PDF 全文；明寫 Tito 自 1941 起 39 年任最高司令",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "other",
+     "query": "Tito generalni sekretar KPJ 1966 predsjednik SKJ IV plenum Brijuni（hr）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "只回二手／維基衍生；未取得 1966 改制之 A／B 原文，故標題不寫 1966 改制",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "jansmuts",
+   "bioId": null,
+   "name": "Jan Smuts",
+   "nameZh": "扬·史末资",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1900-01-01",
+      "end": "1903-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "波耳戰爭",
+      "en": "The Boer War"
+     },
+     "body": {
+      "zh-Hant": "1900年普勒托利亞陷落後，史末資加入布耳人的突擊隊，翌年率領部下千里遠征開普殖民地；他是布耳人最出色的軍人之一，也是韋雷尼欣和會的談判代表。1902年他以特蘭士瓦政府法律顧問身分出席該會議。",
+      "en": "After the fall of Pretoria in 1900, Smuts joined the Boer commandos and in the following year led his own troops on a thousand-mile odyssey into the Cape Colony. He was one of the Boers' best soldiers and one of their negotiators at the Vereeniging peace conference, which he attended in 1902 as legal adviser to the Transvaal government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "smuts-britac",
+       "locator": "Shula Marks, Raleigh Lecture（Proc. British Academy 111）",
+       "quote": "After the capture of Pretoria in 1900",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-britac",
+       "locator": "Shula Marks, Raleigh Lecture（Proc. British Academy 111）",
+       "quote": "leading his own troops on a thousand-mile odyssey into the Cape Colony",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "ボーア戦争 中は ボーア 軍ゲリラを率いて戦った",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "Smuts was one of their negotiators during the Vereeniging peace conference",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-sahistory",
+       "locator": "SAHO「General Jan Christiaan Smuts」",
+       "quote": "He attended the Vereeniging Peace Conference in 1902 as legal adviser",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1906-01-01",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "聯邦內閣與德屬西南非",
+      "en": "Union cabinet and German South West Africa"
+     },
+     "body": {
+      "zh-Hant": "1906年特蘭士瓦恢復自治後，他出任博塔自治政府的殖民地次官兼教育部長。1910年南非聯邦成立後他擔任礦業、國防與內政大臣，創建了聯邦國防軍；一戰爆發後組成南非國防軍，1915年他與博塔征服德屬西南非。",
+      "en": "When Transvaal self-government was restored in 1906, he became colonial under-secretary and education minister in the Botha government. After the Union of South Africa was formed in 1910 he served as minister of mines, defence and the interior and created the Union Defence Force. After the First World War broke out he formed the South African Defence Force, and in 1915 he and Botha conquered German South West Africa."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "06年トランスバール自治権回復とともにボータ自治政府の植民地次官兼教育相に就任した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "10年の南アフリカ連邦 成立 後， 鉱業 ・ 国防 ・内相となり",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "Smuts became Minister of Defence, Mines and the Interior",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "created the Union Defence Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "Smuts formed the South African Defence Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "In 1915, he and Botha successfully conquered German South West Africa",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1916-02-12",
+      "end": "1917-01-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "東非戰役",
+      "en": "The East African campaign"
+     },
+     "body": {
+      "zh-Hant": "1916年2月12日，他奉命接掌英國在東非的部隊指揮權，19日抵達蒙巴薩，出任東非帝國軍司令官，指揮征服德屬東非的戰役。他動員大軍卻難以擊敗利托夫—福貝克的游擊部隊，當時有人批評他拖延戰事；1917年1月20日霍斯金斯在東非接掌指揮權，史末資離開東非，前往英國加入帝國戰時內閣。",
+      "en": "On 12 February 1916 he assumed command of the British forces in East Africa, arriving at Mombasa on the 19th, and as commander of the imperial forces in East Africa led the conquest of German East Africa. Despite mobilising a large force he struggled to defeat Lettow-Vorbeck's guerrillas, and some contemporaries criticised him for dragging out the campaign. Hoskins assumed command in East Africa on 20 January 1917, and Smuts left to join the Imperial War Cabinet in Britain."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "16年東アフリカ帝国軍の 司令官 に就任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "In 1916, Smuts commanded the conquest of German East Africa",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "he struggled to defeat Colonel Paul von Lettow-Vorbeck",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "He was criticised by some of his contemporaries for dragging out the campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "Lettow-Vorbeck was still at large when Smuts left",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "to join the Imperial War Cabinet in 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-gaz1",
+       "locator": "London Gazette 29630 p.6127，Smuts 戰報",
+       "quote": "assumed command of His Majesty's Forces in East Africa on the 12th February",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-gaz1",
+       "locator": "London Gazette 29630 p.6127",
+       "quote": "I arrived at Mombasa on the 19th of February",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-gaz2",
+       "locator": "London Gazette 30447 p.13555，Hoskins 戰報",
+       "quote": "January, 1917, the date upon which T assumed command in East Africa",
+       "quoteLang": "en",
+       "evidenceNote": "OCR 將 I 辨為 T；1917-01-20 見同段「from the 20th January, 1917」",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰後首相與英國陸軍元帥",
+      "en": "Prime minister and British field marshal"
+     },
+     "body": {
+      "zh-Hant": "1919至1924年間他擔任聯邦首相，1934年與赫爾佐格合組統一黨（連合南非國民黨）。二戰爆發後他與主張中立的赫爾佐格對立，1939年再度出任首相並讓南非參戰；1941年他被晉升為英國陸軍元帥。",
+      "en": "He served as prime minister of the Union from 1919 to 1924 and in 1934 formed the United South African National Party with Hertzog. In 1939, when Hertzog's neutrality motion was defeated, he took over as premier again and brought South Africa into the war, and in 1941 he was promoted field marshal of the British Army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "ボータの死後19-24年連邦 首相 を務め",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "34年ヘルツォークと連合南アフリカ国民党を結成した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "第2次大戦では 中立 を唱えるヘルツォーク首相と対立し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "39年再度首相となった",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-sahistory",
+       "locator": "SAHO「General Jan Christiaan Smuts」",
+       "quote": "Smuts took over as Premier",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-sahistory",
+       "locator": "SAHO「General Jan Christiaan Smuts」",
+       "quote": "promoted to field marshal of the British Army in 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "smuts-union-defence-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "南非聯邦政府",
+      "en": "Government of the Union of South Africa"
+     },
+     "title": {
+      "orig": "Minister of Defence (with Mines and the Interior)",
+      "zh-Hant": "國防大臣（兼礦業、內政）",
+      "en": "Minister of Defence (also Mines and the Interior)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1910-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "10年の南アフリカ連邦 成立 後， 鉱業 ・ 国防 ・内相となり",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "Smuts became Minister of Defence, Mines and the Interior",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-house",
+       "locator": "Smuts House Museum 傳記",
+       "quote": "Minister of Interior, Defence and Mines in the first Union Cabinet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-samh-paterson",
+       "locator": "Paterson 2010, Military History Journal 15/2",
+       "quote": "He was now Minister of Defence for the whole Union",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "國防部正職類別符合 R3，但迄日查不到且 regimeId 未查（NULL）→ 門檻無法證明",
+     "t14Overlap": "cabinet",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "smuts-east-africa-command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "東非帝國軍（英帝國軍隊）",
+      "en": "Imperial forces in East Africa"
+     },
+     "title": {
+      "orig": "東アフリカ帝国軍の司令官 / Commander in East Africa",
+      "zh-Hant": "東非帝國軍司令官",
+      "en": "Commander of the imperial forces in East Africa"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-02-12",
+      "end": "1917-01-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "smuts-kb1",
+       "locator": "世界大百科事典「スマッツ」（林晃史）",
+       "quote": "16年東アフリカ帝国軍の 司令官 に就任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-nam",
+       "locator": "National Army Museum「Jan Smuts: The warrior-statesman」",
+       "quote": "to join the Imperial War Cabinet in 1917",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依其離任赴英入戰時內閣之年（1917）推得（推論）；未明寫卸任日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-gaz1",
+       "locator": "London Gazette 29630 p.6127",
+       "quote": "assumed command of His Majesty's Forces in East Africa on the 12th February",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smuts-gaz2",
+       "locator": "London Gazette 30447 p.13555",
+       "quote": "January, 1917, the date upon which T assumed command in East Africa",
+       "quoteLang": "en",
+       "evidenceNote": "迄日 1917-01-20 依接任者 Hoskins 就任日推得（推論）；OCR 將 I 辨為 T",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令且有戰役連結（德屬東非戰役），起迄日已取得（迄日依接任者 Hoskins 就任日推得）；但 regimeId 未查（NULL）→ 門檻無法證明",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:smuts-union-defence-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NAM、世界大百科、SAHO、Smuts House Museum、Paterson 論文、British Academy 論文、London Gazette 均只寫1910年起任國防等大臣，未寫卸任日（二手維基衍生資料有 1919／1920 兩說，無 A／B 原文可定，不採）；本輪另查 Treccani（無署名）、Presidency.gov.za、Deutsche Biographie、NDL、BnF。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "paragraph:positions",
+     "gapKind": "not_found",
+     "note": "待查證：波耳戰爭「共和國軍將軍」指揮職起迄日、1915年德屬西南非戰役中的具體指揮職稱與日期、1919–1924及1939–1948年首相之確切起迄日（首相任期應已在 leader_records，未重建）；已查 NAM、世界大百科、SAHO、Marks 論文，未見明寫職稱與日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 4 段／434 字（達段數與字數門檻）；但國防大臣任期缺迄日（A／B 來源未寫卸任日），故未達「每個職位有起迄日」標準；本輪已查來源類型：國家級傳記辭典（Treccani 無署名／Deutsche Biographie 僅權威資料）、官方公報（London Gazette 29630／29906／30026／30447）、政府官網（presidency.gov.za，僅二戰首相任期）、機構傳記（Smuts House Museum、NAM）、學術期刊（Paterson 2010、Marks、Woodward）、日本大百科（Kotobank）、權威檔（GND、NDL、BnF）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "スマッツ 南アフリカ 首相 元帥 コトバンク",
+     "url": "https://kotobank.jp/word/%E3%81%99%E3%81%BE%E3%81%A4%E3%81%A4-3182325",
+     "result": "found_B",
+     "note": "世界大百科事典（林晃史）"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Jan Smuts britannica",
+     "url": "https://www.britannica.com/biography/Jan-Smuts",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Smuts National Army Museum warrior-statesman",
+     "url": "https://www.nam.ac.uk/explore/jan-smuts-warrior-statesman",
+     "result": "found_B",
+     "note": "機構傳記頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Jan Smuts Raleigh Lecture British Academy Marks",
+     "url": "https://britac.ac.uk/documents/2091/111p199.pdf",
+     "result": "found_B",
+     "note": "Shula Marks 論文 PDF"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "sahistory.org.za Jan Christiaan Smuts",
+     "url": "https://sahistory.org.za/people/general-jan-christiaan-smuts",
+     "result": "found_B",
+     "note": "SAHO，T1 暫分 B"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Smuts Jan Christian",
+     "url": "https://encyclopedia.1914-1918-online.net/article/smuts_jan_christian",
+     "result": "no_result",
+     "note": "curl 只得框架頁，無正文"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "sahistory.org.za/people/jan-christian-smuts（猜測 URL）",
+     "url": "https://www.sahistory.org.za/people/jan-christian-smuts",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Dictionary of South African Biography Smuts",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未得可抓之 DSAB 原文"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Jan Christiaan Smuts minister of defence 1910 1920 prime minister 3 September 1919 biography",
+     "url": null,
+     "result": "not_relevant",
+     "note": "WebSearch 只得維基衍生與二手；無 A／B 卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Smuts Jan Christian Treccani Enciclopedia Italiana generale statista sudafricano（it）",
+     "url": "https://www.treccani.it/enciclopedia/jan-christiaan-smuts/",
+     "result": "unrated",
+     "note": "Treccani 條目取得原文但無署名，不當出處；亦僅寫「Difesa (1912 e 1915)」，與其他來源不合",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "treaty_law",
+     "query": "Smuts German East Africa commander-in-chief 1916 February appointed relieved January 1917 Imperial War Cabinet",
+     "url": "https://www.thegazette.co.uk/London/issue/29630/supplement/6127/data.pdf",
+     "result": "found_A",
+     "note": "找到 London Gazette 29630",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "gov.za Jan Smuts prime minister 1919 1924 1939 1948 South Africa past leaders",
+     "url": "https://presidency.gov.za/history",
+     "result": "found_A",
+     "note": "Presidency 歷任首相頁：Smuts 1939-09-05 至 1948-06-04（二戰首相任期，非本檔所需 positions）",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "curl 1914-1918-online「Smuts, Jan Christian」",
+     "url": "https://encyclopedia.1914-1918-online.net/article/smuts_jan_christian",
+     "result": "challenge_page",
+     "note": "Anubis 驗證頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "curl presidency.gov.za/history",
+     "url": "https://presidency.gov.za/history",
+     "result": "found_A",
+     "note": "取得原文，不另加入出處",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "curl Gran Enciclopèdia Catalana「Jan Christiaan Smuts」",
+     "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/jan-christiaan-smuts",
+     "result": "unrated",
+     "note": "只有導覽文字，無條目正文",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "curl krugosvet.ru Smuts",
+     "url": "https://www.krugosvet.ru/enc/istoriya/SMETS_YAN_HRISTIAN.html",
+     "result": "no_result",
+     "note": "DNS 無法解析",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "curl smutshouse.co.za Biographies of Jan and Isie Smuts",
+     "url": "https://www.smutshouse.co.za/biographies-2/",
+     "result": "found_B",
+     "note": "博物館傳記頁，含「Minister of Interior, Defence and Mines in the first Union Cabinet」，無日期",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "other",
+     "query": "curl encyclopaediaafricana.com Smuts",
+     "url": "https://encyclopaediaafricana.com/?p=17707",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "treaty_law",
+     "query": "curl London Gazette 29630 supplement p.6127",
+     "url": "https://www.thegazette.co.uk/London/issue/29630/supplement/6127/data.pdf",
+     "result": "found_A",
+     "note": "取得 Smuts 戰報原文：1916-02-12 接掌、02-19 抵蒙巴薩",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "academic",
+     "query": "curl samilitaryhistory.org vol054dw（Woodward 1981）",
+     "url": "https://www.samilitaryhistory.org/vol054dw.html",
+     "result": "found_B",
+     "note": "取得原文；主要談 1917–18 帝國戰時內閣，無國防大臣卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "named_encyclopedia",
+     "query": "curl encyclopedia.com Smuts 條目",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/smuts-jan-christiaan-1870-1950",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "authority",
+     "query": "curl id.ndl.go.jp Smuts 典據（ID 猜測）",
+     "url": "https://id.ndl.go.jp/auth/ndlna/00455890",
+     "result": "not_relevant",
+     "note": "回傳他人典據頁",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "authority",
+     "query": "curl lobid.org GND 搜尋 Smuts Jan Christiaan",
+     "url": "https://lobid.org/gnd/search?q=Smuts+Jan+Christiaan&format=json",
+     "result": "found_A",
+     "note": "GND 權威資料，僅身分確認，無任期",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "authority",
+     "query": "curl data.bnf.fr 搜尋 Smuts Jan Christiaan",
+     "url": "https://data.bnf.fr/en/search?term=Smuts+Jan+Christiaan",
+     "result": "no_result",
+     "note": "動態載入，無結果文字",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "authority",
+     "query": "curl viaf.org 搜尋 Smuts",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Smuts%2C%20J.%20C.%22",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "academic",
+     "query": "curl samilitaryhistory.org vol152hp（Paterson 2010）",
+     "url": "https://www.samilitaryhistory.org/vol152hp.html",
+     "result": "found_B",
+     "note": "取得原文；「Minister of Defence for the whole Union」，無卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "treaty_law",
+     "query": "curl London Gazette 29906、30026（Smuts 1916-10／1917-04 戰報）",
+     "url": "https://www.thegazette.co.uk/London/issue/30026/supplement/3724/data.pdf",
+     "result": "not_relevant",
+     "note": "戰報未載 Smuts 離任日",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "treaty_law",
+     "query": "Hoskins assumed command East Africa 20 January 1917 Smuts left London Gazette",
+     "url": "https://www.thegazette.co.uk/London/issue/30447/supplement/13555/data.pdf",
+     "result": "found_A",
+     "note": "找到 Hoskins 戰報（issue 30447）",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "treaty_law",
+     "query": "curl London Gazette 30447 supplement p.13555（Hoskins）",
+     "url": "https://www.thegazette.co.uk/London/issue/30447/supplement/13555/data.pdf",
+     "result": "found_A",
+     "note": "取得原文：1917-01-20 Hoskins 接掌東非指揮",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "other",
+     "query": "Mentz succeeded Smuts Minister of Defence 1920 South Africa",
+     "url": "https://www.theheritageportal.co.za/node/4180",
+     "result": "not_relevant",
+     "note": "只回維基衍生頁；theheritageportal 404；不採",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "other",
+     "query": "Jan Smuts minister van verdediging 1920 Eerste Kabinet Botha（af）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "只回維基鏡像",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "named_encyclopedia",
+     "query": "スマッツ 南アフリカ 国防相 1920年 辞任 首相 日本大百科全書 世界大百科事典（ja）",
+     "url": "https://kotobank.jp/word/%E3%81%99%E3%81%BE%E3%81%A4%E3%81%A4-3182325",
+     "result": "not_relevant",
+     "note": "WebSearch 無關；curl Kotobank 既有 smuts-kb1 內容無國防相卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "authority",
+     "query": "Smuts Jan Christiaan Deutsche Biographie Verteidigungsminister Südafrika（de）",
+     "url": "https://www.deutsche-biographie.de/11879776X.html",
+     "result": "found_A",
+     "note": "curl 取得；僅 GND 權威資料（1870–1950、Irene），無任期文字",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "authority",
+     "query": "Smuts Jan Christiaan ministre de la Défense data.bnf.fr（fr）",
+     "url": null,
+     "result": "no_result",
+     "note": "未回 BnF 頁",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "จอมพลแปลกพบลสงคราม",
+   "bioId": null,
+   "name": "จอมพล แปลก พิบูลสงคราม",
+   "nameZh": "銮披汶·颂堪",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "留法、立憲革命與國防部長",
+      "en": "Study in France, the 1932 revolution and the defence ministry"
+     },
+     "body": {
+      "zh-Hant": "1924年起他赴法國留學約三年，其間與比里等人組成以推翻絕對君主制為目標的政治團體。1932年他以陸軍少校身分參加立憲革命，1934年出任國防部長，與比里領導的文官派對抗；1938年他組成第一次披汶內閣，並把國名由暹羅改為泰國。",
+      "en": "From 1924 he studied in France for about three years, during which he and Pridi and others formed a political group aimed at overthrowing the absolute monarchy. In 1932 he took part in the constitutional revolution as an army major, in 1934 he became defence minister and fought the civilian faction led by Pridi, and in 1938 he formed his first cabinet and changed the country's name from Siam to Thailand."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "世界大百科事典「ピブン」（赤木攻）",
+       "quote": "1924年から約3ヵ年のフランス留学中",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "世界大百科事典「ピブン」（赤木攻）",
+       "quote": "プリディ らと絶対王政打倒を目的とした政治グループを結成し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "1932年陸軍少佐として絶対王制打倒の 立憲革命 に 参加 した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "1934年国防相に 就任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "好敵手 プリディ の率いる文民派と 抗争",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "1938年第一次ピブン内閣を組閣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "国名をシャムからタイと改めた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-01-01",
+      "end": "1942-01-25"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "泰法戰爭與對日同盟",
+      "en": "The Franco-Thai war and the alliance with Japan"
+     },
+     "body": {
+      "zh-Hant": "1941年1月，他的政府向法國索還領土，日本政府出面調停，日本軍的影響力隨之籠罩政府。1941年底日軍進入泰國；他以總理兼最高司令的身分簽署與日軍合作的協議，並於12月21日簽訂與日本結盟的條約。1942年1月25日泰國向英國與美國宣戰。",
+      "en": "In January 1941 his government demanded the return of territory from France, with the Japanese government mediating, and Japanese military influence began to cover the government. In late 1941 Japanese forces entered Thailand; as prime minister and supreme commander he signed the agreement on military cooperation with Japan, and on 21 December signed the treaty of alliance with Japan. On 25 January 1942 Thailand declared war on Britain and the United States."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "ร้องดินแดนคืนจากฝรั่งเศสในสงครามอินโดจีนในเดือนมกราคม พ.ศ. 2484",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "โดยมีรัฐบาลญี่ปุ่นยื่นมือเข้ามาไกล่เกลี่ย",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "ในปลายปี พ.ศ. 2484",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-psc",
+       "locator": "วารสารรัฐศาสตร์พิจาร（Suphachai Suphaphol）",
+       "quote": "ในฐานะนายกรัฐมนตรีและผู้บัญชาการทหารสูงสุดก็ได้เซ็นตกลงร่วมมือ",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-psc",
+       "locator": "วารสารรัฐศาสตร์พิจาร（Suphachai Suphaphol）",
+       "quote": "คือวันที่ 21 ธันวาคม",
+       "quoteLang": "th",
+       "evidenceNote": "年份依該段時序（1941 年底），quote 只含日月",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-psc",
+       "locator": "วารสารรัฐศาสตร์พิจาร（Suphachai Suphaphol）",
+       "quote": "ก็ได้ลงนามในกติกาสัญญาเป็นพันธมิตรกับญี่ปุ่น",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-psc",
+       "locator": "วารสารรัฐศาสตร์พิจาร（Suphachai Suphaphol）",
+       "quote": "ในวันที่ 25 มกราคม พ.ศ.2485",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-psc",
+       "locator": "วารสารรัฐศาสตร์พิจาร（Suphachai Suphaphol）",
+       "quote": "ก็ประกาศสงครามกับอังกฤษและสหรัฐ",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1945-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "辭意反覆與失勢",
+      "en": "Wavering resignation and fall from power"
+     },
+     "body": {
+      "zh-Hant": "1942年他與日本締結防衛同盟。1943年2月他向攝政團遞出首相辭呈，卻又改變心意、聲明並不辭職，令人民黨（革命團體）成員多有不滿。戰況惡化後，他的政府無法再維持統治，他於1944年失勢。",
+      "en": "In 1942 he concluded a defensive alliance with Japan. In February 1943 he submitted his resignation as prime minister to the regency council but then changed his mind and declared he would not resign, which caused resentment among the members of the Khana Ratsadon. As the war situation worsened his government could no longer carry on, and he fell from power in 1944."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "1942年（昭和17）日本と防衛同盟を締結",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "ในเดือนกุมภาพันธ์ พ.ศ. 2486",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "จอมพล ป. พิบูลสงครามยื่นใบลาออก",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "กลับเปลี่ยนใจและไม่ประสงค์จะลาออก",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "戦況悪化に伴い1944年失脚",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "phibun-pnru",
+       "locator": "วารสารราชภัฏพระนครวิชาการ（ชนะศึก วิเศษชัย）",
+       "quote": "ไม่สามารถบริหารประเทศต่อไปได้ใน พ.ศ. 2487",
+       "quoteLang": "th",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "phibun-defence-minister-1934",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "泰國（暹羅）政府",
+      "en": "Government of Thailand (Siam)"
+     },
+     "title": {
+      "orig": "国防相 / Minister of Defence",
+      "zh-Hant": "國防部長",
+      "en": "Minister of Defence"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1934-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "phibun-nipponica",
+       "locator": "日本大百科全書「ピブン」（黒柳米司）",
+       "quote": "1934年国防相に 就任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "國防部正職類別符合 R3，但迄日查不到且 regimeId 未查（NULL）→ 門檻無法證明",
+     "t14Overlap": "cabinet",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:phibun-defence-minister-1934",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；日本大百科全書只寫1934年就任國防相，未寫卸任日；已查 Kotobank 日本大百科、世界大百科與兩篇 ThaiJO 論文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "position:phibun-supreme-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Suphaphol 論文只寫1941年12月他以總理兼最高司令（ผู้บัญชาการทหารสูงสุด）身分簽署與日軍合作協議，未寫就任與卸任日；已查兩篇 ThaiJO 論文、Kotobank。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "position:phibun-army-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；陸軍總司令（名單標「陆海空元帅」）之任命與任期、1938年起的陸軍職務、元帥晉銜日期未見於已取得之 A／B 來源；Britannica 403、泰國官方頁未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "paragraph:positions",
+     "gapKind": "not_found",
+     "note": "待查證：1938-12-16 起首相任期、1948–1957 年第二次首相任期之確切起迄日（首相任期應已在 leader_records，未重建）；泰法戰爭中的具體指揮職稱；已查 Kotobank 兩條目與兩篇 ThaiJO 論文，Britannica 403、JACAR 條目 404、泰國政府／國會官方頁未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前3段、中文約數百字（符合下限），但來源類型僅百科（Kotobank 具名條目）與兩篇泰國學術期刊論文，無泰國官方／國家級傳記辭典；細節（軍職、戰役）偏薄。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "ピブン・ソンクラーム タイ 首相 元帥 コトバンク",
+     "url": "https://kotobank.jp/word/%E3%83%94%E3%83%96%E3%83%B3%E3%83%BB%E3%82%BD%E3%83%B3%E3%82%AF%E3%83%A9%E3%83%BC%E3%83%A0-120751",
+     "result": "unrated",
+     "note": "Britannica 小項目為無署名，不採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Plaek Phibunsongkhram britannica",
+     "url": "https://www.britannica.com/print/article/455772",
+     "result": "challenge_page",
+     "note": "Cloudflare 驗證頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "ピブーン・ソンクラーム 日本大百科全書",
+     "url": "https://kotobank.jp/word/%E3%81%B4%E3%81%B6%E3%82%93-3166285",
+     "result": "found_B",
+     "note": "日本大百科全書（黒柳米司）、世界大百科事典（赤木攻）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "jacar ピブン term",
+     "url": "https://www.jacar.archives.go.jp/aj/meta/term/00000088",
+     "result": "no_result",
+     "note": "curl 404（搜尋摘要有，未取得原文）"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "จอมพล ป. พิบูลสงคราม เสถียรภาพทางการเมือง 2481-2487 (ThaiJO)",
+     "url": "https://so07.tci-thaijo.org/index.php/PNRU_ACA/article/download/1154/1014",
+     "result": "found_B",
+     "note": "ชนะศึก วิเศษชัย 論文"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Phibunsongkhram decision Japanese invasion 1941 (ThaiJO)",
+     "url": "https://so01.tci-thaijo.org/index.php/PSC/article/download/261633/179240/1141821",
+     "result": "found_B",
+     "note": "Suphachai Suphaphol 論文"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "thaigov.go.th ประวัตินายกรัฐมนตรี จอมพล แปลก พิบูลสงคราม",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未返回官方履歷頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Chulalongkorn CUIR thesis chapters on Phibun",
+     "url": "https://cuir.car.chula.ac.th/bitstream/123456789/66278/6/Preedarat_pa_ch5_p.pdf",
+     "result": "no_result",
+     "note": "連線逾時，未取得"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "thailex Phibun Songkram",
+     "url": "https://thailex.info/THAILEX/THAILEXENG/lexicon/Thailand%20Lexicon%20-%20Phibun%20Songkram",
+     "result": "unrated",
+     "note": "旅遊百科、無署名，未引用"
+    }
+   ]
+  }
+ ]
+}

@@ -200,7 +200,7 @@ supersedes: null
 
 - [ ] TODO（使用者自行判斷）：R7 主權軸要採用哪一份開放資料集。2026-10-27 史料調查建議以 OpenHistoricalMap（CC0、日精度，但 1937–45 多數疆界未附來源，須人工補來源）為骨架、CShapes 2.0（CC BY-NC-SA）只用於核對日期、historical-basemaps（GPL-3.0、僅 1938／1945）不採用，見 `docs/research/ww2-data-sources.md` §1。不由 AI 拍板。
 
-- [ ] TODO（使用者自行判斷）：戰役的資料欄位。提案：(A) 沿用 `events.event_kind`，新增值 `battle`，政治事件另用 `political`；(B) 新增欄位（例：`is_battle` 布林或 `battle_scale` = short／theater），長期戰區用 `parent_event_id` 掛多個短期戰役；階段資料（戰線、箭頭、據點）另存子表。2026-11-03 只寫提案，schema 未動，不由 AI 拍板。
+- [x] 已決（使用者拍板，2026-11-11）：戰役的資料欄位採 A′——沿用 `historical_events.event_kind`（`battle`＝短期戰役、`campaign`＝長期戰區，以 `parent_event_id` 掛多個 `battle`），戰役專屬屬性放 1:1 子表 `battle_profiles`，階段、簡報圖、參戰部隊、爭議數字另存子表。詳見 ARCHITECTURE §19；原提案條文移至修訂紀錄。
 
 已解決的開放問題見文末修訂紀錄。
 
@@ -219,6 +219,21 @@ supersedes: null
 ---
 
 ## 修訂紀錄
+
+### 2026-11-11 使用者拍板：戰役 Q1–Q8（ARCHITECTURE §19）
+
+Tai 2026-11-11 13:15–13:16（台北時間）回覆 ARCHITECTURE §19.7：
+- Q1（D13）：採 A′（見 §10）。戰役是多面向集合，展開為關聯子表（階段、參戰政權、參戰部隊、子事件、所屬衝突、結果與控制變化、人物參與、影響另表）；關聯表與 PostGIS 為唯一真相，向量（pgvector）只做後期敘述段落的語意搜尋索引，不當來源。
+- Q2（T5）：戰役立即解禁，由「World Line 戰役」bot 負責。
+- Q3：國家最高軍職採固定職位清單＋de_facto 例外。
+- Q4：`regime`、`tab` 加進 URL；捲動位置不存。
+- Q5：來源政策統一為通用 `SourcePolicy`。
+- Q6：「上旬」改寫為 month 精度，於 evidence_note 註明。
+- Q7：疆界跟著階段播放即時變，以 GSAP 驅動並做疆界漸變；漸變中間形狀標示「推估過渡，非史料」、不入庫、不可查詢，停在階段時只顯示有出處的疆界。
+- Q8：第一場試做為敦克爾克，範圍以發電機行動為準（三條件不成立時，以敦克爾克戰役為 battle、發電機行動為其階段或子事件）。
+
+被取代條文（§10 原文）：
+> - [ ] TODO（使用者自行判斷）：戰役的資料欄位。提案：(A) 沿用 `events.event_kind`，新增值 `battle`，政治事件另用 `political`；(B) 新增欄位（例：`is_battle` 布林或 `battle_scale` = short／theater），長期戰區用 `parent_event_id` 掛多個短期戰役；階段資料（戰線、箭頭、據點）另存子表。2026-11-03 只寫提案，schema 未動，不由 AI 拍板。
 
 ### 2026-11-10 使用者拍板：人物生平期間可超出第一階段範圍（僅閱讀對話框）
 

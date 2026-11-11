@@ -2,6 +2,41 @@
  "batch": "churchill-rebuild",
  "researchedOn": "2026-11-11",
  "decidedBy": "Tai 2026-11-11 09:30（Asia/Taipei）：照 gap-830 流程補建，寫庫前回報 Tai",
+ "decisions": {
+  "decidedBy": "Tai 2026-11-11 10:13（Asia/Taipei，經 World Line 主管轉達）：6 項全照史料考證建議",
+  "items": [
+   {
+    "no": 1,
+    "item": "任期拆筆",
+    "decision": "只建一筆 [1940-05-10,1945-07-26)，不拆 1945-05-23 看守內閣；拆點記待查證"
+   },
+   {
+    "no": 2,
+    "item": "職銜",
+    "decision": "Prime Minister（照 Hansard）"
+   },
+   {
+    "no": 3,
+    "item": "黨派",
+    "decision": "Conservative；evidenceNote 註明只代表首相任內黨籍"
+   },
+   {
+    "no": 4,
+    "item": "卒地",
+    "decision": "這次不寫，記在 research.json unverified；不寫任何 death_place SQL（超出計畫）"
+   },
+   {
+    "no": 5,
+    "item": "b3-sample 連結",
+    "decision": "寫庫後另開 commit 補 b3-sample 邱吉爾 bioId／relatedRecordIds；寫入第一、二階段都不改 b3-sample"
+   },
+   {
+    "no": 6,
+    "item": "nameZh／wikidataQid／照片",
+    "decision": "nameZh 無出處保留；wikidataQid 與照片 null"
+   }
+  ]
+ },
  "sources": {
   "govuk-churchill": {
    "grade": "A",
@@ -51,8 +86,8 @@
     "sources": [
      {
       "sourceKey": "hansard-churchill",
-      "locator": "Page heading (People)",
-      "quote": "Mr Winston Churchill (Hansard)",
+      "locator": "Page heading",
+      "quote": "Mr Winston Churchill",
       "quoteLang": "en",
       "evidenceNote": null,
       "accessedOn": "2026-11-11",
@@ -65,7 +100,7 @@
    "nameZh": {
     "value": "溫斯頓·邱吉爾",
     "sources": [],
-    "note": "沿用 5442 已撤回任期 01a19efa-769a-… 與 b3-sample 的中文名；無來源（前端顯示待補來源）"
+    "note": "沿用 5442 已撤回任期 01a19efa-769a-… 與 b3-sample 的中文名；無來源（前端顯示待補來源）；Tai 2026-11-11 10:13 決定無出處保留"
    },
    "birthDate": {
     "value": "1874-11-30",
@@ -153,7 +188,7 @@
       "locator": "Subtitle under page heading",
       "quote": "Conservative 1940 to 1945, 1951 to 1955",
       "quoteLang": "en",
-      "evidenceNote": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生",
+      "evidenceNote": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）",
       "accessedOn": "2026-11-11",
       "grade": "A",
       "datePrecision": null,
@@ -164,7 +199,7 @@
       "locator": "Fact box: Political party",
       "quote": "Conservative",
       "quoteLang": "en",
-      "evidenceNote": null,
+      "evidenceNote": "Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）",
       "accessedOn": "2026-11-11",
       "grade": "A",
       "datePrecision": null,
@@ -219,17 +254,22 @@
     {
      "field": "wikidataQid",
      "clue": "本次未查 Wikidata",
-     "why": "只當線索、非必要；留 null，不憑記憶填"
+     "why": "只當線索、非必要；留 null，不憑記憶填（Tai 2026-11-11 10:13 決定 null）"
     },
     {
      "field": "portrait",
      "clue": "Commons 檔案頁",
-     "why": "本次未查授權模板，依規則留 null"
+     "why": "本次未查授權模板，依規則留 null（Tai 2026-11-11 10:13 決定 null）"
     },
     {
      "field": "deathPlace",
      "clue": "GOV.UK Fact box: Died「24 January 1965, London」",
-     "why": "CreateLeaderBioRequest 沒有 deathPlace 欄（DB 有 death_place）；本次不寫，待 API 支援再補"
+     "why": "CreateLeaderBioRequest 沒有 deathPlace 欄（DB 有 death_place）；Tai 2026-11-11 10:13 決定這次不寫、不另寫 death_place SQL（超出計畫），待 API 支援再補"
+    },
+    {
+     "field": "record:gb-churchill-pm-1940 split 1945-05-23",
+     "clue": "1945-05-23 聯合內閣結束、組看守內閣；既有資料把麥克唐納 1929–31／1931–35 依內閣拆筆",
+     "why": "手上 A 級來源（Hansard、GOV.UK）只給一段連續任期，無來源支撐拆點；Tai 2026-11-11 10:13 決定只建一筆 [1940-05-10,1945-07-26)，拆點待查證（需 Commons Library 名錄等來源，目前被防機器人擋）"
     }
    ],
    "newRecords": [

@@ -1,5 +1,40 @@
 {
- "status": "pending — 未寫庫；需 Tai 核准後才執行",
+ "status": "pending — 未寫庫；Tai 2026-11-11 10:13 已核准內容與寫入本機開發庫 5052（試跑、備份後才寫，不 push）",
+ "decisions": {
+  "decidedBy": "Tai 2026-11-11 10:13（Asia/Taipei，經 World Line 主管轉達）：6 項全照史料考證建議",
+  "items": [
+   {
+    "no": 1,
+    "item": "任期拆筆",
+    "decision": "只建一筆 [1940-05-10,1945-07-26)，不拆 1945-05-23 看守內閣；拆點記待查證"
+   },
+   {
+    "no": 2,
+    "item": "職銜",
+    "decision": "Prime Minister（照 Hansard）"
+   },
+   {
+    "no": 3,
+    "item": "黨派",
+    "decision": "Conservative；evidenceNote 註明只代表首相任內黨籍"
+   },
+   {
+    "no": 4,
+    "item": "卒地",
+    "decision": "這次不寫，記在 research.json unverified；不寫任何 death_place SQL（超出計畫）"
+   },
+   {
+    "no": 5,
+    "item": "b3-sample 連結",
+    "decision": "寫庫後另開 commit 補 b3-sample 邱吉爾 bioId／relatedRecordIds；寫入第一、二階段都不改 b3-sample"
+   },
+   {
+    "no": 6,
+    "item": "nameZh／wikidataQid／照片",
+    "decision": "nameZh 無出處保留；wikidataQid 與照片 null"
+   }
+  ]
+ },
  "target": {
   "api": "http://127.0.0.1:5052/api/v1",
   "db": "worldline_borders_dev（5442）"
@@ -61,8 +96,8 @@
     {
      "field": "name",
      "sourceId": "<step1:hansard-churchill>",
-     "locator": "Page heading (People)",
-     "evidenceNote": "Mr Winston Churchill (Hansard)",
+     "locator": "Page heading",
+     "evidenceNote": "Mr Winston Churchill",
      "accessedOn": "2026-11-11"
     },
     {
@@ -104,14 +139,14 @@
      "field": "party",
      "sourceId": "<step1:govuk-churchill>",
      "locator": "Subtitle under page heading",
-     "evidenceNote": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生",
+     "evidenceNote": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）",
      "accessedOn": "2026-11-11"
     },
     {
      "field": "party",
      "sourceId": "<step1:govuk-churchill>",
      "locator": "Fact box: Political party",
-     "evidenceNote": "Conservative",
+     "evidenceNote": "Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）",
      "accessedOn": "2026-11-11"
     },
     {
@@ -162,11 +197,11 @@
      "bio_id": "<step2:bioId>",
      "field": "name",
      "source_id": "<step1:hansard-churchill>",
-     "locator": "Page heading (People)",
-     "evidence_note": "Mr Winston Churchill (Hansard)"
+     "locator": "Page heading",
+     "evidence_note": "Mr Winston Churchill"
     },
     "set": {
-     "quote": "Mr Winston Churchill (Hansard)",
+     "quote": "Mr Winston Churchill",
      "quote_lang": "en",
      "grade": "A",
      "date_precision": null,
@@ -259,7 +294,7 @@
      "field": "party",
      "source_id": "<step1:govuk-churchill>",
      "locator": "Subtitle under page heading",
-     "evidence_note": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生"
+     "evidence_note": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）"
     },
     "set": {
      "quote": "Conservative 1940 to 1945, 1951 to 1955",
@@ -275,7 +310,7 @@
      "field": "party",
      "source_id": "<step1:govuk-churchill>",
      "locator": "Fact box: Political party",
-     "evidence_note": "Conservative"
+     "evidence_note": "Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）"
     },
     "set": {
      "quote": "Conservative",

@@ -34,7 +34,7 @@ SOURCES = {
         "sourceKind": "official_history", "licenseCode": None,
     },
     "hansard-churchill": {
-        "raw": "hansard.txt", "grade": "A", "gradeWhy": "議會官方紀錄",
+        "raw": "hansard.txt", "html": "hansard.html", "grade": "A", "gradeWhy": "議會官方紀錄",
         "title": "Mr Winston Churchill (Hansard 1803–2005, People)",
         "publisher": "UK Parliament (Historic Hansard)",
         "url": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill/index.html",
@@ -64,9 +64,11 @@ PERSON = {
     "recordNameVariants": ["Winston Churchill"],
     "wikidataQid": None,
     "name": {"value": "Winston Churchill", "sources": [
-        c("hansard-churchill", "Page heading (People)", "Mr Winston Churchill (Hansard)")]},
+        # 引文＝頁面 <h1> 逐字文字（不是 <title>「Mr Winston Churchill (Hansard)」）；main() 另核對 <h1>
+        c("hansard-churchill", "Page heading", "Mr Winston Churchill")]},
     "nameZh": {"value": "溫斯頓·邱吉爾", "sources": [],
-               "note": "沿用 5442 已撤回任期 01a19efa-769a-… 與 b3-sample 的中文名；無來源（前端顯示待補來源）"},
+               "note": "沿用 5442 已撤回任期 01a19efa-769a-… 與 b3-sample 的中文名；無來源（前端顯示待補來源）；"
+                       "Tai 2026-11-11 10:13 決定無出處保留"},
     "birthDate": {"value": "1874-11-30", "precision": "day", "sources": [
         c("govuk-churchill", "Fact box: Born", "30 November 1874, Blenheim Palace, Oxfordshire", prec="day")]},
     "deathDate": {"value": "1965-01-24", "precision": "day", "sources": [
@@ -78,8 +80,10 @@ PERSON = {
     "party": {"value": {"zh-Hant": "保守黨", "en": "Conservative Party"}, "sources": [
         c("govuk-churchill", "Subtitle under page heading", "Conservative 1940 to 1945, 1951 to 1955",
           note="來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，"
-               "故此值只代表首相任內黨籍，不代表一生"),
-        c("govuk-churchill", "Fact box: Political party", "Conservative")]},
+               "故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）"),
+        c("govuk-churchill", "Fact box: Political party", "Conservative",
+          note="Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生"
+               "（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）")]},
     "summary": {"value": {
         "zh-Hant": "英國保守黨政治人物，1940年至1945年及1951年至1955年兩度出任首相；1965年逝世並獲國葬。",
         "en": "British Conservative politician who served twice as Prime Minister, 1940–1945 and 1951–1955; "
@@ -90,10 +94,17 @@ PERSON = {
     "portrait": None,
     "conflicts": [],
     "unverified": [
-        {"field": "wikidataQid", "clue": "本次未查 Wikidata", "why": "只當線索、非必要；留 null，不憑記憶填"},
-        {"field": "portrait", "clue": "Commons 檔案頁", "why": "本次未查授權模板，依規則留 null"},
+        {"field": "wikidataQid", "clue": "本次未查 Wikidata",
+         "why": "只當線索、非必要；留 null，不憑記憶填（Tai 2026-11-11 10:13 決定 null）"},
+        {"field": "portrait", "clue": "Commons 檔案頁",
+         "why": "本次未查授權模板，依規則留 null（Tai 2026-11-11 10:13 決定 null）"},
         {"field": "deathPlace", "clue": "GOV.UK Fact box: Died「24 January 1965, London」",
-         "why": "CreateLeaderBioRequest 沒有 deathPlace 欄（DB 有 death_place）；本次不寫，待 API 支援再補"},
+         "why": "CreateLeaderBioRequest 沒有 deathPlace 欄（DB 有 death_place）；Tai 2026-11-11 10:13 決定這次不寫、"
+                "不另寫 death_place SQL（超出計畫），待 API 支援再補"},
+        {"field": "record:gb-churchill-pm-1940 split 1945-05-23",
+         "clue": "1945-05-23 聯合內閣結束、組看守內閣；既有資料把麥克唐納 1929–31／1931–35 依內閣拆筆",
+         "why": "手上 A 級來源（Hansard、GOV.UK）只給一段連續任期，無來源支撐拆點；Tai 2026-11-11 10:13 決定只建一筆 "
+                "[1940-05-10,1945-07-26)，拆點待查證（需 Commons Library 名錄等來源，目前被防機器人擋）"},
     ],
     "newRecords": [{
         "key": "gb-churchill-pm-1940",
@@ -119,15 +130,33 @@ PERSON = {
 }
 
 
+DECIDED = "Tai 2026-11-11 10:13（Asia/Taipei，經 World Line 主管轉達）：6 項全照史料考證建議"
+DECISIONS = [
+    {"no": 1, "item": "任期拆筆", "decision": "只建一筆 [1940-05-10,1945-07-26)，不拆 1945-05-23 看守內閣；拆點記待查證"},
+    {"no": 2, "item": "職銜", "decision": "Prime Minister（照 Hansard）"},
+    {"no": 3, "item": "黨派", "decision": "Conservative；evidenceNote 註明只代表首相任內黨籍"},
+    {"no": 4, "item": "卒地", "decision": "這次不寫，記在 research.json unverified；不寫任何 death_place SQL（超出計畫）"},
+    {"no": 5, "item": "b3-sample 連結", "decision": "寫庫後另開 commit 補 b3-sample 邱吉爾 bioId／relatedRecordIds；"
+                                                   "寫入第一、二階段都不改 b3-sample"},
+    {"no": 6, "item": "nameZh／wikidataQid／照片", "decision": "nameZh 無出處保留；wikidataQid 與照片 null"},
+]
+
+
 def norm(s):
     return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s)).strip()
+
+
+def h1_text(html):
+    """頁面第一個 <h1> 的純文字（去標籤、空白合併）。"""
+    m = re.search(r"<h1\b[^>]*>(.*?)</h1>", html, re.S | re.I)
+    return norm(re.sub(r"<[^>]+>", "", m.group(1))) if m else None
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw", default="/tmp/churchill-raw")
     a = ap.parse_args()
-    errs, raw, sha, quotes = [], {}, {}, []
+    errs, raw, sha, quotes, h1 = [], {}, {}, [], {}
     for k, s in SOURCES.items():
         host = urlparse(s["url"]).hostname or ""
         if any(host == b or host.endswith("." + b) for b in BANNED):
@@ -136,6 +165,10 @@ def main():
         data = open(path, "rb").read()
         sha[k] = hashlib.sha256(data).hexdigest()
         raw[k] = norm(data.decode("utf-8"))
+        if s.get("html"):
+            hdata = open(os.path.join(a.raw, s["html"]), "rb").read()
+            sha[k + ":html"] = hashlib.sha256(hdata).hexdigest()
+            h1[k] = h1_text(hdata.decode("utf-8"))
 
     def check_cits(where, cits, need_a=False):
         if not cits:
@@ -152,6 +185,14 @@ def main():
                 errs.append(f"{where}: 引文超過 80 字元（{len(q)}）")
             if norm(q) not in raw[x["sourceKey"]]:
                 errs.append(f"{where}: 引文未逐字出現在 {x['sourceKey']}：{q}")
+            if x["locator"] == "Page heading":
+                # locator 指頁面標題時，引文必須逐字等於該頁 <h1>（不可拿 <title> 充當）
+                if x["sourceKey"] not in h1:
+                    errs.append(f"{where}: locator=Page heading 但 {x['sourceKey']} 沒有 html 可核對 <h1>")
+                elif norm(q) != h1[x["sourceKey"]]:
+                    errs.append(f"{where}: 引文與 <h1>「{h1[x['sourceKey']]}」不符：{q}")
+                else:
+                    quotes[-1]["h1Match"] = True
 
     p = PERSON
     for f in ("name", "birthDate", "deathDate", "birthPlace", "party", "summary"):
@@ -170,16 +211,25 @@ def main():
     if len(unicodedata.normalize("NFC", zh)) > 400:
         errs.append("summary 中文超過 400 字")
 
+    if p.get("deathPlace"):
+        errs.append("不得寫 death_place（Tai 決定 ④）")
+    if p["wikidataQid"] is not None or p["portrait"] is not None:
+        errs.append("wikidataQid／portrait 必須為 null（Tai 決定 ⑥）")
+    if len(p["newRecords"]) != 1 or p["newRecords"][0]["title"] != "Prime Minister":
+        errs.append("任期只建一筆、title=Prime Minister（Tai 決定 ①②）")
+
     report = {"ok": not errs, "errors": errs, "quoteCount": len(quotes),
-              "maxQuoteLen": max(q["len"] for q in quotes), "rawSha256": sha, "quotes": quotes}
+              "maxQuoteLen": max(q["len"] for q in quotes), "rawSha256": sha, "h1": h1, "quotes": quotes}
     with open(os.path.join(HERE, "verify-report.json"), "w", encoding="utf-8") as fh:
         json.dump(report, fh, ensure_ascii=False, indent=1); fh.write("\n")
     if errs:
         print("✗", *errs, sep="\n  "); sys.exit(1)
 
-    sources_out = {k: {x: v for x, v in s.items() if x != "raw"} | {"accessedOn": ACCESSED} for k, s in SOURCES.items()}
+    sources_out = {k: {x: v for x, v in s.items() if x not in ("raw", "html")} | {"accessedOn": ACCESSED}
+                   for k, s in SOURCES.items()}
     research = {"batch": "churchill-rebuild", "researchedOn": ACCESSED,
                 "decidedBy": "Tai 2026-11-11 09:30（Asia/Taipei）：照 gap-830 流程補建，寫庫前回報 Tai",
+                "decisions": {"decidedBy": DECIDED, "items": DECISIONS},
                 "sources": sources_out, "people": [p], "staging": []}
     with open(os.path.join(HERE, "research.json"), "w", encoding="utf-8") as fh:
         json.dump(research, fh, ensure_ascii=False, indent=1); fh.write("\n")
@@ -193,7 +243,8 @@ def main():
                 for x in p[f]["sources"]]
     rec = p["newRecords"][0]
     pending = {
-        "status": "pending — 未寫庫；需 Tai 核准後才執行",
+        "status": "pending — 未寫庫；Tai 2026-11-11 10:13 已核准內容與寫入本機開發庫 5052（試跑、備份後才寫，不 push）",
+        "decisions": {"decidedBy": DECIDED, "items": DECISIONS},
         "target": {"api": "http://127.0.0.1:5052/api/v1", "db": "worldline_borders_dev（5442）"},
         "step1_sources": [{"sourceKey": k, "request": {"sourceKind": s["sourceKind"], "title": s["title"],
                                                         "publisher": s["publisher"], "url": s["url"],

@@ -1,7 +1,8 @@
-# 邱吉爾補建（待寫資料，不寫庫；2026-11-11）
+# 邱吉爾補建（待寫資料＋送出腳本，尚未寫庫；2026-11-11）
 
 > 授權：Tai 2026-11-11 09:30（Asia/Taipei）決定照 gap-830 流程補建邱吉爾的有效人物資料與 1940–45 首相任期，只產出待寫資料；**寫庫前由 World Line 主管回報 Tai**（§16.3.2 第 5 點 Q8）。
 > 依據：ARCHITECTURE.md §16（16.3.2 B3 寫法、16.4.1 citation 欄位、16.9.1 T1 等級）、`gap-830/{WORKFLOW,SCHEMA}.md`、`b3-sample/`。
+> 寫入授權：Tai 2026-11-11 10:13（Asia/Taipei，經 World Line 主管轉達）「邱吉爾 6 項全照史料考證建議；同意修 2 處瑕疵、寫送出腳本、檢查、試跑、備份後寫入本機開發庫 5052，不 push」。第一階段（本次）只修瑕疵、寫 `send.py`／`counts.sql` 並乾跑；試跑與寫入是下一階段。
 > 範圍：只在本目錄新增檔案。沒有寫庫（5442 只用 `default_transaction_read_only=on` 做 SELECT），沒改程式、API、前端、ARCHITECTURE.md，沒重啟服務。
 
 ## 檔案
@@ -11,8 +12,10 @@
 | `build.py` | builder：讀 `/tmp/churchill-raw/` 的原始頁面文字，檢查引文後產生下面三個檔（種子不手改） |
 | `research.json` | gap-830 P 格式；來源用頂層 `sources`＋`sourceKey`（B3 規則）；`bioId: null`、`recordIds: []`，新任期放 `newRecords` |
 | `pending-write.json` | 待寫內容：步驟 1–3（5052 API 請求本體）、步驟 4（SQL 補 quote／grade 與 `leader_record_citations`）、不得動的 4 筆撤回列 |
-| `verify-report.json` | 檢查結果（**ok，0 錯誤；13 筆引文，最長 62 字元**）與原始頁面 sha256；原始頁面不進版控 |
+| `verify-report.json` | 檢查結果（**ok，0 錯誤；13 筆引文，最長 62 字元；name 引文與 Hansard `<h1>` 逐字相符**）與原始頁面 sha256；原始頁面不進版控 |
 | `WRITE_PLAN.md` | 寫哪些表、幾筆、dry-run、回滾 |
+| `send.py` | 送出腳本（預設乾跑、`--send` 才寫；步驟 1–4；帳本 `sent.<port>.json`） |
+| `counts.sql` | 寫入後 5 條計數＋撤回列不變核對（全 SELECT） |
 
 ## 5442 唯讀查證結果
 
@@ -26,7 +29,7 @@
 
 | 欄位 | 值 | 出處（locator） | 等級 |
 |---|---|---|---|
-| name | Winston Churchill | Hansard（Page heading） | A |
+| name | Winston Churchill | Hansard（Page heading；引文「Mr Winston Churchill」＝頁面 `<h1>`） | A |
 | nameZh | 溫斯頓·邱吉爾 | 無（沿用撤回任期與 b3-sample 的中文名，前端顯示待補來源） | — |
 | birthDate | 1874-11-30（day） | GOV.UK（Fact box: Born） | A |
 | deathDate | 1965-01-24（day） | GOV.UK（Died）、Hansard（life dates）、Nobel（closing line） | A、A、B |
@@ -34,7 +37,8 @@
 | party | 保守黨／Conservative Party | GOV.UK（page subtitle、Fact box: Political party） | A |
 | summary | 英國保守黨政治人物，1940年至1945年及1951年至1955年兩度出任首相；1965年逝世並獲國葬。 | GOV.UK（subtitle、Dates in office、Biography 末段） | A |
 
-- 黨派：邱吉爾曾轉黨（GOV.UK 同頁：1904 轉自由黨、戰間期回保守黨）。GOV.UK 副標題寫「Conservative 1940 to 1945, 1951 to 1955」，把保守黨限定在首相任內，所以給值，並在 evidenceNote 註明「只代表首相任內黨籍」。若主管或 Tai 認為 gap-830「黨派隨時期變動不給值」應該從嚴，就把此欄改成 unverified。
+- 黨派：邱吉爾曾轉黨（GOV.UK 同頁：1904 轉自由黨、戰間期回保守黨）。GOV.UK 副標題寫「Conservative 1940 to 1945, 1951 to 1955」，把保守黨限定在首相任內，所以給值；兩筆 party citation 的 evidenceNote 都註明「只代表首相任內黨籍」（Tai 2026-11-11 10:13 已決 ③）。
+- 出生地譯名「布倫亨宮」：2026-11-11 在 repo 內（排除 node_modules、.git、建置輸出）grep「布倫亨宮」「布倫海姆宮」「布萊尼姆」「布倫翰」「布倫漢」「Blenheim」等，既有資料與前端都沒有用到任何譯名，只出現在本目錄與 `b3-sample/research.json`（「布倫亨宮」），故保留「布倫亨宮」。
 - 存取日期：全部 2026-11-11。
 
 **任期（leader_records 1 筆）**
@@ -63,13 +67,21 @@
 - National Archives 推測網址 404。
 - 未使用 Wikipedia、Wikidata；curl 未用 `-k`、未登入。
 
-## 待查證／待決項目
+## 修正紀錄（2026-11-11 第一階段）
 
-1. **1945-05-23 看守內閣是否拆成兩筆任期**：既有資料把麥克唐納 1929–31／1931–35 依內閣拆筆。邱吉爾 1945 年 5 月 23 日聯合內閣結束、組看守內閣，若比照應拆成 `[1940-05-10,1945-05-23)`＋`[1945-05-23,1945-07-26)`。本次手上的 A 級來源（Hansard、GOV.UK）都只給一段連續任期，沒有來源支撐拆點，所以**只建一筆**；要拆需先取得 Commons Library 名錄（被防機器人擋）等來源，請主管／Tai 決定。
-2. **title 寫法**：Hansard 只寫「Prime Minister」，照原文；相鄰任期用「Prime Minister and First Lord of the Treasury」（出自 Commons Library PDF）。要統一需有來源寫到 First Lord of the Treasury。
-3. **黨派從嚴與否**：見上方「黨派」說明。
-4. **deathPlace**：GOV.UK 寫 London；`CreateLeaderBioRequest` 沒有此欄，本次不寫。
-5. **wikidataQid、照片**：未查，留 null。
-6. **nameZh 無出處**：沿用既有中文名。
-7. **寫入後續**：寫庫後要把 `b3-sample/research.json` 邱吉爾的 `bioId`、`relatedRecordIds` 補上（B3 建表時處理）。
-8. 寫入需另寫送出腳本（見 WRITE_PLAN §3），本次未寫、未執行。
+- (a) name 引文：原為「Mr Winston Churchill (Hansard)」，那是 Hansard 頁 `<title>`，與 locator「Page heading」不符。改為引文「Mr Winston Churchill」、locator「Page heading」。`build.py` 新增檢查：locator 為 Page heading 的引文必須逐字等於原始頁 `hansard.html` 第一個 `<h1>` 的純文字（去標籤、空白合併）；`verify-report.json` 記 `h1` 與 html 的 sha256。另以 curl（不帶 -k）重抓 Hansard 頁，`<h1>` 文字同為「Mr Winston Churchill」。
+- (b) 出生地譯名：見上方「出生地譯名」，保留「布倫亨宮」。
+
+## 已決項目（Tai 2026-11-11 10:13）
+
+1. **任期拆筆**——已決：只建一筆 `[1940-05-10,1945-07-26)`，不拆 1945-05-23 看守內閣。拆點記在 research.json `unverified`（待查證；手上 A 級來源只給一段連續任期，要拆需 Commons Library 名錄等來源，目前被防機器人擋）。
+2. **職銜**——已決：「Prime Minister」（照 Hansard）。相鄰任期的「Prime Minister and First Lord of the Treasury」出自 Commons Library PDF，本次不比照。
+3. **黨派**——已決：Conservative；evidenceNote 註明只代表首相任內黨籍。
+4. **卒地**——已決：這次不寫，記在 research.json `unverified`；不寫任何 `death_place` SQL（超出計畫）。
+5. **b3-sample 連結**——已決：寫庫後另開 commit 補 `b3-sample/research.json` 邱吉爾的 `bioId`、`relatedRecordIds`；寫入第一、二階段都不改 b3-sample。
+6. **nameZh／wikidataQid／照片**——已決：nameZh 無出處保留（溫斯頓·邱吉爾）；wikidataQid 與照片 null。
+
+## 寫入進度
+
+- 第一階段（本次）：修 2 處瑕疵、寫 `send.py`、`counts.sql`；`send.py` 對 5052／`worldline_borders_dev` 乾跑一次（只有唯讀查詢）。**未寫庫**。
+- 第二階段（下一個任務）：備份 → 試跑庫 5062／`worldline_person_dryrun` → 核對 `counts.sql` → 寫入 5052 → 核對。

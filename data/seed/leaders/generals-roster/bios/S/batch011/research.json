@@ -1,0 +1,4182 @@
+{
+ "batch": "b3-full-v3-batch011",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 政權對應），故國家級軍職、閣員與殖民地長官因政權待查證為 R6，師／軍團／旅／副職／榮譽職為 R5；巴頓的集團軍級指揮官與特遣隊指揮官 T14 無明文，標 t14Ambiguous。義大利三人各只取得 1 個 Treccani DBI 具名條目（A）；巴頓用 LoC 手稿部指引年表（A，年精度）；阿諾德因 af.mil／LoC／Army University Press 被擋，僅取得 NASA 簡頁與 Centennial of Flight 無具名專文（評等待確認）。元首／首腦任期無需重建；黨職無（格拉齊亞尼國家法西斯黨榮譽黨證屬黨員身分，記為 gap）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch011，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch011/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "treccani-cadorna": {
+   "title": "CADORNA, Luigi",
+   "authors": [
+    "Giorgio Rochat"
+   ],
+   "publisher": "Istituto dell'Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario Biografico degli Italiani - Volume 16 (1973)",
+   "url": "https://www.treccani.it/enciclopedia/luigi-cadorna_(Dizionario-Biografico)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "Dizionario Biografico degli Italiani 具名條目（國家級傳記辭典，A）"
+  },
+  "treccani-diaz": {
+   "title": "DIAZ, Armando Vittorio",
+   "authors": [
+    "Giorgio Rochat"
+   ],
+   "publisher": "Istituto dell'Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario Biografico degli Italiani - Volume 39 (1991)",
+   "url": "https://www.treccani.it/enciclopedia/armando-vittorio-diaz_(Dizionario-Biografico)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "Dizionario Biografico degli Italiani 具名條目（國家級傳記辭典，A）"
+  },
+  "treccani-graziani": {
+   "title": "GRAZIANI, Rodolfo",
+   "authors": [
+    "Angelo Del Boca"
+   ],
+   "publisher": "Istituto dell'Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario Biografico degli Italiani - Volume 58 (2002)",
+   "url": "https://www.treccani.it/enciclopedia/rodolfo-graziani_(Dizionario-Biografico)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "Dizionario Biografico degli Italiani 具名條目（國家級傳記辭典，A）"
+  },
+  "loc-patton-fa": {
+   "title": "George S. Patton Papers: A Finding Aid to the Collection in the Library of Congress",
+   "authors": [],
+   "publisher": "Library of Congress, Manuscript Division",
+   "published_text": "Finding aid PDF（Biographical Note 年表），2026-11-11 取用",
+   "url": "https://tile.loc.gov/storage-services/service/mss/eadxmlmss/eadpdfmss/2000/ms000001.pdf",
+   "archive_url": null,
+   "catalog_id": "ms000001",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國會圖書館手稿部官方館藏指引（國家級官方機構頁，A）"
+  },
+  "nasa-arnold": {
+   "title": "X-1 Biographies--Henry H. (Hap) Arnold",
+   "authors": [],
+   "publisher": "NASA History Office",
+   "published_text": "Updated September 18, 1997",
+   "url": "https://www.nasa.gov/history/x1/arnold.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國政府機構（NASA History Office）官方頁（A）；內容簡短，僅供佐證"
+  },
+  "centennial-arnold": {
+   "title": "Air Power: Henry \"Hap\" Arnold",
+   "authors": [],
+   "publisher": "U.S. Centennial of Flight Commission",
+   "published_text": "centennialofflight.net essay AP16，2026-11-11 取用",
+   "url": "https://www.centennialofflight.net/essay/Air_Power/Hap_Arnold/AP16.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國聯邦百年飛行委員會官方網站專文（政府機構頁，A）；頁面無具名作者，評等待主管確認"
+  }
+ },
+ "people": [
+  {
+   "key": "luigicadorna",
+   "bioId": null,
+   "name": "Luigi Cadorna",
+   "nameZh": "路易吉·卡多尔纳",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1905-01-01",
+      "end": "1914-07-27"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰前的師、軍團長與出任總參謀長",
+      "en": "Pre-war divisions, army corps and appointment as chief of staff"
+     },
+     "body": {
+      "zh-Hant": "卡多爾納1905年升中將，先後指揮安科納師（1905–07年）與那不勒斯師。1908年，總參謀長一職由波利奧接任，卡多爾納落選；1910年他出任熱那亞軍團指揮官，1913年被任命為王國參議員。1914年7月27日他接任陸軍總參謀長。",
+      "en": "Cadorna became a lieutenant general in 1905 and commanded the Ancona division and then the Naples division. In 1908 the post of chief of staff went to General Pollio, not to him; in 1910 he took command of the Genoa army corps and in 1913 was named a senator of the Kingdom. On 27 July 1914 he assumed the post of chief of the army general staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "tenente generale nel 1905, ebbe il comando della divisione di Ancona (1905-07)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "e di quella di Napoli (1907-09)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "apprendeva la nomina all'alto incarico del gen. A. Pollio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Nel 1910 il C. assumeva il comando del corpo d'armata di Genova",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Nel 1913 veniva nominato senatore del Regno.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 27 luglio egli assumeva l'alto incarico",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-05-24",
+      "end": "1917-09-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1915至1917年：伊松佐戰線",
+      "en": "1915–1917: the Isonzo front"
+     },
+     "body": {
+      "zh-Hant": "1915年5月24日，卡多爾納以三十五個師開始對奧匈軍隊作戰。他的戰略重心在伊松佐河，來源稱前後共十一次戰役；1916年5月奧軍在特倫蒂諾發動攻勢，他仍在同年8月奪下戈里齊亞；1917年8月的巴伊西察戰役使奧匈瀕臨崩潰。",
+      "en": "On 24 May 1915 Cadorna opened operations against the Austro-Hungarian forces with thirty-five divisions. His effort centred on the Isonzo, in what the source counts as eleven battles. Despite the Austro-Hungarian offensive in the Trentino in May 1916 he took Gorizia in August 1916, and the Bainsizza battle of August 1917 pushed Austria-Hungary to the brink of collapse."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 24 maggio 1915 il C. iniziava le operazioni contro le truppe austro-ungariche",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "sull'Isonzo (undici battaglie complessive)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "dall'offensiva austro-ungarica del Trentino (maggio 1916)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "strappava al nemico Gorizia (agosto 1916)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "(battaglia della Bainsizza, agosto del 1917)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1917-10-24",
+      "end": "1917-11-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "卡波雷托戰役與撤換",
+      "en": "Caporetto and removal from command"
+     },
+     "body": {
+      "zh-Hant": "1917年10月24日，奧德聯軍第十四集團軍突破義軍防線。卡多爾納在10月27日發出公報，把潰敗歸咎於第二集團軍部隊，隨後才下令撤退；撤至皮亞韋河後他下令死守。11月9日他被迪亞茲接替，並被任命為協約國最高軍事委員會成員。",
+      "en": "On 24 October 1917 the Austro-German 14th Army broke through the Italian lines. On 27 October Cadorna issued a bulletin blaming units of the Second Army, and only then ordered the retreat; once the Piave was reached he ordered resistance to the end. On 9 November he was replaced by Diaz and named a member of the Inter-Allied Supreme War Council."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "armata austrotedesca sfondò le linee italiane",
+       "quoteLang": "it",
+       "evidenceNote": "年份（1917）依同段「24 ott. 1917」",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "il 27 ottobre diramò un bollettino",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "diramava gli ordini relativi solo il 27 mattina",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "lanciava l'ordine di resistenza ad oltranza",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 9 novembre il C. era perciò sostituito con Diaz",
+       "quoteLang": "it",
+       "evidenceNote": "年份（1917）依上文「24 ott. 1917」推得",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "nominato membro del Consiglio superiore di guerra interalleato",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1918-02-17",
+      "end": "1928-12-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後：調查、元帥與逝世",
+      "en": "After the war: inquiry, marshal's baton and death"
+     },
+     "body": {
+      "zh-Hant": "1918年2月17日，卡多爾納被緊急召回義大利，等候卡波雷托調查委員會；1919年9月他被列入退役。1924年11月4日，墨索里尼晉封他與迪亞茲為義大利元帥；他重返參議院，1928年12月21日在博爾迪蓋拉逝世。",
+      "en": "On 17 February 1918 Cadorna was suddenly recalled to Italy and placed at the disposal of the commission of inquiry into Caporetto, and in September 1919 he was retired. On 4 November 1924 Mussolini named him and Diaz Marshals of Italy; he returned to the Senate and died at Bordighera on 21 December 1928."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "il 17 febbr. 1918 fu improvvisamente richiamato in Italia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "commissione d'inchiesta nominata dal governo Orlando",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "nel settembre 1919 il C., che un anno prima era passato in posizione ausiliaria",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 4 nov. 1924 Mussolini volle troncare le discussioni sulla guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "nominando il C. e Diaz marescialli d'Italia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Morì il 21 dic. 1928 in Bordighera",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "cadorna-capo-sme",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍總參謀部",
+      "en": "Italian Royal Army General Staff"
+     },
+     "title": {
+      "orig": "capo di Stato Maggiore dell'esercito",
+      "zh-Hant": "陸軍總參謀長",
+      "en": "Chief of the Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-07-27",
+      "end": "1917-11-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "come nuovo capo di Stato Maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 27 luglio egli assumeva l'alto incarico",
+       "quoteLang": "it",
+       "evidenceNote": "年份（1914）依上文「6 luglio 1914」",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 9 novembre il C. era perciò sostituito con Diaz",
+       "quoteLang": "it",
+       "evidenceNote": "年份（1917）依上文「24 ott. 1917」推得",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級最高軍職（陸軍總參謀長，引文明寫），任期與伊松佐、卡波雷托等戰役可證，但 regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "cadorna-divisione-napoli",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍那不勒斯師",
+      "en": "Italian Royal Army Naples Division"
+     },
+     "title": {
+      "orig": "comando della divisione di Napoli",
+      "zh-Hant": "那不勒斯師師長",
+      "en": "Commander of the Naples Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1907-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "e di quella di Napoli (1907-09)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮官，非國家級最高軍職或戰區司令"
+    },
+    {
+     "key": "cadorna-corpo-armata-genova",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍熱那亞軍團",
+      "en": "Italian Royal Army Genoa Army Corps"
+     },
+     "title": {
+      "orig": "comando del corpo d'armata di Genova",
+      "zh-Hant": "熱那亞軍團指揮官",
+      "en": "Commander of the Genoa Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1910-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Nel 1910 il C. assumeva il comando del corpo d'armata di Genova",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮官，非國家級最高軍職或戰區司令"
+    },
+    {
+     "key": "cadorna-consiglio-versailles",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "協約國最高軍事委員會（凡爾賽）",
+      "en": "Inter-Allied Supreme War Council (Versailles)"
+     },
+     "title": {
+      "orig": "membro del Consiglio superiore di guerra interalleato",
+      "zh-Hant": "最高軍事委員會成員",
+      "en": "Member of the Inter-Allied Supreme War Council"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1917-11-09",
+      "end": "1918-02-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "Il 9 novembre il C. era perciò sostituito con Diaz",
+       "quoteLang": "it",
+       "evidenceNote": "年份（1917）依上文推得",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "nominato membro del Consiglio superiore di guerra interalleato",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "DBI 16 (1973) CADORNA, Luigi",
+       "quote": "il 17 febbr. 1918 fu improvvisamente richiamato in Italia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "盟軍聯合機構成員，非軍職指揮；不屬 R2–R4"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:cadorna-corpo-armata-genova",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1910年出任並於兩年後被指定戰時指揮第二集團軍，未寫卸任日。已查：Treccani DBI（Rochat）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：DBI 僅概述伊松佐十一次戰役與卡波雷托，戰役日期多為月份精度；各次伊松佐戰役的起迄日待第二來源（如義大利國防部歷史辦公室出版品）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Luigi Cadorna Dizionario Biografico degli Italiani",
+     "url": "https://www.treccani.it/enciclopedia/luigi-cadorna_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "curl 成功，取得具名（Giorgio Rochat）DBI 條目全文"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "擴充來源",
+     "url": null,
+     "result": "no_result",
+     "note": "預算有限，未另抓第二來源（Camera/Senato 資料庫未查）"
+    }
+   ]
+  },
+  {
+   "key": "armandodiaz",
+   "bioId": null,
+   "name": "Armando Diaz",
+   "nameZh": "阿尔曼多·迪亚兹",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1909-10-01",
+      "end": "1914-11-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1909至1914年：從參謀到利比亞作戰",
+      "en": "1909–1914: staff service and the Libyan war"
+     },
+     "body": {
+      "zh-Hant": "1909年10月，迪亞茲被任命為佛羅倫斯師參謀長；1910年7月1日升上校，指揮拉斯佩齊亞的第21步兵團。1912年5月他赴利比亞接替第93步兵團團長，9月20日在紮努爾附近的西迪比拉勒戰鬥中肩部中彈。1913年1月他回任參謀總部，1914年10月升少將。",
+      "en": "In October 1909 Diaz was appointed chief of staff of the Florence division, and on 1 July 1910 he was promoted colonel and took the 21st Infantry at La Spezia. In May 1912 he went to Libya to replace the commander of the 93rd Infantry and on 20 September was wounded in the shoulder at Sidi Bilal near Zanzur. He returned to the general staff in January 1913 and became a major general in October 1914."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "nell'ottobre 1909 il D. lasciò Roma",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "capo di stato maggiore della divisione di Firenze",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Il 1º luglio 1910 fu promosso colonnello e assunse il comando del 21º reggimento",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nel maggio 1912 fu destinato in Libia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "comandante del 93º reggimento di fanteria",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Il 20 sett. 1912, nello scontro di Sidi Bilal nei pressi di Zanzūr, fu ferito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nel gennaio 1913, appena guarito, riprese servizio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "come capo della segreteria di Pollio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "nell'ottobre 1914, promosso maggior generale",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-05-01",
+      "end": "1917-11-08"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1915至1917年：最高統帥部與卡索戰線",
+      "en": "1915–1917: Supreme Command and the Carso front"
+     },
+     "body": {
+      "zh-Hant": "1915年5月最高統帥部成立，迪亞茲負責作戰處；1916年6月27日起指揮第49步兵師，秋季攻勢中奪取聖格拉多高地。1917年4月12日他升任新成立的第23軍團長，8月19至21日參與卡索最後一次攻勢，直到11月任總參謀長為止。",
+      "en": "When the Supreme Command was set up in May 1915 Diaz took charge of its operations department. From 27 June 1916 he commanded the 49th Infantry Division and in the autumn offensive took the San Grado di Merna height. On 12 April 1917 he was given the newly formed XXIII Army Corps and took part in the last Italian offensive on the Carso on 19–21 August, until his appointment as chief of staff in November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nel maggio 1915, al momento della costituzione del Comando supremo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il D. vi ebbe la responsabilità del reparto operazioni",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il 27 giugno 1916 fu nominato comandante della 49ª divisione di fanteria",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "conquistando nell'offensiva autunnale l'altura di San Grado di Merna",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Il 12 apr. 1917 il D. fu promosso alla testa del XXIII corpo d'armata",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "poi il 19-21 agosto, nel quadro dell'ultima offensiva italiana sul Carso",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "L'8 nov. 1917 fu nominato capo di stato maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1917-11-08",
+      "end": "1918-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1917至1918年：皮亞韋河防線與維多利奧·威尼托",
+      "en": "1917–1918: the Piave line and Vittorio Veneto"
+     },
+     "body": {
+      "zh-Hant": "1917年11月8日，迪亞茲接替卡多爾納出任陸軍總參謀長。他整頓最高統帥部，把全軍改編為六個中型集團軍；格拉帕山與皮亞韋河的阻擊戰發生在1917年11至12月，1918年6月義軍在皮亞韋河獲得防禦勝利，隨後是維多利奧·威尼托的最後攻勢。1918年9月他拒絕奧蘭多要他提前進攻的催促。",
+      "en": "On 8 November 1917 Diaz succeeded Cadorna as chief of the army general staff. He reorganised the Supreme Command and redistributed the army into six medium-sized armies. The holding battle on the Grappa and Piave fell in November–December 1917, the victorious defence on the Piave came in June 1918, and the final offensive of Vittorio Veneto followed. In September 1918 he firmly rejected Orlando's calls to attack earlier."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "L'8 nov. 1917 fu nominato capo di stato maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il D. riorganizzò il Comando supremo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "la redistribuzione dell'esercito in sei armate di medie proporzioni",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "la battaglia d'arresto sul Grappa e sul Piave nel novembre-dicembre 1917",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "la vittoriosa resistenza sul Piave nel giugno 1918",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "l'offensiva finale di Vittorio Veneto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "nel settembre 1918 egli respinse energicamente gli inviti di Orlando",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1919-11-01",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1919至1921年：總參謀長卸任與陸軍委員會",
+      "en": "1919–1921: leaving the general staff and the Army Council"
+     },
+     "body": {
+      "zh-Hant": "1919年11月迪亞茲獲授最高榮典勳章，隨後把總參謀長職位交給巴多格里奧，改任陸軍總督察；1920年4月該職被裁撤。1921年2月成立陸軍委員會，他出任副主席並實際主持；同年12月被封為勝利公爵。",
+      "en": "In November 1919 Diaz received the collar of the Annunziata and then handed the post of chief of staff to Badoglio, taking the new post of inspector general of the army; it was abolished in April 1920. In February 1921 the Army Council was created, of which he became vice-president and effective head, and in December that year he was raised to Duke of Victory."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nel novembre 1919 ricevette il collare della Ss. Annunziata",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "lasciò la carica di capo di stato maggiore dell'esercito a Badoglio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "assunse quella di nuova creazione di ispettore generale dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nell'aprile 1920 un nuovo ordinamento provvisorio dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "soppresse la carica di ispettore generale",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "che nel febbraio 1921 trasferì i poteri del capo di stato maggiore",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il D. assunse la vicepresidenza e la direzione effettiva",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "in dicembre fu innalzato alla dignità di duca della Vittoria",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1922-10-01",
+      "end": "1928-02-29"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1922至1928年：戰爭部長與元帥",
+      "en": "1922–1928: Minister of War and marshal"
+     },
+     "body": {
+      "zh-Hant": "1922年10月，迪亞茲在政治危機中向首相法克塔保證軍隊將盡其職責，並在10月27至28日夜向國王表達同一態度，隨後入閣擔任墨索里尼第一屆政府的戰爭部長。1924年4月30日他把部長職位交給迪·喬治奧，轉任最高國防委員會副主席；11月4日晉封元帥。1928年2月29日在羅馬逝世。",
+      "en": "In October 1922, amid the political crisis, Diaz assured Prime Minister Facta of the army's loyalty and in the night of 27–28 October repeated the same position to the King, then joined Mussolini's first government as Minister of War. On 30 April 1924 he left the ministry to General Di Giorgio and became vice-president of the Supreme Defence Commission; on 4 November he was named Marshal of Italy. He died in Rome on 29 February 1928."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "All'inizio dell'ottobre 1922, mentre la crisi politica precipitava",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "nella notte tra il 27 e il 28 ottobre il D. ribadì questo atteggiamento",
+       "quoteLang": "it",
+       "evidenceNote": "年份（1922）依上文「ottobre 1922」",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Subito dopo accettò di entrare nel primo governo Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "come ministro della Guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il 30 apr. 1924 lasciò il ministero della Guerra al generale A. Di Giorgio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Fu subito nominato vicepresidente del comitato deliberativo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "della Commissione suprema di difesa",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Il 4 nov. 1924 fu nominato maresciallo d'Italia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Morì a Roma il 29 febbr. 1928.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "diaz-capo-sme",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍總參謀部",
+      "en": "Italian Royal Army General Staff"
+     },
+     "title": {
+      "orig": "capo di stato maggiore dell'esercito",
+      "zh-Hant": "陸軍總參謀長",
+      "en": "Chief of the Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1917-11-08",
+      "end": "1919-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "L'8 nov. 1917 fu nominato capo di stato maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nel novembre 1919 ricevette il collare della Ss. Annunziata",
+       "quoteLang": "it",
+       "evidenceNote": "迄日依「Nel novembre 1919…Subito dopo…lasciò la carica」推得，月精度（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "lasciò la carica di capo di stato maggiore dell'esercito a Badoglio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級最高軍職（陸軍總參謀長，引文明寫），任期與皮亞韋、維多利奧·威尼托等戰役可證，但 regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "diaz-ministro-guerra",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國戰爭部",
+      "en": "Italian Ministry of War"
+     },
+     "title": {
+      "orig": "ministro della Guerra",
+      "zh-Hant": "戰爭部長",
+      "en": "Minister of War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1922-10-01",
+      "end": "1924-04-30"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "nella notte tra il 27 e il 28 ottobre il D. ribadì questo atteggiamento",
+       "quoteLang": "it",
+       "evidenceNote": "起日依「Subito dopo accettò」且上文為1922年10月27–28日夜推得，月精度（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Subito dopo accettò di entrare nel primo governo Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "come ministro della Guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il 30 apr. 1924 lasciò il ministero della Guerra al generale A. Di Giorgio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "戰爭部長屬四部之一，正職且任期遠超90天，但 regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "diaz-ispettore-generale",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍",
+      "en": "Italian Royal Army"
+     },
+     "title": {
+      "orig": "ispettore generale dell'esercito",
+      "zh-Hant": "陸軍總督察",
+      "en": "Inspector General of the Army"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1919-11-01",
+      "end": "1920-05-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nel novembre 1919 ricevette il collare della Ss. Annunziata",
+       "quoteLang": "it",
+       "evidenceNote": "起日依「Subito dopo」推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "assunse quella di nuova creazione di ispettore generale dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Nell'aprile 1920 un nuovo ordinamento provvisorio dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "soppresse la carica di ispettore generale",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "榮譽性質（引文稱「essenzialmente onorifico」）且非國家級最高軍職"
+    },
+    {
+     "key": "diaz-consiglio-esercito-vicepres",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍委員會",
+      "en": "Italian Army Council (Consiglio dell'esercito)"
+     },
+     "title": {
+      "orig": "vicepresidente del Consiglio dell'esercito",
+      "zh-Hant": "陸軍委員會副主席",
+      "en": "Vice-president of the Army Council"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1921-02-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "che nel febbraio 1921 trasferì i poteri del capo di stato maggiore",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il D. assunse la vicepresidenza e la direzione effettiva",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "副主席職位，非國家級最高軍職（總參謀長權力已轉入委員會，來源未寫其軍種總司令地位）"
+    },
+    {
+     "key": "diaz-commissione-suprema-difesa-vicepres",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "最高國防委員會",
+      "en": "Supreme Defence Commission"
+     },
+     "title": {
+      "orig": "vicepresidente del comitato deliberativo della Commissione suprema di difesa",
+      "zh-Hant": "最高國防委員會副主席",
+      "en": "Vice-president of the deliberative committee of the Supreme Defence Commission"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1924-04-30",
+      "end": "1928-02-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il 30 apr. 1924 lasciò il ministero della Guerra al generale A. Di Giorgio",
+       "quoteLang": "it",
+       "evidenceNote": "起日依「Fu subito nominato」推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "tenne questa carica fino alla morte",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Morì a Roma il 29 febbr. 1928.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "副主席職位，非國家級最高軍職或四部閣員"
+    },
+    {
+     "key": "diaz-divisione-49",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍第49步兵師",
+      "en": "Italian Royal Army 49th Infantry Division"
+     },
+     "title": {
+      "orig": "comandante della 49ª divisione di fanteria",
+      "zh-Hant": "第49步兵師師長",
+      "en": "Commander of the 49th Infantry Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-06-27",
+      "end": "1917-04-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "il 27 giugno 1916 fu nominato comandante della 49ª divisione di fanteria",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Il 12 apr. 1917 il D. fu promosso alla testa del XXIII corpo d'armata",
+       "quoteLang": "it",
+       "evidenceNote": "迄日依其升任第23軍團長的日期推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮官，非國家級最高軍職或戰區司令"
+    },
+    {
+     "key": "diaz-corpo-armata-23",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍第23軍團",
+      "en": "Italian Royal Army XXIII Army Corps"
+     },
+     "title": {
+      "orig": "comandante del XXIII corpo d'armata",
+      "zh-Hant": "第23軍團長",
+      "en": "Commander of the XXIII Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1917-04-12",
+      "end": "1917-11-08"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "Il 12 apr. 1917 il D. fu promosso alla testa del XXIII corpo d'armata",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-diaz",
+       "locator": "DBI 39 (1991) DIAZ, Armando Vittorio",
+       "quote": "L'8 nov. 1917 fu nominato capo di stato maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": "迄日依其出任總參謀長起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮官，非國家級最高軍職或戰區司令"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:diaz-consiglio-esercito-vicepres",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1921年2月成立並出任副主席，未寫卸任日。已查：Treccani DBI（Rochat）；Senato del Regno 資料庫頁抓取失敗（內容為空）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:end_dates",
+     "gapKind": "not_found",
+     "note": "來源不足：迪亞茲陸軍委員會副主席的迄日，DBI 未寫；僅取得 1 個可抓原文的 A 級來源（Treccani DBI），Senato 與義大利陸軍官方頁抓取失敗／逾時，另有 1914-1918-online 遇 Anubis 挑戰頁。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:capo_sme_end",
+     "gapKind": "not_found",
+     "note": "待查證：總參謀長迄日只能由 DBI「1919年11月…subito dopo」推為月精度；Senato 資料庫（據檢索摘要為 1919-11-24）需實際抓到原文才可採用。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Armando Diaz Dizionario Biografico degli Italiani",
+     "url": "https://www.treccani.it/enciclopedia/armando-diaz_(Dizionario-Biografico)/",
+     "result": "no_result",
+     "note": "網址 slug 錯，頁面僅有空殼（167 字）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "DIAZ Armando Vittorio treccani（WebSearch 取得正確網址）",
+     "url": "https://www.treccani.it/enciclopedia/armando-vittorio-diaz_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "curl 成功，取得具名（Giorgio Rochat）DBI 條目全文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Armando Diaz Duke of Victory",
+     "url": "https://encyclopedia.1914-1918-online.net/article/diaz_armando_duke_of_victory",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Scheda senatore DIAZ Armando",
+     "url": "https://www.senato.it/web/senregno.nsf/c1544f301fd4af96c125785d00598476/ab5e5fd9ac5f90634125646f005b23bf",
+     "result": "no_result",
+     "note": "curl 取得內容為空"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "esercito.difesa.it Armando Diaz",
+     "url": "https://www.esercito.difesa.it/en/History/The-Great-War/Pagine/armando-diaz.aspx",
+     "result": "no_result",
+     "note": "逾時"
+    }
+   ]
+  },
+  {
+   "key": "rodolfograziani",
+   "bioId": null,
+   "name": "Rodolfo Graziani",
+   "nameZh": "魯道夫·格拉齊亞尼",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1908-12-01",
+      "end": "1919-09-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "早年：厄利垂亞與一戰",
+      "en": "Early career: Eritrea and the First World War"
+     },
+     "body": {
+      "zh-Hant": "格拉齊亞尼1908年12月前往厄利垂亞，被分到阿迪烏格里的第一土著營。一戰期間他在聖米凱萊山與貝雷塔山一帶作戰，1918年36歲時已是義大利陸軍最年輕的上校；戰後他率第61步兵團駐防馬其頓，該團於1919年8月撤回。",
+      "en": "In December 1908 Graziani reached Eritrea and was assigned to the 1st native battalion at Adi Ugri. In the First World War he distinguished himself at Monte San Michele and the Colle della Beretta, and in 1918, aged 36, he was the youngest colonel in the Italian army; after the war he commanded the 61st Infantry in Macedonia, which was repatriated in August 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "nel dicembre 1908 raggiunse la colonia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "assegnato al I battaglione indigeni di stanza ad Adi Ugri",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "si distinse soprattutto nella conquista del monte San Michele",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "nella battaglia al colle della Beretta",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Nel 1918, a 36 anni, era il più giovane colonnello dell'esercito italiano",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "inviato in Macedonia al comando del 61° fanteria",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "già nell'agosto 1919, il reggimento fu rimpatriato",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-10-01",
+      "end": "1928-03-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1921至1928年：利比亞的重新征服",
+      "en": "1921–1928: the reconquest of Libya"
+     },
+     "body": {
+      "zh-Hant": "格拉齊亞尼1921年10月1日抵達利比亞，在當地待了十三年。1922年4月起重新征服行動展開，他以機動縱隊戰術在數月內收復紮維亞等地；1923年12月23日他升准將，同日獲頒國家法西斯黨榮譽黨證。1928年2月25日他在塔格里夫擊敗賽夫·納賽爾兄弟。",
+      "en": "Graziani arrived in Libya on 1 October 1921 and stayed there thirteen years. When the reconquest began in April 1922 he used mobile columns to retake Zawiya and other places within a few months. On 23 December 1923 he was promoted brigadier general and at the same time received the honorary card of the National Fascist Party. On 25 February 1928 he defeated the Sef en-Nasser brothers at Tagrift."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Il G. giunse in Libia il 1° ott. 1921",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Vi rimase per tredici anni",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "nell'aprile 1922",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "riconquistò in pochi mesi Zavia, el-Azizia, el-Giosc, Giado, Cabao e Nalùt",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il 23 dic. 1923, mentre stava per occupare Beni Ulid",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "ricevette contemporaneamente la promozione a generale di brigata",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "a Tagrift, il 25 febbr. 1928, conseguì",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1928-03-01",
+      "end": "1932-02-02"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1928至1932年：費贊與昔蘭尼加",
+      "en": "1928–1932: the Fezzan and Cyrenaica"
+     },
+     "body": {
+      "zh-Hant": "費贊戰役歷時三個月，格拉齊亞尼將利比亞南部肅清，並獲任昔蘭尼加副總督。與巴多格里奧合作期間，約十萬昔蘭尼加人被強制遷往集中營，據來源有一半死於營中；1931年1月19日庫夫拉被攻克，9月16日起義領袖穆赫塔爾被絞死。1932年2月2日他升軍團將官。",
+      "en": "The Fezzan campaign lasted three months and cleared southern Libya, and Graziani was named vice-governor of Cyrenaica. Under the plan agreed with Badoglio about 100,000 Cyrenaicans were deported to camps, and the source says half of them died there. Kufra fell on 19 January 1931 and the rebel leader Omar al-Mukhtar was hanged on 16 September 1931. On 2 February 1932 he was promoted corps general."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Con la campagna del Fezzàn, della durata di tre mesi",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "la nomina a vicegovernatore della Cirenaica",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "la deportazione di circa 100.000 Cirenaici",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "la metà dei quali morirono nei lager del deserto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "espugnata il 19 genn. 1931 la città santa di Cufra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "avvenuta il 16 sett. 1931 nel campo di concentramento di Soluch",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Il 2 febbr. 1932 il ministro della Guerra C. Gazzera lo promosse",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1935-02-20",
+      "end": "1936-05-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1935至1936年：索馬利亞戰線與衣索比亞戰爭",
+      "en": "1935–1936: the Somali front and the Ethiopian war"
+     },
+     "body": {
+      "zh-Hant": "1935年2月20日，格拉齊亞尼被通知出任索馬利亞總督兼部隊總司令。1935年10月3日他從南線發動攻勢，1936年1月10日擊潰拉斯德斯塔的部隊；4月15日進攻「興登堡防線」，其後佔領吉吉加與哈拉爾。來源指出他在戰事中使用毒氣。",
+      "en": "On 20 February 1935 Graziani was told he had been named governor of Somalia and commander-in-chief of the troops. On 3 October 1935 he attacked on the southern front, and on 10 January 1936 he defeated the army of Ras Desta. On 15 April 1936 he attacked the \"Hindenburg line\" and then took Jijiga and Harar. The source says he was the first to use gas in the campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Il 20 febbr. 1935 il capo del fascismo gli comunicò",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "governatore della Somalia e comandante in capo delle truppe",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Il 3 ott. 1935, mentre le armate del generale De Bono varcavano il Mareb",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il 10 genn. 1936 il G. andava incontro all'armata di ras Destà Damtù",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Ma il 15 apr. 1936 era in grado di attaccare la \"linea Hindenburg\"",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "conquistò Giggiga e poi Harar",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Fu il primo a impiegare i gas per rallentare la marcia di ras Destà",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1936-05-01",
+      "end": "1938-01-10"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1936至1938年：衣索比亞副王",
+      "en": "1936–1938: Viceroy of Ethiopia"
+     },
+     "body": {
+      "zh-Hant": "格拉齊亞尼因戰功獲元帥杖與內戈利侯爵頭銜，並在阿迪斯阿貝巴接任衣索比亞副王。1937年2月19日他在典禮上遇襲，其後的報復造成大量死亡；1937年5月21至27日，他下令的德布雷利巴諾斯修道院屠殺發生。他於1938年1月10日離開阿迪斯阿貝巴。",
+      "en": "For his victories Graziani received the marshal's baton and the title of Marquis of Neghelli, and in Addis Ababa he took over the post of Viceroy of Ethiopia. On 19 February 1937 he was wounded in an attack during a ceremony and a savage reprisal followed. The Debra Libanos massacre, which he ordered, was carried out between 21 and 27 May 1937. He left Addis Ababa on 10 January 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il bastone da maresciallo e il titolo nobiliare di marchese di Neghelli",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "l'ambitissimo incarico di viceré d'Etiopia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Il 19 febbr. 1937, mentre il G. assisteva a una cerimonia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "la rappresaglia, che fu selvaggia e indiscriminata",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "ordinò al generale P. Maletti di passare per le armi tutti i monaci",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Maletti portò a termine la sua missione tra il 21 e il 27 maggio 1937",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il G. lasciò Addis Abeba il 10 genn. 1938",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1939-11-03",
+      "end": "1941-02-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1939至1941年：陸軍參謀長與北非戰役",
+      "en": "1939–1941: army chief of staff and the North African campaign"
+     },
+     "body": {
+      "zh-Hant": "1939年11月3日，格拉齊亞尼從廣播得知自己被任命為陸軍參謀長。二戰初期他被派往利比亞接替巴爾博，1940年9月13日越過埃及邊界，12月9日韋維爾反攻使五個義大利師潰敗。1941年2月8日他請求解除職務，被召回義大利。",
+      "en": "On 3 November 1939 Graziani learned from the radio that he had been named chief of staff of the army. Early in the Second World War he was sent to Libya to replace Balbo and on 13 September 1940 crossed the Egyptian frontier. Wavell's counter-offensive of 9 December shattered five Italian divisions. On 8 February 1941 he asked to be relieved and was recalled to Italy."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "apprese di essere stato nominato capo di stato maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": "日期「3 nov. 1939」見同句前文",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "fu mandato in Libia a sostituire Balbo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il 13 sett. 1940, a varcare la frontiera egiziana",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il 9 dicembre lanciava la controffensiva",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "in soli tre giorni polverizzava cinque divisioni italiane",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Quando, l'8 febbr. 1941, dopo aver perso l'intera Cirenaica",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 7,
+     "period": {
+      "start": "1945-04-29",
+      "end": "1955-01-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "社會共和國時期與戰後",
+      "en": "The Social Republic and the post-war years"
+     },
+     "body": {
+      "zh-Hant": "格拉齊亞尼在薩洛共和國擔任戰爭部長，名義上統領「利古里亞」集團軍。1945年4月29日他被轉交美軍，1950年5月2日被判處十九年徒刑，因赦免數月後獲釋；1955年1月11日於羅馬逝世。",
+      "en": "In the Salò Republic Graziani held the Ministry of War and was nominally at the head of the \"Liguria\" army. On 29 April 1945 he was handed over to the Americans; on 2 May 1950 he was sentenced to nineteen years in prison but was freed months later through amnesties. He died in Rome on 11 January 1955."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "affidandogli il ministero della Guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Nominalmente il G. era a capo dell'armata \"Liguria\"",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "fu trasferito il 29 apr. 1945",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "al comando del IV corpo d'armata corazzato americano",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "il 2 maggio 1950, fu condannato a 19 anni di carcere",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Si spense a Roma l'11 genn. 1955.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "graziani-governatore-somalia",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義屬索馬利亞",
+      "en": "Italian Somaliland"
+     },
+     "title": {
+      "orig": "governatore della Somalia e comandante in capo delle truppe",
+      "zh-Hant": "索馬利亞總督兼部隊總司令",
+      "en": "Governor of Somalia and commander-in-chief of the troops"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1935-02-20",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Il 20 febbr. 1935 il capo del fascismo gli comunicò",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "governatore della Somalia e comandante in capo delle truppe",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "殖民地最高長官，起日可證但迄日 NULL，且 regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "graziani-capo-sme",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍總參謀部",
+      "en": "Italian Royal Army General Staff"
+     },
+     "title": {
+      "orig": "capo di stato maggiore dell'esercito",
+      "zh-Hant": "陸軍參謀長",
+      "en": "Chief of Staff of the Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-11-03",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "apprese di essere stato nominato capo di stato maggiore dell'esercito",
+       "quoteLang": "it",
+       "evidenceNote": "日期「3 nov. 1939」見同句前文（「Il 3 nov. 1939, ascoltando il giornale radio」）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級軍職（陸軍參謀長，引文明寫），但迄日 NULL 且 regimeId NULL（政權待查證）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "graziani-corpo-armata-udine",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國陸軍烏迪內軍團",
+      "en": "Italian Royal Army Udine Army Corps"
+     },
+     "title": {
+      "orig": "comando del corpo d'armata di Udine",
+      "zh-Hant": "烏迪內軍團指揮官",
+      "en": "Commander of the Udine Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1934-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "Al suo rientro in patria, nel 1934",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-graziani",
+       "locator": "DBI 58 (2002) GRAZIANI, Rodolfo",
+       "quote": "l'ambito comando del corpo d'armata di Udine",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮官，非國家級最高軍職或戰區司令"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-governatore-somalia",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1935年2月20日獲任，未寫卸任日（其後在亞的斯亞貝巴接任副王）。已查：Treccani DBI（Del Boca）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-capo-sme",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1939年11月3日獲任，未寫卸任日。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-corpo-armata-udine",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1934年返國後獲任，未寫卸任日。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-vicere-etiopia",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DBI 只寫巴多格里奧離開後他在亞的斯亞貝巴接任衣索比亞副王，並於1938年1月10日離開亞的斯亞貝巴，未寫接任日。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-vicegovernatore-cirenaica",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DBI 只寫費贊戰役後獲任昔蘭尼加副總督（約1929–30年），未寫日期。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-comando-libia-1940",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DBI 寫「在二戰初期被派往利比亞接替巴爾博」，未寫日期；迄日 1941-02-08 見段落6。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-ministro-guerra-rsi",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DBI 只寫薩洛政府成立後出任戰爭部長，未寫任命與卸任日。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:graziani-armata-liguria",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DBI 只寫名義上統領「利古里亞」集團軍，無日期。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:end_dates",
+     "gapKind": "not_found",
+     "note": "來源不足：格拉齊亞尼的索馬利亞總督、陸軍參謀長、烏迪內軍團指揮官迄日，以及副王、昔蘭尼加副總督、利比亞指揮、薩洛戰爭部長、利古里亞集團軍的起日，DBI 皆未寫；僅取得 1 個可抓原文的 A 級來源（Treccani DBI），未另查 Camera／Senato／國防部歷史辦公室。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:party",
+     "gapKind": "not_found",
+     "note": "待查證：1923-12-23 國家法西斯黨榮譽黨證（tessera ad honorem）與1953-03 義大利社會運動榮譽主席（窗外）；前者是黨員身分、非黨職，後者超出1908–1945，均未建候選，需第二來源判斷。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Rodolfo Graziani Dizionario Biografico degli Italiani",
+     "url": "https://www.treccani.it/enciclopedia/rodolfo-graziani_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "curl 成功，取得具名（Angelo Del Boca）DBI 條目全文"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "擴充來源",
+     "url": null,
+     "result": "no_result",
+     "note": "預算有限，未另抓第二來源"
+    }
+   ]
+  },
+  {
+   "key": "georgespatton",
+   "bioId": null,
+   "name": "George S. Patton",
+   "nameZh": "乔治·巴顿",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1909至1921年：騎兵與坦克兵",
+      "en": "1909–1921: cavalry and the Tank Corps"
+     },
+     "body": {
+      "zh-Hant": "巴頓1909年畢業於西點軍校，分發第15騎兵團。1912年他代表美國參加斯德哥爾摩奧運現代五項，名列第五，並赴法國索米爾騎兵學校進修。1916至1917年他任潘興的副官，隨墨西哥懲罰遠征軍行動；1917至1918年成為美國坦克兵第一名成員，1918至1921年指揮第304坦克旅。",
+      "en": "Patton graduated from West Point in 1909 and was assigned to the 15th Cavalry. In 1912 he competed for the United States in the modern pentathlon at Stockholm, finishing fifth, and attended the French cavalry school at Saumur. From 1916 to 1917 he was aide-de-camp to Pershing on the Mexican Punitive Expedition; in 1917–18 he was the first member of the American Tank Corps, and from 1918 to 1921 he commanded the 304th Tank Brigade."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1909 Graduated, United States Military Academy, West Point, N.Y.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "Assigned to Fifteenth United States Cavalry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "finishing fifth in modern pentathlon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1912-1913 Attended French cavalry school, Saumur, France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1916-1917 Aide-de-camp to General John J. Pershing, Mexican Punitive Expedition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1917-1918 Detailed as first member of American Tank Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1918-1921 Commander, 304th Tank Brigade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1921至1941年：戰間期與裝甲部隊",
+      "en": "1921–1941: the inter-war years and armour"
+     },
+     "body": {
+      "zh-Hant": "1921至1922年，巴頓在邁爾堡指揮第3騎兵團第一中隊；1932年畢業於陸軍戰爭學院，1938年升上校並指揮第5騎兵團。1940年他升准將，指揮第2裝甲師的第2裝甲旅；1941年升少將，改任第2裝甲師師長，至1942年。",
+      "en": "In 1921–22 Patton commanded the First Squadron of the Third Cavalry at Fort Myer; he graduated from the Army War College in 1932, and in 1938 became a colonel commanding the Fifth Cavalry. In 1940 he was promoted brigadier general and led the Second Armored Brigade of the Second Armored Division; in 1941 he became a major general and commanded the Second Armored Division until 1942."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1921-1922 Commander, First Squadron, Third United States Cavalry, Fort Myer, Va.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1932 Graduated, United States Army War College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1938 Promoted to colonel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "Commander, Fifth United States Cavalry, Fort Clark, Tex.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1940 Promoted to brigadier general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1940-1941 Commander, Second Armored Brigade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1941 Promoted to major general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1941-1942 Commander, Second Armored Division, Fort Benning, Ga.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1942至1943年：北非與西西里",
+      "en": "1942–1943: North Africa and Sicily"
+     },
+     "body": {
+      "zh-Hant": "1942年巴頓指揮第1裝甲軍，隨後指揮西部特遣隊參與盟軍登陸及北非戰役，轉任第2軍。1943年他升中將，把第2軍交給布萊德雷，並準備西西里入侵，擔任第7集團軍指揮官；西西里行動「Husky」始於1943年7月10日。1943年11月傳出他掌摑戰鬥疲勞士兵的事件。",
+      "en": "In 1942 Patton commanded the I Armored Corps and then the Western Task Force during the Allied landings and the North African campaign, and moved to command of II Corps. In 1943 he was promoted lieutenant general, handed II Corps to Omar Bradley and prepared for the invasion of Sicily, commanding the Seventh Army; operation \"Husky\" began on 10 July 1943. In November 1943 the press reported that he had slapped soldiers suffering from battle fatigue."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1942 Commander, I Armored Corps, First and Second Armored Divisions",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1942-1943 Commanded Western Task Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "during Allied landings and subsequent campaign in North Africa",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "Transferred to command of United States II Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1943 Promoted to lieutenant general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "Relinquished command of II Corps to Omar Nelson Bradley",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1943-1944 Commanded Seventh United States Army in Sicilian campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "\"Husky\"--Allied invasion of Sicily, 10 July 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "the reaction in November 1943 when the press reported that he had slapped",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-01-01",
+      "end": "1945-12-21"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1944至1945年：第3集團軍",
+      "en": "1944–1945: the Third Army"
+     },
+     "body": {
+      "zh-Hant": "1944年巴頓奉命赴英國，準備入侵法國時接掌第3集團軍；1944至1945年他指揮第3集團軍，推進穿越法國、德國、捷克斯洛伐克與奧地利。1944年4月他在納茨福德的演說曾威脅其職務。1945年他轉任第15集團軍司令，並於12月21日在德國海德堡逝世。",
+      "en": "In 1944 Patton was ordered to England to take command of the Third Army in preparation for the invasion of France; in 1944–45 he commanded it in the drive across France, Germany, Czechoslovakia and Austria. His remarks in a speech at Knutsford in April 1944 threatened his career. In 1945 he became commander of the Fifteenth Army and he died at Heidelberg, Germany, on 21 December 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "Ordered to England to take command of Third United States Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1944-1945 Commanded Third United States Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "drive across France, Germany, Czechoslovakia, and Austria",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "his remarks in a speech in Knutsford, England, in April 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1945 Commander, Fifteenth United States Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1945, Dec. 21 Died, Heidelberg, Germany",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "patton-304-tank-brigade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第304坦克旅",
+      "en": "US Army 304th Tank Brigade"
+     },
+     "title": {
+      "orig": "Commander, 304th Tank Brigade",
+      "zh-Hant": "第304坦克旅旅長",
+      "en": "Commander, 304th Tank Brigade"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-01-01",
+      "end": "1922-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1918-1921 Commander, 304th Tank Brigade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "旅級指揮官，非國家級最高軍職或戰區司令"
+    },
+    {
+     "key": "patton-2nd-armored-brigade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第2裝甲師第2裝甲旅",
+      "en": "US Army 2nd Armored Brigade, 2nd Armored Division"
+     },
+     "title": {
+      "orig": "Commander, Second Armored Brigade, Second Armored Division",
+      "zh-Hant": "第2裝甲旅旅長",
+      "en": "Commander, Second Armored Brigade"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-01-01",
+      "end": "1942-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1940-1941 Commander, Second Armored Brigade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "旅級指揮官，非國家級最高軍職或戰區司令"
+    },
+    {
+     "key": "patton-2nd-armored-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第2裝甲師",
+      "en": "US Army 2nd Armored Division"
+     },
+     "title": {
+      "orig": "Commander, Second Armored Division",
+      "zh-Hant": "第2裝甲師師長",
+      "en": "Commander, Second Armored Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-01-01",
+      "end": "1943-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1941-1942 Commander, Second Armored Division, Fort Benning, Ga.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮官，非國家級最高軍職或戰區司令"
+    },
+    {
+     "key": "patton-western-task-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍西部特遣隊（北非登陸）",
+      "en": "US Western Task Force (North Africa landings)"
+     },
+     "title": {
+      "orig": "Commanded Western Task Force",
+      "zh-Hant": "西部特遣隊指揮官",
+      "en": "Commander, Western Task Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1942-1943 Commanded Western Task Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "during Allied landings and subsequent campaign in North Africa",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "特遣隊／登陸部隊指揮官：T14 R4 是否涵蓋文件未明，且 regimeId NULL；不猜，留 positions",
+     "t14Reason": "特遣隊指揮官，等級不明"
+    },
+    {
+     "key": "patton-seventh-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第7集團軍",
+      "en": "US Seventh Army"
+     },
+     "title": {
+      "orig": "Commanded Seventh United States Army in Sicilian campaign",
+      "zh-Hant": "第7集團軍指揮官（西西里戰役）",
+      "en": "Commander, Seventh United States Army (Sicilian campaign)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-01",
+      "end": "1945-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1943-1944 Commanded Seventh United States Army in Sicilian campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "\"Husky\"--Allied invasion of Sicily, 10 July 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "集團軍（field army）級指揮官：T14 R4 的「戰區／方面軍司令」是否涵蓋 field army 文件未明，且 regimeId NULL；不猜，留 positions",
+     "t14Reason": "集團軍級指揮官，T14 等級不明"
+    },
+    {
+     "key": "patton-third-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第3集團軍",
+      "en": "US Third Army"
+     },
+     "title": {
+      "orig": "Commanded Third United States Army",
+      "zh-Hant": "第3集團軍指揮官",
+      "en": "Commander, Third United States Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1944-1945 Commanded Third United States Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "drive across France, Germany, Czechoslovakia, and Austria",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "集團軍（field army）級指揮官：T14 R4 的「戰區／方面軍司令」是否涵蓋 field army 文件未明，且 regimeId NULL；不猜，留 positions",
+     "t14Reason": "集團軍級指揮官，T14 等級不明"
+    },
+    {
+     "key": "patton-fifteenth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第15集團軍",
+      "en": "US Fifteenth Army"
+     },
+     "title": {
+      "orig": "Commander, Fifteenth United States Army",
+      "zh-Hant": "第15集團軍司令",
+      "en": "Commander, Fifteenth United States Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "loc-patton-fa",
+       "locator": "George S. Patton Papers, Biographical Note",
+       "quote": "1945 Commander, Fifteenth United States Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "集團軍（field army）級指揮官：T14 R4 的「戰區／方面軍司令」是否涵蓋 field army 文件未明，且 regimeId NULL；不猜，留 positions",
+     "t14Reason": "集團軍級指揮官，T14 等級不明"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：LoC 指引只有年表式職務與北非、西西里、法德戰事的概述，未寫阿拉考特、突出部等具體戰役的日期與地點；需 Army Center of Military History 或國家二戰博物館等第二來源（history.army.mil 403、nationalww2museum／loc.gov 時間線頁被擋）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:command_dates",
+     "gapKind": "not_found",
+     "note": "待查證：LoC 年表多為年精度（1942–1944 等），第7集團軍、第3集團軍等指揮的起迄日只能寫年精度；需官方戰史取得精確日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "George S. Patton biography Army Center of Military History",
+     "url": "https://history.army.mil/Portals/143/Images/Publications/publications-factsheets/patton.pdf",
+     "result": "blocked_403",
+     "note": "Akamai Access Denied"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Patton Arlington National Cemetery",
+     "url": "https://www.arlingtoncemetery.net/gspatton.htm",
+     "result": "no_result",
+     "note": "內容近乎空白"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica George S. Patton",
+     "url": "https://www.britannica.com/biography/George-S-Patton",
+     "result": "blocked_403",
+     "note": "僅回傳殼層（60 字）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "LoC Patton diaries timeline / National WWII Museum",
+     "url": "https://www.loc.gov/collections/george-s-patton-diaries/articles-and-essays/timeline",
+     "result": "challenge_page",
+     "note": "僅回傳殼層／挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "George S. Patton Papers finding aid (LoC)",
+     "url": "https://tile.loc.gov/storage-services/service/mss/eadxmlmss/eadpdfmss/2000/ms000001.pdf",
+     "result": "found_A",
+     "note": "改用 --http1.1 後成功下載 PDF 並轉文字，取得 Biographical Note 年表"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "WebSearch：Patton Third Army official history",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅得上列連結，其餘不可抓"
+    }
+   ]
+  },
+  {
+   "key": "henryharnold",
+   "bioId": null,
+   "name": "Henry H. Arnold",
+   "nameZh": "亨利·阿诺德",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1911-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1911至1918年：軍事飛行員與一戰",
+      "en": "1911–1918: military aviator and the First World War"
+     },
+     "body": {
+      "zh-Hant": "阿諾德1886年生於費城，在西點軍校畢業後被分到步兵並派往菲律賓。1911年他成為軍事飛行員，在俄亥俄州的萊特兄弟學校受訓；1912年10月他成為首位麥凱獎得主，因成功用空中偵察找到一支騎兵部隊。一戰期間他留在華盛頓，負責飛機生產與動員。",
+      "en": "Arnold was born in Philadelphia in 1886 and after West Point was assigned to the infantry and sent to the Philippines. He became a military pilot in 1911 after training at the Wright brothers' school in Ohio, and in October 1912 became the first Mackay Trophy winner by using aerial reconnaissance to locate a cavalry troop. During the First World War he stayed in Washington overseeing aircraft production and mobilization."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "was born in Philadelphia in 1886",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "assigned to the infantry and sent to the Philippines",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "When Hap Arnold became a military pilot in 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Wright brothers’ flying school in Ohio",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "in October 1912, became the first Mackay Trophy winner",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "overseeing aircraft production and mobilization",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1938-10-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1924至1938年：空軍勤務與航空兵團副團長",
+      "en": "1924–1938: the air service and the assistant chief's post"
+     },
+     "body": {
+      "zh-Hant": "1924年阿諾德被調回華盛頓擔任航空勤務處資訊主任；1926年米切爾受軍事法庭審判時他出庭作證支持米切爾。1934年他率領十架B-10轟炸機完成華盛頓與阿拉斯加費爾班克斯的往返飛行，贏得第二座麥凱獎。1936年他任航空兵團副團長，1938年9月航空兵團團長韋斯托弗墜機身亡後，他接任團長。",
+      "en": "In 1924 Arnold was called back to Washington as chief of information of the air service, and at Mitchell's 1926 court-martial he testified on his behalf. In 1934 he earned his second Mackay Trophy commanding ten B-10 bombers on a round trip between Washington and Fairbanks, Alaska. In 1936 he became assistant chief of the Air Corps, and when Chief Oscar Westover died in a plane crash in September 1938, Arnold became chief."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "called Arnold back to Washington in 1924 to serve as chief of information",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "1926 court-martial",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Arnold testified on his behalf",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "In 1934, Arnold earned his second Mackay Trophy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "commanding a fleet of ten B-10 bombers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "roundtrip flight between Washington, D.C., and Fairbanks, Alaska",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "In 1936, Arnold became the assistant chief of the Air Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Oscar Westover died in a plane crash in September 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Major General Arnold became chief.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-06-20",
+      "end": "1946-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1941至1946年：陸軍航空軍",
+      "en": "1941–1946: the Army Air Forces"
+     },
+     "body": {
+      "zh-Hant": "1941年6月20日，航空勤務部隊改稱美國陸軍航空軍，阿諾德把它分編為各有任務與戰區的航空軍。他推動B-17與B-29的研發，並支持戰略轟炸、杜立德空襲東京與對日本的燃燒彈攻擊。1945年1月19日，距晉升五星上將不到一個月，他首度心臟病發；他在1946年6月退役。",
+      "en": "On 20 June 1941 the air service was renamed the United States Army Air Force, and Arnold organized it into smaller air forces, each with a specific task and theater. He pushed the development of the B-17 and B-29 and supported strategic bombing, the Doolittle raid on Tokyo and firebombing in Japan. He had his first heart attack on 19 January 1945, less than a month after his promotion to five-star General of the Army, and he retired in June 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "On June 20, 1941, the air service was renamed the United States Army Air Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Arnold organized the USAAF into smaller air forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "the development of the B-17 and B-29",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "strategic bombings campaigns",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "firebombing in Japan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "He had his first of several heart attacks on January 19, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "less than a month after his promotion to five-star General of the Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "He finally retired in June 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "arnold-assistant-chief-air-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍航空兵團",
+      "en": "US Army Air Corps"
+     },
+     "title": {
+      "orig": "assistant chief of the Air Corps",
+      "zh-Hant": "航空兵團副團長",
+      "en": "Assistant Chief of the Air Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1938-09-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "In 1936, Arnold became the assistant chief of the Air Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Oscar Westover died in a plane crash in September 1938",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依接任團長月份推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（assistant chief），不屬國家級最高軍職"
+    },
+    {
+     "key": "arnold-chief-air-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍航空兵團",
+      "en": "US Army Air Corps"
+     },
+     "title": {
+      "orig": "chief of the Air Corps",
+      "zh-Hant": "航空兵團團長",
+      "en": "Chief of the Air Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-09-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Oscar Westover died in a plane crash in September 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight: Hap Arnold",
+       "quote": "Major General Arnold became chief.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "航空兵團團長：引文寫 chief of the Air Corps，是否等同軍種總司令未明寫（rank）；迄日 NULL；regimeId NULL",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "rank"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:arnold-chief-air-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Centennial of Flight 只寫1938年9月接任團長與1941年6月航空勤務改稱陸軍航空軍，未寫團長卸任日。已查：centennialofflight.net、NASA History Office。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:arnold-commanding-general-aaf",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NASA 頁稱他是二戰陸軍航空軍司令（commander of the Army Air Forces），Centennial 頁只寫他「organized the USAAF」，兩者都未寫出任日期。未取得 af.mil／LoC 等官方傳記（403／Cloudflare）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:retirement",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源矛盾：NASA 頁寫他1945年自現役退休（retired from active service in 1945），Centennial 頁寫1946年6月退役（He finally retired in June 1946）；需 af.mil／LoC 官方傳記裁決。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：兩份已抓來源只列戰略轟炸、杜立德空襲、對日燃燒彈攻擊，無具日期與地點的作戰；Arnold 為空軍統帥而非前線指揮官，需官方戰史（AAF 官方史）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:source_grade",
+     "gapKind": "not_found",
+     "note": "待查證：centennial-arnold 頁面無具名作者，暫以政府機構頁評 A；NASA 頁內容極簡。需主管確認評等，或補 af.mil／LoC／Smithsonian 官方傳記（本輪皆被擋）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "af.mil Biographies General of the Army Henry Harley Arnold",
+     "url": "https://www.af.mil/About-Us/Biographies/Display/Article/106480/general-of-the-army-henry-harley-arnold/",
+     "result": "blocked_403",
+     "note": "Akamai Access Denied"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "af.mil Henry H. Arnold (107811)",
+     "url": "https://www.af.mil/About-Us/Biographies/Display/Article/107811/henry-h-arnold/",
+     "result": "blocked_403",
+     "note": "Akamai Access Denied"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "National Museum of the USAF fact sheet",
+     "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196848/gen-henry-h-hap-arnold/",
+     "result": "blocked_403",
+     "note": "Akamai Access Denied"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Army University Press Military Review Arnold",
+     "url": "https://www.armyupress.army.mil/Journals/Military-Review/English-Edition-Archives/MR-75th-Anniversary/75th-Arnold/",
+     "result": "blocked_403",
+     "note": "Access Denied／Cloudflare"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "LoC Henry Harley Arnold Papers finding aid",
+     "url": "https://hdl.loc.gov/loc.mss/eadmss.ms996005",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Smithsonian NASM Hap Arnold",
+     "url": "https://airandspace.si.edu/explore/stories/hap-arnold",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "George C. Marshall Foundation Marshall and Hap Arnold",
+     "url": "https://www.marshallfoundation.org/articles-and-features/marshall-henry-hap-arnold/",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "NASA History X-1 Biographies Arnold",
+     "url": "https://www.nasa.gov/history/x1/arnold.html",
+     "result": "found_A",
+     "note": "curl 成功；僅一段摘要，無起迄日"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Centennial of Flight Hap Arnold",
+     "url": "https://www.centennialofflight.net/essay/Air_Power/Hap_Arnold/AP16.htm",
+     "result": "found_A",
+     "note": "curl 成功；無具名作者，評等待確認"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "SNAC Arnold, Henry Harley",
+     "url": "https://snaccooperative.org/view/16986987",
+     "result": "no_result",
+     "note": "回傳殼層，無內容"
+    }
+   ]
+  }
+ ]
+}

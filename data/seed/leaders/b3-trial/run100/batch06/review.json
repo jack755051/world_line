@@ -1,0 +1,124 @@
+{
+ "batch": "06",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 6,
+  "editedSentences": 3,
+  "spotRefetched": 5,
+  "searchLogShort": 2
+ },
+ "people": [
+  {
+   "key": "hu-berinkey-denes",
+   "bioId": "01a1c3f3-3f8c-74a5-bb08-5a8420fede42",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 3,
+   "changes": [
+    "重抓 mek.oszk.hu 條目比對：引文全部逐字相符",
+    "逐句核對 3 段：每子句皆有 quote；日期、Q3 終點（1918-ig→1919-01-01 year）正確",
+    "T14：司法部長 R5（非四部）、外交部長 R5（1919-01-19～03-20 可證明 60 天 <90）判定正確；總理任期在名單內不重建",
+    "gap position:berinkey-regime 說明改寫：名單 regimeSlug=hungarian-peoples-republic-1918 與卡羅伊政府階段相符，原寫『與實查不符』不正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 僅 3 筆，缺來源類型（只有 1 類 official；需 ≥4 類，缺 authority／named_encyclopedia／academic 或 treaty_law）、缺查詢次數（約 1 次，需 ≥8 次，含匈牙利文 ≥2）、實抓頁僅 1 個有效（需 ≥3）",
+    "建議下一步：VIAF／OSZK 名稱權威檔（確認卒年月日）；Új magyar életrajzi lexikon 或 Magyar Nagylexikon 條目；Országgyűlés／Magyar Közlöny 1918–1919 任免公告；學術期刊（Századok 等）關於卡羅伊政府的論文，以補第二來源與卒日"
+   ]
+  },
+  {
+   "key": "pe-belaunde-diez-canseco-rafael",
+   "bioId": "01a1c3f3-3ff4-739c-97d8-03485c2aa66e",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 9,
+   "changes": [
+    "重抓 revistas.ucsp.edu.pe PDF 比對：引文逐字相符",
+    "刪除段內後設句「來源只在部長名單裡列出他的名字，未寫職務與起訖日期」（非來源事實，屬註記）",
+    "補 1 筆引文 'al recién elegido presidente, Dr. José Luis Bustamante y Rivero'，支撐段內『布斯塔曼特·伊·里維羅政府』子句（原 3 筆 quote 未出現布斯塔曼特之名）"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：缺查詢次數——searchLog 9 筆中真正的查詢／站內搜尋僅 6 次（step 1、2、3、4、6、7；step 5、8、9 為抓頁），需 ≥8 次",
+    "內容實質不足：唯一 B 來源只在名單列名，部長會議主席（1945–1946，R0 head_of_government 候選）任期無 A／B 出處",
+    "建議下一步：dbe.rah.es 搜尋 'Belaúnde Diez Canseco'；Biblioteca Nacional del Perú 權威檔；Congreso de la República 歷任議員／Museo del Congreso 名錄；PCM《Historia de la Presidencia del Consejo de Ministros》tomo I 的 gob.pe 官方鏡像；El Peruano 1945 年任命公報"
+   ]
+  },
+  {
+   "key": "mx-avila-camacho",
+   "bioId": "01a1aa4a-da74-77db-baee-0f57adbb1f2c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 3,
+   "changes": [
+    "重抓 gob.mx PDF 比對：引文逐字相符；確認原文確寫『El 17 de enero del mismo año, renunció』，終日無法證明，R6（dates）判定合理",
+    "職位 avila-oficial-mayor 刪 1 筆不相關引文 'posteriormente Subsecretario.'（屬副部長職位）",
+    "第 2 段補 3 筆引文：'candidato a la Presidencia de la República, de la que tomó posesión'（原 quote 無『總統』）、'Durante su gestión al frente del Ejecutivo'（支撐『任內』）、'en Estado de Guerra contra los países del Eje'（原 quote 截掉『對軸心國』受詞）",
+    "推定屬性與實查不符：地區應為美洲·北美（墨西哥）、政權共和制、年代 1937–1946、厚薄中（僅 1 份 A 來源）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "eg-farouk-i",
+   "bioId": "01a1b4ae-0dff-776f-b8c4-f6c7a335f3ee",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 4,
+   "changes": [
+    "重抓 islamansiklopedisi.org.tr 條目比對：引文逐字相符",
+    "第 1 段補引文 'Fakat yedi ay kadar sonra babasının âni ölümü üzerine ülkesine döndü'（原 quote 不含『約七個月後因父親猝逝返國』）；英文補上 about seven months later 與中文一致",
+    "第 2 段補引文 'Mısır ile İngiltere arasında siyasî ve askerî ilişkileri yeniden düzenleyen'（原 quote 不含『埃及與英國』）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "es-negrin-lopez-juan",
+   "bioId": "01a1b52a-620e-7c9f-9408-9cb081f47412",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "重抓 revistas.ucm.es PDF 比對：引文逐字相符",
+    "第 2 段改句：『1931年共和國成立後』→『1931年4月14日之後』（quote 只有日期，未寫共和國成立，屬研究者推論）",
+    "議員席位檢查：原文寫 'por su provincia natal, Las Palmas'，未寫以 PSOE 身分當選，維持 legislator positions，不比照黨職；入黨（1929）非黨職",
+    "T14：財政部長 R6（終日未寫）判定合理；註：名單 regimeSlug=spanish-republic，roleGap 'regime' 偏保守，但 dates 缺口已足以維持 R6"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "子句覆蓋不足仍常見：quote 截掉受詞或主詞（如『對軸心國』『埃及與英國』『總統』），本批補 6 筆",
+  "薄人物 searchLog 未達最低嘗試（貝林凱只 3 筆；貝朗德查詢次數 6 <8）：找到 1 個 A 來源即停，未照『薄人物必須做完最低嘗試』規則",
+  "研究者在段落正文寫後設說明（『來源只列名』）與推論（『共和國成立』），應放 gap note",
+  "Britannica 全批為 Cloudflare 挑戰頁，已依規未繞過；多人只有單一來源"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 77
+ }
+}

@@ -63,6 +63,7 @@ RERUN = """# 將領生平：來源不足／未達標補跑（新規則，Sonnet�
 - 補完後若已達標：移除或改寫先前「來源不足：」「篇幅不足：」gap（已補上的項目），並將 `sourceInsufficient` 設為 false（或刪除該欄）。
 - 補完後仍未達標 → 更新 gap：target=`paragraph:length`、gapKind=not_found、note 以「來源不足：」開頭，寫目前段數／字數、缺的任期／戰役／指揮職，以及本輪已查的新網域（A／B／C）與結果。**不要硬湊。** 缺任期者照「待查證：缺迄日／缺起日」規則寫 gap。
 - 不用 `curl -k`／`--insecure`；不登入；遇防機器人驗證不繞過。
+- **預算**：本 session 上限 USD 6（到上限 session 會被中止、整批作廢）。本批最多 5 人，每人控制在約 USD 1 以內：先查最可能補上缺口的來源（缺迄日先查官方任免／公報，缺戰役先查官方戰史），補到達標就停，不要逐頁瀏覽。
 - 完成後跑 `python3 -I data/seed/leaders/b3-trial/verify.py {{OUTDIR}}/research.json --report {{OUTDIR}}/verify-report.json`，須 exit 0。
 - 結尾回覆：每人是否達標、新增段落／字數／任期、新增 searchLog 筆數、用到的新網域與等級（A／B／C）；最後單獨一行 `BATCH_RESULT=ok` 或 `BATCH_RESULT=fail`。不要 commit。
 """
@@ -74,7 +75,7 @@ def main() -> None:
     if M0 in t and M1 in t:
         pre, rest = t.split(M0, 1)
         _, post = rest.split(M1, 1)
-        t = pre + BLOCK + post.lstrip("\n")
+        t = pre + BLOCK + (post[1:] if post.startswith("\n") else post)
     else:
         if ANCHOR not in t:
             raise SystemExit("PROMPT_research.md: anchor not found")

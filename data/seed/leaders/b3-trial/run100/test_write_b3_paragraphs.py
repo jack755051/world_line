@@ -144,6 +144,10 @@ class Safety(unittest.TestCase):
     def test_write_disabled(self):
         self.assertIs(w.WRITE_ENABLED, False)
 
+    def test_write_needs_explicit_flag(self):
+        self.assertFalse(w.write_allowed(False))
+        self.assertTrue(w.write_allowed(True))
+
 
 class Sql(unittest.TestCase):
     def test_quote(self):

@@ -6,7 +6,7 @@ B3 分段生平寫入工具（ARCHITECTURE §16.2–16.4；Tai 2026-11-11 拍板
 leader_bio_paragraphs／person_positions／person_roles（無衝突者）＋各自 citation、需新建的 sources、可入庫的 leader_bio_gaps。
 
 預設 dry-run（唯讀對 5442 開發庫做 SELECT 對帳，印摘要並寫 .dev/b3-write-dryrun.txt、.dev/b3-role-conflicts.md）。
---send 才會寫庫；WRITE_ENABLED=False 時 --send 一律拒絕（Tai 看過網域清單、備份＋套 migration 後才打開）。
+--send 才會寫庫；--send 還需 --allow-write 才會寫庫（Tai 看過網域清單、備份＋套 migration 後才打開）。
 連線：docker exec worldline-borders-dev-db（埠 5442）；拒絕 5051／5432／app_postgres 等；不讀、不印任何密鑰。
 
 規則摘要
@@ -466,9 +466,14 @@ def build_sql(P):
     return "\n".join(q)
 
 
+def write_allowed(flag):
+    return bool(WRITE_ENABLED or flag)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--send", action="store_true", help="寫庫（WRITE_ENABLED=False 時一律拒絕）")
+    ap.add_argument("--send", action="store_true", help="寫庫（還需 --allow-write）")
+    ap.add_argument("--allow-write", action="store_true", help="明確允許寫 5442（預設拒絕）")
     ap.add_argument("--port", default="5442")
     a = ap.parse_args()
     if a.port != "5442":
@@ -485,8 +490,8 @@ def main():
     if not a.send:
         print("\n（dry-run；未寫庫）")
         return
-    if not WRITE_ENABLED:
-        sys.exit("不允許寫庫（WRITE_ENABLED=False）。")
+    if not write_allowed(a.allow_write):
+        sys.exit("不允許寫庫（需同時 --send 與 --allow-write）。")
     if not st["tables"] or "encyclopedia" not in psql("select pg_get_constraintdef(oid) from pg_constraint where conname='ck_sources_source_kind'")[0][0]:
         sys.exit("migration 尚未套用，拒絕寫入。")
     if P["unclassified"]:

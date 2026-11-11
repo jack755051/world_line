@@ -1,0 +1,132 @@
+{
+ "batch": "002",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v1（=run100-v1）",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 5,
+  "addedCitations": 14,
+  "editedSentences": 3,
+  "spotRefetched": 5,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "jp-showa-hirohito",
+   "bioId": "01a1b4b2-2f65-7cca-9a4b-ff875f18c192",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "P1／攝政候選：引文改為含年份的「in 1921 to the appointment of Hirohito as Prince Regent」（原引文無 1921 卻標 datePrecision=year），並補「assuming the duties of his father」",
+    "P1 英文：ill → suffering from mental illness（貼合引文）",
+    "P2：引文改為「move swiftly to halt the attempted military coup of 1936 (Ni Ni Roku incident)」，支撐「二二六事件」子句",
+    "重抓 ebsco-hirohito（200，引文仍在）"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺 3 次以上查詢（只有 5 步，至少要 8 步）、缺第 4 種來源類型（只有 authority／official／named_encyclopedia；other 不算）",
+    "建議下一個來源：國立公文書館／JACAR 搜「摂政 裕仁親王 大正10年11月25日」（詔書、官報）；NDL デジタルコレクション 官報 1921-11-25；宮内庁『昭和天皇実録』公開頁；学術類可查 CiNii 論文摘要"
+   ]
+  },
+  {
+   "key": "jp-tojo-hideki",
+   "bioId": "62241525-b2f1-4931-bfb3-30ecf9dd3094",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 5,
+   "changes": [
+    "陸軍大臣 position：依 nids-tojo 主要略歴補入起迄 1940-07-01（month）～1944-08-01（month，Q3），加 2 筆引文（「15年7月陸軍大臣…」「16年10月～19年7月兼陸軍大臣」）；roleGap 由 [dates, regime] 改為 [regime]，仍 R6",
+    "gap 改寫：原稱「來源未寫」參謀總長／1944 年去職／1948 年刑死，實際 nids-tojo 已寫，改為退回補建；刪除 gap note 內無來源的「1940 年起任」「1941–1944 首相」字樣",
+    "重抓 nids-tojo（200，引文仍在）"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：只有 5 步（至少要 8 步）、來源類型只有 3 種（authority／official／named_encyclopedia）",
+    "已抓 A 級來源 nids-tojo 漏建：19年2月～7月参謀総長（R4 類，regimeId NULL → R6）、16年10月～17年2月兼内相（R3 四部，regimeId NULL → R6）、18年11月～19年7月兼軍需大臣（R5）；陸軍次官（13年5月）、関東軍参謀長（12年3月）未填起日；段落漏寫 1944 年 7 月予備役、1948 年 12 月刑死",
+    "建議下一個來源：JACAR 搜「東條英機 陸軍大臣 任命」；NDL「近代日本人の肖像」人名搜尋（原抓的是政治家分類頁、ndl-tojo.txt 實為中江兆民頁）；Kotobank 日本大百科全書具名條目"
+   ]
+  },
+  {
+   "key": "cn-chiang-kai-shek",
+   "bioId": "01a1b490-dcc7-76dc-82d7-da76fb59d7d2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 6,
+   "changes": [
+    "P2：補引文「and launched the Northern Expedition to unify China under the Kuomintang」，支撐「發動北伐」子句",
+    "P2：「captured Nanjing and Shanghai in early 1927」datePrecision month → year（early 1927 只有年精度）",
+    "P3：原引文「Chiang was elected president by a new National Assembly」不含 1948 也不含『依憲法』，拆成「Chiang was elected president」＋「by a new National Assembly under the terms of the constitution in 1948」(year)",
+    "重抓 ebsco-chiang（200，引文仍在）",
+    "T14：黃埔校長 military_education R5、國民革命軍總司令 R6（dates、regime）檢查通過；ebsco-chiang 原文沒有明寫黨職，所以 roleCandidates 是 0 合理"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "su-lenin",
+   "bioId": "01a1b492-3ee1-75ee-8fc7-306c07a85a65",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 6,
+   "changes": [
+    "P1：原文是 1895 年底返回聖彼得堡後被捕，不是出國後被捕；補引文「On his return to St. Petersburg late in 1895」並改寫中英文句",
+    "P2：「November 6-7」引文不含年份，補「As Russia sank further into anarchy during 1917」(year)；補「Leadership of the country passed into the hands of an elected executive board」支撐「選舉產生的執行機構」",
+    "P3：「In early 1922」datePrecision month → year",
+    "重抓 ebsco-lenin（200，引文仍在）"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺原文語言（俄文）查詢 ≥2 次（0 次）、查詢只有 6 步（至少要 8 步）、來源類型只有 3 種（authority／national_dictionary／named_encyclopedia；other 不算）",
+    "建議下一個來源：用「Ленин Владимир Ильич」查 Большая российская энциклопедия（具名條目，B）、Президентская библиотека／РНБ 權威檔、LoC NAF n79-109367 類權威檔；黨職（ЦК РСДРП(б) 等）需具名來源寫明職稱與日期才可建 R1"
+   ]
+  },
+  {
+   "key": "de-wilhelm-ii",
+   "bioId": "01a19f15-3574-776f-a3e9-348733e035e7",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 5,
+   "changes": [
+    "P2：引文「im Juli 1914 schließlich dem Druck seiner militärischen Ratgeber」截掉謂語，改為「so unterwarf er sich im Juli 1914 schließlich dem Druck」＋「dem Druck seiner militärischen Ratgeber」",
+    "P3：刪除沒有引文支撐的子句「卻退居將領決策之後／but receded behind the generals' decisions」",
+    "gap field:birthplace：gapKind 由 conflict 改為 not_found（波茨坦說只出現在檢索摘要，沒有兩份已抓原文互相矛盾）",
+    "重抓 deutsche-biographie gnd118632892（200，引文仍在）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "3 位薄人物（裕仁、東條、列寧）的 searchLog 都只有 5–6 步，沒達到 8 次查詢／4 種來源類型的最低嘗試；研究者把 sourceType=other 當成一種類型，但 other 不算 1–5 類",
+  "有引文標了 datePrecision，但日期其實在引文外面（Hirohito 1921、Chiang 1948），Q8 和逐子句支撐都需要引文本身含日期",
+  "有 4 處 datePrecision 標 month，但原文是 early／late 年份，應為 year",
+  "東條：已抓的 A 級來源（nids-tojo 主要略歴）有完整月精度履歷，研究者卻寫「來源未寫」並漏建職位；研究者應把已抓原文讀完",
+  "EBSCO Research Starters（具名作者）評為 B：本批首次使用，審查暫時接受，建議 Tai 確認這類來源的等級",
+  "raw 目錄有幾個 searchLog 沒記到的檔案（dbio-*、ebsco-tojo＝404、ndl-tojo＝中江兆民頁、hist-wilhelm＝Anubis 挑戰頁未繞過）；都沒被引用，不影響結果",
+  "本次審查依 PROMPT_research.md 內嵌的規則（含 T14 R0–R6 與對齊格式）逐條核對；ARCHITECTURE §16、ALIGN.md、T14_RECOMMENDATION.md 原文沒有另外全文重讀"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

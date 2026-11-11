@@ -1,0 +1,5412 @@
+{
+ "batch": "b3-full-v3-batch007",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 政權對應），故國家級／戰區級軍職因政權待查證為 R6，軍級／分艦隊級與 1908–1945 時間窗外職位為 R5。Britannica、ADB（JavaScript 頁）、Canadian Encyclopedia、1914-1918-online（Anubis）、Cambridge 檔案館等被擋，不繞過；AWM／NAM／IWM 館藏頁無署名，依 Q9 僅列 gap 候選。SNL 的 Harold Alexander、David Beatty 條目無「Skrevet av」，僅有署名學術 Fagansvarlig／Fagkonsulent，暫列 B 待主管確認。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch007，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch007/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "hans-slim": {
+   "title": "Mr William Slim (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-william-slim",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "hans-alex": {
+   "title": "Mr Harold Alexander (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-harold-alexander",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "hans-mb": {
+   "title": "Mr Louis Mountbatten (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-louis-mountbatten-1",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "hans-allenby": {
+   "title": "Mr Edmund Allenby (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-edmund-allenby",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "hans-beatty": {
+   "title": "Mr David Beatty (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-david-beatty-1",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "snl-slim": {
+   "title": "Store norske leksikon: William Slim",
+   "authors": [
+    "Aksel Schreiner Brakestad"
+   ],
+   "publisher": "Store norske leksikon (snl.no)",
+   "published_text": "Brakestad, Aksel Schreiner: William Slim, snl.no，最後更新 2024-11-26",
+   "url": "https://snl.no/William_Slim",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Store norske leksikon 具名作者條目（T1 B）"
+  },
+  "snl-alex": {
+   "title": "Store norske leksikon: Harold Alexander",
+   "authors": [],
+   "publisher": "Store norske leksikon (snl.no)",
+   "published_text": "Harold Alexander, snl.no，最後更新 2025-02-24；頁面列 Fagansvarlig Knut Øystein Høvik（Universitetet i Innlandet），無「Skrevet av」",
+   "url": "https://snl.no/Harold_Alexander",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Store norske leksikon 條目，署名學術 Fagansvarlig、無具名作者（T1 B，待主管確認）"
+  },
+  "snl-mb": {
+   "title": "Store norske leksikon: Louis Mountbatten",
+   "authors": [
+    "Tim Greve"
+   ],
+   "publisher": "Store norske leksikon (snl.no)",
+   "published_text": "Greve, Tim: Louis Mountbatten, snl.no",
+   "url": "https://snl.no/Louis_Mountbatten",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Store norske leksikon 具名作者條目（T1 B）"
+  },
+  "snl-allenby": {
+   "title": "Store norske leksikon: Edmund Allenby",
+   "authors": [
+    "Aksel Schreiner Brakestad"
+   ],
+   "publisher": "Store norske leksikon (snl.no)",
+   "published_text": "Brakestad, Aksel Schreiner: Edmund Allenby, snl.no，最後更新 2025-02-24",
+   "url": "https://snl.no/Edmund_Allenby",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Store norske leksikon 具名作者條目（T1 B）"
+  },
+  "snl-beatty": {
+   "title": "Store norske leksikon: David Beatty",
+   "authors": [],
+   "publisher": "Store norske leksikon (snl.no)",
+   "published_text": "David Beatty, snl.no，最後更新 2025-02-24；頁面列 Fagkonsulent Torolf Rein，無「Skrevet av」",
+   "url": "https://snl.no/David_Beatty",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Store norske leksikon 條目，署名 Fagkonsulent、無具名作者（T1 B，待主管確認）"
+  },
+  "lex-mb": {
+   "title": "Den Store Danske (Lex): Louis Mountbatten",
+   "authors": [
+    "Ole Ventegodt"
+   ],
+   "publisher": "Lex (lex.dk)／Den Store Danske",
+   "published_text": "Ventegodt, Ole: Louis Mountbatten, lex.dk，最後更新 2024-10-02",
+   "url": "https://denstoredanske.lex.dk/Louis_Mountbatten",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Lex 具名作者條目（T1 B）"
+  },
+  "banglapedia-mb": {
+   "title": "Banglapedia: Mountbatten, Lord",
+   "authors": [
+    "KM Mohsin"
+   ],
+   "publisher": "Banglapedia (Asiatic Society of Bangladesh)",
+   "published_text": "Banglapedia，署名 [KM Mohsin]",
+   "url": "https://en.banglapedia.org/index.php/Mountbatten,_Lord",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構百科具名條目（T1 B）"
+  },
+  "ggc-alex": {
+   "title": "The Viscount Alexander（Governor General of Canada 官方歷任總督頁）",
+   "authors": [],
+   "publisher": "Office of the Secretary to the Governor General of Canada (gg.ca)",
+   "published_text": "The Viscount Alexander, gg.ca",
+   "url": "https://gg.ca/en/governor-general/former-governors-general/viscount-alexander",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方網頁（T1 A）"
+  },
+  "pmc-slim": {
+   "title": "PM Transcripts 136：Menzies 關於任命新總督的議會聲明（1959-11-12）",
+   "authors": [
+    "Robert Menzies"
+   ],
+   "publisher": "Prime Minister of Australia / PM Transcripts (pmtranscripts.pmc.gov.au)",
+   "published_text": "Statement in Parliament, 1959-11-12, Transcript ID 136",
+   "url": "https://pmtranscripts.pmc.gov.au/node/10850",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲總理府官方檔案彙編（T1 A）"
+  },
+  "obib-allenby": {
+   "title": "Oxford Bibliographies: Edmund Allenby",
+   "authors": [
+    "Matthew Hughes",
+    "Iain Farquharson"
+   ],
+   "publisher": "Oxford University Press（Oxford Bibliographies, Military History）",
+   "published_text": "Hughes & Farquharson, Edmund Allenby, Oxford Bibliographies 9780199791279-0160（Brunel 機構典藏 PDF）",
+   "url": "https://bura.brunel.ac.uk/bitstream/2438/12474/3/Fulltext.pdf",
+   "archive_url": null,
+   "catalog_id": "9780199791279-0160",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社具名專文（T1 B）"
+  },
+  "awm-slim": {
+   "title": "Australian War Memorial 館藏圖說 P08454.001（Slim）",
+   "authors": [],
+   "publisher": "Australian War Memorial 館藏圖說 P08454.001（Slim）",
+   "published_text": "Australian War Memorial 館藏圖說 P08454.001（Slim）",
+   "url": "https://www.awm.gov.au/collection/C1238887",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等（Q9：無署名館藏圖說／無署名條目）；僅作 gap 候選，不作出處"
+  },
+  "awm-allenby": {
+   "title": "Australian War Memorial 人物頁 P01350.012（Allenby）",
+   "authors": [],
+   "publisher": "Australian War Memorial 人物頁 P01350.012（Allenby）",
+   "published_text": "Australian War Memorial 人物頁 P01350.012（Allenby）",
+   "url": "https://www.awm.gov.au/collection/P8027",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等（Q9：無署名館藏圖說／無署名條目）；僅作 gap 候選，不作出處"
+  },
+  "nam-slim": {
+   "title": "National Army Museum: William Slim: The soldiers’ soldier（無署名）",
+   "authors": [],
+   "publisher": "National Army Museum",
+   "published_text": "National Army Museum: William Slim: The soldiers’ soldier（無署名）",
+   "url": "https://www.nam.ac.uk/explore/william-slim",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等（Q9：無署名館藏圖說／無署名條目）；僅作 gap 候選，不作出處"
+  },
+  "nam-allenby": {
+   "title": "National Army Museum: Edmund Allenby: The bull（無署名）",
+   "authors": [],
+   "publisher": "National Army Museum",
+   "published_text": "National Army Museum: Edmund Allenby: The bull（無署名）",
+   "url": "https://www.nam.ac.uk/explore/edmund-allenby",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等（Q9：無署名館藏圖說／無署名條目）；僅作 gap 候選，不作出處"
+  },
+  "iwm-mb": {
+   "title": "IWM War Memorials Register：Earl Mountbatten of Burma（館藏圖說，無署名）",
+   "authors": [],
+   "publisher": "IWM War Memorials Register",
+   "published_text": "IWM War Memorials Register：Earl Mountbatten of Burma（館藏圖說，無署名）",
+   "url": "https://www.iwm.org.uk/memorials/item/memorial/47962",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等（Q9：無署名館藏圖說／無署名條目）；僅作 gap 候選，不作出處"
+  },
+  "iwm-jutland": {
+   "title": "IWM: Who were the key personalities in the Battle of Jutland（無署名）",
+   "authors": [],
+   "publisher": "IWM",
+   "published_text": "IWM: Who were the key personalities in the Battle of Jutland（無署名）",
+   "url": "https://www.iwm.org.uk/history/who-were-the-key-personalities-in-the-battle-of-jutland",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等（Q9：無署名館藏圖說／無署名條目）；僅作 gap 候選，不作出處"
+  },
+  "ebsco-slim": {
+   "title": "EBSCO Research Starters: William Slim, First Viscount Slim",
+   "authors": [
+    "T. A. Shippey"
+   ],
+   "publisher": "EBSCO Research Starters (Salem Press)",
+   "published_text": "Shippey, T. A.: William Slim, First Viscount Slim, EBSCO Research Starters, 2024",
+   "url": "https://ebsco.com/research-starters/history/william-slim-first-viscount-slim",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（Salem Press；T1 B）"
+  },
+  "oc-slim": {
+   "title": "The Oxford Companion to British History: Slim, William, 1st Viscount Slim",
+   "authors": [
+    "J. A. Cannon"
+   ],
+   "publisher": "Oxford University Press（經 encyclopedia.com 轉載）",
+   "published_text": "Cannon, J. A.: Slim, William, 1st Viscount Slim, The Oxford Companion to British History",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/slim-william-1st-viscount-slim",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Oxford University Press 工具書具名條目（J. A. Cannon；T1 B）"
+  },
+  "tna-slim-cab106": {
+   "title": "The National Archives (UK) Discovery 目錄：CAB 106/16、CAB 106/48 第14集團軍作戰紀錄",
+   "authors": [],
+   "publisher": "The National Archives (UK), Discovery catalogue",
+   "published_text": "TNA Discovery 檢索結果（API），2026-11-11 取用",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C373987",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
+  },
+  "ebsco-alex": {
+   "title": "EBSCO Research Starters: Alexander of Tunis",
+   "authors": [
+    "David Barratt"
+   ],
+   "publisher": "EBSCO Research Starters (Salem Press)",
+   "published_text": "Barratt, David: Alexander of Tunis, EBSCO Research Starters, 2019",
+   "url": "https://ebsco.com/research-starters/history/alexander-tunis",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（Salem Press；T1 B）"
+  },
+  "tna-alex-papers": {
+   "title": "The National Archives (UK) Discovery：WO 214 Earl Alexander of Tunis, Supreme Allied Commander Mediterranean Theatre: Papers",
+   "authors": [],
+   "publisher": "The National Archives (UK), Discovery catalogue",
+   "published_text": "TNA Discovery 系列 WO 214（C14420），2026-11-11 取用",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C14420",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
+  },
+  "tna-alex-t231": {
+   "title": "The National Archives (UK) Discovery：T 231/1138 Viscount Alexander Governor-General in Canada",
+   "authors": [],
+   "publisher": "The National Archives (UK), Discovery catalogue",
+   "published_text": "TNA Discovery T 231/1138（C2959862），2026-11-11 取用",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C2959862",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
+  },
+  "tna-alex-cab106": {
+   "title": "The National Archives (UK) Discovery：CAB 106/623 Italy: despatch on operations 1944 Dec. 12-1945 May 2",
+   "authors": [],
+   "publisher": "The National Archives (UK), Discovery catalogue",
+   "published_text": "TNA Discovery CAB 106/623（C374562），2026-11-11 取用",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C374562",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
+  },
+  "sant-allenby": {
+   "title": "Middle East Centre Archive, St Antony’s College, Oxford: GB165-0005 Sir Edmund Allenby Collection（傳記說明）",
+   "authors": [],
+   "publisher": "Middle East Centre, St Antony’s College, Oxford",
+   "published_text": "GB165-0005 fonds 描述，2003／2011 修訂",
+   "url": "https://www.sant.ox.ac.uk/wp-content/uploads/2023/12/gb165-0005-allenby-collection.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "牛津大學學院中東中心檔案館的傳記說明（學術機構傳記，T1 B）"
+  },
+  "henson-allenby": {
+   "title": "The Henson Journals: Edmund Henry Hynman Allenby",
+   "authors": [],
+   "publisher": "Durham University / The Chapter of Durham Cathedral",
+   "published_text": "The Henson Journals 人物條目，2026-11-11 取用",
+   "url": "https://henson.durham.ac.uk/people/person4103",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "杜倫大學研究專案人物條目（學術機構，T1 B）"
+  },
+  "mhm-allenby": {
+   "title": "Military History Matters: REVIEW – Allenby: making the modern Middle East",
+   "authors": [
+    "Colin Shindler"
+   ],
+   "publisher": "Military History Matters",
+   "published_text": "Shindler, Colin: 書評 Allenby: making the modern Middle East（C Brad Faught），2020-12-10",
+   "url": "https://military-history.org/books/review-allenby-making-the-modern-middle-east.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名學者書評（Colin Shindler；T1 B，書評性質，僅供事件敘述）"
+  },
+  "tna-allenby-fo794": {
+   "title": "The National Archives (UK) Discovery：FO 794/13 Allenby, Lord: resignation as High Commissioner in Egypt",
+   "authors": [],
+   "publisher": "The National Archives (UK), Discovery catalogue",
+   "published_text": "TNA Discovery FO 794/13（C2283815），2026-11-11 取用",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C2283815",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
+  }
+ },
+ "people": [
+  {
+   "key": "haroldalexander1stearlalexanderoftunis",
+   "bioId": null,
+   "name": "Harold Alexander, 1st Earl Alexander of Tunis",
+   "nameZh": "第一代突尼斯的亞歷山大伯爵哈羅德·亞歷山大",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-12-10",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "哈羅德·亞歷山大1891年12月10日生於倫敦。他在哈羅公學受教育，後入桑赫斯特軍事學院，1911年受任愛爾蘭禁衛團軍官；一戰期間他在西線指揮該團一個營，兩度負傷，1915年獲軍功十字勳章。1937年他晉升少將，是當時英軍最年輕的將官。",
+      "en": "Harold Alexander was born in London on 10 December 1891. He was educated at Harrow and then Sandhurst, was commissioned in the Irish Guards in 1911, commanded a battalion of the regiment on the Western Front in the First World War, was wounded twice and won the Military Cross in 1915. Promoted in 1937, he was the youngest general in the British army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "10. desember 1891, London",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-alex",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "December 10, 1891",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "educated at Harrow",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "attending the Military College at Sandhurst",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "He was commissioned in the Irish Guards in 1911.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "commanded a battalion of his regiment on the western front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "was wounded twice",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "awarded the Military Cross in 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "promoted in 1937, at the age of 45",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "the youngest general in the British army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1942-09-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "二戰初期：敦克爾克、英國本土與緬甸",
+      "en": "Early Second World War: Dunkirk, home defence and Burma"
+     },
+     "body": {
+      "zh-Hant": "1939年大戰爆發時，亞歷山大是少將，指揮第1師。1940年6月他以軍長身分指揮英軍自敦克爾克撤退，其後出任英格蘭南部防務指揮官。1942年3月至8月他任緬甸的最高指揮官；加拿大總督府頁面並稱他其後成為中東總司令。",
+      "en": "At the outbreak of war in 1939 Alexander was a major-general commanding the First Division. As a corps commander he led the British retreat from Dunkirk in June 1940 and then commanded the defence of southern England. He was commander-in-chief in Burma from March to August 1942, and the Governor General of Canada site states that he then became Commander-in-Chief in the Middle East."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "At the outbreak of war in 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "a Major-General in command of the First Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Som sjef for et armékorps i Frankrike og Belgia",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "ledet han juni 1940 de britiske styrkenes retrett fra Dunkerque",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Deretter var han sjef for Sør-Englands forsvar",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Alexander var øverstbefalende i Burma",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "i mars–august 1942",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "became Commander-in-Chief in the Middle East",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1945-06-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "敦克爾克、中東與地中海戰役（補充）",
+      "en": "Dunkirk, the Middle East and Mediterranean campaigns (supplement)"
+     },
+     "body": {
+      "zh-Hant": "據 EBSCO 研究起點，亞歷山大在1940年敦克爾克撤退中是最後一名自海灘撤離的軍人，其後他的建議促成新的戰鬥操典與總司令部戰鬥學校。1942年他受任英軍中東總司令，在蒙哥馬利協助下擊敗隆美爾麾下的軸心軍；1943年2月出任艾森豪的副總司令，將最後的軸心軍逐出突尼西亞。1944年他任盟軍義大利戰線總司令，同年晉升元帥並任盟軍地中海最高司令；英國國家檔案館目錄載有他以該最高司令身分撰寫、涵蓋1944年12月12日至1945年5月2日的義大利作戰報告。",
+      "en": "According to EBSCO, Alexander was the last soldier evacuated from the beaches at Dunkirk in 1940, and his recommendations afterwards established a new battle drill and a General Headquarters battle school. In 1942 he was appointed commander in chief of British forces in the Middle East and, with Montgomery's assistance, defeated the Axis forces under Rommel; in February 1943 he became deputy commander in chief to Eisenhower and drove the last enemy forces out of Tunisia. In 1944 he became commander in chief of the Allied armies in Italy and, as field marshal, Allied supreme commander in the Mediterranean; The National Archives lists his despatch as Supreme Allied Commander on operations from 12 December 1944 to 2 May 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "retreats at Dunkirk (1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "he was the last soldier to be evacuated from the beaches",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "his recommendations established a new battle drill",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "General Headquarters battle school",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "In 1942, he was appointed commander in chief of British forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "Alexander defeated the Axis forces under Erwin Rommel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "In February, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "appointed deputy commander in chief to Dwight D. Eisenhower",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "drove the last enemy forces out of Tunisia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "he was made commander in chief of the Allied armies in Italy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "he became field marshal and Allied supreme commander in the Mediterranean",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-alex-cab106",
+       "locator": "TNA CAB 106/623",
+       "quote": "despatch on operations 1944 Dec. 12-1945 May 2",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-alex-cab106",
+       "locator": "TNA CAB 106/623",
+       "quote": "Supreme Allied Commander, Mediterranean Theatre of Operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1945-06-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "突尼西亞、西西里與義大利戰役",
+      "en": "Tunisia, Sicily and the Italian campaign"
+     },
+     "body": {
+      "zh-Hant": "1943年1月英軍攻佔的黎波里後，亞歷山大主持突尼西亞作戰，並任艾森豪麾下盟軍副指揮；同年7月指揮西西里戰役，秋季入侵義大利。1943年平安夜他接替艾森豪任義大利戰線總指揮，1944年11月任地中海地區總司令。他於1944年晉升元帥，同年攻佔羅馬，1945年5月對西南歐德軍下達無條件投降條件。",
+      "en": "After the fall of Tripoli in January 1943 Alexander directed operations in Tunisia as deputy to Eisenhower; he led the Sicily campaign in July 1943 and the invasion of Italy that autumn. On Christmas Eve 1943 he replaced Eisenhower as commander on the Italian front, and in November 1944 became Allied commander in the Mediterranean. He was promoted field marshal in 1944, took Rome that year, and in May 1945 imposed unconditional surrender terms on the German armies in south-western Europe."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Tripoli i januar 1943",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "leder av operasjonene i Tunisia og nestkommanderende under",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "ledet felttoget på Sicilia i juli 1943",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "invasjonen i Italia høsten samme år",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Julaften 1943 avløste han Eisenhower som øverstbefalende",
+       "quoteLang": "no",
+       "evidenceNote": "Julaften＝12-24；quote 只含「Julaften 1943」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "ble i november 1944 øverstbefalende i middelhavsområdet",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "promoted to Field Marshal in 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "subsequently captured Rome in 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "In May 1945, he imposed terms of unconditional surrender",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1946-03-01",
+      "end": "1969-06-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "加拿大總督、國防大臣與晚年",
+      "en": "Governor General of Canada, Minister of Defence and later life"
+     },
+     "body": {
+      "zh-Hant": "1946年3月1日他受封突尼斯子爵，並出任加拿大總督，任內走遍全國，也探視開赴朝鮮的部隊。1952年初他應邱吉爾之請返英任國防大臣，3月14日晉封突尼斯伯爵；SNL記他任國防大臣的時間為1952至1954年。他於1969年6月16日去世。",
+      "en": "He was created Viscount Alexander of Tunis on 1 March 1946 and served as Governor General of Canada, travelling the country widely and visiting troops leaving for Korea. In early 1952 he returned to London at Churchill’s request to become Minister of Defence and was created Earl Alexander of Tunis on 14 March 1952; the Norwegian encyclopedia dates his defence ministry to 1952–1954. He died on 16 June 1969."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hans-alex",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Viscount Alexander of Tunis March 1, 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "He travelled the country extensively",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "Lord Alexander visited the troops heading overseas",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "In early 1952",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ggc-alex",
+       "locator": "gg.ca 前任總督頁",
+       "quote": "Churchill asked him to return to London to take the post of Minister of Defence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-alex",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Earl Alexander of Tunis March 14, 1952",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "forsvarsminister i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "andre regjering i 1952–1954",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-alex",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "June 16, 1969",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "alexander-corps-dunkirk-1940",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍（法國與比利時戰場軍）",
+      "en": "British Army (corps in France and Belgium)"
+     },
+     "title": {
+      "orig": "Sjef for et armékorps (Dunkerque-retretten)",
+      "zh-Hant": "軍長（敦克爾克撤退）",
+      "en": "Corps commander (Dunkirk retreat)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-06-01",
+      "end": "1940-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Som sjef for et armékorps i Frankrike og Belgia",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "ledet han juni 1940 de britiske styrkenes retrett fra Dunkerque",
+       "quoteLang": "no",
+       "evidenceNote": "引文只寫1940年6月；迄日依 Q3 取下一月起日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職、亦非戰區／方面軍司令，R4 不成立（R5）"
+    },
+    {
+     "key": "alexander-burma-1942",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國駐緬甸部隊",
+      "en": "British forces in Burma"
+     },
+     "title": {
+      "orig": "Øverstbefalende i Burma",
+      "zh-Hant": "緬甸最高指揮官",
+      "en": "Commander-in-chief in Burma"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-03-01",
+      "end": "1942-09-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Alexander var øverstbefalende i Burma",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "i mars–august 1942",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級指揮，有地點與起迄月，但 SNL 未明寫具名戰役日期（缺戰役連結）、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "alexander-italy-front-1943",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍義大利戰線",
+      "en": "Allied forces, Italian front"
+     },
+     "title": {
+      "orig": "Øverstbefalende på den italienske fronten",
+      "zh-Hant": "義大利戰線總指揮",
+      "en": "Commander on the Italian front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-12-24",
+      "end": "1944-11-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "Julaften 1943 avløste han Eisenhower som øverstbefalende",
+       "quoteLang": "no",
+       "evidenceNote": "Julaften＝12-24；quote 只含「Julaften 1943」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "ble i november 1944 øverstbefalende i middelhavsområdet",
+       "quoteLang": "no",
+       "evidenceNote": "依來源所載後一職位（地中海總司令）起月推得迄日（推論）；來源未明寫卸任日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區指揮，有地點（義大利）與入侵義大利的日期連結，但迄日為推論、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "alexander-mediterranean-1944",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍地中海戰區",
+      "en": "Allied forces, Mediterranean theatre"
+     },
+     "title": {
+      "orig": "Øverstbefalende i middelhavsområdet",
+      "zh-Hant": "地中海地區總司令",
+      "en": "Commander-in-chief, Mediterranean area"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-11-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "ble i november 1944 øverstbefalende i middelhavsområdet",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-alex-papers",
+       "locator": "TNA WO 214",
+       "quote": "Supreme Allied Commander Mediterranean Theatre, 1944 to 1945",
+       "quoteLang": "en",
+       "evidenceNote": "目錄寫法為其任最高司令期間的文書年份（1944 至 1945）；迄年據此推得（推論），非明寫卸任日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "he became field marshal and Allied supreme commander in the Mediterranean",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區總司令，迄日僅年精度且為推論、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "alexander-defence-minister-1952",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府（邱吉爾第二屆內閣）",
+      "en": "UK Government (Churchill’s second ministry)"
+     },
+     "title": {
+      "orig": "Minister of Defence",
+      "zh-Hant": "國防大臣",
+      "en": "Minister of Defence"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1952-01-01",
+      "end": "1955-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "forsvarsminister i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-alex",
+       "locator": "SNL 條目",
+       "quote": "andre regjering i 1952–1954",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "國防大臣任期 1952–1954 落在 1908–1945 時間窗外，一律 R5"
+    },
+    {
+     "key": "alexander-gg-canada",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "加拿大",
+      "en": "Canada"
+     },
+     "title": {
+      "orig": "Governor General of Canada",
+      "zh-Hant": "加拿大總督",
+      "en": "Governor General of Canada"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1946-01-01",
+      "end": "1953-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ebsco-alex",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "governor-general of Canada (1946–1952)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-alex-t231",
+       "locator": "TNA T 231/1138",
+       "quote": "Covering dates: 1946-1952",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-alex-t231",
+       "locator": "TNA T 231/1138",
+       "quote": "appointment as Governor-General in Canada",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "加拿大總督任期 1946–1952 落在 1908–1945 時間窗外，一律 R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:alexander-middle-east-1942",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日（年精度已知）；EBSCO（Barratt）寫「1942年受任英軍中東總司令」，只有年、無迄日；Columbia（encyclopedia.com，無署名，僅 gap）寫1942年8月，不採為出處。已查：gg.ca、SNL、EBSCO、TNA Discovery、Columbia。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:alexander-tunisia-1943",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；EBSCO（Barratt）寫「1943年2月受任艾森豪副總司令」（起月），無迄日；突尼西亞作戰結束日未見 A／B 明寫。已查：SNL、gg.ca、EBSCO、TNA Discovery。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Harold Alexander Earl Alexander of Tunis Governor General of Canada biography Dunkirk Tunisia Italy",
+     "url": null,
+     "result": "found_B",
+     "note": "網路搜尋索引，得 gg.ca／SNL／Britannica 等線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-harold-alexander",
+     "result": "found_A",
+     "note": "生卒與貴族封號日期"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Dictionary of Irish Biography 亞歷山大條目",
+     "url": "https://www.dib.ie/biography/alexander-harold-rupert-leofric-george-a0054",
+     "result": "blocked_403",
+     "note": "307 轉址至需 JavaScript 驗證頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Harold Alexander",
+     "url": "https://www.britannica.com/biography/Harold-Alexander-1st-Earl-Alexander-of-Tunis",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "The Canadian Encyclopedia Harold Alexander",
+     "url": "https://thecanadianencyclopedia.ca/en/article/harold-alexander-1st-earl-alexander-of-tunis",
+     "result": "blocked_403",
+     "note": "CloudFront 403，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "gg.ca Viscount Alexander",
+     "url": "https://gg.ca/en/governor-general/former-governors-general/viscount-alexander",
+     "result": "found_A",
+     "note": "Governor General of Canada 官方頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "SNL Harold Alexander",
+     "url": "https://snl.no/Harold_Alexander",
+     "result": "found_B",
+     "note": "挪威原文"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Library and Archives Canada 歸檔頁",
+     "url": "https://epe.lac-bac.gc.ca/100/205/301/ic/cdc/portraits/docs/gen2690/ea144173.htm",
+     "result": "no_result",
+     "note": "僅圖說與轉址提示，無傳記文字"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Alexander of Tunis biography Dizionario biografico OR Deutsche Biographie OR DIB Mediterranean（WebSearch，英文）",
+     "url": null,
+     "result": "found_B",
+     "note": "索引：EBSCO、Columbia、SNAC；無各國辭典",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Alexander Oberbefehlshaber Mittelmeer 1945 Generalgouverneur Kanada Lexikon（WebSearch，德文）",
+     "url": null,
+     "result": "no_result",
+     "note": "無德文傳記；僅英文百科",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Alexander of Tunis maresciallo comandante supremo alleato Mediterraneo Treccani（WebSearch，義文）",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C14420",
+     "result": "found_A",
+     "note": "未見 Treccani；浮現 TNA 目錄與 Rivista Militare",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Alexander Supreme Allied Commander Mediterranean ended 1945 1946（WebSearch，英文）",
+     "url": null,
+     "result": "unrated",
+     "note": "1945 報紙（Papers Past）與維基衍生頁，不採",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Alexander McNarney Caserta handed over September 1945 Hansard OR Gazette（WebSearch，英文）",
+     "url": "https://history.state.gov/historicaldocuments/frus1945v03/d558",
+     "result": "not_relevant",
+     "note": "FRUS 1945 d558 已 curl，僅 1945-04-29 電報，無卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Alexander（猜測網址）",
+     "url": "https://www.treccani.it/enciclopedia/harold-rupert-leofric-george-alexander-conte-alexander-di-tunisi/",
+     "result": "no_result",
+     "note": "回傳通用頁，無條目",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB Alexander",
+     "url": "https://www.oxforddnb.com/view/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-30362",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "national_dictionary",
+     "query": "Dictionary of Irish Biography Alexander（重試）",
+     "url": "https://www.dib.ie/biography/alexander-harold-rupert-leofric-george-a0054",
+     "result": "blocked_403",
+     "note": "需 JavaScript／重導；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "London Gazette 猜測網址 issue 37497",
+     "url": "https://www.thegazette.co.uk/London/issue/37497/page/1",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters: Alexander of Tunis（Barratt）",
+     "url": "https://ebsco.com/research-starters/history/alexander-tunis",
+     "result": "found_B",
+     "note": "具名作者；1942 中東、1943-02 副總司令、1944 義大利／地中海、總督 1946–1952",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "Columbia Encyclopedia: Alexander（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/alexander-harold-rupert-leofric-george-1st-earl-alexander-tunis",
+     "result": "unrated",
+     "note": "無署名，依 Q9 不採為出處",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "other",
+     "query": "Papers Past 1945-10-01「SUPREME COMMAND IN MEDITERRANEAN」",
+     "url": "https://paperspast.natlib.govt.nz/newspapers/THD19451001.2.56",
+     "result": "blocked_403",
+     "note": "WAF 403（另 ODT、AS 同），不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "other",
+     "query": "The end in Italy（Wartime Canada）",
+     "url": "https://wartimecanada.ca/document/second-world-war/speeches-and-broadcasts/end-italy",
+     "result": "unrated",
+     "note": "館藏圖說，僅 1945-05-02 署銜，無卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "TNA Discovery 系列詳情 C14420（WO 214）",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C14420",
+     "result": "found_A",
+     "note": "Supreme Allied Commander Mediterranean Theatre, 1944 to 1945",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "TNA Discovery：Alexander Supreme Allied Commander Mediterranean Field Marshal",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C374562",
+     "result": "found_A",
+     "note": "CAB 106/623 義大利作戰報告 1944-12-12 至 1945-05-02",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "TNA Discovery：Alexander Governor-General Canada appointment",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C2959862",
+     "result": "found_A",
+     "note": "T 231/1138：1946-1952 總督任內",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "official",
+     "query": "TNA Discovery：Alexander Commander-in-Chief Middle East 1942",
+     "url": null,
+     "result": "not_relevant",
+     "note": "無相關結果",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "authority",
+     "query": "GND（lobid.org）Alexander of Tunis",
+     "url": "https://lobid.org/gnd/search?q=Alexander%20of%20Tunis&format=json",
+     "result": "found_A",
+     "note": "Alexander, Harold 1891-12-10 – 1969-06-16",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "authority",
+     "query": "LoC 名稱權威檔 suggest2：Alexander, Harold",
+     "url": "https://id.loc.gov/authorities/names/n50038656",
+     "result": "found_A",
+     "note": "Alexander of Tunis, Harold Rupert Leofric George Alexander, Earl, 1891-1969",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie 檢索：Alexander of Tunis",
+     "url": "https://www.deutsche-biographie.de/search?name=Alexander%20of%20Tunis",
+     "result": "found_A",
+     "note": "僅索引列（Verteidigungsminister; Feldmarschall; Generalgouverneur），無傳記內文",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "authority",
+     "query": "data.bnf.fr 檢索：Alexander of Tunis",
+     "url": "https://data.bnf.fr/search?term=Alexander%20of%20Tunis",
+     "result": "unrated",
+     "note": "僅索引",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "authority",
+     "query": "NDL Authorities 檢索：Alexander of Tunis",
+     "url": "https://id.ndl.go.jp/auth/ndla/",
+     "result": "no_result",
+     "note": "無可用條目",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "academic",
+     "query": "Archives Hub 檢索：Alexander of Tunis",
+     "url": "https://archiveshub.jisc.ac.uk/search?terms=Alexander%20of%20Tunis",
+     "result": "blocked_403",
+     "note": "403；不繞過",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "williamslim1stviscountslim",
+   "bioId": null,
+   "name": "William Slim, 1st Viscount Slim",
+   "nameZh": "第一代斯利姆子爵威廉·斯利姆",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-08-06",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與一戰",
+      "en": "Origins and the First World War"
+     },
+     "body": {
+      "zh-Hant": "威廉·斯利姆1891年8月6日生於布里斯托。據挪威大百科，他在第一次世界大戰爆發時以列兵身分入伍，因表現優異很快升為軍官，先後在法國、伊拉克與土耳其達達尼爾一帶作戰；1920年他成為印度軍隊的軍官。",
+      "en": "William Slim was born in Bristol on 6 August 1891. According to the Norwegian encyclopedia he joined up at the outbreak of the First World War as a private, was soon promoted officer for good service, fought in France, Iraq and at the Dardanelles, and in 1920 became an officer in the Indian army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "6. august 1891, Bristol",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "ved utbruddet av",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "som menig soldat",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "ble raskt forfremmet til offiser takket være god ytelse",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "Han deltok i kamper i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "I 1920 ble han offiser i den",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "二戰：北非、緬甸與第14集團軍",
+      "en": "Second World War: North Africa, Burma and the Fourteenth Army"
+     },
+     "body": {
+      "zh-Hant": "1940年斯利姆在北非、伊朗與伊拉克作戰。1942年他受命統領緬甸的一個軍，1943年出任第14集團軍司令；他在印緬邊境同兵力占優的日軍進行艱苦的戰役，直到把日軍向東逐出緬甸。",
+      "en": "In 1940 Slim fought in North Africa, Iran and Iraq. In 1942 he was given command of an army corps in Burma and in 1943 became commander of the Fourteenth Army; on the Indian border he fought a hard campaign against superior Japanese forces until he had driven them east and out of Burma."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "I 1940 kjempet Slim i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "Han ble gitt ledelsen av et armékorps i Burma i 1942",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "ble sjef for 14. armé 1943",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "Han ledet en vanskelig kamp mot overlegne",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "japanske stridskrefter på grensen mot India",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "inntil han fikk drevet dem østover og ut av Burma",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-02-01",
+      "end": "1945-06-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "緬甸撤退與第14集團軍戰役",
+      "en": "The Burma retreat and the Fourteenth Army campaigns"
+     },
+     "body": {
+      "zh-Hant": "1942年2月日軍侵入緬甸後，斯利姆受命指揮緬甸第1軍；該軍在惡劣天氣、缺糧缺油的狀況下撤出緬甸。1943年10月起他統領第14集團軍；1944年3至7月，他的部隊在英帕爾與科希馬同日軍激戰，日軍在緬甸的主力於此被擊潰。其後第14集團軍追擊日軍渡過伊洛瓦底江，在密鐵拉與曼德勒再獲勝利，1945年5月進抵仰光。英國國家檔案館另藏有斯利姆以總司令名義撰寫的第14集團軍1943至1944年與1944至1945年作戰紀錄。",
+      "en": "After the Japanese broke into Burma in February 1942, Slim was placed in command of the First Burma Corps, which was bundled out of Burma in atrocious weather with no food, ammunition, gasoline or transport. He commanded the Fourteenth Army from October 1943; from March to July 1944 his troops fought desperately against the Japanese at Imphal and Kohima, where the Japanese army in Burma was broken. The Fourteenth Army then forced its way across the Irrawaddy, won further battles at Meiktila and Mandalay, and reached Rangoon in May 1945. The National Archives also holds accounts of the Fourteenth Army's operations for 1943-1944 and 1944-1945 written by Slim as General Officer Commanding."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "In February, 1942, they broke into Burma",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "placed in command of the First Burma Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "retreat in atrocious weather",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "with no food, ammunition, gasoline, transport",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "The Fourteenth Army which he commanded from October, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "From March to July, 1944, desperate fighting took place at Imphal and Kohima",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "The Japanese army in Burma was in fact broken at Imphal and Kohima",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "to force its way across the Irrawaddy River",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "win further battles at Meiktila and Mandalay",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "until Rangoon was reached in May, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-slim-cab106",
+       "locator": "TNA CAB 106/16",
+       "quote": "Account of operations of Fourteenth Army 1943-1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-slim-cab106",
+       "locator": "TNA CAB 106/48",
+       "quote": "Account of operations of Fourteenth Army 1944-1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-slim-cab106",
+       "locator": "TNA CAB 106/48",
+       "quote": "General Officer Commanding",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1948-01-01",
+      "end": "1961-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰後：參謀長與澳大利亞總督",
+      "en": "Postwar: chief of staff and Governor-General of Australia"
+     },
+     "body": {
+      "zh-Hant": "戰後斯利姆獲任元帥，1948至1952年擔任參謀長，之後出任澳大利亞總督，直到1960年。澳洲總理孟席斯1959年11月12日在議會表示，斯利姆將於次年1月底返英，並稱其任期「非常傑出」。1956年他出版《Defeat into Victory》。",
+      "en": "After the war Slim was made field marshal and was chief of staff from 1948 to 1952, then Governor-General of Australia until 1960. On 12 November 1959 Prime Minister Menzies told the House that Slim would return to England towards the end of January, after what he called a very distinguished term of office. Slim published Defeat into Victory in 1956."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "ble han utnevnt til feltmarskalk",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "sjef for generalstaben fra 1948 til 1952",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "generalguvernør i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "frem til 1960",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pmc-slim",
+       "locator": "PM Transcripts 136",
+       "quote": "THURSDAY. 12th NOVIm'BER. 1959.",
+       "quoteLang": "en",
+       "evidenceNote": "原文 OCR 錯字照錄",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pmc-slim",
+       "locator": "PM Transcripts 136",
+       "quote": "will be returning to England towards the end of January next",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pmc-slim",
+       "locator": "PM Transcripts 136",
+       "quote": "a very distinguished term of office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "I 1956 ga han ut boka",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1960-07-15",
+      "end": "1970-12-14"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年",
+      "en": "Later life"
+     },
+     "body": {
+      "zh-Hant": "斯利姆1960年7月15日受封子爵，在上議院留有1965年起的發言紀錄；他於1970年12月14日去世。",
+      "en": "Slim became Viscount Slim on 15 July 1960, sat in the House of Lords, where his contributions are recorded from 1965, and died on 14 December 1970."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hans-slim",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Viscount Slim July 15, 1960",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-slim",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Viscount Slim July 15, 1960 - December 14, 1970",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-slim",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "First recorded, on March 25, 1965",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "slim-burma-corps-1942",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國印度軍（緬甸）",
+      "en": "British Indian forces, Burma"
+     },
+     "title": {
+      "orig": "Ledelsen av et armékorps i Burma",
+      "zh-Hant": "緬甸軍長",
+      "en": "Corps commander in Burma"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1943-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "Han ble gitt ledelsen av et armékorps i Burma i 1942",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職或戰區司令，R4 不成立（R5）"
+    },
+    {
+     "key": "slim-fourteenth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第14集團軍",
+      "en": "British Fourteenth Army"
+     },
+     "title": {
+      "orig": "Sjef for 14. armé",
+      "zh-Hant": "第14集團軍司令",
+      "en": "Commander, Fourteenth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "ble sjef for 14. armé 1943",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-slim",
+       "locator": "EBSCO Research Starters (Salem Press)",
+       "quote": "The Fourteenth Army which he commanded from October, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-slim",
+       "locator": "Oxford University Press（經 encyclopedia.com 轉載）",
+       "quote": "in October 1943 took over the 14th Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "方面軍級指揮；Imphal／Kohima 1944-03 至 1944-07 有戰役連結（EBSCO），但缺迄日、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "slim-chief-of-staff-1948",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍",
+      "en": "British Army"
+     },
+     "title": {
+      "orig": "Sjef for generalstaben",
+      "zh-Hant": "參謀長",
+      "en": "Chief of the general staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1948-01-01",
+      "end": "1953-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-slim",
+       "locator": "SNL 條目",
+       "quote": "sjef for generalstaben fra 1948 til 1952",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "任期 1948–1952 落在 1908–1945 時間窗外，一律 R5"
+    },
+    {
+     "key": "slim-governor-general-australia",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "澳大利亞聯邦",
+      "en": "Commonwealth of Australia"
+     },
+     "title": {
+      "orig": "Governor-General of Australia",
+      "zh-Hant": "澳大利亞總督",
+      "en": "Governor-General of Australia"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1953-01-01",
+      "end": "1961-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oc-slim",
+       "locator": "Oxford University Press（經 encyclopedia.com 轉載）",
+       "quote": "governor-general of Australia 1953–60",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "澳大利亞總督任期 1953–1960 落在 1908–1945 時間窗外，一律 R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:slim-fourteenth-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；起日已由 EBSCO（Shippey）與 Oxford Companion（Cannon）補為1943年10月。迄日（EBSCO 只寫攻占仰光後被撤換、無日期；TNA 目錄只列1944–1945年作戰紀錄）無 A／B 來源明寫。已查：SNL、Hansard、PM Transcripts、EBSCO、Oxford Companion、TNA Discovery、Britannica（403）、ADB（JavaScript 頁）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:birthDate",
+     "gapKind": "not_found",
+     "note": "待查證：生日。SNL 寫1891-08-06；澳洲戰爭紀念館館藏圖說（未評等，無署名）寫1891-05-08，不採。已查：SNL、Hansard（無生日）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "awm-slim",
+       "url": "https://www.awm.gov.au/collection/C1238887",
+       "title": "Australian War Memorial 館藏圖說 P08454.001（Slim）",
+       "quote": "was born 8 May 1891 at Bishopston",
+       "note": "未評等館藏圖說，與 SNL 不一致"
+      }
+     ],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前5段／約640字（已達段數與字數），但第14集團軍司令仍缺迄日（任期完整 3/4）；本輪已查來源類型：權威檔（LoC、GND lobid、BnF、NDL）、國家級傳記辭典（ADB、ODNB、Treccani 皆 JS／挑戰頁取不到內文）、官方（TNA Discovery、PM Transcripts、APH／gg.gov.au 被擋）、具名百科（EBSCO Research Starters、Oxford Companion）、原文語言（日文、中文）查詢。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Viscount Slim biography Governor-General of Australia Fourteenth Army Burma commander",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引：ADB、Britannica、NAM、Menzies Collection 等"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "ADB Slim",
+     "url": "https://adb.anu.edu.au/biography/slim-william-joseph-11713",
+     "result": "blocked_403",
+     "note": "頁面為 JavaScript 載入，curl 取不到傳記內文；不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Slim",
+     "url": "https://www.britannica.com/biography/William-Joseph-Slim-1st-Viscount-Slim",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Menzies Collection biographical entry",
+     "url": "https://menziescollection.esrc.unimelb.edu.au/biogs/E000017b.htm",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "gg.gov.au former Governors-General",
+     "url": "https://www.gg.gov.au/former-governors-general/viscount-slim",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-william-slim",
+     "result": "found_A",
+     "note": "封號日期、卒日"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "SNL William Slim",
+     "url": "https://snl.no/William_Slim",
+     "result": "found_B",
+     "note": "挪威原文"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "PM Transcripts 136",
+     "url": "https://pmtranscripts.pmc.gov.au/node/10850",
+     "result": "found_A",
+     "note": "Menzies 1959-11-12 議會聲明"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Churchill Archives Centre Slim papers",
+     "url": "https://archivesearch.lib.cam.ac.uk/repositories/9/resources/1841",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "AWM／NAM 頁面",
+     "url": "https://www.awm.gov.au/collection/C1238887",
+     "result": "unrated",
+     "note": "館藏圖說／無署名頁，僅列 gap 候選"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Slim biography Fourteenth Army Imphal Kohima Australian Dictionary of Biography（WebSearch，英文）",
+     "url": "https://adb.anu.edu.au/biography/slim-william-joseph-11713",
+     "result": "found_B",
+     "note": "索引：ADB／Menzies／APH／EBSCO",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "national_dictionary",
+     "query": "ADB lifesummary URL",
+     "url": "https://adb.anu.edu.au/lifesummary/slim-sir-william-joseph-11713",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "ADB（Menzies 路徑）",
+     "url": "https://adb.anu.edu.au/biography/menzies-sir-robert-gordon-bob-11111/slim-william-joseph-11713",
+     "result": "no_result",
+     "note": "JavaScript 載入頁，curl 無內文；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "national_dictionary",
+     "query": "People Australia",
+     "url": "https://peopleaustralia.anu.edu.au/biography/slim-sir-william-joseph-11713",
+     "result": "no_result",
+     "note": "JavaScript 載入頁",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "APH Slim 肖像頁",
+     "url": "https://www.aph.gov.au/Visit_Parliament/Art/Stories/HMC/Monarchs_and_Govenors-General/Sir_William_Joseph_Slim",
+     "result": "blocked_403",
+     "note": "WAF 擋；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "gg.gov.au 前任總督（重試）",
+     "url": "https://www.gg.gov.au/former-governors-general/viscount-slim",
+     "result": "no_result",
+     "note": "連線逾時",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB Slim",
+     "url": "https://www.oxforddnb.com/view/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-31713",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print Slim",
+     "url": "https://www.britannica.com/print/article/548771",
+     "result": "blocked_403",
+     "note": "403 挑戰頁",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Slim（猜測網址）",
+     "url": "https://www.treccani.it/enciclopedia/william-joseph-slim/",
+     "result": "no_result",
+     "note": "回傳通用頁，無條目",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters: William Slim（Shippey）",
+     "url": "https://ebsco.com/research-starters/history/william-slim-first-viscount-slim",
+     "result": "found_B",
+     "note": "具名作者；任第14集團軍起 1943-10、Imphal／Kohima 1944-03 至 07",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "named_encyclopedia",
+     "query": "Oxford Companion to British History: Slim（Cannon，encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/slim-william-1st-viscount-slim",
+     "result": "found_B",
+     "note": "具名作者；1943-10 接第14集團軍、澳大利亞總督 1953–60",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "other",
+     "query": "斯利姆 第14集團軍 司令 任期 英帕爾 科希馬 澳大利亞總督（WebSearch，中文）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果為維基鏡像與百科，無 A／B 可抓原文新增",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "other",
+     "query": "ウィリアム・スリム 第14軍 司令官 インパール 防衛研究所（WebSearch，日文）",
+     "url": "https://www.nids.mod.go.jp/event/proceedings/forum/pdf/2002/forum_j2002_12.pdf",
+     "result": "not_relevant",
+     "note": "NIDS 論壇 PDF 談英國空軍，與 Slim 無關；已 curl 抓取",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "other",
+     "query": "Slim Fourteenth Army until 1945 ALFSEA（WebSearch，英文）",
+     "url": null,
+     "result": "unrated",
+     "note": "僅鏡像與 NAM／Burma Star 無署名頁，迄日不一",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "official",
+     "query": "TNA Discovery：General Slim Fourteenth Army",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C373987",
+     "result": "found_A",
+     "note": "CAB 106/16、106/48 作戰紀錄，署名 General Officer Commanding；無迄日",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "official",
+     "query": "TNA Discovery：Slim Imphal Kohima",
+     "url": null,
+     "result": "no_result",
+     "note": "0 筆",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "official",
+     "query": "TNA Discovery：Slim Chief of the Imperial General Staff",
+     "url": null,
+     "result": "not_relevant",
+     "note": "4 筆（薪給／會議紀錄），無任期日期",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "authority",
+     "query": "GND（lobid.org）Slim William",
+     "url": "https://lobid.org/gnd/search?q=Slim%20William%20Viscount&format=json",
+     "result": "found_A",
+     "note": "Slim, William Joseph Slim 1891–1970",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "authority",
+     "query": "LoC 名稱權威檔 suggest2：Slim, William",
+     "url": "https://id.loc.gov/authorities/names/n50035278",
+     "result": "found_A",
+     "note": "Slim, William Joseph Slim, Viscount, 1891-1970",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie 檢索：Slim",
+     "url": "https://www.deutsche-biographie.de/search?name=Slim%20William%20Viscount",
+     "result": "no_result",
+     "note": "無條目",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "authority",
+     "query": "data.bnf.fr 檢索：Slim William Viscount",
+     "url": "https://data.bnf.fr/search?term=Slim%20William%20Viscount",
+     "result": "unrated",
+     "note": "僅索引，無傳記內文",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "authority",
+     "query": "NDL Authorities 檢索：Slim",
+     "url": "https://id.ndl.go.jp/auth/ndla/",
+     "result": "no_result",
+     "note": "無可用條目",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "official",
+     "query": "PM Transcripts 全文檢索：Slim Governor-General",
+     "url": "https://pmtranscripts.pmc.gov.au/search",
+     "result": "no_result",
+     "note": "檢索頁無新增可用逐字稿",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "lordmountbatten",
+   "bioId": null,
+   "name": "Louis Mountbatten, 1st Earl Mountbatten of Burma",
+   "nameZh": "第一代緬甸的蒙巴頓伯爵路易·蒙巴頓",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1900-06-25",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "路易·蒙巴頓1900年6月25日生於英格蘭溫莎，是維多利亞女王的曾孫。1917年英王喬治五世將王室的德國姓氏英語化，巴騰堡家族因而改姓蒙巴頓。他1913年進入皇家海軍，1921年任威爾斯親王的副官。",
+      "en": "Louis Mountbatten was born at Windsor, England, on 25 June 1900, a great-grandson of Queen Victoria. In 1917 George V anglicised the German names in the royal family, so the Battenbergs became Mountbatten. He entered the Royal Navy in 1913 and became aide-de-camp to the Prince of Wales in 1921."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "was born on 25 June 1900 at Windsor, England",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-mb",
+       "locator": "Lex 條目",
+       "quote": "Han var oldebarn af dronning",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "I 1917, under",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "å anglifisere alle tyske navn i den britiske kongefamilien",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "familien ble hetende Mountbatten",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "He entered the royal navy in 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "aide-de-camp to the Prince of Wales in 1921",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1947-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "二戰：納姆索斯撤離與東南亞盟軍最高司令",
+      "en": "Second World War: Namsos and South East Asia Command"
+     },
+     "body": {
+      "zh-Hant": "二戰爆發時，蒙巴頓是驅逐艦支隊的指揮官。1940年他參與納爾維克戰役後英軍自挪威的撤退，並指揮納姆索斯的撤離，也領導數次對德占歐洲的突襲。1942年他升為中將，1943至1946年出任東南亞盟軍最高司令，指揮重奪緬甸的戰役。",
+      "en": "At the outbreak of the Second World War Mountbatten commanded a destroyer flotilla. In 1940 he took part in the British evacuation from Norway after the battle of Narvik, led the evacuation from Namsos and several raids on German-occupied Europe. He became vice-admiral in 1942 and from 1943 to 1946 was Supreme Allied Commander in South East Asia, conducting the campaign that retook Burma."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-mb",
+       "locator": "Lex 條目",
+       "quote": "ved 2. Verdenskrigs udbrud kommandør og chef for en destroyerflotille",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "evakueringen fra Norge etter",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "ledet evakueringen fra",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "Namsos",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "i 1940 og flere raid mot tyskokkuperte deler av Europa",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "Han ble viseadmiral i 1942",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "i 1943–1946",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "Supreme Allied Commander in South East Asia in 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "recaptured Burma",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1946-08-23",
+      "end": "1948-06-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "印度總督與印度自治領總督",
+      "en": "Viceroy of India and Governor-General of India"
+     },
+     "body": {
+      "zh-Hant": "1946年8月23日他受封蒙巴頓子爵，1947年10月18日晉封伯爵。1947年2月他成為最後一任印度總督，任至同年8月15日；同日起任印度自治領總督，至1948年6月21日。他促成英屬印度分為印度與巴基斯坦，並說服土邦併入兩國之一；克什米爾衝突時，他建議印度政府提交聯合國安理會。",
+      "en": "He became Viscount Mountbatten of Burma on 23 August 1946 and Earl on 18 October 1947. In February 1947 he became the last Viceroy of India, in office until 15 August that year, and from that date was Governor-General of the Dominion of India until 21 June 1948. He contributed to the partition of British India into India and Pakistan, persuaded the princely states to join one or the other, and in the Kashmir conflict advised India to take the dispute to the UN Security Council."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hans-mb",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Viscount Mountbatten of Burma August 23, 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-mb",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Earl Mountbatten of Burma October 18, 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "I februar 1947 ble han den siste indiske visekongen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "generalguvernør for India til 15. august samme år",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "generalguvernør for samveldelandet India til 21. juni 1948",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "bidro til delingen av det britiske koloniriket",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "persuaded the Indian princes to merge their states",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "place the dispute before the Security Council",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1953-01-01",
+      "end": "1979-08-27"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後海軍職務與逝世",
+      "en": "Postwar naval posts and death"
+     },
+     "body": {
+      "zh-Hant": "1953至1954年蒙巴頓任地中海盟國艦隊司令，1955至1959年任英國海軍首長（第一海務大臣），1959至1965年任國防參謀長。他於1979年8月27日在愛爾蘭多尼戈爾灣的船上被炸身亡。",
+      "en": "Mountbatten was commander of the Allied fleet forces in the Mediterranean in 1953–1954, head of the Royal Navy (First Sea Lord) in 1955–1959 and chief of the UK defence staff in 1959–1965. He was killed by an explosion on his boat in Donegal Bay, Ireland, on 27 August 1979."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "sjef for de allierte flåtestyrkene i Middelhavet i 1953–1954",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "sjef for den britiske marinen i 1955–1959",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "for den britiske forsvarsstaben i 1959–1965",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "the First Sea Lord from 1955 to 1959",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "killed by an explosion on his boat at Donegal Bay off Ireland on 27 August 1979",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-mb",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "August 27, 1979",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "mountbatten-seac",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "東南亞盟軍司令部",
+      "en": "South East Asia Command"
+     },
+     "title": {
+      "orig": "Sjef for de allierte styrkene i Sørøst-Asia",
+      "zh-Hant": "東南亞盟軍最高司令",
+      "en": "Supreme Allied Commander South East Asia"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-01",
+      "end": "1947-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "i 1943–1946",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-mb",
+       "locator": "Lex 條目",
+       "quote": "fra 1943 til 1946 var han øverstkommanderende for de allierede styrker i",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區最高司令，有起迄年與地點，但來源只寫「領導緬甸戰事」、無具名戰役日期（缺戰役連結），政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "mountbatten-viceroy-india",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英屬印度",
+      "en": "British India"
+     },
+     "title": {
+      "orig": "Visekonge av India",
+      "zh-Hant": "印度總督（副王）",
+      "en": "Viceroy of India"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1947-02-01",
+      "end": "1947-08-15"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "I februar 1947 ble han den siste indiske visekongen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "generalguvernør for India til 15. august samme år",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R5",
+     "t14Reason": "印度總督任期 1947 年落在 1908–1945 時間窗外，一律 R5"
+    },
+    {
+     "key": "mountbatten-gg-india",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "印度自治領",
+      "en": "Dominion of India"
+     },
+     "title": {
+      "orig": "Generalguvernør for samveldelandet India",
+      "zh-Hant": "印度自治領總督",
+      "en": "Governor-General of the Dominion of India"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1947-08-15",
+      "end": "1948-06-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "Fra samme dato var han",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "generalguvernør for samveldelandet India til 21. juni 1948",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "自治領總督任期 1947–1948 落在 1908–1945 時間窗外，R5（起日「同日」指同年8月15日，依 SNL 同句推得）"
+    },
+    {
+     "key": "mountbatten-med-fleet-1953",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍／盟軍地中海艦隊",
+      "en": "Royal Navy / Allied Mediterranean fleet forces"
+     },
+     "title": {
+      "orig": "Sjef for de allierte flåtestyrkene i Middelhavet",
+      "zh-Hant": "地中海盟國艦隊司令",
+      "en": "Commander of the Allied fleet forces in the Mediterranean"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1953-01-01",
+      "end": "1955-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "sjef for de allierte flåtestyrkene i Middelhavet i 1953–1954",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "任期 1953–1954 落在 1908–1945 時間窗外，一律 R5"
+    },
+    {
+     "key": "mountbatten-first-sea-lord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍",
+      "en": "Royal Navy"
+     },
+     "title": {
+      "orig": "First Sea Lord",
+      "zh-Hant": "第一海務大臣（海軍首長）",
+      "en": "First Sea Lord"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1955-01-01",
+      "end": "1960-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "sjef for den britiske marinen i 1955–1959",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "banglapedia-mb",
+       "locator": "Banglapedia 條目",
+       "quote": "the First Sea Lord from 1955 to 1959",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "任期 1955–1959 落在 1908–1945 時間窗外，一律 R5"
+    },
+    {
+     "key": "mountbatten-chief-defence-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國國防參謀部",
+      "en": "UK Defence Staff"
+     },
+     "title": {
+      "orig": "Sjef for den britiske forsvarsstaben",
+      "zh-Hant": "國防參謀長",
+      "en": "Chief of the UK Defence Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1959-01-01",
+      "end": "1966-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-mb",
+       "locator": "SNL 條目",
+       "quote": "for den britiske forsvarsstaben i 1959–1965",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "任期 1959–1965 落在 1908–1945 時間窗外，一律 R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:mountbatten-med-fleet-1953",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源對地中海艦隊司令任期不一致：SNL 寫1953–1954，Banglapedia 寫 commander-in-chief in Mediterranean fleet in 1952-54。位置採 SNL（具名作者 Tim Greve），待主管裁示。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:mountbatten-combined-operations",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；聯合作戰處長（外部摘要稱1941–1943）無可抓原文的 A／B 來源，僅 IWM 館藏圖說（未評等）。已查：SNL、Lex、Banglapedia、Hansard、IWM。",
+     "candidateCitations": [
+      {
+       "sourceKey": "iwm-mb",
+       "url": "https://www.iwm.org.uk/memorials/item/memorial/47962",
+       "title": "IWM War Memorials Register：Earl Mountbatten of Burma（館藏圖說，無署名）",
+       "quote": "Supreme Commander in South East Asia",
+       "note": "未評等館藏圖說，只供下一輪找 A／B 佐證"
+      }
+     ],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:deathDate",
+     "gapKind": "not_found",
+     "note": "待查證：卒日。SNL、Banglapedia、Hansard 皆寫1979-08-27；IWM 館藏圖說（未評等）寫1979-08-29，不採。",
+     "candidateCitations": [
+      {
+       "sourceKey": "iwm-mb",
+       "url": "https://www.iwm.org.uk/memorials/item/memorial/47962",
+       "title": "IWM War Memorials Register：Earl Mountbatten of Burma（館藏圖說，無署名）",
+       "quote": "assassinated while on holiday by the IRA on 29th August 1979",
+       "note": "未評等，與三份 A／B 來源不一致"
+      }
+     ],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:mountbatten-detail",
+     "gapKind": "not_found",
+     "note": "待查證：東南亞盟軍司令部（SEAC）任命日與具名戰役（例：緬甸反攻的主要戰役）與日期，A／B 來源只給年份；Britannica 403、ODNB 未取得、Royal Collection 404。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Lord Louis Mountbatten Supreme Allied Commander South East Asia Command 1943 biography Viceroy of India",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引：Banglapedia、Britannica、Lex 等"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁（Marquess Milford Haven 頁為其父，不採）",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-louis-mountbatten-1",
+     "result": "found_A",
+     "note": "子爵、伯爵封號日；卒日"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Mountbatten",
+     "url": "https://www.britannica.com/biography/Louis-Mountbatten-1st-Earl-Mountbatten-of-Burma",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "SNL Louis Mountbatten",
+     "url": "https://snl.no/Louis_Mountbatten",
+     "result": "found_B",
+     "note": "挪威原文，作者 Tim Greve"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Lex Louis Mountbatten",
+     "url": "https://denstoredanske.lex.dk/Louis_Mountbatten",
+     "result": "found_B",
+     "note": "丹麥文，作者 Ole Ventegodt"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Banglapedia Mountbatten, Lord",
+     "url": "https://en.banglapedia.org/index.php/Mountbatten,_Lord",
+     "result": "found_B",
+     "note": "署名 KM Mohsin"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Royal Collection Mountbatten",
+     "url": "https://www.royalcollection.org.uk/collection/themes/people/louis-mountbatten",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "IWM 紀念碑登記",
+     "url": "https://www.iwm.org.uk/memorials/item/memorial/47962",
+     "result": "unrated",
+     "note": "館藏圖說，僅列 gap 候選"
+    }
+   ]
+  },
+  {
+   "key": "edmundallenby1stviscountallenby",
+   "bioId": null,
+   "name": "Edmund Allenby, 1st Viscount Allenby",
+   "nameZh": "第一代艾倫比子爵埃德蒙·艾倫比",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1861-04-23",
+      "end": "1903-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年戰事",
+      "en": "Origins and early campaigns"
+     },
+     "body": {
+      "zh-Hant": "埃德蒙·艾倫比1861年4月23日生於諾丁漢郡的布拉肯赫斯特。他從騎兵起家，先後參加1884至1885年的貝專納蘭戰事、1888年的祖魯蘭戰事與1899至1902年的布爾戰爭；牛津書目專文另記他通過參謀學院，並出任騎兵總監。",
+      "en": "Edmund Allenby was born on 23 April 1861 at Brackenhurst, Nottinghamshire. He began in the cavalry and fought in Bechuanaland in 1884–1885, in Zululand in 1888 and in the Boer War of 1899–1902; the Oxford Bibliographies essay adds that he passed Staff College and became Inspector General of Cavalry."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "23. april 1861, Brackenhurst, Nottinghamshire",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-allenby",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "April 23, 1861",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "Allenby startet karrieren i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "1884–1885, i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "Zululand 1888",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "boerkrigen 1899–1902",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "passed Staff College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "became Inspector General of Cavalry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1917-06-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "一戰西線：蒙斯撤退與阿拉斯",
+      "en": "Western Front: the retreat from Mons and Arras"
+     },
+     "body": {
+      "zh-Hant": "一戰爆發時艾倫比接掌騎兵師，指揮了1914年自比利時蒙斯的艱難騎兵撤退，之後升任軍長與集團軍司令，最後統領第三集團軍參加阿拉斯戰役。牛津書目專文指出，這場攻勢在初期成功後陷入膠著，艾倫比因未質疑黑格延長攻勢的命令而受批評。",
+      "en": "On the outbreak of the First World War Allenby took command of the Cavalry Division and led the difficult cavalry retreat from Mons in Belgium in 1914; he went on to corps and army command, culminating with the Third Army at the Battle of Arras. The Oxford Bibliographies essay says the offensive bogged down after initial success and that Allenby was criticised for not challenging Haig’s orders to prolong it."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "assumed command of the Cavalry Division on the outbreak of the First World War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "led the difficult cavalry retreat from Mons in Belgium in 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "went on to corps and army command on the Western Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "culminating with command of Third Army at the Battle of Arras",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "attack bogged down after some initial success",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "failure to challenge orders from his overall commander in France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "Sir Douglas Haig, to prolong the offensive",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1917-06-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "巴勒斯坦戰役與耶路撒冷",
+      "en": "The Palestine campaign and Jerusalem"
+     },
+     "body": {
+      "zh-Hant": "1917年6月，首相勞合·喬治派艾倫比赴埃及接掌駐埃及遠征軍，對奧斯曼帝國作戰。他重建該軍，贏得第三次加沙戰役，並在1917年12月攻佔耶路撒冷。他與費薩爾的阿拉伯哈希姆軍協同作戰；其後的戰役擊潰了巴勒斯坦的土耳其軍，英軍進占外約旦、敘利亞與黎巴嫩，勞倫斯於1918年率先頭部隊進入大馬士革。",
+      "en": "In June 1917 Prime Minister Lloyd George sent Allenby to Egypt to command the Egyptian Expeditionary Force against the Ottomans. He rebuilt the force, won the Third Battle of Gaza and captured Jerusalem in December 1917. He worked with the Arab Hashemite army under Prince Feisal; the later campaign crushed the Turkish forces in Palestine and carried British forces into Transjordan, Syria and Lebanon, and Lawrence led the first forces into Damascus in 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "dispatched Allenby to Egypt to take command in June 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "He rebuilt the Egyptian Expeditionary Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "won the Third Battle of Gaza",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "capturing Jerusalem in December 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "worked with the Arab Hashemite army under the command of Prince Feisal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "crushed Turkish forces in Palestine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "Transjordan, Syria, and Lebanon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "som ledet de første styrkene inn i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "Damaskus i 1918",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1917-06-01",
+      "end": "1918-11-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "駐埃及遠征軍：加沙、耶路撒冷與梅吉多",
+      "en": "Egyptian Expeditionary Force: Gaza, Jerusalem and Megiddo"
+     },
+     "body": {
+      "zh-Hant": "艾倫比因與黑格元帥的爭執，於1917年6月被調往中東。他率軍圍攻加沙達兩週，其後追擊至耶路撒冷；1917年12月11日他下馬步行入城。1918年9月他發動梅吉多攻勢，擊潰奧斯曼在黎凡特的三個集團軍，土耳其軍退至大馬士革，終被逐至阿勒坡。牛津大學中東中心的檔案說明另記，他於1918年10月攻占大馬士革與阿勒坡，並於同月30日與土耳其簽訂停戰協定。",
+      "en": "Allenby was transferred to the Middle East in June 1917 after a dispute with Field-Marshal Haig. His forces laid siege to Gaza for two weeks and then pressed on to Jerusalem, which he entered on foot on 11 December 1917. When he launched the Megiddo offensive in September 1918 it shattered the Ottoman line and broke all three armies in the Levant; the Turks fell back to Damascus and were bundled all the way to Aleppo. The Middle East Centre archive description records Damascus and Aleppo taken in October 1918 and an armistice with the Turks signed on 30 October 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "a dispute with Field-Marshal Haig",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "his transfer to the Middle East in June 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "laid siege to Gaza for two weeks",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "Allenby famously dismounted and walked through",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "On 11 December 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "when Allenby launched his Megiddo offensive in September 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "it shattered the Ottoman line and broke all three armies",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "were eventually bundled all the way to Aleppo",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "Middle East Centre, St Antony’s College, Oxford",
+       "quote": "Damascus Oct. 1918, Aleppo Oct. 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "Middle East Centre, St Antony’s College, Oxford",
+       "quote": "armistice signed with Turks 30th Oct. 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1936-05-14"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "駐埃及高級專員與晚年",
+      "en": "High Commissioner in Egypt and later life"
+     },
+     "body": {
+      "zh-Hant": "1919年10月7日艾倫比受封梅吉多子爵。他於1919至1925年任英國駐埃及與蘇丹高級專員，其政策使英國對埃及的保護國於1922年終止，埃及走向完全獨立。他於1936年5月14日去世。",
+      "en": "Allenby was created Viscount Allenby of Megiddo on 7 October 1919. He was British High Commissioner in Egypt and Sudan from 1919 to 1925; as a result of his policy the British protectorate over Egypt was lifted in 1922, opening the way to full Egyptian independence. He died on 14 May 1936."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hans-allenby",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Viscount Allenby of Megiddo October 7, 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "britisk høykommissær i Egypt og Sudan fra 1919 til 1925",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "britiske protektorat over Egypt opphevet i 1922",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "overgangen til Egypts fullstendige selvstendighet",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-allenby",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "May 14, 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "allenby-eef-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "駐埃及遠征軍（英軍）",
+      "en": "Egyptian Expeditionary Force (British)"
+     },
+     "title": {
+      "orig": "Commander, Egyptian Expeditionary Force",
+      "zh-Hant": "駐埃及遠征軍司令",
+      "en": "Commander, Egyptian Expeditionary Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1917-06-01",
+      "end": "1920-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "dispatched Allenby to Egypt to take command in June 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "obib-allenby",
+       "locator": "Oxford Bibliographies Introduction",
+       "quote": "capturing Jerusalem in December 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "Commander in Chief, Egyptian Expeditionary Force, 1917-19",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "henson-allenby",
+       "locator": "Durham University / The Chapter of Durham Cathedral",
+       "quote": "commander-in-chief, Egyptian expeditionary force, 1917-19",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mhm-allenby",
+       "locator": "Military History Matters",
+       "quote": "his transfer to the Middle East in June 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令，有 1917-12 耶路撒冷、1918-09 梅吉多戰役連結與日期，但起訖僅月／年精度、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "allenby-high-commissioner-egypt",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國駐埃及與蘇丹高級專員公署",
+      "en": "British High Commission for Egypt and Sudan"
+     },
+     "title": {
+      "orig": "Britisk høykommissær i Egypt og Sudan",
+      "zh-Hant": "英國駐埃及與蘇丹高級專員",
+      "en": "British High Commissioner in Egypt and Sudan"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1926-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-allenby",
+       "locator": "SNL 條目",
+       "quote": "britisk høykommissær i Egypt og Sudan fra 1919 til 1925",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "High Commissioner for Egypt, 1919-25",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "henson-allenby",
+       "locator": "Durham University / The Chapter of Durham Cathedral",
+       "quote": "high commissioner, Egypt and Sudan 1919-25",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-allenby-fo794",
+       "locator": "TNA FO 794/13",
+       "quote": "resignation as High Commissioner in Egypt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tna-allenby-fo794",
+       "locator": "TNA FO 794/13",
+       "quote": "Covering dates: 1925 Apr.30-May 18",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "高級專員（埃及為保護國至1922年、之後為主權國）是否屬 R2 殖民長官、且 regimeId 對應不明，T14 文件未涵蓋；不猜，留 positions"
+    },
+    {
+     "key": "allenby-5th-lancers-1902",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第5皇家愛爾蘭槍騎兵團",
+      "en": "5th Royal Irish Lancers"
+     },
+     "title": {
+      "orig": "Commanding officer, 5th Royal Irish Lancers",
+      "zh-Hant": "第5皇家愛爾蘭槍騎兵團團長",
+      "en": "Commanding officer, 5th Royal Irish Lancers"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1902-01-01",
+      "end": "1906-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "commanded 5th Royal Irish Lancers, 1902-05",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "團級指揮，任期 1902–1905 落在 1908–1945 時間窗外（R5）"
+    },
+    {
+     "key": "allenby-4th-cav-brigade-1905",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第4騎兵旅",
+      "en": "4th Cavalry Brigade"
+     },
+     "title": {
+      "orig": "Commander, 4th Cavalry Brigade",
+      "zh-Hant": "第4騎兵旅旅長",
+      "en": "Commander, 4th Cavalry Brigade"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1905-01-01",
+      "end": "1911-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "4th Cavalry Brigade, 1905-10",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "旅級指揮官，非國家級最高軍職或戰區司令，R4 不成立（R5）"
+    },
+    {
+     "key": "allenby-inspector-cavalry-1910",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍騎兵",
+      "en": "British Army cavalry"
+     },
+     "title": {
+      "orig": "Inspector of Cavalry",
+      "zh-Hant": "騎兵總監",
+      "en": "Inspector of Cavalry"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1910-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "Inspector of Cavalry, 1910-14",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "騎兵總監，來源未明寫為國家級最高軍職（軍種總司令），R4 不成立（R5）"
+    },
+    {
+     "key": "allenby-cavalry-1914",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍騎兵",
+      "en": "British cavalry, 1914"
+     },
+     "title": {
+      "orig": "Command of Cavalry",
+      "zh-Hant": "騎兵指揮官",
+      "en": "Command of Cavalry"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "in Command of Cavalry, 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "騎兵（師級）指揮官，非國家級最高軍職或戰區司令，R4 不成立（R5）"
+    },
+    {
+     "key": "allenby-third-army-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第3集團軍",
+      "en": "British Third Army"
+     },
+     "title": {
+      "orig": "Command of Third Army",
+      "zh-Hant": "第3集團軍司令",
+      "en": "Command of Third Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1915-01-01",
+      "end": "1918-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sant-allenby",
+       "locator": "GB165-0005 傳記說明",
+       "quote": "Command of Third Army, 1915-17",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級指揮官，非國家級最高軍職或戰區司令，R4 不成立（R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Edmund Allenby Viscount Allenby biography Egyptian Expeditionary Force Megiddo High Commissioner Egypt",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引：Britannica、1914-1918-online、SNL 等"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-edmund-allenby",
+     "result": "found_A",
+     "note": "生卒、子爵封號日"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Allenby",
+     "url": "https://www.britannica.com/biography/Edmund-Allenby-1st-Viscount-Allenby",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Allenby",
+     "url": "https://encyclopedia.1914-1918-online.net/article/allenby_edmund_henry_hynman_allenby_viscount",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "SNL Edmund Allenby",
+     "url": "https://snl.no/Edmund_Allenby",
+     "result": "found_B",
+     "note": "挪威原文，作者 Aksel Schreiner Brakestad"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Oxford Bibliographies: Edmund Allenby（Brunel 典藏 PDF）",
+     "url": "https://bura.brunel.ac.uk/bitstream/2438/12474/3/Fulltext.pdf",
+     "result": "found_B",
+     "note": "作者 Hughes & Farquharson；PDF 自行解壓取文字，部分破折號遺失"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "AWM 人物頁／NAM 頁",
+     "url": "https://www.awm.gov.au/collection/P8027",
+     "result": "unrated",
+     "note": "館藏頁／無署名，僅列 gap 候選"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Allenby EEF June 1917 Megiddo September 1918 High Commissioner 1925 biography（WebSearch，英文）",
+     "url": null,
+     "result": "found_B",
+     "note": "索引：Britannica、1914-18-online、NAM、encyclopedia.com",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Allenby maréchal haut-commissaire d'Égypte 1919 1925（WebSearch，法文）",
+     "url": "https://www.sant.ox.ac.uk/wp-content/uploads/2023/12/gb165-0005-allenby-collection.pdf",
+     "result": "found_B",
+     "note": "無法文傳記；浮現牛津中東中心檔案說明",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "艾倫比 埃及遠征軍 司令 1917 1919 埃及高級專員 梅吉多（WebSearch，中文）",
+     "url": null,
+     "result": "unrated",
+     "note": "僅維基鏡像與戰史網站，無 A／B 新增",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Allenby EEF 1917 1919 Special High Commissioner March 1919（WebSearch，英文）",
+     "url": "https://henson.durham.ac.uk/people/person4103",
+     "result": "found_B",
+     "note": "浮現 Henson Journals、Shindler 書評、Hansard 1919",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Allenby（猜測網址）",
+     "url": "https://www.treccani.it/enciclopedia/edmund-henry-hynman-allenby/",
+     "result": "no_result",
+     "note": "回傳通用頁，無條目",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB Allenby",
+     "url": "https://www.oxforddnb.com/view/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-30362",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print Allenby",
+     "url": "https://britannica.com/print/article/16221",
+     "result": "blocked_403",
+     "note": "403 挑戰頁",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Columbia Encyclopedia: Allenby（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/allenby-edmund-henry-hynman-allenby-1st-viscount",
+     "result": "unrated",
+     "note": "無署名，依 Q9 不採為出處",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Allenby（兩種網址）",
+     "url": "https://encyclopedia.1914-1918-online.net/article/allenby-edmund-henry-hynman-allenby-viscount/",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "The Henson Journals: Allenby（Durham）",
+     "url": "https://henson.durham.ac.uk/people/person4103",
+     "result": "found_B",
+     "note": "EEF 總司令 1917-19；高級專員 1919-25",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Middle East Centre Archive GB165-0005 Allenby Collection（St Antony’s, Oxford）",
+     "url": "https://www.sant.ox.ac.uk/wp-content/uploads/2023/12/gb165-0005-allenby-collection.pdf",
+     "result": "found_B",
+     "note": "完整軍職履歷與年份",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Military History Matters 書評 Allenby: making the modern Middle East（Shindler）",
+     "url": "https://military-history.org/books/review-allenby-making-the-modern-middle-east.htm",
+     "result": "found_B",
+     "note": "1917-06 調任、加沙／耶路撒冷／梅吉多",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Historic Hansard 1919-08-12「High Commissioner in Egypt」",
+     "url": "https://api.parliament.uk/historic-hansard/commons/1919/aug/12/high-commissioner-in-egypt",
+     "result": "found_A",
+     "note": "提及已執行高級專員職務與薪給；無起訖日，未引用",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "TNA Discovery：Allenby Egyptian Expeditionary Force",
+     "url": null,
+     "result": "found_A",
+     "note": "17 筆；多為戰報／醫療卡，無任期日",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "TNA Discovery：Allenby High Commissioner Egypt",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C2283815",
+     "result": "found_A",
+     "note": "FO 794/13 辭職高級專員 1925-04-30 至 05-18",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "TNA Discovery：Allenby Third Army Arras",
+     "url": null,
+     "result": "no_result",
+     "note": "0 筆",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "authority",
+     "query": "GND（lobid.org）Allenby Edmund",
+     "url": "https://lobid.org/gnd/search?q=Allenby%20Edmund%20Viscount&format=json",
+     "result": "found_A",
+     "note": "Allenby, Edmund 1861-04-23 – 1936-05-14",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "authority",
+     "query": "LoC 名稱權威檔 suggest2：Allenby, Edmund",
+     "url": "https://id.loc.gov/authorities/names/n84202242",
+     "result": "found_A",
+     "note": "Allenby, Edmund Henry Hynman Allenby, Viscount, 1861-1936",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie 檢索：Allenby",
+     "url": "https://www.deutsche-biographie.de/search?name=Allenby%20Edmund%20Viscount",
+     "result": "found_A",
+     "note": "僅索引列（Offizier; Feldmarschall），無傳記內文",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "authority",
+     "query": "data.bnf.fr 檢索：Allenby",
+     "url": "https://data.bnf.fr/search?term=Allenby%20Edmund%20Viscount",
+     "result": "unrated",
+     "note": "僅索引",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "authority",
+     "query": "NDL Authorities 檢索：Allenby",
+     "url": "https://id.ndl.go.jp/auth/ndla/",
+     "result": "no_result",
+     "note": "無可用條目",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "academic",
+     "query": "Archives Hub 檢索：Allenby",
+     "url": "https://archiveshub.jisc.ac.uk/search?terms=Allenby%20Edmund%20Viscount",
+     "result": "blocked_403",
+     "note": "403；不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "authority",
+     "query": "SNAC Allenby",
+     "url": "https://snaccooperative.org/ark:/99166/w66t1fvx",
+     "result": "challenge_page",
+     "note": "驗證頁；不繞過",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "davidbeatty1stearlbeatty",
+   "bioId": null,
+   "name": "David Beatty, 1st Earl Beatty",
+   "nameZh": "第一代貝蒂伯爵戴維·貝蒂",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1871-01-17",
+      "end": "1885-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身",
+      "en": "Origins"
+     },
+     "body": {
+      "zh-Hant": "戴維·貝蒂1871年1月17日生於英國史塔普利。他於1884年被海軍錄取。",
+      "en": "David Beatty was born on 17 January 1871 at Stapeley. He was accepted into the navy in 1884."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "17. januar 1871, Stapeley",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-beatty",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "January 17, 1871",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "Han ble antatt i marinen i 1884",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1912-01-01",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "一戰：巡洋戰艦分艦隊與日德蘭海戰",
+      "en": "First World War: the battle-cruiser squadron and Jutland"
+     },
+     "body": {
+      "zh-Hant": "一戰期間，貝蒂自1912至1916年任第1巡洋戰艦分艦隊司令，1916年指揮該分艦隊參加日德蘭海戰。他隨後接替傑利科海軍上將，出任大艦隊司令。",
+      "en": "During the First World War Beatty commanded the 1st Battle Cruiser Squadron from 1912 to 1916 and led it at the Battle of Jutland in 1916. He then relieved Admiral Jellicoe as commander of the Grand Fleet in 1916."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "sjef for 1. slagkrysserskvadron fra 1912 til 1916",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "ledet skvadronen under Jyllandslaget i 1916",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "Han avløste admiral",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "som sjef for The Grand Fleet i 1916",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1936-03-12"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後：海軍上將、第一海務大臣與晚年",
+      "en": "Postwar: admiral, First Sea Lord and later life"
+     },
+     "body": {
+      "zh-Hant": "1919年貝蒂被任命為海軍上將，1919至1927年任英國海軍首長（第一海務大臣）；1919年9月27日受封貝蒂伯爵。他在上議院留有自1929年12月18日起的發言紀錄，首件議題是巡洋艦防務，最後一筆在1934年11月14日。他於1936年3月逝世，SNL記為12日，Hansard記為11日。",
+      "en": "In 1919 Beatty was made admiral and from 1919 to 1927 was head of the British navy (First Sea Lord); he became Earl Beatty on 27 September 1919. In the House of Lords his contributions are recorded from 18 December 1929, the first on defence cruisers, to 14 November 1934. He died in March 1936, on the 12th according to SNL and the 11th according to Hansard."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "utnevnt til",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "admiral i 1919",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "Fra 1919 til 1927 var Beatty",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "sjef for den britiske marinen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "First Sea Lord",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-beatty",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Earl Beatty September 27, 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-beatty",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "First recorded, on December 18, 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-beatty",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "DEFENCE CRUISERS.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-beatty",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Last recorded, on November 14, 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "12. mars 1936",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-beatty",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "March 11, 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "beatty-1st-battle-cruiser-squadron",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍",
+      "en": "Royal Navy"
+     },
+     "title": {
+      "orig": "Sjef for 1. slagkrysserskvadron",
+      "zh-Hant": "第1巡洋戰艦分艦隊司令",
+      "en": "Commander, 1st Battle Cruiser Squadron"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1912-01-01",
+      "end": "1917-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "sjef for 1. slagkrysserskvadron fra 1912 til 1916",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "分艦隊級指揮，非國家級最高軍職或戰區司令，R4 不成立（R5）"
+    },
+    {
+     "key": "beatty-grand-fleet",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍大艦隊",
+      "en": "Royal Navy Grand Fleet"
+     },
+     "title": {
+      "orig": "Sjef for The Grand Fleet",
+      "zh-Hant": "大艦隊司令",
+      "en": "Commander, Grand Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "som sjef for The Grand Fleet i 1916",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "艦隊總司令，缺迄日、職位等級未明寫為國家級最高軍職、日期與戰役連結不足、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "beatty-first-sea-lord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍／海軍部",
+      "en": "Royal Navy / Admiralty"
+     },
+     "title": {
+      "orig": "First Sea Lord",
+      "zh-Hant": "第一海務大臣（海軍首長）",
+      "en": "First Sea Lord"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1928-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "Fra 1919 til 1927 var Beatty",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "sjef for den britiske marinen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-beatty",
+       "locator": "SNL 條目",
+       "quote": "First Sea Lord",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種總司令（SNL 寫「sjef for den britiske marinen」），但政權對應待查證（regimeId 未查），R4② 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:beatty-grand-fleet",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；大艦隊司令的起迄日（外部摘要稱1916-12 至 1919）A／B 來源只寫「1916年」。已查：SNL、Hansard、IWM。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前3段／約255字（中文）。已查來源類型：議會官方（Hansard）、具名百科（SNL，Britannica 403）、機構百科（1914-1918-online Anubis 挑戰頁）、館藏頁（RMG 只有導覽列、IWM 無署名）；A／B 可抓原文僅 SNL 與 Hansard。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "field:deathDate",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源對卒日不一致：SNL 寫1936-03-12，Hansard 寫1936-03-11。待主管裁示。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:beatty-detail",
+     "gapKind": "not_found",
+     "note": "來源不足：僅取得 SNL（署名 Fagkonsulent）與 Hansard 兩份 A／B 來源，日德蘭海戰細節、赫爾戈蘭灣（1914）、多格爾沙洲（1915）等戰役與日期，A／B 來源未寫；Britannica 403、1914-1918-online 為 Anubis 挑戰頁（不繞過）、RMG 檔案頁只有導覽列、IWM 頁無署名（未評等）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "iwm-jutland",
+       "url": "https://www.iwm.org.uk/history/who-were-the-key-personalities-in-the-battle-of-jutland",
+       "title": "IWM: Who were the key personalities in the Battle of Jutland（無署名）",
+       "quote": "Vice Admiral Sir David Beatty",
+       "note": "IWM 頁無署名，未評等，僅供下一輪找 A／B 佐證"
+      }
+     ],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "David Beatty Earl Beatty biography Jutland battle cruiser fleet Grand Fleet First Sea Lord",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引：Britannica、1914-1918-online、SNL 等"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁（mr-david-beatty 為 1946 年生者，不採；用 mr-david-beatty-1）",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-david-beatty-1",
+     "result": "found_A",
+     "note": "生卒、封號日、上議院發言紀錄"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Beatty",
+     "url": "https://www.britannica.com/biography/David-Beatty-1st-Earl-Beatty",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "SNL David Beatty",
+     "url": "https://snl.no/David_Beatty",
+     "result": "found_B",
+     "note": "挪威原文，Fagkonsulent Torolf Rein"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "RMG 檔案頁 Beatty",
+     "url": "https://collections.rmg.co.uk/archive/objects/492138.html",
+     "result": "no_result",
+     "note": "抓回頁面只有導覽列，無傳記文字"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "IWM Jutland key personalities",
+     "url": "https://www.iwm.org.uk/history/who-were-the-key-personalities-in-the-battle-of-jutland",
+     "result": "unrated",
+     "note": "無署名，僅列 gap 候選"
+    }
+   ]
+  }
+ ]
+}

@@ -105,12 +105,32 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
    - 1908–1945 窗內的主要職位（元首／首腦、四部閣員、黨職、國家級軍職）務必逐一查任期；窗外重要職位可只寫正文。
 
 ## 搜尋策略（每人都照做；薄人物必須做完「最低嘗試」才可放棄）
+<!-- DOMAIN_SCOPE_2026-11-12 -->
+## 日本及其他非英語國家將領：補充搜尋範圍（World Line 主管 2026-11-12 03:03，依 ARCHITECTURE §16 T1）
+日本將領、以及其他非英語國家將領，除本檔既有來源外，**必須**查下列網域（可抓原文才可當出處；維基只當索引，不是出處）。個人網站不收。
+
+**日本（本輪新納入或改為必查）**
+- **A**：國立國會圖書館典據 Web NDL Authorities（`id.ndl.go.jp`）；國立國會圖書館官方頁，含「近代日本人の肖像」（`ndl.go.jp`、`www.ndl.go.jp`）；JACAR アジア歴史資料センター（`jacar.go.jp`、`www.jacar.go.jp`、`jacar.archives.go.jp`）；防衛研究所戰史（`nids.mod.go.jp`、`www.nids.mod.go.jp`，已列）；必要時再查宮内庁（`kunaicho.go.jp`，皇族）、国立公文書館（`www.archives.go.jp`）、首相官邸歴代内閣（`kantei.go.jp`，兼任閣員時）。
+- **B**：Kotobank（`kotobank.jp`、`www.kotobank.jp`）上**具名**條目的『日本大百科全書』（小学館）、『国史大辞典』（吉川弘文館）、『世界大百科事典』（平凡社）。只收有具名作者或具名詞典／條目責任者的條目；無署名彙編不收。
+
+**其他非英語國家（同等原則：國家圖書館權威檔／官方戰史＝A；具名機構百科＝B）。下列多已見於上方策略，此處再標分級，以免只查英語來源：**
+- 德國 **A**：Deutsche Biographie（`www.deutsche-biographie.de`）、GND／lobid.org、Bundesarchiv（`www.bundesarchiv.de`）、官方公報（Reichsgesetzblatt 數位版）。**B**：DHM LeMO（`www.dhm.de`）。
+- 法國 **A**：BnF data（`data.bnf.fr`）、Assemblée nationale Sycomore、Sénat（`www.senat.fr`）、Journal officiel（Gallica `gallica.bnf.fr` 或 Légifrance `www.legifrance.gouv.fr`）、國防部記憶／戰史官方頁（`www.cheminsdememoire.gouv.fr`、`www.defense.gouv.fr` 官方戰史）。
+- 義大利 **A**：Treccani DBI（`www.treccani.it`）、Camera Portale storico（`storia.camera.it`）、Senato、Gazzetta Ufficiale（`www.gazzettaufficiale.it`）。
+- 俄國／蘇聯 **A**：總統圖書館（`www.prlib.ru`）、РГАСПИ（`rgaspi.org`）、ГАРФ 檔案說明。**B**：Большая российская энциклопедия 具名條目（`bigenc.ru`）。
+- 中國／中華民國 **A**：國史館（`www.drnh.gov.tw`）、中央研究院近代史研究所（`mh.sinica.edu.tw`）、國家圖書館（`www.ncl.edu.tw`）、總統府（`www.president.gov.tw`）。
+- 奧匈 **A**：Österreichisches Biographisches Lexikon（`www.biographien.ac.at`）、Österreichische Nationalbibliothek（`www.onb.ac.at`）、Parlament Österreich（`www.parlament.gv.at`）。
+- 波蘭、羅馬尼亞、芬蘭、土耳其、南斯拉夫、泰國等：各國國家圖書館權威檔、議會／總統府官方履歷、官方戰史＝**A**；芬蘭 Kansallisbiografia；土耳其 TBMM（`www.tbmm.gov.tr`）、Atatürk Araştırma Merkezi（`www.atam.gov.tr`）；具名機構百科＝**B**。
+
+未列入上表、首次用到的網域：依 §16 T1 暫分 A／B，寫進該筆 `sources.grade`／`gradeBasis` 與 searchLog，並在批次結尾列出來源網域；不把個人網站或無署名彙編當出處。
+<!-- /DOMAIN_SCOPE_2026-11-12 -->
+
 依序嘗試，查到 A／B 就可停止往下（厚人物 2–4 個來源即可，不要逐頁瀏覽）：
 1. **權威檔**（確認身分、生卒、原文姓名寫法，兼找連結）：LoC Name Authority（id.loc.gov）、VIAF（viaf.org）、GND（d-nb.info／lobid.org）、BnF（data.bnf.fr）、NDL（id.ndl.go.jp）、各國國家圖書館目錄。用權威檔的原文姓名與異寫再搜。
 2. **國家級傳記辭典／官方頁**（A）：
    - 歐洲：Deutsche Biographie（NDB/ADB）、Historisches Lexikon der Schweiz（hls-dhs-dss.ch）、Svenskt biografiskt lexikon（riksarkivet.se/sbl）、Norsk biografisk leksikon（nbl.snl.no）、Dansk Biografisk Leksikon（lex.dk）、Kansallisbiografia／Biografiakeskus（Finland）、Real Academia de la Historia DB~e（dbe.rah.es）、Dizionario Biografico degli Italiani（treccani.it）、Österreichisches Biographisches Lexikon（biographien.ac.at）、Oxford DNB 公開摘要、Dictionary of Irish Biography（dib.ie）、Polski Słownik Biograficzny 相關官方頁、各國議會議員名錄（例：Bundestag／Reichstag 資料庫、Assemblée nationale Sycomore、Sejm、Eduskunta、Stortinget、Riksdagen）、總統府／政府官網的歷任名單。
    - 東歐／前蘇聯：各國議會與國家圖書館人名資料、Encyclopedia of Ukraine（encyclopediaofukraine.com，具名條目 B）、Internet Encyclopedia of Ukraine 具名作者條目。
-   - 東亞：中央研究院近代史研究所（近史所人物資料、檔案館）、國史館（國史館館刊、總統副總統文物）、國家圖書館（臺灣）、中國國家圖書館權威檔、日本 国立国会図書館「近代日本人の肖像」（ndl.go.jp/portrait）、国立公文書館アジア歴史資料センター（jacar.go.jp）。
+   - 東亞：中央研究院近代史研究所（近史所人物資料、檔案館）、國史館（國史館館刊、總統副總統文物）、國家圖書館（臺灣）、中國國家圖書館權威檔、日本 国立国会図書館典據 Web NDL Authorities（id.ndl.go.jp）、国立国会図書館「近代日本人の肖像」（ndl.go.jp/portrait）、国立公文書館アジア歴史資料センター（jacar.go.jp／jacar.archives.go.jp）；Kotobank 具名條目之日本大百科全書／國史大辭典／世界大百科事典（kotobank.jp，B）。
    - 西亞／北非：Encyclopaedia Iranica（iranicaonline.org，具名條目 B）、Encyclopaedia of Islam 公開摘要、TBMM（土耳其大國民議會）官網、İslâm Ansiklopedisi（islamansiklopedisi.org.tr，TDV 具名條目 B）、各國政府歷任名單。
    - 拉丁美洲：各國總統府／國會官網歷任總統頁、Biblioteca Nacional 權威檔、Real Academia de la Historia DB~e（含拉美人物）、學術機構傳記（例：Fundação Getulio Vargas CPDOC 的 DHBB，巴西；Biblioteca del Congreso Nacional de Chile 的 Reseñas Biográficas）。
    - 南亞／東南亞：國家檔案館、Royal Collection／政府官網、Oxford DNB 公開摘要。

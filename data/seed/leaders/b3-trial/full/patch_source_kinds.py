@@ -18,6 +18,15 @@ POLICY = [  # (domain, source_kind, grade, 依據, 決定)
     ("millercenter.org", "encyclopedia", "B", "Miller Center, University of Virginia 總統傳記（學術機構傳記）", "主管 2026-11-11 21:55"),
     ("ebsco.com", "encyclopedia", "B", "EBSCO Research Starters（具名作者百科條目）", "主管 2026-11-11 21:55"),
     ("www.ebsco.com", "encyclopedia", "B", "EBSCO Research Starters（同上；batch003 來源用 www 主機名，寫庫腳本以完整主機名比對）", "主管 2026-11-11 21:55（同一網域補主機名）"),
+    ("id.ndl.go.jp", "official_website", "A", "國立國會圖書館典據 Web NDL Authorities；T1 權威機構人名權威", "主管 2026-11-12 03:03"),
+    ("ndl.go.jp", "official_website", "A", "日本國立國會圖書館官方頁（含近代日本人の肖像）", "主管 2026-11-12 03:03"),
+    ("www.ndl.go.jp", "official_website", "A", "日本國立國會圖書館同上（www 主機名）", "主管 2026-11-12 03:03"),
+    ("jacar.go.jp", "official_history", "A", "國立公文書館アジア歴史資料センター（JACAR）官方檔案", "主管 2026-11-12 03:03"),
+    ("www.jacar.go.jp", "official_history", "A", "JACAR 同上（www 主機名）", "主管 2026-11-12 03:03"),
+    ("jacar.archives.go.jp", "official_history", "A", "JACAR 官方檔案（archives.go.jp 主機）", "主管 2026-11-12 03:03"),
+    ("nids.mod.go.jp", "official_history", "A", "日本防衛省防衛研究所戰史（無 www 主機名；www 已於 21:55 列入）", "主管 2026-11-11 21:55（同一網域補主機名）／主管 2026-11-12 03:03 確認"),
+    ("kotobank.jp", "encyclopedia", "B", "Kotobank 具名條目：日本大百科全書、國史大辭典、世界大百科事典", "主管 2026-11-12 03:03"),
+    ("www.kotobank.jp", "encyclopedia", "B", "Kotobank 同上（www 主機名）", "主管 2026-11-12 03:03"),
 ]
 
 def main():

@@ -17,6 +17,7 @@ export function fieldSourceItems(bio: LeaderBio, field: string): SourceItem[] {
     .map((c) => ({
       kind: 'structured', title: c.source.title, publisher: c.source.publisher, locator: c.locator,
       licenseCode: c.source.licenseCode, url: c.source.url ?? c.source.archiveUrl, note: c.evidenceNote, accessedOn: c.accessedOn,
+      quote: c.quote ?? null, quoteLang: c.quoteLang ?? null,
     }));
   const legacy = legacyItem(bio.fieldSources?.[field]);
   return legacy ? [...structured, legacy] : structured;

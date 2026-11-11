@@ -12,14 +12,18 @@ export interface SourceItem {
   url?: string | null;
   note?: string | null;
   accessedOn?: string | null;
+  /** 引自該來源的原文短引（逐字；API 為 null 時不帶）。 */
+  quote?: string | null;
+  /** 引文語言（BCP 47），用於 lang 屬性。 */
+  quoteLang?: string | null;
 }
 
 /** 「全部展開／收合」指令：v 每次遞增才會套用（不保存狀態）。 */
 export interface ExpandCommand { open: boolean; v: number }
 
 const TXT = {
-  'zh-Hant': { sources: '來源', pending: '待補來源', legacy: '出處備註（未接結構化來源，非查證標記）', locator: '位置', license: '授權', accessed: '查證日期', open: '開啟' },
-  en: { sources: 'Sources', pending: 'Source needed', legacy: 'Source note (not a structured citation; not marked verified)', locator: 'Locator', license: 'Licence', accessed: 'Checked', open: 'Open' },
+  'zh-Hant': { sources: '來源', pending: '待補來源', legacy: '出處備註（未接結構化來源，非查證標記）', locator: '位置', license: '授權', accessed: '查證日期', open: '開啟', quote: '引文', qOpen: '「', qClose: '」' },
+  en: { sources: 'Sources', pending: 'Source needed', legacy: 'Source note (not a structured citation; not marked verified)', locator: 'Locator', license: 'Licence', accessed: 'Checked', open: 'Open', quote: 'Quotation', qOpen: '“', qClose: '”' },
 } as const;
 
 let seq = 0;
@@ -49,15 +53,19 @@ let seq = 0;
           <div data-testid="source-item" [attr.data-kind]="s.kind">
             @if (s.kind === 'legacy') { <div class="text-[11px] text-wl-on-surface-variant">{{ t().legacy }}</div> }
             <div class="break-words">
-              @if (s.url) { <a [href]="s.url" target="_blank" rel="noopener noreferrer" class="text-wl-secondary hover:underline">{{ s.title }}</a> } @else { {{ s.title }} }
-              @if (s.publisher && s.publisher !== s.title) { <span class="text-wl-on-surface-variant">・{{ s.publisher }}</span> }
+              @if (s.url) { <a data-testid="source-link" [href]="s.url" target="_blank" rel="noopener noreferrer" class="text-wl-secondary hover:underline max-md:py-3.5">{{ s.title }}</a> } @else { {{ s.title }} }
+              @if (s.publisher && s.publisher !== s.title) { <span class="text-wl-on-surface-variant">·{{ s.publisher }}</span> }
             </div>
             @if (s.locator) { <div class="text-wl-on-surface-variant">{{ t().locator }}：{{ s.locator }}</div> }
-            @if (s.note) { <div class="whitespace-pre-line text-wl-on-surface-variant">{{ s.note }}</div> }
+            <!-- 引文：逐字、不截斷；與出處備註相同時只列引文一次 -->
+            @if (s.quote) {
+              <blockquote data-testid="source-quote" class="my-0.5 whitespace-pre-line break-words border-l-2 border-wl-outline pl-2 font-wl-serif text-[13px] leading-relaxed text-wl-on-surface"><span class="sr-only">{{ t().quote }}：</span><span aria-hidden="true">{{ t().qOpen }}</span><span data-testid="source-quote-text" [attr.lang]="s.quoteLang || null">{{ s.quote }}</span><span aria-hidden="true">{{ t().qClose }}</span></blockquote>
+            }
+            @if (s.note && s.note !== s.quote) { <div class="whitespace-pre-line text-wl-on-surface-variant">{{ s.note }}</div> }
             @if (s.licenseCode || s.accessedOn) {
               <div class="text-[11px] text-wl-on-surface-variant">
                 @if (s.licenseCode) { {{ t().license }}：{{ license(s.licenseCode) }} }
-                @if (s.licenseCode && s.accessedOn) { ・ }
+                @if (s.licenseCode && s.accessedOn) { · }
                 @if (s.accessedOn) { {{ t().accessed }}：{{ s.accessedOn }} }
               </div>
             }

@@ -24,6 +24,19 @@ describe('person-sources', () => {
     expect(fieldSourceItems(b, 'deathDate')).toEqual([]);
   });
 
+  it('引文：帶出 quote／quoteLang（逐字）；API 為 null 或未帶時為 null', () => {
+    const src = { id: 's', sourceKind: 'reference_work', title: 'DIB', publisher: 'RIA', authors: null, publishedText: null, licenseCode: null, licenseEvidenceUrl: null, url: 'https://dib', archiveUrl: null };
+    const b = bio({
+      fieldCitations: [
+        { id: 'c1', field: 'birthDate', locator: '670', evidenceNote: 'born 14 October 1882', accessedOn: '2026-11-07', source: src, quote: 'born 14 October 1882', quoteLang: 'en' },
+        { id: 'c2', field: 'birthDate', locator: 'p. 2', evidenceNote: null, accessedOn: '2026-11-07', source: src, quote: null },
+        { id: 'c3', field: 'birthDate', locator: 'p. 3', evidenceNote: null, accessedOn: '2026-11-07', source: src },
+      ],
+    });
+    const items = fieldSourceItems(b, 'birthDate');
+    expect(items.map((i) => [i.quote, i.quoteLang])).toEqual([['born 14 October 1882', 'en'], [null, null], [null, null]]);
+  });
+
   it('任期出處是舊格式文字', () => {
     expect(termSourceItems({ source: 'Archontology', sourceUrl: 'https://www.archontology.org/' })[0].kind).toBe('legacy');
     expect(termSourceItems({ source: '', sourceUrl: null })).toEqual([]);

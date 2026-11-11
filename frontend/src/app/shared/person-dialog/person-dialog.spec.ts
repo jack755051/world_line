@@ -68,6 +68,53 @@ describe('PersonDialog（Stitch 版面、羊皮紙配色）', () => {
     expect(q(el, 'person-sources-toggle')?.getAttribute('aria-expanded')).toBe('true');
   });
 
+  it('引文：展開來源後掛在對應來源下（逐字、加引號、帶 lang）；沒有引文不佔位；與出處備註相同只列一次；同來源不同引文分列', async () => {
+    const src = { id: 's', sourceKind: 'reference_work', title: 'Dictionary of Irish Biography', publisher: 'RIA', authors: null, publishedText: null, licenseCode: null, licenseEvidenceUrl: null, url: 'https://dib.ie/x', archiveUrl: null };
+    const long = 'De Valera formed a government which lasted for 16 years, and during this period he introduced a new constitution';
+    const { fixture, el } = await render(bio({
+      fieldSources: {}, terms: [], summary: null,
+      fieldCitations: [
+        { id: 'c1', field: 'birthDate', locator: '670', evidenceNote: 'born 14 October 1882, Manhattan', accessedOn: '2026-11-07', source: src, quote: 'born 14 October 1882, Manhattan', quoteLang: 'en' },
+        { id: 'c2', field: 'deathDate', locator: '670', evidenceNote: 'died 29 August 1975 … long evidence', accessedOn: '2026-11-07', source: src, quote: 'died 29 August 1975', quoteLang: null },
+        { id: 'c3', field: 'birthPlace', locator: 'index', evidenceNote: null, accessedOn: '2026-11-07', source: { ...src, title: 'GND' }, quote: null },
+        { id: 'c4', field: 'party', locator: 'career', evidenceNote: null, accessedOn: '2026-11-07', source: src, quote: long, quoteLang: 'en' },
+      ],
+      party: { 'zh-Hant': '共和黨' },
+    }));
+    expect((q(el, 'person-sources-panel') as HTMLElement).hidden).toBe(true); // 預設收合
+    (q(el, 'person-sources-toggle') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    const notes = qa(el, 'person-source-note');
+    expect(notes.length).toBe(4);
+    const quoteOf = (n: HTMLElement) => n.querySelector<HTMLElement>('[data-testid="source-quote-text"]');
+    const byUse = (s: string) => notes.find((n) => n.querySelector('[data-testid="person-source-used-for"]')?.textContent?.trim() === `用於：${s}`)!;
+    expect(quoteOf(byUse('出生'))?.textContent).toBe('born 14 October 1882, Manhattan');
+    expect(quoteOf(byUse('出生'))?.getAttribute('lang')).toBe('en');
+    expect(byUse('出生').querySelector('[data-testid="source-quote"]')?.textContent).toContain('「born 14 October 1882, Manhattan」');
+    expect(byUse('出生').textContent?.split('born 14 October 1882').length).toBe(2); // 與備註相同：只出現一次
+    expect(quoteOf(byUse('逝世'))?.textContent).toBe('died 29 August 1975');
+    expect(quoteOf(byUse('逝世'))?.hasAttribute('lang')).toBe(false);
+    expect(byUse('逝世').textContent).toContain('long evidence'); // 備註與引文不同：備註照列
+    expect(quoteOf(byUse('出生地'))).toBeNull(); // 沒有引文：不佔位
+    expect(byUse('出生地').querySelector('[data-testid="source-quote"]')).toBeNull();
+    expect(quoteOf(byUse('黨派'))?.textContent).toBe(long); // 不截斷
+    // 上標記號不塞引文
+    expect(q(el, 'person-field-birthDate')?.textContent).not.toContain('born');
+  });
+
+  it('間隔號統一用 ·（U+00B7）：任期來源「用於」標籤、來源出版者、授權與查證日期之間', async () => {
+    const src = { id: 's', sourceKind: 'official_record', title: 'Bio', publisher: 'WH', authors: null, publishedText: null, licenseCode: 'us_federal_pd', licenseEvidenceUrl: null, url: 'https://a', archiveUrl: null };
+    const { fixture, el } = await render(bio({
+      fieldCitations: [{ id: 'c', field: 'birthDate', locator: 'p', evidenceNote: null, accessedOn: '2026-11-07', source: src }],
+    }));
+    (q(el, 'person-sources-toggle') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    const text = q(el, 'person-sources-panel')?.textContent ?? '';
+    expect(text).toContain('職位與任期·國家元首');
+    expect(text).toContain('·WH');
+    expect(el.textContent).not.toContain('・');
+  });
+
   it('全部欄位都有來源時不顯示「待補來源」；完全沒有來源時 N = 0', async () => {
     let r = await render(bio({ fieldSources: {}, terms: [], birthPlace: null, summary: null, birthDate: null, deathDate: null }));
     expect(q(r.el, 'person-sources-label')?.textContent?.trim()).toBe('資料來源 (0)');

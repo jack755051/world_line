@@ -413,8 +413,13 @@ public sealed record LeaderPortraitDto(
     string Url, string SourceUrl, string? Author, string LicenseCode, string? LicenseUrl,
     string Attribution, string RetrievedOn);
 
+/// <summary>
+/// 生平欄位引用。quote：引自該來源的原文短引（逐字，≤ 80 字，見 ARCHITECTURE §16.7.4）；
+/// DB 為 NULL 時輸出 null（不轉空字串）。quoteLang：引文語言（BCP 47），可為 null。
+/// </summary>
 public sealed record LeaderBioFieldCitationDto(
-    Guid Id, string Field, string Locator, string? EvidenceNote, string AccessedOn, SourceDto Source);
+    Guid Id, string Field, string Locator, string? EvidenceNote, string AccessedOn, SourceDto Source,
+    string? Quote = null, string? QuoteLang = null);
 
 /// <summary>人物詳情的任期清單（含已結束任期）。validPeriod.end 不含當天。</summary>
 public sealed record LeaderTermDto(

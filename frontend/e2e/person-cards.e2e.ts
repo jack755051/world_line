@@ -13,6 +13,9 @@ mkdirSync(SHOTS, { recursive: true });
 /** 本次（人物 v2）驗收截圖 */
 const V2 = '../.dev/screenshots/person-v2';
 mkdirSync(V2, { recursive: true });
+/** 引文（資料來源區顯示 leader_bio_field_citations.quote）驗收截圖 */
+const QUOTES = '../.dev/screenshots/quotes';
+mkdirSync(QUOTES, { recursive: true });
 const DATE = '1940-06-01';
 const D44 = '1944-09-17';
 const POZNAN: [number, number] = [16.93, 52.41];
@@ -54,6 +57,50 @@ async function hitlerRecord(page: Page, date = DATE): Promise<{ personId: string
   return { personId: h.personId!, regimeId: h.regimeId };
 }
 const hitlerId = async (page: Page, date = DATE): Promise<string> => (await hitlerRecord(page, date)).personId;
+
+/** 有多筆引文的人物：1940 愛爾蘭 德瓦萊拉（4 個來源、11 筆引文；以姓名從 /leaders 取 personId）。 */
+async function deValera(page: Page): Promise<{ pid: string; quotes: string[] }> {
+  const f = (await (await page.request.get(`/api/v1/leaders?date=${DATE}`)).json()).data.features as { personId: string | null; name: string }[];
+  const pid = f.find((x) => x.name === 'Éamon de Valera' && x.personId)!.personId!;
+  const d = (await (await page.request.get(`/api/v1/leader-bios/${pid}`)).json()).data as { fieldCitations: { quote?: string | null }[] };
+  return { pid, quotes: d.fieldCitations.map((c) => c.quote).filter((q): q is string => !!q) };
+}
+
+/** 對話框捲到底部「資料來源」區（不點分頁籤，以免自動展開）。 */
+async function scrollToSources(page: Page): Promise<void> {
+  await page.getByTestId('person-dialog-body').evaluate((el) => el.scrollTo({ top: el.scrollHeight }));
+  await page.waitForTimeout(150);
+}
+
+/** 開啟對話框、確認來源預設收合 → 截圖 → 展開 → 每筆 API 引文逐字出現在來源下 → 截圖。 */
+async function checkQuotes(page: Page, shot: 'desktop' | 'mobile'): Promise<void> {
+  const { pid, quotes } = await deValera(page);
+  expect(quotes.length).toBeGreaterThan(3);
+  await page.goto(`/?date=${DATE}&axis=sovereignty&person=${pid}`);
+  const dlg = page.getByTestId('person-dialog');
+  await expect(dlg).toBeVisible();
+  const toggle = dlg.getByTestId('person-sources-toggle');
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(dlg.getByTestId('person-sources-panel')).toBeHidden();
+  for (const q of await dlg.getByTestId('source-quote').all()) await expect(q).toBeHidden();
+  await scrollToSources(page);
+  await page.screenshot({ path: `${QUOTES}/${shot}-sources-collapsed.png` });
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  const texts = await dlg.getByTestId('source-quote-text').allTextContents();
+  for (const q of quotes) expect(texts).toContain(q); // 逐字、不截斷
+  // 引文掛在來源項目內（不是欄位旁）
+  for (const q of await dlg.getByTestId('source-quote').all()) {
+    expect(await q.evaluate((el) => !!el.closest('[data-testid="source-item"]') && !!el.closest('[data-testid="person-source-note"]'))).toBe(true);
+    await expect(q).toContainText('「');
+  }
+  expect(await dlg.getByTestId('person-dialog-basics').getByTestId('source-quote').count()).toBe(0);
+  await expect(dlg.getByTestId('person-sources-panel')).not.toContainText('・');
+  await dlg.getByTestId('source-quote').first().evaluate((el) => el.closest('[data-testid="person-source-note"]')!.scrollIntoView({ block: 'start' }));
+  await page.getByTestId('person-dialog-body').evaluate((el) => el.scrollBy({ top: -60 }));
+  await page.waitForTimeout(150);
+  await page.screenshot({ path: `${QUOTES}/${shot}-sources-expanded.png` });
+}
 
 /** 該政權當日不重複人數（同一 personId 只算一次；沒有 personId 的記錄各算一人）。 */
 async function uniquePeople(page: Page, date: string, regimeId: string): Promise<number> {
@@ -282,6 +329,10 @@ test('有結構化來源與授權照片的人物（美國 1940：羅斯福）：
   expect(d.portrait.licenseCode).toBe('cc_by');
 });
 
+test('引文：資料來源預設收合；展開後各來源下逐字顯示引文（1940 德瓦萊拉，桌機）', async ({ page }) => {
+  await checkQuotes(page, 'desktop');
+});
+
 test.describe('手機', () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
 
@@ -335,5 +386,30 @@ test.describe('手機', () => {
     await page.getByTestId('person-dialog-close').tap();
     await expect(page.getByTestId('person-dialog')).toHaveCount(0);
     await expect(page.getByTestId('sovereignty-card-tab-leaders')).toHaveAttribute('aria-selected', 'true');
+  });
+
+  test('引文（手機）＋來源相關控件點擊區：上標編號高 44px、單一編號 44×44、相鄰不重疊；來源連結高 ≥44px', async ({ page }) => {
+    await checkQuotes(page, 'mobile');
+    const dlg = page.getByTestId('person-dialog');
+    for (const a of await dlg.getByTestId('person-sources-panel').getByTestId('source-link').all()) {
+      expect((await a.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    }
+    await page.getByTestId('person-dialog-body').evaluate((el) => el.scrollTo({ top: 0 }));
+    const sups = await dlg.getByTestId('person-dialog-basics').getByTestId('person-field-sup').all();
+    expect(sups.length).toBeGreaterThan(0);
+    for (const s of sups) {
+      const r = await s.evaluate((el) => {
+        el.scrollIntoView({ block: 'center' });
+        const a = getComputedStyle(el, '::after');
+        const b = el.getBoundingClientRect();
+        const cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+        const hit = (x: number, y: number) => document.elementFromPoint(x, y) === el;
+        const group = [...el.parentElement!.querySelectorAll('[data-testid="person-field-sup"]')];
+        return { w: parseFloat(a.width), h: parseFloat(a.height), single: group.length === 1, up: hit(cx, cy - 20), down: hit(cx, cy + 20), center: hit(cx, cy) };
+      });
+      expect(r.h).toBeGreaterThanOrEqual(44);
+      expect(r.w).toBeGreaterThanOrEqual(r.single ? 44 : 38);
+      expect(r.center && r.up && r.down).toBe(true);
+    }
   });
 });

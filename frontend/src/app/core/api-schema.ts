@@ -1523,6 +1523,8 @@ export interface components {
             evidenceNote: null | string;
             accessedOn: string;
             source: components["schemas"]["SourceDto"];
+            quote?: null | string;
+            quoteLang?: null | string;
         };
         LeaderBioSummaryDto: {
             /** Format: uuid */

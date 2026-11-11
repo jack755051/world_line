@@ -220,11 +220,12 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
         </div>
       </section>
     </div>
-    <!-- 上標來源編號：點了展開底部來源並捲到該筆；沒有來源時不放（底部列出待補欄位） -->
+    <!-- 上標來源編號：點了展開底部來源並捲到該筆；沒有來源時不放（底部列出待補欄位）。
+         手機：點擊區高 44px；每個編號實寬 ≥32px，同組第一個往左、最後一個往右再延伸，單一編號 44×44、相鄰編號不重疊 -->
     <ng-template #sup let-ns>
       @for (n of ns; track n) {
         <button type="button" data-testid="person-field-sup" [attr.data-n]="n" [attr.aria-label]="t().sourceRef + ' ' + n"
-          class="relative ml-0.5 inline-block align-super font-mono px-px after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] text-[10px] leading-none text-wl-primary hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
+          class="relative ml-0.5 inline-block align-super font-mono px-px text-center after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] text-[10px] leading-none text-wl-primary hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary max-md:ml-0 max-md:min-w-8 max-md:after:bottom-auto max-md:after:top-1/2 max-md:after:h-11 max-md:after:-translate-y-1/2 max-md:first-of-type:after:-left-1.5 max-md:last-of-type:after:-right-1.5"
           (click)="showNote(n)">{{ n }}</button>
       }
     </ng-template>
@@ -318,7 +319,7 @@ export class PersonDialog {
       { key: 'name', label: t.name, items: [...fieldSourceItems(b, 'name'), ...fieldSourceItems(b, 'nameZh')] },
       ...this.rows().map((r) => ({ key: r.key, label: r.label, items: fieldSourceItems(b, r.key) })),
       { key: 'summary', label: t.summary, items: fieldSourceItems(b, 'summary') },
-      ...this.terms().map((x) => ({ key: `term:${x.recordId}`, label: `${t.terms}・${x.roleText}`, items: termSourceItems(this.sortedTerms().find((y) => y.recordId === x.recordId)!) })),
+      ...this.terms().map((x) => ({ key: `term:${x.recordId}`, label: `${t.terms}·${x.roleText}`, items: termSourceItems(this.sortedTerms().find((y) => y.recordId === x.recordId)!) })),
     ];
     const p = this.portrait();
     if (p) out.push({ key: 'portrait', label: t.photo, items: portraitSourceItems(p) });
@@ -332,7 +333,7 @@ export class PersonDialog {
     for (const f of this.fieldItems()) {
       const ns: number[] = [];
       for (const it of f.items) {
-        const k = [it.kind, it.title, it.url ?? '', it.locator ?? '', it.note ?? '', it.licenseCode ?? ''].join('\u0001');
+        const k = [it.kind, it.title, it.url ?? '', it.locator ?? '', it.note ?? '', it.licenseCode ?? '', it.quote ?? ''].join('\u0001');
         let fn = byKey.get(k);
         if (!fn) { fn = { n: list.length + 1, item: it, usedFor: [] }; byKey.set(k, fn); list.push(fn); }
         if (!fn.usedFor.includes(f.label)) fn.usedFor.push(f.label);

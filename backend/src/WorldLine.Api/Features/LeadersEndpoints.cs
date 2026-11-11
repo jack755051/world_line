@@ -393,7 +393,8 @@ public static class LeadersEndpoints
                 b.PortraitAttribution!, b.PortraitRetrievedOn!.Value.ToString("yyyy-MM-dd"));
 
     private static LeaderBioFieldCitationDto ToCitationDto(LeaderBioFieldCitation c, Source s) =>
-        new(c.Id, c.Field, c.Locator, c.EvidenceNote, c.AccessedOn.ToString("yyyy-MM-dd"), SourcesEndpoints.ToDto(s));
+        new(c.Id, c.Field, c.Locator, c.EvidenceNote, c.AccessedOn.ToString("yyyy-MM-dd"), SourcesEndpoints.ToDto(s),
+            c.Quote, c.QuoteLang);
 
     private static LeaderBioSummaryDto ToBioSummaryDto(LeaderBio b) =>
         new(b.Id, b.Name, b.NameZh,

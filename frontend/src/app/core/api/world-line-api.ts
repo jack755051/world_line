@@ -76,6 +76,10 @@ export interface LeaderBioFieldCitation {
   evidenceNote: string | null;
   accessedOn: string;
   source: LeaderSource;
+  /** 引自該來源的原文短引（逐字、≤ 80 字）；DB 為 NULL 時 API 回 null。 */
+  quote?: string | null;
+  /** 引文語言（BCP 47），可為 null。 */
+  quoteLang?: string | null;
 }
 
 /** 人物詳情的任期（validPeriod.end 不含當天）。 */

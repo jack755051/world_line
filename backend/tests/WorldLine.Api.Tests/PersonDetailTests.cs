@@ -76,6 +76,43 @@ public sealed class PersonDetailTests(PostGisFixture fx)
         Assert.StartsWith("https://upload.wikimedia.org/", bio.GetProperty("portrait").GetProperty("url").GetString());
     }
 
+    [Fact]
+    public async Task Bio_detail_outputs_citation_quote_verbatim_and_null_when_absent()
+    {
+        var k = new ApiTestKit(fx);
+        var src = await k.Source("official_record");
+        var bioId = await k.Id(await k.W.PostAsJsonAsync("/api/v1/leader-bios", new
+        {
+            name = "Quote Person", isTest = true,
+            citations = new object[]
+            {
+                new { field = "birthDate", sourceId = src, locator = "§1", accessedOn = "2026-11-10" },
+                new { field = "name", sourceId = src, locator = "title", accessedOn = "2026-11-10" },
+            },
+        }));
+
+        // quote 由批次腳本寫入（POST 不收 quote）；測試容器內直接設值
+        const string quote = "Adolf Hitler (* 20. April 1889 in Braunau am Inn; † 30. April 1945 in Berlin)";
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand(
+                "UPDATE leader_bio_field_citations SET quote = @q, quote_lang = 'de' WHERE bio_id = @b AND field = 'birthDate'", c);
+            cmd.Parameters.AddWithValue("q", quote);
+            cmd.Parameters.AddWithValue("b", bioId);
+            Assert.Equal(1, await cmd.ExecuteNonQueryAsync());
+        }
+
+        var cits = (await ApiTestKit.Expect(await k.R.GetAsync($"/api/v1/leader-bios/{bioId}"), HttpStatusCode.OK))
+            .GetProperty("data").GetProperty("fieldCitations").EnumerateArray().ToList();
+        var withQuote = Assert.Single(cits, x => x.GetProperty("field").GetString() == "birthDate");
+        Assert.Equal(quote, withQuote.GetProperty("quote").GetString());
+        Assert.Equal("de", withQuote.GetProperty("quoteLang").GetString());
+        var noQuote = Assert.Single(cits, x => x.GetProperty("field").GetString() == "name");
+        Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("quote").ValueKind); // NULL 輸出 null，不轉空字串
+        Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("quoteLang").ValueKind);
+    }
+
     [Theory]
     [InlineData("all_rights_reserved", "Someone")]
     [InlineData("cc_by_nc", "Someone")]

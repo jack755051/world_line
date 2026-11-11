@@ -1296,10 +1296,34 @@
       }
      ],
      "t14Overlap": "cabinet"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "paragraph:grand-vizier-terms",
+     "gapKind": "not_found",
+     "note": "5442 有 1917-02-04～1918-07-03 與 1918-07-04～1918-10-08 兩筆大維齊爾任期；本批來源只寫 1917 年 2 月任、1918 年 10 月辭，未寫 1918-07 的重新任命與確切辭職日；大維齊爾屬首腦任期（在 leader_records），不建職位",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
     },
     {
+     "target": "field:birthDate",
+     "gapKind": "not_found",
+     "note": "只有 EBSCO 一份來源寫到日（1874-04-10），與庫中 1874-09-01 不一致；ANI 只寫 1874 年。沒有兩份互相矛盾的已抓來源，原記 conflict 改 not_found；段落改只寫到年，日待第二份 A／B 來源（Opus 審查 2026-11-11）",
+     "candidateCitations": [
+      {
+       "sourceKey": "ebsco-talaat",
+       "locator": "Overview",
+       "quote": "born Mehmet Talaat on April 10, 1874, in Edirne"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "roleCandidates": [
+    {
      "key": "cup-secretary-general",
-     "positionKind": "party",
+     "originalPositionKind": "party",
      "title": {
       "orig": "Cemiyet-i Umumiye Kâtibi",
       "zh-Hant": "統一與進步委員會總書記",
@@ -1341,29 +1365,9 @@
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
-     ]
-    }
-   ],
-   "gaps": [
-    {
-     "target": "paragraph:grand-vizier-terms",
-     "gapKind": "not_found",
-     "note": "5442 有 1917-02-04～1918-07-03 與 1918-07-04～1918-10-08 兩筆大維齊爾任期；本批來源只寫 1917 年 2 月任、1918 年 10 月辭，未寫 1918-07 的重新任命與確切辭職日；大維齊爾屬首腦任期（在 leader_records），不建職位",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11"
-    },
-    {
-     "target": "field:birthDate",
-     "gapKind": "not_found",
-     "note": "只有 EBSCO 一份來源寫到日（1874-04-10），與庫中 1874-09-01 不一致；ANI 只寫 1874 年。沒有兩份互相矛盾的已抓來源，原記 conflict 改 not_found；段落改只寫到年，日待第二份 A／B 來源（Opus 審查 2026-11-11）",
-     "candidateCitations": [
-      {
-       "sourceKey": "ebsco-talaat",
-       "locator": "Overview",
-       "quote": "born Mehmet Talaat on April 10, 1874, in Edirne"
-      }
      ],
-     "checkedOn": "2026-11-11"
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
     }
    ]
   },
@@ -1782,5 +1786,5 @@
  ],
  "reviewNote": "Opus 審查 2026-11-11：見 review.json",
  "alignedTo": "b0b0e0f",
- "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。由 align_b0b0e0f.py 產生，原 research.json 未動。"
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。由 align_b0b0e0f.py 產生，原 research.json 未動。"
 }

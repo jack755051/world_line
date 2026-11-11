@@ -1494,7 +1494,7 @@
       "zh-Hant": "國民黨總裁",
       "en": "Tsung-tsai (Party Leader)"
      },
-     "roleKind": "party",
+     "originalPositionKind": "party",
      "period": {
       "start": "1938-03-01",
       "end": null
@@ -1527,8 +1527,8 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ],
-     "candidateRoleKind": "de_facto_leader",
-     "reason": "國民黨總裁：蔣介石以此黨內最高職實際領導黨國，屬實際掌權者（疑義，待 Tai 決）"
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
     }
    ]
   },
@@ -2047,5 +2047,5 @@
   }
  ],
  "alignedTo": "b0b0e0f",
- "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。由 align_b0b0e0f.py 產生，原 research.json 未動。"
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。由 align_b0b0e0f.py 產生，原 research.json 未動。"
 }

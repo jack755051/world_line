@@ -17,8 +17,11 @@
 10. 每人必須有 bioId 鍵（建議 6；值可為 null）。
 對齊後檔案（頂層 alignedTo == "b0b0e0f"，research.aligned.json；ARCHITECTURE b0b0e0f／T11／T12／T14）另加：
 11. positions 用 positionKind，出現 roleKind 即違規；positionKind 值域沿用原 7 種（僅供參考，實作時再定）；不得為元首／首腦／實際掌權者。
-12. roleCandidates 每筆必須有 citations（逐筆照第 1、2 項檢查）、candidateRoleKind ∈ {head_of_state, head_of_government, de_facto_leader}、reason 非空。
+12. roleCandidates 每筆必須有 citations（逐筆照第 1、2 項檢查）、role_kind ∈ {head_of_state, head_of_government, de_facto_leader}、reason 非空；
+    不得有 roleKind／candidateRoleKind（Tai 2026-11-11 12:12 第 4 項：統一為 role_kind）。
 13. t14Overlap 若有，值須為 cabinet／general／occupation_colonial。
+14. positions 不得含 positionKind=party（Tai 2026-11-11 12:12 第 2 項：黨職一律移至 roleCandidates 為 de_facto_leader），
+    除非該項標 partyPostAmbiguous=true 且附 partyPostAmbiguousReason；positionKind 不得為三種角色值（同第 11 項）。
 """
 import hashlib, json, re, sys, unicodedata
 from pathlib import Path
@@ -168,12 +171,20 @@ def main():
                     errs.append(f"{w}：對齊檔不得再用 roleKind，須為 positionKind")
                 if x.get("positionKind") in FORBIDDEN_ALIGNED:
                     errs.append(f"{w}：經歷層不得含元首／首腦／實際掌權者（屬角色層）")
+                if x.get("positionKind") == "party" and x.get("partyPostAmbiguous") is not True:
+                    errs.append(f"{w}：黨職須移至 roleCandidates（de_facto_leader），或標 partyPostAmbiguous")
+                if "partyPostAmbiguous" in x and (x["partyPostAmbiguous"] is not True
+                                                  or not (x.get("partyPostAmbiguousReason") or "").strip()):
+                    errs.append(f"{w}：partyPostAmbiguous 須為 true 且附 partyPostAmbiguousReason")
                 if "t14Overlap" in x and x["t14Overlap"] not in T14_VALUES:
                     errs.append(f"{w}：t14Overlap 非法 {x['t14Overlap']}")
             for x in p.get("roleCandidates") or []:
                 w = f"{key} 候選角色 {x.get('key')}"
-                if x.get("candidateRoleKind") not in CANDIDATE_KINDS:
-                    errs.append(f"{w}：candidateRoleKind 非法 {x.get('candidateRoleKind')}")
+                if x.get("role_kind") not in CANDIDATE_KINDS:
+                    errs.append(f"{w}：role_kind 非法或缺 {x.get('role_kind')}")
+                for bad in ("roleKind", "candidateRoleKind"):
+                    if bad in x:
+                        errs.append(f"{w}：不得有 {bad}（統一為 role_kind）")
                 if not (x.get("reason") or "").strip():
                     errs.append(f"{w}：缺 reason")
                 cc = x.get("citations") or []

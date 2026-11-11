@@ -549,7 +549,7 @@
       "zh-Hant": "黨中央總書記",
       "en": "General Secretary of the Central Committee"
      },
-     "roleKind": "party",
+     "originalPositionKind": "party",
      "period": {
       "start": "1922-01-01",
       "end": null
@@ -570,8 +570,8 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ],
-     "candidateRoleKind": "de_facto_leader",
-     "reason": "蘇共（布）中央總書記：史達林未任國家元首，但以此職實際掌握蘇聯，屬實際掌權者（疑義，待 Tai 決）"
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
     }
    ]
   },
@@ -1813,40 +1813,6 @@
      ]
     },
     {
-     "key": "cardenas-pnr-president",
-     "regimeId": null,
-     "organization": {
-      "zh-Hant": "國民革命黨",
-      "en": "National Revolutionary Party (PNR)"
-     },
-     "title": {
-      "orig": "presidente del Partido Nacional Revolucionario",
-      "zh-Hant": "國民革命黨主席",
-      "en": "President of the PNR"
-     },
-     "positionKind": "party",
-     "period": {
-      "start": "1930-01-01",
-      "end": null
-     },
-     "startPrecision": "year",
-     "endPrecision": null,
-     "citations": [
-      {
-       "sourceKey": "encyc-cardenas",
-       "locator": "POLITICAL CAREER",
-       "quote": "president of the nascent National Revolutionary Party (PNR) (1930–1931)",
-       "quoteLang": "en",
-       "evidenceNote": "Knight 寫 1930–1931；Treccani 只寫 (1930)，迄年不一致，迄日留空",
-       "accessedOn": "2026-11-11",
-       "grade": "B",
-       "datePrecision": "year",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      }
-     ]
-    },
-    {
      "key": "cardenas-interior-minister",
      "regimeId": null,
      "organization": {
@@ -2052,9 +2018,47 @@
      "candidateCitations": [],
      "checkedOn": "2026-11-11"
     }
+   ],
+   "roleCandidates": [
+    {
+     "key": "cardenas-pnr-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民革命黨",
+      "en": "National Revolutionary Party (PNR)"
+     },
+     "title": {
+      "orig": "presidente del Partido Nacional Revolucionario",
+      "zh-Hant": "國民革命黨主席",
+      "en": "President of the PNR"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1930-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "encyc-cardenas",
+       "locator": "POLITICAL CAREER",
+       "quote": "president of the nascent National Revolutionary Party (PNR) (1930–1931)",
+       "quoteLang": "en",
+       "evidenceNote": "Knight 寫 1930–1931；Treccani 只寫 (1930)，迄年不一致，迄日留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
+    }
    ]
   }
  ],
  "alignedTo": "b0b0e0f",
- "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。由 align_b0b0e0f.py 產生，原 research.json 未動。"
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。由 align_b0b0e0f.py 產生，原 research.json 未動。"
 }

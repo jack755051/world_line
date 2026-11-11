@@ -616,7 +616,9 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ],
-     "note": "來源寫1921年當選，1921年7月議會提前解散時離開議席；依 Q3 迄日寫 1921-08-01（month）。title.orig 改為來源原文用語（英文來源，未寫葡文職銜）"
+     "note": "來源寫1921年當選，1921年7月議會提前解散時離開議席；依 Q3 迄日寫 1921-08-01（month）。title.orig 改為來源原文用語（英文來源，未寫葡文職銜）",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "標題「議員（天主教中央黨）」含政黨名稱，但 positionKind=legislator、機構為葡萄牙議會，較像以該黨身分當選的議會席位而非黨內職務；依指示不猜，留在 positions，待 Tai 決"
     }
    ],
    "gaps": [
@@ -1806,5 +1808,5 @@
   }
  ],
  "alignedTo": "b0b0e0f",
- "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。由 align_b0b0e0f.py 產生，原 research.json 未動。"
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。由 align_b0b0e0f.py 產生，原 research.json 未動。"
 }

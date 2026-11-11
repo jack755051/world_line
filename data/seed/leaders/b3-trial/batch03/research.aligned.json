@@ -1534,40 +1534,6 @@
      ]
     },
     {
-     "key": "ginestal-nationalist-directorate",
-     "positionKind": "party",
-     "title": {
-      "orig": "presidente do directório do Partido Nacionalista",
-      "zh-Hant": "民族黨執行委員會主席",
-      "en": "Chairman of the Nationalist Party directorate"
-     },
-     "regimeId": null,
-     "organization": {
-      "zh-Hant": "民族黨",
-      "en": "Partido Nacionalista"
-     },
-     "period": {
-      "start": "1923-01-01",
-      "end": "1928-01-01"
-     },
-     "startPrecision": "year",
-     "endPrecision": "year",
-     "citations": [
-      {
-       "sourceKey": "bnp-ginestal",
-       "locator": "BNP 官方頁面正文",
-       "quote": "Partido Nacionalista, a cujo directório presidiu (1923-1927)",
-       "quoteLang": "pt",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-11",
-       "grade": "A",
-       "datePrecision": "year",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      }
-     ]
-    },
-    {
      "key": "ginestal-cp-commissioner",
      "positionKind": "other",
      "title": {
@@ -1621,6 +1587,44 @@
      "note": "BNP 官方頁面只寫「presidente do Conselho de Ministros (1923)」，無起迄日與內閣細節；5442 記 1923-11-15～12-18，本檔不補。其他可能來源（Infopédia）本批抓取遇 403，未繞過、未使用。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "ginestal-nationalist-directorate",
+     "originalPositionKind": "party",
+     "title": {
+      "orig": "presidente do directório do Partido Nacionalista",
+      "zh-Hant": "民族黨執行委員會主席",
+      "en": "Chairman of the Nationalist Party directorate"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "民族黨",
+      "en": "Partido Nacionalista"
+     },
+     "period": {
+      "start": "1923-01-01",
+      "end": "1928-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bnp-ginestal",
+       "locator": "BNP 官方頁面正文",
+       "quote": "Partido Nacionalista, a cujo directório presidiu (1923-1927)",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader"
     }
    ]
   },
@@ -2318,5 +2322,5 @@
   }
  ],
  "alignedTo": "b0b0e0f",
- "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。由 align_b0b0e0f.py 產生，原 research.json 未動。"
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f（Tai 2026-11-11 10:03，T11／T12）對齊：經歷層欄位 roleKind 改名 positionKind（值照搬）；元首／首腦／實際掌權者移至 roleCandidates（僅為候選，未建角色、未寫庫）；T14 重疊類別以 t14Overlap 標記，仍留在 positions。Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（移至 roleCandidates）；roleCandidates 角色種類欄位統一為 role_kind，原經歷種類存 originalPositionKind。由 align_b0b0e0f.py 產生，原 research.json 未動。"
 }

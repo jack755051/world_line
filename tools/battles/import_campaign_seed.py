@@ -1,96 +1,212 @@
 #!/usr/bin/env python3
 """
-戰役 C1 匯入腳本（ARCHITECTURE.md §19.1、§19.4、§19.5 C1；World Line 戰役 bot，2026-11-11）。
+戰役匯入腳本 C1b（ARCHITECTURE.md §19.1、§19.4、§19.5 C1；憲法 §6；World Line 戰役 bot，2026-11-11）。
 
-把前端靜態戰役檔（wl-campaign-web/0.1）轉成 battle 表用的 seed，並輸出 dry-run 報表。
-- 只讀前端 JSON、只寫 data/seed/battles/；不連任何資料庫。
-- 可重跑、輸出可重現：id 一律 uuid5（由 slug／key 推出），不寫時間戳，JSON 鍵順序固定。連跑兩次逐位元相同。
-- 絕不編造：JSON 沒有的內容（目標、控制變化、起訖日出處、accessed_on、出版者、等級）一律留 null 並列入報表「待查證」。
-- 等級：JSON 只有 type；依 §19.4.2「官方檔案（含軍方戰史）＝A」給 grade_hint，grade 本身留 null，待考證組確認。
-- status 一律 pending（試做範圍＝發電機行動；三條件由史料考證 bot 另行查證中）。
+輸入（全部唯讀）：
+- 前端靜態戰役檔 frontend/public/campaigns/<key>.json（wl-campaign-web/0.1）：只取圖形幾何與圖形原 citation。
+- 考證輸入 data/seed/battles/<key>.research.json（dynamo-research/0.1，史料考證 bot 產出）：戰役定性、起訖、交戰方、
+  目標、範圍、控制變化、六個階段與逐字引文。
+- 原文 raw 目錄（預設 .dev/campaign-dynamo/raw）：Ellis 官方戰史各章 HyperWar 轉錄、Gazette 38017 p.3295 OCR。
+  每一筆引文都在這裡逐字比對；raw 不存在就停止（不在沒有原文的情況下給等級）。
 
-用法：python3 tools/battles/import_campaign_seed.py [campaign_key ...]   （預設 dunkirk_1940）
+輸出：data/seed/battles/<key>.seed.json、<key>.dry-run.md。不連任何資料庫。
+- 可重跑、輸出可重現：id 一律 uuid5，不寫時間戳，鍵順序固定。連跑兩次逐位元相同。
+- 等級規則（Tai 2026-11-11 13:47）：來源本身為 A，且引文在 raw 逐字找得到（只摺疊空白、解 HTML 實體）、NFC 後不超過 80 字，
+  才標 grade='A'。超過 80 字者截成 raw 逐字存在的最長子句；截不出來、或找不到原文 → grade=null、verification='pending'。
+- 絕不編造：沒有出處的內容（戰役名稱、Bergues／Malo-les-Bains、推估幾何、部隊番號）一律 pending。
+- status 一律 pending：寫庫與 verified 判定要 Tai 另行核准；報表另列「符合 verified 門檻」供審。
+
+用法：python3 tools/battles/import_campaign_seed.py [--raw DIR] [campaign_key ...]   （預設 dunkirk_1940）
 """
 import hashlib
+import html
 import json
 import re
 import sys
+import unicodedata
 import uuid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / 'frontend' / 'public' / 'campaigns'
+WEB = ROOT / 'frontend' / 'public' / 'campaigns'
 OUT = ROOT / 'data' / 'seed' / 'battles'
+RAW_DEFAULT = ROOT / '.dev' / 'campaign-dynamo' / 'raw'
 
-SEED_SCHEMA = 'wl-battle-seed/0.1'
+SEED_SCHEMA = 'wl-battle-seed/0.2'
 NS = uuid.uuid5(uuid.NAMESPACE_URL, 'https://worldline.local/battle-seed')
 QUOTE_MAX = 80  # §16.4.1：NFC 後字元數
-GRADE_HINT = {'official_history': 'A'}  # §19.4.2：官方檔案（含軍方戰史）＝A；其他 type 不給提示
-# 座標參照（OSM 等）只說明「地名座標取自哪裡」，不是史實出處：不進 citation 表，放 props.geometry_refs。
-GEOMETRY_REF_TYPES = {'gazetteer'}
+ACCESSED_DEFAULT = '2026-11-11'
+GEOMETRY_REF_TYPES = {'gazetteer'}  # 座標參照不是史實出處：放 props.geometry_refs
 KIND = {'fronts': 'front', 'arrows': 'arrow', 'sites': 'site'}
 CAMPS = {'allied', 'axis', 'soviet', 'contested', 'unknown'}
-# fronts 的 note 明說「頂點為出處明載之地名」時才算 source_text；其餘一律 derived（不得標 verified，§19.1.3）
 SOURCE_TEXT_NOTE = '頂點為出處明載之地名'
-TRIAL_TODO = ('TODO(考證)：試做範圍＝發電機行動（1940-05-26～06-04）。憲法 §6 三條件（交戰方、目標、起訖與地區）'
-              '是否成立由史料考證 bot 查證中；若不成立，改以敦克爾克戰役為 battle、發電機行動為其階段或子事件（§19.5 C1）。'
-              '結論出來前 status 一律 pending。')
+
+# 考證輸入的 sourceKey → seed 來源（sources 表）。source_kind 依 ck_sources_source_kind 值域。
+SOURCE_KIND = {'ellis': 'official_history', 'ramsay': 'official_record'}
+SOURCE_PUBLISHER = {'ellis': 'HMSO', 'ramsay': 'The London Gazette'}
+SOURCE_TITLE = {
+    'ellis': 'L. F. Ellis, The War in France and Flanders 1939–1940 (History of the Second World War, UK Military Series, ed. J. R. M. Butler)',
+    'ramsay': "Vice-Admiral Sir Bertram H. Ramsay, 'The Evacuation of the Allied Armies from Dunkirk and Neighbouring Beaches' "
+              '(despatch dated 18 June 1940), Supplement to The London Gazette no. 38017, 17 July 1947',
+}
+ELLIS_URL = re.compile(r'UK-NWE-Flanders-(\d+)\.html$')
+ROMAN = {10: 'X', 11: 'XI', 12: 'XII', 13: 'XIII', 14: 'XIV', 15: 'XV', 16: 'XVI', 17: 'XVII', 24: 'XXIV', 25: 'XXV'}
+
+# 前端舊五段 → 考證六段。舊 P2（05-28–05-30）的圖形 citation 全出自 Ellis ch.XIII（28 May），歸新 P2；
+# 新 P3（05-29–05-30）沒有對應圖形。舊 P5 對應新 P6：P6 沒有戰線圖 → 不配地圖要素（Tai 2026-11-11 13:47），圖形移入 deferred。
+WEB_PHASE_TO_SEQ = {1: 1, 2: 2, 3: 4, 4: 5}
+
+NAME = {'zh-Hant': '敦克爾克橋頭堡戰役', 'en': 'Battle of Dunkirk bridgehead'}
+UNIT_NOTE = '待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）'
 
 
 def uid(*parts):
     return str(uuid.uuid5(NS, ':'.join(parts)))
 
 
-def nfc_len(s):
-    import unicodedata
-    return len(unicodedata.normalize('NFC', s))
+def nfc(s):
+    return unicodedata.normalize('NFC', s)
 
 
-def locator_of(citation, url):
-    m = re.search(r'\),\s*(ch\.\s*\d+.*)$', citation)
-    return m.group(1).strip() if m else (url or citation)
+def norm(s):
+    return re.sub(r'\s+', ' ', nfc(html.unescape(s))).strip()
 
 
-class Sources:
-    def __init__(self):
-        self.by_key = {}
+class Raw:
+    """raw 原文：只摺疊空白、解 HTML 實體後做子字串比對（逐字）。頁碼取引文之後第一個 --NNN-- 標記（HyperWar 頁尾頁碼）。"""
 
-    def cite(self, raw):
-        title, url = raw.get('citation') or '', raw.get('url')
-        key = 'src-' + hashlib.sha1(f'{title}|{url}'.encode('utf-8')).hexdigest()[:12]
-        if key not in self.by_key:
-            self.by_key[key] = {
-                'key': key, 'id': uid('source', key), 'source_kind': raw.get('type'),
-                'title': title, 'url': url,
-                'publisher': None,  # sources.publisher 必填；JSON 未拆出出版者，待補（不從字串猜）
-            }
-        quote = raw.get('quote') or ''
-        qlen = nfc_len(quote)
-        return {
-            'source_key': key,
-            'locator': locator_of(title, url),
-            'quote': quote,
-            'quote_len': qlen,
-            'quote_over_limit': qlen > QUOTE_MAX,
-            'quote_lang': None,
-            'accessed_on': None,
-            'grade': None,
-            'grade_hint': GRADE_HINT.get(raw.get('type')),
-            'date_precision': None,
-            'policy_version': None,
+    def __init__(self, folder):
+        if not folder.is_dir():
+            sys.exit(f'raw 目錄不存在：{folder}（逐字比對需要原文；不在沒有原文的情況下產生 seed）')
+        self.folder = folder
+        self.text, self.sha = {}, {}
+
+    def file_of(self, raw_key):
+        return 'gazette-3295.txt' if raw_key == 'ramsay' else f'{raw_key}.txt'
+
+    def load(self, raw_key):
+        if raw_key not in self.text:
+            p = self.folder / self.file_of(raw_key)
+            if not p.is_file():
+                self.text[raw_key], self.sha[raw_key] = None, None
+            else:
+                b = p.read_bytes()
+                self.text[raw_key] = norm(b.decode('utf-8', errors='replace'))
+                self.sha[raw_key] = hashlib.sha256(b).hexdigest()
+        return self.text[raw_key]
+
+    def find(self, raw_key, quote):
+        t = self.load(raw_key)
+        if not t or not quote:
+            return None
+        i = t.find(norm(quote))
+        return None if i < 0 else i
+
+    def page(self, raw_key, pos):
+        if raw_key == 'ramsay':
+            return None
+        m = re.search(r'--(\d+)--', self.text[raw_key][pos:])
+        return int(m.group(1)) if m else None
+
+
+def clauses(quote, prefer=None):
+    """把長引文拆成候選子句（以 …／...／破折號／分號／句點／逗號為界）。只取原文片段，不改字。
+    排序：含 prefer 字串者優先 → 專有名詞與數字較多者（地名、番號、人數才是支撐圖形或數字的內容）→ 較長 → 字典序。"""
+    parts = set()
+    for sep in (r'\s*(?:\.\.\.|…)\s*', r'\s*[—;]\s*', r'(?<=[.!?])\s+', r',\s*'):
+        for seg in re.split(sep, quote):
+            seg = seg.strip(' ,;')
+            if seg:
+                parts.add(seg)
+
+    def score(s):
+        toks = s.split()
+        names = sum(1 for t in toks[1:] if t[:1].isupper() or t[:1].isdigit()) + (1 if toks and toks[0][:1].isdigit() else 0)
+        return (0 if prefer and prefer in s else 1, -names, -len(s), s)
+
+    return sorted(parts, key=score)
+
+
+class Cites:
+    def __init__(self, raw):
+        self.raw = raw
+        self.used_raw = set()
+
+    def _grade(self, source_key, raw_key, quote, prefer=None):
+        """回傳 (quote, verbatim, page, grade, reason, truncated_from)。"""
+        if source_key not in SOURCE_KIND:
+            return quote, None, None, None, '來源不在考證輸入的 A 級清單', None
+        if raw_key is None:
+            return quote, None, None, None, '找不到對應的 raw 原文檔', None
+        self.used_raw.add(raw_key)
+        q = norm(quote)
+        pos = self.raw.find(raw_key, q)
+        if pos is not None and len(q) <= QUOTE_MAX:
+            return q, True, self.raw.page(raw_key, pos), 'A', None, None
+        if pos is None and len(q) <= QUOTE_MAX:
+            return q, False, None, None, 'raw 原文中找不到逐字相符的句子', None
+        for seg in clauses(q, prefer):
+            if len(seg) <= QUOTE_MAX and len(seg) >= 20:
+                p = self.raw.find(raw_key, seg)
+                if p is not None:
+                    return seg, True, self.raw.page(raw_key, p), 'A', None, q
+        reason = f'原引文 {len(q)} 字超過 {QUOTE_MAX}，截不出 raw 逐字存在的子句' if pos is not None \
+            else f'原引文 {len(q)} 字超過 {QUOTE_MAX}，且 raw 原文中找不到逐字相符的子句'
+        return q, pos is not None, None, None, reason, None
+
+    def make(self, source_key, raw_key, url, locator, quote, accessed_on, extra=None, origin='research', prefer=None):
+        q, verbatim, page, grade, reason, trunc = self._grade(source_key, raw_key, quote or '', prefer)
+        c = {
+            'source_key': f'src-{source_key}' if source_key in SOURCE_KIND else None,
+            'url': url,
+            'locator': locator,
+            'quote': q,
+            'quote_len': len(nfc(q)),
+            'quote_lang': 'en',
+            'accessed_on': accessed_on or ACCESSED_DEFAULT,
+            'grade': grade,
+            'verification': 'verbatim' if grade else 'pending',
+            'verbatim_check': {'raw': raw_key, 'raw_sha256': self.raw.sha.get(raw_key), 'found': verbatim,
+                               'page_from_raw': page},
+            'origin': origin,
         }
+        if trunc:
+            c['truncated_from'] = trunc
+        if reason:
+            c['pending_reason'] = reason
+        for k, v in sorted((extra or {}).items()):
+            c[k] = v
+        return c
 
-    def rows(self):
-        return [self.by_key[k] for k in sorted(self.by_key)]
+    def research(self, r):
+        extra = {k: r[k] for k in ('perspective', 'evidenceNote', 'datePrecision') if r.get(k)}
+        extra = {{'evidenceNote': 'evidence_note', 'datePrecision': 'date_precision'}.get(k, k): v for k, v in extra.items()}
+        return self.make(r['sourceKey'], r.get('raw'), r.get('url'), r.get('locator'), r.get('quote'),
+                         r.get('accessedOn'), extra)
+
+    def web(self, s, accessed_on, prefer=None):
+        """前端 JSON 的舊 citation：Ellis 依 URL 章號對 raw；頁碼由 raw 推出。"""
+        url = s.get('url') or ''
+        m = ELLIS_URL.search(url)
+        if s.get('type') == 'official_history' and m:
+            ch = int(m.group(1))
+            c = self.make('ellis', f'ellis-{ch}', url, None, s.get('quote'), accessed_on,
+                          {'web_citation': s.get('citation')}, origin='web-json', prefer=prefer)
+            pg = c['verbatim_check']['page_from_raw']
+            c['locator'] = f"ch. {ROMAN.get(ch, ch)}" + (f', p. {pg}' if pg else '')
+            return c
+        return self.make(s.get('type') or 'unknown', None, url, s.get('citation'), s.get('quote'), accessed_on,
+                         {'web_citation': s.get('citation')}, origin='web-json')
 
 
-def precision(p):
-    """Q6：early-month（上旬）改成 month，上旬寫進 note。"""
-    if p in (None, 'day'):
-        return 'day', None
-    if p == 'early-month':
-        return 'month', '上旬（Q6：精度改 month，原 JSON 為 early-month）'
-    return p, None
+def dedupe(cs):
+    seen, out = set(), []
+    for c in cs:
+        k = (c['source_key'], c['locator'], c['quote'])
+        if k not in seen:
+            seen.add(k)
+            out.append(c)
+    return out
 
 
 def bbox_multipolygon(bounds):
@@ -99,200 +215,354 @@ def bbox_multipolygon(bounds):
     return {'type': 'MultiPolygon', 'coordinates': [[ring]]}
 
 
-def convert(d):
-    slug = d['key']
-    src = Sources()
+def has_a(cs):
+    return any(c['grade'] in ('A', 'B') for c in cs)
+
+
+def convert(web, res, raw):
+    slug = web['key']
+    acc = res.get('researchedOn') or ACCESSED_DEFAULT
+    cz = Cites(raw)
+    rec, f = res['record'], res['record']['fields']
     event_id = uid('event', slug)
 
+    event_cites = dedupe([cz.research(c) for c in f['start']['citations'] + f['end']['citations'] + f['area']['citations']])
+    participants = []
+    for b in f['belligerents']['value']:
+        p = {'regime_slug': b['regime'], 'role': 'belligerent', 'side_camp_hint': b['side'],
+             'citations': [cz.research(c) for c in b['citations']]}
+        if b.get('until'):
+            p['until_exclusive'] = b['until']
+            p['until_note'] = b.get('untilNote')
+        participants.append(p)
+    participants.sort(key=lambda p: p['regime_slug'])
+
+    subs = []
+    for s in rec['subEvents']:
+        subs.append({
+            'id': uid('event', slug, s['key']),
+            'key': s['key'],
+            'parent_event_id': event_id,
+            'name': {'zh-Hant': s['nameZh'], 'en': s['nameEn']},
+            'event_kind': None,
+            'event_kind_note': "待決：historical_events.event_kind 值域（war/campaign/battle/treaty/armistice/surrender/political/atrocity）"
+                               "沒有 operation；考證輸入作「operation（子事件）」。未決前 NULL，不可寫庫。",
+            'occurred': {'start': s['start'], 'end': s['endExclusive']},
+            'date_precision': 'day',
+            'status': 'pending',
+            'citations': [cz.research(c) for c in s['citations']],
+        })
+
+    profile_cites = {
+        'objective': [cz.research(c) for c in f['objective']['citations']],
+        'control_change': [cz.research(c) for c in f['controlChange']['citations']],
+        'theater_area': [cz.research(c) for c in f['area']['citations']],
+        'name': [],
+    }
+
     phases = []
-    for p in sorted(d['phases'], key=lambda x: x['seq']):
-        sp, sn = precision(p.get('start_precision'))
-        ep, en = precision(p.get('end_precision'))
+    for p in sorted(res['phases'], key=lambda x: x['seq']):
+        maps = [m for m in p.get('maps') or [] if not m.startswith('待查證')]
+        pending_maps = [m for m in p.get('maps') or [] if m.startswith('待查證')]
+        cs = [cz.research(c) for c in p['citations']]
         phases.append({
             'id': uid('phase', slug, str(p['seq'])),
             'seq': p['seq'],
-            'name': {'zh-Hant': p.get('name_zh'), 'en': p.get('name_en')},
-            'period': {'start': p['start'], 'end': p['end']},  # 半開區間（§14.6）
-            'start_precision': sp, 'end_precision': ep,
-            'evidence_note': '；'.join(x for x in (sn, en) if x) or None,
-            'summary': {'zh-Hant': p['summary_zh']} if p.get('summary_zh') and p.get('sources') else None,
+            'name': {'zh-Hant': p['nameZh'], 'en': None},
+            'period': {'start': p['start'], 'end': p['end']},  # 半開（§14.6）
+            'start_precision': 'day', 'end_precision': 'day',
+            'summary': None,  # 考證輸入沒有逐段 summary；前端舊 summary 無逐字出處，不沿用
+            'source_maps': maps,
+            'map_status': 'pending' if pending_maps or not maps else 'source_map_listed',
+            'map_note': pending_maps[0] if pending_maps else None,
             'status': 'pending',
-            'json_flags': {'dates_verified': p.get('dates_verified'), 'summary_verified': p.get('summary_verified')},
-            'citations': [src.cite(s) for s in p.get('sources') or []],
+            'eligible_for_verified': has_a(cs),
+            'citations': cs,
         })
+    seq_ids = {p['seq']: p['id'] for p in phases}
 
-    features = []
+    features, deferred_features = [], []
     for layer in ('fronts', 'arrows', 'sites'):
-        for f in d['layers'][layer]['features']:
-            pr = f['properties']
+        for ft in web['layers'][layer]['features']:
+            pr = ft['properties']
             note = pr.get('note') or ''
             basis = 'source_text' if layer == 'fronts' and SOURCE_TEXT_NOTE in note else 'derived'
             props = {k: v for k, v in pr.items()
                      if k not in ('id', 'phase', 'group', 'verified', 'sources') and v is not None}
-            group = pr.get('group')
-            hist = [x for x in pr.get('sources') or [] if x.get('type') not in GEOMETRY_REF_TYPES]
             refs = [{'citation': x.get('citation'), 'url': x.get('url')}
                     for x in pr.get('sources') or [] if x.get('type') in GEOMETRY_REF_TYPES]
             if refs:
                 props['geometry_refs'] = refs
-            features.append({
+            if props.get('unit'):
+                props['verification'] = 'pending'
+                props['unit_note'] = UNIT_NOTE
+            hist = [cz.web(x, acc) for x in pr.get('sources') or [] if x.get('type') not in GEOMETRY_REF_TYPES]
+            group = pr.get('group')
+            seq = WEB_PHASE_TO_SEQ.get(pr['phase'])
+            row = {
                 'id': uid('feature', pr['id']),
                 'feature_key': pr['id'],
-                'phase_seq': pr['phase'],
-                'phase_id': uid('phase', slug, str(pr['phase'])),
+                'web_phase': pr['phase'],
+                'phase_seq': seq,
+                'phase_id': seq_ids.get(seq),
                 'feature_kind': KIND[layer],
                 'side_camp': group if group in CAMPS else 'unknown',
-                'side_regime_slug': None,  # 配色組不等於政權；不推導（憲法 §6「陣營」）
-                'geom': f['geometry'],
+                'side_regime_slug': None,
+                'geom': ft['geometry'],
                 'label': None,
                 'props': dict(sorted(props.items())),
                 'geom_basis': basis,
                 'status': 'pending',
                 'json_flags': {'verified': pr.get('verified')},
-                'citations': [src.cite(s) for s in hist],
-            })
+                'pending_reasons': (['無任何出處（前端 JSON 即無 citation）'] if not hist else [])
+                                   + (['幾何為推估（derived），需以出處圖重畫'] if basis == 'derived' else []),
+                'citations': hist,
+            }
+            if seq is None:
+                row['deferred_reason'] = '新 P6 沒有戰線圖（Ellis 無 6/2–6/4 situation map）→ 不配地圖要素（Tai 2026-11-11 13:47）'
+                deferred_features.append(row)
+            else:
+                features.append(row)
 
-    totals = d.get('totals')
+    totals = web.get('totals')
     deferred_totals = None
     if totals:
-        deferred_totals = {k: v for k, v in totals.items() if k != 'sources'}
-        deferred_totals['citations'] = [src.cite(s) for s in totals.get('sources') or []]
+        deferred_totals = {k: v for k, v in totals.items() if k not in ('sources', 'verified')}
+        deferred_totals['perspective'] = '英方數字（英國官方戰史 Ellis 所載；非各方共同統計）'
+        n = totals.get('evacuated_dynamo')
+        deferred_totals['citations'] = [cz.web(s, acc, f'{n:,}' if isinstance(n, int) else None)
+                                        for s in totals.get('sources') or []]
         deferred_totals['note'] = 'battle_figures 屬 C3；metric 值域目前沒有 evacuated，C3 時再議，不在 C1 入庫'
 
-    unit_candidates = sorted({f['props']['unit'] for f in features if f['props'].get('unit')})
+    src = res['sources']
+    sources = []
+    for k in sorted(SOURCE_KIND):
+        s = src[k]
+        row = {'key': f'src-{k}', 'id': uid('source', f'src-{k}'), 'source_kind': SOURCE_KIND[k],
+               'title': SOURCE_TITLE[k], 'url': s['url'], 'publisher': SOURCE_PUBLISHER[k],
+               'grade': s['grade'], 'grade_basis': s['gradeBasis'], 'transcription': s.get('publisher'),
+               'note': s.get('note')}
+        if k == 'ellis':
+            row['publication_year'] = None
+            row['publication_year_conflict'] = {
+                'values': ['1953', '1954'],
+                'note': '前端 JSON 作 1953（初版）；HyperWar 封面頁作 LONDON 1954。依考證輸入：出版年待核對，未決前不填。',
+            }
+        sources.append(row)
+
+    unit_candidates = sorted({x['props']['unit'] for x in features + deferred_features if x['props'].get('unit')})
+    gaps = [{'target': g['target'], 'kind': g['kind'], 'note': g['note']} for g in res.get('gaps') or []]
+    gaps += [
+        {'target': 'phase:3 map', 'kind': 'not_found', 'note': '前端舊圖形沒有對應 5/29–5/30 的要素；Ellis 29 May situation map 已列，待依圖重畫'},
+        {'target': 'feature:dunkirk_1940_p4-site-0', 'kind': 'not_found', 'note': 'Bergues：無出處，德軍完全佔領日期待查證'},
+        {'target': 'feature:dunkirk_1940_p5-site-1', 'kind': 'not_found', 'note': 'Malo-les-Bains：無出處，日期待查證'},
+        {'target': 'unit:arrows', 'kind': 'not_found', 'note': '箭頭部隊番號未逐字對照出處'},
+        {'target': 'subevent:operation-dynamo event_kind', 'kind': 'note', 'note': 'event_kind 值域無 operation，待決'},
+    ]
 
     return {
         'schema': SEED_SCHEMA,
         'generated_from': {
-            'path': str((SRC / f'{slug}.json').relative_to(ROOT)),
-            'schema': d.get('schema'),
-            'sha256': None,  # 由 main() 填
+            'web': {'path': f'frontend/public/campaigns/{slug}.json', 'schema': web.get('schema'), 'sha256': None},
+            'research': {'path': f'data/seed/battles/{slug}.research.json', 'schema': res.get('schema'), 'sha256': None,
+                         'researched_on': res.get('researchedOn')},
+            'raw_sha256': None,
         },
         'slug': slug,
-        'todo': [TRIAL_TODO],
+        'determination': {
+            'constitution': '憲法 §6 戰役三條件',
+            'conclusion': 'battle：敦克爾克橋頭堡戰役（1940-05-26～06-04）；發電機行動為子事件（parent_event_id），不是階段',
+            'conditions': {
+                'belligerents': 'A 級出處：英、法、比（至 1940-05-28）、德（見 participants）',
+                'objective': 'A 級出處（見 profile.citations.objective）',
+                'period_and_area': 'A 級出處（見 event.citations）',
+            },
+            'name_note': rec.get('nameNote'),
+            'decided_by': 'Tai 2026-11-11 13:47（併入考證、橋頭堡戰役、六階段、A 級引文）',
+        },
         'event': {
             'id': event_id,
-            'event_kind': 'battle',
-            'occurred': {'start': d['start'], 'end': d['end']},  # 半開；end_inclusive＝d['end_inclusive']
+            'event_kind': rec['eventKind'],
+            'occurred': {'start': f['start']['value'], 'end': f['end']['valueExclusive']},  # 半開；含終點 06-04
+            'occurred_end_inclusive': f['end']['valueInclusive'],
             'date_precision': 'day',
             'status': 'pending',
-            'json_flags': {'end_verified': d.get('end_verified')},
-            'citations': [],  # web JSON 沒有起訖日／交戰方／地點的出處 → event_citations 待查證
+            'eligible_for_verified': has_a(event_cites),
+            'citations': event_cites,
         },
-        'participants': {
-            'role': 'belligerent',
-            'regime_slugs': sorted(d.get('regime_slugs') or []),
-            'json_belligerents': d.get('belligerents'),  # 原文照錄（含「至1940-05-28」註記），不拆、不推導
-        },
+        'sub_events': subs,
+        'participants': participants,
         'profile': {
             'event_id': event_id,
             'slug': slug,
-            'name': {'zh-Hant': d.get('name_zh'), 'en': d.get('name_en')},
-            'objective': None, 'objective_kind': None,      # JSON 沒有；憲法 §6 條件 (2) 待考證
-            'control_change': None,                          # JSON 沒有；條件 (3) 待考證
-            'outcome_kind': None, 'outcome_text': None,      # 沒有出處就 NULL（§19.1.1）
+            'name': NAME,
+            'name_verification': 'pending',
+            'name_note': 'Tai 2026-11-11 13:47 指定名稱；' + (rec.get('nameNote') or ''),
+            'objective': {'zh-Hant': f['objective']['valueZh']},
+            'objective_kind': None,
+            'objective_kind_candidate': 'place',
+            'objective_kind_note': '分類（place/line/regime）不是史實，由人確認；未決前 NULL，不可寫庫',
+            'control_change': {'zh-Hant': f['controlChange']['valueZh']},
+            'area_text': {'zh-Hant': f['area']['valueZh']},
+            'outcome_kind': None, 'outcome_text': None,
             'conflict_record_id': None,
-            'theater_area': bbox_multipolygon(d['bounds']) if d.get('bounds') else None,
-            'theater_area_basis': 'derived（由 JSON bounds 外框產生，非出處；需考證組以出處重畫）',
+            'theater_area': bbox_multipolygon(web['bounds']) if web.get('bounds') else None,
+            'theater_area_basis': 'derived（由前端 JSON bounds 外框產生，非出處；需依 Ellis 圖重畫）',
             'status': 'pending',
-            'citations': [],
+            'citations': profile_cites,
         },
         'phases': phases,
         'features': features,
         'units': [],
-        'unit_candidates': unit_candidates,  # 箭頭上的部隊文字；沒有獨立出處前不建 battle_units
+        'unit_candidates': unit_candidates,
         'deferred': {
+            'features': deferred_features,
             'totals': deferred_totals,
-            'phase_notes': [{'seq': p['seq'], 'fronts_note': p['fronts_note']}
-                            for p in d['phases'] if p.get('fronts_note')],  # → C3 event_gaps
+            'map_sources': res.get('mapSources'),
         },
-        'sources': src.rows(),
+        'gaps': gaps,
+        'sources': sources,
+        '_raw_used': sorted(cz.used_raw),
     }
 
 
-def yn(b):
-    return '有' if b else '**缺**'
+def all_cites(seed):
+    out = []
+    out += [('event', c) for c in seed['event']['citations']]
+    out += [(f"participant:{p['regime_slug']}", c) for p in seed['participants'] for c in p['citations']]
+    out += [(f"sub_event:{s['key']}", c) for s in seed['sub_events'] for c in s['citations']]
+    out += [(f'profile:{k}', c) for k, v in seed['profile']['citations'].items() for c in v]
+    out += [(f"phase:{p['seq']}", c) for p in seed['phases'] for c in p['citations']]
+    out += [(f"feature:{x['feature_key']}", c) for x in seed['features'] for c in x['citations']]
+    out += [(f"deferred:{x['feature_key']}", c) for x in seed['deferred']['features'] for c in x['citations']]
+    if seed['deferred']['totals']:
+        out += [('deferred:totals', c) for c in seed['deferred']['totals']['citations']]
+    return out
 
 
 def report(seed):
     L = []
     w = L.append
-    ph, fs = seed['phases'], seed['features']
-    all_cites = [c for p in ph for c in p['citations']] + [c for f in fs for c in f['citations']]
-    w(f"# 戰役 seed dry-run 報表：{seed['slug']}")
+    cs = all_cites(seed)
+    graded = [c for _, c in cs if c['grade'] in ('A', 'B')]
+    pend = [(o, c) for o, c in cs if not c['grade']]
+    g = seed['generated_from']
+    ph, fs, pr = seed['phases'], seed['features'], seed['profile']
+    w(f"# 戰役 seed dry-run 報表：{seed['slug']}（{pr['name']['zh-Hant']}）")
     w('')
-    w(f"- 來源：`{seed['generated_from']['path']}`（{seed['generated_from']['schema']}，sha256 `{seed['generated_from']['sha256'][:16]}…`）")
-    w(f"- 產生：`tools/battles/import_campaign_seed.py`（不連資料庫；本報表不含時間戳，重跑應逐位元相同）")
-    w('- 全部 status＝pending。' + seed['todo'][0])
-    w('- 等級：JSON 只有 `type`，`grade` 一律 null；`grade_hint` 依 §19.4.2（official_history→A）推出，**未經考證確認，不算已有 A／B citation**。')
+    w(f"- 圖形來源：`{g['web']['path']}`（sha256 `{g['web']['sha256'][:16]}…`）")
+    w(f"- 考證輸入：`{g['research']['path']}`（{g['research']['schema']}，sha256 `{g['research']['sha256'][:16]}…`）")
+    w('- raw 原文 sha256：' + '、'.join(f"{k} `{v[:12]}…`" for k, v in sorted(g['raw_sha256'].items()) if v))
+    w('- 產生：`tools/battles/import_campaign_seed.py`（不連資料庫；不含時間戳，重跑逐位元相同）')
+    w(f"- 定性：{seed['determination']['conclusion']}（{seed['determination']['decided_by']}）")
+    w('- 全部 status＝pending；寫庫與 verified 判定需 Tai 另行核准。')
+    w(f'- 等級規則：來源為 A、raw 逐字找得到、NFC 後 ≤{QUOTE_MAX} 字 → A；其餘 pending。超過 {QUOTE_MAX} 字者截成 raw 逐字子句。')
     w('')
     w('## 摘要')
     w('')
     w('| 項目 | 數量 |')
     w('|---|---|')
-    w(f"| 階段 | {len(ph)} |")
+    w(f'| citation 總數（含 deferred） | {len(cs)} |')
+    w(f"| 　A | {sum(1 for c in graded if c['grade'] == 'A')} |")
+    w(f"| 　B | {sum(1 for c in graded if c['grade'] == 'B')} |")
+    w(f'| 　pending（無等級） | {len(pend)} |')
+    w(f"| 　其中截成逐字子句後標 A | {sum(1 for _, c in cs if c.get('truncated_from'))} |")
+    w(f"| 　考證輸入引文（research） | {sum(1 for _, c in cs if c['origin'] == 'research')}（A {sum(1 for _, c in cs if c['origin'] == 'research' and c['grade'])}） |")
+    w(f"| 　前端舊引文（web-json） | {sum(1 for _, c in cs if c['origin'] == 'web-json')}（A {sum(1 for _, c in cs if c['origin'] == 'web-json' and c['grade'])}） |")
+    w(f"| 　quote 超過 {QUOTE_MAX} 字 | {sum(1 for _, c in cs if c['quote_len'] > QUOTE_MAX)} |")
+    w(f"| 　缺 accessed_on | {sum(1 for _, c in cs if not c['accessed_on'])} |")
+    w(f'| 階段 | {len(ph)} |')
     for k in ('front', 'arrow', 'site'):
-        w(f"| 圖形 {k} | {sum(1 for f in fs if f['feature_kind'] == k)} |")
-    w(f"| citation（階段＋圖形） | {len(all_cites)} |")
-    w(f"| 　其中 grade 已確認 A／B | {sum(1 for c in all_cites if c['grade'] in ('A', 'B'))} |")
-    w(f"| 　其中 grade_hint＝A（候選） | {sum(1 for c in all_cites if c['grade_hint'] == 'A')} |")
-    w(f"| 　quote 超過 {QUOTE_MAX} 字 | {sum(1 for c in all_cites if c['quote_over_limit'])} |")
-    w(f"| 　缺 accessed_on | {sum(1 for c in all_cites if not c['accessed_on'])} |")
-    w(f"| 座標參照（gazetteer，不算出處，放 props.geometry_refs） | {sum(len(f['props'].get('geometry_refs', [])) for f in fs)} |")
-    w(f"| 無任何 citation 的圖形 | {sum(1 for f in fs if not f['citations'])} |")
-    w(f"| geom_basis＝derived（不得 verified） | {sum(1 for f in fs if f['geom_basis'] == 'derived')} |")
-    w(f"| 來源（sources） | {len(seed['sources'])}（publisher 全部待補） |")
+        w(f"| 圖形 {k}（已配階段） | {sum(1 for x in fs if x['feature_kind'] == k)} |")
+    w(f"| 圖形 deferred（P6 不配圖） | {len(seed['deferred']['features'])} |")
+    w(f"| geom_basis＝derived（推估幾何，pending） | {sum(1 for x in fs + seed['deferred']['features'] if x['geom_basis'] == 'derived')} |")
+    w(f"| 無任何 citation 的圖形 | {sum(1 for x in fs + seed['deferred']['features'] if not x['citations'])} |")
+    w(f"| 來源（sources） | {len(seed['sources'])}（publisher 已填） |")
     w('')
     w('## 戰役主體（historical_events＋battle_profiles）')
     w('')
-    w('| 欄位 | 值 | citation | 狀態 |')
+    w('| 欄位 | 值 | citation（A／全部） | 狀態 |')
     w('|---|---|---|---|')
-    e, pr = seed['event'], seed['profile']
-    w(f"| occurred | {e['occurred']['start']}～{e['occurred']['end']}（半開） | **缺**（web JSON 無起訖日出處） | pending／待查證 |")
-    w(f"| 交戰方 | {', '.join(seed['participants']['regime_slugs'])} | **缺** | pending／待查證（event_citations） |")
-    w(f"| name | {pr['name']['zh-Hant']} / {pr['name']['en']} | **缺** | pending |")
-    w('| objective／objective_kind | null | **缺**（JSON 無此內容） | 待查證；NOT NULL，補齊前不能寫庫 |')
-    w('| control_change | null | **缺**（JSON 無此內容） | 待查證；NOT NULL，補齊前不能寫庫 |')
+    e = seed['event']
+
+    def n(c):
+        return f"{sum(1 for x in c if x['grade'])}／{len(c)}"
+
+    w(f"| event_kind | {e['event_kind']} | — | 憲法 §6 三條件皆有 A 級出處 |")
+    w(f"| occurred | {e['occurred']['start']}～{e['occurred']['end']}（半開；含終點 {e['occurred_end_inclusive']}） | {n(e['citations'])} | pending（符合 verified 門檻：{'是' if e['eligible_for_verified'] else '否'}） |")
+    for p in seed['participants']:
+        until = f"（至 {p['until_exclusive']}，半開）" if p.get('until_exclusive') else ''
+        w(f"| 交戰方 {p['regime_slug']}{until} | {p['side_camp_hint']} | {n(p['citations'])} | pending |")
+    w(f"| name | {pr['name']['zh-Hant']} / {pr['name']['en']} | 0／0 | pending（{pr['name_note']}） |")
+    w(f"| objective | {pr['objective']['zh-Hant']} | {n(pr['citations']['objective'])} | pending |")
+    w(f"| objective_kind | null（候選 {pr['objective_kind_candidate']}） | — | 待人確認；NOT NULL，未決前不能寫庫 |")
+    w(f"| control_change | {pr['control_change']['zh-Hant']} | {n(pr['citations']['control_change'])} | pending |")
+    w(f"| 範圍（文字） | {pr['area_text']['zh-Hant']} | {n(pr['citations']['theater_area'])} | pending |")
+    w('| theater_area（幾何） | 前端 bounds 外框 | 無（derived） | 待依出處圖重畫 |')
     w('| outcome_kind／outcome_text | null | 無 | 沒有出處就留 NULL |')
-    w('| theater_area | JSON bounds 外框 | 無（derived） | 待以出處重畫 |')
+    for s in seed['sub_events']:
+        w(f"| 子事件 {s['name']['zh-Hant']}（{s['name']['en']}） | {s['occurred']['start']}～{s['occurred']['end']}（半開），parent＝本戰役 | {n(s['citations'])} | pending；event_kind 待決 |")
     w('')
     w('## 階段（battle_phases）')
     w('')
-    w('| seq | 名稱 | 期間（半開） | 精度 | citation | grade_hint | quote>80 | JSON 原標記 | 狀態 |')
-    w('|---|---|---|---|---|---|---|---|---|')
+    w('| seq | 名稱 | 期間（半開） | 精度 | citation（A／全部） | 出處圖 | 圖形數 | 狀態 |')
+    w('|---|---|---|---|---|---|---|---|')
     for p in ph:
-        cs = p['citations']
-        hints = '/'.join(sorted({c['grade_hint'] or '—' for c in cs})) or '—'
-        w(f"| {p['seq']} | {p['name']['zh-Hant']} | {p['period']['start']}～{p['period']['end']} | {p['start_precision']}/{p['end_precision']} "
-          f"| {len(cs)}（{yn(cs)}） | {hints} | {sum(c['quote_over_limit'] for c in cs)} "
-          f"| dates={p['json_flags']['dates_verified']}, summary={p['json_flags']['summary_verified']} | pending |")
+        cnt = sum(1 for x in fs if x['phase_seq'] == p['seq'])
+        maps = '；'.join(re.sub(r'（.*?）', '', m) for m in p['source_maps']) or f"**pending**（{p['map_note'] or '無'}）"
+        w(f"| P{p['seq']} | {p['name']['zh-Hant']} | {p['period']['start']}～{p['period']['end']} | day | {n(p['citations'])} | {maps} | {cnt} | pending（門檻：{'是' if p['eligible_for_verified'] else '否'}） |")
     w('')
     w('## 圖形（battle_map_features）')
     w('')
-    w('| feature_key | 種類 | 配色組 | geom_basis | citation | grade_hint | JSON verified | 狀態 |')
+    w('| feature_key | 前端舊段→新段 | 種類 | 配色組 | geom_basis | citation（A／全部） | 部隊番號 | 狀態 |')
     w('|---|---|---|---|---|---|---|---|')
-    for f in fs:
-        cs = f['citations']
-        hints = '/'.join(sorted({c['grade_hint'] or '—' for c in cs})) or '—'
-        w(f"| {f['feature_key']} | {f['feature_kind']} | {f['side_camp']} | {f['geom_basis']} | {len(cs)}（{yn(cs)}） | {hints} "
-          f"| {f['json_flags']['verified']} | pending{'；**缺出處**' if not cs else ''} |")
+    for x in fs + seed['deferred']['features']:
+        tgt = f"P{x['phase_seq']}" if x['phase_seq'] else '不配（deferred）'
+        unit = f"{x['props']['unit']}（待查證）" if x['props'].get('unit') else '—'
+        w(f"| {x['feature_key']} | P{x['web_phase']}→{tgt} | {x['feature_kind']} | {x['side_camp']} | {x['geom_basis']} | {n(x['citations'])} | {unit} | pending{'；**缺出處**' if not x['citations'] else ''} |")
     w('')
-    w('## 未入 C1 的內容')
+    w('## pending 引文明細')
     w('')
+    if pend:
+        w('| 所屬 | 引文（前 60 字） | 原因 |')
+        w('|---|---|---|')
+        for o, c in pend:
+            q = c['quote'][:60].replace('|', '\\|')
+            w(f"| {o} | {q}{'…' if len(c['quote']) > 60 else ''} | {c.get('pending_reason')} |")
+    else:
+        w('無。')
+    w('')
+    w('## 截成逐字子句的引文')
+    w('')
+    for o, c in cs:
+        if c.get('truncated_from'):
+            w(f"- {o}：「{c['quote']}」（{c['locator']}；原 {len(c['truncated_from'])} 字）")
+    w('')
+    w('## 來源與註記')
+    w('')
+    for s in seed['sources']:
+        w(f"- `{s['key']}`（{s['source_kind']}，{s['grade']}）：{s['title']}；publisher＝{s['publisher']}。")
+        if s.get('publication_year_conflict'):
+            w(f"  - 出版年分歧：{' vs '.join(s['publication_year_conflict']['values'])}——{s['publication_year_conflict']['note']}")
     t = seed['deferred']['totals']
     if t:
-        w(f"- totals（{', '.join(k for k in t if k not in ('citations', 'note', 'verified'))}）：{len(t['citations'])} 筆 citation；{t['note']}。")
-    for n in seed['deferred']['phase_notes']:
-        w(f"- 階段 {n['seq']} fronts_note「{n['fronts_note']}」→ C3 event_gaps（`phase:{n['seq']}`，not_found），不寫進 battle_phases（I6）。")
-    w(f"- 部隊候選（箭頭文字，未建 battle_units）：{'；'.join(seed['unit_candidates'])}")
+        w(f"- 撤出人數 {t.get('evacuated_dynamo'):,}：{t['perspective']}；{t['note']}。")
+    w(f"- 部隊番號（箭頭文字，保留在 props，verification＝pending，未建 battle_units）：{'；'.join(seed['unit_candidates'])}")
     w('')
-    w('## 寫庫前必補（blocking）')
+    w('## 缺口（→ C3 event_gaps）')
     w('')
-    w('1. 三條件考證結論（史料考證 bot）與 event_citations。')
-    w('2. objective／objective_kind／control_change（NOT NULL）與 battle_profile_citations。')
-    w('3. 每筆 citation 的 accessed_on、grade（確認 A／B）；quote 超過 80 字者改短引。')
-    w('4. sources.publisher。')
-    w('5. 無出處圖形補出處或撤除；derived 圖形若要 verified 需改以出處重畫（source_map／source_text）。')
+    for gp in seed['gaps']:
+        w(f"- `{gp['target']}`（{gp['kind']}）：{gp['note']}")
+    w('')
+    w('## 入庫前還差什麼（blocking）')
+    w('')
+    w('1. Tai 核准寫庫與 verified 判定（本 seed 全部 pending）。')
+    w('2. `objective_kind`（NOT NULL）：候選 place，需人確認。')
+    w('3. 子事件「發電機行動」的 event_kind：值域沒有 operation，需決定（或擴值域）。')
+    w('4. 戰役名稱的 A／B 出處（Ellis、Ramsay 均未用 “Battle of Dunkirk”）。')
+    w('5. 參戰 regime 是否已在開發庫（united-kingdom、french-third-republic、kingdom-of-belgium、deutsches-reich）與比利時 until 的寫法（event_participants 無期間欄，需決定）。')
+    w('6. 圖形：derived 幾何需依 Ellis situation map 重畫才能 verified；P3、P6 無圖形；Bergues、Malo-les-Bains 無出處；部隊番號待查證。')
+    w('7. Ellis 出版年 1953／1954 分歧待核對；theater_area 待依出處圖重畫。')
     w('')
     return '\n'.join(L)
 
@@ -301,20 +571,27 @@ def dump(obj):
     return json.dumps(obj, ensure_ascii=False, indent=2) + '\n'
 
 
-def main(keys):
-    OUT.mkdir(parents=True, exist_ok=True)
-    for key in keys:
-        path = SRC / f'{key}.json'
-        raw = path.read_bytes()
-        d = json.loads(raw)
-        if d.get('schema') != 'wl-campaign-web/0.1':
-            sys.exit(f'{path}: schema 不是 wl-campaign-web/0.1')
-        seed = convert(d)
-        seed['generated_from']['sha256'] = hashlib.sha256(raw).hexdigest()
+def main(argv):
+    raw_dir = RAW_DEFAULT
+    if argv[:1] == ['--raw']:
+        raw_dir, argv = Path(argv[1]).resolve(), argv[2:]
+    raw = Raw(raw_dir)
+    for key in argv or ['dunkirk_1940']:
+        wpath, rpath = WEB / f'{key}.json', OUT / f'{key}.research.json'
+        wb, rb = wpath.read_bytes(), rpath.read_bytes()
+        web, res = json.loads(wb), json.loads(rb)
+        if web.get('schema') != 'wl-campaign-web/0.1':
+            sys.exit(f'{wpath}: schema 不是 wl-campaign-web/0.1')
+        if not str(res.get('schema', '')).startswith('dynamo-research/0.1'):
+            sys.exit(f'{rpath}: schema 不是 dynamo-research/0.1')
+        seed = convert(web, res, raw)
+        seed['generated_from']['web']['sha256'] = hashlib.sha256(wb).hexdigest()
+        seed['generated_from']['research']['sha256'] = hashlib.sha256(rb).hexdigest()
+        seed['generated_from']['raw_sha256'] = {k: raw.sha.get(k) for k in seed.pop('_raw_used')}
         (OUT / f'{key}.seed.json').write_text(dump(seed), encoding='utf-8')
         (OUT / f'{key}.dry-run.md').write_text(report(seed), encoding='utf-8')
         print(f'wrote data/seed/battles/{key}.seed.json, {key}.dry-run.md')
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:] or ['dunkirk_1940'])
+    main(sys.argv[1:])

@@ -10,7 +10,7 @@ namespace WorldLine.Api.Tests;
 
 /// <summary>
 /// 戰役 C1 唯讀 API 的組裝邏輯（ARCHITECTURE §19.1.3、§19.5 C1）。純單元測試：不需要資料庫、不啟動容器。
-/// 以 data/seed/battles/dunkirk_1940.seed.json 建列，比對輸出與前端靜態檔 wl-campaign-web/0.1 的結構相容。
+/// 以 data/seed/battles/dunkirk_1940.seed.json 建列，比對輸出與 seed 及前端靜態檔 wl-campaign-web/0.1 的結構相容（C1b：六階段，圖形幾何沿用前端）。
 /// </summary>
 public sealed class CampaignAssemblerTests
 {
@@ -102,39 +102,87 @@ public sealed class CampaignAssemblerTests
         CampaignAssembler.Build(r.Profile, r.Event, r.Phases, r.Features, r.PhaseCites, r.FeatureCites, b ?? []);
 
     [Fact]
-    public void Dunkirk_seed_output_matches_static_json_structure()
+    public void Dunkirk_seed_output_matches_seed_and_static_json_geometry()
     {
+        // C1b（Tai 2026-11-11 13:47）：戰役主體與六個階段改依考證輸入，不再等於前端舊五段；
+        // 圖形幾何仍取自前端 JSON，舊 P5 的圖形因新 P6 沒有戰線圖而移入 deferred、不輸出。
+        var seed = Load("data", "seed", "battles", "dunkirk_1940.seed.json");
         var web = Load("frontend", "public", "campaigns", "dunkirk_1940.json");
         var api = Build(FromSeed());
 
         Assert.Equal("wl-campaign-web/0.1", api["schema"]!.GetValue<string>());
-        foreach (var k in new[] { "key", "name_zh", "name_en", "start", "end", "end_inclusive" })
-            Assert.Equal(web[k]!.GetValue<string>(), api[k]!.GetValue<string>());
+        Assert.Equal("dunkirk_1940", api["key"]!.GetValue<string>());
+        Assert.Equal("敦克爾克橋頭堡戰役", api["name_zh"]!.GetValue<string>());
+        Assert.Equal("Battle of Dunkirk bridgehead", api["name_en"]!.GetValue<string>());
+        Assert.Equal("1940-05-26", api["start"]!.GetValue<string>());
+        Assert.Equal("1940-06-05", api["end"]!.GetValue<string>());
+        Assert.Equal("1940-06-04", api["end_inclusive"]!.GetValue<string>());
 
-        var wp = web["phases"]!.AsArray();
+        var sp = seed["phases"]!.AsArray();
         var ap = api["phases"]!.AsArray();
-        Assert.Equal(wp.Count, ap.Count);
-        for (var i = 0; i < wp.Count; i++)
-            foreach (var k in new[] { "key", "name_zh", "start", "end", "summary_zh" })
-                Assert.Equal(wp[i]![k]!.GetValue<string>(), ap[i]![k]!.GetValue<string>());
+        Assert.Equal(6, ap.Count);
+        for (var i = 0; i < sp.Count; i++)
+        {
+            Assert.Equal(sp[i]!["name"]!["zh-Hant"]!.GetValue<string>(), ap[i]!["name_zh"]!.GetValue<string>());
+            Assert.Equal(sp[i]!["period"]!["start"]!.GetValue<string>(), ap[i]!["start"]!.GetValue<string>());
+            Assert.Equal(sp[i]!["period"]!["end"]!.GetValue<string>(), ap[i]!["end"]!.GetValue<string>());
+        }
 
+        var seqByKey = seed["features"]!.AsArray().ToDictionary(
+            f => f!["feature_key"]!.GetValue<string>(), f => f!["phase_seq"]!.GetValue<int>());
+        var deferred = seed["deferred"]!["features"]!.AsArray().Select(f => f!["feature_key"]!.GetValue<string>()).ToHashSet();
+        Assert.Equal(["dunkirk_1940_p5-site-0", "dunkirk_1940_p5-site-1"], deferred.Order(StringComparer.Ordinal));
         foreach (var layer in new[] { "fronts", "arrows", "sites" })
         {
-            var wf = web["layers"]![layer]!["features"]!.AsArray();
+            var wf = web["layers"]![layer]!["features"]!.AsArray()
+                .Where(f => !deferred.Contains(f!["properties"]!["id"]!.GetValue<string>())).ToList();
             var af = api["layers"]![layer]!["features"]!.AsArray();
             Assert.Equal("FeatureCollection", api["layers"]![layer]!["type"]!.GetValue<string>());
             Assert.Equal(
                 wf.Select(f => f!["properties"]!["id"]!.GetValue<string>()).Order(StringComparer.Ordinal),
-                af.Select(f => f!["properties"]!["id"]!.GetValue<string>()));
+                af.Select(f => f!["properties"]!["id"]!.GetValue<string>()).Order(StringComparer.Ordinal));
             var wById = wf.ToDictionary(f => f!["properties"]!["id"]!.GetValue<string>());
             foreach (var f in af)
             {
-                var w = wById[f!["properties"]!["id"]!.GetValue<string>()]!;
+                var id = f!["properties"]!["id"]!.GetValue<string>();
+                var w = wById[id]!;
                 Assert.True(JsonNode.DeepEquals(w["geometry"]!["coordinates"], f["geometry"]!["coordinates"]));
-                Assert.Equal(w["properties"]!["phase"]!.GetValue<int>(), f["properties"]!["phase"]!.GetValue<int>());
+                Assert.Equal(seqByKey[id], f["properties"]!["phase"]!.GetValue<int>());
                 Assert.Equal(w["properties"]!["group"]!.GetValue<string>(), f["properties"]!["group"]!.GetValue<string>());
             }
         }
+        // P3（無對應舊圖形）與 P6（無戰線圖）不配地圖要素。
+        Assert.DoesNotContain(seqByKey.Values, s => s is 3 or 6);
+    }
+
+    [Fact]
+    public void Dunkirk_seed_grades_follow_verbatim_rule()
+    {
+        var seed = Load("data", "seed", "battles", "dunkirk_1940.seed.json");
+        var all = new List<JsonNode>();
+        void Add(JsonNode? arr) { if (arr is JsonArray a) all.AddRange(a.Select(x => x!)); }
+        Add(seed["event"]!["citations"]);
+        foreach (var p in seed["participants"]!.AsArray()) Add(p!["citations"]);
+        foreach (var p in seed["sub_events"]!.AsArray()) Add(p!["citations"]);
+        foreach (var kv in seed["profile"]!["citations"]!.AsObject()) Add(kv.Value);
+        foreach (var p in seed["phases"]!.AsArray()) Add(p!["citations"]);
+        foreach (var f in seed["features"]!.AsArray()) Add(f!["citations"]);
+        Assert.NotEmpty(all);
+        foreach (var c in all)
+        {
+            Assert.False(string.IsNullOrEmpty(c["accessed_on"]?.GetValue<string>()));
+            if (c["grade"]?.GetValue<string>() is "A")
+            {
+                Assert.True(c["verbatim_check"]!["found"]!.GetValue<bool>());
+                Assert.True(c["quote"]!.GetValue<string>().Normalize().Length <= 80);
+            }
+            else Assert.Equal("pending", c["verification"]!.GetValue<string>());
+        }
+        Assert.All(seed["phases"]!.AsArray(), p => Assert.Equal("pending", p!["status"]!.GetValue<string>()));
+        Assert.Equal("pending", seed["profile"]!["status"]!.GetValue<string>());
+        Assert.Equal(seed["event"]!["id"]!.GetValue<string>(), seed["sub_events"]![0]!["parent_event_id"]!.GetValue<string>());
+        Assert.All(seed["features"]!.AsArray().Where(f => f!["props"]!["unit"] is not null),
+            f => Assert.Equal("pending", f!["props"]!["verification"]!.GetValue<string>()));
     }
 
     [Fact]
@@ -176,13 +224,15 @@ public sealed class CampaignAssemblerTests
         // citation 的撤回在查詢端過濾（retracted_at IS NULL）；組裝端只拿得到未撤回的。這裡驗證撤回階段的 citation 不外漏。
         var api = Build(r);
 
-        Assert.Equal(4, api["phases"]!.AsArray().Count);
+        Assert.Equal(5, api["phases"]!.AsArray().Count);
         Assert.DoesNotContain(api["phases"]!.AsArray(), p => p!["seq"]!.GetValue<int>() == 5);
         var ids = new[] { "fronts", "arrows", "sites" }
             .SelectMany(l => api["layers"]![l]!["features"]!.AsArray())
             .Select(f => f!["properties"]!["id"]!.GetValue<string>()).ToList();
         Assert.DoesNotContain(feature.FeatureKey, ids);
-        Assert.DoesNotContain(ids, id => id.StartsWith("dunkirk_1940_p5-", StringComparison.Ordinal));
+        var p5Keys = r.Features.Where(f => f.PhaseId == retractedPhase.Id).Select(f => f.FeatureKey).ToList();
+        Assert.NotEmpty(p5Keys);
+        Assert.DoesNotContain(ids, id => p5Keys.Contains(id));
         var p5Quotes = r.PhaseCites.Where(c => c.OwnerId == retractedPhase.Id).Select(c => c.Quote).ToHashSet();
         var otherQuotes = r.PhaseCites.Where(c => c.OwnerId != retractedPhase.Id).Select(c => c.Quote)
             .Concat(r.FeatureCites.Select(c => c.Quote)).ToHashSet();

@@ -1,0 +1,700 @@
+{
+ "schema": "dynamo-research/0.1（seed 提案，未入庫）",
+ "researchedOn": "2026-11-11",
+ "sources": {
+  "ellis": {
+   "title": "L. F. Ellis, The War in France and Flanders 1939–1940 (History of the Second World War, UK Military Series, ed. J. R. M. Butler), HMSO",
+   "publisher": "HMSO（HyperWar Foundation 轉錄）",
+   "grade": "A",
+   "gradeBasis": "英國官方戰史（§19.4.2 A：官方檔案含軍方戰史）；以 HyperWar 逐頁轉錄（頁碼標記 --NNN--）取用",
+   "note": "HyperWar 封面頁作 LONDON 1954；前端 JSON 作 1953，出版年待核對（初版 1953）",
+   "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/index.html"
+  },
+  "ramsay": {
+   "title": "Vice-Admiral Sir Bertram H. Ramsay, 'The Evacuation of the Allied Armies from Dunkirk and Neighbouring Beaches' (despatch dated 18 June 1940), Supplement to The London Gazette no. 38017, 17 July 1947, p. 3295",
+   "publisher": "The London Gazette（官方公報）",
+   "grade": "A",
+   "gradeBasis": "英國海軍作戰指揮官向海軍部提交之官方報告，刊於官方公報",
+   "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+   "note": "引文取自公報 PDF（data.pdf）OCR 文字，僅取 OCR 無誤之片段"
+  }
+ },
+ "record": {
+  "eventKind": "battle",
+  "nameZh": "敦克爾克戰役（敦克爾克橋頭堡防禦與撤退）",
+  "nameEn": "Dunkirk bridgehead battle and evacuation, 1940",
+  "nameNote": "Ellis 與 Ramsay 均未用 'Battle of Dunkirk' 一詞；戰役名稱的 A／B 出處待查證（名稱不影響 §6 判定）",
+  "subEvents": [
+   {
+    "key": "operation-dynamo",
+    "nameZh": "發電機行動",
+    "nameEn": "Operation Dynamo",
+    "eventKind": "operation（子事件）",
+    "start": "1940-05-26",
+    "endInclusive": "1940-06-04",
+    "endExclusive": "1940-06-05",
+    "citations": [
+     {
+      "sourceKey": "ramsay",
+      "raw": "ramsay",
+      "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+      "locator": "Despatch §1, p. 3295 col. 1",
+      "quote": "report on Operation \" Dynamo \",",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ramsay",
+      "raw": "ramsay",
+      "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+      "locator": "Despatch §1, p. 3295 col. 1",
+      "quote": "between 26th May and 4th June, 1940.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-11",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+      "locator": "ch. XI, p. 182",
+      "quote": "'Operation Dynamo is to commence'",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-16",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+      "locator": "ch. XVI, p. 246",
+      "quote": "Operation Dynamo was officially ended by an Admiralty message timed 2.23 p.m.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "evidenceNote": "同句前文寫 June the 4th"
+     }
+    ]
+   }
+  ],
+  "fields": {
+   "start": {
+    "value": "1940-05-26",
+    "precision": "day",
+    "citations": [
+     {
+      "sourceKey": "ramsay",
+      "raw": "ramsay",
+      "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+      "locator": "Despatch §1, p. 3295 col. 1",
+      "quote": "between 26th May and 4th June, 1940.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-11",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+      "locator": "ch. XI, p. 182",
+      "quote": "on this Sunday evening, May the 26th, shortly before seven o'clock",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "evidenceNote": "同句：海軍部發出 'Operation Dynamo is to commence'"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-11",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+      "locator": "ch. XI 標題, p. 171",
+      "quote": "THE DECISION TO EVACUATE 26th May, 1940",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     }
+    ]
+   },
+   "end": {
+    "valueInclusive": "1940-06-04",
+    "valueExclusive": "1940-06-05",
+    "precision": "day",
+    "citations": [
+     {
+      "sourceKey": "ramsay",
+      "raw": "ramsay",
+      "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+      "locator": "Despatch §1, p. 3295 col. 1",
+      "quote": "between 26th May and 4th June, 1940.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-16",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+      "locator": "ch. XVI, p. 246",
+      "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-16",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+      "locator": "ch. XVI, p. 246",
+      "quote": "Operation Dynamo was officially ended by an Admiralty message timed 2.23 p.m.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     }
+    ]
+   },
+   "belligerents": {
+    "value": [
+     {
+      "side": "allied",
+      "regime": "united-kingdom",
+      "citations": [
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-11",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+        "locator": "ch. XI, p. 180",
+        "quote": "appointed to take command of British troops in the Dunkirk bridgehead",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day"
+       }
+      ]
+     },
+     {
+      "side": "allied",
+      "regime": "french-third-republic",
+      "citations": [
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-11",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+        "locator": "ch. XI, p. 178",
+        "quote": "for the French were to hold the sector west of this line.",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day"
+       },
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-16",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+        "locator": "ch. XVI, p. 246",
+        "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day"
+       }
+      ]
+     },
+     {
+      "side": "allied",
+      "regime": "kingdom-of-belgium",
+      "until": "1940-05-28",
+      "untilNote": "比軍 5/27 午夜停火；半開終點 1940-05-28",
+      "citations": [
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-12",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+        "locator": "ch. XII, p. 199",
+        "quote": "the King of the Belgians had accepted defeat",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day",
+        "evidenceNote": "同句前文作 'By midnight on May the 278th'（轉錄錯字，章題為 27th May）"
+       },
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-12",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+        "locator": "ch. XII, p. 199",
+        "quote": "the Belgian Army had been ordered to cease fire",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day"
+       }
+      ]
+     },
+     {
+      "side": "axis",
+      "regime": "deutsches-reich",
+      "citations": [
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-14",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+        "locator": "ch. XIV, p. 217",
+        "quote": "the attack designed to annihilate the enemy forces still encircled",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day",
+        "perspective": "德方（German Diary，Ellis 英譯引述）"
+       },
+       {
+        "sourceKey": "ellis",
+        "raw": "ellis-16",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+        "locator": "ch. XVI, p. 243",
+        "quote": "Throughout the day waves of aircraft attacked troops assembled for embarkation",
+        "quoteLang": "en",
+        "accessedOn": "2026-11-11",
+        "grade": "A",
+        "datePrecision": "day",
+        "perspective": "德方（German Air Ministry situation report，Ellis 英譯引述）"
+       }
+      ]
+     }
+    ]
+   },
+   "objective": {
+    "valueZh": "同盟國：守住掩護敦克爾克的橋頭堡，以便自敦克爾克港與海灘撤出部隊；德國：殲滅被圍於敦克爾克以南、東南之敵軍並奪取該地區",
+    "citations": [
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-11",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+      "locator": "ch. XI, p. 172（Blanchard 第 30 號作戰命令英譯）",
+      "quote": "so as to form a bridgehead covering Dunkirk in breadth.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "perspective": "法方作戰命令"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-11",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+      "locator": "ch. XI, p. 172（同上）",
+      "quote": "This bridgehead will be held with no thought of retreat.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "perspective": "法方作戰命令"
+     },
+     {
+      "sourceKey": "ramsay",
+      "raw": "ramsay",
+      "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+      "locator": "Despatch §1（撤退本身＝發電機行動，見子事件）",
+      "quote": "between 26th May and 4th June, 1940.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-14",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+      "locator": "ch. XIV, p. 217",
+      "quote": "the attack designed to annihilate the enemy forces still encircled",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "perspective": "德方"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-14",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+      "locator": "ch. XIV, p. 217（同句）",
+      "quote": "in the area south and south-east of Dunkirk",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "perspective": "德方"
+     }
+    ]
+   },
+   "area": {
+    "valueZh": "敦克爾克橋頭堡：沿運河線自 Mardyck 經 Spycker、Bergues、Furnes 至 Nieuport，全長約 30 英里；含敦克爾克港與以東海灘",
+    "citations": [
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-11",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+      "locator": "ch. XI, p. 178",
+      "quote": "the whole perimeter to be held extended for about thirty miles.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-12",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+      "locator": "ch. XII, p. 187",
+      "quote": "occupied a line which followed canals from Mardick through Spycker to Bergues",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     }
+    ]
+   },
+   "controlChange": {
+    "valueZh": "周界逐步縮小（5/31 夜放棄東段，6/1–6/3 退至 Dunkirk–Furnes 運河線），6/4 上午 9 時殘餘法軍投降，敦克爾克落入德軍控制",
+    "citations": [
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-15",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+      "locator": "ch. XV, p. 236",
+      "quote": "During the night the eastern sector of the bridgehead was abandoned",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "evidenceNote": "5/31 夜"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-16",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+      "locator": "ch. XVI, p. 245",
+      "quote": "their defence was forced back to the line of the Dunkirk–Furnes Canal",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     },
+     {
+      "sourceKey": "ellis",
+      "raw": "ellis-16",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+      "locator": "ch. XVI, p. 246",
+      "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day"
+     }
+    ]
+   }
+  }
+ },
+ "phases": [
+  {
+   "seq": 1,
+   "nameZh": "決定撤退、發電機行動啟動與周界編成",
+   "start": "1940-05-26",
+   "end": "1940-05-28",
+   "maps": [
+    "Ellis Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182（HyperWar maps/UK-NWE-Flanders-5.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200（maps/UK-NWE-Flanders-6.jpg）"
+   ],
+   "citations": [
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-11",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+     "locator": "ch. XI 標題, p. 171",
+     "quote": "THE DECISION TO EVACUATE 26th May, 1940",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-12",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+     "locator": "ch. XII 標題, p. 183",
+     "quote": "DUNKIRK, BETHUNE AND YPRES 27th May, 1940",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-12",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+     "locator": "ch. XII, p. 199",
+     "quote": "the Belgian Army had been ordered to cease fire",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    }
+   ]
+  },
+  {
+   "seq": 2,
+   "nameZh": "比軍投降後撤向海岸",
+   "start": "1940-05-28",
+   "end": "1940-05-29",
+   "maps": [
+    "Ellis Situation Map 'The Withdrawal to the Coast', facing p. 202（maps/UK-NWE-Flanders-7.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214（maps/UK-NWE-Flanders-8.jpg）"
+   ],
+   "citations": [
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-13",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-13.html",
+     "locator": "ch. XIII 標題, p. 201",
+     "quote": "AFTER THE BELGIAN SURRENDER 28th May, 1940",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    }
+   ]
+  },
+  {
+   "seq": 3,
+   "nameZh": "最後撤入橋頭堡",
+   "start": "1940-05-29",
+   "end": "1940-05-30",
+   "maps": [
+    "Ellis Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224（maps/UK-NWE-Flanders-9.jpg）"
+   ],
+   "citations": [
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-14",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+     "locator": "ch. XIV 標題, p. 215",
+     "quote": "THE FINAL WITHDRAWAL 29th May, 1940",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    }
+   ]
+  },
+  {
+   "seq": 4,
+   "nameZh": "橋頭堡防禦",
+   "start": "1940-05-30",
+   "end": "1940-06-01",
+   "maps": [
+    "Ellis Situation Map 'Situation on the evening of 30th May, 1940', facing p. 238（maps/UK-NWE-Flanders-10.jpg）"
+   ],
+   "citations": [
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-15",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "locator": "ch. XV 標題, p. 225",
+     "quote": "THE DEFENCE OF THE BRIDGEHEAD 30th May and 31st May, 1940",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-15",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "locator": "ch. XV, p. 225",
+     "quote": "By midday on the 30th practically all our retiring forces",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-15",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "locator": "ch. XV, p. 236",
+     "quote": "During the night the eastern sector of the bridgehead was abandoned",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    }
+   ]
+  },
+  {
+   "seq": 5,
+   "nameZh": "縮小周界與英軍最後撤離",
+   "start": "1940-06-01",
+   "end": "1940-06-03",
+   "maps": [
+    "Ellis Situation Map 'Situation on the evening of 1st June, 1940', facing p. 244（maps/UK-NWE-Flanders-11.jpg）"
+   ],
+   "citations": [
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-16",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+     "locator": "ch. XVI 標題, p. 239",
+     "quote": "LAST DAYS AT DUNKIRK 1st June to 4th June, 1940",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-16",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+     "locator": "ch. XVI, p. 240",
+     "quote": "the existing British front should be held till midnight of the 1st",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-16",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+     "locator": "ch. XVI, p. 245",
+     "quote": "there were no more British troops to be brought away",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day",
+     "evidenceNote": "指 6/2–6/3 夜，同段後句 'In the early hours of the 3rd'"
+    }
+   ]
+  },
+  {
+   "seq": 6,
+   "nameZh": "法軍後衛與敦克爾克陷落",
+   "start": "1940-06-03",
+   "end": "1940-06-05",
+   "maps": [
+    "待查證：Ellis 無 6/2–6/4 situation map；候選 USMA 'Campaign in the West, Situation 4 June 1940'（見 mapSources）"
+   ],
+   "citations": [
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-16",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+     "locator": "ch. XVI, p. 245",
+     "quote": "their defence was forced back to the line of the Dunkirk–Furnes Canal",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-16",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+     "locator": "ch. XVI, p. 246",
+     "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    },
+    {
+     "sourceKey": "ellis",
+     "raw": "ellis-16",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+     "locator": "ch. XVI, p. 246",
+     "quote": "Operation Dynamo was officially ended by an Admiralty message timed 2.23 p.m.",
+     "quoteLang": "en",
+     "accessedOn": "2026-11-11",
+     "grade": "A",
+     "datePrecision": "day"
+    }
+   ]
+  }
+ ],
+ "mapSources": [
+  {
+   "source": "Ellis（A）situation maps",
+   "items": [
+    "Ellis Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182（HyperWar maps/UK-NWE-Flanders-5.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200（maps/UK-NWE-Flanders-6.jpg）",
+    "Ellis Situation Map 'The Withdrawal to the Coast', facing p. 202（maps/UK-NWE-Flanders-7.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214（maps/UK-NWE-Flanders-8.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224（maps/UK-NWE-Flanders-9.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 30th May, 1940', facing p. 238（maps/UK-NWE-Flanders-10.jpg）",
+    "Ellis Situation Map 'Situation on the evening of 1st June, 1940', facing p. 244（maps/UK-NWE-Flanders-11.jpg）"
+   ],
+   "verified": "圖檔 HTTP 200 已取得；圖號＝facing page，見 ellis-index 目錄 'SITUATION MAPS'"
+  },
+  {
+   "source": "Ellis（A）sketch maps",
+   "items": [
+    "'Sea Routes from Dunkirk', p. 185（maps/UK-NWE-Flanders-xii.jpg）",
+    "'Dunkirk Harbour', p. 222（maps/UK-NWE-Flanders-xiii.jpg）",
+    "'German Situation Map--24th May, 1940', inside back cover（maps/UK-NWE-Flanders-14.jpg）"
+   ]
+  },
+  {
+   "source": "USMA Department of History, Campaign Atlas WWII European Theater（官方軍校戰史地圖；等級建議 B，待決）",
+   "items": [
+    "'Campaign in the West, Situation 4 June 1940'（https://dhc.westpoint.edu/wp-content/uploads/sites/6/2025/01/WWIIEurope13.jpg；dhc.westpoint.edu/atlases 清單）"
+   ],
+   "verified": "清單頁已取得；圖檔本次 TLS 錯誤未下載，內容待核對；1980 年印刷版 Campaign atlas to the Second World War（LoC 81601304）圖號待查"
+  }
+ ],
+ "gaps": [
+  {
+   "target": "field:name",
+   "kind": "not_found",
+   "note": "'Battle of Dunkirk' 名稱的 A／B 出處"
+  },
+  {
+   "target": "regime:deutsches-reich objective",
+   "kind": "partial",
+   "note": "德方目標只有 Ellis 英譯引述德方日誌；德國官方戰史（Das Deutsche Reich und der Zweite Weltkrieg Bd. 2）未取得"
+  },
+  {
+   "target": "phase:6 map",
+   "kind": "not_found",
+   "note": "6/2–6/4 戰線圖；USMA 4 June 圖待核對"
+  },
+  {
+   "target": "field:end time",
+   "kind": "note",
+   "note": "6/4 法軍 09:00 投降與 14:23 海軍部結束訊號；精度取 day"
+  },
+  {
+   "target": "source:ramsay narrative",
+   "kind": "not_fetched",
+   "note": "Ramsay 報告逐日敘述（p. 3296 起）與 Appendix 未逐頁取用"
+  },
+  {
+   "target": "source:B 級",
+   "kind": "blocked",
+   "note": "Britannica 'Dunkirk evacuation' 403／逾時，未繞過；本案 A 級已滿足門檻，B 級僅備援"
+  },
+  {
+   "target": "source:ellis edition",
+   "kind": "conflict",
+   "note": "出版年 1953 vs HyperWar 封面 1954"
+  }
+ ]
+}

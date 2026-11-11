@@ -1,0 +1,2230 @@
+{
+ "batch": "b3-run100-batch05",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation）、§16.4.2（gaps）；alignedTo=b0b0e0f：positions 用 positionKind、roleCandidates 用 role_kind；T14 R0–R6 與黨職裁決（Tai 2026-11-11 12:12／12:47）已於研究時套用；regimeId 一律 null（本批不連資料庫，無法確認政權對應）",
+ "alignNote": "依 ARCHITECTURE b0b0e0f 對齊格式直接撰寫（本批研究時即套用，非事後轉換）：positions 用 positionKind；黨職與 R0–R4 進 roleCandidates（role_kind）；T14 R0–R6、黨籍席位裁決（Tai 2026-11-11 12:12／12:47）已套用。",
+ "rawDir": "/tmp/b3run100/batch05/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndb-hindenburg": {
+   "title": "Hindenburg, Paul von",
+   "authors": [
+    "Werner Conze"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften（Deutsche Biographie）",
+   "published_text": "Neue Deutsche Biographie 9 (1972), S. 178–182",
+   "url": "https://www.deutsche-biographie.de/sfz57166.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB），具名作者"
+  },
+  "tdv-said-halim": {
+   "title": "SAİD HALİM PAŞA",
+   "authors": [
+    "M. Hanefi Bostan"
+   ],
+   "publisher": "TDV İslâm Araştırmaları Merkezi（TDV İslâm Ansiklopedisi）",
+   "published_text": "TDV İslâm Ansiklopedisi（線上版）",
+   "url": "https://islamansiklopedisi.org.tr/said-halim-pasa",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "TDV 具名條目（任務指示：TDV 具名條目 B）"
+  },
+  "treccani-pio12": {
+   "title": "PIO XII",
+   "authors": [
+    "Francesco Traniello"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia dei Papi (2000)",
+   "url": "https://www.treccani.it/enciclopedia/pio-xii_(Enciclopedia-dei-Papi)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Treccani 具名條目（任務指示：Treccani 具名條目 B）"
+  },
+  "mek-karolyi": {
+   "title": "Károlyi Mihály, gróf",
+   "authors": [],
+   "publisher": "Magyar Elektronikus Könyvtár（OSZK）／Akadémiai Kiadó",
+   "published_text": "Magyar Életrajzi Lexikon 1000–1990",
+   "url": "https://mek.oszk.hu/00300/00355/html/ABC07165/07472.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（匈牙利國家圖書館 OSZK 數位館藏；條目無個別署名）"
+  },
+  "ndl-yonai": {
+   "title": "米内光政｜近代日本人の肖像",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "近代日本人の肖像（解説）",
+   "url": "https://www.ndl.go.jp/portrait/datas/218.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國立國會圖書館官方人物頁"
+  },
+  "encycl-karolyi": {
+   "title": "Károlyi, Mihály (1875–1955)",
+   "authors": [],
+   "publisher": "Gale／Encyclopedia.com 轉載",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/karolyi-mihaly-1875-1955",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：頁面未見具名作者（Q9），只作 gap 候選"
+  },
+  "kotobank-yonai": {
+   "title": "米内光政",
+   "authors": [],
+   "publisher": "コトバンク（辞書彙編）",
+   "published_text": null,
+   "url": "https://kotobank.jp/word/%E7%B1%B3%E5%86%85%E5%85%89%E6%94%BF-18386",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：彙編站（Q9），只作 gap 候選"
+  },
+  "kure-said": {
+   "title": "SAİD HALİM PAŞA",
+   "authors": [],
+   "publisher": "KÜRE Ansiklopedi",
+   "published_text": null,
+   "url": "https://kureansiklopedi.com/tr/detay/said-halim-pasa-2",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：未取得作者資訊（Q9），只作 gap 候選"
+  }
+ },
+ "people": [
+  {
+   "key": "hu-karolyi-mihaly",
+   "bioId": "01a1c39b-824e-7bd1-a192-c4e7b4210a10",
+   "name": "Mihály Károlyi",
+   "nameZh": "卡羅伊·米哈伊",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1875-03-04",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與政黨活動",
+      "en": "Origins and party career"
+     },
+     "body": {
+      "zh-Hant": "1875年3月4日生於布達佩斯。1901年起為自由黨黨員，1905年成為獨立黨的議員，1913年出任獨立黨主席。大戰最後一年，他明確展開和平鼓吹。",
+      "en": "Born in Budapest on 4 March 1875. A member of the Liberal Party from 1901, he became an Independence Party deputy in 1905 and its president in 1913. In the last year of the war he campaigned firmly for peace."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目開頭",
+       "quote": "Bp., 1875. márc. 4.",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "1901-től a Szabadelvű Párt tagja",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "1905-ben a Függetlenségi Párt ogy.-i képviselője",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "melynek 1913-ban elnöke lett",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "a háború utolsó évében határozott békeagitációt folytatott",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1918-10-31",
+      "end": "1919-08-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1918–1919 年的政權與流亡",
+      "en": "Premiership, presidency and exile 1918–1919"
+     },
+     "body": {
+      "zh-Hant": "1918年10月31日國王卡爾四世任命他為總理，1919年1月11日他成為共和國總統。1919年3月21日他辭職，同年7月初以親協約國政治人物身分流亡西方。",
+      "en": "King Charles IV appointed him prime minister on 31 October 1918, and on 11 January 1919 he became president of the republic. He resigned on 21 March 1919 and emigrated to the West in early July 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "IV. Károly kir. 1918. okt. 31-én miniszterelnökké nevezte ki",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "1919. jan. 11-én köztársasági elnök lett",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "márc. 21-én lemondott",
+       "quoteLang": "hu",
+       "evidenceNote": "月日取自同句；年份 1919 見前句「Vyx-jegyzék (1919. márc. 20.)」",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "1919. júl. elején mint antantbarát politikus Ny-ra emigrált",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "karolyi-independence-mp",
+     "positionKind": "legislator",
+     "title": {
+      "orig": "a Függetlenségi Párt ogy.-i képviselője",
+      "zh-Hant": "獨立黨議員",
+      "en": "Deputy of the Independence Party"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "獨立黨（Függetlenségi Párt）",
+      "en": "Independence Party"
+     },
+     "period": {
+      "start": "1905-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "1905-ben a Függetlenségi Párt ogy.-i képviselője",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "以政黨身分取得的席位（依 Tai 2026-11-11 12:47 薩拉查裁決屬 R1），但來源只寫 1905 年、未寫席位止點，無法證明與 1908–1945 時間窗有交集（窗外應為 R5），不硬判，留經歷層（審查改：原標 partyPostAmbiguous 不適用，黨籍席位已非不明確）"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "karolyi-independence-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "獨立黨（Függetlenségi Párt）",
+      "en": "Independence Party"
+     },
+     "title": {
+      "orig": "a Függetlenségi Párt … elnöke",
+      "zh-Hant": "獨立黨主席",
+      "en": "President of the Independence Party"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1913-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "melynek 1913-ban elnöke lett",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "karolyi-own-party-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "卡羅伊黨（Károlyi Párt）",
+      "en": "Károlyi Party"
+     },
+     "title": {
+      "orig": "Károlyi Párt vezetője",
+      "zh-Hant": "卡羅伊黨領袖",
+      "en": "Leader of the Károlyi Party"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "mek-karolyi",
+       "locator": "條目第一段",
+       "quote": "Károlyi Párt vezetőjeként",
+       "quoteLang": "hu",
+       "evidenceNote": "來源未寫起訖日，期間留空",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:karolyi-premier-president",
+     "gapKind": "not_found",
+     "note": "1918-10-31 至 1919-03-21 的總理、總統任期屬 5442 名單內，不另建；本批只取得單一 A 來源（Magyar Életrajzi Lexikon：1918-10-31 任總理、1919-01-11 任總統），未與其他來源逐條對照",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:karolyi-own-party-leader",
+     "gapKind": "not_found",
+     "note": "卡羅伊黨（Károlyi Párt）創黨與領袖任期起訖日：Magyar Életrajzi Lexikon 未寫日期；Encyclopedia.com 條目（Gale）無具名作者，只能作候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "encycl-karolyi",
+       "locator": "條目第二段",
+       "quote": "He established the leading opposition force, the Károlyi Party",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:1920-1955",
+     "gapKind": "not_found",
+     "note": "1919 年流亡後至 1955 年死亡的經歷未寫段落；其中 1920–1945 流亡期在 1908–1945 時間窗內，Magyar Életrajzi Lexikon 有概述但未寫具體職位與日期，待其他 A／B 來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Károlyi Mihály 1918 miniszterelnök köztársasági elnök életrajz Magyar életrajzi lexikon",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch 找到 mek.oszk.hu 的 Magyar Életrajzi Lexikon 條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "https://www.britannica.com/biography/Mihaly-Karolyi",
+     "url": "https://www.britannica.com/biography/Mihaly-Karolyi",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "mek.oszk.hu Magyar Életrajzi Lexikon 條目",
+     "url": "https://mek.oszk.hu/00300/00355/html/ABC07165/07472.htm",
+     "result": "found_A",
+     "note": "抓取成功（ISO-8859-2，已轉為 UTF-8 純文字）"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Károlyi, Mihály (1875–1955)",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/karolyi-mihaly-1875-1955",
+     "result": "unrated",
+     "note": "Gale 轉載，頁面未見具名作者，只作 gap 候選"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Károlyi Mihály 1875 GND（lobid）",
+     "url": "https://lobid.org/gnd/search?q=K%C3%A1rolyi+Mih%C3%A1ly+1875&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 偏好名 Károlyi, Mihály；異寫 Károly, Mihály"
+    }
+   ]
+  },
+  {
+   "key": "de-hindenburg-paul",
+   "bioId": "01a19f15-35dd-7e28-83ee-8129f41bbef0",
+   "name": "Paul von Hindenburg",
+   "nameZh": "保羅·馮·興登堡",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1847-10-02",
+      "end": "1914-08-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early military career"
+     },
+     "body": {
+      "zh-Hant": "1847年10月2日生於波森。1859至1866年就讀軍校（卡德特學校）。第一次大戰爆發時他已在漢諾威退休，原本沒有安排任用。",
+      "en": "Born at Posen on 2 October 1847. From 1859 to 1866 he attended the cadet schools. When the war broke out he was living retired in Hanover and no employment was foreseen for him."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 條目標頭",
+       "quote": "* 2.10.1847 Posen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 生平第一段",
+       "quote": "1859-66 die Kadettenanstalten in Wahlstatt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "den in Hannover im Ruhestand lebenden H.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-08-21",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "一戰統帥",
+      "en": "Command in the First World War"
+     },
+     "body": {
+      "zh-Hant": "1914年他出任第八集團軍司令，同年11月1日統轄東線全部德軍；1916年8月29日接替法金漢，出任總參謀長。戰後他請辭離任。",
+      "en": "He became commander of the 8th Army in 1914 and on 1 November 1914 took the supreme command over all German troops of the Eastern Front. On 29 August 1916 he succeeded Falkenhayn, then Chief of the General Staff. After the war he took his leave."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "wurde H. Oberbefehlshaber der 8. Armee",
+       "quoteLang": "de",
+       "evidenceNote": "同句「am 21.8.1914」為魯登道夫任參謀長日；任命日取同句推得",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "am 21.8.1914 Ludendorff zum Chef des Stabes der 8. Armee",
+       "quoteLang": "de",
+       "evidenceNote": "興登堡任第八集團軍司令與此同句（Als am 21.8.1914 …, wurde H. …），1914 年依同句推得",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "am 1.11.1914 den Oberbefehl über alle deutschen Truppen der Ostfront",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "H. am 29.8.1916 sein Nachfolger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "Chef des Generalstabs von Falkenhayn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 戰後段",
+       "quote": "nahm H. den Abschied",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫日期，只寫在凡爾賽和約被接受後",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1925-04-01",
+      "end": "1934-08-02"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "帝國總統",
+      "en": "Reich President"
+     },
+     "body": {
+      "zh-Hant": "1925年4月，他本人無黨籍，以跨黨派候選人身分參加帝國總統選舉的第二輪。1933年1月30日他依憲法任命希特勒為總理。他於1934年8月2日去世，帝國總統一職隨之消滅。",
+      "en": "In April 1925, himself without party, he stood as a non-partisan candidate in the second round of the Reich presidential election. On 30 January 1933 he appointed Hitler Reich Chancellor in accordance with the constitution. He died on 2 August 1934, and the office of Reich President lapsed with his death."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 總統段",
+       "quote": "Im April 1925 stellte er sich – selbst parteilos –",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 總統段",
+       "quote": "zum 2. Wahlgang der Reichspräsidentenwahl als überparteilicher Kandidat",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 總統段",
+       "quote": "Hitler als Reichskanzler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 總統段",
+       "quote": "verfassungsgemäß zu berufen (30.1.1933)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 條目標頭",
+       "quote": "† 2.8.1934 Neudeck",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 總統段",
+       "quote": "Mit seinem Tode erlosch das Amt des Reichspräsidenten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hindenburg-oberost",
+     "positionKind": "military_command",
+     "title": {
+      "orig": "Oberbefehl über alle deutschen Truppen der Ostfront",
+      "zh-Hant": "東線德軍總司令（Ober Ost）",
+      "en": "Commander-in-Chief East (Ober Ost)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍東線",
+      "en": "German Army, Eastern Front"
+     },
+     "period": {
+      "start": "1914-11-01",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "am 1.11.1914 den Oberbefehl über alle deutschen Truppen der Ostfront",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "battle_link"
+     ],
+     "t14Reason": "戰區級總司令（類別符合 R4），但終點未寫日期、政權對應（regimeId）待查證、本批未建立戰役連結，門檻無法證明，暫留經歷層"
+    },
+    {
+     "key": "hindenburg-chief-gen-staff",
+     "positionKind": "military_command",
+     "title": {
+      "orig": "Chef des Generalstabs（Falkenhayn 的繼任者）",
+      "zh-Hant": "總參謀長（陸軍最高統帥部）",
+      "en": "Chief of the General Staff (OHL)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國陸軍最高統帥部",
+      "en": "German Supreme Army Command (OHL)"
+     },
+     "period": {
+      "start": "1916-08-29",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "H. am 29.8.1916 sein Nachfolger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hindenburg",
+       "locator": "NDB 一戰段",
+       "quote": "Chef des Generalstabs von Falkenhayn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "rank"
+     ],
+     "t14Reason": "國家級最高軍職（類別符合 R4），但終點只寫「戰後退休」無日期、職位等級由 Falkenhayn 的職稱類推而非自身明寫、政權對應待查證，暫留經歷層"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:hindenburg-chief-gen-staff",
+     "gapKind": "not_found",
+     "note": "總參謀長任期終點（1919 年離任日）及官方職稱：NDB 只寫在凡爾賽和約被接受後請辭；本批未取得載明日期的 A／B 來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:hindenburg-president",
+     "gapKind": "not_found",
+     "note": "帝國總統（1925–1934-08-02）任期據研究者稱在名單 5442（leader_records）內，本批未重建，但本人 recordIds 為空，寫庫前須確認；NDB 本文未寫就任日，僅寫 1925 年 4 月第二輪選舉與 1934-08-02 去世時職位消滅",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Paul von Hindenburg Neue Deutsche Biographie deutsche-biographie.de",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch 找到 Deutsche Biographie sfz57166（NDB, Conze 1972）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "deutsche-biographie.de/sfz5440.html（錯誤猜測的網址）",
+     "url": "https://www.deutsche-biographie.de/sfz5440.html",
+     "result": "no_result",
+     "note": "404，改用搜尋結果的正確網址"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "deutsche-biographie.de/sfz57166.html",
+     "url": "https://www.deutsche-biographie.de/sfz57166.html",
+     "result": "found_A",
+     "note": "抓取成功，含 NDB 全文"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Hindenburg Paul von GND（lobid）",
+     "url": "https://lobid.org/gnd/search?q=Hindenburg+Paul+von&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 偏好名 Hindenburg, Paul von，GND 118551264"
+    }
+   ]
+  },
+  {
+   "key": "jp-yonai-mitsumasa",
+   "bioId": "7cd012b7-d091-4f34-8c32-f04987b2c4e0",
+   "name": "Mitsumasa Yonai",
+   "nameZh": "米內光政",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-03-02",
+      "end": "1948-04-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生平概略",
+      "en": "Life outline"
+     },
+     "body": {
+      "zh-Hant": "1880年3月2日生，1948年4月20日歿。畢業於盛岡中學、海軍兵學校與海軍大學校。曾任橫須賀鎮守府司令長官等職，1936年任聯合艦隊司令長官。",
+      "en": "Born on 2 March 1880 and died on 20 April 1948. He graduated from Morioka Middle School, the Naval Academy and the Naval War College. He served as commander-in-chief of the Yokosuka Naval District and other posts, and in 1936 became commander-in-chief of the Combined Fleet."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "生沒年",
+       "quote": "明治13年3月2日 〜 昭和23年4月20日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "盛岡中学校、海軍兵学校、海軍大学校を卒業",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "横須賀鎮守府司令長官などを歴任し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "昭和11(1936)年連合艦隊司令長官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1937-01-01",
+      "end": null
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "海相與首相",
+      "en": "Navy minister and prime minister"
+     },
+     "body": {
+      "zh-Hant": "次年（1937年）他在林內閣出任海相，其後在第一次近衛內閣與平沼內閣留任。1940年1月組閣出任首相，同年7月內閣總辭。東條下台後，他在小磯內閣復任海相，並歷任鈴木、東久邇、幣原各內閣的海相。",
+      "en": "The following year (1937) he became navy minister in the Hayashi cabinet and stayed on in the first Konoe and Hiranuma cabinets. He formed a cabinet in January 1940 as prime minister, and it resigned en bloc in July of that year. After Tojo stepped down he returned as navy minister in the Koiso cabinet and served in the Suzuki, Higashikuni and Shidehara cabinets."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "翌年林内閣の海相、海軍大将となり",
+       "quoteLang": "ja",
+       "evidenceNote": "「翌年」＝前句昭和11(1936)年の翌年（推算 1937）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "第1次近衛内閣、平沼内閣では留任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "15年1月組閣し首相に就任したが同年7月総辞職",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "東条退陣後、小磯内閣で海相に復帰",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "鈴木、東久邇、幣原の各内閣の海相を歴任し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "yonai-combined-fleet",
+     "positionKind": "military_command",
+     "title": {
+      "orig": "連合艦隊司令長官",
+      "zh-Hant": "聯合艦隊司令長官",
+      "en": "Commander-in-Chief of the Combined Fleet"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國海軍",
+      "en": "Imperial Japanese Navy"
+     },
+     "period": {
+      "start": "1936-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "昭和11(1936)年連合艦隊司令長官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "艦隊級司令官，引文未明寫為全軍或軍種的國家級最高軍職、也無戰役連結，不命中 R4；歸 R5",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "聯合艦隊司令長官是否等同 R4「戰區／方面軍司令」或「軍種總司令」，T14 文件未涵蓋海軍艦隊編制；引文亦未明寫職位等級、無戰役連結。暫維持 R5，待 Tai 裁定"
+    },
+    {
+     "key": "yonai-navy-minister-1",
+     "positionKind": "minister",
+     "title": {
+      "orig": "海相（林内閣、第1次近衛内閣、平沼内閣）",
+      "zh-Hant": "海軍大臣",
+      "en": "Navy Minister"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國海軍省",
+      "en": "Imperial Japanese Navy Ministry"
+     },
+     "period": {
+      "start": "1937-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "翌年林内閣の海相、海軍大将となり",
+       "quoteLang": "ja",
+       "evidenceNote": "「翌年」＝前句昭和11(1936)年の翌年（推算 1937）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "第1次近衛内閣、平沼内閣では留任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "單獨海軍部不屬 R3 的四部（外交、國防／陸軍、財政、內政），歸 R5；終點只寫「留任」未寫日期"
+    },
+    {
+     "key": "yonai-navy-minister-2",
+     "positionKind": "minister",
+     "title": {
+      "orig": "小磯内閣ほかで海相",
+      "zh-Hant": "海軍大臣（復任）",
+      "en": "Navy Minister (second term)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國海軍省",
+      "en": "Imperial Japanese Navy Ministry"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "東条退陣後、小磯内閣で海相に復帰",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-yonai",
+       "locator": "解説",
+       "quote": "鈴木、東久邇、幣原の各内閣の海相を歴任し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "單獨海軍部不屬 R3 四部，歸 R5；起訖日未寫"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:yonai-premier",
+     "gapKind": "not_found",
+     "note": "首相任期（1940 年 1 月至 7 月）據研究者稱在名單 5442 內，本批未重建，但本人 recordIds 為空，寫庫前須確認；NDL 頁只寫「15年1月組閣…同年7月総辞職」，未寫日（審查刪去原 note 中未見於已抓原文的具體日期）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:yonai-navy-minister-1",
+     "gapKind": "not_found",
+     "note": "各任海相起訖日與連續任期：NDL 頁未寫日期；待官方（JACAR、官報）日期來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:early-career",
+     "gapKind": "not_found",
+     "note": "日露戦争從軍以外的早年經歷（艦長、軍令部等）、第3／第2艦隊司令長官任期日期，只有 NDL 一則簡介，待 A／B 來源",
+     "candidateCitations": [
+      {
+       "sourceKey": "kotobank-yonai",
+       "locator": "解説",
+       "quote": "44年7月に再び海軍相となり",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "米内光政 国立国会図書館 近代日本人の肖像 略歴",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch 找到 NDL「近代日本人の肖像」生年頁"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "ndl.go.jp/portrait/dateofbirth/1880",
+     "url": "https://www.ndl.go.jp/portrait/dateofbirth/1880",
+     "result": "found_A",
+     "note": "確認米内光政項目與 datas/218"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "ndl.go.jp/portrait/datas/218.html",
+     "url": "https://www.ndl.go.jp/portrait/datas/218.html",
+     "result": "found_A",
+     "note": "抓取成功，含生沒年與解說"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "コトバンク 米内光政",
+     "url": "https://kotobank.jp/word/%E7%B1%B3%E5%86%85%E5%85%89%E6%94%BF-18386",
+     "result": "unrated",
+     "note": "彙編站，只作 gap 候選"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Yonai Mitsumasa GND（lobid）",
+     "url": "https://lobid.org/gnd/search?q=Yonai+Mitsumasa&format=json&size=2",
+     "result": "no_result",
+     "note": "GND 查無"
+    }
+   ]
+  },
+  {
+   "key": "va-pius-xii",
+   "bioId": "01a1b4b5-721f-7359-8dc5-f9f98c5e906a",
+   "name": "Pius XII (Eugenio Pacelli)",
+   "nameZh": "庇護十二世（歐金尼奧·帕切利）",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1876-03-02",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與教廷任職",
+      "en": "Origins and early Curia career"
+     },
+     "body": {
+      "zh-Hant": "尤金尼奧·帕切利1876年3月2日生於羅馬，1899年4月2日晉鐸。1911年他接任貝尼尼的職務，出任教會特別事務部的副秘書。",
+      "en": "Eugenio Pacelli was born in Rome on 2 March 1876 and ordained priest on 2 April 1899. In 1911 he succeeded Monsignor Benigni as undersecretary of the Congregation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "Eugenio Pacelli nacque a Roma il 2 marzo 1876",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "Ordinato sacerdote il 2 aprile 1899",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nel 1911 succedette a monsignor Benigni quale sottosegretario",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "sottosegretario della Congregazione degli Affari Ecclesiastici Straordinari",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-05-01",
+      "end": "1929-12-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "駐德教廷大使",
+      "en": "Nuncio in Germany"
+     },
+     "body": {
+      "zh-Hant": "1917年5月，本篤十五世任命他為駐慕尼黑教廷大使。1920年8月教廷與已成共和國的德意志帝國建立直接外交關係，帕切利並獲託管新設的柏林使館。1929年12月16日的樞機團會議上他被授予樞機。",
+      "en": "In May 1917 Benedict XV appointed him papal nuncio at Munich. In August 1920 the Holy See and the now republican Reich government established direct relations, and Pacelli was also entrusted with the new Nunciature of Berlin. He received the cardinal's hat in the consistory of 16 December 1929."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nel maggio 1917 fu nominato da Benedetto XV",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nunzio pontificio a Monaco di Baviera",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nell'agosto del 1920, la Santa Sede e il governo, ormai repubblicano",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "ormai repubblicano, del Reich tedesco stabilirono",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "diretti rapporti diplomatici",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "a Pacelli fu affidata anche la nuova Nunziatura di Berlino",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "Concistoro del 16 dicembre 1929",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "per ricevere la porpora cardinalizia, che gli fu attribuita da Pio XI",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1930-02-09",
+      "end": "1939-03-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國務卿與教宗",
+      "en": "Secretary of State and pope"
+     },
+     "body": {
+      "zh-Hant": "1930年2月9日他意外被召喚接替加斯帕里。庇護十一世去世後，樞機帕切利在經三輪投票的短暫秘密會議後，於1939年3月2日當選接任，取名庇護十二世。",
+      "en": "On 9 February 1930 he was unexpectedly called to succeed Gasparri. After the death of Pius XI, Cardinal Pacelli was chosen to succeed him in a very brief conclave ending at the third ballot on 2 March 1939, and took the name Pius XII."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "il 9 febbraio 1930 fu inaspettatamente chiamato a succedere a Gasparri",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "Alla morte di Pio XI il cardinale Pacelli fu chiamato a succedergli",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "dopo un brevissimo conclave concluso alla terza votazione, il 2 marzo 1939",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "Assunto il nome di Pio XII",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "pacelli-undersecretary-1911",
+     "positionKind": "other",
+     "title": {
+      "orig": "sottosegretario della Congregazione degli Affari Ecclesiastici Straordinari",
+      "zh-Hant": "教會特別事務部副秘書",
+      "en": "Undersecretary of the Congregation for Extraordinary Ecclesiastical Affairs"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "教廷教會特別事務部",
+      "en": "Congregation for Extraordinary Ecclesiastical Affairs"
+     },
+     "period": {
+      "start": "1911-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nel 1911 succedette a monsignor Benigni quale sottosegretario",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "sottosegretario della Congregazione degli Affari Ecclesiastici Straordinari",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "pacelli-nuncio-bavaria",
+     "positionKind": "diplomat",
+     "title": {
+      "orig": "nunzio pontificio a Monaco di Baviera",
+      "zh-Hant": "駐慕尼黑（巴伐利亞）教廷大使",
+      "en": "Papal nuncio in Munich (Bavaria)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "教廷（駐巴伐利亞）",
+      "en": "Holy See (Bavaria)"
+     },
+     "period": {
+      "start": "1917-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nel maggio 1917 fu nominato da Benedetto XV",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nunzio pontificio a Monaco di Baviera",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "pacelli-nuncio-berlin",
+     "positionKind": "diplomat",
+     "title": {
+      "orig": "Nunziatura di Berlino",
+      "zh-Hant": "駐柏林教廷大使",
+      "en": "Papal nuncio in Berlin"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "教廷（駐德意志帝國）",
+      "en": "Holy See (German Reich)"
+     },
+     "period": {
+      "start": "1920-08-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "nell'agosto del 1920, la Santa Sede e il governo, ormai repubblicano",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "a Pacelli fu affidata anche la nuova Nunziatura di Berlino",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "pacelli-secretary-of-state",
+     "positionKind": "other",
+     "title": {
+      "orig": "Segreteria di Stato vaticana（segretario di Stato）",
+      "zh-Hant": "教廷國務卿",
+      "en": "Cardinal Secretary of State"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "教廷國務院",
+      "en": "Secretariat of State of the Holy See"
+     },
+     "period": {
+      "start": "1930-02-09",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "il 9 febbraio 1930 fu inaspettatamente chiamato a succedere a Gasparri",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-pio12",
+       "locator": "條目第一段",
+       "quote": "a succedere a Gasparri alla Segreteria di Stato vaticana",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "教廷國務卿職掌相當外交（可能類比外交部長，R3），但 T14 文件未涵蓋教廷職位，且教廷政權對應（regimeId）與終點日期待查證，不猜，留經歷層"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:pacelli-secretary-of-state",
+     "gapKind": "not_found",
+     "note": "國務卿任期終點：Treccani 只寫 1939 年當選教宗、並提及 Maglione 後來獲任命，未寫卸任日，不推論",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pacelli-pope",
+     "gapKind": "not_found",
+     "note": "教宗任期（1939-03-02 起）屬元首任期，據研究者稱已在名單 5442 內，本批未重建（只寫正文），但本人 recordIds 為空，寫庫前須確認",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Pio XII Enciclopedia dei Papi Treccani",
+     "url": "https://www.treccani.it/enciclopedia/pio-xii_(Enciclopedia-dei-Papi)/",
+     "result": "found_B",
+     "note": "抓取成功；條目署名 Francesco Traniello"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Pius XII Britannica",
+     "url": "https://www.britannica.com/biography/Pius-XII",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Eugenio Pacelli nuncio Bavaria 1917 Secretary of State 1930",
+     "url": null,
+     "result": "not_relevant",
+     "note": "WebSearch 結果只有彙編與百科轉載，未取用"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Pius XII Papst GND（lobid）",
+     "url": "https://lobid.org/gnd/search?q=Pius+XII+Papst&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 偏好名 Pius XII., Papst"
+    }
+   ]
+  },
+  {
+   "key": "tr-said-halim-pasha",
+   "bioId": "01a1b512-3353-74ad-a495-5ee6c8e7d198",
+   "name": "Said Halim Pasha",
+   "nameZh": "賽義德·哈利姆帕夏",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1864-02-19",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與統一與進步黨",
+      "en": "Origins and the Committee of Union and Progress"
+     },
+     "body": {
+      "zh-Hant": "1864年2月19日生於開羅。1908年9月3日被排除出國務院編制，同年12月14日蘇丹任命他為元老院議員。1912年他當選統一與進步委員會總書記。",
+      "en": "Born in Cairo on 19 February 1864. On 3 September 1908 he was dropped from the Council of State staff, and on 14 December 1908 he was appointed to the Senate (Âyan). In 1912 he was elected general secretary of the Committee of Union and Progress."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "Kahire’de dünyaya geldi (19 Şubat 1864)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "3 Eylül 1908’de Şûrâ-yı Devlet’te yapılan tensîkatta kadro dışı bırakıldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "14 Aralık 1908’de II. Abdülhamid tarafından Âyan Meclisi üyeliğine tayin edildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "Aynı yıl İttihat ve Terakkî Cemiyeti’nin genel sekreterliğine seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": "「Aynı yıl」＝前句 1912",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1913-01-25",
+      "end": "1917-02-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "外交與大宰相",
+      "en": "Foreign minister and grand vizier"
+     },
+     "body": {
+      "zh-Hant": "1913年1月25日他入內閣任國務院長，三天後獲任外交大臣。1913年6月前任遇害後，他翌日出任大宰相，並兼外交大臣，於1913年6月17日組成政府。1915年10月15日辭去外交大臣；1917年2月3日以健康不適為由離開大宰相之位。",
+      "en": "He entered the cabinet as president of the Council of State on 25 January 1913 and three days later was appointed foreign minister. In June 1913, the day after his predecessor was killed, he became grand vizier, also took the foreign ministry, and formed his government on 17 June 1913. He resigned as foreign minister on 15 October 1915 and left the grand vizierate on 3 February 1917, citing indisposition."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "Şûrâ-yı Devlet reisi olarak girdi (25 Ocak 1913)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "üç gün sonra da Hariciye nâzırlığına tayin edildi",
+       "quoteLang": "tr",
+       "evidenceNote": "起點由「25 Ocak 1913」＋「üç gün sonra」推得（1913-01-28）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "11 Haziran 1913’te Mahmud Şevket Paşa öldürülünce",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "ertesi gün de sadrazamlık makamına getirilen Said Halim Paşa",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "Hariciye nâzırlığını da üzerine aldı ve hükümeti kurdu (17 Haziran 1913)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第二段",
+       "quote": "15 Ekim 1915’te Hariciye nâzırlığından istifa edince",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第二段",
+       "quote": "sadâret makamından rahatsızlığını ileri sürerek ayrıldı (3 Şubat 1917)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "said-halim-ayan",
+     "positionKind": "legislator",
+     "title": {
+      "orig": "Âyan Meclisi üyeliği",
+      "zh-Hant": "元老院議員",
+      "en": "Member of the Senate (Âyan)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧斯曼帝國元老院（Âyan Meclisi）",
+      "en": "Ottoman Senate (Âyan)"
+     },
+     "period": {
+      "start": "1908-12-14",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "14 Aralık 1908’de II. Abdülhamid tarafından Âyan Meclisi üyeliğine tayin edildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "said-halim-state-council",
+     "positionKind": "minister",
+     "title": {
+      "orig": "Şûrâ-yı Devlet reisi",
+      "zh-Hant": "國務院長",
+      "en": "President of the Council of State"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧斯曼國務院（Şûrâ-yı Devlet）",
+      "en": "Ottoman Council of State"
+     },
+     "period": {
+      "start": "1913-01-25",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "Şûrâ-yı Devlet reisi olarak girdi (25 Ocak 1913)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "originalPositionKind": "other",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "以國務院長身分入閣（kabinesine … girdi），非外交、國防、財政、內政四部，R5"
+    },
+    {
+     "key": "said-halim-foreign-minister",
+     "positionKind": "minister",
+     "title": {
+      "orig": "Hariciye nâzırı",
+      "zh-Hant": "外交大臣",
+      "en": "Minister of Foreign Affairs"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧斯曼帝國外交部",
+      "en": "Ottoman Ministry of Foreign Affairs"
+     },
+     "period": {
+      "start": "1913-01-28",
+      "end": "1915-10-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "üç gün sonra da Hariciye nâzırlığına tayin edildi",
+       "quoteLang": "tr",
+       "evidenceNote": "起點由「25 Ocak 1913」＋「üç gün sonra」推得（1913-01-28）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第二段",
+       "quote": "15 Ekim 1915’te Hariciye nâzırlığından istifa edince",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "source"
+     ],
+     "t14Reason": "外交部正職、任期可證明約 2 年 9 個月（≥90 天，起點依「25 Ocak 1913＋三天」推得）；但只有 TDV 一份 B 來源（需 1A 或 2 份獨立 B），且奧斯曼帝國政權對應（regimeId）未確認，R6 暫留經歷層"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "said-halim-yenikoy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "伊斯坦堡耶尼柯伊區市政官署",
+      "en": "Yeniköy Municipal District, Istanbul"
+     },
+     "title": {
+      "orig": "Yeniköy Belediye Dairesi başkanı",
+      "zh-Hant": "耶尼柯伊區市政官署主席",
+      "en": "Head of the Yeniköy municipal district"
+     },
+     "originalPositionKind": "other",
+     "period": {
+      "start": "1908-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "İttihat ve Terakkî Fırkası listesinden Yeniköy Belediye Dairesi başkanı seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": "「Aynı yıl」＝前句 1908",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；來源明寫由統一與進步黨名單（İttihat ve Terakkî Fırkası listesinden）當選",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "said-halim-cup-gensec",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "統一與進步委員會",
+      "en": "Committee of Union and Progress"
+     },
+     "title": {
+      "orig": "İttihat ve Terakkî Cemiyeti genel sekreteri",
+      "zh-Hant": "統一與進步委員會總書記",
+      "en": "General Secretary of the Committee of Union and Progress"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1912-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第一段",
+       "quote": "Aynı yıl İttihat ve Terakkî Cemiyeti’nin genel sekreterliğine seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": "「Aynı yıl」＝前句 1912",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "said-halim-cup-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "統一與進步委員會",
+      "en": "Committee of Union and Progress"
+     },
+     "title": {
+      "orig": "İttihat ve Terakkî teşkilâtının genel başkanı",
+      "zh-Hant": "統一與進步委員會總主席",
+      "en": "General Chairman of the Committee of Union and Progress"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1913-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tdv-said-halim",
+       "locator": "條目第二段",
+       "quote": "1913 ve 1916’da yapılan kongrelerinde teşkilâtın genel başkanlığına seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:said-halim-grand-vizier",
+     "gapKind": "not_found",
+     "note": "大宰相任期（至 1917-02-03）據研究者稱在名單 5442 內，本批未重建，但本人 recordIds 為空，寫庫前須確認；TDV 寫 1913-06-11 前任遇害後先任 sadâret kaymakamı、翌日（1913-06-12）任大宰相、1913-06-17 組成政府，本批僅取 TDV 一份來源（審查刪去原 note 未見來源的「另一常見說法」）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:said-halim-cup-chairman",
+     "gapKind": "not_found",
+     "note": "統一與進步委員會總書記／總主席的卸任日：TDV 未寫；總主席職稱在 1913、1916 兩次大會選出，具體任期不明",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:said-halim-foreign-minister",
+     "gapKind": "not_found",
+     "note": "外交大臣精確起點：TDV 只寫「25 Ocak 1913 之後三天」，其他官方日期來源未取得；起點為推論",
+     "candidateCitations": [
+      {
+       "sourceKey": "kure-said",
+       "locator": "條目本文",
+       "quote": "üç gün sonra da Hariciye nâzırlığına tayin edildi",
+       "quoteLang": "tr"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Halim Paşa Said İslâm Ansiklopedisi sadrazam dışişleri bakanı 1913 1917",
+     "url": null,
+     "result": "found_B",
+     "note": "WebSearch 找到 TDV 條目 islamansiklopedisi.org.tr/said-halim-pasa"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "islamansiklopedisi.org.tr/halim-pasa-said（猜測網址）",
+     "url": "https://islamansiklopedisi.org.tr/halim-pasa-said",
+     "result": "no_result",
+     "note": "頁面無內文，改用搜尋結果網址"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "islamansiklopedisi.org.tr/said-halim-pasa",
+     "url": "https://islamansiklopedisi.org.tr/said-halim-pasa",
+     "result": "found_B",
+     "note": "抓取成功；作者 M. Hanefi Bostan"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "kureansiklopedi.com Said Halim Paşa",
+     "url": "https://kureansiklopedi.com/tr/detay/said-halim-pasa-2",
+     "result": "unrated",
+     "note": "已抓取，未用於引文"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Said Halim Pascha GND（lobid）",
+     "url": "https://lobid.org/gnd/search?q=Said+Halim+Pascha&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 偏好名 Said Halim Paşa"
+    }
+   ]
+  }
+ ]
+}

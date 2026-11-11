@@ -1,0 +1,142 @@
+{
+ "batch": "05",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 1,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 10,
+  "editedSentences": 1,
+  "spotRefetched": 5,
+  "searchLogShort": 2
+ },
+ "people": [
+  {
+   "key": "hu-karolyi-mihaly",
+   "bioId": "01a1c39b-824e-7bd1-a192-c4e7b4210a10",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 1,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "段 2 period 迄點 1919-07-01 → 1919-08-01（month）：最後一件事是「1919 年 7 月初」流亡，依 Q3 寫下一月起日",
+    "職位 karolyi-independence-mp：引文明寫「a Függetlenségi Párt ogy.-i képviselője」＝以政黨身分取得的席位，已不算黨職不明確，刪 partyPostAmbiguous；因席位止點未寫、無法證明與 1908–1945 有交集，改標 t14Ambiguous＋理由，仍留經歷層",
+    "gap position:karolyi-premier-president note：刪去「不同來源有 1918-11-16 與 1919-01-11 兩說」（1918-11-16 不在已抓原文），改寫為只有單一 A 來源",
+    "gap paragraph:1920-1955 note：原寫「超出 1908–1945」有誤（1920–1945 流亡期在時間窗內），改寫",
+    "黨職兩筆（獨立黨主席 1913、卡羅伊黨領袖）R1 de_facto_leader、reason 正確；卡羅伊黨領袖期間雙 NULL，照原文不補",
+    "逐條核對 10 筆引文與 MEK 原文一致；重抓 mek.oszk.hu 條目比對一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（名單預估薄）：searchLog 只有 5 筆（需 ≥8 次查詢）；匈牙利文查詢只算得到 1–2 次；VIAF 已抓（viaf-karolyi.txt）卻沒記入 searchLog",
+    "建議下一步：Országgyűlési Könyvtár（國會圖書館）議員名錄查 1905／1910 議席與任期；Nemzeti Örökség Intézete（NÖRI）或 Magyar Nemzeti Levéltár 人名資料；Hajdu Tibor《Károlyi Mihály》（Kossuth, 1978）出版社書目頁；用「gróf Károlyi Mihály」「Károlyi Mihály életrajz 1918」各查一次"
+   ]
+  },
+  {
+   "key": "de-hindenburg-paul",
+   "bioId": "01a19f15-35dd-7e28-83ee-8129f41bbef0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 4,
+   "changes": [
+    "段 2 補引文「am 21.8.1914 Ludendorff zum Chef des Stabes der 8. Armee」：段 period 起點 1914-08-21 原本沒有含日期的引文支撐",
+    "段 3「依憲法任命希特勒為總理」子句：補引文「Hitler als Reichskanzler」，並把「zu berufen (30.1.1933)」改為原文更完整的「verfassungsgemäß zu berufen (30.1.1933)」",
+    "gap position:hindenburg-president note：刪去未見於已抓原文的「1925-05-12」就任日；註明 recordIds 為空，寫庫前要確認 5442 是否真有此任期",
+    "T14 核對：Ober Ost（戰區總司令）R6 roleGap dates／regime／battle_link 合理；總參謀長 R6 roleGap rank（職稱由 Falkenhayn 類推）合理；第 8、第 9 集團軍司令未建職位，照原文不補",
+    "重抓 deutsche-biographie.de/sfz57166.html 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "jp-yonai-mitsumasa",
+   "bioId": "7cd012b7-d091-4f34-8c32-f04987b2c4e0",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "段 1 period 補迄點 1948-04-20（day）：段內含歿日，依「段落 period 迄點依段內最後一件事」",
+    "職位 yonai-combined-fleet：聯合艦隊司令長官是否等同 R4 戰區／方面軍或軍種總司令，T14 沒涵蓋，加 t14Ambiguous＋理由（維持 R5）",
+    "gap position:yonai-premier note：刪去未見於已抓原文的 1940-01-16／1940-07-22；註明 recordIds 為空",
+    "海相兩筆：單獨海軍部 R5 正確",
+    "NDL「近代日本人の肖像」依 PROMPT 列為 A 類官方頁，維持 A；kb-yonai.txt 實為西尾末廣頁（抓錯），未被引用，不影響",
+    "重抓 ndl.go.jp/portrait/datas/218.html 比對引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（實查厚薄＝薄）：searchLog 5 筆（需 ≥8 次查詢）；來源類型只有 authority、official、other 3 類（需 ≥4 類），缺國家級辭典／具名百科／學術類；NDL 典拠（id.ndl.go.jp）沒查",
+    "建議下一步：アジア歴史資料センター（jacar.go.jp）查「米内光政」任免官記錄（海相、首相起訖日）；首相官邸「歴代内閣」米内内閣頁（kantei.go.jp）；id.ndl.go.jp 典拠；国立公文書館デジタルアーカイブ官報任免；Japan Knowledge『国史大辞典』具名條目公開摘要；用「米内光政 海軍大臣 任命」「米内内閣 総辞職 1940」各查一次"
+   ]
+  },
+  {
+   "key": "va-pius-xii",
+   "bioId": "01a1b4b5-721f-7359-8dc5-f9f98c5e906a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 4,
+   "changes": [
+    "段 1 period 迄點 1917-05-01（month）→ 1912-01-01（year）：段內最後一件事是 1911 年任副秘書",
+    "段 1「教會特別事務部副秘書」子句補引文「sottosegretario della Congregazione degli Affari Ecclesiastici Straordinari」（職位 pacelli-undersecretary-1911 也補同一筆）",
+    "段 2「德意志帝國」「建立直接外交關係」子句補引文「ormai repubblicano, del Reich tedesco stabilirono」「diretti rapporti diplomatici」；「被授予樞機」補引文「per ricevere la porpora cardinalizia, che gli fu attribuita da Pio XI」",
+    "段 2 period 迄點 1930-02-09 → 1929-12-16（day）：段內最後一件事是樞機團會議",
+    "職位 pacelli-secretary-of-state 補引文「a succedere a Gasparri alla Segreteria di Stato vaticana」（原引文沒有國務院字樣）；t14Ambiguous 保留",
+    "gap pacelli-pope：註明 recordIds 為空",
+    "重抓 treccani.it Enciclopedia dei Papi 條目比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "tr-said-halim-pasha",
+   "bioId": "01a1b512-3353-74ad-a495-5ee6c8e7d198",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 3,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "段 1 period 迄點 1913-01-25（day）→ 1913-01-01（year）：段內最後一件事是 1912 年任總書記",
+    "Q8：「Aynı yıl …」（段 1、候選 said-halim-cup-gensec、耶尼柯伊）與「üç gün sonra …」（段 2、外交大臣職位）引文本身不含日期，datePrecision 改 null（推得方式仍在 evidenceNote）",
+    "段 2 改寫一句：原文是 6 月 11 日前任遇害、翌日任大宰相、6 月 17 日組成政府，原句「6月17日組閣出任大宰相」混為一事；補引文「11 Haziran 1913’te Mahmud Şevket Paşa öldürülünce」「ertesi gün de sadrazamlık makamına getirilen Said Halim Paşa」",
+    "耶尼柯伊區市政官署主席 positions → roleCandidates（de_facto_leader、originalPositionKind=other、t14Rule=R1、reason 依 Tai 12:47）：引文明寫由統一與進步黨名單當選，屬以政黨身分取得的席位，原 partyPostAmbiguous 不成立",
+    "國務院長（Şûrâ-yı Devlet reisi）：以此身分入閣，positionKind other → minister（originalPositionKind=other），加 t14Overlap=cabinet、t14Rule=R5（非四部）",
+    "外交大臣 R6：roleGap 補 source（只有 TDV 一份 B，未達 1A 或 2 份獨立 B），t14Reason 同步改寫",
+    "gap said-halim-grand-vizier note：刪去未有來源的「另一常見說法」，改照 TDV 原文；註明 recordIds 為空",
+    "重抓 islamansiklopedisi.org.tr/said-halim-pasa 比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "五人 recordIds 全為空，但研究者在 gap 中稱興登堡（總統）、米內（首相）、庇護十二世（教宗）、賽義德·哈利姆（大宰相）、卡羅伊（總理／總統）的元首／首腦任期「已在名單 5442 內」而未建候選；寫庫前要和 leader_records 比對，查無者須補 R0 候選（目前來源只有部分起訖日）。",
+  "研究者常把研究者自身知識裡的日期寫進 gap note（卡羅伊 1918-11-16、興登堡 1925-05-12、米內 1940-01-16／07-22、哈利姆「另一常見說法」），這些日期不在已抓原文，審查已刪。",
+  "段落 period 迄點普遍錯用下一段起點（卡羅伊段 2、庇護段 1／2、哈利姆段 1），沒照「依段內最後一件事」與 Q3 規則。",
+  "Q8 誤用：「Aynı yıl」「üç gün sonra」這類不含日期的引文被填 datePrecision。",
+  "引文支撐不全：段落中職稱、機構名、對象（希特勒、樞機、外交關係）常只有日期片段當 quote，審查補 10 筆。",
+  "黨籍席位規則套用不一致：卡羅伊 1905 獨立黨議員、哈利姆耶尼柯伊（統一與進步黨名單當選）都被標 partyPostAmbiguous；後者已移候選，前者因時間窗無法證明改標 t14Ambiguous。建議 Tai 裁定：時間窗起點在 1908 前、止點 NULL 的黨籍席位要怎麼判。",
+  "新邊界個案待 Tai 裁定：聯合艦隊司令長官（艦隊級）是否比照 R4 戰區／方面軍；教廷國務卿是否比照 R3 外交部。",
+  "名單推定與實查不符：興登堡、米內推定為「不明」，實查分別為德國陸軍元帥／帝國總統（1925–1934）、日本海軍大將／首相（1940）；庇護十二世推定「南歐／共和制」，實為教廷（教宗國務卿 1930、教宗 1939）。卡羅伊推定薄、實查中；興登堡推定中、實查厚。",
+  "原始檔目錄有未列入 rawmap 且未引用的檔：brit-*（Cloudflare 挑戰頁 17 bytes）、kb-yonai（實為西尾末廣頁，抓錯）、ndl-portrait-1880、lobid-*、viaf-karolyi；不影響引文核對。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

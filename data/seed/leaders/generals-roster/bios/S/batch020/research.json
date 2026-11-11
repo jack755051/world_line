@@ -1,0 +1,3692 @@
+{
+  "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL。名單屬性查證：畢蘇斯基、希米格維、日梅爾斯基（元帥）、安東內斯庫（元帥，ニッポニカ僅稱軍人／政治家，元帥稱號未見 A/B）、曼納海姆（元帥，世界大百科）與名單大致相符；日梅爾斯基 1945 年被宣布元帥見 IPN BIP。",
+  "batch": "b3-full-v3-batch020",
+  "researchedOn": "2026-11-11",
+  "policyVersion": "bio-2026-11-v0",
+  "alignedTo": "b0b0e0f",
+  "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；b0b0e0f 對齊格式。將領 S 級 batch020，v3 最低標準。regimeId 一律 NULL（未查 5442 對應），故國家級軍職／閣員為 R6、副職／軍級／議員為 R5；僅畢蘇斯基兩段總理任期（R0）寫入 roleCandidates（是否已在 leader_records 未查，合併需去重）。無黨職候選：來源未明寫黨職起迄。來源：iPSB（PSB，A）、IPN（A）、日本大百科全書（Kotobank，B）、羅馬尼亞國防部（A，新網域）、thisisFINLAND（A，新網域）。Kansallisbiografia 為 JS 頁抓不到正文、Finna 為 Cloudflare 驗證頁，未繞過。未用 Wikipedia／Wikidata／百度。",
+  "rawDir": "/tmp/generals-bios/S/batch020/raw",
+  "rawMap": "rawmap.json",
+  "sources": {
+    "smig-ipsb": {
+      "title": "Rydz-Śmigły Edward（iPSB／Polski Słownik Biograficzny t. XXXIII）",
+      "authors": [
+        "Piotr Stawecki"
+      ],
+      "publisher": "Internetowy Polski Słownik Biograficzny（Narodowy Instytut Audiowizualny）",
+      "published_text": "Internetowy Polski Słownik Biograficzny（Narodowy Instytut Audiowizualny）",
+      "url": "https://www.ipsb.nina.gov.pl/a/biografia/edward-rydz-smigly-1886-1941-marszalek-polski-naczelny-wodz",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "國家級傳記辭典（Polski Słownik Biograficzny，iPSB 數位版，具名作者）"
+    },
+    "smig-ipn": {
+      "title": "Edward Rydz Śmigły（Biogramy Postaci Historycznych）",
+      "authors": [],
+      "publisher": "Instytut Pamięci Narodowej",
+      "published_text": "Instytut Pamięci Narodowej",
+      "url": "https://biogramy.ipn.gov.pl/bio/wszystkie-biogramy/106220,Edward-Rydz-Smigly.html",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "波蘭國家記憶研究院（官方機構）人物生平頁"
+    },
+    "pil-ipsb": {
+      "title": "Piłsudski Józef Klemens（iPSB／Polski Słownik Biograficzny t. XXVI）",
+      "authors": [
+        "Andrzej Garlicki"
+      ],
+      "publisher": "Internetowy Polski Słownik Biograficzny（Narodowy Instytut Audiowizualny）",
+      "published_text": "Internetowy Polski Słownik Biograficzny（Narodowy Instytut Audiowizualny）",
+      "url": "https://www.ipsb.nina.gov.pl/a/biografia/jozef-pilsudski-1867-1935-naczelnik-panstwa-naczelny-wodz",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "國家級傳記辭典（PSB，具名作者）"
+    },
+    "pil-ni": {
+      "title": "ピウスツキ（日本大百科全書(ニッポニカ)）",
+      "authors": [
+        "安部一郎"
+      ],
+      "publisher": "小学館（Kotobank 収録）",
+      "published_text": "小学館（Kotobank 収録）",
+      "url": "https://kotobank.jp/word/%E3%81%B4%E3%81%86%E3%81%99%E3%81%A4%E3%81%8D-3166178",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "日本大百科全書(ニッポニカ) 具名作者条目（B）"
+    },
+    "zym-bip": {
+      "title": "Dane osoby z katalogu kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał",
+      "authors": [],
+      "publisher": "Biuletyn Informacji Publicznej Instytutu Pamięci Narodowej",
+      "published_text": "Biuletyn Informacji Publicznej Instytutu Pamięci Narodowej",
+      "url": "https://katalog.bip.ipn.gov.pl/informacje/58876",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "波蘭國家記憶研究院官方 BIP 名錄（官方機構）"
+    },
+    "zym-ipnstreet": {
+      "title": "ul. Roli-Żymierskiego Michała（Nazwy do zmiany）",
+      "authors": [],
+      "publisher": "Instytut Pamięci Narodowej（archiwum）",
+      "published_text": "Instytut Pamięci Narodowej（archiwum）",
+      "url": "https://ipn.gov.pl/pl/upamietnianie/dekomunizacja/zmiany-nazw-ulic/nazwy-ulic/nazwy-do-zmiany/38760,ul-Roli-Zymierskiego-Michala.html",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "波蘭國家記憶研究院官方頁（立場為去共產化評價，引用其事實敘述並標「IPN 稱」）"
+    },
+    "ant-ni": {
+      "title": "アントネスク（日本大百科全書(ニッポニカ)）",
+      "authors": [
+        "木戸蓊"
+      ],
+      "publisher": "小学館（Kotobank 収録）",
+      "published_text": "小学館（Kotobank 収録）",
+      "url": "https://kotobank.jp/word/%E3%81%82%E3%82%93%E3%81%A8%E3%81%AD%E3%81%99%E3%81%8F-3142482",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "日本大百科全書(ニッポニカ) 具名作者条目（B）"
+    },
+    "ant-mapn": {
+      "title": "Şefii de stat major (Chiefs of General Staff)",
+      "authors": [],
+      "publisher": "Ministerul Apărării Naționale（armed.mapn.ro）",
+      "published_text": "Ministerul Apărării Naționale（armed.mapn.ro）",
+      "url": "https://armed.mapn.ro/3_%C5%9Eefii-de-stat-major-chiefs-of-general-staff",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "羅馬尼亞國防部官方頁（首次用到網域，暫分 A）"
+    },
+    "man-ni": {
+      "title": "マンネルヘイム（日本大百科全書(ニッポニカ)／改訂新版 世界大百科事典）",
+      "authors": [
+        "玉生謙一"
+      ],
+      "publisher": "小学館／平凡社（Kotobank 収録）",
+      "published_text": "小学館／平凡社（Kotobank 収録）",
+      "url": "https://kotobank.jp/word/%E3%81%BE%E3%82%93%E3%81%AD%E3%82%8B%E3%81%B8%E3%81%84%E3%82%80-3171897",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "日本大百科全書(ニッポニカ) 具名作者条目（B）"
+    },
+    "man-finland": {
+      "title": "Soldier then president, Mannerheim took Finland from war to peace",
+      "authors": [],
+      "publisher": "thisisFINLAND（芬蘭外交部運營）",
+      "published_text": "thisisFINLAND（芬蘭外交部運營）",
+      "url": "https://finland.fi/life-society/soldier-president-mannerheim-took-finland-war-peace/",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "芬蘭政府官方網站（首次用到網域 finland.fi，暫分 A）"
+    },
+    "man-mf": {
+      "title": "MANNERHEIM - War of Independence - Commander-in-Chief 1918",
+      "authors": [],
+      "publisher": "mannerheim.fi",
+      "published_text": "mannerheim.fi",
+      "url": "https://www.mannerheim.fi/06_vsota/e_ylip18.htm",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "無署名機構網站（未評等，僅作 gap 線索，不作出處）"
+    },
+    "ant-er": {
+      "title": "Ion Antonescu",
+      "authors": [],
+      "publisher": "Enciclopedia României（MediaWiki）",
+      "published_text": "Enciclopedia României（MediaWiki）",
+      "url": "http://enciclopediaromaniei.ro/wiki/Ion_Antonescu",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "無署名 wiki（未評等，僅作 gap 線索，不作出處）"
+    }
+  },
+  "people": [
+    {
+      "key": "edwardsmigły-rydz",
+      "bioId": null,
+      "name": "Edward Śmigły-Rydz",
+      "nameZh": "爱德华·雷兹-希米格维",
+      "recordIds": [],
+      "thickness": "厚",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1914-08-01",
+            "end": "1921-01-01"
+          },
+          "periodStartPrecision": "month",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "軍團、科韋爾與波蘇戰爭",
+            "en": "Legions, Kowel and the Polish–Soviet war"
+          },
+          "body": {
+            "zh-Hant": "1914年8月初他被奧地利軍動員，卻由獨立派人士從徵召中救出；他於8月12日在Chęcinach加入畢蘇斯基的步槍手部隊，並接掌第三幹部營。1919年2月1日他出任「科韋爾」戰術群指揮官。1920年波蘇戰爭中，他5月5日接掌第3集團軍，其前鋒兩天後不戰進入基輔；7至15日指揮中央戰線，並在布羅迪戰役中以東南戰線部隊擋住布瓊尼騎兵軍；8月18日起率第2集團軍追擊蘇軍越過納雷夫河。",
+            "en": "Called up by the Austrian army in early August 1914, Rydz-Śmigły was released from conscription by representatives of the independence camp and on 12 August joined Piłsudski's rifle units at Chęciny, taking command of the III cadre battalion. On 1 February 1919 he became commander of the \"Kowel\" tactical group. In the 1920 Polish–Soviet war he took over the 3rd Army on 5 May, whose lead units entered Kyiv without a fight two days later; he led the Central Front from 7 to 15 August, helped stop Budyonny's cavalry army at the battle of Brody with South-Eastern Front forces, and from 18 August commanded the 2nd Army in the pursuit beyond the Narew."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Zmobilizowany w pierwszych dniach sierpnia 1914",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "przez przedstawicieli obozu niepodległościowego z armii austriackiej",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "12 VIII dołączył w Chęcinach do oddziałów strzeleckich Piłsudskiego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Objął dowództwo III batalionu kadrowego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "został 1 II 1919 dowódcą grupy taktycznej «Kowel»",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 5 V R.-Ś. objął dowództwo 3. Armii",
+              "quoteLang": "pl",
+              "evidenceNote": "年份依該段時序（1920 年基輔遠征）；quote 只含日月",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "czołowe oddziały wkroczyły 7 V bez walki do Kijowa",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Od 7 do 15 VIII 1920 był R.-Ś. dowódcą Frontu Środkowego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W bitwie pod Brodami (29 VII – 3 VIII) siły wojsk Frontu Południowo-Wschodniego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "którymi dowodził R.-Ś., powstrzymały Budionnego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 18 VIII objął dowództwo 2. Armii",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "z zadaniem pościgu i odrzucenia oddziałów przeciwnika za Narew",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1921-05-09",
+            "end": "1926-11-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "month",
+          "heading": {
+            "zh-Hant": "戰間期的部隊整編",
+            "en": "Inter-war army organisation"
+          },
+          "body": {
+            "zh-Hant": "1921年5月9日他被任命為駐維爾諾的第1集團軍督察。1922至1926年間，他專注於軍隊的組織與訓練；1925年11月2日至12月19日在法國考察法軍的組織與訓練。1926年10月，他自維爾諾調入武裝部隊總監察處，擔任集團軍督察。",
+            "en": "On 9 May 1921 he was appointed inspector of Army No. 1 in Wilno. From 1922 to 1926 he worked on the organisation and training of the troops, and from 2 November to 19 December 1925 he stayed in France to study French army organisation and training. In October 1926 he was transferred from Wilno to the Inspectorate General of the Armed Forces as an army inspector."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 9 V 1921 został mianowany inspektorem Armii nr 1 w Wilnie",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W l. 1922–6 zajmował się R.-Ś. organizacją i szkoleniem wojsk",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Od 2 XI do 19 XII 1925 przebywał we Francji",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W październiku 1926 R.-Ś. został przeniesiony z Wilna",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "do Generalnego Inspektoratu Sił Zbrojnych na inspektora armii",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1935-05-13",
+            "end": "1939-09-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "武裝部隊總監與元帥",
+            "en": "Inspector General and Marshal"
+          },
+          "body": {
+            "zh-Hant": "1935年5月12日至13日夜間，畢蘇斯基去世數小時後，他獲任命為武裝部隊總監察。1936年5月9日總統令大幅強化他的地位，使他成為武裝部隊的實際首長；同年他被任命為波蘭元帥。1936年8月法國參謀總長甘末林訪波時，他提出對德作戰的集中計畫。1939年3月23日他下令對兩個軍區進行秘密動員。",
+            "en": "In the night of 12–13 May 1935, a few hours after Piłsudski's death, he was nominated Inspector General of the Armed Forces. A presidential decree of 9 May 1936 greatly strengthened his position, making him the de facto head of the armed forces, and in 1936 he was named Marshal of Poland. During the visit of the French chief of staff Gamelin in August 1936 he presented his concentration plan for a war with Germany, and on 23 March 1939 he ordered a secret mobilisation of two corps districts."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W nocy z 12 na 13 V 1935, w kilka godzin po śmierci Piłsudskiego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "R.-Ś. otrzymał nominację na generalnego inspektora sił zbrojnych",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dekret prezydenta RP z 9 V 1936 wzmacniał znacznie jego pozycję",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "czyniąc go faktycznym szefem sił zbrojnych",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipn",
+              "locator": "IPN Biogramy Postaci Historycznych「Edward Rydz Śmigły」",
+              "quote": "W 1936 r. mianowany marszałkiem Polski",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Podczas wizyty szefa Sztabu Generalnego Francji M. Gamelina (12–17 VIII 1936)",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "R.-Ś. przedstawił mu na wypadek wojny z Niemcami swój plan koncentracji",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 23 III 1939 zarządził tajną mobilizację dwóch Okręgów Korpusu (IX i IV)",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1939-09-01",
+            "end": "1941-12-02"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "1939年9月戰役、拘禁與逝世",
+            "en": "September 1939, internment and death"
+          },
+          "body": {
+            "zh-Hant": "1939年9月1日戰爭爆發時，他就任總司令，並被總統指定為其繼任者。9月9日他把指揮所由華沙遷往布列斯特要塞，三天後再遷往弗洛迪米日·沃倫斯基。他於9月18日越過切雷莫什河進入羅馬尼亞，被拘禁後於10月27日辭去總司令職務。1940年12月10日他自拘禁地逃出，1941年10月25日進入被占領的波蘭，12月2日在華沙逝世。",
+            "en": "On 1 September 1939, when war broke out, he took the post of commander-in-chief and was named by the President as his successor. On 9 September he moved his command post from Warsaw to the fortress of Brest on the Bug and three days later to Volodymyr-Volynskyi. He crossed the Cheremosh into Romania on 18 September and, interned, resigned as commander-in-chief on 27 October. On 10 December 1940 he left his place of internment, on 25 October 1941 he went to occupied Poland, and he died in Warsaw on 2 December 1941."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 1 IX 1939, z chwilą wybuchu wojny, R.-Ś. objął stanowisko naczelnego wodza",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "został mianowany przez prezydenta RP jego następcą",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "przeniósł stanowisko dowodzenia z zagrożonej przez Niemców Warszawy",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "do twierdzy w Brześciu nad Bugiem",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "a w trzy dni później do Włodzimierza Wołyńskiego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipn",
+              "locator": "IPN Biogramy Postaci Historycznych「Edward Rydz Śmigły」",
+              "quote": "18 września przejechał przez granicę na Czeremoszu do Rumunii",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipn",
+              "locator": "IPN Biogramy Postaci Historycznych「Edward Rydz Śmigły」",
+              "quote": "27 października zrezygnował z funkcji naczelnego wodza",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 10 XII 1940 wydostał się z Dragoslavele",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 25 X 1941 udał się R.-Ś. do okupowanej Polski",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipn",
+              "locator": "IPN Biogramy Postaci Historycznych「Edward Rydz Śmigły」",
+              "quote": "Zmarł w Warszawie, przypuszczalnie na zawał serca",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "smigly-3rd-army",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍隊第3集團軍",
+            "en": "Polish 3rd Army"
+          },
+          "title": {
+            "orig": "dowódca 3. Armii",
+            "zh-Hant": "第3集團軍司令",
+            "en": "Commander of the 3rd Army"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1920-05-05",
+            "end": "1920-06-26"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 5 V R.-Ś. objął dowództwo 3. Armii",
+              "quoteLang": "pl",
+              "evidenceNote": "年份依該段時序（1920 年）；quote 只含日月",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "dowództwo 3. Armii przekazał gen. Zygmuntowi Zielińskiemu",
+              "quoteLang": "pl",
+              "evidenceNote": "年份依該段時序（1920 年）；quote 只含日月；迄日取其接任方面軍司令之日 26 VI",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "集團軍級指揮，非國家級最高軍職或戰區／方面軍司令",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "smigly-central-front",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍隊中央戰線",
+            "en": "Polish Central Front"
+          },
+          "title": {
+            "orig": "dowódca Frontu Środkowego",
+            "zh-Hant": "中央戰線司令",
+            "en": "Commander of the Central Front"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1920-08-07",
+            "end": "1920-08-15"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Od 7 do 15 VIII 1920 był R.-Ś. dowódcą Frontu Środkowego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "od Dęblina do Brodów włącznie",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "方面軍司令且有日期＋地點＋出處的戰役連結（Brody），但政權 regimeId 未查（NULL）→ 門檻無法證明",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime"
+          ]
+        },
+        {
+          "key": "smigly-2nd-army",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍隊第2集團軍",
+            "en": "Polish 2nd Army"
+          },
+          "title": {
+            "orig": "dowódca 2. Armii",
+            "zh-Hant": "第2集團軍司令",
+            "en": "Commander of the 2nd Army"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1920-08-18",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 18 VIII objął dowództwo 2. Armii",
+              "quoteLang": "pl",
+              "evidenceNote": "年份依該段時序（1920 年）；quote 只含日月",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "集團軍級指揮，非國家級最高軍職或戰區／方面軍司令",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "smigly-inspector-army-1",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍隊第1集團軍（維爾諾）",
+            "en": "Polish Army No. 1, Wilno"
+          },
+          "title": {
+            "orig": "inspektor Armii nr 1",
+            "zh-Hant": "第1集團軍督察",
+            "en": "Inspector of Army No. 1"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1921-05-09",
+            "end": "1926-11-01"
+          },
+          "startPrecision": "day",
+          "endPrecision": "month",
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 9 V 1921 został mianowany inspektorem Armii nr 1 w Wilnie",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W październiku 1926 R.-Ś. został przeniesiony z Wilna",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "集團軍督察，非國家級最高軍職",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "smigly-inspector-army-giszf",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "武裝部隊總監察處",
+            "en": "Inspectorate General of the Armed Forces"
+          },
+          "title": {
+            "orig": "inspektor armii (Generalny Inspektorat Sił Zbrojnych)",
+            "zh-Hant": "集團軍督察（武裝部隊總監察處）",
+            "en": "Army inspector, Inspectorate General of the Armed Forces"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1926-10-01",
+            "end": "1935-05-13"
+          },
+          "startPrecision": "month",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "do Generalnego Inspektoratu Sił Zbrojnych na inspektora armii",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W październiku 1926 R.-Ś. został przeniesiony z Wilna",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W nocy z 12 na 13 V 1935, w kilka godzin po śmierci Piłsudskiego",
+              "quoteLang": "pl",
+              "evidenceNote": "迄日取其改任武裝部隊總監之日（同一人轉任，非名簿推論）",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "集團軍督察，非國家級最高軍職",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "smigly-gisz",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭武裝部隊總監察處",
+            "en": "Inspectorate General of the Armed Forces"
+          },
+          "title": {
+            "orig": "Generalny Inspektor Sił Zbrojnych",
+            "zh-Hant": "武裝部隊總監",
+            "en": "Inspector General of the Armed Forces"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1935-05-13",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "W nocy z 12 na 13 V 1935, w kilka godzin po śmierci Piłsudskiego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "czyniąc go faktycznym szefem sił zbrojnych",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "武裝部隊總監（faktyczny szef sił zbrojnych）屬國家級軍職，但政權 regimeId 未查、迄日來源未明寫（1939-09 起任總司令）",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "dates"
+          ]
+        },
+        {
+          "key": "smigly-commander-in-chief",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭武裝部隊",
+            "en": "Polish Armed Forces"
+          },
+          "title": {
+            "orig": "naczelny wódz",
+            "zh-Hant": "總司令",
+            "en": "Commander-in-Chief"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1939-09-01",
+            "end": "1939-10-27"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "Dn. 1 IX 1939, z chwilą wybuchu wojny, R.-Ś. objął stanowisko naczelnego wodza",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipn",
+              "locator": "IPN Biogramy Postaci Historycznych「Edward Rydz Śmigły」",
+              "quote": "27 października zrezygnował z funkcji naczelnego wodza",
+              "quoteLang": "pl",
+              "evidenceNote": "年份依該頁時序（1939 年）；迄日為辭職日（總統 7 XI 簽署，iPSB）",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國家級最高軍職（總司令，職稱明寫），但政權 regimeId 未查（NULL）→ 門檻無法證明",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime"
+          ]
+        },
+        {
+          "key": "smigly-war-minister-1918",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭人民臨時政府（盧布林）",
+            "en": "Provisional People's Government of the Republic of Poland (Lublin)"
+          },
+          "title": {
+            "orig": "minister wojny (Tymczasowy Rząd Ludowy Republiki Polskiej)",
+            "zh-Hant": "戰爭部長（臨時人民政府）",
+            "en": "Minister of War (Provisional People's Government)"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1918-11-07",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "utworzył w nocy z 6 na 7 XI Tymczasowy Rząd Ludowy Republiki Polskiej",
+              "quoteLang": "pl",
+              "evidenceNote": "年份依該段時序（1918 年）；quote 只含日月",
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "smig-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Rydz-Śmigły Edward」",
+              "quote": "otrzymał tekę ministra wojny",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "戰爭部長（四部之一、正職）但迄日來源未明寫（政府於 11 月下旬前解散）、政權 regimeId 未查",
+          "t14Overlap": "cabinet",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime",
+            "dates"
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "position:smigly-2nd-army",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；第2集團軍司令迄日未見於 iPSB（Stawecki）與 IPN 生平頁，已查 iPSB、IPN Biogramy、Columbia Encyclopedia（無署名，僅作線索）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:smigly-gisz",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；iPSB 只寫 1939-09-01 起「objął stanowisko naczelnego wodza」，未明寫武裝部隊總監何時卸任；已查 iPSB、IPN Biogramy。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:smigly-war-minister-1918",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；iPSB 寫臨時人民政府於 11 月（11 XI 前後）依畢蘇斯基要求解散，但未明寫戰爭部長的迄日；已查 iPSB、IPN Biogramy。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:body",
+          "gapKind": "not_found",
+          "note": "來源不足：第2集團軍、武裝部隊總監、戰爭部長三職迄日未能於已抓 A 來源查得（見各 position gap）；另未見黨職明文：Ozon（OZN）僅見 Columbia Encyclopedia（無署名）稱其「fostered」，iPSB 寫 OZN 由 Adam Koc 領導、R.-Ś. 為發起者之一，無黨職明文，故不列黨職候選。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "named_encyclopedia",
+          "query": "Śmigły-Rydz Edward marszałek biografia（限 kotobank/encyclopedia.com/britannica/ipsb/ipn）",
+          "url": null,
+          "result": "found_A",
+          "note": "回傳 iPSB、IPN Biogramy、Britannica、Encyclopedia.com"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "ipsb.nina.gov.pl Edward Rydz-Śmigły",
+          "url": "https://www.ipsb.nina.gov.pl/a/biografia/edward-rydz-smigly-1886-1941-marszalek-polski-naczelny-wodz",
+          "result": "found_A",
+          "note": "curl 取得；PSB t. XXXIII（Piotr Stawecki），含生平與年表"
+        },
+        {
+          "step": 3,
+          "sourceType": "official",
+          "query": "biogramy.ipn.gov.pl Edward Rydz Śmigły",
+          "url": "https://biogramy.ipn.gov.pl/bio/wszystkie-biogramy/106220,Edward-Rydz-Smigly.html",
+          "result": "found_A",
+          "note": "curl 取得；IPN 官方生平摘要"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "Encyclopedia.com Rydz-Śmigły（Columbia Encyclopedia）",
+          "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/rydz-smigly-edward",
+          "result": "unrated",
+          "note": "curl 取得；無署名條目，依 Q9 不作出處"
+        },
+        {
+          "step": 5,
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica Marshal Edward Rydz-Smigly",
+          "url": "https://www.britannica.com/biography/Marshal-Edward-Rydz-Smigly",
+          "result": "no_result",
+          "note": "僅見搜尋結果，未抓取（Britannica 常被 Cloudflare 擋）"
+        },
+        {
+          "step": 6,
+          "sourceType": "authority",
+          "query": "（未另查權威檔）",
+          "url": null,
+          "result": "no_result",
+          "note": "iPSB 已給生卒與姓名異寫（Rydz-Śmigły／Śmigły-Rydz）"
+        }
+      ]
+    },
+    {
+      "key": "michałrola-zymierski",
+      "bioId": null,
+      "name": "Michał Rola-Żymierski",
+      "nameZh": "米哈乌·罗拉-日梅尔斯基",
+      "recordIds": [],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1911-01-01",
+            "end": "1927-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "奧軍、軍團與波蘭軍隊任職",
+            "en": "Austrian army, Legions and Polish Army service"
+          },
+          "body": {
+            "zh-Hant": "依IPN文件，他1890年生於克拉科夫，1911至1912年在奧地利軍服役。1914年一戰爆發後他任軍團步兵連長，之後指揮過軍團第一旅的第7、第2、第3團。1919年他進入波蘭軍隊，並在波蘇戰爭中擔任第2步兵師師長；1921至1923年他在巴黎高等軍事學院進修。1924年起他任軍事部軍備副主管，同年晉升准將。",
+            "en": "According to IPN texts he was born in Kraków in 1890 and served in the Austrian army in 1911–1912. After the outbreak of the First World War in 1914 he became an infantry company commander in the Polish Legions and later commanded the 7th, 2nd and 3rd infantry regiments of the First Brigade. In 1919 he entered the Polish Army and commanded the 2nd Infantry Division in the Polish–Soviet war; in 1921–1923 he studied at the war college in Paris. From 1924 he was deputy head of armaments in the Ministry of Military Affairs and in the same year became a brigadier general."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Urodził się w 1890 roku w Krakowie.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "W l. 1911–1912 odbył zasadniczą służbę wojskową w armii austriackiej",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "został dowódcą kompanii piechoty w Legionach Polskich",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Potem dowodził 7, 2 i 3 pułkiem piechoty I Brygady Legionów.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "W 1919 roku znalazł się w Wojsku Polskim.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "1920-1921 2 Dywizja d-ca Grodno",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "W latach 1921–1923 wysłany na studia w Wyższej Szkole Wojennej w Paryżu.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Od 1924 roku został zastępcą szefa Administracji Armii ds. uzbrojenia",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "W tym samym roku mianowany został generałem brygady.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1927-01-01",
+            "end": "1943-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "貪污定罪與蘇聯情報合作",
+            "en": "Corruption conviction and Soviet intelligence links"
+          },
+          "body": {
+            "zh-Hant": "IPN稱，1927年他任職軍事部期間的貪污行為曝光，法院判處撤銷軍階、開除軍籍並徒刑5年。他出獄後於1931年前往法國，1932年起與蘇聯情報機關合作，並加入波蘭共產黨；1938年他返回華沙。",
+            "en": "IPN states that in 1927 his embezzlement while serving in the ministry came to light, and a court sentenced him to degradation, expulsion from the army and five years in prison. After release he went to France in 1931, began cooperating with Soviet intelligence in 1932 and joined the Communist Party of Poland; in 1938 he returned to Warsaw."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "W 1927 roku wyszły na światło dzienne malwersacje",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "skazał go prawomocnie na degradację, wydalenie z wojska i 5 lat więzienia",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Po wyjściu z więzienia Żymierski w 1931 roku wyjechał do Francji.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "W 1932 roku podjął przeciw Polsce współpracę z wywiadem ZSRR.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "wstąpił też do Komunistycznej Partii Polski (KPP)",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "w 1938 roku Żymierski powrócił do Warszawy",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1943-01-01",
+            "end": "1949-11-07"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "人民軍、國防部長與元帥",
+            "en": "People's Army, defence minister and Marshal"
+          },
+          "body": {
+            "zh-Hant": "IPN稱，他1943年上半年與波蘭工人黨建立組織聯繫，成為人民近衛軍總參謀部的軍事顧問，並以「Rola」之名被宣布為人民軍最高司令，該軍於1944年1月1日正式取代人民近衛軍。1944年7月他赴莫斯科後又被宣布為波蘭軍最高司令。IPN名錄記載他自1944年7月21日起主管波蘭民族解放委員會的國防部門，1944年12月起任國防部長，至1949年11月6日。名錄並載1945年5月3日全國人民議會決議授予他波蘭元帥。",
+            "en": "IPN states that in the first half of 1943 he made formal organisational contacts with the Polish Workers' Party and became military adviser to the General Staff of the People's Guard; under the pseudonym \"Rola\" he was proclaimed Supreme Commander of the People's Army, formally created in place of the People's Guard on 1 January 1944. After a stay in Moscow in July 1944 he was also proclaimed Supreme Commander of the Polish Army. The IPN catalogue lists him as head of the national-defence department of the PKWN from 21 July 1944, minister of national defence from December 1944 to 6 November 1949, and records that a resolution of the National Council of the Homeland of 3 May 1945 made him Marshal of Poland."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Został doradcą wojskowym Sztabu Głównego pepeerowskiej Gwardii Ludowej",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "w pierwszej połowie 1943 roku nawiązał formalne kontakty organizacyjne",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "„naczelnym dowódcą Armii Ludowej”",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "powołanej formalnie w miejsce GL 1 stycznia 1944 roku",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "został ogłoszony także „naczelnym dowódcą Wojska Polskiego”",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Po pobycie w Moskwie w lipcu 1944 roku",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "Kierownik Resort Obrony Narodowej PKWN Lublin 21-07-1944 12-1944",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "Minister Ministerstwo Obrony Narodowej Warszawa 12-1944 6-11-1949",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "W dniu 3 maja 1945 uchwałą KRN zostaje Marszałkiem Polski",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "zymierski-2nd-division",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍隊第2步兵師",
+            "en": "Polish 2nd Infantry Division"
+          },
+          "title": {
+            "orig": "d-ca 2 Dywizji (Grodno)",
+            "zh-Hant": "第2步兵師師長（格羅德諾）",
+            "en": "Commander of the 2nd Division (Grodno)"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1920-01-01",
+            "end": "1922-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "1920-1921 2 Dywizja d-ca Grodno",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "師級指揮，非國家級最高軍職",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "zymierski-army-armaments",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍事部",
+            "en": "Ministry of Military Affairs"
+          },
+          "title": {
+            "orig": "zastępca szefa Administracji Armii ds. uzbrojenia",
+            "zh-Hant": "軍備副主管（軍事部陸軍行政）",
+            "en": "Deputy head of Army Administration for armaments"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1924-01-01",
+            "end": "1927-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Od 1924 roku został zastępcą szefa Administracji Armii ds. uzbrojenia",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "1924-1926 W Ministerstwie Spraw Wojskowych, w stopniu generała",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "副職（zastępca，來源稱相當於副部長），非 R3 正職閣員"
+        },
+        {
+          "key": "zymierski-al-commander",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "人民軍（Armia Ludowa）",
+            "en": "People's Army (Armia Ludowa)"
+          },
+          "title": {
+            "orig": "naczelny dowódca AL",
+            "zh-Hant": "人民軍最高司令",
+            "en": "Supreme Commander of the People's Army"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1944-01-01",
+            "end": "1944-08-01"
+          },
+          "startPrecision": "month",
+          "endPrecision": "month",
+          "citations": [
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "01-07.1944 naczelny dowódca AL",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "„naczelnym dowódcą Armii Ludowej”",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "powołanej formalnie w miejsce GL 1 stycznia 1944 roku",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "人民軍為共產黨武裝，非國家軍隊最高軍職；迄日取來源「01-07.1944」之 7 月",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "zymierski-wp-commander",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍隊（民族解放委員會控制）",
+            "en": "Polish Army (under the PKWN)"
+          },
+          "title": {
+            "orig": "naczelny dowódca Wojska Polskiego",
+            "zh-Hant": "波蘭軍最高司令",
+            "en": "Supreme Commander of the Polish Army"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1944-07-01",
+            "end": null
+          },
+          "startPrecision": "month",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "został ogłoszony także „naczelnym dowódcą Wojska Polskiego”",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "zym-ipnstreet",
+              "locator": "IPN「Nazwy do zmiany：ul. Roli-Żymierskiego Michała」",
+              "quote": "Po pobycie w Moskwie w lipcu 1944 roku",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "職稱明寫 naczelny dowódca（最高司令），但政權 regimeId 未查、迄日來源未明寫",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "dates"
+          ]
+        },
+        {
+          "key": "zymierski-pkwn-defence",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭民族解放委員會國防部門",
+            "en": "Defence Department of the PKWN (Lublin)"
+          },
+          "title": {
+            "orig": "Kierownik Resortu Obrony Narodowej PKWN",
+            "zh-Hant": "國防部門主管（民族解放委員會）",
+            "en": "Head of the National Defence Department of the PKWN"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1944-07-21",
+            "end": "1945-01-01"
+          },
+          "startPrecision": "day",
+          "endPrecision": "month",
+          "citations": [
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "Kierownik Resort Obrony Narodowej PKWN Lublin 21-07-1944 12-1944",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國防部門主管（Kierownik Resortu，是否等同正職部長未明寫），政權 regimeId 未查",
+          "t14Overlap": "cabinet",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime",
+            "rank"
+          ]
+        },
+        {
+          "key": "zymierski-defence-minister",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭國防部",
+            "en": "Ministry of National Defence"
+          },
+          "title": {
+            "orig": "Minister Obrony Narodowej",
+            "zh-Hant": "國防部長",
+            "en": "Minister of National Defence"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1944-12-01",
+            "end": "1949-11-06"
+          },
+          "startPrecision": "month",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "Minister Ministerstwo Obrony Narodowej Warszawa 12-1944 6-11-1949",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國防部長屬四部、正職、期間可證 >90 天，但政權 regimeId 未查（NULL）",
+          "t14Overlap": "cabinet",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime"
+          ]
+        },
+        {
+          "key": "zymierski-krn-deputy",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "全國人民議會與立憲議會",
+            "en": "State National Council and Legislative Sejm"
+          },
+          "title": {
+            "orig": "poseł do KRN i na Sejm Ustawodawczy",
+            "zh-Hant": "全國人民議會與立憲議會議員",
+            "en": "Deputy to the KRN and the Legislative Sejm"
+          },
+          "positionKind": "legislator",
+          "period": {
+            "start": "1943-12-01",
+            "end": "1952-09-01"
+          },
+          "startPrecision": "month",
+          "endPrecision": "month",
+          "citations": [
+            {
+              "sourceKey": "zym-bip",
+              "locator": "IPN BIP「katalog kierowniczych stanowisk partyjnych i państwowych PRL：Żymierski Michał」",
+              "quote": "12.1943 - 08.1952 poseł do KRN i na Sejm Ustawodawczy",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "議員，非 R2–R4 類別；來源未寫以何黨身分取得席位，故不歸黨職"
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "paragraph:length",
+          "gapKind": "not_found",
+          "note": "來源不足：波蘭軍最高司令迄日未能於 IPN 來源查得。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:zymierski-wp-commander",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；IPN 文件只寫 1944 年 7 月起被宣布為波蘭軍最高司令，未寫迄日；已查 IPN BIP 名錄、IPN 街名文件、iPSB 相關條目（僅為 Spychalski 條目）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:battle",
+          "gapKind": "not_found",
+          "note": "來源不足：IPN 名錄僅寫 1919 年第一次西里西亞起義與波蘇戰爭的指揮職，未寫具名戰役或日期；已查 IPN BIP 名錄、IPN 街名文件、iPSB。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:length",
+          "gapKind": "not_found",
+          "note": "待查證：PPR（1943）、PZPR（1948）僅為黨員身分，來源（IPN BIP）未寫窗內黨職；KC PZPR 1981–1986 在窗外；已查 IPN BIP 名錄、IPN 街名文件。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "official",
+          "query": "Rola-Żymierski Michał marszałek Polski biografia（限 kotobank/encyclopedia.com/britannica/sejm/ipsb/ipn）",
+          "url": null,
+          "result": "found_A",
+          "note": "回傳 IPN 街名文件、BIP 名錄"
+        },
+        {
+          "step": 2,
+          "sourceType": "official",
+          "query": "Michał Rola-Żymierski biogram minister obrony narodowej Armia Ludowa",
+          "url": null,
+          "result": "found_A",
+          "note": "回傳 IPN BIP 名錄 58876 與 IPN 街名文件"
+        },
+        {
+          "step": 3,
+          "sourceType": "official",
+          "query": "IPN BIP 名錄 Żymierski Michał",
+          "url": "https://katalog.bip.ipn.gov.pl/informacje/58876",
+          "result": "found_A",
+          "note": "curl 取得；含職位起迄表（Ludzie władzy 1944–1991 為來源）"
+        },
+        {
+          "step": 4,
+          "sourceType": "official",
+          "query": "IPN 街名文件 ul. Roli-Żymierskiego Michała",
+          "url": "https://ipn.gov.pl/pl/upamietnianie/dekomunizacja/zmiany-nazw-ulic/nazwy-ulic/nazwy-do-zmiany/38760,ul-Roli-Zymierskiego-Michala.html",
+          "result": "found_A",
+          "note": "curl 取得；立場鮮明（去共產化），文中以「IPN 稱」處理"
+        },
+        {
+          "step": 5,
+          "sourceType": "national_dictionary",
+          "query": "iPSB 相關頁",
+          "url": "https://www.ipsb.nina.gov.pl/a/ciekawostka/ostatni-marszalek-polski-ludowej",
+          "result": "not_relevant",
+          "note": "curl 取得；內容為 Marian Spychalski，非本人"
+        }
+      ]
+    },
+    {
+      "key": "jozefpiłsudski",
+      "bioId": "01a1b4b5-7275-7a4c-a36c-723359599508",
+      "name": "Józef Piłsudski",
+      "nameZh": "约瑟夫·毕苏斯基",
+      "recordIds": [],
+      "thickness": "厚",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1914-08-01",
+            "end": "1918-12-01"
+          },
+          "periodStartPrecision": "month",
+          "periodEndPrecision": "month",
+          "heading": {
+            "zh-Hant": "軍事組織、第一旅與馬格德堡",
+            "en": "Military organisations, the First Brigade and Magdeburg"
+          },
+          "body": {
+            "zh-Hant": "1914年8月，在他倡議並領導下成立波蘭軍事組織（POW），在俄軍後方進行情報與破壞活動。12月22至25日，第一旅在洛夫丘夫克戰役中打了第一場較大的勝仗；1915年3月起，他以軍團第一旅旅長的身分指揮部隊。日本大百科全書稱他在一戰中率波蘭軍團站在奧德一方參戰。他後來被關進馬格德堡要塞，1918年11月8日德國政府在戰敗與革命之下釋放了他。",
+            "en": "In August 1914 the Polish Military Organisation (POW), created on his initiative and led by him, began intelligence and sabotage work behind the Russian lines. From 22 to 25 December 1914 the First Brigade fought its first major victorious action, the battle of Łowczówek, and from March 1915 he served as commander of the First Brigade of the Legions. The Nippon Encyclopedia says he led the Polish Legions on the Austro-German side in the First World War. Held in strict isolation in the fortress of Magdeburg, he was released by the German government on 8 November 1918."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "powstała z inicjatywy P-ego i przez niego kierowana Polska Organizacja Wojskowa",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "W dn. 22–5 XII 1914",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "I Brygada stoczyła pierwszą większą, zakończoną sukcesem bitwę pod Łowczówkiem",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Od marca 1915 P. jako dowódca I Brygady Legionów",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ni",
+              "locator": "日本大百科全書(ニッポニカ)「ピウスツキ」",
+              "quote": "第一次世界大戦中はポーランド軍団を率いて、オーストリア・ドイツ側にたって参戦した",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "internowany został w ścisłej izolacji w twierdzy w Magdeburgu",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Dn. 8 XI 1918 rząd niemiecki w obliczu klęski i rewolucji uwolnił P-ego",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1919-02-20",
+            "end": "1922-12-04"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "國家元首、總司令與波蘇戰爭",
+            "en": "Head of State, Commander-in-Chief and the Polish–Soviet war"
+          },
+          "body": {
+            "zh-Hant": "1919年2月20日，制憲議會委託他在憲法通過前行使國家元首與總司令職權。1920年3月19日他接受第一元帥頭銜。對蘇戰爭期間，華沙戰役的計畫作者歸屬後來成為尖銳政治爭論；10月12日波蘇代表在里加簽署和平預備協議，實際上結束了自1919年2月起的戰爭。日本大百科全書稱1921年新憲法削弱總統權限，他因不滿而退出政界；iPSB則記載他在1922年選舉後的演說（12月4日）中放棄總統候選。",
+            "en": "On 20 February 1919 the Sejm entrusted him with the offices of Chief of State and Commander-in-Chief until a constitution was adopted. On 19 March 1920 he took the title of First Marshal of Poland. The authorship of the plan for the battle of Warsaw later became a bitter political dispute; on 12 October 1920 Polish and Soviet delegations signed the Riga preliminary peace treaty, which practically ended the war that had run since February 1919. The Nippon Encyclopedia says he left politics in dissatisfaction when the 1921 constitution weakened presidential powers; iPSB records that in a speech on 4 December after the autumn 1922 elections he declined to stand for president."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Dn. 20 II 1919 Sejm powierzył Piłsudskiemu sprawowanie urzędu Naczelnika Państwa",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "i Naczelnego Wodza do czasu uchwalenia konstytucji",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Dn. 19 III 1920 P. przyjął tytuł Pierwszego Marszałka Polski",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Sprawa autorstwa planu bitwy warszawskiej",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "delegacja polska i radziecka podpisały w Rydze układ o preliminariach pokojowych",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ni",
+              "locator": "日本大百科全書(ニッポニカ)「ピウスツキ」",
+              "quote": "1921年に大統領の権限が弱められた新憲法が成立すると",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Jesienią 1922 odbyły się wybory parlamentarne",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "w przemówieniu w dn. 4 XII P. zrezygnował ze stawiania swej kandydatury",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1926-05-12",
+            "end": "1935-05-12"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "五月政變、軍事部長與總理",
+            "en": "May coup, Minister of Military Affairs and Prime Minister"
+          },
+          "body": {
+            "zh-Hant": "1926年5月12日，他率領效忠部隊進軍華沙，引發三天血戰，造成379人死亡。5月15日組成巴特爾內閣，他出任軍事部長並任此職至逝世；8月6日起兼任武裝部隊總監。他在1926年10月2日至1928年6月27日任總理，1930年8月25日再度出任總理，同年12月4日辭職。他於1935年5月12日去世。",
+            "en": "On 12 May 1926 he marched on Warsaw at the head of loyal troops, which led to three days of bloody fighting and 379 deaths. On 15 May the Bartel cabinet was formed with him as Minister of Military Affairs, a post he held until his death; from 6 August 1926 he was also Inspector General of the Armed Forces. He was prime minister from 2 October 1926 to 27 June 1928 and again from 25 August 1930 until he resigned on 4 December 1930. He died on 12 May 1935."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Gdy w maju 1926 w atmosferze kryzysu politycznego powstał nowy rząd Witosa",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "dn. 12 V P. na czele wiernych mu oddziałów ruszył na Warszawę",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Przyniosły one śmierć 379 osób (w tym 164 cywilów) i 920 rannych",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Zaprzysiężenie gabinetu Kazimierza Bartla w Warszawie 15.05.1926 r.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "P. objął w nim Min. Spraw Wojskowych, którym kierował do śmierci",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "6 VIII 1926 P. sprawował równocześnie funkcję Generalnego Inspektora",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "P. był w tym czasie premierem od 2 X 1926 do 27 VI 1928",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Dn. 25 VIII 1930 P. stanął ponownie na czele rządu",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "P. 4 XII 1930 zrezygnował z funkcji premiera",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "1867-12-05 - 1935-05-12",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "pilsudski-1st-brigade",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍團第一旅",
+            "en": "Polish Legions, First Brigade"
+          },
+          "title": {
+            "orig": "dowódca I Brygady Legionów",
+            "zh-Hant": "軍團第一旅旅長",
+            "en": "Commander of the First Brigade of the Legions"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1915-03-01",
+            "end": null
+          },
+          "startPrecision": "month",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Od marca 1915 P. jako dowódca I Brygady Legionów",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "旅級指揮，非國家級最高軍職",
+          "t14Overlap": "general"
+        },
+        {
+          "key": "pilsudski-supreme-commander",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭國家",
+            "en": "Polish state"
+          },
+          "title": {
+            "orig": "Naczelny Wódz",
+            "zh-Hant": "總司令",
+            "en": "Commander-in-Chief"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1919-02-20",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Dn. 20 II 1919 Sejm powierzył Piłsudskiemu sprawowanie urzędu Naczelnika Państwa",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "i Naczelnego Wodza do czasu uchwalenia konstytucji",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國家級最高軍職（Naczelny Wódz 職稱明寫），但政權 regimeId 未查、迄日來源未明寫",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "dates"
+          ]
+        },
+        {
+          "key": "pilsudski-war-minister",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭軍事部",
+            "en": "Ministry of Military Affairs"
+          },
+          "title": {
+            "orig": "Minister Spraw Wojskowych",
+            "zh-Hant": "軍事部長",
+            "en": "Minister of Military Affairs"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1926-05-15",
+            "end": "1935-05-12"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Zaprzysiężenie gabinetu Kazimierza Bartla w Warszawie 15.05.1926 r.",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "P. objął w nim Min. Spraw Wojskowych, którym kierował do śmierci",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "1867-12-05 - 1935-05-12",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "戰爭（軍事）部長屬四部、正職、期間可證 >90 天，但政權 regimeId 未查（NULL）",
+          "t14Overlap": "cabinet",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime"
+          ]
+        },
+        {
+          "key": "pilsudski-gisz",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭武裝部隊",
+            "en": "Polish Armed Forces"
+          },
+          "title": {
+            "orig": "Generalny Inspektor Sił Zbrojnych",
+            "zh-Hant": "武裝部隊總監",
+            "en": "Inspector General of the Armed Forces"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1926-08-06",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "6 VIII 1926 P. sprawował równocześnie funkcję Generalnego Inspektora",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "武裝部隊總監屬國家級軍職但職位等級引文未明寫、政權 regimeId 未查、迄日未明寫",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "rank",
+            "dates"
+          ]
+        }
+      ],
+      "roleCandidates": [
+        {
+          "key": "pilsudski-pm-1926",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭第二共和國政府",
+            "en": "Government of the Second Polish Republic"
+          },
+          "title": {
+            "orig": "premier",
+            "zh-Hant": "總理",
+            "en": "Prime Minister"
+          },
+          "originalPositionKind": "other",
+          "period": {
+            "start": "1926-10-02",
+            "end": "1928-06-27"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "P. był w tym czasie premierem od 2 X 1926 do 27 VI 1928",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "head_of_government",
+          "reason": "來源明寫 1926-10-02 至 1928-06-27 任總理（T14 R0）；是否已在 leader_records 未查，合併時需去重",
+          "t14Rule": "R0"
+        },
+        {
+          "key": "pilsudski-pm-1930",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波蘭第二共和國政府",
+            "en": "Government of the Second Polish Republic"
+          },
+          "title": {
+            "orig": "premier",
+            "zh-Hant": "總理",
+            "en": "Prime Minister"
+          },
+          "originalPositionKind": "other",
+          "period": {
+            "start": "1930-08-25",
+            "end": "1930-12-04"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "Dn. 25 VIII 1930 P. stanął ponownie na czele rządu",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "pil-ipsb",
+              "locator": "iPSB（Polski Słownik Biograficzny）「Piłsudski Józef Klemens」",
+              "quote": "P. 4 XII 1930 zrezygnował z funkcji premiera",
+              "quoteLang": "pl",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "head_of_government",
+          "reason": "來源明寫 1930-08-25 起再度任總理、同年 12-04 辭職（T14 R0）；是否已在 leader_records 未查，合併時需去重",
+          "t14Rule": "R0"
+        }
+      ],
+      "gaps": [
+        {
+          "target": "position:pilsudski-1st-brigade",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；iPSB（Garlicki）只寫「Od marca 1915 … dowódca I Brygady」，未明寫旅長何時卸任；已查 iPSB、日本大百科全書。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:pilsudski-supreme-commander",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；iPSB 只寫 1919-02-20 受託，未明寫 Naczelny Wódz 何時終止（1922-12-04 僅為其放棄競選總統演說日）；已查 iPSB、日本大百科全書。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:pilsudski-gisz",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；iPSB 只寫 1926-08-06 起兼任，未寫迄日（應至逝世但來源未明寫）；已查 iPSB、日本大百科全書。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:body",
+          "gapKind": "not_found",
+          "note": "來源不足：三職（第一旅、總司令、武裝部隊總監）迄日未能於 iPSB／日本大百科全書查得；另 Naczelnik Państwa（元首）任期 1918–1922 的精確起迄日、1926–1935 實際掌權（日本大百科全書 B 稱「実質的な独裁体制」，僅單一 B 來源）未建候選；PPS 黨職在 1908 年前，窗外不建。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "named_encyclopedia",
+          "query": "ピウスツキ ユゼフ 日本大百科全書 kotobank",
+          "url": "https://kotobank.jp/word/%E3%81%B4%E3%81%86%E3%81%99%E3%81%A4%E3%81%8D-3166178",
+          "result": "found_B",
+          "note": "curl 取得；ニッポニカ（安部一郎）。同頁 Britannica 小項目無署名不用"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "Józef Piłsudski Naczelnik Państwa Marszałek Polski biografia ipsb",
+          "url": "https://www.ipsb.nina.gov.pl/a/biografia/jozef-pilsudski-1867-1935-naczelnik-panstwa-naczelny-wodz",
+          "result": "found_A",
+          "note": "curl 取得；PSB t. XXVI（Andrzej Garlicki）"
+        },
+        {
+          "step": 3,
+          "sourceType": "official",
+          "query": "prezydent.pl／sejm.gov.pl 皮烏蘇茨基",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋結果僅見紀念性新聞頁，未抓取"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "ユゼフピウスツキ（デジタル大辞泉）",
+          "url": "https://kotobank.jp/word/%E3%82%86%E3%81%9C%E3%81%B5%E3%81%B4%E3%81%86%E3%81%99%E3%81%A4%E3%81%8D-608383",
+          "result": "unrated",
+          "note": "僅見搜尋摘要，未抓取"
+        }
+      ]
+    },
+    {
+      "key": "ionantonescu",
+      "bioId": "01a1b4c2-3ec6-7305-a572-6f13398c199c",
+      "name": "Ion Antonescu",
+      "nameZh": "扬·安东内斯库",
+      "recordIds": [],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1933-12-01",
+            "end": "1939-01-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "參謀總長與國防部長",
+            "en": "Chief of the General Staff and Minister of Defence"
+          },
+          "body": {
+            "zh-Hant": "安東內斯庫（1882–1946）出生於特蘭西瓦尼亞，是第二次世界大戰時親德政權的首腦，早年曾在第一次世界大戰中從軍。1934年他出任參謀總長，羅馬尼亞國防部的歷任總參謀長名單載明其任期為1933年12月1日至1934年12月11日。1937年他出任國防部長，但因被認為與右翼團體「鐵衛團」接近，翌年（1938年）遭解職。",
+            "en": "Antonescu (1882–1946), born in Transylvania, headed the pro-German regime of the Second World War; earlier he served in the First World War. He became chief of the General Staff in 1934, and the Romanian Ministry of National Defence list of chiefs gives his tenure as 1 December 1933 to 11 December 1934. In 1937 he became minister of defence but, regarded as close to the right-wing Iron Guard, was dismissed the following year (1938)."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "（1882―1946）",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "トランシルバニアに6月14日生まれる。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "第二次世界大戦時の親独政権の首班。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "第一次世界大戦に従軍",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "1934年に参謀総長、1937年に国防相になるが",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-mapn",
+              "locator": "羅馬尼亞國防部「Şefii de stat major」",
+              "quote": "General Ion Antonescu, Sef al Marelui Stat Major, 01.12.1933-11.12.1934",
+              "quoteLang": "ro",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "右翼団体「鉄衛団」に近いとして翌1938年解任された。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1940-01-01",
+            "end": "1942-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "1940年掌權與加入軸心",
+            "en": "Taking power in 1940 and joining the Axis"
+          },
+          "body": {
+            "zh-Hant": "1940年，羅馬尼亞國土三分之一被周邊國家奪走，國王請他出任首相；他允許德軍進駐國內並加入三國同盟。他取得鐵衛團支持而建立獨裁體制，但1941年1月解散了該團。",
+            "en": "In the 1940 crisis, when a third of the national territory was taken by neighbouring states, he was asked by the king to become prime minister; he allowed German troops into the country and joined the Tripartite Pact. He established a dictatorship with Iron Guard support but dissolved the Guard in January 1941."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "国土の3分の1が周辺諸国に奪われた1940年の危機に際して",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "国王に請われて首相に就任、ドイツ軍の領内進駐を認め、三国同盟に加入した。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "鉄衛団の支持を得て独裁制を敷いたが、1941年1月には同団を解散させた。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1941-06-01",
+            "end": "1946-07-01"
+          },
+          "periodStartPrecision": "month",
+          "periodEndPrecision": "month",
+          "heading": {
+            "zh-Hant": "對蘇戰爭、倒台與處決",
+            "en": "War against the USSR, fall and execution"
+          },
+          "body": {
+            "zh-Hant": "1941年6月德蘇開戰時，他投入30個師對蘇宣戰，控制烏克蘭南部，並把敖德薩改名為安東內斯庫市。1944年8月的政變中他被逮捕；戰後經審判，於1946年6月1日被處決。",
+            "en": "When Germany and the USSR went to war in June 1941 he committed 30 divisions and declared war on the USSR, took control of southern Ukraine and renamed Odessa \"Antonescu city\". He was arrested in the coup of August 1944 and, after a postwar trial, executed on 1 June 1946."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "同年6月の独ソ開戦には30個師団を投入して対ソ宣戦し、ウクライナ南部を支配し",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "オデッサをアントネスク市と命名した",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "1944年8月のクーデターで逮捕され、戦後、裁判ののち1946年6月1日処刑された。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "antonescu-chief-of-staff",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "羅馬尼亞總參謀部",
+            "en": "Romanian General Staff"
+          },
+          "title": {
+            "orig": "Șef al Marelui Stat Major",
+            "zh-Hant": "參謀總長（總參謀部首長）",
+            "en": "Chief of the General Staff"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1933-12-01",
+            "end": "1934-12-11"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "ant-mapn",
+              "locator": "羅馬尼亞國防部「Şefii de stat major」",
+              "quote": "General Ion Antonescu, Sef al Marelui Stat Major, 01.12.1933-11.12.1934",
+              "quoteLang": "ro",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "1934年に参謀総長、1937年に国防相になるが",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國家級參謀首長（Șef al Marelui Stat Major 職稱明寫），但政權 regimeId 未查（NULL）→ 門檻無法證明",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime"
+          ]
+        },
+        {
+          "key": "antonescu-defence-minister",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "羅馬尼亞國防部",
+            "en": "Romanian Ministry of National Defence"
+          },
+          "title": {
+            "orig": "国防相",
+            "zh-Hant": "國防部長",
+            "en": "Minister of National Defence"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1937-01-01",
+            "end": "1939-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "1934年に参謀総長、1937年に国防相になるが",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ant-ni",
+              "locator": "日本大百科全書(ニッポニカ)「アントネスク」",
+              "quote": "右翼団体「鉄衛団」に近いとして翌1938年解任された。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國防部長屬四部、正職，但起迄僅年精度（1937→1938）無法證明 ≥90 天，且政權 regimeId 未查",
+          "t14Overlap": "cabinet",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime",
+            "dates"
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "paragraph:battle",
+          "gapKind": "not_found",
+          "note": "來源不足：已抓 A/B 來源（ニッポニカ、羅馬尼亞國防部名單、大屠殺委員會報告）未寫具名戰役，僅寫 1941 年對蘇戰爭與敖德薩；另 Enciclopedia României（無署名，Q9 不作出處）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:antonescu-prime-minister",
+          "gapKind": "not_found",
+          "note": "待查證：缺起日；首相／領導者（Conducător）任期精確起迄日（1940-09-04 起、1944-08-23 止）只見 Enciclopedia României（無署名 wiki）與搜尋摘要，ニッポニカ僅年月；此任期應已在 leader_records，未另建候選。已查：ニッポニカ、国防部名單、Encyclopedia.com（Oxford／Judaica 無署名）、Enciclopedia României。",
+          "candidateCitations": [
+            {
+              "sourceKey": "ant-er",
+              "locator": "Enciclopedia României「Ion Antonescu」",
+              "quote": "Ion Antonescu",
+              "note": "無署名 wiki，僅為線索"
+            }
+          ],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:body",
+          "gapKind": "not_found",
+          "note": "待查證：1941-08-21 晉升元帥只見 Enciclopedia România（無署名）；國防部長精確日期（1937-12 起戈加內閣）只見搜尋摘要；Mihai Antonescu 等相關事項不在本批。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "named_encyclopedia",
+          "query": "アントネスク イオン 日本大百科全書 kotobank",
+          "url": "https://kotobank.jp/word/%E3%81%82%E3%82%93%E3%81%A8%E3%81%AD%E3%81%99%E3%81%8F-3142482",
+          "result": "found_B",
+          "note": "curl 取得；ニッポニカ（木戸蓊）"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "Ion Antonescu mareșal biografie conducătorul statului（限 cdep/presidency/gov/arhivelenationale/enciclopediaromaniei）",
+          "url": null,
+          "result": "unrated",
+          "note": "回傳 Enciclopedia României（無署名）與議會辯論頁"
+        },
+        {
+          "step": 3,
+          "sourceType": "unrated",
+          "query": "Enciclopedia României Ion Antonescu",
+          "url": "http://enciclopediaromaniei.ro/wiki/Ion_Antonescu",
+          "result": "unrated",
+          "note": "curl 取得；MediaWiki 無署名，僅作 gap 線索"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "Antonescu Encyclopedia.com（Oxford World Encyclopedia／Encyclopaedia Judaica）",
+          "url": "https://www.encyclopedia.com/people/history/romanian-history-biographies/ion-antonescu",
+          "result": "unrated",
+          "note": "curl 取得；無署名條目，依 Q9 不作出處"
+        },
+        {
+          "step": 5,
+          "sourceType": "official",
+          "query": "Șefii de stat major（Ministerul Apărării Naționale）",
+          "url": "https://armed.mapn.ro/3_%C5%9Eefii-de-stat-major-chiefs-of-general-staff",
+          "result": "found_A",
+          "note": "curl 取得；國防部官方名單，含 01.12.1933-11.12.1934"
+        },
+        {
+          "step": 6,
+          "sourceType": "official",
+          "query": "MApN Istoricul Secretariatului General（PDF）",
+          "url": "https://sg.mapn.ro/webroot/fileslib/upload/files/Istoricul_Secretariatului_General.pdf",
+          "result": "no_result",
+          "note": "curl 逾時（60/90 秒）未取得"
+        },
+        {
+          "step": 7,
+          "sourceType": "official",
+          "query": "USHMM／羅馬尼亞大屠殺國際委員會報告：Antonescu 一章",
+          "url": "https://www.ushmm.org/m/pdfs/20080226-romania-commission-antonescu.pdf",
+          "result": "found_A",
+          "note": "curl 取得；內容為反猶政策責任，不含任職起迄，未用於段落"
+        },
+        {
+          "step": 8,
+          "sourceType": "authority",
+          "query": "（未另查權威檔）",
+          "url": null,
+          "result": "no_result",
+          "note": "以 ニッポニカ 生卒（1882–1946）為準"
+        }
+      ]
+    },
+    {
+      "key": "carlgustafemilmannerheim",
+      "bioId": "01a1b52c-f901-7fdf-90f5-67fa2940f82e",
+      "name": "Carl Gustaf Emil Mannerheim",
+      "nameZh": "卡尔·古斯塔夫·埃米尔·曼纳海姆",
+      "recordIds": [],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1887-01-01",
+            "end": "1918-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "俄軍生涯與回國",
+            "en": "Russian army career and return to Finland"
+          },
+          "body": {
+            "zh-Hant": "曼納海姆1887年秋天、20歲時加入俄國陸軍，前後效力約30年；日本大百科全書稱他在俄軍中晉升高位，並在日俄戰爭中參與情報部門。俄國十月革命後他回到芬蘭。",
+            "en": "Mannerheim joined the Russian army in the autumn of 1887 at the age of 20 and served the emperor for 30 years; the Nippon Encyclopedia says he rose to high rank in the Russian army and took part in the Russo-Japanese War in intelligence. After the October Revolution he returned to Finland."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "he joined the Russian army in the autumn of 1887",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "served the emperor for 30 years",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "軍人としてロシア陸軍内で高位に昇進。日露戦争にも情報部門で参加。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "ロシア十月革命後帰国。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1918-01-01",
+            "end": "1920-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "內戰、執政與總統選舉落敗",
+            "en": "Civil war, regency and the lost presidential election"
+          },
+          "body": {
+            "zh-Hant": "1918年的芬蘭內戰中，他受命指揮白衛軍並鎮壓赤衛軍；1918年底他被選為國家執政，並批准向共和制過渡的方案。1919年第一次總統選舉中他敗給斯托爾貝里，之後暫時退出中央政壇。",
+            "en": "In the 1918 Finnish civil war he was given command of the White Guards and put down the Red Guards; at the end of 1918 he was elected regent and approved the plan for the transition to a republic. In the first presidential election of 1919 he lost to Ståhlberg and withdrew from central politics for a time."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "1918年のフィンランド内戦では白衛軍の指揮権を任され赤衛軍を鎮圧。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "1918年末、国の執政に選出され共和制移行案を承認。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "1919年の第1回大統領選挙ではストールベルイに敗北。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "しばらく中央政界から引退した。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1931-01-01",
+            "end": "1945-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "國防評議會與對蘇戰爭總司令",
+            "en": "Defence Council and commander-in-chief in the wars with the USSR"
+          },
+          "body": {
+            "zh-Hant": "1931年他出任國防評議會議長，但他的增強軍備案未能實現。1939年秋蘇聯進攻芬蘭時，社會民主黨同意任命他為軍隊總司令；日本大百科全書稱他在第一次（1939–1940）與第二次（1941–1944）蘇芬戰爭中任總司令，且未參與德軍進攻列寧格勒的作戰。",
+            "en": "In 1931 he became chairman of the Defence Council, but his armament plans were not realised. When the Soviet Union attacked in autumn 1939 the Social Democrats approved his appointment as commander-in-chief; the Nippon Encyclopedia says he was commander-in-chief in the first (1939–1940) and second (1941–1944) Soviet–Finnish wars and did not join the German advance on Leningrad."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "1931年国防評議会議長に就任。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "しかし彼の軍備増強案は実現されなかった。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "when the Soviet Union attacked Finland in the autumn of 1939",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "the Social Democrats approved his appointment as commander-in-chief",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "第一次（1939～1940）、第二次（1941～1944）のソビエト・フィンランド戦争で総司令官を務めた",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "ドイツ軍のレニングラード進攻作戦には加担しなかった。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1944-08-01",
+            "end": "1946-04-01"
+          },
+          "periodStartPrecision": "month",
+          "periodEndPrecision": "month",
+          "heading": {
+            "zh-Hant": "大統領と辭任",
+            "en": "President and resignation"
+          },
+          "body": {
+            "zh-Hant": "1944年8月，議會選舉他為總統；芬蘭與蘇聯在1944年秋簽署停戰協定。他在戰後處理上傷透腦筋，於1946年辭職，其後在瑞士寫作自傳並在當地逝世。",
+            "en": "In August 1944 Parliament elected him president, and an armistice with the Soviet Union was agreed in autumn 1944. Struggling with the postwar settlement, he resigned in 1946, later wrote his memoirs in Switzerland and died there."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "When Parliament elected Mannerheim president in August 1944",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "served as president of Finland between August 1944 and March 1946",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "An armistice was agreed with the Soviet Union in the autumn of 1944.",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "戦後処理に苦慮し1946年辞任。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "のちスイスで自伝執筆等に従事、その地で客死した。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "mannerheim-white-army",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "芬蘭白衛軍",
+            "en": "Finnish White Army"
+          },
+          "title": {
+            "orig": "白衛軍の指揮",
+            "zh-Hant": "白衛軍總司令",
+            "en": "Commander of the White Army"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1918-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "1918年のフィンランド内戦では白衛軍の指揮権を任され赤衛軍を鎮圧。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "1918 內戰白衛軍統帥（職稱「総司令」未見於已抓 A/B）；年精度起日、迄日缺，且政權 regimeId 未查",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "dates",
+            "rank"
+          ]
+        },
+        {
+          "key": "mannerheim-defence-council",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "芬蘭國防評議會",
+            "en": "Finnish Defence Council"
+          },
+          "title": {
+            "orig": "国防評議会議長",
+            "zh-Hant": "國防評議會議長",
+            "en": "Chairman of the Defence Council"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1931-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "1931年国防評議会議長に就任。",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國防評議會議長，位階未明寫且迄日缺、政權 regimeId 未查",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "rank",
+            "dates"
+          ]
+        },
+        {
+          "key": "mannerheim-commander-in-chief",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "芬蘭國防軍",
+            "en": "Finnish Defence Forces"
+          },
+          "title": {
+            "orig": "総司令官",
+            "zh-Hant": "總司令",
+            "en": "Commander-in-Chief"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1939-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "man-ni",
+              "locator": "日本大百科全書(ニッポニカ)「マンネルヘイム」",
+              "quote": "第一次（1939～1940）、第二次（1941～1944）のソビエト・フィンランド戦争で総司令官を務めた",
+              "quoteLang": "ja",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "man-finland",
+              "locator": "ThisisFINLAND「Soldier then president, Mannerheim took Finland from war to peace」",
+              "quote": "when the Soviet Union attacked Finland in the autumn of 1939",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-12",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R6",
+          "t14Reason": "國家級最高軍職（総司令官 職稱明寫）但起日僅年精度、迄日未明寫、政權 regimeId 未查",
+          "t14Overlap": "general",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "regime",
+            "dates"
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "position:mannerheim-white-army",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；ニッポニカ只寫 1918 年受命，未寫迄日。mannerheim.fi（無署名機構網站，未評等）寫 1918-01-16 至 1918-05-29，僅作線索；已查：ニッポニカ、世界大百科、ThisisFINLAND、Kansallisbiografia（JS 頁面抓不到正文）。",
+          "candidateCitations": [
+            {
+              "sourceKey": "man-mf",
+              "locator": "mannerheim.fi「War of Independence - Commander-in-Chief 1918」",
+              "quote": "16 January -29 May, 1918",
+              "note": "未評等，僅線索"
+            }
+          ],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:length",
+          "gapKind": "not_found",
+          "note": "來源不足：三職（白衛軍、國防評議會、總司令）迄日未能於 ニッポニカ／世界大百科／ThisisFINLAND 查得，Kansallisbiografia 抓不到正文。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:mannerheim-defence-council",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；已查 ニッポニカ、世界大百科事典（均只寫 1931 年就任）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "position:mannerheim-commander-in-chief",
+          "gapKind": "not_found",
+          "note": "待查證：缺迄日；ニッポニカ只寫戰爭年份（1941～1944），未寫總司令卸任日；起日只見「1939 年秋」。已查 ニッポニカ、世界大百科、ThisisFINLAND、Puolustusvoimat／presidentti.fi 搜尋摘要。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:body",
+          "gapKind": "not_found",
+          "note": "待查證：缺起日；國家執政（valtionhoitaja）1918 年底就任，ニッポニカ僅年月精度（「1918年末」），迄日只暗示 1919 年；Kansallisbiografia 為 JS 頁面抓不到正文。此為元首任期，應已在 leader_records，未另建候選。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        },
+        {
+          "target": "paragraph:battle",
+          "gapKind": "not_found",
+          "note": "來源不足：已抓 A/B 來源未寫具名戰役，僅寫 1918 內戰與 1939–1944 兩次蘇芬戰爭及列寧格勒（拒絕參與）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-12",
+          "citations": []
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "named_encyclopedia",
+          "query": "マンネルヘイム 日本大百科全書 kotobank",
+          "url": "https://kotobank.jp/word/%E3%81%BE%E3%82%93%E3%81%AD%E3%82%8B%E3%81%B8%E3%81%84%E3%82%80-3171897",
+          "result": "found_B",
+          "note": "curl 取得；ニッポニカ（玉生謙一）與世界大百科事典（同作者）；Britannica 小項目無署名不用"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "Mannerheim Carl Gustaf Emil kansallisbiografia（限 kansallisbiografia/finna 等）",
+          "url": "https://kansallisbiografia.fi/english/person/625",
+          "result": "blocked_403",
+          "note": "curl 取得僅頁首導覽（正文由 JS 載入），無法取得原文；Finna 權威檔頁為 Cloudflare 驗證頁，未繞過"
+        },
+        {
+          "step": 3,
+          "sourceType": "national_dictionary",
+          "query": "kansallisbiografia.fi/kansallisbiografia/henkilo/625",
+          "url": "https://kansallisbiografia.fi/kansallisbiografia/henkilo/625",
+          "result": "no_result",
+          "note": "curl 取得僅導覽，無正文"
+        },
+        {
+          "step": 4,
+          "sourceType": "authority",
+          "query": "kansalliskirjasto.finna.fi AuthorityRecord Mannerheim",
+          "url": "https://kansalliskirjasto.finna.fi/AuthorityRecord/melinda.(FI-ASTERI-N)000067771",
+          "result": "challenge_page",
+          "note": "Cloudflare \"Just a moment\" 頁，未繞過"
+        },
+        {
+          "step": 5,
+          "sourceType": "official",
+          "query": "Mannerheim Marshal of Finland president 1944 regent 1918 commander-in-chief",
+          "url": "https://finland.fi/life-society/soldier-president-mannerheim-took-finland-war-peace/",
+          "result": "found_A",
+          "note": "curl 取得；thisisFINLAND（芬蘭外交部運營官方網站，首次用到網域，暫分 A）"
+        },
+        {
+          "step": 6,
+          "sourceType": "official",
+          "query": "Mannerheim 指揮官年表（presidentti.fi／puolustusvoimat.fi）",
+          "url": "https://www.presidentti.fi/halonen/public/default5416-2.html?nodeid=41439",
+          "result": "not_relevant",
+          "note": "curl 取得；制度說明頁，無 Mannerheim 任期"
+        },
+        {
+          "step": 7,
+          "sourceType": "unrated",
+          "query": "mannerheim.fi War of Independence Commander-in-Chief 1918",
+          "url": "https://www.mannerheim.fi/06_vsota/e_ylip18.htm",
+          "result": "unrated",
+          "note": "curl 取得；無署名機構網站，僅作 gap 線索"
+        },
+        {
+          "step": 8,
+          "sourceType": "authority",
+          "query": "（未另查權威檔）",
+          "url": null,
+          "result": "no_result",
+          "note": "以 ニッポニカ 生卒（1867–1951）為準"
+        }
+      ]
+    }
+  ]
+}

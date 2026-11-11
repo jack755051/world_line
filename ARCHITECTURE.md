@@ -1459,3 +1459,76 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 | B3 對 §16 的建議 1–7 | 全採，細節見 16.3.2：(1) 400 字計法同 Q2；(2) 結束日寫法同 Q3；(3) 範圍外元首任期同 Q4；(4) `person_positions`＝生平經歷全集、`person_roles`＝收錄與出卡，兩表值域分開命名（只定分工方向；元首／首腦與 `de_facto_leader` 存哪張表、是否改寫 §14.8／§16.3 原文仍未決，見 16.9 T11、T12）；(5) seed 來源統一用頂層 `sources`＋`sourceKey`；(6) B3 研究檔（P 格式）加 `bioId` 鍵，掛既有生平；(7) 遇防機器人驗證不繞過，只可改用同一權威資料的官方鏡像（GND → lobid），不換來源 | Tai 2026-11-11 09:35（Asia/Taipei） |
 | T11、T12（人物／角色／經歷三層） | T11：人物與角色分兩張表，一個人物可有多個角色；元首（`head_of_state`）、首腦（`head_of_government`）、實際掌權者（`de_facto_leader`）都是**角色**（`person_roles.role_kind`），不是人物的屬性。人物＝既有 `leader_bios.id`；角色＝`person_roles`（收錄、出卡、主標題排序）；經歷＝`person_positions`（生平經歷全集，只在詳情「經歷」，不決定出卡，值域與 `person_roles` 分開命名，不重複收元首／首腦／實際掌權者）。T12：同意改寫 §14.8／§16.3 原文，已改寫，修訂紀錄見 16.3.3。取代上列「B3 對 §16 的建議 1–7」第 (4) 項括號內「存哪張表、是否改寫仍未決」之部分（該列原文保留）。`leader_records` 定位與遷移**未決定**，另列 16.9 T13；重疊類別另列 T14 | Tai 2026-11-11 10:03（Asia/Taipei）T11「這三個可能是不同人，但可能是同一個人，對我來說這個是角色，角色跟人物似乎是不太依樣的表」；T12「好」 |
 
+
+## 17. 前端動效規格（GSAP）
+
+> 狀態：📝 規格草案，待 Tai 確認；未安裝、未實作（Tai 2026-11-11 13:08：「GSAP 先寫動效規格進 ARCHITECTURE 給我確認，不改程式」）。
+> 與既有章節關係：只規範**表現層**，不改 §14.4 history／`?person=` 規則、§14.8 版面與互動、§16 資料層；§11／§14.0-3 戰役仍暫緩，本節只預留介面。
+> **現況核對（重要）**：前端**已有**動畫套件 `motion`（`frontend/package.json` `"motion": "^14.8.0"`）與 `MotionService`（`frontend/src/app/core/motion.ts`：`reduced` signal、`MOTION_DURATION = { fast: 0.18, base: 0.26 }`、SSR／jsdom 無 `matchMedia` 時當作減少動態）；使用處：`regime-sheet.ts`（`SHEET_MOTION` in .35s `cubic-bezier(.16,1,.3,1)`／out .2s ease-in、`SheetState = closed|opening|open|closing`）、`legend.ts`、`top-bar.ts`、`atlas-map.ts`、`atlas.page.ts`。CSS：`styles.css` `.wl-map-scrim` 淡出 200ms＋reduced-motion 關閉；`wl-components.css` 120–150ms 顏色 transition。人物彈窗（`person-dialog.ts`）目前**無**開關動畫（`@if (personId())` 直接掛載／移除）；資料來源用 `[hidden]` 切換、箭頭 `transition-transform`。採 GSAP 即與 `motion` 重疊，見 17.7 D0。
+
+### 17.1 決策與 Angular 整合
+- **套件**：npm `gsap`，只裝在前端專案 `frontend/` 本地依賴（不全域）；**現在不安裝**。只引 core（`import { gsap } from 'gsap'`），不引付費或多餘外掛；Flip 是否引入見 17.7 D5。授權：GSAP 3.13 起含外掛全部免費，但用的是 GSAP 自有「Standard License」而非 MIT，條款待安裝前再核對。
+- **執行緒／變更偵測**：所有 tween／timeline 在 `NgZone.runOutsideAngular()` 內建立與執行；動畫回呼不寫 signal、不觸發變更偵測。需要通知 Angular 的只有「關閉動畫結束 → 移除 DOM」一處，用 `ngZone.run()` 或寫 signal 一次。
+- **生命週期**：每個元件用 `gsap.context(() => {...}, hostEl)` 綁定 scope；`DestroyRef.onDestroy(() => ctx.revert())` 清掉 tween 與 inline style。不在全域選擇器（如 `.foo`）上動畫，一律傳元素參照（`viewChild`）。
+- **SSR／測試保護**：只在 `isPlatformBrowser(PLATFORM_ID)` 且在 `afterNextRender` 之後才建立動畫；非瀏覽器、jsdom（無 `matchMedia`）、Vitest／Karma 一律走「直接到終態」路徑（沿用現有 `prefersReducedMotion()` 的判斷方式）。
+- **集中服務**：沿用／擴充現有 `MotionService`（不另建第二個服務）：集中 reduced-motion 判斷、預設時長與 ease（17.3 表）、`timeScale` 開關、建立 context 的輔助方法。元件不直接 `import 'gsap'`，只經服務，日後換庫只改一處。
+- **與既有 CSS transition 的取捨**：建議**並存**——微互動（hover 顏色、按鈕狀態、箭頭旋轉、`.wl-seg-anim`、地圖 scrim）留 CSS；需要開關序列、可中斷、依狀態 reverse 的（彈窗、收合、列表進場、sheet）才用 JS 動畫。是否全面取代列入 17.7 D1。
+
+### 17.2 套用範圍與優先順序
+| 序 | 對象 | 現況 | 備註 |
+|---|---|---|---|
+| P1 | 人物彈窗開關（桌機中央彈窗、手機 `< md` 全螢幕）＋ backdrop | 無動畫 | 首要；需改成「關閉動畫完成才卸載」 |
+| P2 | 資料來源收合／展開（`person-sources-panel`、`source-disclosure`） | `[hidden]` 立即切換 | 高度方案見 17.5／17.7 D2 |
+| P3 | 人物卡列表進場（sheet「人物」分頁） | 無 | 是否每次切分頁都播見 D4 |
+| P4 | 側邊 sheet（`regime-sheet`） | 已用 `motion` | 若 D0 選 GSAP 才遷移，數值沿用現況 |
+| P5 | 人物↔戰役頁轉場 | 無 | **只預留介面**（例如 `MotionService.pageTransition(from, to): Promise<void>`，預設 no-op）；不設計細節；戰役仍受 §14.0-3／T5 約束 |
+
+### 17.3 數值表（建議值，開慢關快）
+| 動效 | 開：時長／ease／幅度 | 關：時長／ease／幅度 | backdrop |
+|---|---|---|---|
+| 人物彈窗（桌機） | 240ms／`power2.out`／`opacity 0→1`、`scale 0.96→1`、`y 8px→0` | 160ms／`power2.in`／`opacity 1→0`、`scale 1→0.98` | 開 200ms `power1.out` `0→1`（現值 `bg-black/45`）；關 150ms `power1.in` |
+| 人物彈窗（手機全螢幕） | 260ms／`power3.out`／`yPercent 100→0`（建議案，見 D3） | 180ms／`power2.in`／`yPercent 0→100` | 同上（全螢幕時幾乎不可見，可省） |
+| 資料來源展開／收合 | 200ms／`power2.out`／內容 `opacity 0→1`、`y -4px→0`（高度見 17.5） | 150ms／`power2.in`／反向 | — |
+| 人物卡列表進場 | 每張 180ms／`power2.out`／`opacity 0→1`、`y 6px→0`；stagger 30ms；**只對前 8 張**做 stagger，第 9 張起與第 8 張同時出現；整體上限 ≤ 420ms | 不做退場（切換即替換） | — |
+| 側邊 sheet | 350ms／`expo.out`（近似現行 `cubic-bezier(.16,1,.3,1)`）／`xPercent`（右）或 `yPercent`（底）100→0 | 200ms／`power2.in`／反向 | 無（非 modal） |
+| reduced-motion（全部） | 只淡入 ≤ 120ms `none`／`power1.out`，或直接切換（D 預設：彈窗淡入 100ms，其餘直接切換） | 直接切換（0ms） | 直接切換 |
+
+**中斷處理**
+- 每個元件只持有**一條** timeline（例如彈窗：`tl = gsap.timeline({ paused: true })` 開序列）。開→關：未開完就關時 `tl.timeScale(開/關比例).reverse()`（同一條 timeline 反向，不另起新 tween）；關→開同理 `play()`。快速連點不疊加新動畫。
+- **狀態以 Angular 為準**：`personId()`、`sourcesOpen()` 等 signal 立即改變；動畫只追隨終態。動畫失敗、被 kill 或 reduced-motion 時一律 `tl.progress(終態)` 收尾。
+- **DOM 移除**：關閉時元件先進入 `closing`（與 `regime-sheet` 同模式），播完關閉動畫（≤ 180ms）才卸載；若在 `closing` 期間重新打開同一人，reverse 回開狀態、不重建；打開**另一人**或元件被路由銷毀時，`tl.progress(1).kill()` 立即結束並卸載，不等動畫。逾時保險：關閉超過 300ms 未完成則強制卸載。
+
+### 17.4 無障礙
+- `prefers-reduced-motion: reduce`：照 17.3 末列；`MotionService.reduced` 即時反映系統切換。
+- **不等動畫的事**：焦點移入彈窗（`tabindex=-1` 的 panel／關閉鈕）、focus trap、Esc 關閉（由頁面統一處理，見 `person-dialog.ts` 註解）、`?person=` push／`history.back()`／`replaceUrl`（§14.4）、關閉後還原底層選取／分頁／捲動與焦點（§14.8）——全部在**狀態改變當下**同步執行，與動畫進度無關。
+- **pointer-events 策略**：開啟中彈窗內容立即可點（不設 `pointer-events:none`）；`closing` 期間彈窗與 backdrop 設 `pointer-events:none` 並加 `inert`，讓點擊與鍵盤直接落到底層（同 `.wl-map-scrim.wl-scrim-hiding` 做法）；動畫元素不得蓋在可點元素上又攔截事件。
+- 動畫只改 transform／opacity，不改點擊區尺寸；關閉鈕與來源點擊區 ≥ 44px（§14.8）在動畫各階段都成立（`scale ≥ 0.96` 時視覺略小，但只出現在開啟前 240ms）。
+
+### 17.5 效能
+- **只動 `transform`／`opacity`**；不動 width／height／top／left／margin／padding。
+- **收合展開高度**：不直接 tween `height`。候選：(a) 不做高度動畫，只內容淡入＋位移，下方內容瞬間推開（最簡）；(b) CSS `grid-template-rows: 0fr→1fr`（會觸發 layout，但只在單一區塊）；(c) FLIP（量測前後位置，用 transform 補間，需 Flip 外掛或自寫）；(d) `clip-path` 裁切＋scale。建議 (a)，見 D2。
+- **不和 MapLibre 搶主執行緒**：地圖 `movestart`～`moveend`（拖曳／縮放）期間不觸發非必要動畫（P3 列表進場延後或直接顯示）；不在 map render／`requestAnimationFrame` 迴圈內建立動畫；GSAP ticker 與地圖共用 rAF 但不在 map 事件回呼中做量測。`will-change: transform, opacity` 只在動畫開始時加、結束時移除（GSAP `force3D` 預設行為即可，不在 CSS 常駐）。
+- **驗收指標**：開／關彈窗期間 Performance trace 無 > 50ms long task；中階筆電幀率約 ≥ 55fps；gsap core gzip 增量官方約 23–25 KB 級（**待實測**，以 `ng build` 前後 bundle 差為準），上限見 D6；只引 core。
+
+### 17.6 驗收方式
+- **Playwright**（`--workers=1`，沿用 4201 dev，不碰 4200）：開／關彈窗、來源展開、列表進場各階段截圖，或開 `video`／`trace` 記錄；桌機 1440 與手機 390 各一組。
+- **reduced-motion**：`page.emulateMedia({ reducedMotion: 'reduce' })` 後驗證彈窗直接出現（或 ≤ 120ms 淡入）、無位移。
+- **單元測試關閉動畫**：jsdom 無 `matchMedia` 已走終態路徑；另提供 `{ provide: MotionService, useValue: fake }`（現有做法）或注入 token（例如 `MOTION_SCALE`，測試設 0 → 時長 0），或 `gsap.globalTimeline.timeScale(1000)`。測試不得依賴真實時間。
+- **e2e 穩定性**：`person-cards.e2e.ts` 不用 `waitForTimeout` 等動畫（現有 33、72 行的固定等待在實作時一併改）；改等可觀察狀態：`toBeVisible()`、`toHaveAttribute('data-motion-state', 'open')`（實作時在根元素輸出 `opening|open|closing`）、關閉後 `toHaveCount(0)`。截圖前等 `open` 狀態，或用 reduced-motion 模式截圖。
+
+### 17.7 待 Tai 決定
+| # | 問題 | 建議 |
+|---|---|---|
+| D0 | 前端已用 `motion`（sheet、圖例、頂列、地圖、頁面）；改用 GSAP 是「全面替換 `motion`」、「只新功能用 GSAP（兩庫並存）」或「維持 `motion`、本規格的時長／中斷／無障礙規則照套」 | 建議**擇一庫**，不並存：若無 GSAP 特有需求（複雜 timeline、Flip），維持 `motion` 成本最低；若確定用 GSAP，則 P1 起經 `MotionService` 逐步替換、最後移除 `motion` |
+| D1 | 是否全面取代既有 CSS transition | 不取代；微互動留 CSS，開關序列才用 JS（17.1） |
+| D2 | 收合展開高度動畫方案 | (a) 不動高度、只淡入位移；之後覺得跳動再評估 (b) 或 Flip |
+| D3 | 手機全螢幕：滑入（由下）或淡入縮放 | 由下滑入（與底部 sheet 一致、符合全螢幕頁面心智）；reduced-motion 時淡入 |
+| D4 | 列表進場是否每次切分頁都播 | 只在首次顯示該政權的人物分頁時播；同政權切回分頁、換日期不播 |
+| D5 | 是否加入 Flip 外掛（免費） | P1 不加；D2 若選 FLIP 再加 |
+| D6 | 套件大小上限 | gzip 增量 ≤ 30 KB（待實測）；超過則回到 D0 維持 `motion` |
+
+### 17.8 自我檢查（2026-11-11，寫入時）
+- §14.4：本節規定 history／`?person=` 與焦點還原不等動畫，無衝突。
+- §14.8：來源預設收合（P2 只改表現，預設仍收合）、手機全螢幕（保留）、≥ 44px 點擊區（17.4）、羊皮紙配色（動畫不改色）——無衝突。
+- §16（含 16.3.x 主標題排序）：純資料層，動畫不改排序與內容，無衝突。
+- **與現況程式的落差**（非章節衝突，只列出）：已有 `motion`＋`MotionService`（D0）；`regime-sheet` 曲線為 `cubic-bezier(.16,1,.3,1)`，GSAP 無同名 ease，用 `expo.out` 近似或 CustomEase（外掛）；`person-cards.e2e.ts` 有固定 `waitForTimeout`。

@@ -1,0 +1,128 @@
+{
+ "batch": "19",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 5,
+  "editedSentences": 2,
+  "spotRefetched": 5,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "ch-calonder",
+   "bioId": "01a1b53d-432c-788f-bbb4-63e6ad973eb9",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 3,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "第 2 段刪「把格勞賓登自由派組成固定的政黨結構」子句（引文只到「den er lange präsidierte,」，未涵蓋 eine feste Parteistruktur），改為「長期擔任其主席」（中英同步）",
+    "第 3 段中文刪「與資產階級議會多數」（引文截在 Armeespitze，未涵蓋 bürgerl. Parlamentsmehrheit；英文本已無此子句）",
+    "第 3 段引文「übernahm dann aber als Bundespräs.…」不含日期，datePrecision month→null（Q8）",
+    "calonder-political-dept：t14Reason 算錯（年精度 1918-12-31→1920-01-01 為 366 天，非 1 天），改寫理由；roleGap [dates,regime]→[regime]，仍 R6；對應 gap note 同步修正",
+    "研究者自標「中」並有 HLS（A）4 段，不適用薄人物最低嘗試；但 searchLog 僅 3 步，raw 目錄另有 calonder-admin／hls-de／lobid 等抓檔未逐一記錄",
+    "抽查重抓 HLS 原文，「Am 21.1.1920 erklärte C. seinen Rücktritt」逐字相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gr-plastiras",
+   "bioId": "01a1c3e1-fab1-73f5-ad63-e02203f70110",
+   "paragraphs": 2,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 3,
+   "verdict": "returned",
+   "changes": [
+    "第 1 段補引文「He participated in the Ukrainian campaign in 1919」（原引文缺「烏克蘭戰役」）",
+    "第 2 段補引文「og besættelsen af Athen i december 1944」（原引文缺占領雅典與 1944 年 12 月）；「Efter den britiske nedkæmpelse…」不含日期，datePrecision month→null；段落 period 起點改 1944-12-01（month），因段內第一件事為 1944 年 12 月",
+    "elisme.gr（希臘戰略研究所網站具名作者專文）維持 B，但屬邊界（非學術出版／機構百科），見 issues",
+    "抽查重抓 lex.dk 原文，「blev Plastiras indsat som regeringsleder i januar 1945」逐字相符"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：研究者自標「薄」，searchLog 僅 3 步（需 ≥8 次查詢、希臘語查詢 ≥2），來源類型僅 named_encyclopedia／academic 2 類（缺 authority、national_dictionary／official），且 raw 目錄中 plastiras-brit／snl／lexdk 抓檔未記入 searchLog",
+    "建議下一步：希臘議會官網歷任總理／議員資料（hellenicparliament.gr）、希臘政府總理府歷任總理頁（primeminister.gr）、lobid.org GND／VIAF「Plastēras, Nikolaos」、希臘語查詢「Νικόλαος Πλαστήρας Επανάσταση 1922 Επαναστατική Επιτροπή」「Πλαστήρας πρωθυπουργός 1945」，以補 1922–1924 革命委員會掌權起訖（de_facto_leader 候選）"
+   ]
+  },
+  {
+   "key": "is-sveinn-bjornsson",
+   "bioId": "01a1b4c0-c86a-7ad4-a480-d88e63153288",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 2,
+   "gaps": 2,
+   "searchLogSteps": 2,
+   "verdict": "pass",
+   "changes": [
+    "逐條核對無須修改：冰島議會席位依 lex.dk「Som repræsentant for Selvstændighedspartiet」正確移入 roleCandidates（de_facto_leader、originalPositionKind=legislator、R1、reason 引 Tai 12:47）；使節終點 1940／1941 conflict 確為兩份已抓來源矛盾",
+    "抽查重抓 forseti.is 原文，「passed away on 25 January 1952」逐字相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cz-krejci",
+   "bioId": "01a1b512-8b0e-7e56-8c92-e22bc2170975",
+   "paragraphs": 2,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 3,
+   "verdict": "returned",
+   "changes": [
+    "krejci-justice-beran 補引文「In 1938, he became President of the Constitutional Court」（起點 1938 原只在段落引文，職位引文無日期）並改 note",
+    "gap field:birthplace gapKind conflict→not_found（只有檢索摘要，非兩份已抓原文）",
+    "抽查重抓 muni.cz 原文，「Minister of Justice in the government of Rudolf Beran」逐字相符"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：研究者自標「薄」，searchLog 僅 3 步（需 ≥8 次查詢、捷克語 ≥2），實抓成功頁 1 個，來源類型 academic／authority 2 類；raw 目錄另有 krejci-ehri／learned／nusl／usoud 抓檔未記入 searchLog",
+    "建議下一步：捷克政府官網歷任總理頁（vlada.gov.cz「Jaroslav Krejčí」）、Biografický slovník českých zemí（biography.hiu.cas.cz）、NKC 國家圖書館權威檔（aut.nkp.cz）、捷克語查詢「Jaroslav Krejčí ministr spravedlnosti 1938–1942」「Krejčí předseda vlády protektorátu 1942 jmenován」，以補司法部長起訖、1941 年代理政府日期與出生地"
+   ]
+  },
+  {
+   "key": "do-vasquez",
+   "bioId": "01a1b4ae-0e06-7078-bddb-a714e20059bb",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 3,
+   "verdict": "returned",
+   "changes": [
+    "第 1 段補引文「played a major role during the 1916–1924 occupation」「withdrawal of the U.S. Marines」（原引文缺占領年份與海軍陸戰隊）",
+    "gap field:deathPlace gapKind conflict→not_found（另兩說只見檢索摘要）",
+    "抽查重抓 encyclopedia.com EOLACH 條目，「withdrawal of the U.S. Marines」逐字相符"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：名單預估「厚」、研究者改標「薄」只寫 1 段；searchLog 僅 3 步、查詢 <8 次、西班牙語查詢僅 2 次，來源類型 named_encyclopedia／academic 2 類（缺 authority、official、treaty_law）",
+    "建議下一步：多明尼加總統府歷任總統頁（presidencia.gob.do）、Archivo General de la Nación（agn.gob.do）、Academia Dominicana de la Historia 出版品、Biblioteca Nacional Pedro Henríquez Ureña 權威檔／VIAF「Vásquez, Horacio, 1860-1936」、Gaceta Oficial 1924／1930 就職與辭職令，以補 1924–1930 任期起訖與 Partido Nacional（Horacista）黨職"
+   ]
+  }
+ ],
+ "issues": [
+  "薄人物 searchLog 仍只做 3 步就停（普拉斯蒂拉斯、克雷伊奇、巴斯克斯），且 raw 目錄有多個已抓檔（brit／snl／ehri／nusl／usoud／ecom 等）未記入 searchLog，無法判斷結果",
+  "引文仍有只抓片段、未涵蓋所支撐子句的情形（卡隆德黨結構與議會多數、普拉斯蒂拉斯烏克蘭與雅典、巴斯克斯占領年份），本批補 5 筆引文、刪 2 個子句",
+  "gapKind=conflict 誤用於「已抓 1 份＋檢索摘要」（克雷伊奇出生地、巴斯克斯死亡地），已改 not_found",
+  "T14 最短任期計算錯誤（卡隆德政治部年精度 1918–19 誤算為 1 天），已修正理由與 roleGap；瑞士聯邦委員 R6 僅因 regimeId 未附，待連庫比對後可能升 R3",
+  "elisme.gr（Hellenic Institute for Strategic Studies 會員協會網站）具名作者專文評為 B 屬邊界，建議 Tai 裁定此類智庫／協會網站專文是否收為 B",
+  "名單未附 recordIds，各人 recordIds 皆空；名單巴斯克斯年代 1919–1929 與來源 1924–1930 不一致，待連庫比對"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 74
+ }
+}

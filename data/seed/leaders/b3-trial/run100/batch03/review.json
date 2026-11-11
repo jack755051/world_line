@@ -1,0 +1,125 @@
+{
+ "batch": "03",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 4,
+  "editedSentences": 2,
+  "spotRefetched": 5,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "af-habibullah",
+   "bioId": "01a1b4b0-702b-7140-bb25-fcbd487a20a8",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 7,
+   "changes": [
+    "段 1「持續緩慢推進現代化」子句原無引文：補 lex-habibullah 引文「Han fortsatte en langsom modernisering af landet」（已核對原文）",
+    "重抓 lex.dk/Habibullah_Khan 比對引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺查詢次數（7 次，需 ≥8）；缺原文語言查詢（波斯文／普什圖文 0 次，需 ≥2，例：حبیب‌الله خان）",
+    "來源類型勉強 4 類：1914-1918-online 標為 academic 實屬具名機構百科；若依實際歸類只有 3 類（authority、official、named_encyclopedia），需補 treaty_law 或 academic 類",
+    "權威檔只做 WebSearch，未直接查站內：建議下一步依序 id.loc.gov 站內搜尋（https://id.loc.gov/search/?q=Habibullah+Khan）、VIAF、TDV İslâm Ansiklopedisi「Habîbullah Han」條目（islamansiklopedisi.org.tr）、Brill Encyclopaedia of Islam 公開摘要頁，並以波斯文姓名查詢兩次"
+   ]
+  },
+  {
+   "key": "de-schleicher",
+   "bioId": "01a19f15-39f5-72bb-a250-6e388935dcdc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 4,
+   "changes": [
+    "段 1 引文「1900 als Leutnant in das 3. Garde- Rgt. zu Fuß (Berlin)」截掉可分動詞 ein：補為「… (Berlin) ein」",
+    "段 1 Kriegsakademie 引文截掉謂語：補同句引文「an der Kriegsakademie in Berlin zum Generalstabsoffizier ausgebildet」，正文改為「接受參謀軍官培訓」以對應原文",
+    "段 2 與職位 schleicher-wehrmachtsabteilung-chief 引文截掉受詞：改為「seit 1926 als Chef der neu geschaffenen „Wehrmachtsabteilung“」",
+    "職位 schleicher-ministeramt-chief：標題刪去「（相當於國務秘書）」評註（非職稱）；補引文「wurde, was der Stellung eines Staatssekretärs entsprach」支撐 t14Reason",
+    "段 3 遇害引文缺謂語：補同句引文「der als „Röhm-Putsch“ bezeichneten Mordaktion zum Opfer」",
+    "T14 核對：Wehrmachtsabteilung 處長、Ministeramt 主任 R5 正確；國防部長 R3 類別、正職、日精度 241 天，regimeId 空 → R6（roleGap=regime）正確；總理 R0 head_of_government 正確",
+    "重抓 deutsche-biographie.de/gnd118608037 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fr-deschanel",
+   "bioId": "48a265a1-528d-485e-8b95-e60d0f9560ee",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "段 1 period 迄點 1920-01-01 → 1921-01-01（段內最後一件事為 1912-1920 議長，Q3 年精度終點取下一年起日）",
+    "gap position:deschanel-president-republic-start：note 中「官方通行為 1920-02-18」未見於任何已抓來源，改註明僅供下一輪查證",
+    "核對：眾議員／議長／參議員來源均未寫政黨，留 positions（legislator）正確，未漏黨籍席位；總統 R0 head_of_state 起點只見當選日故留空，正確",
+    "重抓 elysee.fr/paul-deschanel 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "lv-meierovics",
+   "bioId": "01a1b51c-8311-70df-b77c-97d89e470686",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 2,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "roleCandidates 兩筆議席引文含年份（1920–1922、1922–1925），datePrecision null → year（Q8）",
+    "核對：原文「elected to Latvia’s Constitutional Assembly (1920–1922) and to the First Saeima (1922–1925) representing the Latvian Farmers Union」，兩席位均以農民聯盟身分取得，R1 de_facto_leader（Tai 12:47）正確",
+    "T14 核對：兩段外交部長 R3 類別、正職、日精度 ≥90 天，regimeId 空 → R6（roleGap=regime）正確",
+    "重抓 mfa.gov.lv 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gr-pangalos",
+   "bioId": "01a1b545-5f82-7338-bb88-3831200f1384",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "段 1「希臘軍隊…慘敗」原引文未含 hær／katastrofale：改為「Efter den græske hærs katastrofale nederlag i Lilleasien i 1922」",
+    "段 2 引文含日期「24.-25. juni 1925」：period 起點 1925-06-01(month) → 1925-06-24(day)，該 citation datePrecision month → day",
+    "enc-pangalos（Columbia Encyclopedia 無署名）只在 gap candidateCitations，符合 Q9",
+    "重抓 lex.dk/Theodoros_Pangalos 比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "Britannica 對全部 5 人皆為 Cloudflare 挑戰頁；除 Habibullah 外，4 人各只有 1 份 A／B 來源，第二來源皆在 gaps。",
+  "德文可分動詞／長句被截在謂語前（ein、ausgebildet、zum Opfer），研究者應以同句兩段引文補足。",
+  "含年份區間的 quote datePrecision 漏填（Q8 應填 year）。",
+  "所有四部閣員因 regimeId 空而落 R6（roleGap=regime）；名單「政權不確定」者（Schleicher、Deschanel）的元首／首腦任期列為候選，寫庫前需與 leader_records 去重。",
+  "Pangalos 名單預估厚、實查寫中：Lex 條目未載其軍職／部長職，希臘文查詢只 1 次；非薄人物不退回，但建議下一輪補希臘國家級來源。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 73
+ }
+}

@@ -1,0 +1,141 @@
+{
+ "batch": "07",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 4,
+  "addedCitations": 8,
+  "editedSentences": 7,
+  "spotRefetched": 5,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "pl-osobka-morawski-edward",
+   "bioId": "01a1c30e-ddd4-7c85-ade7-c6ee6e6a8ec6",
+   "verdict": "returned",
+   "paragraphs": 4,
+   "positions": 6,
+   "roleCandidates": 9,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "重抓 IPN BIP 目錄頁比對：職務表與補充資訊引文全部逐字相符",
+    "段 1 period 迄點原為 1944-01-01（day），段內最後一事為「二戰期間地下活動」無日期 → 改為 null（不推定）",
+    "段 2 period 迄點原為 1945-01-01（day），段內最後一事為 RPPS 中委會主席至 09.1944 → 改 1944-10-01（month，Q3）",
+    "段 4 period 迄點原為 1949-01-21，段內最後一事為 1956–1970 屬 PZPR → 改 1971-01-01（year，Q3）",
+    "T14 逐筆核：PKWN 主席 R0 head_of_government、9 筆黨職 R1（reason 註 Tai 12:12）、PKWN 外交部門 R6（regime）、1945 外交部長 R6（可證明 120 天，regime）、PKWN 農業部門 R5（非四部）、公共行政部長 R5（窗外）皆正確；KRN 議員引文未寫黨別，不屬以政黨身分取得的席位",
+    "Prezes Rady Ministrów 1945 屬名單臨時政府首腦任期，未重建，正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 5 筆，來源類型僅 official／named_encyclopedia／authority 3 類（需 ≥4，缺 treaty_law 或 academic）；實際查詢約 2 次（需 ≥8，含波蘭文 ≥2）；實抓頁僅 IPN、PWN 2 個（VIAF 未抓，需 ≥3）",
+    "searchLog 第 4 步記 PWN 為 Anubis 挑戰頁，但已存 osob-pwn.txt 內容為「Serwis Nieaktywny」（服務停用），note 不準確",
+    "建議下一步：Biblioteka Sejmowa 議員資料庫（bs.sejm.gov.pl，KRN／立憲議會議員）；波蘭國家圖書館權威檔（dbn.bn.org.pl）或 lobid.org GND；gov.pl 總理府歷任總理頁；Dziennik Ustaw／Monitor Polski 1944–1945 任免（isap.sejm.gov.pl）；學術期刊（CEEOL／Dzieje Najnowsze）關於 PKWN 的論文"
+   ]
+  },
+  {
+   "key": "pe-manzanilla-jose-matias",
+   "bioId": "01a1c35f-1848-7b54-9765-f2d3a643cdf7",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 10,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 3,
+   "changes": [
+    "重抓國會博物館傳記 PDF 比對：引文逐字相符",
+    "段 1「在聖馬科斯大學任教」引文只寫 su Alma Mater → 改為「在母校從事大學教學」；period 迄點 1896-01-01 → 1897-01-01（year，Q3）",
+    "段 3「推翻比林赫斯特後組成」無 quote 支撐（引文只有委員會起訖）→ 刪子句",
+    "段 4「由總統桑切斯·塞羅任命」無 quote 支撐 → 刪子句",
+    "1932-12-24–1933-06-30 兼任外交部長原只併入首腦 gap；T14 每段任期獨立判斷（比照同批 Osóbka 1945 外交部長）→ 以段 4 既有兩筆引文新增 position manzanilla-foreign-minister-1932（R6，roleGap=regime，可證明 188 天），並改寫該 gap note；未新增事實",
+    "1914 外交部長引文以「(del Partido Civil Independiente)」標黨別（各閣員皆附黨別）→ 加 partyPostAmbiguous＋理由，待 Tai 判斷是否比照 12:47 裁決；R6（dates、regime）保留",
+    "議員類 positions（Huallaga、Lima、議長 ×2、制憲國會）引文均未寫以何黨身分取得席位，留 positions 正確；El Bloque、公民黨「主要領袖之一」partyPostAmbiguous 合理"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cu-batista",
+   "bioId": "01a1b488-1498-7480-a65b-6f08582d3bec",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 8,
+   "changes": [
+    "重抓 LoC FRD Cuba 國別簡介 PDF 比對：引文逐字相符；LoC 為國家圖書館官方出版品，A 合理",
+    "引文「…and overthrew the」截掉受詞 → 拆為「joined forces with the militant students on September 4」與「overthrew the U.S.-backed regime of Carlos Manuel de Céspedes (the younger)」，並補「Machado was forced to resign and flee the country on August 12, 1933.」支撐段內 1933 年份",
+    "引文「…also brought to an end the」截掉受詞 → 改「…brought to an end the short-」並補「Ramón Grau San Martín (president, 1933–34) by forcing him to resign.」支撐「迫使格勞辭職」（段落與 position 同步）",
+    "Army Chief R6：引文明寫國家級最高軍職（chief of the armed forces），R4 不需戰役連結 → roleGap 去掉 battle_link，保留 dates、regime；t14Reason 改寫",
+    "1940–44 總統任期屬名單首腦任期，未重建，正確；bat-ency 未評等只在 gap 候選，正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pe-tudela-varela-francisco",
+   "bioId": "01a1b538-0cbd-71fa-8c05-5b40a43c9c7a",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 9,
+   "changes": [
+    "重抓 BNP《El Perú y la Primera Guerra Mundial》第 68 頁比對：引文逐字相符",
+    "「一戰引發經濟、貨幣與財政危機期間」引文 generando una crisis… 無主詞（一戰）且與 Tudela 無直接關聯 → 刪子句與該引文",
+    "外交部長 R6（dates、regime）、議長 1915、預算委員會主席歸類正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 9 筆全部標 official，來源類型僅 1 類（需 ≥4，缺 authority／national_dictionary／named_encyclopedia／academic）；實際查詢 3 次（需 ≥8，含西班牙文 ≥2）",
+    "gaps 提到檢索摘要稱其任內閣總理與 1914 財政部長，未追查 A／B 原文",
+    "建議下一步：BNP 權威檔（datos.bnp.gob.pe）或 VIAF／LoC 名稱權威檔（確認 1876–1962）；秘魯外交部歷任外交部長名單（gob.pe/rree）；PCM 歷任 Presidentes del Consejo de Ministros 名單；DBE（dbe.rah.es）；Basadre《Historia de la República del Perú》相關章節"
+   ]
+  },
+  {
+   "key": "bg-malinov-aleksandar",
+   "bioId": "01a1b54f-2cb5-7584-b4d5-31ec74f53db7",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "重抓國家檔案名冊 PDF 比對：兩筆引文逐字相符",
+    "段落「日期標為 1909 年」與標題「1909年名冊」：1909 僅見原文表格欄 [1909]，不在任何 quote → 刪該子句並改標題",
+    "公共建築道路交通部長 R5（非四部）正確；首相任期屬名單，未重建"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：來源類型 official／named_encyclopedia／authority 3 類（需 ≥4，缺 national_dictionary／academic／treaty_law）；實際查詢約 4 次（需 ≥8）",
+    "raw 目錄有 mal-sbor.pdf（2011 年文學選集《1910 Представителната година》，提及 Малинов 18 處）與 mal-booksite.txt（亂碼）未記入 searchLog",
+    "名單預估「厚」，實作只得單一檔案名冊一句；需實質傳記來源",
+    "建議下一步：保加利亞國家圖書館 NBKM 權威檔；lobid.org GND 119428636（1914-1918-online 被 Anubis 擋時的官方鏡像）；Министерски съвет 歷任總理頁（gov.bg）；Народно събрание 歷屆議員出版品；《Енциклопедия България》（БАН）或學術期刊（CEEOL）具名條目"
+   ]
+  }
+ ],
+ "issues": [
+  "薄人物 searchLog 仍普遍未達最低嘗試（3/3 薄人物）：研究者找到 1 個 A 來源就停，sourceType 標記單一（Tudela 全標 official），查詢次數偏低",
+  "引文截掉受詞再犯（Batista 2 筆『overthrew the』『brought to an end the』），本批補 6 筆",
+  "子句無 quote 支撐：機構名推定（聖馬科斯大學）、任命者（桑切斯·塞羅）、事件前因（推翻比林赫斯特、一戰引發危機）、表格欄日期（[1909]）",
+  "段落 period 迄點多處不依段內最後一事（Osóbka 3 段、Manzanilla 1 段），且精度標 day 但無日期依據",
+  "首腦任期同時兼任四部閣員時，閣員任期應獨立過 T14（Manzanilla 1932 外交部長原被併入首腦 gap）",
+  "R4 國家級最高軍職不需戰役連結，研究者誤列 battle_link 為 roleGap",
+  "閣員引文附黨別（Manzanilla 1914 Junta）是否比照『以政黨身分取得的席位』，規則未涵蓋，已標 partyPostAmbiguous 待 Tai 裁決",
+  "Britannica、1914-1918-online、VIAF 全批為 Cloudflare／Anubis 挑戰頁，依規未繞過；全部 5 人皆只有 1–3 個 A 來源、無 B 來源；Manzanilla 名單估薄、研究者標厚但只 3 筆 searchLog（非薄人物，未退回，建議下輪補第二來源）",
+  "regimeId 全批為 null（不連資料庫），4 筆四部閣員因此停在 R6（regime）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

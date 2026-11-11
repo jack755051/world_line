@@ -6,7 +6,7 @@ B3 分段生平寫入工具（ARCHITECTURE §16.2–16.4；Tai 2026-11-11 拍板
 leader_bio_paragraphs／person_positions／person_roles（無衝突者）＋各自 citation、需新建的 sources、可入庫的 leader_bio_gaps。
 
 預設 dry-run（唯讀對 5442 開發庫做 SELECT 對帳，印摘要並寫 .dev/b3-write-dryrun.txt、.dev/b3-role-conflicts.md）。
---send 才會寫庫；本回合 WRITE_ENABLED=False，--send 一律拒絕（下一回合備份＋套 migration 後才打開）。
+--send 才會寫庫；WRITE_ENABLED=False 時 --send 一律拒絕（Tai 看過網域清單、備份＋套 migration 後才打開）。
 連線：docker exec worldline-borders-dev-db（埠 5442）；拒絕 5051／5432／app_postgres 等；不讀、不印任何密鑰。
 
 規則摘要
@@ -14,12 +14,16 @@ leader_bio_paragraphs／person_positions／person_roles（無衝突者）＋各�
 - 字串型 claimSpan 併入該筆 evidence_note（已有內容就接在後面，以「；」連接）；claim_span 欄一律空。
 - T14 過程註記（t14Overlap、roleEligible…）不入庫；roleCandidates 的 t14Rule 入 person_roles.t14_rule；reason 併入 note。
 - person_positions 拒絕 head_of_state／head_of_government／de_facto_leader（應走角色層）。
+- 沒有 period.start 的經歷／角色（Tai 2026-11-11 19:14）：不寫 person_positions／person_roles，改記 leader_bio_gaps
+    （gap_kind=not_found、note 註明「缺 period.start」；target＝position:<seed_key>／role:<seed_key>）。
+    role: target 需 migration GapTargetAllowsRole（尚未套用；套用前 --send 會拒絕）。
 - 角色寫入前對 leader_records 比對（同 person_id、有效列）；regime_id 為 null 時不以「政權對不上」當無衝突：
-    期間重疊且角色相同 → 衝突（疑似重複）；期間重疊但角色不同 → 衝突（角色不一致）；
-    期間不重疊、但 seed reason 自述「待比對」→ 待確認；其餘（無重疊）→ 可寫。衝突與待確認都先不寫。
+    期間重疊且角色相同 → 擋下（疑似重複，不寫）；期間重疊但角色不同 → 放行（寫入，例：黨職 de_facto_leader 對上元首／首腦）；
+    期間不重疊、但 seed reason 自述「待比對」→ 待確認（不寫）；其餘（無重疊）→ 可寫。
 - sources 重用／新建：以 URL 對帳（庫內已有相同 URL 就重用）。source_kind 對號（依網域，見 DOMAIN_KIND）：
     具名百科／人物辭典 → encyclopedia；官方機構、政府、議會、檔案館、國家圖書館 → official_website；學術期刊 → peer_reviewed。
-    對不上的網域（私人彙編、報紙、機構網站等）不猜：dry-run 列出，--send 時必須提供 source-kind-overrides.json，否則拒絕。
+    對不上的網域不猜：dry-run 列出，--send 時必須提供 source-kind-overrides.json，否則拒絕。
+    overrides 的鍵可為網域或完整 URL（URL 優先）；值為 null 或 "drop" ＝放棄：該來源的引文不寫入，也不算未歸類。
 """
 import argparse, json, os, re, subprocess, sys, glob, uuid
 from urllib.parse import urlparse
@@ -28,7 +32,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, "..", "..", "..", "..", ".."))
 DEV = os.path.join(REPO, ".dev")
 CONTAINER, DBUSER, DBNAME = "worldline-borders-dev-db", "worldline", "worldline_borders_dev"
-WRITE_ENABLED = False  # 本回合禁止寫庫；備份＋套 migration 後下一回合才改。
+WRITE_ENABLED = False  # 禁止寫庫；Tai 看過網域清單、備份＋套 migration 後才改。
+MISSING_START_CHECKED_ON = "2026-11-11"
+DROP = "drop"  # overrides 放棄標記（值 null 或 "drop"）
 OVERRIDES = os.path.join(HERE, "source-kind-overrides.json")
 
 PRECISIONS = {"day", "month", "year"}
@@ -36,7 +42,7 @@ FIELDS = {"name", "nameZh", "birthDate", "deathDate", "birthPlace", "deathPlace"
 FIELD_ALIAS = {"birth_date": "birthDate", "death_date": "deathDate", "birth_place": "birthPlace", "birthplace": "birthPlace",
                "death_place": "deathPlace", "deathplace": "deathPlace", "name_zh": "nameZh"}
 GAP_KINDS = {"conflict", "not_found", "identity_uncertain"}
-GAP_TARGET = re.compile(r"^(field|position|paragraph):[^\s].*$|^identity$", re.S)
+GAP_TARGET = re.compile(r"^(field|position|paragraph|role):[^\s].*$|^identity$", re.S)
 POSITION_KINDS = {"minister", "legislator", "diplomat", "military_command", "military_education", "judicial", "police", "other"}
 ROLE_LAYER = {"head_of_state", "head_of_government", "de_facto_leader"}
 ROLE_KINDS = ROLE_LAYER | {"cabinet_minister"}
@@ -86,10 +92,34 @@ def merge_claim_span(note, span):
 
 
 def guess_kind(url, overrides=None):
+    """回傳 source_kind、DROP（overrides 放棄）或 None（未歸類）。URL 鍵優先於網域鍵。"""
     host = urlparse(url or "").netloc.lower()
-    if overrides and (url in overrides or host in overrides):
-        return overrides.get(url) or overrides.get(host)
+    if overrides:
+        for k in (url, host):
+            if k in overrides:
+                v = overrides[k]
+                return DROP if v is None or v == DROP else v
     return DOMAIN_KIND.get(host)
+
+
+def missing_start(item):
+    """seed 的 period 缺 start（無 period、或 start 為空）。"""
+    p = item.get("period")
+    return not p or not p.get("start")
+
+
+def missing_start_gap(bio, kind, item):
+    """缺起日的經歷／角色 → leader_bio_gaps 列（target 不合格則回 None，留 seed）。"""
+    t, _ = norm_field_target("%s:%s" % (kind, item.get("key", "")))
+    if t is None:
+        return None
+    ttl = item.get("title")
+    ttl = (ttl.get("orig") or next(iter(ttl.values()), "")) if isinstance(ttl, dict) else (ttl or "")
+    p = item.get("period") or {}
+    end = "；period.end=%s" % p["end"] if p.get("end") else ""
+    layer = "person_positions" if kind == "position" else "person_roles"
+    return {"bio": bio, "target": t, "kind": "not_found", "cand": [], "checked": MISSING_START_CHECKED_ON,
+            "note": "缺 period.start，未寫入 %s（表要求起日有界）；原標題：%s%s" % (layer, str(ttl)[:80], end)}
 
 
 def period_literal(p):
@@ -113,6 +143,7 @@ def classify_role(cand, records):
     cand: {key, role_kind, period{start,end}, reason}；records: 同 person 有效 leader_records
     [{role, start, end|None, regime}]。回傳 ('ok'|'conflict'|'pending', 原因, 對上的 records)。
     regime_id 為 null 時不以政權不同當作無衝突（見檔頭規則）。
+    ok 且 why 非空＝期間重疊但角色不同，放行（hits 為對上的紀錄，供清單列出）。
     """
     cp = (cand["period"]["start"], cand["period"].get("end"))
     hits = [r for r in records if periods_overlap(cp, (r["start"], r["end"]))]
@@ -120,7 +151,7 @@ def classify_role(cand, records):
     if same:
         return "conflict", "期間重疊且角色相同（疑似重複；候選未指定政權）", same
     if hits:
-        return "conflict", "期間重疊但角色不一致（庫內 %s／候選 %s）" % ("、".join(sorted({r["role"] for r in hits})), cand["role_kind"]), hits
+        return "ok", "期間重疊但角色不同，放行（庫內 %s／候選 %s）" % ("、".join(sorted({r["role"] for r in hits})), cand["role_kind"]), hits
     if records and "待比對" in (cand.get("reason") or ""):
         return "pending", "期間未與現有紀錄重疊，但 seed 自述尚待比對名單，無法確認是否同一政權", []
     return "ok", "", []
@@ -186,7 +217,8 @@ def db_state(bio_ids):
 # ---------- 主流程 ----------
 def plan(batches, st, overrides):
     P = {"people": 0, "skipped": [], "bad": [], "claimspan_merged": 0, "bio_missing": [], "precision_fixed": 0}
-    P.update(sources_new={}, sources_reused={}, unclassified={}, par=[], pos=[], role_ok=[], role_conflict=[], role_pending=[],
+    P.update(sources_new={}, sources_reused={}, sources_dropped={}, unclassified={}, gaps_missing={"position": 0, "role": 0}, role_released=[],
+             nostart=[], gaps_missing_seed=[], par=[], pos=[], role_ok=[], role_conflict=[], role_pending=[],
              gaps=[], gaps_seed=[], gaps_alias=0, gaps_dup=0, cit_dropped=[], parents_nocit=[], already={"par": 0, "pos": 0, "role": 0})
 
     def resolve_source(batch, d, key):
@@ -200,6 +232,9 @@ def plan(batches, st, overrides):
         if url in P["sources_new"]:
             return P["sources_new"][url]["id"]
         kind = guess_kind(url, overrides)
+        if kind == DROP:
+            P["sources_dropped"][url] = urlparse(url).netloc
+            return None
         if kind is None:
             P["unclassified"].setdefault(urlparse(url).netloc, set()).add((s["title"][:50], s["publisher"][:40], url))
             return None
@@ -216,7 +251,7 @@ def plan(batches, st, overrides):
         for i, c in enumerate(lst or []):
             sid = resolve_source(batch, d, c.get("sourceKey"))
             if sid is None:
-                P["cit_dropped"].append((owner, c.get("sourceKey"), "來源無 URL／未分類"))
+                P["cit_dropped"].append((owner, c.get("sourceKey"), "來源無 URL／未分類／已放棄"))
                 continue
             if not (c.get("locator") or "").strip() or not (c.get("quote") or "").strip() or c.get("grade") not in (None, "A", "B"):
                 P["cit_dropped"].append((owner, c.get("sourceKey"), "locator／quote 空白或 grade 非 A/B"))
@@ -266,6 +301,14 @@ def plan(batches, st, overrides):
                 if (bio, x["key"]) in st["existing"]["positions"]:
                     P["already"]["pos"] += 1
                     continue
+                if missing_start(x):
+                    g = missing_start_gap(bio, "position", x)
+                    if g and (g["target"], g["kind"]) not in {(y["target"], y["kind"]) for y in P["gaps"] if y["bio"] == bio}:
+                        P["gaps"].append(g); P["gaps_missing"]["position"] += 1
+                    elif not g:
+                        P["gaps_missing_seed"].append((pk, x.get("key")))
+                    P["nostart"].append((pk, "position", x.get("key", "?")))
+                    continue
                 try:
                     if x["positionKind"] in ROLE_LAYER: raise ValueError("position_kind %s 應走角色層" % x["positionKind"])
                     if x["positionKind"] not in POSITION_KINDS: raise ValueError("position_kind 未知：" + str(x["positionKind"]))
@@ -288,6 +331,14 @@ def plan(batches, st, overrides):
                 if (bio, r["key"]) in st["existing"]["roles"]:
                     P["already"]["role"] += 1
                     continue
+                if missing_start(r):
+                    g = missing_start_gap(bio, "role", r)
+                    if g and (g["target"], g["kind"]) not in {(y["target"], y["kind"]) for y in P["gaps"] if y["bio"] == bio}:
+                        P["gaps"].append(g); P["gaps_missing"]["role"] += 1
+                    elif not g:
+                        P["gaps_missing_seed"].append((pk, r.get("key")))
+                    P["nostart"].append((pk, "role", r.get("key", "?")))
+                    continue
                 try:
                     if r["role_kind"] not in ROLE_KINDS: raise ValueError("role_kind 未知：" + str(r["role_kind"]))
                     per = period_literal(r.get("period"))
@@ -307,6 +358,8 @@ def plan(batches, st, overrides):
                 if verdict == "ok":
                     row["cit"] = cites(batch, d, (pk, "role", r["key"]), r.get("citations"))
                     P["role_ok"].append(row)
+                    if why:
+                        P["role_released"].append(row)
                 else:
                     (P["role_conflict"] if verdict == "conflict" else P["role_pending"]).append(row)
             seen = set()
@@ -329,35 +382,51 @@ def summary(P):
     nc = lambda rows: sum(len(r.get("cit", [])) for r in rows)
     L = ["B3 分段生平寫入 dry-run（只讀 5442；未寫庫）",
          "處理人數：%d　跳過零段落：%d（%s）　庫內無此 bioId：%d" % (P["people"], len(P["skipped"]), "、".join(P["skipped"]), len(P["bio_missing"])),
-         "sources：新建 %d／重用 %d／無法歸類網域 %d（涉及 URL %d）" % (len(P["sources_new"]), len(P["sources_reused"]), len(P["unclassified"]),
-                                                              sum(len(v) for v in P["unclassified"].values())),
+         "sources：新建 %d／重用 %d／放棄 %d（URL；網域 %d）／無法歸類網域 %d（涉及 URL %d）" % (
+             len(P["sources_new"]), len(P["sources_reused"]), len(P["sources_dropped"]), len(set(P["sources_dropped"].values())),
+             len(P["unclassified"]), sum(len(v) for v in P["unclassified"].values())),
          "  新建依 source_kind：" + json.dumps({k: sum(1 for s in P["sources_new"].values() if s["kind"] == k) for k in sorted({s["kind"] for s in P["sources_new"].values()})}),
          "段落：%d　段落引文：%d" % (len(P["par"]), nc(P["par"])),
          "經歷：%d　經歷引文：%d" % (len(P["pos"]), nc(P["pos"])),
-         "角色：可寫入 %d　角色引文 %d／衝突 %d／待確認 %d" % (len(P["role_ok"]), nc(P["role_ok"]), len(P["role_conflict"]), len(P["role_pending"])),
-         "gaps：將入庫 %d（別名正規化 %d、同人重複略過 %d）／留在 seed %d" % (len(P["gaps"]), P["gaps_alias"], P["gaps_dup"], len(P["gaps_seed"])),
+         "角色：可寫入 %d（含角色不同、期間重疊而放行 %d）　角色引文 %d／擋下疑似重複 %d／待確認 %d" % (
+             len(P["role_ok"]), len(P["role_released"]), nc(P["role_ok"]), len(P["role_conflict"]), len(P["role_pending"])),
+         "缺 period.start 改記缺漏：%d（經歷 %d＋角色 %d；已入 gaps %d，target 不合格留 seed %d）" % (
+             len(P["nostart"]), sum(1 for n in P["nostart"] if n[1] == "position"), sum(1 for n in P["nostart"] if n[1] == "role"),
+             P["gaps_missing"]["position"] + P["gaps_missing"]["role"], len(P["gaps_missing_seed"])),
+         "gaps：將入庫 %d＝seed 原有 %d（別名正規化 %d、同人重複略過 %d）＋缺起日 %d（position: %d／role: %d）／留在 seed %d" % (
+             len(P["gaps"]), len(P["gaps"]) - P["gaps_missing"]["position"] - P["gaps_missing"]["role"], P["gaps_alias"], P["gaps_dup"],
+             P["gaps_missing"]["position"] + P["gaps_missing"]["role"], P["gaps_missing"]["position"], P["gaps_missing"]["role"], len(P["gaps_seed"])),
+         "  其中 role: target 需先套 migration GapTargetAllowsRole（尚未套用）",
          "字串 claimSpan 併入 evidence_note：%d 筆（只計入將寫入的引文）" % P["claimspan_merged"],
          "已存在（重跑會略過）：段落 %(par)d／經歷 %(pos)d／角色 %(role)d" % P["already"],
          "驗證不過被略過：%d；因來源缺失而捨棄的引文：%d；寫入後無引文的父列：%d；欄位精度校正：%d" % (len(P["bad"]), len(P["cit_dropped"]), len(P["parents_nocit"]), P["precision_fixed"])]
     from collections import Counter
     for (kind, why), n in sorted(Counter((b[1].split()[0], re.sub(r"[：:].*", "", b[2])) for b in P["bad"]).items()):
         L.append("  略過原因 %s／%s：%d" % (kind, why, n))
-    L.append("  衝突原因：" + json.dumps(dict(Counter(r["why"].split("（")[0] for r in P["role_conflict"])), ensure_ascii=False))
+    L.append("  擋下原因：" + json.dumps(dict(Counter(r["why"].split("（")[0] for r in P["role_conflict"])), ensure_ascii=False))
+    L.append("  放行原因：" + json.dumps(dict(Counter(r["why"].split("（")[0] for r in P["role_released"])), ensure_ascii=False))
+    for u, h in sorted(P["sources_dropped"].items()):
+        L.append("  放棄來源 %s" % u)
     for dom, v in sorted(P["unclassified"].items()):
         L.append("  未歸類網域 %s：%s" % (dom, "｜".join(sorted(t[1] for t in v))[:90]))
     return "\n".join(L)
 
 
 def conflicts_md(P):
-    out = ["# B3 角色候選衝突清單（本機，不 commit）", "",
-           "衝突 %d 筆、待確認 %d 筆；以下先不寫入 person_roles。比對對象：同 person_id 的有效 leader_records。" % (len(P["role_conflict"]), len(P["role_pending"])), ""]
-    for title, rows in (("衝突", P["role_conflict"]), ("待確認", P["role_pending"])):
-        out += ["## " + title, "", "| 人 | seed_key | 角色 | 期間 | 對上的 leader_records | 原因 |", "|---|---|---|---|---|---|"]
+    out = ["# B3 角色候選比對清單（本機，不 commit）", "",
+           "放行 %d 筆（期間重疊但角色不同）、擋下 %d 筆（期間重疊且角色相同，疑似重複）、待確認 %d 筆、缺起日改記缺漏 %d 筆。"
+           "比對對象：同 person_id 的有效 leader_records。僅「放行」會寫入 person_roles（連同其無衝突者）。" % (
+               len(P["role_released"]), len(P["role_conflict"]), len(P["role_pending"]), sum(1 for n in P["nostart"] if n[1] == "role")), ""]
+    for title, rows in (("放行（角色不同，寫入）", P["role_released"]), ("擋下（疑似重複，不寫）", P["role_conflict"]),
+                        ("待確認（不寫）", P["role_pending"])):
+        out += ["## %s：%d 筆" % (title, len(rows)), "", "| 人 | seed_key | 角色 | 期間 | 對上的 leader_records | 原因 |", "|---|---|---|---|---|---|"]
         for r in rows:
             c = r["cand"]["period"]
             hit = "；".join("%s %s~%s（%s）" % (h["role"], h["start"], h["end"] or "", h["regime"]) for h in r["hits"]) or "—"
             out.append("| %s | %s | %s%s | %s~%s | %s | %s |" % (r["person"], r["key"], r["kind"], "（代理）" if r["acting"] else "", c["start"], c.get("end") or "", hit, r["why"]))
         out.append("")
+    out += ["## 缺 period.start 改記 leader_bio_gaps（target＝role:<seed_key>）", ""]
+    out += ["- %s／%s" % (n[0], n[2]) for n in P["nostart"] if n[1] == "role"]
     return "\n".join(out)
 
 
@@ -399,7 +468,7 @@ def build_sql(P):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--send", action="store_true", help="寫庫（本回合 WRITE_ENABLED=False，一律拒絕）")
+    ap.add_argument("--send", action="store_true", help="寫庫（WRITE_ENABLED=False 時一律拒絕）")
     ap.add_argument("--port", default="5442")
     a = ap.parse_args()
     if a.port != "5442":
@@ -417,11 +486,13 @@ def main():
         print("\n（dry-run；未寫庫）")
         return
     if not WRITE_ENABLED:
-        sys.exit("本回合不允許寫庫（WRITE_ENABLED=False）。")
+        sys.exit("不允許寫庫（WRITE_ENABLED=False）。")
     if not st["tables"] or "encyclopedia" not in psql("select pg_get_constraintdef(oid) from pg_constraint where conname='ck_sources_source_kind'")[0][0]:
         sys.exit("migration 尚未套用，拒絕寫入。")
     if P["unclassified"]:
         sys.exit("有未歸類的來源網域，請先提供 source-kind-overrides.json。")
+    if P["gaps_missing"]["role"] and "role" not in psql("select pg_get_constraintdef(oid) from pg_constraint where conname='ck_leader_bio_gaps_target'")[0][0]:
+        sys.exit("migration GapTargetAllowsRole 尚未套用（role: target 會被 CHECK 擋下），拒絕寫入。")
     r = subprocess.run(["docker", "exec", "-i", CONTAINER, "psql", "-U", DBUSER, "-d", DBNAME, "-v", "ON_ERROR_STOP=1", "-1"],
                        input=build_sql(P), capture_output=True, text=True)
     sys.exit(r.stderr[:500] if r.returncode else print("已寫入。") or 0)

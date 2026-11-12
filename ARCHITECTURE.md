@@ -1947,3 +1947,511 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 | Q7 | (c) 疆界跟著階段播放即時變，GSAP 做疆界漸變 | 2026-11-11 | GSAP timeline 驅動播放／暫停／跳轉；morph 約束 (i)–(v) 見 19.2.4；風險 R19-9、R19-10。原建議 (a) 未採 |
 | Q8 | (a) 敦克爾克，試做範圍＝發電機行動（1940-05-26～06-04） | 2026-11-11 | 三條件需在 C1 由考證確認；不符則敦克爾克戰役為 `battle`、發電機行動為其階段或子事件（19.5 C1） |
 | C1b | 考證併入 seed：戰役主體改為「敦克爾克橋頭堡戰役」（`battle`，1940-05-26～06-04，半開終點 06-05），發電機行動為子事件（`parent_event_id`）；階段改為考證六段 P1–P6；A 級引文須在原文逐字找得到且 ≤80 字，否則 pending；箭頭部隊番號保留、標待查證；P6 無戰線圖不配圖形 | 2026-11-11 13:47 | Tai 確認。slug 維持 `dunkirk_1940`（與前端靜態檔、API 路徑相容）。待決：子事件 `event_kind` 值域沒有 operation；`objective_kind` 由人確認；比利時參戰至 05-28 的期間寫法（`event_participants` 無期間欄）。seed 仍全部 pending，寫庫需另行核准 |
+
+## §20 人物事實分層（設計稿 v1，2026-11-12，待 Tai 確認）
+
+> 狀態：📝 設計稿；**只有文件**，不改 schema、不建 migration、不寫庫、不改程式與資料。依據：World Line 主管轉述「Tai 本人 2026-11-12 09:16 決定（人物生平規則改版）」。標記同 §14：**現有**＝已核對檔案；**沿用**＝既有已決條文照用；**提案**＝本稿提案、未拍板。
+> 需求依據：`.claude/constitutions/world-line.md`（來源分級＝§16.9.1 T1；R7 來源政策、R8「觀點須有合格史料」、I5 不得覆蓋刪除、I6 只有 verified 才可入庫；不得杜撰）。
+> 與既有節的關係：不改 §14、§16、§19 任何一行；與之衝突或需 Tai 裁定之處一律列在 20.11。
+> 另：`data/seed/leaders/b3-trial/ARCH_TODO.md` 列有待套用的 §16 改寫（A／B 系列）；本稿以**現行** ARCHITECTURE 文字為準，不預設那些改寫已套用，也未與其衝突（兩層互斥、`position_kind` 不含黨職等只作引用）。
+> 數字出處（本節所有數字皆可追到下列檔案，引用時另註）：
+> - `data/seed/leaders/generals-roster/design/stats.md`、`stats.json`（2026-11-12T09:20:47+08:00 快照，`collect_stats.py` 產生；A 級主迴圈仍在跑，數字以該時間為準）→ 簡稱 **stats**。
+> - `data/seed/leaders/generals-roster/design/verify-finding.md` → **verify-finding**。
+> - `data/seed/leaders/generals-roster/bios/selection.json`（S 103 人／A_run 256／A_skipped 6）→ **selection**。
+> - 各批 `bios/{S,A}/batchNNN/min-check.json`、`research.json`；`data/seed/leaders/b3-trial/` 下檔案。
+> - 費用推估的計算腳本：`data/seed/leaders/generals-roster/design/cost_estimate.py`（唯讀、只印出結果）與其輸出表 `cost-estimate.md`。
+
+### 20.0 摘要與動機
+
+1. **問題**：將領生平目前用「達標／來源不足」二分判斷（`check_min.py` 五條件，全部要過才算達標）。結果：S 102 人達標 41、未達標 61；A 75 人達標 33、未達標 42（stats「min-check」）。未達標共 103 人中，**60 人（S 33＋A 27）唯一原因是「職位缺起訖」**（stats 原因組合）——也就是「人物的生平段落都寫好了，卻因某個職位查不到迄日而整人算失敗」。
+2. **方向（Tai 2026-11-12 09:16）**：把人物資料拆成**事實列**與**敘述**兩層；以**完成度分級 L1／L2／L3** 取代二分；缺的欄位標明「未知」而不是讓整個人失敗；補跑只補缺的欄位。
+3. **不變的底線**：沿用 I5（撤回重寫、不 DELETE）、I6（只有 verified 才入庫）、T1（A／B 才進庫，C／X 留 seed；將領生平 seed 另依 Tai 2026-11-12 06:34 收**具名 C 級**、只有 C 也可達標，`verify.py` 以 `gradePolicy=ABC-2026-11-12` 接受；C 是否入庫見 Q15）、`BioSourcePolicy`／§19.4.2 的硬性排除（Wikipedia、Wikidata、百度百科、被接管網域、自製來源）、引文 ≤ 80 字（NFC 字元，§16.4.1）、段落中文 ≤ 400 字／拉丁文字 ≤ 800 字元（§16.3.2）、遇防機器人驗證不繞過（§16.3.2-4）。
+4. **本稿的範圍**：只定規則、資料表欄位草案與作業流程；每一階段實作仍需 Tai 另行核准（比照 §16.7 B1–B5）。
+
+### 20.1 事實與敘述分開（Tai 第 1 點）
+
+**原則**：每一個可查證的「事實」是一列，**各自**帶來源網址、定位（頁內位置或片段）與等級 A／B／C；「敘述」（段落）是另一層，由事實列支撐，不是事實本身。
+
+| 層 | 內容 | 一列＝ | 來源要求 |
+|---|---|---|---|
+| **事實列（F）** | 姓名、生卒（含精度）、國籍、典據 ID、職位／角色任期、參與戰役 | 一個斷言（例：「1914-11 任第 9 軍團司令」） | 每列 ≥ 1 筆 citation：來源網址、定位、等級；L2 起另要求該頁曾被抓取並留紀錄（20.4） |
+| **敘述（N）** | 生平段落（`leader_bio_paragraphs`） | 一段 | 每段 ≥ 1 筆帶逐字引文的 citation（L3，20.4）；段內事實須與 F 層一致，不得出現 F 層查不到的日期或職稱 |
+
+**與 §16 既有設計的對應**（沿用優先、只補缺口）
+
+| 事實類型 | 沿用（既有／§16 提案） | 新增或調整 | 說明 |
+|---|---|---|---|
+| 姓名、生卒、出生地、黨籍等欄位 | **現有** `leader_bios`＋`leader_bio_field_citations`（欄位 `field` 值域；B1 已補 `quote`／`grade`／`date_precision`／`policy_version`，§16.7.1） | 值域加國籍（`nationality`，提案）；`death_place` 已在 §16.6 | 生卒欄位仍走逐欄位 citation；不另建一套 |
+| 典據 ID（GND、NDL、VIAF、LoC…） | **現有** `leader_bios.wikidata_qid`（§16.0；其用法見 20.6 與 20.11 Q6）、`sources.catalog_id` | **提案** `leader_bio_identifiers`（`bio_id`、`scheme`、`value`、`url`、`status`）＋引用表 | ID 本身是「連到權威檔的指標」，要核對該權威檔頁面上的姓名與生卒與本人一致，才算 confirmed |
+| 職位任期（經歷層） | **提案**（§16.3-3）`person_positions`＋`person_position_citations`；`start_precision`／`end_precision` | 精度值域見 20.3；不重複收元首／首腦／實際掌權者（§16.3.3） | 研究檔 `positions[]` 已是這個形狀（`period.start/end`、`startPrecision/endPrecision`、`citations[]`，例 `bios/A/batch002/research.json`） |
+| 角色任期（收錄、出卡） | **提案**（§16.3.1-3）`person_roles`＋`person_role_citations`；元首／首腦現行仍在 `leader_records`＋`leader_record_citations`（已建，§16.7.1；定位待 T13） | 不動；研究檔 `roleCandidates[]` 對應 | 本稿不碰 T13 |
+| 參與戰役 | **提案**（§16.4.3／§19.3）`person_event_participations`＋`person_event_participation_citations`；角色值域以 §19.3.1 為準 | 戰役部隊領導人的 L1／L2 見 20.8 | 現有研究檔**沒有**結構化戰役列：`check_min.py` 的 `has_battle()` 先看 `majorBattles` 鍵，否則用 `BATTLE_RE` 掃**段落正文**；37 份 `research.json` 中含 `majorBattles` 的是 0 份（`grep` 結果）。即目前的「有戰役」是正則猜測，不是事實列 |
+| 缺口與矛盾 | **現有** `leader_bio_gaps`（§16.4.2、已建；`gap_kind`：`conflict`／`not_found`／`identity_uncertain`） | 補 `gap_kind = incomplete_range`（缺起／缺迄，對應現行 `待查證：缺迄日` 備註）與 `no_battle_source`、`no_command_role`（提案，20.2） | 「缺」變成有型別的資料，而不是字串前綴 |
+| 敘述 | **提案**（§16.2）`leader_bio_paragraphs`；段落 citation 同 §16.4.1 | `related_record_ids` 可擴為 `related_fact_ids`（事實列 id），讓段落指向 F 層 | 段落仍是另一層；B3 規則（§16.3.2）不變 |
+
+**citation 欄位**：沿用 §16.4.1 全部欄位（`source_id`、`locator`、`quote`、`quote_lang`、`evidence_note`、`accessed_on`、`grade`、`date_precision`、`claim_span`、`policy_version`）。**調整兩點（提案）**：(a) `quote` 在 L2 層的事實列可為 NULL（現行 §16.4.1 寫 NOT NULL；本表另列 20.11 Q4）；(b) 新增 `fetch_id`（可空 → `source_fetches`，20.4）。
+
+### 20.2 完成度分級 L1／L2／L3（Tai 第 2 點）
+
+每個人物在任一時刻有一個**等級**（L0＝連 L1 都不到）。等級由程式依資料**重算**，不手填。
+
+**判定規則（偽碼，可程式化；以研究檔 `people[]` 的欄位名為準，寫庫後改讀事實表）**
+
+```
+fact_ok(f)   := f.value 非空 或 f.precision == unknown 且存在對應 gap(not_found|conflict|incomplete_range)
+cited(f)     := f 至少 1 筆 citation，grade ∈ {A,B,C}（C 須具名作者或出版機構，Tai 2026-11-12 06:34；等級照實標示，入庫見 Q15），locator 非空，source 網域不在硬性排除，且 policy 網域等級與 grade 一致（20.5）
+fetched(c)   := c.fetch_id 存在 且 fetch.http_status == 200 且 fetch.raw_sha256 非空（20.4）
+
+L1 身分卡 :=  name_orig、name_zh、nationality 皆有值且 cited
+              且 birth、death 各自 (有值 且 cited 且 precision ∈ {day,month,year}) 或 (precision == unknown 且有 gap)
+              且 authority_ids ≥ 1（GND/NDL/VIAF/LoC/BnF/… 之一，status == confirmed）或 有 gap(not_found,target=identity_id)
+L2 履歷表 :=  L1
+              且 (positions ∪ roles) ≥ 1 列，每列 cited 且 fetched
+              且 每列 start/end 各自 (有值 且 precision ∈ {day,month,year} 且通過 Q3 邊界檢查) 或 (precision == unknown 且有 gap(incomplete_range))
+              且 battles ≥ 1 列（每列 cited 且 fetched）或 有 gap(no_battle_source)
+L3 附引文的敘述 := L2
+              且 paragraphs ≥ 3 且 中文字數（去空白、NFC）≥ 300
+              且 每段 ≥ 1 筆 citation，其 quote 為「該 citation 對應快取純文字」的子字串（20.4），≤ 80 字
+              且 每段 ≤ 400 字（拉丁文字 ≤ 800 字元）
+```
+
+**與 `check_min.py` 現行五條件的對應**（`data/seed/leaders/generals-roster/bios/check_min.py`；`MIN_PARAS, MIN_CHARS = 3, 300`）
+
+| 現行條件（全部要過才 `meetsMinimum`） | 新規則歸屬 | 差異 |
+|---|---|---|
+| ① 中文段落 ≥ 3（`len(paras) >= 3`） | **L3** | 不變，但只擋 L3，不擋 L1／L2 |
+| ② 中文字數 ≥ 300（`zh_len`，去空白） | **L3** | 同上 |
+| ③ 每個職位／角色起迄皆有（`missing == 0 and flagged == 0`）；`待查證：缺迄日` 只算 `flagged`，仍**不達標** | **L2**，但「未知＋gap」視為完成 | 現行：缺迄待查仍失敗（S 89、A 61 個職位）；新規：精度 `unknown` 加 `incomplete_range` gap 即合格 |
+| ④ 有指揮職（`has_command()`：`military_command` 職位／`military_commander` 角色／`majorCommands`） | **不再擋級**；改為 L2 的衍生標籤 `has_command`；`military_commander` 角色的收錄仍依 §19.3.2 | 無指揮職者（S 10、A 6；stats）可以是完整的 L2（例如政治軍人），並在 gap 記 `no_command_role` |
+| ⑤ 有戰役（`has_battle()`：`majorBattles` 或段落正文命中 `BATTLE_RE`） | **L2**：改為結構化戰役列，或 gap(`no_battle_source`) | 現行靠正則掃正文，非事實列；無戰役者 S 23、A 13（stats） |
+| 例外：`insuff()`——gap 備註以「來源不足」或「篇幅不足：」開頭，或 `sourceInsufficient` | 由 gap 型別取代；`documentedShortfall` 不再需要字串前綴 | 現行已標來源不足：S 58、A 33；未標 S 3、A 9（stats） |
+
+**影響（以 stats 為準，推估另標）**
+- 原本被「職位缺起訖」唯一擋下的 **60 人（S 33＋A 27）** 在新規則下 L2 立即成立（前提：他們各列職位都有 cited 與 fetched；此點見 20.4 與 20.7——舊檔沒有抓取紀錄，所以「L2 成立」要先經一次**免費的補登**，見 20.9）。
+- 「只缺戰役」12 人（S 6＋A 6）與「含無指揮職」8 人（S 5＋A 3）取決於 Q2（是否接受以 gap 代替結構化戰役列）；段落／字數不足的 10 人（S 7＋A 3）與「任期＋戰役」13 人（S 10＋A 3）仍需補跑。類別定義與計算見 20.10 與 `cost_estimate.py`。
+- 前端：**只依等級決定顯示什麼**（L1 只顯示身分卡；L2 加職位／戰役列；L3 加生平段落），不再有「來源不足」徽章；等級本身即說明資料厚度。UI 細節不在本稿。
+
+### 20.3 日期精度欄位：day／month／year／unknown（Tai 第 3 點）
+
+**規則（提案，沿用 §16.2／§16.3／§16.4.1 欄位名）**
+- 每個日期端點（生、卒、任期起、任期迄）配一個精度：`day`｜`month`｜`year`｜`unknown`。`unknown` 時日期值為 NULL。
+- **缺的標 `unknown`，不讓整個人失敗**：該端點同時要有一筆 `leader_bio_gaps`（`incomplete_range` 或 `not_found`），記錄「查過、查不到」與查過的來源（`candidate_citations`），避免下一輪重查。
+- 端點值寫法沿用 §16.3.2 Q3：**月／年精度的結束日寫成下一個單位的起日**（到 1911 年 → `1912-01-01`＋`year`）；起點則為該單位起日（`year`→`YYYY-01-01`、`month`→`YYYY-MM-01`）。
+- 兩份來源精度不同時，取都支持的最粗精度（§16.4.1 `date_precision` 說明，沿用）。
+
+**對照現行 `verify.py`（`data/seed/leaders/b3-trial/verify.py`）**
+- `PREC = {None, "day", "month", "year"}`（第 61 行）：`None` 即未知。第 173 行要求 `(start is None) == (startPrecision is None)`，即「值 NULL ⇔ 精度 NULL」。→ **新規只是把 `None` 明示成 `unknown`**；研究檔既有 `None`／NULL 的列可直接對應，不必重跑。
+- `chk_bound`（第 140–146 行）：`year` 精度的端點必須以 `-01-01` 結尾；`month` 精度必須以 `-01` 結尾（Q3）。→ 沿用。限制：它只檢查「格式」，無法分辨一個 `1912-01-01` 是「到 1911 年止（Q3 寫法）」還是「從 1912 年起」，也不能分辨 gap-830 舊寫法（`YYYY-01-01`＋precision，終點年本身被排除在外，§16.3.2 Q3 說明）；**舊資料不追溯改寫**（§16.3.2），新檔以 Q3 為準。
+- 與 §16.2 的關係：§16.2 已寫「`period_start_precision`／`period_end_precision` NULL＝該端未知」。→ **衝突點**：DB 欄位是否存 `'unknown'` 字串還是沿用 NULL，列 20.11 Q3；建議 DB 沿用 NULL（不改 §16.2、不加 CHECK 值），規則與 API 用語為 `unknown`。
+- `check_min.py` 的 `待查證：缺迄日` 機制：任期有 `start` 但無 `end` 時，若 gap 的 `target == "<position|role>:<key>"` 且 `note` 以 `待查證：缺迄日` 開頭，算 `flagged`（仍不達標）；兩端都缺或缺 gap 算 `missing`。→ 新規：`flagged` 與 `missing` 都改為 `incomplete_range` gap，**不擋 L2**；`gap_kind` 取代字串前綴。
+
+**影響（數字，stats「min-check」）**
+- 任期完整率：S **318／412**（77.2%）、A **212／273**（77.7%）。
+- 缺迄待查：S **89**、A **61**；缺起或迄：S **5**、A **0**（這 5 個 S 任期在新規下以 `unknown`＋gap 即成立）。合計 155 個任期（S 94＋A 61）目前被當成失敗，新規下是「已知缺口」。
+- 未達標 103 人中 **60 人唯一原因是職位缺起訖**；另有 21 人除職位缺起訖外還有其他原因（81 人含此原因：S 49＋A 32，見原因計數），即**職位缺起訖影響 81／103＝79%**。
+
+### 20.4 引文只在 L3 要求；程式驗證引文是快取頁面的子字串（Tai 第 4 點）
+
+**現況（verify-finding；**有做到**）**
+1. `verify.py` 第 84–96 行：研究檔頂層 `rawDir`＋`rawMap`，逐一讀純文字、`norm()`（NFC＋空白折疊）後存進記憶體並記 `sha256`（報告 `rawFiles`）。
+2. `chk_quote()`（第 125–138 行）：引文非空、NFC ≤ 80 字；`norm(quote)` 必須是該 `sourceKey` 純文字的子字串；來源沒有原文檔 → 錯。
+3. 套用範圍：段落、職位、roleCandidates、gaps 的 citations。
+4. 36 份 `verify-report.json`（S batch001–021、A batch001–015）全部 `ok=true`、`rawChecked=true`。
+5. 另檢 Wikipedia／Wikidata 網址（第 118–121 行）、C 級須具名作者或出版機構、grade 與來源一致。
+
+**現況（缺口）**
+1. 原文快取在 `/tmp/generals-bios/{S,A}/batchNNN/raw/`（`.html`＋`.txt`，約 340 MB），不進版控，報告只留 `sha256`；macOS 重開機可能清 `/tmp`，之後無法重驗。
+2. `.txt` 由同一個工作階段自己 `curl`、自己用 python 轉成文字（`PROMPT_research.md`「抓取與原文」）；verify 不檢查 `.txt` 是否真由 `.html` 轉出、`.html` 是否真由該 URL 抓得（沒有 URL、時間、HTTP 狀態、Content-Type、原始位元組 hash 的紀錄）。
+3. `locator` 不驗，只當自由文字。
+4. 只比對引文，不比對結構化值（日期、職稱）是否出現在原文。
+5. 職位引文目前也強制逐字（L2 改版後可放寬）。
+6. 同網域在不同批被評不同等級（見 20.5）。
+
+**補強提案**
+
+| # | 補強 | 內容 |
+|---|---|---|
+| H1 | **持久快取位置** | 不進 git、不在 `/tmp`。提案放在使用者家目錄下的專用目錄（先例：備份放 `~/wl-backups/`，§16.7），例如 `~/wl-source-cache/`，以 `sha256` 內容定址：`~/wl-source-cache/raw/<sha256前2碼>/<sha256>`（原始位元組）與 `~/wl-source-cache/txt/<sha256>.txt`。需備份策略（Time Machine／rsync；Q5） |
+| H2 | **抓取紀錄** | 每次抓取由**固定腳本**（日後 `fetch_source.py`，**本稿不寫**）寫一列 JSONL：`url`、`final_url`（跟隨轉址後）、`fetched_at`（ISO 8601，+08:00）、`http_status`、`content_type`、`raw_sha256`、`bytes`、`tool_version`。HTTP ≠ 200、或內容為防機器人頁（captcha、challenge）→ 狀態記 `blocked`，**不繞過**（§16.3.2-4），改用同一權威資料的官方鏡像並另記一列 |
+| H3 | **固定轉換** | `.html`→`.txt` 只由固定腳本（日後 `html_to_txt.py`）轉：去 script／style、unescape、NFC、`norm()`；腳本版本寫進紀錄 `converter_version`，`txt_sha256` 一併記錄。工作階段**不得**自己轉文字；PDF／JSON 同由該腳本處理（`pdftotext` 等需固定版本） |
+| H4 | **驗證步驟** | 新增 `verify_cache.py`（日後）：(1) 對每筆 citation 取 `fetch_id`，驗 `raw_sha256` 檔存在且 hash 相符；(2) 用固定腳本重轉，`txt_sha256` 必須相同；(3) L3 的 `norm(quote)` 必須是該 txt 的子字串；(4) locator 規則；(5) URL 的主機名不在硬性排除、且網域等級與 policy 表一致（20.5） |
+| H5 | **locator 規則** | 只收四種可程式驗證的寫法：`section:<標題文字>`（該文字必須出現在 txt，且位置 ≤ 引文位置）；`anchor:#<id>`（raw html 內必須有該 `id`）；`page:<n>`（PDF 轉文字以換頁字元分頁，第 n 頁必須含引文）；`offset:<a>-<b>`（`norm(txt)[a:b]` 必須含引文）。其餘寫法（例「Biographie」）只能出現在 L2 且僅檢查「頁面存在」。現行研究檔 `locator` 多為章節名（例 `"Biographie"`），可由腳本自動補 `section:` 前綴並驗證 |
+| H6 | **結構化值核對（選做）** | 日期、職稱的值能否在 txt 內找到（年份字串、職稱關鍵字）；找不到只警告（辭典條目常以「* 1873」格式出現，§16.9.1 已決「依固定格式位置判讀」） |
+
+**各級要求**
+- **L1／L2**：事實列只要 **來源網址＋定位**，且該頁須是「已抓過的頁面」（`fetched(c)`：有抓取紀錄、HTTP 200、有 `raw_sha256`）；**不強制逐字引文**（`quote` 可 NULL，Q4）。理由：引文是為了讓段落敘述可核對；事實列的證據是「那一頁上寫著」。
+- **L3**：段落 citation 必須有 `quote`，且為快取純文字子字串。與 §16.4.1 `quote` ≤ 80 字、單句短引一致。
+- **舊檔相容**：現有 36 批 `rawMap` 的 `/tmp` 檔在仍存在時，可由一次性腳本**補登**成抓取紀錄（標 `tool_version = legacy-session`、`fetched_at` 取檔案修改時間，`http_status` 未知→記 `null`），L2 判定對 `legacy-session` 另標「待重抓確認」而不直接算 fetched。補登**不重做研究**，費用 ≈ 0（只讀檔）。`/tmp` 已被清除的批次則需重抓，見 20.7 與 20.10。
+
+### 20.5 各國籍固定的來源順序（Tai 第 5 點）
+
+**原則（提案）**
+1. 每個國籍一份**固定清單**，依序嘗試；每一步（命中、查無、被擋）寫進該人的 `searchLog[]`（格式沿用現行 `PROMPT_research.md`：`step`、`sourceType`、`query`、`url`、`result`、`note`）。不再「開放式搜尋至少 8 次、4 類來源」（現行規則）。
+2. 達到收錄門檻（§16.3.1：1 A 或 2 獨立 B；將領生平另依 Tai 2026-11-12 06:34，具名 C 也可支撐欄位）且該級所需欄位齊全即停；清單內 A／B 查無時才用具名 C；清單用盡仍缺 → 寫 gap，**不**自行擴大搜尋。
+3. 清單外的線索（開放式搜尋、未評等來源）只能當**候選線索**放進 gap 的 `candidate_citations`，**不能**當出處（沿用 §16.3.2-4 Q9）；候選來源若反覆有用，由考證組提名、Tai 確認後才加進 policy（20.5.3）。
+4. 清單分兩段：**L1（身分／典據 ID）**與 **L2（履歷：職位、任期、戰役）**；一個網域可同時出現在兩段。
+5. 排序依據：先看**等級（A 先於 B）**，同級依**覆蓋人數**（stats）；Tai 指定的德國、日本順序優先於本稿依命中數排出的順序，差異另註。
+6. **樣本不足者標「暫定」**：同一國籍 stats 中不足 15 人（中國 6、蘇俄 10、大英國協 1、日本 12、其他 9，及義大利 11）。S 名單集中在名將，與 A 級（尚未跑的 A_run 256 減已跑，見 20.10）的來源分布可能不同。順序待 A 級跑完後依同一腳本 `collect_stats.py` 重算。
+7. 「列入但標未驗證命中」：規則（`b3-trial/full/domain-policy.json`）已列等級、但將領 S／A 已跑名單（stats 各國前 12 網域）沒有出現的來源，**仍列入清單**，排在已驗證命中者之後，註明 `未驗證命中`；第一次實際使用時要記錄結果，之後才改稱已驗證。理由：不能因樣本沒碰到就把權威來源排除，也不能把沒用過的來源排在前面誤導。
+
+### 20.5.1 各國命中數表（stats 2026-11-12 09:20；網域依引文計，「覆蓋人數」＝至少一筆引文用到該網域的人數；各表只列前 8 名，完整見 stats.md）
+
+**德國（51 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| deutsche-biographie.de | 1191 | 1191 | 0 | 0 | 47／51 | 92% |
+| dhm.de | 577 | 0 | 577 | 0 | 26／51 | 51% |
+| bundesarchiv.de | 23 | 23 | 0 | 0 | 6／51 | 12% |
+| biographien.ac.at | 34 | 34 | 0 | 0 | 3／51 | 6% |
+| apps.bundesarchiv.de | 25 | 25 | 0 | 0 | 3／51 | 6% |
+| lobid.org | 14 | 14 | 0 | 0 | 3／51 | 6% |
+| treccani.it | 18 | 0 | 18 | 0 | 2／51 | 4% |
+| avalon.law.yale.edu | 13 | 0 | 2 | 11 | 2／51 | 4% |
+
+**順序（沿用 Tai 指定；樣本充足，51 人）**：① L1／L2：Deutsche Biographie（NDB／ADB，`deutsche-biographie.de`，A，覆蓋 47／51）→ ② `lobid.org`（GND 官方鏡像，A；L1 典據 ID 與防機器人時的替代，§16.3.2-4）→ ③ `dhm.de`（LeMO 傳記，B，26／51）→ ④ Bundesarchiv（`bundesarchiv.de`、`apps.bundesarchiv.de`、`open-data.bundesarchiv.de`，A）。註：奧地利出身者另可用 `biographien.ac.at`（ÖBL，A，3 人）。Tai 的順序與命中數大致相符；差異是 lobid 實際命中僅 3 人（6%），低於 Bundesarchiv 的 6 人，其主要用途是 L1 的 GND ID。
+
+**日本（12 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| nids.mod.go.jp | 171 | 166 | 5 | 0 | 9／12 | 75% |
+| jacar.go.jp | 25 | 25 | 0 | 0 | 7／12 | 58% |
+| kantei.go.jp | 28 | 28 | 0 | 0 | 5／12 | 42% |
+| ndl.go.jp | 62 | 62 | 0 | 0 | 4／12 | 33% |
+| ndlsearch.ndl.go.jp | 33 | 33 | 0 | 0 | 2／12 | 17% |
+| kotobank.jp | 11 | 0 | 11 | 0 | 2／12 | 17% |
+| shoryobu.kunaicho.go.jp | 21 | 21 | 0 | 0 | 1／12 | 8% |
+| mod.go.jp | 4 | 0 | 4 | 0 | 1／12 | 8% |
+
+**順序（沿用 Tai 指定；樣本 12 人，暫定）**：① L1：NDL 典據（`id.ndl.go.jp`，A；stats 只有 1 人 4 筆）→ ②「近代日本人の肖像」（`www.ndl.go.jp/portrait/`，A；**已驗證命中**：路徑層級唯讀比對，日本將領 4／12 人〔東鄉平八郎、乃木希典、東條英機、山本五十六；S batch014、015〕共 55 筆引文，即 stats `ndl.go.jp` 4 人 62 筆的大部分；B3 另有近衛文麿、米內光政 2 人）→ ③ JACAR（`jacar.go.jp`，A，7／12＝58%）→ ④ NIDS（`nids.mod.go.jp`，A，9／12＝75%）→ ⑤ `kotobank.jp`（B，2 人）。觀察：就 L2 履歷而言，實際覆蓋最高的是 NIDS 與 JACAR，另有 `kantei.go.jp`（首相官邸，A，5 人）。是否把 NIDS 提前到第 ③ 位見 Q6。
+
+**英國（42 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| api.parliament.uk | 49 | 49 | 0 | 0 | 16／42 | 38% |
+| encyclopedia.com | 97 | 0 | 97 | 0 | 10／42 | 24% |
+| snl.no | 126 | 0 | 126 | 0 | 8／42 | 19% |
+| ibiblio.org | 117 | 117 | 0 | 0 | 8／42 | 19% |
+| ebsco.com | 99 | 0 | 99 | 0 | 7／42 | 17% |
+| nam.ac.uk | 94 | 0 | 94 | 0 | 6／42 | 14% |
+| awm.gov.au | 81 | 81 | 0 | 0 | 5／42 | 12% |
+| discovery.nationalarchives.gov.uk | 28 | 28 | 0 | 0 | 4／42 | 10% |
+
+**順序（暫定理由：依等級與覆蓋；樣本 42 人尚可）**：L1：① `oxforddnb.com`（ODNB，policy 為 B，**未驗證命中**：前 12 名無此網域）→ ② `discovery.nationalarchives.gov.uk`（A，4 人）。L2：① `api.parliament.uk`（A，16／42＝38%，國會資料）→ ② `thegazette.co.uk`（A，4 人，官方公報）→ ③ `ibiblio.org`（A，8 人；**網域等級待覆核**，見 20.5.3）→ ④ `awm.gov.au`（A，5 人，澳洲軍人）→ ⑤ `assets.publishing.service.gov.uk`（A，4 人）；B 補：`encyclopedia.com`（10）、`ebsco.com`（7）、`nam.ac.uk`（6，policy 為 B）、`snl.no`（8）。
+
+**美國（24 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| usna.edu | 62 | 62 | 0 | 0 | 5／24 | 21% |
+| tshaonline.org | 68 | 0 | 38 | 30 | 4／24 | 17% |
+| encyclopedia.com | 45 | 0 | 45 | 0 | 4／24 | 17% |
+| historynet.com | 50 | 0 | 0 | 50 | 3／24 | 12% |
+| airandspaceforces.com | 31 | 0 | 0 | 31 | 3／24 | 12% |
+| history.navy.mil | 92 | 92 | 0 | 0 | 2／24 | 8% |
+| historicmissourians.shsmo.org | 71 | 0 | 71 | 0 | 2／24 | 8% |
+| eisenhowerlibrary.gov | 26 | 26 | 0 | 0 | 2／24 | 8% |
+
+**順序（暫定，樣本 24 人）**：① `usna.edu`（A，5 人）→ ② `history.navy.mil`（A）→ ③ `history.army.mil`（policy A，**未驗證命中**）→ ④ NARA（`archives.gov`、`catalog.archives.gov`，policy A，**未驗證命中**）→ ⑤ `eisenhowerlibrary.gov`、`history.state.gov`（A，各 2 人）→ ⑥ LoC 典據（`id.loc.gov`／`tile.loc.gov`，A；B3 表中 `id.loc.gov` 3 人，見下「B3」）→ ⑦ B：`anb.org`（policy B，**未驗證命中**）、`millercenter.org`（policy B，未驗證）、`encyclopedia.com`（4 人）、`tshaonline.org`（B 38／C 30，見 20.5.3）。C 級（`historynet.com`、`airandspaceforces.com`、`penelope.uchicago.edu`）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；入庫見 Q15）。
+
+**法國（16 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| defense.gouv.fr | 317 | 317 | 0 | 0 | 10／16 | 62% |
+| academie-francaise.fr | 132 | 132 | 0 | 0 | 6／16 | 38% |
+| servicehistorique.sga.defense.gouv.fr | 19 | 19 | 0 | 0 | 4／16 | 25% |
+| larousse.fr | 47 | 0 | 0 | 47 | 3／16 | 19% |
+| treccani.it | 8 | 0 | 8 | 0 | 3／16 | 19% |
+| encyclopedia.com | 19 | 0 | 0 | 19 | 2／16 | 12% |
+| archivesdiplomatiques.diplomatie.gouv.fr | 6 | 6 | 0 | 0 | 2／16 | 12% |
+| ordredelaliberation.fr | 56 | 56 | 0 | 0 | 1／16 | 6% |
+
+**順序（暫定，樣本 16 人）**：① `defense.gouv.fr`（A，10／16＝62%）→ ② `academie-francaise.fr`（A，6 人，法蘭西學術院）→ ③ `servicehistorique.sga.defense.gouv.fr`（A，4 人）→ ④ `archivesdiplomatiques.diplomatie.gouv.fr`（A，2 人）→ ⑤ BnF 典據（T1 已把 BnF 列為權威人名檔，但前 12 名**無命中**，列入、**未驗證命中**）→ ⑥ B：`treccani.it`（3 人）。`larousse.fr`（C）、`encyclopedia.com`（C 19 筆）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；入庫見 Q15）。
+
+**義大利（11 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| treccani.it | 457 | 451 | 6 | 0 | 10／11 | 91% |
+| warfarehistorynetwork.com | 5 | 0 | 0 | 5 | 1／11 | 9% |
+| poliziadistato.it | 3 | 3 | 0 | 0 | 1／11 | 9% |
+| avvenire.it | 2 | 0 | 0 | 2 | 1／11 | 9% |
+| anpi.it | 1 | 0 | 0 | 1 | 1／11 | 9% |
+| normattiva.it | 1 | 1 | 0 | 0 | 1／11 | 9% |
+
+**順序（暫定，樣本 11 人）**：① `treccani.it`（A 451／B 6，10／11＝91%；僅「Dizionario Biografico degli Italiani」條目視為 A，其餘 B，路徑規則待確認，見 20.5.3）→ ② `normattiva.it`、`poliziadistato.it`（A，各 1 人）；SBN／ICCU 典據未在 stats 出現，列入、**未驗證命中**。C 級（`warfarehistorynetwork.com`、`avvenire.it`、`anpi.it`）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；入庫見 Q15）。
+
+**蘇俄（10 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| encyclopedia.com | 164 | 0 | 164 | 0 | 9／10 | 90% |
+| kotobank.jp | 84 | 0 | 84 | 0 | 7／10 | 70% |
+| encspb.ru | 26 | 0 | 26 | 0 | 1／10 | 10% |
+
+**順序（暫定，樣本僅 10 人；沒有任何 A 命中）**：① `encyclopedia.com`（B，9／10＝90%；注意：以其他國籍為例，同網域也曾被評為 C，見 20.5.3）→ ② `kotobank.jp`（B，7 人）→ ③ `encspb.ru`（B，1 人）。policy 沒有已列為 A 的蘇俄來源；**不得**在沒有 A 的情況下把 B 的單一來源推升為收錄門檻，仍照 §16.3.1（1 A 或 2 獨立 B）。需考證組提名俄文權威來源（檔案館、國防部戰史）再由 Tai 確認後加入。
+
+**中國（6 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| kotobank.jp | 87 | 0 | 87 | 0 | 6／6 | 100% |
+| cpc.people.com.cn | 89 | 89 | 0 | 0 | 3／6 | 50% |
+| ahonline.drnh.gov.tw | 24 | 24 | 0 | 0 | 2／6 | 33% |
+| twstudy.iis.sinica.edu.tw | 9 | 9 | 0 | 0 | 2／6 | 33% |
+| drnh.gov.tw | 7 | 7 | 0 | 0 | 1／6 | 17% |
+| mnd.gov.tw | 4 | 4 | 0 | 0 | 1／6 | 17% |
+| president.gov.tw | 3 | 3 | 0 | 0 | 1／6 | 17% |
+
+**順序（暫定，樣本僅 6 人：S 的 ROC 3＋CCP 3；A 級中國 53 人〔ROC 41、CCP 12，selection〕尚未跑）**：① `cpc.people.com.cn`（A，3／6，中共人物）→ ② 臺灣國史館 `ahonline.drnh.gov.tw`、`drnh.gov.tw`（A，2＋1 人）→ ③ `twstudy.iis.sinica.edu.tw`（A，2 人）→ ④ `mnd.gov.tw`、`president.gov.tw`（A，各 1 人）→ ⑤ `kotobank.jp`（B，6／6）。觀察：6 人皆用日文辭典 kotobank 當 B，表示中文權威來源在 S 級並未涵蓋全部人；A 級的來源分布可能不同，**順序待 A 級中國名單跑完後依 stats 重算**。policy 沒有已列為 A 的中國來源（`baidu.com` 屬硬性排除）。
+
+**大英國協（1 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| nam.ac.uk | 12 | 0 | 12 | 0 | 1／1 | 100% |
+| kotobank.jp | 10 | 0 | 10 | 0 | 1／1 | 100% |
+| thegazette.co.uk | 5 | 5 | 0 | 0 | 1／1 | 100% |
+| sahistory.org.za | 3 | 0 | 3 | 0 | 1／1 | 100% |
+| britac.ac.uk | 2 | 0 | 2 | 0 | 1／1 | 100% |
+| smutshouse.co.za | 1 | 0 | 1 | 0 | 1／1 | 100% |
+| samilitaryhistory.org | 1 | 0 | 1 | 0 | 1／1 | 100% |
+
+**順序（暫定，樣本僅 1 人：南非）**：參照英國表：`thegazette.co.uk`（A）→ `awm.gov.au`（A，英國表中 5 人為澳洲軍人，可供澳洲 A 級 14 人參考）→ `discovery.nationalarchives.gov.uk`（A）→ B：`nam.ac.uk`、`sahistory.org.za`、`britac.ac.uk`。加拿大 3、紐西蘭 4（selection A_run）無已驗證命中，需待考證組提名。
+
+**其他（9 人）**
+
+| 網域 | 引文 | A | B | C | 覆蓋人數／總人數 | 覆蓋率 |
+|---|---|---|---|---|---|---|
+| kotobank.jp | 60 | 0 | 60 | 0 | 6／9 | 67% |
+| ipsb.nina.gov.pl | 79 | 79 | 0 | 0 | 2／9 | 22% |
+| hbl.lzmk.hr | 38 | 38 | 0 | 0 | 1／9 | 11% |
+| deutsche-biographie.de | 34 | 34 | 0 | 0 | 1／9 | 11% |
+| ipn.gov.pl | 25 | 25 | 0 | 0 | 1／9 | 11% |
+| katalog.bip.ipn.gov.pl | 10 | 10 | 0 | 0 | 1／9 | 11% |
+| finland.fi | 8 | 8 | 0 | 0 | 1／9 | 11% |
+| so07.tci-thaijo.org | 7 | 0 | 7 | 0 | 1／9 | 11% |
+
+**順序（暫定，樣本 9 人，涵蓋波蘭 3、羅馬尼亞、芬蘭、南斯拉夫、奧匈、鄂圖曼、泰國各 1）**：依子國籍分開，不合併排序：波蘭 `ipsb.nina.gov.pl`（Polski Słownik Biograficzny，A）→ `ipn.gov.pl`（A）；克羅埃西亞／南斯拉夫 `hbl.lzmk.hr`（A）；奧匈：`deutsche-biographie.de`（A，1 人）、`ww1.habsburger.net`（B，1 人）；其他 `kotobank.jp`（B，6／9）。`finland.fi` 被評 A（8 筆），但它是芬蘭政府的國家形象網站，**等級待覆核**。B3 表（無國籍欄，159 人）另見 `hls-dhs-dss.ch`（瑞士歷史辭典，A，7 人）、`lex.dk`（B，6）、`mek.oszk.hu`（A 27／B 20）、`www3.congreso.gob.pe`（A，3）可供對應子國籍參考。
+
+**B3 表（`b3-trial`，34 份 `research.json`、159 個不同人物，無國籍欄；stats「B3」前 15）**：`encyclopedia.com` 992 筆全為 B（43 人）；`treccani.it` 198 筆（A 98／B 100，10 人）；`lobid.org` 40 筆 A（10 人）；`deutsche-biographie.de` 82 筆 A（8 人）；`ebsco.com` 62 B（8）；`hls-dhs-dss.ch` 126 A（7）；`lex.dk` 61 B（6）；`history.state.gov` 54 A（5）；`ndl.go.jp` 30 A（3）；`id.loc.gov` 15 A（3）。這批是元首／首腦，與將領名單的來源分布不同，只作補充參考。
+
+### 20.5.2 規則已列等級、但將領名單尚未命中者（列入、標「未驗證命中」）
+
+依 `data/seed/leaders/b3-trial/full/domain-policy.json`（33 筆；主管 2026-11-11 21:55、2026-11-12 03:03 裁定）與 stats 的前 12 名對照：
+
+| 來源 | policy 等級 | stats 狀態 | 處理 |
+|---|---|---|---|
+| 近代日本人の肖像（`www.ndl.go.jp/portrait/`） | A（`ndl.go.jp`：「含近代日本人の肖像」） | 路徑層級唯讀比對：日本將領 4／12 人、55 筆引文（S batch014、015），B3 另 2 人 | **已驗證命中**，列日本第 ② 位；建議 `collect_stats.py` 日後加「路徑前綴」統計 |
+| NARA（`archives.gov`、`catalog.archives.gov`）、`history.army.mil` | A | 美國前 12 名無 | 列入美國清單，標未驗證 |
+| ODNB（`oxforddnb.com`）、ANB（`anb.org`）、Miller Center | **B**（policy 寫 B，不是 A） | 英國／美國前 12 名無 | 列入，標未驗證；等級以 policy 為準 |
+| TNA（`nationalarchives.gov.uk`） | A | 英國 `discovery.…` 4 人已命中 | 已驗證（discovery 子網域）；其他子網域未驗證 |
+| BnF 典據 | T1 已列為 A（§16.9.1） | 法國前 12 名無 | 列入法國 L1，標未驗證 |
+
+**處理方式**：未驗證者**不降級、不排除**，只在 `searchLog` 與 stats 標記；第一次實際使用時要記錄結果（命中／查無／被擋）；連續使用 N 次仍 0 命中的清單項目由考證組提報，是否移除由 Tai 決定（N 與是否自動降序待 Q6）。
+
+### 20.5.3 網域評級不一致與單一網域政策表
+
+**stats 中同一網域被評不同等級的實例（引文數，stats.md／stats.json）**
+
+| 網域 | 現況 | 推測原因（**待查證**，stats 無法確認） |
+|---|---|---|
+| `encyclopedia.com` | 英國 B 97、美國 B 45、蘇俄 B 164、B3 B 992；**法國 C 19** | 條目未署名者被評 C？（verify.py 規定 C 須具名作者或出版機構） |
+| `treccani.it` | 義大利 A 451／B 6；德國 B 18；法國 B 8；B3 A 98／B 100 | 傳記辭典（DBI）A，其他條目 B？ |
+| `avalon.law.yale.edu` | 德國 B 2／C 11 | 文件類型不同（條約全文 B、其他 C）？ |
+| `tshaonline.org` | 美國 B 38／C 30 | 具名作者與否？ |
+| `warfarehistorynetwork.com` | 德國 B 9／C 1、義大利 C 5 | — |
+
+`verify.py` 只檢查「citation 的 grade 與該檔 `sources` 的 grade 一致」，不跨檔、不對照政策表（verify-finding 缺口 6）。
+
+**提案：單一網域政策表（SSOT）**。擴充現有 `b3-trial/full/domain-policy.json` 的欄位（`domain`、`source_kind`、`grade`、`basis`、`decision`），新增：
+
+| 欄位 | 說明 |
+|---|---|
+| `path_prefix` | 可選。同網域不同路徑可不同等級（例：`treccani.it/enciclopedia/*_(Dizionario-Biografico)/` → A；其餘 → B） |
+| `cap` | 該網域所能達到的最高等級；實際 `grade` 只能 ≤ `cap`，不得由工作階段自評升級 |
+| `requires_named_author` | encyclopedia.com、tshaonline 等：具名 → B（同 T1「具名作者的百科條目＝B」）；未署名 → 不收（C 也須具名，`verify.py` 第 107–109 行） |
+| `allowed_use` | `identity`（L1）、`career`（L2）、`narrative`（L3）、`document_text`（條約全文，如 avalon） |
+| `verified_hits` | 最近一次 stats 命中人數與日期（20.5.2 的「未驗證命中」由此欄為 0 判定） |
+| `policy_version` | 沿用 §16.4.1 `policy_version`；§19.4.2（Q5＝b）將 `BioSourcePolicy` 更名為通用 `SourcePolicy`，本表即其資料部分 |
+
+**初版建議值（只含 stats 與 policy 檔已出現者；均需考證組覆核、Tai 確認）**
+
+| 網域 | 建議 | 備註 |
+|---|---|---|
+| `deutsche-biographie.de`、`lobid.org`、`id.ndl.go.jp`、`ndl.go.jp`、`jacar.go.jp`、`nids.mod.go.jp`、`defense.gouv.fr`、`academie-francaise.fr`、`usna.edu`、`api.parliament.uk`、`thegazette.co.uk`、`cpc.people.com.cn`、`ahonline.drnh.gov.tw` | A | stats 中皆全為 A |
+| `dhm.de`、`ebsco.com`、`kotobank.jp`、`snl.no`、`nam.ac.uk`、`oxforddnb.com`、`anb.org`、`millercenter.org` | B | stats／policy 皆為 B |
+| `encyclopedia.com`、`tshaonline.org` | B，`requires_named_author`；未署名不收 | 解 20.5.3 第 1、4 列 |
+| `treccani.it` | `path_prefix` 規則：DBI→A，其他→B | 解第 2 列；路徑區分的正確性待驗證 |
+| `avalon.law.yale.edu` | `allowed_use = document_text`，`cap = B`；人物生平不採 | 解第 3 列；是否改 A（官方條約文本）見 Q7 |
+| `ibiblio.org`、`finland.fi` | **等級待覆核**（stats 皆為 A：英國 117、美國 11、其他 8） | 前者是檔案代管站、後者是政府形象網站，網域層級給 A 風險高，建議改 `path_prefix` 或降 B |
+| `historynet.com`、`airandspaceforces.com`、`penelope.uchicago.edu`、`larousse.fr` | C（seed 可用；入庫見 Q15） | stats 皆為 C |
+
+### 20.6 維基數據只當候選值（Tai 第 6 點；**用法需 Tai 確認**）
+
+> **重要**：主管規則「Wikidata 不是來源」**不變**。`verify.py` 第 118–121 行（`"wikipedia" in blob or "wikidata.org" in blob` → 錯），以及 `BioSourcePolicy` 硬性排除 `wikipedia.org`、`wikidata.org`，繼續有效。本條只是把它當「線索」，不是改變來源規則；**這個用法本身要 Tai 確認（Q8）**。既有先例：roster 的 `index_url` 欄位（`selection.json`）本來就是以維基清單頁挑出人名，並未把它當出處。
+
+**用法**
+1. Wikidata 的 `P569/P570`（生卒）、`P39`（職位）、`P227`（GND）、`P349`（NDL）、`P214`（VIAF）、`P244`（LoC）、`P268`（BnF）等只產生**候選值**：「值＋建議去哪個 A／B 來源核對」。
+2. 候選值**一律**要用 20.5 清單中的 A／B 來源核對；核對到 → 該來源的 citation 才是出處，值依來源寫入；核對不到 → 候選值標 `rejected`，**不採用**。
+3. 候選 ID（例：Wikidata 給了 GND ID）只有在 **GND／lobid 頁面上的姓名與生卒與本人相符**時才 `confirmed` 並寫入 `leader_bio_identifiers`；來源欄寫的是 lobid／GND 頁，不是 Wikidata。
+4. Wikidata 網址**永遠不進**任何 `sources`、citation、research.json 的 `sources`／`candidateCitations`。
+
+**候選值暫存位置與狀態（不入正式表）**
+
+| 項目 | 提案 |
+|---|---|
+| 位置 | seed 檔（不進 DB）：`data/seed/leaders/<scope>/candidates/<key>.json`（日後；**本稿不建**）。內容：`key`、`field`（`birthDate`／`deathDate`／`position`／`identifier:<scheme>`）、`candidate_value`、`hint`（建議核對來源，只寫網域與查詢字串，不寫 Wikidata 網址）、`retrieved_on`、`status` |
+| `status` | `candidate`（剛取得）→ `confirmed`（已在 A／B 來源核對相符，附 citation 指標）／`rejected`（核對不到或矛盾，附原因） |
+| 與正式表的邊界 | 候選表不被前端、API、RAG、`leader_bios` 讀取；`confirmed` 只是「已有 citation」的指標，值本身仍以 citation 為準；轉成事實列時 `grade` 由來源決定，不寫 `wikidata` |
+| 與 `leader_bios.wikidata_qid` | **現有**欄位（§16.0 Q1 已列）。它是識別碼欄位，不是來源；本稿**不建議**在 L1 判定中把 QID 當典據 ID（避免繞過「Wikidata 不是來源」），見 Q8 的選項 |
+
+### 20.7 重跑只補缺的欄位（Tai 第 7 點）
+
+**缺欄位清單（`missing_fields`）由資料算出，不手填**：對每個人物、每個目標等級 Lk，依 20.2 的判定式列出尚未成立的原子條件，每條為 `(bio_key, target, kind)`：
+- `target` 沿用 §16.4.2 的格式：`field:<name>`、`identifier:<scheme>`、`position:<key>`、`role:<key>`、`battle:<key>`、`paragraph:<n>`；
+- `kind`：`absent`（無列）｜`uncited`（有列無合格 citation）｜`unfetched`（citation 的頁面沒有抓取紀錄）｜`precision_unknown`（端點缺，尚無 gap）｜`quote_unverified`（L3 引文不是快取子字串）。
+- 已有 `gap`（`not_found`／`conflict`／`incomplete_range`／`no_battle_source`／`no_command_role`）且 `checked_on` 在冷卻期內者**不重複列入**（冷卻期長短見 Q9；現況：`check_min.py` 對「已標來源不足」者不再重跑，等價於永久冷卻）。
+
+**補跑任務（輸入／輸出）**
+
+| | 內容 |
+|---|---|
+| 輸入 | `bio_key`、`bioId`（可空）、姓名原文與中文、國籍→20.5 清單、`missing_fields`、**現有已確認列（唯讀，只供對照）**、已抓過的頁面清單（`source_fetches`，避免重抓） |
+| 動作 | 只針對 `missing_fields` 的 `target`，依清單順序查；每步寫 `searchLog`；缺引文者用快取頁補；抓取一律經固定腳本（20.4 H2／H3） |
+| 輸出 | `patch.json`：只含**新增或更新**的事實列（`op = add`｜`supersede`）、新 gap、新 `searchLog`；不含整人重寫；附 `verify`（含 `verify_cache.py`）報告 |
+| 驗證 | 套用 patch 後重算等級；必須單調不降（L 不得下降）；已確認列的雜湊不得改變 |
+
+**鎖定與衝突**
+- **已確認列鎖定**：已有合格 citation（A／B／具名 C、已抓取）的事實列，補跑**不得覆寫**；要改值只能走 I5：撤回（`retracted_at`、`retraction_reason`）＋新列＋`superseded_by`，且必須有**更高或同級**來源，並經人工覆核。
+- **衝突**：補跑找到與既有確認值不同的新說法 → **不覆蓋、不併值**：寫一筆 `gap`（`gap_kind = conflict`，`candidate_citations` 並列兩邊 source／locator／quote），該欄維持原值並標「來源矛盾」（沿用 §16.4.2 與 §16.7.3「精度爭議保留較粗年份」的先例）；日期矛盾則降到各出處**都支持的最粗精度**（§19.4.3 同法）。
+- **冪等**：同一 `patch.json` 重跑兩次結果相同（以 `(bio_key, target, source, locator)` 為鍵）。
+- **舊批次**：現有 37 份 `research.json` 不重做；先以 20.9 的「補登」取得 `fetch`／`locator` 資訊（見 20.4），其餘缺口才進補跑。
+
+### 20.8 依需求排序：先戰役指揮官；部隊領導人只需 L1／L2（Tai 第 8 點）
+
+**排序（提案）**
+1. **P-A**：§19 戰役（C1 起：敦克爾克「橋頭堡戰役」＋發電機行動；C3：閃擊波蘭、淞滬會戰，§19.5／§19.7 C1b）中出現的指揮官——依戰役 `status = verified` 的先後，C1→C3。
+2. **P-B**：符合 §19.3.2 (b)（國家最高軍職固定清單）的人物，不依賴戰役（R19-7）。
+3. **P-C**：其餘 S 級（已跑 102 人，補缺），再其餘 A 級。
+4. 同層內依「缺欄位少者先」（補跑便宜者先完成 L2）。
+
+**部隊領導人**（§19 `battle_units` 的各層級指揮官，不屬名將者）：**只要 L1、L2**，與 L3 **脫鉤**——不要求生平段落（≥3 段／≥300 字）。人物對話框顯示身分卡與履歷表；§19.3.3 規則照舊（只列「參與」，不寫因果）。其 `person_event_participations` 的 citation 要直接陳述角色（§19.4.1），那是 L2 的事實列，不是 L3 的敘述引文。
+
+**目前資料限制（如實）**：§14.2 記載現有 3 筆戰役 JSON 的 `event_ids` 皆空、無人物欄位；戰役表與參與表尚未建（§19.5 C1／C4）。因此「哪些將領是戰役指揮官」**目前無法由資料算出**——stats 與 `selection.json` 都沒有戰役欄位。P-A 名單須待 C1 的 `battle_units`／參與資料或考證組的戰役 seed 提供；在那之前，排序暫以 S 優先、再 A，並以 `check_min` 同一份名單為準。未解的對應：「戰役參與人物」的人數、有幾位已在 S／A 名單 → **待查證**。
+
+### 20.9 遷移：現有產出如何拆成 L1／L2／L3
+
+**20.9.1 研究檔欄位 → 層**（現有：`bios/{S,A}/batchNNN/research.json` 共 37 份〔S 21、A 16；stats `researchFiles`〕，每人 `key`、`bioId`、`name`、`nameZh`、`recordIds`、`thickness`、`paragraphs`、`positions`、`roleCandidates`、`gaps`、`searchLog`；頂層 `sources`、`rawDir`、`rawMap`）
+
+| 研究檔內容 | 拆到 | 做法 | 缺什麼 |
+|---|---|---|---|
+| `name`、`nameZh`；selection 的 `name_original`、`country`、`bio_id` | **L1** | 直接對應；國籍出自 `selection.json`（roster 欄位，不是來源）— 需 cited 才算 L1 | 國籍沒有 citation；**生卒、典據 ID 不在研究檔**（`people[]` 無此鍵），只有 `bioId` 對得到的人可從 `leader_bios` 取（S 103 人中 9 人 `in_leader_bios`、A 256 人中 0 人，selection）。**因此多數人的 L1 要新做** |
+| `positions[]`（`period`、`startPrecision/endPrecision`、`positionKind`、`citations[]`） | **L2** 經歷層（`person_positions`） | 精度 `None`→`unknown`；`待查證：缺迄日` gap→`incomplete_range`；citation 的 `quote` 保留（高於 L2 要求） | `locator` 多為章節名、未驗；來源頁無抓取紀錄（20.4） |
+| `roleCandidates[]`（`role_kind`、`roleEligible`…） | **L2** 角色層（`person_roles` 候選，`status` 不得直接寫庫） | 依 §16.3.1／§19.3.2 判定是否收錄；`military_commander` 需戰役或固定職位 | 角色層寫庫待 T13 |
+| 戰役 | **L2** 戰役列 | 研究檔**沒有結構化戰役**（0／37 份含 `majorBattles`）；只能由段落正文萃取成待核候選，再補來源 | 全部需補（見 20.10 的 C2、C3 類） |
+| `paragraphs[]`（≥3 段、≥300 字、citation 附 `quote`） | **L3** | 對應 `leader_bio_paragraphs`；quote 以 `/tmp` 快取重驗（若已被清除則需重抓） | 快取是否仍在：**待查證** |
+| `gaps[]` | gap 表（`leader_bio_gaps`） | `note` 前綴映射：`待查證：缺迄日`→`incomplete_range`、`來源不足`→`not_found`；`篇幅不足：`→ 不再是 gap，改由 L3 規則判定 | |
+| `searchLog[]` | 作業紀錄（留 seed） | 不入庫 | |
+| 頂層 `sources` | `sources` 表（§16.4.1） | 依政策表（20.5.3）重新評等 | 同網域異級（20.5.3） |
+
+**20.9.2 與 `leader_bios` 及 B3 98 人的關係（只依文件與檔案可查證的內容）**
+
+| 事實 | 依據 |
+|---|---|
+| 將領 S／A 名單共 359 人（S 103＋A_run 256；另 A_skipped 6＝「已在 leader_bios 者跳過」），其中 `in_leader_bios` 只有 S 9 人；A_run 0 人 | `selection.json`（`counts`、各 `people[].in_leader_bios`） |
+| 因此將領 S／A 的產出**絕大多數沒有 `bioId`**；寫庫前須先依 §16.3.2 Q8 補建有效生平（**寫庫前問 Tai**），且與既有 `leader_bios` 去重（重複鍵檢查已在 stats：S、A 重複鍵皆為 `[]`） | `selection.json`；§16.3.2 Q8；stats |
+| B3 `run100`：20 批×5＝100 人，其中零段落 2 人（`pe-schreiber`、`es-allendesalazar`）整人跳過，**其餘 98 人**為寫入對象 | `b3-trial/run100/write_b3_paragraphs.py` 檔頭註解；`research.json` 的 `paragraphs` 計數（`run100` 100 人中 2 人為 0 段） |
+| 98 人「已寫入、不動、不重補」 | `b3-trial/full/v3/build_v3.py` 第 5 行（轉述 Tai 2026-11-11 22:08）；`full/PLAN.md`（「run100 的 100 人（已寫入 98＋零段落 2）」） |
+| 是否**確實**已寫進 5442：**待查證**（本稿未連庫；上述兩處是檔案內陳述，寫庫紀錄與 `leader_bios`、段落表實際筆數需主管以只讀查詢確認） | — |
+| `b3-trial` 下 34 份 `research.json`、159 個不同 `bioId`（stats「B3」）＝試跑 `batch*` 10 份 50 人、`run100` 20 份 100 人、`full` 3 份 15 人、`supplement-duan-faisal` 1 份 2 人；其中試跑∩full 6 人、試跑∩supplement 2 人重複（唯讀比對 `bioId`），故 50＋100＋15＋2−6−2＝159 | `b3-trial/**/research.json`（唯讀比對） |
+| 試跑 50 人與 b3-sample 5 人**未寫入** 5442（依 `full/PLAN.md` 改以新規格重跑）；`full` 的 15 人是否已寫入：**待查證**（`PLAN.md`：「不寫庫」） | `full/PLAN.md` |
+| 98 人與將領 S 名單有交集：2 個 `bioId` 同時出現在 run100 與 `selection.json` 的 S 名單；將領 S／A 與 B3 任何一批合計有 6 個 `bioId` 交集 | 唯讀比對 `bioId`（run100：`research.json`；將領：`selection.json`） |
+
+**B3 98 人如何拆層**：B3 產出已是 §16 規格（`paragraphs`＋`positions`＋`roleCandidates`＋`gaps`，頂層 `sources`＋`sourceKey`，`alignedTo: b0b0e0f`）。已寫入者 → 事實層已在庫（`leader_bio_paragraphs`／`person_positions`／`person_roles` 六表，commit `e6ebb75`），本稿**不重寫**：只做「補登」——(1) 抓取紀錄（20.4）；(2) 精度 `unknown` 對應；(3) L1 缺口（國籍、典據 ID）；(4) 戰役列。等級計算對這 98 人也適用，預期多數已達 L3，缺 L1 的典據 ID 與 L2 的戰役列（B3 規則 Q1 當時明定戰役只寫正文，§16.3.2）。
+
+**20.9.3 資料表草案（只描述欄位；不寫 DDL 檔、不建 migration）**
+
+| 表 | 狀態 | 欄位（草案） |
+|---|---|---|
+| `leader_bios` | **現有** | 沿用；新增 `nationality`（jsonb，雙語）、`completeness_level`（衍生快取，可由查詢取代，建議不存，Q10） |
+| `leader_bio_field_citations` | **現有**（B1 已補欄） | 沿用；`field` 值域加 `nationality`；加 `fetch_id` |
+| `leader_bio_identifiers` | **提案** | `id`、`bio_id`、`scheme`（`gnd`｜`ndl`｜`viaf`｜`loc`｜`bnf`｜`isni`｜…）、`value`、`url`、`status`（`confirmed`｜`retracted`）、軟撤回欄；引用表 `leader_bio_identifier_citations`（格式 §16.4.1） |
+| `person_positions`／`person_roles` | **提案**（§16.3、§16.3.1） | 沿用；`start_precision`／`end_precision` 允許 NULL＝`unknown`（對照 §16.2）；引用表同 §16.4.1 |
+| `person_event_participations` | **提案**（§16.4.3、§19.3） | 沿用；L2 要求見 20.8 |
+| `leader_bio_paragraphs` | **提案**（§16.2） | 沿用；L3 |
+| `leader_bio_gaps` | **現有** | `gap_kind` CHECK 現為三值（`conflict`、`not_found`、`identity_uncertain`，§16.7.1）；**需新增式** migration 擴充 `incomplete_range`、`no_battle_source`、`no_command_role`（**提案**，Q10） |
+| `source_fetches` | **提案**（新） | `id`、`source_id`、`url`、`final_url`、`fetched_at`、`http_status`、`content_type`、`raw_sha256`、`txt_sha256`、`converter_version`、`bytes`、`storage_ref`（快取內相對路徑）、`tool_version`、`created_at`；唯讀、不可刪（I5 同法） |
+| `source_policy_domains` | **提案**（或維持 `domain-policy.json`，Q7） | 20.5.3 的欄位 |
+| 候選表（維基數據線索） | **不入 DB** | 20.6：seed 檔 |
+
+**20.9.4 是否需要 role_kind？（建議：需要，沿用 §16.3.1，不新增、不合併）**
+- **建議**：角色層 `person_roles.role_kind` 照 §16.3.1 的 8 種收錄值（`head_of_state`…`resistance_leader`），用於「收不收、出不出卡、卡片排序」；經歷層 `person_positions.position_kind` 另保持**分開命名、互斥**（§16.3.2-3、§16.3.3 已決；B3 `ALIGN.md`／`T14_RECOMMENDATION.md` 的互斥規則已實施於 B3 verify）。事實分層不新增第三組分類，因為 L1／L2／L3 是**完成度**，不是**角色**；兩者不混用同一欄位。
+- **理由**：(1) 與 T11（人物／角色／經歷三層）一致；(2) 將領名單的 `military_command` 是 `position_kind`（`check_min.has_command()` 讀 `positionKind == "military_command"`），`military_commander` 是 `role_kind`——現行 `check_min` 把兩組字串混在同一個判斷裡（`has_command` 同時看兩者），新規則下改成只作為 L2 衍生標籤 `has_command`，收錄仍由 §19.3.2 的寫入層檢查決定；(3) 戰役部隊領導人（20.8）多半**不**符合 `military_commander` 的收錄條件（G5），不該被迫建角色才有履歷——他們只需 L1／L2 事實列（`person_positions`＋`person_event_participations`）。
+- **不需要新增 role_kind 的情況**：只有履歷、不出卡的人物＝經歷層＋L2，不建 `person_roles`。
+
+### 20.10 費用估算（Tai 第 10 點）
+
+> 依據：stats「費用」（累計 **$97.2524**；每人平均〔主迴圈 sonnet＋retry〕S **$0.5343**、A **$0.526**；分類：`A-sonnet` $27.2782／16 檔、`A-retry` $12.1745／9 檔、`S-sonnet` $36.5628／22 檔、`S-retry` $17.9307／12 檔、`insuff-S-sonnet` $1.8818／2 檔、`cc-generals-roster.json` $1.4243）；上限 **$340**。**以下比例為假設**，不是量測值；金額＝人數×每人平均×比例，由 `design/cost_estimate.py` 重算（輸出表存於 `design/cost-estimate.md`）。
+
+**20.10.1 現有未達標 103 人（S 61、A 42）按欄位補跑**
+
+類別依原因組合（stats 原因組合）互斥歸類，優先序 C4 > C2 > C1 > C3 > C5：
+
+| 類別（原因組合） | S | A | 合計 | 假設的相對成本（低／中／高）與理由 |
+|---|---|---|---|---|
+| C1 只缺任期（`職位缺起訖`） | 33 | 27 | 60 | 0.15／0.30／0.50：不重寫段落，只回已抓過的來源補迄日（常需新抓下一任或後續任命頁）；低＝來源頁都已在快取、只是重讀；高＝需另找來源 |
+| C2 缺任期＋缺戰役（`職位缺起訖+無戰役`） | 10 | 3 | 13 | 0.25／0.45／0.65：C1＋抽戰役列並補來源；戰役需新來源 |
+| C3 只缺戰役（`無戰役`） | 6 | 6 | 12 | 0.15／0.30／0.50：戰役多半可由既有段落與來源萃取；需補來源者才增加 |
+| C4 段落／字數不足（含 `段落<3`、`字數<300`） | 7 | 3 | 10 | 0.60／0.85／1.00：這類人多為資料薄、重試過仍不足，補跑幾乎等於整人重跑；不低於 0.6 |
+| C5 含無指揮職（其餘為任期／戰役） | 5 | 3 | 8 | 0.05／0.25／0.50：新規不要求指揮職，低檔只記 `no_command_role` gap；高檔＝仍需補任期或戰役 |
+| 合計 | 61 | 42 | 103 | |
+
+| 檔 | 公式 | USD |
+|---|---|---|
+| 對照：整人重跑 | Σ 人數×每人平均 | 54.68 |
+| 低 | Σ 人數×每人平均×低比例 | **10.86** |
+| 中 | 同上，中比例 | **20.16** |
+| 高 | 同上，高比例 | **31.04** |
+
+三檔各佔上限 $340 的 3.2%／5.9%／9.1%；累計後 $108.11／$117.41／$128.29（＝$97.2524＋各檔）。**前提**：舊批次 `/tmp` 快取尚在；若被清除則 C1／C3 需重抓，建議取高檔。另外，20.2 說的「60 人只缺任期、L2 立即成立」還需先做 20.4 的**補登**（只讀檔，估計 ≈ $0），否則因為沒有抓取紀錄，L2 判定仍不成立。
+
+**20.10.2 尚未跑的 A（selection `A_run` 256 − 已跑 75 ＝ 181 人）**
+
+- 已跑數取 stats「min-check」的 A 75 人（`persons` 列表有 80 筆 A，差 5 筆；最近一個 commit `d07b4d7`〔batch016〕訊息的 5 個人名皆為「待查證」，可能即此差異，**待查證**）；若以 80 計則剩 176 人，金額約下降 3%。
+- 國別分布以 176 人（A_run 減 stats `persons` 的 A 已跑，`cost_estimate.py` 輸出）：中華民國 41、日本 23、澳洲 14、美國 14、中共 12、蘇聯 12、芬蘭 12、俄羅斯帝國 8、其餘 40（奧匈 4、鄂圖曼 4、紐西蘭 4、希臘 4、荷蘭 4、自由印度 4、波蘭 3、羅馬尼亞 3、加拿大 3、捷克 2、南斯拉夫／斯洛伐克／烏克蘭／瑞士／緬甸各 1）。**中國 53 人（ROC 41＋CCP 12）樣本最少、來源順序暫定**（20.5），費用不確定性最高。
+- **舊規則基準**：181×$0.526 ＝ **$95.21**（含平均 retry）；累計 $192.46，低於 $340。
+- **新規則推估公式**：每人 ＝ 首跑成本 ＋ 補跑成本 ＋ L1 典據查詢。首跑＝$0.526×(1−A retry 占比 0.309)＝**$0.364**（A retry 占比＝12.1745／(27.2782＋12.1745)；假設首跑成本與舊規則相同）。補跑＝Σ（該類在已跑 A 75 人中的占比×相對成本×$0.526），低檔只補 C2、C3、C4（需補者占 12／75＝16%），中、高檔補全部五類。L1 典據查詢**純屬假設**：低 $0、中 $0.03、高 $0.06／人（對應 NDL、GND、VIAF、LoC 等固定網址查詢，一次只讀一兩頁）。
+
+| 檔 | 首跑 | 補跑 | L1 典據（假設） | 合計 | 累計（＋$97.25） |
+|---|---|---|---|---|---|
+| 低 | $65.83 | $4.38 | $0.00 | **$70.21** | $167.46 |
+| 中 | $65.83 | $18.47 | $5.43 | **$89.73** | $186.98 |
+| 高 | $65.83 | $29.13 | $10.86 | **$105.82** | $203.07 |
+
+- **與舊規則的差異**（$95.21 為基準）：低 −$25.00、中 −$5.48、高 +$10.61。主要變因是「舊制整人重試（retry 占 31%）」改為「欄位補跑」，以及 L1 典據是新增成本。
+- **未納入**：(1) L3 對戰役部隊領導人脫鉤後省下的費用——目前無資料可算（20.8：戰役指揮官名單尚不存在），**待查證**；(2) 補登（20.4）與持久快取的磁碟成本；(3) Opus 審查（B3 流程有，將領流程 stats 無此項）；(4) 其他國籍的 retry 率可能與已跑的德英美法義不同。
+- **結論**：不論哪一檔，累計都遠低於 $340（最高 $203.07）；新規則的主要效益不是省錢，而是**不會因為單一欄位讓整個人失敗**，並可以把費用花在真正缺的欄位上。
+
+### 20.11 待 Tai 決定的問題
+
+| # | 問題 | 選項 | 建議 |
+|---|---|---|---|
+| Q1 | 等級定義是否採 20.2（L1＝身分卡、L2＝履歷表、L3＝附引文敘述）及判定式 | (a) 採；(b) 調整門檻（例：L3 段數、字數） | (a)；L3 沿用現行 3 段、300 字、§16.3.2 的 400／800 上限 |
+| Q2 | L2 的「戰役」是否可用 gap（`no_battle_source`）代替結構化戰役列；「指揮職」是否不再擋級 | (a) 可代替，兩者皆只作標籤；(b) 戰役必須有列；(c) 戰役可 gap，指揮職仍要 | (a)：避免回到「一個欄位讓整人失敗」；但 UI 要顯示「查無戰役來源」讓缺口可見 |
+| Q3 | 精度 `unknown`：DB 存 NULL（沿用 §16.2 的 NULL＝未知）還是新增字串 `'unknown'` | (a) DB 沿用 NULL，規則／API 稱 `unknown`；(b) 存字串（需改 §16.2、`DatePrecisions`、CHECK） | (a)：不動既有已決設計；`verify.py` 現況（`None`）直接相容 |
+| Q4 | `quote` 在 L1／L2 事實列可為 NULL（現行 §16.4.1 寫 `NOT NULL`） | (a) 事實列可 NULL、L3 段落 citation 才要求；(b) 一律保留 NOT NULL | (a)：Tai 第 4 點明說 L2 不強制逐字；`leader_record_citations` 現已 NOT NULL（§16.7.1），需評估是否同樣放寬，或事實列另用新表 |
+| Q5 | 持久快取位置與備份 | (a) `~/wl-source-cache/`（家目錄、內容定址、不進 git）＋定期備份；(b) 放專案旁固定磁碟；(c) 雲端物件儲存 | (a)；約 340 MB 起算，另備份到與 `~/wl-backups/` 同一策略 |
+| Q6 | 各國順序：(1) 日本是否照 Tai 順序（NDL→肖像→JACAR→NIDS→kotobank），或把實際覆蓋最高的 NIDS 提前；(2) 未驗證命中的清單項目連續幾次 0 命中後降序 | (1) 照 Tai／提前 NIDS 到 L2 第一位；(2) 不自動降序／N＝10／N＝20 | (1) L1 照 Tai，L2 把 NIDS、JACAR 提前；(2) 暫不自動降序，待 A 級跑完看 stats |
+| Q7 | 單一網域政策表（20.5.3）：存 JSON 還是 DB 表；`encyclopedia.com`／`tshaonline.org` 是否「具名作者＝B、否則 C」；`avalon.law.yale.edu` 等級；`ibiblio.org`、`finland.fi` 是否降級 | 見 20.5.3 | JSON 為 SSOT（與 `domain-policy.json` 同形，加 `path_prefix`、`cap`），DB 表等實作 `SourcePolicy`（§19.4.2 Q5）時再決；其餘照 20.5.3 初版建議，由考證組覆核 |
+| Q8 | **維基數據只當候選線索**（20.6）是否同意；`leader_bios.wikidata_qid` 在 L1 的地位 | (a) 同意線索用途，QID 不算典據 ID；(b) 同意，QID 可當 L1 的一個 ID，但需 GND／NDL 頁核對；(c) 不同意，完全不用 | (a)；主管規則「Wikidata 不是來源」不變，候選值只放 seed、不入庫 |
+| Q9 | 補跑冷卻期：已有 `not_found` gap 的欄位多久才重查 | (a) 永久（現行等價）；(b) 90 天；(c) 來源政策版本變動時才重查 | (c)：政策或清單變動才有新來源可查 |
+| Q10 | 資料表：`completeness_level` 是否存欄位；`leader_bio_gaps.gap_kind` 是否擴充三值；`source_fetches` 是否新建 | (a) 等級不存、由查詢算；gap_kind 新增 3 值；新建 `source_fetches`；(b) 都不動，抓取紀錄只留檔案 | (a)；每一項都是新增式 migration，實作前另出方案給 Tai（比照 T13） |
+| Q11 | 與 §16 的衝突點：§16.4.1 `quote NOT NULL`（Q4）、§16.2 精度 NULL（Q3）、§16.9.1 T1「C／X 不進 DB」與 Tai 2026-11-12 06:34 具名 C 級政策的關係（見 Q15）、§16.3.2 Q9「未評等來源只作候選」（沿用） | 見 Q3、Q4 | 以 Q3、Q4 的選擇為準；本稿其餘全部沿用，沒有改寫既有章節 |
+| Q12 | 舊批次（S 21＋A 16 份 research.json）如何取得抓取紀錄 | (a) 補登 `/tmp` 現存檔（≈ $0），缺的重抓；(b) 全部重抓；(c) 不補登，L2 以新規格重跑 | (a)；補登檔案標 `legacy-session`，並對 L2 標「待重抓確認」；若 `/tmp` 已被清則改 (b)，估價見 20.10.1 高檔 |
+| Q13 | 戰役指揮官名單（P-A）的來源：由 §19 C1 的戰役 seed 提供，還是先由考證組列出 | (a) 等 C1 的 `battle_units`；(b) 考證組先列敦克爾克、閃擊波蘭、淞滬的指揮官 | (b)：這 3 場是 §19.5 C3 已定的首批，先列名單即可開始補 L1／L2，不必等表建好 |
+| Q14 | B3 已寫入 98 人是否做「補登」（20.9.2） | (a) 做（抓取紀錄＋L1 缺口，不改既有列）；(b) 不做 | (a)；但**先由主管以只讀查詢確認 98 人與 `full` 15 人實際是否已在 5442**（本稿標待查證） |
+| Q15 | 具名 C 級（Tai 2026-11-12 06:34：將領生平可用、只有 C 也可達標）在分級與入庫的地位；§16.9.1 T1 仍寫「C／X 不進 DB」，且目前寫庫腳本會略過 C 級 citation | (a) seed 計級含 C（等級旁照實標示來源等級），入庫前由 Tai 決定是否修改 T1；(b) C 只在 seed 計級，入庫與前端等級只算 A／B；(c) 修改 T1，具名 C 可入庫並在前端顯示等級 | (a)：先不動 T1 與寫庫腳本；L2／L3 以含 C 計級，前端與入庫的處理等 Tai 對 T1 拍板 |

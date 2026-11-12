@@ -652,10 +652,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1945-06-01",
-      "end": null
+      "end": "1945-10-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "vasil-ni",
@@ -680,6 +680,18 @@
        "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vasil-eorh",
+       "locator": "Encyclopedia of Russian History「Vasilevsky, Alexander Mikhailovich」",
+       "quote": "between August and September of 1945",
+       "quoteLang": "en",
+       "evidenceNote": "來源明載對日戰略作戰於1945年8至9月完成；以該月之次月起日為迄點（推論，來源未明寫離任日）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Rule": "R6",
@@ -695,14 +707,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:vasilevsky-far-east",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查日本大百科全書「ワシレフスキー」（藤本和貴夫，只寫1945年6月任命）、Encyclopedia of Russian History（Granville，只寫1945年8–9月之作戰），未寫離任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
     {
      "target": "position:vasilevsky-deputy-chief-gs",
      "gapKind": "not_found",
@@ -792,6 +796,56 @@
      "url": "https://bigenc.ru/",
      "result": "blocked_403",
      "note": "HTTP 401，未繞過"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Aleksandr Vasilevsky",
+     "url": "https://www.britannica.com/biography/Aleksandr-Mikhaylovich-Vasilevsky",
+     "result": "challenge_page",
+     "note": "Just a moment 挑戰頁，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Vasilevsky 傳記辭典",
+     "url": "https://www.encyclopedia.com/people/history/russian-soviet-and-cis-history-biographies/aleksandr-mikhailovich-vasilevsky",
+     "result": "not_relevant",
+     "note": "404"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch Vasilevsky Far East commander-in-chief end of command 1945",
+     "url": "",
+     "result": "not_relevant",
+     "note": "結果多為維基類／個人站，不收；未得具名來源明寫離任日"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "既有快取 vasil/vasil2/vasil3（Kotobank 各辭典）",
+     "url": "",
+     "result": "not_relevant",
+     "note": "僅寫1945年6月任命與「46年參謀總長」（無署名小項目），未得明確迄日"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:vasilevsky-far-east",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查日本大百科全書「ワシレフスキー」（藤本和貴夫，只寫1945年6月任命）、Encyclopedia of Russian History（Granville，只寫1945年8–9月之作戰），未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -1114,6 +1168,158 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1917-01-01",
+      "end": "1943-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "主要作戰：摩恩松德、冰上航渡、蘇芬戰爭與衛國戰爭",
+      "en": "Principal operations: Moonsund, Ice Campaign, Winter War and Great Patriotic War"
+     },
+     "body": {
+      "zh-Hant": "依聖彼得堡百科全書條目：伊薩科夫1917年初畢業於特別准尉班，同年秋參加了摩恩松德海峽對德國艦隊的海戰（戰役）；1918年參與波羅的海艦隊自赫爾辛基轉移至喀琅施塔得的冰上航渡；1919年參與擊退英國艇隻對喀琅施塔得波羅的海艦隊基地的攻擊。1939至1940年蘇芬戰爭期間，他協調波羅的海艦隊與拉多加軍事小艦隊同西北方面軍陸軍的作戰。衛國戰爭開始時，他接手協調波羅的海艦隊、拉多加與楚德軍事小艦隊同陸軍的行動，其後參與黑海方面的軍事行動；1942年他身負重傷而離開現職。",
+      "en": "Per the Saint Petersburg Encyclopaedia, Isakov graduated from the Special Midshipman Courses in early 1917 and in the fall of that year took part in the battles with the German fleet in the Moonsund Strait. In 1918 he took part in the Ice campaign of the Baltic Fleet from Helsingfors to Kronstadt, and in 1919 in repelling an attack of British boats on the Kronstadt base. During the Soviet-Finnish War of 1939-40 he co-ordinated the Baltic Fleet and Ladoga Military Flotilla with the North-Western Front army. At the outset of the Great Patriotic War he assumed co-ordination of the Baltic Fleet and the Ladoga and Chudskoy Flotillas with the land forces, later took part in military operations in the Black Sea, and in 1942 was severely wounded and left the ranks."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "in early 1917 graduated from Special Midshipman Courses",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "in the fall of the same year took part in the battles with the German fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "Moonsund Strait (Muhu Strait)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "took part in the Ice campaign of the Baltic Fleet from Helsingfors to Kronstadt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "in the repulsion of the attack of British boats on the base",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "During the Soviet-Finnish War of 1939-40 he co-ordinated operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "the operations of the army of the North-Western Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "At the outset of the Great Patriotic War assumed co-ordination of the operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "Ladoga and Chudskoy Military Flotillas with the land forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "later participated in military operations in the Black Sea",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "isakov-encspb",
+       "locator": "Saint Petersburg Encyclopaedia「Isakov I.S.(1894-1967), Admiral」",
+       "quote": "In 1942, Isakov was severly wounded and left the ranks",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
     }
    ],
    "positions": [
@@ -1392,6 +1598,12 @@
      "url": "https://bigenc.ru/",
      "result": "blocked_403",
      "note": "猜測網址之 HTTP 401，未繞過；未能取得 Isakov 條目"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -1776,10 +1988,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1938-01-01",
-      "end": null
+      "end": "1940-01-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "konev-eorh",
@@ -1787,6 +1999,18 @@
        "quote": "in 1938 he took over as the commander of the newly formed 2 Independent",
        "quoteLang": "en",
        "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "konev-ni",
+       "locator": "日本大百科全書(ニッポニカ)「コーネフ」",
+       "quote": "1940年中将でザバイカル軍管区司令官。",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "year",
@@ -1932,10 +2156,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1942-08-01",
-      "end": null
+      "end": "1943-03-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "konev-eorh",
@@ -1943,6 +2167,18 @@
        "quote": "In August 1942 Konev replaced Zhukov as commander of the Western Front",
        "quoteLang": "en",
        "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "konev-eorh",
+       "locator": "Encyclopedia of Russian History「Konev, Ivan Stepanovich」",
+       "quote": "For a brief period in March 1943 Konev commanded the Northwest Front",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "month",
@@ -2108,14 +2344,6 @@
    "roleCandidates": [],
    "gaps": [
     {
-     "target": "position:konev-far-east-2nd-army",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Konev」（Parrish）與日本大百科全書「コーネフ」（藤本和貴夫），均未寫離任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
-    {
      "target": "position:konev-transbaikal-md",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Konev」（Parrish）與日本大百科全書「コーネフ」（藤本和貴夫），均未寫離任日。",
@@ -2125,14 +2353,6 @@
     },
     {
      "target": "position:konev-western-front-1941",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Konev」（Parrish）與日本大百科全書「コーネフ」（藤本和貴夫），均未寫離任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
-    {
-     "target": "position:konev-western-front-1942",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Konev」（Parrish）與日本大百科全書「コーネフ」（藤本和貴夫），均未寫離任日。",
      "candidateCitations": [],
@@ -2228,6 +2448,74 @@
      "url": "https://bigenc.ru/",
      "result": "blocked_403",
      "note": "HTTP 401，未繞過"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Ivan Konev",
+     "url": "https://www.britannica.com/biography/Ivan-Konev",
+     "result": "challenge_page",
+     "note": "挑戰頁，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com 傳記辭典 Ivan Stepanovich Konev",
+     "url": "https://www.encyclopedia.com/people/history/russian-soviet-and-cis-history-biographies/ivan-stepanovich-konev",
+     "result": "not_relevant",
+     "note": "內容與 Encyclopedia of Russian History 同文，無新增日期"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "erenow Who's Who in WWII Konev",
+     "url": "https://erenow.org/ww/whos-who-in-world-war-ii/282.php",
+     "result": "unrated",
+     "note": "轉載站，無離任日，不採"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "eng.belarusenc.by Kalinin Front",
+     "url": "https://eng.belarusenc.by/topics/worldwarii/8654",
+     "result": "challenge_page",
+     "note": "Security Check 頁，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch Konev 各方面軍任期",
+     "url": "",
+     "result": "not_relevant",
+     "note": "日期見於維基類／個人站，不收；具名來源未寫離任日（西方面軍1941、西北方面軍、烏克蘭第一方面軍、外貝加爾軍區）"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:konev-far-east-2nd-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Konev」（Parrish）與日本大百科全書「コーネフ」（藤本和貴夫），均未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:konev-western-front-1942",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Konev」（Parrish）與日本大百科全書「コーネフ」（藤本和貴夫），均未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -2560,7 +2848,63 @@
      ]
     }
    ],
-   "positions": [],
+   "positions": [
+    {
+     "key": "rokossovsky-1st-belorussian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "白俄羅斯第一方面軍",
+      "en": "1st Belorussian Front"
+     },
+     "title": {
+      "orig": "1st Byelorussian Front",
+      "zh-Hant": "白俄羅斯第一方面軍司令",
+      "en": "Commander, 1st Belorussian Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-06-23",
+      "end": "1944-08-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bagration-eorh",
+       "locator": "Encyclopedia of Russian History「Bagration Operation」",
+       "quote": "the 1st Byelorussian (Konstantin Rokossovsky)",
+       "quoteLang": "en",
+       "evidenceNote": "僅涵蓋來源明載的巴格拉基昂行動期間（23 June–29 August 1944，迄點取末日次日），並非完整任期",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bagration-eorh",
+       "locator": "Encyclopedia of Russian History「Bagration Operation」",
+       "quote": "(23 June–29 August 1944)",
+       "quoteLang": "en",
+       "evidenceNote": "同上",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為方面軍司令（R4），有巴格拉基昂戰役連結；regimeId 未對應，且期間僅為來源明載之作戰期間、完整任期不明，門檻無法證明",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates"
+     ]
+    }
+   ],
    "roleCandidates": [],
    "gaps": [
     {
@@ -2644,6 +2988,44 @@
      "url": "https://bigenc.ru/",
      "result": "blocked_403",
      "note": "HTTP 401，未繞過"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Konstantin Rokossovsky",
+     "url": "https://www.britannica.com/biography/Konstantin-Rokossovsky",
+     "result": "challenge_page",
+     "note": "挑戰頁，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Rokossovsky（傳記辭典）",
+     "url": "https://www.encyclopedia.com/people/history/russian-soviet-and-cis-history-biographies/konstantin-rokossovsky",
+     "result": "not_relevant",
+     "note": "頁面無署名內容"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "prlib.ru Rokossovsky",
+     "url": "https://www.prlib.ru/en/node/619828",
+     "result": "challenge_page",
+     "note": "Security Check，未繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch Rokossovsky 1st Belorussian Front appointed/handover",
+     "url": "",
+     "result": "not_relevant",
+     "note": "完整任期日期僅見維基類／個人站，不收"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -3136,10 +3518,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1939-01-01",
-      "end": null
+      "end": "1940-06-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "zhukov-eorh",
@@ -3159,6 +3541,18 @@
        "quote": "occurring from May to September of 1939, took place in Mongolia",
        "quoteLang": "en",
        "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "zhukov-eorh",
+       "locator": "Encyclopedia of Russian History「Zhukov, Georgy Konstantinovich」",
+       "quote": "appointed him commander of the Kiev Special Military District in June 1940",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "month",
@@ -3191,10 +3585,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1940-06-01",
-      "end": null
+      "end": "1941-01-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "zhukov-eorh",
@@ -3202,6 +3596,18 @@
        "quote": "appointed him commander of the Kiev Special Military District in June 1940",
        "quoteLang": "en",
        "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "zhukov-eorh",
+       "locator": "Encyclopedia of Russian History「Zhukov, Georgy Konstantinovich」",
+       "quote": "Red Army Chief of Staff and Deputy Peoples' Commissar of Defense in January 1941",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "month",
@@ -3235,10 +3641,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-01-01",
-      "end": null
+      "end": "1941-07-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "zhukov-eorh",
@@ -3246,6 +3652,18 @@
        "quote": "Red Army Chief of Staff and Deputy Peoples' Commissar of Defense in January 1941",
        "quoteLang": "en",
        "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "zhukov-eorh",
+       "locator": "Encyclopedia of Russian History「Zhukov, Georgy Konstantinovich」",
+       "quote": "As Reserve Front (army group) commander from July to September",
+       "quoteLang": "en",
+       "evidenceNote": "依下一職（預備方面軍司令）起月推得（推論）；年份依同段「In June 1941」",
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "month",
@@ -3333,10 +3751,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-09-01",
-      "end": null
+      "end": "1941-10-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "zhukov-eorh",
@@ -3344,6 +3762,18 @@
        "quote": "directed the Leningrad Front's successful defense of Leningrad in September 1941",
        "quoteLang": "en",
        "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "zhukov-eorh",
+       "locator": "Encyclopedia of Russian History「Zhukov, Georgy Konstantinovich」",
+       "quote": "directed the Leningrad Front's successful defense of Leningrad in September 1941",
+       "quoteLang": "en",
+       "evidenceNote": "來源僅明載1941年9月；依月精度取次月起日為迄點（推論）",
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "month",
@@ -3364,38 +3794,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:zhukov-mongolia",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz）、「Khalkin-Gol」（Habeck），只寫1939年任職與1939年8月之戰，未寫離任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
-    {
-     "target": "position:zhukov-kiev-md",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz），只寫1940年6月任命，未寫離任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
-    {
-     "target": "position:zhukov-chief-of-staff",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz），只寫1941年1月任命，未寫離任日（且名單外之 Wikipedia 類來源不用）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
-    {
-     "target": "position:zhukov-leningrad-front",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz），只寫1941年9月指揮保衛列寧格勒，未寫離任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
     {
      "target": "position:zhukov-western-front",
      "gapKind": "not_found",
@@ -3501,6 +3899,70 @@
      "url": "https://bigenc.ru/",
      "result": "blocked_403",
      "note": "HTTP 401，未繞過"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Georgy Zhukov",
+     "url": "https://www.britannica.com/biography/Georgy-Zhukov",
+     "result": "challenge_page",
+     "note": "挑戰頁，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com 傳記辭典 Zhukov",
+     "url": "https://www.encyclopedia.com/people/history/russian-soviet-and-cis-history-biographies/georgi-konstantinovich-zhukov",
+     "result": "not_relevant",
+     "note": "無明確任期日"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:zhukov-mongolia",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz）、「Khalkin-Gol」（Habeck），只寫1939年任職與1939年8月之戰，未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:zhukov-kiev-md",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz），只寫1940年6月任命，未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:zhukov-chief-of-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz），只寫1941年1月任命，未寫離任日（且名單外之 Wikipedia 類來源不用）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:zhukov-leningrad-front",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Encyclopedia of Russian History「Zhukov」（Glantz），只寫1941年9月指揮保衛列寧格勒，未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   }

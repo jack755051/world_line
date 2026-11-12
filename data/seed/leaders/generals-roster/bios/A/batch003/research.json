@@ -2280,6 +2280,13 @@
      "note": "來源不足：目前 4 段／約 480 字，已達篇幅標準；任期尚缺 busch-wehrkreis8 迄日（NDB 只寫 1938 年任職）。16. Armee、中央集團軍群、西北總指揮三筆任期已補齊起迄日（Bundesarchiv 名簿）。本輪已查來源類型：權威檔（GND／BnF／LoC／VIAF）、官方檔案（Bundesarchiv 5 份 Findbuch）、具名機構百科（SNL、LeMO、Britannica 403）、國家傳記辭典（HLB 404、SBL、Kansallisbiografia）、專文（Warfare History Network）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:busch-wehrkreis8",
+     "gapKind": "not_found",
+     "note": "待查證：busch-wehrkreis8 迄日仍無 A／B／具名 C 來源。補查 Bundesarchiv RH 53-8 Findbuch（open-data，無司令名簿）、LeMO（Busch 傳記頁 404）、Lexikon der Wehrmacht（404）；網搜僅得維基類來源，不收。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
     }
    ],
    "searchLog": [
@@ -2477,6 +2484,36 @@
      "url": null,
      "result": "no_result",
      "note": "IWM 照片說明無名；Britannica 403"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Bundesarchiv RH 53-8 Wehrkreiskommando VIII",
+     "url": "https://open-data.bundesarchiv.de/apex-ead/DE-1958_RH_53-8.xml",
+     "result": "not_relevant",
+     "note": "只有檔案單位，無司令任期"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Ernst Busch 傳記",
+     "url": "https://www.dhm.de/lemo/biografie/ernst-busch.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Busch Kommandierender General VIII. Armeekorps 1939 Ende",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋結果僅維基類來源，不收"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -3243,6 +3280,20 @@
      "note": "來源不足：目前 5 段／約 580 字，篇幅已達標；任期尚缺 dietl-gebdiv3 迄日、dietl-korps 迄日（及確切起日）。第99山地獵兵團迄日依 SNL 下一職務年推得（推論）；拉普蘭集團軍起迄日採 Bundesarchiv 名簿（迄日為下一任起日推得）。本輪已查來源類型：權威檔（GND／BnF／LoC 403／VIAF 403）、官方檔案（Bundesarchiv 6 份 Findbuch／專頁）、具名機構百科（SNL、Britannica 403、LeMO）、國家傳記辭典（HLB 404、NBL／SBL、Kansallisbiografia）、學術期刊（journal.fi 遇 Anubis 挑戰頁）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:dietl-gebdiv3",
+     "gapKind": "not_found",
+     "note": "待查證：dietl-gebdiv3 迄日仍無合格來源。補查 LeMO 傳記（只寫 1938-04 任師長）、Bundesarchiv RH 28-3 Findbuch（無指揮官名簿）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:dietl-korps",
+     "gapKind": "not_found",
+     "note": "待查證：dietl-korps 迄日與確切起日仍無合格來源。補查 LeMO 傳記、Bundesarchiv RH 28-3（皆無軍團長任期）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
     }
    ],
    "searchLog": [
@@ -3467,6 +3518,36 @@
      "url": null,
      "result": "found_B",
      "note": "導向 SNL、Bundesarchiv"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Eduard Dietl 傳記",
+     "url": "https://www.dhm.de/lemo/biografie/eduard-dietl.html",
+     "result": "found_B",
+     "note": "只寫 1938-04 任師長、1942-01 接拉普蘭軍，無迄日"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Bundesarchiv RH 28-3 3. Gebirgs-Division Findbuch",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_28-3.xml",
+     "result": "not_relevant",
+     "note": "無指揮官任期"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Lexikon der Wehrmacht Dietl",
+     "url": "null",
+     "result": "no_result",
+     "note": "404"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   }

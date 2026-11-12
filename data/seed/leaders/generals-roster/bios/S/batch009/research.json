@@ -67,6 +67,54 @@
    "license_code": null,
    "grade": "A",
    "gradeBasis": "法國國防部官方 Chemins de mémoire 人物頁（官方頁，A）"
+  },
+  "rf-cdm-joffre": {
+   "title": "Joseph Joffre（Chemins de mémoire 人物頁）",
+   "authors": [],
+   "publisher": "Ministère des Armées（Chemins de mémoire）",
+   "published_text": null,
+   "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-e-lettre-m/joseph-joffre",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國武裝部隊部官方 Chemins de mémoire 人物頁（國家級官方機構，A）"
+  },
+  "rf-cdm-foch": {
+   "title": "Ferdinand Foch（Chemins de mémoire 人物頁）",
+   "authors": [],
+   "publisher": "Ministère des Armées（Chemins de mémoire）",
+   "published_text": null,
+   "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-e-lettre-m/ferdinand-foch",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國武裝部隊部官方 Chemins de mémoire 人物頁（國家級官方機構，A）"
+  },
+  "rf-cdm-petain": {
+   "title": "Philippe Pétain（Chemins de mémoire 人物頁）",
+   "authors": [],
+   "publisher": "Ministère des Armées（Chemins de mémoire）",
+   "published_text": null,
+   "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-n-lettre-w/philippe-petain",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國武裝部隊部官方 Chemins de mémoire 人物頁（國家級官方機構，A）"
+  },
+  "rf-fcdg-degaulle": {
+   "title": "Biographie（Fondation Charles de Gaulle）",
+   "authors": [],
+   "publisher": "Fondation Charles de Gaulle",
+   "published_text": null,
+   "url": "https://www.charles-de-gaulle.org/lhomme/biographie/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構：Fondation Charles de Gaulle（法國公益基金會，專責戴高樂史料與研究）官方傳記頁，具名 C"
   }
  },
  "people": [
@@ -623,10 +671,10 @@
      "positionKind": "minister",
      "period": {
       "start": "1940-06-06",
-      "end": null
+      "end": "1940-06-16"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "elysee-degaulle",
@@ -649,6 +697,18 @@
        "accessedOn": "2026-11-11",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-fcdg-degaulle",
+       "locator": "Biographie（Fondation Charles de Gaulle）",
+       "quote": "Mais le 16 juin, il apprend la démission du président du Conseil",
+       "quoteLang": "fr",
+       "evidenceNote": "依來源：雷諾內閣於1940-06-16總理辭職、由貝當接替，次長職隨內閣終止（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -733,14 +793,6 @@
      "citations": []
     },
     {
-     "target": "position:degaulle-sous-secretaire-guerre-1940",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；Élysée 只寫6月16日得知停戰要求後赴倫敦，未寫次長職位終止日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
      "target": "position:degaulle-forces-francaises-libres-1940",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；Élysée 只寫自由法國後來發展為臨時政府，未寫其領導職終止日。",
@@ -813,6 +865,32 @@
      "url": "https://www.encyclopedia.com/people/history/french-history-biographies/charles-de-gaulle",
      "result": "unrated",
      "note": "curl 成功；多為無具名作者彙編（Q9），不採"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "戴高樂 自由法國領袖職 迄日（Chemins de mémoire／Fondation Charles de Gaulle／Ordre de la Libération）",
+     "url": "https://www.charles-de-gaulle.org/lhomme/biographie/",
+     "result": "no_result",
+     "note": "Chemins de mémoire 與基金會傳記只寫6月17日赴倫敦、18日呼籲，未寫自由法國領導職終止日；Ordre de la Libération 頁為動態頁，抓回僅導覽文字。"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:degaulle-sous-secretaire-guerre-1940",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Élysée 只寫6月16日得知停戰要求後赴倫敦，未寫次長職位終止日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -1215,6 +1293,122 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1914-08-03",
+      "end": "1916-12-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "邊境會戰、馬恩河、凡爾登與索姆河戰役",
+      "en": "The Battles of the Frontiers, the Marne, Verdun and the Somme"
+     },
+     "body": {
+      "zh-Hant": "1914年8月3日德國對法宣戰後，霞飛推出自阿爾薩斯攻向比利時的第十七號計畫，卻在所謂「邊境會戰」中遭受沉重挫敗。其後他與參謀部在加列尼的主動下，於9月5日至12日贏得馬恩河會戰，並在「奔向大海」之後，藉福煦之力封住通往加萊之路，在迪克斯穆德與伊瑟河一線與比利時、英軍並肩防守。1916年，他在凡爾登進行頑強防禦，隨後與黑格、福煦、法約勒在索姆河轉入攻勢。同年12月，總理白里安以尼韋勒取代他，他則晉升為法國元帥。",
+      "en": "After Germany declared war on France on 3 August 1914, Joffre launched Plan XVII from Alsace into Belgium but suffered heavy reverses in the so-called Battles of the Frontiers. With his staff, at the initiative of General Gallieni, he won the Battle of the Marne from 5 to 12 September, and after the Race to the Sea, thanks to Foch, closed the road to Calais at Dixmude and on the Yser alongside the Belgians and British. In 1916 he conducted a steadfast defence at Verdun, then went over to the offensive on the Somme with Haig, Foch and Fayolle. In December of that year Prime Minister Briand replaced him with Nivelle, and Joffre was raised to Marshal of France."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "Joffre lança son plan XVII de l'Alsace à la Belgique.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "Il essuya de durs revers lors des batailles dites « des Frontières »",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "gagnèrent la bataille de la Marne du 5 au 12 septembre 14",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "aboutit à fermer la route de Calais, à Dixmude et sur l'Yser",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "Il mena en 1916 une défense imperturbable à Verdun",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "puis il passa à l'offensive sur la Somme avec Haig, Foch et Fayolle.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "en décembre 16, le président du Conseil, Aristide Briand, le remplaça par",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "Joffre était élevé à la dignité de maréchal de France.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
     }
    ],
    "positions": [
@@ -1233,10 +1427,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1910-01-01",
-      "end": null
+      "end": "1911-01-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "af-joffre",
@@ -1245,6 +1439,18 @@
        "quoteLang": "fr",
        "evidenceNote": null,
        "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-joffre",
+       "locator": "Joseph Joffre（Chemins de mémoire）",
+       "quote": "il devenait membre du Conseil supérieur de la Guerre puis nommé en 1911",
+       "quoteLang": "fr",
+       "evidenceNote": "依下一職（1911任總參謀長）起日推得（推論）",
+       "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": "year",
        "claimSpan": null,
@@ -1323,14 +1529,6 @@
      "citations": []
     },
     {
-     "target": "position:joffre-csg-1910",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查：Académie française 成員傳記頁（只寫1910年任最高戰爭委員會成員，無迄日）；encyclopedia.com 條目無具名作者（Q9）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
      "target": "position:joffre-chef-etat-major-general-1911",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；Académie française 只寫被尼韋勒接替，未寫具體日期（僅「元帥1916-12-25」不等於離任日）。",
@@ -1379,6 +1577,32 @@
      "url": "https://www.britannica.com/biography/Joseph-Joffre",
      "result": "not_relevant",
      "note": "未抓取（同站 Britannica 對 de Gaulle／de Lattre 皆為 Cloudflare 挑戰頁）"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "霞飛 最高戰爭委員會成員／總參謀長 迄日（Chemins de mémoire、École polytechnique 225 stories、Larousse、Hérodote 搜尋）",
+     "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-e-lettre-m/joseph-joffre",
+     "result": "found_A",
+     "note": "Chemins de mémoire 僅得 CSG→1911任總參謀長的先後關係（已用於CSG迄日推論）及1916-12撤換；總參謀長一職何時轉為總司令無合格來源明載日期；搜尋結果所見1911-07-28、1914-08-02等日期出自非A/B/C合格頁，未採用。"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:joffre-csg-1910",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查：Académie française 成員傳記頁（只寫1910年任最高戰爭委員會成員，無迄日）；encyclopedia.com 條目無具名作者（Q9）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -1823,10 +2047,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1925-01-01",
-      "end": null
+      "end": "1926-06-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "af-petain",
@@ -1837,6 +2061,18 @@
        "accessedOn": "2026-11-11",
        "grade": "A",
        "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-petain",
+       "locator": "Philippe Pétain（Chemins de mémoire）",
+       "quote": "Cette campagne s'achève en mai 1926 par la soumission d'Abd-el-Krim.",
+       "quoteLang": "fr",
+       "evidenceNote": "月精度終點，寫下一月起日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2036,14 +2272,6 @@
      "citations": []
     },
     {
-     "target": "position:petain-maroc-1925",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；Académie française 僅寫「en 1925」，未寫結束時間。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
      "target": "position:petain-defense-aerienne-1931",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；Académie française 僅寫「en 1931」。",
@@ -2124,9 +2352,35 @@
      "url": "https://www.encyclopedia.com/people/history/french-history-biographies/henri-philippe-petain",
      "result": "unrated",
      "note": "curl 成功；條目無具名作者／彙編（Q9），不採"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "貝當 防空督察／戰爭部長／凡爾登／總司令 迄日（Chemins de mémoire 等）",
+     "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-n-lettre-w/philippe-petain",
+     "result": "found_A",
+     "note": "Chemins de mémoire 寫戰爭部長任至內閣倒台「le 8 décembre 1934」，與通行史實（1934-11-08）不符，疑來源筆誤，未採用；防空督察1931-02-09起但無迄日；凡爾登僅寫「à peine plus de deux mois」、總司令職僅寫1917-05-15起，皆無明確迄日。"
     }
    ],
-   "nameZhOrig": "菲利普·贝当"
+   "nameZhOrig": "菲利普·贝当",
+   "resolvedGaps": [
+    {
+     "target": "position:petain-maroc-1925",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Académie française 僅寫「en 1925」，未寫結束時間。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   },
   {
    "key": "jeandelattredetassigny",
@@ -3016,6 +3270,20 @@
      "url": "https://www.ordredelaliberation.fr/fr/compagnons/jean-de-lattre-de-tassigny",
      "result": "not_relevant",
      "note": "僅頁面導覽，且其非解放勳章同伴"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "德拉特爾 第一集團軍司令 迄日（defense.gouv.fr、Chemins de mémoire 檢索結果）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋僅見非合格頁（列表／維基類）提及約1945-07/08解編；Chemins de mémoire 既有人物頁無指揮職終止日；未採用。"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -3436,10 +3704,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1913-01-01",
-      "end": null
+      "end": "1914-08-29"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "af-foch",
@@ -3464,6 +3732,18 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cdm-foch",
+       "locator": "Ferdinand Foch（Chemins de mémoire）",
+       "quote": "Le 29 août, il prend la tête des unités qui vont former la 9",
+       "quoteLang": "fr",
+       "evidenceNote": "依此人下一個指揮職（第9集團軍）起日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -3477,14 +3757,6 @@
      "target": "field:recordIds",
      "gapKind": "not_found",
      "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:foch-20e-corps-1913",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查：Académie française 成員傳記頁（僅寫1913年任第20軍軍長、一戰初期仍在該指揮職，未明寫離任日）；Britannica 被 Cloudflare 擋；encyclopedia.com 條目無具名作者（Q9）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
@@ -3562,6 +3834,24 @@
      "url": "https://data.bnf.fr/",
      "result": "no_result",
      "note": "未取得 Foch 專頁；僅另取 de Lattre 頁為索引（只有導覽內容）"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:foch-20e-corps-1913",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查：Académie française 成員傳記頁（僅寫1913年任第20軍軍長、一戰初期仍在該指揮職，未明寫離任日）；Britannica 被 Cloudflare 擋；encyclopedia.com 條目無具名作者（Q9）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   }

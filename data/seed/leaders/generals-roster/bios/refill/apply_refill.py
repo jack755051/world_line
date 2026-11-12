@@ -132,7 +132,11 @@ def merge(d, rawmap, rf, sel_people, errs):
             for g in add["addParagraphs"]:
                 n += 1; g = dict(g); g["ord"] = n
                 p.setdefault("paragraphs", []).append(g)
-        p.setdefault("gaps", []).extend(add.get("addGaps") or [])
+        have_t = {g.get("target") for g in p.get("gaps") or []}
+        for g in add.get("addGaps") or []:
+            if g.get("target") in have_t:  # 同 target 已有 gap：不重複新增（查詢紀錄在 searchLog）
+                continue
+            p.setdefault("gaps", []).append(g); have_t.add(g.get("target"))
         p.setdefault("searchLog", []).extend(add.get("addSearchLog") or [])
         p.setdefault("refill", []).append({"run": RUN_ID, "on": TODAY})
     # citation 檢查（只檢查新增的引文所屬人物整體）

@@ -1517,9 +1517,47 @@
      "result": "no_result",
      "note": "僅維基衍生頁",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "既有快取 nids-terauchi／JACAR 南方軍グロッサリー 重讀找南方軍総司令官迄日",
+     "url": null,
+     "result": "not_relevant",
+     "note": "nids 僅載「20年11月予備役･南方軍総司令官」，JACAR 僅載終戰時總司令官為寺内，均無明確卸任日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "kotobank 寺内寿一 條目抓取（curl）",
+     "url": null,
+     "result": "no_result",
+     "note": "頁面無相關敘述，未收"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "寺内寿一 南方軍総司令官 離任 OR 解職 OR 予備役編入 昭和20年11月 略歴（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "僅得維基類／個人站，不收"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "英文 Terauchi Southern Army relieved/retired 1945（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無 A/B/具名C 來源載明卸任日"
     }
    ],
-   "nameZhOrig": "寺内寿一"
+   "nameZhOrig": "寺内寿一",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   },
   {
    "key": "tomoyukiyamashita",
@@ -2359,6 +2397,44 @@
      "result": "no_result",
      "note": "僅百科／維基系",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "既有快取 JACAR 第1方面軍グロッサリー／nids201604／nids201709 重讀找第25軍司令官迄日",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅載第1方面軍1942-06-27編成、7-4編入關東軍，未載山下就任／離任日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "山下奉文 第25軍司令官 昭和17年7月 第1方面軍司令官 親補（WebSearch standard／extended）",
+     "url": null,
+     "result": "no_result",
+     "note": "具體日期僅見個人年表／維基類站，不收"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "kotobank 山下奉文（curl）",
+     "url": null,
+     "result": "no_result",
+     "note": "無相關敘述"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "JACAR 辞書／glossary 搜尋端點（curl）",
+     "url": null,
+     "result": "no_result",
+     "note": "404"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -4201,6 +4277,36 @@
      "url": "https://jacar.go.jp/english/glossary_en/term4/0010-0030-0030.html",
      "result": "not_relevant",
      "note": "未載杉山就任細節"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "既有快取 ndl-sugiyama-bunsho／nids201405／jacar-sugiyama 重讀找教育総監（第二次）迄日",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅載「1944.7教育総監、小磯内閣陸軍大臣」，無迄日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "杉山元 教育総監 昭和19年7月 後任 山田乙三（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "未得官方來源載明離任／後任日"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "JACAR glossary 教育総監 搜尋端點（curl）",
+     "url": null,
+     "result": "no_result",
+     "note": "404"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },

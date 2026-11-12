@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""人物事實分層（ARCHITECTURE §20.10）費用估算。唯讀：只讀 stats.json、../bios/selection.json，結果印到 stdout，不寫任何檔。
+"""人物事實分層（ARCHITECTURE §20.10）費用估算。唯讀：只讀 stats-20261112-0920.json（09:20 快照，§20.10 依據；主迴圈結束後的新估算見 refill_estimate.py）、../bios/selection.json，結果印到 stdout，不寫任何檔。
 用法：python3 -I cost_estimate.py
 所有「比例」是假設（見 §20.10 表），金額一律由 stats.json 的實際數字乘出。"""
 import json, os, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-st = json.load(open(os.path.join(HERE, "stats.json"), encoding="utf-8"))
+st = json.load(open(os.path.join(HERE, "stats-20261112-0920.json"), encoding="utf-8"))
 sel = json.load(open(os.path.join(HERE, "..", "bios", "selection.json"), encoding="utf-8"))
 cost = st["cost"]
 AVG = {"S": cost["S_usdPerPerson"], "A": cost["A_usdPerPerson"]}          # 整人（主迴圈 sonnet＋retry）平均

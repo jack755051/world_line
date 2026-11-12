@@ -1956,7 +1956,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 > 與既有節的關係：不改 §14、§16、§19 任何一行；與之衝突或需 Tai 裁定之處一律列在 20.11。
 > 另：`data/seed/leaders/b3-trial/ARCH_TODO.md` 列有待套用的 §16 改寫（A／B 系列）；本稿以**現行** ARCHITECTURE 文字為準，不預設那些改寫已套用，也未與其衝突（兩層互斥、`position_kind` 不含黨職等只作引用）。
 > 數字出處（本節所有數字皆可追到下列檔案，引用時另註）：
-> - `data/seed/leaders/generals-roster/design/stats.md`、`stats.json`（2026-11-12T09:20:47+08:00 快照，`collect_stats.py` 產生；A 級主迴圈仍在跑，數字以該時間為準）→ 簡稱 **stats**。
+> - `data/seed/leaders/generals-roster/design/stats-20261112-0920.md`、`stats-20261112-0920.json`（2026-11-12T09:20:47+08:00 快照，`collect_stats.py` 產生；A 級主迴圈仍在跑，數字以該時間為準；2026-11-12 21:40 主迴圈結束後 `stats.md`／`stats.json` 改為重跑版，快照以此檔名保存、內容未改）→ 簡稱 **stats**。主迴圈結束後的欄位補跑重估見 `design/refill-estimate.md`（`refill_estimate.py`）。
 > - `data/seed/leaders/generals-roster/design/verify-finding.md` → **verify-finding**。
 > - `data/seed/leaders/generals-roster/bios/selection.json`（S 103 人／A_run 256／A_skipped 6）→ **selection**。
 > - 各批 `bios/{S,A}/batchNNN/min-check.json`、`research.json`；`data/seed/leaders/b3-trial/` 下檔案。
@@ -2095,7 +2095,7 @@ L3 附引文的敘述 := L2
 6. **樣本不足者標「暫定」**：同一國籍 stats 中不足 15 人（中國 6、蘇俄 10、大英國協 1、日本 12、其他 9，及義大利 11）。S 名單集中在名將，與 A 級（尚未跑的 A_run 256 減已跑，見 20.10）的來源分布可能不同。順序待 A 級跑完後依同一腳本 `collect_stats.py` 重算。
 7. 「列入但標未驗證命中」：規則（`b3-trial/full/domain-policy.json`）已列等級、但將領 S／A 已跑名單（stats 各國前 12 網域）沒有出現的來源，**仍列入清單**，排在已驗證命中者之後，註明 `未驗證命中`；第一次實際使用時要記錄結果，之後才改稱已驗證。理由：不能因樣本沒碰到就把權威來源排除，也不能把沒用過的來源排在前面誤導。
 
-### 20.5.1 各國命中數表（stats 2026-11-12 09:20；網域依引文計，「覆蓋人數」＝至少一筆引文用到該網域的人數；各表只列前 8 名，完整見 stats.md）
+### 20.5.1 各國命中數表（stats 2026-11-12 09:20；網域依引文計，「覆蓋人數」＝至少一筆引文用到該網域的人數；各表只列前 8 名，完整見 stats-20261112-0920.md）
 
 **德國（51 人）**
 
@@ -2256,7 +2256,7 @@ L3 附引文的敘述 := L2
 
 ### 20.5.3 網域評級不一致與單一網域政策表
 
-**stats 中同一網域被評不同等級的實例（引文數，stats.md／stats.json）**
+**stats 中同一網域被評不同等級的實例（引文數，stats-20261112-0920.md／.json）**
 
 | 網域 | 現況 | 推測原因（**待查證**，stats 無法確認） |
 |---|---|---|

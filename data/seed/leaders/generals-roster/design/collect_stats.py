@@ -1,16 +1,25 @@
 #!/usr/bin/env python3
 """人物事實分層設計（ARCHITECTURE §20）的佐證統計；唯讀，只寫本目錄的 stats.json／stats.md。
+2026-11-12 21:40 改版（主迴圈 21:29 結束後重跑）：min-check 改為以 ../bios/check_min.check() 對**現行 research.json 重算**，
+不再讀批次目錄的 min-check.json——該檔是第 1 輪（retry 前）結果，retry 後的結果在 min-check.round2.json；
+直接讀 min-check.json 會把 retry 後已達標的人算成未達標（21:29 時 22 人：S 3、A 19）。
+同時輸出 rows（358 列）與 unique（扣掉已知重複鍵 chesternimitz、小泽治三郎；合併後兩者自然消失）。
+09:20 版快照保存在 stats-20261112-0920.md／.json（§20 引用的是該快照）。
 用法（repo 根目錄）：python3 -I data/seed/leaders/generals-roster/design/collect_stats.py
 來源：generals-roster/bios/{S,A}/batch*/research.json、min-check.json、selection.json；
       b3-trial/**/research.json（B3，無國籍欄，只做整體網域統計）；.dev/cc-generals-*.json（total_cost_usd）。
 """
-import json, glob, collections, re, datetime
+import json, glob, collections, re, datetime, sys
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(".")
 BIOS = ROOT / "data/seed/leaders/generals-roster/bios"
 OUT = ROOT / "data/seed/leaders/generals-roster/design"
+sys.path.insert(0, str(BIOS))
+from check_min import check as check_min  # noqa: E402
+# 已知重複（主管 06:32 Nimitz、10:20 小澤；patch_merge_duplicates.py 於主迴圈後合併，保留左側）
+DUP_OF = {("S", "chesternimitz"): "chesterwnimitz", ("A", "小泽治三郎"): "jisaburoozawa"}
 GROUP = {"德國": "德國", "日本": "日本", "英國": "英國", "美國": "美國", "法國": "法國", "義大利": "義大利",
          "蘇聯": "蘇俄", "俄羅斯帝國": "蘇俄", "中華民國-國民政府": "中國", "中國共產黨": "中國",
          "澳洲": "大英國協", "紐西蘭": "大英國協", "加拿大": "大英國協", "南非": "大英國協"}
@@ -86,12 +95,18 @@ for g, m in dom.items():
 
 # ---- c. min-check ----
 mc = {"S": [], "A": []}
-for f in sorted(g for g in glob.glob(str(BIOS / "*/batch*/min-check.json")) if committed(str(Path(g).parent / "research.json"))):
+stale = []
+for f in batches:
     tier = Path(f).parent.parent.name
     d = load(f)
-    for r in (d or {}).get("people") or []:
-        r = dict(r); r["batch"] = Path(f).parent.name
+    old = {r["key"]: r for r in ((load(Path(f).parent / "min-check.json") or {}).get("people") or [])}
+    for p in (d or {}).get("people") or []:
+        r = check_min(p); r["batch"] = Path(f).parent.name
+        r["duplicateOf"] = DUP_OF.get((tier, r["key"]))
         mc[tier].append(r)
+        o = old.get(r["key"])
+        if o is not None and o.get("meetsMinimum") != r["meetsMinimum"]:
+            stale.append({"tier": tier, "batch": r["batch"], "key": r["key"], "minCheckJson": o.get("meetsMinimum"), "recomputed": r["meetsMinimum"]})
 
 def reasons(r):
     out = []
@@ -115,8 +130,12 @@ for t, rows in mc.items():
         only["+".join(rs) or "(無)"] += 1
         fails_all.append({"tier": t, "key": r["key"], "name": r["name"], "batch": r["batch"], "reasons": rs,
                           "group": GROUP.get(country.get(r["key"], "?"), "其他"),
-                          "sourceInsufficient": r["sourceInsufficient"]})
+                          "sourceInsufficient": r["sourceInsufficient"], "duplicateOf": r["duplicateOf"],
+                          **{k: r[k] for k in ("paragraphs", "zhChars", "terms", "termsFull", "termsFlagged", "termsMissing", "hasCommand", "hasBattle")}})
+    uq = [r for r in rows if not r["duplicateOf"]]
     mc_out[t] = {"rows": len(rows), "uniqueKeys": len(keys), "duplicateKeys": [k for k, v in keys.items() if v > 1],
+                 "knownDuplicatesPresent": [r["key"] for r in rows if r["duplicateOf"]],
+                 "uniquePeople": len(uq), "uniqueMeets": sum(r["meetsMinimum"] for r in uq), "uniqueFail": sum(not r["meetsMinimum"] for r in uq),
                  "meets": sum(r["meetsMinimum"] for r in rows), "fail": len(fail),
                  "failMarkedInsufficient": sum(r["sourceInsufficient"] for r in fail),
                  "failNotMarked": sum(not r["sourceInsufficient"] for r in fail),
@@ -127,6 +146,7 @@ for t, rows in mc.items():
                  "paragraphsDist": dict(collections.Counter(r["paragraphs"] for r in rows)),
                  "zhCharsMin": min((r["zhChars"] for r in rows), default=0), "zhCharsMax": max((r["zhChars"] for r in rows), default=0)}
 mc_out["selectionCounts"] = sel["counts"]
+mc_out["staleMinCheckJson"] = stale
 s_sel = {q["key"] for b in sel["S"] for q in b["people"]}
 s_done = {r["key"] for r in mc["S"]}
 mc_out["S_missingFromMinCheck"] = sorted(s_sel - s_done)
@@ -134,7 +154,7 @@ mc_out["S_missingFromMinCheck"] = sorted(s_sel - s_done)
 # ---- d. 費用 ----
 cost = collections.defaultdict(lambda: {"files": 0, "usd": 0.0})
 total = 0.0
-for f in sorted(glob.glob(".dev/cc-generals-*.json")):
+for f in sorted(glob.glob(".dev/cc-generals-*.json")) + [".dev/cc-person-facts-design.json", ".dev/cc-person-facts-estimate.json"]:
     d = load(f)
     if not isinstance(d, dict) or "total_cost_usd" not in d:
         continue
@@ -174,7 +194,7 @@ b3_out = {"files": len(glob.glob("data/seed/leaders/b3-trial/**/research.json", 
                              for h, e in b3.items()], key=lambda r: (-r["people"], -r["citations"]))[:40]}
 
 out = {"generatedAt": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
-       "note": "快照；A 級主迴圈仍在跑，數字以產生時間為準。網域以引文（paragraph／position／roleCandidate citations）計，people＝至少一筆引文用到該網域的人數。",
+       "note": "快照；主迴圈已於 2026-11-12 21:29 結束（commit 52fd188）。min-check 以 check_min.check() 對現行 research.json 重算（不讀 retry 前的 min-check.json）。網域以引文（paragraph／position／roleCandidate citations）計，people＝至少一筆引文用到該網域的人數。費用含 .dev/cc-generals-*.json＋cc-person-facts-design.json＋cc-person-facts-estimate.json（若已存在）。",
        "researchFiles": len(batches), "domainsByGroup": dom_out, "minCheck": mc_out, "failing": fails_all,
        "cost": cost_out, "b3": b3_out, "persons": person_rows}
 (OUT / "stats.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -186,9 +206,11 @@ for t in ("S", "A"):
     m = mc_out[t]
     L.append(f"- {t}：{m['uniqueKeys']} 人（列 {m['rows']}；重複鍵 {m['duplicateKeys']}），達標 {m['meets']}，未達標 {m['fail']}（已標來源不足 {m['failMarkedInsufficient']}，未標 {m['failNotMarked']}）；"
              f"任期完整 {m['termsFull']}/{m['terms']}（缺迄待查 {m['termsFlagged']}、缺起或迄 {m['termsMissing']}）；無戰役 {m['noBattle']}；無指揮職 {m['noCommand']}")
+    L.append(f"  - 扣已知重複（{m['knownDuplicatesPresent']}）：{m['uniquePeople']} 人，達標 {m['uniqueMeets']}，未達標 {m['uniqueFail']}")
     L.append(f"  - 未達標原因（可重複）：{m['failReasonCount']}")
     L.append(f"  - 原因組合：{m['failReasonCombo']}")
 L.append(f"- S 名單中沒有 min-check 的人：{mc_out['S_missingFromMinCheck']}")
+L.append(f"- min-check.json（retry 前）與重算結果不同：{len(stale)} 人（{collections.Counter(x['tier'] for x in stale)}）：{[x['tier']+'/'+x['batch']+' '+x['key'] for x in stale]}")
 L += ["", "## 費用", "", f"- 合計 USD {cost_out['totalUsd']}", f"- 分類：{cost_out['byCategory']}",
       f"- 每人平均（主迴圈 sonnet＋retry）：S {cost_out['S_usdPerPerson']}、A {cost_out['A_usdPerPerson']}", ""]
 L += ["## 各國籍網域命中（前 12，依人數）", ""]

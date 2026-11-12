@@ -180,6 +180,44 @@
    "license_code": null,
    "grade": "A",
    "gradeBasis": "美國海軍歷史與遺產司令部線上圖庫人物頁（政府官方內容，A）；經 ibiblio 鏡像，無具名作者"
+  },
+  "rf-usarmygermany-chron": {
+   "title": "Chronology of U.S. Ground Forces in Europe (1943-1989), Section I",
+   "authors": [],
+   "publisher": "Military History Office, HQ USAREUR（經 usarmygermany.com 轉載整理）",
+   "published_text": null,
+   "url": "https://www.usarmygermany.com/Units/HqUSAREUR/USAREUR_HqUSAREUR%201.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構：美軍駐歐陸軍司令部軍史辦公室（Military History Office, HQ USAREUR）所編年表，網站註明黑字條目源自該辦公室手稿"
+  },
+  "rf-usn-chron-1942": {
+   "title": "The Official Chronology of the U.S. Navy in World War II — 1942",
+   "authors": [
+    "Robert J. Cressman"
+   ],
+   "publisher": "Naval History and Heritage Command（HyperWar 轉載）",
+   "published_text": null,
+   "url": "https://www.ibiblio.org/hyperwar/USN/USN-Chron/USN-Chron-1942.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國海軍官方戰時編年（具名作者 Cressman，NHHC 出版），轉載於 HyperWar"
+  },
+  "rf-truman-macarthur-relieved": {
+   "title": "Statement and Order by the President on Relieving General MacArthur of His Commands (April 11, 1951)",
+   "authors": [],
+   "publisher": "Harry S. Truman Library and Museum (Public Papers of the Presidents)",
+   "published_text": "1951-04-11",
+   "url": "https://www.trumanlibrary.gov/library/public-papers/77/statement-and-order-president-relieving-general-macarthur-his-commands",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國總統官方公文（杜魯門圖書館公開文件）"
   }
  },
  "people": [
@@ -2043,10 +2081,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1945-05-08",
-      "end": null
+      "end": "1945-11-11"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "eisen-chrons",
@@ -2069,6 +2107,18 @@
        "accessedOn": "2026-11-11",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-usarmygermany-chron",
+       "locator": "Section I, 1945, 11 November",
+       "quote": "11 November General Eisenhower relinquishes command of USFET",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2320,14 +2370,6 @@
      "target": "field:recordIds",
      "gapKind": "not_found",
      "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:ike-military-governor-germany",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；Eisenhower Library 年表與 Miller Center 只寫占領區軍事總督起日（或「約兩年」），未明寫任滿日，不以下一職起日推定。已查：Eisenhower Presidential Library 年表、Miller Center、whitehouse.gov（404）、Army CMH（403）。 加強重跑再查：陸軍軍史中心 Appendix B（只列 USFET 司令 1945-07-01 至 11-11，未列軍事總督）、Truman Library、JCS（403）、FRUS 1945 v3 d693（只涉副軍事總督編制）、Eisenhower Library SHAEF 檔案說明（只寫 SHAEF 1945 年 7 月解散）均未明寫軍事總督任滿日。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
@@ -2659,9 +2701,51 @@
      "result": "found_B",
      "note": "只寫「兩年」，未明寫迄日；未新增引文",
      "round": "retry"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Eisenhower USFET relinquished command November 1945 military governor",
+     "url": "https://www.usarmygermany.com/Units/HqUSAREUR/USAREUR_HqUSAREUR%201.htm",
+     "result": "found_C",
+     "note": "USAREUR 軍史辦公室編年：1945-11-11 艾森豪卸任 USFET 司令兼軍事總督，Patton 代理"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Truman news conference Nov 20 1945 McNarney relieve Eisenhower",
+     "url": "https://www.trumanlibrary.gov/library/public-papers/193/presidents-news-conference",
+     "result": "found_A",
+     "note": "宣布 McNarney 接替，未給卸任日，未引用"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "NARA RG 260 guide Eisenhower military governor 10 November 1945",
+     "url": "https://www.archives.gov/research/guide-fed-records/groups/260.html/1000",
+     "result": "not_relevant",
+     "note": "頁面已不存在（Page Not Found）"
     }
    ],
-   "nameZhOrig": "德怀特·艾森豪威尔"
+   "nameZhOrig": "德怀特·艾森豪威尔",
+   "resolvedGaps": [
+    {
+     "target": "position:ike-military-governor-germany",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Eisenhower Library 年表與 Miller Center 只寫占領區軍事總督起日（或「約兩年」），未明寫任滿日，不以下一職起日推定。已查：Eisenhower Presidential Library 年表、Miller Center、whitehouse.gov（404）、Army CMH（403）。 加強重跑再查：陸軍軍史中心 Appendix B（只列 USFET 司令 1945-07-01 至 11-11，未列軍事總督）、Truman Library、JCS（403）、FRUS 1945 v3 d693（只涉副軍事總督編制）、Eisenhower Library SHAEF 檔案說明（只寫 SHAEF 1945 年 7 月解散）均未明寫軍事總督任滿日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   },
   {
    "key": "ernestking",
@@ -3134,6 +3218,122 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1941-02-01",
+      "end": "1945-10-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大西洋艦隊與全球海軍作戰",
+      "en": "The Atlantic Fleet and global naval operations"
+     },
+     "body": {
+      "zh-Hant": "1941年初，金恩受命領導重新設立的大西洋艦隊，度過與德國關係持續緊張、並在當年稍後演變為未宣之戰的時期。珍珠港事件後，他回到華盛頓出任美國艦隊總司令，1942年3月又兼任海軍作戰部長，兩項職務一直擔任到二戰結束，並主導海軍的計畫與全球作戰。身為聯合參謀首長會議成員，儘管美國的大戰略是把大部分力量投向大西洋與歐洲戰區，他仍設法爭取足夠資源，展開並維持對日本的進攻作戰。",
+      "en": "In early 1941 King was appointed to lead the newly recreated Atlantic Fleet through a period of escalating tensions with Germany that led to undeclared war later that year. After Pearl Harbor he returned to Washington as Commander in Chief, U.S. Fleet, and became Chief of Naval Operations in March 1942, holding both positions through the rest of the war while guiding the Navy's plans and global operations. As a member of the Joint Chiefs of Staff he obtained sufficient resources to begin and sustain offensive operations against Japan, despite a grand strategy that directed the bulk of American power into the Atlantic and European theaters."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "appointed to lead the newly-recreated Atlantic Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "tensions with Germany that led to undeclared war later in the year.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "Commander in Chief, U.S. Fleet in December 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "He also became Chief of Naval Operations in March 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "holding both positions through the rest of World War II",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "he guided the Navy's plans and global operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "begin and sustain offensive operations against Japan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "usna-king",
+       "locator": "Notables — Ernest J. King (USNA)",
+       "quote": "directing the bulk of America's power into the Atlantic and European theaters",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
     }
    ],
    "positions": [
@@ -3296,10 +3496,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-02-01",
-      "end": null
+      "end": "1942-01-01"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "nhhc-king",
@@ -3309,6 +3509,18 @@
        "evidenceNote": null,
        "accessedOn": "2026-11-11",
        "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-usn-chron-1942",
+       "locator": "1942 chronology, January 1 (Atlantic)",
+       "quote": "Ingersoll succeeds Admiral Ernest J. King as Commander in Chief Atlantic Fleet",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一任起日推得（推論）：編年於 1942-01-01 條下記 Ingersoll 接任大西洋艦隊總司令",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
        "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
@@ -3421,14 +3633,6 @@
      "citations": []
     },
     {
-     "target": "position:king-cinclant",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；NHHC 傳記檔與 USNA 只寫1941-02-01受命、1941-12-30改任美國艦隊總司令，未明寫大西洋艦隊總司令任滿日，不以接任日推定。已查：NHHC、USNA。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
      "target": "field:battles",
      "gapKind": "not_found",
      "note": "來源不足：金恩為海軍最高統帥，而非戰場指揮官；NHHC／USNA 只寫其統籌全球海軍作戰與爭取對日攻勢資源，未列個別海戰日期與地點。DANFS、USNI（403）、Britannica（403）未取得相關戰役敘述。",
@@ -3469,6 +3673,56 @@
      "url": "https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/n/the-navys-world-war-ii-era-fleet-admirals.html",
      "result": "found_A",
      "note": "取得，僅列名單，未引用"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Royal Ingersoll assumed command Atlantic Fleet January 1942",
+     "url": "https://www.ibiblio.org/hyperwar/USN/USN-Chron/USN-Chron-1942.html",
+     "result": "found_B",
+     "note": "官方戰時編年：Ingersoll 接替 King 任大西洋艦隊總司令（1942-01-01 條）"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "NHHC modern biographical file Ingersoll",
+     "url": "https://www.history.navy.mil/research/library/research-guides/modern-biographical-files-ndl/modern-bios-i/ingersoll-royal-e.html",
+     "result": "no_result",
+     "note": "抓取回傳空頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "NHHC H-Gram 008-5 King CNO 1942",
+     "url": "https://history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-008/h-008-5.html",
+     "result": "no_result",
+     "note": "逾時，未取得"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "King 個別海戰（大西洋戰役）來源",
+     "url": "https://www.usna.edu/Notables/Bios/1901king.php",
+     "result": "found_A",
+     "note": "改以既有 usna-king 明載之大西洋艦隊與對日攻勢作戰寫戰役段，未編造具體海戰日期"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:king-cinclant",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NHHC 傳記檔與 USNA 只寫1941-02-01受命、1941-12-30改任美國艦隊總司令，未明寫大西洋艦隊總司令任滿日，不以接任日推定。已查：NHHC、USNA。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -5325,10 +5579,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1945-09-02",
-      "end": null
+      "end": "1951-04-11"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "nara-phil",
@@ -5351,6 +5605,30 @@
        "accessedOn": "2026-11-11",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mm-macarthur",
+       "locator": "BioDouglasMacArthur",
+       "quote": "MacArthur of his command on April 11, 1951",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-truman-macarthur-relieved",
+       "locator": "Statement and Order, April 11, 1951",
+       "quote": "replace you as Supreme Commander, Allied Powers",
+       "quoteLang": "en",
+       "evidenceNote": "杜魯門 1951-04-11 命令免去盟軍最高統帥等職，即日交接",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -5380,14 +5658,6 @@
      "target": "position:macarthur-field-marshal-philippines",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；MacArthur Memorial 小冊只寫1935年任菲律賓元帥，未寫任滿日；起日僅年精度。已查：MacArthur Memorial、NARA、Eisenhower Library。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:macarthur-scap",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；NARA 時間線只寫1945-09-02接任盟軍最高統帥，未列離任日。已查：NARA、MacArthur Memorial。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
@@ -5489,6 +5759,56 @@
      "url": "https://www.westpoint.edu/about/history-of-west-point/notable-graduates",
      "result": "no_result",
      "note": "未找到可用條目"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "MacArthur relieved April 11 1951 Supreme Commander Allied Powers",
+     "url": "https://www.trumanlibrary.gov/library/public-papers/77/statement-and-order-president-relieving-general-macarthur-his-commands",
+     "result": "found_A",
+     "note": "杜魯門命令：免去 SCAP 等職，交 Ridgway"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "MacArthur Field Marshal Philippine Army end date",
+     "url": "https://www.history.army.mil/books/wwii/5-2/5-2_2.htm",
+     "result": "blocked_403",
+     "note": "CMH 頁面無法解析主機／空頁，未取得"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Quezon statement retention of MacArthur as military adviser 1937-12-31",
+     "url": "https://www.officialgazette.gov.ph/1937/12/31/statement-president-quezon-on-retention-of-marshal-douglas-mcarthur-as-military-adviser-of-the-commonwealth/",
+     "result": "unrated",
+     "note": "搜尋結果僅見，尚未抓取確認元帥任滿日；菲律賓元帥迄日仍待查證"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "MacArthur field marshal 1937 retire",
+     "url": "https://www.macarthurmemorial.org/DocumentCenter/View/1689/BioDouglasMacArthur",
+     "result": "not_relevant",
+     "note": "既有來源只寫1935年任命，無迄日"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:macarthur-scap",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NARA 時間線只寫1945-09-02接任盟軍最高統帥，未列離任日。已查：NARA、MacArthur Memorial。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   }

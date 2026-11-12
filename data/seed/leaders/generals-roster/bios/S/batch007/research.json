@@ -414,6 +414,32 @@
    "license_code": null,
    "grade": "A",
    "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
+  },
+  "rf-gdk-slim": {
+   "title": "Generals.dk: Slim, William Joseph（Field Marshal）",
+   "authors": [
+    "Steen Ammentorp"
+   ],
+   "publisher": "Generals.dk（The Generals of WWII）",
+   "published_text": null,
+   "url": "https://generals.dk/general/Slim/William_Joseph/Great_Britain.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名軍事史資料庫，站主／作者 Steen Ammentorp（頁尾署名 Copyright © Steen Ammentorp）；逐職列任命起迄日"
+  },
+  "rf-rmg": {
+   "title": "Beatty, David, Admiral of the Fleet, 1st Earl Beatty, 1871-1936 (BTY) 館藏簡介",
+   "authors": [],
+   "publisher": "Royal Museums Greenwich / National Maritime Museum",
+   "published_text": null,
+   "url": "https://www.rmg.co.uk/collections/archive/rmgc-object-492138",
+   "archive_url": null,
+   "catalog_id": "BTY",
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構（皇家格林威治博物館／國家海事博物館）檔案館藏行政傳記背景與分級目錄"
   }
  },
  "people": [
@@ -2346,10 +2372,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1943-10-01",
-      "end": null
+      "end": "1945-08-10"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "snl-slim",
@@ -2384,6 +2410,18 @@
        "accessedOn": "2026-11-11",
        "grade": "B",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gdk-slim",
+       "locator": "Service 列表",
+       "quote": "1943-10-22 – 1945-08-10 General Officer Commanding 14th Army [Burma]",
+       "quoteLang": "en",
+       "evidenceNote": "generals.dk 逐職列任期起迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2478,14 +2516,6 @@
      "target": "field:recordIds",
      "gapKind": "not_found",
      "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:slim-fourteenth-army",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；起日已由 EBSCO（Shippey）與 Oxford Companion（Cannon）補為1943年10月。迄日（EBSCO 只寫攻占仰光後被撤換、無日期；TNA 目錄只列1944–1945年作戰紀錄）無 A／B 來源明寫。已查：SNL、Hansard、PM Transcripts、EBSCO、Oxford Companion、TNA Discovery、Britannica（403）、ADB（JavaScript 頁）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
@@ -2802,6 +2832,56 @@
      "result": "no_result",
      "note": "檢索頁無新增可用逐字稿",
      "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "generals.dk Slim William Joseph",
+     "url": "https://generals.dk/general/Slim/William_Joseph/Great_Britain.html",
+     "result": "found_C",
+     "note": "具名（Steen Ammentorp）；第14集團軍司令 1943-10-22 至 1945-08-10"
+    },
+    {
+     "step": 21,
+     "sourceType": "national_dictionary",
+     "query": "ADB Slim（重試）",
+     "url": "https://adb.anu.edu.au/biography/slim-william-joseph-11713",
+     "result": "no_result",
+     "note": "回應僅導覽殼，無傳記內文"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "BBC History historic figures Slim",
+     "url": "https://www.bbc.co.uk/history/historic_figures/slim_william.shtml",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "London Gazette 任命公告",
+     "url": "https://www.thegazette.co.uk/London/issue/37140/supplement/3249",
+     "result": "no_result",
+     "note": "404"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:slim-fourteenth-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；起日已由 EBSCO（Shippey）與 Oxford Companion（Cannon）補為1943年10月。迄日（EBSCO 只寫攻占仰光後被撤換、無日期；TNA 目錄只列1944–1945年作戰紀錄）無 A／B 來源明寫。已查：SNL、Hansard、PM Transcripts、EBSCO、Oxford Companion、TNA Discovery、Britannica（403）、ADB（JavaScript 頁）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -5155,6 +5235,250 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1896-01-01",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "青年軍旅：尼羅河、庚子之役與晉升",
+      "en": "Early career: Nile, Boxer campaign and promotion"
+     },
+     "body": {
+      "zh-Hant": "據皇家格林威治博物館的貝蒂檔案簡介，貝蒂1896至1898年在為保住蘇丹歸埃及控制的行動中，因炮艇小艦隊在尼羅河上的作戰表現出色，1898年還在岸上指揮火箭炮連，同年11月晉升中校級的 Commander。次年他隨「巴弗勒」號前往正值義和團之亂的中國，增援天津守軍並率隊出擊圍攻的義和團；1900年11月，年僅29歲的他升為上校級艦長。1910年他升任少將，是百餘年來最年輕的旗官，時年39歲；1911年10月邱吉爾出任海軍大臣後，選他為海軍秘書。",
+      "en": "According to the Royal Museums Greenwich catalogue note on the Beatty papers, between 1896 and 1898 Beatty distinguished himself in operations with a gunboat flotilla on the Nile in the effort to keep the Sudan under Egyptian control, and in 1898 commanded a rocket battery ashore; he was promoted Commander that November. The next year he went to China in the Barfleur during the Boxer rebellion, reinforcing the Tientsin garrison and leading sorties against the besiegers, and in November 1900, aged 29, he was promoted captain. In 1910 he became Rear-Admiral, the youngest flag officer in over a hundred years, at 39; after Churchill became First Lord in October 1911 he chose Beatty as his naval secretary."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "operations involving a flotilla of gunboats on the Nile",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "in 1898 he commanded a rocket battery on shore",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "he was promoted Commander in November 1898",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "reinforcing the garrison at Tientsin",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "in November 1900 he was promoted captain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "In 1910 Beatty was promoted Rear-Admiral",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "the youngest flag-officer for over a hundred years, at 39",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "after Winston Churchill became First Lord of the Admiralty in October 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "he chose Beatty for his naval secretary",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    },
+    {
+     "period": {
+      "start": "1915-01-24",
+      "end": "1927-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "多格爾沙洲與日德蘭海戰、大艦隊總司令",
+      "en": "Dogger Bank, Jutland and Grand Fleet command"
+     },
+     "body": {
+      "zh-Hant": "皇家格林威治博物館的貝蒂檔案目錄把他的戰時文件分為1915年1月24日的多格爾沙洲海戰、1915至1916年的多格爾沙洲到日德蘭、1916年5月31日的日德蘭海戰，以及「1916至1919年大艦隊總司令」等部分，並寫貝蒂在整個一戰期間在大艦隊的海上作戰中擔任重要角色。1919年他接替韋姆斯任第一海務大臣，直到1927年；任職頭三年，朝野圍繞日德蘭海戰實情的爭議占據了他的海軍部生涯，其中包括哈珀上校編寫的海戰「官方紀錄」最終決定不出版一事。",
+      "en": "The Royal Museums Greenwich catalogue of the Beatty papers divides his wartime papers into the Battle of the Dogger Bank (24 January 1915), Dogger Bank to Jutland (1915–1916), the Battle of Jutland (31 May 1916) and Commander-in-Chief of the Grand Fleet (1916–1919), and says Beatty took a leading part in the Grand Fleet's naval operations throughout the First World War. In 1919 he succeeded Wemyss as First Sea Lord, a post he held until 1927; the controversy over what actually happened at Jutland dominated his first three years at the Admiralty, including the decision not to publish Captain Harper's 'Official Record'."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "Battle of the Dogger Bank, 24 January 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "Battle of Jutland 31 May 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "Commander-in-Chief of the Grand Fleet, 1916-1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "took a leading part in the naval operations of the Grand Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "In 1919 Beatty succeeded Wemyss as first sea lord at the Admiralty",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "a post he held until 1927",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "controversy over what actually happened at the battle of Jutland",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "the decision not to publish it",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
     }
    ],
    "positions": [
@@ -5210,10 +5534,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1916-01-01",
-      "end": null
+      "end": "1920-01-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "snl-beatty",
@@ -5223,6 +5547,18 @@
        "evidenceNote": null,
        "accessedOn": "2026-11-11",
        "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg",
+       "locator": "RMG 館藏 BTY 全宗簡介",
+       "quote": "Commander-in-Chief of the Grand Fleet, 1916-1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
        "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
@@ -5317,14 +5653,6 @@
      "citations": []
     },
     {
-     "target": "position:beatty-grand-fleet",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；大艦隊司令的起迄日（外部摘要稱1916-12 至 1919）A／B 來源只寫「1916年」。已查：SNL、Hansard、IWM。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
      "target": "paragraph:length",
      "gapKind": "not_found",
      "note": "篇幅不足：目前3段／約255字（中文）。已查來源類型：議會官方（Hansard）、具名百科（SNL，Britannica 403）、機構百科（1914-1918-online Anubis 挑戰頁）、館藏頁（RMG 只有導覽列、IWM 無署名）；A／B 可抓原文僅 SNL 與 Hansard。",
@@ -5405,6 +5733,64 @@
      "url": "https://www.iwm.org.uk/history/who-were-the-key-personalities-in-the-battle-of-jutland",
      "result": "unrated",
      "note": "無署名，僅列 gap 候選"
+    },
+    {
+     "step": 20,
+     "sourceType": "academic",
+     "query": "RMG 館藏 BTY（rmgc-object-492138）",
+     "url": "https://www.rmg.co.uk/collections/archive/rmgc-object-492138",
+     "result": "found_C",
+     "note": "含行政傳記與分級目錄；大艦隊總司令 1916-1919"
+    },
+    {
+     "step": 21,
+     "sourceType": "named_encyclopedia",
+     "query": "generals.dk Beatty",
+     "url": "https://generals.dk/general/Beatty/David/Great_Britain.html",
+     "result": "no_result",
+     "note": "該站只收二戰將領，無任職資料"
+    },
+    {
+     "step": 22,
+     "sourceType": "named_encyclopedia",
+     "query": "Dreadnought Project Beatty",
+     "url": "https://www.dreadnoughtproject.org/tfs/index.php/David_Richard_Beatty",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "ODNB Beatty",
+     "url": "https://www.oxforddnb.com/view/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-30668",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "naval-history.net Beatty",
+     "url": "https://www.naval-history.net/WW1NavyBritishLeadersBeatty.htm",
+     "result": "no_result",
+     "note": "404"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:beatty-grand-fleet",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；大艦隊司令的起迄日（外部摘要稱1916-12 至 1919）A／B 來源只寫「1916年」。已查：SNL、Hansard、IWM。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   }

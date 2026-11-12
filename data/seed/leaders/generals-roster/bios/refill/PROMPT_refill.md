@@ -20,7 +20,7 @@
 - 戰役：只寫進段落正文（Q1）。缺戰役者新增一段（≤400 中文字＋英文對應）寫來源明載的主要戰役／作戰與其角色，heading 與 body 至少一處含「戰役／會戰／海戰／空戰／作戰／登陸／圍攻」等字或 battle／campaign／offensive。
 - 指揮職：缺指揮職者，若來源明載指揮職，新增 position（`positionKind: "military_command"`，依 T14 規則加 t14Overlap／t14Rule／t14Reason），附起迄日與 citation；查不到就寫 gap（新規不要求指揮職，不硬湊）。
 - 篇幅（L3）：段落不足 3 段或中文不足 300 字者，新增段落補到 ≥3 段且 ≥300 字（中文去空白計），只寫來源寫到的事。標「全面重跑」者（0 段）照 PROMPT_research.md 的研究流程完整研究，但產出仍寫成下方 refill.json 的新增項目。
-- 範圍與力度：每個缺欄先查既有來源與快取（既有 .txt 常已含迄日或下一職起日），再查新來源；**放棄前每個缺欄至少試 4 個不同的新來源／查詢**（含原文語言），找到即停。任期迄日的常見來源：該職下一任的任命日（同一或另一合格來源明載 → 依 Q7 寫「依名簿下一任起日推得（推論）」）、此人下一個職位的起日（來源明寫「轉任／調任」時）、官方公報／任命公告（London Gazette、Reichsgesetzblatt、官報、政府公報、gpost 官職資料庫）、國家級傳記辭典（NDB／Deutsche Biographie、ODNB 公開摘要、Treccani DBI、ÖBL、Kotobank 具名條目、近史所／國史館）、官方戰史（history.army.mil、NHHC、防衛研究所、JACAR）、具名 C（大學、博物館、具名軍事史網站，例 generals.dk 有具名作者時可評 C 並寫 gradeBasis）。全批控制在預算內。
+- 範圍與力度：每個缺欄先查既有來源與快取（既有 .txt 常已含迄日或下一職起日），再查新來源；**放棄前每個缺欄至少試 4 個不同的新來源／查詢**（含原文語言），找到即停。任期迄日的常見來源：該職下一任的任命日（同一或另一合格來源明載 → 依 Q7 寫「依名簿下一任起日推得（推論）」）、此人下一個職位的起日（來源明寫「轉任／調任」時）、官方公報／任命公告（London Gazette、Reichsgesetzblatt、官報、政府公報、gpost 官職資料庫）、國家級傳記辭典（NDB／Deutsche Biographie、ODNB 公開摘要、Treccani DBI、ÖBL、Kotobank 具名條目、近史所／國史館）、官方戰史（history.army.mil、NHHC、防衛研究所、JACAR）、具名 C（大學、博物館、具名出版機構的軍事史網站；個人網站依既有規則不收，除非由具名機構發布）。全批控制在預算內。
 - gap：同一 target 已有「待查證」gap 時**不要再新增 gap**（程式會略過重複），只寫 addSearchLog 記錄這次查了什麼。
 
 ## refill.json 格式

@@ -6,7 +6,7 @@
 import json, sys, math
 from shapely.geometry import shape, Point, Polygon, MultiPolygon, mapping, box
 from shapely.ops import unary_union
-LAND = shape(json.load(open('geo/land.geojson'))['features'][0]['geometry'])
+LAND = shape(json.load(open('battles/dunkirk-1940/geo/land.geojson'))['features'][0]['geometry'])
 KEYS = ['1940-05-10','1940-05-12','1940-05-13','1940-05-15','1940-05-17','1940-05-20',
         '1940-05-21','1940-05-24','1940-05-26','1940-05-28','1940-05-31','1940-06-04']
 def K(md): return '1940-'+md
@@ -395,10 +395,10 @@ ids={u['id'] for u in U}
 for e in EN:
     for x in e['units']:
         if x['unit_id'] not in ids: errs.append('bad unit ref '+x['unit_id'])
-json.dump(data, open('data/dunkirk-1940.example.json','w'), ensure_ascii=False, indent=1)
+json.dump(data, open('battles/dunkirk-1940/battle.json','w'), ensure_ascii=False, indent=1)
 report={'checked_positions':len(data['positions']),'checked_front_vertices':sum(len(f['line']) for f in data['fronts']),
         'checked_arrows':len(AR),'checked_engagements':len(EN),'errors':errs}
-json.dump(report, open('data/land-check.json','w'), ensure_ascii=False, indent=1)
+json.dump(report, open('battles/dunkirk-1940/land-check.json','w'), ensure_ascii=False, indent=1)
 print(json.dumps({k:v for k,v in report.items() if k!='errors'}), 'errors:', len(errs))
 for e in errs: print(' ', e)
 sys.exit(1 if errs else 0)

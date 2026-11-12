@@ -2,7 +2,7 @@
    三個顏色各管一件事：磚紅＝軸心、海軍藍＝盟軍、橘色＝交戰與選取。其餘全部是墨色和紙色。 */
 :root{
   --paper:#fbfaf6; --card:#ffffff; --ink:#26201c; --ink2:#6f675c; --ink3:#a39a8c; --line:#e2dcd0; --wash:#f3efe6;
-  --axis:#b8402f; --axis-bg:#f7e4df; --allied:#2f5d9b; --allied-bg:#e1eaf5; --acc:#d66014; --acc-bg:#fdeede;
+  --axis:#b8402f; --axis-bg:#f7e4df; --allied:#2f5d9b; --allied-bg:#e1eaf5; --third:#5c7a3a; --third-bg:#e6ecdc; --acc:#d66014; --acc-bg:#fdeede;
   --serif:"Noto Serif CJK TC","Noto Serif TC","Songti TC","PMingLiU",serif;
   --sans:"PingFang TC","Noto Sans CJK TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
   --shadow:0 1px 2px rgba(38,32,28,.06),0 6px 22px rgba(38,32,28,.10);
@@ -308,3 +308,29 @@ body.tour #now{max-height:56%}
   .maplibregl-ctrl-bottom-right{bottom:6px}
   body.tour #now .ch.on{display:block}
 }
+
+/* ---------- v2.6：戰役切換 ---------- */
+#battle-nav{position:relative;display:flex;align-items:center;gap:2px;align-self:center;flex:none}
+#battle-nav button{font:inherit;border:1px solid var(--line,#d9d3c7);background:#fff;color:var(--ink,#26201c);cursor:pointer;height:26px;min-width:26px;padding:0 6px;border-radius:4px;font-size:11px;line-height:1}
+#battle-nav button:hover:not(:disabled){border-color:var(--ink,#26201c)}
+#battle-nav button:disabled{opacity:.3;cursor:default}
+#bt-count{font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--ink2,#6b6258)!important}
+#bt-menu{position:absolute;top:32px;left:0;z-index:60;min-width:250px;background:#fff;border:1px solid var(--line,#d9d3c7);border-radius:6px;box-shadow:0 8px 24px rgba(38,32,28,.16);padding:4px}
+#bt-menu a{display:grid;grid-template-columns:1fr auto;gap:1px 10px;padding:8px 10px;border-radius:4px;color:inherit;text-decoration:none}
+#bt-menu a:hover{background:#f4f1ea}
+#bt-menu a.on{background:var(--acc-bg,#fdf1e6)}
+#bt-menu b{font-family:var(--serif,serif);font-size:15px}
+#bt-menu span{grid-column:1;font-size:11.5px;color:var(--ink2,#6b6258)}
+#bt-menu i{grid-row:1;grid-column:2;align-self:center;font-style:normal;font-size:10.5px;padding:1px 6px;border-radius:3px;border:1px solid #e3b98f;color:#8a4310}
+#fatal{position:fixed;inset:auto 16px 16px 16px;z-index:99;background:#fff;border:1px solid #b8402f;color:#b8402f;padding:10px 14px;border-radius:6px}
+@media (max-width:700px){ #battle-nav{grid-column:1} .hd-title{flex-wrap:wrap;gap:5px 8px;align-items:center} #banner{white-space:nowrap} #bt-count{max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} #bt-count::before{content:attr(data-t) '　';color:var(--ink);font-family:var(--serif);font-size:13px;letter-spacing:0} #bt-menu{position:fixed;top:44px;left:8px;right:8px} }
+
+/* ---------- v2.7：第三方（綠）＋當年國界 ---------- */
+.nv i.third,.ul.third{color:var(--third)} .seg button.on.third{background:var(--third)} .meta span.third{background:var(--third-bg);color:var(--third);font-weight:700}
+.ul.third:hover{background:var(--third-bg)} .sub button.on.third{color:var(--third)}
+.sw-third{background:rgba(92,122,58,.25);border:1px solid rgba(92,122,58,.45)}
+.sw-hist{height:0;border-top:2px dashed rgba(60,52,44,.62);background:none}
+
+/* v2.7.1：名稱牌改放到記號下方或兩側時，不畫指向下方的小箭頭 */
+#eng-tags span.i3.alt::after{display:none}
+#eng-tags span{transition:opacity .15s}

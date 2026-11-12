@@ -2,7 +2,7 @@
 另檢查：被包圍（encircled）的盟軍單位應在某個口袋裡。只出警告。"""
 import json
 from shapely.geometry import shape, Point, Polygon
-d=json.load(open('data/dunkirk-1940.example.json'))
+d=json.load(open('battles/dunkirk-1940/battle.json'))
 side={u['id']:(u['side'],u['domain']) for u in d['units']}
 ctrl={f['date']:shape(f['control']['axis']) for f in d['fronts']}
 pk={f['date']:[Polygon(p['ring']) for p in f.get('pockets',[])] for f in d['fronts']}
@@ -17,4 +17,4 @@ for p in d['positions']:
     inside=ctrl[p['date']].contains(pt)
     if (s=='axis')!=inside: w.append(f"{p['date']} {p['unit_id']} ({p['lng']},{p['lat']}) on wrong side")
 print(len(w),'warnings'); print('\n'.join(w))
-json.dump(w,open('data/side-check.json','w'),ensure_ascii=False,indent=1)
+json.dump(w,open('battles/dunkirk-1940/side-check.json','w'),ensure_ascii=False,indent=1)

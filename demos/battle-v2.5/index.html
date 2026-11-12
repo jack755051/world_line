@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>敦克爾克 1940｜部隊追蹤示範 v2.5（示例，非史料）</title>
+<title>戰役動態地圖</title>
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:,">
@@ -12,10 +12,10 @@
 <div id="app">
   <header id="hud-top">
     <div class="hd-main">
-      <div class="hd-title"><span class="kicker">戰役</span><h1 id="battle-title">敦克爾克 1940</h1><span id="banner" role="note">示例，非史料</span></div>
+      <div class="hd-title"><div id="battle-nav" role="group" aria-label="切換戰役" hidden><button id="bt-prev" aria-label="上一場戰役">▲</button><button id="bt-count" aria-haspopup="true" aria-expanded="false" title="戰役清單">1 / 1</button><button id="bt-next" aria-label="下一場戰役">▼</button><nav id="bt-menu" hidden aria-label="戰役清單"></nav></div><h1 id="battle-title"></h1><span id="banner" role="note" hidden></span></div>
       <div id="date-block" aria-live="polite">
-        <div id="date-main"><span id="date-d">1940年5月10日</span><span id="date-hr"></span></div>
-        <div id="date-sub"><span id="phase">黃色方案</span><span id="interp" hidden>位置內插・推估</span></div>
+        <div id="date-main"><span id="date-d"></span><span id="date-hr"></span></div>
+        <div id="date-sub"><span id="phase"></span><span id="interp" hidden>位置內插・推估</span></div>
       </div>
     </div>
     <nav id="layers" aria-label="模式、視角與圖層"></nav>
@@ -29,7 +29,7 @@
     </aside>
   </aside>
   <main id="map-wrap">
-    <div id="map" role="application" aria-label="敦克爾克戰役動態地圖（示例資料，可拖曳與縮放）"></div>
+    <div id="map" role="application" aria-label="戰役動態地圖"></div>
     <div id="pk-tags" aria-hidden="true"></div>
     <div id="eng-tags" aria-hidden="true"></div>
     <div id="tip" hidden></div>
@@ -37,7 +37,7 @@
     <div id="event" aria-hidden="true"><div class="ev-zh"></div><div class="ev-rule"></div><div class="ev-en"></div></div>
     <aside id="legend" hidden>
       <div class="lg-title">圖例 <button id="legend-close" aria-label="關閉圖例">×</button></div>
-      <div class="lg-sec">部隊牌（紅＝軸心，藍＝盟軍）</div>
+      <div class="lg-sec" id="lg-sides"></div>
       <div id="lg-branch"></div>
       <div class="lg-row"><i class="sw sw-pips"></i>牌子下的小點＝層級：1 旅、2 師、3 軍、4 集團軍</div>
       <div class="lg-row"><i class="sw sw-head"></i>短箭頭＝正往下一個紀錄點移動</div>
@@ -47,10 +47,10 @@
       <div class="lg-row"><i class="sw sw-e2"></i>重要交戰：細環＋名稱</div>
       <div class="lg-row"><i class="sw sw-e1"></i>一般交戰：小圓點，滑過才展開</div>
       <div class="lg-sec">控制區</div>
-      <div class="lg-row"><i class="sw sw-axis"></i>軸心控制區</div>
-      <div class="lg-row"><i class="sw sw-allied"></i>盟軍控制區</div>
+      <div class="lg-row"><i class="sw sw-axis"></i><span id="lg-axis"></span></div>
+      <div class="lg-row"><i class="sw sw-allied"></i><span id="lg-allied"></span></div>
       <div class="lg-row"><i class="sw sw-front"></i>前線、包圍圈</div>
-      <div class="lg-note">全部是示例資料。拉遠看集團軍，拉近展開成軍、師。部隊位置是關鍵日之間的內插，不是逐時紀錄。底圖：Natural Earth（公有領域）。</div>
+      <div class="lg-note" id="lg-note"></div>
     </aside>
     <aside id="info" hidden>
       <button id="info-close" aria-label="關閉">×</button>
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div id="tl-track-wrap">
-      <div id="tl-chip">5/10</div>
+      <div id="tl-chip"></div>
       <div id="tl-track" role="slider" tabindex="0" aria-label="日期" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0">
         <div id="tl-fill"></div><div id="tl-ticks"></div><div id="tl-head"></div>
       </div>

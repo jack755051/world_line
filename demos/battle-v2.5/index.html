@@ -5,14 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>戰役動態地圖</title>
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2.8.2">
 <link rel="icon" href="data:,">
 </head>
 <body>
+<!-- 過場遮蓋：頁面一開始就蓋著紙色，等戰役全部準備好才淡出；切換戰役時先淡入再換頁，不會看到載入到一半的畫面。樣式寫在這裡，不等 style.css -->
+<style>#veil{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#fbfaf6;color:#26201c;font:900 30px/1.2 "Noto Serif TC","Noto Serif CJK TC","Songti TC",serif;letter-spacing:.04em;opacity:1;transition:opacity .28s ease}#veil.off{opacity:0;pointer-events:none}@media (prefers-reduced-motion:reduce){#veil{transition:none}}</style>
+<div id="veil" aria-hidden="true"></div>
+<script>try{var vt=sessionStorage.getItem('wl-veil');sessionStorage.removeItem('wl-veil');if(vt)document.getElementById('veil').textContent=vt;}catch(e){}</script>
 <div id="app">
   <header id="hud-top">
     <div class="hd-main">
-      <div class="hd-title"><div id="battle-nav" role="group" aria-label="切換戰役" hidden><button id="bt-prev" aria-label="上一場戰役">▲</button><button id="bt-count" aria-haspopup="true" aria-expanded="false" title="戰役清單">1 / 1</button><button id="bt-next" aria-label="下一場戰役">▼</button><nav id="bt-menu" hidden aria-label="戰役清單"></nav></div><h1 id="battle-title"></h1><span id="banner" role="note" hidden></span></div>
+      <div class="hd-title"><div id="battle-nav" role="group" aria-label="切換戰役"><button id="bt-prev" class="bt-arrow" aria-label="上一場戰役">▲</button><h1 id="battle-title"><button id="bt-title" aria-haspopup="true" aria-expanded="false" title="戰役清單"></button></h1><span id="bt-info" tabindex="0" role="note" hidden><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="7.25" y="7" width="1.5" height="4.6" fill="currentColor"/><circle cx="8" cy="4.9" r="0.95" fill="currentColor"/></svg><span id="banner"></span></span><button id="bt-next" class="bt-arrow" aria-label="下一場戰役">▼</button><nav id="bt-menu" hidden aria-label="戰役清單"></nav></div></div>
       <div id="date-block" aria-live="polite">
         <div id="date-main"><span id="date-d"></span><span id="date-hr"></span></div>
         <div id="date-sub"><span id="phase"></span><span id="interp" hidden>位置內插・推估</span></div>
@@ -78,7 +82,7 @@
 <script src="vendor/maplibre-gl.js"></script>
 <script src="vendor/earcut.min.js"></script>
 <script src="vendor/milsymbol.js"></script>
-<script src="js/gl.js"></script>
-<script src="app.js"></script>
+<script src="js/gl.js?v=2.8.2"></script>
+<script src="app.js?v=2.8.2"></script>
 </body>
 </html>

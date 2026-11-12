@@ -310,11 +310,11 @@ body.tour #now{max-height:56%}
 }
 
 /* ---------- v2.6：戰役切換 ---------- */
-#battle-nav{position:relative;display:flex;align-items:center;gap:2px;align-self:center;flex:none}
-#battle-nav button{font:inherit;border:1px solid var(--line,#d9d3c7);background:#fff;color:var(--ink,#26201c);cursor:pointer;height:26px;min-width:26px;padding:0 6px;border-radius:4px;font-size:11px;line-height:1}
-#battle-nav button:hover:not(:disabled){border-color:var(--ink,#26201c)}
-#battle-nav button:disabled{opacity:.3;cursor:default}
-#bt-count{font-variant-numeric:tabular-nums;letter-spacing:.04em;color:var(--ink2,#6b6258)!important}
+#battle-nav{position:relative;display:flex;align-items:center;gap:8px;align-self:center;flex:none}
+#battle-nav .bt-arrow{font:inherit;border:1px solid var(--line,#d9d3c7);background:#fff;color:var(--ink,#26201c);cursor:pointer;height:26px;min-width:26px;padding:0 6px;border-radius:4px;font-size:11px;line-height:1}
+#battle-nav .bt-arrow:hover:not(:disabled){border-color:var(--ink,#26201c)}
+#battle-nav .bt-arrow:disabled{opacity:.3;cursor:default}
+
 #bt-menu{position:absolute;top:32px;left:0;z-index:60;min-width:250px;background:#fff;border:1px solid var(--line,#d9d3c7);border-radius:6px;box-shadow:0 8px 24px rgba(38,32,28,.16);padding:4px}
 #bt-menu a{display:grid;grid-template-columns:1fr auto;gap:1px 10px;padding:8px 10px;border-radius:4px;color:inherit;text-decoration:none}
 #bt-menu a:hover{background:#f4f1ea}
@@ -323,7 +323,7 @@ body.tour #now{max-height:56%}
 #bt-menu span{grid-column:1;font-size:11.5px;color:var(--ink2,#6b6258)}
 #bt-menu i{grid-row:1;grid-column:2;align-self:center;font-style:normal;font-size:10.5px;padding:1px 6px;border-radius:3px;border:1px solid #e3b98f;color:#8a4310}
 #fatal{position:fixed;inset:auto 16px 16px 16px;z-index:99;background:#fff;border:1px solid #b8402f;color:#b8402f;padding:10px 14px;border-radius:6px}
-@media (max-width:700px){ #battle-nav{grid-column:1} .hd-title{flex-wrap:wrap;gap:5px 8px;align-items:center} #banner{white-space:nowrap} #bt-count{max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} #bt-count::before{content:attr(data-t) '　';color:var(--ink);font-family:var(--serif);font-size:13px;letter-spacing:0} #bt-menu{position:fixed;top:44px;left:8px;right:8px} }
+@media (max-width:700px){ #battle-nav{grid-column:1;gap:6px} #battle-title{display:block!important;font-size:17px!important} #bt-title{max-width:40vw;overflow:hidden;text-overflow:ellipsis} #bt-menu{position:fixed;top:44px;left:8px;right:8px} #bt-info #banner{left:-60px;right:auto;transform:none;width:max-content} }
 
 /* ---------- v2.7：第三方（綠）＋當年國界 ---------- */
 .nv i.third,.ul.third{color:var(--third)} .seg button.on.third{background:var(--third)} .meta span.third{background:var(--third-bg);color:var(--third);font-weight:700}
@@ -334,3 +334,13 @@ body.tour #now{max-height:56%}
 /* v2.7.1：名稱牌改放到記號下方或兩側時，不畫指向下方的小箭頭 */
 #eng-tags span.i3.alt::after{display:none}
 #eng-tags span{transition:opacity .15s}
+
+/* v2.8.1：標題列＝▲ 戰役名稱 ⓘ ▼；名稱可點開戰役清單；資料狀態（示例／需查證）收進 ⓘ 的提示 */
+#bt-title{all:unset;font:inherit;cursor:pointer;white-space:nowrap;border-bottom:1px dashed transparent}
+#bt-title:hover:not(:disabled),#bt-title:focus-visible{border-bottom-color:var(--ink3)}
+#bt-title:disabled{cursor:default}
+#bt-info{position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;color:#b0601c;cursor:help;border-radius:50%;outline:none}
+#bt-info[hidden]{display:none}
+#bt-info:hover,#bt-info:focus-visible{background:var(--acc-bg)}
+#banner{position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:61;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .12s;pointer-events:none;box-shadow:0 4px 14px rgba(38,32,28,.14);font-size:12px;padding:4px 9px}
+#bt-info:hover #banner,#bt-info:focus #banner{opacity:1;visibility:visible}

@@ -75,9 +75,9 @@ J('battles/index.json').then(idx => {
   const vw = Q.get('view'); if (vw) { const [lo, la, z] = vw.split(',').map(Number); setFollow(false); MAP.jumpTo({ center: [lo, la], zoom: z }); }
   else applyCamera(performance.now());
   if (Q.get('sel')) { selectUnit(Q.get('sel'), !vw); if (Q.get('lock') === '1') setLock(Q.get('sel')); } else if (Q.get('eng')) selectEng(Q.get('eng'));   // v2.3：可以用網址直接開在某個部隊／交戰
-  MAP.once('load', () => { const chk = () => { if (MAP.areTilesLoaded() && MAP.getLayer('battle')) { window.__ready = true; if (Q.get('autoplay') === '1') play(true); } else setTimeout(chk, 80); }; chk(); });
+  MAP.once('load', () => { const chk = () => { if (MAP.areTilesLoaded() && MAP.getLayer('battle') && (!(TH.control && TH.control.mode === 'areas') || FLD)) { window.__ready = true; requestAnimationFrame(() => requestAnimationFrame(() => $('#veil').classList.add('off'))); if (Q.get('autoplay') === '1') play(true); } else setTimeout(chk, 80); }; chk(); });
   requestAnimationFrame(loop);
-}).catch(e => { console.error(e); const d = document.createElement('div'); d.id = 'fatal'; d.textContent = '戰役資料載入失敗：' + (e.message || e); document.body.appendChild(d); });
+}).catch(e => { console.error(e); const d = document.createElement('div'); d.id = 'fatal'; d.textContent = '戰役資料載入失敗：' + (e.message || e); document.body.appendChild(d); $('#veil').classList.add('off'); });
 
 // ---------- 資料前處理 ----------
 function resampleRing(pts, n, closed) {
@@ -701,21 +701,25 @@ function bindUI() {
 // ---------- v2.6：多場戰役 ----------
 // 換戰役用「換網址重新載入」：每場戰役有自己的底圖、圖集和時間軸，整頁重來最不會留下上一場的狀態。保留模式和視角。
 function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); if (TOUR) q.set('mode', 'tour'); if (VIEW !== 'all') q.set('side', VIEW); ['rm', 'pr'].forEach(k => Q.get(k) && q.set(k, Q.get(k))); return location.pathname + '?' + q; }
-function switchBattle(dir) { const i = INDEX.findIndex(b => b.id === BID), n = INDEX[i + dir]; if (n) location.assign(battleURL(n.id)); }
+// 切換戰役＝換網址重新載入；先把紙色遮蓋淡入（上面寫下一場的名稱），新頁面準備好才淡出
+function gotoBattle(id) { const n = INDEX.find(b => b.id === id); if (!n || id === BID || gotoBattle.busy) return; gotoBattle.busy = true; const v = $('#veil'), t = (n.title_zh || '').replace(/\s*\d{3,4}$/, '');
+  try { sessionStorage.setItem('wl-veil', t); } catch (e) {} v.textContent = t; v.classList.remove('off'); setTimeout(() => location.assign(battleURL(id)), RM ? 0 : 240); }
+addEventListener('pageshow', ev => { if (ev.persisted) { gotoBattle.busy = false; $('#veil').classList.add('off'); } });   // 從上一頁／下一頁快取回來時不要卡在遮蓋
+function switchBattle(dir) { const i = INDEX.findIndex(b => b.id === BID), n = INDEX[i + dir]; if (n) gotoBattle(n.id); }
 function initBattleNav() {
   const i = INDEX.findIndex(b => b.id === BID), m = D.meta; const t = m.title_zh || BID;
-  $('#battle-title').textContent = t; document.title = `${t}｜戰役動態地圖${m.banner ? '（' + m.banner + '）' : ''}`;
-  const bn = $('#banner'); bn.textContent = m.banner || ''; bn.hidden = !m.banner;
+  $('#bt-title').textContent = t.replace(/\s*\d{3,4}$/, ''); document.title = `${t}｜戰役動態地圖${m.banner ? '（' + m.banner + '）' : ''}`;
+  $('#banner').textContent = m.banner || ''; $('#bt-info').hidden = !m.banner; if (m.banner) $('#bt-info').setAttribute('aria-label', m.banner);
   $('#map').setAttribute('aria-label', `${t} 動態地圖（可拖曳與縮放）`); $('#tl-track').setAttribute('aria-valuemax', KD[KD.length - 1]);
   $('#lg-sides').textContent = `部隊牌（${SIDES.map(k => ({ axis: '紅', allied: '藍', third: '綠' }[k] + '＝' + SIDE_NAME[k])).join('，')}）`;
   if (SIDES.includes('third')) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row"><i class="sw sw-third"></i>${esc(SIDE_NAME.third)}控制區</div>`);
   if (TH.control && TH.control.border_name_zh) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row"><i class="sw sw-hist"></i>${esc(TH.control.border_name_zh)}</div>`); $('#lg-axis').textContent = `${SIDE_NAME.axis}控制區`; $('#lg-allied').textContent = `${SIDE_NAME.allied}控制區`;
   $('#lg-note').textContent = `${m.note || ''} 拉遠看集團軍，拉近展開成軍、師。部隊位置是關鍵日之間的內插，不是逐時紀錄。底圖：Natural Earth（公有領域，現代國界）。`;
-  const nav = $('#battle-nav'); nav.hidden = INDEX.length < 2;
+  const multi = INDEX.length > 1; $('#bt-prev').hidden = $('#bt-next').hidden = !multi; $('#bt-title').disabled = !multi;
   [['#bt-prev', -1], ['#bt-next', 1]].forEach(([s, d]) => { const b = $(s), n = INDEX[i + d]; b.disabled = !n; b.title = n ? `${d < 0 ? '上一場' : '下一場'}：${n.title_zh}（鍵盤 ${d < 0 ? '↑' : '↓'}）` : (d < 0 ? '已是第一場' : '已是最後一場'); b.onclick = () => switchBattle(d); });
-  $('#bt-count').textContent = `${i + 1} / ${INDEX.length}`; $('#bt-count').dataset.t = t;
-  const menu = $('#bt-menu'); menu.innerHTML = INDEX.map(b => `<a href="${battleURL(b.id)}" class="${b.id === BID ? 'on' : ''}"${b.id === BID ? ' aria-current="page"' : ''}><b>${esc(b.title_zh)}</b><span>${esc(b.period_zh || '')}</span>${b.status === 'example' ? '<i>示例</i>' : b.status === 'draft' ? '<i>需查證</i>' : b.status === 'skeleton' ? '<i>骨架</i>' : ''}</a>`).join('');
-  const tb = $('#bt-count'); tb.onclick = ev => { ev.stopPropagation(); menu.hidden = !menu.hidden; tb.setAttribute('aria-expanded', !menu.hidden); };
+  const menu = $('#bt-menu'); menu.innerHTML = INDEX.map(b => `<a href="${battleURL(b.id)}" data-id="${b.id}" class="${b.id === BID ? 'on' : ''}"${b.id === BID ? ' aria-current="page"' : ''}><b>${esc(b.title_zh)}</b><span>${esc(b.period_zh || '')}</span>${b.status === 'example' ? '<i>示例</i>' : b.status === 'draft' ? '<i>需查證</i>' : b.status === 'skeleton' ? '<i>骨架</i>' : ''}</a>`).join('');
+  menu.onclick = ev => { const a = ev.target.closest('a'); if (!a || ev.metaKey || ev.ctrlKey || ev.shiftKey) return; ev.preventDefault(); menu.hidden = true; gotoBattle(a.dataset.id); };
+  const tb = $('#bt-title'); tb.onclick = ev => { ev.stopPropagation(); menu.hidden = !menu.hidden; tb.setAttribute('aria-expanded', !menu.hidden); };
   addEventListener('click', ev => { if (!menu.hidden && !menu.contains(ev.target)) { menu.hidden = true; tb.setAttribute('aria-expanded', false); } });
 }
 const ECH = { front: '方面軍（XXXXX）', army: '集團軍／軍團（XXXX）', corps: '軍（XXX）', division: '師（XX）', brigade: '旅（X）' };

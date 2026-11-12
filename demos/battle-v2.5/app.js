@@ -1,4 +1,5 @@
-/* 戰役動態地圖示範 v2.6（多場戰役；資料與程式分開）
+/* 戰役動態地圖示範 v2.9（多場戰役；資料與程式分開；戰役狀態收進 createBattle 實例）
+ * v2.9：程式分成「外殼」（讀清單、選戰役、抓資料）和「戰役實例」createBattle()（一場戰役的全部狀態與事件）。行為不變。
  * v2.6：戰役和程式解耦——battles/index.json 列出所有戰役，每場一個資料夾（battle.json、theatre.json、assignments.json、geo/）。
  *       網址 ?battle=<id> 選戰役；標題旁的 ▲▼ 或鍵盤上下鍵切到上一場／下一場。
  * v2.5：整套美術換掉——淺色「編輯地圖」風格（紙白陸地、墨線前線、磚紅／海軍藍、橘色只給交戰），左側改成固定的敘事欄。
@@ -16,7 +17,28 @@
 const Q = new URLSearchParams(location.search);
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches || Q.get('rm') === '1';
 const $ = s => document.querySelector(s);
-let DAY0 = 0, BID = '', INDEX = [], TH = {};
+// ================= 外殼（整個頁面只做一次）=================
+// 讀戰役清單 → 決定開哪一場 → 抓那一場的資料 → 建立一個「戰役實例」。
+// 戰役的全部狀態都關在 createBattle() 裡面；外殼只留著目前這一個實例（window.__battle）。
+const J = (u, dflt) => fetch(u).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }).catch(e => { if (dflt !== undefined) return dflt; throw e; });
+const fatal = e => { console.error(e); const d = document.createElement('div'); d.id = 'fatal'; d.textContent = '戰役資料載入失敗：' + (e.message || e); document.body.appendChild(d); $('#veil').classList.add('off'); };
+function loadBattle(INDEX, BID, dflt) {
+  if (!INDEX.some(b => b.id === BID)) BID = dflt || INDEX[0].id;
+  const base = `battles/${BID}/`;
+  return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {})])
+    .then(([data, asg, th]) => window.__battle = createBattle({ INDEX, BID, data, asg, th }));
+}
+J('battles/index.json').then(idx => { const INDEX = idx.battles || []; return loadBattle(INDEX, Q.get('battle') || idx.default || (INDEX[0] || {}).id, idx.default); }).catch(fatal);
+
+// ================= 戰役實例 =================
+// 一場戰役的資料、地圖、部隊、時間軸、面板狀態全部是這個函式裡的區域變數；事件一律用 on() 綁（destroy 時一起解除）。
+// 回傳 { id, destroy }。目前切換戰役仍是整頁重新載入，destroy 是給之後「原地換戰役」用的。
+function createBattle(cfg) {
+const data = cfg.data, asg = cfg.asg;
+let dead = false, raf = 0; const offs = [];
+const on = (target, type, fn, opt) => { target.addEventListener(type, fn, opt); offs.push(() => target.removeEventListener(type, fn, opt)); };
+function destroy() { if (dead) return; dead = true; playing = false; cancelAnimationFrame(raf); offs.splice(0).forEach(f => f()); if (MAP) { MAP.remove(); MAP = null; } window.__ready = false; }
+let DAY0 = 0, BID = cfg.BID, INDEX = cfg.INDEX, TH = cfg.th;
 const dayOf = iso => (Date.parse(iso + 'T00:00:00Z') - DAY0) / 864e5;
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -56,28 +78,6 @@ function layerTarget(k, S) {
 function stepLayers(S, dt) { for (const k in LAYERS) { const L = LAYERS[k], t = layerTarget(k, S); L.a = RM ? t : L.a + (t - L.a) * Math.min(1, dt * 5); if (Math.abs(L.a - t) < 0.01) L.a = t; } }
 const shocks = [];
 
-// ---------- 載入 ----------
-const J = (u, dflt) => fetch(u).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }).catch(e => { if (dflt !== undefined) return dflt; throw e; });
-J('battles/index.json').then(idx => {
-  INDEX = idx.battles || []; BID = Q.get('battle') || idx.default || (INDEX[0] || {}).id;
-  if (!INDEX.some(b => b.id === BID)) BID = idx.default || INDEX[0].id;
-  const base = `battles/${BID}/`;
-  return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {})]);
-}).then(([data, asg, th]) => {
-  TH = th; D = data; ['units', 'positions', 'fronts', 'arrows', 'engagements'].forEach(k => D[k] = D[k] || []);
-  DAY0 = Date.parse(D.meta.date_start + 'T00:00:00Z'); BBOX = TH.bbox || BBOX; CITIES = TH.places || []; SEAS = TH.sea_labels || []; KEY_RIVERS = TH.key_rivers || [];
-  for (const k in TH.sides || {}) SIDE_NAME[k] = TH.sides[k].name_zh || SIDE_NAME[k];
-  if (TH.sides) SIDES = Object.keys(TH.sides).filter(k => PLATE[k]); if (!SIDES.includes(VIEW)) VIEW = 'all'; oobSide = VIEW === 'all' ? SIDES[0] : VIEW; D.areas = D.areas || [];
-  D = data; ENGM = asg.engagements || {}; (asg.assignments || []).forEach(a => { if (a.role === 'commander') ASG[a.unit_id] = a; }); prep(); measure(); buildSprites(); initMap(); bindUI();
-  const qd = Q.get('date'); if (qd) day = clamp(dayOf(qd), 0, KD[KD.length - 1]); if (Q.get('day')) day = clamp(+Q.get('day'), 0, KD[KD.length - 1]);
-  setDay(day, true);
-  if (Q.get('speed')) setSpeed(+Q.get('speed'));
-  const vw = Q.get('view'); if (vw) { const [lo, la, z] = vw.split(',').map(Number); setFollow(false); MAP.jumpTo({ center: [lo, la], zoom: z }); }
-  else applyCamera(performance.now());
-  if (Q.get('sel')) { selectUnit(Q.get('sel'), !vw); if (Q.get('lock') === '1') setLock(Q.get('sel')); } else if (Q.get('eng')) selectEng(Q.get('eng'));   // v2.3：可以用網址直接開在某個部隊／交戰
-  MAP.once('load', () => { const chk = () => { if (MAP.areTilesLoaded() && MAP.getLayer('battle') && (!(TH.control && TH.control.mode === 'areas') || FLD)) { window.__ready = true; requestAnimationFrame(() => requestAnimationFrame(() => $('#veil').classList.add('off'))); if (Q.get('autoplay') === '1') play(true); } else setTimeout(chk, 80); }; chk(); });
-  requestAnimationFrame(loop);
-}).catch(e => { console.error(e); const d = document.createElement('div'); d.id = 'fatal'; d.textContent = '戰役資料載入失敗：' + (e.message || e); document.body.appendChild(d); $('#veil').classList.add('off'); });
 
 // ---------- 資料前處理 ----------
 function resampleRing(pts, n, closed) {
@@ -119,7 +119,7 @@ function prepAreas() { const C = TH.control; if (!C || C.mode !== 'areas') retur
   const B = C.border; BASE_RING = new Float64Array(B.length * 2); B.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
   AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; });
   J(`battles/${BID}/geo/landc.geojson`, { features: [] }).then(buildFields); }
-function buildFields(landc) { const C = TH.control, t0 = performance.now();
+function buildFields(landc) { if (dead) return; const C = TH.control, t0 = performance.now();
   const x0 = mx(BBOX[0]), x1 = mx(BBOX[2]), y0 = my(BBOX[1]), y1 = my(BBOX[3]), GW = innerWidth <= 700 ? 448 : 640, GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
   const cv = document.createElement('canvas'); cv.width = GW; cv.height = GH; const g = cv.getContext('2d', { willReadFrequently: true });
   const CH = { axis: '#f00', allied: '#0f0', third: '#00f' }, gx = lo => (mx(lo) - x0) / (x1 - x0) * GW, gy = la => (y1 - my(la)) / (y1 - y0) * GH;
@@ -619,7 +619,7 @@ function fireEvent(j, withFx) {
   return;   // v2.5：不再跳事件字卡（會蓋住地圖）。導覽模式的說明改放在左側章節列
   const kf = D.keyframes[j]; const el = $('#event');
   el.querySelector('.ev-zh').textContent = kf.event_zh; el.querySelector('.ev-en').textContent = kf.event_line || '';
-  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); if (!el._ae) { el._ae = 1; el.addEventListener('animationend', ev => { if (ev.animationName === 'evshow') el.classList.remove('show'); }); }
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); if (!el._ae) { el._ae = 1; on(el, 'animationend', ev => { if (ev.animationName === 'evshow') el.classList.remove('show'); }); }
   if (kf.major && withFx && !RM) { const e = D.engagements.find(x => x.k === j); if (e) shocks.push({ x: e.x, y: e.y, t0: performance.now() }); }
 }
 // ---------- 時間軸 ----------
@@ -676,11 +676,11 @@ function bindUI() {
   document.querySelectorAll('#speed button').forEach(b => b.onclick = () => setSpeed(+b.dataset.s));
   const tr = $('#tl-track'); let drag = false;
   const seek = ev => { const r = tr.getBoundingClientRect(); setDay(clamp((ev.clientX - r.left) / r.width, 0, 1) * KD[KD.length - 1], true); };
-  tr.addEventListener('pointerdown', ev => { drag = true; pause(); tr.setPointerCapture(ev.pointerId); seek(ev); });
-  tr.addEventListener('pointermove', ev => drag && seek(ev)); tr.addEventListener('pointerup', () => drag = false);
-  addEventListener('keydown', ev => { if (ev.code === 'Space') { ev.preventDefault(); playing ? pause() : play(true); } if (ev.code === 'ArrowRight') $('#btn-next').click(); if (ev.code === 'ArrowLeft') $('#btn-prev').click(); if (ev.code === 'ArrowUp' || ev.code === 'ArrowDown') { ev.preventDefault(); switchBattle(ev.code === 'ArrowUp' ? -1 : 1); } if (ev.code === 'Escape') closeInfo(); if (ev.key === 'f' && TOUR) setFollow(true); if (ev.key === 't') setTour(!TOUR); if (ev.key === 'l' && selected && selected.type === 'unit') setLock(lockId === selected.id ? null : selected.id); });
+  on(tr, 'pointerdown', ev => { drag = true; pause(); tr.setPointerCapture(ev.pointerId); seek(ev); });
+  on(tr, 'pointermove', ev => drag && seek(ev)); on(tr, 'pointerup', () => drag = false);
+  on(window, 'keydown', ev => { if (ev.code === 'Space') { ev.preventDefault(); playing ? pause() : play(true); } if (ev.code === 'ArrowRight') $('#btn-next').click(); if (ev.code === 'ArrowLeft') $('#btn-prev').click(); if (ev.code === 'ArrowUp' || ev.code === 'ArrowDown') { ev.preventDefault(); switchBattle(ev.code === 'ArrowUp' ? -1 : 1); } if (ev.code === 'Escape') closeInfo(); if (ev.key === 'f' && TOUR) setFollow(true); if (ev.key === 't') setTour(!TOUR); if (ev.key === 'l' && selected && selected.type === 'unit') setLock(lockId === selected.id ? null : selected.id); });
   document.body.classList.toggle('tour', TOUR); if (TOUR) oobTab = 'ch';
-  $('#info-body').addEventListener('click', onPanelClick); $('#oob-body').addEventListener('click', onPanelClick); $('#now').addEventListener('click', onPanelClick); document.body.dataset.view = VIEW;
+  on($('#info-body'), 'click', onPanelClick); on($('#oob-body'), 'click', onPanelClick); on($('#now'), 'click', onPanelClick); document.body.dataset.view = VIEW;
   $('#lg-branch').innerHTML = [['infantry', '步兵'], ['armor', '裝甲'], ['motorized', '摩托化'], ['air', '空軍'], ['naval', '海軍']].map(([b, t]) => `<div class="lg-row"><img alt="" src="${counterCanvas({ side: 'allied', branch: b, label: '', tier: 1, echelon: '' }, 1).cv.toDataURL()}">${t}</div>`).join('');
   const ob = $('#oob'), obb = $('#oob-btn'); const setOob = v => { ob.hidden = !v; obb.setAttribute('aria-expanded', v); };
   setOob(MOBILE ? Q.get('oob') === '1' : true); initBattleNav(); obb.onclick = () => setOob(ob.hidden); $('#oob-close').onclick = () => setOob(false); window.__setOob = setOob;
@@ -690,10 +690,10 @@ function bindUI() {
   lb.onclick = () => setLg(lg.hidden); $('#legend-close').onclick = () => setLg(false);
   $('#info-close').onclick = closeInfo;
   const el = $('#map');
-  el.addEventListener('mousemove', ev => { const r = el.getBoundingClientRect(); hover = nearest(ev.clientX - r.left, ev.clientY - r.top); MAP.getCanvas().style.cursor = hover ? 'pointer' : ''; });
-  el.addEventListener('mouseleave', () => hover = null);
+  on(el, 'mousemove', ev => { const r = el.getBoundingClientRect(); hover = nearest(ev.clientX - r.left, ev.clientY - r.top); MAP.getCanvas().style.cursor = hover ? 'pointer' : ''; });
+  on(el, 'mouseleave', () => hover = null);
   MAP.on('click', e => { const h = nearest(e.point.x, e.point.y); if (h) openInfo(h); else closeInfo(); });
-  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { const m0 = MOBILE, d0 = DPR; measure(); if (m0 !== MOBILE || d0 !== DPR) { buildSprites(); MAP.setPixelRatio(DPR); } layoutTimeline(); }, 150); });
+  let rt; on(window, 'resize', () => { clearTimeout(rt); rt = setTimeout(() => { const m0 = MOBILE, d0 = DPR; measure(); if (m0 !== MOBILE || d0 !== DPR) { buildSprites(); MAP.setPixelRatio(DPR); } layoutTimeline(); }, 150); });
   layoutTimeline();
   window.__select = selectUnit; window.__setView = setView; window.__setDay = d => setDay(d, true);
   window.__unfollow = () => setFollow(false); window.__follow = () => setFollow(true); window.__state = () => ({ day, follow, zoom: MAP.getZoom(), lam: F && F.lam });
@@ -704,7 +704,7 @@ function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); i
 // 切換戰役＝換網址重新載入；先把紙色遮蓋淡入（上面寫下一場的名稱），新頁面準備好才淡出
 function gotoBattle(id) { const n = INDEX.find(b => b.id === id); if (!n || id === BID || gotoBattle.busy) return; gotoBattle.busy = true; const v = $('#veil'), t = (n.title_zh || '').replace(/\s*\d{3,4}$/, '');
   try { sessionStorage.setItem('wl-veil', t); } catch (e) {} v.textContent = t; v.classList.remove('off'); setTimeout(() => location.assign(battleURL(id)), RM ? 0 : 240); }
-addEventListener('pageshow', ev => { if (ev.persisted) { gotoBattle.busy = false; $('#veil').classList.add('off'); } });   // 從上一頁／下一頁快取回來時不要卡在遮蓋
+on(window, 'pageshow', ev => { if (ev.persisted) { gotoBattle.busy = false; $('#veil').classList.add('off'); } });   // 從上一頁／下一頁快取回來時不要卡在遮蓋
 function switchBattle(dir) { const i = INDEX.findIndex(b => b.id === BID), n = INDEX[i + dir]; if (n) gotoBattle(n.id); }
 function initBattleNav() {
   const i = INDEX.findIndex(b => b.id === BID), m = D.meta; const t = m.title_zh || BID;
@@ -720,7 +720,7 @@ function initBattleNav() {
   const menu = $('#bt-menu'); menu.innerHTML = INDEX.map(b => `<a href="${battleURL(b.id)}" data-id="${b.id}" class="${b.id === BID ? 'on' : ''}"${b.id === BID ? ' aria-current="page"' : ''}><b>${esc(b.title_zh)}</b><span>${esc(b.period_zh || '')}</span>${b.status === 'example' ? '<i>示例</i>' : b.status === 'draft' ? '<i>需查證</i>' : b.status === 'skeleton' ? '<i>骨架</i>' : ''}</a>`).join('');
   menu.onclick = ev => { const a = ev.target.closest('a'); if (!a || ev.metaKey || ev.ctrlKey || ev.shiftKey) return; ev.preventDefault(); menu.hidden = true; gotoBattle(a.dataset.id); };
   const tb = $('#bt-title'); tb.onclick = ev => { ev.stopPropagation(); menu.hidden = !menu.hidden; tb.setAttribute('aria-expanded', !menu.hidden); };
-  addEventListener('click', ev => { if (!menu.hidden && !menu.contains(ev.target)) { menu.hidden = true; tb.setAttribute('aria-expanded', false); } });
+  on(window, 'click', ev => { if (!menu.hidden && !menu.contains(ev.target)) { menu.hidden = true; tb.setAttribute('aria-expanded', false); } });
 }
 const ECH = { front: '方面軍（XXXXX）', army: '集團軍／軍團（XXXX）', corps: '軍（XXX）', division: '師（XX）', brigade: '旅（X）' };
 const BR = { infantry: '步兵', armor: '裝甲', motorized: '摩托化', air: '空軍', naval: '海軍' };
@@ -842,7 +842,7 @@ function closeInfo() { selected = null; lockId = null; $('#info').hidden = true;
 // ---------- 主迴圈＋效能取樣 ----------
 const bench = { on: false, dts: [], work: [] }; window.__bench = { start() { bench.dts = []; bench.slow = []; bench.on = true; }, stop() { bench.on = false; return { dts: bench.dts.slice(), slow: bench.slow || [] }; } };
 let lastFrame = 0; const slowWin = []; let slowSum = 0, fbStage = Q.get('glass') === '0' ? 1 : 0;
-function loop(now) {
+function loop(now) { if (dead) return;
   // 自動降級（兩段）：最近 180 幀有超過 18 幀大於 22ms → ①關掉 UI 毛玻璃；仍然慢 → ②地圖畫布解析度降到 0.85 倍（只在沒有 GPU 的環境會發生）
   if (lastFrame && fbStage < 2) { const d = now - lastFrame; slowWin.push(d > 22 ? 1 : 0); slowSum += d > 22 ? 1 : 0; if (slowWin.length > 180) slowSum -= slowWin.shift();
     if (slowWin.length >= 120 && slowSum > 18 && now > 4000) { if (Q.get('glass') !== 'keep' && fbStage === 0) { document.body.classList.add('no-blur'); window.__blurFallback = true; fbStage = 1; }
@@ -852,7 +852,27 @@ function loop(now) {
   const dt = lastT ? Math.min((now - lastT) / 1000, 0.1) : 0; lastT = now; dtGlobal = dt || 0.016;
   if (playing) { if (RM) stepRM(dt); else setDay(day + dt * speed / (TOUR ? SEC_PER_DAY : 1)); if (day >= KD[KD.length - 1]) pause(); }
   if (D) { stepLayers(state(day), dtGlobal); setRiverOpacity(); applyCamera(now); MAP.triggerRepaint(); refreshInfo(); }
-  requestAnimationFrame(loop);
+  raf = requestAnimationFrame(loop);
 }
 let rmAcc = 0; function stepRM(dt) { rmAcc += dt * speed; if (rmAcc > 2) { rmAcc = 0; const i = KD.findIndex(k => k > day + 1e-3); if (i < 0) pause(); else jumpTo(i); } }
+
+// ---------- 啟動（要放在最後：上面的常數都宣告完了才能跑）----------
+function start() {
+  D = data; ['units', 'positions', 'fronts', 'arrows', 'engagements'].forEach(k => D[k] = D[k] || []);
+  DAY0 = Date.parse(D.meta.date_start + 'T00:00:00Z'); BBOX = TH.bbox || BBOX; CITIES = TH.places || []; SEAS = TH.sea_labels || []; KEY_RIVERS = TH.key_rivers || [];
+  for (const k in TH.sides || {}) SIDE_NAME[k] = TH.sides[k].name_zh || SIDE_NAME[k];
+  if (TH.sides) SIDES = Object.keys(TH.sides).filter(k => PLATE[k]); if (!SIDES.includes(VIEW)) VIEW = 'all'; oobSide = VIEW === 'all' ? SIDES[0] : VIEW; D.areas = D.areas || [];
+  D = data; ENGM = asg.engagements || {}; (asg.assignments || []).forEach(a => { if (a.role === 'commander') ASG[a.unit_id] = a; }); prep(); measure(); buildSprites(); initMap(); bindUI();
+  const qd = Q.get('date'); if (qd) day = clamp(dayOf(qd), 0, KD[KD.length - 1]); if (Q.get('day')) day = clamp(+Q.get('day'), 0, KD[KD.length - 1]);
+  setDay(day, true);
+  if (Q.get('speed')) setSpeed(+Q.get('speed'));
+  const vw = Q.get('view'); if (vw) { const [lo, la, z] = vw.split(',').map(Number); setFollow(false); MAP.jumpTo({ center: [lo, la], zoom: z }); }
+  else applyCamera(performance.now());
+  if (Q.get('sel')) { selectUnit(Q.get('sel'), !vw); if (Q.get('lock') === '1') setLock(Q.get('sel')); } else if (Q.get('eng')) selectEng(Q.get('eng'));   // v2.3：可以用網址直接開在某個部隊／交戰
+  MAP.once('load', () => { const chk = () => { if (MAP.areTilesLoaded() && MAP.getLayer('battle') && (!(TH.control && TH.control.mode === 'areas') || FLD)) { window.__ready = true; requestAnimationFrame(() => requestAnimationFrame(() => $('#veil').classList.add('off'))); if (Q.get('autoplay') === '1') play(true); } else if (!dead) setTimeout(chk, 80); }; chk(); });
+  raf = requestAnimationFrame(loop);
+}
+try { start(); } catch (e) { destroy(); throw e; }
+return { id: BID, destroy };
+}
 })();

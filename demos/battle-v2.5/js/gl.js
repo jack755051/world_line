@@ -21,7 +21,7 @@ const GS = 11, SS = 5;
 function sh(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
 function prog(vs, fs, attrs) { const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p);
   const o = { p, a: {}, u: {} }; attrs.forEach(n => o.a[n] = gl.getAttribLocation(p, n)); ['res', 'tex'].forEach(n => o.u[n] = gl.getUniformLocation(p, n)); return o; }
-function init(g) { if (gl === g) return; gl = g; P.geo = prog(GEO_VS, GEO_FS, ['p', 'c', 'e', 'f']); P.fil = prog(GEO_VS, FIL_FS, ['p', 'c', 'e', 'f']); P.spr = prog(SPR_VS, SPR_FS, ['p', 't', 'a']); bufG = gl.createBuffer(); bufS = gl.createBuffer(); tex = gl.createTexture(); }
+function init(g) { if (gl === g) return; gl = g; fldOK = null; fldP = null; for (const k in fldTex) delete fldTex[k];   /* 換了繪圖環境：勢力場的著色器和貼圖要重建 */ P.geo = prog(GEO_VS, GEO_FS, ['p', 'c', 'e', 'f']); P.fil = prog(GEO_VS, FIL_FS, ['p', 'c', 'e', 'f']); P.spr = prog(SPR_VS, SPR_FS, ['p', 't', 'a']); bufG = gl.createBuffer(); bufS = gl.createBuffer(); tex = gl.createTexture(); }
 function setAtlas(cv) { texW = cv.width; texH = cv.height; pendingAtlas = cv; }   // 一律等到 custom layer 的 render 裡才上傳（不打亂 MapLibre 的 GL 狀態快取）
 let pendingAtlas = null;
 function upload(cv) { gl.bindTexture(gl.TEXTURE_2D, tex); gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);

@@ -251,6 +251,36 @@
    "license_code": null,
    "grade": "B",
    "gradeBasis": "具名作者（Bruce W. Menning）之機構百科條目（B）"
+  },
+  "rf-aisixiang-peng": {
+   "title": "朝鮮戰爭彭德懷統帥作用辨析",
+   "authors": [
+    "黃力民"
+   ],
+   "publisher": "愛思想（作者授權發布）",
+   "published_text": null,
+   "url": "https://www.aisixiang.com/data/28442.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者黃力民（研究朝鮮戰爭指揮體制的學者）之學術文章，附《抗美援朝戰爭記事》等官方資料註釋，經作者授權由愛思想網站發布",
+   "addedAt": "2026-11-12T22:08:38+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-cpc-8th-1plenum": {
+   "title": "中國共產黨第八屆中央委員會第一次全體會議（歷次黨代會 第八次）",
+   "authors": [],
+   "publisher": "中國共產黨新聞網（人民網）",
+   "published_text": null,
+   "url": "https://cpc.people.com.cn/GB/64162/64168/64560/65343/4442029.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "中共中央機關報人民日報社主辦之中國共產黨新聞網，轉載八屆一中全會公報，屬官方資料",
+   "addedAt": "2026-11-12T22:08:38+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -1073,10 +1103,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1950-10-01",
-      "end": null
+      "end": "1954-09-05"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "t14Rule": "R6",
      "t14Reason": "類別為戰區司令（R4）；政權 regimeId 未對應、迄日查不到，門檻無法證明",
      "t14Overlap": "general",
@@ -1109,6 +1139,18 @@
        "grade": "A",
        "datePrecision": "month",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-aisixiang-peng",
+       "locator": "全文第一段",
+       "quote": "1950年10月8日-1954年9月5日彭德怀任志愿军司令兼政委，经历朝鲜战争全过程",
+       "quoteLang": "zh",
+       "evidenceNote": "黃力民文章明載任期為1950年10月8日至1954年9月5日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "志願軍司令員兼政治委員任期迄1954年9月5日",
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1202,14 +1244,6 @@
      "target": "position:peng-first-field-army",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；已查人民網－中國共產黨新聞網「彭德怀」（寫1947年3月起任，新中國成立後另任西北軍區司令員、新疆軍區司令員，1950年10月出任志願軍司令員，未寫第一野戰軍司令離任日）、日本大百科全書、世界大百科事典。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12",
-     "citations": []
-    },
-    {
-     "target": "position:peng-cpv",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查人民網－中國共產黨新聞網「彭德怀」（寫1950年10月出任、1952年4月因病回國、1953年7月28日以志願軍司令官身分簽署停戰協定，未寫離任日）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12",
      "citations": []
@@ -1491,9 +1525,59 @@
      "result": "not_relevant",
      "note": "僅回傳書目後設資料，無可抓傳記全文，不作出處",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "彭德怀 志愿军司令员 1954年 邓华 代司令员 免去",
+     "url": "https://www.aisixiang.com/data/28442.html",
+     "result": "found_C",
+     "note": "黃力民文章寫明任期迄1954-09-05"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "人民網 彭德怀大事年表（1950-1959）",
+     "url": "https://cpc.people.com.cn/GB/67481/71472/4844882.html",
+     "result": "not_relevant",
+     "note": "寫1952-04回國、1953-07-28簽停戰協定、1954-09-29任國防部長，未寫志願軍司令離任日"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "第一野戰軍 西北軍區 1954 撤銷 彭德懷 離任",
+     "url": "https://cpc.people.com.cn/n1/2024/0818/c443712-40300850.html",
+     "result": "no_result",
+     "note": "僅見1955-05西北軍區改稱蘭州軍區，無第一野戰軍司令及第十八集團軍副總司令離任日"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "第十八集團軍 改稱 1945 朱德 八路軍 番號 撤銷",
+     "url": "https://m.thepaper.cn/baijiahao_31465278",
+     "result": "no_result",
+     "note": "只見1945年8月朱德發反攻命令、1948-11-01全軍統一稱解放軍，無第十八集團軍正式撤銷日，未收"
     }
    ],
-   "nameZhOrig": "彭德怀"
+   "nameZhOrig": "彭德怀",
+   "resolvedGaps": [
+    {
+     "target": "position:peng-cpv",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查人民網－中國共產黨新聞網「彭德怀」（寫1950年10月出任、1952年4月因病回國、1953年7月28日以志願軍司令官身分簽署停戰協定，未寫離任日）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   },
   {
    "key": "zhude",
@@ -2510,10 +2594,10 @@
      "originalPositionKind": "party",
      "period": {
       "start": "1945-06-01",
-      "end": null
+      "end": "1956-09-28"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "zhu-se",
@@ -2537,6 +2621,30 @@
        "grade": "A",
        "datePrecision": "month",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cpc-8th-1plenum",
+       "locator": "公報正文第一段",
+       "quote": "中国共产党第八届中央委员会在９月２８日晚间举行了第一次全体会议",
+       "quoteLang": "zh",
+       "evidenceNote": "八屆一中全會1956-09-28選出新的中央機構；新書記處名單不含朱德（朱德改任副主席、政治局常委），據此以該日為書記處書記任期迄日（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "朱德中央書記處書記任期迄1956年9月28日",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-cpc-8th-1plenum",
+       "locator": "選舉結果（四）",
+       "quote": "（四）中央书记处书记：邓小平、彭真、王稼祥、谭震林、谭政、黄克诚、李雪峰",
+       "quoteLang": "zh",
+       "evidenceNote": "新任書記處書記名單不含朱德（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "朱德不在八屆一中全會書記處名單",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -2845,6 +2953,44 @@
      "result": "not_relevant",
      "note": "僅回傳書目後設資料，無可抓傳記全文，不作出處",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "中共八屆一中全會 中央書記處書記 名單 1956",
+     "url": "https://cpc.people.com.cn/GB/64162/64168/64560/65343/4442029.html",
+     "result": "found_A",
+     "note": "1956-09-28選出新書記處，名單不含朱德，補書記處迄日"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "朱德 1954年 解放軍總司令 取消 國防委員會",
+     "url": "https://cpc.people.com.cn/GB/64162/64164/4416032.html",
+     "result": "no_result",
+     "note": "搜尋只見1954-09一屆人大選朱德為副主席，無來源明載解放軍總司令離任日"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "第十八集團軍 改稱 1945 朱德 總司令 番號 撤銷",
+     "url": "https://m.thepaper.cn/baijiahao_31465278",
+     "result": "no_result",
+     "note": "無第十八集團軍總司令離任日明載，未收"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "朱德 解放軍總司令 任期 1954 國防委員會 領袖大事年表",
+     "url": "https://paper.people.com.cn/hqrw/html/2012-11/26/content_1148166.htm",
+     "result": "not_relevant",
+     "note": "環球人物文章僅述八大後常委與副主席，無總司令離任日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -3908,6 +4054,44 @@
      "result": "not_relevant",
      "note": "僅回傳書目後設資料，無可抓傳記全文，不作出處",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "林彪 1954 中南軍區 第四野戰軍 撤銷",
+     "url": "https://cpc.people.com.cn/GB/64162/126778/126780/7490123.html",
+     "result": "no_result",
+     "note": "搜尋只見1955-04中南軍區撤銷之通俗文章（無具名機構），不收；A級來源無第四野戰軍司令員離任日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "抗日軍政大學 校長 林彪 離任 1937 歷任校長",
+     "url": "https://www.ourchinastory.com/zh/781",
+     "result": "no_result",
+     "note": "來源對林彪抗大任職起訖互相矛盾且無離任日，未收"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "林彪 年表 1954 國務院副總理 國防委員會 人民網",
+     "url": "https://cpc.people.com.cn/GB/64162/126778/126780/7490123.html",
+     "result": "not_relevant",
+     "note": "A級頁無第四野戰軍及抗大校長離任日"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "林彪 抗大 校長 1938 赴蘇 中文馬克思主義文庫",
+     "url": "https://www.marxists.org/chinese/linbiao/mia-chinese-linbiao-193711.htm",
+     "result": "not_relevant",
+     "note": "文庫頁為林彪文章，無任期資料"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },

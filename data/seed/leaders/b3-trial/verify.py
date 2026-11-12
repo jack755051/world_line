@@ -69,6 +69,10 @@ try:
     _zt = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_zt)
     _zt.to_trad("测试")
     _TO_TRAD, _TRAD_ERR = _zt.to_trad, None
+
+    def _legacy_ok(nz):  # 10:07 版規則（s2t＋PROTECT，不含 t2tw／PRE）下是否已是正體
+        t = _zt._load().convert(nz)
+        return (t if len(t) != len(nz) else "".join(a if a in _zt.PROTECT else b for a, b in zip(nz, t))) == nz
 except Exception as _e:  # noqa
     _TO_TRAD, _TRAD_ERR = None, repr(_e)
 
@@ -164,16 +168,16 @@ def main():
         errs.append("people 為空")
     for p in people:
         key = p.get("key", "?")
-        if allow_c:  # 將領生平檔：nameZh 須為正體（OpenCC s2t 字元轉換後不變；World Line 主管 2026-11-12 10:07）
+        if allow_c:  # 將領生平檔：nameZh 須等於 zh_trad.to_trad(nameZh)（s2t→t2tw 台灣字形＋PRE＋PROTECT；World Line 主管 2026-11-12 10:07／10:20）
             nz = p.get("nameZh")
             if _TO_TRAD is None:
                 errs.append(f"{key}：無法載入 zh_trad／OpenCC，nameZh 正體檢查無法執行（{_TRAD_ERR}）")
             elif isinstance(nz, str) and nz and _TO_TRAD(nz) != nz:
-                # 過渡：A/batch021 在本檢查加入前（10:05）已開跑、名單仍是簡體，只記 note，commit 後由 patch_name_trad.py 補轉；A/batch022 起一律擋
-                if "/A/batch021/" in str(data.get("rawDir") or ""):
-                    warns.append(f"{key}：nameZh 含簡體字（過渡批，待 patch_name_trad.py）：{nz} → {_TO_TRAD(nz)}")
+                # 過渡：A/batch022 在 10:20 字形規則加入前已開跑；若只差台灣字形（10:07 版 s2t 規則已過）只記 note，commit 後由 patch_name_trad.py 補轉；A/batch023 起一律擋
+                if "/A/batch022/" in str(data.get("rawDir") or "") and _legacy_ok(nz):
+                    warns.append(f"{key}：nameZh 非台灣標準字形（過渡批，待 patch_name_trad.py）：{nz} → {_TO_TRAD(nz)}")
                 else:
-                    errs.append(f"{key}：nameZh 含簡體字：{nz} → {_TO_TRAD(nz)}")
+                    errs.append(f"{key}：nameZh 非正體／非台灣標準字形：{nz} → {_TO_TRAD(nz)}")
         if "bioId" not in p:
             errs.append(f"{key}：缺 bioId 鍵（建議 6）")
         paras, poss, gaps = p.get("paragraphs", []), p.get("positions", []), p.get("gaps", [])

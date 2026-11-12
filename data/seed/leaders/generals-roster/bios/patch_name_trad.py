@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """將領中文名一律正體（OpenCC s2t 字元轉換＋PROTECT 逐字保留，見 ../zh_trad.py），並把維基索引名標成候選值。
-World Line 主管 2026-11-12 10:07。冪等：已是正體者不動；原字串只在第一次變更時記錄（name_zh_orig／nameZhOrig），另全數列在報告。
+World Line 主管 2026-11-12 10:07；10:20 起 zh_trad 改為 s2t→t2tw 台灣標準字形＋PRE（冲→沖），本腳本重跑即升級。冪等：已是正體者不動；原字串只在第一次變更時記錄（name_zh_orig／nameZhOrig），另全數列在報告。
 範圍：roster.json people[].name_zh；bios/selection.json S／A people[].name_zh；bios/{S,A}/batch*/research.json people[].nameZh
 （只改已 commit、無未提交變更、且不是主迴圈進行中／未跑的批次）。nameZhUnsourced 不轉（原樣保存，永不入庫）。
 nameZhSource／name_zh_source：維基索引名 → kind=wikipedia-index、status=candidate、verified=false、isCitation=false。
@@ -11,11 +11,17 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 from zh_trad import to_trad
+import zh_trad as _zt
+
+def legacy_10_07(s):
+    """10:07 版轉法（s2t＋PROTECT，無 t2tw／PRE），只用來判斷現值是否由原字串機械轉出。"""
+    t = _zt._load().convert(s)
+    return t if len(t) != len(s) else "".join(a if a in _zt.PROTECT else b for a, b in zip(s, t))
 
 REPO = HERE.parents[4]
 DRY = "--dry-run" in sys.argv
 NOW = datetime.datetime.now().astimezone().isoformat(timespec="seconds")
-REVIEW_CHARS = {"衝": "冲→衝（人名多為「沖」，例 彭沖）", "衆": "众→衆（台灣通行「眾」）"}
+REVIEW_CHARS = {"衝": "冲→衝（人名多為「沖」，例 彭沖）", "衆": "众→衆（台灣通行「眾」）"}  # 10:20 起 PRE／t2tw 已處理，留作回歸檢查
 CAND = {"kind": "wikipedia-index", "status": "candidate", "verified": False, "isCitation": False,
         "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"}
 PEND = {"kind": "none", "status": "pending", "verified": False, "isCitation": False}
@@ -60,7 +66,10 @@ def conv(rec, field, origf, where, bucket):
     old = rec.get(field)
     if not isinstance(old, str) or not old:
         return False
-    new = to_trad(old)
+    orig = rec.get(origf)
+    # 現值若是原字串機械轉出（10:07 版或現行版），以原字串重轉（例 张冲→張衝 改為 張沖）；否則（例 日後依來源改名）只轉現值
+    base = orig if isinstance(orig, str) and orig and old in (legacy_10_07(orig), to_trad(orig)) else old
+    new = to_trad(base)
     if new == old:
         return False
     rec.setdefault(origf, old)
@@ -112,7 +121,7 @@ def main():
         for p in json.loads(f.read_text(encoding="utf-8")).get("people") or []:
             if p.get("nameZhOrig"): cum["research"].append({"where": f"{f.parent.parent.name}/{f.parent.name} {p.get('key')}", "old": p["nameZhOrig"], "new": p.get("nameZh")})
     allrev = [{"where": c["where"], "new": c["new"], "why": why} for k in cum for c in cum[k] for ch, why in REVIEW_CHARS.items() if ch in (c["new"] or "") and ch not in c["old"]]
-    rep = {"generatedAt": NOW, "cumulativeCounts": {k: len(v) for k, v in cum.items()}, "cumulative": cum, "cumulativeNeedsReview": allrev, "converter": "OpenCC 1.4.2 s2t（字元）＋zh_trad.PROTECT 逐字保留", "loopCurrent": f"{cur_tier}/batch{cur_nn}",
+    rep = {"generatedAt": NOW, "cumulativeCounts": {k: len(v) for k, v in cum.items()}, "cumulative": cum, "cumulativeNeedsReview": allrev, "converter": "OpenCC 1.4.2 s2t→t2tw（台灣標準字形，非 s2twp 詞彙）＋zh_trad.PRE（冲→沖）＋zh_trad.PROTECT 逐字保留（含「台」不轉「臺」）", "loopCurrent": f"{cur_tier}/batch{cur_nn}",
            "counts": {k: len(v) for k, v in changes.items()}, "needsReview": review, "skippedResearch": skipped, "changes": changes, "dryRun": DRY}
     if not DRY:
         (HERE / "patch_name_trad.report.json").write_text(json.dumps(rep, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

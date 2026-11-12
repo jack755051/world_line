@@ -26,7 +26,7 @@
 
 ## 輸出格式（直接寫 b0b0e0f 對齊格式，不再事後轉換）
 - 頂層：`batch`="b3-full-v3-batch{{NN}}"、`researchedOn`、`policyVersion`="bio-2026-11-v0"、**`alignedTo`="b0b0e0f"**、`schemaNote`、`rawDir`、`rawMap`、`sources`（每筆一個 key，含 title／authors／publisher／published_text／url／archive_url／catalog_id／license_code／grade／gradeBasis）、`people[]`。
-- 每人：`key`、`bioId`（照名單）、`name`、`nameZh`、`recordIds`、`thickness`（依實查結果寫厚／中／薄）、`paragraphs`、`positions`、`roleCandidates`、`gaps`、`searchLog`。
+- 每人：`key`、`bioId`（照名單）、`name`、`nameZh`（**照名單第 2 欄逐字填**；名單寫「待查證」就填「待查證」，不可自行音譯、翻譯或改繁簡——中文名只取自名冊／索引，2026-11-12 起）、`recordIds`、`thickness`（依實查結果寫厚／中／薄）、`paragraphs`、`positions`、`roleCandidates`、`gaps`、`searchLog`。
 - citation 欄位：sourceKey、locator、quote、quoteLang、evidenceNote、accessedOn、grade、datePrecision、claimSpan、policyVersion。
 - **positions[]**（一般經歷）：種類欄位叫 `positionKind`（不可用 roleKind）。值參考原 7 種 minister／legislator／military_command／party／diplomat／judicial／other（僅供參考，實作時再定），但**不得**為 head_of_state／head_of_government／de_facto_leader，也**不得為 party**（黨職見下），也不得為任何角色層值（見 T14）；另可用 `police`、`military_education`（T14 邊界個案）。
 - **roleCandidates[]**（角色候選）：元首、政府首腦、實際掌權者，以及**所有黨職**都寫在這裡。種類欄位叫 **`role_kind`**（不可用 roleKind／candidateRoleKind），值 ∈ {head_of_state, head_of_government, de_facto_leader, cabinet_minister, military_commander, occupation_administrator, colonial_governor}；每筆必須有 `citations`（照引文規則）、`reason`（非空，說明為何是此角色）、期間、標題（原文＋中文）、organization。

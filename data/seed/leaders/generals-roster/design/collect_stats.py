@@ -43,7 +43,13 @@ dom = collections.defaultdict(lambda: collections.defaultdict(lambda: {"cit": 0,
 people_per_group = collections.defaultdict(set)
 src_count = collections.Counter()
 person_rows = []
-batches = sorted(glob.glob(str(BIOS / "*/batch*/research.json")))
+import subprocess
+def committed(f):
+    """只收已 commit 的批次（主迴圈 commit 前 research.json 已在寫；2026-11-12 09:20 快照因此多算 A/batch016 的 5 人）。"""
+    if not (Path(f).parent / "min-check.json").exists():
+        return False
+    return subprocess.run(["git", "ls-files", "--error-unmatch", str(f)], capture_output=True).returncode == 0
+batches = sorted(f for f in glob.glob(str(BIOS / "*/batch*/research.json")) if committed(f))
 for f in batches:
     d = load(f)
     if not d:
@@ -80,7 +86,7 @@ for g, m in dom.items():
 
 # ---- c. min-check ----
 mc = {"S": [], "A": []}
-for f in sorted(glob.glob(str(BIOS / "*/batch*/min-check.json"))):
+for f in sorted(g for g in glob.glob(str(BIOS / "*/batch*/min-check.json")) if committed(str(Path(g).parent / "research.json"))):
     tier = Path(f).parent.parent.name
     d = load(f)
     for r in (d or {}).get("people") or []:

@@ -85,6 +85,34 @@
    "license_code": null,
    "grade": "A",
    "gradeBasis": "美國聯邦百年飛行委員會官方網站專文（政府機構頁，A）；頁面無具名作者，評等待主管確認"
+  },
+  "rf-generals-graziani": {
+   "title": "Biography of Marshal of Italy Rodolfo Graziani (1882 – 1955), Italy",
+   "authors": [
+    "Steen Ammentorp"
+   ],
+   "publisher": "Generals.dk",
+   "published_text": null,
+   "url": "https://generals.dk/general/Graziani/Rodolfo/Italy.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Steen Ammentorp 個人維護之 WWII 將領資料庫 Generals.dk（具名軍事史網站）；官方來源 403／未能取得時作任期補充"
+  },
+  "rf-generals-arnold": {
+   "title": "Biography of General of the Air Force Henry Harley Arnold (1886 – 1950), USA",
+   "authors": [
+    "Steen Ammentorp"
+   ],
+   "publisher": "Generals.dk",
+   "published_text": null,
+   "url": "https://generals.dk/general/Arnold/Henry_Harley/USA.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Steen Ammentorp 個人維護之 WWII 將領資料庫 Generals.dk（具名軍事史網站）；官方來源 403／未能取得時作任期補充"
   }
  },
  "people": [
@@ -572,10 +600,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1910-01-01",
-      "end": null
+      "end": "1914-07-27"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "treccani-cadorna",
@@ -587,6 +615,18 @@
        "grade": "A",
        "datePrecision": null,
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-cadorna",
+       "locator": "Treccani DBI Cadorna, Luigi（Rochat）",
+       "quote": "Il 27 luglio egli assumeva l'alto incarico",
+       "quoteLang": "it",
+       "evidenceNote": "依名簿下一任起日推得（推論）：DBI 寫 1910 年任熱那亞軍團指揮官，1914 年 7 月 27 日改任陸軍總參謀長",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "Il 27 luglio egli assumeva l'alto incarico",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -666,14 +706,6 @@
      "citations": []
     },
     {
-     "target": "position:cadorna-corpo-armata-genova",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；DBI 只寫1910年出任並於兩年後被指定戰時指揮第二集團軍，未寫卸任日。已查：Treccani DBI（Rochat）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
      "target": "field:battles",
      "gapKind": "not_found",
      "note": "來源不足：DBI 僅概述伊松佐十一次戰役與卡波雷托，戰役日期多為月份精度；各次伊松佐戰役的起迄日待第二來源（如義大利國防部歷史辦公室出版品）。",
@@ -698,9 +730,43 @@
      "url": null,
      "result": "no_result",
      "note": "預算有限，未另抓第二來源（Camera/Senato 資料庫未查）"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "Cadorna comando corpo d'armata Genova 1910-1914",
+     "url": "https://www.treccani.it/enciclopedia/luigi-cadorna_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "DBI 寫1914年7月27日接任總參謀長，據此推熱那亞軍團任期迄日"
+    },
+    {
+     "step": 102,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia Italiana Cadorna",
+     "url": "https://www.treccani.it/enciclopedia/luigi-cadorna/",
+     "result": "not_relevant",
+     "note": "短條目未載熱那亞軍團日期"
     }
    ],
-   "nameZhOrig": "路易吉·卡多尔纳"
+   "nameZhOrig": "路易吉·卡多尔纳",
+   "resolvedGaps": [
+    {
+     "target": "position:cadorna-corpo-armata-genova",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1910年出任並於兩年後被指定戰時指揮第二集團軍，未寫卸任日。已查：Treccani DBI（Rochat）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   },
   {
    "key": "armandodiaz",
@@ -1790,9 +1856,55 @@
      "url": "https://www.esercito.difesa.it/en/History/The-Great-War/Pagine/armando-diaz.aspx",
      "result": "no_result",
      "note": "逾時"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "Diaz Consiglio dell'esercito vicepresidente 迄日 Treccani Enciclopedia",
+     "url": "https://www.treccani.it/enciclopedia/armando-diaz/",
+     "result": "not_relevant",
+     "note": "短條目只寫1922–24任戰爭部長，未寫陸軍委員會卸任"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "Senato del Regno scheda Diaz Armando",
+     "url": "https://notes9.senato.it/web/senregno.nsf/P_Reale?OpenPage&nome=Diaz%20Armando",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "esercito.difesa.it Armando Diaz",
+     "url": "https://www.esercito.difesa.it/storia/Pagine/Armando-Diaz.aspx",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 104,
+     "sourceType": "official",
+     "query": "Gazzetta Ufficiale 1921-11-22 / 1923-10-02 Consiglio dell'esercito",
+     "url": "https://www.gazzettaufficiale.it/eli/gu/1921/11/22/273/sg/pdf",
+     "result": "not_relevant",
+     "note": "1921年11月R.D.1574僅修正委員會組成；1923年公報未見廢止或副主席卸任"
+    },
+    {
+     "step": 105,
+     "sourceType": "named_encyclopedia",
+     "query": "generals.dk Diaz Armando",
+     "url": "https://generals.dk/general/Diaz/Armando/Italy.html",
+     "result": "no_result",
+     "note": "無此人頁面"
     }
    ],
-   "nameZhOrig": "阿尔曼多·迪亚兹"
+   "nameZhOrig": "阿尔曼多·迪亚兹",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   },
   {
    "key": "rodolfograziani",
@@ -2523,10 +2635,10 @@
      "positionKind": "other",
      "period": {
       "start": "1935-02-20",
-      "end": null
+      "end": "1936-05-28"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "treccani-graziani",
@@ -2550,6 +2662,18 @@
        "grade": "A",
        "datePrecision": null,
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-generals-graziani",
+       "locator": "Generals.dk Graziani, Service 表",
+       "quote": "1935-03-11\n–\n1936-05-28\nGovernor of Somalia",
+       "quoteLang": "en",
+       "evidenceNote": "Generals.dk 服役表：索馬利亞總督 1935-03-11 至 1936-05-28",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "Governor of Somalia 迄 1936-05-28",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -2578,10 +2702,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1939-11-03",
-      "end": null
+      "end": "1941-03-24"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "treccani-graziani",
@@ -2593,6 +2717,18 @@
        "grade": "A",
        "datePrecision": "day",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-generals-graziani",
+       "locator": "Generals.dk Graziani, Service 表",
+       "quote": "1939-11-03\n–\n1941-03-24\nChief of the Army General Staff",
+       "quoteLang": "en",
+       "evidenceNote": "Generals.dk 服役表：陸軍參謀長 1939-11-03 至 1941-03-24",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "Chief of the Army General Staff 迄 1941-03-24",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -2621,10 +2757,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1934-01-01",
-      "end": null
+      "end": "1935-02-09"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "treccani-graziani",
@@ -2649,6 +2785,18 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-generals-graziani",
+       "locator": "Generals.dk Graziani, Service 表",
+       "quote": "1934-07-15\n–\n1935-02-09\nGeneral Officer Commanding Udine Corps",
+       "quoteLang": "en",
+       "evidenceNote": "Generals.dk 服役表：烏迪內軍團指揮官 1934-07-15 至 1935-02-09",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "Udine Corps 迄 1935-02-09",
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -2662,30 +2810,6 @@
      "target": "field:recordIds",
      "gapKind": "not_found",
      "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:graziani-governatore-somalia",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；DBI 只寫1935年2月20日獲任，未寫卸任日（其後在亞的斯亞貝巴接任副王）。已查：Treccani DBI（Del Boca）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:graziani-capo-sme",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；DBI 只寫1939年11月3日獲任，未寫卸任日。已查：Treccani DBI。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:graziani-corpo-armata-udine",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；DBI 只寫1934年返國後獲任，未寫卸任日。已查：Treccani DBI。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
@@ -2763,6 +2887,60 @@
      "url": null,
      "result": "no_result",
      "note": "預算有限，未另抓第二來源"
+    },
+    {
+     "step": 101,
+     "sourceType": "named_encyclopedia",
+     "query": "generals.dk Graziani Rodolfo",
+     "url": "https://generals.dk/general/Graziani/Rodolfo/Italy.html",
+     "result": "found_C",
+     "note": "服役表含三職位迄日"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "esercito.difesa.it 歷任陸軍參謀長",
+     "url": "https://www.esercito.difesa.it/en/organization/The-Chief-of-General-Staff-of-the-Army/Pagine/The-Chiefs-of-the-Staff-of-the-Italian-Army.aspx",
+     "result": "no_result",
+     "note": "連線逾時"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:graziani-governatore-somalia",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1935年2月20日獲任，未寫卸任日（其後在亞的斯亞貝巴接任副王）。已查：Treccani DBI（Del Boca）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:graziani-capo-sme",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1939年11月3日獲任，未寫卸任日。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:graziani-corpo-armata-udine",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；DBI 只寫1934年返國後獲任，未寫卸任日。已查：Treccani DBI。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
     }
    ]
   },
@@ -3938,6 +4116,62 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "二戰期間的空中戰役與作戰指導",
+      "en": "Direction of air campaigns in the Second World War"
+     },
+     "body": {
+      "zh-Hant": "阿諾德在二戰期間統領陸軍航空軍，並非前線單一戰場的指揮官，而是以空軍首長身分主導空中作戰的整體指導。依 Centennial of Flight 所載，他推動研發 B-17 與 B-29 等重型遠程轟炸機，用於大規模戰略轟炸戰役；他也支持杜立德空襲東京及對日本本土的燃燒彈轟炸。另據 Generals.dk 服役表，他自1944年4月6日至1945年7月16日出任第二十航空軍司令，該軍即對日戰略轟炸的主力。",
+      "en": "During the Second World War Arnold led the Army Air Forces not as a front-line theatre commander but as the air chief directing air operations overall. Centennial of Flight records that he pushed the B-17 and B-29 heavy long-range bombers for large-scale strategic bombing campaigns and supported the Doolittle raid on Tokyo and the firebombing of Japan. Generals.dk lists him as commanding general of the Twentieth Air Force from 6 April 1944 to 16 July 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight, Hap Arnold",
+       "quote": "Among Arnold’s successful mobilization projects was the",
+       "quoteLang": "en",
+       "evidenceNote": "Centennial 頁：推動 B-17、B-29 供大規模戰略轟炸",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": "B-17 與 B-29 戰略轟炸",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "centennial-arnold",
+       "locator": "Centennial of Flight, Hap Arnold",
+       "quote": "Jimmy Doolittle’s  raid on     Tokyo, firebombing in Japan",
+       "quoteLang": "en",
+       "evidenceNote": "Centennial 頁：杜立德空襲東京、對日燃燒彈轟炸",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": "杜立德空襲與燃燒彈轟炸",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-generals-arnold",
+       "locator": "Generals.dk Arnold, Service 表",
+       "quote": "1944-04-06\n–\n1945-07-16\nCommanding General 20th Air Force",
+       "quoteLang": "en",
+       "evidenceNote": "Generals.dk：第二十航空軍司令 1944-04-06 至 1945-07-16",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "20th Air Force 司令",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
     }
    ],
    "positions": [
@@ -4005,10 +4239,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1938-09-01",
-      "end": null
+      "end": "1941-06-20"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "centennial-arnold",
@@ -4033,6 +4267,18 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-generals-arnold",
+       "locator": "Generals.dk Arnold, Service 表",
+       "quote": "1938-09-22\n–\n1941-06-20\nChief of the Air Corps",
+       "quoteLang": "en",
+       "evidenceNote": "Generals.dk 服役表：航空兵團團長 1938-09-22 至 1941-06-20",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "Chief of the Air Corps 迄 1941-06-20",
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -4053,14 +4299,6 @@
      "target": "field:recordIds",
      "gapKind": "not_found",
      "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11",
-     "citations": []
-    },
-    {
-     "target": "position:arnold-chief-air-corps",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；Centennial of Flight 只寫1938年9月接任團長與1941年6月航空勤務改稱陸軍航空軍，未寫團長卸任日。已查：centennialofflight.net、NASA History Office。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
@@ -4178,9 +4416,51 @@
      "url": "https://snaccooperative.org/view/16986987",
      "result": "no_result",
      "note": "回傳殼層，無內容"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "af.mil / nationalmuseum.af.mil Arnold biography",
+     "url": "https://www.af.mil/About-Us/Biographies/Display/Article/106478/general-of-the-air-force-henry-harley-hap-arnold/",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "history.army.mil Arnold",
+     "url": "https://history.army.mil/Portals/143/Images/Publications/publications-documents/CMH_Pub_70-80-1.pdf",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 103,
+     "sourceType": "named_encyclopedia",
+     "query": "generals.dk Arnold",
+     "url": "https://generals.dk/general/Arnold/Henry_Harley/USA.html",
+     "result": "found_C",
+     "note": "團長任期 1938-09-22 至 1941-06-20；第二十航空軍"
     }
    ],
-   "nameZhOrig": "亨利·阿诺德"
+   "nameZhOrig": "亨利·阿诺德",
+   "resolvedGaps": [
+    {
+     "target": "position:arnold-chief-air-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Centennial of Flight 只寫1938年9月接任團長與1941年6月航空勤務改稱陸軍航空軍，未寫團長卸任日。已查：centennialofflight.net、NASA History Office。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
   }
  ]
 }

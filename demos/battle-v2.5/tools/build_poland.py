@@ -266,8 +266,8 @@ th = json.load(open('battles/poland-1939/theatre.json'))
 th['sides'] = {'axis': {'name_zh': '德軍'}, 'allied': {'name_zh': '波軍'}, 'third': {'name_zh': '蘇軍'}}
 th['places'] = [[n, x, y, RANK.get(n, 1)] for n, (x, y) in G.items()]
 th['control'] = {'mode': 'areas', 'base_side': 'axis', 'border_name_zh': '1939 年波蘭國界（推估，需查證）', 'snap_km': 9, 'under_ids': ['main'],
-                 'hostile': {'de': Y + '09-01'}, 'border': B,
-                 'note': '國界依邊境兩側城鎮歸屬手工描，誤差約 10–20 公里。hostile＝那一類國界從哪一天起算前線（蘇軍那一側改由綠色的控制區邊線表示）。'}
+                 'hostile': {'de': Y + '09-01'}, 'side_from': {'third': Y + '09-17'}, 'border': B,
+                 'note': '國界依邊境兩側城鎮歸屬手工描，誤差約 10–20 公里。side_from＝那一方從哪一天起才算參戰。'}
 dump('battles/poland-1939/theatre.json', th)
 ids = {u['id'] for u in U}
 for e in EN:

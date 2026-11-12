@@ -27,7 +27,7 @@ const mx = lon => lon * R, my = lat => Math.log(Math.tan(Math.PI / 4 + lat * R /
 const ilon = x => x / R, ilat = y => (2 * Math.atan(Math.exp(y)) - Math.PI / 2) / R;
 const N = 420, NPK = 72;
 const SEC_PER_DAY = 1.2;
-let BBOX = [-180, -85, 180, 85], CITIES = [], SEAS = [], KEY_RIVERS = [], SIDE_NAME = { axis: '軸心', allied: '盟軍' }, SIDES = ['axis', 'allied'], AREAS = null, NBSEG = [], BASE_RING = null;
+let BBOX = [-180, -85, 180, 85], CITIES = [], SEAS = [], KEY_RIVERS = [], SIDE_NAME = { axis: '軸心', allied: '盟軍' }, SIDES = ['axis', 'allied'], AREAS = null, BASE_RING = null;
 const rgba = (r, g, b, a) => [r / 255, g / 255, b / 255, a];
 const COL = { sea: '#d6e1e7', land: '#f4f1ea', uk: '#f4f1ea', allied: '#e3eaf2', axis: '#e6c7bd', third: '#d3d7c3', paper: '#faf8f3', coast: '#8fa2ad', river: 'rgba(104,152,190,0.75)', border: 'rgba(80,72,60,0.3)' };
 let VIEW = ['axis', 'allied', 'third'].includes(Q.get('side')) ? Q.get('side') : 'all', ENGM = {}, layOpen = false, oobTab = 'units', oobSide = VIEW === 'all' ? 'axis' : VIEW, infoTab = 'ov', KCAM = [];
@@ -105,32 +105,62 @@ function ringPrep(ring, n) { let r = ring.map(p => [p[0], p[1]]); if (ringArea(r
   let best = 0, bd = -1e9; for (let k = 0; k < n; k++) { const v = s[2 * k + 1] - cy - Math.abs(s[2 * k] - cx); if (v > bd) { bd = v; best = k; } }
   const a = new Float64Array(n * 2); for (let k = 0; k < n; k++) { const q = (best + k) % n; a[2 * k] = s[2 * q]; a[2 * k + 1] = s[2 * q + 1]; }
   return { ring: a, cx, cy }; }
-const NA = 260;
-// v2.7「areas」控制區：底色＝某一方（例如德軍佔領區）鋪滿當年國界，再把其他各方「還握在手裡的區域」一塊塊蓋上去。不必做多邊形相減。
+const NA = 64;
+// v2.8「勢力場」控制區：每個關鍵日把各方的範圍畫成點陣，算出「到自己邊界的有號距離」，存成一張浮點貼圖（R 軸心、G 盟軍、B 第三方、A 中立）。
+// 兩個關鍵日之間把距離線性內插，每個點歸距離最大的那一方 → 任何時刻都是完整分割：不會重疊、不會留縫，口袋會自己平順縮小。
+// 前線＝盟軍與敵方距離相等的那條線，由著色器直接畫（碰到中立國就不畫）。
+let FLD = null;
+function edt2(g, w, h) { const n = Math.max(w, h), INF = 1e20, f = new Float64Array(n), v = new Int32Array(n), z = new Float64Array(n + 1);
+  const run = (off, st, len) => { for (let q = 0; q < len; q++) f[q] = g[off + q * st]; let k = 0; v[0] = 0; z[0] = -INF; z[1] = INF;
+    for (let q = 1; q < len; q++) { let sx; do { const r = v[k]; sx = (f[q] - f[r] + q * q - r * r) / (q - r) / 2; } while (sx <= z[k] && --k > -1); k++; v[k] = q; z[k] = sx; z[k + 1] = INF; }
+    k = 0; for (let q = 0; q < len; q++) { while (z[k + 1] < q) k++; const r = v[k]; g[off + q * st] = f[r] + (q - r) * (q - r); } };
+  for (let x = 0; x < w; x++) run(x, w, h); for (let y = 0; y < h; y++) run(y * w, 1, w); }
 function prepAreas() { const C = TH.control; if (!C || C.mode !== 'areas') return;
   const B = C.border; BASE_RING = new Float64Array(B.length * 2); B.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
-  NBSEG = B.map((p, i) => { const q = B[(i + 1) % B.length]; const h = (C.hostile || {})[p[2]]; return { ax: mx(p[0]), ay: my(p[1]), bx: mx(q[0]), by: my(q[1]), from: h == null ? Infinity : dayOf(h) }; });
-  AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; }); }
-function nearNeutral(x, y, thr, anyBorder) { for (const s of NBSEG) { if (!anyBorder && day >= s.from) continue; const dx = s.bx - s.ax, dy = s.by - s.ay; const t = clamp(((x - s.ax) * dx + (y - s.ay) * dy) / (dx * dx + dy * dy || 1), 0, 1);
-    const ex = x - s.ax - t * dx, ey = y - s.ay - t * dy; if (ex * ex + ey * ey < thr * thr) return true; } return false; }
-function drawAreas() { const S = F.S, rings = [], C = TH.control, LANDC = rgba(244, 241, 234, 1), core = rgba(...INK, 0.92), thr = (C.snap_km || 9) / 3900;
-  const scr = (r, n) => { const fl = new Float64Array(n * 2); for (let k = 0; k < n; k++) { fl[2 * k] = PX(r[2 * k]); fl[2 * k + 1] = PY(r[2 * k + 1]); } return fl; };
-  const bf = scr(BASE_RING, BASE_RING.length / 2); BGL.fillIdx(bf, earcut(bf), AXIS_FILL);
-  const ai = AREAS[S.i], aj = AREAS[S.j]; const ids = [...new Set([...Object.keys(ai), ...Object.keys(aj)])];
-  let lines = []; const under = C.under_ids || [];
-  const drawLines = () => { for (const [pts, side, al] of lines) { if (side === 'third') BGL.line(pts, false, 1.6, rgba(...SIDE_COL.third, 0.75 * al)); else { BGL.line(pts, false, 6, [1, 1, 1, 0.85 * al]); BGL.line(pts, false, 2.2, [core[0], core[1], core[2], core[3] * al]); } } lines = []; };
-  // 三層：先畫「墊底」的那一方主區（之後會被第三方蓋過），再畫第三方，最後畫其餘的口袋
-  for (const [side, un] of [['allied', true], ['third', false], ['allied', false]]) { for (const id of ids) { const a = ai[id], b = aj[id], meta = a || b; if (meta.side !== side || under.includes(id) !== un) continue; let r = new Float64Array(NA * 2), al = 1;
-    if (a && b) for (let k = 0; k < NA * 2; k++) r[k] = lerp(a.ring[k], b.ring[k], S.e);
-    else if (a) { const t = S.i === S.j ? 0 : clamp(S.e * 1.1, 0, 1); if (t >= 0.98) continue; for (let k = 0; k < NA; k++) { r[2 * k] = lerp(a.ring[2 * k], a.cx, t); r[2 * k + 1] = lerp(a.ring[2 * k + 1], a.cy, t); } }
-    else { r = b.ring; al = S.i === S.j ? 1 : sstep(0.3, 0.9, S.e); }
-    const fl = scr(r, NA), idx = earcut(fl); if (side === 'third') { BGL.fillIdx(fl, idx, [LANDC[0], LANDC[1], LANDC[2], al]); BGL.fillIdx(fl, idx, rgba(...SIDE_COL.third, 0.22 * al)); } else BGL.fillIdx(fl, idx, ALLIED_FILL);
-    // 外框：貼著中立國界（或還沒開打的那段國界）的部分不畫，其餘才是前線
-    let run = []; const flush = () => { if (run.length > 1) lines.push([run, side, al]); run = []; };
-    for (let k = 0; k <= NA; k++) { const q = k % NA; if (nearNeutral(r[2 * q], r[2 * q + 1], thr, side === 'third')) flush(); else run.push([fl[2 * q], fl[2 * q + 1]]); } flush();
-    if (meta.name) rings.push({ pp: [], meta, ra: a ? 1 : sstep(0.3, 0.9, S.e), cx: PX(meta.cx), cy: PY(meta.cy) }); }
-    if (un) drawLines(); }
-  drawLines(); F.pockets = rings; }
+  AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; });
+  J(`battles/${BID}/geo/landc.geojson`, { features: [] }).then(buildFields); }
+function buildFields(landc) { const C = TH.control, t0 = performance.now();
+  const x0 = mx(BBOX[0]), x1 = mx(BBOX[2]), y0 = my(BBOX[1]), y1 = my(BBOX[3]), GW = innerWidth <= 700 ? 448 : 640, GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
+  const cv = document.createElement('canvas'); cv.width = GW; cv.height = GH; const g = cv.getContext('2d', { willReadFrequently: true });
+  const CH = { axis: '#f00', allied: '#0f0', third: '#00f' }, gx = lo => (mx(lo) - x0) / (x1 - x0) * GW, gy = la => (y1 - my(la)) / (y1 - y0) * GH;
+  const poly = (rings, col) => { g.fillStyle = col; g.beginPath(); for (const r of rings) { r.forEach((p, k) => k ? g.lineTo(gx(p[0]), gy(p[1])) : g.moveTo(gx(p[0]), gy(p[1]))); g.closePath(); } g.fill('evenodd'); };
+  const under = C.under_ids || [], a = new Float64Array(NP), o = new Float64Array(NP), n = new Float64Array(NP), m = new Uint8Array(NP);
+  D.keyframes.forEach((kf, ki) => { g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH);
+    for (const f of landc.features) { const col = CH[f.properties.k]; if (!col || !f.geometry) continue; (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(rs => poly(rs, col)); }
+    poly([C.border], CH[C.base_side || 'axis']);
+    const ar = D.areas.filter(q => q.date === kf.date);
+    for (const [side, un] of [['allied', true], ['third', false], ['allied', false]]) ar.forEach(q => { if (q.side === side && under.includes(q.id) === un) poly([q.ring], CH[side]); });
+    const px = g.getImageData(0, 0, GW, GH).data, out = new Float32Array(NP * 4);
+    // 各方的有號距離：自己範圍內＝到「其他交戰方」的距離（中立國界不算邊界，否則夾在中立國之間的狹長地帶會整塊同時易手）；範圍外＝負的到自己的距離
+    const outer = v => v === 1 ? 0 : v === 0 ? 1e20 : Math.pow(Math.max(0, 0.5 - v), 2);
+    // 「夠厚」＝3×3 全是：描邊留下的半透明細邊、不到兩格寬的碎片不算距離的起點，否則會被當成近在咫尺的另一方
+    const thick = (src, dst) => { let cnt = 0; for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { const i = y * GW + x; let ok = src[i] && x > 0 && y > 0 && x < GW - 1 && y < GH - 1; if (ok) for (let dy = -1; dy <= 1 && ok; dy++) for (let dx = -1; dx <= 1; dx++) if (!src[i + dy * GW + dx]) { ok = 0; break; } dst[i] = ok ? 0 : 1e20; if (ok) cnt++; } return cnt; };
+    for (let c = 0; c < 3; c++) { const c1 = (c + 1) % 3, c2 = (c + 2) % 3; let any = false;
+      for (let i = 0; i < NP; i++) { const v = px[4 * i + c] / 255; a[i] = v; m[i] = v >= 0.5 ? 1 : 0; if (m[i]) any = true; }
+      if (!any) { for (let i = 0; i < NP; i++) out[4 * i + c] = -1000; continue; }
+      const sub = thick(m, o) ? 1.5 : 0.5; if (sub === 0.5) for (let i = 0; i < NP; i++) o[i] = m[i] ? 0 : 1e20;   // 整個範圍都很小（例如只剩一個據點）：退回用全部像素
+      for (let i = 0; i < NP; i++) m[i] = px[4 * i + c1] + px[4 * i + c2] >= 128 ? 1 : 0; thick(m, n);
+      edt2(o, GW, GH); edt2(n, GW, GH);
+      for (let i = 0; i < NP; i++) out[4 * i + c] = clamp(a[i] >= 0.5 ? Math.max(a[i] - 0.5, Math.sqrt(n[i]) - 1.5) : -Math.max(0.5 - a[i], Math.sqrt(o[i]) - sub), -1000, 1000); }
+    for (let i = 0; i < NP; i++) { const v = clamp(1 - (px[4 * i] + px[4 * i + 1] + px[4 * i + 2]) / 255, 0, 1); o[i] = outer(v); n[i] = v === 1 ? 1e20 : v === 0 ? 0 : Math.pow(Math.max(0, v - 0.5), 2); }
+    edt2(o, GW, GH); edt2(n, GW, GH); for (let i = 0; i < NP; i++) out[4 * i + 3] = clamp(Math.sqrt(n[i]) - Math.sqrt(o[i]), -1000, 1000);
+    if (Q.get('dbg') === 'fld') (window.__fld = window.__fld || [])[ki] = out;
+    BGL.fieldTex('k' + ki, GW, GH, out); });
+  const flat = Array.from(BASE_RING), idx = earcut(flat), from = C.side_from && C.side_from.third ? dayOf(C.side_from.third) : null;
+  FLD = { x0, x1, y0, y1, flat, idx, from, gw: GW, gh: GH }; window.__fieldMs = Math.round(performance.now() - t0); if (MAP) MAP.triggerRepaint(); }
+const hexc = h => [parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255, 1];
+function drawAreas() { F.pockets = []; if (!FLD) return; const S = F.S, L = FLD;
+  const U = x => (x - L.x0) / (L.x1 - L.x0), V = y => (L.y1 - y) / (L.y1 - L.y0);
+  const com = { a: 'k' + S.i, b: 'k' + S.j, e: S.e || 0, gate: L.from != null && day < L.from, dpr: DPR, ppc: (L.x1 - L.x0) * SC / L.gw, c0: hexc(COL.axis), c1: hexc(COL.allied), c2: hexc(COL.third), ink: rgba(...INK, 0.92), lc: rgba(...SIDE_COL.third, 0.75) };
+  const fv = new Float32Array(L.idx.length * 4); L.idx.forEach((q, k) => { const x = L.flat[2 * q], y = L.flat[2 * q + 1]; fv[4 * k] = PX(x); fv[4 * k + 1] = PY(y); fv[4 * k + 2] = U(x); fv[4 * k + 3] = V(y); });
+  BGL.field(Object.assign({ mode: 0, verts: fv }, com));
+  const X0 = PX(L.x0), X1 = PX(L.x1), Y0 = PY(L.y1), Y1 = PY(L.y0);
+  BGL.field(Object.assign({ mode: 1, verts: new Float32Array([X0, Y0, 0, 0, X1, Y0, 1, 0, X1, Y1, 1, 1, X0, Y0, 0, 0, X1, Y1, 1, 1, X0, Y1, 0, 1]) }, com));
+  // 口袋名稱（放大才顯示）：位置在兩個關鍵日之間內插；只存在於其中一天的，淡入或淡出
+  const ai = AREAS[S.i], aj = AREAS[S.j];
+  for (const id of new Set([...Object.keys(ai), ...Object.keys(aj)])) { const p = ai[id], q = aj[id], meta = p || q; if (!meta.name) continue;
+    const ra = p && q ? 1 : S.i === S.j ? 1 : p ? 1 - sstep(0.4, 0.9, S.e) : sstep(0.3, 0.9, S.e);
+    F.pockets.push({ pp: [], meta, ra, cx: PX(p && q ? lerp(p.cx, q.cx, S.e) : meta.cx), cy: PY(p && q ? lerp(p.cy, q.cy, S.e) : meta.cy) }); } }
 function prep() {
   KD = D.keyframes.map(k => dayOf(k.date)); prepAreas();
   const fr = D.keyframes.map(k => D.fronts.find(f => f.date === k.date));

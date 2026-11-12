@@ -1018,7 +1018,7 @@ K1、K2、K3、S1、S2。
 | `party_official` | 未掌權的黨幹部 | **不收** | — |
 
 **2. 收錄門檻與來源**
-- 共通：至少 1 筆 A 級或 2 筆獨立 B 級來源，證明「此人於某政權擔任該職及起訖日期」；C／X 不收（同已決 T1）；只有 verified 才上線（I6）。
+- 共通：至少 1 筆 A 級或 2 筆獨立 B 級來源，證明「此人於某政權擔任該職及起訖日期」；~~C／X 不收（同已決 T1）~~ X 不收；C 依 T1 修訂（Tai 2026-11-12 09:37「C 級可以入庫，前端標示來源等級」）：將領生平中合法且有具名作者或出版機構的 C 級來源可收，其他人物仍不收（見 16.9.1「T1 修訂」）；只有 verified 才上線（I6）。
 - 元首／首腦／實際掌權者：任期與 1908–1945 有交集即收。
 - 佔領／殖民長官：轄區必須是系統中已存在的政權或併入地；任期 ≥ 30 天。代理過渡另標 `acting = true`：收資料、不出卡，只在詳情列出（已決第 2 題）。
 - 閣員：僅外交、國防／陸軍、財政、內政四部，且任期 ≥ 90 天。
@@ -1138,7 +1138,7 @@ K1、K2、K3、S1、S2。
 | `quote_lang` | text NULL | 引文語言（BCP 47），可空、不檢查格式 |
 | `evidence_note` | text NULL | 查證者說明（例：「BnF 與 GND 卒年不同，採 BnF」） |
 | `accessed_on` | date NOT NULL | 當天實際打開的日期 |
-| `grade` | text NULL | 來源等級；CHECK `grade IS NULL OR grade IN ('A','B')`（T1 定義；CHECK 依 Tai 2026-11-10 16:20 核准加上）；NULL＝未評等 |
+| `grade` | text NULL | 來源等級；CHECK `grade IS NULL OR grade IN ('A','B')`（T1 定義；CHECK 依 Tai 2026-11-10 16:20 核准加上）；NULL＝未評等。〔2026-11-12 09:37 T1 修訂：將領具名 C 可入庫；CHECK 何時加入 `'C'` 待 Tai 確認寫庫方案〕 |
 | `date_precision` | text NULL | 這份來源支撐到的日期精度（`day`｜`month`｜`year`）；兩份來源精度不同時，欄位取**都支持的最粗精度**，不合併推高 |
 | `claim_span` | int4range NULL | 選填：支撐段落中哪幾句（句序號，半開） |
 | `policy_version` | text NULL | 寫入當時套用的來源政策版本（16.4.4） |
@@ -1289,7 +1289,7 @@ B1 拆成小步，每步各自 commit。`leader_record_citations` 已於 2026-11
 - `grade` CHECK `IS NULL OR IN ('A','B')`：同時加在 `leader_bio_field_citations` 與 `leader_record_citations`（後者已套用 5442、0 列）。
 - `field` CHECK 以「先 DROP 再以超集重建」加入 `deathPlace`；這是 Up 腳本唯一的 DROP，既有資料全部仍合法。
 - Down 只供開發／測試：已有 `deathPlace` 引用或 `death_place` 資料時 Down 會失敗或丟失該欄。
-- `BioSourcePolicy`（版本 `bio-2026-11-v0`）：硬性排除網域 `wikipedia.org`、`wikidata.org`、`baidu.com`（含子網域，同 `send_batch.py` 的 `BANNED_HOSTS`）、`enciclopediadelecuador.com`（HANDOFF：已被接管）；出版者含 Wikipedia／Wikidata／百度或只標自製者排除；等級 NULL／A／B 可，C／X 依 T1 拒絕（訊息註明留 seed）；引文 ≤ 80 字（NFC 後字元；原為 ≤ 25 個 text element，Tai 2026-11-10 21:52 改）。「LoC 引自 Wikipedia」需看內容，程式無法判斷，仍靠人工。
+- `BioSourcePolicy`（版本 `bio-2026-11-v0`）：硬性排除網域 `wikipedia.org`、`wikidata.org`、`baidu.com`（含子網域，同 `send_batch.py` 的 `BANNED_HOSTS`）、`enciclopediadelecuador.com`（HANDOFF：已被接管）；出版者含 Wikipedia／Wikidata／百度或只標自製者排除；等級 NULL／A／B 可，~~C／X 依 T1 拒絕~~ X 依 T1 拒絕（訊息註明留 seed）；〔2026-11-12 09:37 T1 修訂：Tai 2026-11-12 09:37「C 級可以入庫，前端標示來源等級」，將領具名 C 改為可入庫；但 `BioSourcePolicy` 與寫庫程式（含 `write_b3_paragraphs.py` 第 256 行只收 NULL／A／B）的 C 過濾**維持現狀**，待 Tai 確認寫庫方案後才改〕；引文 ≤ 80 字（NFC 後字元；原為 ≤ 25 個 text element，Tai 2026-11-10 21:52 改）。「LoC 引自 Wikipedia」需看內容，程式無法判斷，仍靠人工。
 - 「字」的計法：**NFC 正規化後的字元**（Unicode code point，C# `EnumerateRunes().Count()`、Python `len(unicodedata.normalize("NFC", s))`，兩者一致），不用 C# `char`（UTF-16 碼元，CJK 擴充 B 區字會算 2）。Tai 2026-11-10 21:52 決定取代原本的 Unicode text element 計法（`StringInfo.LengthInTextElements`）；差別只在 NFC 後仍無預組合字的組合符號與 emoji 序列（各碼點分別計數），gap-830 引文實務上不受影響。
 - 寫入層尚未接上：現有 `POST /leader-bios/{id}/field-citations` 未改（API 零變動）；B2 回填與 B3 起的新寫入流程呼叫 `BioSourcePolicy`。「欄位有 conflict 缺口時該欄必須為 NULL」同屬寫入層檢查。
 
@@ -1424,7 +1424,7 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 
 | # | 事項 | 選項／建議 | 狀態 |
 |---|---|---|---|
-| T1 | 來源等級 A／B 的定義與是否只收 A／B | 建議：A＝官方檔案、國家級傳記辭典、權威機構人名權威（BnF、GND、ÖBL、SBL…）；B＝學術專書、具名作者的百科條目；C／X 不進 DB（留 seed）。需考證組確認後才加 CHECK | ✅ 已決：採建議 |
+| T1 | 來源等級 A／B 的定義與是否只收 A／B | 建議：A＝官方檔案、國家級傳記辭典、權威機構人名權威（BnF、GND、ÖBL、SBL…）；B＝學術專書、具名作者的百科條目；~~C／X 不進 DB（留 seed）~~ X 不進 DB（留 seed）；具名 C 可進 DB（限將領，2026-11-12 09:37 修訂，見 16.9.1「T1 修訂」）。需考證組確認後才加 CHECK | ✅ 已決：採建議 |
 | T2 | Q5：生平引用要套授權允許清單，還是另立史料白名單？白名單存程式常數或 DB 表？ | 設計兩者都支援（16.4.4）；建議先上「硬性排除」層，白名單待憲法修改後再開 | ⏳ 未決，做到時再問 |
 | T3 | `person_positions` 的 `role_kind` 值域 | 建議先用 16.3 的 7 種，`other` 兜底 | ✅ 已決（Tai 2026-11-11 09:11）：改採 16.3.1 的人物範圍與 role_kind（見 16.9.1）；16.3 原提案文字未改（2026-11-11 10:03 起：16.3 原文已依 T11／T12 改寫，見 16.3.3） |
 | T4 | 段落是否要求逐句標註（`claim_span` 必填） | 建議 P1 選填，只逐段 | ✅ 已決：採建議 |
@@ -1443,13 +1443,14 @@ dry-run 數字（DB 狀態：B1 `leader_record_citations` 已套用、`BioCitati
 
 | # | 決議 | 依據 |
 |---|---|---|
-| T1 | 採建議：A＝官方檔案、國家級傳記辭典、權威機構人名權威（BnF、GND、ÖBL、SBL…）；B＝學術專書、具名作者的百科條目；C／X 不進 DB（留 seed）。考證組確認後再加 CHECK | Tai 15:18「1-4 依據建議」 |
+| T1 | 採建議：A＝官方檔案、國家級傳記辭典、權威機構人名權威（BnF、GND、ÖBL、SBL…）；B＝學術專書、具名作者的百科條目；~~C／X 不進 DB（留 seed）~~ X 不進 DB（留 seed）；具名 C 可進 DB（限將領，2026-11-12 09:37 修訂，見下方「T1 修訂」）。考證組確認後再加 CHECK | Tai 15:18「1-4 依據建議」 |
 | T4 | 採建議：P1 只逐段標註，`claim_span` 選填 | 同上 |
 | T6 | 採建議：段落期間可超出 1908–1945（出生、戰後），但只在閱讀對話框顯示、不進地圖時間軸。業務憲法 §1 已註記 | 同上 |
 | T10 | 採建議：先做 B1（出處表）→ B2（回填）；補強批（b50 起）直接用新格式 | 同上 |
 | B5（RAG） | 延後：等詳細生平資料累積後再做；T7、T8、T9 屆時再決定 | Tai 15:19「好」 |
 | T2、T3、T5 | 未決，做到時再問 | — |
-| T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；C／X 由 `BioSourcePolicy` 硬性排除 | Tai 2026-11-10 16:20 核准第 2 段範圍 |
+| T1 補充 | `grade` CHECK 只收 A、B（兩張 citation 表），不再等考證組；~~C／X~~ X 由 `BioSourcePolicy` 硬性排除（C 依下列「T1 修訂」改為可收；現行 CHECK、`BioSourcePolicy`、寫庫程式仍只收 A／B，待 Tai 確認寫庫方案後才改） | Tai 2026-11-10 16:20 核准第 2 段範圍；2026-11-12 09:37 修訂 |
+| T1 修訂（C 級入庫） | Tai 2026-11-12 09:37「C 級可以入庫，前端標示來源等級」：合法且有具名作者或出版機構的 C 級來源可寫入 DB，**限將領生平**；X 仍不可；前端每筆來源都要顯示等級 A／B／C。現行 DB `grade` CHECK（`IS NULL OR IN ('A','B')`）、`BioSourcePolicy` 與寫庫程式（含 `write_b3_paragraphs.py`）的 C 過濾**維持不變**，schema／migration 與程式修改都等 Tai 確認寫庫方案後才做。另見 §20.11 Q15 | Tai 2026-11-12 09:37（World Line 主管轉達） |
 | quote 字數 | 25 字按字元計、只在程式檢查、不加 DB 約束；`quote_lang` 可空。實作採 Unicode text element（見 16.7.1）。**已由下一列取代上限與計法** | 主管裁定（同上） |
 | quote 上限 80 字 | Tai 2026-11-10 21:52 決定上限 80 字，理由：來源區預設收合，只保留單句短引。以 NFC 正規化後的字元計（取代原 text element 計法）；仍只在程式檢查、不加 DB 約束。取代 21:36 的 25 字重摘範圍：B2 跳過的 3265 筆改依 80 字處理（≤ 80 直接採用原句、> 80 才重摘逐字片段、找不到留空），結果見 16.7.4；22:28 核准寫入 5442（3212 筆，留空 53 筆不寫），結果見 16.7.5 | Tai 2026-11-10 21:52；22:28 |
 | B2 寫入範圍 | ≤ 25 字 841 筆回填 `quote`；超過 25 字 3265 筆留空、不截斷（重摘另案）；日精度爭議 10 筆保留現有年份、另記 `conflict`；查不到但已有值 236 筆保留現有值、記 `not_found`；其餘照 dry-run；欄位不在值域 23 筆、重複者跳過。結果見 16.7.3 | Tai 2026-11-10 17:51；21:10 再確認 |
@@ -1965,7 +1966,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 
 1. **問題**：將領生平目前用「達標／來源不足」二分判斷（`check_min.py` 五條件，全部要過才算達標）。結果：S 102 人達標 41、未達標 61；A 75 人達標 33、未達標 42（stats「min-check」）。未達標共 103 人中，**60 人（S 33＋A 27）唯一原因是「職位缺起訖」**（stats 原因組合）——也就是「人物的生平段落都寫好了，卻因某個職位查不到迄日而整人算失敗」。
 2. **方向（Tai 2026-11-12 09:16）**：把人物資料拆成**事實列**與**敘述**兩層；以**完成度分級 L1／L2／L3** 取代二分；缺的欄位標明「未知」而不是讓整個人失敗；補跑只補缺的欄位。
-3. **不變的底線**：沿用 I5（撤回重寫、不 DELETE）、I6（只有 verified 才入庫）、T1（A／B 才進庫，C／X 留 seed；將領生平 seed 另依 Tai 2026-11-12 06:34 收**具名 C 級**、只有 C 也可達標，`verify.py` 以 `gradePolicy=ABC-2026-11-12` 接受；C 是否入庫見 Q15）、`BioSourcePolicy`／§19.4.2 的硬性排除（Wikipedia、Wikidata、百度百科、被接管網域、自製來源）、引文 ≤ 80 字（NFC 字元，§16.4.1）、段落中文 ≤ 400 字／拉丁文字 ≤ 800 字元（§16.3.2）、遇防機器人驗證不繞過（§16.3.2-4）。
+3. **不變的底線**：沿用 I5（撤回重寫、不 DELETE）、I6（只有 verified 才入庫）、T1（A／B 與具名 C 可進庫、X 不進庫：依 Tai 2026-11-12 09:37「C 級可以入庫，前端標示來源等級」 修訂，見 §16.9.1「T1 修訂」；具名 C 限將領生平、合法且有具名作者或出版機構，前端標示來源等級；06:34 起只有 C 也可達標，`verify.py` 以 `gradePolicy=ABC-2026-11-12` 接受；寫庫程式的 C 過濾待 Tai 確認寫庫方案後才改）、`BioSourcePolicy`／§19.4.2 的硬性排除（Wikipedia、Wikidata、百度百科、被接管網域、自製來源）、引文 ≤ 80 字（NFC 字元，§16.4.1）、段落中文 ≤ 400 字／拉丁文字 ≤ 800 字元（§16.3.2）、遇防機器人驗證不繞過（§16.3.2-4）。
 4. **本稿的範圍**：只定規則、資料表欄位草案與作業流程；每一階段實作仍需 Tai 另行核准（比照 §16.7 B1–B5）。
 
 ### 20.1 事實與敘述分開（Tai 第 1 點）
@@ -1999,7 +2000,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 
 ```
 fact_ok(f)   := f.value 非空 或 f.precision == unknown 且存在對應 gap(not_found|conflict|incomplete_range)
-cited(f)     := f 至少 1 筆 citation，grade ∈ {A,B,C}（C 須具名作者或出版機構，Tai 2026-11-12 06:34；等級照實標示，入庫見 Q15），locator 非空，source 網域不在硬性排除，且 policy 網域等級與 grade 一致（20.5）
+cited(f)     := f 至少 1 筆 citation，grade ∈ {A,B,C}（C 須具名作者或出版機構，Tai 2026-11-12 06:34；等級照實標示；可入庫、前端標示等級，Tai 2026-11-12 09:37），locator 非空，source 網域不在硬性排除，且 policy 網域等級與 grade 一致（20.5）
 fetched(c)   := c.fetch_id 存在 且 fetch.http_status == 200 且 fetch.raw_sha256 非空（20.4）
 
 L1 身分卡 :=  name_orig、name_zh、nationality 皆有值且 cited
@@ -2029,7 +2030,7 @@ L3 附引文的敘述 := L2
 **影響（以 stats 為準，推估另標）**
 - 原本被「職位缺起訖」唯一擋下的 **60 人（S 33＋A 27）** 在新規則下 L2 立即成立（前提：他們各列職位都有 cited 與 fetched；此點見 20.4 與 20.7——舊檔沒有抓取紀錄，所以「L2 成立」要先經一次**免費的補登**，見 20.9）。
 - 「只缺戰役」12 人（S 6＋A 6）與「含無指揮職」8 人（S 5＋A 3）取決於 Q2（是否接受以 gap 代替結構化戰役列）；段落／字數不足的 10 人（S 7＋A 3）與「任期＋戰役」13 人（S 10＋A 3）仍需補跑。類別定義與計算見 20.10 與 `cost_estimate.py`。
-- 前端：**只依等級決定顯示什麼**（L1 只顯示身分卡；L2 加職位／戰役列；L3 加生平段落），不再有「來源不足」徽章；等級本身即說明資料厚度。UI 細節不在本稿。
+- 前端：**只依等級決定顯示什麼**（L1 只顯示身分卡；L2 加職位／戰役列；L3 加生平段落），不再有「來源不足」徽章；等級本身即說明資料厚度。L2 以 gap（`no_battle_source`）代替戰役列者，UI **必須顯示「查無戰役來源」**（主管 2026-11-12 09:40，Q2）；每筆來源顯示等級 A／B／C（Tai 2026-11-12 09:37，Q15）。UI 細節不在本稿。
 
 ### 20.3 日期精度欄位：day／month／year／unknown（Tai 第 3 點）
 
@@ -2154,7 +2155,7 @@ L3 附引文的敘述 := L2
 | historicmissourians.shsmo.org | 71 | 0 | 71 | 0 | 2／24 | 8% |
 | eisenhowerlibrary.gov | 26 | 26 | 0 | 0 | 2／24 | 8% |
 
-**順序（暫定，樣本 24 人）**：① `usna.edu`（A，5 人）→ ② `history.navy.mil`（A）→ ③ `history.army.mil`（policy A，**未驗證命中**）→ ④ NARA（`archives.gov`、`catalog.archives.gov`，policy A，**未驗證命中**）→ ⑤ `eisenhowerlibrary.gov`、`history.state.gov`（A，各 2 人）→ ⑥ LoC 典據（`id.loc.gov`／`tile.loc.gov`，A；B3 表中 `id.loc.gov` 3 人，見下「B3」）→ ⑦ B：`anb.org`（policy B，**未驗證命中**）、`millercenter.org`（policy B，未驗證）、`encyclopedia.com`（4 人）、`tshaonline.org`（B 38／C 30，見 20.5.3）。C 級（`historynet.com`、`airandspaceforces.com`、`penelope.uchicago.edu`）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；入庫見 Q15）。
+**順序（暫定，樣本 24 人）**：① `usna.edu`（A，5 人）→ ② `history.navy.mil`（A）→ ③ `history.army.mil`（policy A，**未驗證命中**）→ ④ NARA（`archives.gov`、`catalog.archives.gov`，policy A，**未驗證命中**）→ ⑤ `eisenhowerlibrary.gov`、`history.state.gov`（A，各 2 人）→ ⑥ LoC 典據（`id.loc.gov`／`tile.loc.gov`，A；B3 表中 `id.loc.gov` 3 人，見下「B3」）→ ⑦ B：`anb.org`（policy B，**未驗證命中**）、`millercenter.org`（policy B，未驗證）、`encyclopedia.com`（4 人）、`tshaonline.org`（B 38／C 30，見 20.5.3）。C 級（`historynet.com`、`airandspaceforces.com`、`penelope.uchicago.edu`）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；可入庫、前端標示等級，Tai 09:37）。
 
 **法國（16 人）**
 
@@ -2169,7 +2170,7 @@ L3 附引文的敘述 := L2
 | archivesdiplomatiques.diplomatie.gouv.fr | 6 | 6 | 0 | 0 | 2／16 | 12% |
 | ordredelaliberation.fr | 56 | 56 | 0 | 0 | 1／16 | 6% |
 
-**順序（暫定，樣本 16 人）**：① `defense.gouv.fr`（A，10／16＝62%）→ ② `academie-francaise.fr`（A，6 人，法蘭西學術院）→ ③ `servicehistorique.sga.defense.gouv.fr`（A，4 人）→ ④ `archivesdiplomatiques.diplomatie.gouv.fr`（A，2 人）→ ⑤ BnF 典據（T1 已把 BnF 列為權威人名檔，但前 12 名**無命中**，列入、**未驗證命中**）→ ⑥ B：`treccani.it`（3 人）。`larousse.fr`（C）、`encyclopedia.com`（C 19 筆）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；入庫見 Q15）。
+**順序（暫定，樣本 16 人）**：① `defense.gouv.fr`（A，10／16＝62%）→ ② `academie-francaise.fr`（A，6 人，法蘭西學術院）→ ③ `servicehistorique.sga.defense.gouv.fr`（A，4 人）→ ④ `archivesdiplomatiques.diplomatie.gouv.fr`（A，2 人）→ ⑤ BnF 典據（T1 已把 BnF 列為權威人名檔，但前 12 名**無命中**，列入、**未驗證命中**）→ ⑥ B：`treccani.it`（3 人）。`larousse.fr`（C）、`encyclopedia.com`（C 19 筆）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；可入庫、前端標示等級，Tai 09:37）。
 
 **義大利（11 人）**
 
@@ -2182,7 +2183,7 @@ L3 附引文的敘述 := L2
 | anpi.it | 1 | 0 | 0 | 1 | 1／11 | 9% |
 | normattiva.it | 1 | 1 | 0 | 0 | 1／11 | 9% |
 
-**順序（暫定，樣本 11 人）**：① `treccani.it`（A 451／B 6，10／11＝91%；僅「Dizionario Biografico degli Italiani」條目視為 A，其餘 B，路徑規則待確認，見 20.5.3）→ ② `normattiva.it`、`poliziadistato.it`（A，各 1 人）；SBN／ICCU 典據未在 stats 出現，列入、**未驗證命中**。C 級（`warfarehistorynetwork.com`、`avvenire.it`、`anpi.it`）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；入庫見 Q15）。
+**順序（暫定，樣本 11 人）**：① `treccani.it`（A 451／B 6，10／11＝91%；僅「Dizionario Biografico degli Italiani」條目視為 A，其餘 B，路徑規則待確認，見 20.5.3）→ ② `normattiva.it`、`poliziadistato.it`（A，各 1 人）；SBN／ICCU 典據未在 stats 出現，列入、**未驗證命中**。C 級（`warfarehistorynetwork.com`、`avvenire.it`、`anpi.it`）排在 A／B 之後，只在 A／B 查無時使用（具名 C，Tai 06:34；可入庫、前端標示等級，Tai 09:37）。
 
 **蘇俄（10 人）**
 
@@ -2288,7 +2289,7 @@ L3 附引文的敘述 := L2
 | `treccani.it` | `path_prefix` 規則：DBI→A，其他→B | 解第 2 列；路徑區分的正確性待驗證 |
 | `avalon.law.yale.edu` | `allowed_use = document_text`，`cap = B`；人物生平不採 | 解第 3 列；是否改 A（官方條約文本）見 Q7 |
 | `ibiblio.org`、`finland.fi` | **等級待覆核**（stats 皆為 A：英國 117、美國 11、其他 8） | 前者是檔案代管站、後者是政府形象網站，網域層級給 A 風險高，建議改 `path_prefix` 或降 B |
-| `historynet.com`、`airandspaceforces.com`、`penelope.uchicago.edu`、`larousse.fr` | C（seed 可用；入庫見 Q15） | stats 皆為 C |
+| `historynet.com`、`airandspaceforces.com`、`penelope.uchicago.edu`、`larousse.fr` | C（將領可入庫、前端標示等級，Tai 09:37） | stats 皆為 C |
 
 ### 20.6 維基數據只當候選值（Tai 第 6 點；**用法需 Tai 確認**）
 
@@ -2450,8 +2451,30 @@ L3 附引文的敘述 := L2
 | Q8 | **維基數據只當候選線索**（20.6）是否同意；`leader_bios.wikidata_qid` 在 L1 的地位 | (a) 同意線索用途，QID 不算典據 ID；(b) 同意，QID 可當 L1 的一個 ID，但需 GND／NDL 頁核對；(c) 不同意，完全不用 | (a)；主管規則「Wikidata 不是來源」不變，候選值只放 seed、不入庫 |
 | Q9 | 補跑冷卻期：已有 `not_found` gap 的欄位多久才重查 | (a) 永久（現行等價）；(b) 90 天；(c) 來源政策版本變動時才重查 | (c)：政策或清單變動才有新來源可查 |
 | Q10 | 資料表：`completeness_level` 是否存欄位；`leader_bio_gaps.gap_kind` 是否擴充三值；`source_fetches` 是否新建 | (a) 等級不存、由查詢算；gap_kind 新增 3 值；新建 `source_fetches`；(b) 都不動，抓取紀錄只留檔案 | (a)；每一項都是新增式 migration，實作前另出方案給 Tai（比照 T13） |
-| Q11 | 與 §16 的衝突點：§16.4.1 `quote NOT NULL`（Q4）、§16.2 精度 NULL（Q3）、§16.9.1 T1「C／X 不進 DB」與 Tai 2026-11-12 06:34 具名 C 級政策的關係（見 Q15）、§16.3.2 Q9「未評等來源只作候選」（沿用） | 見 Q3、Q4 | 以 Q3、Q4 的選擇為準；本稿其餘全部沿用，沒有改寫既有章節 |
+| Q11 | 與 §16 的衝突點：§16.4.1 `quote NOT NULL`（Q4）、§16.2 精度 NULL（Q3）、§16.9.1 T1 已依 Tai 2026-11-12 09:37 修訂為「具名 C 可入庫（限將領）、X 不入庫」（見 Q15、§16.9.1「T1 修訂」）、§16.3.2 Q9「未評等來源只作候選」（沿用） | 見 Q3、Q4 | 以 Q3、Q4 的選擇為準；本稿其餘全部沿用，沒有改寫既有章節 |
 | Q12 | 舊批次（S 21＋A 16 份 research.json）如何取得抓取紀錄 | (a) 補登 `/tmp` 現存檔（≈ $0），缺的重抓；(b) 全部重抓；(c) 不補登，L2 以新規格重跑 | (a)；補登檔案標 `legacy-session`，並對 L2 標「待重抓確認」；若 `/tmp` 已被清則改 (b)，估價見 20.10.1 高檔 |
 | Q13 | 戰役指揮官名單（P-A）的來源：由 §19 C1 的戰役 seed 提供，還是先由考證組列出 | (a) 等 C1 的 `battle_units`；(b) 考證組先列敦克爾克、閃擊波蘭、淞滬的指揮官 | (b)：這 3 場是 §19.5 C3 已定的首批，先列名單即可開始補 L1／L2，不必等表建好 |
 | Q14 | B3 已寫入 98 人是否做「補登」（20.9.2） | (a) 做（抓取紀錄＋L1 缺口，不改既有列）；(b) 不做 | (a)；但**先由主管以只讀查詢確認 98 人與 `full` 15 人實際是否已在 5442**（本稿標待查證） |
 | Q15 | 具名 C 級（Tai 2026-11-12 06:34：將領生平可用、只有 C 也可達標）在分級與入庫的地位；§16.9.1 T1 仍寫「C／X 不進 DB」，且目前寫庫腳本會略過 C 級 citation | (a) seed 計級含 C（等級旁照實標示來源等級），入庫前由 Tai 決定是否修改 T1；(b) C 只在 seed 計級，入庫與前端等級只算 A／B；(c) 修改 T1，具名 C 可入庫並在前端顯示等級 | (a)：先不動 T1 與寫庫腳本；L2／L3 以含 C 計級，前端與入庫的處理等 Tai 對 T1 拍板 |
+
+#### 20.11.1 決議紀錄（2026-11-12）
+
+| # | 決定者 | 決定 | 對 §20 的影響 |
+|---|---|---|---|
+| Q1 | 主管 2026-11-12 09:40 決定 | (a) 採 20.2 的 L1／L2／L3 與判定式 | 20.2 判定式定案；L3 沿用 3 段、300 字與 400／800 上限 |
+| Q2 | 主管 2026-11-12 09:40 決定 | (a) 戰役可用 gap（`no_battle_source`）代替，指揮職只作標籤 | UI 必須顯示「查無戰役來源」（已寫入 20.2 前端段）；check_min 條件 ④⑤ 不再擋級 |
+| Q3 | 主管 2026-11-12 09:40 決定 | (a) DB 沿用 NULL＝未知，規則／API 稱 `unknown` | §16.2 不改；20.3「衝突點」解除 |
+| Q4 | 主管 2026-11-12 09:40 決定 | (a) L1／L2 事實列 `quote` 可 NULL，L3 段落 citation 才要求 | §16.4.1 `quote NOT NULL` 的放寬方式（改欄位或事實列另表）隨寫庫方案一併送 Tai 確認 |
+| Q5 | 主管 2026-11-12 09:40 決定 | (a) `~/wl-source-cache/`（內容定址、不進 git）＋定期備份 | 20.4 H1 定案；備份策略同 `~/wl-backups/` |
+| Q6 | 主管 2026-11-12 09:40 決定 | 照建議：L1 照 Tai 順序（NDL 典據→近代日本人の肖像→JACAR→NIDS→kotobank）；L2 把 NIDS、JACAR 提前；未驗證命中暫不自動降序，待 A 級跑完看 stats | 以本表為準（20.5.1 原文保留）：日本 L2 順序為 NIDS→JACAR→NDL／肖像→kotobank；20.5.2 的 N 暫不訂 |
+| Q7 | 主管 2026-11-12 09:40 決定 | 單一網域政策表以 JSON 為 SSOT（與 `domain-policy.json` 同形，加 `path_prefix`、`cap` 等欄） | 20.9.3 `source_policy_domains` 不建 DB 表；各網域等級仍照 20.5.3 初版建議、由考證組覆核 |
+| Q8 | 主管 2026-11-12 09:40 決定 | (a) 維基數據只當候選線索，`wikidata_qid` 不算典據 ID | 20.6 定案；候選值只放 seed、不入庫；Wikidata 永不進來源欄位 |
+| Q9 | 主管 2026-11-12 09:40 決定 | (c) 來源政策或清單版本變動時才重查 | 20.7 冷卻期＝政策版本；`policy_version` 未變就不重查已有 `not_found` 的欄位 |
+| Q10 | 主管 2026-11-12 09:40 決定 | (a) 等級不存欄位、由查詢算；`gap_kind` 新增 `incomplete_range`、`no_battle_source`、`no_command_role`；新建 `source_fetches` | 僅定方向；migration 等 Tai 確認寫庫方案 |
+| Q11 | 主管 2026-11-12 09:40 決定 | 依 Q3、Q4、Q15 的決定 | §16.2 不改（Q3）；§16.4.1 quote 放寬隨寫庫方案（Q4）；§16.9.1 T1 已修訂（Q15） |
+| Q12 | 主管 2026-11-12 09:40 決定 | (a) 補登 `/tmp` 現存檔（標 `legacy-session`），缺的重抓 | 20.4「舊檔相容」與 20.7「舊批次」定案 |
+| Q13 | 主管 2026-11-12 09:40 決定 | (b) 考證組先列敦克爾克、閃擊波蘭、淞滬的指揮官 | 20.8 P-A 名單由考證組先提，不等 `battle_units` |
+| Q14 | 主管 2026-11-12 09:40 決定 | (a) B3 已寫入 98 人做補登（抓取紀錄＋L1 缺口，不改既有列） | 主管 09:40 以只讀查詢確認 5442：98 人共 232 段有效段落，與檔案一致；`full` 的 15 人**未寫入** DB。20.9.2 兩項「待查證」據此解除 |
+| Q15 | Tai 2026-11-12 09:37 決定 | 「C 級可以入庫，前端標示來源等級」：具名 C（合法、有具名作者或出版機構；限將領生平）可寫入 DB，X 仍不可；前端每筆來源顯示等級 | §20 的 C 級文字與 Q11 已改；§16 的 T1 相關段落已加修訂註記（§16.9.1「T1 修訂」）；寫庫程式（含 `write_b3_paragraphs.py`）的 C 過濾**維持現狀**，待 Tai 確認寫庫方案後才改 |
+
+- **schema／migration 一律暫緩**：20.9.3 的表草案、`gap_kind` 擴充、`source_fetches`、`quote` 放寬、`grade` CHECK 加入 `'C'` 等，都要等 **Tai 確認寫庫方案**後才開始；在那之前只有文件與 seed。

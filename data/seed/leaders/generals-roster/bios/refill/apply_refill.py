@@ -23,6 +23,21 @@ VERIFY = BIOS.parent.parent / "b3-trial" / "verify.py"
 CACHE = Path.home() / "wl-source-cache"
 TODAY = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime("%Y-%m-%d")
 RUN_ID = "refill-2026-11-12"
+# 主管 2026-11-12 22:08：generals.dk（個人網站）禁用；只對生效後開跑的批次擋新增來源（與 verify.py DATED_BANNED_HOSTS 同一時間）
+DATED_BANNED_HOSTS = {"generals.dk": "2026-11-12T22:10:05+08:00"}
+STATE = BIOS.parents[4] / ".dev" / "cc-person-refill.state.json"
+
+
+def batch_started(tier, nn):
+    """補跑批開跑時間（ISO，+08:00）；state 沒有就用現在。"""
+    try:
+        st = json.loads(STATE.read_text(encoding="utf-8"))
+        v = (st.get("batches") or {}).get(f"{tier}/{nn}", {}).get("started")
+        if v:
+            return datetime.datetime.strptime(v.replace(" CST", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=datetime.timezone(datetime.timedelta(hours=8))).isoformat()
+    except Exception:
+        pass
+    return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).replace(microsecond=0).isoformat()
 
 
 def fmt_of(raw):
@@ -42,11 +57,19 @@ def sha(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest() if p and Path(p).exists() else None
 
 
-def merge(d, rawmap, rf, sel_people, errs):
+def merge(d, rawmap, rf, sel_people, errs, started=None):
     srcs = d.setdefault("sources", {})
     for k, s in (rf.get("sources") or {}).items():
+        s = dict(s)
+        s.setdefault("addedAt", started); s.setdefault("addedBy", RUN_ID)
+        from urllib.parse import urlparse
+        for u in (s.get("url"), s.get("archive_url")):
+            host = ((urlparse(u).hostname or "") if u else "").lower()
+            for h, since in DATED_BANNED_HOSTS.items():
+                if (host == h or host.endswith("." + h)) and started and started >= since:
+                    errs.append(f"source {k} 網域已禁用：{h}（主管 2026-11-12 22:08，個人網站）")
         if k in srcs:
-            if srcs[k] != s:
+            if {x: y for x, y in srcs[k].items() if x not in ("addedAt", "addedBy")} != {x: y for x, y in s.items() if x not in ("addedAt", "addedBy")}:
                 errs.append(f"source key 已存在且內容不同：{k}（新 key 請用 rf- 前綴）")
             continue
         if s.get("grade") not in ("A", "B", "C"):
@@ -170,7 +193,8 @@ def main():
     except Exception as e:
         print(json.dumps({"ok": False, "errors": [f"refill.json 讀取失敗：{e}"]}, ensure_ascii=False)); return 1
     before = {p["key"]: check(p) for p in d.get("people") or []}
-    merge(d, rawmap, rf, sel_people, errs)
+    started = batch_started(tier, nn)
+    merge(d, rawmap, rf, sel_people, errs, started)
     after = {p["key"]: check(p) for p in d.get("people") or [] if p["key"] in (rf.get("people") or {})}
     res = {"ok": False, "mode": mode, "errors": errs,
            "before": {k: {x: before[k][x] for x in ("paragraphs", "zhChars", "termsFull", "termsFlagged", "termsMissing", "hasCommand", "hasBattle", "meetsMinimum")} for k in after if k in before},

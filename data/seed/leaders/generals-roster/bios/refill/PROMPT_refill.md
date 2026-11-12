@@ -13,7 +13,7 @@
 
 ## 必守規則（全文見 `data/seed/leaders/generals-roster/bios/PROMPT_research.md`，先用 Grep 讀其中「## 規則」「英語國家官方來源與具名 C 級」「日本及其他非英語國家將領」「## 搜尋策略」「## 抓取與原文」與 T14 R0–R6 段落）
 - 只補缺：**不重寫、不改、不刪既有段落／職位／來源**；只新增，或替既有職位補上空著的起／迄日。
-- 出處只能 A、B 或具名 C；每筆 citation 必寫 `grade`，且與 `sources[sourceKey].grade` 一致；C 級 source 的 authors 或 publisher 至少一項非空，gradeBasis 寫出具名作者／機構。Wikipedia／Wikidata／百度／維基類／論壇／部落格／AI 站／無署名內容一律不收（Wikidata 只可當候選值線索，不寫進檔案）。不用 `curl -k`／`--insecure`，不登入，不繞過防機器人頁（403／挑戰頁照實寫 searchLog）。
+- 出處只能 A、B 或具名 C；每筆 citation 必寫 `grade`，且與 `sources[sourceKey].grade` 一致；C 級 source 的 authors 或 publisher 至少一項非空，gradeBasis 寫出具名作者／機構。Wikipedia／Wikidata／百度／維基類／論壇／部落格／AI 站／無署名內容／個人網站一律不收；**generals.dk 禁用**（個人網站，主管 2026-11-12 22:08；既有引用不要沿用、不要新增）（Wikidata 只可當候選值線索，不寫進檔案）。不用 `curl -k`／`--insecure`，不登入，不繞過防機器人頁（403／挑戰頁照實寫 searchLog）。
 - quote：逐字取自 .txt、NFC 後 ≤80 字元、完整語意片段；每個事實子句都要對得到該段／該職位的某筆 citation quote。不可編造；查不到寫 gap（note 以「待查證：」開頭）＋searchLog。
 - 新 source key 一律用 `rf-` 前綴（例 `rf-ndl-yamaguchi`），不可與既有 key 相同。
 - 任期：補迄日時 quote 必須含該日期（或年／月）；Q3 月／年精度終點寫下一單位起日（例：到 1941 年 → "1942-01-01"＋endPrecision "year"）；Q7 推論須寫 evidenceNote「依名簿下一任起日推得（推論）」。

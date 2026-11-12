@@ -1,7 +1,7 @@
 {
  "decision": "Tai 本人 2026-11-12 06:34（World Line 主管轉達）：將領生平來源放寬到具名 C 級",
  "scope": "只限將領生平（data/seed/leaders/generals-roster/bios；research.json 頂層 gradePolicy=ABC-2026-11-12）；B3 其他檔仍只收 A／B",
- "rule": "C＝有具名作者或具名出版機構的正當來源（報紙／通訊社、大學、博物館、具名作者或出版者的軍事史網站、一般出版社書籍）；逐頁判定，sources.authors 或 publisher 至少一項非空，gradeBasis 寫出具名者",
+ "rule": "C＝具名作者或具名機構的正當出版物（主管 2026-11-12 22:08 重申；個人網站不算）（報紙／通訊社、大學、博物館、具名作者或出版者的軍事史網站、一般出版社書籍）；逐頁判定，sources.authors 或 publisher 至少一項非空，gradeBasis 寫出具名者",
  "always_forbidden": [
   "Wikipedia 及任何維基類（Wikiwand、Fandom 等）",
   "Wikidata",
@@ -10,7 +10,16 @@
   "AI 生成內容站",
   "論壇／討論區／問答站",
   "部落格",
-  "個人網站（除非由具名機構發布）"
+  "個人網站（除非由具名機構發布）",
+  "generals.dk（個人網站；主管 2026-11-12 22:08 明列禁用）"
+ ],
+ "banned_domains": [
+  {
+   "domain": "generals.dk",
+   "decision": "主管 2026-11-12 22:08",
+   "basis": "個人網站；具名 C＝具名作者或機構的正當出版物",
+   "effective": "verify.py／apply_refill.py：生效後新增的來源一律擋；既有已 commit 引用暫不改，REFILL_REPORT 列待替換"
+  }
  ],
  "source_kind_hint": {
   "報紙／通訊社": "news",

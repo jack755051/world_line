@@ -47,6 +47,10 @@ C_BANNED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "wikiwand.co
                   "sites.google.com", "hubpages.com", "ancestry.com", "findagrave.com", "geni.com",
                   "fold3.com", "historynet.com/forum", "axishistory.com", "ww2talk.com", "feldgrau.net")
 C_BANNED_HOST_HINTS = ("forum", "bbs.", "blog.", ".blog", "wiki.")
+# 主管 2026-11-12 22:08（套用 Tai 既有「個人網站不收」）：generals.dk 禁用。只擋本規則生效後新增的來源——
+# apply_refill.py 對新增來源蓋 addedAt＝該補跑批開跑時間；addedAt ≥ 生效時間且網域命中 → 錯誤。既有已 commit 的引用（無 addedAt 或較早）不擋，
+# 由 bios/refill/final_refill_report.py 列為「待替換」。
+DATED_BANNED_HOSTS = {"generals.dk": "2026-11-12T22:10:05+08:00"}
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
 ALIGNED_POSITION_KINDS = ROLE_KINDS | {"police", "military_education"}   # T14 文件 §4 邊界個案
 ROLE_LAYER_KINDS = {"head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister", "military_commander",
@@ -117,6 +121,11 @@ def main():
             host = (urlparse(u).hostname or "") if u else ""
             if any(host == h or host.endswith("." + h) for h in EXCLUDED_HOSTS):
                 errs.append(f"來源 {k} 網域被排除：{host}")
+        for u in (s.get("url"), s.get("archive_url")):
+            host = ((urlparse(u).hostname or "") if u else "").lower()
+            for h, since in DATED_BANNED_HOSTS.items():
+                if (host == h or host.endswith("." + h)) and str(s.get("addedAt") or "") >= since:
+                    errs.append(f"來源 {k} 網域已禁用（{h}，主管 2026-11-12 22:08，個人網站）：addedAt {s.get('addedAt')}")
         if s.get("grade") not in (None,) + OKG:
             errs.append(f"來源 {k} grade 非法：{s.get('grade')}")
         if s.get("grade") == "C":

@@ -62,7 +62,52 @@ for b in st.get("plan") or []:
         ok = bool(now and now[0]["meetsMinimum"])
         filled_n += ok
         L.append(f"| {b['id']} | {p['key']} | {'、'.join(p['missing'])} | {'、'.join(after) or '—'} | {'✓' if ok else ''} |")
-L += ["", f"計畫內 {sum(len(b['people']) for b in st.get('plan') or [])} 人，補後達標 {filled_n} 人。", "",
-      "## 花費", "", f"- 專案總花費 ${tot:.4f}（補跑本身 ${rf:.4f}；起點 $205.94）；硬停 $330，補跑 >$100 暫停。", ""]
+L += ["", f"計畫內 {sum(len(b['people']) for b in st.get('plan') or [])} 人，補後達標 {filled_n} 人。", ""]
+
+# ── generals.dk 禁用（主管 2026-11-12 22:08，個人網站）：報告時計算，不改 research.json ──
+from urllib.parse import urlparse  # noqa: E402
+BANNED = ("generals.dk",)
+
+
+def _banned(src):
+    for u in ((src or {}).get("url"), (src or {}).get("archive_url")):
+        h = ((urlparse(u).hostname or "") if u else "").lower()
+        if any(h == b or h.endswith("." + b) for b in BANNED):
+            return True
+    return False
+
+
+def gendk_scan():
+    """回傳 [(tier, batch, key, nameZh, 引用數, 來源鍵, [待替換欄位])]（所有 S/A research.json）。"""
+    out = []
+    for f in sorted(BIOS.glob("[SA]/batch*/research.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        bad = {k for k, s in (d.get("sources") or {}).items() if _banned(s)}
+        if not bad:
+            continue
+        for p in d["people"]:
+            n = 0; keys = set(); only = []
+            for kind, items in (("段落", p.get("paragraphs") or []), ("職務", p.get("positions") or [])):
+                for i, it in enumerate(items):
+                    cs = [c for c in (it.get("citations") or []) if isinstance(c, dict)]
+                    hit = [c for c in cs if c.get("sourceKey") in bad]
+                    n += len(hit); keys |= {c["sourceKey"] for c in hit}
+                    if hit and len(hit) == len(cs):
+                        lab = it.get("ord", i + 1) if kind == "段落" else ((it.get("title") or {}).get("zh-Hant") or it.get("key") or i + 1)
+                        only.append(f"{kind} {lab}")
+            if n:
+                out.append((f.parent.parent.name, f.parent.name[5:], p["key"], p.get("nameZh") or "", n, sorted(keys), only))
+    return out
+
+
+gd = gendk_scan()
+L += ["## generals.dk 引用（主管 2026-11-12 22:08 禁用：個人網站；既有引用暫不改，待替換）", "",
+      f"- 涉及 {len(gd)} 人、{sum(x[4] for x in gd)} 筆引用；其中 {sum(1 for x in gd if x[6])} 人有「只靠 generals.dk 支撐」的欄位（下表「待替換」，報告時計算，未改資料）。",
+      "- 生效後開跑的批次：verify.py／apply_refill.py 依來源 addedAt 擋新增；寫庫時 source-kind-overrides 為 null → DROP。", "",
+      "| 層 | 批 | key | 中文名 | 引用數 | 來源鍵 | 待替換（只靠 generals.dk） |", "|---|---|---|---|---|---|---|"]
+for t, nn, k, zh, n, ks, only in gd:
+    L.append(f"| {t} | {nn} | {k} | {zh} | {n} | {'、'.join(ks)} | {'、'.join(map(str, only)) or '—'} |")
+L += ["", "## 花費", "", f"- 專案總花費 ${tot:.4f}（補跑本身 ${rf:.4f}；起點 $205.94）；硬停 $330，補跑 >$100 暫停。", ""]
 (BIOS / "REFILL_REPORT.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+print(f"generals.dk people={len(gd)} citations={sum(x[4] for x in gd)} only_supported_people={sum(1 for x in gd if x[6])} fields={sum(len(x[6]) for x in gd)}")
 print(f"REFILL_REPORT written: S {cnt['S'][1]}/{cnt['S'][0]} A {cnt['A'][1]}/{cnt['A'][0]} planned_met={filled_n} total={tot:.4f} refill={rf:.4f}")

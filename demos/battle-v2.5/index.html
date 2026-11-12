@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>戰役動態地圖</title>
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
-<link rel="stylesheet" href="style.css?v=2.9.0">
+<link rel="stylesheet" href="style.css?v=2.9.1">
 <link rel="icon" href="data:,">
 </head>
 <body>
 <!-- 過場遮蓋：頁面一開始就蓋著紙色，等戰役全部準備好才淡出；切換戰役時先淡入再換頁，不會看到載入到一半的畫面。樣式寫在這裡，不等 style.css -->
 <style>#veil{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:#fbfaf6;color:#26201c;font:900 30px/1.2 "Noto Serif TC","Noto Serif CJK TC","Songti TC",serif;letter-spacing:.04em;opacity:1;transition:opacity .28s ease}#veil.off{opacity:0;pointer-events:none}@media (prefers-reduced-motion:reduce){#veil{transition:none}}</style>
 <div id="veil" aria-hidden="true"></div>
-<script>try{var vt=sessionStorage.getItem('wl-veil');sessionStorage.removeItem('wl-veil');if(vt)document.getElementById('veil').textContent=vt;}catch(e){}</script>
 <div id="app">
   <header id="hud-top">
     <div class="hd-main">
@@ -82,7 +81,7 @@
 <script src="vendor/maplibre-gl.js"></script>
 <script src="vendor/earcut.min.js"></script>
 <script src="vendor/milsymbol.js"></script>
-<script src="js/gl.js?v=2.9.0"></script>
-<script src="app.js?v=2.9.0"></script>
+<script src="js/gl.js?v=2.9.1"></script>
+<script src="app.js?v=2.9.1"></script>
 </body>
 </html>

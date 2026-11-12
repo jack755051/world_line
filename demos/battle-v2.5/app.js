@@ -22,22 +22,37 @@ const $ = s => document.querySelector(s);
 // 戰役的全部狀態都關在 createBattle() 裡面；外殼只留著目前這一個實例（window.__battle）。
 const J = (u, dflt) => fetch(u).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }).catch(e => { if (dflt !== undefined) return dflt; throw e; });
 const fatal = e => { console.error(e); const d = document.createElement('div'); d.id = 'fatal'; d.textContent = '戰役資料載入失敗：' + (e.message || e); document.body.appendChild(d); $('#veil').classList.add('off'); };
-function loadBattle(INDEX, BID, dflt) {
-  if (!INDEX.some(b => b.id === BID)) BID = dflt || INDEX[0].id;
-  const base = `battles/${BID}/`;
-  return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {})])
-    .then(([data, asg, th]) => window.__battle = createBattle({ INDEX, BID, data, asg, th }));
+const fetchBattle = id => { const base = `battles/${id}/`;
+  return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {})]).then(([data, asg, th]) => ({ data, asg, th })); };
+let INDEX = [], DFLT = '', CUR = null, busy = false;
+// 遮蓋：第一次載入蓋整頁；原地換戰役時只蓋地圖（標題列和面板留著），手機版面板疊在地圖上所以還是蓋整頁
+function veilOn(text, mapOnly) { const v = $('#veil'), r = mapOnly && innerWidth > 700 ? $('#map-wrap').getBoundingClientRect() : null;
+  Object.assign(v.style, r ? { top: r.top + 'px', left: r.left + 'px', width: r.width + 'px', height: r.height + 'px', right: 'auto', bottom: 'auto' } : { top: '', left: '', width: '', height: '', right: '', bottom: '' });
+  v.textContent = text; v.classList.remove('off'); }
+// 原地換戰役：遮住地圖 → 抓新戰役的資料 → 銷毀舊實例 → 建新實例（它準備好會自己把遮蓋淡出）。不重新載入頁面。
+function go(id, url, push = true) { const n = INDEX.find(b => b.id === id); if (!n || busy || (CUR && CUR.id === id)) return; busy = true; window.__ready = false;
+  const t0 = performance.now(); veilOn((n.title_zh || '').replace(/\s*\d{3,4}$/, ''), true);
+  fetchBattle(id).then(d => new Promise(r => setTimeout(() => r(d), Math.max(0, (RM ? 0 : 240) - (performance.now() - t0)))))
+    .then(d => { if (push) history.pushState({ battle: id }, '', url || location.pathname + '?battle=' + id); if (CUR) CUR.destroy(); CUR = null; CUR = window.__battle = createBattle(Object.assign({ INDEX, BID: id, go }, d)); })
+    .catch(e => { if (CUR) { console.error(e); $('#veil').classList.add('off'); } else fatal(e); })   // 資料抓不到：留在原本的戰役；舊的已經拆掉才出錯：顯示錯誤
+    .finally(() => { busy = false; const want = new URLSearchParams(location.search).get('battle'); if (CUR && want && want !== CUR.id) go(want, null, false); });
 }
-J('battles/index.json').then(idx => { const INDEX = idx.battles || []; return loadBattle(INDEX, Q.get('battle') || idx.default || (INDEX[0] || {}).id, idx.default); }).catch(fatal);
+addEventListener('popstate', () => go(new URLSearchParams(location.search).get('battle') || DFLT, null, false));   // 瀏覽器上一頁／下一頁
+J('battles/index.json').then(idx => { INDEX = idx.battles || []; DFLT = idx.default || (INDEX[0] || {}).id; let id = Q.get('battle') || DFLT; if (!INDEX.some(b => b.id === id)) id = DFLT;
+  return fetchBattle(id).then(d => { CUR = window.__battle = createBattle(Object.assign({ INDEX, BID: id, go }, d)); }); }).catch(fatal);
 
 // ================= 戰役實例 =================
 // 一場戰役的資料、地圖、部隊、時間軸、面板狀態全部是這個函式裡的區域變數；事件一律用 on() 綁（destroy 時一起解除）。
-// 回傳 { id, destroy }。目前切換戰役仍是整頁重新載入，destroy 是給之後「原地換戰役」用的。
+// 回傳 { id, destroy }。換戰役時外殼先 destroy() 舊的再建新的（不重新載入頁面）；網址參數在建立當下重讀。
 function createBattle(cfg) {
+const Q = new URLSearchParams(location.search);   // 蓋掉外殼的 Q：原地換戰役後網址已經不同
 const data = cfg.data, asg = cfg.asg;
-let dead = false, raf = 0; const offs = [];
+let dead = false, raf = 0, evBound = false; const offs = [];
 const on = (target, type, fn, opt) => { target.addEventListener(type, fn, opt); offs.push(() => target.removeEventListener(type, fn, opt)); };
-function destroy() { if (dead) return; dead = true; playing = false; cancelAnimationFrame(raf); offs.splice(0).forEach(f => f()); if (MAP) { MAP.remove(); MAP = null; } window.__ready = false; }
+function destroy() { if (dead) return; dead = true; playing = false; cancelAnimationFrame(raf); offs.splice(0).forEach(f => f()); if (MAP) { MAP.remove(); MAP = null; } window.__ready = false; delete window.__fieldMs;
+  // 畫面上屬於這場戰役的殘留：名稱牌、提示、事件字卡、資訊卡、戰役清單、圖例裡動態加的列
+  ['#eng-tags', '#pk-tags'].forEach(q => { const b = $(q); if (b) { b.innerHTML = ''; b._key = b._key2 = undefined; b._els = {}; } });
+  document.querySelectorAll('.lg-dyn').forEach(e => e.remove()); $('#event').classList.remove('show'); $('#info').hidden = true; $('#bt-menu').hidden = true; const tip = $('#tip'); if (tip) { tip.hidden = true; tip._id = null; } }
 let DAY0 = 0, BID = cfg.BID, INDEX = cfg.INDEX, TH = cfg.th;
 const dayOf = iso => (Date.parse(iso + 'T00:00:00Z') - DAY0) / 864e5;
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
@@ -619,7 +634,7 @@ function fireEvent(j, withFx) {
   return;   // v2.5：不再跳事件字卡（會蓋住地圖）。導覽模式的說明改放在左側章節列
   const kf = D.keyframes[j]; const el = $('#event');
   el.querySelector('.ev-zh').textContent = kf.event_zh; el.querySelector('.ev-en').textContent = kf.event_line || '';
-  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); if (!el._ae) { el._ae = 1; on(el, 'animationend', ev => { if (ev.animationName === 'evshow') el.classList.remove('show'); }); }
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show'); if (!evBound) { evBound = true; on(el, 'animationend', ev => { if (ev.animationName === 'evshow') el.classList.remove('show'); }); }
   if (kf.major && withFx && !RM) { const e = D.engagements.find(x => x.k === j); if (e) shocks.push({ x: e.x, y: e.y, t0: performance.now() }); }
 }
 // ---------- 時間軸 ----------
@@ -699,12 +714,9 @@ function bindUI() {
   window.__unfollow = () => setFollow(false); window.__follow = () => setFollow(true); window.__state = () => ({ day, follow, zoom: MAP.getZoom(), lam: F && F.lam });
 }
 // ---------- v2.6：多場戰役 ----------
-// 換戰役用「換網址重新載入」：每場戰役有自己的底圖、圖集和時間軸，整頁重來最不會留下上一場的狀態。保留模式和視角。
+// 換戰役交給外殼的 go()：原地換，不重新載入。網址保留模式和視角。
 function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); if (TOUR) q.set('mode', 'tour'); if (VIEW !== 'all') q.set('side', VIEW); ['rm', 'pr'].forEach(k => Q.get(k) && q.set(k, Q.get(k))); return location.pathname + '?' + q; }
-// 切換戰役＝換網址重新載入；先把紙色遮蓋淡入（上面寫下一場的名稱），新頁面準備好才淡出
-function gotoBattle(id) { const n = INDEX.find(b => b.id === id); if (!n || id === BID || gotoBattle.busy) return; gotoBattle.busy = true; const v = $('#veil'), t = (n.title_zh || '').replace(/\s*\d{3,4}$/, '');
-  try { sessionStorage.setItem('wl-veil', t); } catch (e) {} v.textContent = t; v.classList.remove('off'); setTimeout(() => location.assign(battleURL(id)), RM ? 0 : 240); }
-on(window, 'pageshow', ev => { if (ev.persisted) { gotoBattle.busy = false; $('#veil').classList.add('off'); } });   // 從上一頁／下一頁快取回來時不要卡在遮蓋
+function gotoBattle(id) { cfg.go(id, battleURL(id)); }
 function switchBattle(dir) { const i = INDEX.findIndex(b => b.id === BID), n = INDEX[i + dir]; if (n) gotoBattle(n.id); }
 function initBattleNav() {
   const i = INDEX.findIndex(b => b.id === BID), m = D.meta; const t = m.title_zh || BID;
@@ -712,8 +724,8 @@ function initBattleNav() {
   $('#banner').textContent = m.banner || ''; $('#bt-info').hidden = !m.banner; if (m.banner) $('#bt-info').setAttribute('aria-label', m.banner);
   $('#map').setAttribute('aria-label', `${t} 動態地圖（可拖曳與縮放）`); $('#tl-track').setAttribute('aria-valuemax', KD[KD.length - 1]);
   $('#lg-sides').textContent = `部隊牌（${SIDES.map(k => ({ axis: '紅', allied: '藍', third: '綠' }[k] + '＝' + SIDE_NAME[k])).join('，')}）`;
-  if (SIDES.includes('third')) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row"><i class="sw sw-third"></i>${esc(SIDE_NAME.third)}控制區</div>`);
-  if (TH.control && TH.control.border_name_zh) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row"><i class="sw sw-hist"></i>${esc(TH.control.border_name_zh)}</div>`); $('#lg-axis').textContent = `${SIDE_NAME.axis}控制區`; $('#lg-allied').textContent = `${SIDE_NAME.allied}控制區`;
+  if (SIDES.includes('third')) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row lg-dyn"><i class="sw sw-third"></i>${esc(SIDE_NAME.third)}控制區</div>`);
+  if (TH.control && TH.control.border_name_zh) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row lg-dyn"><i class="sw sw-hist"></i>${esc(TH.control.border_name_zh)}</div>`); $('#lg-axis').textContent = `${SIDE_NAME.axis}控制區`; $('#lg-allied').textContent = `${SIDE_NAME.allied}控制區`;
   $('#lg-note').textContent = `${m.note || ''} 拉遠看集團軍，拉近展開成軍、師。部隊位置是關鍵日之間的內插，不是逐時紀錄。底圖：Natural Earth（公有領域，現代國界）。`;
   const multi = INDEX.length > 1; $('#bt-prev').hidden = $('#bt-next').hidden = !multi; $('#bt-title').disabled = !multi;
   [['#bt-prev', -1], ['#bt-next', 1]].forEach(([s, d]) => { const b = $(s), n = INDEX[i + d]; b.disabled = !n; b.title = n ? `${d < 0 ? '上一場' : '下一場'}：${n.title_zh}（鍵盤 ${d < 0 ? '↑' : '↓'}）` : (d < 0 ? '已是第一場' : '已是最後一場'); b.onclick = () => switchBattle(d); });
@@ -864,8 +876,8 @@ function start() {
   if (TH.sides) SIDES = Object.keys(TH.sides).filter(k => PLATE[k]); if (!SIDES.includes(VIEW)) VIEW = 'all'; oobSide = VIEW === 'all' ? SIDES[0] : VIEW; D.areas = D.areas || [];
   D = data; ENGM = asg.engagements || {}; (asg.assignments || []).forEach(a => { if (a.role === 'commander') ASG[a.unit_id] = a; }); prep(); measure(); buildSprites(); initMap(); bindUI();
   const qd = Q.get('date'); if (qd) day = clamp(dayOf(qd), 0, KD[KD.length - 1]); if (Q.get('day')) day = clamp(+Q.get('day'), 0, KD[KD.length - 1]);
-  setDay(day, true);
-  if (Q.get('speed')) setSpeed(+Q.get('speed'));
+  setDay(day, true); $('#follow').hidden = follow || !TOUR;
+  setSpeed(Q.get('speed') ? +Q.get('speed') : 1);
   const vw = Q.get('view'); if (vw) { const [lo, la, z] = vw.split(',').map(Number); setFollow(false); MAP.jumpTo({ center: [lo, la], zoom: z }); }
   else applyCamera(performance.now());
   if (Q.get('sel')) { selectUnit(Q.get('sel'), !vw); if (Q.get('lock') === '1') setLock(Q.get('sel')); } else if (Q.get('eng')) selectEng(Q.get('eng'));   // v2.3：可以用網址直接開在某個部隊／交戰

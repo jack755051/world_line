@@ -62,6 +62,17 @@ PREC = {None, "day", "month", "year"}
 SCOPE_START, SCOPE_END = "1908-01-01", "1945-10-01"
 
 
+# 將領 nameZh 正體檢查用（../generals-roster/zh_trad.py；OpenCC 在使用者層 venv，zh_trad 自行加路徑，因主迴圈用 python3 -I）
+try:
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("zh_trad", str(Path(__file__).resolve().parent.parent / "generals-roster" / "zh_trad.py"))
+    _zt = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_zt)
+    _zt.to_trad("测试")
+    _TO_TRAD, _TRAD_ERR = _zt.to_trad, None
+except Exception as _e:  # noqa
+    _TO_TRAD, _TRAD_ERR = None, repr(_e)
+
+
 def norm(s):
     return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s)).strip()
 
@@ -153,6 +164,16 @@ def main():
         errs.append("people 為空")
     for p in people:
         key = p.get("key", "?")
+        if allow_c:  # 將領生平檔：nameZh 須為正體（OpenCC s2t 字元轉換後不變；World Line 主管 2026-11-12 10:07）
+            nz = p.get("nameZh")
+            if _TO_TRAD is None:
+                errs.append(f"{key}：無法載入 zh_trad／OpenCC，nameZh 正體檢查無法執行（{_TRAD_ERR}）")
+            elif isinstance(nz, str) and nz and _TO_TRAD(nz) != nz:
+                # 過渡：A/batch021 在本檢查加入前（10:05）已開跑、名單仍是簡體，只記 note，commit 後由 patch_name_trad.py 補轉；A/batch022 起一律擋
+                if "/A/batch021/" in str(data.get("rawDir") or ""):
+                    warns.append(f"{key}：nameZh 含簡體字（過渡批，待 patch_name_trad.py）：{nz} → {_TO_TRAD(nz)}")
+                else:
+                    errs.append(f"{key}：nameZh 含簡體字：{nz} → {_TO_TRAD(nz)}")
         if "bioId" not in p:
             errs.append(f"{key}：缺 bioId 鍵（建議 6）")
         paras, poss, gaps = p.get("paragraphs", []), p.get("positions", []), p.get("gaps", [])

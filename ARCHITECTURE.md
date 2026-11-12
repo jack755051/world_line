@@ -2476,5 +2476,11 @@ L3 附引文的敘述 := L2
 | Q13 | 主管 2026-11-12 09:40 決定 | (b) 考證組先列敦克爾克、閃擊波蘭、淞滬的指揮官 | 20.8 P-A 名單由考證組先提，不等 `battle_units` |
 | Q14 | 主管 2026-11-12 09:40 決定 | (a) B3 已寫入 98 人做補登（抓取紀錄＋L1 缺口，不改既有列） | 主管 09:40 以只讀查詢確認 5442：98 人共 232 段有效段落，與檔案一致；`full` 的 15 人**未寫入** DB。20.9.2 兩項「待查證」據此解除 |
 | Q15 | Tai 2026-11-12 09:37 決定 | 「C 級可以入庫，前端標示來源等級」：具名 C（合法、有具名作者或出版機構；限將領生平）可寫入 DB，X 仍不可；前端每筆來源顯示等級 | §20 的 C 級文字與 Q11 已改；§16 的 T1 相關段落已加修訂註記（§16.9.1「T1 修訂」）；寫庫程式（含 `write_b3_paragraphs.py`）的 C 過濾**維持現狀**，待 Tai 確認寫庫方案後才改 |
+| N1 | 主管 2026-11-12 10:07 決定 | 將領中文名一律正體：OpenCC `s2t` 只做字元轉換（不用 `s2tw`／`s2twp` 的詞彙替換）；本身即正體、s2t 會誤改人名的字逐字保留（`zh_trad.PROTECT`：里范余岳于征峰群岩涂占干咸采克筑斗布台，例：里不改裏、板垣征四郎不改徵） | `bios/patch_name_trad.py`（冪等，原字串存 `name_zh_orig`／`nameZhOrig`，報告 `patch_name_trad.report.json`）已轉 roster 945、selection 177、研究檔 89 筆；`verify.py` 對將領檔加「nameZh 經 s2t 不變」檢查（A/batch022 起擋，過渡批 A/batch021 只記 note、commit 後補轉）；`PROMPT_research.md` 已要求正體。待人工覆核 3 筆：張衝、彭衝（冲→衝，人名多為「沖」）、萬衆一 |
+| N2 | 主管 2026-11-12 10:07 決定 | 維基百科導出的中文名只是**候選值**，與 Wikidata 同規則：`nameZhSource`／`name_zh_source` 標 `kind=wikipedia-index`、`status=candidate`、`verified=false`、`isCitation=false`，永遠不是 citation；A／B／C 來源本身有中文譯名時以來源為準（附 citation、`verified=true`） | 已寫進 `PROMPT_research.md`；20.6 的候選值規則同樣適用於人名 |
+| N3 | 主管 2026-11-12 10:07 決定 | `nameZh` 為「待查證」時，**前端顯示原文名**（`name_original`／研究檔 `name`）。目前 11 人維持待查證（Don Bennett、Edmund Ironside、Frederick Morgan、William Robertson、John French Conklin、Josef Roth von Limanowa-Łapanów、Aarne Sihvo、Adolf Ehrnrooth、Kustaa Tapola、Lauri Malmberg、Gordon Bennett） | 給 World Line 開發（前端）的實作說明；考證端不改前端程式 |
+| N4 | 主管 2026-11-12 10:07 決定 | `nameZhUnsourced`（模型自擬、無出處的中文名）**永不入庫** | 只留 seed 供追溯；寫庫腳本日後須明確略過此欄 |
+| N5 | 主管 2026-11-12 10:07 決定 | 段落正文中模型自行音譯的人名，寫庫前由程式掃描、以名冊名替換 | **延後**，現在不做；與寫庫方案一併處理 |
+| N6 | 主管 2026-11-12 10:07 決定 | 主迴圈 commit 訊息的中文名 fallback（`batch_names()` 遇「待查證」改用原文名）於**下次重啟主迴圈**時修正；舊 commit 訊息不改寫 | 不改正在執行的 `.dev/cc-generals-bios-loop.sh`；更正後的資料見 commit 22c2fe0 與本次 commit |
 
 - **schema／migration 一律暫緩**：20.9.3 的表草案、`gap_kind` 擴充、`source_fetches`、`quote` 放寬、`grade` CHECK 加入 `'C'` 等，都要等 **Tai 確認寫庫方案**後才開始；在那之前只有文件與 seed。

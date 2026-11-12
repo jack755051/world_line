@@ -227,7 +227,7 @@
    "key": "claudeauchinleck",
    "bioId": null,
    "name": "Claude Auchinleck",
-   "nameZh": "克劳德·奥金莱克",
+   "nameZh": "克勞德·奧金萊克",
    "recordIds": [],
    "thickness": "中",
    "paragraphs": [
@@ -1216,13 +1216,14 @@
      "result": "found_A",
      "note": "已 curl；只用於旁證 8 月中旬交接，未入引文"
     }
-   ]
+   ],
+   "nameZhOrig": "克劳德·奥金莱克"
   },
   {
    "key": "ordewingate",
    "bioId": null,
    "name": "Orde Wingate",
-   "nameZh": "奥德·查尔斯·温盖特",
+   "nameZh": "奧德·查爾斯·溫蓋特",
    "recordIds": [],
    "thickness": "中",
    "paragraphs": [
@@ -1984,13 +1985,14 @@
      "result": "no_result",
      "note": "官方戰史網域搜尋無直接結果"
     }
-   ]
+   ],
+   "nameZhOrig": "奥德·查尔斯·温盖特"
   },
   {
    "key": "bertramramsay",
    "bioId": null,
    "name": "Bertram Ramsay",
-   "nameZh": "伯特伦·拉姆齐",
+   "nameZh": "伯特倫·拉姆齊",
    "recordIds": [],
    "thickness": "中",
    "paragraphs": [
@@ -2663,8 +2665,14 @@
     },
     "matchedOriginal": "Bertram Ramsay",
     "retrievedAt": "2026-11-12 10:05:03+08:00",
-    "patch": "patch_name_zh.py"
-   }
+    "patch": "patch_name_zh.py",
+    "kind": "wikipedia-index",
+    "status": "candidate",
+    "verified": false,
+    "isCitation": false,
+    "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
+   },
+   "nameZhOrig": "伯特伦·拉姆齐"
   },
   {
    "key": "donbennett",
@@ -3406,7 +3414,11 @@
     "method": "none",
     "note": "名冊／索引無中文名，維持待查證",
     "retrievedAt": "2026-11-12 10:05:03+08:00",
-    "patch": "patch_name_zh.py"
+    "patch": "patch_name_zh.py",
+    "kind": "none",
+    "status": "pending",
+    "verified": false,
+    "isCitation": false
    }
   },
   {
@@ -4200,7 +4212,11 @@
     "method": "none",
     "note": "名冊／索引無中文名，維持待查證",
     "retrievedAt": "2026-11-12 10:05:03+08:00",
-    "patch": "patch_name_zh.py"
+    "patch": "patch_name_zh.py",
+    "kind": "none",
+    "status": "pending",
+    "verified": false,
+    "isCitation": false
    }
   }
  ]

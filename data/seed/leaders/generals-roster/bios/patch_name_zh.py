@@ -18,8 +18,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import wikilib
+from zh_trad import to_trad  # 2026-11-12 10:07：中文名一律正體（s2t 字元轉換）
 
-REPO = HERE.parents[3]
+REPO = HERE.parents[4]
 SEL = HERE / "selection.json"
 STATE = REPO / ".dev/cc-generals-bios.state.json"
 DRY = "--dry-run" in sys.argv
@@ -95,10 +96,12 @@ def main():
                 r = lookup(p.get("name_original") or "")
                 if r.get("name"):
                     src = {"method": "zhwiki-interlanguage-link-template", "role": "index-only（Wikipedia 只當人名索引，非史料來源）",
+                           "kind": "wikipedia-index", "status": "candidate", "verified": False, "isCitation": False,
                            "zhwikiArticles": r["articles"], "occurrences": r["count"], "variants": r["variants"],
                            "matchedOriginal": p.get("name_original"), "retrievedAt": today, "patch": "patch_name_zh.py"}
-                    found[p["key"]] = (r["name"], src, tier, b["batch"])
-                    p["name_zh"] = r["name"]; p["name_zh_source"] = src
+                    nm = to_trad(r["name"]); src["indexString"] = r["name"]
+                    found[p["key"]] = (nm, src, tier, b["batch"])
+                    p["name_zh"] = nm; p["name_zh_source"] = src
                 else:
                     missing.append({"tier": tier, "batch": b["batch"], "key": p["key"], "name_original": p.get("name_original"),
                                     "searchedArticles": r.get("searched", []), "langlink": r.get("langlink")})

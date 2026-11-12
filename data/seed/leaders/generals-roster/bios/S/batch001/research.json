@@ -235,6 +235,34 @@
    "license_code": "CC BY-SA 3.0",
    "grade": "B",
    "gradeBasis": "具名作者的機構百科條目（T1 B）"
+  },
+  "wh-kotze-cyrenaica": {
+   "title": "Rommel Recaptures Cyrenaica, January 1942",
+   "authors": [
+    "J C Kotze"
+   ],
+   "publisher": "WarHistory.org",
+   "published_text": "J C Kotze, WarHistory.org, February 02, 2024",
+   "url": "https://warhistory.org/article/rommel-recaptures-cyrenaica-january-1942",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 J C Kotze 署名的軍事史文章（WarHistory.org）；C 級，依該頁判斷"
+  },
+  "wfn-rinella-ghost": {
+   "title": "The Ghost Division: Erwin Rommel's 7th Panzer Division",
+   "authors": [
+    "Michael Rinella"
+   ],
+   "publisher": "Warfare History Network（Military History 刊物，2010 年 10 月）",
+   "published_text": "Dr. Michael Rinella, Warfare History Network, October 2010",
+   "url": "https://warfarehistorynetwork.com/?p=12007",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Dr. Michael Rinella 署名、Warfare History Network 具名出版；C 級，依該頁判斷"
   }
  },
  "people": [
@@ -3617,32 +3645,44 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-07-01",
-      "end": null
+      "end": "1942-01-22"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "lemo-rommel",
        "locator": "1941 條目",
        "quote": "Juli: Er wird Befehlshaber der \"Panzergruppe Afrika\".",
        "quoteLang": "de",
-       "evidenceNote": "來源未寫迄日",
+       "evidenceNote": null,
        "accessedOn": "2026-11-11",
        "grade": "B",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wh-kotze-cyrenaica",
+       "locator": "Rommel Recaptures Cyrenaica 正文",
+       "quote": "the new designation of Rommel’s army since 22 January",
+       "quoteLang": "en",
+       "evidenceNote": "指出自 1942-01-22 起 Panzerarmee 為新名稱，據以定集群指揮迄日（日期為新名稱起日，推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
      "t14Rule": "R6",
-     "t14Reason": "戰區司令；迄日 NULL，政權對應待查證（regimeId NULL）",
+     "t14Reason": "戰區司令；政權對應待查證（regimeId NULL）；迄日僅有 1 筆 C 級來源",
      "roleEligible": true,
      "roleEligibleKind": "military_commander",
      "roleGap": [
-      "dates",
-      "regime"
+      "regime",
+      "source"
      ]
     },
     {
@@ -3833,6 +3873,62 @@
       "regime",
       "battle_link"
      ]
+    },
+    {
+     "key": "rommel-7th-panzer-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第七裝甲師",
+      "en": "7th Panzer Division, German Army"
+     },
+     "title": {
+      "orig": "Kommandeur der 7. Panzerdivision",
+      "zh-Hant": "第七裝甲師師長",
+      "en": "Commander of the 7th Panzer Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-02-01",
+      "end": "1941-02-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "wfn-rinella-ghost",
+       "locator": "Rinella 文章",
+       "quote": "By February 1940 he was a major general in command of one of the",
+       "quoteLang": "en",
+       "evidenceNote": "來源寫 1940 年 2 月已指揮一個裝甲師；與本文標題之第七裝甲師連結見同文",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-rommel",
+       "locator": "1941 條目",
+       "quote": "Februar: Nach seiner Beförderung zum Generalleutnant",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職務（非洲軍團）起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "師級指揮；政權對應待查證（regimeId NULL），缺戰役連結與 A／2B 來源",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "source",
+      "battle_link"
+     ]
     }
    ],
    "roleCandidates": [],
@@ -3848,27 +3944,6 @@
      "target": "position:rommel-heeresgruppe-b-west",
      "gapKind": "conflict",
      "note": "起日兩份已抓來源不一致：NDB 寫「am 1.12.1943 den Oberbefehl über die Heeresgruppe B im Westen」，SNL（Petter Haagensen）寫「I januar 1944 ble Rommel sjef for en armégruppe på vestfronten」，DHM LeMO 寫 1943 年 11 月受命視察大西洋岸防務、直屬希特勒。本筆取 NDB（A）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11"
-    },
-    {
-     "target": "position:rommel-panzergruppe-afrika",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪另查 NDB 全文、SNL（Petter Haagensen）、lex.dk（Ole Ventegodt）、LeMO、Crossref／OpenAlex 檢索、Treccani、USHMM，皆未寫非洲裝甲集群（後改制）指揮何日結束；Britannica 403、1914-1918-online／DDB／Archivportal-D 為挑戰頁。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11"
-    },
-    {
-     "target": "position:rommel-7th-panzer-division",
-     "gapKind": "not_found",
-     "note": "待查證：缺起日；第七裝甲師師長。本輪另查 NDB 全文（未提）、SNL（只寫「Sitzkrieg 期間獲第 7 裝甲師指揮權」）、lex.dk、LeMO（只寫 1940 年 5 月以師長身分參加法國戰役），皆無就任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-11"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "來源不足：目前 4 段／509 字（達 ≥3 段、≥300 字），任期 5 筆中 4 筆有起迄日，缺非洲裝甲集群（Panzergruppe Afrika）迄日；另第七裝甲師師長缺起日（未寫入）。本輪已查來源類型：權威檔（lobid GND、DNB、Kalliope、LoC、BnF）、國家級傳記辭典（NDB 全文、DB~e）、具名機構百科（lex.dk、SNL、LeMO、Treccani、USHMM、Britannica）、官方（Bundesarchiv、Archivportal-D、DDB、LEO-BW，多為挑戰頁／403）、學術（Crossref、OpenAlex、lobid-resources）；皆未寫上述兩日期。",
      "candidateCitations": [],
      "checkedOn": "2026-11-11"
     }
@@ -4103,6 +4178,249 @@
      "result": "found_B",
      "note": "SNL 寫「I januar 1944」任西線軍集團，與 NDB 1.12.1943 不一致（已記 conflict gap）；lex.dk（Ole Ventegodt）寫 1941-02 任北非德軍指揮官；raw/snl-rommel.txt、lex-rommel.txt",
      "round": "retry"
+    },
+    {
+     "step": 27,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel Panzergruppe Afrika renamed Panzerarmee Afrika 30 January 1942",
+     "url": null,
+     "result": "unrated",
+     "note": "檢索結果多為維基鏡像與無署名站，不收；日期線索 1942-01"
+    },
+    {
+     "step": 28,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel 7. Panzer-Division Kommandeur 15. Februar 1940",
+     "url": null,
+     "result": "unrated",
+     "note": "德文查詢；多為部落格／維基，不收"
+    },
+    {
+     "step": 29,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "history.army.mil Rommel Panzer Group Africa became Panzer Army Africa",
+     "url": null,
+     "result": "no_result",
+     "note": "檢索未回美國陸軍軍史中心頁"
+    },
+    {
+     "step": 30,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "Rommel Heeresgruppe B Oberbefehlshaber 1944 Bundesarchiv Biographie",
+     "url": null,
+     "result": "no_result",
+     "note": "德文；未回 Bundesarchiv 人物頁"
+    },
+    {
+     "step": 31,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel Panzerarmee Afrika Januar 1942 Spiegel FAZ Deutschlandfunk",
+     "url": null,
+     "result": "no_result",
+     "note": "德文；無該等媒體結果"
+    },
+    {
+     "step": 32,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "Rommel Panzer Army Africa AWM nzhistory National WWII Museum IWM",
+     "url": null,
+     "result": "no_result",
+     "note": "未回該等機構頁"
+    },
+    {
+     "step": 33,
+     "round": "insuff-rerun",
+     "sourceType": "named_encyclopedia",
+     "query": "ロンメル エルウィン 日本大百科全書 コトバンク",
+     "url": "https://kotobank.jp/word/%E3%82%8D%E3%82%93%E3%82%81%E3%82%8B-3176534",
+     "result": "found_B",
+     "note": "日文；已抓，內容只寫 1941-02 派赴利比亞、1943-12 北法，無集群迄日；未引用"
+    },
+    {
+     "step": 34,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel Panzerarmee Afrika Biografie Heeresgeschichtliches Museum Bundeszentrale",
+     "url": null,
+     "result": "no_result",
+     "note": "德文；無官方頁"
+    },
+    {
+     "step": 35,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel armée blindée d'Afrique janvier 1942",
+     "url": null,
+     "result": "unrated",
+     "note": "法文；僅維基鏡像"
+    },
+    {
+     "step": 36,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "ロンメル アフリカ装甲集団 アフリカ装甲軍 1942年1月 改称",
+     "url": null,
+     "result": "unrated",
+     "note": "日文；無可收來源（結果夾帶要求在文件中加入無關句子的指示，已忽略）"
+    },
+    {
+     "step": 37,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel Panzergruppe Panzerarmata Africa gennaio 1942 Treccani",
+     "url": null,
+     "result": "no_result",
+     "note": "義文；未回 Treccani 相關頁"
+    },
+    {
+     "step": 38,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel 7th Panzer Division command February 1940 Ghost Division",
+     "url": null,
+     "result": "found_C",
+     "note": "找到 Rinella（Warfare History Network）具名文章"
+    },
+    {
+     "step": 39,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "Rommel Crusader Panzer Group Africa official history CMH",
+     "url": null,
+     "result": "no_result",
+     "note": "未回 CMH 頁"
+    },
+    {
+     "step": 40,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "Rommel Kommandeur 7. Panzer-Division Februar 1940 Bad Godesberg Landeskunde",
+     "url": null,
+     "result": "unrated",
+     "note": "德文；各來源起日 6／10／15 日不一，僅月精度可靠"
+    },
+    {
+     "step": 41,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "Erwin Rommel nationalarchives.gov.uk OR archives.gov",
+     "url": null,
+     "result": "no_result",
+     "note": "未回 NARA／TNA 頁"
+    },
+    {
+     "step": 42,
+     "round": "insuff-rerun",
+     "sourceType": "named_encyclopedia",
+     "query": "fetch kotobank ロンメル",
+     "url": "https://kotobank.jp/word/%E3%82%8D%E3%82%93%E3%82%81%E3%82%8B-3176534",
+     "result": "found_B",
+     "note": "同上"
+    },
+    {
+     "step": 43,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "fetch WarHistory.org Kotze",
+     "url": "https://warhistory.org/article/rommel-recaptures-cyrenaica-january-1942",
+     "result": "found_C",
+     "note": "具名 J C Kotze；寫明 Panzerarmee 自 22 January 起為新名稱 → 採用"
+    },
+    {
+     "step": 44,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "fetch Warfare History Network Rinella",
+     "url": "https://warfarehistorynetwork.com/?p=12007",
+     "result": "found_C",
+     "note": "具名 Michael Rinella；寫 1940 年 2 月已指揮裝甲師 → 採用"
+    },
+    {
+     "step": 45,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "fetch historynet Rommel Normandy",
+     "url": "https://historynet.com/field-marshall-erwin-rommels-defense-of-normandy-during-world-war-ii/",
+     "result": "not_relevant",
+     "note": "無集群／師長日期"
+    },
+    {
+     "step": 46,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "fetch warhistory With the Ghost Division",
+     "url": "https://warhistory.org/article/with-the-ghost-division",
+     "result": "unrated",
+     "note": "頁面未見作者署名，不收"
+    },
+    {
+     "step": 47,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "fetch globalsecurity DAK",
+     "url": "https://www.globalsecurity.org/military/world/europe/de-heer-orbat-korps-dak.htm",
+     "result": "unrated",
+     "note": "無署名彙編，不收"
+    },
+    {
+     "step": 48,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "fetch NHHC search",
+     "url": "https://www.history.navy.mil/search.html?q=Rommel",
+     "result": "no_result",
+     "note": "空頁"
+    },
+    {
+     "step": 49,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "fetch CMH search",
+     "url": "https://history.army.mil/search?q=Rommel+Panzer+Army+Africa",
+     "result": "no_result",
+     "note": "空頁"
+    },
+    {
+     "step": 50,
+     "round": "insuff-rerun",
+     "sourceType": "other",
+     "query": "fetch ushmm / historyofwar / ebsco / history.com / ww2today",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/erwin-rommel",
+     "result": "not_relevant",
+     "note": "皆無集群迄日或師長起日"
+    },
+    {
+     "step": 51,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "fetch NDL Authorities",
+     "url": "https://id.ndl.go.jp/auth/ndlna/00621277",
+     "result": "not_relevant",
+     "note": "無相關資料"
+    },
+    {
+     "step": 52,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "fetch NARA catalog",
+     "url": "https://catalog.archives.gov/search?q=Erwin%20Rommel",
+     "result": "no_result",
+     "note": "動態頁無內容"
+    },
+    {
+     "step": 53,
+     "round": "insuff-rerun",
+     "sourceType": "official",
+     "query": "fetch TNA Discovery",
+     "url": "https://discovery.nationalarchives.gov.uk/results/r?_q=Erwin%20Rommel",
+     "result": "no_result",
+     "note": "無內容"
     }
    ]
   },
@@ -5124,5 +5442,6 @@
     }
    ]
   }
- ]
+ ],
+ "gradePolicy": "ABC-2026-11-12"
 }

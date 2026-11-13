@@ -76,6 +76,15 @@ def main():
         unres = R.get("unresolved", [])
         rows = []
         for i, f in enumerate(F1):
+            if f.get("origin") == "second-reading-only":  # 只有第二次判讀讀到、已併入的標註：無第一次判讀可比，一律待查證
+                lc = {"status": "待查證", "reading2Label": f["label"], "reason": "僅第二次判讀讀到（第一次未列），併入待查證"}
+                tot["importedFromReading2"] = tot.get("importedFromReading2", 0) + 1
+                if apply: f["labelCheck"] = lc
+                rows.append({"label": f["label"], "px": f["px"], **lc})
+                gaps.append({"target": f"map-label:{mk}:{f['label']}@{f['px'][0]},{f['px'][1]}", "kind": "map_label_reading_mismatch",
+                             "note": f"{mk} 標註「{f['label']}」僅第二次判讀讀到，第一次未列；依主管 2026-11-13 14:03 併入，待查證",
+                             "checkedOn": TODAY, "tool": "tools/battles/compare_readings.py"})
+                continue
             tot["reading1"] += 1
             if i in m:
                 b = F2[m[i][0]]; same = (nl(f["label"]) == nl(b["label"]) or i in joined) and "?" not in f["label"] + b["label"]
@@ -108,7 +117,7 @@ def main():
         if apply:
             R["labelCheckMethod"] = "兩次獨立判讀比對：tools/battles/compare_readings.py；第二次判讀檔 checks/label-reading2/" + mk + ".json"
             p.write_text(json.dumps(R, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    tot["disagreements"] = tot["labelDiffers"] + tot["notFoundInReading2"] + tot["reading2Only"]
+    tot["disagreements"] = tot["labelDiffers"] + tot["notFoundInReading2"] + tot["reading2Only"] + tot.get("importedFromReading2", 0)
     (D / "checks" / "label-readings.json").write_text(json.dumps({"summary": tot, "maps": rep}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     if apply:
         G = D / "gaps.json"; g = json.loads(G.read_text())

@@ -2,6 +2,8 @@
 
 由 `tools/battles/crosscheck.py` 產生，不要手改。單一獨立來源的資料不得標為已查證（降一級）；effectiveGrade 為最佳 grade 降一級。
 
+來源家族（battle.config.json）：ellis-war-in-france-flanders→uk-army-official-bef；gort-gazette-35305→uk-army-official-bef；ramsay-gazette-38017→uk-navy-dover-ramsay；ndb-deutsche-biographie→ndb
+
 | 種類 | 已查證 | 待查證 | 推估 | 單一來源 | 單一來源且只有 B（降為 C） |
 |---|---|---|---|---|---|
 | R1 部隊 | 2 | 62 | 3 | 62 | 0 |

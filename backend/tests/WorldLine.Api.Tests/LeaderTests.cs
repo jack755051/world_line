@@ -142,7 +142,8 @@ public sealed class LeaderTests(PostGisFixture fx)
         Assert.Equal("Paul von Hindenburg", f.GetProperty("name").GetString());
         Assert.Equal("head_of_state", f.GetProperty("role").GetString());
         Assert.Equal("Reichspräsident", f.GetProperty("title").GetString());
-        Assert.True(f.GetProperty("verified").GetBoolean());
+        // 建檔時自填 verified: true，但出處只有自由文字、沒有接到來源登記的引文 → 依 v_record_confidence 是待查證（docs/source-rules.md §5、D6）
+        Assert.False(f.GetProperty("verified").GetBoolean());
         Assert.Equal("1925-05-12", f.GetProperty("validPeriod").GetProperty("start").GetString());
         Assert.Equal("1934-08-02", f.GetProperty("validPeriod").GetProperty("end").GetString());
     }

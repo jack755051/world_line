@@ -138,7 +138,7 @@ public sealed class SeedInterwarATests(PostGisFixture fx)
         Assert.Contains(ids["SOV_FIUME_FS"], d2.Keys);
         Assert.Equal("not_sovereign", d2[ids["SOV_SAAR"]].GetProperty("layerStatus").GetString());
         Assert.Equal("civil_administration", d2[ids["SOV_MEMEL"]].GetProperty("occupation").GetProperty("controlKind").GetString());
-        Assert.Equal("verified", d2[ids["SOV_GR_B_1"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d2[ids["SOV_GR_B_1"]].GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
         var c2 = await Conflicts("1921-04-01");
         Assert.Contains(ids["CF_GR_GNA"], c2);
         Assert.DoesNotContain(ids["CF_PL_RSFSR"], c2);

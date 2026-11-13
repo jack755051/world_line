@@ -166,7 +166,7 @@ public sealed class SeedInterwarBTests(PostGisFixture fx)
         Assert.Contains(ids["SOV_IQ_K"], d2.Keys);
         Assert.Equal("not_sovereign", d2[ids["SOV_SY_REP_A"]].GetProperty("layerStatus").GetString());
         Assert.Contains(ids["SOV_ES_REP_B_1"], d2.Keys);
-        Assert.Equal("verified", d2[ids["SOV_ES_REP_B_1"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d2[ids["SOV_ES_REP_B_1"]].GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
 
         // 1937-06-01：西班牙內戰（畢爾包陷落前）；國民軍區非主權、共和國扣掉國民軍區
         var d3 = await On("1937-06-01");

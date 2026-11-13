@@ -70,16 +70,16 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
         Assert.Contains("czechoslovak-republic", slugs0);
         var reich0 = d0[ids["SOV_R2693085"]];
         Assert.Equal(JsonValueKind.Null, reich0.GetProperty("startEvent").ValueKind);
-        Assert.Equal("verified", reich0.GetProperty("endEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", reich0.GetProperty("endEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
 
         // 1938-10-05：分區佔領中，德國仍是拆分後的前段（幾何不含蘇台德），迄事件＝分區佔領（已查證）
         var d05 = await On("1938-10-05");
         Assert.DoesNotContain(ids["SOV_R2704712"], d05.Keys);
-        Assert.Equal("verified", d05[ids["SOV_R2704712_A"]].GetProperty("endEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d05[ids["SOV_R2704712_A"]].GetProperty("endEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
 
         // 1938-10-15：蘇台德已畫入德國（修正紀錄）；起事件＝分區佔領（4 筆 FRUS 引用），迄事件＝德捷邊界最終劃定（待查證）
         var reich1 = (await On("1938-10-15"))[ids["SOV_FIX_REICH_SUDETEN"]];
-        Assert.Equal("verified", reich1.GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", reich1.GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
         Assert.Equal(4, reich1.GetProperty("startEvent").GetProperty("citations").GetArrayLength());
         Assert.Equal("pending", reich1.GetProperty("endEvent").GetProperty("verification").GetString());
         Assert.Equal(0, reich1.GetProperty("endEvent").GetProperty("citations").GetArrayLength());
@@ -97,12 +97,12 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
         var slugs3 = d3.Values.Select(Slug).ToHashSet();
         Assert.DoesNotContain("polish-republic", slugs3);
         Assert.DoesNotContain("free-city-of-danzig", slugs3);
-        Assert.Equal("verified", d3[ids["SOV_FIX_REICH_DANZIG"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d3[ids["SOV_FIX_REICH_DANZIG"]].GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
         Assert.DoesNotContain(ids["SOV_FIX_MILVERW_PL"], d3.Keys); // 頁碼更正後撤回重加（05-4）
         var pl = d3[ids["SOV_FIX_MILVERW_PL_R2"]];
         Assert.Equal("german-military-administration-poland", Slug(pl));
         Assert.Equal("not_sovereign", pl.GetProperty("layerStatus").GetString());
-        Assert.Equal("verified", pl.GetProperty("endEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", pl.GetProperty("endEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
         Assert.Equal("Doc. 477, p. 560, nn. 2–3", pl.GetProperty("endEvent").GetProperty("citations")[0].GetProperty("locator").GetString());
 
         // 1940-04-01：蘇聯用扣除比薩拉比亞的修正紀錄；原紀錄已撤回

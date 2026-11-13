@@ -80,7 +80,7 @@ public static class LeadersEndpoints
         };
         db.LeaderRecords.Add(r);
         await db.SaveChangesAsync(ct);
-        return ApiResults.Created($"/api/v1/leader-records/{r.Id}", ToRecordDto(r));
+        return ApiResults.Created($"/api/v1/leader-records/{r.Id}", ToRecordDto(r, await IsVerifiedAsync(db, r.Id, ct)));
     }
 
     /// <summary>PATCH /leader-records/{id}/person — 連結（或解除連結）任期紀錄與生平紀錄。</summary>
@@ -94,7 +94,7 @@ public static class LeadersEndpoints
 
         row.PersonId = req.PersonId;
         await db.SaveChangesAsync(ct);
-        return ApiResults.Ok(ToRecordDto(row));
+        return ApiResults.Ok(ToRecordDto(row, await IsVerifiedAsync(db, row.Id, ct)));
     }
 
     /// <summary>GET /leaders?date=YYYY-MM-DD[&amp;regime={slug}] — 回傳指定日期所有在任領導人（retracted_at IS NULL 且 valid_period @> date）。</summary>
@@ -120,6 +120,7 @@ public static class LeadersEndpoints
                 select new { l, r.Slug, bio })
             .ToListAsync(ct);
 
+        var verified = await RecordConfidence.VerifiedIdsAsync(db, RecordConfidence.LeaderRecord, rows.Select(x => x.l.Id).ToList(), ct);
         return rows.Select(x => new LeaderFeature(
             x.l.Id,
             x.l.RegimeId,
@@ -131,7 +132,7 @@ public static class LeadersEndpoints
             Mapping.ToDto(x.l.ValidPeriod)!,
             x.l.Source,
             x.l.SourceUrl,
-            x.l.Verified,
+            verified.Contains(x.l.Id),
             x.l.PersonId,
             x.bio == null ? null : ToBioSummaryDto(x.bio))).ToList();
     }
@@ -443,9 +444,13 @@ public static class LeadersEndpoints
 
     // ── Mapping helpers ──
 
-    private static LeaderRecordDto ToRecordDto(LeaderRecord r) =>
+    /// <summary>verified 依 v_record_confidence（docs/source-rules.md §5），不是建檔時自己填的 leader_records.verified。</summary>
+    private static async Task<bool> IsVerifiedAsync(WorldLineDbContext db, Guid id, CancellationToken ct) =>
+        (await RecordConfidence.VerifiedIdsAsync(db, RecordConfidence.LeaderRecord, [id], ct)).Contains(id);
+
+    private static LeaderRecordDto ToRecordDto(LeaderRecord r, bool verified) =>
         new(r.Id, r.RegimeId, r.Name, r.NameZh, r.Role, r.Title,
-            Mapping.ToDto(r.ValidPeriod)!, r.Source, r.SourceUrl, r.Verified, r.PersonId);
+            Mapping.ToDto(r.ValidPeriod)!, r.Source, r.SourceUrl, verified, r.PersonId);
 
     private static LeaderPortraitDto? ToPortraitDto(LeaderBio b) =>
         b.PortraitUrl is null ? null

@@ -268,7 +268,7 @@ public static class SovereigntyEndpoints
                 (day, ctx, c) => BuildOnDateAsync(day, ctx, tolerance, c), CancellationToken.None);
     }
 
-    /// <summary>事件摘要＋引用；沒有任何引用的事件 verification = pending（「待查證」）。</summary>
+    /// <summary>事件摘要＋引用；verification 依 v_record_confidence（docs/source-rules.md §5）：達到已查證門檻才是 verified，其餘（含沒有引用）為 pending（「待查證」）。</summary>
     internal static async Task<Dictionary<Guid, SovereigntyEventRefDto>> EventRefsAsync(WorldLineDbContext db, IReadOnlyCollection<Guid> ids, CancellationToken ct)
     {
         if (ids.Count == 0) return [];
@@ -281,11 +281,12 @@ public static class SovereigntyEndpoints
                 select new { c.EventId, Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, CitationRoles.Primary, c.EvidenceNote) })
             .ToListAsync(ct))
             .ToLookup(x => x.EventId, x => x.Dto);
+        var verified = await RecordConfidence.VerifiedIdsAsync(db, RecordConfidence.Event, ids, ct);
         return evs.ToDictionary(e => e.Id, e =>
         {
             var list = cites[e.Id].ToList();
             return new SovereigntyEventRefDto(e.Id, e.EventKind, Mapping.ToDto((NpgsqlRange<DateOnly>?)e.Occurred)!,
-                Mapping.ReadLocalizedOrNull(e.Summary), list.Count > 0 ? "verified" : "pending", list);
+                Mapping.ReadLocalizedOrNull(e.Summary), verified.Contains(e.Id) ? "verified" : "pending", list);
         });
     }
 }

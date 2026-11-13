@@ -141,7 +141,7 @@ public sealed class SeedWw1War1914Tests(PostGisFixture fx)
         Assert.Contains(ids["SOV_RSFSR_C_2"], d3.Keys);
         Assert.DoesNotContain("russian-empire", d3.Values.Select(Slug));
         Assert.Contains(ids["SOV_RO_WAL"], d3.Keys);
-        Assert.Equal("verified", d3[ids["SOV_LT"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d3[ids["SOV_LT"]].GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
         var c3 = await Conflicts("1918-03-04");
         Assert.DoesNotContain(ids["CF_RSFSR_DE"], c3);
         Assert.Contains(ids["CF_RSFSR_DE"], await Conflicts("1918-03-02"));

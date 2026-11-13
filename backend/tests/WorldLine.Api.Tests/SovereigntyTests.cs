@@ -106,6 +106,31 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         Assert.Equal(0, p.GetProperty("endEvent").GetProperty("citations").GetArrayLength());
     }
 
+    [Fact] // 可信程度門檻（docs/source-rules.md §5）：未評等或單一 B → pending；一筆 A，或兩個獨立家族的 B → verified；同一家族的兩個 B 只算一個
+    public async Task Event_verification_follows_source_grade_and_independent_families()
+    {
+        var k = new ApiTestKit(fx);
+        var hu = await k.Regime("hungary-grades");
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var ungraded = await k.Source(kind: "official_record", title: "ungraded", grade: "");
+        var b1 = await k.Source(kind: "peer_reviewed", title: "b1", grade: "B", family: "fam-1");
+        var b1b = await k.Source(kind: "peer_reviewed", title: "b1b", grade: "B", family: "fam-1");
+        var b2 = await k.Source(kind: "peer_reviewed", title: "b2", grade: "B", family: "fam-2");
+        var a = await k.Source(kind: "official_record", title: "a", grade: "A");
+        object C(Guid s) => new { sourceId = s, locator = "p. 1", evidenceNote = "n" };
+        async Task<string?> V(string from, string to, params object[] cites)
+        {
+            var ev = await Event(k, from, cites);
+            var id = await k.Id(await Post(k, Body(hu, ohm, from, to, startEvent: ev)));
+            return (await FeatureOn(k, from, id))!.Value.GetProperty("properties").GetProperty("startEvent").GetProperty("verification").GetString();
+        }
+        Assert.Equal("pending", await V("1921-01-01", "1921-02-01", C(ungraded)));
+        Assert.Equal("pending", await V("1921-02-01", "1921-03-01", C(b1)));
+        Assert.Equal("pending", await V("1921-03-01", "1921-04-01", C(b1), C(b1b)));
+        Assert.Equal("verified", await V("1921-04-01", "1921-05-01", C(b1), C(b2)));
+        Assert.Equal("verified", await V("1921-05-01", "1921-06-01", C(a)));
+    }
+
     [Fact] // 政權優先於陣營：陣營只作補充（有切片才帶），不影響回傳的要素
     public async Task Camp_is_only_a_supplement()
     {

@@ -148,6 +148,38 @@
    "license_code": null,
    "grade": "C",
    "gradeBasis": "頁尾具名作者 Rickard, J（John Rickard）與具名網站 HistoryOfWar.org"
+  },
+  "rf-awm-horner": {
+   "title": "Strategy and Command in Australia's Campaigns of 1941",
+   "authors": [
+    "David Horner"
+   ],
+   "publisher": "Australian War Memorial",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/visit/events/conference/remembering-1941/horner",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲戰爭紀念館（國家級官方機構）發布之 Remembering 1941 研討會論文，具名作者 David Horner",
+   "addedAt": "2026-11-13T08:40:34+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-awm-stephens": {
+   "title": "The Royal Australian Air Force in 1941",
+   "authors": [
+    "Alan Stephens"
+   ],
+   "publisher": "Australian War Memorial",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/visit/events/conference/remembering-1941/stephens",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲戰爭紀念館（國家級官方機構）發布之 Remembering 1941 研討會論文，具名作者 Alan Stephens",
+   "addedAt": "2026-11-13T08:40:34+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -1674,10 +1706,10 @@
      "positionKind": "military_education",
      "period": {
       "start": "1933-01-01",
-      "end": null
+      "end": "1935-04-21"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "t14Rule": "R5",
      "t14Reason": "軍校校長，歸 R5。",
      "citations": [
@@ -1691,6 +1723,30 @@
        "grade": "A",
        "datePrecision": "month",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-lavarack",
+       "locator": "傳記段",
+       "quote": "on 21 April 1935 he was promoted to temporary major general",
+       "quoteLang": "en",
+       "evidenceNote": "依下一職起日推得（推論）：來源明寫1935年4月21日接任總參謀長",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "院長任期迄於轉任總參謀長之日",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-lavarack",
+       "locator": "傳記段",
+       "quote": "taking over as Chief of General Staff",
+       "quoteLang": "en",
+       "evidenceNote": "同上",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "轉任總參謀長",
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1859,13 +1915,6 @@
      "target": "position:lavarack-chief-of-general-staff",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；AWM 只寫 1935-04-21 接任，未寫卸任日；已查 AWM 館藏頁、DVA／ADB（ADB 動態頁無法抓取）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:lavarack-commandant-rmc",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 只寫 1933 年 1 月起任院長，未寫卸任日。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -2076,6 +2125,47 @@
      "url": "https://adb.anu.edu.au/biography/squires-ernest-ker-8613",
      "result": "challenge_page",
      "note": "Anubis 防機器人頁，不繞過"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "ADB Lavarack (john-dudley-7121 / sir-john-dudley-10790)",
+     "url": "https://adb.anu.edu.au/biography/lavarack-sir-john-dudley-10790",
+     "result": "challenge_page",
+     "note": "回傳 Loading 挑戰頁，無傳記文字"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "discoveringanzacs.naa.gov.au Lavarack; anzacportal.dva.gov.au newsclip",
+     "url": "https://discoveringanzacs.naa.gov.au/browse/person/240878",
+     "result": "no_result",
+     "note": "NAA、DVA 逾時（curl 28），未取得原文"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "Lavarack CGS end 1939 / I Corps end 1942 / Washington mission end (AWM, army.gov.au)",
+     "url": null,
+     "result": "no_result",
+     "note": "AWM 與陸軍研究中心搜尋結果均未載總參謀長、第1軍、華盛頓代表團的迄日；AWM 只寫 1946-09-18 退役"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:lavarack-commandant-rmc",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 只寫 1933 年 1 月起任院長，未寫卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2779,6 +2869,28 @@
      "url": null,
      "result": "no_result",
      "note": "WebSearch ×3，來源多為維基系，不收；AWM 頁未見卸任日"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "Savige GOC II Corps end 1945 handover (AWM, DVA, army.gov.au, vwma)",
+     "url": null,
+     "result": "no_result",
+     "note": "AWM 只寫 1945-09 受降，未載卸任日；其他來源（generals.dk、維基）依規則不收"
+    },
+    {
+     "step": 102,
+     "sourceType": "national_dictionary",
+     "query": "ADB Savige",
+     "url": "https://adb.anu.edu.au/biography/savige-sir-stanley-george-8369",
+     "result": "challenge_page",
+     "note": "Loading 挑戰頁"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -3509,10 +3621,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1940-02-28",
-      "end": null
+      "end": "1941-06-18"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "t14Rule": "R5",
      "t14Reason": "軍級指揮職，非國家級最高軍職，歸 R5。",
      "t14Overlap": "general",
@@ -3527,6 +3639,30 @@
        "grade": "A",
        "datePrecision": "day",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-lavarack",
+       "locator": "傳記段",
+       "quote": "took command of I Corps in Blamey's place",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一任起日推得（推論）：接任者 Lavarack 起日 1941-06-18",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "布萊梅第1軍司令由拉瓦拉克接替",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-exporter",
+       "locator": "Operation Exporter",
+       "quote": "it was not until 18 June, in the midst of a heavy Vichy French counter-attack",
+       "quoteLang": "en",
+       "evidenceNote": "接任者起日 1941-06-18（依名簿下一任起日推得（推論））",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "接任日 6 月 18 日",
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -3651,13 +3787,6 @@
      "checkedOn": "2026-11-12"
     },
     {
-     "target": "position:blamey-i-corps",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 人物頁寫 1940-02-28 起任第1軍司令、1941-05 任中東副總司令，未明寫第1軍司令卸任日（AWM Operation Exporter 文章只寫 1941-06-18 起由 Lavarack 指揮該行動與第1軍）；已查 AWM 人物頁、AWM Operation Exporter、AWM Blamey 文書指南；ADB 被 Anubis 擋。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:blamey-allied-land-forces",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；AWM 人物頁只寫 1942-03-26 就任，AWM Blamey 文書指南寫 1943 年美軍改組使該司令部名存實亡，均未寫卸任日；已查 AWM 人物頁、AWM 文書指南、Sydney Institute；盟軍陸上部隊司令部解編日未見來源。",
@@ -3777,6 +3906,39 @@
      "url": "https://www.awm.gov.au/sites/default/files/87111/files/bcofhistory1.pdf",
      "result": "not_relevant",
      "note": "已抓取，未見 ALF 解編日"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "Allied Land Forces headquarters disbanded 1945 (AWM, DFAT, DVA)",
+     "url": null,
+     "result": "no_result",
+     "note": "僅見 AWM 1945-11-14 被政府解職、1946-01-31 除役，無司令部解編日"
+    },
+    {
+     "step": 102,
+     "sourceType": "national_dictionary",
+     "query": "ADB Blamey",
+     "url": "https://adb.anu.edu.au/biography/blamey-sir-thomas-albert-5258",
+     "result": "challenge_page",
+     "note": "Loading 挑戰頁"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:blamey-i-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 人物頁寫 1940-02-28 起任第1軍司令、1941-05 任中東副總司令，未明寫第1軍司令卸任日（AWM Operation Exporter 文章只寫 1941-06-18 起由 Lavarack 指揮該行動與第1軍）；已查 AWM 人物頁、AWM Operation Exporter、AWM Blamey 文書指南；ADB 被 Anubis 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -4051,6 +4213,134 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1941-12-01",
+      "end": null
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "1941年的馬來亞戰役與拉包爾空中作戰",
+      "en": "The 1941 air operations in Malaya and at Rabaul"
+     },
+     "body": {
+      "zh-Hant": "澳洲戰爭紀念館的研討會論文指出，三位參謀長（含伯納特）經常出席戰時內閣提供軍事意見，其中伯納特是借調的英國軍官。1941年，兩個哈德遜偵察機中隊與兩個水牛戰鬥機中隊被派往馬來亞；第1中隊部署於泰馬邊界的哥打峇魯，第8中隊部署於關丹。哥打峇魯的哈德遜機組被稱為首批打擊日本的盟軍空勤人員。1941年12月初，空軍總部又急調第24中隊的哈德遜與威拉威機從安伯利前往拉包爾。這些是伯納特任空軍參謀長期間皇家澳洲空軍所參與的主要戰役與作戰，論文並未載明他個人在其中的具體指揮行動。",
+      "en": "Australian War Memorial conference papers note that the three Chiefs of Staff, including Burnett, usually attended the War Cabinet to give expert military advice; Burnett was a British officer on loan. In 1941 two squadrons of Hudson reconnaissance aircraft and two of Buffalo fighters were deployed to Malaya, No. 1 Squadron to Kota Bharu on the Thai/Malay border and No. 8 Squadron to Kuantan. The Hudson crews at Kota Bharu were described as the first allied airmen to strike a blow against Japan. In early December 1941 RAAF Headquarters rushed No. 24 Squadron's Hudsons and Wirraways from Amberley to Rabaul. These were the main operations involving the RAAF during Burnett's time as Chief of the Air Staff; the papers do not record his personal operational direction."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-awm-horner",
+       "locator": "Burnett 段",
+       "quote": "usually attended the War Cabinet to provide expert military advice",
+       "quoteLang": "en",
+       "evidenceNote": "AWM 論文：三位參謀長（含伯納特）經常出席戰時內閣提供軍事意見",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": "伯納特出席戰時內閣提供軍事意見",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-horner",
+       "locator": "Burnett 段",
+       "quote": "Colvin and Burnett were British officers on loan.",
+       "quoteLang": "en",
+       "evidenceNote": "伯納特為借調的英國軍官",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": "伯納特為借調英國軍官",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-horner",
+       "locator": "1941 部署段",
+       "quote": "Two squadrons of Hudson general reconnaissance aircraft",
+       "quoteLang": "en",
+       "evidenceNote": "1941 年派往馬來亞的兵力",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": "兩個哈德遜偵察機中隊派往馬來亞",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-horner",
+       "locator": "1941 部署段",
+       "quote": "two of Buffalo fighters were deployed to Malaya",
+       "quoteLang": "en",
+       "evidenceNote": "同上",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": "兩個水牛戰鬥機中隊派往馬來亞",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-stephens",
+       "locator": "馬來亞段",
+       "quote": "No. 1 Squadron to Kota Bharu on the Thai/Malay border",
+       "quoteLang": "en",
+       "evidenceNote": "第1中隊部署於哥打峇魯",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": "第1中隊部署哥打峇魯",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-stephens",
+       "locator": "馬來亞段",
+       "quote": "No. 8 Squadron to Kuantan, 260 kilometres further south",
+       "quoteLang": "en",
+       "evidenceNote": "第8中隊部署於關丹",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": "第8中隊部署關丹",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-stephens",
+       "locator": "馬來亞段",
+       "quote": "the first allied airmen to strike a blow against Japan",
+       "quoteLang": "en",
+       "evidenceNote": "哥打峇魯皇家澳洲空軍哈德遜機組為盟軍首批打擊日本者",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": "哥打峇魯應戰機組為首批打擊日本的盟軍空勤人員",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-stephens",
+       "locator": "拉包爾段",
+       "quote": "rushed No. 24 Squadron's Hudsons and Wirraways from Amberley to Rabaul",
+       "quoteLang": "en",
+       "evidenceNote": "1941 年 12 月初空軍總部急調第24中隊至拉包爾",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": "空軍總部急調第24中隊至拉包爾",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-stephens",
+       "locator": "拉包爾段",
+       "quote": "In early-December 1941 RAAF Headquarters",
+       "quoteLang": "en",
+       "evidenceNote": "時間：1941 年 12 月初",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": "1941 年 12 月初",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
     }
    ],
    "positions": [
@@ -4290,6 +4580,36 @@
      "url": "https://campcolumbia.com.au/?p=14542",
      "result": "found_B",
      "note": "重抓確認；內容為荷蘭情報會談，無戰役"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "Burnett CAS RAAF 1941 Malaya Rabaul AWM Remembering 1941",
+     "url": "https://www.awm.gov.au/visit/events/conference/remembering-1941/horner",
+     "result": "found_A",
+     "note": "Horner 與 Stephens 論文，作為戰役段來源"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "RAF Allenby Palestine Burnett Fifth Wing",
+     "url": "https://www.raf.mod.uk/what-we-do/centre-for-air-and-space-power-studies/aspr/apr-vol5-iss4-2-pdf/",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 103,
+     "sourceType": "national_dictionary",
+     "query": "ADB Burnett Charles Sidney",
+     "url": "https://adb.anu.edu.au/biography/burnett-sir-charles-sidney-9606",
+     "result": "challenge_page",
+     "note": "ADB 回傳 Loading 挑戰頁"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

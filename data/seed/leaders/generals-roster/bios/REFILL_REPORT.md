@@ -1,12 +1,12 @@
-# 將領生平「只補缺欄位」總報告（2026-11-13T08:48:19+08:00）
+# 將領生平「只補缺欄位」總報告（2026-11-13T10:59:05+08:00）
 
 授權：Tai 2026-11-12 21:43（World Line 主管轉達）。依 ARCHITECTURE §20 只補缺欄位；不寫庫、不 push、不改 schema。
 
 ## 達標數（check_min 對現行 research.json 重算）
 
-- S：76／102
-- A：156／255
-- 合計：232／357
+- S：73／102
+- A：151／255
+- 合計：224／357
 
 ## 批次
 
@@ -84,12 +84,12 @@
 |---|---|---|---|---|
 | S/004 | walthervonbrauchitsch | 任期 | — | ✓ |
 | S/004 | robertrittervongreim | 指揮職、L3 | 指揮職 |  |
-| S/004 | heinzguderian | 首跑（新人） | — | ✓ |
+| S/004 | heinzguderian | 首跑（新人） | 任期（缺 2） |  |
 | S/005 | alfredvontirpitz | 戰役 | — | ✓ |
 | S/006 | bernardmontgomery1stviscountmontgomeryofalamein | 任期 | 任期（缺 1） |  |
 | S/006 | charlesportal1stviscountportalofhungerford | 戰役、指揮職、L3 | — | ✓ |
 | S/006 | johnjellicoe1stearljellicoe | 戰役、指揮職、L3 | — | ✓ |
-| S/007 | williamslim1stviscountslim | 任期 | — | ✓ |
+| S/007 | williamslim1stviscountslim | 任期 | 任期（缺 1） |  |
 | S/007 | davidbeatty1stearlbeatty | 任期、L3 | — | ✓ |
 | S/009 | charlesdegaulle | 任期 | 任期（缺 1） |  |
 | S/009 | josephjoffre | 任期、戰役 | 任期（缺 1） |  |
@@ -100,7 +100,7 @@
 | S/010 | pietrobadoglio | 任期 | — | ✓ |
 | S/011 | luigicadorna | 任期 | — | ✓ |
 | S/011 | armandodiaz | 任期 | 任期（缺 1） |  |
-| S/011 | rodolfograziani | 任期 | — | ✓ |
+| S/011 | rodolfograziani | 任期 | 任期（缺 3） |  |
 | S/011 | henryharnold | 任期、戰役 | — | ✓ |
 | S/012 | chesterwnimitz | 任期、戰役 | — | ✓ |
 | S/012 | georgecmarshall | 戰役 | — | ✓ |
@@ -293,30 +293,15 @@
 | A/051 | সভষচনদরবস | 任期 | 任期（缺 1） |  |
 | A/052 | mohansinghdeb | 戰役 | — | ✓ |
 
-計畫內 210 人，補後達標 85 人。
+計畫內 210 人，補後達標 82 人。
 
 ## generals.dk 引用（主管 2026-11-12 22:08 禁用：個人網站；既有引用暫不改，待替換）
 
-- 涉及 15 人、67 筆引用；其中 6 人有「只靠 generals.dk 支撐」的欄位（下表「待替換」，報告時計算，未改資料）。
+- 涉及 0 人、0 筆引用；其中 0 人有「只靠 generals.dk 支撐」的欄位（下表「待替換」，報告時計算，未改資料）。
 - 生效後開跑的批次：verify.py／apply_refill.py 依來源 addedAt 擋新增；寫庫時 source-kind-overrides 為 null → DROP。
 
 | 層 | 批 | key | 中文名 | 引用數 | 來源鍵 | 待替換（只靠 generals.dk） |
 |---|---|---|---|---|---|---|
-| A | 019 | markwclark | 馬克·克拉克 | 6 | gen-clark | 職務 第二軍軍長、職務 第15集團軍群總司令 |
-| A | 019 | maxwelldtaylor | 馬克斯維爾·泰勒 | 12 | gen-taylor | 職務 第82空降師砲兵指揮官、職務 第101空降師師長（第一任）、職務 第101空降師師長（第二任）、職務 西點軍校校長 |
-| A | 019 | matthewridgway | 馬修·李奇威 | 10 | gen-ridgway | 職務 第82步兵師副師長、職務 第82空降師師長、職務 第18空降軍軍長 |
-| A | 038 | vasilyblyukher | 瓦西里·布柳赫爾 | 5 | gen-blu | — |
-| A | 038 | semyonbudyonny | 謝苗·布瓊尼 | 4 | gen-bud | — |
-| A | 042 | karllennartoesch | 卡爾·稜哈特·奧伊什 | 3 | gdk-oesch | — |
-| A | 042 | erikheinrichs | 埃里克·海因里克斯 | 5 | gdk-heinrichs | 職務 第3軍團司令 |
-| A | 042 | haraldohquist | 哈拉爾德·厄奎斯特 | 2 | gdk-ohquist | — |
-| A | 049 | henriwinkelman | 亨利·溫克爾曼 | 4 | gen-winkelman | 職務 第四師師長 |
-| A | 049 | heinterpoorten | 海因·德波登 | 1 | gen-poorten | — |
-| S | 004 | walthervonbrauchitsch | 瓦爾特·馮·布勞希奇 | 3 | rf-gendk-brauchitsch | — |
-| S | 004 | heinzguderian | 海因茨·古德里安 | 6 | rf-gendk-guderian | 職務 第19機動軍軍長、職務 第2裝甲集群司令、職務 第2裝甲軍團司令 |
-| S | 007 | williamslim1stviscountslim | 第一代斯利姆子爵威廉·斯利姆 | 1 | rf-gdk-slim | — |
-| S | 011 | rodolfograziani | 魯道夫·格拉齊亞尼 | 3 | rf-generals-graziani | — |
-| S | 011 | henryharnold | 亨利·阿諾德 | 2 | rf-generals-arnold | — |
 
 ## 花費
 

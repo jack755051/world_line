@@ -205,34 +205,6 @@
    "grade": "A",
    "gradeBasis": "國家檔案館官方圖像資料庫之機構著錄說明（T1 A）"
   },
-  "rf-gendk-brauchitsch": {
-   "title": "Biography of Field Marshal Walther von Brauchitsch (1881 – 1948), Germany",
-   "authors": [
-    "Steen Ammentorp"
-   ],
-   "publisher": "Generals.dk（The Generals of WWII）",
-   "published_text": null,
-   "url": "http://www.generals.dk/general/von_Brauchitsch/Walther/Germany.html",
-   "archive_url": null,
-   "catalog_id": null,
-   "license_code": null,
-   "grade": "C",
-   "gradeBasis": "具名作者 Steen Ammentorp 的軍事史資料庫頁面（版權標示 Copyright © Steen Ammentorp since 2000），圖片出處註明 BArch PERS 6/299467；依具名 C 級規則評 C"
-  },
-  "rf-gendk-guderian": {
-   "title": "Biography of Colonel-General Heinz Wilhelm Guderian (1888 – 1954), Germany",
-   "authors": [
-    "Steen Ammentorp"
-   ],
-   "publisher": "Generals.dk（The Generals of WWII）",
-   "published_text": null,
-   "url": "http://www.generals.dk/general/Guderian/Heinz_Wilhelm/Germany.html",
-   "archive_url": null,
-   "catalog_id": null,
-   "license_code": null,
-   "grade": "C",
-   "gradeBasis": "具名作者 Steen Ammentorp 的軍事史資料庫頁面（版權標示 Copyright © Steen Ammentorp since 2000），圖片出處註明 BArch PERS 6/299757；依具名 C 級規則評 C"
-  },
   "rf-lemo-guderian": {
    "title": "LeMO Biografie - Heinz Guderian",
    "authors": [
@@ -1398,10 +1370,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1933-02-01",
-      "end": "1937-04-01"
+      "end": "1938-01-01"
      },
      "startPrecision": "day",
-     "endPrecision": "day",
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "db-brauchitsch",
@@ -1428,14 +1400,26 @@
        "policyVersion": "bio-2026-11-v0"
       },
       {
-       "sourceKey": "rf-gendk-brauchitsch",
-       "locator": "Service",
-       "quote": "1933-03-01 – 1937-04-01 General Officer Commanding Military District I",
-       "quoteLang": "en",
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB 本文",
+       "quote": "am 1. Februar 1933 Kommandeur der 1. Division und Befehlshaber im Wehrkreis I",
+       "quoteLang": "de",
        "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
        "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB 本文",
+       "quote": "1937 als General der Artillerie Befehlshaber des Gruppenkommandos 4",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1459,10 +1443,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1937-01-01",
-      "end": "1938-02-04"
+      "end": "1939-01-01"
      },
      "startPrecision": "year",
-     "endPrecision": "day",
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "db-brauchitsch",
@@ -1477,26 +1461,14 @@
        "policyVersion": "bio-2026-11-v0"
       },
       {
-       "sourceKey": "rf-gendk-brauchitsch",
-       "locator": "Service",
-       "quote": "1937-04-01 – 1938-02-04 Commander in Chief Group Command 4",
-       "quoteLang": "en",
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB 本文",
+       "quote": "wurde er 1938 Oberbefehlshaber des Heeres",
+       "quoteLang": "de",
        "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      },
-      {
-       "sourceKey": "rf-gendk-brauchitsch",
-       "locator": "Service",
-       "quote": "1938-02-04 – 1941-12-20 Commander in Chief of the Army",
-       "quoteLang": "en",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1672,6 +1644,58 @@
     {
      "run": "refill-2026-11-12",
      "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "brauchitsch-wehrkreis-i",
+     "basis": "db-brauchitsch",
+     "diff": "原：1933-02-01～1937-04-01（迄日僅 generals.dk）；起日依 db-brauchitsch 不變；迄日依 db-brauchitsch：1937年改任第4集團司令部，記 1938-01-01／year",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1933-02-01",
+        "end": "1937-04-01"
+       },
+       "after": {
+        "start": "1933-02-01",
+        "end": "1938-01-01"
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "brauchitsch-gruppenkommando-4",
+     "basis": "db-brauchitsch",
+     "diff": "原：1937（year）～1938-02-04（迄日僅 generals.dk）；起日不變；迄日依 db-brauchitsch：1938年任陸軍總司令，記 1939-01-01／year",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1937-01-01",
+        "end": "1938-02-04"
+       },
+       "after": {
+        "start": "1937-01-01",
+        "end": "1939-01-01"
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
     }
    ]
   },
@@ -3469,24 +3493,12 @@
      },
      "positionKind": "military_command",
      "period": {
-      "start": "1935-10-15",
-      "end": "1938-02-04"
+      "start": "1935-10-01",
+      "end": "1939-01-01"
      },
-     "startPrecision": "day",
-     "endPrecision": "day",
+     "startPrecision": "month",
+     "endPrecision": "year",
      "citations": [
-      {
-       "sourceKey": "rf-gendk-guderian",
-       "locator": "Service",
-       "quote": "1935-10-15 – 1938-02-04 General Officer Commanding 2nd Panzer Division",
-       "quoteLang": "en",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      },
       {
        "sourceKey": "rf-lemo-guderian",
        "locator": "Lebenslauf 1935",
@@ -3496,6 +3508,30 @@
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1935 Oktober",
+       "quote": "Guderian erhält das Kommando über die 2. Panzerdivision.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-db-guderian",
+       "locator": "NDB 本文",
+       "quote": "1938 Generalleutnant und Kommandierender General des aus Panzerdivisionen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -3518,21 +3554,21 @@
      },
      "positionKind": "military_command",
      "period": {
-      "start": "1939-08-26",
-      "end": "1940-06-01"
+      "start": null,
+      "end": null
      },
-     "startPrecision": "day",
-     "endPrecision": "day",
+     "startPrecision": null,
+     "endPrecision": null,
      "citations": [
       {
-       "sourceKey": "rf-gendk-guderian",
-       "locator": "Service",
-       "quote": "1939-08-26 – 1940-06-01 General Officer Commanding XIX Motorised Corps",
-       "quoteLang": "en",
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1939",
+       "quote": "ist er Befehlshaber des motorisierten XIX. Armeekorps.",
+       "quoteLang": "de",
        "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -3555,21 +3591,33 @@
      },
      "positionKind": "military_command",
      "period": {
-      "start": "1940-11-16",
-      "end": "1941-07-28"
+      "start": null,
+      "end": "1941-11-01"
      },
-     "startPrecision": "day",
-     "endPrecision": "day",
+     "startPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
-       "sourceKey": "rf-gendk-guderian",
-       "locator": "Service",
-       "quote": "1940-11-16 – 1941-07-28 General Officer Commanding 2nd Panzer Group",
-       "quoteLang": "en",
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941-06",
+       "quote": "befehligt er die Panzergruppe 2, mit der er sich an der ersten Kesselschlacht",
+       "quoteLang": "de",
        "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941 Oktober",
+       "quote": "Oktober: Mit seinen zur 2. Panzerarmee erweiterten Verbänden entscheidet er die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -3592,20 +3640,44 @@
      },
      "positionKind": "military_command",
      "period": {
-      "start": "1941-08-03",
-      "end": "1941-12-26"
+      "start": "1941-10-01",
+      "end": "1941-12-25"
      },
-     "startPrecision": "day",
+     "startPrecision": "month",
      "endPrecision": "day",
      "citations": [
       {
-       "sourceKey": "rf-gendk-guderian",
-       "locator": "Service",
-       "quote": "1941-08-03 – 1941-12-26 General Officer Commanding 2nd Panzer Army",
-       "quoteLang": "en",
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941-10",
+       "quote": "Mit seinen zur 2. Panzerarmee erweiterten Verbänden entscheidet er die",
+       "quoteLang": "de",
        "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941 Oktober",
+       "quote": "Oktober: Mit seinen zur 2. Panzerarmee erweiterten Verbänden entscheidet er die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941 25. Dezember",
+       "quote": "25. Dezember: Guderian wird aufgrund seiner eigenmächtigen Frontbegradigung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
        "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
@@ -3629,24 +3701,12 @@
      },
      "positionKind": "military_command",
      "period": {
-      "start": "1943-02-28",
+      "start": "1943-03-01",
       "end": "1945-03-28"
      },
-     "startPrecision": "day",
+     "startPrecision": "month",
      "endPrecision": "day",
      "citations": [
-      {
-       "sourceKey": "rf-gendk-guderian",
-       "locator": "Service",
-       "quote": "1943-02-28 – 1945-03-28 Inspector-General of Panzer Troops",
-       "quoteLang": "en",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      },
       {
        "sourceKey": "rf-lemo-guderian",
        "locator": "Lebenslauf 1943",
@@ -3656,6 +3716,42 @@
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1943 März",
+       "quote": "März: Nach der für die Wehrmacht vernichtenden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-db-guderian",
+       "locator": "NDB 本文",
+       "quote": "im März 1943 berief ihn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1945 28. März",
+       "quote": "wird er nach schweren Auseinandersetzungen mit Hitler verabschiedet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -3685,24 +3781,36 @@
      "endPrecision": "day",
      "citations": [
       {
-       "sourceKey": "rf-gendk-guderian",
-       "locator": "Service",
-       "quote": "1944-07-21 – 1945-03-28 Chief of the Army General Staff, Army High Command OKH",
-       "quoteLang": "en",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      },
-      {
        "sourceKey": "rf-lemo-guderian",
        "locator": "Lebenslauf 1944",
        "quote": "Guderian tritt die Nachfolge des bei Hitler aus strategischen Gründen in Ungnade",
        "quoteLang": "de",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1944 21. Juli",
+       "quote": "21. Juli: Guderian tritt die Nachfolge des bei Hitler aus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1945 28. März",
+       "quote": "wird er nach schweren Auseinandersetzungen mit Hitler verabschiedet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
        "grade": "B",
        "datePrecision": "day",
        "claimSpan": null,
@@ -3728,6 +3836,30 @@
      "note": "待查證：本批名單未附 recordId；不連庫，留空待主管補",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:guderian-xix-korps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    },
+    {
+     "target": "position:guderian-xix-korps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    },
+    {
+     "target": "position:guderian-panzergruppe-2",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
     }
    ],
    "searchLog": [
@@ -3770,12 +3902,159 @@
      "url": "WebSearch",
      "result": "not_relevant",
      "note": "搜尋結果以維基類與 tracesofwar 為主，不採用"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Guderian XIX. Armeekorps / Panzergruppe 2 / 2. Panzerarmee（LeMO，既有 rf-lemo-guderian）",
+     "url": "https://www.dhm.de/lemo/biografie/heinz-guderian",
+     "result": "found_B",
+     "note": "generals.dk 替換；LeMO 無精確起訖日，日期以原值保留"
     }
    ],
    "refill": [
     {
      "run": "refill-2026-11-12",
      "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-xix-korps",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1939-08-26～1940-06-01（僅 generals.dk）；LeMO／NDB 只寫 1939年9／10月波蘭戰役期間任軍長，未寫起迄，起迄均設 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1939-08-26",
+        "end": "1940-06-01"
+       },
+       "after": {
+        "start": null,
+        "end": null
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": null
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": null
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-panzergruppe-2",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1940-11-16～1941-07-28（僅 generals.dk）；迄日依 rf-lemo-guderian：1941年10月已擴編為第2裝甲集團軍，記 1941-11-01／month；起日無替代來源，設 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1940-11-16",
+        "end": "1941-07-28"
+       },
+       "after": {
+        "start": null,
+        "end": "1941-11-01"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": null
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-2-panzerarmee",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1941-08-03～1941-12-26（僅 generals.dk）；起日依 rf-lemo-guderian：1941年10月（month）；迄日依 rf-lemo-guderian：1941-12-25（day）",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1941-08-03",
+        "end": "1941-12-26"
+       },
+       "after": {
+        "start": "1941-10-01",
+        "end": "1941-12-25"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-2-panzerdivision",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1935-10-15～1938-02-04（僅 generals.dk）；起日依 rf-lemo-guderian：1935年10月（month）；迄日依 rf-db-guderian：1938年改任第16軍軍長，記 1939-01-01／year",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1935-10-15",
+        "end": "1938-02-04"
+       },
+       "after": {
+        "start": "1935-10-01",
+        "end": "1939-01-01"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-generalinspekteur-panzertruppen",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1943-02-28～1945-03-28（僅 generals.dk）；起日依 rf-lemo-guderian／rf-db-guderian：1943年3月（month）；迄日依 rf-lemo-guderian：1945-03-28",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1943-02-28",
+        "end": "1945-03-28"
+       },
+       "after": {
+        "start": "1943-03-01",
+        "end": "1945-03-28"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
     }
    ]
   }

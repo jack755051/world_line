@@ -415,20 +415,6 @@
    "grade": "A",
    "gradeBasis": "英國國家檔案館官方目錄（T1 A）"
   },
-  "rf-gdk-slim": {
-   "title": "Generals.dk: Slim, William Joseph（Field Marshal）",
-   "authors": [
-    "Steen Ammentorp"
-   ],
-   "publisher": "Generals.dk（The Generals of WWII）",
-   "published_text": null,
-   "url": "https://generals.dk/general/Slim/William_Joseph/Great_Britain.html",
-   "archive_url": null,
-   "catalog_id": null,
-   "license_code": null,
-   "grade": "C",
-   "gradeBasis": "具名軍事史資料庫，站主／作者 Steen Ammentorp（頁尾署名 Copyright © Steen Ammentorp）；逐職列任命起迄日"
-  },
   "rf-rmg": {
    "title": "Beatty, David, Admiral of the Fleet, 1st Earl Beatty, 1871-1936 (BTY) 館藏簡介",
    "authors": [],
@@ -2372,10 +2358,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1943-10-01",
-      "end": "1945-08-10"
+      "end": null
      },
      "startPrecision": "month",
-     "endPrecision": "day",
+     "endPrecision": null,
      "citations": [
       {
        "sourceKey": "snl-slim",
@@ -2410,18 +2396,6 @@
        "accessedOn": "2026-11-11",
        "grade": "B",
        "datePrecision": "month",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      },
-      {
-       "sourceKey": "rf-gdk-slim",
-       "locator": "Service 列表",
-       "quote": "1943-10-22 – 1945-08-10 General Officer Commanding 14th Army [Burma]",
-       "quoteLang": "en",
-       "evidenceNote": "generals.dk 逐職列任期起迄日",
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2543,6 +2517,14 @@
      "candidateCitations": [],
      "checkedOn": "2026-11-11",
      "citations": []
+    },
+    {
+     "target": "position:slim-fourteenth-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
     }
    ],
    "searchLog": [
@@ -2864,6 +2846,22 @@
      "url": "https://www.thegazette.co.uk/London/issue/37140/supplement/3249",
      "result": "no_result",
      "note": "404"
+    },
+    {
+     "step": 90,
+     "sourceType": "national_dictionary",
+     "query": "ADB Slim William Joseph（迄日）",
+     "url": "https://adb.anu.edu.au/biography/slim-william-joseph-11713",
+     "result": "blocked_403",
+     "note": "JavaScript 頁無內容，不繞過"
+    },
+    {
+     "step": 91,
+     "sourceType": "official",
+     "query": "Slim 14th Army end date IWM／NAM",
+     "url": null,
+     "result": "no_result",
+     "note": "generals.dk 替換"
     }
    ],
    "resolvedGaps": [
@@ -2882,6 +2880,33 @@
     {
      "run": "refill-2026-11-12",
      "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "slim-fourteenth-army",
+     "basis": "ebsco-slim",
+     "diff": "原：迄日 1945-08-10（day，僅 generals.dk）；可收來源（SNL、EBSCO、Encyclopedia.com、NAM）只載1943年10月任第14集團軍司令，未載迄日，改 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1943-10-01",
+        "end": "1945-08-10"
+       },
+       "after": {
+        "start": "1943-10-01",
+        "end": null
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": null
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
     }
    ]
   },

@@ -147,3 +147,11 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
   - 9/1＝國界（R8）、9/28、10/6：原文無具名到達點，不成線，記入 r4.dateGapNotes。被圍區（Radom、Kutno、Warsaw、Modlin、Hela、Kock）不列前線。
   - 新工具 tools/battles/osm_coords.py：以 OSM id 補座標（Nominatim /lookup）。
 - r7-missing-people 24 人無生平：不補，gaps.json 以 commander_missing_bio 標記（新增 19，另 5 人已有同 target 缺口）。
+
+## 寫入開發庫（Tai 2026-11-13 20:22「先做完波蘭」，主管轉達 GO；只限 5442 worldline_borders_dev）
+- 備份：~/wl-db-backups/worldline_borders_dev-20261113-202647-pre-poland1939.dump（pg_dump -Fc，sha256 c88633e8…69e5b）。
+- tools/battles/write_battle_sql.py 產生只新增 SQL（db/poland_1939.write.sql、write-plan.json）；tools/battles/db_write.py 單一交易執行，交易內比對全部資料表筆數並檢查新列全掛本戰役 event_id。dry-run（ROLLBACK）通過後 --apply COMMIT（db/poland_1939.apply.txt）。
+- 寫入筆數：historical_events 1、battle_profiles 1、battle_profile_citations 3、event_participants 3、battle_phases 4、battle_phase_citations 4、battle_map_features 29（前線 4 derived、據點 25）、battle_map_feature_citations 93、battle_units 72、battle_unit_citations 100、sources 3。全部 status pending。
+- 未寫：只有 C 級引文的部隊 6、據點／交戰 9（含無日期的 Kraków）、12 筆階段引文（原文找不到或超過 80 字）。
+- 測試：後端 dotnet test 261/261 通過（一次性測試容器）；前端 ng test 351/351 通過。API GET /api/v1/campaigns/poland_1939 回 4 階段、4 前線、25 據點。
+- 截圖（4201，主權軸）：~/wl-screenshots/poland_1939-20261113/1939-09-01、09-10、09-17、10-06.png。注意：4201 前端戰役模式仍讀靜態 public/campaigns/poland_1939.json，主地圖不讀戰役表，截圖看不到這次寫入的前線。

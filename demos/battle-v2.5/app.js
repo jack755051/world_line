@@ -51,13 +51,16 @@ function createBattle(cfg) {
 const Q = new URLSearchParams(location.search);   // 蓋掉外殼的 Q：原地換戰役後網址已經不同
 const data = cfg.data, asg = cfg.asg;
 // 史料骨架（主專案考證檔轉出）與每筆資料的可信度（tools/crosscheck.py 算出）；兩個檔都可以沒有
+// v2.12：未查證資料預設不畫（主專案憲法 Decision 5：上圖的每一筆都要有出處）。?unverified=1 或圖層選單可以打開，只給試驗場用。
+let SHOWU = Q.get('unverified') === '1';
+const engShown = e => SHOWU || cfLevel('eng:' + e.id) === 'verified';
 const SRC = cfg.sourced || null, CONF = (cfg.conf || {}).items || {}, CSUM = (cfg.conf || {}).summary || null;
 let dead = false, raf = 0, evBound = false; const offs = [];
 const on = (target, type, fn, opt) => { target.addEventListener(type, fn, opt); offs.push(() => target.removeEventListener(type, fn, opt)); };
 function destroy() { if (dead) return; dead = true; playing = false; cancelAnimationFrame(raf); offs.splice(0).forEach(f => f()); if (MAP) { MAP.remove(); MAP = null; } window.__ready = false; delete window.__fieldMs;
   // 畫面上屬於這場戰役的殘留：名稱牌、提示、事件字卡、資訊卡、戰役清單、圖例裡動態加的列
   ['#eng-tags', '#pk-tags'].forEach(q => { const b = $(q); if (b) { b.innerHTML = ''; b._key = b._key2 = undefined; b._els = {}; } });
-  document.querySelectorAll('.lg-dyn').forEach(e => e.remove()); $('#event').classList.remove('show'); $('#info').hidden = true; $('#bt-menu').hidden = true; const tip = $('#tip'); if (tip) { tip.hidden = true; tip._id = null; } }
+  document.querySelectorAll('.lg-dyn').forEach(e => e.remove()); $('#event').classList.remove('show'); $('#info').hidden = true; $('#bt-menu').hidden = true; $('#uv-note').hidden = true; const tip = $('#tip'); if (tip) { tip.hidden = true; tip._id = null; } }
 let DAY0 = 0, BID = cfg.BID, INDEX = cfg.INDEX, TH = cfg.th;
 const dayOf = iso => (Date.parse(iso + 'T00:00:00Z') - DAY0) / 864e5;
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
@@ -200,7 +203,7 @@ function prep() {
     const em = ENGM[e.id] || {}; e.imp = e.importance || em.importance || 1; e.sum = e.summary_zh || em.summary_zh || ''; e.label = e.name_zh.replace(/（示例）/, '');
     // v2.3：交戰是一段時間。資料有 from／to 就用；沒有就當作關鍵日前後各半天
     const END = KD[KD.length - 1]; e.t0 = clamp(e.from ? dayOf(e.from) : dayOf(e.date) - 0.5, 0, END); e.t1 = clamp(e.to ? dayOf(e.to) : dayOf(e.date) + 0.5, 0, END); });
-  D.units.forEach(u => { u.kpos = D.keyframes.map(k => { const p = posBy[u.id][k.date]; return p ? { x: mx(p.lng), y: my(p.lat), st: p.state } : null; }); });
+  D.units.forEach(u => { u.kpos = D.keyframes.map(k => { const p = posBy[u.id][k.date]; return p ? { x: mx(p.lng), y: my(p.lat), st: p.state, src: p.status === 'map' } : null; }); });
   D.units.forEach(u => { u.children = D.units.filter(c => c.parent_id === u.id).map(c => c.id); u.tier = u.tier ?? TIER[u.echelon] ?? 1; u.replace = (TH.replace_units || []).includes(u.id) || u.replace === true; u._st = 0; u._sa = 0; });
   D.keyframes.forEach(k => { const f = new Set(k.focus_units || []);
     for (let r = 0; r < 3; r++) D.units.forEach(u => { if (u.parent_id && f.has(u.parent_id)) f.add(u.id); });
@@ -351,7 +354,7 @@ function state(d) {
   const u = j === i ? 0 : clamp((d - KD[i]) / (KD[j] - KD[i]), 0, 1), e = RM ? (u < 1 ? 0 : 1) : (TOUR ? ease(u) : u);   // 追蹤模式：等速內插，部隊不會在每個關鍵日頓一下
   return { i, j, u, e, atKey: Math.min(Math.abs(d - KD[i]), Math.abs(d - KD[j])) < 0.04 };
 }
-let F = null; let CX = 0, CY = 0, SC = 1, ZOOM = 6;
+let HIDU = 0, HIDE = 0; let F = null; let CX = 0, CY = 0, SC = 1, ZOOM = 6;
 const PX = x => (x - CX) * SC + W / 2, PY = y => -(y - CY) * SC + H / 2;
 const front = new Float64Array(N * 2); let hasFront = false;
 // 縮放分級：λ 0＝集團軍、1＝軍、2＝師。手機符號較小，等效縮放 +0.9
@@ -393,7 +396,7 @@ function drawTop() {
   LATE = [];
   drawSheet('places', LAYERS.places.a); if (LAYERS.places.a > 0.03) drawPlaces(S, LAYERS.places.a);
   if (SRC && LAYERS.places.a > 0.03) drawSourced(LAYERS.places.a);
-  drawSheet('forces', LAYERS.forces.a); if (LAYERS.forces.a > 0.02) { if (TOUR) drawArrows(S, LAYERS.forces.a); if (!RM) drawShips(S, LAYERS.forces.a);
+  drawSheet('forces', LAYERS.forces.a); if (LAYERS.forces.a > 0.02) { if (SHOWU) { if (TOUR) drawArrows(S, LAYERS.forces.a); if (!RM) drawShips(S, LAYERS.forces.a); }   /* battle.json 的箭頭、船隊沒有出處，算未查證 */
     if (hover && hover.type === 'unit' && !(selected && selected.id === hover.id)) drawTrail(hover.id, false);
     if (selected && selected.type === 'unit') drawTrail(selected.id, true);
     drawUnits(F.units, S, LAYERS.forces.a); }
@@ -463,10 +466,12 @@ function aggW(u, lam) {
 }
 function unitScreens(S, lam) {
   const out = []; const dt = dtGlobal;
-  for (const u of D.units) { const a = u.kpos[S.i], b = u.kpos[S.j]; u._present = !!(a || b); }
+  // 沒開「未查證」時：只畫位置有出處的部隊——停在有出處的關鍵日，或前後兩個關鍵日都有出處（中間的內插算推估，但依據是有出處的）
+  const still = S.i === S.j || S.e < 1e-6; HIDU = 0;
+  for (const u of D.units) { const a = u.kpos[S.i], b = u.kpos[S.j]; u._present = !!(a || b); if (u._present && !SHOWU && !(a && a.src && (still || (b && b.src)))) { u._present = false; HIDU++; } }
   for (const u of D.units) u._hasKids = u.children.some(id => unitIdx[id]._present);
   for (const u of D.units) {
-    const a = u.kpos[S.i], b = u.kpos[S.j]; u._vis = 0; if (!a && !b) { u._sa = 0; continue; }
+    const a = u.kpos[S.i], b = u.kpos[S.j]; u._vis = 0; if (!u._present) { u._sa = 0; continue; }
     let x, y, al = 1, st; u._spd = 0;
     if (a && b) { x = lerp(a.x, b.x, S.e); y = lerp(a.y, b.y, S.e); st = S.u < 0.5 ? a.st : b.st;
       if (S.i !== S.j) { const km = haversine(ilon(a.x), ilat(a.y), ilon(b.x), ilat(b.y)); u._spd = km / (KD[S.j] - KD[S.i]); u._brg = Math.atan2(b.x - a.x, b.y - a.y); } }
@@ -529,9 +534,11 @@ function reprPos(id) {
 function glow(X, Y, r, c) { const T = [], e = [c[0], c[1], c[2], 0]; for (let i = 0; i < 30; i++) { const a0 = i / 30 * 6.2832, a1 = (i + 1) / 30 * 6.2832; T.push([X, Y, c], [X + Math.cos(a0) * r, Y + Math.sin(a0) * r, e], [X + Math.cos(a1) * r, Y + Math.sin(a1) * r, e]); } BGL.tris(T); }
 function drawEngagements(S, LA) {
   F.engTags = [];
+  HIDE = 0;
   for (const e of D.engagements) {
     let al = engAlpha(e, S); e._on = 0;
     if (al <= 0.01) continue;
+    if (!engShown(e)) { HIDE++; continue; }
     const X = PX(e.x), Y = PY(e.y); if (X < -40 || Y < -40 || X > W + 40 || Y > H + 40) continue;
     const isHover = (hover && hover.type === 'eng' && hover.id === e.id) || (selected && selected.type === 'eng' && selected.id === e.id), foc = !TOUR || e.focus;
     const br = RM ? 0.5 : 0.5 + 0.5 * Math.sin(F.now / 1100);
@@ -665,6 +672,7 @@ function jumpTo(i) { lastEventKey = i; setDay(KD[i], true); fireEvent(i, !RM); }
 function play(fromStart) { if (day >= KD[KD.length - 1] - 1e-6) { day = 0; } if (fromStart && day === 0) { lastEventKey = 0; fireEvent(0, true); } playing = true; lastT = 0; updateHUD(); }
 function pause() { playing = false; updateHUD(); }
 function setSpeed(s) { speed = s; document.querySelectorAll('#speed button').forEach(b => b.classList.toggle('on', +b.dataset.s === s)); }
+function setShowU(v) { SHOWU = v; uvKey = ''; if (!v && selected && selected.type !== 'src') closeInfo(); renderChips(); nowKey = ''; refreshInfo(true); }
 function renderChips() {
   const root = $('#layers'); root.innerHTML = '';
   const seg = document.createElement('div'); seg.className = 'seg'; seg.setAttribute('role', 'group'); seg.setAttribute('aria-label', '視角');
@@ -674,6 +682,7 @@ function renderChips() {
   const box = document.createElement('div'); box.id = 'lay-pop'; box.hidden = !layOpen; const lg = document.createElement('button'); lg.className = 'chip'; lg.textContent = '圖例'; lg.onclick = () => $('#legend-btn').click(); root.append(seg, lb, lg, box);
   { const ms = document.createElement('div'); ms.className = 'seg mode'; ms.setAttribute('role', 'group'); ms.setAttribute('aria-label', '模式');
     [[false, '追蹤', '追蹤模式：自由鏡頭，點部隊看細節'], [true, '導覽', '導覽模式：照章節自動移動鏡頭，只強調當日焦點（快捷鍵 T）']].forEach(([v, t, tt]) => { const b = document.createElement('button'); b.textContent = t; b.title = tt; b.className = TOUR === v ? 'on' : ''; b.setAttribute('aria-pressed', TOUR === v); b.onclick = () => setTour(v); ms.appendChild(b); }); root.prepend(ms); }
+  { const b = document.createElement('button'); b.className = 'chip ' + (SHOWU ? 'on' : 'off'); b.setAttribute('aria-pressed', SHOWU); b.innerHTML = `<i style="background:#b9a26a"></i>未查證資料<small>${SHOWU ? '顯示' : '隱藏'}</small>`; b.title = '沒有官方紀錄、官方戰史或學術專書出處的部隊位置、交戰與史料待查證項目。預設隱藏。'; b.onclick = () => setShowU(!SHOWU); box.appendChild(b); }
   const a = document.createElement('button'); a.className = 'chip locked'; a.disabled = true; a.innerHTML = '<i style="background:#ff4b3a"></i>A｜控制區<small>常駐</small>'; box.appendChild(a);
   for (const k of ['forces', 'eng', 'places']) { const L = LAYERS[k]; const b = document.createElement('button');
     b.className = 'chip ' + L.mode; b.setAttribute('aria-pressed', L.mode !== 'off');
@@ -711,7 +720,7 @@ function bindUI() {
   const setLg = v => { lg.hidden = !v; lb.setAttribute('aria-expanded', v); };
   setLg(Q.get('legend') === '1');
   lb.onclick = () => setLg(lg.hidden); $('#legend-close').onclick = () => setLg(false);
-  $('#info-close').onclick = closeInfo;
+  $('#info-close').onclick = closeInfo; $('#uv-note').onclick = ev => { const b = ev.target.closest('[data-uv]'); if (b) setShowU(b.dataset.uv === '1'); };
   const el = $('#map');
   on(el, 'mousemove', ev => { const r = el.getBoundingClientRect(); hover = nearest(ev.clientX - r.left, ev.clientY - r.top); MAP.getCanvas().style.cursor = hover ? 'pointer' : ''; });
   on(el, 'mouseleave', () => hover = null);
@@ -723,7 +732,7 @@ function bindUI() {
 }
 // ---------- v2.6：多場戰役 ----------
 // 換戰役交給外殼的 go()：原地換，不重新載入。網址保留模式和視角。
-function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); if (TOUR) q.set('mode', 'tour'); if (VIEW !== 'all') q.set('side', VIEW); ['rm', 'pr'].forEach(k => Q.get(k) && q.set(k, Q.get(k))); return location.pathname + '?' + q; }
+function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); if (TOUR) q.set('mode', 'tour'); if (VIEW !== 'all') q.set('side', VIEW); if (SHOWU) q.set('unverified', '1'); ['rm', 'pr'].forEach(k => Q.get(k) && q.set(k, Q.get(k))); return location.pathname + '?' + q; }
 function gotoBattle(id) { cfg.go(id, battleURL(id)); }
 function switchBattle(dir) { const i = INDEX.findIndex(b => b.id === BID), n = INDEX[i + dir]; if (n) gotoBattle(n.id); }
 function initBattleNav() {
@@ -834,15 +843,18 @@ function engStatic(h) { const e = D.engagements.find(x => x.id === h.id);
     <div class="foot"><span class="ex">${esc(D.meta.banner || '')}</span><span class="none">${D.meta.is_example ? '結果：示例資料不填' : ''}</span></div>`; }
 function engLive(h) { const e = D.engagements.find(x => x.id === h.id); return `<dl><dt>狀態</dt><dd>${day < e.t0 ? '尚未開始' : day > e.t1 ? '已結束' : '進行中'}</dd><dt>時段</dt><dd>${fmtDay(e.t0)} – ${fmtDay(e.t1)}${cfLevel('eng:' + e.id) ? '（' + CF_ZH[cfLevel('eng:' + e.id)] + '）' : '（起訖需查證）'}</dd></dl>`; }
 const ICONS = {}; function iconURL(u) { return ICONS[u.id] || (ICONS[u.id] = counterCanvas(u, 1.5).cv.toDataURL()); }
+let uvKey = '';
 let infoKey = '', liveKey = '', lastInfoT = 0, oobKey = '', nowKey = '';
 function refreshInfo(force) { if (!D) return; const now = performance.now(); if (!force && now - lastInfoT < 200) return; lastInfoT = now;
   if (selected) { const st = selected.type === 'unit' ? unitStatic(selected) : selected.type === 'src' ? srcStatic(selected) : engStatic(selected); if (st !== infoKey) { infoKey = st; liveKey = ''; $('#info-body').innerHTML = st; }
     const lv = selected.type === 'unit' ? unitLive(selected) : selected.type === 'src' ? '' : engLive(selected); if (lv !== liveKey) { liveKey = lv; const el = $('#info-live'); if (el) el.innerHTML = lv; } }
+  { const n = HIDU + HIDE, k = SHOWU ? 'on' : String(n), el = $('#uv-note'); if (k !== uvKey) { uvKey = k; el.hidden = SHOWU ? !CSUM : n === 0;
+      el.innerHTML = SHOWU ? '正在顯示未查證資料（維基百科、手擺的位置）<button data-uv="0">隱藏</button>' : `這個時間有 ${HIDU} 個部隊、${HIDE} 場交戰沒有正式出處，沒有畫出來<button data-uv="1">顯示未查證資料</button>`; } }
   if (!$('#oob').hidden) { const html = oobHTML(); if (html !== oobKey) { oobKey = html; const box = $('#oob-body'), old = box.querySelector('.ob-list'), k0 = old && old.dataset.k, st = old ? old.scrollTop : 0; box.innerHTML = html;
       const nl = box.querySelector('.ob-list'); if (nl.dataset.k === k0) nl.scrollTop = st;   // 重畫時保留捲動位置
       const on = oobTab === 'ch' && nl.querySelector('.ch.on'); if (on && (on.offsetTop < nl.scrollTop || on.offsetTop + on.offsetHeight > nl.scrollTop + nl.clientHeight)) nl.scrollTop = Math.max(0, on.offsetTop - 60); } }
   // 上方「交戰中」列：依重要度排，最重要的在前面；陣營視角時標出我方是攻還是守
-  const S = state(day), act = TOUR ? [] : D.engagements.filter(e => engAlpha(e, S) > 0.01).sort((a, b) => b.imp - a.imp);
+  const S = state(day), act = TOUR ? [] : D.engagements.filter(e => engAlpha(e, S) > 0.01 && engShown(e)).sort((a, b) => b.imp - a.imp);
   const role = e => { if (VIEW === 'all') return ''; const m = e.units.find(x => unitIdx[x.unit_id].side === VIEW); return m ? `<small>${m.role === 'attacker' ? '我方進攻' : '我方防守'}</small>` : ''; };
   const names = (e, r) => e.units.filter(x => x.role === r).map(x => `<i class="${unitIdx[x.unit_id].side}">${esc(unitIdx[x.unit_id].name_zh)}</i>`).join('、');
   const ci = (S.atKey && S.u > 0.5) ? S.j : S.i;
@@ -879,17 +891,18 @@ function prepSourced() { if (!SRC) return;
   SRC.lines.forEach((l, i) => { l.id = 'line:' + i; l.m = l.path.map(q => [mx(q[0]), my(q[1])]); l.p = ph(l.phase); });
   SRC.sites.forEach(t => { t.id = 'site:' + t.name; t.x = mx(t.lonlat[0]); t.y = my(t.lonlat[1]); t.changes.forEach(c => c.d = c.date ? dayOf(c.date) : null); }); }
 function drawSourced(LA) { const inPh = p => day >= p.t0 - 1e-6 && day < p.t1, isSel = id => selected && selected.type === 'src' && selected.id === id, isHov = id => hover && hover.type === 'src' && hover.id === id;
-  for (const l of SRC.lines) { if (!inPh(l.p) && !isSel(l.id)) continue; const pts = l.m.map(q => [PX(q[0]), PY(q[1])]), hot = isSel(l.id) || isHov(l.id);
+  for (const l of SRC.lines) { if ((!inPh(l.p) && !isSel(l.id)) || (!SHOWU && !l.verified)) continue; const pts = l.m.map(q => [PX(q[0]), PY(q[1])]), hot = isSel(l.id) || isHov(l.id);
     BGL.line(pts, false, hot ? 7 : 5, [1, 1, 1, 0.9 * LA]); BGL.line(pts, false, hot ? 3 : 2, rgba(...INK, 0.95 * LA), l.verified ? null : [6, 4]);
     for (let k = 0; k < pts.length - 1; k++) hits.push({ type: 'src', id: l.id, x: (pts[k][0] + pts[k + 1][0]) / 2, y: (pts[k][1] + pts[k + 1][1]) / 2, r: 14 }); }
-  for (const a of SRC.arrows) { if (!inPh(a.p) && !isSel(a.id)) continue; const A = [PX(a.m[0][0]), PY(a.m[0][1])], B = [PX(a.m[1][0]), PY(a.m[1][1])], L = Math.hypot(B[0] - A[0], B[1] - A[1]); if (L < 24) continue;
+  for (const a of SRC.arrows) { if ((!inPh(a.p) && !isSel(a.id)) || (!SHOWU && !a.verified)) continue; const A = [PX(a.m[0][0]), PY(a.m[0][1])], B = [PX(a.m[1][0]), PY(a.m[1][1])], L = Math.hypot(B[0] - A[0], B[1] - A[1]); if (L < 24) continue;
     const ux = (B[0] - A[0]) / L, uy = (B[1] - A[1]) / L, hot = isSel(a.id) || isHov(a.id), w = hot ? 4.5 : 3.2, hd = 13, e = [B[0] - ux * (hd + 5), B[1] - uy * (hd + 5)], s0 = [A[0] + ux * 8, A[1] + uy * 8];
     const c = rgba(...(SIDE_COL[a.sd] || INK), 0.95 * LA), wc = [1, 1, 1, 0.92 * LA], tip = [B[0] - ux * 5, B[1] - uy * 5];
     BGL.line([s0, e], false, w + 3, wc); BGL.tris([[tip[0] + ux * 2.5, tip[1] + uy * 2.5, wc], [e[0] - uy * 9 - ux * 2, e[1] + ux * 9 - uy * 2, wc], [e[0] + uy * 9 - ux * 2, e[1] - ux * 9 - uy * 2, wc]]);
     BGL.line([s0, e], false, w, c, a.verified ? null : [7, 5]); BGL.tris([[tip[0], tip[1], c], [e[0] - uy * 6.5, e[1] + ux * 6.5, c], [e[0] + uy * 6.5, e[1] - ux * 6.5, c]]);
     hits.push({ type: 'src', id: a.id, x: (A[0] + B[0]) / 2, y: (A[1] + B[1]) / 2, r: 16 }, { type: 'src', id: a.id, x: e[0], y: e[1], r: 14 }); }
   for (const t of SRC.sites) { const X = PX(t.x), Y = PY(t.y); if (X < -20 || Y < -20 || X > W + 20 || Y > H + 20) continue;
-    let cur = null; for (const c of t.changes) if (c.d != null && c.d <= day + 1e-6) cur = c;
+    if (!SHOWU && !t.changes.some(c => c.verified)) continue;
+    let cur = null; for (const c of t.changes) if (c.d != null && c.d <= day + 1e-6 && (SHOWU || c.verified)) cur = c;
     const hot = isSel(t.id) || isHov(t.id), r = hot ? 7.5 : 5.5, col = cur ? (cur.to === 'contested' ? ACC : SIDE_COL[SRC_SIDE[cur.to]] || [120, 112, 100]) : null;
     const dia = (rr, c) => BGL.tris([[X, Y - rr, c], [X + rr, Y, c], [X, Y + rr, c], [X, Y - rr, c], [X, Y + rr, c], [X - rr, Y, c]]);
     dia(r + 2.2, [1, 1, 1, 0.95 * LA]); dia(r, rgba(...INK, 0.9 * LA)); dia(r - 1.6, cur && cur.verified ? rgba(...col, LA) : [1, 1, 1, LA]); if (cur && !cur.verified) dia(r - 3.4, rgba(...col, LA));

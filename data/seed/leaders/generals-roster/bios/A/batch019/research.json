@@ -4602,6 +4602,66 @@
      "result": "blocked_403",
      "note": "HTTP/2 錯誤／403，不繞過",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "井上成美 第四艦隊司令長官 離任 昭和17年10月 兵学校長 着任",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2017/201708.pdf",
+     "result": "not_relevant",
+     "note": "既有防衛研究所史料紹介只載 1941-08-11 就任，無離任日",
+     "round": "refill"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "海軍兵学校 歴代校長 草鹿任一 防衛研究所",
+     "url": "https://www.nids.mod.go.jp/military_archives/siryo/siryo_31.html",
+     "result": "not_relevant",
+     "note": "已抓取（wl-source-cache/A-b019/rf-nids-kusaka.txt），為草鹿任一條目，無井上任免日",
+     "round": "refill"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "防衛研究所 史料紹介 2019-06",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2019/201906.pdf",
+     "result": "not_relevant",
+     "note": "已抓取，無井上任期資料",
+     "round": "refill"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "serai.jp 井上成美",
+     "url": "https://serai.jp/?p=117739",
+     "result": "not_relevant",
+     "note": "已抓取，無第四艦隊離任／兵學校長就任日期",
+     "round": "refill"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "井上成美 昭和17年10月26日 兵学校長（WebSearch 日英各一）",
+     "url": null,
+     "result": "unrated",
+     "note": "日期僅見於維基類鏡像與個人站（戦跡紀行ネット、note、Weblio=維基鏡像），依規則不收；CiNii 紀要 PDF（niit／k-rain）回傳 HTML 非 PDF，未取得",
+     "round": "refill"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "naniwakai-navy 井上成美校長の逝去",
+     "url": "https://naniwakai-navy.com/bukko-inouekoutyou1.html",
+     "result": "not_relevant",
+     "note": "已抓取，內容極短，無日期",
+     "round": "refill"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

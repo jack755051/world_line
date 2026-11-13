@@ -1,4 +1,4 @@
-"""R4 前線建置：讀 Ellis 態勢圖 <mapKey>.json（georef_ellis.py 輸出），只收 threshold.passes 為 true 的圖，產出 r4-fronts.json。
+"""R4 前線建置：讀 Ellis 態勢圖 <mapKey>.json（tools/battles/georef.py 輸出），只收 threshold.passes 為 true 的圖，產出 r4-fronts.json。
 用法：python3 -I tools/build_r4.py（從 dunkirk_1940 目錄或任意處皆可；可重跑）
 門檻：留一 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）。usma-13-4jun 未通過，列入 excludedMaps。
 """
@@ -41,7 +41,7 @@ def main():
                 "vertices": [{"lonlat": v["lonlat"], "px": v["px"], "nearPlace": v.get("nearPlace")} for v in ln["vertices"]],
                 "basis": "map-digitized", "estimate": "推估",
                 "mapRef": {"mapKey": mk, "citation": src["citation"], "mapDate": m["mapDate"], "url": src["url"], "grade": src["grade"]},
-                "method": "georef_ellis.py 二次多項式",
+                "method": "tools/battles/georef.py 二次多項式",
                 "georef": {"control_points": g["control_points"], "loo_median_km": g["loo_median_km"], "loo_p95_km": g["loo_p95_km"]},
                 "precision_m": m["precision_m"],
                 "precisionNote": m["precisionNote"] + "；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",

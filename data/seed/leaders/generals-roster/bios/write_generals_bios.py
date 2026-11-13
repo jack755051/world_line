@@ -26,6 +26,9 @@ def main():
     a = ap.parse_args()
     match = {r["key"]: r for r in json.loads((HERE / "match-bios.json").read_text())["people"]}
     ov = json.load(open(W.OVERRIDES))
+    wf = HERE / "bios-written-20261113.json"
+    written = {b["key"]: b["id"] for b in json.loads(wf.read_text())["new_bios"]} if wf.exists() else {}
+    DUP_RETRACTED = {"williamdleahy", "何应钦", "孙立人", "陈诚"}
     roster_idx = {(r.get("name_original"), r.get("name_zh")): r.get("index_url") for r in json.loads((HERE.parent / "roster.json").read_text())["people"] if r.get("index_url")}
     st = W.db_state(None)
     batches, new_bios, skipped, used, fixed_gaps = [], [], [], {}, []
@@ -37,7 +40,11 @@ def main():
             m = match[p["key"]]
             if not p.get("paragraphs"):
                 skipped.append((p["key"], "零段落（write_b3_paragraphs 規則整人略過）")); continue
-            if m["status"] in ("existing_seed", "match_qid"):
+            if p["key"] in DUP_RETRACTED:
+                skipped.append((p["key"], "重複人物，bio 已軟撤回（patch_dup_bios.py）")); continue
+            if p["key"] in written:  # 2026-11-13 已寫入的新 bio：重跑只補缺，不再新建
+                bio = written[p["key"]]
+            elif m["status"] in ("existing_seed", "match_qid"):
                 bio = m["bioId"]
             elif m["status"] == "questionable":
                 if p["key"] in APPROVE_NAME_MATCH and len(m.get("candidates") or []) == 1:
@@ -62,7 +69,7 @@ def main():
                         fs = {"nameZh": {"kind": "index", "status": "index-only", "url": u,
                                          "note": "將領名冊人名索引（Wikipedia 列表頁，只當索引、非出處）；zh_trad 轉台灣正體"}}
                 bio = str(uuid.uuid4())
-                new_bios.append({"id": bio, "key": p["key"], "name": (p.get("name") or m["title"]).strip(), "name_zh": nz, "qid": m.get("qid"), "fs": fs})
+                new_bios.append({"id": bio, "key": p["key"], "name": (nz if (p.get("name") or "").strip() in ("", "待查證") and nz else (p.get("name") or m["title"])).strip(), "name_zh": nz, "qid": m.get("qid"), "fs": fs})
                 st["bios"].add(bio)
             if bio in used.values():
                 raise SystemExit(f"bio 重複指派：{p['key']}")
@@ -87,6 +94,11 @@ def main():
         + [("role", r["bio"], r["key"]) for r in P["role_ok"] if not r.get("cit")]
     P["par"] = [r for r in P["par"] if r["cit"]]; P["pos"] = [r for r in P["pos"] if r["cit"]]; P["role_ok"] = [r for r in P["role_ok"] if r.get("cit")]
     qids = {b["qid"] for b in new_bios if b["qid"]}
+    # 2026-11-13 寫庫後補的防呆：研究檔同一人列兩次會建出重複 bio（已由 patch_dup_bios.py 軟撤回 4 組）
+    from collections import Counter as _C
+    dup = [k for k, n in _C([b["qid"] for b in new_bios if b["qid"]] + [b["name_zh"] for b in new_bios if b["name_zh"]]).items() if n > 1]
+    if dup:
+        raise SystemExit(f"新 bio 之間 QID 或中文名重複：{dup}")
     clash = [r for r in W.psql("select wikidata_qid from leader_bios where wikidata_qid is not null") if r[0] in qids]
     if clash:
         raise SystemExit(f"新 bio 的 QID 已存在於庫內：{clash}")

@@ -23,7 +23,7 @@ const TXT = {
   'zh-Hant': {
     period: '國界期間', status: '性質', deJure: '國界', notSovereign: '非主權（佔領行政區）', start: '起始變動', end: '結束變動',
     none: '本試驗範圍前即存在（不追溯）', open: '本試驗範圍內未結束', camp: '陣營（補充）',
-    campNone: '陣營未建置', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
+    campNone: '陣營未建置', confidence: '可信程度', confVerified: '已查證', confPending: '待查證', confDataset: '國界形狀取自資料集；起訖日還沒有正式出處', confNoCite: '起始變動沒有出處', confBelow: '起始變動有出處，但還不到已查證的門檻（一筆 A 級，或兩個獨立來源的 B 級）', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於', verifiedTag: '已查證', showOnMap: '在地圖上看', battle: '戰役', pendingTag: '待考證',
@@ -42,7 +42,7 @@ const TXT = {
   en: {
     period: 'Valid', status: 'Status', deJure: 'Border', notSovereign: 'Not sovereign (occupation administration)', start: 'Began with', end: 'Ended with',
     none: 'Existed before this trial (not traced)', open: 'Not ended within this trial', camp: 'Camp (supplement)',
-    campNone: 'Camp not set', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
+    campNone: 'Camp not set', confidence: 'Confidence', confVerified: 'Verified', confPending: 'Pending verification', confDataset: 'Border shape comes from a dataset; its dates have no formal source yet', confNoCite: 'The starting change has no source', confBelow: 'The starting change is sourced but below the verified threshold (one grade-A source, or grade-B sources from two independent families)', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added', verifiedTag: 'Verified', showOnMap: 'Show on map', battle: 'Battle', pendingTag: 'Unverified',
@@ -384,6 +384,17 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           {{ campText() }}
           <div class="text-wl-on-surface-variant">{{ t().campNote }}</div>
         </dd>
+        @if (props().confidence; as conf) {
+          <dt class="text-wl-on-surface-variant">{{ t().confidence }}</dt>
+          <dd data-testid="sovereignty-card-confidence" [attr.data-confidence]="conf" class="min-w-0">
+            @if (conf === 'verified') {
+              <span class="wl-stamp">{{ t().confVerified }}</span>
+            } @else {
+              <span class="wl-chip-interp">{{ t().confPending }}</span>
+              <div class="text-wl-on-surface-variant">{{ confidenceWhy() }}</div>
+            }
+          </dd>
+        }
         <dt class="text-wl-on-surface-variant">{{ t().geometry }}</dt>
         <dd data-testid="sovereignty-card-geometry">
           <div>{{ props().geometry.sourceTitle }}</div>
@@ -644,6 +655,11 @@ export class SovereigntyCard {
     const n = (this.props() as unknown as { note?: Record<string, string> | null }).note;
     if (!n) return '';
     return (this.lang() === 'en' ? n['en'] || n['zh-Hant'] : n['zh-Hant'] || n['en']) ?? '';
+  });
+  /** 待查證的原因（docs/source-rules.md §5；confidenceBasis 來自 API）。 */
+  protected readonly confidenceWhy = computed(() => {
+    const b = this.props().confidenceBasis ?? '';
+    return b === 'dataset_only' ? this.t().confDataset : b.endsWith('no_citation') ? this.t().confNoCite : this.t().confBelow;
   });
   protected readonly osmDerived = computed(() => {
     const f = this.props().geometry.flags as unknown as { osmDerivedWayCount?: number } | null;

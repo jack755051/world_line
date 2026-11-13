@@ -196,6 +196,7 @@ public static class SovereigntyEndpoints
 
         // 幾何只對還沒簡化過的紀錄才從 PostGIS 取原始幾何（以前每次都把當天全部原始幾何讀進來，一天約 80 萬點）
         var geometries = await GeoJsonForAsync(db, rows.Select(x => x.Id).ToList(), tolerance, ct);
+        var confidence = await RecordConfidence.LookupAsync(db, RecordConfidence.Sovereignty, rows.Select(x => x.Id).ToList(), ct);
 
         return rows.Select(r =>
         {
@@ -208,7 +209,8 @@ public static class SovereigntyEndpoints
                     r.GeometryLicense, r.Attribution, r.OhmRelationId, r.OhmVersion, r.OhmFetchedAt, r.OhmStartRaw, r.OhmEndRaw, flags),
                 Mapping.ReadLocalizedOrNull(r.Note),
                 alignments.GetValueOrDefault(r.RegimeId),
-                occupations.GetValueOrDefault(r.RegimeId)));
+                occupations.GetValueOrDefault(r.RegimeId),
+                confidence.GetValueOrDefault(r.Id)?.Confidence, confidence.GetValueOrDefault(r.Id)?.Basis));
         }).ToList();
     }
 

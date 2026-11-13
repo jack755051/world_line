@@ -12,6 +12,20 @@ public static class RecordConfidence
 {
     public const string Event = "event";
     public const string LeaderRecord = "leader_record";
+    public const string Sovereignty = "sovereignty";
+
+    public sealed record Row(Guid RecordId, string Confidence, string Basis);
+
+    /// <summary>ids 的可信程度與依據（confidence：verified｜needs_check｜unsourced；basis 見檢視定義）。</summary>
+    public static async Task<Dictionary<Guid, Row>> LookupAsync(WorldLineDbContext db, string kind, IReadOnlyCollection<Guid> ids, CancellationToken ct)
+    {
+        if (ids.Count == 0) return [];
+        var arr = ids.ToArray();
+        var rows = await db.Database
+            .SqlQuery<Row>($"""SELECT record_id, confidence, basis FROM v_record_confidence WHERE record_kind = {kind} AND record_id = ANY({arr})""")
+            .ToListAsync(ct);
+        return rows.ToDictionary(r => r.RecordId);
+    }
 
     /// <summary>ids 之中可信程度為 verified 的那些。</summary>
     public static async Task<HashSet<Guid>> VerifiedIdsAsync(WorldLineDbContext db, string kind, IReadOnlyCollection<Guid> ids, CancellationToken ct)

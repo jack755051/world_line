@@ -23,5 +23,5 @@ public class SourcePolicyFileTests
 
     [Fact]
     public void Quote_limit_matches_policy_file() =>
-        Assert.Equal(Policy().GetProperty("quoteMaxChars").GetInt32(), BioSourcePolicy.QuoteMaxChars);
+        Assert.Equal(BioSourcePolicy.QuoteMaxChars, Policy().GetProperty("quoteMaxChars").GetInt32());
 }

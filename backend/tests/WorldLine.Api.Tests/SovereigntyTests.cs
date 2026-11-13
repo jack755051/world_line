@@ -129,6 +129,15 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         Assert.Equal("pending", await V("1921-03-01", "1921-04-01", C(b1), C(b1b)));
         Assert.Equal("verified", await V("1921-04-01", "1921-05-01", C(b1), C(b2)));
         Assert.Equal("verified", await V("1921-05-01", "1921-06-01", C(a)));
+
+        // 國界本身的可信程度：只有資料集、沒有起始事件 → needs_check／dataset_only；起始事件已查證 → verified
+        var bare = await k.Id(await Post(k, Body(hu, ohm, "1921-06-01", "1921-07-01")));
+        var bp = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");
+        Assert.Equal("needs_check", bp.GetProperty("confidence").GetString());
+        Assert.Equal("dataset_only", bp.GetProperty("confidenceBasis").GetString());
+        var evA = await Event(k, "1921-07-01", C(a));
+        var good = await k.Id(await Post(k, Body(hu, ohm, "1921-07-01", "1921-08-01", startEvent: evA)));
+        Assert.Equal("verified", (await FeatureOn(k, "1921-07-01", good))!.Value.GetProperty("properties").GetProperty("confidence").GetString());
     }
 
     [Fact] // 政權優先於陣營：陣營只作補充（有切片才帶），不影響回傳的要素

@@ -245,11 +245,14 @@ public sealed record GeometryProvenanceDto(
 
 /// <summary>
 /// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
+/// confidence：這筆國界的可信程度 verified｜needs_check（docs/source-rules.md §5，取自 v_record_confidence）；
+/// confidenceBasis：依據，dataset_only＝只有資料集、沒有起始事件；start_event_*＝依起始事件的出處。
 /// </summary>
 public sealed record SovereigntyFeatureProperties(
     Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
     SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
-    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null);
+    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null,
+    string? Confidence = null, string? ConfidenceBasis = null);
 
 /// <summary>
 /// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|

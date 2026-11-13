@@ -1937,6 +1937,8 @@ export interface components {
             };
             regimeAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
             occupation?: null | components["schemas"]["OccupationRefDto"];
+            confidence?: null | string;
+            confidenceBasis?: null | string;
         };
         SovereigntyMapDto: {
             /** Format: date */

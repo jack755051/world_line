@@ -10,6 +10,11 @@
 - candidate  名冊中唯一候選，但只靠編號（灰階圖分不出英法比、或讀圖未判兵種），或讀圖註記與候選矛盾 → unitKey 照填但標「待查證」。
 - unmatched  名冊沒有、或候選不只一個、或一圈多師；旅／團／支隊（other）不在 R1 名冊層級。
 陣營：readings 的 sideGuess german ↔ R1 side axis；allied ↔ allied。
+一般化（poland_1939 起）：battle.config.json 有 "labelMatch" 時改用 classify_generic（敦克爾克不受影響）：
+  labelMatch.sideMap      sideGuess → R1 side
+  labelMatch.romanCorps   {R1 side: "de-{r}-ak"}：軍級羅馬數字標註（去掉 ** 等註記符號）套樣板，名冊有才算 matched
+  labelMatch.typeSuffix   {兵種: [unitKey 結尾...]}：師級編號標註依標註後綴／讀圖註記判兵種，再找同編號、同兵種的唯一師
+  labelMatch.typeHints    {兵種: [標註後綴或註記關鍵字...]}
 """
 import collections, json, re, sys
 from pathlib import Path
@@ -17,6 +22,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 TODAY = __import__("datetime").date.today().isoformat()
 SIDE = {"german": "axis", "allied": "allied"}
+BELOW_DIV = ("other", "brigade", "regiment", "battalion", "group")  # 低於師級或非正規編組
 
 
 def norm(s):
@@ -95,8 +101,51 @@ def classify(f, units, aliases):
     return None, "unmatched", f"盟軍 {n} 號師：名冊候選 {[u['unitKey'] for u in cands]}，無法判定"
 
 
-def classify_low(f, units, aliases):
-    k, st, why = classify(f, units, aliases)
+ROMAN = re.compile(r"^(X{0,3})(IX|IV|V?I{0,3})$")
+
+
+def classify_generic(f, units, aliases, lm):
+    L, side = norm(f["label"]), lm["sideMap"].get(f.get("sideGuess"))
+    note = (f.get("note") or "") + " " + (f.get("typeHint") or "")
+    ech = f.get("echelon")
+    if side is None:
+        return None, "unmatched", "陣營未判"
+    a = aliases.get(f"{f.get('sideGuess')}|{L}")
+    if a is not None:
+        if a.get("unitKey") is None:
+            return None, "unmatched", a.get("why", "名冊無此單位")
+        return a["unitKey"], a.get("status", "matched"), "名稱別名：" + a.get("why", L)
+    if ech not in ("division", "corps", "army", "army_group", "hq", "unknown", None):
+        return None, "unmatched", f"{ech}：低於 R1 名冊層級或非正規編組"
+    core = re.sub(r"\*+$", "", L).strip()
+    if ech == "corps" and ROMAN.fullmatch(core) and core and side in lm.get("romanCorps", {}):
+        k = lm["romanCorps"][side].format(r=core.lower())
+        if any(u["unitKey"] == k for u in units):
+            return k, "matched", f"羅馬數字 {core} 軍"
+        return None, "unmatched", f"羅馬數字 {core} 軍不在 R1 名冊"
+    m = re.fullmatch(r"(\d+)\s*(\(?([A-Z]+)\)?)?(\(.*\))?", core)
+    if not m or ech not in ("division", "unknown", None):
+        return None, "unmatched", "名冊無對應名稱"
+    n, suf = m.group(1), (m.group(3) or "")
+    cands = [u for u in units if u["side"] == side and u["echelon"] == "division" and re.search(rf"(^|-){n}-", u["unitKey"])]
+    hint = None
+    for t, keys in lm.get("typeHints", {}).items():
+        if any((k.upper() == suf) or (len(k) > 1 and not k.isascii() and k in note) for k in keys):
+            hint = t; break
+    if hint:
+        typed = [u for u in cands if any(u["unitKey"].endswith(x) for x in lm["typeSuffix"].get(hint, []))]
+        if len(typed) == 1:
+            return typed[0]["unitKey"], "matched", f"{n} 號師，兵種依{'標註' if suf else '讀圖註記'}（{hint}）"
+        if not typed:
+            return None, "unmatched", f"{n} 號師（{hint}）不在 R1 名冊" + (f"；名冊同號有 {[u['unitKey'] for u in cands]}" if cands else "")
+        return None, "unmatched", f"{n} 號師（{hint}）名冊候選 {len(typed)} 個"
+    if len(cands) == 1:
+        return cands[0]["unitKey"], "candidate", f"{n} 號師只靠編號對上（未判兵種）"
+    return None, "unmatched", f"{n} 號師：名冊候選 {len(cands)} 個"
+
+
+def classify_low(f, units, aliases, lm=None):
+    k, st, why = classify_generic(f, units, aliases, lm) if lm else classify(f, units, aliases)
     note = f.get("note") or ""
     if st == "matched" and ("低信心" in note or f.get("confidence") == "low"):
         return k, "candidate", why + "；讀圖低信心，降為待查證"
@@ -111,19 +160,21 @@ def main():
     units = json.loads((D / "r1-units.json").read_text())["units"]
     ap = D / "unit-label-aliases.json"
     aliases = {f"{a['sideGuess']}|{norm(a['label'])}": a for a in json.loads(ap.read_text())["aliases"]} if ap.exists() else {}
+    cfgp = D / "battle.config.json"
+    lm = json.loads(cfgp.read_text()).get("labelMatch") if cfgp.exists() else None
     rows, cnt, unmatched = [], collections.Counter(), collections.defaultdict(list)
     for p in sorted((D / "digitized").glob("*.readings.json")):
         R = json.loads(p.read_text()); mk = p.name[:-len(".readings.json")]
         for i, f in enumerate(R.get("features", [])):
-            k, st, why = classify_low(f, units, aliases)
+            k, st, why = classify_low(f, units, aliases, lm)
             rows.append({"map": mk, "i": i, "label": f["label"], "side": f.get("sideGuess"), "echelon": f.get("echelon"), "unitKey": k, "status": st, "basis": why})
-            cnt[st] += 1; cnt["div+" + st] += f.get("echelon") != "other"
+            cnt[st] += 1; cnt["div+" + st] += f.get("echelon") not in BELOW_DIV
             if st == "unmatched": unmatched[(f["label"], f.get("sideGuess"))].append(mk)
             if apply:
                 f["unitKey"] = k; f["unitKeyStatus"] = {"matched": "matched", "candidate": "待查證", "unmatched": "unmatched"}[st]; f["unitKeyBasis"] = why
         if apply:
             p.write_text(json.dumps(R, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    n = len(rows); nd = sum(1 for r in rows if r["echelon"] != "other")
+    n = len(rows); nd = sum(1 for r in rows if r["echelon"] not in BELOW_DIV)
     summ = {"labels": n, "matched": cnt["matched"], "candidate": cnt["candidate"], "unmatched": cnt["unmatched"],
             "matchRate": round(cnt["matched"] / n, 3), "matchRateInclCandidate": round((cnt["matched"] + cnt["candidate"]) / n, 3),
             "divisionAndAbove": {"labels": nd, "matched": cnt["div+matched"], "candidate": cnt["div+candidate"], "unmatched": cnt["div+unmatched"],

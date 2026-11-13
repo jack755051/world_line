@@ -14,6 +14,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 TODAY = __import__("datetime").date.today().isoformat()
+BELOW_DIV = ("other", "brigade", "regiment", "battalion", "group")  # 低於師級或非正規編組（第二次判讀 division-and-above 範圍外）
 
 
 def nl(s):
@@ -92,7 +93,7 @@ def main():
                 if i in joined and same: lc["note"] = joined[i]
                 if m[i][1] > tol: lc["pxCheck"] = "待查證"; lc["pxNote"] = f"兩次判讀位置差 {m[i][1]:.0f} px（> 容差 {tol:.0f} px）"
                 tot["agree" if same else "labelDiffers"] += 1
-            elif div_only and f.get("echelon") == "other":
+            elif div_only and f.get("echelon") in BELOW_DIV:
                 lc = {"status": "待查證", "reading2Label": None, "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"}
                 tot["unchecked"] = tot.get("unchecked", 0) + 1
             else:

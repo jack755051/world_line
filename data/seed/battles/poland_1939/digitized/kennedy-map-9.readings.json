@@ -1,0 +1,2045 @@
+{
+ "mapKey": "kennedy-map-9",
+ "mapDate": "1939-09-06",
+ "dateNote": "圖題 6 September 1939；圖註：From OKH Situation Map of 6 September 1939",
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pam 20-255 (1956), Map 9 'Army Group South as of Close of First Phase of Operations, 6 September 1939'",
+  "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/maps/Campaign-9.jpg",
+  "license": "美國聯邦政府著作（17 U.S.C. §105），公有領域"
+ },
+ "method": "用 sips 把 1196×851 原圖轉 BMP，以純 Python 切成 400×426 塊、放大 3 倍並疊 20 px／100 px 格線後逐塊目視讀圖（6 塊中讀 5 塊；左下塊只有 Prague、255、256，改由原圖全幅讀），像素座標換回原圖（原點左上）；城鎮取圓點中心（Poznan、Warsaw、Breslau、Lodz、Cracow、Prague 為斜線色塊取中心），部隊取符號框中心。讀圖誤差約 ±2 px（約 1 km；圖比例約 0.45 km/px）。經緯度取自 OSM Nominatim。圖上有圓點或色塊的地名只有 23 個，全數取用（不足 25）。",
+ "control_points": {
+  "Kustrin": {
+   "px": [
+    52.0,
+    42.0
+   ],
+   "lonlat": [
+    14.6279,
+    52.6163
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2815486
+   },
+   "nameOsm": "Kostrzyn nad Odrą",
+   "note": "圖上地名 Kustrin；Nominatim 查詢「Kostrzyn nad Odrą」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Poznan (Posen)": {
+   "px": [
+    393.0,
+    86.0
+   ],
+   "lonlat": [
+    16.9197,
+    52.4007
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 165941
+   },
+   "nameOsm": "Poznań",
+   "note": "圖上地名 Poznan (Posen)；Nominatim 查詢「Poznań」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Kutno": {
+   "px": [
+    763.7,
+    114.0
+   ],
+   "lonlat": [
+    19.3875,
+    52.2222
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2929611
+   },
+   "nameOsm": "Kutno",
+   "note": "圖上地名 Kutno；Nominatim 查詢「Kutno」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Lowicz": {
+   "px": [
+    855.0,
+    142.7
+   ],
+   "lonlat": [
+    19.9448,
+    52.1077
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2644390
+   },
+   "nameOsm": "Łowicz",
+   "note": "圖上地名 Lowicz；Nominatim 查詢「Łowicz」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Warsaw": {
+   "px": [
+    1016.0,
+    99.0
+   ],
+   "lonlat": [
+    21.0711,
+    52.2334
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 336074
+   },
+   "nameOsm": "Warszawa",
+   "note": "圖上地名 Warsaw；Nominatim 查詢「Warszawa」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Gora Kalwarja": {
+   "px": [
+    1051.3,
+    150.7
+   ],
+   "lonlat": [
+    21.214,
+    51.9844
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2694689
+   },
+   "nameOsm": "Góra Kalwaria",
+   "note": "圖上地名 Gora Kalwarja；Nominatim 查詢「Góra Kalwaria」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Lodz": {
+   "px": [
+    791.3,
+    226.7
+   ],
+   "lonlat": [
+    19.4785,
+    51.7728
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2907537
+   },
+   "nameOsm": "Łódź",
+   "note": "圖上地名 Lodz；Nominatim 查詢「Łódź」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Tomaszow": {
+   "px": [
+    875.0,
+    277.3
+   ],
+   "lonlat": [
+    20.0084,
+    51.5317
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2921005
+   },
+   "nameOsm": "Tomaszów Mazowiecki",
+   "note": "圖上地名 Tomaszow；Nominatim 查詢「Tomaszów Mazowiecki」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Radom": {
+   "px": [
+    1053.7,
+    302.0
+   ],
+   "lonlat": [
+    21.1542,
+    51.4023
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2420076
+   },
+   "nameOsm": "Radom",
+   "note": "圖上地名 Radom；Nominatim 查詢「Radom」（city），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Pulawy": {
+   "px": [
+    1175.0,
+    287.3
+   ],
+   "lonlat": [
+    21.9853,
+    51.4263
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2979739
+   },
+   "nameOsm": "Puławy",
+   "note": "圖上地名 Pulawy；Nominatim 查詢「Puławy」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Konskie": {
+   "px": [
+    946.0,
+    360.0
+   ],
+   "lonlat": [
+    20.4072,
+    51.191
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2888079
+   },
+   "nameOsm": "Końskie",
+   "note": "圖上地名 Konskie；Nominatim 查詢「Końskie」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Kielce": {
+   "px": [
+    1000.0,
+    440.0
+   ],
+   "lonlat": [
+    20.631,
+    50.872
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1627497
+   },
+   "nameOsm": "Kielce",
+   "note": "圖上地名 Kielce；Nominatim 查詢「Kielce」（city），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Radomsko": {
+   "px": [
+    795.0,
+    402.0
+   ],
+   "lonlat": [
+    19.4446,
+    51.0675
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2424745
+   },
+   "nameOsm": "Radomsko",
+   "note": "圖上地名 Radomsko；Nominatim 查詢「Radomsko」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Gr. Wartenberg": {
+   "px": [
+    528.0,
+    348.3
+   ],
+   "lonlat": [
+    17.7198,
+    51.3079
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2942240
+   },
+   "nameOsm": "Syców",
+   "note": "圖上地名 Gr. Wartenberg；Nominatim 查詢「Syców」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Breslau": {
+   "px": [
+    421.3,
+    401.0
+   ],
+   "lonlat": [
+    16.9782,
+    51.1263
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2805690
+   },
+   "nameOsm": "Wrocław",
+   "note": "圖上地名 Breslau；Nominatim 查詢「Wrocław」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Ohlau": {
+   "px": [
+    463.7,
+    438.3
+   ],
+   "lonlat": [
+    17.2957,
+    50.9432
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2848779
+   },
+   "nameOsm": "Oława",
+   "note": "圖上地名 Ohlau；Nominatim 查詢「Oława」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Oppeln": {
+   "px": [
+    563.0,
+    508.3
+   ],
+   "lonlat": [
+    17.9236,
+    50.6668
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2661906
+   },
+   "nameOsm": "Opole",
+   "note": "圖上地名 Oppeln；Nominatim 查詢「Opole」（city），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Lubliniec (Lublinitz)": {
+   "px": [
+    688.0,
+    505.0
+   ],
+   "lonlat": [
+    18.6826,
+    50.669
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2741420
+   },
+   "nameOsm": "Lubliniec",
+   "note": "圖上地名 Lubliniec (Lublinitz)；Nominatim 查詢「Lubliniec」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Ratibor": {
+   "px": [
+    617.0,
+    650.0
+   ],
+   "lonlat": [
+    18.2197,
+    50.0917
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2827250
+   },
+   "nameOsm": "Racibórz",
+   "note": "圖上地名 Ratibor；Nominatim 查詢「Racibórz」（town），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Cracow": {
+   "px": [
+    892.7,
+    643.3
+   ],
+   "lonlat": [
+    19.9972,
+    50.0469
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2768921
+   },
+   "nameOsm": "Kraków",
+   "note": "圖上地名 Cracow；Nominatim 查詢「Kraków」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Bielsko (Bielitz)": {
+   "px": [
+    753.0,
+    703.3
+   ],
+   "lonlat": [
+    19.0292,
+    49.8121
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2811291
+   },
+   "nameOsm": "Bielsko-Biała",
+   "note": "圖上地名 Bielsko (Bielitz)；Nominatim 查詢「Bielsko-Biała」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Jaslo": {
+   "px": [
+    1142.7,
+    710.7
+   ],
+   "lonlat": [
+    21.4936,
+    49.747
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2906316
+   },
+   "nameOsm": "Jasło",
+   "note": "圖上地名 Jaslo；Nominatim 查詢「Jasło」（administrative），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  },
+  "Prague": {
+   "px": [
+    36.0,
+    654.0
+   ],
+   "lonlat": [
+    14.4213,
+    50.0875
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 435514
+   },
+   "nameOsm": "Praha",
+   "note": "圖上地名 Prague；Nominatim 查詢「Praha」（city），lonlat 取其 lat/lon（多為行政區 relation 中心，與圖上圓點可差 1–3 km）"
+  }
+ },
+ "features": [
+  {
+   "label": "SOUTH",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    712.0,
+    473.0
+   ],
+   "unitKey": "de-hgr-sued",
+   "note": "框內標字（司令部）；XXXXX；旗桿指向 Lubliniec",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SOUTH",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：SOUTH（集團軍群／集團軍司令部標字）"
+  },
+  {
+   "label": "EIGHTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    550.0,
+    311.0
+   ],
+   "unitKey": "de-8-armee",
+   "note": "框內標字（司令部）；XXXX；旗桿指向 Gr. Wartenberg",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "EIGHTH",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：EIGHTH（集團軍群／集團軍司令部標字）"
+  },
+  {
+   "label": "TENTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    815.0,
+    377.0
+   ],
+   "unitKey": "de-10-armee",
+   "note": "框內標字（司令部）；XXXX；旗桿指向 Radomsko",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "TENTH",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：TENTH（集團軍群／集團軍司令部標字）"
+  },
+  {
+   "label": "FOURTEENTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    790.0,
+    674.0
+   ],
+   "unitKey": "de-14-armee",
+   "note": "框內標字（司令部）；XXXX；旗桿指向 Bielsko；本塊未放大，px 由全幅讀",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FOURTEENTH",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：FOURTEENTH（集團軍群／集團軍司令部標字）"
+  },
+  {
+   "label": "IV Front Gd Cmd",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    352.0,
+    239.0
+   ],
+   "unitKey": null,
+   "note": "框內標字（司令部）；XXX；在 Group Gienanth 圈內",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "IV Front Gd Cmd",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "邊防指揮部（Frontier Guard Command），R1 未建"
+  },
+  {
+   "label": "252",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    362.0,
+    266.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；在 Group Gienanth 圈內",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "252",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "252 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "183",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    457.0,
+    268.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；在 Group Gienanth 圈內",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "183",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "183 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "Front Gd",
+   "echelon": "regiment",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    410.0,
+    292.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；符號上方 III（團級）；在 Group Gienanth 圈內",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "Group Gienanth",
+   "echelon": "group",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    430.0,
+    315.0
+   ],
+   "unitKey": "de-gruppe-gienanth",
+   "note": "純文字標註；圈線包住 IV Front Gd Cmd、252、183、Front Gd 的標題字",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "Group Gienanth",
+    "reason": null,
+    "distPx": 19.0,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 19 px（> 容差 18 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：Group Gienanth"
+  },
+  {
+   "label": "213",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    486.0,
+    369.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "213",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "213 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "221",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    533.0,
+    283.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "221",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "221 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "30",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    609.0,
+    242.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "30",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "30 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "X",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    621.0,
+    267.0
+   ],
+   "unitKey": "de-x-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "X",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 X 軍"
+  },
+  {
+   "label": "XIII",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    655.0,
+    279.0
+   ],
+   "unitKey": "de-xiii-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XIII",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 XIII 軍"
+  },
+  {
+   "label": "24",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    684.0,
+    227.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "24",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "24 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "10",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    697.0,
+    252.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "10",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "10 號師（inf）不在 R1 名冊；名冊同號有 ['de-10-pz-div']"
+  },
+  {
+   "label": "17",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    697.0,
+    275.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "17",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "17 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "1(L)",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    703.0,
+    311.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；(L)＝輕裝師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "1(L)",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "1 號師（light）不在 R1 名冊；名冊同號有 ['de-1-pz-div', 'de-1-geb-div']"
+  },
+  {
+   "label": "XIV",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    677.0,
+    341.0
+   ],
+   "unitKey": "de-xiv-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XIV",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 XIV 軍"
+  },
+  {
+   "label": "18",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    729.0,
+    337.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "18",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "18 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "19",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    767.0,
+    346.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "19",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "19 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "XI",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    750.0,
+    368.0
+   ],
+   "unitKey": "de-xi-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XI",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 XI 軍"
+  },
+  {
+   "label": "13(Mtz)",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    761.0,
+    417.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；(Mtz)＝摩托化",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "13(Mtz)",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "13 號師（mot）不在 R1 名冊"
+  },
+  {
+   "label": "4",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    825.0,
+    307.0
+   ],
+   "unitKey": "de-4-pz-div",
+   "note": "框內橢圓（裝甲）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "4",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "4 號師，兵種依讀圖註記（pz）"
+  },
+  {
+   "label": "XVI",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    811.0,
+    330.0
+   ],
+   "unitKey": "de-xvi-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XVI",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 XVI 軍"
+  },
+  {
+   "label": "1",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    854.0,
+    332.0
+   ],
+   "unitKey": "de-1-pz-div",
+   "note": "框內橢圓（裝甲）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "1",
+    "reason": null,
+    "distPx": 2.8
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "1 號師，兵種依讀圖註記（pz）"
+  },
+  {
+   "label": "31",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    803.0,
+    351.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "31",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "31 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "14",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    842.0,
+    354.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "14",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "14 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "46",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    864.0,
+    408.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "46",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "46 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "IV",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    835.0,
+    430.0
+   ],
+   "unitKey": "de-iv-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "IV",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 IV 軍"
+  },
+  {
+   "label": "4",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    867.0,
+    442.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "4",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "4 號師（inf）不在 R1 名冊；名冊同號有 ['de-4-pz-div']"
+  },
+  {
+   "label": "3(L)",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    924.0,
+    434.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "3(L)",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "3 號師（light）不在 R1 名冊；名冊同號有 ['de-3-pz-div']"
+  },
+  {
+   "label": "XV",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    927.0,
+    462.0
+   ],
+   "unitKey": "de-xv-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XV",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 XV 軍"
+  },
+  {
+   "label": "2(L)",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    974.0,
+    452.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "2(L)",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "2 號師（light）不在 R1 名冊；名冊同號有 ['de-2-mot-div', 'de-2-pz-div']"
+  },
+  {
+   "label": "29(Mtz)",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    847.0,
+    468.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "29(Mtz)",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "29 號師（mot）不在 R1 名冊"
+  },
+  {
+   "label": "VII",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    819.0,
+    533.0
+   ],
+   "unitKey": "de-vii-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "VII",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 VII 軍"
+  },
+  {
+   "label": "27",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    858.0,
+    536.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；右側有弧形前緣",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "27",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "27 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "62",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    719.0,
+    549.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "62",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "62 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "68",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    781.0,
+    548.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；本塊邊緣，px 由全幅讀",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "68",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "68 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "239",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    724.0,
+    589.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "239",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "239 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "SS Germania",
+   "echelon": "regiment",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    780.0,
+    589.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；符號上方 III（團級）",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "III Front Gd Cmd",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    749.0,
+    614.0
+   ],
+   "unitKey": null,
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "III Front Gd Cmd",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "邊防指揮部（Frontier Guard Command），R1 未建"
+  },
+  {
+   "label": "VIII**",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    854.0,
+    647.0
+   ],
+   "unitKey": "de-viii-ak",
+   "note": "框內標字（司令部）；** Divisions Moving and Unlocated",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "VIII",
+    "reason": "兩次判讀文字不同",
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "羅馬數字 VIII 軍；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "XVII**",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    875.0,
+    681.0
+   ],
+   "unitKey": "de-xvii-ak",
+   "note": "框內標字（司令部）；** Divisions Moving and Unlocated",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "XVII",
+    "reason": "兩次判讀文字不同",
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "羅馬數字 XVII 軍；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "XXII**",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    909.0,
+    727.0
+   ],
+   "unitKey": "de-xxii-ak",
+   "note": "框內標字（司令部）；** Divisions Moving and Unlocated",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "XXII",
+    "reason": "兩次判讀文字不同",
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "名稱別名：XXII 軍（X+8＝開戰後第 8 日到；** 為圖註）；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "1",
+   "echelon": "regiment",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    1079.0,
+    697.0
+   ],
+   "unitKey": null,
+   "note": "橢圓加斜線（機械化／偵察）；符號上方 III（團級）；Jaslo 西北",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "2 Mt",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    1030.0,
+    757.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "2 Mt",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "2 號師（geb）不在 R1 名冊；名冊同號有 ['de-2-mot-div', 'de-2-pz-div']"
+  },
+  {
+   "label": "1 Mt",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    1087.0,
+    812.0
+   ],
+   "unitKey": "de-1-geb-div",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "1 Mt",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：1 Mt＝第1山地師"
+  },
+  {
+   "label": "XVIII",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    1016.0,
+    822.0
+   ],
+   "unitKey": "de-xviii-ak",
+   "note": "框內標字（司令部）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XVIII",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "羅馬數字 XVIII 軍"
+  },
+  {
+   "label": "255",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    36.0,
+    633.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；Prague 旁圈線內；未放大，px 由全幅讀",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "255",
+    "reason": null,
+    "distPx": 11.7
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "255 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "256",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：實線框＝German Forces",
+   "px": [
+    206.0,
+    723.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；波希米亞圈線內；未放大，px 由全幅讀",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "256",
+    "reason": null,
+    "distPx": 10.8
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "256 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "26",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    620.0,
+    143.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "26",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "26 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "Wp.",
+   "echelon": "brigade",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    585.0,
+    161.0
+   ],
+   "unitKey": null,
+   "note": "單斜線框（騎兵）；符號上方 X（旅級）；Wielkopolska 騎兵旅縮寫（依圖上縮寫，未查證）",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "14",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    614.0,
+    183.0
+   ],
+   "unitKey": "pl-14-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "14",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "14 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "25",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    652.0,
+    181.0
+   ],
+   "unitKey": "pl-25-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "25",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "25 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "17",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    588.0,
+    204.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "17",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "17 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "Kres.",
+   "echelon": "brigade",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    836.0,
+    114.0
+   ],
+   "unitKey": null,
+   "note": "單斜線框（騎兵）；符號上方 X（旅級）",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "2",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    901.0,
+    128.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "2",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "2 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "30",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    956.0,
+    139.0
+   ],
+   "unitKey": "pl-30-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "30",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "30 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "13",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    941.0,
+    174.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "13",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "13 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "10",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    803.0,
+    199.0
+   ],
+   "unitKey": "pl-10-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "10",
+    "reason": null,
+    "distPx": 3.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "10 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "Wol.",
+   "echelon": "brigade",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    859.0,
+    201.0
+   ],
+   "unitKey": null,
+   "note": "單斜線框（騎兵）；符號上方 X（旅級）",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "28",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    831.0,
+    254.0
+   ],
+   "unitKey": "pl-28-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "28",
+    "reason": null,
+    "distPx": 3.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "28 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "19",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1070.0,
+    246.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "19",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "19 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "12",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1105.0,
+    287.0
+   ],
+   "unitKey": "pl-12-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "12",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "12 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "29",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1005.0,
+    309.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "29",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "29 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "Krak.",
+   "echelon": "brigade",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1113.0,
+    336.0
+   ],
+   "unitKey": null,
+   "note": "單斜線框（騎兵）；符號上方 X（旅級）",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "7",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1092.0,
+    374.0
+   ],
+   "unitKey": "pl-7-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "7",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "7 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "3",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1025.0,
+    396.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "3",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "3 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1102.0,
+    407.0
+   ],
+   "unitKey": "pl-5-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "5",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "5 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "22",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1126.0,
+    475.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "22",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "22 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "23",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1150.0,
+    575.0
+   ],
+   "unitKey": "pl-23-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "23",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "23 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "21",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1051.0,
+    596.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "21",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "21 號師（inf）不在 R1 名冊；名冊同號有 ['pl-21-dpg']"
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1116.0,
+    615.0
+   ],
+   "unitKey": "pl-6-dp",
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "6",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "6 號師，兵種依讀圖註記（inf）"
+  },
+  {
+   "label": "24",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1162.0,
+    652.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "24",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "24 號師（inf）不在 R1 名冊"
+  },
+  {
+   "label": "Rzes.",
+   "echelon": "brigade",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1061.0,
+    661.0
+   ],
+   "unitKey": null,
+   "note": "橢圓加斜線（機械化／偵察）；符號上方 X（旅級）；虛線框內橢圓加斜線",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "11",
+   "echelon": "division",
+   "sideGuess": "polish",
+   "sideNote": "圖例：虛線框＝Polish Forces",
+   "px": [
+    1177.0,
+    713.0
+   ],
+   "unitKey": null,
+   "note": "交叉框（步兵）；貼圖右緣，標字被裁，讀作 11",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "11",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "11 號師（inf）不在 R1 名冊"
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "VIII／XVII／XXII 後的 **",
+   "px": [
+    875.0,
+    681.0
+   ],
+   "reason": "圖註「Divisions Moving and Unlocated」：這三個軍的所屬師位置圖上未標"
+  },
+  {
+   "label": "1（III 橢圓加斜線）",
+   "px": [
+    1079.0,
+    697.0
+   ],
+   "reason": "團級機械化／偵察符號，番號只有「1」，無法確定是哪個團"
+  },
+  {
+   "label": "11（右緣）",
+   "px": [
+    1177.0,
+    713.0
+   ],
+   "reason": "符號與標字貼圖右緣被裁，番號可能不完整"
+  },
+  {
+   "label": "Group Gienanth 圈線",
+   "px": [
+    430.0,
+    315.0
+   ],
+   "reason": "圈線為編組範圍示意，不是前線，不讀成 line"
+  },
+  {
+   "label": "Prague 旁 255、波希米亞 256",
+   "px": [
+    206.0,
+    723.0
+   ],
+   "reason": "圈線內的後方師，圈線意義圖例未說明"
+  }
+ ],
+ "lines": [
+  {
+   "lineKey": "kennedy-map-9-bdy-eighth-tenth",
+   "label": "圖上 XXXX 軍團分界線（Eighth／Tenth）：Ohlau—Lodz",
+   "lineKind": "boundary",
+   "side": "german",
+   "vertices": [
+    {
+     "px": [
+      467.0,
+      432.0
+     ],
+     "nearPlace": "Ohlau"
+    },
+    {
+     "px": [
+      631.0,
+      340.0
+     ]
+    },
+    {
+     "px": [
+      700.0,
+      297.0
+     ]
+    },
+    {
+     "px": [
+      786.0,
+      237.0
+     ],
+     "nearPlace": "Lodz"
+    }
+   ]
+  },
+  {
+   "lineKey": "kennedy-map-9-bdy-tenth-fourteenth",
+   "label": "圖上 XXXX 軍團分界線（Tenth／Fourteenth）：Oder 河—Kielce 西南",
+   "lineKind": "boundary",
+   "side": "german",
+   "vertices": [
+    {
+     "px": [
+      609.0,
+      584.0
+     ],
+     "nearPlace": "Oder R"
+    },
+    {
+     "px": [
+      731.0,
+      567.0
+     ]
+    },
+    {
+     "px": [
+      849.0,
+      566.0
+     ]
+    },
+    {
+     "px": [
+      909.0,
+      563.0
+     ]
+    },
+    {
+     "px": [
+      999.0,
+      463.0
+     ]
+    },
+    {
+     "px": [
+      1009.0,
+      445.0
+     ],
+     "nearPlace": "Kielce"
+    }
+   ]
+  }
+ ],
+ "linesNote": "本圖沒有畫出連續前線，只有兩條 XXXX 軍團分界線（lineKind=boundary）；德軍前緣只能由各師符號與箭頭推想，不讀成線。",
+ "labelCheckMethod": "兩次獨立判讀比對：tools/battles/compare_readings.py；第二次判讀檔 checks/label-reading2/kennedy-map-9.json"
+}

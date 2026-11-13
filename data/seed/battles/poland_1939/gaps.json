@@ -184,6 +184,773 @@
    "note": "唯一來源 ipn-suleja-wrzesien-1939（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
    "checkedOn": "2026-11-13",
    "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "map-label:kennedy-map-10:?@1048.0,1048.0",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-10 標註兩次判讀不一致：第一次「?」、第二次「7」（兩次判讀文字不同），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-10:?@1062.0,549.0",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-10 標註兩次判讀不一致：第一次「?」、第二次「10」（兩次判讀文字不同），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-7:?@882.0,378.0",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-7 標註兩次判讀不一致：第一次「?」、第二次「1」（兩次判讀文字不同），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-8:NORTH@502,678",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-8 第二次判讀讀到「NORTH」，第一次判讀附近沒有（可能漏讀），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-8:SOUTH@502,709",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-8 第二次判讀讀到「SOUTH」，第一次判讀附近沒有（可能漏讀），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-9:VIII**@854.0,647.0",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-9 標註兩次判讀不一致：第一次「VIII**」、第二次「VIII」（兩次判讀文字不同），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-9:XVII**@875.0,681.0",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-9 標註兩次判讀不一致：第一次「XVII**」、第二次「XVII」（兩次判讀文字不同），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:kennedy-map-9:XXII**@909.0,727.0",
+   "kind": "map_label_reading_mismatch",
+   "note": "kennedy-map-9 標註兩次判讀不一致：第一次「XXII**」、第二次「XXII」（兩次判讀文字不同），待查證",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/compare_readings.py"
+  },
+  {
+   "target": "map-label:german:1",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「1」（german）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-8, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:1 Rcn",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「1 Rcn」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:1(L)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「1(L)」（german）未對上 R1 名冊：1 號師（light）不在 R1 名冊；名冊同號有 ['de-1-pz-div', 'de-1-geb-div']；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:10",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「10」（german）未對上 R1 名冊：10 號師（inf）不在 R1 名冊；名冊同號有 ['de-10-pz-div']；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:11",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「11」（german）未對上 R1 名冊：11 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:12",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「12」（german）未對上 R1 名冊：12 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:13(Mtz)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「13(Mtz)」（german）未對上 R1 名冊：13 號師（mot）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:14",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「14」（german）未對上 R1 名冊：14 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:17",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「17」（german）未對上 R1 名冊：17 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:18",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「18」（german）未對上 R1 名冊：18 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:183",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「183」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:19",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「19」（german）未對上 R1 名冊：19 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:2 Mt",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「2 Mt」（german）未對上 R1 名冊：2 號師（geb）不在 R1 名冊；名冊同號有 ['de-2-mot-div', 'de-2-pz-div']；出現於 kennedy-map-10, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:2 Mt(X+10)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「2 Mt(X+10)」（german）未對上 R1 名冊：2 號師（geb）不在 R1 名冊；名冊同號有 ['de-2-mot-div', 'de-2-pz-div']；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:2(L)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「2(L)」（german）未對上 R1 名冊：2 號師（light）不在 R1 名冊；名冊同號有 ['de-2-mot-div', 'de-2-pz-div']；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:206",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「206」（german）未對上 R1 名冊：206 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:207",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「207」（german）未對上 R1 名冊：207 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:207(-)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「207(-)」（german）未對上 R1 名冊：207 號師（inf）不在 R1 名冊；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:208",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「208」（german）未對上 R1 名冊：208 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:21",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「21」（german）未對上 R1 名冊：21 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:213",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「213」（german）未對上 R1 名冊：213 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:217",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「217」（german）未對上 R1 名冊：217 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:218",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「218」（german）未對上 R1 名冊：218 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:221",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「221」（german）未對上 R1 名冊：221 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:228",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「228」（german）未對上 R1 名冊：228 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:23",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「23」（german）未對上 R1 名冊：23 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:239",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「239」（german）未對上 R1 名冊：239 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:24",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「24」（german）未對上 R1 名冊：24 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:252",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「252」（german）未對上 R1 名冊：252 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:255",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「255」（german）未對上 R1 名冊：255 號師（inf）不在 R1 名冊；出現於 kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:256",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「256」（german）未對上 R1 名冊：256 號師（inf）不在 R1 名冊；出現於 kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:27",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「27」（german）未對上 R1 名冊：27 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:28",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「28」（german）未對上 R1 名冊：28 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:29(Mtz)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「29(Mtz)」（german）未對上 R1 名冊：29 號師（mot）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:3",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「3」（german）未對上 R1 名冊：3 號師（inf）不在 R1 名冊；名冊同號有 ['de-3-pz-div']；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:3 Mt",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「3 Mt」（german）未對上 R1 名冊：3 號師（geb）不在 R1 名冊；名冊同號有 ['de-3-pz-div']；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:3(L)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「3(L)」（german）未對上 R1 名冊：3 號師（light）不在 R1 名冊；名冊同號有 ['de-3-pz-div']；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:30",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「30」（german）未對上 R1 名冊：30 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:31",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「31」（german）未對上 R1 名冊：31 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:32",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「32」（german）未對上 R1 名冊：32 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:4",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「4」（german）未對上 R1 名冊：4 號師（inf）不在 R1 名冊；名冊同號有 ['de-4-pz-div']；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:4(L)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「4(L)」（german）未對上 R1 名冊：4 號師（light）不在 R1 名冊；名冊同號有 ['de-4-pz-div']；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:44",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「44」（german）未對上 R1 名冊：44 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:45",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「45」（german）未對上 R1 名冊：45 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:46",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「46」（german）未對上 R1 名冊：46 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:56",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「56」（german）未對上 R1 名冊：56 號師（inf）不在 R1 名冊；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:57",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「57」（german）未對上 R1 名冊：57 號師（inf）不在 R1 名冊；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:61",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「61」（german）未對上 R1 名冊：61 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:62",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「62」（german）未對上 R1 名冊：62 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:68",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「68」（german）未對上 R1 名冊：68 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:7",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「7」（german）未對上 R1 名冊：7 號師（inf）不在 R1 名冊；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:73",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「73」（german）未對上 R1 名冊：73 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:8",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「8」（german）未對上 R1 名冊：8 號師（inf）不在 R1 名冊；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:?",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「?」（german）未對上 R1 名冊：名冊無對應名稱；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Eberhard",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Eberhard」（german）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Front Gd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Front Gd」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Frontier Guard Units",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Frontier Guard Units」（german）未對上 R1 名冊：group：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:I Front Gd Cmd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「I Front Gd Cmd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:II Front Gd Cmd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「II Front Gd Cmd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:III Front Gd Cmd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「III Front Gd Cmd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-10, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:IV Front Gd Cmd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「IV Front Gd Cmd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-10, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Loetzen",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Loetzen」（german）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Medem",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Medem」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Netze",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Netze」（german）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-10, kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:POZNAN",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「POZNAN」（german）未對上 R1 名冊：兩次判讀都讀成德軍集團軍級框內標字，但 R1 無德軍 Poznan 單位（可能是波軍 Poznan Army 或邊防區），待查證；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:Rcn",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Rcn」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:SS 'A.H'**",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「SS 'A.H'**」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:SS 'G'**",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「SS 'G'**」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:SS Germania",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「SS Germania」（german）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:WEST PR",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「WEST PR」（german）未對上 R1 名冊：同上，R1 無對應單位，待查證；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:XII Front Gd Cmd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「XII Front Gd Cmd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-10, kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:XIII Front Gd Cmd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「XIII Front Gd Cmd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:german:XIII Front Gd Comd",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「XIII Front Gd Comd」（german）未對上 R1 名冊：邊防指揮部（Frontier Guard Command），R1 未建；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:1",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「1」（polish）未對上 R1 名冊：1 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:11",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「11」（polish）未對上 R1 名冊：11 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:12 Pol Divs 3 Cav. Brigs",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「12 Pol Divs 3 Cav. Brigs」（polish）未對上 R1 名冊：波軍總預備隊示意（一圈多師），不對單一單位；出現於 kennedy-map-10",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:13",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「13」（polish）未對上 R1 名冊：13 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:15",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「15」（polish）未對上 R1 名冊：15 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:17",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「17」（polish）未對上 R1 名冊：17 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:19",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「19」（polish）未對上 R1 名冊：19 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:2",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「2」（polish）未對上 R1 名冊：2 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:20",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「20」（polish）未對上 R1 名冊：20 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:21",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「21」（polish）未對上 R1 名冊：21 號師（inf）不在 R1 名冊；名冊同號有 ['pl-21-dpg']；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:22",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「22」（polish）未對上 R1 名冊：22 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:24",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「24」（polish）未對上 R1 名冊：24 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:26",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「26」（polish）未對上 R1 名冊：26 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:29",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「29」（polish）未對上 R1 名冊：29 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:3",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「3」（polish）未對上 R1 名冊：3 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:4",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「4」（polish）未對上 R1 名冊：4 號師（inf）不在 R1 名冊；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Krak.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Krak.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Kres.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Kres.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Maz.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Maz.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Now.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Now.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Podl.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Podl.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Pom.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Pom.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-8",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Rzes.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Rzes.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Rzus.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Rzus.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Wol.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Wol.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:polish:Wp.",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「Wp.」（polish）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 kennedy-map-7, kennedy-map-9",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "r2:maps-threshold",
+   "kind": "map_reference_only",
+   "note": "Kennedy Map 7–10 留一 P95 分別 12.67／25.71／7.51／6.83 km，全部超過 2 km：只作參考，R3 不取地圖位置、R4 不取地圖前線頂點",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r2:okh-skizze",
+   "kind": "source_unavailable",
+   "note": "OKH 態勢略圖（germandocsinrussia.org）為圖磚檢視器，本輪未下載、未數位化",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r2:usma-maps",
+   "kind": "map_not_digitized",
+   "note": "USMA 04–07 只登錄圖題（小比例尺預期不過門檻），未判讀、未配準",
+   "checkedOn": "2026-11-13"
   }
  ]
 }

@@ -123,3 +123,7 @@
 | R6 | r6-site-control.json | 10 筆 |
 | R7 | r7-commanders.json、r7-missing-people.json | 17 筆；連結 8 人既有人物；缺 8 人 |
 | R8 | r8-borders.manifest.json | 8/13 一切片（窗內無變更）；focusRegimes＝中華民國、日本帝國 |
+
+## 2026-11-13 規則更新
+
+本計畫中「單一來源降一級」「降級後低於 B 不當事實」的寫法已由 `docs/source-rules.md` 取代（Tai 2026-11-13 核准 D1–D6）：來源等級不因來源數目更動；單一來源只影響可信程度（待查證），不影響能不能寫入；對手方出處不能單獨成立。

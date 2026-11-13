@@ -2,7 +2,7 @@
 用法：python3 -I tools/battles/write_battle_sql.py <battle>
 輸出：data/seed/battles/<battle>/db/<battle>.write.sql、<battle>.write-plan.json。本程式不連任何資料庫。
 - id 一律 uuid5（可重跑、逐位元相同）；SQL 開頭檢查 slug 不存在，否則中止（不覆寫）。
-- 只寫 A/B 引文（citation 等級＝min(來源等級, crosscheck effectiveGrade)，C 不寫）；沒有任何 A/B 引文的圖形／部隊不寫，列入 plan 的 skipped。
+- 只寫 A/B 引文（citation 等級＝來源等級，不因來源數目更動；C 不寫；docs/source-rules.md）；沒有任何 A/B 引文的圖形／部隊不寫，列入 plan 的 skipped。
 - 圖形只收前線（r4）與據點（r5 交戰地、r6 易手地）；部隊位置（r3）依 §19.1.3 G3 不建幾何。
 - 文字推定前線 geom_basis='derived'（城鎮中心直線相連），status 一律 pending；props 帶「待查證／文字推定」。
 - 階段取 frontend/public/campaigns/<battle>.json 的 phases；階段引文須在本機原文逐字找到且 ≤ 80 字，找不到就不寫。
@@ -47,8 +47,7 @@ def main():
     def add(table, cols, vals):
         sql.append(f"INSERT INTO {table} ({', '.join(cols)}) VALUES ({', '.join(vals)});"); plan["rows"][table] = plan["rows"].get(table, 0) + 1
     def grade(c, rec):
-        g = c.get("grade"); eff = ((rec or {}).get("confidence") or {}).get("effectiveGrade")
-        if eff and g in RANK and eff in RANK and RANK[eff] > RANK[g]: g = eff
+        g = c.get("grade")
         return g if g in ("A", "B") else None
     def cites(table, owner_col, owner_id, rec, cs, extra_cols=(), extra_vals=(), note=None):
         n = 0
@@ -97,9 +96,7 @@ def main():
                 if not k or c.get("verification") != "verbatim" or c.get("grade") not in ("A", "B"):
                     plan["skipped"].append({"phase": p["seq"], "quote": c["quote"][:90], "why": "未逐字驗證／非 A/B／對不到來源"}); continue
                 good.append({"sourceKey": k, "locator": c["locator"], "quote": c["quote"], "quoteLang": c.get("quote_lang"), "accessedOn": c.get("accessed_on"), "grade": c["grade"]})
-            if len({fam.get(c["sourceKey"]) for c in good}) == 1:
-                for c in good: c["grade"] = "B" if c["grade"] == "A" else c["grade"]
-            cites("battle_phase_citations", "phase_id", pid, None, good, note="階段引文取自考證 seed（逐字驗證）；單一來源家族 A 降 B")
+            cites("battle_phase_citations", "phase_id", pid, None, good, note="階段引文取自考證 seed（逐字驗證）")
     C = Cites(battle) if not phase_ids else None
     for p in ([] if phase_ids else web["phases"]):
         pid = uid("phase", battle, p["seq"]); phase_ids.append((pid, p["start"], p["end"]))
@@ -114,9 +111,8 @@ def main():
             except SystemExit as e:
                 c = None; plan["skipped"].append({"phase": p["seq"], "quote": s["quote"][:90], "why": str(e)[:60]})
             if c:
-                # 單一來源家族（只有 Kennedy）→ 降一級（比照 crosscheck）
-                c["grade"] = "B" if c["grade"] == "A" else c["grade"]; good.append(c)
-        cites("battle_phase_citations", "phase_id", pid, None, good, note="階段引文：Kennedy 單一來源家族，A 降 B")
+                good.append(c)
+        cites("battle_phase_citations", "phase_id", pid, None, good, note="階段引文")
     def phase_of(d):
         for pid, a, b in phase_ids:
             if a <= d < b: return pid

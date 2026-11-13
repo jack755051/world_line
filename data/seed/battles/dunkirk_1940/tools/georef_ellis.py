@@ -7,7 +7,8 @@
 
 用法：python3 -I georef_ellis.py ../digitized/<mapKey>.readings.json [--frame-km 3]
 讀  readings.json：source、mapDate、control_points{名稱:{px:[x,y], lonlat:[lon,lat], osm:{type,id}}}、features[{label, px, side, unitKey?}]
-寫  同名 .json（去掉 .readings）：fit 統計、每個 feature 的經緯度（estimate=推估）
+     lines[{lineKey, label, lineKind, side, vertices:[{px, nearPlace?}]}]（R4 前線，可省略）
+寫  同名 .json（去掉 .readings）：fit 統計、每個 feature 與 line 頂點的經緯度（estimate=推估）
 """
 import json, math, sys
 
@@ -76,6 +77,10 @@ def main():
     for f in R.get("features", []):
         ll = apply(C, f["px"], c0, s0)
         feats.append({**f, "lonlat": [round(ll[0], 4), round(ll[1], 4)], "estimate": "推估", "basis": "map-digitized", "usable": passes})
+    lines = []
+    for ln in R.get("lines", []):  # R4 前線：每條線的頂點 px → 經緯度（同一配準）
+        vs = [{**v, "lonlat": [round(apply(C, v["px"], c0, s0)[0], 4), round(apply(C, v["px"], c0, s0)[1], 4)]} for v in ln.get("vertices", [])]
+        lines.append({**ln, "vertices": vs, "estimate": "推估", "basis": "map-digitized", "usable": passes})
     out = {"source": R["source"], "mapKey": R.get("mapKey"), "mapDate": R.get("mapDate"), "method": R.get("method"),
            "threshold": {"rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）", "loo_p95_km": round(p95, 2), "passes": passes,
                          "use": "可用於部隊位置與前線頂點" if passes else "僅供參考：不得用於部隊位置或前線頂點"},
@@ -85,7 +90,7 @@ def main():
            "precision_m": int(round((p95 + frame_km) * 1000, -2)),
            "precisionNote": f"留一法 95 百分位 {p95:.1f} km ＋ 標註框誤差 {frame_km:g} km；位置為部隊符號／標註框中心，非司令部精確位置",
            "control_points": {n: {**R["control_points"][n], "loo_km": round(loo[i], 2)} for i, n in enumerate(names)},
-           "features": feats, "unresolved": R.get("unresolved", [])}
+           "features": feats, "lines": lines, "unresolved": R.get("unresolved", [])}
     path.with_name(path.name.replace(".readings.json", ".json")).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"控制點 {len(P)}｜殘差中位數 {pct(res, .5):.2f} km｜留一中位數 {med:.2f} km、95% {p95:.2f} km、最大 {max(loo):.2f} km｜可疑 {bad}｜部隊 {len(feats)}｜precision_m {out['precision_m']}｜門檻 2 km：{'通過' if passes else '未通過（僅參考）'}")
 

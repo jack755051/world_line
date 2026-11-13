@@ -1,0 +1,79 @@
+{
+ "schema": "battle-data/0.1 r4-text-vertices",
+ "researchedOn": "2026-11-13",
+ "note": "tools/battles/build_r4.py 讀入；文字推得的頂點一律推估",
+ "fronts": [
+  {
+   "date": "1939-10-01",
+   "dateNote": "Kennedy p.118–119：10/1 OKH 通知南方集團軍群分界線再次變更",
+   "lineKey": "de-su-demarcation-1939-10-01",
+   "lineKind": "boundary",
+   "side": "de|su",
+   "label": "德蘇分界線（10/1 變更後）",
+   "vertices": [
+    {
+     "lonlat": [
+      21.57484,
+      53.07796
+     ],
+     "px": null,
+     "nearPlace": "Ostrołęka",
+     "osm": {
+      "type": "relation",
+      "id": 3049008
+     },
+     "vertexNote": "原文 to Ostroleka；取 OSM 城鎮中心"
+    },
+    {
+     "lonlat": [
+      21.89764,
+      52.80004
+     ],
+     "px": null,
+     "nearPlace": "Ostrów Mazowiecka",
+     "osm": {
+      "type": "relation",
+      "id": 2995317
+     },
+     "vertexNote": "原文 past Ostrow Mazowiecka；取 OSM 城鎮中心"
+    }
+   ],
+   "basis": "text",
+   "estimate": "推估",
+   "method": "文字頂點：只取原文明確點名的城鎮（OSM Nominatim 中心點）；Pisa／Narew 河段、布格河、Tomaszów 以東某點、San 河至斯洛伐克邊界等河段未數位化",
+   "precision_m": null,
+   "precisionNote": "城鎮中心代替河線，誤差可達數公里；線段只覆蓋全線北端一小段",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 119 (HyperWar Campaign-III.html)",
+     "quote": "Pisia and Narew Eivers to Ostroleka, thence past Ostrow Mazowiecka to the Bug",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 119 (HyperWar Campaign-III.html)",
+     "quote": "south along the latter to a point east of Tomaszow, west to the San",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "Kennedy 原文 Eivers 為 Rivers 之掃描錯字，引文照錄"
+  }
+ ]
+}

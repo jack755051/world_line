@@ -1,8 +1,15 @@
 {
  "battle": "poland_1939",
- "mainPhase": {"start": "1939-09-01", "end": "1939-10-06", "basis": "主管 2026-11-13 14:15：主期 9/1–10/6，含 9/17 蘇聯入侵；不另設前段"},
+ "mainPhase": {
+  "start": "1939-09-01",
+  "end": "1939-10-06",
+  "basis": "主管 2026-11-13 14:15：主期 9/1–10/6，含 9/17 蘇聯入侵；不另設前段"
+ },
  "leadIn": null,
- "battleFactGrades": ["A", "B"],
+ "battleFactGrades": [
+  "A",
+  "B"
+ ],
  "sourceFamilies": {
   "rule": "同一來源家族只算一個獨立來源（主管 2026-11-13 14:03 規則沿用）。Kennedy 取材自德軍擄獲檔案與前德軍將領，但為美國陸軍出版，另成一族；德方學術（bpb 的 ZMSBw 作者與 DHM LeMO）合為一族；波方 IPN 一族；德軍原始 OKH 圖一族；西點圖集一族。",
   "map": {
@@ -16,23 +23,109 @@
   }
  },
  "r8": {
-  "box": [13.0, 45.0, 33.0, 58.0],
-  "window": ["1939-09-01", "1939-10-06"],
-  "focusRegimes": ["polish-republic", "deutsches-reich", "slovak-state-1939", "republic-of-lithuania", "republic-of-latvia", "soviet-union", "kingdom-of-hungary", "kingdom-of-romania", "free-city-of-danzig"],
+  "box": [
+   13.0,
+   45.0,
+   33.0,
+   58.0
+  ],
+  "window": [
+   "1939-09-01",
+   "1939-10-06"
+  ],
+  "focusRegimes": [
+   "polish-republic",
+   "deutsches-reich",
+   "slovak-state-1939",
+   "republic-of-lithuania",
+   "republic-of-latvia",
+   "soviet-union",
+   "kingdom-of-hungary",
+   "kingdom-of-romania",
+   "free-city-of-danzig"
+  ],
   "decision": "主管 2026-11-13 14:15：疆界切片取 9/1，另加主權資料實際有變的日期；R8 只用主專案主權資料（OpenHistoricalMap 來源），不手描"
  },
  "labelMatch": {
   "note": "tools/battles/match_units.py 一般化規則（poland_1939）。Kennedy 圖例：框內橢圓＝裝甲、交叉框＝步兵、(Mtz)＝摩托化、(L)＝輕裝師、Mt＝山地",
-  "sideMap": {"german": "axis", "polish": "allied", "soviet": "soviet"},
-  "romanCorps": {"axis": "de-{r}-ak"},
-  "typeHints": {"mot": ["MTZ", "摩托化"], "light": ["L", "輕裝"], "geb": ["MT", "山地"], "pz": ["裝甲"], "inf": ["步兵"]},
-  "typeSuffix": {"pz": ["-pz-div"], "mot": ["-mot-div"], "geb": ["-geb-div", "-dpg"], "inf": ["-inf-div", "-dp"], "light": []}
+  "sideMap": {
+   "german": "axis",
+   "polish": "allied",
+   "soviet": "soviet"
+  },
+  "romanCorps": {
+   "axis": "de-{r}-ak"
+  },
+  "typeHints": {
+   "mot": [
+    "MTZ",
+    "摩托化"
+   ],
+   "light": [
+    "L",
+    "輕裝"
+   ],
+   "geb": [
+    "MT",
+    "山地"
+   ],
+   "pz": [
+    "裝甲"
+   ],
+   "inf": [
+    "步兵"
+   ]
+  },
+  "typeSuffix": {
+   "pz": [
+    "-pz-div"
+   ],
+   "mot": [
+    "-mot-div"
+   ],
+   "geb": [
+    "-geb-div",
+    "-dpg"
+   ],
+   "inf": [
+    "-inf-div",
+    "-dp"
+   ],
+   "light": []
+  }
  },
  "r4": {
-  "maps": ["kennedy-map-7", "kennedy-map-8", "kennedy-map-9", "kennedy-map-10"],
-  "box": [13.0, 47.5, 27.0, 56.0],
-  "dates": ["1939-09-01", "1939-09-03", "1939-09-06", "1939-09-08", "1939-09-10", "1939-09-12", "1939-09-14", "1939-09-17", "1939-09-20", "1939-09-22", "1939-09-28", "1939-10-01", "1939-10-06"],
-  "dateGapNotes": {},
+  "maps": [
+   "kennedy-map-7",
+   "kennedy-map-8",
+   "kennedy-map-9",
+   "kennedy-map-10"
+  ],
+  "box": [
+   13.0,
+   47.5,
+   27.0,
+   56.0
+  ],
+  "dates": [
+   "1939-09-01",
+   "1939-09-03",
+   "1939-09-06",
+   "1939-09-08",
+   "1939-09-10",
+   "1939-09-12",
+   "1939-09-14",
+   "1939-09-17",
+   "1939-09-20",
+   "1939-09-22",
+   "1939-09-28",
+   "1939-10-01",
+   "1939-10-06"
+  ],
+  "dateGapNotes": {
+   "1939-09-20": "Kennedy p.118：9/20 下令撤至 Narew–Vistula–San 河線，原文只有河名、無點名城鎮，未數位化",
+   "1939-09-01": "9/1 起始態勢＝開戰時國界，見 R8 疆界切片；不另畫前線"
+  },
   "defaultGapNote": "Kennedy 四張圖與 USMA 圖都沒過 2 km 門檻，只能用文字頂點（推估）；該日無文字頂點"
  }
 }

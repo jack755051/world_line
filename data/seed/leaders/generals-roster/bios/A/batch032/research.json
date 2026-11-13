@@ -1285,6 +1285,20 @@
      "result": "no_result",
      "note": "連線失敗（000）",
      "round": "retry"
+    },
+    {
+     "step": 90,
+     "sourceType": "other",
+     "query": "马麟 甘州镇守使 离任 征果洛司令 西宁镇守使",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋僅得維基與非具名頁，無可收來源；兩職迄日仍未見"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2448,10 +2462,10 @@
      "positionKind": "minister",
      "period": {
       "start": "1912-01-01",
-      "end": null
+      "end": "1912-04-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "hx-mod",
@@ -2475,6 +2489,18 @@
        "grade": "B",
        "datePrecision": "day",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hx-mod",
+       "locator": "人物生平段",
+       "quote": "4月，黄兴被委为南京留守，6月，辞去南京留守一职。",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": "改任南京留守後陸軍總長止於1912年4月",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -2503,10 +2529,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1912-01-01",
-      "end": null
+      "end": "1912-04-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "hx-mod",
@@ -2530,6 +2556,18 @@
        "grade": "B",
        "datePrecision": "day",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hx-mod",
+       "locator": "人物生平段",
+       "quote": "4月，黄兴被委为南京留守，6月，辞去南京留守一职。",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": "改任南京留守後參謀總長止於1912年4月",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -2674,20 +2712,6 @@
      "target": "position:hx-wartime-cinc",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；戰時總司令自1911-11-03起，已查 湖南省檔案局、新華社稿（國防部網）、湖南省文史資料頁；僅知漢陽失陷後辭職赴滬、1911-12-01抵上海，未明寫卸任日。；加強搜尋（retry）另查 國父紀念館中山學術資料庫、中新網、三聯書店樣章、澳門文化雜誌等，仍未見迄日",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:hx-army-min",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；陸軍總長自1912年1月起，已查 湖南省檔案局、新華社稿、政大官職資料庫；4月改任南京留守，但來源未明寫陸軍總長卸任日（臨時政府北遷日期未見已抓原文）。；加強搜尋（retry）另查 國父紀念館中山學術資料庫、中新網、三聯書店樣章、澳門文化雜誌等，仍未見迄日",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:hx-chief-staff",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 湖南省檔案局、新華社稿、政大官職資料庫，未見參謀總長卸任日。；加強搜尋（retry）另查 國父紀念館中山學術資料庫、中新網、三聯書店樣章、澳門文化雜誌等，仍未見迄日",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -3033,6 +3057,40 @@
      "result": "no_result",
      "note": "403，不繞過",
      "round": "retry"
+    },
+    {
+     "step": 90,
+     "sourceType": "other",
+     "query": "黃興 陸軍總長 參謀總長 辭職 1912年4月 南京留守 國史館",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋僅得維基與非具名頁，無可收來源；戰時總司令、同盟會執行部庶務、國民黨理事迄日仍未見"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:hx-army-min",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；陸軍總長自1912年1月起，已查 湖南省檔案局、新華社稿、政大官職資料庫；4月改任南京留守，但來源未明寫陸軍總長卸任日（臨時政府北遷日期未見已抓原文）。；加強搜尋（retry）另查 國父紀念館中山學術資料庫、中新網、三聯書店樣章、澳門文化雜誌等，仍未見迄日",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:hx-chief-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 湖南省檔案局、新華社稿、政大官職資料庫，未見參謀總長卸任日。；加強搜尋（retry）另查 國父紀念館中山學術資料庫、中新網、三聯書店樣章、澳門文化雜誌等，仍未見迄日",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -3643,10 +3701,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1945-01-01",
-      "end": null
+      "end": "1948-05-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "cpc-lbc2",
@@ -3658,6 +3716,18 @@
        "grade": "C",
        "datePrecision": "month",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-lbc2",
+       "locator": "人物生平段",
+       "quote": "1948年5月起任中原军区、中原野战军、第二野战军司令员",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": "1948年5月改任中原軍區司令員",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -3742,13 +3812,6 @@
      "target": "position:lbc-129",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；八路軍第129師師長自1937-08-22起，已查 中國共產黨新聞網資料中心、解放軍報／人民網戰史簡介，未明寫卸任日（日本投降後改任晉冀魯豫軍區司令員）。；加強搜尋（retry）另查 人民網黨史頻道、中國共產黨新聞網、鳳凰網史料等，仍未見迄日",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:lbc-jjly",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；晉冀魯豫軍區司令員起日僅「日本投降後」，已查 中國共產黨新聞網資料中心、七一導航，未見起迄具體日期。；加強搜尋（retry）另查 人民網黨史頻道、中國共產黨新聞網、鳳凰網史料等，仍未見迄日",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -4022,6 +4085,31 @@
      "result": "unrated",
      "note": "人民網圖集，已抓取；無任期日期",
      "round": "retry"
+    },
+    {
+     "step": 90,
+     "sourceType": "other",
+     "query": "劉伯承 暫編第15軍軍長 紅軍總參謀長 129師師長 卸任",
+     "url": null,
+     "result": "no_result",
+     "note": "無新增可收來源；其餘四職迄日未見"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:lbc-jjly",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；晉冀魯豫軍區司令員起日僅「日本投降後」，已查 中國共產黨新聞網資料中心、七一導航，未見起迄具體日期。；加強搜尋（retry）另查 人民網黨史頻道、中國共產黨新聞網、鳳凰網史料等，仍未見迄日",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -4577,10 +4665,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1937-08-22",
-      "end": null
+      "end": "1939-06-01"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "ppl-129",
@@ -4604,6 +4692,18 @@
        "grade": "C",
        "datePrecision": null,
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-xxq2",
+       "locator": "人物生平段",
+       "quote": "1939年6月奉命到山东沂蒙山区，担任八路军第1纵队司令员",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": "1939年6月轉任第1縱隊司令員",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -4742,13 +4842,6 @@
      "target": "position:xxq-4thfront",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；紅四方面軍總指揮自1931年11月（年份依敘述序列推得）起，已查 中國共產黨新聞網資料中心、七一導航，未明寫迄日。；加強搜尋（retry）另查 人民網「徐向前大事年表」、中國軍網、人民周刊、中新網，仍未見迄日",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:xxq-129-deputy",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；八路軍第129師副師長自1937-08-22起，已查 中國共產黨新聞網資料中心、解放軍報／人民網戰史簡介，未明寫卸任日（1939年6月轉任第1縱隊司令員，來源未稱卸任副師長）。；加強搜尋（retry）另查 人民網「徐向前大事年表」、中國軍網、人民周刊、中新網，仍未見迄日",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -5028,6 +5121,31 @@
      "result": "no_result",
      "note": "太原市政府網，連線失敗（000）",
      "round": "retry"
+    },
+    {
+     "step": 90,
+     "sourceType": "other",
+     "query": "徐向前 129师副师长 第1纵队司令员 年表 人民网",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無新增可收來源；紅四方面軍總指揮、六屆中委、西北局委員迄日未見"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:xxq-129-deputy",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；八路軍第129師副師長自1937-08-22起，已查 中國共產黨新聞網資料中心、解放軍報／人民網戰史簡介，未明寫卸任日（1939年6月轉任第1縱隊司令員，來源未稱卸任副師長）。；加強搜尋（retry）另查 人民網「徐向前大事年表」、中國軍網、人民周刊、中新網，仍未見迄日",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

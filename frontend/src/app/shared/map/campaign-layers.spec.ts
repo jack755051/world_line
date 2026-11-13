@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Campaign } from '../../core/campaign';
-import { CAMPAIGN_LAYER_IDS, FRONT_COLOR, INFERRED_LABEL, campaignFilters, campaignLayers, campaignSourceData, isInferredFront } from './campaign-layers';
+import { CAMPAIGN_LAYER_IDS, FRONT_COLOR, INFERRED_LABEL, campaignFilters, campaignLayers, campaignSourceData, isInferredFront, midpoint } from './campaign-layers';
 
 const line = { type: 'LineString', coordinates: [[0, 0], [1, 1]] };
 const front = (id: string, phase: number, verified: boolean, extra: Record<string, unknown> = {}) => ({ type: 'Feature' as const, properties: { id, phase, verified, ...extra }, geometry: line });
@@ -41,17 +41,50 @@ describe('戰役圖層：文字推定／待查證前線', () => {
     expect(fs['campaign-fronts-inferred']).toEqual(['all', PHASE1, INFERRED]);
   });
 
-  it('label：文字推定前線後加「（文字推定・待查證）」；沒有 geom_basis 的靜態檔（Dunkirk／Shanghai）不變', () => {
+  it('label：名稱＋小字註記；文字推定前線「（文字推定・待查證）」，不單獨顯示「待考證」', () => {
     const d = campaignSourceData(campaign([
-      front('derived', 1, false, { geom_basis: 'derived' }),
-      front('text', 1, true, { inference: '文字推定' }),
+      front('derived', 1, false, { geom_basis: 'derived', date: '1939-09-17' }),
+      front('text', 1, true, { inference: '文字推定', name: 'Bug 河線' }),
       front('plain-unverified', 1, false),
-      front('plain-verified', 1, true),
+      front('plain-verified', 1, true, { name: '運河線' }),
     ]));
-    const label = Object.fromEntries(d['campaign-fronts'].features.map((f) => [f.properties.id, f.properties['label']]));
-    expect(label['derived']).toBe('待考證' + INFERRED_LABEL);
-    expect(label['text']).toBe('（文字推定・待查證）');
-    expect(label['plain-unverified']).toBe('待考證');
-    expect(label['plain-verified']).toBe('');
+    const p = Object.fromEntries(d['campaign-fronts'].features.map((f) => [f.properties.id, f.properties as Record<string, unknown>]));
+    expect(p['derived']['label']).toBe('前線 1939-09-17' + INFERRED_LABEL);
+    expect(p['derived']['labelNote']).toBe(INFERRED_LABEL);
+    expect(p['text']['label']).toBe('Bug 河線（文字推定・待查證）');
+    expect(p['plain-unverified']['label']).toBe('前線（待考證）');
+    expect(p['plain-verified']['label']).toBe('運河線');
+    expect(p['plain-verified']['labelNote']).toBe('');
+  });
+
+  it('據點標籤：靜態檔 name、API 列 place／label；未查證加小字「（待考證）」', () => {
+    const pt = (id: string, verified: boolean, extra: Record<string, unknown>) => ({ type: 'Feature' as const, properties: { id, phase: 1, verified, ...extra }, geometry: { type: 'Point', coordinates: [0, 0] } });
+    const c = { phases: [{ seq: 1 }], layers: { fronts: empty, arrows: empty, sites: { type: 'FeatureCollection', features: [
+      pt('static', false, { name: 'Westerplatte' }), pt('api', false, { place: 'Brześć' }), pt('api-label', false, { label: { 'zh-Hant': '華沙' } }),
+      pt('ok', true, { name: 'Dunkerque' }), pt('none', false, {}),
+    ] } } } as unknown as Campaign;
+    const p = Object.fromEntries(campaignSourceData(c)['campaign-sites'].features.map((f) => [f.properties.id, f.properties as Record<string, unknown>]));
+    expect(p['static']['label']).toBe('Westerplatte（待考證）');
+    expect(p['api']['labelBase']).toBe('Brześć');
+    expect(p['api']['labelNote']).toBe('（待考證）');
+    expect(p['api-label']['label']).toBe('華沙（待考證）');
+    expect(p['ok']['label']).toBe('Dunkerque');
+    expect(p['none']['label']).toBe('地點（待考證）');
+    for (const v of Object.values(p)) expect(v['label']).not.toBe('待考證');
+  });
+
+  it('標籤圖層用 format：名稱＋縮小註記', () => {
+    const l = campaignLayers().find((x) => x.id === 'campaign-sites-label') as { layout: Record<string, unknown> };
+    expect(l.layout['text-field']).toEqual(['format', ['get', 'labelBase'], {}, ['get', 'labelNote'], { 'font-scale': 0.78 }]);
+  });
+
+  it('前線標籤：每條前線在線長中點產生一個點標籤（折線、短線都有）', () => {
+    expect(midpoint({ type: 'LineString', coordinates: [[0, 0], [2, 0], [2, 2]] })).toEqual([2, 0]);
+    expect(midpoint({ type: 'LineString', coordinates: [[0, 0]] })).toBeNull();
+    const d = campaignSourceData(campaign([front('a', 1, false, { geom_basis: 'derived' }), front('b', 2, true)]));
+    expect(d['campaign-front-labels'].features.map((f) => [f.properties.id, f.geometry.coordinates])).toEqual([['a', [0.5, 0.5]], ['b', [0.5, 0.5]]]);
+    const l = campaignLayers().find((x) => x.id === 'campaign-fronts-label') as { source: string; layout: Record<string, unknown> };
+    expect(l.source).toBe('campaign-front-labels');
+    expect(l.layout['text-allow-overlap']).toBe(true);
   });
 });

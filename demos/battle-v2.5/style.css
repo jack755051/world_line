@@ -384,3 +384,14 @@ body.tour #now{max-height:56%}
 #uv-note[hidden]{display:none}
 #uv-note button{height:24px;padding:0 10px;border-radius:12px;border:1px solid #b9a26a;background:#fff;font-size:12px;color:#5a4310;cursor:pointer}
 @media (max-width:700px){ #uv-note{top:auto;bottom:10px;white-space:normal;font-size:11.5px} }
+
+/* v2.13：主線戰役資料（名冊出處、文字位置、引文頁碼） */
+.ref small.loc{display:block;font-size:11px;color:var(--mut,#7a7264);margin:1px 0 2px}
+details.rs{margin:8px 0 0;border-top:1px solid rgba(60,50,30,.14);padding-top:6px}
+details.rs>summary{cursor:pointer;font-size:12px;font-weight:600;color:#4b4436;list-style:none}
+details.rs>summary::before{content:'▸ ';color:#a2977f}
+details.rs[open]>summary::before{content:'▾ '}
+.tp{display:grid;grid-template-columns:auto auto 1fr;gap:2px 8px;align-items:baseline;font-size:12px;padding:4px 0;border-bottom:1px dotted rgba(60,50,30,.14)}
+.tp b{font-variant-numeric:tabular-nums}
+.tp i{font-style:normal;color:#7a7264}
+.tp q{grid-column:1/-1;font-size:11px;color:#7a7264;quotes:'「' '」'}

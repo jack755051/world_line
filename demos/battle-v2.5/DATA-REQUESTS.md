@@ -2,6 +2,7 @@
 
 日期：2026-11-13。對象：在 `feature/person-cards` 上用 Grok 做資料取得的流程。
 目的：展示頁（`demos/battle-v2.5`）目前缺的資料，統一由同一條流程取得，不再由展示頁自己查。
+流程（步驟、自檢、交付格式、驗收）見 `DATA-WORKFLOW.md`；敦克爾克第一輪的結果與缺口見 `battles/dunkirk-1940/IMPORT-REPORT.md`。
 
 ## 共同規則（沿用憲法 Decision 5、架構文件 §19.4）
 

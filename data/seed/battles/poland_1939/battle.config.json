@@ -135,5 +135,58 @@
   },
   "sourceFamilies": "主管 2026-11-13 14:58：bpb＋LeMO 維持同一家族 de-academic",
   "wbh": "主管 2026-11-13 14:58：不下載 WBH PDF，留在 gaps"
+ },
+ "texts": {
+  "note": "tools/battles/fetch_readable.py 與 citelib.py 讀；本機文字放 .dev/battle/<battle>/（不進版控，可重建）",
+  "readable": {
+   "kI": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-I.html",
+   "kII": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+   "kIII": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+   "kChron": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html"
+  },
+  "cite": {
+   "kennedy-dapam-20-255": {
+    "kind": "paged-html",
+    "pageMarker": "--(\\d+)--",
+    "markerAt": "page-end",
+    "files": {
+     "Campaign-I.html": "rd/kI.txt",
+     "Campaign-II.html": "rd/kII.txt",
+     "Campaign-III.html": "rd/kIII.txt",
+     "Campaign-Chron.html": "rd/kChron.txt"
+    },
+    "unpaged": [
+     "Campaign-Chron.html"
+    ],
+    "unpagedLocator": "Chronology",
+    "baseUrl": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/",
+    "lang": "en"
+   },
+   "bpb-vogel-lieb-blitzkriege": {
+    "kind": "single",
+    "file": "src/bpb-vogel-lieb.txt",
+    "locator": "bpb 線上專文（單頁）",
+    "lang": "de"
+   },
+   "lemo-scriba-polen-1939": {
+    "kind": "single",
+    "file": "src/lemo-scriba.txt",
+    "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+    "lang": "de"
+   },
+   "ipn-suleja-wrzesien-1939": {
+    "kind": "single",
+    "file": "src/ipn-suleja.txt",
+    "locator": "Przystanek Historia 線上專文（單頁）",
+    "lang": "pl"
+   },
+   "ipn-biuletyn-2019-9": {
+    "kind": "pdf-text",
+    "file": "src/ipn-biuletyn-2019-9.txt",
+    "locator": "Biuletyn IPN 2019 nr 9 PDF",
+    "lang": "pl"
+   }
+  },
+  "workDir": ".dev/battle/poland"
  }
 }

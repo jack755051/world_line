@@ -1,0 +1,958 @@
+{
+ "schema": "battle-data/0.1 r6",
+ "researchedOn": "2026-11-13",
+ "note": "controllerAfter：axis＝德軍、soviet＝蘇軍；controllerAfter 為 null 表示出處未載控制方；sovereignRegimeSlug＝當地主權國（但澤為自由市）",
+ "sites": [
+  {
+   "placeAsInSource": "Danzig",
+   "place": {
+    "nameOsm": "Gdańsk",
+    "osm": {
+     "type": "relation",
+     "id": 2723259
+    }
+   },
+   "date": "1939-09-01",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "free-city-of-danzig",
+   "event": "taken_without_fight",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 79 (HyperWar Campaign-III.html)",
+     "quote": "Danzig was taken without a struggle by Brigade Eberhard",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "Noch am selben Tag erklärte die deutsche Führung den Anschluss Danzigs",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "Westerplatte 為但澤港內波蘭據點，主權歸屬依 R8 但澤自由市",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（de-academic、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Westerplatte",
+   "place": {
+    "nameOsm": "Westerplatte",
+    "osm": {
+     "type": "way",
+     "id": 1334328771
+    }
+   },
+   "date": "1939-09-07",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "free-city-of-danzig",
+   "event": "surrendered",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Westerplatte, zamiast godzin 12, broniło się przez długich 7 dni",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "7 września, oficerowie Wojska Polskiego z placówki na Westerplatte",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "只有 IPN 一族",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "placeAsInSource": "Mlawa defenses",
+   "place": {
+    "nameOsm": "Mława",
+    "osm": {
+     "type": "relation",
+     "id": 2994203
+    }
+   },
+   "date": "1939-09-03",
+   "datePrecision": "approx",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "defenders_withdrew",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 83 (HyperWar Campaign-III.html)",
+     "quote": "broke into the Mlawa defenses and forced the stubborn defenders to withdraw",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "Kennedy p.82 9/3 段落；控制方為德軍屬推定（守軍撤退）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Wejherowo",
+   "place": {
+    "nameOsm": "Wejherowo",
+    "osm": {
+     "type": "relation",
+     "id": 2640229
+    }
+   },
+   "date": "1939-09-09",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 114 (HyperWar Campaign-III.html)",
+     "quote": "Wejherowo fell on 9 September",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Puck (Putzig)",
+   "place": {
+    "nameOsm": "Puck",
+    "osm": {
+     "type": "relation",
+     "id": 2550288
+    }
+   },
+   "date": "1939-09-09",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 114 (HyperWar Campaign-III.html)",
+     "quote": "Corps Kaupisch made another important gain on 9 September",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 114 (HyperWar Campaign-III.html)",
+     "quote": "captured the port of Puck (Putzig)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Wyszków",
+   "place": {
+    "nameOsm": "Wyszków",
+    "osm": {
+     "type": "relation",
+     "id": 3134551
+    }
+   },
+   "date": "1939-09-09",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "9 września Niemcy zajęli Wyszków",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "placeAsInSource": "Gdynia",
+   "place": {
+    "nameOsm": "Gdynia",
+    "osm": {
+     "type": "relation",
+     "id": 2603248
+    }
+   },
+   "date": "1939-09-14",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 115 (HyperWar Campaign-III.html)",
+     "quote": "on 14 September Gdynia was taken",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Brzesc (Citadel)",
+   "place": {
+    "nameOsm": "Brześć",
+    "osm": {
+     "type": "relation",
+     "id": 72615
+    }
+   },
+   "date": "1939-09-17",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 98 (HyperWar Campaign-III.html)",
+     "quote": "The Citadel was finally taken on 17 September",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "Chronology (HyperWar Campaign-Chron.html)",
+     "quote": "The German XIX Corps captures Brzesc.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "9/22 德蘇於此劃分界線（IPN 照片說明），移交蘇方之日期出處未載，不推定",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Oksywie",
+   "place": {
+    "nameOsm": "Oksywie",
+    "osm": {
+     "type": "node",
+     "id": 3009665871
+    }
+   },
+   "date": "1939-09-19",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 115 (HyperWar Campaign-III.html)",
+     "quote": "Oksywie was taken in the late afternoon",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 115 (HyperWar Campaign-III.html)",
+     "quote": "the German attack of 19 September became a clearing operation",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "timeNote": "傍晚",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Lwow",
+   "place": {
+    "nameOsm": "Lwów",
+    "osm": {
+     "type": "relation",
+     "id": 2032280
+    }
+   },
+   "date": "1939-09-21",
+   "datePrecision": "day",
+   "controllerAfter": "soviet",
+   "controllerRegimeSlug": "soviet-union",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "surrendered",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 118 (HyperWar Campaign-III.html)",
+     "quote": "surrendered to the 1st Mountain Division as it made ready to withdraw",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 118 (HyperWar Campaign-III.html)",
+     "quote": "The occupation of the city was left to the Russians",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "Chronology (HyperWar Campaign-Chron.html)",
+     "quote": "Surrender of Lwow.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "postanowił skapitulować nie przed Niemcami, a Armią Czerwoną",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "conflict": "受降方：Kennedy 稱向德軍第1山地師投降、由蘇軍占領；IPN 稱向紅軍投降。controllerAfter 取實際占領方蘇軍；日期只有 Kennedy",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Warsaw",
+   "place": {
+    "nameOsm": "Warszawa",
+    "osm": {
+     "type": "relation",
+     "id": 336074
+    }
+   },
+   "date": "1939-09-27",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "surrendered",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 113 (HyperWar Campaign-III.html)",
+     "quote": "Hostilities ceased at 1400 on 27 September",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "27 września skapitulowała broniąca się zaciekle Warszawa",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "am 27. September bedingungslos",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "timeNote": "14:00 停火（Kennedy）",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（de-academic、pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Modlin",
+   "place": {
+    "nameOsm": "Modlin",
+    "osm": {
+     "type": "way",
+     "id": 44445826
+    }
+   },
+   "date": "1939-09-29",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "surrendered",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 113 (HyperWar Campaign-III.html)",
+     "quote": "the formal surrender to Third Army's II Corps took place the following day",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "Chronology (HyperWar Campaign-Chron.html)",
+     "quote": "Surrender of Modlin.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "W dwa dni później w jej ślady poszedł Modlin",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "am 28. September kapitulierenden Festung Modlin",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "conflict": "Kennedy 9/28 07:30 停火、9/29 正式投降；IPN 9/29；LeMO 9/28",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（de-academic、pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Hela",
+   "place": {
+    "nameOsm": "Hel",
+    "osm": {
+     "type": "relation",
+     "id": 1555429
+    }
+   },
+   "date": "1939-10-01",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "surrendered",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 115 (HyperWar Campaign-III.html)",
+     "quote": "accepted the German terms of unconditional surrender at 1700 the same day",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 115 (HyperWar Campaign-III.html)",
+     "quote": "On 1 October Rear Admiral J. Unrug, commander at Hela",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "2 października złożyli broń obrońcy Helu",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "timeNote": "17:00（Kennedy）",
+   "conflict": "Kennedy 10/1 17:00 接受投降；IPN 10/2 繳械",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Kock",
+   "place": {
+    "nameOsm": "Kock",
+    "osm": {
+     "type": "relation",
+     "id": 3128125
+    }
+   },
+   "date": "1939-10-06",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "surrendered",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 119 (HyperWar Campaign-III.html)",
+     "quote": "the Kock force surrendered on 6 October",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "Letzte versprengte Truppenteile ergaben sich am 6. Oktober bei Kock",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（de-academic、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "Grodno",
+   "place": {
+    "nameOsm": "Grodno",
+    "osm": {
+     "type": "relation",
+     "id": 130921
+    }
+   },
+   "date": null,
+   "datePrecision": "day",
+   "controllerAfter": "soviet",
+   "controllerRegimeSlug": "soviet-union",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "capitulated",
+   "status": "partial",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Grodno skapitulowało dopiero po trzydniowych walkach",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "IPN 只一句：位於蘇聯入侵段落，日期與受降方未載；controllerAfter 依段落推定",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "placeAsInSource": "Cracow",
+   "place": {
+    "nameOsm": "Kraków",
+    "osm": {
+     "type": "relation",
+     "id": 2768921
+    }
+   },
+   "date": null,
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "deutsches-reich",
+   "sovereignRegimeSlug": "polish-republic",
+   "event": "captured",
+   "status": "partial",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 86 (HyperWar Campaign-III.html)",
+     "quote": "Fourteenth Army captured the key city of Cracow the same day",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "Kennedy「the same day」所指日期上文未明（約 9/6），日期留空",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  }
+ ]
+}

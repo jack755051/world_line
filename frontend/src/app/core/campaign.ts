@@ -1,3 +1,4 @@
+import { WorldLineApi } from './api/world-line-api';
 import { Injectable, InjectionToken, computed, inject, isDevMode, signal } from '@angular/core';
 
 /**
@@ -36,6 +37,7 @@ export interface Campaign {
 }
 export interface CampaignIndexEntry { key: string; name_zh: string; start: string; end: string; scale?: string; regime_slugs: string[]; event_ids: string[] }
 
+export type CampaignOrigin = 'api' | 'static';
 export type CampaignStatus = 'idle' | 'loading' | 'ready' | 'playing' | 'paused' | 'ended' | 'error';
 export const PHASE_MS = 3000;
 
@@ -123,7 +125,11 @@ export class CampaignService {
   readonly status = signal<CampaignStatus>('idle');
   readonly phase = signal(1);
   readonly current = computed(() => this.campaign()?.phases.find((p) => p.seq === this.phase()) ?? null);
+  private readonly _origin = signal<CampaignOrigin | null>(null);
+  /** 這次戰役資料來源：'api'（後端 /campaigns/{key}）、'static'（campaigns/{key}.json fallback）、null（未載入）。 */
+  readonly origin = this._origin.asReadonly();
   private player: CampaignPlayer | null = null;
+  private seq = 0;
   private loaded = false;
   private base = 'campaigns/';
 
@@ -141,23 +147,40 @@ export class CampaignService {
   async open(key: string): Promise<void> {
     if (!this.enabled) return;
     this.close();
+    const seq = ++this.seq;
     this.status.set('loading');
+    let c: Campaign | null = null;
+    let origin: CampaignOrigin = 'api';
     try {
-      const r = await fetch(this.base + encodeURIComponent(key) + '.json');
-      if (!r.ok) throw new Error(String(r.status));
-      const c = (await r.json()) as Campaign;
-      if (this.status() !== 'loading') return;
-      this.campaign.set(c);
-      this.player = new CampaignPlayer(c.phases.length, () => this.sync());
-      this.sync();
+      c = await this.fetchApi(key);
     } catch {
-      this.status.set('error');
+      // API 失敗（網路錯誤、非 2xx、data 為 null、phases 為空）才 fallback 靜態檔
+      origin = 'static';
+      try {
+        const r = await fetch(this.base + encodeURIComponent(key) + '.json');
+        if (!r.ok) throw new Error(String(r.status));
+        c = (await r.json()) as Campaign;
+      } catch { c = null; }
     }
+    if (seq !== this.seq || this.status() !== 'loading') return;
+    if (!c || !Array.isArray(c.phases)) { this.status.set('error'); return; }
+    this.campaign.set(c);
+    this._origin.set(origin);
+    this.player = new CampaignPlayer(c.phases.length, () => this.sync());
+    this.sync();
+  }
+  private async fetchApi(key: string): Promise<Campaign> {
+    const r = await fetch(`${WorldLineApi.base}/campaigns/${encodeURIComponent(key)}`);
+    if (!r.ok) throw new Error(String(r.status));
+    const c = ((await r.json()) as { data?: Campaign | null } | null)?.data;
+    if (!c || !Array.isArray(c.phases) || !c.phases.length) throw new Error('empty');
+    return c;
   }
   close(): void {
     this.player?.dispose();
     this.player = null;
     this.campaign.set(null);
+    this._origin.set(null);
     this.status.set('idle');
     this.phase.set(1);
   }

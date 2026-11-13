@@ -98,8 +98,70 @@ describe('戰役功能開關（production 關閉）', () => {
       await svc.open('dunkirk_1940');
       expect(svc.index().length).toBe(enabled ? 1 : 0);
       expect(svc.status()).toBe(enabled ? 'ready' : 'idle');
-      expect(fetchMock).toHaveBeenCalledTimes(enabled ? 2 : 0);
+      expect(fetchMock).toHaveBeenCalledTimes(enabled ? 3 : 0); // index＋API（無 data）＋靜態 fallback
       svc.close();
     });
   }
+});
+
+describe('戰役資料來源：API 優先、靜態檔 fallback', () => {
+  const apiCampaign = { schema: 'wl-campaign-web/0.1', key: 'poland_1939', name_zh: 'api', phases: [{ seq: 1 }, { seq: 2 }] };
+  const staticCampaign = { schema: 'wl-campaign-web/0.1', key: 'poland_1939', name_zh: 'static', phases: [{ seq: 1 }] };
+  const envelope = (data: unknown) => ({ statusCode: 200, message: 'ok', data, code: 0 });
+  const ok = (body: unknown) => ({ ok: true, status: 200, json: async () => body });
+  const notFound = { ok: false, status: 404, json: async () => envelope(null) };
+  type Reply = () => unknown;
+  function setup(api: Reply, stat: Reply = () => ok(staticCampaign)) {
+    const fetchMock = vi.fn(async (u: string) => (u.startsWith('/api/v1/') ? api() : stat()));
+    vi.stubGlobal('fetch', fetchMock);
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({ providers: [{ provide: CAMPAIGNS_ENABLED, useValue: true }] });
+    return { svc: TestBed.inject(CampaignService), fetchMock };
+  }
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('API 成功：用 API 資料、origin=api、不讀靜態檔', async () => {
+    const { svc, fetchMock } = setup(() => ok(envelope(apiCampaign)));
+    expect(svc.origin()).toBeNull();
+    await svc.open('poland_1939');
+    expect(fetchMock.mock.calls.map((c) => c[0])).toEqual(['/api/v1/campaigns/poland_1939']);
+    expect(svc.status()).toBe('ready');
+    expect(svc.campaign()?.name_zh).toBe('api');
+    expect(svc.origin()).toBe('api');
+    svc.close();
+    expect(svc.origin()).toBeNull();
+  });
+
+  const failures: [string, Reply][] = [
+    ['404', () => notFound],
+    ['網路錯誤（throw）', () => { throw new TypeError('Failed to fetch'); }],
+    ['data 為 null', () => ok(envelope(null))],
+    ['phases 為空陣列', () => ok(envelope({ ...apiCampaign, phases: [] }))],
+  ];
+  for (const [name, api] of failures) {
+    it(`API ${name}：fallback 靜態檔、origin=static`, async () => {
+      const { svc, fetchMock } = setup(api);
+      await svc.open('poland_1939');
+      expect(fetchMock.mock.calls.map((c) => c[0])).toEqual(['/api/v1/campaigns/poland_1939', 'campaigns/poland_1939.json']);
+      expect(svc.status()).toBe('ready');
+      expect(svc.campaign()?.name_zh).toBe('static');
+      expect(svc.origin()).toBe('static');
+      svc.close();
+    });
+  }
+
+  it('API 與靜態檔都失敗：status=error、origin=null', async () => {
+    const { svc, fetchMock } = setup(() => notFound, () => ({ ok: false, status: 404, json: async () => ({}) }));
+    await svc.open('nope');
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(svc.status()).toBe('error');
+    expect(svc.campaign()).toBeNull();
+    expect(svc.origin()).toBeNull();
+  });
+  it('API 失敗且靜態檔 throw：status=error', async () => {
+    const { svc } = setup(() => { throw new Error('x'); }, () => { throw new Error('y'); });
+    await svc.open('nope');
+    expect(svc.status()).toBe('error');
+    expect(svc.origin()).toBeNull();
+  });
 });

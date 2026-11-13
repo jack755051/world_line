@@ -11,6 +11,12 @@ export const AXIS_COLOR = '#b42318';
 export const ALLIED_COLOR = '#1d4ed8';
 export const FRONT_COLOR = '#7c2d12';
 const UNVERIFIED = '待考證';
+/** 文字推定／待查證前線（幾何由文字敘述推定，非地圖描繪）：geom_basis='derived' 或 inference='文字推定'。 */
+export const INFERRED_LABEL = '（文字推定・待查證）';
+export function isInferredFront(p: Record<string, unknown>): boolean {
+  return p['geom_basis'] === 'derived' || p['inference'] === '文字推定';
+}
+const INFERRED: FilterSpecification = ['any', ['==', ['get', 'geom_basis'], 'derived'], ['==', ['get', 'inference'], '文字推定']] as unknown as FilterSpecification;
 export const ARROWHEAD_IMAGE = 'campaign-arrowhead';
 /** 箭頭符號：SDF 三角形（朝上＝北，icon-rotate 轉到線的方向；icon-color 依陣營上色）。 */
 export function arrowheadImage(size = 40): { width: number; height: number; data: Uint8ClampedArray } {
@@ -54,7 +60,7 @@ export function campaignSourceData(c: Campaign): Record<(typeof CAMPAIGN_SOURCES
       return { type: 'Feature' as const, properties: { ...f.properties, bearing: bearing(cs[cs.length - 2], cs[cs.length - 1]) }, geometry: { type: 'Point', coordinates: cs[cs.length - 1] } };
     });
   return {
-    'campaign-fronts': fc(c.layers.fronts.features.map((f) => ({ ...f, properties: { ...f.properties, label: lab(f.properties, '') } }))),
+    'campaign-fronts': fc(c.layers.fronts.features.map((f) => ({ ...f, properties: { ...f.properties, label: lab(f.properties, '') + (isInferredFront(f.properties) ? INFERRED_LABEL : '') } }))),
     'campaign-arrows': fc(arrows),
     'campaign-arrowheads': fc(heads),
     'campaign-sites': fc(c.layers.sites.features.map((f) => ({ ...f, properties: { ...f.properties, side: sideOf(f.properties), label: lab(f.properties, String(f.properties['name'] ?? '')) } }))),
@@ -73,7 +79,10 @@ export function campaignFilters(c: Campaign, phase: number): Record<string, Filt
   const eq = (p: number, v?: boolean): FilterSpecification => (v === undefined ? ['==', ['get', 'phase'], p] : ['all', ['==', ['get', 'phase'], p], ['==', ['get', 'verified'], v]]) as FilterSpecification;
   const le = (p: number, v?: boolean): FilterSpecification => (v === undefined ? ['<=', ['get', 'phase'], p] : ['all', ['<=', ['get', 'phase'], p], ['==', ['get', 'verified'], v]]) as FilterSpecification;
   return {
-    'campaign-fronts': eq(fp, true), 'campaign-fronts-unverified': eq(fp, false), 'campaign-fronts-label': eq(fp, false),
+    'campaign-fronts': ['all', eq(fp, true), ['!', INFERRED]] as unknown as FilterSpecification,
+    'campaign-fronts-unverified': ['all', eq(fp, false), ['!', INFERRED]] as unknown as FilterSpecification,
+    'campaign-fronts-inferred': ['all', eq(fp), INFERRED] as unknown as FilterSpecification,
+    'campaign-fronts-label': ['all', eq(fp), ['any', ['==', ['get', 'verified'], false], INFERRED]] as unknown as FilterSpecification,
     'campaign-arrows': eq(phase, true), 'campaign-arrows-unverified': eq(phase, false), 'campaign-arrows-label': eq(phase, false),
     'campaign-arrowheads': eq(phase),
     'campaign-sites': le(phase), 'campaign-sites-label': le(phase),
@@ -88,6 +97,7 @@ export function campaignLayers(): LayerSpecification[] {
   return [
     { id: 'campaign-fronts', type: 'line', source: 'campaign-fronts', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': FRONT_COLOR, 'line-width': 4 } },
     { id: 'campaign-fronts-unverified', type: 'line', source: 'campaign-fronts', layout: { 'line-join': 'round' }, paint: { 'line-color': FRONT_COLOR, 'line-width': 3, 'line-dasharray': [2, 2] } },
+    { id: 'campaign-fronts-inferred', type: 'line', source: 'campaign-fronts', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': FRONT_COLOR, 'line-width': 2.5, 'line-opacity': 0.9, 'line-dasharray': [0.6, 1.8] } },
     { id: 'campaign-arrows', type: 'line', source: 'campaign-arrows', layout: { 'line-cap': 'round' }, paint: { 'line-color': sideColor, 'line-width': 3.5, 'line-opacity': 0.9 } },
     { id: 'campaign-arrows-unverified', type: 'line', source: 'campaign-arrows', paint: { 'line-color': sideColor, 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [2, 1.5] } },
     { id: 'campaign-arrowheads', type: 'symbol', source: 'campaign-arrowheads',

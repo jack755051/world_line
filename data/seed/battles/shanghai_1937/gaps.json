@@ -897,6 +897,69 @@
    "tool": "tools/battles/crosscheck.py"
   },
   {
+   "target": "source:國史館 drnh.gov.tw／ahonline.drnh.gov.tw",
+   "kind": "source_unreachable",
+   "note": "2026-11-13 約 21:00 由 Tai 的 Mac 與 box 重試皆逾時（HTTP 000，15 秒）；未繞過",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:中國第二歷史檔案館 shac.net.cn",
+   "kind": "source_unreachable",
+   "note": "2026-11-13 約 21:00 連線失敗（HTTP 000）；已出版檔案彙編（如《中華民國史檔案資料匯編》《抗日戰爭正面戰場》）未見可公開閱讀之全文，不引用",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:國防部史政編譯室公開 PDF（lib.mnd.gov.tw／modmhb.mnd.gov.tw）",
+   "kind": "source_not_independent",
+   "note": "兩站 2026-11-13 連線失敗（HTTP 000）；且國防部戰史出版與 mnd2017 同屬 tw-roc 脈絡，即使取得也不能算獨立家族",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:中研院近史所 mh.sinica.edu.tw 2015 何智霖、蘇聖雄〈初期重要戰役〉PDF",
+   "kind": "source_not_independent",
+   "note": "可公開閱讀，但作者為國史館編者與 su2015 同一作者，據《陳誠回憶錄》、國史館檔等同一脈絡 → 歸 tw-roc，不算獨立家族",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:中研院近史所 MHDB 近代史全文資料庫",
+   "kind": "source_login_required",
+   "note": "需帳號登入；不登入、不繞過",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:國立公共資訊圖書館 edata.nlpi.edu.tw《共赴國難─國共合作抗戰紀實》第四章",
+   "kind": "source_grade_c",
+   "note": "可公開閱讀（大場 10/26 失守、27 日放棄北站江灣），但為通俗讀物、無出處註，評 C，不引用",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:國家圖書館 臺灣記憶 tm.ncl.edu.tw",
+   "kind": "source_not_searched",
+   "note": "可連線；館藏以臺灣主題為主，本輪未找到淞滬 1937 中方作戰紀錄，未深入檢索",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:《抗日戰爭研究》等大陸期刊（CNKI）",
+   "kind": "source_login_required",
+   "note": "全文需登入／付費；不登入、不繞過",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:FRUS 1937 Vol. III d480–d800、Vol. IV d380–d540（Shanghai 電報）",
+   "kind": "source_partial",
+   "note": "已掃描：可佐證 9/14 羅店—北站線、10/26 大場失守與當夜閘北撤退、10/30 夜閘北守軍被逐；未載中方部隊番號、指揮官與吳興（湖州）易手，R1／R7 中方資料仍只有 tw-roc",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
    "target": "map-label:chinese:169B",
    "kind": "unit_label_unmatched",
    "note": "地圖標註「169B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",

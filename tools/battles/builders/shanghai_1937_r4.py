@@ -11,6 +11,7 @@ if len(sys.argv) < 2 or sys.argv[1] != "shanghai_1937":
 BATTLE = sys.argv[1]
 _C = Cites(BATTLE)
 J, MN = _C.short("jm179"), _C.short("mnd2017")
+F590 = _C.short("frus1937v03-d590")  # 主管 2026-11-13 20:56：us-frus（B）
 D = REPO / "data/seed/battles" / BATTLE
 o = json.loads((D / "osm-places.json").read_text())
 def v(k, asin, note):
@@ -27,7 +28,8 @@ fronts = [
   "vertices": [v("浏河镇", "瀏河鎮", "取 OSM 鎮 place 節點"), v("罗店镇", "羅店", "取 OSM 鎮 place 節點"), v("江湾镇#2", "江灣", "取 OSM quarter 節點（江灣舊鎮）")],
   "method": "文字頂點：只取原文點名之城鎮；蘊藻濱（河）與北站（車站，1937 站址與今不同）未作頂點",
   "precisionNote": "城鎮中心代替線位，誤差可達數公里；蘊藻濱段與北站端未數位化",
-  "citations": [MN("團軍(左翼軍)於9月14日前退守瀏河鎮－羅"), MN("店－蘊藻濱－江灣－北站之線。日軍自14日")], "readNote": "mnd2017 雙欄 PDF，兩行屬同一欄相鄰行"},
+  "citations": [MN("團軍(左翼軍)於9月14日前退守瀏河鎮－羅"), MN("店－蘊藻濱－江灣－北站之線。日軍自14日"), F590("orderly Chinese withdrawal to a line running from Lotien southeast"), F590("in a fairly straight line to the North Station in Chapei")],
+  "readNote": "mnd2017 雙欄 PDF，兩行屬同一欄相鄰行；FRUS 9/14 電只載羅店—北站段（未提瀏河），與 mnd2017 同線之南段一致"},
  BASE | {"date": "1937-11-05", "dateNote": "mnd2017：「至11月5日雙方對峙於」", "lineKey": "cn-jp-front-1937-11-05", "lineKind": "front", "side": "allied|axis",
   "label": "雙方對峙線（瀏河鎮－羅店西方－蘇州河左岸至南站）",
   "vertices": [v("浏河镇", "瀏河鎮", "取 OSM 鎮 place 節點"), v("罗店镇", "羅店西方", "原文羅店「西方」；取羅店鎮節點，實際線位在其西")],

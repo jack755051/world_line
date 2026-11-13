@@ -16,6 +16,8 @@ J, JA, JB, SU, MN = (_C.short(k) for k in ("jm179", "jacar-c13071346000", "jacar
 JC, JD = (_C.short(k) for k in ("jacar-c11111926900", "jacar-c11111935000"))
 JD_NOTE = "JACAR C11111935000 情報「佐々木支隊ハ本十三日重藤兵団ニ続イテ上陸シ」支持 11/13（或之前）登陸，但未出現「白茆口」地名，且同段翻刻另作「十二月十三日」（與標題 11/14–15 月份矛盾）；日期仍留空"
 JDQ = JD("佐々木支隊ハ本十三日重藤兵団ニ続イテ上陸シ")
+# 主管 2026-11-13 20:56：獨立於 tw-roc 的 us-frus（FRUS 1937 美國駐滬總領事電報，B）
+F698, F709 = _C.short("frus1937v03-d698"), _C.short("frus1937v03-d709")
 OUT = REPO / "data/seed/battles" / BATTLE
 _OP = json.loads((OUT / "osm-places.json").read_text())
 OSM, AC = _OP["results"], _OP.get("adminCentre", {})
@@ -86,8 +88,10 @@ E("suzhou-creek", "蘇州河", "蘇州河之戰", None, "1937-11-09", "蘇州河
   [JA("同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ"), JA("九日遂ニ敵ヲ撃退シ十一日上海南市ヲ掃蕩セリ"), J("through enemy positions and pursued the enemy toward the Suchou Ho.")], prec="approx", zhb="執行者譯名",
   note="起日只到「10 月下旬」（JACAR「同月下旬」、JM「Toward the end of the month」），留空；止日 11/9 只有 JACAR；守方為中央軍屬執行者依 mnd2017 11/5 對峙線「蘇州河左岸至南站」推定，待查證", status="partial")
 E("zhabei-800", "八百壯士（死守閘北）", "閘北八百壯士", "1937-10-26", None, "閘北", "闸北", ["jp-sea"], ["一團（su2015 未載番號，未列 R1）"],
-  [SU("26 日，蔣考慮「滬戰不利之影響」"), SU("同日夜間，淞滬前線國軍移轉陣"), SU("地，並在閘北留一團死守，以「感動中外」")], status="partial", zhb="出處原文（su2015）",
-  note="起日由 su2015「26 日……同日夜間」推得（上下文為 10 月）；止日出處未載；攻方為上海派遣軍屬推定")
+  [SU("26 日，蔣考慮「滬戰不利之影響」"), SU("同日夜間，淞滬前線國軍移轉陣"), SU("地，並在閘北留一團死守，以「感動中外」"),
+   F698("forced a general Chinese withdrawal from those sectors during the night"), F709("the Japanese succeeded in dislodging the Chinese soldiers holding out in Chapei"), F709("the 300 survivors crossed to the British lines and laid down their arms")], status="partial", zhb="出處原文（su2015）",
+  note="起日由 su2015「26 日……同日夜間」推得（上下文為 10 月）；FRUS 10/27 電：前夜全面撤出閘北—江灣。止日：FRUS 11/1 電稱 30 日夜守軍被逐、300 人退入英軍防線，與通說不一，止日仍留空；攻方為上海派遣軍屬推定",
+  extra={"endCandidate": {"value": "1937-10-30", "status": "candidate", "basis": "FRUS 1937 Vol. III Doc. 709（11/1 電）「during the night of the 30th」；單一來源，待查證"}})
 E("hangzhou-bay", "杭州灣北岸反登陸作戰", "杭州灣北岸反登陸作戰", "1937-11-05", "1937-11-08", "金山衛附近", "金山卫", ["jp-10-army", "jp-6-div", "jp-18-div", "jp-kunisaki-det"], ["cn-right-wing", "cn-63-div", "cn-107-div"],
   [MN("(四)杭州灣北岸反登陸作戰(11月5日至"), MN("11月5日拂曉，日軍以其第10軍在金山"), MN("江北岸。8日，日軍擊退107師，由得勝口渡"), JB("五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ"), J("As soon as the lOth Army landed in the vicinity of Hangchou")],
   note="第 6、18 師團與國崎支隊隨第十軍航渡（JACAR c111 上文），各自登陸點出處未分")
@@ -111,10 +115,10 @@ def S(asin, pk, date, ctrl, ev, cites, status="sourced", note=None, conflict=Non
     if extra: d |= extra
     sites.append(d)
 S("呉淞（呉淞桟橋附近）／吳淞", "吴淞街道", "1937-08-23", "axis", "landed", [JA("呉淞桟橋附近ニ上陸シテ"), MN("於吳淞、寶山、川沙口附近地區登陸，擊破")], status="partial", note="登陸點，非全鎮控制；吳淞鎮全面易手日出處未載")
-S("閘北", "闸北", "1937-10-26", None, "main_force_withdrew_garrison_left", [SU("同日夜間，淞滬前線國軍移轉陣"), SU("地，並在閘北留一團死守，以「感動中外」")], status="partial",
-  dnote="su2015「26 日……同日夜間」，上下文為 10 月", note="國軍主力移轉、留一團死守；日軍占領日出處未載，controllerAfter 留空")
-S("大場鎮", "大场镇", None, "axis", "captured", [JA("十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ"), JA("同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ"), JC("聯隊ノ果敢ナル大場鎮攻略ハ師団全般ノ攻撃ヲ容易"), JC("同日正午頃敵ノ主陣地ヲ奪取シタリ"), JC("二十七日蘇州河ニ敵ヲ圧迫セリ")], status="partial", dp="十月下旬",
-  dnote="出處只到「十月下旬」（JACAR「同月下旬」）；主管 2026-11-13 16:14 Q6：精度記十月下旬，10/26 只作候選，不再找來源；JACAR C11111926900（歩34 戦闘詳報）：10/25 正午奪取敵主陣地、10/27 壓迫至蘇州河，「大場鎮攻略」未明載日，10/25 與 10/26 皆只作候選",
+S("閘北", "闸北", "1937-10-26", None, "main_force_withdrew_garrison_left", [SU("同日夜間，淞滬前線國軍移轉陣"), SU("地，並在閘北留一團死守，以「感動中外」"), F698("forced a general Chinese withdrawal from those sectors during the night"), F698("This morning Japanese flags can be seen flying over North Station")], status="partial",
+  dnote="su2015「26 日……同日夜間」，上下文為 10 月；FRUS 10/27 正午電「前夜」撤出、當晨北站見日旗，一致", note="國軍主力移轉、留一團死守；FRUS 10/27 晨北站等處已見日旗，但閘北仍有守軍，全區占領日未載，controllerAfter 留空")
+S("大場鎮", "大场镇", None, "axis", "captured", [JA("十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ"), JA("同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ"), JC("聯隊ノ果敢ナル大場鎮攻略ハ師団全般ノ攻撃ヲ容易"), JC("同日正午頃敵ノ主陣地ヲ奪取シタリ"), JC("二十七日蘇州河ニ敵ヲ圧迫セリ"), F698("outflanking and capturing Tachang")], status="partial", dp="十月下旬",
+  dnote="出處只到「十月下旬」（JACAR「同月下旬」）；主管 2026-11-13 16:14 Q6：精度記十月下旬，10/26 只作候選，不再找來源；JACAR C11111926900（歩34 戦闘詳報）：10/25 正午奪取敵主陣地、10/27 壓迫至蘇州河，「大場鎮攻略」未明載日，10/25 與 10/26 皆只作候選；FRUS 10/27 正午電「yesterday morning」攻占大場＝10/26（第三方電報，B）——依 Q6 欄位不改，待主管裁示",
   extra={"dateRange": {"from": "1937-10-21", "to": "1937-10-31", "label": "十月下旬"}, "dateCandidate": CAND("1937-10-26", "常見說法；本輪 A/B 出處未見")}, note="控制方為日軍屬推定（下旬戰況進展、轉向蘇州河追擊）")
 S("金山衛（金出衛城南方）", "金山卫", "1937-11-05", "axis", "landed", [MN("11月5日拂曉，日軍以其第10軍在金山"), MN("衛附近行登陸，擊破國軍薄弱守備部隊(63"), JB("五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ")])
 S("上海南市／Shanghai", "上海南市", "1937-11-11", "axis", "cleared", [JA("九日遂ニ敵ヲ撃退シ十一日上海南市ヲ掃蕩セリ"), J("12 November, the Expeditionary Army began a full-scale pursuit and"), J("cleared Shanghai and its vicinity of Chinese troops.")],

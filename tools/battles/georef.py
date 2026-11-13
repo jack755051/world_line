@@ -11,6 +11,10 @@
       python3 -I tools/battles/georef.py --file <path/to/x.readings.json> [--frame-km 3]   # 舊用法（單檔）
 讀  readings.json：source、mapDate、control_points{名稱:{px:[x,y], lonlat:[lon,lat], osm:{type,id}}}、features[{label, px, side, unitKey?}]
      lines[{lineKey, label, lineKind, side, vertices:[{px, nearPlace?}]}]（R4 前線，可省略）
+控制點排除規則（主管 2026-11-13 15:33）：排除控制點的理由必須在看殘差之前就定好。readings.json 以
+     "controlPointExclusions": [{"name", "reason", "decidedBeforeResiduals": true|false}] 記錄每個被排除的點；
+     任何一點 decidedBeforeResiduals 不是 true（看過殘差後才排除，或未記錄），或頂層 "referenceOnly": {"reason"} 存在，
+     本工具一律把 threshold.passes 設為 false、referenceOnly 設為 true（即使 P95 ≤ 門檻），features／lines 的 usable 皆為 false。
 寫  同名 .json（去掉 .readings）：fit 統計、每個 feature 與 line 頂點的經緯度（estimate=推估）
 """
 import json, math, sys
@@ -78,7 +82,15 @@ def run(path, frame_km, threshold_km=None, rule=None):
         loo.append(km(apply(fit(Pm, Gm, c0, s0), P[i], c0, s0), G[i]))
     med, p95 = pct(loo, 0.5), pct(loo, 0.95)
     bad = [(names[i], round(loo[i], 2)) for i in range(len(P)) if loo[i] > max(5.0, 3 * med)]
-    passes = p95 <= threshold_km
+    p95_ok = p95 <= threshold_km
+    excl = R.get("controlPointExclusions", [])
+    posthoc = [x.get("name") for x in excl if x.get("decidedBeforeResiduals") is not True]
+    ref_only = []
+    if posthoc:
+        ref_only.append(f"有控制點在看過殘差後才排除（{'、'.join(map(str, posthoc))}），依主管 2026-11-13 15:33 規則整張圖僅供參考")
+    if R.get("referenceOnly"):
+        ref_only.append(R["referenceOnly"].get("reason", "readings 標記 referenceOnly"))
+    passes = p95_ok and not ref_only
     feats = []
     for f in R.get("features", []):
         ll = apply(C, f["px"], c0, s0)
@@ -88,7 +100,9 @@ def run(path, frame_km, threshold_km=None, rule=None):
         vs = [{**v, "lonlat": [round(apply(C, v["px"], c0, s0)[0], 4), round(apply(C, v["px"], c0, s0)[1], 4)]} for v in ln.get("vertices", [])]
         lines.append({**ln, "vertices": vs, "estimate": "推估", "basis": "map-digitized", "usable": passes})
     out = {"source": R["source"], "mapKey": R.get("mapKey"), "mapDate": R.get("mapDate"), "method": R.get("method"),
-           "threshold": {"rule": rule, "loo_p95_km": round(p95, 2), "passes": passes,
+           "threshold": {"rule": rule, "loo_p95_km": round(p95, 2), "p95Passes": p95_ok, "passes": passes,
+                         "referenceOnly": bool(ref_only), "referenceOnlyReasons": ref_only,
+                         "controlPointExclusions": excl,
                          "use": "可用於部隊位置與前線頂點" if passes else "僅供參考：不得用於部隊位置或前線頂點"},
            "georef": {"tool": "tools/battles/georef.py", "model": "二次多項式（經、緯度各一）", "control_points": len(P),
                       "residual_median_km": round(pct(res, 0.5), 2), "loo_median_km": round(med, 2), "loo_p95_km": round(p95, 2),
@@ -98,7 +112,7 @@ def run(path, frame_km, threshold_km=None, rule=None):
            "control_points": {n: {**R["control_points"][n], "loo_km": round(loo[i], 2)} for i, n in enumerate(names)},
            "features": feats, "lines": lines, "unresolved": R.get("unresolved", [])}
     path.with_name(path.name.replace(".readings.json", ".json")).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"控制點 {len(P)}｜殘差中位數 {pct(res, .5):.2f} km｜留一中位數 {med:.2f} km、95% {p95:.2f} km、最大 {max(loo):.2f} km｜可疑 {bad}｜部隊 {len(feats)}｜precision_m {out['precision_m']}｜門檻 {threshold_km:g} km：{'通過' if passes else '未通過（僅參考）'}")
+    print(f"控制點 {len(P)}｜殘差中位數 {pct(res, .5):.2f} km｜留一中位數 {med:.2f} km、95% {p95:.2f} km、最大 {max(loo):.2f} km｜可疑 {bad}｜部隊 {len(feats)}｜precision_m {out['precision_m']}｜門檻 {threshold_km:g} km：{'通過' if passes else ('P95 達標但強制僅參考：' + '；'.join(ref_only) if p95_ok else '未通過（僅參考）')}")
     return out
 
 

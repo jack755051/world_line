@@ -2213,5 +2213,73 @@
  },
  "featuresNote": "只讀有名稱的部隊標註；波軍未命名的 XX／X 符號（約 30 個）與右側 German Order of Battle 表格不是圖上位置，未讀。 讀法：tools/battles/mapgrid.swift 將原圖 2000×1400 區塊縮 0.5 倍（100 px 格線）目視讀框中心（約 ±6 px）。",
  "linesNote": "本圖為部署與計畫箭頭，無前線；國界鋸齒線為邊防部隊示意，未讀。",
- "labelCheckMethod": "兩次獨立判讀比對：tools/battles/compare_readings.py；第二次判讀檔 checks/label-reading2/usma-europe-04.json"
+ "labelCheckMethod": "兩次獨立判讀比對：tools/battles/compare_readings.py；第二次判讀檔 checks/label-reading2/usma-europe-04.json",
+ "controlPointExclusions": [
+  {
+   "name": "Chełmno",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Szczuczyn",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Przasnysz",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Ciechanow",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Pultusk",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Trebnitz",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Radomsko",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Cracow",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Gleiwitz",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Schlochau",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  },
+  {
+   "name": "Chojnice",
+   "reason": "--require-ring：種子 ±7 px 內無偵測圓（本圖可能未繪此城鎮），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "cp_refine.py --require-ring 機械規則，配準前執行"
+  }
+ ]
 }

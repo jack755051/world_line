@@ -3,212 +3,6 @@
  "rule": "地圖頂點只取留一 95 百分位 ≤ 門檻的圖；文字頂點一律推估",
  "fronts": [
   {
-   "date": "1939-09-06",
-   "dateNote": "圖右上手寫「6/9.39」與「eigene Luftkräfte」（己方空軍兵力）；Luftgau IV 轄區（西里西亞—摩拉維亞）機場與航空部隊配置，非地面前線圖",
-   "lineKey": "okh-355-armeegrenze-breslau-ohlau",
-   "lineKind": "boundary",
-   "side": "german",
-   "label": "圖上 Armeegrenze（德軍軍團分界，未標軍團名）：Schweidnitz 北—Breslau 南—Ohlau",
-   "vertices": [
-    {
-     "lonlat": [
-      16.2527,
-      50.9779
-     ],
-     "px": [
-      755.0,
-      435.6
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      16.6089,
-      50.9816
-     ],
-     "px": [
-      881.0,
-      439.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      16.9079,
-      50.9726
-     ],
-     "px": [
-      986.0,
-      447.5
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.148,
-      50.9701
-     ],
-     "px": [
-      1070.0,
-      451.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.3086,
-      50.9657
-     ],
-     "px": [
-      1126.0,
-      454.5
-     ],
-     "nearPlace": null
-    }
-   ],
-   "basis": "map-digitized",
-   "estimate": "推估",
-   "mapRef": {
-    "mapKey": "okh-355-luftgau",
-    "citation": "OKH/Luftwaffe Lagekarte, Luftgau IV, 6.9.1939 — ЦАМО ф. 500 оп. 12452 д. 355 (CAMO_500_12452_355_MAP_0001), via germandocsinrussia.org",
-    "mapDate": "1939-09-06",
-    "url": "https://wwii.germandocsinrussia.org/ru/nodes/2649",
-    "grade": "A"
-   },
-   "method": "tools/battles/georef.py 二次多項式",
-   "georef": {
-    "control_points": 31,
-    "loo_median_km": 0.57,
-    "loo_p95_km": 1.77
-   },
-   "precision_m": 6800,
-   "precisionNote": "留一法 95 百分位 1.8 km ＋ 標註框誤差 5 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px），未含線寬",
-   "readNote": "圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取",
-   "confidence": {
-    "level": "estimate",
-    "why": "推估（地圖數位化／依文字推定頂點）",
-    "singleSource": false,
-    "sourceFamilies": [],
-    "effectiveGrade": null,
-    "battleFact": false,
-    "tool": "tools/battles/crosscheck.py"
-   }
-  },
-  {
-   "date": "1939-09-06",
-   "dateNote": "圖右上手寫「6/9.39」與「eigene Luftkräfte」（己方空軍兵力）；Luftgau IV 轄區（西里西亞—摩拉維亞）機場與航空部隊配置，非地面前線圖",
-   "lineKey": "okh-355-armeegrenze-glatz-cosel",
-   "lineKind": "boundary",
-   "side": "german",
-   "label": "圖上 Armeegrenze（德軍軍團分界，未標軍團名）：Jeseník 山區東北麓—Leobschütz 西北—Ober-Glogau",
-   "vertices": [
-    {
-     "lonlat": [
-      16.7877,
-      49.8898
-     ],
-     "px": [
-      929.5,
-      1050.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.009,
-      49.9693
-     ],
-     "px": [
-      1010.0,
-      1008.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.2412,
-      50.073
-     ],
-     "px": [
-      1094.0,
-      952.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.4752,
-      50.1881
-     ],
-     "px": [
-      1178.0,
-      889.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.6921,
-      50.2708
-     ],
-     "px": [
-      1255.0,
-      843.5
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.8608,
-      50.3401
-     ],
-     "px": [
-      1314.5,
-      805.0
-     ],
-     "nearPlace": null
-    },
-    {
-     "lonlat": [
-      17.9912,
-      50.33
-     ],
-     "px": [
-      1360.0,
-      810.6
-     ],
-     "nearPlace": null
-    }
-   ],
-   "basis": "map-digitized",
-   "estimate": "推估",
-   "mapRef": {
-    "mapKey": "okh-355-luftgau",
-    "citation": "OKH/Luftwaffe Lagekarte, Luftgau IV, 6.9.1939 — ЦАМО ф. 500 оп. 12452 д. 355 (CAMO_500_12452_355_MAP_0001), via germandocsinrussia.org",
-    "mapDate": "1939-09-06",
-    "url": "https://wwii.germandocsinrussia.org/ru/nodes/2649",
-    "grade": "A"
-   },
-   "method": "tools/battles/georef.py 二次多項式",
-   "georef": {
-    "control_points": 31,
-    "loo_median_km": 0.57,
-    "loo_p95_km": 1.77
-   },
-   "precision_m": 6800,
-   "precisionNote": "留一法 95 百分位 1.8 km ＋ 標註框誤差 5 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px），未含線寬",
-   "readNote": "圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取",
-   "confidence": {
-    "level": "estimate",
-    "why": "推估（地圖數位化／依文字推定頂點）",
-    "singleSource": false,
-    "sourceFamilies": [],
-    "effectiveGrade": null,
-    "battleFact": false,
-    "tool": "tools/battles/crosscheck.py"
-   }
-  },
-  {
    "date": "1939-10-01",
    "dateNote": "Kennedy p.118–119：10/1 OKH 通知南方集團軍群分界線再次變更",
    "lineKey": "de-su-demarcation-1939-10-01",
@@ -332,6 +126,11 @@
    "mapKey": "usma-europe-07",
    "loo_p95_km": 20.02,
    "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "okh-355-luftgau",
+   "loo_p95_km": 1.77,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
   }
  ],
  "gapsByDate": [
@@ -341,31 +140,31 @@
   },
   {
    "date": "1939-09-03",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-06",
-   "reason": "有通過門檻的圖，但圖上未畫出前線：圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-08",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-10",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-12",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-14",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-17",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-20",
@@ -373,19 +172,19 @@
   },
   {
    "date": "1939-09-22",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-09-28",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-10-01",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   },
   {
    "date": "1939-10-06",
-   "reason": "Kennedy 四張圖與 USMA 04–07 都沒過 2 km 門檻；通過的 OKH д. 355 圖沒有地面前線。只能用文字頂點（推估）；該日無文字頂點"
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
   }
  ]
 }

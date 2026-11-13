@@ -134,3 +134,9 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
 - 地圖配準（門檻留一 P95 ≤ 2 km）：USMA 04 21.09、05 25.76、06 19.91、07 20.02 km（未過，僅參考；底圖城鎮位置本身偏差大）；OKH д.354 Lagekarte 4 為無底圖覆蓋圖，無法配準；OKH д.355 Luftgau IV 圖 1.77 km（通過）。
 - R4：通過的 д.355 圖沒有地面前線，只加 2 條 9/6 德軍 Armeegrenze（boundary，12 個頂點，推估，限控制點凸包內）。前線缺口 13 天不變。
 - USMA 04–07 標註兩次判讀：113 筆中 110 筆一致，1 筆文字不同（MODLIN AND NAREW GROUP／MODLIN），2 筆師級未檢查。
+
+## 主管裁示（2026-11-13 15:33）：控制點排除規則
+- **排除控制點的理由必須在看殘差之前就定好。** 只要有任何一點是在看過殘差後才排除，整張圖僅供參考（即使 P95 ≤ 2 km）。
+- `tools/battles/georef.py` 強制：readings.json 的 `controlPointExclusions[].decidedBeforeResiduals` 不是 true，或有頂層 `referenceOnly`，輸出一律 `threshold.passes=false`、`referenceOnly=true`。
+- 依此 OKH д.355 Luftgau IV 圖（P95 1.77 km）改為僅參考：Tschenstochau、Bielitz、Grottkau 是看過殘差後才排除，且無第二次判讀；兩條 Armeegrenze 自 R4 移出（r4-fronts.json 只剩文字頂點 1 條），排除理由保留在 readings.json。
+- USMA 04／07 的捨棄點來自配準前執行的機械規則（cp_refine.py --require-ring），記為 decidedBeforeResiduals=true（兩圖本來就未過門檻）。

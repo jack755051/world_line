@@ -12,8 +12,34 @@
  "threshold": {
   "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05，沿用）",
   "loo_p95_km": 1.77,
-  "passes": true,
-  "use": "可用於部隊位置與前線頂點"
+  "p95Passes": true,
+  "passes": false,
+  "referenceOnly": true,
+  "referenceOnlyReasons": [
+   "有控制點在看過殘差後才排除（Tschenstochau、Bielitz、Grottkau），依主管 2026-11-13 15:33 規則整張圖僅供參考",
+   "主管 2026-11-13 15:33 裁示：控制點在看過殘差後排除、且無第二次判讀 → 整張圖僅供參考；兩條 Armeegrenze 也僅供參考，頂點不得當位置"
+  ],
+  "controlPointExclusions": [
+   {
+    "name": "Tschenstochau",
+    "reason": "2 倍放大後確認：波蘭境內沒有印刷底圖，此城市為手繪示意（紅色輪廓），不作控制點",
+    "decidedBeforeResiduals": false,
+    "note": "首次配準（P95 4.92 km）看過殘差後才放大確認並排除"
+   },
+   {
+    "name": "Bielitz",
+    "reason": "2 倍放大後確認：藍筆手繪小圈，位於印刷底圖空白區，不作控制點",
+    "decidedBeforeResiduals": false,
+    "note": "首次配準（P95 4.92 km）看過殘差後才放大確認並排除"
+   },
+   {
+    "name": "Grottkau",
+    "reason": "5 倍放大後確認：印刷城鎮點被藍色部隊標註框遮住，原讀到的黑點是部隊符號的樞點，無法確認城鎮位置，不作控制點",
+    "decidedBeforeResiduals": false,
+    "note": "首次配準（P95 4.92 km）看過殘差後才放大確認並排除"
+   }
+  ],
+  "use": "僅供參考：不得用於部隊位置或前線頂點"
  },
  "georef": {
   "tool": "tools/battles/georef.py",
@@ -622,7 +648,7 @@
      ]
     }
    ],
-   "readNote": "圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取",
+   "readNote": "圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取；主管 15:33 裁示：本圖僅供參考，本線頂點不作位置使用",
    "verticesAll_px": [
     [
      650,
@@ -663,7 +689,7 @@
    ],
    "estimate": "推估",
    "basis": "map-digitized",
-   "usable": true
+   "usable": false
   },
   {
    "lineKey": "okh-355-armeegrenze-glatz-cosel",
@@ -743,7 +769,7 @@
      ]
     }
    ],
-   "readNote": "圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取",
+   "readNote": "圖例「Armeegrenze」（棕色點劃線加短橫）；圖上未標兩側軍團名稱。以 2 倍裁圖讀頂點（約 ±3 px，約 0.7 km）；只保留控制點凸包內頂點，凸包外延伸段（西至 Reichenberg、東北入波蘭境內）未取；主管 15:33 裁示：本圖僅供參考，本線頂點不作位置使用",
    "verticesAll_px": [
     [
      929.5,
@@ -784,7 +810,7 @@
    ],
    "estimate": "推估",
    "basis": "map-digitized",
-   "usable": true
+   "usable": false
   }
  ],
  "unresolved": []

@@ -1,7 +1,7 @@
 {
  "schema": "battle-data/0.1 map-catalog",
  "researchedOn": "2026-11-13",
- "rule": "留一法 95 百分位 ≤ 2 km 才可取部隊位置／前線頂點；未過者僅供參考（主管 2026-11-13 14:15）。圖檔不進版控，只留 maps/SHA256SUMS.txt",
+ "rule": "留一法 95 百分位 ≤ 2 km 才可取部隊位置／前線頂點；未過者僅供參考（主管 2026-11-13 14:15）。圖檔不進版控，只留 maps/SHA256SUMS.txt；控制點排除理由須在看殘差前定好，看過殘差後才排除任何一點者整張圖僅參考（主管 2026-11-13 15:33，tools/battles/georef.py 強制）",
  "maps": [
   {
    "mapKey": "kennedy-map-7",
@@ -103,7 +103,8 @@
    "controlPoints": 74,
    "loo_median_km": 9.98,
    "loo_p95_km": 21.09,
-   "passes": false
+   "passes": false,
+   "controlPointExclusionsDecidedBeforeResiduals": true
   },
   {
    "mapKey": "usma-europe-05",
@@ -148,7 +149,8 @@
    "controlPoints": 83,
    "loo_median_km": 9.09,
    "loo_p95_km": 20.02,
-   "passes": false
+   "passes": false,
+   "controlPointExclusionsDecidedBeforeResiduals": true
   },
   {
    "mapKey": "okh-354-lagekarte4",
@@ -178,8 +180,10 @@
    "controlPoints": 31,
    "loo_median_km": 0.57,
    "loo_p95_km": 1.77,
-   "passes": true,
-   "use": "通過門檻。Luftgau IV（西里西亞—摩拉維亞）空軍兵力與機場圖，無地面前線；只取兩條 Armeegrenze（軍團分界）凸包內段落入 R4（lineKind boundary，推估）。控制點過程：初讀 P95 4.92 km → 1 倍讀的點改 2 倍重讀並放大確認後排除 3 點（Tschenstochau、Bielitz 為底圖外手繪；Grottkau 圓點被部隊標註遮住）、Breslau 改 5 倍重讀 → P95 1.77 km。排除是在看過殘差之後做的，理由見 cp-seeds.json 的 excluded；Breslau 殘差 4.2 km 仍列可疑。航空部隊標註未讀、未做第二次判讀"
+   "passes": false,
+   "use": "僅供參考（主管 2026-11-13 15:33 裁示）：P95 1.77 km 雖達標，但 Tschenstochau、Bielitz、Grottkau 三點是在看過殘差後才排除，且無第二次判讀 → 整張圖僅參考；兩條 Armeegrenze 也僅參考，頂點不作位置。排除理由保留於 digitized/okh-355-luftgau.readings.json 的 controlPointExclusions",
+   "referenceOnly": true,
+   "p95Passes": true
   },
   {
    "mapKey": "okh-354-page1",

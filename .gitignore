@@ -39,3 +39,16 @@ test-results/
 /restore/
 /tiles/
 *.dump
+
+# 本機工作區（Claude Code 批次輸出、log、快照、pid）；已追蹤的 .dev/sent-ids.*.json 不受影響
+.dev/
+__pycache__/
+*.pyc
+# 本機寫庫 id 對照與寫庫過程檔（只對應本機資料庫）
+data/seed/**/sent*.5062.json
+data/seed/**/*.dry.sql
+data/seed/**/*.commit.sql
+data/seed/**/send.log
+data/seed/leaders/b3-trial/fix12/apply.txt
+# 戰役原始圖檔不進版控，只留 SHA256SUMS.txt
+data/seed/battles/*/maps/*.jpg

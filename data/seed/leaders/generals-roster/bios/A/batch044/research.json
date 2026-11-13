@@ -226,6 +226,34 @@
    "license_code": null,
    "grade": "A",
    "gradeBasis": "美國國會圖書館名稱權威檔"
+  },
+  "rf-talvisota-lk": {
+   "title": "Ladoga Karelia and Border Karelia（Talvisota.fi）",
+   "authors": [],
+   "publisher": "Sotamuseo（芬蘭軍事博物館）",
+   "published_text": null,
+   "url": "https://talvisota.fi/en/battles/ladoga-karelia-and-border-karelia/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "芬蘭國防部所屬國家軍事博物館（Sotamuseo）的冬季戰爭官方網站",
+   "addedAt": "2026-11-13T08:39:20+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-awm-volvii": {
+   "title": "Official History of Australia in the War of 1914–1918 – Volume VII Introduction",
+   "authors": [],
+   "publisher": "Australian War Memorial",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/official-histories/first_world_war/volVII_introduction",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲戰爭紀念館官方戰史卷導言",
+   "addedAt": "2026-11-13T08:39:20+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -478,7 +506,45 @@
      ]
     }
    ],
-   "positions": [],
+   "positions": [
+    {
+     "key": "hagglund-iv-army-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭國防軍 · 第4軍團",
+      "en": "Finnish Defence Forces · IV Army Corps"
+     },
+     "title": {
+      "zh-Hant": "第4軍團司令",
+      "en": "Commander, IV Army Corps",
+      "orig": "commander of the corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-12-04",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮職，非國家級最高軍職，歸 R5。",
+     "citations": [
+      {
+       "sourceKey": "rf-talvisota-lk",
+       "locator": "Ladoga Karelia 頁",
+       "quote": "Hägglund took up command of the corps on 4 December",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
    "roleCandidates": [],
    "gaps": [
     {
@@ -588,6 +654,44 @@
      "url": "null",
      "result": "no_result",
      "note": "未取得官方戰史頁"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "talvisota.fi（Sotamuseo）Hägglund IV Corps",
+     "url": "https://talvisota.fi/en/battles/ladoga-karelia-and-border-karelia/",
+     "result": "found_A",
+     "note": "明載 1939-12-04 接掌第 4 軍團；迄日未載"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Kansallisbiografia 將領條目 7671",
+     "url": "https://kansallisbiografia.fi/kenraalit/henkilo/7671",
+     "result": "no_result",
+     "note": "Angular 動態頁，抓取僅得空殼／404"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Uppslagsverket Finland Hägglund",
+     "url": "https://uppslagsverket.fi/sv/sok?query=H%C3%A4gglund",
+     "result": "no_result",
+     "note": "搜尋頁無條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "talvisota.fi 其他頁（Motti battles, Encirclement attacks）",
+     "url": "https://talvisota.fi/en/battles/ladoga-karelia-and-border-karelia/motti-battles-in-february-1940/",
+     "result": "not_relevant",
+     "note": "只寫軍團作戰，無卸任日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -4420,10 +4524,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1917-08-01",
-      "end": null
+      "end": "1920-01-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "awm-chauvel",
@@ -4434,6 +4538,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-volvii",
+       "locator": "全文",
+       "quote": "the Desert Mounted Corps 1917–19",
+       "quoteLang": "en",
+       "evidenceNote": "來源寫至 1919 年，依年精度終點取下一年起日（Q3）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -4560,13 +4676,6 @@
      "target": "position:chauvel-goc-aif-egypt",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；AWM 只寫 1916 年 6 月任駐埃及澳洲帝國軍總司令，無迄日；已查 AWM。ADB（adb.anu.edu.au，5569）以 JavaScript 動態載入，curl 僅得空殼，未能取得原文。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:chauvel-desert-mounted-corps",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 只寫 1917 年 8 月起任沙漠騎兵軍軍長，1919 年底返澳，無卸任日；已查 AWM。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -4861,6 +4970,55 @@
      "url": "https://www.britannica.com/biography/Harry-Chauvel",
      "result": "challenge_page",
      "note": "curl 403 Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "AWM 官方戰史 Vol VII 導言 Chauvel DMC",
+     "url": "https://www.awm.gov.au/official-histories/first_world_war/volVII_introduction",
+     "result": "found_A",
+     "note": "DMC 1917–19；得迄年"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "ADB Chauvel 5569（含 lifesummary、text 頁）",
+     "url": "https://adb.anu.edu.au/biography/chauvel-sir-henry-george-harry-5569",
+     "result": "no_result",
+     "note": "JS 動態頁，抓得空殼；lifesummary 404"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "AWM C172432／C179262 等館藏頁 GOC AIF Egypt 迄日",
+     "url": "https://www.awm.gov.au/collection/C172432",
+     "result": "not_relevant",
+     "note": "未載 GOC AIF Egypt 卸任日"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "beersheba100.org 等 GOC AIF Egypt 後任",
+     "url": "https://beersheba100.org/people/harry-chauvel.html",
+     "result": "not_relevant",
+     "note": "只寫 1919-09 返澳；未載該職迄日，亦無後任"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:chauvel-desert-mounted-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 只寫 1917 年 8 月起任沙漠騎兵軍軍長，1919 年底返澳，無卸任日；已查 AWM。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

@@ -175,6 +175,36 @@
    "license_code": null,
    "grade": null,
    "gradeBasis": "無署名條目，依 Q9 未評等，只放 gap 候選"
+  },
+  "rf-seac": {
+   "title": "South East Asia Command (History & Personnel)",
+   "authors": [
+    "Robert Palmer"
+   ],
+   "publisher": "BritishMilitaryHistory.co.uk",
+   "published_text": "2020-07-03",
+   "url": "https://www.britishmilitaryhistory.co.uk/wp-content/uploads/sites/124/2020/08/South-East-Asia-Command-SEAC.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Robert Palmer, M.A.（署名，Stephen Heal 協助），BritishMilitaryHistory.co.uk 發行之東南亞戰區司令部沿革與任職名簿，附參考書目（陸軍名冊、官方戰史）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-jta-plumer": {
+   "title": "Lord Plumer, Former High Commissioner of Palestine, Dies at Age of Seventy-six",
+   "authors": [],
+   "publisher": "Jewish Telegraphic Agency",
+   "published_text": "1932-07-18",
+   "url": "https://www.jta.org/archive/lord-plumer-former-high-commissioner-of-palestine-dies-at-age-of-seventy-six",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 Jewish Telegraphic Agency（猶太電訊社，1917 年創立的具名通訊社）1932 年 7 月 18 日當日訃告",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -656,10 +686,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1944-04-16",
-      "end": null
+      "end": "1944-12-26"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "paradata-browning",
@@ -671,6 +701,30 @@
        "grade": "B",
        "datePrecision": "day",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-seac",
+       "locator": "第4頁 Chief of Staff 名簿",
+       "quote": "26th December 1944 – 12th July 1946 Lieutenant General Frederick A. M. BROWNING",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一職（東南亞戰區司令部參謀長）起日推得（推論）；同名簿載前任 Pownall 任至 26th December 1944",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "Browning 自 1944-12-26 任蒙巴頓參謀長",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "He subsequently became Chief of Staff to Lord Mountbatten",
+       "quoteLang": "en",
+       "evidenceNote": "來源明寫 Market Garden 後「轉任」蒙巴頓參謀長",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": "轉任東南亞戰區參謀長",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -717,13 +771,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:browning-1st-airborne-corps",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 Paradata（只寫 1944 年起任第1空降軍、1945 年轉任印度空降部隊）、搜尋摘要，未見明確卸任日；IWM、NPG 被 403 擋。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "paragraph:length",
      "gapKind": "not_found",
@@ -796,6 +843,22 @@
      "url": "https://viaf.org/",
      "result": "blocked_403",
      "note": "VIAF 403；LoC 搜尋頁未取得人物條目"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Browning I Airborne Corps 1944 Chief of Staff SEAC 起日",
+     "url": "https://www.britishmilitaryhistory.co.uk/wp-content/uploads/sites/124/2020/08/South-East-Asia-Command-SEAC.pdf",
+     "result": "found_C",
+     "note": "Palmer SEAC 名簿載 Browning 1944-12-26 起任參謀長，作為軍長迄日（推論）"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Paradata Browning biography page",
+     "url": "https://paradata.org.uk/content/4638958-lieutenant-general-frederick-browning",
+     "result": "not_relevant",
+     "note": "既有 paradata 快取已重用；另抓頁面為 404"
     }
    ],
    "nameZhUnsourced": "弗雷德里克·布朗寧",
@@ -817,7 +880,24 @@
     "verified": false,
     "isCitation": false,
     "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
-   }
+   },
+   "resolvedGaps": [
+    {
+     "target": "position:browning-1st-airborne-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Paradata（只寫 1944 年起任第1空降軍、1945 年轉任印度空降部隊）、搜尋摘要，未見明確卸任日；IWM、NPG 被 403 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "frederickmorgan",
@@ -1341,6 +1421,38 @@
      "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-Bio.html",
      "result": "found_A",
      "note": "curl 成功"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Morgan I Corps 1943 end；COSSAC 迄日 SHAEF 成立",
+     "url": "https://www.britannica.com/biography/Frederick-Edgeworth-Morgan",
+     "result": "challenge_page",
+     "note": "Britannica 擋機器人頁"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Morgan COSSAC National WWII Museum Words of War",
+     "url": "https://www.nationalww2museum.org/war/articles/words-war-44",
+     "result": "challenge_page",
+     "note": "擋機器人頁（Just a moment）"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Morgan I Corps 迄日（網路搜尋）",
+     "url": "",
+     "result": "no_result",
+     "note": "搜尋結果僅見 Wikipedia 類站與無署名站；未得 A/B/具名 C 原文載 I Corps 迄日或 COSSAC 迄日"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Morgan COSSAC beachesofnormandy／warfarehistorynetwork",
+     "url": "",
+     "result": "unrated",
+     "note": "個人／商業站，依規則不收"
     }
    ],
    "nameZhUnsourced": "弗雷德里克·摩根",
@@ -1353,7 +1465,13 @@
     "status": "pending",
     "verified": false,
     "isCitation": false
-   }
+   },
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "henryrawlinson1stbaronrawlinson",
@@ -1844,6 +1962,38 @@
      "url": null,
      "result": "no_result",
      "note": "Hansard 1925 上議院僅哀悼語，無起迄日"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Rawlinson Fourth Army 1919 迄日 IWM/NAM",
+     "url": "https://collection.nam.ac.uk/detail.php?acc=1952-01-32-1",
+     "result": "not_relevant",
+     "note": "NAM 畫像說明只寫 1916 任第四集團軍、1918 重組、1919 封男爵與俄國撤軍，無第四集團軍迄日"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "IWM Fourth Army Records of General Lord Rawlinson",
+     "url": "https://www.iwm.org.uk/collections/item/object/1030024565",
+     "result": "blocked_403",
+     "note": "IWM 擋；搜尋摘要稱檔案涵蓋 1916-02 至 1919-02，但無法取得原文"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Gazette 6 April 1920 North Russia despatch",
+     "url": "",
+     "result": "not_relevant",
+     "note": "只載 1919-08-09 任北俄總司令，不能推第四集團軍迄日（兩職間另有其他安排未明）"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Doyle British Campaign 1918 (Gutenberg)",
+     "url": "",
+     "result": "not_relevant",
+     "note": "只敘 Rawlinson 第四集團軍戰事至 1918 年底，未寫卸任日"
     }
    ],
    "nameZhUnsourced": "亨利·羅林森（第一代羅林森男爵）",
@@ -1864,7 +2014,13 @@
     "isCitation": false,
     "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
    },
-   "nameZhOrig": "亨利·罗林森"
+   "nameZhOrig": "亨利·罗林森",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "herbertplumer1stviscountplumer",
@@ -2192,10 +2348,10 @@
      "positionKind": "other",
      "period": {
       "start": "1925-01-01",
-      "end": null
+      "end": "1929-01-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "awm-birdwood",
@@ -2207,6 +2363,18 @@
        "grade": "A",
        "datePrecision": "year",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-jta-plumer",
+       "locator": "訃告首段",
+       "quote": "High Commissioner in Palestine from 1925 to 1928",
+       "quoteLang": "en",
+       "evidenceNote": "到 1928 年止，年精度終點寫下一年起日",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": "1925–1928 任巴勒斯坦高級專員",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -2220,13 +2388,6 @@
      "target": "position:plumer-second-army",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；已查 AWM 部落格（只寫 1915 年 5 月接掌）與 AWM Messines 兩頁，未見卸任日；AWM 部落格自相矛盾（V Corps 寫 April 1916、Second Army 寫 May 1915），不採 V Corps 日期。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:plumer-palestine-high-commissioner",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 只寫 1925 年任高級專員，未寫卸任；NPG、IWM、Westminster Abbey 皆 403 擋。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -2324,6 +2485,22 @@
      "url": "https://www.npg.org.uk/collections/search/person/mp03587/herbert-plumer-1st-viscount-plumer",
      "result": "blocked_403",
      "note": "NPG 403"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Plumer High Commissioner Palestine 1928 JTA obituary",
+     "url": "https://www.jta.org/archive/lord-plumer-former-high-commissioner-of-palestine-dies-at-age-of-seventy-six",
+     "result": "found_C",
+     "note": "JTA 1932 訃告載 1925–1928"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Plumer Second Army 迄日（1917-11 赴義大利／1919 萊茵軍）",
+     "url": "",
+     "result": "no_result",
+     "note": "搜尋僅見 Wikipedia 類與 Long Long Trail 個人站；JTA 只寫 Second Army 之後率義大利遠征軍，無日期；Second Army 迄日仍待查"
     }
    ],
    "nameZhUnsourced": "赫伯特·普盧默（第一代普盧默子爵）",
@@ -2348,7 +2525,24 @@
     "isCitation": false,
     "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
    },
-   "nameZhOrig": "赫伯特·普兰莫"
+   "nameZhOrig": "赫伯特·普兰莫",
+   "resolvedGaps": [
+    {
+     "target": "position:plumer-palestine-high-commissioner",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 只寫 1925 年任高級專員，未寫卸任；NPG、IWM、Westminster Abbey 皆 403 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "horacesmith-dorrien",
@@ -2757,6 +2951,38 @@
      "url": "https://www.npg.org.uk/collections/search/person/mp56551/sir-horace-lockwood-smith-dorrien",
      "result": "blocked_403",
      "note": "403"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Smith-Dorrien II Corps 迄日 1914-12 Second Army",
+     "url": "https://www.iwm.org.uk/collections/item/object/30087172",
+     "result": "blocked_403",
+     "note": "IWM 擋；搜尋摘要稱 II Corps 1914-08 至 10、Second Army 自 1914-12，無法取得原文"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Gazette 28897／28992 French despatch",
+     "url": "",
+     "result": "not_relevant",
+     "note": "電文只提 Smith-Dorrien 戰時行動，無改編日期"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Doyle British Campaign 1914 (Gutenberg)",
+     "url": "",
+     "result": "not_relevant",
+     "note": "只寫 II Corps 戰事，無 Second Army 改編日"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "1914-1918-online Smith-Dorrien／French 條目",
+     "url": "https://encyclopedia.1914-1918-online.net/article/french-john-denton-pinkstone-earl-of-ypres/",
+     "result": "challenge_page",
+     "note": "Anubis 機器人挑戰頁"
     }
    ],
    "nameZhUnsourced": "賀拉斯·史密斯-多里恩",
@@ -2780,7 +3006,13 @@
     "isCitation": false,
     "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
    },
-   "nameZhOrig": "赫拉斯·史密斯-多伦"
+   "nameZhOrig": "赫拉斯·史密斯-多伦",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   }
  ]
 }

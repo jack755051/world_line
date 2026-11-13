@@ -14,6 +14,15 @@ G, B, F = "這份文件的等級（A／B／C）", "評等依據", "建議家族"
 RANK = {"A": 0, "B": 1, "C": 2}
 
 
+RAW = {}
+
+
+def dump_like(raw, d):
+    """照原檔的縮排與結尾換行寫回，避免無關的排版差異。"""
+    ind = next((len(l) - len(l.lstrip(" ")) for l in raw.split("\n")[1:] if l.startswith(" ")), 2)
+    return json.dumps(d, ensure_ascii=False, indent=ind) + ("\n" if raw.endswith("\n") else "")
+
+
 def q(s): return "NULL" if s in (None, "") else "'" + str(s).replace("'", "''") + "'"
 
 
@@ -79,9 +88,9 @@ SELECT '已查證筆數', a.record_kind, coalesce(b.n, 0) || ' → ' || a.n FROM
     loaded = {}
     for batch, files in batches.items():
         for f in files:
-            try: d = json.loads(Path(f).read_text(encoding="utf-8"))
+            try: raw = Path(f).read_text(encoding="utf-8"); d = json.loads(raw)
             except Exception: continue
-            if isinstance(d, dict) and isinstance(d.get("body"), dict): loaded.setdefault(batch, {})[f] = d
+            if isinstance(d, dict) and isinstance(d.get("body"), dict): loaded.setdefault(batch, {})[f] = d; RAW[f] = raw
     is_src = lambda d: str(d.get("_post", "")).endswith("/sources")
     # 來源代號先在同一批找；找不到（引用別批登記的來源）再用全專案的對照，同名但內容不同的代號不採用
     glob_src, clash = {}, set()
@@ -107,7 +116,7 @@ SELECT '已查證筆數', a.record_kind, coalesce(b.n, 0) || ' → ' || a.n FROM
                     if not r: continue
                     found.add((r["event_id"], r["source_id"], r["引用位置"]))
                     if c.get("grade") != r["g"] or c.get("gradeBasis") != r["b"]: c["grade"], c["gradeBasis"] = r["g"], r["b"]; hit += 1; changed = True
-            if changed and apply: Path(f).write_text(json.dumps(d, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            if changed and apply: Path(f).write_text(dump_like(RAW[f], d), encoding="utf-8")
     miss = len({(r["event_id"], r["source_id"], r["引用位置"]) for r in filled} - found)
     print(f"[資料建置檔] 引文 {hit} 筆、來源家族 {fhit} 個{'已寫入' if apply else '會寫入（預演，未寫入）'}；清單中 {miss} 筆在資料建置檔裡對不到")
     if apply: print("提醒：國界圖層有日期快取，套用後要重啟開發 API 才會反映。")

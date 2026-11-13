@@ -70,7 +70,7 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
         Assert.Contains("czechoslovak-republic", slugs0);
         var reich0 = d0[ids["SOV_R2693085"]];
         Assert.Equal(JsonValueKind.Null, reich0.GetProperty("startEvent").ValueKind);
-        Assert.Equal("pending", reich0.GetProperty("endEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
+        Assert.Equal("verified", reich0.GetProperty("endEvent").GetProperty("verification").GetString()); // 引文已逐筆評等且達門檻（data/seed/source-grading/events-60.csv 初評）
 
         // 1938-10-05：分區佔領中，德國仍是拆分後的前段（幾何不含蘇台德），迄事件＝分區佔領（已查證）
         var d05 = await On("1938-10-05");
@@ -102,7 +102,7 @@ public sealed class SeedBorders1938Tests(PostGisFixture fx)
         var pl = d3[ids["SOV_FIX_MILVERW_PL_R2"]];
         Assert.Equal("german-military-administration-poland", Slug(pl));
         Assert.Equal("not_sovereign", pl.GetProperty("layerStatus").GetString());
-        Assert.Equal("pending", pl.GetProperty("endEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
+        Assert.Equal("verified", pl.GetProperty("endEvent").GetProperty("verification").GetString()); // 引文已逐筆評等且達門檻（data/seed/source-grading/events-60.csv 初評）
         Assert.Equal("Doc. 477, p. 560, nn. 2–3", pl.GetProperty("endEvent").GetProperty("citations")[0].GetProperty("locator").GetString());
 
         // 1940-04-01：蘇聯用扣除比薩拉比亞的修正紀錄；原紀錄已撤回

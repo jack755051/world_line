@@ -669,13 +669,14 @@
    "nation": "jp",
    "regimeSlug": "empire-of-japan",
    "period": {
-    "start": "1937-11-13",
+    "start": null,
     "end": null,
-    "startPrecision": "day",
+    "startPrecision": null,
     "endPrecision": null,
+    "startBasis": "empty-no-source",
     "endBasis": "empty-no-source"
    },
-   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；10/30 隸上海派遣軍；白茆口登陸日 JM-179 文字 OCR 損壞（「]Jth」），依 JM-179 Map No. 1 圖上「13 NOV」標註，屬地圖判讀",
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；10/30 隸上海派遣軍；白茆口登陸日 JM-179 文字 OCR 損壞（「]Jth」），JM-179 Map No. 1 圖上「13 NOV」標註屬地圖判讀；起日留空，11/13 只作候選",
    "citations": [
     {
      "sourceKey": "jm179",
@@ -731,6 +732,12 @@
     }
    },
    "nameZhStatus": "from-source",
+   "startCandidate": {
+    "value": "1937-11-13",
+    "status": "candidate",
+    "basis": "JM-179 OCR「]Jth」＋Map No. 1 圖上「13 NOV」（地圖未過 2 km，僅參考）"
+   },
+   "startUncertain": "OCR 讀值不確定：JM-179 原文「landed on the ]Jth」之「]Jth」讀作 13th 未經人工核對原掃描（主管 2026-11-13 16:14 Q5：欄位留空，11/13 只作候選）",
    "confidence": {
     "level": "verified",
     "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",

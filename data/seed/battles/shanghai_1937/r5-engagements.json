@@ -657,9 +657,11 @@
    "nameZh": "白茆口、滸浦口登陸",
    "nameZhBasis": "出處原文（mnd2017）",
    "period": {
-    "start": "1937-11-13",
-    "end": "1937-11-13",
-    "precision": "day"
+    "start": null,
+    "end": null,
+    "precision": "day",
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
    },
    "place": {
     "asInSource": "白茆口、滸浦口（Paimaokou）",
@@ -733,7 +735,20 @@
      }
     }
    ],
-   "note": "JM-179：幾無抵抗；守方出處未載。日期依 JM OCR「]Jth」讀作 13 日，待審",
+   "note": "JM-179：幾無抵抗；守方出處未載",
+   "periodCandidate": {
+    "start": {
+     "value": "1937-11-13",
+     "status": "candidate",
+     "basis": "JM-179 OCR「]Jth」"
+    },
+    "end": {
+     "value": "1937-11-13",
+     "status": "candidate",
+     "basis": "JM-179 OCR「]Jth」"
+    }
+   },
+   "periodUncertain": "OCR 讀值不確定：JM-179 原文「landed on the ]Jth」之「]Jth」讀作 13th 未經人工核對原掃描（主管 2026-11-13 16:14 Q5：欄位留空，11/13 只作候選）",
    "confidence": {
     "level": "verified",
     "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",

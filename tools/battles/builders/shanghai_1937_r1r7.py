@@ -58,7 +58,9 @@ for k, o, zh, ord_ in [("jp-9-div", "第九師団（9th Division）", "第九師
       start=None, note="JM-179 寫 9/11 自日本增援抵達；chang2016 寫 9/11 為臨參命令第九十九號下令日——起日兩說不一，留空（見 gaps）")
 U("jp-16-div", "第十六師団（16th Division）", "第十六師團", "division", "jp-sea",
   [J("The 16th Division was assigned to the Shanghai Expeditionary Army on 30 October 1937"[:80]), CH("另從華北調用第十六師團受上海派遣軍之指揮"), MN("以新增之第16師配屬重藤旅團於白茆")],
-  ZS("chang2016", "第十六師團"), start="1937-11-13", note="10/30 隸上海派遣軍；白茆口登陸日 JM-179 文字 OCR 損壞（「]Jth」），依 JM-179 Map No. 1 圖上「13 NOV」標註，屬地圖判讀")
+  ZS("chang2016", "第十六師團"), start=None, note="10/30 隸上海派遣軍；白茆口登陸日 JM-179 文字 OCR 損壞（「]Jth」），JM-179 Map No. 1 圖上「13 NOV」標註屬地圖判讀；起日留空，11/13 只作候選")
+units[-1]["startCandidate"] = {"value": "1937-11-13", "status": "candidate", "basis": "JM-179 OCR「]Jth」＋Map No. 1 圖上「13 NOV」（地圖未過 2 km，僅參考）"}
+units[-1]["startUncertain"] = "OCR 讀值不確定：JM-179 原文「landed on the ]Jth」之「]Jth」讀作 13th 未經人工核對原掃描（主管 2026-11-13 16:14 Q5：欄位留空，11/13 只作候選）"
 U("jp-6-div", "第六師団（6th Division）", "第六師團", "division", "jp-10-army",
   [JB("八口浦ニ於テ北支那方面ヨリ転用セラレタル第六師団及国崎支隊等ヲ掌握シ"), CH("由華北調用第六師團及第五師團的一部（國崎支隊）")], ZS("chang2016", "第六師團"), start="1937-11-05")
 U("jp-18-div", "第十八師団（18th Division）", "第十八師團", "division", "jp-10-army",

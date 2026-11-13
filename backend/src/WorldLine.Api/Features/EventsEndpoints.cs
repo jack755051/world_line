@@ -74,6 +74,9 @@ public static class EventsEndpoints
         // 引用（R8 合格史料；有使用權）
         var cites = new List<EventCitation>();
         var cin = req.Citations ?? [];
+        // docs/source-rules.md §6 規定沒有出處的事件不寫入；但既有的資料建置檔有 214 筆無引文事件，
+        // 國界與衝突紀錄靠它們串接，重建資料庫時要能重放。所以這裡先不擋，改由 v_record_confidence 標成 unsourced；
+        // 等那些事件補上出處後再改成必填（tools/source_audit.py 會列出筆數）。
         var sourceIds = cin.Select(c => c.SourceId).OfType<Guid>().Distinct().ToList();
         var sources = await db.Sources.AsNoTracking().Where(s => sourceIds.Contains(s.Id)).ToDictionaryAsync(s => s.Id, ct);
         for (var i = 0; i < cin.Count; i++)

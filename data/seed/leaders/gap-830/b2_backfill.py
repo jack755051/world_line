@@ -40,7 +40,11 @@ CONTAINER = "worldline-borders-dev-db"
 ALLOWED_DBS = {"worldline_borders_dev"}  # 只允許 5442 的開發庫；絕不連 appdb_ww2／5432
 POLICY_VERSION = "bio-2026-11-v0"
 QUOTE_MAX = 80  # Tai 2026-11-10 21:52（原 25）
-EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "baidu.com", "enciclopediadelecuador.com")
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "data" / "source-policy.json").exists()) / "tools"))
+import source_policy as _sp  # 全專案唯一的來源政策：data/source-policy.json
+EXCLUDED_HOSTS = _sp.BANNED_HOSTS
 EXCLUDED_PUBLISHER_FRAGMENTS = ("wikipedia", "wikidata", "百度", "baidu")
 SELF_MADE = {"自製", "自制", "self-made", "self made", "selfmade", "own work"}
 # Domain/Vocabulary.cs LeaderBioFields.All（含 B1 新增 deathPlace）

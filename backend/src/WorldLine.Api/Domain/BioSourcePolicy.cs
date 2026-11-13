@@ -30,11 +30,26 @@ public static class BioSourcePolicy
     /// <summary>不得進 DB 的等級（留 seed）。</summary>
     public static readonly IReadOnlySet<string> ExcludedGrades = new HashSet<string>(StringComparer.Ordinal) { "X" };
 
-    /// <summary>硬性排除的網域（含子網域）。</summary>
+    /// <summary>
+    /// 硬性排除的網域（含子網域）。與 data/source-policy.json 的 bannedHosts 相同（全專案唯一清單；規則見 docs/source-rules.md），
+    /// 由 SourcePolicyFileTests 檢查兩邊一致：改清單時兩邊一起改。
+    /// </summary>
     public static readonly IReadOnlyList<string> ExcludedHosts =
     [
-        "wikipedia.org", "wikidata.org", "baidu.com",
-        "enciclopediadelecuador.com", // HANDOFF：網域已被接管（轉賭博站）
+        "wikipedia.org",
+        "wikidata.org",
+        "baidu.com",
+        "enciclopediadelecuador.com",
+        "generals.dk",
+        "historyofwar.org",
+        "rafweb.org",
+        "worldwar2.ro",
+        "lonesentry.com",
+        "britishmilitaryhistory.co.uk",
+        "beachesofnormandy.com",
+        "erenow.org",
+        "victoriacrossonline.co.uk",
+        "liquisearch.com",
     ];
 
     /// <summary>出版者名稱含這些字（不分大小寫）即排除：避免以 Wikipedia／Wikidata／百度百科當出處但沒附網址。</summary>

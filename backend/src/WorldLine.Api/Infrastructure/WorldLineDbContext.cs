@@ -68,7 +68,11 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             {
                 t.HasCheckConstraint("ck_sources_source_kind", InList("source_kind", SourceKinds.All));
                 t.HasCheckConstraint("ck_sources_publisher_not_blank", "btrim(publisher) <> ''");
+                t.HasCheckConstraint("ck_sources_grade", "grade IS NULL OR " + InList("grade", SourceGrades.All));
+                t.HasCheckConstraint("ck_sources_grade_basis", "grade IS NULL OR grade_basis IS NOT NULL");
             });
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.Family).HasMaxLength(64);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.SourceKind).HasMaxLength(32);
             e.Property(x => x.LicenseCode).HasMaxLength(32);
@@ -85,6 +89,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.WikidataQid).HasMaxLength(20);
             e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
             e.HasMany(x => x.Names).WithOne().HasForeignKey(n => n.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             Timestamps(e, updated: true);
         });
 
@@ -376,6 +381,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.ValidPeriod).HasColumnType("daterange");
             e.Property(x => x.Version).HasDefaultValue(0);
             e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });

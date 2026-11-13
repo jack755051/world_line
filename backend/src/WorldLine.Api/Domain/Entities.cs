@@ -21,6 +21,12 @@ public sealed class Source
     public string? LocalCopyPath { get; set; }
     public string? CatalogId { get; set; }
     public string? Note { get; set; }
+    /// <summary>來源等級 A／B／C／X（docs/source-rules.md §2）；NULL＝尚未評等。評的是這份出處本身，不因來源數目更動。</summary>
+    public string? Grade { get; set; }
+    /// <summary>評等依據（為什麼是這一級）。</summary>
+    public string? GradeBasis { get; set; }
+    /// <summary>來源家族：同機構、同底稿或互相轉引者填同一個代號，只算一個獨立來源；NULL＝自成一族。</summary>
+    public string? Family { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
     public int Version { get; set; }
@@ -31,6 +37,9 @@ public sealed class Regime
     public Guid Id { get; set; }
     public string Slug { get; set; } = "";
     public string? WikidataQid { get; set; }
+    /// <summary>名稱與起訖的出處（docs/source-rules.md §6）；NULL＝只取自資料集，待查證。</summary>
+    public Guid? SourceId { get; set; }
+    public string? SourceLocator { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
@@ -507,8 +516,11 @@ public sealed class CapitalRecord
     public string CityName { get; set; } = "{}";
     public Point Location { get; set; } = null!;
     public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
-    /// <summary>出處文字（「待查證」若未找到文獻）。</summary>
+    /// <summary>出處文字（「待查證」若未找到文獻）。舊欄位；新資料改用 SourceId＋SourceLocator。</summary>
     public string? SourceRef { get; set; }
+    /// <summary>出處接到來源登記（docs/source-rules.md D6）；NULL＝只有自由文字。</summary>
+    public Guid? SourceId { get; set; }
+    public string? SourceLocator { get; set; }
     public string? Note { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }

@@ -97,16 +97,17 @@
 
 `demos/battle-v2.5/DATA-WORKFLOW.md` 的「規則」一節在 D3 上原本寫「一律要兩個家族」，已改為與本文一致。
 
-實作狀態：
+實作狀態（2026-11-13）：
 
 | 編號 | 狀態 |
 |---|---|
-| D1 | 憲法 I6 已改寫。戰役寫庫程式原本就以待查證寫入；事件、首都的寫入端尚未加「沒有出處不寫入」的檢查 |
-| D2、D3 | 已實作：`tools/battles/crosscheck.py`、`tools/battles/write_battle_sql.py`；來源立場登記在各戰役 `battle.config.json` 的 `sourceFamilies.sides` |
-| D4 | 定義已生效；疆界、事件、首都、控制的資料表還沒有等級欄位 |
-| D5、D6 | 尚未實作，需要新增資料表欄位並回頭處理既有資料 |
+| D1 | 憲法 I6 已改寫。戰役以待查證寫入。事件的寫入端**還沒有**強制要引文：既有資料建置檔有 214 筆無引文事件，疆界與衝突紀錄靠它們串接，強制後重建資料庫時無法重放；目前由檢視標成「查無」，等補上出處後再改成必填 |
+| D2、D3 | 已實作：`tools/battles/crosscheck.py`、`write_battle_sql.py`；來源立場登記在各戰役 `battle.config.json` 的 `sourceFamilies.sides`。開發庫裡敦克爾克、波蘭的引文等級已用「撤回＋重寫」更正（`tools/battles/fix_citation_grades.py`） |
+| D4 | 來源登記新增 `grade`、`grade_basis`、`family` 三欄（migration `SourceRulesFields`）。開發庫 2,297 個來源中 1,132 個已回填（只沿用既有引文的評等與條約原文，不依種類猜），其餘待評 |
+| D5 | 檢視 `v_record_confidence` 依出處即時推導每筆紀錄的可信程度（已查證／待查證／查無）。多數資料表禁止修改既有列（I5），所以可信程度不存成欄位 |
+| D6 | 政權、首都新增 `source_id`、`source_locator`。既有的自由文字出處還在，要逐筆「撤回＋重寫」才會接上來源登記 |
 
-已寫入開發庫的敦克爾克與波蘭，引文等級仍是降級後的值，要以「撤回＋重寫」更正，需另行核准。
+還沒做：前端與 API 的「已查證／待查證」仍是舊算法（有引文就算已查證），尚未改讀 `v_record_confidence`；檢視沒有涵蓋實際控制與陣營；來源的家族與立場在資料庫裡還沒有人填。
 
 ## 9a. 這份規則放在哪裡
 
@@ -117,6 +118,8 @@
 | `data/source-policy.json` | 程式讀的唯一一份政策資料（禁用網域、各類資料的最低等級、門檻） |
 | `.claude/skills/source-rules/SKILL.md` | 給執行資料工作的代理人看的操作版 |
 | `tools/source_audit.py` | 全專案唯讀稽核；`tools/battles/crosscheck.py` 判定戰役的可信程度 |
+| 資料庫 `sources.grade`、檢視 `v_record_confidence` | 來源等級與各筆紀錄的可信程度 |
+| `tools/db/grade_sources_from_citations.sql` | 把已有的評等回填到來源登記 |
 
 ## 9. 現有資料與本文的落差（2026-11-13 盤點，數字來自資料建置檔，不是資料庫）
 

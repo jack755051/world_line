@@ -173,3 +173,9 @@ public static class PersonRoleKinds
 {
     public static readonly string[] All = ["head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister"];
 }
+
+/// <summary>來源等級（docs/source-rules.md §2；data/source-policy.json）。</summary>
+public static class SourceGrades
+{
+    public static readonly string[] All = ["A", "B", "C", "X"];
+}

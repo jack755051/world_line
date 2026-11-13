@@ -14,7 +14,11 @@
 import hashlib, json, re, sys, unicodedata
 from urllib.parse import urlparse
 
-EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "baidu.com", "enciclopediadelecuador.com")
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "data" / "source-policy.json").exists()) / "tools"))
+import source_policy as _sp  # 全專案唯一的來源政策：data/source-policy.json
+EXCLUDED_HOSTS = _sp.BANNED_HOSTS
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
 GAP_KINDS = {"conflict", "not_found", "identity_uncertain"}
 PREC = {None, "day", "month", "year"}

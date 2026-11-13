@@ -21,7 +21,11 @@ from urllib.parse import urlparse
 HERE = os.path.dirname(os.path.abspath(__file__))
 ACCESSED = "2026-11-11"
 POLICY = "bio-2026-11-v0"
-BANNED = ("wikipedia.org", "wikidata.org", "baidu.com", "enciclopediadelecuador.com")
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "data" / "source-policy.json").exists()) / "tools"))
+import source_policy as _sp  # 全專案唯一的來源政策：data/source-policy.json
+BANNED = _sp.BANNED_HOSTS
 MAP_END = "1945-10-01"           # 地圖範圍半開終點（範圍 1908-01-01～1945-09-30）
 UK_REGIME = "01a18e71-cba5-7726-90e3-9b90ab344afd"   # 5442 regimes.slug = united-kingdom（唯讀查得）
 

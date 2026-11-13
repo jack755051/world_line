@@ -122,6 +122,15 @@ txt_by = collections.defaultdict(list)
 for p in R3: txt_by[p['unitKey']].append(p)
 units, conf, gaps_units = [], {}, []
 roster_ids = set()
+
+def level_of(rec, fallback):
+    """可信程度取主線 crosscheck 寫回的 confidence.level（docs/source-rules.md）；沒有才退回舊的 status 對照。"""
+    lv = (rec.get('confidence') or {}).get('level')
+    return lv if lv in ('verified', 'needs-check', 'estimate') else fallback
+def why_of(rec):
+    c = rec.get('confidence') or {}
+    return (c.get('why') or '') + ('（只有對手方的說法）' if c.get('opposingOnly') and '對手方' not in (c.get('why') or '') else '')
+
 for u in R1:
     if u['status'] == 'gap': gaps_units.append(u['unitKey']); continue
     roster_ids.add(u['unitKey'])
@@ -133,11 +142,11 @@ for u in R1:
                   'roster': True, 'status': u['status'], 'period': u.get('period'), 'period_note': u.get('periodNote'), 'note': u.get('note'), 'refs': refs(u['citations']),
                   'text_positions': [{'date': p['date'], 'place': p['placeAsInSource'], 'relation': p.get('relation'), 'note': p.get('attributionNote'), 'refs': refs(p['citations'])}
                                      for p in sorted(txt_by[u['unitKey']], key=lambda p: p['date'])]})
-    lv = 'verified' if u['status'] == 'sourced' else 'needs-check'
-    f = {'oob': {'level': lv, 'used': u['nameOrig'], 'claims': claims(u['citations'], u['nameOrig']), 'note': f"{n_src(u['citations'])} 個來源" + ('；來源檔標為部分查證' if u['status'] != 'sourced' else '')}}
+    lv = level_of(u, 'verified' if u['status'] == 'sourced' else 'needs-check')
+    f = {'oob': {'level': lv, 'used': u['nameOrig'], 'claims': claims(u['citations'], u['nameOrig']), 'note': f"{n_src(u['citations'])} 個來源" + ('；' + why_of(u) if why_of(u) else '')}}
     if cmd_by[u['unitKey']]:
         c = cmd_by[u['unitKey']][0]
-        f['commander'] = {'level': 'verified' if c['citations'] else 'needs-check', 'used': c['name'], 'claims': claims(c['citations'], c['name'])}
+        f['commander'] = {'level': level_of(c, 'verified' if c['citations'] else 'needs-check'), 'used': c['name'], 'claims': claims(c['citations'], c['name'])}
     conf['unit:' + u['unitKey']] = {'fields': f, 'level': lv}
 
 SIDE = {'german': 'axis', 'allied': 'allied'}
@@ -180,7 +189,7 @@ for e in R5:
     kd = next((k for k in kdates if k >= s), kdates[-1])
     engs.append({'id': 'e-' + e['key'], 'date': kd, 'from': s, 'to': t, 'name_zh': e['nameZh'], 'name_orig': e.get('nameOrig'), 'lng': ll[0], 'lat': ll[1], 'units': us, 'interaction_tag': None,
                  'interaction_zh': (e.get('place') or {}).get('asInSource') or '', 'outcome': None, 'summary_zh': e.get('outcomeNote') or '', 'note': e.get('note'), 'status': e['status'], 'refs': refs(e['citations'])})
-    lv = 'verified' if e['status'] == 'sourced' else 'needs-check'
+    lv = level_of(e, 'verified' if e['status'] == 'sourced' else 'needs-check')
     conf['eng:e-' + e['key']] = {'level': lv, 'fields': {'from': {'level': lv, 'used': s, 'claims': claims(e['citations'][:1], s)}, 'to': {'level': lv, 'used': t, 'claims': claims(e['citations'][:1], t)}}}
 
 # ---------- 史料圖層：前線（R4）、據點（R6） ----------
@@ -200,14 +209,14 @@ for f in R4L:
     if len(path) < 2: continue
     i = ldates.index(f['date']); to = plus(ldates[i + 1], -1) if i + 1 < len(ldates) else plus(RES['phases'][0]['start'], -1)
     lines.append({'phase': ph_of(f['date']), 'from': f['date'], 'to': max(to, f['date']), 'name': f.get('label'), 'side': f.get('side'), 'kind': 'front', 'vertices': [n for n, ll in pts if ll], 'path': path,
-                  'precision': f.get('precisionNote'), 'verified': True, 'level': 'verified', 'basis': 'text', 'refs': refs(f['citations']), 'note': f.get('lineNote'),
+                  'precision': f.get('precisionNote'), 'verified': False, 'level': 'estimate', 'basis': 'text', 'refs': refs(f['citations']), 'note': f.get('lineNote'),
                   **({'missing_vertices': [n for n, ll in pts if not ll]} if any(not ll for _, ll in pts) else {})})
 sites = {}
 for s in R6:
     ll = lonlat(s.get('place'), 'r6')
     if not ll: continue
     st = sites.setdefault(s['placeAsInSource'], {'name': s['placeAsInSource'], 'lonlat': ll, 'coord_ref': None, 'changes': []})
-    st['changes'].append({'phase': ph_of(s['date']) if s.get('date') else None, 'date': s.get('date'), 'to': s.get('controllerAfter'), 'event': s.get('event'), 'verified': s['status'] == 'sourced' and bool(s.get('controllerAfter')),
+    st['changes'].append({'phase': ph_of(s['date']) if s.get('date') else None, 'date': s.get('date'), 'to': s.get('controllerAfter'), 'event': s.get('event'), 'verified': level_of(s, 'verified' if s['status'] == 'sourced' else 'needs-check') == 'verified' and bool(s.get('controllerAfter')),
                           'refs': refs(s['citations']), **({'note': s['timeNote']} if s.get('timeNote') else {})})
 for st in sites.values(): st['changes'].sort(key=lambda c: c['date'] or '')
 for i, l in enumerate(lines): conf[f'src-line:{i}'] = {'level': l['level'], 'fields': {'path': {'level': l['level'], 'used': None, 'claims': []}}}
@@ -235,7 +244,7 @@ W('sourced.json', {'meta': {'from': REL, 'schema': 'battle-data', 'campaign_key'
                    'phases': phases, 'arrows': [], 'lines': lines, 'sites': list(sites.values()), 'sources': src_out})
 summ = collections.Counter(v['level'] for v in conf.values())
 W('confidence.json', {'meta': {'generated_by': 'tools/import_battle_data.py', 'tiers': {'1': '官方紀錄／戰史', '2': '同行審查研究', '3': '專書', '4': '百科（線索）', '5': '無出處'},
-                               'note': '等級直接取自來源檔的 status：sourced→已查證、partial→待查證、讀圖→推估。「已查證」只代表引文逐字核對過，多數只有一個來源。'},
+                               'note': '等級取自主線依 docs/source-rules.md 判定的可信程度：已查證＝一筆 A 或兩個獨立家族的 B；只有對手方說法或不到門檻＝待查證；讀圖＝推估。'},
                       'summary': {k: summ.get(k, 0) for k in ['verified', 'needs-check', 'estimate', 'conflict']}, 'items': conf})
 nmark = len(marks); npos_mark = sum(1 for p in positions if p['unit_id'] in marks)
 rep = f"""# 匯入報告：{bid}

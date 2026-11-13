@@ -29,7 +29,11 @@ PRECS = {"day", "month", "year"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 QID_RE = re.compile(r"^Q[1-9]\d*$")
 FIELDS = ["name", "nameZh", "birthDate", "deathDate", "birthPlace", "party", "summary"]
-BANNED_HOSTS = ("wikidata.org", "wikipedia.org", "baidu.com")
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "data" / "source-policy.json").exists()) / "tools"))
+import source_policy as _sp  # 全專案唯一的來源政策：data/source-policy.json
+BANNED_HOSTS = _sp.BANNED_HOSTS
 
 
 def api_key():

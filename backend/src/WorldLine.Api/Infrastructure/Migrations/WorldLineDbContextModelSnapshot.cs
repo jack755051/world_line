@@ -843,6 +843,14 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("retraction_reason");
 
+                    b.Property<Guid?>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.Property<string>("SourceLocator")
+                        .HasColumnType("text")
+                        .HasColumnName("source_locator");
+
                     b.Property<string>("SourceRef")
                         .HasColumnType("text")
                         .HasColumnName("source_ref");
@@ -862,6 +870,9 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.HasIndex("RegimeId")
                         .HasDatabaseName("ix_capital_records_regime_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_capital_records_source_id");
 
                     b.HasIndex("ValidPeriod")
                         .HasDatabaseName("ix_capital_records_valid_period");
@@ -2763,6 +2774,14 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("character varying(80)")
                         .HasColumnName("slug");
 
+                    b.Property<Guid?>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.Property<string>("SourceLocator")
+                        .HasColumnType("text")
+                        .HasColumnName("source_locator");
+
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -2787,6 +2806,9 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     b.HasIndex("Slug")
                         .IsUnique()
                         .HasDatabaseName("ix_regimes_slug");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_regimes_source_id");
 
                     b.ToTable("regimes", (string)null);
                 });
@@ -3098,6 +3120,20 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("now()");
 
+                    b.Property<string>("Family")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("family");
+
+                    b.Property<string>("Grade")
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("GradeBasis")
+                        .HasColumnType("text")
+                        .HasColumnName("grade_basis");
+
                     b.Property<string>("LicenseCode")
                         .HasMaxLength(32)
                         .HasColumnType("character varying(32)")
@@ -3157,6 +3193,10 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.ToTable("sources", null, t =>
                         {
+                            t.HasCheckConstraint("ck_sources_grade", "grade IS NULL OR grade IN ('A', 'B', 'C', 'X')");
+
+                            t.HasCheckConstraint("ck_sources_grade_basis", "grade IS NULL OR grade_basis IS NOT NULL");
+
                             t.HasCheckConstraint("ck_sources_publisher_not_blank", "btrim(publisher) <> ''");
 
                             t.HasCheckConstraint("ck_sources_source_kind", "source_kind IN ('map', 'atlas_map', 'treaty', 'official_record', 'trial_record', 'peer_reviewed', 'official_history', 'dataset', 'encyclopedia', 'official_website', 'archive')");
@@ -3490,6 +3530,12 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_capital_records_regimes_regime_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_capital_records_sources_source_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.ConflictRecord", b =>
@@ -3851,6 +3897,15 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_reference_land_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.Regime", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_regimes_sources_source_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.RegimeAlignment", b =>

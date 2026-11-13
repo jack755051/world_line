@@ -1476,6 +1476,9 @@ export interface components {
             localCopyPath?: null | string;
             catalogId?: null | string;
             note?: null | string;
+            grade?: null | string;
+            gradeBasis?: null | string;
+            family?: null | string;
         };
         CreateSovereigntyRecordRequest: {
             /** Format: uuid */
@@ -1892,6 +1895,9 @@ export interface components {
             localCopyPath: null | string;
             catalogId: null | string;
             note: null | string;
+            grade?: null | string;
+            gradeBasis?: null | string;
+            family?: null | string;
         };
         SovereigntyEventRefDto: {
             /** Format: uuid */

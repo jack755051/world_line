@@ -16,12 +16,14 @@ public sealed record IntervalDto(DateOnly Start, DateOnly End, DatePeriodDto? St
 public sealed record CreateSourceRequest(
     string? SourceKind, string? Title, string? Publisher, string? Authors = null, string? PublishedText = null,
     string? LicenseCode = null, string? LicenseEvidenceUrl = null, string? Url = null, string? ArchiveUrl = null,
-    string? LocalCopyPath = null, string? CatalogId = null, string? Note = null);
+    string? LocalCopyPath = null, string? CatalogId = null, string? Note = null,
+    string? Grade = null, string? GradeBasis = null, string? Family = null);
 
+/// <summary>grade：來源等級 A｜B｜C｜X，null＝尚未評等；family：來源家族，同家族只算一個獨立來源（docs/source-rules.md）。</summary>
 public sealed record SourceDto(
     Guid Id, string SourceKind, string Title, string Publisher, string? Authors, string? PublishedText,
     string? LicenseCode, string? LicenseEvidenceUrl, string? Url, string? ArchiveUrl, string? LocalCopyPath,
-    string? CatalogId, string? Note);
+    string? CatalogId, string? Note, string? Grade = null, string? GradeBasis = null, string? Family = null);
 
 // ───────────── 政權（I2、I4、R4） ─────────────
 public sealed record RegimeNameInput(

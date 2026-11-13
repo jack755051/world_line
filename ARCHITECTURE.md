@@ -1869,6 +1869,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 **19.4.2 來源等級（G6，沿用 T1）**
 
 > **2026-11-13 更新（Tai「D1–D6 都照建議」）**：來源等級、可信程度與寫入條件全專案以 `docs/source-rules.md` 為準。與本節及 §7、§14.6、§16.3.1、§19.4.1 舊條文不同之處：有 A／B 出處即可以待查證寫入（不再限已查證）；取消「單一來源降一級」；已查證＝一筆 A 或兩個獨立家族的 B，對手方的 A 不能單獨成立；等級定義適用所有資料種類。舊條文原文保留，不逐條改寫。
+> 資料表（migration `20261113143751_SourceRulesFields`，只新增）：`sources.grade`／`grade_basis`／`family`；`regimes`、`capital_records` 加 `source_id`／`source_locator`；檢視 `v_record_confidence(record_kind, record_id, confidence, basis)` 由出處推導可信程度，不回頭改既有列（I5）。禁用網域以 `data/source-policy.json` 為唯一清單，`BioSourcePolicy.ExcludedHosts` 由測試保證與它一致。
 - A：官方檔案（含軍方戰史、作戰日誌）、國家級傳記辭典、權威人名檔（BnF、GND、ÖBL、SBL…）。
 - B：學術專書、具名作者的百科條目。
 - C／X：不進庫，只能留在 seed 或 gap 的 `candidate_citations`。

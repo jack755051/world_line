@@ -16,11 +16,15 @@ def host(url):
         return ""
 
 
-def banned(url):
-    """回傳命中的禁用網域（含子網域）或網域中的禁用字段；沒命中回傳 None。"""
+FILE_HOSTS = tuple(POLICY["fileHostsNotSources"])
+
+
+def banned(url, as_fact_source=True):
+    """回傳命中的禁用網域（含子網域）或網域中的禁用字段；沒命中回傳 None。
+    as_fact_source=False：只是檔案存放處（地圖、照片掃描）時，不擋 fileHostsNotSources。"""
     h = host(url or "")
     if not h: return None
-    for b in BANNED_HOSTS:
+    for b in BANNED_HOSTS + (FILE_HOSTS if as_fact_source else ()):
         if h == b or h.endswith("." + b): return b
     for label in h.split("."):
         if label in POLICY["bannedHostLabels"]: return label

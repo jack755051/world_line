@@ -35,27 +35,24 @@ import hashlib, json, re, sys, unicodedata
 from pathlib import Path
 from urllib.parse import urlparse
 
-EXCLUDED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "baidu.com", "enciclopediadelecuador.com")
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "data" / "source-policy.json").exists()) / "tools"))
+import source_policy as _sp  # 全專案唯一的來源政策：data/source-policy.json
+_DATED = _sp.POLICY["bannedSince"]
+# 後來才禁用的網域由 DATED_BANNED_HOSTS 依生效時間處理，所以不放進一律擋的清單
+EXCLUDED_HOSTS = tuple(h for h in _sp.BANNED_HOSTS if h not in _DATED) + _sp.FILE_HOSTS
 # 具名 C 級（Tai 本人 2026-11-12 06:34「將領生平來源放寬到具名 C 級」）：只對將領生平檔開放
 # （頂層 gradePolicy == "ABC-2026-11-12"，或 rawDir 含 "/generals-"）；B3 其他檔仍只收 A／B。
 # C 級來源須有具名作者或具名出版機構，且網域不得是論壇／部落格／維基類／AI 內容農場。
 GRADE_C_POLICY = "ABC-2026-11-12"
-C_BANNED_HOSTS = ("wikipedia.org", "wikidata.org", "wikimedia.org", "wikiwand.com", "wikia.com", "fandom.com",
-                  "everybodywiki.com", "baidu.com", "blogspot.com", "wordpress.com", "medium.com", "substack.com",
-                  "tumblr.com", "livejournal.com", "reddit.com", "quora.com", "stackexchange.com", "zhihu.com",
-                  "tieba.baidu.com", "ptt.cc", "mobile01.com", "pixnet.net", "weebly.com", "wixsite.com",
-                  "sites.google.com", "hubpages.com", "ancestry.com", "findagrave.com", "geni.com",
-                  "fold3.com", "historynet.com/forum", "axishistory.com", "ww2talk.com", "feldgrau.net")
+C_BANNED_HOSTS = EXCLUDED_HOSTS + tuple(_sp.POLICY["bannedHostsForC"])
 C_BANNED_HOST_HINTS = ("forum", "bbs.", "blog.", ".blog", "wiki.")
 # 主管 2026-11-12 22:08（套用 Tai 既有「個人網站不收」）：generals.dk 禁用。只擋本規則生效後新增的來源——
 # apply_refill.py 對新增來源蓋 addedAt＝該補跑批開跑時間；addedAt ≥ 生效時間且網域命中 → 錯誤。既有已 commit 的引用（無 addedAt 或較早）不擋，
 # 由 bios/refill/final_refill_report.py 列為「待替換」。
-DATED_BANNED_HOSTS = {"generals.dk": "2026-11-12T22:10:05+08:00"}
-# 主管 2026-11-13 11:31：寫庫時判為個人／無署名的 10 個網域（9 個根網域）比照 generals.dk 禁用（domain-policy-additions-20261113.json）
-_BAN_1311 = "2026-11-13T11:31:00+08:00"
-DATED_BANNED_HOSTS.update({h: _BAN_1311 for h in ("historyofwar.org", "rafweb.org", "beachesofnormandy.com", "worldwar2.ro", "lonesentry.com",
-                                                  "britishmilitaryhistory.co.uk", "erenow.org", "victoriacrossonline.co.uk", "liquisearch.com")})
-BAN_DECISION = {h: ("主管 2026-11-12 22:08" if v.startswith("2026-11-12") else "主管 2026-11-13 11:31") for h, v in DATED_BANNED_HOSTS.items()}
+DATED_BANNED_HOSTS = {h: v["since"] for h, v in _DATED.items()}
+BAN_DECISION = {h: v["decision"] for h, v in _DATED.items()}
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
 ALIGNED_POSITION_KINDS = ROLE_KINDS | {"police", "military_education"}   # T14 文件 §4 邊界個案
 ROLE_LAYER_KINDS = {"head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister", "military_commander",

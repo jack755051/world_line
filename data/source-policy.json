@@ -2,21 +2,153 @@
  "version": "source-2026-11-13",
  "rules": "docs/source-rules.md",
  "note": "全專案唯一的來源政策資料檔。檢查程式一律讀這一份，不要各自維護清單。改這份檔案前先改 docs/source-rules.md。",
- "grades": ["A", "B", "C", "X"],
- "bannedHosts": [
-  "wikipedia.org", "wikidata.org", "wikimedia.org", "baidu.com", "enciclopediadelecuador.com",
-  "generals.dk", "historyofwar.org", "rafweb.org", "worldwar2.ro", "lonesentry.com", "britishmilitaryhistory.co.uk",
-  "beachesofnormandy.com", "erenow.org", "victoriacrossonline.co.uk", "liquisearch.com"
+ "grades": [
+  "A",
+  "B",
+  "C",
+  "X"
  ],
- "bannedHostLabels": ["forum", "forums", "bbs", "blog", "blogs", "wiki", "fandom", "blogspot", "wordpress"],
+ "bannedHosts": [
+  "wikipedia.org",
+  "wikidata.org",
+  "baidu.com",
+  "enciclopediadelecuador.com",
+  "generals.dk",
+  "historyofwar.org",
+  "rafweb.org",
+  "worldwar2.ro",
+  "lonesentry.com",
+  "britishmilitaryhistory.co.uk",
+  "beachesofnormandy.com",
+  "erenow.org",
+  "victoriacrossonline.co.uk",
+  "liquisearch.com"
+ ],
+ "fileHostsNotSources": [
+  "wikimedia.org"
+ ],
+ "fileHostsNotSourcesNote": "只能當檔案存放處（公有領域地圖、照片的掃描檔，出版者另外登記），不能當事實的出處。",
+ "bannedHostLabels": [
+  "forum",
+  "forums",
+  "bbs",
+  "blog",
+  "blogs",
+  "wiki",
+  "fandom",
+  "blogspot",
+  "wordpress"
+ ],
  "bannedHostLabelsNote": "網域中有一段剛好等於這些字樣就不收（例：forum.example.com、x.fandom.com）；austria-forum.org 這類不受影響。",
- "bannedPublishers": ["自製", "自制", "self-made", "own work"],
- "geometryLicenses": ["cc0", "cc_by", "cc_by_sa", "pd_expired", "us_federal_pd"],
- "datasetSourceKinds": ["dataset"],
- "verified": {"oneA": true, "independentBFamilies": 2, "opposingSideAloneNeverVerified": true},
+ "bannedHostsForC": [
+  "wikiwand.com",
+  "wikia.com",
+  "fandom.com",
+  "everybodywiki.com",
+  "blogspot.com",
+  "wordpress.com",
+  "medium.com",
+  "substack.com",
+  "tumblr.com",
+  "livejournal.com",
+  "reddit.com",
+  "quora.com",
+  "stackexchange.com",
+  "zhihu.com",
+  "tieba.baidu.com",
+  "ptt.cc",
+  "mobile01.com",
+  "pixnet.net",
+  "weebly.com",
+  "wixsite.com",
+  "sites.google.com",
+  "hubpages.com",
+  "ancestry.com",
+  "findagrave.com",
+  "geni.com",
+  "fold3.com",
+  "historynet.com/forum",
+  "axishistory.com",
+  "ww2talk.com",
+  "feldgrau.net"
+ ],
+ "bannedHostsForCNote": "C 級來源另外不收的網域（論壇、部落格平台、族譜站等）。A/B 來源本來就不會落在這些網域。",
+ "bannedSince": {
+  "generals.dk": {
+   "since": "2026-11-12T22:10:05+08:00",
+   "decision": "主管 2026-11-12 22:08"
+  },
+  "historyofwar.org": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "rafweb.org": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "beachesofnormandy.com": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "worldwar2.ro": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "lonesentry.com": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "britishmilitaryhistory.co.uk": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "erenow.org": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "victoriacrossonline.co.uk": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  },
+  "liquisearch.com": {
+   "since": "2026-11-13T11:31:00+08:00",
+   "decision": "主管 2026-11-13 11:31"
+  }
+ },
+ "bannedSinceNote": "這些網域是後來才禁用的。生效前已收的引文不當成錯誤擋下，但要列為待替換；生效後新增的一律擋。",
+ "bannedPublishers": [
+  "自製",
+  "自制",
+  "self-made",
+  "own work"
+ ],
+ "geometryLicenses": [
+  "cc0",
+  "cc_by",
+  "cc_by_sa",
+  "pd_expired",
+  "us_federal_pd"
+ ],
+ "datasetSourceKinds": [
+  "dataset"
+ ],
+ "verified": {
+  "oneA": true,
+  "independentBFamilies": 2,
+  "opposingSideAloneNeverVerified": true
+ },
  "quoteMaxChars": 80,
  "minGrade": {
-  "sovereignty": "B", "control": "B", "regime": "B", "event": "B", "capital": "B", "alignment": "A",
-  "leader_record": "B", "bio": "B", "bio_general": "C", "battle": "B", "admin_division": "B"
+  "sovereignty": "B",
+  "control": "B",
+  "regime": "B",
+  "event": "B",
+  "capital": "B",
+  "alignment": "A",
+  "leader_record": "B",
+  "bio": "B",
+  "bio_general": "C",
+  "battle": "B",
+  "admin_division": "B"
  }
 }

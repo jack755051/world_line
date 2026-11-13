@@ -3414,6 +3414,78 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecordLink", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<Guid?>("ContinuesRecordId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("continues_record_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("kind");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text")
+                        .HasColumnName("note");
+
+                    b.Property<Guid>("RecordId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("record_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<double?>("ShapeChangeRatio")
+                        .HasColumnType("double precision")
+                        .HasColumnName("shape_change_ratio");
+
+                    b.Property<Guid?>("StartEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("start_event_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_sovereignty_record_links");
+
+                    b.HasIndex("ContinuesRecordId")
+                        .HasDatabaseName("ix_sovereignty_record_links_continues_record_id");
+
+                    b.HasIndex("RecordId")
+                        .IsUnique()
+                        .HasDatabaseName("ux_sovereignty_record_links_live")
+                        .HasFilter("retracted_at IS NULL");
+
+                    b.HasIndex("StartEventId")
+                        .HasDatabaseName("ix_sovereignty_record_links_start_event_id");
+
+                    b.ToTable("sovereignty_record_links", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_sovereignty_record_links_continuation", "kind <> 'continuation' OR continues_record_id IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_sovereignty_record_links_kind", "kind IN ('baseline', 'continuation', 'minor_revision', 'change', 'new')");
+
+                            t.HasCheckConstraint("ck_sovereignty_record_links_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.Theater", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4075,6 +4147,28 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasForeignKey("StartEventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_sovereignty_records_historical_events_start_event_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecordLink", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.SovereigntyRecord", null)
+                        .WithMany()
+                        .HasForeignKey("ContinuesRecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_sovereignty_record_links_sovereignty_records_continues_reco");
+
+                    b.HasOne("WorldLine.Api.Domain.SovereigntyRecord", null)
+                        .WithMany()
+                        .HasForeignKey("RecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_sovereignty_record_links_sovereignty_records_record_id");
+
+                    b.HasOne("WorldLine.Api.Domain.HistoricalEvent", null)
+                        .WithMany()
+                        .HasForeignKey("StartEventId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_sovereignty_record_links_historical_events_start_event_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.ControlRecord", b =>

@@ -108,3 +108,30 @@ python3 -I tools/db/apply_source_grades.py data/seed/source-grading/events-60.cs
 | S58 | Nazi Conspiracy and Aggression, Volume VIII（Office of United States Ch | 1 | 1 | 0 | 2 | — |
 | S59 | Documents on German Foreign Policy 1918–1945, Series D (1937–1945), Vo | 1 | 1 | 0 | 1 | us-frus |
 | S60 | 北方領土問題の経緯（領土問題の発生まで） | 1 | 1 | 0 | 6 | — |
+
+# 沒有起始事件的國界
+
+日期：2026-11-13。開發庫裡有 550 筆主權紀錄沒有起始事件。先用資料本身判定每一筆的來歷（`tools/db/classify_sovereignty_origin.py`，不查資料、不推測事件）：
+
+| 來歷 | 筆數 | 意思 | 要做什麼 |
+|---|---|---|---|
+| 期初既有 | 165 | 起始日在 1908-01-01 或更早 | 不需要事件。要的是「1908 年當時疆界」的出處，目前沒有地方可以記，仍是待查證 |
+| 接續、形狀相同 | 156 | 同一政權的前一筆在同一天結束，形狀一樣，只是資料分段 | 不需要事件，可信程度自動沿用前一筆 |
+| 疆界有變動 | 88 | 接續前一筆，形狀差 2% 以上 | 需要有出處的事件 |
+| 新出現 | 93 | 同一政權沒有前一筆 | 需要有出處的事件（成立、獨立、佔領、改制） |
+| 細微差異 | 48 | 接續前一筆，形狀差 0.1%–2% | 要人看：是資料版本差異，還是真的小幅調整 |
+
+後三類共 229 筆列在 `borders-without-event.csv`，每筆附同一天資料庫裡已有的事件當提示。
+
+- 其中 12 筆同一天剛好有該政權參與的事件，已由 Claude 判定並連上（備註欄有標，待複核）。
+- 其餘 217 筆：156 筆同一天沒有任何事件，61 筆同一天有別的事件但沒有列這個政權為參與方。
+- 很多起始日是 1 月 1 日或資料批次的接縫（例：1937-07-07、1918-11-12），那是資料集只記到年、或批次切換造成的，不一定是真的變動日。遇到這種，判定填「不是真的變動」並在備註寫明。
+
+填法：判定欄三選一。要連到既有事件就填它的 event_id；需要新事件的，先照一般流程建立事件（附引文與等級），拿到 event_id 再填。
+
+```
+python3 -I tools/db/apply_border_events.py data/seed/source-grading/borders-without-event.csv          # 預演
+python3 -I tools/db/apply_border_events.py data/seed/source-grading/borders-without-event.csv --apply
+```
+
+注意：來歷與「國界 → 事件」的連結只存在開發庫（表 `sovereignty_record_links`）。重建資料庫後，來歷要重跑判定程式；清單裡的 event_id 會跟著重建而改變，要重新對應。

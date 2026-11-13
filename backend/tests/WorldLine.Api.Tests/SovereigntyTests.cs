@@ -141,6 +141,21 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         var bp = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");
         Assert.Equal("needs_check", bp.GetProperty("confidence").GetString());
         Assert.Equal("dataset_only", bp.GetProperty("confidenceBasis").GetString());
+        // 來歷（sovereignty_record_links）：接續前一筆、形狀相同的紀錄沿用前一筆的可信程度；baseline 另有自己的原因
+        var first = await k.Id(await Post(k, Body(hu, ohm, "1922-01-01", "1922-06-01", startEvent: await Event(k, "1922-01-01", C(a)))));
+        var second = await k.Id(await Post(k, Body(hu, ohm, "1922-06-01", "1922-09-01")));
+        var third = await k.Id(await Post(k, Body(hu, ohm, "1922-09-01", "1923-01-01")));
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand($"INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id) VALUES ('{second}', 'continuation', '{first}'), ('{third}', 'continuation', '{second}'), ('{bare}', 'baseline', NULL)", c);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        var p3 = (await FeatureOn(k, "1922-10-01", third))!.Value.GetProperty("properties");
+        Assert.Equal("verified", p3.GetProperty("confidence").GetString());
+        Assert.Equal("start_event_one_a", p3.GetProperty("confidenceBasis").GetString());
+        Assert.Equal("baseline", (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties").GetProperty("confidenceBasis").GetString());
+
         var evA = await Event(k, "1921-07-01", C(a));
         var good = await k.Id(await Post(k, Body(hu, ohm, "1921-07-01", "1921-08-01", startEvent: evA)));
         Assert.Equal("verified", (await FeatureOn(k, "1921-07-01", good))!.Value.GetProperty("properties").GetProperty("confidence").GetString());

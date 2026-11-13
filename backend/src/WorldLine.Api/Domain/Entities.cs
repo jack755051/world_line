@@ -296,6 +296,27 @@ public sealed class SovereigntyRecord
 }
 
 /// <summary>
+/// 主權紀錄的來歷（docs/source-rules.md §5、D5）。sovereignty_records 寫入後不可改，所以「這一筆是怎麼來的」另存一表：
+/// kind＝baseline（第一階段起點時既有）｜continuation（接續同政權的前一筆、形狀相同，只是資料分段）｜
+/// minor_revision（接續前一筆、形狀只有細微差異）｜change（接續前一筆、形狀有變）｜new（同政權沒有前一筆）。
+/// continuation 的可信程度沿用前一筆；也可事後補上起始事件（StartEventId）。更正用「撤回＋重寫」（I5）。
+/// </summary>
+public sealed class SovereigntyRecordLink
+{
+    public Guid Id { get; set; }
+    public Guid RecordId { get; set; }
+    public string Kind { get; set; } = "";
+    public Guid? ContinuesRecordId { get; set; }
+    public Guid? StartEventId { get; set; }
+    /// <summary>與前一筆的形狀差（對稱差面積／前一筆面積）；沒有前一筆為 null。</summary>
+    public double? ShapeChangeRatio { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
 /// 佔領歸屬（occupation_attributions）：某政權（非主權的佔領區、併入區）在某期間由哪個政權佔領、控制程度為何。
 /// 依政權＋期間（不綁單筆主權紀錄，國界修正撤回再新增時不必重寫）；同一被佔領政權的有效紀錄期間不可重疊（EXCLUDE）。
 /// basis_event_id＝有出處的事件；沒有事件或事件沒有引用＝「待查證」。共同佔領缺分區幾何時記主要佔領方並 co_occupied＝true、在 note 註記。

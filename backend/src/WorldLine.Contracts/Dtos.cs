@@ -248,7 +248,8 @@ public sealed record GeometryProvenanceDto(
 /// <summary>
 /// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
 /// confidence：這筆國界的可信程度 verified｜needs_check（docs/source-rules.md §5，取自 v_record_confidence）；
-/// confidenceBasis：依據，dataset_only＝只有資料集、沒有起始事件；start_event_*＝依起始事件的出處。
+/// confidenceBasis：依據。start_event_*＝依起始事件的出處（接續前一筆、形狀相同的紀錄沿用前一筆的）；baseline＝1908 起點時既有；
+/// new_no_event＝新出現但沒有事件；change_no_event＝疆界有變但沒有事件；minor_revision_no_event＝形狀細微差異未確認；dataset_only＝尚未判定來歷。
 /// </summary>
 public sealed record SovereigntyFeatureProperties(
     Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,

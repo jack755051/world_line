@@ -105,6 +105,7 @@
 | D2、D3 | 已實作：`tools/battles/crosscheck.py`、`write_battle_sql.py`；來源立場登記在各戰役 `battle.config.json` 的 `sourceFamilies.sides`。開發庫裡敦克爾克、波蘭的引文等級已用「撤回＋重寫」更正（`tools/battles/fix_citation_grades.py`） |
 | D4 | 來源登記新增 `grade`、`grade_basis`、`family` 三欄（migration `SourceRulesFields`）。開發庫 2,297 個來源中 1,132 個已回填（只沿用既有引文的評等與條約原文，不依種類猜），其餘待評 |
 | D4（引文層級） | 事件引文的等級記在每一筆引文上（表 `event_citation_grades`，migration `EventCitationGrades`），優先於整冊的 `sources.grade`；不可修改，更正用撤回＋重寫。待評清單在 `data/seed/source-grading/`，套用程式 `tools/db/apply_source_grades.py` |
+| D5（國界的來歷） | 表 `sovereignty_record_links` 記每筆主權紀錄的來歷（期初既有／接續且形狀相同／有變動／新出現／細微差異），也可事後補上起始事件；接續且形狀相同的沿用前一筆的可信程度。判定程式 `tools/db/classify_sovereignty_origin.py`，待查清單 `data/seed/source-grading/borders-without-event.csv` |
 | D5 | 檢視 `v_record_confidence` 依出處即時推導每筆紀錄的可信程度（已查證／待查證／查無）。多數資料表禁止修改既有列（I5），所以可信程度不存成欄位 |
 | D6 | 政權、首都新增 `source_id`、`source_locator`。既有的自由文字出處還在，要逐筆「撤回＋重寫」才會接上來源登記 |
 

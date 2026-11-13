@@ -23,6 +23,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
     public DbSet<EventCitationGrade> EventCitationGrades => Set<EventCitationGrade>();
+    public DbSet<SovereigntyRecordLink> SovereigntyRecordLinks => Set<SovereigntyRecordLink>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
@@ -291,6 +292,24 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasKey(x => new { x.EventId, x.SourceId, x.Locator });
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // 主權紀錄的來歷（docs/source-rules.md D5）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyRecordLink>(e =>
+        {
+            e.ToTable("sovereignty_record_links", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_record_links_kind", "kind IN ('baseline', 'continuation', 'minor_revision', 'change', 'new')");
+                t.HasCheckConstraint("ck_sovereignty_record_links_continuation", "kind <> 'continuation' OR continues_record_id IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_record_links_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Kind).HasMaxLength(16);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.ContinuesRecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RecordId).IsUnique().HasFilter("retracted_at IS NULL").HasDatabaseName("ux_sovereignty_record_links_live");
         });
 
         // 事件引文的等級（docs/source-rules.md §2）。guard trigger 在 migration 以 SQL 建立。

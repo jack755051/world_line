@@ -22,7 +22,7 @@ import { ALLIED_COLOR, AXIS_COLOR, CONTESTED_COLOR, SOVIET_COLOR } from '../map/
               @if (c.end_verified === false) { <span class="text-wl-error">（結束日待考證）</span> }</div>
           }
         </div>
-        <button type="button" data-testid="campaign-close" class="flex size-8 flex-none items-center justify-center rounded hover:bg-wl-surface-container" aria-label="關閉戰役模式（Esc）" title="關閉（Esc）" (click)="closed.emit()">✕</button>
+        <button type="button" data-testid="campaign-close" class="flex size-8 flex-none items-center justify-center rounded hover:bg-wl-surface-container" [attr.aria-label]="closeLabel()" [title]="closeLabel()" (click)="closed.emit()">✕</button>
       </header>
       @if (status() === 'loading') {
         <p data-testid="campaign-loading" class="px-4 py-6 wl-text2 text-wl-on-surface-variant">載入戰役資料…</p>
@@ -34,10 +34,15 @@ import { ALLIED_COLOR, AXIS_COLOR, CONTESTED_COLOR, SOVIET_COLOR } from '../map/
             <span class="inline-flex items-center gap-1"><i class="inline-block size-3 rounded-sm" [style.background]="b.color"></i>{{ b.names }}</span>
           }
         </div>
-        <div class="flex flex-none items-center gap-1 px-4 pt-3" role="tablist" aria-label="階段">
+        @if (sourceKind(); as k) {
+          <div data-testid="campaign-source-kind" class="flex-none px-4 pt-2 wl-text2" [attr.data-source]="k"
+            [class.text-wl-on-surface-variant]="k === 'api'" [class.text-wl-error]="k === 'static'">
+            資料來源：{{ k === 'api' ? 'API（/api/v1/campaigns）' : '靜態 JSON（API 讀不到時的備援）' }}</div>
+        }
+        <div class="flex flex-none items-center gap-1 overflow-x-auto px-4 pt-3" role="tablist" aria-label="階段">
           @for (p of c.phases; track p.seq) {
             <button type="button" role="tab" [attr.data-testid]="'campaign-phase-' + p.seq" [attr.aria-selected]="p.seq === phase()"
-              class="h-7 min-w-9 rounded-full border px-2 wl-text2 font-semibold"
+              class="min-w-9 flex-none rounded-full border px-2 wl-text2 font-semibold" [class.h-7]="!touch()" [class.h-11]="touch()" [class.min-w-11]="touch()"
               [class.bg-wl-primary]="p.seq === phase()" [class.text-wl-on-primary]="p.seq === phase()" [class.border-wl-primary]="p.seq === phase()"
               [class.border-wl-outline-variant]="p.seq !== phase()" [title]="p.name_zh" (click)="go.emit(p.seq)">P{{ p.seq }}</button>
           }
@@ -81,6 +86,10 @@ export class CampaignCard {
   readonly campaign = input<Campaign | null>(null);
   readonly status = input<CampaignStatus>('idle');
   readonly phase = input(1);
+  /** 獨立頁：✕ 的說明改成「返回…」；手機膠囊至少 44px 高（§19.2.6）；資料來源標示（§19.5 C1）。 */
+  readonly closeLabel = input('關閉戰役模式（Esc）');
+  readonly touch = input(false);
+  readonly sourceKind = input<'api' | 'static' | null>(null);
   readonly closed = output<void>();
   readonly play = output<void>();
   readonly prev = output<void>();

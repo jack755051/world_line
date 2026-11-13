@@ -99,6 +99,7 @@ describe('戰役功能開關（production 關閉）', () => {
       expect(svc.index().length).toBe(enabled ? 1 : 0);
       expect(svc.status()).toBe(enabled ? 'ready' : 'idle');
       expect(fetchMock).toHaveBeenCalledTimes(enabled ? 3 : 0); // index＋API（無 data）＋靜態 fallback
+      if (enabled) expect(svc.source()).toBe('static');
       svc.close();
     });
   }
@@ -163,5 +164,32 @@ describe('戰役資料來源：API 優先、靜態檔 fallback', () => {
     await svc.open('nope');
     expect(svc.status()).toBe('error');
     expect(svc.origin()).toBeNull();
+  });
+});
+
+describe('CampaignPlayer 播放時鐘（§19.2.4：GSAP timeline 只追隨狀態）', () => {
+  /** 假時鐘：手動 tick，記錄呼叫，驗證 player 只透過 start／pause／resume／stop 驅動它。 */
+  const fake = () => {
+    const calls: string[] = [];
+    let tick: () => void = () => undefined;
+    const factory = (_ms: number, t: () => void) => { tick = t; return { start: () => calls.push('start'), pause: () => calls.push('pause'), resume: () => calls.push('resume'), stop: () => calls.push('stop') }; };
+    return { calls, factory, tick: () => tick() };
+  };
+  it('暫停後再播放 → resume（接續本階段剩餘時間）；跳轉後再播放 → 重新 start', () => {
+    const c = fake();
+    const p = new CampaignPlayer(4, () => {}, 3000, c.factory);
+    p.play(); expect(c.calls.at(-1)).toBe('start');
+    c.tick(); expect(p.phase).toBe(2);
+    p.pause(); expect(c.calls.at(-1)).toBe('pause');
+    p.play(); expect(c.calls.at(-1)).toBe('resume');
+    p.pause(); p.next(); expect(p.phase).toBe(3);
+    p.play(); expect(c.calls.at(-1)).toBe('start');
+  });
+  it('播完停在 ended 並停掉時鐘', () => {
+    const c = fake();
+    const p = new CampaignPlayer(2, () => {}, 3000, c.factory);
+    p.play(); c.tick();
+    expect(p.status).toBe('ended');
+    expect(c.calls.at(-1)).toBe('stop');
   });
 });

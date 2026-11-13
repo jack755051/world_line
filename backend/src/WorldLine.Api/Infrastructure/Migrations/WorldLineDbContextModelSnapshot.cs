@@ -1435,7 +1435,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.ToTable("historical_events", null, t =>
                         {
-                            t.HasCheckConstraint("ck_historical_events_kind", "event_kind IN ('war', 'campaign', 'battle', 'treaty', 'armistice', 'surrender', 'political', 'atrocity')");
+                            t.HasCheckConstraint("ck_historical_events_kind", "event_kind IN ('war', 'campaign', 'battle', 'treaty', 'armistice', 'surrender', 'political', 'atrocity', 'operation')");
 
                             t.HasCheckConstraint("ck_historical_events_occurred_bounded", "NOT lower_inf(occurred) AND NOT upper_inf(occurred)");
 

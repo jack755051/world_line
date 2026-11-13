@@ -2,7 +2,7 @@ import { AtlasState, parseAtlasQuery } from './atlas-state';
 
 describe('parseAtlasQuery', () => {
   it('有效日期與語言', () => {
-    expect(parseAtlasQuery({ date: '1940-08-15', lang: 'en' })).toEqual({ date: '1940-08-15', lang: 'en', axis: 'control', invalidDate: false });
+    expect(parseAtlasQuery({ date: '1940-08-15', lang: 'en' })).toEqual({ date: '1940-08-15', lang: 'en', axis: 'control', invalidDate: false, regime: null, tab: null });
   });
 
   it('日期格式錯 → 預設日期並標記（PRD §8.11）', () => {

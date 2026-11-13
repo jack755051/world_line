@@ -191,8 +191,8 @@
         "zh-Hant": "發電機行動",
         "en": "Operation Dynamo"
       },
-      "event_kind": null,
-      "event_kind_note": "待決：historical_events.event_kind 值域（war/campaign/battle/treaty/armistice/surrender/political/atrocity）沒有 operation；考證輸入作「operation（子事件）」。未決前 NULL，不可寫庫。",
+      "event_kind": "operation",
+      "event_kind_note": "Tai 2026-11-11 14:52 決定 event_kind 值域新增 operation（migration BattleEventKindOperation，只寫檔）；考證輸入作「operation（子事件）」。",
       "occurred": {
         "start": "1940-05-26",
         "end": "1940-06-05"
@@ -460,9 +460,8 @@
     "objective": {
       "zh-Hant": "同盟國：守住掩護敦克爾克的橋頭堡，以便自敦克爾克港與海灘撤出部隊；德國：殲滅被圍於敦克爾克以南、東南之敵軍並奪取該地區"
     },
-    "objective_kind": null,
-    "objective_kind_candidate": "place",
-    "objective_kind_note": "分類（place/line/regime）不是史實，由人確認；未決前 NULL，不可寫庫",
+    "objective_kind": "place",
+    "objective_kind_note": "分類（place/line/regime）不是史實；Tai 2026-11-11 14:52 確認填 place",
     "control_change": {
       "zh-Hant": "周界逐步縮小（5/31 夜放棄東段，6/1–6/3 退至 Dunkirk–Furnes 運河線），6/4 上午 9 時殘餘法軍投降，敦克爾克落入德軍控制"
     },
@@ -2919,11 +2918,6 @@
       "target": "unit:arrows",
       "kind": "not_found",
       "note": "箭頭部隊番號未逐字對照出處"
-    },
-    {
-      "target": "subevent:operation-dynamo event_kind",
-      "kind": "note",
-      "note": "event_kind 值域無 operation，待決"
     }
   ],
   "sources": [

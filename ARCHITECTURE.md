@@ -333,7 +333,7 @@ PRD §10 與計畫檔的 M0–M6、S 軌（戰區與全球主權骨架）是另�
 | D4 | 一級行政區資料來源採 OpenHistoricalMap（CC0），已寫進憲法 §10；其餘只對照考證 |
 | D5 | 進度唯一依據是本文件；README「目前狀態」與計畫檔核取方塊同步更新 |
 | D6 | PRD §8.3 依時間軸方案 A 改寫（已改） |
-| D7 | 戰役判定（Tai 2026-11-03 23:53，憲法 §6、Decision 4）：戰役必須同時符合三項：(1) 至少兩方有組織的武裝力量交戰；(2) 目的是奪取、守住或突破某個地點、防線或政權；(3) 有起訖日與交戰地區，且控制範圍或戰線有變動。例：盧溝橋事變、閃擊波蘭、陳橋兵變（軍隊奪權）都算；天安門事件不算，歸「政治事件」。短期戰役（淞滬會戰、敦克爾克）做大比例尺簡報圖：雙方戰線、進攻箭頭、據點，依階段播放（參考 Sudden Strike 簡報圖、liveuamap）；長期戰區拆成多個短期戰役 |
+| D7 | 戰役判定（Tai 2026-11-03 23:53，憲法 §6、Decision 4）：戰役必須同時符合三項：(1) 至少兩方有組織的武裝力量交戰；(2) 目的是奪取、守住或突破某個地點、防線或政權；(3) 有起訖日與交戰地區，且控制範圍或戰線有變動。例：盧溝橋事變、閃擊波蘭、陳橋兵變（軍隊奪權）都算；天安門事件不算，歸「政治事件」。短期戰役（淞滬會戰、敦克爾克）做大比例尺簡報圖，依階段播放（參考 Sudden Strike 簡報圖、liveuamap）；可畫內容與出處規則見憲法 Decision 5、§19.0 G3；長期戰區拆成多個短期戰役 |
 | D14 | 正式站同步（Tai 2026-11-03 23:53）：資料補好並驗收後同步正式站；同步前備份正式庫並 dry-run |
 | D9 | 規則 (c) 的門檻：名字寬度對比該國螢幕寬度（可由面積推算最小顯示縮放）；首都用同一門檻 |
 
@@ -830,7 +830,7 @@ K1、K2、K3、S1、S2。
 - 人物分頁：P1 只放領導人，軍事人物 P2。卡片：姓名／照片／職位／任期／查看詳情。
 - 大型閱讀對話框：桌機大視窗、手機全螢幕，不要求地圖可見；底下 sheet 的選取、分頁、捲動位置保留。
 - 來源一律預設收合、版面穩定；無來源顯示「待補來源」；逐段／逐欄位溯源；無來源內容不標已查證。
-- 戰役保留專屬頁；有來源的相關事件／戰役卡雙向連結；戰術概念不得自動把部隊／人物放上地圖；「參與」與「因果主張」分開記錄。
+- 戰役保留專屬頁；有來源的相關事件／戰役卡雙向連結；戰役頁地圖可畫有 A／B 出處的部隊符號（北約 APP-6，最細到師）、前線、推進／撤退箭頭與交戰標記，內插或尚未校正的自動前線須標「推估」且外觀可區分；主地圖不放部隊符號；不得從無出處的生平或戰術文字自行產生圖形；指揮官與人物位置目前不上地圖；「參與」與「因果主張」分開記錄。（Tai 2026-11-11，見憲法 Decision 5、§19.0 G3）
 - 生平補齊：先盤點缺口、再逐筆查證、只寫已查證，照備份→試跑→寫入。本次不寫。
 
 ### 14.2 現況核對（重點）
@@ -850,7 +850,7 @@ K1、K2、K3、S1、S2。
 - **P1**：人物分頁（領導人）＋人物卡（含有授權的照片）＋閱讀對話框＋逐段／逐欄位來源＋ history 規則（14.4）。**不含任何戰役連結**（Tai 2026-11-07：戰役先不做）。
 - **P2**：軍事人物；人物出現在戰役階段參與清單；（若 Tai 選）獨立戰役路由。
 - **P3+**：行動／影響（因果主張，與參與分表）；`cam` 進 URL。
-- **永不**：由生平或戰術文字自動在地圖畫人或部隊。
+- **永不**：從無出處的生平或戰術文字自行在地圖上畫人或部隊；指揮官與人物位置目前不上地圖。部隊符號、前線、推進／撤退箭頭與交戰標記只在戰役專屬頁、且須符合憲法 Decision 5／§19.0 G3（每筆有 A／B 出處；內插或尚未校正的自動前線標「推估」；最細到師）。主地圖不放部隊符號。
 
 ### 14.4 導覽與 history 規則（提案）
 - 人物對話框用 query `?person=<leader_bios.id>`（merge 進現有參數，push 一筆），同路由不重建頁面。
@@ -1552,7 +1552,7 @@ Tai 原話：「改用 GSAP，移除 motion，其他小題照建議」。下表�
 **已定規則（本稿前提）**
 - G1 戰役是獨立頁。
 - G2 人物和戰役雙向連結，返回時保留原本的日期、鏡頭、階段和捲動位置。
-- G3 戰術概念不自動畫到地圖上。
+- G3 戰役專屬頁可以畫部隊符號（北約 APP-6）、前線、推進／撤退箭頭與交戰標記；每一筆都必須有 A 級或 B 級出處。內插或演算法產生的位置必須標示「推估」，並且在外觀上與有出處的位置可明確區分。前線可先自動生成，再經人工校正；尚未校正並取得出處的前線必須標示「推估」，不得標 verified。部隊顆粒度最細只到師，且只出現在戰役專屬頁；主地圖不放部隊符號或單位圖示。前端不得從無出處的生平或戰術文字自行產生圖形。指揮官與人物的位置目前不上地圖。
 - G4 參與戰役不等於造成結果。
 - G5 `military_commander` 需要有出處的戰役連結，或擔任國家最高軍職。
 - G6 來源等級 A／B 才進庫，C／X 不進庫，不用 Wikipedia。
@@ -1568,7 +1568,7 @@ Tai 原話：「改用 GSAP，移除 motion，其他小題照建議」。下表�
 | §11.1 `events.geom` 等欄位 | **修正命名** | 實際表是 `historical_events`，已經有 `location` 欄位（**現有** `Entities.cs:158`）。本稿不新增 `geom`，精度和狀態欄位另議（§11.1 原案保留） |
 | §12-4 手機戰役模式（戰役列、60vh 地圖、peek／half／full） | 沿用 | 搬到獨立頁 |
 | §13 K1／K2 衝突小卡的「戰役簡報」按鈕 | 沿用 | 按鈕改成導向獨立頁 |
-| §14.1 「戰役保留專屬頁、雙向連結、不自動上圖、參與與因果分開」 | 沿用，並具體化 | 本節 19.2、19.3 |
+| §14.1 「戰役保留專屬頁、雙向連結、戰役頁可畫有出處的部隊符號／前線／進退箭頭／交戰標記、參與與因果分開」 | 沿用，並具體化（G3 已於 2026-11-11 改寫） | 本節 19.2、19.3；憲法 Decision 5 |
 | §14.4 人物對話框 history 規則（`?person=`、只存一格返回目標） | 沿用並擴充 | 返回目標加上階段和捲動位置（19.2.5） |
 | §14.0-3 戰役先不做、16.9 T5 | **已解禁** | Tai 2026-11-11 解禁（Q2），§14.0-3、16.9 T5 已註記 |
 | 16.3.1 `person_event_links`、16.4.3 `person_event_participations` | **已統一** | 表名一律 `person_event_participations`；16.3.1 已註記 `person_event_links` 即此表；角色值域以 19.3.1 為準 |
@@ -1577,7 +1577,7 @@ Tai 原話：「改用 GSAP，移除 motion，其他小題照建議」。下表�
 
 **範圍**
 - 本稿處理：戰役資料模型、獨立頁 UI、人物↔戰役連結、來源規則、分階段計畫。
-- 本稿不處理：長期戰區總覽頁、因果主張 UI、正式站同步（Decision 4 照舊：驗收後備份正式庫並 dry-run）。部隊（`battle_units`）只定資料結構，不做編制圖（OOB）UI。
+- 本稿不處理：長期戰區總覽頁、因果主張 UI、正式站同步（Decision 4 照舊：驗收後備份正式庫並 dry-run）。部隊（`battle_units`）不做編制圖（OOB）UI；單位上圖規則見 G3，位置幾何的落表方式尚未決定（19.1.6）。
 
 ---
 
@@ -1674,10 +1674,10 @@ CREATE INDEX ON battle_map_features (phase_id, feature_kind);
 CREATE TABLE battle_map_feature_citations (...);   -- 16.4.1 統一 citation 欄位
 ```
 
-- SRID 4326。箭頭用 LineString 存，方向由點序決定，前端用 symbol 畫箭頭。
-- `geom_basis`：`source_map`＝依出處地圖描繪（locator 寫圖號），`source_text`＝依文字描述定位，`derived`＝推論。`derived` 不得標 `verified`。
-- **G3 落實**：這張表只收**出處明載**的戰線、進攻方向、據點。部隊番號、指揮官位置、戰術概念（例如「鉗形攻勢」）**不建幾何欄位**，只能出現在階段說明文字裡。前端不從文字或人物資料產生任何圖形。19.2.4 的疆界漸變中間形狀**不入庫**。
-- 輸出：API 回傳 GeoJSON FeatureCollection，依 `feature_kind` 分成 fronts／arrows／sites，跟現行 `wl-campaign-web/0.1` JSON 的 `layers` 結構相容。日後可改成 PMTiles（§11 原註）。
+- SRID 4326。箭頭用 LineString 存，方向由點序決定，前端用 symbol 畫箭頭。箭頭可表示推進或撤退（方向語意待補欄位，見 19.7 待決）。
+- `geom_basis`：`source_map`＝依出處地圖描繪（locator 寫圖號），`source_text`＝依文字描述定位，`derived`＝推論（含內插與演算法產生的前線或位置）。`derived` 不得標 `verified`，前端必須標示「推估」，並且在外觀上與有出處的圖形可明確區分。
+- **G3 落實**（Tai 2026-11-11 改寫）：這張表可收有 A／B 出處的戰線、推進／撤退箭頭、據點。前線可先自動生成，再經人工校正；自動生成、尚未校正並取得出處者必須標示「推估」，`geom_basis='derived'`，不得標 `verified`。部隊符號與交戰標記可畫在戰役專屬頁（部隊最細到師）；兩者與部隊位置的落表方式尚未決定，決定前不改本表 DDL。指揮官與人物的位置目前不上地圖，**不建幾何欄位**。無出處的戰術概念（例如「鉗形攻勢」）也**不建幾何欄位**，只能出現在階段說明文字裡。前端不得從無出處的生平或戰術文字自行產生圖形。19.2.4 的疆界漸變中間形狀**不入庫**。
+- 輸出：API 回傳 GeoJSON FeatureCollection，依 `feature_kind` 分成 fronts／arrows／sites，跟現行 `wl-campaign-web/0.1` JSON 的 `layers` 結構相容。日後可改成 PMTiles（§11 原註）。部隊符號或交戰標記圖層若採用，只加在戰役專屬頁，不進主地圖。
 
 **19.1.4 爭議數據（兵力、傷亡）**
 
@@ -1728,15 +1728,15 @@ CREATE TABLE battle_units (
   side_regime_id uuid NOT NULL REFERENCES regimes(id),
   parent_unit_id uuid NULL REFERENCES battle_units(id),       -- 上級部隊（同一戰役內）
   unit_name      jsonb NOT NULL,                              -- 出處原名＋譯名
-  unit_echelon   text NULL,                                   -- 層級（集團軍／軍／師…），值域 C1 時定
+  unit_echelon   text NULL,                                   -- 層級（集團軍／軍／師）；最細到師，師以下不收位置、不上圖
   status         text NOT NULL DEFAULT 'pending' CHECK (status IN ('verified','pending')),
   retracted_at timestamptz, retraction_reason text, created_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部隊至少 1 筆
 ```
 
-- 指揮官**不**放在本表，經 `person_event_participations`（`role='commander'`、`unit_id`）連結。
-- 部隊不建幾何（G3），不畫到地圖上。
+- 指揮官**不**放在本表，經 `person_event_participations`（`role='commander'`、`unit_id`）連結。指揮官與人物的位置目前不上地圖（19.3.3）。
+- 部隊可以畫在戰役專屬頁地圖上（G3，Tai 2026-11-11），採用北約 APP-6 符號，顆粒度最細到師；師以下不建位置、不上圖。有出處的位置才可標 `verified`；內插或演算法產生的位置必須標示「推估」，外觀與有出處者可區分，且不得標 `verified`。位置幾何的落表方式（擴充 `battle_map_features.feature_kind`，或另建位置表）尚未決定，見 19.7。
 
 **19.1.7 citation 格式**：所有新 citation 表都用 16.4.1 的統一欄位（`source_id`、`locator`、`quote ≤ 80`、`accessed_on`、`grade IN ('A','B')`、`date_precision`、`policy_version`、軟撤回）。I5：全部禁止 DELETE，只能軟撤回。
 
@@ -1748,7 +1748,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 |---|---|---|---|---|
 | 1 | `battle_map_features` | 無 | 加 `feature_key text NOT NULL`（未撤回列唯一） | 對應 `wl-campaign-web/0.1` 的 `properties.id`；seed 重跑時用來比對，不重複寫入 |
 | 2 | `battle_map_features` | 只有 `side_regime_id` | 加 `side_camp`（`allied`／`axis`／`soviet`／`contested`／`unknown`，可空） | 現行 JSON 的 `group` 是配色組，不是政權（例：`contested`）；不從配色組推導政權（憲法 §6「陣營」），`side_regime_id` 留空 |
-| 3 | `battle_map_features` | 只有 `label` | 加 `props jsonb`（只供顯示：`from`／`to`／`unit`／`name`／`controller`／`date`／`note`／`vertices`／`geometry_refs`） | 保留前端顯示內容。**G3 待確認**：箭頭的 `unit`（部隊番號文字）照現行 JSON 帶在 `props` 裡，沒有建成幾何欄位；如果 Tai 認為違反 G3，C2 時移除 |
+| 3 | `battle_map_features` | 只有 `label` | 加 `props jsonb`（只供顯示：`from`／`to`／`unit`／`name`／`controller`／`date`／`note`／`vertices`／`geometry_refs`） | 保留前端顯示內容。**G3（2026-11-11 已決）**：箭頭的 `unit`（部隊番號文字）可保留，但須有 A／B 出處；沒有出處者維持 pending／待查證，不建成部隊位置幾何 |
 | 4 | 四張 citation 表 | `grade IN ('A','B')` | `grade NOT NULL` ＋ CHECK A／B；`quote NOT NULL` | 19.4.2「A／B 才進庫」；未評等的引用留在 seed（`grade_hint`），不寫庫 |
 | 5 | `battle_profile_citations.field` | 「含 `field` 欄」 | 值域 `objective`／`control_change`／`outcome`／`theater_area`／`name` | 19.4.1 對照表 |
 | 6 | API | `GET /campaigns/:slug` | `GET /api/v1/campaigns/{slug}`，外層照 PRD §7 `{statusCode,message,data}`，`data` 跟 `wl-campaign-web/0.1` 相容 | 跟既有 API 一致。`verified` 一律由 `status='verified'` 決定（C1 全部 pending → 都是 false）；`totals` 回 null（屬 C3 `battle_figures`）；`fronts_note`／`notes` 回 null／空陣列（屬 C3 `event_gaps`）；OSM 等座標參照（`gazetteer`）不是史實出處，不進 citation 表，放在 `props.geometry_refs` |
@@ -1774,7 +1774,8 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 **19.2.3 頁面結構（桌機）**
 - 頂列：← 返回（有返回目標時顯示原頁名稱，例如「返回 1937-08-13 地圖」）、戰役名稱、日期範圍。
 - 左欄 360px 說明卡，內容順序照 §11.2：交戰方色票（點了回地圖並選取該政權）、目標、階段膠囊、播放控制、階段說明、兵力與傷亡（19.4.4 格式）、**人物**（19.3）、出處（預設收合）。
-- 地圖：獨立 MapLibre 實例，`fitBounds(theater_area)`，三個圖層依 `phase` 過濾。政權疆界跟著階段變（19.2.4，Q7）。
+- 地圖：獨立 MapLibre 實例，`fitBounds(theater_area)`，既有三個圖層（戰線、箭頭、據點）依 `phase` 過濾。部隊符號或交戰標記若採用，只加在本頁，不進主地圖。政權疆界跟著階段變（19.2.4，Q7）。
+- 配色（Tai 2026-11-11）：正式戰役頁與 P0 原型一律採用深色 Stitch 色票（底 `#16202E`，強調 `#8BD3DD`／`#22C3EE`），不用羊皮紙。人物詳情彈窗仍沿用羊皮紙（§14.8），不隨戰役頁改色。
 - 不顯示主地圖時間軸。日期只跟著階段變。
 
 **19.2.4 階段播放與疆界漸變（已決 Q7＝c，GSAP）**
@@ -1846,7 +1847,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 
 - 戰役頁的「結果」欄（`outcome_text`）只敘述戰果和控制變化，**不得**出現人名當主詞的因果句（例如「因 X 的決策而勝利」）。寫入層用規則提示，考證組人工把關。
 - 人物對話框的「戰役」區塊只列參與（戰役名、角色、日期、出處上標），排序依日期。不顯示勝負標記，避免讓人誤讀成個人戰績。
-- 階段裡**不顯示人物位置**（G3）。人物只出現在說明卡清單，點了開對話框。
+- 指揮官與人物的位置目前不上地圖（G3；部隊符號不代表人物位置）。人物只出現在說明卡清單，點了開對話框。
 
 ---
 
@@ -1860,7 +1861,7 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 | 目標、控制變化（`objective`、`control_change`） | `battle_profile_citations`（新增，16.4.1 格式，含 `field` 欄） | 同上；這是憲法 §6 條件 (2)(3) 的證據 |
 | 結果 `outcome_*` | 同上，`field='outcome'` | 至少 1 B；沒有就 NULL |
 | 階段的日期和說明 | `battle_phase_citations` | 每階段至少 1 筆；summary 逐段（`claim_span` 選填，同 T4） |
-| 戰線、箭頭、據點 | `battle_map_feature_citations` | 每個 feature 至少 1 筆；`source_map` 要寫圖號或頁碼 |
+| 戰線、推進／撤退箭頭、據點、部隊符號／位置、交戰標記 | `battle_map_feature_citations`（若位置或交戰標記另表，則用對應 citation 表） | 每個 feature 至少 1 筆 A 或 B；`source_map` 要寫圖號或頁碼；內插／演算法產生、或自動生成尚未校正並取得出處者，不得標 verified，須標「推估」 |
 | 參戰部隊 | `battle_unit_citations` | 每支部隊至少 1 筆 |
 | 兵力、傷亡 | `battle_figure_citations` | 每列數字 1 筆 |
 | 人物參與 | `person_event_participation_citations` | 至少 1 筆，`quote` 要直接陳述角色 |
@@ -1948,6 +1949,12 @@ CREATE TABLE battle_unit_citations (...);   -- 16.4.1 統一欄位；每支部�
 | Q7 | (c) 疆界跟著階段播放即時變，GSAP 做疆界漸變 | 2026-11-11 | GSAP timeline 驅動播放／暫停／跳轉；morph 約束 (i)–(v) 見 19.2.4；風險 R19-9、R19-10。原建議 (a) 未採 |
 | Q8 | (a) 敦克爾克，試做範圍＝發電機行動（1940-05-26～06-04） | 2026-11-11 | 三條件需在 C1 由考證確認；不符則敦克爾克戰役為 `battle`、發電機行動為其階段或子事件（19.5 C1） |
 | C1b | 考證併入 seed：戰役主體改為「敦克爾克橋頭堡戰役」（`battle`，1940-05-26～06-04，半開終點 06-05），發電機行動為子事件（`parent_event_id`）；階段改為考證六段 P1–P6；A 級引文須在原文逐字找得到且 ≤80 字，否則 pending；箭頭部隊番號保留、標待查證；P6 無戰線圖不配圖形 | 2026-11-11 13:47 | Tai 確認。slug 維持 `dunkirk_1940`（與前端靜態檔、API 路徑相容）。待決：子事件 `event_kind` 值域沒有 operation；`objective_kind` 由人確認；比利時參戰至 05-28 的期間寫法（`event_participants` 無期間欄）。seed 仍全部 pending，寫庫需另行核准 |
+| C2a-1 | `objective_kind` 填 `place`；`historical_events.event_kind` 值域新增 `operation`，子事件「發電機行動」改用 `operation` | 2026-11-11 14:52 | Tai 決定。新增式 migration `20261111065550_BattleEventKindOperation`（只放寬 `ck_historical_events_kind`，只寫檔、未套用任何資料庫）；`EventKinds.All`、匯入腳本、seed、dry-run 同步，C1b「待決」中前兩項結案；比利時參戰期間寫法仍待決 |
+| C2a-2 | 戰役獨立頁 `/campaign/:slug?phase=` 實作（不含疆界 morph） | 2026-11-11 | Tai 14:54「開始」。前端先讀 `GET /api/v1/campaigns/{slug}`，失敗退回靜態 JSON 並在說明卡標示來源；⚔ 與衝突小卡入口改連獨立頁，主地圖內戰役模式不再有入口（舊 e2e skip）；`regime`／`tab` 進 URL；`ReturnSnapshot` 存記憶體一格＋地圖頁 history.state。實作取捨：階段無 verified 圖形時收起全部戰役圖層只留疆界；疆界為該階段起日 `/sovereignty` 的靜態外框；說明卡尚無「目標」「人物」欄（資料到 C3／C4）；轉場只做說明卡淡入（GSAP via MotionService），播放計時仍是 `CampaignPlayer`，GSAP timeline 驅動留 C2b |
+| C2a-3 | 某階段完全沒有有出處（verified）的圖形時，戰役圖層（戰線、箭頭、據點，含前面階段累積的據點）整個收起，只留疆界＋提示「此階段尚無有出處的戰線資料」 | 2026-11-11 15:27 | Tai 確認（C2a 回報偏離第 4 點）。為 19.2.7「地圖只顯示疆界」的正式解讀 |
+| C2b | GSAP timeline 播放＋相鄰階段疆界漸變（19.2.4） | 2026-11-11 | Tai 15:27「開始 C2b」。播放：`CampaignPlayer` 仍是狀態來源（signal），計時改由 `MotionService.phaseClock`（GSAP timeline，repeat −1，每 3 秒 call 一次）驅動；暫停後接續本階段剩餘時間，跳轉後重新計時；不自動播放、停 P1、播完 ended；←／→、空白鍵。漸變：**自寫頂點重採樣**（`core/border-morph.ts`，不新增依賴，未採 flubber）；同政權、多邊形數與洞數相同、頂點數差 ≤ 4 倍才 morph，其餘（分裂、合併、島嶼增減、只在一邊）退回交叉淡入淡出；同一筆紀錄不變的留在一般疆界圖層。中間形狀放在獨立 GeoJSON source `campaign-sov-tx`（虛線、半透明、帶 `transitional`），不入庫、不掛任何點擊事件；圖例「推估過渡，非史料」與「待考證」分開。只在播放中自動前進到相鄰下一階段時 morph（1.2 秒，每階段 3 秒的前段）；暫停、跳轉、播完、reduced-motion 一律直接落定，只畫該階段有出處（`geometry.sourceId` 有值）的疆界。實作取捨：最後一步進入 ended 時屬「停止」，直接切換不 morph（嚴守 (ii)）。fps 實測見 C2b 回報 |
+| G3 改寫 | 戰役專屬頁可畫有 A／B 出處的部隊符號（北約 APP-6，最細到師）、前線、推進／撤退箭頭與交戰標記；內插或演算法產生的位置須標「推估」且外觀可區分；前線自動生成後再人工校正，校正並取得出處前標「推估」；主地圖不放部隊符號；指揮官與人物位置目前不上圖；「參與戰役不等於造成結果」（G4）不變 | 2026-11-11 | Tai 直接決定「改寫」，同日補充交戰標記、前線自動生成與人工校正、人物位置先不畫。憲法新增 Decision 5。部隊位置與交戰標記的落表方式、箭頭推進／撤退欄位尚未決定 |
+| 戰役頁／P0 配色 | P0 原型與正式戰役頁一律採用深色 Stitch 色票（底 `#16202E`，強調 `#8BD3DD`／`#22C3EE`），不用羊皮紙 | 2026-11-11 | Tai 直接決定「一起用」。人物詳情彈窗仍沿用羊皮紙（§14.8），不隨戰役頁改色。§19 尚未另寫 P0 小節 |
 
 ## §20 人物事實分層（設計稿 v1，2026-11-12，待 Tai 確認）
 

@@ -142,8 +142,52 @@ export class MotionService {
     return this.zone.run(fn);
   }
 
+  /**
+   * §19.2.4 戰役階段播放時鐘：一條 GSAP timeline（repeat -1，每 stepMs 呼叫一次 onTick）。
+   * 播放計時不是裝飾動效，reduced-motion 時照常走；只有不在瀏覽器（SSR）時退回 setInterval。
+   * onTick 會回到 Angular zone（它會改 signal）。
+   */
+  phaseClock(stepMs: number, onTick: () => void): { start(): void; pause(): void; resume(): void; stop(): void } {
+    if (!this.browser) return intervalFallback(stepMs, onTick);
+    let tl: gsap.core.Timeline | null = null;
+    const make = () => this.zone.runOutsideAngular(() => {
+      const t = gsap.timeline({ paused: true, repeat: -1 });
+      t.call(() => this.zone.run(onTick), [], stepMs / 1000);
+      return t;
+    });
+    return {
+      start: () => { tl?.kill(); tl = make(); tl.play(0); },
+      pause: () => { tl?.pause(); },
+      resume: () => { if (tl) tl.resume(); else { tl = make(); tl.play(0); } },
+      stop: () => { tl?.kill(); tl = null; },
+    };
+  }
+
+  /**
+   * §19.2.4 疆界漸變：GSAP 驅動 0→1 的進度（onUpdate 每格呼叫，NgZone 外）。
+   * reduced-motion 或不能播時立即以 1 收尾。回傳 finish()：立刻跳到終點（暫停／跳轉時用）。
+   */
+  progress(durationSec: number, onUpdate: (t: number) => void, onDone: () => void, ease = 'power1.inOut'): { finish(): void } {
+    if (this.reduced() || !this.canAnimate()) { onUpdate(1); onDone(); return { finish: () => undefined }; }
+    let done = false;
+    const end = () => { if (done) return; done = true; onDone(); };
+    const state = { t: 0 };
+    const tw = this.zone.runOutsideAngular(() => gsap.to(state, {
+      t: 1, duration: durationSec / this.timeScale, ease,
+      onUpdate: () => onUpdate(state.t), onComplete: end,
+    }));
+    return { finish: () => { if (done) return; tw.kill(); onUpdate(1); end(); } };
+  }
+
   /** §17.2 P5 人物↔戰役頁轉場：只預留介面，目前 no-op。 */
   pageTransition(_from: Element | null, _to: Element | null): Promise<void> {
     return Promise.resolve();
   }
+}
+
+function intervalFallback(stepMs: number, onTick: () => void) {
+  let timer: ReturnType<typeof setInterval> | null = null;
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+  const start = () => { stop(); timer = setInterval(onTick, stepMs); };
+  return { start, pause: stop, resume: start, stop };
 }

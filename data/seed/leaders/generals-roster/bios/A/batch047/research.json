@@ -978,10 +978,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1913-06-21",
-      "end": null
+      "end": "1914-09-15"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "t14Rule": "R5",
      "t14Reason": "旅級指揮職，歸 R5。",
      "t14Overlap": "general",
@@ -1007,6 +1007,18 @@
        "accessedOn": "2026-11-12",
        "grade": "C",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "aif-monash",
+       "locator": "全文",
+       "quote": "command the newly formed 4th Infantry Brigade of the AIF on 15 September 1914",
+       "quoteLang": "en",
+       "evidenceNote": "依名簿下一任起日推得（推論）；來源明寫其改任新編第4旅旅長之日",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1242,13 +1254,6 @@
    "roleCandidates": [],
    "gaps": [
     {
-     "target": "position:monash-13bde",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AIF Project 只寫1913年6月21日受命指揮第13旅，1914年8月起任副首席檢查官、9月改指第4旅，未寫何時卸任第13旅；已查 AIF Project、AWM 人物頁（404）、ADB（動態頁無法抓取）。 加強重跑（2026-11-12）：再查 AWM 展覽頁、Sir John Monash Centre 簡介（皆未寫卸任第13旅日）；ADB（Incapsula 挑戰頁）、陸軍研究中心（逾時）、Monash University／Museums Victoria／Britannica（403）未取得。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:monash-dg-repat",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；AIF Project 只寫1918年11月21日起任遣返事務總監與1919年12月26日返澳，未寫離職日；已查 AIF Project、ADB（動態頁無法抓取）。 加強重跑：AWM 展覽頁、Sir John Monash Centre 簡介未提遣返事務總監；ADB（挑戰頁）、陸軍研究中心（逾時）未取得。",
@@ -1429,6 +1434,55 @@
      "result": "no_result",
      "note": "未見離任日",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "ADB Monash 重抓（rf-adb-monash）",
+     "url": "https://adb.anu.edu.au/biography/monash-sir-john-7600",
+     "result": "challenge_page",
+     "note": "ADB 頁面為 JS 動態載入，抓回僅外殼（約 459 字），無傳記內文；未繞過"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "WebSearch：Monash Director-General of Repatriation and Demobilisation 1919 relinquished",
+     "url": "https://www.naa.gov.au/help-your-research/fact-sheets/general-sir-john-monash",
+     "result": "not_relevant",
+     "note": "結果為 AWM 個人檔案轉錄與 NAA 簡介，僅見 1919 年底仍以該職署名，無明載卸任日；DVA 稱 1918-11-21 任命。未能取得可逐字引用之迄日"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "AWM Monash 既有快取（awm-monash／awm-forging-monash／sjmc-pdf／encycl-monash）重掃 repatriation／demobilisation",
+     "url": "",
+     "result": "no_result",
+     "note": "既有快取無該職卸任日"
+    },
+    {
+     "step": 104,
+     "sourceType": "named_encyclopedia",
+     "query": "aif-monash 既有快取重掃下一職起日",
+     "url": "",
+     "result": "found_C",
+     "note": "遣返事務總監為其最後職務，無下一職起日；僅 13 旅迄日（轉任第4旅 1914-09-15）可補"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:monash-13bde",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AIF Project 只寫1913年6月21日受命指揮第13旅，1914年8月起任副首席檢查官、9月改指第4旅，未寫何時卸任第13旅；已查 AIF Project、AWM 人物頁（404）、ADB（動態頁無法抓取）。 加強重跑（2026-11-12）：再查 AWM 展覽頁、Sir John Monash Centre 簡介（皆未寫卸任第13旅日）；ADB（Incapsula 挑戰頁）、陸軍研究中心（逾時）、Monash University／Museums Victoria／Britannica（403）未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1945,10 +1999,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1939-07-01",
-      "end": null
+      "end": "1942-07-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "t14Rule": "R6",
      "t14Reason": "艦隊級指揮，來源僅 AWM 年表一句、職位等級未明寫、無戰役連結日期、政權待查（regimeId NULL）。",
      "t14Overlap": "general",
@@ -1984,19 +2038,24 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-crace",
+       "locator": "全文",
+       "quote": "He returned to England in June 1942 having handed over his command.",
+       "quoteLang": "en",
+       "evidenceNote": "月精度迄日：1942 年 6 月交卸指揮後返英，依規則寫下一單位起日；來源未直接標示為澳洲艦隊司令職之迄日，屬推論",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ]
     }
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:crace-aus-squadron",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 人物頁只寫1939年7月任澳洲艦隊司令與1942年6月交卸「his command」，未明寫該職迄日；已查 AWM 人物頁、AWM Salute 頁、Sea Power Centre（curl 錯誤）、ADB（被擋）。 加強重跑：再查 AWM Coral Sea 條目、HistoryofWar、Sea Power Centre（seapower.navy.gov.au，逾時兩次）、Royal Australian Navy 官網（逾時）、ADB 9870／9851（Incapsula 挑戰頁）、Virtual War Memorial／TracesOfWar（403）、naval-history.net（404）；皆未取得該職起迄日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:crace-anzac-force-tf44",
      "gapKind": "not_found",
@@ -2200,6 +2259,39 @@
      "result": "no_result",
      "note": "搜尋頁回 HTTP 202 空內容",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "ADB Crace 重抓（rf-adb-crace）",
+     "url": "https://adb.anu.edu.au/biography/crace-john-gregory-9871",
+     "result": "challenge_page",
+     "note": "ADB 頁面 JS 動態載入，抓回僅外殼，無內文；未繞過"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "awm-crace 既有快取掃描迄日",
+     "url": "",
+     "result": "found_A",
+     "note": "AWM 人物頁明寫 1942 年 6 月交卸指揮返英"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:crace-aus-squadron",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 人物頁只寫1939年7月任澳洲艦隊司令與1942年6月交卸「his command」，未明寫該職迄日；已查 AWM 人物頁、AWM Salute 頁、Sea Power Centre（curl 錯誤）、ADB（被擋）。 加強重跑：再查 AWM Coral Sea 條目、HistoryofWar、Sea Power Centre（seapower.navy.gov.au，逾時兩次）、Royal Australian Navy 官網（逾時）、ADB 9870／9851（Incapsula 挑戰頁）、Virtual War Memorial／TracesOfWar（403）、naval-history.net（404）；皆未取得該職起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2876,10 +2968,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1939-10-10",
-      "end": null
+      "end": "1941-02-01"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "month",
      "t14Rule": "R5",
      "t14Reason": "旅／師級指揮職，非國家級最高軍職，歸 R5。",
      "t14Overlap": "general",
@@ -2907,6 +2999,18 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-morshead",
+       "locator": "全文",
+       "quote": "The following February Morshead was promoted to major general",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依下一職（第9師師長）起月推得（推論）；前句為 1940 年 5 月赴英，故為 1941 年 2 月",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ]
     },
@@ -2925,10 +3029,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-02-01",
-      "end": null
+      "end": "1943-10-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "t14Rule": "R5",
      "t14Reason": "旅／師級指揮職，非國家級最高軍職，歸 R5。",
      "t14Overlap": "general",
@@ -2954,6 +3058,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-morshead",
+       "locator": "全文",
+       "quote": "Returning to Australia in 1943, Morshead took command of II Corps in October",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依下一職（第2軍司令）起月推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -3118,20 +3234,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:morshead-18bde",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 人物頁只列1939年10月10日受命，未寫卸任日；已查 AWM、ADB（動態頁無法抓取）、DVA Anzac Portal（逾時）。 加強重跑：再查 AWM 檔案指南 3DRL/2632、AWM Siege of Tobruk 條目、AWM Wartime 文章、Rats of Tobruk Association、HistoryofWar（Rickard）；ADB 7683／11180（Incapsula 挑戰頁）、DVA Anzac Portal（逾時三次）、oa.anu.edu.au（DNS 失敗）未取得；皆未寫第18旅、第9師、第1軍的卸任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:morshead-9div",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；AWM 人物頁只寫1941年2月任師長、托布魯克圍城後升中將，未寫交卸日；已查 AWM、ADB（無法抓取）、DVA（逾時）。 加強重跑：再查 AWM 檔案指南 3DRL/2632、AWM Siege of Tobruk 條目、AWM Wartime 文章、Rats of Tobruk Association、HistoryofWar（Rickard）；ADB 7683／11180（Incapsula 挑戰頁）、DVA Anzac Portal（逾時三次）、oa.anu.edu.au（DNS 失敗）未取得；皆未寫第18旅、第9師、第1軍的卸任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:morshead-i-corps",
      "gapKind": "not_found",
@@ -3319,6 +3421,64 @@
      "result": "found_A",
      "note": "發現與人物頁起日不一致，已立 conflict gap",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "ADB Morshead 重抓（rf-adb-morshead）",
+     "url": "https://adb.anu.edu.au/biography/morshead-sir-leslie-james-7681",
+     "result": "challenge_page",
+     "note": "ADB 頁面 JS 動態載入，抓回僅外殼；未繞過"
+    },
+    {
+     "step": 102,
+     "sourceType": "other",
+     "query": "WebSearch：Morshead I Corps command ended 1945 retired",
+     "url": "",
+     "result": "not_relevant",
+     "note": "搜尋結果皆為美軍／英軍 I Corps，無 Morshead 相關"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "awm-morshead／awm-morshead-papers／rats-morshead 既有快取掃描第1軍卸任日",
+     "url": "",
+     "result": "no_result",
+     "note": "僅見 AWM 服役紀錄 Date of discharge 21/12/1945（為軍職總解職日，非第1軍司令明載迄日），不採；papers 稱 1944 年 7 月任第1軍（與 5 月說法衝突，已有 gap）"
+    },
+    {
+     "step": 104,
+     "sourceType": "official",
+     "query": "AWM 檔案指南 3DRL/2632 傳記段",
+     "url": "",
+     "result": "no_result",
+     "note": "寫至戰後主持軍事調查庭，無第1軍司令卸任日"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:morshead-18bde",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 人物頁只列1939年10月10日受命，未寫卸任日；已查 AWM、ADB（動態頁無法抓取）、DVA Anzac Portal（逾時）。 加強重跑：再查 AWM 檔案指南 3DRL/2632、AWM Siege of Tobruk 條目、AWM Wartime 文章、Rats of Tobruk Association、HistoryofWar（Rickard）；ADB 7683／11180（Incapsula 挑戰頁）、DVA Anzac Portal（逾時三次）、oa.anu.edu.au（DNS 失敗）未取得；皆未寫第18旅、第9師、第1軍的卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:morshead-9div",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 人物頁只寫1941年2月任師長、托布魯克圍城後升中將，未寫交卸日；已查 AWM、ADB（無法抓取）、DVA（逾時）。 加強重跑：再查 AWM 檔案指南 3DRL/2632、AWM Siege of Tobruk 條目、AWM Wartime 文章、Rats of Tobruk Association、HistoryofWar（Rickard）；ADB 7683／11180（Incapsula 挑戰頁）、DVA Anzac Portal（逾時三次）、oa.anu.edu.au（DNS 失敗）未取得；皆未寫第18旅、第9師、第1軍的卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -5120,10 +5280,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-04-30",
-      "end": null
+      "end": "1941-05-30"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "t14Rule": "R6",
      "t14Reason": "戰區級守軍指揮，有克里特戰役敘述與日期，但來源僅1筆 A 且職位等級未明寫、政權待查（regimeId NULL）、缺迄日，門檻無法證明。",
      "t14Overlap": "general",
@@ -5161,6 +5321,30 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "buckley-crete",
+       "locator": "全文",
+       "quote": "General Freyberg and his staff were taken off",
+       "quoteLang": "en",
+       "evidenceNote": "迄日為推論：該段緊接 5 月 30 日敘述（見下一筆引文），Freyberg 於斯法基亞由 Sunderland 飛行艇接走，Weston 接手最後撤退",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "buckley-crete",
+       "locator": "全文",
+       "quote": "On the morning of May 30th over 10,000 men still remained",
+       "quoteLang": "en",
+       "evidenceNote": "同書撤退章節之日期錨點（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -5278,13 +5462,6 @@
        "datePrecision": "day"
       }
      ],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:freyberg-creforce",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；Buckley 官方戰史寫兩架桑德蘭飛艇將弗賴伯格及其參謀帶離斯法基亞，但原文該段未寫明日期；已查 Buckley、AWM Crete、Te Ara（403）。",
-     "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
     {
@@ -5478,6 +5655,63 @@
      "result": "found_B",
      "note": "已抓，未採用",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "Te Ara DNZB Freyberg（4f26）",
+     "url": "https://teara.govt.nz/en/biographies/4f26/freyberg-bernard-cyril",
+     "result": "blocked_403",
+     "note": "HTTP 403，不繞過"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "WebSearch：Freyberg relinquished command 2NZEF November 1945 Official History",
+     "url": "https://nzetc.victoria.ac.nz/tm/scholarly/tei-WH2-2Doc-c20.html",
+     "result": "found_A",
+     "note": "搜尋摘要稱 NZETC 官方戰史附表列 GOC 1939-11-22 至 1945-11-22，但 NZETC 四個頁面（WH2-2Doc-c20、c20-20、WH2Medi-c9-24、WH2Prob-a14）皆回 Incapsula 防機器人頁，無法取得原文；不繞過"
+    },
+    {
+     "step": 103,
+     "sourceType": "other",
+     "query": "vco-freyberg 既有快取（victoriacrossonline，個人站）",
+     "url": "",
+     "result": "unrated",
+     "note": "明寫 1945-11-22 卸任，但為非 A/B/C 來源，不採"
+    },
+    {
+     "step": 104,
+     "sourceType": "other",
+     "query": "Papers Past 1945-11-09「FREYBERG GIVING UP COMMAND」",
+     "url": "https://paperspast.natlib.govt.nz/newspapers/WC19451109.2.26",
+     "result": "unrated",
+     "note": "報紙報導，非 A/B/C 等級來源，不採"
+    },
+    {
+     "step": 105,
+     "sourceType": "official",
+     "query": "Buckley, Greece and Crete 1941 撤退章節",
+     "url": "",
+     "result": "found_A",
+     "note": "Creforce 迄日：Freyberg 於斯法基亞被飛行艇接走（已補）"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:freyberg-creforce",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Buckley 官方戰史寫兩架桑德蘭飛艇將弗賴伯格及其參謀帶離斯法基亞，但原文該段未寫明日期；已查 Buckley、AWM Crete、Te Ara（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

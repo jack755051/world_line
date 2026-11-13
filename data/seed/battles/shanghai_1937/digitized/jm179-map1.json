@@ -1,0 +1,195 @@
+{
+ "source": {
+  "type": "secondary_map",
+  "grade": "B",
+  "citation": "Japanese Monograph No. 179, Central China Area Operations Record 1937–1941, Map No. 1 'Shanghai Operation 23 Aug–24 Nov 1937'（PDF 第 18 頁）",
+  "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+  "license": "美國政府出版品"
+ },
+ "mapKey": "jm179-map1",
+ "mapDate": "1937-11-24",
+ "method": "第一次判讀（本代理人）：pdftoppm 300 dpi 轉出 PDF 第 18 頁（3299×2540，掃描影像本身約 150 dpi）。mapgrid.swift 3 倍裁圖（10 px 格線）讀城鎮小圓圈中心（約 ±3 px；圖上比例尺 30 miles ≈ 700 px，約 70 m/px）。經緯度依 georef.config.json lonlatRule。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05，沿用）",
+  "loo_p95_km": 17.95,
+  "p95Passes": false,
+  "passes": false,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [
+   {
+    "name": "SHANGHAI",
+    "reason": "只畫成斜線面狀，無點符號（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑任何配準）"
+   },
+   {
+    "name": "SUCHOU",
+    "reason": "只畫成斜線面狀，無點符號（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑任何配準）"
+   },
+   {
+    "name": "Paimaokou（白茆口）",
+    "reason": "圖上為長江口地名；OSM「白茆」為古里鎮內聚落，與白茆口（河口）非同一地，無法唯一對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑任何配準）"
+   }
+  ],
+  "use": "僅供參考：不得用於部隊位置或前線頂點"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 8,
+  "residual_median_km": 1.97,
+  "loo_median_km": 8.44,
+  "loo_p95_km": 17.95,
+  "loo_max_km": 19.44,
+  "suspect_control_points": [],
+  "frame_km": 1.0
+ },
+ "precision_m": 19000,
+ "precisionNote": "留一法 95 百分位 18.0 km ＋ 標註框誤差 1 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Chingyangchen（青陽鎮）": {
+   "px": [
+    987.0,
+    714.0
+   ],
+   "lonlat": [
+    120.2709305,
+    31.765227
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244084581
+   },
+   "lonlatBasis": "OSM relation 17008331 的 admin_centre 成員（place=town，青阳镇）",
+   "note": "小圓圈",
+   "loo_km": 7.72
+  },
+  "Changshu（常熟）": {
+   "px": [
+    1408.0,
+    886.0
+   ],
+   "lonlat": [
+    120.7480757,
+    31.6572954
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244084671
+   },
+   "lonlatBasis": "OSM relation 4591597 的 admin_centre 成員（place=city，常熟市）",
+   "note": "小圓圈",
+   "loo_km": 6.89
+  },
+  "Wuhsi（無錫）": {
+   "px": [
+    944.0,
+    1002.0
+   ],
+   "lonlat": [
+    120.2952752,
+    31.5776626
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3073512713
+   },
+   "lonlatBasis": "OSM relation 4430942 的 label 成員（place=city，无锡市）",
+   "note": "鐵路上小圓圈",
+   "loo_km": 1.29
+  },
+  "Kunshan（崑山）": {
+   "px": [
+    1636.0,
+    1233.0
+   ],
+   "lonlat": [
+    120.9764683,
+    31.3869323
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2703828715
+   },
+   "lonlatBasis": "OSM relation 4591878 的 admin_centre 成員（place=city，昆山市）",
+   "note": "鐵路上小圓圈",
+   "loo_km": 1.73
+  },
+  "Tachangchen（大場鎮）": {
+   "px": [
+    2183.0,
+    1316.0
+   ],
+   "lonlat": [
+    121.4122977,
+    31.2886709
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2684732951
+   },
+   "lonlatBasis": "OSM relation 3532288 的 admin_centre 成員（place=town，大场镇）",
+   "note": "小圓圈",
+   "loo_km": 12.44
+  },
+  "Chiahsing（嘉興）": {
+   "px": [
+    1405.0,
+    2046.0
+   ],
+   "lonlat": [
+    120.7510971,
+    30.7474425
+   ],
+   "osm": {
+    "type": "node",
+    "id": 6442736456
+   },
+   "lonlatBasis": "OSM relation 3308626 的 admin_centre 成員（place=city，嘉兴市）",
+   "note": "鐵路交會小圓圈",
+   "loo_km": 9.16
+  },
+  "Wuhsing（吳興＝湖州）": {
+   "px": [
+    668.0,
+    1930.0
+   ],
+   "lonlat": [
+    120.0851114,
+    30.8942995
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3822785671
+   },
+   "lonlatBasis": "OSM relation 3149738 的 admin_centre 成員（place=city，湖州市）",
+   "note": "小圓圈；吳興縣治即今湖州市區",
+   "loo_km": 19.44
+  },
+  "Chinshanweicheng（金山衛城）": {
+   "px": [
+    2075.0,
+    2106.0
+   ],
+   "lonlat": [
+    121.3131763,
+    30.7275685
+   ],
+   "osm": {
+    "type": "node",
+    "id": 4194619391
+   },
+   "lonlatBasis": "OSM relation 18058384 的 label 成員（place=town，金山卫镇）",
+   "note": "海岸小圓圈",
+   "loo_km": 15.2
+  }
+ },
+ "features": [],
+ "lines": [],
+ "unresolved": []
+}

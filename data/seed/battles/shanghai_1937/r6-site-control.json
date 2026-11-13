@@ -54,7 +54,19 @@
      }
     }
    ],
-   "note": "登陸點，非全鎮控制；吳淞鎮全面易手日出處未載"
+   "note": "登陸點，非全鎮控制；吳淞鎮全面易手日出處未載",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "閘北",
@@ -131,7 +143,19 @@
     }
    ],
    "dateNote": "su2015「26 日……同日夜間」，上下文為 10 月；FRUS 10/27 正午電「前夜」撤出、當晨北站見日旗，一致",
-   "note": "國軍主力移轉、留一團死守；FRUS 10/27 晨北站等處已見日旗，但閘北仍有守軍，全區占領日未載，controllerAfter 留空"
+   "note": "國軍主力移轉、留一團死守；FRUS 10/27 晨北站等處已見日旗，但閘北仍有守軍，全區占領日未載，controllerAfter 留空",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（tw-roc、us-frus）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "tw-roc",
+     "us-frus"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "大場鎮",
@@ -147,8 +171,8 @@
      "role": "admin_centre"
     }
    },
-   "date": null,
-   "datePrecision": "十月下旬",
+   "date": "1937-10-26",
+   "datePrecision": "day",
    "controllerAfter": "axis",
    "controllerRegimeSlug": "empire-of-japan",
    "sovereignRegimeSlug": "republic-of-china-nationalist",
@@ -240,17 +264,30 @@
      }
     }
    ],
-   "dateNote": "出處只到「十月下旬」（JACAR「同月下旬」）；主管 2026-11-13 16:14 Q6：精度記十月下旬，10/26 只作候選，不再找來源；JACAR C11111926900（歩34 戦闘詳報）：10/25 正午奪取敵主陣地、10/27 壓迫至蘇州河，「大場鎮攻略」未明載日，10/25 與 10/26 皆只作候選；FRUS 10/27 正午電「yesterday morning」攻占大場＝10/26（第三方電報，B）——依 Q6 欄位不改，待主管裁示",
+   "dateNote": "主管 2026-11-13 21:24 (a)：日期改記 10/26，唯一出處 FRUS 1937 Vol. III Doc. 698（10/27 正午電「yesterday morning」攻占大場），JACAR 只到「十月下旬」（同月下旬）、歩34 戦闘詳報未載鎮陷落日 → 待查證、單一來源；原精度「十月下旬」保留於 dateRange",
    "note": "控制方為日軍屬推定（下旬戰況進展、轉向蘇州河追擊）",
    "dateRange": {
     "from": "1937-10-21",
     "to": "1937-10-31",
     "label": "十月下旬"
    },
-   "dateCandidate": {
-    "value": "1937-10-26",
-    "status": "candidate",
-    "basis": "常見說法；本輪 A/B 出處未見"
+   "confidenceRuling": {
+    "basisFamilies": [
+     "us-frus"
+    ],
+    "why": "日期只由 FRUS 支持（主管 2026-11-13 21:24 (a)）"
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-frus）；依裁示只計 us-frus（日期只由 FRUS 支持（主管 2026-11-13 21:24 (a)））",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-frus"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
    }
   },
   {
@@ -317,7 +354,19 @@
       "tool": "tools/battles/verify_quotes.py"
      }
     }
-   ]
+   ],
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "上海南市／Shanghai",
@@ -380,7 +429,19 @@
     }
    ],
    "note": "上海公共租界與法租界不在此列（主權／控制另見 R8）",
-   "conflict": "JACAR：11/11 掃蕩南市；JM-179：11/12 起追擊並肅清上海及附近。取 JACAR 11/11（南市）"
+   "conflict": "JACAR：11/11 掃蕩南市；JM-179：11/12 起追擊並肅清上海及附近。取 JACAR 11/11（南市）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、jp-monographs）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "白茆口",
@@ -448,7 +509,20 @@
     "basis": "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）"
    },
    "dateUncertain": "OCR 讀值不確定：JM-179 原文「landed on the ]Jth」之「]Jth」讀作 13th 未經人工核對原掃描（主管 2026-11-13 16:14 Q5：欄位留空，11/13 只作候選）",
-   "candidateNote": "JACAR C11111935000 情報「佐々木支隊ハ本十三日重藤兵団ニ続イテ上陸シ」支持 11/13（或之前）登陸，但未出現「白茆口」地名，且同段翻刻另作「十二月十三日」（與標題 11/14–15 月份矛盾）；日期仍留空"
+   "candidateNote": "JACAR C11111935000 情報「佐々木支隊ハ本十三日重藤兵団ニ続イテ上陸シ」支持 11/13（或之前）登陸，但未出現「白茆口」地名，且同段翻刻另作「十二月十三日」（與標題 11/14–15 月份矛盾）；日期仍留空",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（jp-jacar、jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "常熟（Changshu）",
@@ -544,7 +618,19 @@
     }
    ],
    "note": "抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）",
-   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）"
+   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "蘇州／吳縣（Suchou）",
@@ -640,7 +726,19 @@
     }
    ],
    "note": "抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）",
-   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）"
+   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "嘉興（Chiahsing）",
@@ -736,7 +834,19 @@
     }
    ],
    "note": "抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）",
-   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）"
+   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "placeAsInSource": "吳興",
@@ -775,7 +885,19 @@
      }
     }
    ],
-   "note": "只有 mnd2017 一族"
+   "note": "只有 mnd2017 一族",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
   }
  ]
 }

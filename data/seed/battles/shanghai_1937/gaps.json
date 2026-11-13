@@ -393,6 +393,272 @@
    "checkedOn": "2026-11-13"
   },
   {
+   "target": "source:國史館 drnh.gov.tw／ahonline.drnh.gov.tw",
+   "kind": "source_unreachable",
+   "note": "2026-11-13 約 21:00 由 Tai 的 Mac 與 box 重試皆逾時（HTTP 000，15 秒）；未繞過",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:中國第二歷史檔案館 shac.net.cn",
+   "kind": "source_unreachable",
+   "note": "2026-11-13 約 21:00 連線失敗（HTTP 000）；已出版檔案彙編（如《中華民國史檔案資料匯編》《抗日戰爭正面戰場》）未見可公開閱讀之全文，不引用",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:國防部史政編譯室公開 PDF（lib.mnd.gov.tw／modmhb.mnd.gov.tw）",
+   "kind": "source_not_independent",
+   "note": "兩站 2026-11-13 連線失敗（HTTP 000）；且國防部戰史出版與 mnd2017 同屬 tw-roc 脈絡，即使取得也不能算獨立家族",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:中研院近史所 mh.sinica.edu.tw 2015 何智霖、蘇聖雄〈初期重要戰役〉PDF",
+   "kind": "source_not_independent",
+   "note": "可公開閱讀，但作者為國史館編者與 su2015 同一作者，據《陳誠回憶錄》、國史館檔等同一脈絡 → 歸 tw-roc，不算獨立家族",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:中研院近史所 MHDB 近代史全文資料庫",
+   "kind": "source_login_required",
+   "note": "需帳號登入；不登入、不繞過",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:國立公共資訊圖書館 edata.nlpi.edu.tw《共赴國難─國共合作抗戰紀實》第四章",
+   "kind": "source_grade_c",
+   "note": "可公開閱讀（大場 10/26 失守、27 日放棄北站江灣），但為通俗讀物、無出處註，評 C，不引用",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:國家圖書館 臺灣記憶 tm.ncl.edu.tw",
+   "kind": "source_not_searched",
+   "note": "可連線；館藏以臺灣主題為主，本輪未找到淞滬 1937 中方作戰紀錄，未深入檢索",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:《抗日戰爭研究》等大陸期刊（CNKI）",
+   "kind": "source_login_required",
+   "note": "全文需登入／付費；不登入、不繞過",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "source:FRUS 1937 Vol. III d480–d800、Vol. IV d380–d540（Shanghai 電報）",
+   "kind": "source_partial",
+   "note": "已掃描：可佐證 9/14 羅店—北站線、10/26 大場失守與當夜閘北撤退、10/30 夜閘北守軍被逐；未載中方部隊番號、指揮官與吳興（湖州）易手，R1／R7 中方資料仍只有 tw-roc",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/builders/shanghai_1937_frus.py"
+  },
+  {
+   "target": "map-label:chinese:169B",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「169B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:16D(一)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「16D(一)」（chinese）未對上 R1 名冊：16 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:186B",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「186B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:20B(一)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「20B(一)」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:212B",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「212B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:26D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「26D」（chinese）未對上 R1 名冊：26 號師（div）不在 R1 名冊；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:322B",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「322B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:324B",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「324B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:32D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「32D」（chinese）未對上 R1 名冊：32 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:367R/184B",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「367R/184B」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:367R/62D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「367R/62D」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:368R/62D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「368R/62D」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:373D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「373D」（chinese）未對上 R1 名冊：373 號師（div）不在 R1 名冊；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:378R",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「378R」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:51D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「51D」（chinese）未對上 R1 名冊：51 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:58D(一部)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「58D(一部)」（chinese）未對上 R1 名冊：58 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:61D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「61D」（chinese）未對上 R1 名冊：61 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:62D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「62D」（chinese）未對上 R1 名冊：62 號師（div）不在 R1 名冊；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:66D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「66D」（chinese）未對上 R1 名冊：66 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:67C",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「67C」（chinese）未對上 R1 名冊：第六十七軍不在 R1；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:74C",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「74C」（chinese）未對上 R1 名冊：第七十四軍不在 R1（無 A/B 文字出處）；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:78D",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「78D」（chinese）未對上 R1 名冊：78 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:上海市保安總團",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「上海市保安總團」（chinese）未對上 R1 名冊：保安部隊，不在 R1；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:俞濟時軍",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「俞濟時軍」（chinese）未對上 R1 名冊：第七十四軍（軍長俞濟時）不在 R1；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:張發奎集團",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「張發奎集團」（chinese）未對上 R1 名冊：第八集團軍（張發奎）不在 R1（文字出處未載番號）；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:chinese:胡宗南軍(1C)",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「胡宗南軍(1C)」（chinese）未對上 R1 名冊：第一軍不在 R1；出現於 mnd2017-fig4",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:japanese:1R",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「1R」（japanese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:japanese:2R",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「2R」（japanese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
+   "target": "map-label:japanese:5 FLD HV",
+   "kind": "unit_label_unmatched",
+   "note": "地圖標註「5 FLD HV」（japanese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 jm179-map1",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/match_units.py"
+  },
+  {
    "target": "r1-units.json:jp-ccaa",
    "kind": "single_source_below_fact_grade",
    "note": "唯一來源 jm179（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
@@ -687,13 +953,6 @@
    "tool": "tools/battles/crosscheck.py"
   },
   {
-   "target": "r4-fronts.json:cn-front-1937-09-14",
-   "kind": "single_source_below_fact_grade",
-   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/crosscheck.py"
-  },
-  {
    "target": "r4-fronts.json:cn-jp-front-1937-11-05",
    "kind": "single_source_below_fact_grade",
    "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
@@ -708,13 +967,6 @@
    "tool": "tools/battles/crosscheck.py"
   },
   {
-   "target": "r5-engagements.json:zhabei-800",
-   "kind": "single_source_below_fact_grade",
-   "note": "唯一來源 su2015（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/crosscheck.py"
-  },
-  {
    "target": "r5-engagements.json:wuxing",
    "kind": "single_source_below_fact_grade",
    "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
@@ -722,9 +974,9 @@
    "tool": "tools/battles/crosscheck.py"
   },
   {
-   "target": "r6-site-control.json:閘北@1937-10-26#1",
+   "target": "r6-site-control.json:大場鎮@1937-10-26#2",
    "kind": "single_source_below_fact_grade",
-   "note": "唯一來源 su2015（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "note": "唯一來源 frus1937v03-d698（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
    "checkedOn": "2026-11-13",
    "tool": "tools/battles/crosscheck.py"
   },
@@ -895,272 +1147,6 @@
    "note": "唯一來源 su2015（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
    "checkedOn": "2026-11-13",
    "tool": "tools/battles/crosscheck.py"
-  },
-  {
-   "target": "source:國史館 drnh.gov.tw／ahonline.drnh.gov.tw",
-   "kind": "source_unreachable",
-   "note": "2026-11-13 約 21:00 由 Tai 的 Mac 與 box 重試皆逾時（HTTP 000，15 秒）；未繞過",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:中國第二歷史檔案館 shac.net.cn",
-   "kind": "source_unreachable",
-   "note": "2026-11-13 約 21:00 連線失敗（HTTP 000）；已出版檔案彙編（如《中華民國史檔案資料匯編》《抗日戰爭正面戰場》）未見可公開閱讀之全文，不引用",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:國防部史政編譯室公開 PDF（lib.mnd.gov.tw／modmhb.mnd.gov.tw）",
-   "kind": "source_not_independent",
-   "note": "兩站 2026-11-13 連線失敗（HTTP 000）；且國防部戰史出版與 mnd2017 同屬 tw-roc 脈絡，即使取得也不能算獨立家族",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:中研院近史所 mh.sinica.edu.tw 2015 何智霖、蘇聖雄〈初期重要戰役〉PDF",
-   "kind": "source_not_independent",
-   "note": "可公開閱讀，但作者為國史館編者與 su2015 同一作者，據《陳誠回憶錄》、國史館檔等同一脈絡 → 歸 tw-roc，不算獨立家族",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:中研院近史所 MHDB 近代史全文資料庫",
-   "kind": "source_login_required",
-   "note": "需帳號登入；不登入、不繞過",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:國立公共資訊圖書館 edata.nlpi.edu.tw《共赴國難─國共合作抗戰紀實》第四章",
-   "kind": "source_grade_c",
-   "note": "可公開閱讀（大場 10/26 失守、27 日放棄北站江灣），但為通俗讀物、無出處註，評 C，不引用",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:國家圖書館 臺灣記憶 tm.ncl.edu.tw",
-   "kind": "source_not_searched",
-   "note": "可連線；館藏以臺灣主題為主，本輪未找到淞滬 1937 中方作戰紀錄，未深入檢索",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:《抗日戰爭研究》等大陸期刊（CNKI）",
-   "kind": "source_login_required",
-   "note": "全文需登入／付費；不登入、不繞過",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "source:FRUS 1937 Vol. III d480–d800、Vol. IV d380–d540（Shanghai 電報）",
-   "kind": "source_partial",
-   "note": "已掃描：可佐證 9/14 羅店—北站線、10/26 大場失守與當夜閘北撤退、10/30 夜閘北守軍被逐；未載中方部隊番號、指揮官與吳興（湖州）易手，R1／R7 中方資料仍只有 tw-roc",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/builders/shanghai_1937_frus.py"
-  },
-  {
-   "target": "map-label:chinese:169B",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「169B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:16D(一)",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「16D(一)」（chinese）未對上 R1 名冊：16 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:186B",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「186B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:20B(一)",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「20B(一)」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:212B",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「212B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:26D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「26D」（chinese）未對上 R1 名冊：26 號師（div）不在 R1 名冊；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:322B",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「322B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:324B",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「324B」（chinese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:32D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「32D」（chinese）未對上 R1 名冊：32 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:367R/184B",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「367R/184B」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:367R/62D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「367R/62D」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:368R/62D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「368R/62D」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:373D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「373D」（chinese）未對上 R1 名冊：373 號師（div）不在 R1 名冊；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:378R",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「378R」（chinese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:51D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「51D」（chinese）未對上 R1 名冊：51 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:58D(一部)",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「58D(一部)」（chinese）未對上 R1 名冊：58 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:61D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「61D」（chinese）未對上 R1 名冊：61 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:62D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「62D」（chinese）未對上 R1 名冊：62 號師（div）不在 R1 名冊；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:66D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「66D」（chinese）未對上 R1 名冊：66 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:67C",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「67C」（chinese）未對上 R1 名冊：第六十七軍不在 R1；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:74C",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「74C」（chinese）未對上 R1 名冊：第七十四軍不在 R1（無 A/B 文字出處）；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:78D",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「78D」（chinese）未對上 R1 名冊：78 號師（div）不在 R1 名冊；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:上海市保安總團",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「上海市保安總團」（chinese）未對上 R1 名冊：保安部隊，不在 R1；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:俞濟時軍",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「俞濟時軍」（chinese）未對上 R1 名冊：第七十四軍（軍長俞濟時）不在 R1；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:張發奎集團",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「張發奎集團」（chinese）未對上 R1 名冊：第八集團軍（張發奎）不在 R1（文字出處未載番號）；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:chinese:胡宗南軍(1C)",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「胡宗南軍(1C)」（chinese）未對上 R1 名冊：第一軍不在 R1；出現於 mnd2017-fig4",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:japanese:1R",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「1R」（japanese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:japanese:2R",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「2R」（japanese）未對上 R1 名冊：regiment：低於 R1 名冊層級或非正規編組；出現於 mnd2017-fig5",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
-  },
-  {
-   "target": "map-label:japanese:5 FLD HV",
-   "kind": "unit_label_unmatched",
-   "note": "地圖標註「5 FLD HV」（japanese）未對上 R1 名冊：brigade：低於 R1 名冊層級或非正規編組；出現於 jm179-map1",
-   "checkedOn": "2026-11-13",
-   "tool": "tools/battles/match_units.py"
   }
  ]
 }

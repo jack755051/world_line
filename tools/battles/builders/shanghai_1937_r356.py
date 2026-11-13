@@ -128,6 +128,15 @@ for asin, pk in [("常熟（Changshu）", "常熟"), ("蘇州／吳縣（Suchou�
     S(asin, pk, "1937-11-19", "axis", "line_reached", [J("advanced to the line connecting Cba~ahu, Suchou and ClUAhai!lg"), J("on 19 ~ovEmber"), MN("擊，掩護友軍通過。19日追擊部隊已進抵至"), MN("常熟、吳興、嘉興之線(達日軍大本營原定"), MN("追擊，先頭已進抵至常熟-吳縣-嘉興之線，")],
       conflict="mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）", note="抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）")
 S("吳興", "湖州", "1937-11-26", "axis", "captured", [MN("興激戰，迄26日吳興失陷，第7軍向孝豐轉")], note="只有 mnd2017 一族")
+# 主管裁示的逐筆覆寫（battle.config.json rulings.*.overrides，由 shanghai_1937_rulings.py 寫入）：set 值為 None 表示刪除該欄
+_COLL = {"r3-unit-positions.json": pos, "r5-engagements.json": eng, "r6-site-control.json": sites}
+for _r in json.loads((OUT / "battle.config.json").read_text()).get("rulings", {}).values():
+    for o in _r.get("overrides", []):
+        hit = [x for x in _COLL[o["file"]] if all(x.get(k) == v for k, v in o["match"].items())]
+        assert len(hit) == 1, o["match"]
+        for k, v in o["set"].items():
+            if v is None: hit[0].pop(k, None)
+            else: hit[0][k] = v
 for f, d in [("r3-unit-positions.json", hdr("r3") | {"note": "主期 1937-08-13～11-26；地點只給出處地名＋OSM 編號（優先 admin_centre／label place 節點），不含座標；relation 為執行者歸類標籤；三張配準圖全未過 2 km，R3 全部為文字出處", "positions": pos}),
              ("r5-engagements.json", hdr("r5") | {"note": "舊 data/campaigns/shanghai_1937.json 只作線索；交戰分段依 mnd2017 節名（轉引國防部《抗日戰史》）並以 JACAR／JM-179 對照；conflict 欄記來源差異", "engagements": eng}),
              ("r6-site-control.json", hdr("r6") | {"note": "controllerAfter：axis＝日軍、allied＝國軍；null 表示出處未載控制方；sovereignRegimeSlug 皆為中華民國（租界另見 R8）", "sites": sites})]:

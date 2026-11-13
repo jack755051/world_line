@@ -113,7 +113,19 @@
      }
     }
    ],
-   "readNote": "mnd2017 雙欄 PDF，兩行屬同一欄相鄰行；FRUS 9/14 電只載羅店—北站段（未提瀏河），與 mnd2017 同線之南段一致"
+   "readNote": "mnd2017 雙欄 PDF，兩行屬同一欄相鄰行；FRUS 9/14 電只載羅店—北站段（未提瀏河），與 mnd2017 同線之南段一致",
+   "confidence": {
+    "level": "needs-check",
+    "why": "2 個獨立 A/B 來源家族（tw-roc、us-frus）；位置／線形為推估",
+    "singleSource": false,
+    "sourceFamilies": [
+     "tw-roc",
+     "us-frus"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "basis": "text",
@@ -199,7 +211,19 @@
      }
     }
    ],
-   "readNote": "同文前句：10/22 反擊失利後中央與左翼軍向「瀏河鎮－羅店北方－蘇州河左岸至南站」轉移（日期未明），與 11/5 線幾同"
+   "readNote": "同文前句：10/22 反擊失利後中央與左翼軍向「瀏河鎮－羅店北方－蘇州河左岸至南站」轉移（日期未明），與 11/5 線幾同",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
   },
   {
    "basis": "text",
@@ -312,7 +336,19 @@
      }
     }
    ],
-   "readNote": "mnd2017 兩處中段一作吳興、一作吳縣；採吳縣（＝蘇州，與 JM 一致）"
+   "readNote": "mnd2017 兩處中段一作吳興、一作吳縣；採吳縣（＝蘇州，與 JM 一致）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）；位置／線形為推估",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
   },
   {
    "basis": "text",
@@ -396,7 +432,19 @@
       "tool": "tools/battles/verify_quotes.py"
      }
     }
-   ]
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（jp-monographs）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "jp-monographs"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
   }
  ],
  "excludedMaps": [

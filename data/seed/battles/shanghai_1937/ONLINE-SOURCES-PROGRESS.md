@@ -35,3 +35,10 @@
 - 缺口（gaps.json，tool=shanghai_1937_frus.py，9 筆）：國史館逾時、二檔館連不上且彙編無公開全文、國防部史政站連不上且屬 tw-roc、近史所 2015 何智霖／蘇聖雄 PDF 屬 tw-roc、MHDB 需登入、nlpi《共赴國難》為 C、臺灣記憶未見淞滬中方紀錄、CNKI 需登入、FRUS 未載中方番號／指揮官／吳興。
 - 仍無：中方 R1 部隊（26）、R7 指揮官（13）、R7 待補人物（5）的獨立家族。
 - 成本：claude -p $0；淞滬累計 $1.76（上限 $15）。
+
+## 主管 2026-11-13 21:24 裁示與寫庫前準備（不寫庫）
+- 裁示寫入 `shanghai_1937_rulings.py`（rulings["2026-11-13 21:24"]，含逐筆 overrides，由 r356 builder 套用）：
+  (a) 大場鎮日期改 1937-10-26，只由 FRUS 支持 → `confidenceRuling.basisFamilies=["us-frus"]`（crosscheck.py 新支援），待查證、單一來源、有效等級 C；「十月下旬」留在 dateNote／dateRange。
+  (b) 閘北八百壯士：10/30 只作 endCandidate，寫入 conflict，period.end 留空。(c) 波蘭 9/1 標籤不處理。
+- 五項檢查（crosscheck 以 --apply 重寫各檔 confidence；前兩輪 b220a68／181258e 漏了 --apply，本次一併補回）：已查證 37、單一來源 71、單一且只有 B（降 C）70；引文 261 筆全 verbatim。
+- 寫庫準備：`shanghai_1937_dbconfig.py`（db.sideRegimes：axis＝empire-of-japan、allied＝republic-of-china-nationalist）、`osm_coords.py`（補 20 個座標）、`write_battle_sql.py shanghai_1937`、`db_write.py shanghai_1937` dry-run（交易內 ROLLBACK；之後重數：未留下任何列）。報告見 `db/`。實寫待 Tai 另行同意。

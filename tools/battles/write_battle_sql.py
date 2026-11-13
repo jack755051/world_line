@@ -17,7 +17,7 @@ NS = uuid.uuid5(uuid.NAMESPACE_URL, "https://worldline.local/battle-seed")
 POLICY = "battle-db-2026-11-13"
 KIND = {"official_history": "official_history"}
 SOURCE_KIND = {"us-army-dapam": "official_history", "usma-atlas": "atlas_map", "de-okh-records": "archive",
-               "de-academic": "official_website", "pl-ipn": "official_website", "jp-jacar": "archive", "jp-monographs": "official_history", "tw-roc": "peer_reviewed"}
+               "de-academic": "official_website", "pl-ipn": "official_website", "jp-jacar": "archive", "jp-monographs": "official_history", "tw-roc": "peer_reviewed", "us-frus": "official_record"}
 CAMP = {"de": "axis", "su": "soviet", "axis": "axis", "allied": "allied", "soviet": "soviet"}
 SIDE_REGIME = {"de": "deutsches-reich", "su": "soviet-union", "axis": "deutsches-reich"}
 RANK = {"A": 0, "B": 1, "C": 2}
@@ -35,6 +35,7 @@ def main():
     L = lambda f: json.loads((D / f).read_text())
     cfg, src, name = L("battle.config.json"), L("sources.json"), L("name.json")
     fam = cfg["sourceFamilies"]["map"]
+    SIDE = {**SIDE_REGIME, **(cfg.get("db") or {}).get("sideRegimes", {})}  # 戰役可在 battle.config.json db.sideRegimes 指定陣營→政權（由 builder 寫入）
     web = json.loads((REPO / "frontend/public/campaigns" / f"{battle}.json").read_text())
     op = L("osm-places.json") if (D / "osm-places.json").exists() else {}; co = op.get("coords", {})
     seedp = REPO / "data/seed/battles" / f"{battle}.seed.json"; seed = json.loads(seedp.read_text()) if seedp.exists() else None
@@ -76,8 +77,8 @@ def main():
     # 交戰方
     units = L("r1-units.json")["units"]
     ok_units = [u for u in units if any(grade(c, u) for c in u["citations"])]
-    for slug in sorted({u["regimeSlug"] for u in ok_units if u.get("regimeSlug")}):
-        add("event_participants", ["event_id", "regime_id", "role"], [q(ev), reg(slug), q("belligerent")])
+    part_slugs = {u["regimeSlug"] for u in ok_units if u.get("regimeSlug")}  # 交戰方：有 A/B 部隊者，另加已寫入交戰紀錄所列部隊之政權（見下）
+    part_at = len(sql)
     # 階段
     phase_ids = []
     if seed and seed.get("phases"):
@@ -139,7 +140,7 @@ def main():
         else: props.update(inference=f.get("inference", "文字推定"), method=f.get("method"))
         wkt = "LINESTRING(" + ", ".join(f"{x:.5f} {y:.5f}" for x, y in pts) + ")"
         add("battle_map_features", ["id", "phase_id", "feature_key", "feature_kind", "side_regime_id", "side_camp", "geom", "label", "props", "geom_basis", "status"],
-            [q(fid), q(pid), q(f"{battle}:front:{f['lineKey']}"[:96]), q("front"), reg(SIDE_REGIME[side]) if side in SIDE_REGIME else "NULL",
+            [q(fid), q(pid), q(f"{battle}:front:{f['lineKey']}"[:96]), q("front"), reg(SIDE[side]) if side in SIDE else "NULL",
              q(CAMP.get(side)), f"ST_GeomFromText({q(wkt)}, 4326)", j({"zh-Hant": f["label"]}), j(props), q("source_map" if mapped else "derived"), q("pending")])
         cites("battle_map_feature_citations", "feature_id", fid, f, fcs, note="地圖數位化（georef 通過門檻），引文為圖題" if mapped else "文字推定前線，待查證")
     # 據點：r6 易手、r5 交戰地
@@ -159,6 +160,12 @@ def main():
                 [q(fid), q(pid), q(f"{battle}:site:{kind}:{key}"[:96]), q("site"), reg(s["controllerRegimeSlug"]) if kind == "control" and s.get("controllerRegimeSlug") else "NULL",
                  q(CAMP.get(camp)), f"ST_SetSRID(ST_MakePoint({pt[0]:.5f}, {pt[1]:.5f}), 4326)", j(lab), j(props), q("source_text"), q("pending")])
             cites("battle_map_feature_citations", "feature_id", fid, s, s["citations"])
+            if kind == "engagement":
+                rs = {u["unitKey"]: u.get("regimeSlug") for u in units}
+                part_slugs.update(rs[k] for k in (s.get("attackers") or []) + (s.get("defenders") or []) if rs.get(k))
+    for slug in sorted(part_slugs, reverse=True):
+        sql.insert(part_at, f"INSERT INTO event_participants (event_id, regime_id, role) VALUES ({q(ev)}, {reg(slug)}, {q('belligerent')});")
+        plan["rows"]["event_participants"] = plan["rows"].get("event_participants", 0) + 1
     # 部隊（父先子後）
     byk = {u["unitKey"]: u for u in ok_units}; done = set()
     for u in units:

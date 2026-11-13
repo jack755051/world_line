@@ -47,6 +47,10 @@ def fam(c):
 
 def judge(rec, fact_grades=("A", "B")):
     cits = [c for c in rec.get("citations", []) or [] if isinstance(c, dict)]
+    # 主管裁示可指定某筆紀錄的關鍵欄位（如日期）只由特定來源家族支持：只以這些家族的引文判定等級（其餘引文保留但不計）
+    rul = rec.get("confidenceRuling") or {}
+    if rul.get("basisFamilies"):
+        cits = [c for c in cits if fam(c) in rul["basisFamilies"]]
     good = [c for c in cits if c.get("grade") in GRADES and (c.get("quoteCheck") or {}).get("status", "verbatim") in OK_QC]
     ab = [c for c in good if c["grade"] in ("A", "B")]
     srcs = sorted({fam(c) for c in good})
@@ -63,6 +67,8 @@ def judge(rec, fact_grades=("A", "B")):
         lv, why = "needs-check", "只有 C 級出處"
     if estimate_kind and lv == "verified":
         lv, why = "needs-check", why + "；位置／線形為推估"
+    if rul.get("basisFamilies"):
+        why = f"{why}；依裁示只計 {'、'.join(rul['basisFamilies'])}（{rul.get('why', '')}）"
     single = len(srcs) == 1
     eff = DROP[best] if (best and single) else best
     return {"level": lv, "levelZh": ZH[lv], "why": why, "independentSources": srcs, "singleSource": single,

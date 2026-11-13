@@ -9,6 +9,12 @@
  "mapKey": "ellis-sm-30may",
  "mapDate": "1940-05-30",
  "method": "用 Swift 將 1200×652 原圖切成 400×250 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上；本圖為周界大比例圖、地圖佔滿整幅，版面與 26–29 May 圖完全不同，px 皆於本圖重讀）；城鎮取村鎮符號（影線／小點群）中心，部隊取符號／標字中心，讀圖誤差約 ±3 px（約 0.5–1 km）。圖面範圍只涵蓋 Dunkirk 周界（Mardyck–Bourbourg 至 Nieuport–Noordschote），控制點 27 個、全圖分布但無西南以外地區，多為小村（符號為影線團而非圓點，取團中心，誤差略大）；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon），同名地點沿用同一 OSM 結果。部隊標註只收師／軍／軍團／裝甲群層級；圖上大量旅（BDE）、團（Rgt／RI／AR）、營（如 2 Hamps）標註未收（屬 R1 名冊之下層）。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）",
+  "loo_p95_km": 1.3,
+  "passes": true,
+  "use": "可用於部隊位置與前線頂點"
+ },
  "georef": {
   "tool": "data/seed/battles/dunkirk_1940/tools/georef_ellis.py",
   "model": "二次多項式（經、緯度各一）",
@@ -500,7 +506,8 @@
     51.1226
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "3 DIV",
@@ -518,7 +525,8 @@
     51.0809
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "5 DIV",
@@ -536,7 +544,8 @@
     51.0618
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "23 DIV",
@@ -554,7 +563,8 @@
     51.0543
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "50 DIV",
@@ -572,7 +582,8 @@
     51.0522
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "32 DIV",
@@ -590,7 +601,8 @@
     51.035
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "46 DIV",
@@ -608,7 +620,8 @@
     51.0284
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "60 DIV",
@@ -626,7 +639,8 @@
     51.0547
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "68 DIV",
@@ -644,7 +658,8 @@
     50.9962
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "21 C.I.DIV",
@@ -662,7 +677,8 @@
     51.008
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "256 DIV",
@@ -680,7 +696,8 @@
     51.1274
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "14 DIV",
@@ -698,7 +715,8 @@
     50.9849
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "20 MOT DIV",
@@ -716,7 +734,8 @@
     50.9473
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "9 ARMD DIV",
@@ -734,7 +753,8 @@
     50.9499
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "I CORPS",
@@ -752,7 +772,8 @@
     51.0794
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "II CORPS",
@@ -770,7 +791,8 @@
     51.0791
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "XXVI CORPS",
@@ -788,7 +810,8 @@
     51.0919
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "IX CORPS",
@@ -806,7 +829,8 @@
     51.0278
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "X CORPS",
@@ -824,7 +848,8 @@
     50.9443
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "XIV CORPS (KLEIST GROUP)",
@@ -842,7 +867,8 @@
     50.928
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "EIGHTEENTH ARMY",
@@ -860,7 +886,8 @@
     51.0615
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "SIXTH ARMY",
@@ -878,7 +905,8 @@
     50.9649
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "FOURTH ARMY",
@@ -896,7 +924,8 @@
     50.9336
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "GHQ",
@@ -914,7 +943,8 @@
     51.1052
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   }
  ],
  "unresolved": [

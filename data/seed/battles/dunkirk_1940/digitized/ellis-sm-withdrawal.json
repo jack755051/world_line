@@ -8,7 +8,13 @@
  },
  "mapKey": "ellis-sm-withdrawal",
  "mapDate": "1940-05-29",
- "method": "用 Swift 將 640×967 原圖（直幅、比例尺約為態勢圖的 2 倍）切成 400×330 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上），城鎮取圓點中心（Dunkirk、Nieuport、Ostend 為影線塊，取塊中心），讀圖誤差約 ±3 px（比例較大，約 0.8–1 km）；圖面範圍小，控制點僅 27 個（Dunkirk–Dixmude–Ypres–Comines–Armentières–Merville–Hazebrouck–Cassel 一帶），分布涵蓋全圖但西南角（Cassel 以南）與東南角（Lille 被截斷）無點；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon），同名地點沿用同一 OSM 結果。本圖只畫英軍位置，無德軍符號。",
+ "method": "用 Swift 將 640×967 原圖（直幅、比例尺約為態勢圖的 2 倍）切成 400×330 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上），城鎮取圓點中心（Dunkirk、Nieuport、Ostend 為影線塊，取塊中心），讀圖誤差約 ±3 px（比例較大，約 0.8–1 km）；圖面範圍小，控制點僅 26 個（Dunkirk–Dixmude–Ypres–Comines–Armentières–Merville–Hazebrouck–Cassel 一帶），分布涵蓋全圖但西南角（Cassel 以南）與東南角（Lille 被截斷）無點；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon），同名地點沿用同一 OSM 結果。本圖只畫英軍位置，無德軍符號。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）",
+  "loo_p95_km": 0.76,
+  "passes": true,
+  "use": "可用於部隊位置與前線頂點"
+ },
  "georef": {
   "tool": "data/seed/battles/dunkirk_1940/tools/georef_ellis.py",
   "model": "二次多項式（經、緯度各一）",
@@ -483,7 +489,8 @@
     51.0465
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "46",
@@ -501,7 +508,8 @@
     51.0031
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "1",
@@ -519,7 +527,8 @@
     51.0025
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "48",
@@ -537,7 +546,8 @@
     50.9602
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "42",
@@ -555,7 +565,8 @@
     50.9328
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "4",
@@ -573,7 +584,8 @@
     50.9951
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "5",
@@ -591,7 +603,8 @@
     50.9655
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "3",
@@ -609,7 +622,8 @@
     50.9197
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "3",
@@ -627,7 +641,8 @@
     50.8988
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "50",
@@ -645,7 +660,8 @@
     50.8856
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "50",
@@ -663,7 +679,8 @@
     50.8521
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "48",
@@ -681,7 +698,8 @@
     50.8862
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "46",
@@ -699,7 +717,8 @@
     50.8224
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "44",
@@ -717,7 +736,8 @@
     50.7877
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "44",
@@ -735,7 +755,8 @@
     50.7386
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "2",
@@ -753,7 +774,8 @@
     50.6743
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "5",
@@ -771,7 +793,8 @@
     50.7801
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "4",
@@ -789,7 +812,8 @@
     50.7386
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "42",
@@ -807,7 +831,8 @@
     50.7099
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "ADAM FORCE",
@@ -825,7 +850,8 @@
     51.0525
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "USHER FORCE",
@@ -843,7 +869,8 @@
     50.9815
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "GHQ",
@@ -861,7 +888,8 @@
     51.1261
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "FRENCH SECTOR",
@@ -879,7 +907,8 @@
     50.9907
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "1ST ARMY",
@@ -897,7 +926,8 @@
     50.6571
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   }
  ],
  "unresolved": [

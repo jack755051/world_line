@@ -3,12 +3,15 @@
 方法沿用展示頁 tools/georef.py（唯讀參考，未修改）：經度、緯度各以像素座標的二次多項式最小平方擬合；
 留一法（leave-one-out）估「非控制點處」的誤差，取中位數與 95 百分位；殘差 > max(閾值, 3×中位數) 的控制點列為可疑。
 精度 precision_m ＝ 留一 95 百分位 ＋ 標註框誤差（frame_km；部隊符號／標註框不等於部隊實際位置）。
+門檻（主管 2026-11-13 12:05）：留一 95 百分位 ≤ 2 km 才算通過；未通過的圖只作參考，不得用於部隊位置或前線頂點（取代舊的 ≤ 5 km）。
 
 用法：python3 -I georef_ellis.py ../digitized/<mapKey>.readings.json [--frame-km 3]
 讀  readings.json：source、mapDate、control_points{名稱:{px:[x,y], lonlat:[lon,lat], osm:{type,id}}}、features[{label, px, side, unitKey?}]
 寫  同名 .json（去掉 .readings）：fit 統計、每個 feature 的經緯度（estimate=推估）
 """
 import json, math, sys
+
+THRESHOLD_P95_KM = 2.0  # 主管 2026-11-13 12:05
 from pathlib import Path
 
 
@@ -68,11 +71,14 @@ def main():
         loo.append(km(apply(fit(Pm, Gm, c0, s0), P[i], c0, s0), G[i]))
     med, p95 = pct(loo, 0.5), pct(loo, 0.95)
     bad = [(names[i], round(loo[i], 2)) for i in range(len(P)) if loo[i] > max(5.0, 3 * med)]
+    passes = p95 <= THRESHOLD_P95_KM
     feats = []
     for f in R.get("features", []):
         ll = apply(C, f["px"], c0, s0)
-        feats.append({**f, "lonlat": [round(ll[0], 4), round(ll[1], 4)], "estimate": "推估", "basis": "map-digitized"})
+        feats.append({**f, "lonlat": [round(ll[0], 4), round(ll[1], 4)], "estimate": "推估", "basis": "map-digitized", "usable": passes})
     out = {"source": R["source"], "mapKey": R.get("mapKey"), "mapDate": R.get("mapDate"), "method": R.get("method"),
+           "threshold": {"rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）", "loo_p95_km": round(p95, 2), "passes": passes,
+                         "use": "可用於部隊位置與前線頂點" if passes else "僅供參考：不得用於部隊位置或前線頂點"},
            "georef": {"tool": "data/seed/battles/dunkirk_1940/tools/georef_ellis.py", "model": "二次多項式（經、緯度各一）", "control_points": len(P),
                       "residual_median_km": round(pct(res, 0.5), 2), "loo_median_km": round(med, 2), "loo_p95_km": round(p95, 2),
                       "loo_max_km": round(max(loo), 2), "suspect_control_points": bad, "frame_km": frame_km},
@@ -81,7 +87,7 @@ def main():
            "control_points": {n: {**R["control_points"][n], "loo_km": round(loo[i], 2)} for i, n in enumerate(names)},
            "features": feats, "unresolved": R.get("unresolved", [])}
     path.with_name(path.name.replace(".readings.json", ".json")).write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"控制點 {len(P)}｜殘差中位數 {pct(res, .5):.2f} km｜留一中位數 {med:.2f} km、95% {p95:.2f} km、最大 {max(loo):.2f} km｜可疑 {bad}｜部隊 {len(feats)}｜precision_m {out['precision_m']}")
+    print(f"控制點 {len(P)}｜殘差中位數 {pct(res, .5):.2f} km｜留一中位數 {med:.2f} km、95% {p95:.2f} km、最大 {max(loo):.2f} km｜可疑 {bad}｜部隊 {len(feats)}｜precision_m {out['precision_m']}｜門檻 2 km：{'通過' if passes else '未通過（僅參考）'}")
 
 
 if __name__ == "__main__":

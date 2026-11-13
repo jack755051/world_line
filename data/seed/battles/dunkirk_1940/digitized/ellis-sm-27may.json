@@ -9,6 +9,12 @@
  "mapKey": "ellis-sm-27may",
  "mapDate": "1940-05-27",
  "method": "用 Swift 將 1200×675 原圖切成 400×250 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上；本圖版面與 26／28 May 圖有約 10 px 位移，px 皆於本圖重讀），城鎮取圓點中心、部隊取符號／標字中心，讀圖誤差約 ±3 px（約 1.5–2 km）；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon，非 place node），同名地點沿用同一 OSM 結果。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）",
+  "loo_p95_km": 1.09,
+  "passes": true,
+  "use": "可用於部隊位置與前線頂點"
+ },
  "georef": {
   "tool": "data/seed/battles/dunkirk_1940/tools/georef_ellis.py",
   "model": "二次多項式（經、緯度各一）",
@@ -1401,7 +1407,8 @@
     50.9264
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "20 Mot",
@@ -1419,7 +1426,8 @@
     50.8192
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "13 Mot",
@@ -1437,7 +1445,8 @@
     50.1986
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "6",
@@ -1455,7 +1464,8 @@
     50.7767
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "8",
@@ -1473,7 +1483,8 @@
     50.7409
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "SSV",
@@ -1491,7 +1502,8 @@
     50.6545
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "SST",
@@ -1509,7 +1521,8 @@
     50.5971
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "3",
@@ -1527,7 +1540,8 @@
     50.6257
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "4",
@@ -1545,7 +1559,8 @@
     50.5995
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "7",
@@ -1563,7 +1578,8 @@
     50.6106
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "5",
@@ -1581,7 +1597,8 @@
     50.5645
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "12",
@@ -1599,7 +1616,8 @@
     50.5218
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "32",
@@ -1617,7 +1635,8 @@
     50.4658
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "11",
@@ -1635,7 +1654,8 @@
     50.412
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "267",
@@ -1653,7 +1673,8 @@
     50.4096
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "27",
@@ -1671,7 +1692,8 @@
     50.369
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "251",
@@ -1689,7 +1711,8 @@
     50.3416
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "46",
@@ -1707,7 +1730,8 @@
     50.3093
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "9",
@@ -1725,7 +1749,8 @@
     50.2077
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "1",
@@ -1743,7 +1768,8 @@
     50.3977
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "8",
@@ -1761,7 +1787,8 @@
     50.3962
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "83",
@@ -1779,7 +1806,8 @@
     50.4045
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "217",
@@ -1797,7 +1825,8 @@
     50.4952
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "28",
@@ -1815,7 +1844,8 @@
     50.3164
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "18",
@@ -1833,7 +1863,8 @@
     50.8505
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "31",
@@ -1851,7 +1882,8 @@
     50.7983
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "61",
@@ -1869,7 +1901,8 @@
     50.784
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "3",
@@ -1887,7 +1920,8 @@
     50.7063
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "254",
@@ -1905,7 +1939,8 @@
     50.8326
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "35",
@@ -1923,7 +1958,8 @@
     50.7548
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "269",
@@ -1941,7 +1977,8 @@
     50.6823
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "253",
@@ -1959,7 +1996,8 @@
     50.6213
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "256",
@@ -1977,7 +2015,8 @@
     51.1974
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "208",
@@ -1995,7 +2034,8 @@
     51.1225
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "225",
@@ -2013,7 +2053,8 @@
     51.0128
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "227",
@@ -2031,7 +2072,8 @@
     50.9743
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "56",
@@ -2049,7 +2091,8 @@
     51.0149
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "216",
@@ -2067,7 +2110,8 @@
     50.9925
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "255",
@@ -2085,7 +2129,8 @@
     50.9947
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "30",
@@ -2103,7 +2148,8 @@
     50.9695
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "19",
@@ -2121,7 +2167,8 @@
     50.912
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "14",
@@ -2139,7 +2186,8 @@
     50.8832
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "68",
@@ -2157,7 +2205,8 @@
     51.0008
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "60",
@@ -2175,7 +2224,8 @@
     51.1283
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "48",
@@ -2193,7 +2243,8 @@
     50.9144
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "2",
@@ -2211,7 +2262,8 @@
     50.8777
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "2 DLM",
@@ -2229,7 +2281,8 @@
     50.9178
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "23",
@@ -2247,7 +2300,8 @@
     50.8768
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "46",
@@ -2265,7 +2319,8 @@
     50.8161
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "50",
@@ -2283,7 +2338,8 @@
     50.8547
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "5",
@@ -2301,7 +2357,8 @@
     50.7776
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "4",
@@ -2319,7 +2376,8 @@
     50.7505
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "2",
@@ -2337,7 +2395,8 @@
     50.611
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "42",
@@ -2355,7 +2414,8 @@
     50.5705
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "12",
@@ -2373,7 +2433,8 @@
     50.6554
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "32",
@@ -2391,7 +2452,8 @@
     50.6429
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "III",
@@ -2409,7 +2471,8 @@
     50.8096
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "II",
@@ -2427,7 +2490,8 @@
     50.693
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "I",
@@ -2445,7 +2509,8 @@
     50.6506
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "Cav Corps",
@@ -2463,7 +2528,8 @@
     50.7353
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "FOURTH ARMY",
@@ -2481,7 +2547,8 @@
     50.4445
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "SIXTH ARMY",
@@ -2499,7 +2566,8 @@
     50.8492
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "EIGHTEENTH ARMY",
@@ -2517,7 +2585,8 @@
     51.0609
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "FIRST ARMY",
@@ -2535,7 +2604,8 @@
     50.5937
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "BELGIAN ARMY",
@@ -2553,7 +2623,8 @@
     51.1072
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "ARMY GROUP 'B'",
@@ -2571,7 +2642,8 @@
     50.7961
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "ARMY GROUP 'A'",
@@ -2589,7 +2661,8 @@
     50.3028
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "KLEIST GROUP",
@@ -2607,7 +2680,8 @@
     50.7273
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "HOTH GROUP",
@@ -2625,7 +2699,8 @@
     50.4975
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   },
   {
    "label": "GHQ",
@@ -2643,7 +2718,8 @@
     50.8935
    ],
    "estimate": "推估",
-   "basis": "map-digitized"
+   "basis": "map-digitized",
+   "usable": true
   }
  ],
  "unresolved": [

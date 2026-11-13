@@ -2800,6 +2800,44 @@
      "result": "no_result",
      "note": "curl 逾時",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Birdwood ADB text (text8825) 補迄日",
+     "url": "https://adb.anu.edu.au/biography/birdwood-william-riddell-baron-birdwood-5240/text8825",
+     "result": "challenge_page",
+     "note": "curl 僅得「Loading」空殼，無內文"
+    },
+    {
+     "step": 2,
+     "sourceType": "search",
+     "query": "WebSearch：Birdwood Fifth Army relinquished 1919 / disbanded",
+     "url": null,
+     "result": "no_result",
+     "note": "結果多為維基類（不收）；AIF Project、AWM、NPG 皆已讀過且未寫達達尼爾軍團／AIF 司令／第五軍卸任日"
+    },
+    {
+     "step": 3,
+     "sourceType": "search",
+     "query": "WebSearch：Birdwood Fifth Army handed over command 1919 Northern Army",
+     "url": null,
+     "result": "no_result",
+     "note": "無來源寫第五軍交卸日；London Gazette 31283 增刊僅為一般公報，未證其卸任；Papers Past 1920 報導只稱將任北方軍"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "AWM 人物頁 P11013160／finding aid 重讀",
+     "url": null,
+     "result": "not_relevant",
+     "note": "只寫 1916-09-14 受任 AIF 司令與 1918-08 Hughes 提議全面行政指揮，無迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -5023,6 +5061,44 @@
      "result": "blocked_403",
      "note": "307 挑戰頁，不繞過",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Bennett ADB text16729 補旅長迄日",
+     "url": "https://adb.anu.edu.au/biography/bennett-henry-gordon-9489/text16729",
+     "result": "challenge_page",
+     "note": "curl 僅得「Loading」空殼"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "AIF Project 個人紀錄 showPerson?pid=20146",
+     "url": "https://aif.adfa.edu.au/showPerson?pid=20146",
+     "result": "not_relevant",
+     "note": "只寫「Fate Returned to Australia 15 May 1919」，未明寫第3旅卸任，不足以當迄日"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "AWM ART03343 畫作說明 C177222",
+     "url": "https://www.awm.gov.au/collection/C177222",
+     "result": "not_relevant",
+     "note": "只寫 1916-12 升任第3旅旅長，無迄日"
+    },
+    {
+     "step": 4,
+     "sourceType": "search",
+     "query": "WebSearch：Bennett 3rd Infantry Brigade commanded until 1919",
+     "url": null,
+     "result": "no_result",
+     "note": "無來源明載旅長交卸日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

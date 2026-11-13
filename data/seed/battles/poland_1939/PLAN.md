@@ -128,3 +128,9 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
 3. WBH PDF 不下載，留在 gaps（source:pl-wbh-phw）。
 4. OKH 略圖下載並配準；USMA 04–07 配準並各做兩次判讀；過 P95 ≤ 2 km 者補 R4 前線（推估），未過者僅參考。
 5. 輔助腳本複製到 tools/battles/（以戰役代碼為參數），.dev 原檔保留。
+
+## 進度（2026-11-13 15:40，主管 14:58 決定第 4、5 項）
+- 輔助腳本複製到 `tools/battles/`（citelib、fetch_readable、osm_lookup、run_claude、builders/poland_1939_*），以戰役代碼為參數；`.dev` 原檔保留。builders 重跑輸出與已提交資料相同。
+- 地圖配準（門檻留一 P95 ≤ 2 km）：USMA 04 21.09、05 25.76、06 19.91、07 20.02 km（未過，僅參考；底圖城鎮位置本身偏差大）；OKH д.354 Lagekarte 4 為無底圖覆蓋圖，無法配準；OKH д.355 Luftgau IV 圖 1.77 km（通過）。
+- R4：通過的 д.355 圖沒有地面前線，只加 2 條 9/6 德軍 Armeegrenze（boundary，12 個頂點，推估，限控制點凸包內）。前線缺口 13 天不變。
+- USMA 04–07 標註兩次判讀：113 筆中 110 筆一致，1 筆文字不同（MODLIN AND NAREW GROUP／MODLIN），2 筆師級未檢查。

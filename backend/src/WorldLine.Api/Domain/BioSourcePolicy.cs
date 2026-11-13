@@ -6,7 +6,7 @@ namespace WorldLine.Api.Domain;
 /// 生平 citation 的來源政策（ARCHITECTURE §16.4.4，B1「硬性排除層」，2026-11-10）。
 /// 適用 leader_bio_field_citations、leader_record_citations 與日後的生平 citation 表；只做程式端檢查，寫入流程呼叫。
 /// - 硬性排除：Wikipedia／Wikidata／百度、已知被接管網域、只標「自製」的出版者（沿用 gap-830 send_batch.py 與 HANDOFF 的實務規則）。
-/// - 等級：T1 已決只收 A／B；C／X 不進 DB（留 seed）。未評等（NULL）允許寫入。DB 另有 CHECK（grade IN ('A','B')）。
+/// - 等級：T1 修訂：生平收 A／B／C、X 不進 DB（留 seed）。未評等（NULL）允許寫入。DB 另有 CHECK（生平 4 表 A／B／C；leader_record_citations 與戰役 A／B）。
 /// - 引文 quote：≤ 80 字，只在程式檢查、不加 DB 約束（Tai 2026-11-10 21:52：來源區預設收合，只保留單句短引；原 25 字）。
 ///   「字」＝NFC 正規化後的字元（Unicode code point，.NET <see cref="Rune"/>；Tai 21:52 取代原 text element 計法）：
 ///   中文一字＝1、空白與標點各＝1；「é」NFC 後預組合＝1。不用 C# char（UTF-16 碼元）：CJK 擴充 B 區等字會被算成 2；也不用詞數。
@@ -20,11 +20,15 @@ public static class BioSourcePolicy
     /// <summary>引文上限（NFC 後的字元數，Unicode code point）。</summary>
     public const int QuoteMaxChars = 80;
 
-    /// <summary>可寫入 DB 的等級（T1）。</summary>
+    /// <summary>戰役 citation 與 leader_record_citations 可寫入 DB 的等級（CHECK 不變：A／B）。</summary>
     public static readonly IReadOnlySet<string> AllowedGrades = new HashSet<string>(StringComparer.Ordinal) { "A", "B" };
 
-    /// <summary>T1 已定義、但不得進 DB 的等級（留 seed）。</summary>
-    public static readonly IReadOnlySet<string> ExcludedGrades = new HashSet<string>(StringComparer.Ordinal) { "C", "X" };
+    /// <summary>生平 4 表（paragraph／position／role／field citations）可寫入 DB 的等級。
+    /// T1 修訂（Tai 2026-11-12 09:37、2026-11-13 11:05）：具名 C 可入庫（限將領生平），X 不入庫。</summary>
+    public static readonly IReadOnlySet<string> BioAllowedGrades = new HashSet<string>(StringComparer.Ordinal) { "A", "B", "C" };
+
+    /// <summary>不得進 DB 的等級（留 seed）。</summary>
+    public static readonly IReadOnlySet<string> ExcludedGrades = new HashSet<string>(StringComparer.Ordinal) { "X" };
 
     /// <summary>硬性排除的網域（含子網域）。</summary>
     public static readonly IReadOnlyList<string> ExcludedHosts =
@@ -64,13 +68,19 @@ public static class BioSourcePolicy
         return null;
     }
 
-    /// <summary>等級檢查：NULL（未評等）可；A／B 可；C／X 依 T1 不進 DB；其他值無效。</summary>
-    public static string? WhyGradeRejected(string? grade)
+    /// <summary>
+    /// 等級檢查：NULL（未評等）可。預設用生平集合（A／B／C）；leader_record_citations 須傳 <see cref="AllowedGrades"/>（只收 A／B）。
+    /// T1 修訂（Tai 2026-11-12 09:37、2026-11-13 11:05）：具名 C 可入庫（限將領生平），X 不入庫；其他值無效。
+    /// </summary>
+    public static string? WhyGradeRejected(string? grade, IReadOnlySet<string>? allowed = null)
     {
+        allowed ??= BioAllowedGrades;
         if (grade is null) return null;
-        if (AllowedGrades.Contains(grade)) return null;
-        if (ExcludedGrades.Contains(grade)) return $"來源等級 {grade} 不進 DB（T1：只收 A／B，C／X 留在 seed）。";
-        return $"來源等級「{grade}」無效；只接受 A、B（或留空）。";
+        if (allowed.Contains(grade)) return null;
+        var list = string.Join("、", allowed.Order());
+        if (grade == "X" || ExcludedGrades.Contains(grade) || grade == "C")
+            return $"來源等級 {grade} 不進 DB（T1 修訂：具名 C 可入庫（限將領生平），X 不入庫；此表只收 {list}）。";
+        return $"來源等級「{grade}」無效；只接受 {list}（或留空）。";
     }
 
     /// <summary>
@@ -86,11 +96,11 @@ public static class BioSourcePolicy
     }
 
     /// <summary>一筆生平 citation 的整體檢查；回所有不合格原因（空清單＝合格）。</summary>
-    public static IReadOnlyList<string> Validate(Source source, string? quote, string? grade, bool quoteRequired)
+    public static IReadOnlyList<string> Validate(Source source, string? quote, string? grade, bool quoteRequired, IReadOnlySet<string>? allowedGrades = null)
     {
         var errors = new List<string>(3);
         if (WhyNotQualifiedSource(source) is { } s) errors.Add(s);
-        if (WhyGradeRejected(grade) is { } g) errors.Add(g);
+        if (WhyGradeRejected(grade, allowedGrades) is { } g) errors.Add(g);
         if (WhyQuoteRejected(quote, quoteRequired) is { } q) errors.Add(q);
         return errors;
     }

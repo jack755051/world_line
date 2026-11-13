@@ -103,7 +103,7 @@ public sealed class BioParagraphsPositionsRolesTests(PostGisFixture fx)
     [InlineData("leader_bio_paragraph_citations", "paragraph_id")]
     [InlineData("person_position_citations", "position_id")]
     [InlineData("person_role_citations", "role_id")]
-    public async Task Citation_requires_locator_quote_and_grade_is_A_or_B(string table, string fk)
+    public async Task Citation_requires_locator_quote_and_grade_is_A_B_or_C(string table, string fk)
     {
         await using var c = await OpenAsync();
         var (bio, src) = await Seed(c);
@@ -119,7 +119,8 @@ public sealed class BioParagraphsPositionsRolesTests(PostGisFixture fx)
         Assert.NotNull(await Scalar(c, Ins("'p. 1'", "'q'", "NULL")));
         await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, Ins("' '", "'q'", "'A'")));
         await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, Ins("'p. 1'", "' '", "'A'")));
-        await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, Ins("'p. 1'", "'q'", "'C'")));
+        Assert.NotNull(await Scalar(c, Ins("'p. 1'", "'q'", "'C'")));
+        await Assert.ThrowsAsync<PostgresException>(() => Scalar(c, Ins("'p. 1'", "'q'", "'X'")));
     }
 
     [Theory]

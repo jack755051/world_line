@@ -1690,7 +1690,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_leader_bio_field_citations_field", "field IN ('name', 'nameZh', 'birthDate', 'deathDate', 'birthPlace', 'deathPlace', 'party', 'summary', 'portrait')");
 
-                            t.HasCheckConstraint("ck_leader_bio_field_citations_grade", "grade IS NULL OR grade IN ('A', 'B')");
+                            t.HasCheckConstraint("ck_leader_bio_field_citations_grade", "grade IS NULL OR grade IN ('A', 'B', 'C')");
 
                             t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
 
@@ -1971,7 +1971,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_leader_bio_paragraph_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
 
-                            t.HasCheckConstraint("ck_leader_bio_paragraph_citations_grade", "grade IS NULL OR grade IN ('A', 'B')");
+                            t.HasCheckConstraint("ck_leader_bio_paragraph_citations_grade", "grade IS NULL OR grade IN ('A', 'B', 'C')");
 
                             t.HasCheckConstraint("ck_leader_bio_paragraph_citations_locator_not_blank", "btrim(locator) <> ''");
 
@@ -2470,7 +2470,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_person_position_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
 
-                            t.HasCheckConstraint("ck_person_position_citations_grade", "grade IS NULL OR grade IN ('A', 'B')");
+                            t.HasCheckConstraint("ck_person_position_citations_grade", "grade IS NULL OR grade IN ('A', 'B', 'C')");
 
                             t.HasCheckConstraint("ck_person_position_citations_locator_not_blank", "btrim(locator) <> ''");
 
@@ -2693,7 +2693,7 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                             t.HasCheckConstraint("ck_person_role_citations_date_precision", "date_precision IS NULL OR date_precision IN ('day', 'month', 'year')");
 
-                            t.HasCheckConstraint("ck_person_role_citations_grade", "grade IS NULL OR grade IN ('A', 'B')");
+                            t.HasCheckConstraint("ck_person_role_citations_grade", "grade IS NULL OR grade IN ('A', 'B', 'C')");
 
                             t.HasCheckConstraint("ck_person_role_citations_locator_not_blank", "btrim(locator) <> ''");
 

@@ -50,12 +50,11 @@ public class BioCitationFieldsAndGapsModelTests
     }
 
     [Fact]
-    public void Grade_check_only_accepts_A_or_B_on_both_citation_tables()
+    public void Grade_check_field_citations_accept_ABC_leader_record_only_AB()
     {
         using var db = NewContext();
-        const string expected = "grade IS NULL OR grade IN ('A', 'B')";
-        Assert.Equal(expected, Checks<LeaderBioFieldCitation>(db)["ck_leader_bio_field_citations_grade"]);
-        Assert.Equal(expected, Checks<LeaderRecordCitation>(db)["ck_leader_record_citations_grade"]);
+        Assert.Equal("grade IS NULL OR grade IN ('A', 'B', 'C')", Checks<LeaderBioFieldCitation>(db)["ck_leader_bio_field_citations_grade"]);
+        Assert.Equal("grade IS NULL OR grade IN ('A', 'B')", Checks<LeaderRecordCitation>(db)["ck_leader_record_citations_grade"]);
     }
 
     [Fact]

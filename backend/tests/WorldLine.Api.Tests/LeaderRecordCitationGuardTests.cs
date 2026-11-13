@@ -47,6 +47,16 @@ public sealed class LeaderRecordCitationGuardTests(PostGisFixture fx)
         RETURNING id
         """;
 
+    [Theory]
+    [InlineData("'C'")]
+    [InlineData("'X'")]
+    public async Task Leader_record_citation_still_rejects_grade_C_and_X(string grade)
+    {
+        await using var c = await OpenAsync();
+        var (rec, src) = await SeedAsync(c);
+        await Assert.ThrowsAsync<PostgresException>(() => ScalarAsync(c, Insert(rec, src, grade: grade)));
+    }
+
     [Fact]
     public async Task Valid_citation_is_written_with_defaults()
     {

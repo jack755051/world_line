@@ -131,7 +131,7 @@ internal static class BioDetailModel
             {
                 t.HasCheckConstraint($"ck_{table}_locator_not_blank", "btrim(locator) <> ''");
                 t.HasCheckConstraint($"ck_{table}_quote_not_blank", "btrim(quote) <> ''");
-                t.HasCheckConstraint($"ck_{table}_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.AllowedGrades.Order()));
+                t.HasCheckConstraint($"ck_{table}_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.BioAllowedGrades.Order()));
                 t.HasCheckConstraint($"ck_{table}_date_precision", "date_precision IS NULL OR " + InList("date_precision", DatePrecisions.All));
                 t.HasCheckConstraint($"ck_{table}_claim_span", "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
                 t.HasCheckConstraint($"ck_{table}_retraction_reason", Retraction);

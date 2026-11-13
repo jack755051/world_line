@@ -37,14 +37,21 @@ public sealed class BioCitationFieldsAndGapsGuardTests(PostGisFixture fx)
         """;
 
     [Theory]
-    [InlineData("'C'")]
     [InlineData("'X'")]
     [InlineData("'a'")]
-    public async Task Grade_outside_A_B_is_rejected(string grade)
+    public async Task Grade_outside_A_B_C_is_rejected(string grade)
     {
         await using var c = await OpenAsync();
         var (bio, src) = await SeedAsync(c);
         await Assert.ThrowsAsync<PostgresException>(() => ScalarAsync(c, FieldCitation(bio, src, "birthDate", "'b. 1862'", grade)));
+    }
+
+    [Fact]
+    public async Task Grade_C_is_accepted()
+    {
+        await using var c = await OpenAsync();
+        var (bio, src) = await SeedAsync(c);
+        Assert.NotNull(await ScalarAsync(c, FieldCitation(bio, src, "birthDate", "'b. 1862'", "'C'")));
     }
 
     [Fact]

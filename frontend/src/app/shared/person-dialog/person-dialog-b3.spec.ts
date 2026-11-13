@@ -94,6 +94,14 @@ describe('PersonDialog：B3 分段生平／經歷／角色', () => {
     expect(txt(panel)).toContain('來源乙');
   });
 
+  it('C 級來源：資料來源區照常顯示「等級：C」', async () => {
+    const cC = { ...cite('c9', '引文丙', 'p.3', '來源丙'), grade: 'C' };
+    const { fixture, el } = await render(base({ paragraphs: [{ ...paras[1], citations: [cC] }] }));
+    q(el, 'person-sources-toggle')!.click();
+    await fixture.whenStable();
+    expect(qa(q(el, 'person-sources-panel')!, 'source-grade').map(txt)).toEqual(['等級：C']);
+  });
+
   it('迄日：只有日精度扣一天；年／月／缺省精度照原樣；無迄日仍寫迄今不明', async () => {
     const mk = (id: string, start: string, end: string | null, sp: string | null, ep: string | null) => ({ ...pos(id, start, id), period: { start, end }, startPrecision: sp, endPrecision: ep });
     const { el } = await render(base({

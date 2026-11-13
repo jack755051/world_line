@@ -85,6 +85,21 @@ describe('戰役圖層：文字推定／待查證前線', () => {
     expect(d['campaign-front-labels'].features.map((f) => [f.properties.id, f.geometry.coordinates])).toEqual([['a', [0.5, 0.5]], ['b', [0.5, 0.5]]]);
     const l = campaignLayers().find((x) => x.id === 'campaign-fronts-label') as { source: string; layout: Record<string, unknown> };
     expect(l.source).toBe('campaign-front-labels');
-    expect(l.layout['text-allow-overlap']).toBe(true);
+    expect(l.layout['text-allow-overlap']).toBe(false);
+    expect(l.layout['text-ignore-placement']).toBe(false);
+  });
+
+  it('前線標籤：同階段同日期只出一個，放在最長那段；不同日期／不同名稱各自保留', () => {
+    const geo = (coordinates: number[][]) => ({ type: 'LineString', coordinates });
+    const f = (id: string, date: string, coords: number[][], extra: Record<string, unknown> = {}) => ({ ...front(id, 1, false, { date, ...extra }), geometry: geo(coords) });
+    const d = campaignSourceData(campaign([
+      f('short', '1940-05-26', [[0, 0], [1, 0]]),
+      f('long', '1940-05-26', [[0, 0], [0, 4]]),
+      f('other', '1940-05-27', [[0, 0], [2, 0]]),
+      f('named', '1940-05-26', [[0, 0], [1, 0]], { name: '某防線' }),
+    ] as never));
+    const labels = d['campaign-front-labels'].features.map((x) => [x.properties.id, x.geometry.coordinates]);
+    expect(labels).toEqual([['long', [0, 2]], ['other', [1, 0]], ['named', [0.5, 0]]]);
+    expect(d['campaign-fronts'].features.length).toBe(4);
   });
 });

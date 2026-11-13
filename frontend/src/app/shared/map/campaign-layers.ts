@@ -42,6 +42,21 @@ export function midpoint(g: { type: string; coordinates: unknown }): number[] | 
   }
   return cs[cs.length - 1];
 }
+/** 線的各段（LineString 一段；MultiLineString 多段）。 */
+function lineParts(g: { type: string; coordinates: unknown }): number[][][] {
+  return g.type === 'LineString' ? [g.coordinates as number[][]] : g.type === 'MultiLineString' ? (g.coordinates as number[][][]) : [];
+}
+const partLength = (cs: number[][]) => cs.slice(1).reduce((a, b, i) => a + Math.hypot(b[0] - cs[i][0], b[1] - cs[i][1]), 0);
+/** 線總長（平面近似，只用來挑放標籤的那一段）。 */
+export function lineLength(g: { type: string; coordinates: unknown }): number {
+  return lineParts(g).reduce((a, cs) => a + partLength(cs), 0);
+}
+/** 多線中最長的一段（給中點用）；非線回傳 null。 */
+export function longestPart(g: { type: string; coordinates: unknown }): { type: string; coordinates: unknown } | null {
+  const ps = lineParts(g);
+  if (!ps.length) return null;
+  return { type: 'LineString', coordinates: ps.reduce((a, b) => (partLength(b) > partLength(a) ? b : a)) };
+}
 export const ARROWHEAD_IMAGE = 'campaign-arrowhead';
 /** 箭頭符號：SDF 三角形（朝上＝北，icon-rotate 轉到線的方向；icon-color 依陣營上色）。 */
 export function arrowheadImage(size = 40): { width: number; height: number; data: Uint8ClampedArray } {
@@ -90,9 +105,18 @@ export function campaignSourceData(c: Campaign): Record<(typeof CAMPAIGN_SOURCES
       return { type: 'Feature' as const, properties: { ...f.properties, bearing: bearing(cs[cs.length - 2], cs[cs.length - 1]) }, geometry: { type: 'Point', coordinates: cs[cs.length - 1] } };
     });
   const fronts = c.layers.fronts.features.map((f) => ({ ...f, properties: { ...f.properties, ...lab(f.properties, frontName(f.properties)) } }));
-  // 前線標籤放在線長中點（點標籤）：短線或折線也一定放得下，不受 line-center 長度／角度限制
-  const frontLabels = fronts.flatMap((f) => {
-    const m = midpoint(f.geometry);
+  // 前線標籤：同一階段同一日期（同一標籤文字）只出一個，放在該日期最長的一段的線長中點（點標籤）；
+  // 標籤圖層開碰撞避讓，避免多段同日前線的標籤互相疊在一起。
+  const best = new Map<string, { f: (typeof fronts)[number]; len: number }>();
+  for (const f of fronts) {
+    const p = f.properties as Record<string, unknown>;
+    const key = `${String(p['phase'] ?? '')}|${String(p['date'] ?? '')}|${String(p['labelBase'])}`;
+    const len = lineLength(f.geometry);
+    const cur = best.get(key);
+    if (!cur || len > cur.len) best.set(key, { f, len });
+  }
+  const frontLabels = [...best.values()].flatMap(({ f }) => {
+    const m = midpoint(longestPart(f.geometry) ?? f.geometry);
     return m ? [{ type: 'Feature' as const, properties: f.properties, geometry: { type: 'Point', coordinates: m } }] : [];
   });
   return {
@@ -140,7 +164,7 @@ export function campaignLayers(): LayerSpecification[] {
     { id: 'campaign-arrowheads', type: 'symbol', source: 'campaign-arrowheads',
       layout: { 'icon-image': ARROWHEAD_IMAGE, 'icon-size': 0.5, 'icon-rotate': ['get', 'bearing'], 'icon-rotation-alignment': 'map', 'icon-allow-overlap': true, 'icon-ignore-placement': true },
       paint: { 'icon-color': sideColor } },
-    { id: 'campaign-fronts-label', type: 'symbol', source: 'campaign-front-labels', layout: { 'text-allow-overlap': true, 'text-anchor': 'left', 'text-offset': [0.8, 0], 'text-max-width': 30, 'text-field': LABEL_TEXT, 'text-font': textFont, 'text-size': 12 }, paint: { 'text-color': FRONT_COLOR, ...halo } },
+    { id: 'campaign-fronts-label', type: 'symbol', source: 'campaign-front-labels', layout: { 'text-allow-overlap': false, 'text-ignore-placement': false, 'text-variable-anchor': ['left', 'right', 'top', 'bottom'], 'text-radial-offset': 0.8, 'text-padding': 4, 'text-max-width': 30, 'text-field': LABEL_TEXT, 'text-font': textFont, 'text-size': 12 }, paint: { 'text-color': FRONT_COLOR, ...halo } },
     { id: 'campaign-arrows-label', type: 'symbol', source: 'campaign-arrows', layout: { 'symbol-placement': 'line-center', 'text-field': LABEL_TEXT, 'text-font': textFont, 'text-size': 12 }, paint: { 'text-color': sideColor, ...halo } },
     { id: 'campaign-sites', type: 'circle', source: 'campaign-sites',
       paint: { 'circle-radius': 6, 'circle-color': ['case', ['get', 'verified'], sideColor, '#ffffff'] as unknown as string, 'circle-stroke-color': sideColor, 'circle-stroke-width': 2 } },

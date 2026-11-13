@@ -1,0 +1,867 @@
+{
+ "meta": {
+  "from": "data/campaigns/poland_1939.json",
+  "schema": "wl-campaign/0.1-proposal",
+  "campaign_key": "poland_1939",
+  "name_zh": "閃擊波蘭（波蘭戰役）",
+  "date_start": "1939-09-01",
+  "date_end": "1939-10-06",
+  "generated_by": "tools/import_campaign.py",
+  "note": "由主專案考證檔轉出，只搬運不補。verified＝該筆有正式出處；false＝來源檔自己標為待查證。"
+ },
+ "phases": [
+  {
+   "seq": 1,
+   "key": "poland_1939_p1",
+   "name_zh": "進攻與突破",
+   "from": "1939-09-01",
+   "to": "1939-09-06",
+   "dates_verified": true,
+   "date_refs": [
+    {
+     "src": "s1",
+     "quote": "1 Sep — Wehrmacht crosses Polish frontier"
+    },
+    {
+     "src": "s2",
+     "quote": "Chapter 6. Attack and Breakthrough ... Army Group South, 1-6 September"
+    }
+   ],
+   "summary_zh": "德軍9月1日越境，北方集團軍群3日切斷波蘭走廊，南方集團軍群渡過瓦爾塔河並攻佔琴斯托霍瓦。",
+   "summary_verified": true,
+   "summary_refs": [
+    {
+     "src": "s1",
+     "quote": "3 Sep — Army Group North cuts the Corridor and Army Group South crosses the Wartha."
+    },
+    {
+     "src": "s3",
+     "quote": "Czestochowa was taken on the morning of 3 September"
+    }
+   ],
+   "lines_note": "Kennedy 未給出本階段具體戰線走向，待查證"
+  },
+  {
+   "seq": 2,
+   "key": "poland_1939_p2",
+   "name_zh": "殲滅波軍主力（布祖拉／拉多姆）",
+   "from": "1939-09-07",
+   "to": "1939-09-16",
+   "dates_verified": true,
+   "date_refs": [
+    {
+     "src": "s2",
+     "quote": "7. The Destruction of the Polish Army ... Army Group South, 7-17 September"
+    }
+   ],
+   "summary_zh": "德軍於拉多姆殲滅波軍一部，並將西部波軍殘部圍困於庫特諾與華沙之間，北翼第19軍渡納雷夫河直趨布列斯特。",
+   "summary_verified": true,
+   "summary_refs": [
+    {
+     "src": "s1",
+     "quote": "11 Sep — Major Polish force destroyed at Radom."
+    },
+    {
+     "src": "s3",
+     "quote": "The remnants of the Polish armies in the west were all but encircled about Kutno and in the area between that city and Warsaw."
+    }
+   ]
+  },
+  {
+   "seq": 3,
+   "key": "poland_1939_p3",
+   "name_zh": "蘇聯入侵與華沙投降",
+   "from": "1939-09-17",
+   "to": "1939-09-27",
+   "dates_verified": true,
+   "date_refs": [
+    {
+     "src": "s1",
+     "quote": "17 Sep — Red Army moves into eastern Poland."
+    },
+    {
+     "src": "s1",
+     "quote": "27 Sep — Surrender of Warsaw."
+    }
+   ],
+   "summary_zh": "9月17日紅軍進入波蘭東部，德軍止步於布格河—布列斯特—比亞韋斯托克一線並於22日將布列斯特移交紅軍，華沙於27日投降。",
+   "summary_verified": true,
+   "summary_refs": [
+    {
+     "src": "s3",
+     "quote": "directed to remain west of the line along the Bug River-Brzesc-Bialystok."
+    },
+    {
+     "src": "s3",
+     "quote": "The XIX Corps turned Brzesc over to the Red Army on 22 September"
+    }
+   ]
+  },
+  {
+   "seq": 4,
+   "key": "poland_1939_p4",
+   "name_zh": "最後抵抗：莫德林、海爾、科克",
+   "from": "1939-09-28",
+   "to": "1939-10-06",
+   "dates_verified": true,
+   "date_refs": [
+    {
+     "src": "s1",
+     "quote": "29 Sep — Surrender of Modlin."
+    },
+    {
+     "src": "s3",
+     "quote": "the Kock force surrendered on 6 October"
+    }
+   ],
+   "summary_zh": "莫德林於9月29日投降，海爾半島守軍10月1日請求談判，波軍最後一支主力於10月4至6日在科克作戰後投降。",
+   "summary_verified": true,
+   "summary_refs": [
+    {
+     "src": "s3",
+     "quote": "An armistice was arranged at 0730 on 28 September and the formal surrender to Third Army's II Corps took place the following day."
+    },
+    {
+     "src": "s3",
+     "quote": "On 1 October Rear Admiral J. Unrug, commander at Hela, requested a surrender parley."
+    },
+    {
+     "src": "s3",
+     "quote": "The last organized stand by the Polish Army was made at Kock, where heavy fighting raged from 4 to 6 October."
+    }
+   ],
+   "lines_note": "10月1日分界線再度變更（Kennedy p.118 文字被圖版截斷），新線走向待查證"
+  }
+ ],
+ "arrows": [
+  {
+   "phase": 1,
+   "from": "Mława",
+   "to": "Warszawa",
+   "path": [
+    [
+     20.3832,
+     53.1116
+    ],
+    [
+     21.0067,
+     52.232
+    ]
+   ],
+   "unit": "德軍第3軍團（I Corps、Corps Wodrig）",
+   "side": null,
+   "verified": true,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "Third Army debouched from East Prussia in a drive south on Warsaw with its I Corps and Corps Wodrig in line"
+    },
+    {
+     "src": "s4"
+    },
+    {
+     "src": "s5"
+    }
+   ],
+   "note": "起點取 Mława（首戰地）；終點為目標"
+  },
+  {
+   "phase": 2,
+   "from": "Wizna",
+   "to": "Brześć",
+   "path": [
+    [
+     22.3841,
+     53.1944
+    ],
+    [
+     23.6852,
+     52.0938
+    ]
+   ],
+   "unit": "德軍第19軍（第10裝甲師等）",
+   "side": null,
+   "verified": true,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "The XIX Corps' 10th Panzer Division crossed the Narew at Wizna ... On 14 September the 10th Panzer Division reported that its forward elements had reached Brzesc."
+    },
+    {
+     "src": "s9"
+    },
+    {
+     "src": "s10"
+    }
+   ]
+  },
+  {
+   "phase": 2,
+   "from": "Częstochowa",
+   "to": "Radom",
+   "path": [
+    [
+     19.1132,
+     50.812
+    ],
+    [
+     21.1542,
+     51.4023
+    ]
+   ],
+   "unit": "德軍第10軍團",
+   "side": null,
+   "verified": true,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "Tenth Army was ordered to envelope the force at Radom from north and south"
+    },
+    {
+     "src": "s7"
+    },
+    {
+     "src": "s11"
+    }
+   ]
+  },
+  {
+   "phase": 2,
+   "from": "Kraków",
+   "to": "Lwów",
+   "path": [
+    [
+     19.9972,
+     50.0469
+    ],
+    [
+     24.0316,
+     49.842
+    ]
+   ],
+   "unit": "德軍第14軍團 XVIII Corps",
+   "side": null,
+   "verified": false,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "Lwow was completely encircled by XVIII Corps units by 14 September."
+    },
+    {
+     "src": "s12"
+    },
+    {
+     "src": "s13"
+    }
+   ],
+   "note": "終點已核實；起點 Kraków 為推定"
+  }
+ ],
+ "lines": [
+  {
+   "phase": 2,
+   "name": "german_planned_envelopment_line",
+   "vertices": [
+    "Brześć",
+    "Lwów"
+   ],
+   "path": [
+    [
+     23.6852,
+     52.0938
+    ],
+    [
+     24.0316,
+     49.842
+    ]
+   ],
+   "precision": "approx",
+   "verified": true,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "A natural line already existed, from Brzesc down the Bug River to Lwow, thence to the west, and south along the San River to the Polish frontier."
+    },
+    {
+     "src": "s10"
+    },
+    {
+     "src": "s13"
+    }
+   ],
+   "note": "德軍規劃之包圍線（非實際接觸線）；僅兩端點，Bug 河走向未描繪"
+  },
+  {
+   "phase": 3,
+   "name": "german_halt_line_17sep",
+   "vertices": [
+    "Białystok",
+    "Brześć"
+   ],
+   "path": [
+    [
+     23.1592,
+     53.1324
+    ],
+    [
+     23.6852,
+     52.0938
+    ]
+   ],
+   "precision": "approx",
+   "verified": true,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "Army Group North was informed of the Red Army's movement into eastern Poland by OKH early on 17 September, and was directed to remain west of the line along the Bug River-Brzesc-Bialystok."
+    },
+    {
+     "src": "s16"
+    },
+    {
+     "src": "s10"
+    }
+   ],
+   "note": "僅北段兩端點；Bug 河南段未描繪"
+  },
+  {
+   "phase": 3,
+   "name": "german_soviet_demarcation_20sep",
+   "vertices": [
+    "Ostrołęka",
+    "Pułtusk",
+    "Modlin",
+    "Warszawa",
+    "Dęblin",
+    "Sandomierz",
+    "Przemyśl"
+   ],
+   "path": [
+    [
+     21.5669,
+     53.0843
+    ],
+    [
+     21.084,
+     52.7051
+    ],
+    [
+     20.6749,
+     52.4397
+    ],
+    [
+     21.0067,
+     52.232
+    ],
+    [
+     21.8562,
+     51.5672
+    ],
+    [
+     21.7495,
+     50.6793
+    ],
+    [
+     22.7885,
+     49.7835
+    ]
+   ],
+   "precision": "approx",
+   "verified": false,
+   "refs": [
+    {
+     "src": "s3",
+     "quote": "Hitler's order to withdraw to the demarcation line of the Narew-Vistula-San Rivers was communicated to the army groups on 20 September"
+    },
+    {
+     "src": "s17"
+    },
+    {
+     "src": "s18"
+    },
+    {
+     "src": "s19"
+    },
+    {
+     "src": "s5"
+    },
+    {
+     "src": "s20"
+    },
+    {
+     "src": "s21"
+    },
+    {
+     "src": "s22"
+    }
+   ],
+   "note": "出處只列河名；頂點城鎮為沿河推定，未核實；自 9/20 起適用"
+  }
+ ],
+ "sites": [
+  {
+   "name": "Westerplatte",
+   "lonlat": [
+    18.67,
+    54.4093
+   ],
+   "coord_ref": "s6",
+   "changes": [
+    {
+     "phase": 1,
+     "date": null,
+     "to": "axis",
+     "verified": false,
+     "refs": [],
+     "note": "投降日期 Kennedy 未載，待查證"
+    }
+   ]
+  },
+  {
+   "name": "Częstochowa",
+   "lonlat": [
+    19.1132,
+    50.812
+   ],
+   "coord_ref": "s7",
+   "changes": [
+    {
+     "phase": 1,
+     "date": "1939-09-03",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "Czestochowa was taken on the morning of 3 September"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Grudziądz",
+   "lonlat": [
+    18.7619,
+    53.4725
+   ],
+   "coord_ref": "s8",
+   "changes": [
+    {
+     "phase": 1,
+     "date": "1939-09-04",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "Third Army reported its XXI Corps in firm control of Grudziadz on 4 September."
+      }
+     ],
+     "note": "『firm control』之報告日"
+    }
+   ]
+  },
+  {
+   "name": "Mława",
+   "lonlat": [
+    20.3832,
+    53.1116
+   ],
+   "coord_ref": "s4",
+   "changes": [
+    {
+     "phase": 1,
+     "date": null,
+     "to": "axis",
+     "verified": false,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "broke into the Mlawa defenses and forced the stubborn defenders to withdraw"
+      }
+     ],
+     "note": "波軍撤出日期未明（約9月3日），待查證"
+    }
+   ]
+  },
+  {
+   "name": "Gdynia",
+   "lonlat": [
+    18.5403,
+    54.5165
+   ],
+   "coord_ref": "s14",
+   "changes": [
+    {
+     "phase": 2,
+     "date": "1939-09-14",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "on 14 September Gdynia was taken"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Radom",
+   "lonlat": [
+    21.1542,
+    51.4023
+   ],
+   "coord_ref": "s11",
+   "changes": [
+    {
+     "phase": 2,
+     "date": "1939-09-11",
+     "to": "axis",
+     "verified": false,
+     "refs": [
+      {
+       "src": "s1",
+       "quote": "11 Sep — Major Polish force destroyed at Radom."
+      }
+     ],
+     "note": "『波軍被殲』≠城鎮控制變化，待查證"
+    }
+   ]
+  },
+  {
+   "name": "Lwów",
+   "lonlat": [
+    24.0316,
+    49.842
+   ],
+   "coord_ref": "s13",
+   "changes": [
+    {
+     "phase": 2,
+     "date": "1939-09-14",
+     "to": "contested",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "Lwow was completely encircled by XVIII Corps units by 14 September."
+      }
+     ]
+    },
+    {
+     "phase": 3,
+     "date": "1939-09-21",
+     "to": "待查證",
+     "verified": false,
+     "refs": [
+      {
+       "src": "s1",
+       "quote": "21 Sep — Surrender of Lwow."
+      }
+     ],
+     "note": "出處未載向何方投降，控制方待查證"
+    }
+   ]
+  },
+  {
+   "name": "Puck",
+   "lonlat": [
+    18.4326,
+    54.7308
+   ],
+   "coord_ref": "s15",
+   "changes": [
+    {
+     "phase": 2,
+     "date": "1939-09-09",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "Corps Kaupisch made another important gain on 9 September when a frontier guard regiment captured the port of Puck"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Brześć",
+   "lonlat": [
+    23.6852,
+    52.0938
+   ],
+   "coord_ref": "s10",
+   "changes": [
+    {
+     "phase": 3,
+     "date": "1939-09-17",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s1",
+       "quote": "17 Sep — ... The German XIX Corps captures Brzesc."
+      }
+     ]
+    },
+    {
+     "phase": 3,
+     "date": "1939-09-22",
+     "to": "soviet",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "The XIX Corps turned Brzesc over to the Red Army on 22 September in a formal ceremony"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kutno",
+   "lonlat": [
+    19.357,
+    52.2318
+   ],
+   "coord_ref": "s23",
+   "changes": [
+    {
+     "phase": 3,
+     "date": "1939-09-17",
+     "to": "axis",
+     "verified": false,
+     "refs": [
+      {
+       "src": "s1",
+       "quote": "17 Sep — ... Major Polish force destroyed at Kutno."
+      }
+     ],
+     "note": "『波軍被殲』≠城鎮控制變化"
+    }
+   ]
+  },
+  {
+   "name": "Warszawa",
+   "lonlat": [
+    21.0067,
+    52.232
+   ],
+   "coord_ref": "s5",
+   "changes": [
+    {
+     "phase": 3,
+     "date": "1939-09-27",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s1",
+       "quote": "27 Sep — Surrender of Warsaw."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Modlin",
+   "lonlat": [
+    20.6749,
+    52.4397
+   ],
+   "coord_ref": "s19",
+   "changes": [
+    {
+     "phase": 4,
+     "date": "1939-09-29",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "German troops entered the fortress at noon."
+      }
+     ],
+     "note": "28日07:30停火，29日正式投降"
+    }
+   ]
+  },
+  {
+   "name": "Hel",
+   "lonlat": [
+    18.8027,
+    54.6066
+   ],
+   "coord_ref": "s24",
+   "changes": [
+    {
+     "phase": 4,
+     "date": null,
+     "to": "axis",
+     "verified": false,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "On 1 October Rear Admiral J. Unrug, commander at Hela, requested a surrender parley."
+      }
+     ],
+     "note": "正式投降日期待查證，不推定"
+    }
+   ]
+  },
+  {
+   "name": "Kock",
+   "lonlat": [
+    22.4478,
+    51.6384
+   ],
+   "coord_ref": "s25",
+   "changes": [
+    {
+     "phase": 4,
+     "date": "1939-10-06",
+     "to": "axis",
+     "verified": true,
+     "refs": [
+      {
+       "src": "s3",
+       "quote": "the Kock force surrendered on 6 October"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "sources": {
+  "s1": {
+   "type": "official_history",
+   "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+   "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+   "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf"
+  },
+  "s2": {
+   "type": "official_history",
+   "citation": "Kennedy, DA Pam 20-255 (1956), Contents",
+   "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/"
+  },
+  "s3": {
+   "type": "official_history",
+   "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+   "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+   "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf"
+  },
+  "s4": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2716225",
+   "url": "https://www.openstreetmap.org/relation/2716225"
+  },
+  "s5": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/336075",
+   "url": "https://www.openstreetmap.org/relation/336075"
+  },
+  "s6": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, way/1334328771",
+   "url": "https://www.openstreetmap.org/way/1334328771"
+  },
+  "s7": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2132438",
+   "url": "https://www.openstreetmap.org/relation/2132438"
+  },
+  "s8": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2597486",
+   "url": "https://www.openstreetmap.org/relation/2597486"
+  },
+  "s9": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/7087134",
+   "url": "https://www.openstreetmap.org/relation/7087134"
+  },
+  "s10": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/72615",
+   "url": "https://www.openstreetmap.org/relation/72615"
+  },
+  "s11": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2420076",
+   "url": "https://www.openstreetmap.org/relation/2420076"
+  },
+  "s12": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2768921",
+   "url": "https://www.openstreetmap.org/relation/2768921"
+  },
+  "s13": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2032280",
+   "url": "https://www.openstreetmap.org/relation/2032280"
+  },
+  "s14": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2723260",
+   "url": "https://www.openstreetmap.org/relation/2723260"
+  },
+  "s15": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2550288",
+   "url": "https://www.openstreetmap.org/relation/2550288"
+  },
+  "s16": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/1429268",
+   "url": "https://www.openstreetmap.org/relation/1429268"
+  },
+  "s17": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2024340",
+   "url": "https://www.openstreetmap.org/relation/2024340"
+  },
+  "s18": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2995323",
+   "url": "https://www.openstreetmap.org/relation/2995323"
+  },
+  "s19": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, node/2147675788",
+   "url": "https://www.openstreetmap.org/node/2147675788"
+  },
+  "s20": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2979818",
+   "url": "https://www.openstreetmap.org/relation/2979818"
+  },
+  "s21": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2966766",
+   "url": "https://www.openstreetmap.org/relation/2966766"
+  },
+  "s22": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/1748162",
+   "url": "https://www.openstreetmap.org/relation/1748162"
+  },
+  "s23": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/2929612",
+   "url": "https://www.openstreetmap.org/relation/2929612"
+  },
+  "s24": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/1555429",
+   "url": "https://www.openstreetmap.org/relation/1555429"
+  },
+  "s25": {
+   "type": "gazetteer",
+   "citation": "OpenStreetMap Nominatim, relation/3128125",
+   "url": "https://www.openstreetmap.org/relation/3128125"
+  }
+ }
+}

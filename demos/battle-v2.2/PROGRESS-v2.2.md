@@ -1,0 +1,18 @@
+# v2.2 進度（檢查點）
+- [x] 備份 v2.1 → _v2.1/（程式、截圖、錄影、fps.json、design.md）
+- [x] vendor：maplibre-gl 5.24.1（BSD-3-Clause）、earcut 2.2.4（ISC）
+- [x] 離線底圖：geo/landc、sea、graticule（tools/make_sea.py）
+- [x] schema v2：pockets（Boulogne/Calais/Lille）、control.axis MultiPolygon、front_lines；build_data 0 錯誤；side_check 0 警告
+- [x] app.js 改寫：MapLibre + 自寫 WebGL custom layer（js/gl.js）、縮放分級聚合、堆疊徽章、跟隨鏡頭
+- [x] perf：時間軸/chip 去 blur、時間軸改 transform、醋酸片移入 WebGL；22:40 找到事件卡 backdrop blur 是桌機慢幀主因 → 事件卡改深色底、淡出後 visibility:hidden
+- [ ] 回報
+- [x] 22:44 找到桌機慢幀真因：瀏覽器冷啟動（第一次開頁前幾秒）；measure.py 加暖機並另記 cold_start
+- [x] NOTES-needs-checking.md 加 v2.2 段
+- [x] design.md.tmpl 加 v2.2 段（待填 fps 表）
+- [x] 22:52 全量 fps＋錄影完成：桌機播放 1x 0 慢幀；桌機 zoompan 1x 40/782 慢幀（9 級）
+- [x] 底圖 GeoJSON source maxzoom 9→7（縮放時少切三層圖磚）：桌機 zoompan 1x 慢幀 40→8
+- [x] 23:00 第二次全量 fps＋錄影（webm→mp4）完成，design.md 已填表
+- [x] 23:04 截圖 30 張（tools/shoot.py）並自檢；5/13 色當等當日關鍵地名改畫在部隊上面
+- [x] 23:06 桌機播放 1x 重跑一次（88/1801 慢幀，box 負載高），寫入 fps.json repeat_runs；JS 每幀 <2ms，瓶頸是軟體點陣化
+- [x] 刪掉 _proto/；design.md 重新產生
+- [x] 23:08 回報

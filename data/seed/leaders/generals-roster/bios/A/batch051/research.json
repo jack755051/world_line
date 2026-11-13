@@ -316,6 +316,50 @@
    "license_code": null,
    "grade": "A",
    "gradeBasis": "英國議會官方議事錄（Hansard）"
+  },
+  "rf-patrinum-guisan": {
+   "title": "Guisan, Henri（Personnalités vaudoises 人物條目）",
+   "authors": [],
+   "publisher": "Patrinum／Bibliothèque cantonale et universitaire Lausanne（BCU）",
+   "published_text": "2025-04-22 更新",
+   "url": "https://patrinum.ch/record/40271",
+   "archive_url": null,
+   "catalog_id": "patrinum:40271",
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構：沃州州立暨大學圖書館（BCU Lausanne）Patrinum 人物權威條目",
+   "addedAt": "2026-11-13T08:42:45+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-ewb-aungsan": {
+   "title": "Aung San",
+   "authors": [],
+   "publisher": "Encyclopedia of World Biography（Gale／Encyclopedia.com）",
+   "published_text": "條目",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/aung-san",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名機構百科條目（Gale《Encyclopedia of World Biography》）",
+   "addedAt": "2026-11-13T08:42:45+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-open-rjr": {
+   "title": "Rani of Jhansi Regiment: Sisters in Arms",
+   "authors": [
+    "Sharanya Manivannan"
+   ],
+   "publisher": "Open（Open Media Network Private Limited）",
+   "published_text": "2017-03-14",
+   "url": "https://openthemagazine.com/lounge/books/rani-of-jhansi-regiment-sisters-in-arms",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Sharanya Manivannan，具名出版機構 Open Media Network（書評）",
+   "addedAt": "2026-11-13T08:42:45+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -760,10 +804,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1932-01-01",
-      "end": null
+      "end": "1933-01-01"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "year",
      "t14Rule": "R5",
      "t14Reason": "軍級指揮官，非國家級最高軍職（R5）；迄日來源未寫。",
      "t14Overlap": "general",
@@ -791,19 +835,36 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-patrinum-guisan",
+       "locator": "Biographie 段落2",
+       "quote": "commandant du 1er corps d’armée (1933)",
+       "quoteLang": "fr",
+       "evidenceNote": "依來源下一職（第1軍軍長）起年為1933，並以此為第2軍軍長迄年（推論）；HLS 寫先2軍後1軍",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-guisan",
+       "locator": "全文",
+       "quote": "dann dem französischsprachigen 1. Korps",
+       "quoteLang": "de",
+       "evidenceNote": "HLS 明寫先任第2軍、其後轉第1軍（順序依據）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ]
     }
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:guisan-corps2",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；已查 HLS Guisan（Hervé de Weck）只寫『stand zunächst dem 2. Armeekorps vor，dann dem 1. Korps』，無轉任年份；1932 為任命 Oberstkorpskommandant 年（Minger 支持），指揮第2軍起日以此推得。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:guisan-corps1",
      "gapKind": "not_found",
@@ -874,6 +935,47 @@
      "url": "null",
      "result": "not_relevant",
      "note": "維基鏡像不用"
+    },
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Guisan 1. Armeekorps 1932 1936 Oberstkorpskommandant（HLS 德法版、Britannica、Universalis）",
+     "url": "https://hls-dhs-dss.ch/fr/articles/019083",
+     "result": "found_A",
+     "note": "HLS 只寫先2軍後1軍無年；Britannica 403、Universalis 付費"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Patrinum Guisan record 40271",
+     "url": "https://patrinum.ch/record/40271",
+     "result": "found_C",
+     "note": "MARC XML 匯出可取全文；寫『commandant du 1er corps d’armée (1933)』，據以補第2軍軍長迄年"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "dodis.ch P495 Guisan",
+     "url": "https://dodis.ch/P495",
+     "result": "challenge_page",
+     "note": "Anubis 防機器人頁，未繞過"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:guisan-corps2",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 HLS Guisan（Hervé de Weck）只寫『stand zunächst dem 2. Armeekorps vor，dann dem 1. Korps』，無轉任年份；1932 為任命 Oberstkorpskommandant 年（Minger 支持），指揮第2軍起日以此推得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1586,10 +1688,10 @@
      "positionKind": "minister",
      "period": {
       "start": "1943-09-01",
-      "end": null
+      "end": "1945-03-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "t14Rule": "R6",
      "t14Reason": "國防部長屬四部之一、正職，但迄日來源未寫（無法證明≥90 天），政權待查。",
      "t14Overlap": "cabinet",
@@ -1633,6 +1735,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ewb-aungsan",
+       "locator": "全文",
+       "quote": "In March 1945 he led the Burma Defense Army",
+       "quoteLang": "en",
+       "evidenceNote": "來源寫1945年3月率軍公開反日，據此推定國防部長（巴莫政府）任期止於該月（推論）；來源未明寫辭職日",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1770,13 +1884,6 @@
     }
    ],
    "gaps": [
-    {
-     "target": "position:aungsan-defence-minister",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪另查 JACAR 辭典（日文）、UK Hansard 1946–47、FRUS 1946／1947、Kotobank／NDL 權威檔檢索頁（無內容）、NIDS 檢索頁（無內容），皆未寫國防部長卸任日（JACAR 只寫「バモー内閣において国防相を務めた」與1945年3月蜂起）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:aungsan-bia-chief-of-staff",
      "gapKind": "not_found",
@@ -2024,6 +2131,47 @@
      "result": "blocked_403",
      "note": "Cloudflare／Anubis 挑戰頁，未繞過",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Aung San minister of war Ba Maw government March 1945 (Encyclopedia of World Biography)",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/aung-san",
+     "result": "found_B",
+     "note": "寫 minister of war 於傀儡政府，1945年3月起兵；無明寫卸任日"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Aung San / Ba Maw",
+     "url": "https://www.britannica.com/biography/Aung-San",
+     "result": "blocked_403",
+     "note": "回傳 60 字元空頁，未取得"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Aung San defence minister resigned 1945 (history.state.gov, nationalarchives, loc.gov)",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無來源明寫卸任"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:aungsan-defence-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪另查 JACAR 辭典（日文）、UK Hansard 1946–47、FRUS 1946／1947、Kotobank／NDL 權威檔檢索頁（無內容）、NIDS 檢索頁（無內容），皆未寫國防部長卸任日（JACAR 只寫「バモー内閣において国防相を務めた」與1945年3月蜂起）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2346,6 +2494,98 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": "1945-08-15"
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "緬甸作戰期間的占西女王聯隊",
+      "en": "The Rani of Jhansi Regiment during the Burma campaign"
+     },
+     "body": {
+      "zh-Hant": "據《Open》雜誌書評，占西女王聯隊最引人注目之處，在於其聰慧而有魅力的隊長拉克希米・斯瓦米納坦（即後來的拉克希米・薩迦爾醫生）。聯隊的女兵受訓約兩年，雖然被描述為並未實際投入作戰，但在仰光期間仍經歷長途夜行軍與叢林跋涉等嚴苛訓練。來源寫明該聯隊於1945年8月15日正式解散，距鮑斯逝世僅三天；其間部分人員早在數月前已陸續被遣返。來源未寫她個人參與的具體戰役或日期，因此本段僅記述聯隊在緬甸作戰期間的處境。",
+      "en": "According to a review in Open magazine, the Rani of Jhansi Regiment was given interest chiefly because of its charismatic Captain Lakshmi Swaminathan, later Dr Lakshmi Sahgal. The Ranis trained as soldiers for two years; although they did not go to war, their time in Rangoon in particular included long-distance night marches and jungle treks. The regiment was formally disbanded on 15 August 1945, three days before Bose's death, although groups had been sent home at various points for some months. The source gives no specific battle or date for her personal participation, so this paragraph records only the regiment's situation during the Burma campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-open-rjr",
+       "locator": "全文",
+       "quote": "its charismatic Captain Lakshmi Swaminathan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-open-rjr",
+       "locator": "全文",
+       "quote": "the Ranis trained as soldiers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-open-rjr",
+       "locator": "全文",
+       "quote": "While they did not go to war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-open-rjr",
+       "locator": "全文",
+       "quote": "long-distance night marches and jungle treks",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-open-rjr",
+       "locator": "全文",
+       "quote": "The RJR was formally disbanded in 15 August 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-open-rjr",
+       "locator": "全文",
+       "quote": "groups had been sent home at various points for some months",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
     }
    ],
    "positions": [
@@ -2553,6 +2793,28 @@
      "url": "https://www.cambridge.org/core/books/abs/women-against-the-raj/rani-of-jhansi-regiment/F5CC65CC035A1756D99D06FF4BBE5130",
      "result": "no_result",
      "note": "僅搜尋摘要，未抓取"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Lakshmi Sahgal Rani of Jhansi Regiment disbanded 1945 minister women's affairs end",
+     "url": "https://openthemagazine.com/lounge/books/rani-of-jhansi-regiment-sisters-in-arms",
+     "result": "found_C",
+     "note": "Open（Sharanya Manivannan）寫聯隊1945-08-15解散，但未寫婦女事務部長卸任日；其他結果為維基系／部落格不收"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Women Against the Raj / Hildebrand Women at War 部長任期",
+     "url": null,
+     "result": "no_result",
+     "note": "未取得全文"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2839,9 +3101,111 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1945-03-01",
+      "end": "1945-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "緬甸戰役中的蘇巴斯聯隊與波帕指控",
+      "en": "The Subhas Regiment in the Burma campaign and the Popa charge"
+     },
+     "body": {
+      "zh-Hant": "SCC Times 的文章寫道，印度國民軍在鮑斯與自由印度臨時政府之下重組為武裝力量，在緬甸戰役中與日軍並肩作戰，並企圖進入印度。沙納瓦茲汗原屬第14旁遮普團，後來晉升為蘇巴斯聯隊指揮官，之後擔任高級參謀職務。紅堡審判中，他被控依《印度刑法》第121條對國王皇帝發動戰爭，並另被控教唆殺害砲兵穆罕默德·侯賽因，地點為緬甸波帕附近，時間為1945年3月。以上為來源所載的指控內容；來源未寫他在該戰役中的指揮日期或戰果。",
+      "en": "The SCC Times article says that under Bose and the Provisional Government of Azad Hind the INA was reorganised as an armed force that fought alongside Japanese forces in the Burma campaign and sought to enter India. Shah Nawaz Khan, formerly of the 14th Punjab Regiment, rose to command the Subhas Regiment and later held a senior staff position. At the Red Fort trial he was charged with waging war against the King-Emperor under Section 121 IPC and separately accused of abetment in the killing of Gunner Mohammad Hussain near Popa, Burma, in March 1945. These are the charges as stated; the source gives no command dates or outcomes for him in the campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "scc-ina",
+       "locator": "全文",
+       "quote": "fought alongside Japanese forces in the Burma campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "scc-ina",
+       "locator": "全文",
+       "quote": "rose to command the Subhas Regiment and later held a senior staff position",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "scc-ina",
+       "locator": "全文",
+       "quote": "killing of Gunner Mohammad Hussain near Popa, Burma, in March 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
     }
    ],
-   "positions": [],
+   "positions": [
+    {
+     "key": "shahnawaz-subhas-regiment",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "印度國民軍蘇巴斯聯隊",
+      "en": "Subhas Regiment, Indian National Army"
+     },
+     "title": {
+      "zh-Hant": "蘇巴斯聯隊指揮官",
+      "en": "Commander of the Subhas Regiment",
+      "orig": "Subhas Regiment"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "t14Rule": "R6",
+     "t14Reason": "聯隊級指揮官；起迄日均無來源（R6，缺 dates）。",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "regime",
+      "battle_link"
+     ],
+     "citations": [
+      {
+       "sourceKey": "scc-ina",
+       "locator": "全文",
+       "quote": "rose to command the Subhas Regiment",
+       "quoteLang": "en",
+       "evidenceNote": "來源未寫起迄日",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
    "roleCandidates": [],
    "gaps": [
     {
@@ -2929,6 +3293,28 @@
      "url": "https://www.asianstudies.org/wp-content/uploads/Sundaram-Winter-2022.pdf",
      "result": "challenge_page",
      "note": "未繞過"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Shah Nawaz Khan Subhas Brigade Imphal Kohima Popa 指揮日期",
+     "url": "https://battleofimphal.com/the-battle/imphal-and-ina",
+     "result": "unrated",
+     "note": "個人網站（Hemant Singh Katoch）依規則不收；僅作線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Shah Nawaz Khan INA division commander 1944 (Cambridge / archive.org)",
+     "url": "https://archive.org/details/in.ernet.dli.2015.98715",
+     "result": "unrated",
+     "note": "回憶錄為本人著述，未抓取採用"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -4080,6 +4466,28 @@
      "result": "unrated",
      "note": "curl 取得但頁面混用社群貼文／圖說，未採用",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Bose Forward Bloc president until 1941 / Britannica Forward Bloc",
+     "url": "https://www.britannica.com/topic/Forward-Bloc",
+     "result": "blocked_403",
+     "note": "Britannica 先前已 403；搜尋摘要只見創立（1939）、1940-07 被捕、1941-01 出走，無明寫卸任前進集團主席日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Banglapedia Forward Bloc／UK National Archives／Hansard 1941 重查",
+     "url": null,
+     "result": "not_relevant",
+     "note": "既有快取（bd-fb、h-bose1941）無迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

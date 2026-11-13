@@ -1329,6 +1329,70 @@ namespace WorldLine.Api.Infrastructure.Migrations
                     b.ToTable("event_citations", (string)null);
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.EventCitationGrade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("event_id");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("GradeBasis")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("grade_basis");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_event_citation_grades");
+
+                    b.HasIndex("EventId", "SourceId", "Locator")
+                        .IsUnique()
+                        .HasDatabaseName("ux_event_citation_grades_live")
+                        .HasFilter("retracted_at IS NULL");
+
+                    b.ToTable("event_citation_grades", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_event_citation_grades_basis", "btrim(grade_basis) <> ''");
+
+                            t.HasCheckConstraint("ck_event_citation_grades_grade", "grade IN ('A', 'B', 'C')");
+
+                            t.HasCheckConstraint("ck_event_citation_grades_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.EventParticipant", b =>
                 {
                     b.Property<Guid>("EventId")
@@ -3658,6 +3722,16 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_event_citations_sources_source_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.EventCitationGrade", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.EventCitation", null)
+                        .WithMany()
+                        .HasForeignKey("EventId", "SourceId", "Locator")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_event_citation_grades_event_citations_event_id_source_id_lo");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.EventParticipant", b =>

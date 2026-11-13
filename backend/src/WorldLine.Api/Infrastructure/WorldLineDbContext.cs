@@ -22,6 +22,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<RegimeAlignmentCitation> RegimeAlignmentCitations => Set<RegimeAlignmentCitation>();
     public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
+    public DbSet<EventCitationGrade> EventCitationGrades => Set<EventCitationGrade>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
@@ -290,6 +291,23 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasKey(x => new { x.EventId, x.SourceId, x.Locator });
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.EventId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+        });
+
+        // 事件引文的等級（docs/source-rules.md §2）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<EventCitationGrade>(e =>
+        {
+            e.ToTable("event_citation_grades", t =>
+            {
+                t.HasCheckConstraint("ck_event_citation_grades_grade", "grade IN ('A', 'B', 'C')");
+                t.HasCheckConstraint("ck_event_citation_grades_basis", "btrim(grade_basis) <> ''");
+                t.HasCheckConstraint("ck_event_citation_grades_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<EventCitation>().WithMany().HasForeignKey(x => new { x.EventId, x.SourceId, x.Locator }).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.EventId, x.SourceId, x.Locator }).IsUnique().HasFilter("retracted_at IS NULL")
+                .HasDatabaseName("ux_event_citation_grades_live");
         });
 
         // 涵蓋備註（PRD §6.3 control_coverage_notes、§6.4 選項 C）

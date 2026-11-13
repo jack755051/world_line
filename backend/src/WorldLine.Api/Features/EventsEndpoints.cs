@@ -73,6 +73,7 @@ public static class EventsEndpoints
 
         // 引用（R8 合格史料；有使用權）
         var cites = new List<EventCitation>();
+        var grades = new List<EventCitationGrade>();
         var cin = req.Citations ?? [];
         // docs/source-rules.md §6 規定沒有出處的事件不寫入；但既有的資料建置檔有 214 筆無引文事件，
         // 國界與衝突紀錄靠它們串接，重建資料庫時要能重放。所以這裡先不擋，改由 v_record_confidence 標成 unsourced；
@@ -88,6 +89,15 @@ public static class EventsEndpoints
             if (CitationPolicy.WhyNotQualifiedAlignmentPrimary(source, c.Locator ?? "") is { } why)
                 throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, why, $"{f}.sourceId");
             cites.Add(new EventCitation { EventId = e.Id, SourceId = sid, Locator = c.Locator!.Trim(), EvidenceNote = Mapping.RequireText(c.EvidenceNote, $"{f}.evidenceNote") });
+            if (!string.IsNullOrWhiteSpace(c.Grade))
+            {
+                var g = Mapping.RequireOneOf(c.Grade, ["A", "B", "C"], $"{f}.grade");
+                grades.Add(new EventCitationGrade
+                {
+                    Id = Guid.CreateVersion7(), EventId = e.Id, SourceId = sid, Locator = c.Locator!.Trim(), Grade = g,
+                    GradeBasis = Mapping.RequireText(c.GradeBasis, $"{f}.gradeBasis"),
+                });
+            }
         }
         if (cites.GroupBy(c => (c.SourceId, c.Locator)).Any(g => g.Count() > 1))
             throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "同一來源與 locator 的引用重複。", "citations");
@@ -95,6 +105,7 @@ public static class EventsEndpoints
         db.HistoricalEvents.Add(e);
         db.EventParticipants.AddRange(parts);
         db.EventCitations.AddRange(cites);
+        db.EventCitationGrades.AddRange(grades);
         await db.SaveChangesAsync(ct); // 事件、參與方、引用同一 transaction
         return ApiResults.Created($"/api/v1/events/{e.Id}", (await ToDtosAsync(db, [e], ct)).Single());
     }
@@ -218,7 +229,13 @@ public static class EventsEndpoints
                 join s in db.Sources on c.SourceId equals s.Id
                 where ids.Contains(c.EventId)
                 orderby s.Title, c.Locator
-                select new { c.EventId, Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, "event", c.EvidenceNote) })
+                select new
+                {
+                    c.EventId,
+                    Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, "event", c.EvidenceNote,
+                        db.EventCitationGrades.Where(g => g.EventId == c.EventId && g.SourceId == c.SourceId && g.Locator == c.Locator && g.RetractedAt == null)
+                            .Select(g => g.Grade).FirstOrDefault() ?? s.Grade),
+                })
             .ToListAsync(ct))
             .ToLookup(x => x.EventId, x => x.Dto);
         return rows.Select(e => new EventDto(

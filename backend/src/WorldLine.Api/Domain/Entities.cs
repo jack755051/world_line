@@ -214,6 +214,23 @@ public sealed class EventParticipant
     public string? AdditionNote { get; set; }
 }
 
+/// <summary>
+/// 事件引文的等級（docs/source-rules.md §2：評的是實際讀到的那份文件，不是整冊）。
+/// event_citations 寫入後不可改，所以等級另存一表；有這一列時優先於 sources.grade。更正用「撤回＋重寫」（I5）。
+/// </summary>
+public sealed class EventCitationGrade
+{
+    public Guid Id { get; set; }
+    public Guid EventId { get; set; }
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string Grade { get; set; } = "";
+    public string GradeBasis { get; set; } = "";
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
 /// <summary>事件引用（PRD §6.3 event_citations；格式同其他 citation 表）。寫入後不可改、不可刪（I5）。</summary>
 public sealed class EventCitation
 {

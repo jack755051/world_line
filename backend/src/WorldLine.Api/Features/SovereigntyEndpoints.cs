@@ -280,7 +280,13 @@ public static class SovereigntyEndpoints
                 join s in db.Sources on c.SourceId equals s.Id
                 where ids.Contains(c.EventId)
                 orderby s.Title, c.Locator
-                select new { c.EventId, Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, CitationRoles.Primary, c.EvidenceNote) })
+                select new
+                {
+                    c.EventId,
+                    Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, CitationRoles.Primary, c.EvidenceNote,
+                        db.EventCitationGrades.Where(g => g.EventId == c.EventId && g.SourceId == c.SourceId && g.Locator == c.Locator && g.RetractedAt == null)
+                            .Select(g => g.Grade).FirstOrDefault() ?? s.Grade),
+                })
             .ToListAsync(ct))
             .ToLookup(x => x.EventId, x => x.Dto);
         var verified = await RecordConfidence.VerifiedIdsAsync(db, RecordConfidence.Event, ids, ct);

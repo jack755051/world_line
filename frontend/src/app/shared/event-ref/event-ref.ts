@@ -4,8 +4,8 @@ import { shortCitation } from '../../core/citation-short';
 import { localized, type Lang } from '../../core/i18n';
 
 const TXT = {
-  'zh-Hant': { pending: '待查證', verified: '已查證', noCitation: '尚無正式出處', showFull: '展開完整書目', hideFull: '收合書目', publisher: '出版', note: '說明' },
-  en: { pending: 'Pending verification', verified: 'Verified', noCitation: 'No formal source yet', showFull: 'Show full reference', hideFull: 'Hide full reference', publisher: 'Publisher', note: 'Note' },
+  'zh-Hant': { pending: '待查證', verified: '已查證', noCitation: '尚無正式出處', showFull: '展開完整書目', hideFull: '收合書目', publisher: '出版', note: '說明', grade: '來源等級', ungraded: '尚未評等' },
+  en: { pending: 'Pending verification', verified: 'Verified', noCitation: 'No formal source yet', showFull: 'Show full reference', hideFull: 'Hide full reference', publisher: 'Publisher', note: 'Note', grade: 'Source grade', ungraded: 'not graded yet' },
 } as const;
 
 /**
@@ -39,6 +39,7 @@ const TXT = {
               <div>{{ c.locator }}</div>
               @if (c.publisher) { <div>{{ t().publisher }}：{{ c.publisher }}</div> }
               @if (c.evidenceNote) { <div>{{ t().note }}：{{ c.evidenceNote }}</div> }
+              <div [attr.data-testid]="p + '-citation-grade'" [attr.data-grade]="c.grade ?? ''">{{ t().grade }}：{{ c.grade ?? t().ungraded }}</div>
             </div>
           }
         </div>

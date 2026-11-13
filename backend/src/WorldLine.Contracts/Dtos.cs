@@ -62,7 +62,8 @@ public sealed record CreateControlRecordRequest(
 public sealed record ControlRecordCreatedDto(Guid ControlRecordId, Guid VersionId);
 
 public sealed record CitationDto(
-    Guid SourceId, string SourceTitle, string Publisher, string? LicenseCode, string Locator, string Role, string EvidenceNote);
+    Guid SourceId, string SourceTitle, string Publisher, string? LicenseCode, string Locator, string Role, string EvidenceNote,
+    string? Grade = null);
 
 /// <summary>
 /// <c>controllerAlignment</c>：控制方在該日期的陣營切片（憲法 §6「陣營」），附引用；
@@ -167,7 +168,8 @@ public sealed record CreateEventRequest(
 public sealed record EventParticipantInput(Guid? RegimeId, string? Role);
 
 /// <summary>事件引用（PRD §6.3 event_citations）：來源＋locator（頁碼、文件號）＋審查依據。</summary>
-public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote);
+/// <summary>grade／gradeBasis：這一份被引用文件的等級 A｜B｜C 與依據（可不填；填了優先於來源整冊的等級，docs/source-rules.md §2）。</summary>
+public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote, string? Grade = null, string? GradeBasis = null);
 
 /// <summary>addedAt／additionNote：事後追加（方案 A）的參與方才有；隨事件寫入的為 null。</summary>
 public sealed record EventParticipantDto(Guid RegimeId, string Role, DateTimeOffset? AddedAt = null, IReadOnlyDictionary<string, string>? AdditionNote = null);

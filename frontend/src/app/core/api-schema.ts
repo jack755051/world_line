@@ -1146,6 +1146,7 @@ export interface components {
             locator: string;
             role: string;
             evidenceNote: string;
+            grade?: null | string;
         };
         CitationInput: {
             /** Format: uuid */
@@ -1526,6 +1527,8 @@ export interface components {
             sourceId: null | string;
             locator: null | string;
             evidenceNote: null | string;
+            grade?: null | string;
+            gradeBasis?: null | string;
         };
         EventDto: {
             /** Format: uuid */

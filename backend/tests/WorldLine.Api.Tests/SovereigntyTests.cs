@@ -130,6 +130,12 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         Assert.Equal("verified", await V("1921-04-01", "1921-05-01", C(b1), C(b2)));
         Assert.Equal("verified", await V("1921-05-01", "1921-06-01", C(a)));
 
+        // 等級記在每筆引文上：整冊未評等（或是 B），但被引用的那一份文件評為 A → verified；引文等級優先於整冊等級
+        object CG(Guid s, string g) => new { sourceId = s, locator = "Doc. 7", evidenceNote = "n", grade = g, gradeBasis = "當事國自己的照會" };
+        Assert.Equal("verified", await V("1921-08-01", "1921-09-01", CG(ungraded, "A")));
+        Assert.Equal("verified", await V("1921-09-01", "1921-10-01", CG(b1, "A")));
+        Assert.Equal("pending", await V("1921-10-01", "1921-11-01", CG(a, "B")));
+
         // 國界本身的可信程度：只有資料集、沒有起始事件 → needs_check／dataset_only；起始事件已查證 → verified
         var bare = await k.Id(await Post(k, Body(hu, ohm, "1921-06-01", "1921-07-01")));
         var bp = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");

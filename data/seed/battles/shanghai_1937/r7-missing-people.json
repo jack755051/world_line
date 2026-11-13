@@ -1,0 +1,489 @@
+{
+ "schema": "battle-data/0.1 r7-missing",
+ "researchedOn": "2026-11-13",
+ "priorityNote": "1=方面軍／軍司令官層級，建議先補；2=師／支隊／艦隊層級；3=機關首長。本輪不研究生平，不補主檔。",
+ "people": [
+  {
+   "name": "Prince Yasuhiko Asaka",
+   "nameOrig": "朝香宮鳩彦王（Asaka Yasuhiko）",
+   "nameZh": "朝香宮鳩彥王",
+   "unitKey": "jp-sea",
+   "tenure": {
+    "start": "1937-11-07",
+    "end": null,
+    "precision": {
+     "start": "day",
+     "end": null
+    },
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 16 頁",
+     "quote": "Lt Gen Yasuhiko",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 1,
+   "note": "JM-179 註 14 OCR 作「Yasuhiko As~ka」，只取未損片段",
+   "unitKeys": [
+    "jp-sea"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "中文名為執行者譯名（鳩彥王），待審"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（jp-monographs）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "jp-monographs"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "name": "Heisuke Yanagawa",
+   "nameOrig": "柳川平助",
+   "nameZh": "柳川平助",
+   "unitKey": "jp-10-army",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 16 頁",
+     "quote": "Lt Gen Heisuke Yanagawa",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "司令官由柳川平助中將出任",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 1,
+   "note": "",
+   "unitKeys": [
+    "jp-10-army"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "柳川平助"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "name": "Chiaki Shigeto",
+   "nameOrig": "重藤千秋",
+   "nameZh": "重藤千秋",
+   "unitKey": "jp-shigeto-det",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "was commanded by Lt Gen Chiaki Shigeto",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 2,
+   "note": "",
+   "unitKeys": [
+    "jp-shigeto-det"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "中文名依日文漢字，待審"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（jp-monographs）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "jp-monographs"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "name": "Kiyoshi Hasegawa",
+   "nameOrig": "長谷川清",
+   "nameZh": "長谷川清",
+   "unitKey": "jp-3rd-fleet",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 22 頁",
+     "quote": "其第三艦隊司令官長谷川清中將",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 2,
+   "note": "",
+   "unitKeys": [
+    "jp-3rd-fleet"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "長谷川清"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "name": "Song Xilian",
+   "nameOrig": "Song Xilian",
+   "nameZh": "宋希濂",
+   "unitKey": "cn-78-corps",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 31 頁",
+     "quote": "第七十八軍軍長宋希濂",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第三十六師宋希濂部、第八十七師王敬久部、第八十八師孫元良部",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 2,
+   "note": "",
+   "unitKeys": [
+    "cn-78-corps",
+    "cn-36-div"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "宋希濂"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "name": "Wang Jingjiu",
+   "nameOrig": "Wang Jingjiu",
+   "nameZh": "王敬久",
+   "unitKey": "cn-87-div",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第三十六師宋希濂部、第八十七師王敬久部、第八十八師孫元良部",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 2,
+   "note": "",
+   "unitKeys": [
+    "cn-87-div"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "王敬久"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "name": "Sun Yuanliang",
+   "nameOrig": "Sun Yuanliang",
+   "nameZh": "孫元良",
+   "unitKey": "cn-88-div",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第三十六師宋希濂部、第八十七師王敬久部、第八十八師孫元良部",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 2,
+   "note": "",
+   "unitKeys": [
+    "cn-88-div"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "孫元良"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "name": "Yang Hu",
+   "nameOrig": "Yang Hu",
+   "nameZh": "楊虎",
+   "unitKey": "cn-songhu-garrison",
+   "tenure": {
+    "start": null,
+    "end": null,
+    "precision": {
+     "start": null,
+     "end": null
+    },
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 17 頁",
+     "quote": "淞滬警備司令楊虎所指揮之上海市保安總團",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "priority": 3,
+   "note": "",
+   "unitKeys": [
+    "cn-songhu-garrison"
+   ],
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "楊虎"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  }
+ ]
+}

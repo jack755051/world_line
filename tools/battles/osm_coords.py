@@ -23,7 +23,7 @@ def walk(o, out):
 def main():
     battle = sys.argv[1]
     D = REPO / "data/seed/battles" / battle
-    op = D / "osm-places.json"; d = json.loads(op.read_text())
+    op = D / "osm-places.json"; d = json.loads(op.read_text()) if op.exists() else {"note": "tools/battles/osm_coords.py 建立：OSM id → 座標", "coords": {}}
     coords = d.setdefault("coords", {})
     for k, v in d.get("withCoords", {}).items():
         coords.setdefault(P[v["type"]] + str(v["id"]), {"lon": v["lon"], "lat": v["lat"], "name": v.get("name", k)[:80]})

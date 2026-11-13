@@ -214,3 +214,14 @@
 6. **缺 bio 的指揮官**：是否另排一批將領生平研究（初列約 20 位，含師長會更多）？還是 R7 先留空？
 7. **前段 5/10–5/25 的逐日疆界**：只取 5/10 一個切片，還是加 5/15、5/18、5/28 的切片？
 8. **Ellis 版本年份**：1953 還是 1954，以哪個為準（研究檔 gap）？戰役名稱「Battle of Dunkirk」的 A／B 出處缺口要不要在本輪一併處理？
+
+## 本機開發庫寫入（2026-11-13 20:50，Tai 20:43 同意）
+
+- 範圍：只有 dunkirk_1940，只寫 5442/worldline_borders_dev；寫入前備份 `~/wl-db-backups/worldline_borders_dev-20261113-205020-pre-dunkirk1940.dump`（sha256 229be178…8a3935）。
+- 工具：`tools/battles/write_battle_sql.py dunkirk_1940`（產生 SQL）→ `tools/battles/db_write.py dunkirk_1940`（dry-run，ROLLBACK）→ `--apply`（COMMIT）。報告見 `db/`。
+- 寫入列數：historical_events 1、battle_profiles 1（pending）、battle_profile_citations 5、event_participants 4、battle_phases 6、battle_phase_citations 14、battle_map_features 65（27 條 source_map 前線、38 個 source_text 地點）、battle_map_feature_citations 88、battle_units 64、battle_unit_citations 82、sources 3（Ellis、Gort、Ramsay）。
+- 全部 status=pending、verified=false；只寫 A/B 引文，NDB（C 級）沒有寫進去。
+- 跳過 16 筆（12 個交戰：候選、序幕、Calais；3 個部隊；1 個控制點 Soex），清單見 `db/dunkirk_1940.write-plan.json`。
+- 22 位沒有傳記的指揮官只標 gap（gaps.json，kind=commander_missing_bio，新增 21 筆，另 1 筆原本就有），不補。
+- 第二輪地圖判讀的 87 個待查證標籤沿用原本的標記。
+- API 版本目前沒有箭頭（研究資料裡沒有 A/B 引文支持的箭頭）。

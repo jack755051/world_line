@@ -1,0 +1,129 @@
+{
+ "schema": "dunkirk-data/0.1 gaps",
+ "researchedOn": "2026-11-13",
+ "gaps": [
+  {
+   "target": "ellis.year（出版年）",
+   "kind": "resolved",
+   "note": "Library of Congress、HathiTrust 目錄（Cloudflare 403）、WorldCat（403／頁面需 JS）、Trove／NLA（反機器人頁）、AGGB 聯合目錄（連線被拒）皆無法讀到 HMSO 初版紀錄；BL SRU 機構碼無效。僅搜尋引擎摘要：WorldCat 紀錄 OCLC 1087882503 顯示 H.M. Stationery Office、1954（未驗證）；另一則摘要稱 Wiener Library 紀錄為 1953（未取得原頁）。結論：與研究檔 gap「1953 vs HyperWar 封面 1954」對照，仍未解；sources.json 的 year 留 null，列 yearCandidates [1953,1954]，需人工用可連線的目錄（LoC／HathiTrust）核對。",
+   "checkedOn": "2026-11-13",
+   "resolution": "LoC 目錄 LCCN 54001808：London, H.M. Stat. Off., 1953（HMSO 初版）。研究檔 gap「1953 vs 1954」以 1953 結案；1954 為 HyperWar 封面頁所載，不採。",
+   "resolvedOn": "2026-11-13",
+   "resolvedBy": "執行者以 lccn.loc.gov MODS 紀錄核實（先前 WorldCat 等目錄 403）"
+  },
+  {
+   "target": "gort-gazette 編號",
+   "kind": "conflict",
+   "note": "任務書：Gort 報告 = Supplement 37573（1946-10-10）。實查：issue 37573 是 1946-05-22 Brooke 報告（1940-06-12～19）；Gort 的第二報告（BEF，涵蓋 1940-02 至 05）為 issue 35305（1941-10-17，pp. 5899–5934），Dunkirk 周界段在 pp. 5922–5934。本輪改用 35305。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "戰役名稱 \"Battle of Dunkirk\"",
+   "kind": "not_found",
+   "note": "Ellis、Gort（pp. 5905–5934）、Ramsay（pp. 3295–3300）全文無此詞；見 name.json。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "比軍軍／師級單位",
+   "kind": "not_found",
+   "note": "Ellis ch. XI–XVI 只以 \"the Belgian Army\" 整體稱呼，未列軍、師番號；Gort、Ramsay 亦無。比軍停在陸軍層級（be-armee）。比軍官方或學術出處未取。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "fr-68-di、fr-32-di",
+   "kind": "not_found",
+   "note": "任務書列為候選；Ellis ch. XI–XVI、Gort、Ramsay 已讀頁皆未提 68e DI、32e DI。status=gap；維基僅作線索。SHAT《historiques succincts》未取得。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "fr-12-di 與「12e DIM」",
+   "kind": "partial",
+   "note": "Ellis ch. XV–XVI 只稱 \"the French 12th Division\"（5/31–6/1 守法比邊界東面）；是否即 12e DIM（摩托化步兵師）無 A／B 出處。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "fr-xvi-ca 轄下兩師",
+   "kind": "partial",
+   "note": "Ellis：XVI Corps 含 \"two French divisions of the original Seventh Army\"，番號未寫；亦未明寫上級。68e DI 等是否屬之未驗證。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "fr-2-dlm／fr-60-di／fr-12-di 上級",
+   "kind": "partial",
+   "note": "Ellis 未明寫上級軍，parentKey 留 null。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "de-luftflotte-2",
+   "kind": "not_found",
+   "note": "Ellis 只有 \"Richthofen's VIII Air Corps\"（ch. XV）；Luftflotte 2 與 Kesselring 無 A／B 出處（Ellis 附錄 C 只列 OKW、OKH、陸軍各軍）。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "德軍附錄 C 編組圖",
+   "kind": "blocked",
+   "note": "HyperWar 轉錄只含 Appendix III 文字備註（Kleist、Hoth 集群 4 個裝甲軍＋5/24 各師）；集團軍群下各軍、各步兵師的編組圖為圖片，未轉錄。因此德軍步兵軍（除第 18 集團軍轄 IX、X、XIV、XXVI 軍）與第 4、6 集團軍轄下步兵師未收。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "德軍 1、2、10、5、9 裝甲師",
+   "kind": "partial",
+   "note": "番號只見於附錄 C 的 5/24 編組；主期（5/26 後）在場僅 XIX Corps 三個裝甲師 5/28 撤出（ch. XIII）可間接支持（1、2、10）；5 Pz 與 9 Pz 主期無在場出處。均標 partial。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "德軍第 6 集團軍、B 集團軍群指揮官",
+   "kind": "partial",
+   "note": "Ellis 未寫 Bock、Reichenau；僅以 NDB（B）證明其任期職務（無日期）。Kluge（第 4 集團軍）、Küchler（第 18 集團軍）同。Frieser（B）、MGFA（A）未取得。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r7 師級指揮官（法、德、比）",
+   "kind": "not_found",
+   "note": "法軍各師、德軍各師師長 Ellis 未列；本輪未取。德軍除各軍軍長外未列師長。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r7 英軍任期",
+   "kind": "partial",
+   "note": "Brooke→Montgomery（II Corps）、Alexander 接 I Corps／BEF 的精確日期、Barker 止日、Wason 起日、1st Division 接任者均未取得精確日（只引 Ellis 段落，不推算）。附錄 A 為 5/10 編成。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "Ellis ch. XV Montgomery 名字",
+   "kind": "conflict",
+   "note": "ch. XV 作 \"B. K. Montgomery\"，附錄 A 作 \"B. L. Montgomery\"；以附錄 A 為準（疑轉錄誤植）。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "Ellis ch. XII 日期誤植",
+   "kind": "conflict",
+   "note": "\"By midnight on May the 278th\" 應為 27th（章題 ch. XIII 為 28th May 比軍投降）；be-armee 止日取 5/28，備註已記。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "Ramsay 報告未逐頁取用",
+   "kind": "partial",
+   "note": "只讀 pp. 3295–3300，未取後續敘事與附錄；海軍指揮層級（Dover、Wake-Walker）僅引 Ellis 附錄 A／正文與報告首頁。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "SHAT、MGFA、Frieser",
+   "kind": "blocked",
+   "note": "PLAN 所列法軍史料處、MGFA《Germany and the Second World War》、Frieser 本輪未取得，法、德師級資料因此不足。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "中文譯名",
+   "kind": "partial",
+   "note": "所有 nameZh（特別是人名、SS 師名）為台灣慣用譯法的草擬，未逐一核對，標 nameZhNeedsReview（見 r7-missing-people）；r1-units 中文名請人工審。",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "period 欄",
+   "kind": "partial",
+   "note": "多數單位 period.end 填 null：Ellis 未給確切止日；start 預設 5/26（主期起日）或首次出現日，不代表編成日（見各筆 periodNote）。",
+   "checkedOn": "2026-11-13"
+  }
+ ]
+}

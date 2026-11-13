@@ -21,3 +21,9 @@
 
 先數位化 Ellis 態勢圖 1 張（28 May，facing p. 214），記配準誤差；精度可接受才做其餘 6 張，否則停下回報（主管 11:38）。
 可接受門檻（執行者訂，供主管覆核）：留一法 95 百分位 ≤ 5 km（本圖範圍約 150 km 寬，相當 3%；波蘭西點圖為 18.4 km）。
+
+## 執行中更正
+
+- PLAN.md 寫 Gort 報告為 London Gazette Supplement 37573（1946-10-10）——**有誤**。實查 37573 是 Brooke 的報告；Gort 報告為 Supplement 35305（1941）。以 `sources.json` 的 `gort-gazette-35305` 為準（見 gaps.json）。
+- Ellis 出版年：LoC 目錄 LCCN 54001808 作 London, H.M. Stat. Off., **1953**（HMSO 初版），結案（`tools/patch_ellis_catalogue.py`）。
+- 試數位化閘門結果：28 May 圖 77 控制點、留一 95 百分位 0.93 km（≤ 5 km 門檻），已續做其餘各圖。

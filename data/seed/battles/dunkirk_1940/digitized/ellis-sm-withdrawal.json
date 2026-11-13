@@ -1,0 +1,929 @@
+{
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "mapKey": "ellis-sm-withdrawal",
+ "mapDate": "1940-05-29",
+ "method": "用 Swift 將 640×967 原圖（直幅、比例尺約為態勢圖的 2 倍）切成 400×330 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上），城鎮取圓點中心（Dunkirk、Nieuport、Ostend 為影線塊，取塊中心），讀圖誤差約 ±3 px（比例較大，約 0.8–1 km）；圖面範圍小，控制點僅 27 個（Dunkirk–Dixmude–Ypres–Comines–Armentières–Merville–Hazebrouck–Cassel 一帶），分布涵蓋全圖但西南角（Cassel 以南）與東南角（Lille 被截斷）無點；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon），同名地點沿用同一 OSM 結果。本圖只畫英軍位置，無德軍符號。",
+ "georef": {
+  "tool": "data/seed/battles/dunkirk_1940/tools/georef_ellis.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 26,
+  "residual_median_km": 0.25,
+  "loo_median_km": 0.33,
+  "loo_p95_km": 0.76,
+  "loo_max_km": 1.17,
+  "suspect_control_points": [],
+  "frame_km": 2.0
+ },
+ "precision_m": 2800,
+ "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Dunkirk": {
+   "px": [
+    22,
+    291
+   ],
+   "lonlat": [
+    2.3773,
+    51.0348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.83
+  },
+  "Bray Dunes": {
+   "px": [
+    165,
+    254
+   ],
+   "lonlat": [
+    2.5245,
+    51.071
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139676
+   },
+   "nameOsm": "Bray-Dunes",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.23
+  },
+  "La Panne": {
+   "px": [
+    234,
+    223
+   ],
+   "lonlat": [
+    2.5924,
+    51.0988
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516156
+   },
+   "nameOsm": "De Panne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.53
+  },
+  "Furnes": {
+   "px": [
+    299,
+    263
+   ],
+   "lonlat": [
+    2.6621,
+    51.0724
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516302
+   },
+   "nameOsm": "Veurne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.14
+  },
+  "Nieuport": {
+   "px": [
+    391,
+    182
+   ],
+   "lonlat": [
+    2.7517,
+    51.1294
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292926
+   },
+   "nameOsm": "Nieuwpoort",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.45
+  },
+  "Ostend": {
+   "px": [
+    548,
+    50
+   ],
+   "lonlat": [
+    2.9195,
+    51.2259
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292909
+   },
+   "nameOsm": "Oostende",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 1.17
+  },
+  "Dixmude": {
+   "px": [
+    484,
+    336
+   ],
+   "lonlat": [
+    2.8647,
+    51.0333
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292925
+   },
+   "nameOsm": "Diksmuide",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.02
+  },
+  "Noordschote": {
+   "px": [
+    428,
+    447
+   ],
+   "lonlat": [
+    2.8099,
+    50.9546
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452700
+   },
+   "nameOsm": "Noordschote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.4
+  },
+  "Lizerne": {
+   "px": [
+    447,
+    510
+   ],
+   "lonlat": [
+    2.8366,
+    50.9156
+   ],
+   "osm": {
+    "type": "node",
+    "id": 11073616263
+   },
+   "nameOsm": "Lizerne",
+   "note": "OSM node",
+   "loo_km": 0.12
+  },
+  "Ypres": {
+   "px": [
+    485,
+    609
+   ],
+   "lonlat": [
+    2.8846,
+    50.8522
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1169202
+   },
+   "nameOsm": "Ieper",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.1
+  },
+  "Poperinghe": {
+   "px": [
+    336,
+    596
+   ],
+   "lonlat": [
+    2.7265,
+    50.8557
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1561101
+   },
+   "nameOsm": "Poperinge",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.27
+  },
+  "Bergues": {
+   "px": [
+    77,
+    400
+   ],
+   "lonlat": [
+    2.4325,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139259
+   },
+   "nameOsm": "Bergues",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.54
+  },
+  "Quaedypre": {
+   "px": [
+    92,
+    456
+   ],
+   "lonlat": [
+    2.4556,
+    50.9354
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135847
+   },
+   "nameOsm": "Quaëdypre",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.33
+  },
+  "West Cappel": {
+   "px": [
+    137,
+    466
+   ],
+   "lonlat": [
+    2.5076,
+    50.9283
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135808
+   },
+   "nameOsm": "West-Cappel",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.16
+  },
+  "Rexpoede": {
+   "px": [
+    166,
+    450
+   ],
+   "lonlat": [
+    2.5389,
+    50.9394
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 138332
+   },
+   "nameOsm": "Rexpoëde",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.36
+  },
+  "Wylder": {
+   "px": [
+    123,
+    493
+   ],
+   "lonlat": [
+    2.494,
+    50.9116
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 134106
+   },
+   "nameOsm": "Wylder",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.13
+  },
+  "Bambecque": {
+   "px": [
+    171,
+    511
+   ],
+   "lonlat": [
+    2.5477,
+    50.9013
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 134134
+   },
+   "nameOsm": "Bambecque",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.21
+  },
+  "Wormhoudt": {
+   "px": [
+    96,
+    537
+   ],
+   "lonlat": [
+    2.4687,
+    50.8828
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 132596
+   },
+   "nameOsm": "Wormhout",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.36
+  },
+  "Ledringhem": {
+   "px": [
+    69,
+    577
+   ],
+   "lonlat": [
+    2.4396,
+    50.8546
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 132463
+   },
+   "nameOsm": "Ledringhem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.47
+  },
+  "Cassel": {
+   "px": [
+    103,
+    660
+   ],
+   "lonlat": [
+    2.4868,
+    50.8
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 103113
+   },
+   "nameOsm": "Cassel",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.26
+  },
+  "Caestre": {
+   "px": [
+    208,
+    730
+   ],
+   "lonlat": [
+    2.604,
+    50.7584
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 78619
+   },
+   "nameOsm": "Caëstre",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.33
+  },
+  "Hazebrouck": {
+   "px": [
+    144,
+    774
+   ],
+   "lonlat": [
+    2.536,
+    50.7226
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 78593
+   },
+   "nameOsm": "Hazebrouck",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.39
+  },
+  "Strazeele": {
+   "px": [
+    235,
+    778
+   ],
+   "lonlat": [
+    2.6303,
+    50.7261
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 78597
+   },
+   "nameOsm": "Strazeele",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.26
+  },
+  "Merville": {
+   "px": [
+    235,
+    903
+   ],
+   "lonlat": [
+    2.6387,
+    50.6437
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 69176
+   },
+   "nameOsm": "Merville",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.46
+  },
+  "Comines": {
+   "px": [
+    592,
+    749
+   ],
+   "lonlat": [
+    3.0066,
+    50.7653
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 59971
+   },
+   "nameOsm": "Comines",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.31
+  },
+  "Armentieres": {
+   "px": [
+    463,
+    861
+   ],
+   "lonlat": [
+    2.8822,
+    50.6867
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 68000
+   },
+   "nameOsm": "Armentières",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.53
+  }
+ },
+ "features": [
+  {
+   "label": "2",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    70,
+    283
+   ],
+   "unitKey": null,
+   "note": "箭頭起點標號，Dunkirk 東南",
+   "lonlat": [
+    2.4241,
+    51.0465
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "46",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    74,
+    349
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.4324,
+    51.0031
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "1",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    168,
+    358
+   ],
+   "unitKey": null,
+   "note": "虛線陣地旁標號",
+   "lonlat": [
+    2.5316,
+    51.0025
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "48",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    146,
+    420
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.5125,
+    50.9602
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "42",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    213,
+    467
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.5861,
+    50.9328
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "4",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    263,
+    377
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.6329,
+    50.9951
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    293,
+    424
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.6676,
+    50.9655
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "3",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    419,
+    503
+   ],
+   "unitKey": null,
+   "note": "Lizerne 西實線旁標號（29 May）",
+   "lonlat": [
+    2.8063,
+    50.9197
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "3",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    438,
+    536
+   ],
+   "unitKey": null,
+   "note": "Lizerne 下方斜體標號（28 May 虛線）",
+   "lonlat": [
+    2.8288,
+    50.8988
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "50",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    346,
+    549
+   ],
+   "unitKey": null,
+   "note": "Poperinghe 北實線旁標號",
+   "lonlat": [
+    2.7321,
+    50.8856
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "50",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    457,
+    608
+   ],
+   "unitKey": null,
+   "note": "Ypres 西斜體標號",
+   "lonlat": [
+    2.854,
+    50.8521
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "48",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    137,
+    531
+   ],
+   "unitKey": null,
+   "note": "斜體標號，Wormhoudt 北（28 May）",
+   "lonlat": [
+    2.5107,
+    50.8862
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "46",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    206,
+    633
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.5905,
+    50.8224
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "44",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    263,
+    690
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.6548,
+    50.7877
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "44",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    251,
+    763
+   ],
+   "unitKey": null,
+   "note": "斜體標號，Caestre／Strazeele 間（28 May）",
+   "lonlat": [
+    2.6477,
+    50.7386
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "2",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    291,
+    863
+   ],
+   "unitKey": null,
+   "note": "箭頭標號，Merville 北",
+   "lonlat": [
+    2.6978,
+    50.6743
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    491,
+    719
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.8984,
+    50.7801
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "4",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    497,
+    782
+   ],
+   "unitKey": null,
+   "note": "箭頭標號",
+   "lonlat": [
+    2.9096,
+    50.7386
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "42",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    481,
+    824
+   ],
+   "unitKey": null,
+   "note": "框內斜體標號，Armentières 北",
+   "lonlat": [
+    2.8958,
+    50.7099
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "ADAM FORCE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "盟軍標註",
+   "px": [
+    200,
+    285
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍臨時支隊",
+   "lonlat": [
+    2.5607,
+    51.0525
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "USHER FORCE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "盟軍標註",
+   "px": [
+    160,
+    389
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍臨時支隊",
+   "lonlat": [
+    2.5252,
+    50.9815
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "GHQ",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "盟軍標註",
+   "px": [
+    254,
+    178
+   ],
+   "unitKey": null,
+   "note": "旗標，英軍總部，La Panne 北",
+   "lonlat": [
+    2.6112,
+    51.1261
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "FRENCH SECTOR",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "盟軍標註",
+   "px": [
+    20,
+    363
+   ],
+   "unitKey": null,
+   "note": "直排標字，Dunkirk 邊界",
+   "lonlat": [
+    2.3769,
+    50.9907
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  },
+  {
+   "label": "1ST ARMY",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "盟軍軍團標註",
+   "px": [
+    433,
+    900
+   ],
+   "unitKey": null,
+   "note": "「PART OF FRENCH 1ST ARMY」標字（圖上跨兩行，取「1ST ARMY」中心）",
+   "lonlat": [
+    2.851,
+    50.6571
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized"
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "新月形弧（Soex／Quaedypre／Rexpoede／Wormhoudt／Ledringhem）",
+   "px": [
+    92,
+    456
+   ],
+   "reason": "黑色新月弧加圓點，無數字，圖例未列（可能為德軍或警戒點）"
+  },
+  {
+   "label": "Cassel 同心弧",
+   "px": [
+    103,
+    660
+   ],
+   "reason": "同心弧符號，圖例未列"
+  },
+  {
+   "label": "Hazebrouck 同心虛圓",
+   "px": [
+    144,
+    774
+   ],
+   "reason": "同心虛線圓，圖例未列"
+  }
+ ]
+}

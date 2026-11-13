@@ -1,0 +1,763 @@
+{
+ "mapKey": "ellis-sm-30may",
+ "mapDate": "1940-05-30",
+ "dateNote": "圖題 evening of 30th May；本圖為敦克爾克周界大比例圖（與 26–29 May 圖不同版面），圖例：英軍紅、法軍綠、德軍藍（灰階掃描無法分辨顏色）",
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 30th May, 1940', facing p. 238",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-10.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "method": "用 Swift 將 1200×652 原圖切成 400×250 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上；本圖為周界大比例圖、地圖佔滿整幅，版面與 26–29 May 圖完全不同，px 皆於本圖重讀）；城鎮取村鎮符號（影線／小點群）中心，部隊取符號／標字中心，讀圖誤差約 ±3 px（約 0.5–1 km）。圖面範圍只涵蓋 Dunkirk 周界（Mardyck–Bourbourg 至 Nieuport–Noordschote），控制點 27 個、全圖分布但無西南以外地區，多為小村（符號為影線團而非圓點，取團中心，誤差略大）；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon），同名地點沿用同一 OSM 結果。部隊標註只收師／軍／軍團／裝甲群層級；圖上大量旅（BDE）、團（Rgt／RI／AR）、營（如 2 Hamps）標註未收（屬 R1 名冊之下層）。",
+ "control_points": {
+  "Nieuport": {
+   "px": [
+    1056,
+    92
+   ],
+   "lonlat": [
+    2.7517,
+    51.1294
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292926
+   },
+   "nameOsm": "Nieuwpoort",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Coxyde": {
+   "px": [
+    863,
+    163
+   ],
+   "lonlat": [
+    2.6349,
+    51.1188
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1487782
+   },
+   "nameOsm": "Koksijde",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Wulpen": {
+   "px": [
+    952,
+    178
+   ],
+   "lonlat": [
+    2.6993,
+    51.1013
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2148467
+   },
+   "nameOsm": "Wulpen",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "La Panne": {
+   "px": [
+    743,
+    176
+   ],
+   "lonlat": [
+    2.5924,
+    51.0988
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516156
+   },
+   "nameOsm": "De Panne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Adinkerke": {
+   "px": [
+    762,
+    239
+   ],
+   "lonlat": [
+    2.6022,
+    51.0755
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2148437
+   },
+   "nameOsm": "Adinkerke",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Furnes": {
+   "px": [
+    880,
+    268
+   ],
+   "lonlat": [
+    2.6621,
+    51.0724
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516302
+   },
+   "nameOsm": "Veurne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Bulscamp": {
+   "px": [
+    843,
+    345
+   ],
+   "lonlat": [
+    2.6501,
+    51.0433
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2242979
+   },
+   "nameOsm": "Bulskamp",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Wulveringhem": {
+   "px": [
+    851,
+    425
+   ],
+   "lonlat": [
+    2.6551,
+    51.0153
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1392648
+   },
+   "nameOsm": "Wulveringem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Houthem": {
+   "px": [
+    762,
+    432
+   ],
+   "lonlat": [
+    2.6078,
+    51.0111
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2242982
+   },
+   "nameOsm": "Houtem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Les Moeres": {
+   "px": [
+    656,
+    407
+   ],
+   "lonlat": [
+    2.5488,
+    51.0146
+   ],
+   "osm": {
+    "type": "node",
+    "id": 149345216
+   },
+   "nameOsm": "Les Moëres",
+   "note": "OSM node"
+  },
+  "Uxem": {
+   "px": [
+    557,
+    387
+   ],
+   "lonlat": [
+    2.485,
+    51.0205
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139641
+   },
+   "nameOsm": "Uxem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Warhem": {
+   "px": [
+    566,
+    517
+   ],
+   "lonlat": [
+    2.493,
+    50.9768
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139247
+   },
+   "nameOsm": "Warhem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Hoymille": {
+   "px": [
+    491,
+    507
+   ],
+   "lonlat": [
+    2.4485,
+    50.973
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139256
+   },
+   "nameOsm": "Hoymille",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Bergues": {
+   "px": [
+    447,
+    532
+   ],
+   "lonlat": [
+    2.4325,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139259
+   },
+   "nameOsm": "Bergues",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Hondschoote": {
+   "px": [
+    713,
+    522
+   ],
+   "lonlat": [
+    2.5863,
+    50.9809
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139236
+   },
+   "nameOsm": "Hondschoote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Killem": {
+   "px": [
+    661,
+    579
+   ],
+   "lonlat": [
+    2.5626,
+    50.9578
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139238
+   },
+   "nameOsm": "Killem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Quaedypre": {
+   "px": [
+    488,
+    633
+   ],
+   "lonlat": [
+    2.4556,
+    50.9354
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135847
+   },
+   "nameOsm": "Quaëdypre",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Pitgam": {
+   "px": [
+    252,
+    638
+   ],
+   "lonlat": [
+    2.3305,
+    50.9278
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135786
+   },
+   "nameOsm": "Pitgam",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Mardick": {
+   "px": [
+    115,
+    354
+   ],
+   "lonlat": [
+    2.2496,
+    51.0204
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 4656706
+   },
+   "nameOsm": "Mardyck",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Fort Mardick": {
+   "px": [
+    226,
+    335
+   ],
+   "lonlat": [
+    2.3067,
+    51.0293
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3213987
+   },
+   "nameOsm": "Fort-Mardyck",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Loon Plage": {
+   "px": [
+    54,
+    430
+   ],
+   "lonlat": [
+    2.2192,
+    50.9946
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139311
+   },
+   "nameOsm": "Loon-Plage",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Spycker": {
+   "px": [
+    267,
+    517
+   ],
+   "lonlat": [
+    2.323,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139278
+   },
+   "nameOsm": "Spycker",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Bourbourg": {
+   "px": [
+    7,
+    563
+   ],
+   "lonlat": [
+    2.1974,
+    50.9467
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139283
+   },
+   "nameOsm": "Bourbourg",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Loo": {
+   "px": [
+    1018,
+    542
+   ],
+   "lonlat": [
+    2.7492,
+    50.98
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452701
+   },
+   "nameOsm": "Lo",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Noordschote": {
+   "px": [
+    1128,
+    628
+   ],
+   "lonlat": [
+    2.8099,
+    50.9546
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452700
+   },
+   "nameOsm": "Noordschote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Beveren": {
+   "px": [
+    805,
+    638
+   ],
+   "lonlat": [
+    2.6414,
+    50.9389
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2239343
+   },
+   "nameOsm": "Beveren aan de IJzer",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Dunkirk": {
+   "px": [
+    347,
+    347
+   ],
+   "lonlat": [
+    2.3773,
+    51.0348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  }
+ },
+ "features": [
+  {
+   "label": "4 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    840,
+    117
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍第 4 師"
+  },
+  {
+   "label": "3 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    763,
+    231
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍第 3 師"
+  },
+  {
+   "label": "5 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    725,
+    283
+   ],
+   "unitKey": null,
+   "note": "虛線橢圓，英軍第 5 師（預備／移動中）"
+  },
+  {
+   "label": "23 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    765,
+    307
+   ],
+   "unitKey": null,
+   "note": "虛線橢圓，英軍第 23 師"
+  },
+  {
+   "label": "50 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    717,
+    310
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍第 50 師"
+  },
+  {
+   "label": "32 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    443,
+    341
+   ],
+   "unitKey": null,
+   "note": "虛線橢圓，英軍第 32 師（圖例：虛線＝預備／移動中）"
+  },
+  {
+   "label": "46 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    475,
+    362
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍第 46 師"
+  },
+  {
+   "label": "60 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    576,
+    294
+   ],
+   "unitKey": null,
+   "note": "虛線橢圓，位於摺痕附近（Camp des Dunes 南）；盟軍師"
+  },
+  {
+   "label": "68 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    243,
+    437
+   ],
+   "unitKey": null,
+   "note": "標字中心，法軍第 68 師"
+  },
+  {
+   "label": "21 C.I.DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    503,
+    422
+   ],
+   "unitKey": null,
+   "note": "標字中心；字跡「21 C.I.DIV」，疑為法軍單位，待對名冊"
+  },
+  {
+   "label": "256 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    1103,
+    117
+   ],
+   "unitKey": null,
+   "note": "標字中心，Nieuport 東南，德軍第 256 步兵師"
+  },
+  {
+   "label": "14 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    703,
+    503
+   ],
+   "unitKey": null,
+   "note": "標字中心，Hondschoote 旁，德軍第 14 步兵師"
+  },
+  {
+   "label": "20 MOT DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    438,
+    592
+   ],
+   "unitKey": null,
+   "note": "標字中心，Quaedypre 以北，德軍第 20 摩托化師"
+  },
+  {
+   "label": "9 ARMD DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    218,
+    567
+   ],
+   "unitKey": null,
+   "note": "標字中心；圖註：9 Armd Div 指揮 11 Mot Bde、Mot Regt Grossdeutschland、SS Adolf Hitler Regt"
+  },
+  {
+   "label": "I CORPS",
+   "echelon": "corps",
+   "sideGuess": "allied",
+   "sideNote": "圖例：軍＝羅馬數字，盟軍",
+   "px": [
+    628,
+    227
+   ],
+   "unitKey": null,
+   "note": "標字中心，位於摺痕附近，英軍 I Corps"
+  },
+  {
+   "label": "II CORPS",
+   "echelon": "corps",
+   "sideGuess": "allied",
+   "sideNote": "圖例：軍＝羅馬數字，盟軍",
+   "px": [
+    728,
+    234
+   ],
+   "unitKey": null,
+   "note": "標字中心，英軍 II Corps"
+  },
+  {
+   "label": "XXVI CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    1103,
+    219
+   ],
+   "unitKey": null,
+   "note": "羅馬數字框＋標字，德軍 XXVI 軍"
+  },
+  {
+   "label": "IX CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    990,
+    398
+   ],
+   "unitKey": null,
+   "note": "羅馬數字框＋標字，德軍 IX 軍"
+  },
+  {
+   "label": "X CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    680,
+    620
+   ],
+   "unitKey": null,
+   "note": "羅馬數字＋標字，德軍 X 軍"
+  },
+  {
+   "label": "XIV CORPS (KLEIST GROUP)",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    183,
+    627
+   ],
+   "unitKey": null,
+   "note": "羅馬數字＋標字，德軍 XIV 軍（Kleist 裝甲群）"
+  },
+  {
+   "label": "EIGHTEENTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "德軍軍團標註，依圖例",
+   "px": [
+    1022,
+    302
+   ],
+   "unitKey": null,
+   "note": "標字中心"
+  },
+  {
+   "label": "SIXTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "德軍軍團標註，依圖例",
+   "px": [
+    800,
+    569
+   ],
+   "unitKey": null,
+   "note": "標字中心（跨兩行「SIXTH／ARMY」）"
+  },
+  {
+   "label": "FOURTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "德軍軍團標註，依圖例",
+   "px": [
+    367,
+    626
+   ],
+   "unitKey": null,
+   "note": "標字中心"
+  },
+  {
+   "label": "GHQ",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "盟軍標註",
+   "px": [
+    745,
+    161
+   ],
+   "unitKey": null,
+   "note": "旗標，英軍總部，La Panne 北"
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "6 Bw（虛線橢圓）",
+   "px": [
+    982,
+    85
+   ],
+   "reason": "Nieuport Bains 東南虛線橢圓，內字疑「6 Bw」，單位不明"
+  },
+  {
+   "label": "SFF",
+   "px": [
+    468,
+    372
+   ],
+   "reason": "標字，Teteghem 北，縮寫無法確定所屬"
+  },
+  {
+   "label": "各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）",
+   "px": [
+    840,
+    200
+   ],
+   "reason": "屬師以下層級，依任務範圍未收"
+  }
+ ]
+}

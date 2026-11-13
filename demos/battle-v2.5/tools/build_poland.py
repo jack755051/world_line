@@ -5,7 +5,7 @@
 位置與控制區沒有逐日座標來源：依條目敘述裡的地名手工擺放，全部是推估（status=approx）。
 不含傷亡數字。指揮官標 memory 的是沒有對到條目、憑通行說法填的，更需要查證。
 """
-import json, re
+import json, os, re
 
 WP = 'https://en.wikipedia.org/wiki/'
 Y = '1939-'
@@ -257,6 +257,17 @@ def dump(path, obj):
     s = json.dumps(obj, ensure_ascii=False, indent=1)
     s = re.sub(r'\[\s+(-?[\d.]+),\s+(-?[\d.]+)(?:,\s+("[a-z]+"))?\s+\]', lambda m: '[' + ', '.join(x for x in m.groups() if x) + ']', s)
     open(path, 'w').write(s + '\n')
+# 從公有領域地圖數位化的位置（tools/georef.py 的輸出）蓋掉同一天手擺的位置；有出處的優先，手擺的值留在 was 欄位供比對
+import glob
+for fp in sorted(glob.glob('battles/poland-1939/digitized/*.json')):
+    if fp.endswith('.readings.json'): continue
+    DG = json.load(open(fp)); idx = {(p['unit_id'], p['date']): p for p in battle['positions']}; n = 0
+    for f in DG['features']:
+        p = idx.get((f['unit_id'], DG['applies_to_keyframe']))
+        if not p: continue
+        p.update(was=[p['lng'], p['lat']], lng=f['lonlat'][0], lat=f['lonlat'][1], status='map', precision_m=DG['precision_m'], source='map:' + os.path.basename(fp)[:-5], map_label=f['label'], map_date=DG['date']); n += 1
+    battle['meta'].setdefault('digitized', []).append({'file': os.path.basename(fp), 'short_zh': DG['source'].get('short_zh'), 'citation': DG['source']['citation'], 'url': DG['source']['url'], 'date': DG['date'], 'keyframe': DG['applies_to_keyframe'], 'positions': n, 'precision_m': DG['precision_m']})
+    print('digitized', os.path.basename(fp), n, 'positions')
 dump('battles/poland-1939/battle.json', battle)
 dump('battles/poland-1939/assignments.json', {
  'meta': {'is_example': False, 'note': '寬鬆門檻：指揮官取自英文維基百科條目（source 有網址）或通行說法（source 為空），一律低可信度、任期留空、需查證。戰役期間換過指揮官的只列一位。',

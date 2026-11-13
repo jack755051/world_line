@@ -274,6 +274,22 @@
    "license_code": null,
    "grade": "B",
    "gradeBasis": "具名作者（張力）之學術論文，發布於中央研究院近代史研究所網站（學術論文，B）"
+  },
+  "rf-ntu103-chen": {
+   "title": "國軍正規陸軍整編與編餘官兵之安置（1945-1947）",
+   "authors": [
+    "陳漢璋"
+   ],
+   "publisher": "國立臺灣大學文學院歷史學系（碩士論文）",
+   "published_text": "2014-06",
+   "url": "https://tdr.lib.ntu.edu.tw/jspui/bitstream/123456789/5378/1/ntu-103-1.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者陳漢璋之國立臺灣大學歷史學系碩士論文（指導教授陳永發），具名機構發布",
+   "addedAt": "2026-11-13T08:34:20+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -1112,6 +1128,28 @@
      "result": "found_B",
      "note": "已 curl 取得原文（kk28-wang）",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "陳紹寬 海軍部長 1938 海軍總司令部 免職 裁撤",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋僅得維基鏡像；無海軍部部長迄日之合格來源"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "1938年1月 行政院改組 海軍部 併入軍政部 陳紹寬",
+     "url": "https://waseda.repo.nii.ac.jp/record/36531/files/AjiaTaiheiyouKenkyukaRonsyu_33_Zhou.pdf",
+     "result": "not_relevant",
+     "note": "與中華民國海軍部改組無關"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2781,10 +2819,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1933-10-03",
-      "end": null
+      "end": "1934-10-01"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "gpost-gzt",
@@ -2795,6 +2833,18 @@
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "xb-gzt",
+       "locator": "Boorman 條目中文傳記",
+       "quote": "1934年10月，共产党军突围向陕西长征，顾祝同任江西绥靖公署主任",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": "依名簿下一任起日推得（推論）：來源寫1934年10月起改任江西綏靖公署主任，北路軍總司令一職之迄日以此推定",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2856,13 +2906,6 @@
     }
    ],
    "gaps": [
-    {
-     "target": "position:gzt-north-route",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；贛粵閩湘鄂剿匪軍北路總司令自1933-10-03（公報）起，Boorman 只寫「三週後」任第五次圍剿北路軍總司令；已查 Boorman、政大官職資料庫；未見迄日。；本輪加查（retry）：國防部歷任部長頁、國防部國軍示範公墓顧祝同頁（只列職稱無日期）、林桶法學報文章、防衛研究所藤井元博論文、VIAF（403 挑戰頁，未繞過）；仍未見迄日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:gzt-3wa-exact",
      "gapKind": "not_found",
@@ -3093,6 +3136,31 @@
      "result": "found_A",
      "note": "已 curl（nids-fujii-ch7）",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "顧祝同 北路軍總司令 迄日 1934",
+     "url": "https://xboorman.enpchina.eu/biographie/gu-zhutong/",
+     "result": "found_B",
+     "note": "Boorman中文傳記寫1934年10月改任江西綏靖公署主任，以此推迄日"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:gzt-north-route",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；贛粵閩湘鄂剿匪軍北路總司令自1933-10-03（公報）起，Boorman 只寫「三週後」任第五次圍剿北路軍總司令；已查 Boorman、政大官職資料庫；未見迄日。；本輪加查（retry）：國防部歷任部長頁、國防部國軍示範公墓顧祝同頁（只列職稱無日期）、林桶法學報文章、防衛研究所藤井元博論文、VIAF（403 挑戰頁，未繞過）；仍未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -3964,6 +4032,36 @@
      "result": "found_A",
      "note": "已 curl，確認作者鄭國良、指導教授呂芳上",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "馬步芳 西北軍政長官 1949 離職 國史館",
+     "url": "https://ah.lib.nccu.edu.tw/bitstream/140.119/33588/4/15301504.pdf",
+     "result": "no_result",
+     "note": "搜尋僅見1945年前論文、個人部落格與無署名文章，無離職日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "馬步芳 西北軍政長官 辭職 飛重慶 轉赴香港 軍史",
+     "url": null,
+     "result": "no_result",
+     "note": "結果均為維基鏡像、網易號等不收來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Boorman 馬步芳 中央執行委員 任期",
+     "url": "https://xboorman.enpchina.eu/biographie/ma-bufang/",
+     "result": "not_relevant",
+     "note": "只寫1945年前後任中央執行委員，無迄日；Boorman 寫7月赴香港但未寫卸任日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -4531,10 +4629,10 @@
      "positionKind": "minister",
      "period": {
       "start": "1944-11-20",
-      "end": null
+      "end": "1946-07-01"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "gpost-cc",
@@ -4545,6 +4643,18 @@
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ntu103-chen",
+       "locator": "第三章末（整編政策小結）",
+       "quote": "1944 年年底至 1946 年 6 月擔任軍政部部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "月精度終點寫下一月起日（到1946年6月）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -4773,13 +4883,6 @@
      "checkedOn": "2026-11-12"
     },
     {
-     "target": "position:cc-war-min",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；軍政部長自1944-11-20（公報）起，公報1945-07-31有「呈請辭職」與「特任」同日兩筆，意義不明；已查 政大官職資料庫、Boorman（未涵蓋此段）。；本輪加查：蘇聖雄〈改革與困境〉（1944-12-04宣誓就職）；仍無迄日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:cc-kmt-cec",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；國民黨中央執行委員自1935年秋起，Boorman 未寫終點；已查 Boorman、政大官職資料庫。；本輪加查：搜尋五全大會、六全大會名單，未得含陳誠且載明任期之可抓原文。",
@@ -5001,6 +5104,55 @@
      "result": "found_A",
      "note": "已 curl，確認標目與生卒年",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "陳誠 軍政部部長 迄日 1946",
+     "url": "https://tdr.lib.ntu.edu.tw/jspui/bitstream/123456789/5378/1/ntu-103-1.pdf",
+     "result": "found_C",
+     "note": "台大陳漢璋碩士論文寫軍政部部長至1946年6月"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "陳誠 第六戰區司令長官 卸任 孫連仲 接任",
+     "url": "https://history.state.gov/historicaldocuments/frus1943China/d113",
+     "result": "not_relevant",
+     "note": "搜尋結果未載陳誠離任第六戰區日期；Boorman只寫1944-07-15就任第一戰區，未明寫卸第六戰區"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "陳誠 辭去第九戰區司令長官 薛岳 代理 1939",
+     "url": "https://www.chinanews.com.cn/cul/2012/10-29/4283033.shtml",
+     "result": "no_result",
+     "note": "僅稱薛岳為代司令長官，無交接日期"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "國民黨中央執行委員 陳誠 任期 六全大會",
+     "url": null,
+     "result": "no_result",
+     "note": "未得載明迄日的合格來源"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:cc-war-min",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；軍政部長自1944-11-20（公報）起，公報1945-07-31有「呈請辭職」與「特任」同日兩筆，意義不明；已查 政大官職資料庫、Boorman（未涵蓋此段）。；本輪加查：蘇聖雄〈改革與困境〉（1944-12-04宣誓就職）；仍無迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

@@ -51,6 +51,11 @@ C_BANNED_HOST_HINTS = ("forum", "bbs.", "blog.", ".blog", "wiki.")
 # apply_refill.py 對新增來源蓋 addedAt＝該補跑批開跑時間；addedAt ≥ 生效時間且網域命中 → 錯誤。既有已 commit 的引用（無 addedAt 或較早）不擋，
 # 由 bios/refill/final_refill_report.py 列為「待替換」。
 DATED_BANNED_HOSTS = {"generals.dk": "2026-11-12T22:10:05+08:00"}
+# 主管 2026-11-13 11:31：寫庫時判為個人／無署名的 10 個網域（9 個根網域）比照 generals.dk 禁用（domain-policy-additions-20261113.json）
+_BAN_1311 = "2026-11-13T11:31:00+08:00"
+DATED_BANNED_HOSTS.update({h: _BAN_1311 for h in ("historyofwar.org", "rafweb.org", "beachesofnormandy.com", "worldwar2.ro", "lonesentry.com",
+                                                  "britishmilitaryhistory.co.uk", "erenow.org", "victoriacrossonline.co.uk", "liquisearch.com")})
+BAN_DECISION = {h: ("主管 2026-11-12 22:08" if v.startswith("2026-11-12") else "主管 2026-11-13 11:31") for h, v in DATED_BANNED_HOSTS.items()}
 ROLE_KINDS = {"minister", "legislator", "military_command", "party", "diplomat", "judicial", "other"}
 ALIGNED_POSITION_KINDS = ROLE_KINDS | {"police", "military_education"}   # T14 文件 §4 邊界個案
 ROLE_LAYER_KINDS = {"head_of_state", "head_of_government", "de_facto_leader", "cabinet_minister", "military_commander",
@@ -125,7 +130,7 @@ def main():
             host = ((urlparse(u).hostname or "") if u else "").lower()
             for h, since in DATED_BANNED_HOSTS.items():
                 if (host == h or host.endswith("." + h)) and str(s.get("addedAt") or "") >= since:
-                    errs.append(f"來源 {k} 網域已禁用（{h}，主管 2026-11-12 22:08，個人網站）：addedAt {s.get('addedAt')}")
+                    errs.append(f"來源 {k} 網域已禁用（{h}，{BAN_DECISION[h]}，個人／無署名網站）：addedAt {s.get('addedAt')}")
         if s.get("grade") not in (None,) + OKG:
             errs.append(f"來源 {k} grade 非法：{s.get('grade')}")
         if s.get("grade") == "C":

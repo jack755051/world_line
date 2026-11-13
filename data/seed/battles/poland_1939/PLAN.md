@@ -109,7 +109,7 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
 
 | 項目 | 狀態 | 檔案 |
 |---|---|---|
-| R1 部隊 | 完成到師級（德 42、波 32、蘇 2 方面軍；德軍步兵師只列文字點名者） | r1-units.json |
+| R1 部隊 | 完成到師級（德 42、波 34、蘇 2 方面軍，共 78；德軍步兵師只列文字點名者） | r1-units.json |
 | R2 地圖 | Kennedy 圖 7–10 兩次獨立判讀＋配準；P95 6.83–25.71 km 全未過 2 km，僅參考；USMA 04–07 只登錄；OKH 略圖未取得 | digitized/、map-catalog.json、checks/label-*.json |
 | R3 文字位置 | 26 筆（地圖不可用，全為文字） | r3-unit-positions.json |
 | R4 前線 | 地圖頂點 0；只有 10/1 德蘇分界線北段 2 個文字頂點（推估）；其餘日期為缺口 | r4-fronts.json、r4-text-vertices.json |

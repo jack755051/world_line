@@ -1,0 +1,408 @@
+{
+ "source": {
+  "type": "secondary_map",
+  "grade": "B",
+  "citation": "張琪閔、蕭新民，〈從孫子兵法「虛實」觀點淺談1937年淞滬會戰〉，《海軍學術雙月刊》51:4（2017），圖五；資料來源：蔣緯國，《國民革命戰史第三部：抗日禦侮－第五卷》（黎明，1979），附圖12",
+  "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+  "license": "中華民國國防部期刊轉載圖；僅存檔供研究判讀，不再散布"
+ },
+ "mapKey": "mnd2017-fig5",
+ "mapDate": "1937-11-08",
+ "method": "第一次判讀（本代理人）：pdfimages 抽出內嵌圖（646×729）。mapgrid.swift 3 倍裁圖讀城鎮圓圈種子，再以 tools/battles/ringfind.swift（r 2–6）偵測圓心，取種子 ±10 px 內最高分者（方法於本圖配準前決定）。圖上比例尺標「0 1 2 3（公里）」與實際範圍（瀏河至乍浦約 100 km）不符，不採用。經緯度依 georef.config.json lonlatRule。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05，沿用）",
+  "loo_p95_km": 3.12,
+  "p95Passes": false,
+  "passes": false,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [
+   {
+    "name": "上海市、奉賢",
+    "reason": "方形縣治／市符號；奉賢 1937 縣治位置與今區治不同，上海市為面（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "北站",
+    "reason": "火車站（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "紀黃廟",
+    "reason": "設施（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "孫家角、西家濱、斜塘港、馬家橋、葉市渡、金絲娘橋",
+    "reason": "村宅級／水道／橋（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "金山縣城",
+    "reason": "1937 金山縣治（朱涇）與圖上位置、今 OSM 物件無法唯一對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "南橋鎮（?）",
+    "reason": "圖上字跡無法確認（規則：地名須可辨）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "吳淞、廣福、南翔、北新涇鎮",
+    "reason": "OSM 無 place 節點（同 fig4 判定，規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "安亭鎮、石湖蕩、葉榭鎮、亭林鎮、柘林城、漕涇",
+    "reason": "OSM 只查得車站／公車站／用地，無 place 節點（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "西新市鎮",
+    "reason": "OSM 查無對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "興塔鎮",
+    "reason": "OSM 只查得高速交流道（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "全公亭",
+    "reason": "OSM 查無對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "獨山",
+    "reason": "OSM 只有合併後之獨山港鎮行政區，鎮治非舊獨山（名稱不對應，規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "閔行",
+    "reason": "OSM 閔行區 admin_centre 為今區治（莘莊一帶），非 1937 閔行鎮（名稱不對應，規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   }
+  ],
+  "use": "僅供參考：不得用於部隊位置或前線頂點"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 17,
+  "residual_median_km": 0.76,
+  "loo_median_km": 1.39,
+  "loo_p95_km": 3.12,
+  "loo_max_km": 3.32,
+  "suspect_control_points": [],
+  "frame_km": 1.0
+ },
+ "precision_m": 4100,
+ "precisionNote": "留一法 95 百分位 3.1 km ＋ 標註框誤差 1 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "瀏河鎮": {
+   "px": [
+    300.0,
+    54.2
+   ],
+   "lonlat": [
+    121.2721644,
+    31.5165429
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244083523
+   },
+   "lonlatBasis": "OSM relation 7802777 的 admin_centre 成員（place=town，浏河镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 0.93
+  },
+  "太倉": {
+   "px": [
+    206.2,
+    99.8
+   ],
+   "lonlat": [
+    121.1264772,
+    31.4590371
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244081745
+   },
+   "lonlatBasis": "OSM relation 4591593 的 admin_centre 成員（place=city，太仓市）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.12
+  },
+  "崑山": {
+   "px": [
+    125.5,
+    143.0
+   ],
+   "lonlat": [
+    120.9764683,
+    31.3869323
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2703828715
+   },
+   "lonlatBasis": "OSM relation 4591878 的 admin_centre 成員（place=city，昆山市）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 2.45
+  },
+  "嘉定": {
+   "px": [
+    290.8,
+    150.1
+   ],
+   "lonlat": [
+    121.2462737,
+    31.3862271
+   ],
+   "osm": {
+    "type": "node",
+    "id": 6547128322
+   },
+   "lonlatBasis": "OSM relation 17000644 的 label 成員（place=suburb，嘉定镇街道）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.27
+  },
+  "羅店鎮": {
+   "px": [
+    347.4,
+    123.5
+   ],
+   "lonlat": [
+    121.3358844,
+    31.4124961
+   ],
+   "osm": {
+    "type": "node",
+    "id": 9060567629
+   },
+   "lonlatBasis": "Nominatim place 節點：罗店, 罗店镇, 宝山区, 上海市, 201908, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.11
+  },
+  "大場": {
+   "px": [
+    380.3,
+    207.7
+   ],
+   "lonlat": [
+    121.4122977,
+    31.2886709
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2684732951
+   },
+   "lonlatBasis": "OSM relation 3532288 的 admin_centre 成員（place=town，大场镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 3.07
+  },
+  "華漕鎮": {
+   "px": [
+    330.7,
+    263.5
+   ],
+   "lonlat": [
+    121.3207354,
+    31.2254821
+   ],
+   "osm": {
+    "type": "node",
+    "id": 11127466633
+   },
+   "lonlatBasis": "Nominatim place 節點：华漕, 华漕镇, 闵行区, 上海市, 201803, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 0.77
+  },
+  "青浦": {
+   "px": [
+    205.5,
+    319.0
+   ],
+   "lonlat": [
+    121.1194575,
+    31.1520314
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244081496
+   },
+   "lonlatBasis": "OSM relation 3292760 的 label 成員（place=city，青浦区）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.77
+  },
+  "松江": {
+   "px": [
+    281.8,
+    422.7
+   ],
+   "lonlat": [
+    121.2232077,
+    31.0344052
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244081858
+   },
+   "lonlatBasis": "OSM relation 3293722 的 label 成員（place=city，松江区）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；松江畫成大橢圓內小圓",
+   "loo_km": 3.32
+  },
+  "松隱鎮": {
+   "px": [
+    274.6,
+    512.2
+   ],
+   "lonlat": [
+    121.236254,
+    30.8967171
+   ],
+   "osm": {
+    "type": "node",
+    "id": 9060508654
+   },
+   "lonlatBasis": "Nominatim place 節點：松隐, 亭林镇, 金山区, 上海市, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；紅色雙圈",
+   "loo_km": 0.89
+  },
+  "新埭鎮": {
+   "px": [
+    201.7,
+    559.3
+   ],
+   "lonlat": [
+    121.0766332,
+    30.8216959
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3500217987
+   },
+   "lonlatBasis": "OSM relation 19101231 的 label 成員（place=town，新埭镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.71
+  },
+  "張堰鎮": {
+   "px": [
+    300.4,
+    574.2
+   ],
+   "lonlat": [
+    121.293652,
+    30.8038616
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3459328517
+   },
+   "lonlatBasis": "OSM relation 18058388 的 label 成員（place=town，张堰镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 2.08
+  },
+  "廣陳鎮": {
+   "px": [
+    216.8,
+    609.2
+   ],
+   "lonlat": [
+    121.1298589,
+    30.7522542
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3582775863
+   },
+   "lonlatBasis": "OSM relation 19101232 的 label 成員（place=town，广陈镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；紅色雙圈",
+   "loo_km": 1.75
+  },
+  "新倉鎮": {
+   "px": [
+    253.2,
+    624.8
+   ],
+   "lonlat": [
+    121.185666,
+    30.724604
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3582794196
+   },
+   "lonlatBasis": "OSM relation 19101233 的 label 成員（place=town，新仓镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.18
+  },
+  "金山衛": {
+   "px": [
+    321.8,
+    628.7
+   ],
+   "lonlat": [
+    121.3131763,
+    30.7275685
+   ],
+   "osm": {
+    "type": "node",
+    "id": 4194619391
+   },
+   "lonlatBasis": "OSM relation 18058384 的 label 成員（place=town，金山卫镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 0.34
+  },
+  "金山咀": {
+   "px": [
+    354.3,
+    622.7
+   ],
+   "lonlat": [
+    121.3681877,
+    30.7340435
+   ],
+   "osm": {
+    "type": "node",
+    "id": 5903602724
+   },
+   "lonlatBasis": "Nominatim place 節點：金山嘴, 金山区, 上海市, 200540, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；今名金山嘴",
+   "loo_km": 1.55
+  },
+  "乍浦鎮": {
+   "px": [
+    210.6,
+    709.4
+   ],
+   "lonlat": [
+    121.091069,
+    30.6059668
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3582801190
+   },
+   "lonlatBasis": "OSM relation 19101236 的 label 成員（place=town，乍浦镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.39
+  }
+ },
+ "features": [],
+ "lines": [],
+ "unresolved": []
+}

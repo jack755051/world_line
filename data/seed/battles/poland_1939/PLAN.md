@@ -104,3 +104,19 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
 2. bpb（ZMSBw 作者）與 LeMO 合為一個德方家族是否同意？
 3. WBH／BazHum 因反爬蟲不可取得，是否由 Tai 或主管手動下載特定 PDF 放入本機？
 4. OKH 原始略圖若無城鎮圓點、只能疊圖，是否值得另行以底圖配準？
+
+## 完成狀態（2026-11-13 執行者）
+
+| 項目 | 狀態 | 檔案 |
+|---|---|---|
+| R1 部隊 | 完成到師級（德 42、波 32、蘇 2 方面軍；德軍步兵師只列文字點名者） | r1-units.json |
+| R2 地圖 | Kennedy 圖 7–10 兩次獨立判讀＋配準；P95 6.83–25.71 km 全未過 2 km，僅參考；USMA 04–07 只登錄；OKH 略圖未取得 | digitized/、map-catalog.json、checks/label-*.json |
+| R3 文字位置 | 26 筆（地圖不可用，全為文字） | r3-unit-positions.json |
+| R4 前線 | 地圖頂點 0；只有 10/1 德蘇分界線北段 2 個文字頂點（推估）；其餘日期為缺口 | r4-fronts.json、r4-text-vertices.json |
+| R5 交戰 | 18 場（14 有日期、4 場只留候選） | r5-engagements.json |
+| R6 據點 | 16 處（2 處日期未載） | r6-site-control.json |
+| R7 指揮官 | 35 筆，10 人連到既有主檔，24 人列待補（本輪不補） | r7-commanders.json、r7-missing-people.json |
+| R8 疆界 | 9/1 與 10/6 兩個切片；分區（9/17–9/28）主權資料未反映，列缺口 | r8-borders.manifest.json |
+
+來源家族引文數：us-army-dapam（Kennedy）211、pl-ipn（Suleja）93、de-academic（LeMO）20；bpb 與 Biuletyn IPN 本輪未引用。
+待主管決定的 4 問（Kennedy 是否 A、bpb+LeMO 同族、WBH PDF 手動取得、OKH 圖配準）仍待回覆。

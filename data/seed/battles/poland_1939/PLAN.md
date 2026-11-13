@@ -120,3 +120,11 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
 
 來源家族引文數：us-army-dapam（Kennedy）211、pl-ipn（Suleja）93、de-academic（LeMO）20；bpb 與 Biuletyn IPN 本輪未引用。
 待主管決定的 4 問（Kennedy 是否 A、bpb+LeMO 同族、WBH PDF 手動取得、OKH 圖配準）仍待回覆。
+
+## 主管決定（2026-11-13 14:58）
+
+1. Kennedy DA Pam 20-255 視同官方戰史 A 級（比照 Ellis）；211 條 Kennedy 引文原已標 A，crosscheck 重跑。
+2. bpb 與 LeMO 維持同一家族 de-academic。
+3. WBH PDF 不下載，留在 gaps（source:pl-wbh-phw）。
+4. OKH 略圖下載並配準；USMA 04–07 配準並各做兩次判讀；過 P95 ≤ 2 km 者補 R4 前線（推估），未過者僅參考。
+5. 輔助腳本複製到 tools/battles/（以戰役代碼為參數），.dev 原檔保留。

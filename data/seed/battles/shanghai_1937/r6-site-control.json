@@ -1,0 +1,786 @@
+{
+ "schema": "battle-data/0.1 r6",
+ "researchedOn": "2026-11-13",
+ "note": "controllerAfter：axis＝日軍、allied＝國軍；null 表示出處未載控制方；sovereignRegimeSlug 皆為中華民國（租界另見 R8）",
+ "sites": [
+  {
+   "placeAsInSource": "呉淞（呉淞桟橋附近）／吳淞",
+   "place": {
+    "nameOsm": "吴淞街道",
+    "osm": {
+     "type": "node",
+     "id": 2686076635
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532319,
+     "role": "label"
+    }
+   },
+   "date": "1937-08-23",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "landed",
+   "status": "partial",
+   "citations": [
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "呉淞桟橋附近ニ上陸シテ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "於吳淞、寶山、川沙口附近地區登陸，擊破",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "登陸點，非全鎮控制；吳淞鎮全面易手日出處未載",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "閘北",
+   "place": {
+    "nameOsm": "闸北",
+    "osm": {
+     "type": "relation",
+     "id": 16100014
+    }
+   },
+   "date": "1937-10-26",
+   "datePrecision": "day",
+   "controllerAfter": null,
+   "controllerRegimeSlug": null,
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "main_force_withdrew_garrison_left",
+   "status": "partial",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 32 頁",
+     "quote": "同日夜間，淞滬前線國軍移轉陣",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 32 頁",
+     "quote": "地，並在閘北留一團死守，以「感動中外」",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "su2015「26 日……同日夜間」，上下文為 10 月",
+   "note": "國軍主力移轉、留一團死守；日軍占領日出處未載，controllerAfter 留空",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "placeAsInSource": "大場鎮",
+   "place": {
+    "nameOsm": "大场镇",
+    "osm": {
+     "type": "node",
+     "id": 2684732951
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532288,
+     "role": "admin_centre"
+    }
+   },
+   "date": null,
+   "datePrecision": "month-part",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "captured",
+   "status": "partial",
+   "citations": [
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "出處只到「十月下旬」（JACAR），常見之 10/26 本輪 A/B 出處未見，日期留空",
+   "note": "控制方為日軍屬推定（下旬戰況進展、轉向蘇州河追擊）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（jp-jacar）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "jp-jacar"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "金山衛（金出衛城南方）",
+   "place": {
+    "nameOsm": "金山卫镇",
+    "osm": {
+     "type": "node",
+     "id": 4194619391
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 18058384,
+     "role": "label"
+    }
+   },
+   "date": "1937-11-05",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "landed",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "11月5日拂曉，日軍以其第10軍在金山",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "衛附近行登陸，擊破國軍薄弱守備部隊(63",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "上海南市／Shanghai",
+   "place": {
+    "nameOsm": "南市",
+    "osm": {
+     "type": "relation",
+     "id": 19819739
+    }
+   },
+   "date": "1937-11-11",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "cleared",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "九日遂ニ敵ヲ撃退シ十一日上海南市ヲ掃蕩セリ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 15 頁",
+     "quote": "12 November, the Expeditionary Army began a full-scale pursuit and",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 15 頁",
+     "quote": "cleared Shanghai and its vicinity of Chinese troops.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "上海公共租界與法租界不在此列（主權／控制另見 R8）",
+   "conflict": "JACAR：11/11 掃蕩南市；JM-179：11/12 起追擊並肅清上海及附近。取 JACAR 11/11（南市）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、jp-monographs）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "白茆口",
+   "place": {
+    "nameOsm": "白茆",
+    "osm": {
+     "type": "node",
+     "id": 7802930858
+    }
+   },
+   "date": "1937-11-13",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "landed",
+   "status": "partial",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "同時以新增之第16師配屬重藤旅團於白茆",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "kou on 16 November, landed on the ]Jth.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "JM OCR「]Jth」讀作 13 日，待審",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "常熟（Changshu）",
+   "place": {
+    "nameOsm": "常熟市",
+    "osm": {
+     "type": "node",
+     "id": 244084671
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 4591597,
+     "role": "admin_centre"
+    }
+   },
+   "date": "1937-11-19",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "line_reached",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "advanced to the line connecting Cba~ahu, Suchou and ClUAhai!lg",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "on 19 ~ovEmber",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "擊，掩護友軍通過。19日追擊部隊已進抵至",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "常熟、吳興、嘉興之線(達日軍大本營原定",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 18 頁",
+     "quote": "追擊，先頭已進抵至常熟-吳縣-嘉興之線，",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）",
+   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "蘇州／吳縣（Suchou）",
+   "place": {
+    "nameOsm": "苏州市",
+    "osm": {
+     "type": "node",
+     "id": 244084673
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 4430941,
+     "role": "admin_centre"
+    }
+   },
+   "date": "1937-11-19",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "line_reached",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "advanced to the line connecting Cba~ahu, Suchou and ClUAhai!lg",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "on 19 ~ovEmber",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "擊，掩護友軍通過。19日追擊部隊已進抵至",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "常熟、吳興、嘉興之線(達日軍大本營原定",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 18 頁",
+     "quote": "追擊，先頭已進抵至常熟-吳縣-嘉興之線，",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）",
+   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "嘉興（Chiahsing）",
+   "place": {
+    "nameOsm": "嘉兴市",
+    "osm": {
+     "type": "node",
+     "id": 6442736456
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3308626,
+     "role": "admin_centre"
+    }
+   },
+   "date": "1937-11-19",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "line_reached",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "advanced to the line connecting Cba~ahu, Suchou and ClUAhai!lg",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "on 19 ~ovEmber",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "擊，掩護友軍通過。19日追擊部隊已進抵至",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "常熟、吳興、嘉興之線(達日軍大本營原定",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 18 頁",
+     "quote": "追擊，先頭已進抵至常熟-吳縣-嘉興之線，",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）",
+   "conflict": "mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "placeAsInSource": "吳興",
+   "place": {
+    "nameOsm": "湖州市",
+    "osm": {
+     "type": "node",
+     "id": 3822785671
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3149738,
+     "role": "admin_centre"
+    }
+   },
+   "date": "1937-11-26",
+   "datePrecision": "day",
+   "controllerAfter": "axis",
+   "controllerRegimeSlug": "empire-of-japan",
+   "sovereignRegimeSlug": "republic-of-china-nationalist",
+   "event": "captured",
+   "status": "sourced",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 17 頁",
+     "quote": "興激戰，迄26日吳興失陷，第7軍向孝豐轉",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "note": "只有 mnd2017 一族",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  }
+ ]
+}

@@ -1,0 +1,1394 @@
+{
+ "schema": "battle-data/0.1 r3",
+ "researchedOn": "2026-11-13",
+ "note": "主期 1937-08-13～11-26；地點只給出處地名＋OSM 編號（優先 admin_centre／label place 節點），不含座標；relation 為執行者歸類標籤；三張配準圖全未過 2 km，R3 全部為文字出處",
+ "positions": [
+  {
+   "unitKey": "cn-ind-20-bde",
+   "date": "1937-08-12",
+   "datePrecision": "day",
+   "placeAsInSource": "南翔鎮",
+   "place": {
+    "nameOsm": "南翔",
+    "osm": {
+     "type": "way",
+     "id": 101892349
+    }
+   },
+   "basis": "text",
+   "relation": "deployed",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "4.獨立第20旅於12日晚進駐南翔鎮。",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "主期前一日（開戰前部署）；OSM 只查得火車站，無 place 節點",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-9-ag",
+   "date": "1937-08-12",
+   "datePrecision": "approx",
+   "placeAsInSource": "大場、彭浦及蘇州河北岸",
+   "place": {
+    "nameOsm": "大场镇",
+    "osm": {
+     "type": "node",
+     "id": 2684732951
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532288,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "deployed",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "彭浦",
+     "nameOsm": "彭浦镇",
+     "osm": {
+      "type": "node",
+      "id": 9772944402
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 14186005,
+      "role": "label"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "1.第9集團軍(淞滬警備隊改編)各以一",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "部進駐大場、彭浦及蘇州河北岸。",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "mnd2017「中、日雙方遂調整部署如下」段，開戰前（8/12 前後）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-87-div",
+   "date": "1937-08-12",
+   "datePrecision": "approx",
+   "placeAsInSource": "吳淞鎮、劉家宅及舊市政府",
+   "place": {
+    "nameOsm": "吴淞街道",
+    "osm": {
+     "type": "node",
+     "id": 2686076635
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532319,
+     "role": "label"
+    }
+   },
+   "basis": "text",
+   "relation": "deployed",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "3.第88師向東推進，第87師一部進駐吳",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "淞鎮、劉家宅及舊市政府。",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "87 師一部",
+   "dateNote": "同上部署段，開戰前",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-56-div",
+   "date": "1937-08-12",
+   "datePrecision": "approx",
+   "placeAsInSource": "瀏河至江陰地區江防",
+   "place": {
+    "nameOsm": "浏河镇",
+    "osm": {
+     "type": "node",
+     "id": 244083523
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 7802777,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "deployed",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "江陰",
+     "nameOsm": "江阴市",
+     "osm": {
+      "type": "node",
+      "id": 244080740
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 5672133,
+      "role": "admin_centre"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "2.第39軍之第56師及江蘇保安團奉命擔",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "任瀏河至江陰地區江防。",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "同上部署段，開戰前；為瀏河—江陰沿江帶狀防區，place 只標兩端",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-87-div",
+   "date": "1937-08-14",
+   "datePrecision": "day",
+   "placeAsInSource": "八字橋、持志大學及滬江大學",
+   "place": {
+    "nameOsm": null,
+    "osm": null
+   },
+   "basis": "text",
+   "relation": "captured",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 11 頁",
+     "quote": "14日入夜後，第87、88師先後奪",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 11 頁",
+     "quote": "取八字橋、持志大學及滬江大學要點，並持",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "八字橋 OSM 查無；地點留出處地名",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-88-div",
+   "date": "1937-08-14",
+   "datePrecision": "day",
+   "placeAsInSource": "八字橋、持志大學及滬江大學",
+   "place": {
+    "nameOsm": null,
+    "osm": null
+   },
+   "basis": "text",
+   "relation": "captured",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 11 頁",
+     "quote": "14日入夜後，第87、88師先後奪",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 11 頁",
+     "quote": "取八字橋、持志大學及滬江大學要點，並持",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "jp-sea",
+   "date": "1937-08-23",
+   "datePrecision": "day",
+   "placeAsInSource": "川沙鎮及呉淞桟橋附近",
+   "place": {
+    "nameOsm": "吴淞街道",
+    "osm": {
+     "type": "node",
+     "id": 2686076635
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532319,
+     "role": "label"
+    }
+   },
+   "basis": "text",
+   "relation": "landed",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "上海派遣軍ハ八月二十三日川沙鎮",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "呉淞桟橋附近ニ上陸シテ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 14 頁",
+     "quote": "On . 23 August, the Shanghai Expeditionary Army landed at the",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 14 頁",
+     "quote": "mouth of the Huangpu River and in the area northwest thereof,",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "JACAR「川沙鎮」與今浦東川沙同名而位置不同（mnd2017 圖四標於長江岸），不給 OSM；place 只取呉淞",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、jp-monographs）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-3-div",
+   "date": "1937-08-23",
+   "datePrecision": "day",
+   "placeAsInSource": "吳淞、寶山、川沙口附近",
+   "place": {
+    "nameOsm": "吴淞街道",
+    "osm": {
+     "type": "node",
+     "id": 2686076635
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532319,
+     "role": "label"
+    }
+   },
+   "basis": "text",
+   "relation": "landed",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "寶山",
+     "nameOsm": "友谊路街道",
+     "osm": {
+      "type": "node",
+      "id": 2686075277
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 3532312,
+      "role": "label"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "23日晨日軍第3、11師團各以一部分別",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "於吳淞、寶山、川沙口附近地區登陸，擊破",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "原文 3、11 師團各以一部分別登陸，未分配地點",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "jp-11-div",
+   "date": "1937-08-23",
+   "datePrecision": "day",
+   "placeAsInSource": "吳淞、寶山、川沙口附近",
+   "place": {
+    "nameOsm": "吴淞街道",
+    "osm": {
+     "type": "node",
+     "id": 2686076635
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532319,
+     "role": "label"
+    }
+   },
+   "basis": "text",
+   "relation": "landed",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "寶山",
+     "nameOsm": "友谊路街道",
+     "osm": {
+      "type": "node",
+      "id": 2686075277
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 3532312,
+      "role": "label"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "23日晨日軍第3、11師團各以一部分別",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "於吳淞、寶山、川沙口附近地區登陸，擊破",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "同上",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-15-ag",
+   "date": "1937-08-23",
+   "datePrecision": "approx",
+   "placeAsInSource": "吳淞、寶山、川沙口、羅店、瀏河等方面",
+   "place": {
+    "nameOsm": "罗店镇",
+    "osm": {
+     "type": "node",
+     "id": 2684932953
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3531102,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "attacking",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "吳淞",
+     "nameOsm": "吴淞街道",
+     "osm": {
+      "type": "node",
+      "id": 2686076635
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 3532319,
+      "role": "label"
+     }
+    },
+    {
+     "placeAsInSource": "寶山",
+     "nameOsm": "友谊路街道",
+     "osm": {
+      "type": "node",
+      "id": 2686075277
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 3532312,
+      "role": "label"
+     }
+    },
+    {
+     "placeAsInSource": "瀏河",
+     "nameOsm": "浏河镇",
+     "osm": {
+      "type": "node",
+      "id": 244083523
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 7802777,
+      "role": "admin_centre"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "15集團軍自8月23日至9月11日間，分向吳淞",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "、寶山、川沙口、羅店、瀏河等方面日軍發",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "8/23–9/11 期間（取起日）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "jp-sea",
+   "date": "1937-10-05",
+   "datePrecision": "approx",
+   "placeAsInSource": "大場鎮附近",
+   "place": {
+    "nameOsm": "大场镇",
+    "osm": {
+     "type": "node",
+     "id": 2684732951
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 3532288,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "attacking",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "主語「軍」＝上海派遣軍（上文）",
+   "dateNote": "原文「十月上旬」，日期取旬中，推估",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（jp-jacar）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "jp-jacar"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-10-army",
+   "date": "1937-11-05",
+   "datePrecision": "day",
+   "placeAsInSource": "金山衛（金出衛城南方）",
+   "place": {
+    "nameOsm": "金山卫镇",
+    "osm": {
+     "type": "node",
+     "id": 4194619391
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 18058384,
+     "role": "label"
+    }
+   },
+   "basis": "text",
+   "relation": "landed",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "11月5日拂曉，日軍以其第10軍在金山",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "衛附近行登陸，擊破國軍薄弱守備部隊(63",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "As soon as the lOth Army landed in the vicinity of Hangchou",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "JACAR 翻刻「金出衛」照錄（金山衛）",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（jp-jacar、jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-63-div",
+   "date": "1937-11-05",
+   "datePrecision": "day",
+   "placeAsInSource": "金山衛附近",
+   "place": {
+    "nameOsm": "金山卫镇",
+    "osm": {
+     "type": "node",
+     "id": 4194619391
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 18058384,
+     "role": "label"
+    }
+   },
+   "basis": "text",
+   "relation": "defending",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "衛附近行登陸，擊破國軍薄弱守備部隊(63",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "師之兩個步兵連)後，繼向黃浦江方向進攻",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "63 師之兩個步兵連",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-107-div",
+   "date": "1937-11-08",
+   "datePrecision": "day",
+   "placeAsInSource": "得勝口",
+   "place": {
+    "nameOsm": null,
+    "osm": null
+   },
+   "basis": "text",
+   "relation": "defending",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "江北岸。8日，日軍擊退107師，由得勝口渡",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "日軍擊退 107 師後由得勝口渡江向松江",
+   "dateNote": "得勝口 OSM 查無（黃浦江渡口）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-15-ag",
+   "date": "1937-11-12",
+   "datePrecision": "day",
+   "placeAsInSource": "瀏河鎮至嘉定一線",
+   "place": {
+    "nameOsm": "浏河镇",
+    "osm": {
+     "type": "node",
+     "id": 244083523
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 7802777,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "covering_withdrawal",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "嘉定",
+     "nameOsm": "嘉定镇街道",
+     "osm": {
+      "type": "node",
+      "id": 6547128322
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 17000644,
+      "role": "label"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "21集團軍固守瀏河鎮至嘉定一線，掩護戰區",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "主力撤退。該兩集團軍於12日夜達成任務後",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "上一行「所幸第15、」接本行「21集團軍」（同一欄）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-21-ag",
+   "date": "1937-11-12",
+   "datePrecision": "day",
+   "placeAsInSource": "瀏河鎮至嘉定一線",
+   "place": {
+    "nameOsm": "浏河镇",
+    "osm": {
+     "type": "node",
+     "id": 244083523
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 7802777,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "covering_withdrawal",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "嘉定",
+     "nameOsm": "嘉定镇街道",
+     "osm": {
+      "type": "node",
+      "id": 6547128322
+     },
+     "osmVia": {
+      "type": "relation",
+      "id": 17000644,
+      "role": "label"
+     }
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "21集團軍固守瀏河鎮至嘉定一線，掩護戰區",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "主力撤退。該兩集團軍於12日夜達成任務後",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "jp-16-div",
+   "date": "1937-11-13",
+   "datePrecision": "day",
+   "placeAsInSource": "白茆口、滸浦口（Paimaokou）",
+   "place": {
+    "nameOsm": "白茆",
+    "osm": {
+     "type": "node",
+     "id": 7802930858
+    }
+   },
+   "basis": "text",
+   "relation": "landed",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "同時以新增之第16師配屬重藤旅團於白茆",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "口、滸浦口登陸，企圖切斷國軍主力退路。",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "(the 16th Division and an element of the Shigeto",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "kou on 16 November, landed on the ]Jth.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "JM-179 OCR「]Jth」讀作 13th（原定 16 日）；mnd2017 未載日期，判讀待審",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-shigeto-det",
+   "date": "1937-11-13",
+   "datePrecision": "day",
+   "placeAsInSource": "白茆口、滸浦口（Paimaokou）",
+   "place": {
+    "nameOsm": "白茆",
+    "osm": {
+     "type": "node",
+     "id": 7802930858
+    }
+   },
+   "basis": "text",
+   "relation": "landed",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "同時以新增之第16師配屬重藤旅團於白茆",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "(the 16th Division and an element of the Shigeto",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "kou on 16 November, landed on the ]Jth.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "JM：an element of the Shigeto Detachment",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-16-div",
+   "date": "1937-11-13",
+   "datePrecision": "day",
+   "placeAsInSource": "ten kilometers east of Changshu",
+   "place": {
+    "nameOsm": "常熟市",
+    "osm": {
+     "type": "node",
+     "id": 244084671
+    },
+    "osmVia": {
+     "type": "relation",
+     "id": 4591597,
+     "role": "admin_centre"
+    }
+   },
+   "basis": "text",
+   "relation": "reached",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "opposition and advanced to within ten kilometers east of Changshu",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "attributionNote": "常熟以東 10 km，place 只取常熟",
+   "dateNote": "JM 同日（same day）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（jp-monographs）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "jp-monographs"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  },
+  {
+   "unitKey": "cn-40-div",
+   "date": "1937-11-13",
+   "datePrecision": "day",
+   "placeAsInSource": "江防（地點未載）",
+   "place": {
+    "nameOsm": null,
+    "osm": null
+   },
+   "basis": "text",
+   "relation": "defending",
+   "alsoPlaces": [],
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "13日日軍擊破任江防之第40師，並以空軍猛",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "dateNote": "地點出處未載",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（tw-roc）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   }
+  }
+ ]
+}

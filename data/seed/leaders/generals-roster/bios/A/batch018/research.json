@@ -140,6 +140,48 @@
    "license_code": null,
    "grade": "C",
    "gradeBasis": "具名作者 Rebecca Grant；具名出版機構 Air Force Association"
+  },
+  "rf-aacm-1944": {
+   "title": "January 1944: Anzio Landings & USSTAF（陸軍航空軍 1944 年 1 月大事記）",
+   "authors": [],
+   "publisher": "Army Air Corps Museum",
+   "published_text": null,
+   "url": "https://www.armyaircorpsmuseum.org/january-1944-army-air-forces.cfm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名博物館機構 Army Air Corps Museum 發布的陸軍航空軍逐日大事記",
+   "addedAt": "2026-11-13T08:25:30+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-osti-trinity": {
+   "title": "Manhattan Project: The Trinity Test, July 16, 1945",
+   "authors": [],
+   "publisher": "U.S. Department of Energy, Office of Scientific and Technical Information (OSTI)",
+   "published_text": null,
+   "url": "https://www.osti.gov/opennet/manhattan-project-history/Events/1945/trinity.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國能源部官方曼哈頓計畫歷史網站",
+   "addedAt": "2026-11-13T08:25:30+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-osti-surrender": {
+   "title": "Manhattan Project: Japan Surrenders, August 10-15, 1945",
+   "authors": [],
+   "publisher": "U.S. Department of Energy, Office of Scientific and Technical Information (OSTI)",
+   "published_text": null,
+   "url": "https://www.osti.gov/opennet/manhattan-project-history/Events/1945/surrender.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國能源部官方曼哈頓計畫歷史網站",
+   "addedAt": "2026-11-13T08:25:30+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -1319,10 +1361,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1942-12-01",
-      "end": null
+      "end": "1944-01-06"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "aspm-eaker2",
@@ -1333,6 +1375,18 @@
        "accessedOn": "2026-11-12",
        "grade": "C",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-aacm-1944",
+       "locator": "全文",
+       "quote": "Jimmy Doolittle assumed command of the Eighth Air Force on January 6, 1944",
+       "quoteLang": "en",
+       "evidenceNote": "依後任（Doolittle）接任日推得（推論）；Eaker 移任地中海",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1393,13 +1447,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:eaker-8af",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；第八航空軍司令卸任日。Grant 只寫 1943 年 12 月 19 日電報「暫定」改調，Milton／Meilinger 無日期；af.mil、Britannica、American Air Museum 403。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:eaker-maaf",
      "gapKind": "not_found",
@@ -1502,6 +1549,31 @@
      "url": "https://dmairfield.org/people/eaker_ic/index.htm",
      "result": "unrated",
      "note": "個人網站，不採"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Eaker relinquished command Eighth Air Force January 1944 Doolittle",
+     "url": "https://www.armyaircorpsmuseum.org/january-1944-army-air-forces.cfm",
+     "result": "found_C",
+     "note": "Army Air Corps Museum 逐日大事記明載 1944-01-06 Doolittle 接任第八航空軍"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:eaker-8af",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；第八航空軍司令卸任日。Grant 只寫 1943 年 12 月 19 日電報「暫定」改調，Milton／Meilinger 無日期；af.mil、Britannica、American Air Museum 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1856,6 +1928,98 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1945-07-16",
+      "end": "1945-08-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "三位一體試驗與對日原子彈作戰",
+      "en": "The Trinity test and the atomic bombing campaign against Japan"
+     },
+     "body": {
+      "zh-Hant": "1945 年 7 月 16 日，格羅夫斯在新墨西哥州親身觀看「三位一體」（Trinity）原子彈試驗。依能源部官方史料，他按「各人分處不同地點觀察、以防意外」的原則，離開奧本海默，與布希、康南特一同在基地營觀看。試驗成功後，格羅夫斯對奧本海默說「我為你感到驕傲」；當助手法雷爾說「戰爭結束了」，格羅夫斯回答「是的，在我們向日本投下兩顆炸彈之後」。對日原子彈攻擊（campaign）中，1945 年 8 月 10 日，廣島、長崎遭轟炸之後，格羅夫斯向陸軍部報告下一枚鈽彈可在八月中旬後備妥，並因名單上僅剩小倉兵工廠與新潟兩處目標而要求增列目標；杜魯門隨後下令立即停止原子攻擊。",
+      "en": "On 16 July 1945 Groves observed the Trinity atomic test in New Mexico first-hand. Under his policy that observers be in different locations in case of an accident, he left Oppenheimer and joined Bush and Conant at base camp. After the success he told Oppenheimer he was proud of him, and when Farrell remarked that the war was over, Groves replied that it would be after two bombs were dropped on Japan. In the atomic bombing campaign against Japan, on 10 August 1945, after Hiroshima and Nagasaki, Groves reported to the War Department that the next bomb would be ready after about 17 or 18 August and, with only Kokura Arsenal and Niigata left on the target list, asked that additional targets be added; Truman then ordered an immediate halt to atomic attacks."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nps-groves",
+       "locator": "全文",
+       "quote": "observed the Trinity Test first-hand on July 16, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "1945 年 7 月 16 日親身觀看三位一體試驗",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-osti-trinity",
+       "locator": "全文",
+       "quote": "In accordance with his policy that each observe from",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "分處不同地點觀察之原則",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-osti-trinity",
+       "locator": "全文",
+       "quote": "Groves said to Oppenheimer, \"I am proud of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "我為你感到驕傲",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-osti-trinity",
+       "locator": "全文",
+       "quote": "\"Yes, after we drop two bombs on Japan.\"",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "在我們向日本投下兩顆炸彈之後",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-osti-surrender",
+       "locator": "全文",
+       "quote": "Groves therefore requested that additional",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "要求增列目標",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-osti-surrender",
+       "locator": "全文",
+       "quote": "Truman, however, ordered an immediate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": "杜魯門下令停止原子攻擊",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
     }
    ],
    "positions": [
@@ -1981,9 +2145,23 @@
      "url": "https://britannica.com/biography/Leslie-Richard-Groves",
      "result": "blocked_403",
      "note": "403"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "OSTI Manhattan Project Trinity test / Japan surrenders Groves",
+     "url": "https://www.osti.gov/opennet/manhattan-project-history/Events/1945/trinity.htm",
+     "result": "found_A",
+     "note": "DOE 官方頁面載有格羅夫斯在三位一體試驗與八月原子彈作戰的角色，新增戰役段"
     }
    ],
-   "nameZhOrig": "莱斯利·理查德·格罗夫斯"
+   "nameZhOrig": "莱斯利·理查德·格罗夫斯",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "jimmydoolittle",

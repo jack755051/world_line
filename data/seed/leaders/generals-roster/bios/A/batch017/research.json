@@ -3451,6 +3451,44 @@
      "note": "只索引到 Britannica 與 National WWII Museum 戰役文章，無西點離任日",
      "step": 13,
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "USMA past superintendents list (westpoint.edu / usma.edu)",
+     "url": "https://www.westpoint.edu/about/superintendent/past-superintendents",
+     "result": "no_result",
+     "note": "兩個猜測網址皆 404，未取得名單頁"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "USMA archives Eichelberger papers finding aid",
+     "url": "https://archives.westpoint.edu/repositories/2/archival_objects/15349",
+     "result": "blocked_403",
+     "note": "403 防機器人頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "WPAOG Timeline / Highlights PDF 檢索 Eichelberger、Wilby、1942",
+     "url": "https://www.westpointaog.org/wp-content/uploads/2022/12/West_Point_AOG_Timeline.pdf",
+     "result": "not_relevant",
+     "note": "已抓取並全文檢索；未提校長交接日"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Britannica Robert L. Eichelberger；Army Press CSI 軍長合傳／戰鬥序列 PDF；history.army.mil 77th Div 戰鬥紀事",
+     "url": "https://www.britannica.com/biography/Robert-L-Eichelberger",
+     "result": "blocked_403",
+     "note": "Britannica、armyupress、history.army.mil 皆 403 或無法解析，無法取得可逐字引用的原文；Pacific Wrecks／Pacific War Online Encyclopedia 屬個人網站不收"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },

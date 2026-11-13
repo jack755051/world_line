@@ -1,0 +1,1428 @@
+{
+ "source": {
+  "type": "military_academy_atlas",
+  "grade": "B",
+  "citation": "USMA Department of History, Atlas of the Second World War: Europe and the Mediterranean, Map 5 'CENTRAL EUROPE, 1939 — Deployment of the Wehrmacht, 1 September 1939'",
+  "url": "https://s3.amazonaws.com/usma-media/inline-images/academics/academic_departments/history/WWII%20Europe%20Med/WWIIEurope05.jpg",
+  "license": "美國聯邦政府著作（USMA），公有領域"
+ },
+ "mapKey": "usma-europe-05",
+ "mapDate": "1939-09-01",
+ "method": "第一次判讀（本代理人）：tools/battles/mapgrid.swift 裁兩塊 2000×1400 原圖縮為 1000×700（0.5 倍，100 px 格線）目視讀城鎮空心圓（誤差約 ±4 px），再以 ringfind 於 ±8 px 內精修（cp_refine.py --win 8）。本圖為中歐全圖，比例尺 0–100 km 約 130 px（約 0.77 km/px）。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05，沿用）",
+  "loo_p95_km": 25.76,
+  "passes": false,
+  "use": "僅供參考：不得用於部隊位置或前線頂點"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 46,
+  "residual_median_km": 5.1,
+  "loo_median_km": 5.89,
+  "loo_p95_km": 25.76,
+  "loo_max_km": 31.18,
+  "suspect_control_points": [
+   [
+    "Königsberg",
+    17.76
+   ],
+   [
+    "Luxembourg",
+    26.51
+   ],
+   [
+    "Frankfurt",
+    23.53
+   ],
+   [
+    "Munich",
+    31.18
+   ],
+   [
+    "Ulm",
+    29.19
+   ]
+  ],
+  "frame_km": 5.0
+ },
+ "precision_m": 30800,
+ "precisionNote": "留一法 95 百分位 25.8 km ＋ 標註框誤差 5 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Königsberg": {
+   "px": [
+    3790.6,
+    318.6
+   ],
+   "lonlat": [
+    20.45657,
+    54.70465
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 331414
+   },
+   "nameOsm": "городской округ Калининград, Калининградская область, Северо",
+   "pxManual": [
+    3792.0,
+    316.0
+   ],
+   "note": "圖上地名 Königsberg；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.82，位移 3.0 px）；lonlat 取 OSM Nominatim「Königsberg」",
+   "loo_km": 17.76
+  },
+  "Danzig": {
+   "px": [
+    3531.5,
+    407.3
+   ],
+   "lonlat": [
+    18.79833,
+    54.4288
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2723259
+   },
+   "nameOsm": "Gdańsk, województwo pomorskie, Polska",
+   "pxManual": [
+    3532.0,
+    406.0
+   ],
+   "note": "圖上地名 Danzig；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.776，位移 1.4 px）；lonlat 取 OSM Nominatim「Danzig」",
+   "loo_km": 11.73
+  },
+  "Posen": {
+   "px": [
+    3294.5,
+    895.4
+   ],
+   "lonlat": [
+    16.93352,
+    52.40827
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2456294
+   },
+   "nameOsm": "Poznań, województwo wielkopolskie, Polska",
+   "pxManual": [
+    3294.0,
+    894.0
+   ],
+   "note": "圖上地名 Posen；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.777，位移 1.5 px）；lonlat 取 OSM Nominatim「Poznan」",
+   "loo_km": 4.51
+  },
+  "Warsaw": {
+   "px": [
+    3895.5,
+    890.5
+   ],
+   "lonlat": [
+    21.07115,
+    52.23337
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 336074
+   },
+   "nameOsm": "Warszawa, województwo mazowieckie, Polska",
+   "pxManual": [
+    3894.0,
+    890.0
+   ],
+   "note": "圖上地名 Warsaw；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.744，位移 1.6 px）；lonlat 取 OSM Nominatim「Warsaw」",
+   "loo_km": 4.07
+  },
+  "Lodz": {
+   "px": [
+    3678.5,
+    1023.6
+   ],
+   "lonlat": [
+    19.47849,
+    51.77282
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2907537
+   },
+   "nameOsm": "Łódź, województwo łódzkie, Polska",
+   "pxManual": [
+    3680.0,
+    1022.0
+   ],
+   "note": "圖上地名 Lodz；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.807，位移 2.2 px）；lonlat 取 OSM Nominatim「Lodz」",
+   "loo_km": 4.77
+  },
+  "Breslau": {
+   "px": [
+    3316.6,
+    1198.3
+   ],
+   "lonlat": [
+    16.9782,
+    51.12631
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2805690
+   },
+   "nameOsm": "Wrocław, województwo dolnośląskie, Polska",
+   "pxManual": [
+    3318.0,
+    1196.0
+   ],
+   "note": "圖上地名 Breslau；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.8，位移 2.7 px）；lonlat 取 OSM Nominatim「Breslau」",
+   "loo_km": 2.81
+  },
+  "Cracow": {
+   "px": [
+    3756.5,
+    1417.5
+   ],
+   "lonlat": [
+    19.93686,
+    50.06195
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 449696
+   },
+   "nameOsm": "Kraków, województwo małopolskie, Polska",
+   "pxManual": [
+    3756.0,
+    1416.0
+   ],
+   "note": "圖上地名 Cracow；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.727，位移 1.6 px）；lonlat 取 OSM Nominatim「Cracow」",
+   "loo_km": 5.85
+  },
+  "Ostrava": {
+   "px": [
+    3519.8,
+    1499.5
+   ],
+   "lonlat": [
+    18.29298,
+    49.8354
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 437354
+   },
+   "nameOsm": "Ostrava, okres Ostrava-město, Moravskoslezský kraj, Česko",
+   "pxManual": [
+    3522.0,
+    1500.0
+   ],
+   "note": "圖上地名 Ostrava；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.75，位移 2.3 px）；lonlat 取 OSM Nominatim「Ostrava」",
+   "loo_km": 8.38
+  },
+  "Brunn": {
+   "px": [
+    3286.5,
+    1641.4
+   ],
+   "lonlat": [
+    16.61134,
+    49.19224
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 438171
+   },
+   "nameOsm": "Brno, okres Brno-město, Jihomoravský kraj, Česko",
+   "pxManual": [
+    3288.0,
+    1640.0
+   ],
+   "note": "圖上地名 Brunn；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.779，位移 2.1 px）；lonlat 取 OSM Nominatim「Brunn」",
+   "loo_km": 5.26
+  },
+  "Norwich": {
+   "px": [
+    1136.4,
+    709.5
+   ],
+   "lonlat": [
+    1.2924,
+    52.62856
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 172506
+   },
+   "nameOsm": "Norwich, Norfolk, England, United Kingdom",
+   "pxManual": [
+    1136.0,
+    708.0
+   ],
+   "note": "圖上地名 Norwich；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.8，位移 1.6 px）；lonlat 取 OSM Nominatim「Norwich」",
+   "loo_km": 6.93
+  },
+  "Amsterdam": {
+   "px": [
+    1615.0,
+    838.0
+   ],
+   "lonlat": [
+    4.89245,
+    52.37308
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 271110
+   },
+   "nameOsm": "Amsterdam, Noord-Holland, Nederland",
+   "pxManual": [
+    1614.0,
+    836.0
+   ],
+   "note": "圖上地名 Amsterdam；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.857，位移 2.2 px）；lonlat 取 OSM Nominatim「Amsterdam」",
+   "loo_km": 3.79
+  },
+  "The Hague": {
+   "px": [
+    1530.0,
+    876.0
+   ],
+   "lonlat": [
+    4.31135,
+    52.07998
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 192737
+   },
+   "nameOsm": "Den Haag, Zuid-Holland, Nederland",
+   "note": "圖上地名 The Hague；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「The Hague」",
+   "loo_km": 7.22
+  },
+  "Dunkirk": {
+   "px": [
+    1210.5,
+    1086.6
+   ],
+   "lonlat": [
+    2.37725,
+    51.03477
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque, Nord, Hauts-de-France, France métropolitaine, Fra",
+   "pxManual": [
+    1210.0,
+    1086.0
+   ],
+   "note": "圖上地名 Dunkirk；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.736，位移 0.8 px）；lonlat 取 OSM Nominatim「Dunkirk」",
+   "loo_km": 8.33
+  },
+  "Ghent": {
+   "px": [
+    1402.3,
+    1087.3
+   ],
+   "lonlat": [
+    3.72501,
+    51.05383
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 897671
+   },
+   "nameOsm": "Gent, Oost-Vlaanderen, Vlaanderen, België / Belgique / Belgi",
+   "pxManual": [
+    1402.0,
+    1086.0
+   ],
+   "note": "圖上地名 Ghent；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.843，位移 1.3 px）；lonlat 取 OSM Nominatim「Ghent」",
+   "loo_km": 14.56
+  },
+  "Antwerp": {
+   "px": [
+    1538.0,
+    1094.0
+   ],
+   "lonlat": [
+    4.39971,
+    51.22111
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 59518
+   },
+   "nameOsm": "Antwerpen, Vlaanderen, België / Belgique / Belgien",
+   "note": "圖上地名 Antwerp；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「Antwerp」",
+   "loo_km": 13.66
+  },
+  "Brussels": {
+   "px": [
+    1480.8,
+    1172.0
+   ],
+   "lonlat": [
+    4.35109,
+    50.8551
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 20113191
+   },
+   "nameOsm": "Bruxelles - Brussel, Brussel-Hoofdstad - Bruxelles-Capitale,",
+   "pxManual": [
+    1480.0,
+    1172.0
+   ],
+   "note": "圖上地名 Brussels；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.854，位移 0.8 px）；lonlat 取 OSM Nominatim「Brussels」",
+   "loo_km": 7.96
+  },
+  "Lille": {
+   "px": [
+    1308.1,
+    1199.9
+   ],
+   "lonlat": [
+    3.06353,
+    50.63657
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58404
+   },
+   "nameOsm": "Lille, Nord, Hauts-de-France, France métropolitaine, France",
+   "pxManual": [
+    1310.0,
+    1198.0
+   ],
+   "note": "圖上地名 Lille；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.78，位移 2.7 px）；lonlat 取 OSM Nominatim「Lille」",
+   "loo_km": 2.68
+  },
+  "Liège": {
+   "px": [
+    1651.3,
+    1245.7
+   ],
+   "lonlat": [
+    5.57361,
+    50.64509
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1681788
+   },
+   "nameOsm": "Liège, Wallonie, 4000, België / Belgique / Belgien",
+   "pxManual": [
+    1650.0,
+    1244.0
+   ],
+   "note": "圖上地名 Liège；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.798，位移 2.1 px）；lonlat 取 OSM Nominatim「Liège」",
+   "loo_km": 7.01
+  },
+  "Cologne": {
+   "px": [
+    1862.5,
+    1201.5
+   ],
+   "lonlat": [
+    6.95997,
+    50.93836
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62578
+   },
+   "nameOsm": "Köln, Nordrhein-Westfalen, Deutschland",
+   "pxManual": [
+    1862.0,
+    1200.0
+   ],
+   "note": "圖上地名 Cologne；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.713，位移 1.6 px）；lonlat 取 OSM Nominatim「Cologne」",
+   "loo_km": 4.7
+  },
+  "Luxembourg": {
+   "px": [
+    1770.0,
+    1480.0
+   ],
+   "lonlat": [
+    6.1298,
+    49.61128
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 407489
+   },
+   "nameOsm": "Luxembourg, Canton Luxembourg, Lëtzebuerg",
+   "note": "圖上地名 Luxembourg；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「Luxembourg」",
+   "loo_km": 26.51
+  },
+  "Metz": {
+   "px": [
+    1717.5,
+    1605.4
+   ],
+   "lonlat": [
+    6.17636,
+    49.1197
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 450381
+   },
+   "nameOsm": "Metz, Moselle, Grand Est, France métropolitaine, France",
+   "pxManual": [
+    1718.0,
+    1600.0
+   ],
+   "note": "圖上地名 Metz；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.756，位移 5.4 px）；lonlat 取 OSM Nominatim「Metz」",
+   "loo_km": 1.36
+  },
+  "Reims": {
+   "px": [
+    1400.5,
+    1530.5
+   ],
+   "lonlat": [
+    4.03193,
+    49.25779
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 36458
+   },
+   "nameOsm": "Reims, Marne, Grand Est, France métropolitaine, 51100, Franc",
+   "pxManual": [
+    1400.0,
+    1530.0
+   ],
+   "note": "圖上地名 Reims；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.768，位移 0.7 px）；lonlat 取 OSM Nominatim「Reims」",
+   "loo_km": 3.19
+  },
+  "Paris": {
+   "px": [
+    1142.5,
+    1581.5
+   ],
+   "lonlat": [
+    2.34839,
+    48.8535
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 71525
+   },
+   "nameOsm": "Paris, Île-de-France, France métropolitaine, France",
+   "pxManual": [
+    1142.0,
+    1582.0
+   ],
+   "note": "圖上地名 Paris；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.704，位移 0.7 px）；lonlat 取 OSM Nominatim「Paris」",
+   "loo_km": 5.41
+  },
+  "Verdun": {
+   "px": [
+    1606.0,
+    1570.0
+   ],
+   "lonlat": [
+    5.38673,
+    49.15893
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 918574
+   },
+   "nameOsm": "Verdun, Meuse, Grand Est, France métropolitaine, 55100, Fran",
+   "pxManual": [
+    1610.0,
+    1566.0
+   ],
+   "note": "圖上地名 Verdun；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.832，位移 5.7 px）；lonlat 取 OSM Nominatim「Verdun」",
+   "loo_km": 5.86
+  },
+  "Strasbourg": {
+   "px": [
+    1930.5,
+    1751.6
+   ],
+   "lonlat": [
+    7.75071,
+    48.58461
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 71033
+   },
+   "nameOsm": "Strasbourg, Bas-Rhin, Collectivité européenne d'Alsace, Gran",
+   "pxManual": [
+    1930.0,
+    1758.0
+   ],
+   "note": "圖上地名 Strasbourg；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.772，位移 6.4 px）；lonlat 取 OSM Nominatim「Strasbourg」",
+   "loo_km": 5.91
+  },
+  "Stuttgart": {
+   "px": [
+    2148.4,
+    1725.5
+   ],
+   "lonlat": [
+    9.18001,
+    48.77845
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62375
+   },
+   "nameOsm": "Stuttgart, Baden-Württemberg, Deutschland",
+   "pxManual": [
+    2146.0,
+    1724.0
+   ],
+   "note": "圖上地名 Stuttgart；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.782，位移 2.8 px）；lonlat 取 OSM Nominatim「Stuttgart」",
+   "loo_km": 5.63
+  },
+  "Frankfurt": {
+   "px": [
+    2143.4,
+    1428.5
+   ],
+   "lonlat": [
+    8.68209,
+    50.11064
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62400
+   },
+   "nameOsm": "Frankfurt am Main, Hessen, Deutschland",
+   "pxManual": [
+    2142.0,
+    1426.0
+   ],
+   "note": "圖上地名 Frankfurt；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.8，位移 2.9 px）；lonlat 取 OSM Nominatim「Frankfurt」",
+   "loo_km": 23.53
+  },
+  "Kassel": {
+   "px": [
+    2224.3,
+    1139.4
+   ],
+   "lonlat": [
+    9.49785,
+    51.31578
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62598
+   },
+   "nameOsm": "Kassel, Hessen, Deutschland",
+   "pxManual": [
+    2218.0,
+    1140.0
+   ],
+   "note": "圖上地名 Kassel；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.754，位移 6.3 px）；lonlat 取 OSM Nominatim「Kassel」",
+   "loo_km": 7.14
+  },
+  "Bremen": {
+   "px": [
+    2171.9,
+    711.8
+   ],
+   "lonlat": [
+    8.80716,
+    53.07582
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62559
+   },
+   "nameOsm": "Bremen, Deutschland",
+   "pxManual": [
+    2178.0,
+    708.0
+   ],
+   "note": "圖上地名 Bremen；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.83，位移 7.2 px）；lonlat 取 OSM Nominatim「Bremen」",
+   "loo_km": 4.45
+  },
+  "Hamburg": {
+   "px": [
+    2321.6,
+    610.5
+   ],
+   "lonlat": [
+    10.00132,
+    53.55017
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62782
+   },
+   "nameOsm": "Hamburg, Deutschland",
+   "pxManual": [
+    2322.0,
+    608.0
+   ],
+   "note": "圖上地名 Hamburg；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.824，位移 2.5 px）；lonlat 取 OSM Nominatim「Hamburg」",
+   "loo_km": 10.85
+  },
+  "Lübeck": {
+   "px": [
+    2432.0,
+    540.0
+   ],
+   "lonlat": [
+    10.68474,
+    53.86644
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 27027
+   },
+   "nameOsm": "Lübeck, Schleswig-Holstein, Deutschland",
+   "note": "圖上地名 Lübeck；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「Lübeck」",
+   "loo_km": 6.05
+  },
+  "Wismar": {
+   "px": [
+    2552.0,
+    562.0
+   ],
+   "lonlat": [
+    11.46479,
+    53.89098
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62599
+   },
+   "nameOsm": "Wismar, Nordwestmecklenburg, Mecklenburg-Vorpommern, Deutsch",
+   "pxManual": [
+    2544.0,
+    566.0
+   ],
+   "note": "圖上地名 Wismar；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.858，位移 8.9 px）；lonlat 取 OSM Nominatim「Wismar」",
+   "loo_km": 9.0
+  },
+  "Berlin": {
+   "px": [
+    2796.6,
+    874.6
+   ],
+   "lonlat": [
+    13.39513,
+    52.51739
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62422
+   },
+   "nameOsm": "Berlin, Deutschland",
+   "pxManual": [
+    2798.0,
+    872.0
+   ],
+   "note": "圖上地名 Berlin；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.828，位移 3.0 px）；lonlat 取 OSM Nominatim「Berlin」",
+   "loo_km": 2.93
+  },
+  "Magdeburg": {
+   "px": [
+    2542.0,
+    946.0
+   ],
+   "lonlat": [
+    11.64008,
+    52.13148
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62481
+   },
+   "nameOsm": "Magdeburg, Sachsen-Anhalt, Deutschland",
+   "note": "圖上地名 Magdeburg；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「Magdeburg」",
+   "loo_km": 8.71
+  },
+  "Leipzig": {
+   "px": [
+    2650.4,
+    1146.5
+   ],
+   "lonlat": [
+    12.37473,
+    51.34063
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62649
+   },
+   "nameOsm": "Leipzig, Sachsen, Deutschland",
+   "pxManual": [
+    2644.0,
+    1154.0
+   ],
+   "note": "圖上地名 Leipzig；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.812，位移 9.9 px）；lonlat 取 OSM Nominatim「Leipzig」",
+   "loo_km": 0.76
+  },
+  "Dresden": {
+   "px": [
+    2845.1,
+    1220.3
+   ],
+   "lonlat": [
+    13.73814,
+    51.04933
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 191645
+   },
+   "nameOsm": "Dresden, Sachsen, Deutschland",
+   "pxManual": [
+    2842.0,
+    1222.0
+   ],
+   "note": "圖上地名 Dresden；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.801，位移 3.5 px）；lonlat 取 OSM Nominatim「Dresden」",
+   "loo_km": 1.25
+  },
+  "Prague": {
+   "px": [
+    2946.0,
+    1420.0
+   ],
+   "lonlat": [
+    14.42125,
+    50.08747
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 435514
+   },
+   "nameOsm": "Praha, Česko",
+   "note": "圖上地名 Prague；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「Prague」",
+   "loo_km": 12.64
+  },
+  "Pilsen": {
+   "px": [
+    2792.6,
+    1518.4
+   ],
+   "lonlat": [
+    13.37752,
+    49.74774
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 438344
+   },
+   "nameOsm": "Plzeň, okres Plzeň-město, Plzeňský kraj, Česko",
+   "pxManual": [
+    2792.0,
+    1516.0
+   ],
+   "note": "圖上地名 Pilsen；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.825，位移 2.5 px）；lonlat 取 OSM Nominatim「Pilsen」",
+   "loo_km": 2.82
+  },
+  "Nuremberg": {
+   "px": [
+    2447.7,
+    1582.3
+   ],
+   "lonlat": [
+    11.0773,
+    49.45387
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62780
+   },
+   "nameOsm": "Nürnberg, Bayern, Deutschland",
+   "pxManual": [
+    2446.0,
+    1582.0
+   ],
+   "note": "圖上地名 Nuremberg；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.833，位移 1.7 px）；lonlat 取 OSM Nominatim「Nuremberg」",
+   "loo_km": 0.87
+  },
+  "Regensburg": {
+   "px": [
+    2588.6,
+    1700.4
+   ],
+   "lonlat": [
+    12.09749,
+    49.01953
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62411
+   },
+   "nameOsm": "Regensburg, Bayern, Deutschland",
+   "pxManual": [
+    2586.0,
+    1700.0
+   ],
+   "note": "圖上地名 Regensburg；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.752，位移 2.6 px）；lonlat 取 OSM Nominatim「Regensburg」",
+   "loo_km": 8.25
+  },
+  "Munich": {
+   "px": [
+    2564.0,
+    1880.0
+   ],
+   "lonlat": [
+    11.57538,
+    48.13711
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62428
+   },
+   "nameOsm": "München, Bayern, Deutschland",
+   "note": "圖上地名 Munich；ringfind 在 ±8 px 內未找到圓，保留人工判讀像素；lonlat 取 OSM Nominatim「Munich」",
+   "loo_km": 31.18
+  },
+  "Ulm": {
+   "px": [
+    2231.0,
+    1837.0
+   ],
+   "lonlat": [
+    9.99125,
+    48.3985
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62495
+   },
+   "nameOsm": "Ulm, Baden-Württemberg, Deutschland",
+   "pxManual": [
+    2230.0,
+    1836.0
+   ],
+   "note": "圖上地名 Ulm；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.837，位移 1.4 px）；lonlat 取 OSM Nominatim「Ulm」",
+   "loo_km": 29.19
+  },
+  "Wilhelmshaven": {
+   "px": [
+    2082.7,
+    612.0
+   ],
+   "lonlat": [
+    8.1063,
+    53.52788
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62444
+   },
+   "nameOsm": "Wilhelmshaven, Wangerland, Niedersachsen, Deutschland",
+   "pxManual": [
+    2086.0,
+    610.0
+   ],
+   "note": "圖上地名 Wilhelmshaven；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.756，位移 3.9 px）；lonlat 取 OSM Nominatim「Wilhelmshaven」",
+   "loo_km": 3.01
+  },
+  "Minden": {
+   "px": [
+    2179.5,
+    903.5
+   ],
+   "lonlat": [
+    8.91689,
+    52.2881
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139087
+   },
+   "nameOsm": "Minden, Kreis Minden-Lübbecke, Nordrhein-Westfalen, Deutschl",
+   "pxManual": [
+    2178.0,
+    906.0
+   ],
+   "note": "圖上地名 Minden；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.741，位移 2.9 px）；lonlat 取 OSM Nominatim「Minden」",
+   "loo_km": 5.05
+  },
+  "Wesel": {
+   "px": [
+    1835.1,
+    1031.0
+   ],
+   "lonlat": [
+    6.61709,
+    51.65769
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58590
+   },
+   "nameOsm": "Wesel, Kreis Wesel, Nordrhein-Westfalen, Deutschland",
+   "pxManual": [
+    1836.0,
+    1028.0
+   ],
+   "note": "圖上地名 Wesel；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.408，位移 3.1 px）；lonlat 取 OSM Nominatim「Wesel」",
+   "loo_km": 4.09
+  },
+  "Nijmegen": {
+   "px": [
+    1743.6,
+    980.5
+   ],
+   "lonlat": [
+    5.86378,
+    51.84749
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1200994
+   },
+   "nameOsm": "Nijmegen, Gelderland, Nederland",
+   "pxManual": [
+    1744.0,
+    980.0
+   ],
+   "note": "圖上地名 Nijmegen；圓心由 ringfind 於人工種子 ±8 px 內精修（score 0.644，位移 0.6 px）；lonlat 取 OSM Nominatim「Nijmegen」",
+   "loo_km": 8.15
+  }
+ },
+ "features": [
+  {
+   "label": "NORTH",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3636.0,
+    328.0
+   ],
+   "note": "XXXXX；框下 BOCK",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "NORTH",
+    "reason": null,
+    "distPx": 29.1
+   },
+   "unitKey": "de-hgr-nord",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：NORTH（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    19.4541,
+    54.7263
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "FOURTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3254.0,
+    508.0
+   ],
+   "note": "XXXX；框下 KLUGE",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FOURTH",
+    "reason": null,
+    "distPx": 28.6
+   },
+   "unitKey": "de-4-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：FOURTH（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    16.628,
+    54.0505
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "FIRST",
+   "echelon": "air_command",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3092.0,
+    560.0
+   ],
+   "note": "XXXX 航空（∞）符號；框下 KESSELRING",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FIRST",
+    "reason": null,
+    "distPx": 25.1
+   },
+   "unitKey": "de-luftflotte-1",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：USMA 05：∞ 航空符號＋KESSELRING＝Luftflotte 1",
+   "lonlat": [
+    15.4491,
+    53.8489
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "THIRD",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3774.0,
+    500.0
+   ],
+   "note": "XXXX；框下 KUECHLER",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "THIRD",
+    "reason": null,
+    "distPx": 24.2
+   },
+   "unitKey": "de-3-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：THIRD（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    20.4129,
+    53.9491
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "EIGHTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3492.0,
+    1086.0
+   ],
+   "note": "XXXX；框下 BLASKOWITZ",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "EIGHTH",
+    "reason": null,
+    "distPx": 24.2
+   },
+   "unitKey": "de-8-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：EIGHTH（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    18.2131,
+    51.5454
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "TENTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3656.0,
+    1220.0
+   ],
+   "note": "XXXX；框下 REICHENAU",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "TENTH",
+    "reason": null,
+    "distPx": 24.2
+   },
+   "unitKey": "de-10-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：TENTH（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    19.2926,
+    50.9312
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "FOURTH",
+   "echelon": "air_command",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3182.0,
+    1272.0
+   ],
+   "note": "XXXX 航空（∞）；框下 LÖHR",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FOURTH",
+    "reason": null,
+    "distPx": 26.8
+   },
+   "unitKey": "de-luftflotte-4",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：USMA 05：∞ 航空符號＋LÖHR＝Luftflotte 4",
+   "lonlat": [
+    16.0323,
+    50.809
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "SOUTH",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3300.0,
+    1436.0
+   ],
+   "note": "XXXXX；框下 RUNDSTEDT",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SOUTH",
+    "reason": null,
+    "distPx": 21.6
+   },
+   "unitKey": "de-hgr-sued",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：SOUTH（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    16.7963,
+    50.0953
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "FOURTEENTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    3718.0,
+    1524.0
+   ],
+   "note": "XXXX；框下 LIST",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FOURTEENTH",
+    "reason": null,
+    "distPx": 29.7
+   },
+   "unitKey": "de-14-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：FOURTEENTH（集團軍群／集團軍司令部標字）",
+   "lonlat": [
+    19.5619,
+    49.6205
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "A",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    2078.0,
+    854.0
+   ],
+   "note": "XXXXX；框下 HAMMERSTEIN（西線）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "A",
+    "reason": null,
+    "distPx": 28.6
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "USMA 05：西線 XXXXX A（HAMMERSTEIN），不屬波蘭戰役名冊",
+   "lonlat": [
+    8.2372,
+    52.4724
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "SECOND",
+   "echelon": "air_command",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    2116.0,
+    1014.0
+   ],
+   "note": "XXXX 航空（∞）；框下 FELMY",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SECOND",
+    "reason": null,
+    "distPx": 22.4
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "USMA 05：Luftflotte 2（FELMY）在西線，不屬波蘭戰役名冊",
+   "lonlat": [
+    8.592,
+    51.8006
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "FIFTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    1932.0,
+    1332.0
+   ],
+   "note": "XXXX；框下 LIEBMANN（西線）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FIFTH",
+    "reason": null,
+    "distPx": 45.1
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "USMA 05：西線 5. Armee（LIEBMANN），不屬波蘭戰役名冊",
+   "lonlat": [
+    7.4805,
+    50.3749
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "FIRST",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    1944.0,
+    1466.0
+   ],
+   "note": "XXXX；框下 WITZLEBEN（西線）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FIRST",
+    "reason": null,
+    "distPx": 27.9
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "USMA 05：西線 1. Armee（WITZLEBEN），不屬波蘭戰役名冊",
+   "lonlat": [
+    7.6332,
+    49.8063
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "THIRD",
+   "echelon": "air_command",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    2184.0,
+    1524.0
+   ],
+   "note": "XXXX 航空（∞）；框下 SPERRLE",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "THIRD",
+    "reason": null,
+    "distPx": 29.1
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "USMA 05：Luftflotte 3（SPERRLE）在西線，不屬波蘭戰役名冊",
+   "lonlat": [
+    9.2806,
+    49.6413
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "SEVENTH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    2112.0,
+    1868.0
+   ],
+   "note": "XXXX；框下 DOLLMANN（西線）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SEVENTH",
+    "reason": null,
+    "distPx": 18.9
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "USMA 05：西線 7. Armee（DOLLMANN），不屬波蘭戰役名冊",
+   "lonlat": [
+    8.9202,
+    48.1479
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "OKW",
+   "echelon": "hq",
+   "sideGuess": "german",
+   "sideNote": "圖例慣例：紅色＝德軍",
+   "px": [
+    2850.0,
+    774.0
+   ],
+   "note": "旗形框",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "OKW",
+    "reason": null,
+    "distPx": 25.3
+   },
+   "unitKey": null,
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "OKW 最高統帥部，名冊只列 OKH（de-okh）；不對應",
+   "lonlat": [
+    13.7225,
+    52.9463
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  }
+ ],
+ "lines": [],
+ "unresolved": []
+}

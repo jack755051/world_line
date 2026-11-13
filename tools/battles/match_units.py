@@ -110,7 +110,13 @@ def classify_generic(f, units, aliases, lm):
     ech = f.get("echelon")
     if side is None:
         return None, "unmatched", "陣營未判"
-    a = aliases.get(f"{f.get('sideGuess')}|{L}")
+    a = aliases.get(f"{f.get('sideGuess')}|{L}|{ech}")  # 帶 echelon 的別名優先（同名不同層級，如 FOURTH 軍團／FOURTH 航空隊）
+    if a is None:
+        a = aliases.get(f"{f.get('sideGuess')}|{L}")
+        if a is not None and a.get("unitKey"):
+            ue = next((u["echelon"] for u in units if u["unitKey"] == a["unitKey"]), None)
+            if (ech == "air_command") != (ue == "air_command"):  # 航空隊與地面部隊同名時不套用一般別名
+                a = None
     if a is not None:
         if a.get("unitKey") is None:
             return None, "unmatched", a.get("why", "名冊無此單位")
@@ -159,7 +165,7 @@ def main():
     D = REPO / "data" / "seed" / "battles" / battle
     units = json.loads((D / "r1-units.json").read_text())["units"]
     ap = D / "unit-label-aliases.json"
-    aliases = {f"{a['sideGuess']}|{norm(a['label'])}": a for a in json.loads(ap.read_text())["aliases"]} if ap.exists() else {}
+    aliases = {f"{a['sideGuess']}|{norm(a['label'])}" + (f"|{a['echelon']}" if a.get("echelon") else ""): a for a in json.loads(ap.read_text())["aliases"]} if ap.exists() else {}
     cfgp = D / "battle.config.json"
     lm = json.loads(cfgp.read_text()).get("labelMatch") if cfgp.exists() else None
     rows, cnt, unmatched = [], collections.Counter(), collections.defaultdict(list)

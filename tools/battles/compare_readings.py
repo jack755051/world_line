@@ -44,7 +44,8 @@ def main():
                 p.write_text(json.dumps(R, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
             continue
         R2 = json.loads(q.read_text()); F2 = R2.get("features", [])
-        div_only = R2.get("scope") == "division-and-above"
+        div_only = R2.get("scope") in ("division-and-above", "corps-and-above")
+        below = BELOW_DIV + (("division",) if R2.get("scope") == "corps-and-above" else ())
         img = D / "maps" / Path(R2.get("image", "")).name
         tol = width(img) * 0.015 if img.exists() else 18
         pairs = sorted(((math.dist(a["px"], b["px"]), i, j) for i, a in enumerate(F1) for j, b in enumerate(F2)), key=lambda t: t[0])
@@ -93,8 +94,8 @@ def main():
                 if i in joined and same: lc["note"] = joined[i]
                 if m[i][1] > tol: lc["pxCheck"] = "待查證"; lc["pxNote"] = f"兩次判讀位置差 {m[i][1]:.0f} px（> 容差 {tol:.0f} px）"
                 tot["agree" if same else "labelDiffers"] += 1
-            elif div_only and f.get("echelon") in BELOW_DIV:
-                lc = {"status": "待查證", "reading2Label": None, "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"}
+            elif div_only and f.get("echelon") in below:
+                lc = {"status": "待查證", "reading2Label": None, "reason": "第二次判讀範圍未含" + ("師級以下" if "division" in below else "旅／團／營級") + "（未檢查）"}
                 tot["unchecked"] = tot.get("unchecked", 0) + 1
             else:
                 lc = {"status": "待查證", "reading2Label": None, "reason": "第二次判讀在附近沒有讀到標註"}

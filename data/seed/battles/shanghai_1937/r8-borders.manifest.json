@@ -1,0 +1,76 @@
+{
+ "schema": "shanghai_1937-data/0.1 r8",
+ "decision": "主管 2026-11-13 14:58：疆界切片取 8/13，另加主權資料實際有變的日期；R8 只用主專案主權資料，不手描；focusRegimes 於 R8 依 API 實際 slug 填",
+ "tool": "tools/battles/build_r8.py",
+ "fetchedFrom": "http://127.0.0.1:5052/api/v1/sovereignty（唯讀 GET，5442 開發庫）",
+ "fetchedAt": "2026-11-13T16:11:27+08:00",
+ "theatreBox": [
+  119.0,
+  29.5,
+  122.5,
+  32.5
+ ],
+ "window": [
+  "1937-08-13",
+  "1937-11-26"
+ ],
+ "focusRegimes": [
+  "empire-of-japan",
+  "republic-of-china-nationalist"
+ ],
+ "focusMissingOnFirstDay": [],
+ "changeDates": [],
+ "slices": [
+  {
+   "date": "1937-08-13",
+   "kind": "full",
+   "records": [
+    {
+     "regimeSlug": "empire-of-japan",
+     "recordId": "01a191c9-09d9-758e-bd7f-c3a433eac92f",
+     "layerStatus": "de_jure",
+     "validPeriod": {
+      "start": "1937-07-07",
+      "end": "1939-04-09"
+     },
+     "ohmRelationId": 2889894,
+     "ohmVersion": 32,
+     "locator": "relation/2889894 v32",
+     "geometryLicense": "cc0",
+     "sourceTitle": "OpenHistoricalMap — boundary=administrative 關係（東亞第一批：日本、中國、滿洲國、蒙古、唐努烏梁海、西藏、泰國，1937～1945）",
+     "focus": true
+    },
+    {
+     "regimeSlug": "republic-of-china-nationalist",
+     "recordId": "01a1948d-6bc1-7faa-a3db-0243bb826ea2",
+     "layerStatus": "de_jure",
+     "validPeriod": {
+      "start": "1937-07-07",
+      "end": "1938-07-03"
+     },
+     "ohmRelationId": 2694471,
+     "ohmVersion": 82,
+     "locator": "relation/2694471 v82 − relation/2885965 v15 − relation/2889933（廣州灣另列）",
+     "geometryLicense": "cc0",
+     "sourceTitle": "OpenHistoricalMap — boundary=administrative 關係（東亞第一批：日本、中國、滿洲國、蒙古、唐努烏梁海、西藏、泰國，1937～1945）",
+     "focus": true
+    },
+    {
+     "regimeSlug": "united-states-of-america",
+     "recordId": "01a191b4-394e-7eb3-95f5-9d6d9d72cbb2",
+     "layerStatus": "de_jure",
+     "validPeriod": {
+      "start": "1937-07-07",
+      "end": "1941-12-10"
+     },
+     "ohmRelationId": 2874803,
+     "ohmVersion": 33,
+     "locator": "relation/2874803 v33 − relation/2889834 v1",
+     "geometryLicense": "cc0",
+     "sourceTitle": "OpenHistoricalMap — boundary=administrative 關係（美國與屬地、菲律賓自治邦，1937～1945）",
+     "focus": false
+    }
+   ]
+  }
+ ]
+}

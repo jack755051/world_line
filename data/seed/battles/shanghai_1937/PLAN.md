@@ -106,3 +106,20 @@
 2. JM-179／JM-70 評 B（前日軍軍官戰後撰、美軍發行）、JACAR 陸軍省檔案評 A，是否同意？
 3. mnd2017 表三／表四（圖片表格）只做判讀、不當引文，是否同意？
 4. 是否要 Tai 手動取得《抗日戰史》淞滬各冊或戦史叢書 086 的特定頁？
+
+5. 白茆口登陸日只能由 JM-179 OCR「]Jth」讀作 11/13，是否接受（或待人工看原掃描）？
+6. 大場鎮失守日 A/B 出處只到「十月下旬」，是否允許另找 A/B 出處補 10/26，或維持留空？
+7. jm179-map1 兩次判讀 px 約定不同（框中心 vs 文字中心），是否要統一約定後重做第二次判讀（約 $1–2）？
+
+## 8. 執行結果（2026-11-13）
+
+| 部分 | 輸出 | 摘要 |
+|---|---|---|
+| R1 | r1-units.json | 42 單位（日 17、國軍 25） |
+| R2 | digitized/、checks/label-reading2/、map-catalog.json、maps/SHA256SUMS.txt | 7 張入目錄；配準 3 張全未過 2 km（jm179-map1 17.95、圖四 2.36、圖五 3.12 km）；排除點全部 decidedBeforeResiduals；第二次判讀 claude -p $1.76 |
+| R3 | r3-unit-positions.json | 20 筆，全為文字出處 |
+| R4 | r4-text-vertices.json → r4-fronts.json | 4 條文字頂點線（9/14、11/5、11/19、11/24 界線），11 頂點，全推估；缺口 6 天 |
+| R5 | r5-engagements.json | 9 場 |
+| R6 | r6-site-control.json | 10 筆 |
+| R7 | r7-commanders.json、r7-missing-people.json | 17 筆；連結 8 人既有人物；缺 8 人 |
+| R8 | r8-borders.manifest.json | 8/13 一切片（窗內無變更）；focusRegimes＝中華民國、日本帝國 |

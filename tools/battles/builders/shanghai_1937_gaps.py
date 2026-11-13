@@ -26,6 +26,20 @@ NEW = [
  ("r1:jp-table-commanders", "commander_table_only", "第三師團長藤田進、第十一師團長山室宗武只見於 mnd2017 表四（圖片表格，轉引《抗日戰史》插表二），無文字引文，R7 不列"),
  ("r7:chiang-zhu-xue", "commander_no_source", "蔣中正兼第三戰區司令長官、朱紹良接任第九集團軍／中央作戰軍、薛岳（第十九集團軍）、廖磊（第二十一集團軍）之任期，本輪 A/B 文字出處未載；R7 不列"),
  ("name:nameJa", "name_no_source", "日方戰役名（上海事変／第二次上海事変等）本輪日方出處未見，nameJa 留空"),
+ ("maps:all-fail-2km", "map_threshold", "已配準三張圖留一 95 百分位：jm179-map1 17.95 km、mnd2017 圖四 2.36 km、圖五 3.12 km，全未過 2 km（僅參考）；圖三控制點不足未配準，圖一／二／六未數位化。R3／R4 全靠文字"),
+ ("r2:jm179-px-convention", "reading_method", "jm179-map1 第一次判讀 px 取部隊框中心、第二次取框旁文字中心，相距常超過 1.5% 圖寬容差，致多筆 notFoundInReading2／reading2Only；標註文字本身多一致，待統一 px 約定後重比"),
+ ("r2:reading2-only-labels", "reading_incomplete", "第二次判讀多讀到的標註（如 fig4 之 58D(一部)、51D、16D(-) 等）第一次未列，未回補進 features（避免看過第二次後改第一次）"),
+ ("r3:bazi-bridge-osm", "place_unresolved", "八字橋、得勝口、虹口、蘇州河：OSM Nominatim 查無 place 物件，R3／R5 只留出處地名"),
+ ("r3:chuansha-ambiguity", "place_ambiguous", "JACAR「川沙鎮」與今浦東川沙同名；mnd2017 圖四標於長江岸（川沙口附近）。不給 OSM"),
+ ("r4:1937-10-01-line", "front_no_vertices", "mnd2017 10/1 左翼退守「楊涇河西岸－陳家行－蘊藻濱之線」：河流與村宅級地名，依規則不作頂點"),
+ ("r4:urban-front", "front_partial", "9/14、11/5 戰線南段（蘊藻濱、蘇州河左岸、北站、南站）為河流與車站，未數位化；兩線只覆蓋北段"),
+ ("r5:suzhou-creek-start", "date_missing", "蘇州河之戰起日只到「10 月下旬」（JACAR 同月下旬、JM Toward the end of the month）；止日 11/9 只有 JACAR"),
+ ("r5:baimao-date-ocr", "date_ocr", "白茆口登陸日依 JM-179 OCR「landed on the ]Jth」讀作 11/13，mnd2017 未載日期；待人工核對原掃描"),
+ ("r6:dachang-date", "date_missing", "大場鎮失守：本輪 A/B 出處只到「十月下旬」（JACAR），常見之 10/26 未見 A/B 出處，R6 日期留空"),
+ ("r6:zhabei-songjiang-suzhou", "site_no_date", "閘北日軍占領日、松江失守日、蘇州／嘉興／無錫實際占領日（JM 只記 11/19 抵達線、11/24 追擊界線）出處未載"),
+ ("r6:wuxing-single", "single_family", "吳興 11/26 失陷只有 mnd2017（tw-roc 一族）"),
+ ("r8:settlements", "sovereignty_gap", "主專案主權資料 1937-08-13 戰區框內只有 empire-of-japan、republic-of-china-nationalist（另 united-states-of-america 僅外框相交）；無上海公共租界／法租界紀錄，窗內無變更日，只一切片"),
+ ("r8:occupation-not-sovereignty", "sovereignty_scope", "R8 為法理（de_jure）主權層；日軍占領區（R6）不改變主權，故 11/11 南市、11/19 常熟等不產生疆界切片"),
 ]
 have = {x.get("target") for x in L}
 for t, k, n in NEW:

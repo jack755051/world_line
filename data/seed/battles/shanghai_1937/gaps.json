@@ -512,6 +512,90 @@
    "tool": "tools/battles/match_units.py"
   },
   {
+   "target": "maps:all-fail-2km",
+   "kind": "map_threshold",
+   "note": "已配準三張圖留一 95 百分位：jm179-map1 17.95 km、mnd2017 圖四 2.36 km、圖五 3.12 km，全未過 2 km（僅參考）；圖三控制點不足未配準，圖一／二／六未數位化。R3／R4 全靠文字",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r2:jm179-px-convention",
+   "kind": "reading_method",
+   "note": "jm179-map1 第一次判讀 px 取部隊框中心、第二次取框旁文字中心，相距常超過 1.5% 圖寬容差，致多筆 notFoundInReading2／reading2Only；標註文字本身多一致，待統一 px 約定後重比",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r2:reading2-only-labels",
+   "kind": "reading_incomplete",
+   "note": "第二次判讀多讀到的標註（如 fig4 之 58D(一部)、51D、16D(-) 等）第一次未列，未回補進 features（避免看過第二次後改第一次）",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r3:bazi-bridge-osm",
+   "kind": "place_unresolved",
+   "note": "八字橋、得勝口、虹口、蘇州河：OSM Nominatim 查無 place 物件，R3／R5 只留出處地名",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r3:chuansha-ambiguity",
+   "kind": "place_ambiguous",
+   "note": "JACAR「川沙鎮」與今浦東川沙同名；mnd2017 圖四標於長江岸（川沙口附近）。不給 OSM",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r4:1937-10-01-line",
+   "kind": "front_no_vertices",
+   "note": "mnd2017 10/1 左翼退守「楊涇河西岸－陳家行－蘊藻濱之線」：河流與村宅級地名，依規則不作頂點",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r4:urban-front",
+   "kind": "front_partial",
+   "note": "9/14、11/5 戰線南段（蘊藻濱、蘇州河左岸、北站、南站）為河流與車站，未數位化；兩線只覆蓋北段",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r5:suzhou-creek-start",
+   "kind": "date_missing",
+   "note": "蘇州河之戰起日只到「10 月下旬」（JACAR 同月下旬、JM Toward the end of the month）；止日 11/9 只有 JACAR",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r5:baimao-date-ocr",
+   "kind": "date_ocr",
+   "note": "白茆口登陸日依 JM-179 OCR「landed on the ]Jth」讀作 11/13，mnd2017 未載日期；待人工核對原掃描",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r6:dachang-date",
+   "kind": "date_missing",
+   "note": "大場鎮失守：本輪 A/B 出處只到「十月下旬」（JACAR），常見之 10/26 未見 A/B 出處，R6 日期留空",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r6:zhabei-songjiang-suzhou",
+   "kind": "site_no_date",
+   "note": "閘北日軍占領日、松江失守日、蘇州／嘉興／無錫實際占領日（JM 只記 11/19 抵達線、11/24 追擊界線）出處未載",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r6:wuxing-single",
+   "kind": "single_family",
+   "note": "吳興 11/26 失陷只有 mnd2017（tw-roc 一族）",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r8:settlements",
+   "kind": "sovereignty_gap",
+   "note": "主專案主權資料 1937-08-13 戰區框內只有 empire-of-japan、republic-of-china-nationalist（另 united-states-of-america 僅外框相交）；無上海公共租界／法租界紀錄，窗內無變更日，只一切片",
+   "checkedOn": "2026-11-13"
+  },
+  {
+   "target": "r8:occupation-not-sovereignty",
+   "kind": "sovereignty_scope",
+   "note": "R8 為法理（de_jure）主權層；日軍占領區（R6）不改變主權，故 11/11 南市、11/19 常熟等不產生疆界切片",
+   "checkedOn": "2026-11-13"
+  },
+  {
    "target": "r1-units.json:jp-ccaa",
    "kind": "single_source_below_fact_grade",
    "note": "唯一來源 jm179（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
@@ -697,6 +781,160 @@
    "target": "r1-units.json:cn-ind-20-bde",
    "kind": "single_source_below_fact_grade",
    "note": "唯一來源 mnd2017、su2015（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-ind-20-bde@1937-08-12#0",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-9-ag@1937-08-12#1",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-87-div@1937-08-12#2",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-56-div@1937-08-12#3",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-87-div@1937-08-14#4",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-88-div@1937-08-14#5",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:jp-3-div@1937-08-23#7",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:jp-11-div@1937-08-23#8",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-15-ag@1937-08-23#9",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-63-div@1937-11-05#12",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-107-div@1937-11-08#13",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-15-ag@1937-11-12#14",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-21-ag@1937-11-12#15",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:jp-16-div@1937-11-13#18",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 jm179（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r3-unit-positions.json:cn-40-div@1937-11-13#19",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r4-fronts.json:cn-front-1937-09-14",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r4-fronts.json:cn-jp-front-1937-11-05",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r4-fronts.json:jp-pursuit-boundary-1937-11-24",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 jm179（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r5-engagements.json:zhabei-800",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 su2015（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r5-engagements.json:wuxing",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r6-site-control.json:閘北@1937-10-26#1",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 su2015（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
+   "checkedOn": "2026-11-13",
+   "tool": "tools/battles/crosscheck.py"
+  },
+  {
+   "target": "r6-site-control.json:吳興@1937-11-26#9",
+   "kind": "single_source_below_fact_grade",
+   "note": "唯一來源 mnd2017（B 級）單一來源降為 C 級；戰役只收 A/B，保留為候選、不當戰役事實，待補第二個獨立 A/B 來源（主管 2026-11-13 14:03）",
    "checkedOn": "2026-11-13",
    "tool": "tools/battles/crosscheck.py"
   },

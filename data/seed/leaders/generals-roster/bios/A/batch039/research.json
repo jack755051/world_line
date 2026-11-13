@@ -738,6 +738,20 @@
      "result": "not_relevant",
      "note": "Historical Journal 摘要頁（付費），未取全文，未引用",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "other",
+     "query": "最高統帥部代理人迄日：既有 LEMO/NDB 快取",
+     "url": null,
+     "result": "no_result",
+     "note": "來源未明載該職終止日，不以遇刺日推定"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1332,6 +1346,28 @@
      "result": "challenge_page",
      "note": "先前 curl 得 Anubis 驗證頁，不繞過",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "other",
+     "query": "總參謀長迄日：既有 ÖBL/NDB 快取",
+     "url": null,
+     "result": "no_result",
+     "note": "NDB 僅載 1918-11-03 簽停戰，未明載卸任日"
+    },
+    {
+     "step": 102,
+     "sourceType": "other",
+     "query": "WebSearch：Arz Generalstabschef bis November 1918",
+     "url": null,
+     "result": "no_result",
+     "note": "僅得維基類來源（不收），無合格來源明載卸任日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2636,6 +2672,28 @@
      "result": "no_result",
      "note": "curl 成功但只得空殼頁",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "other",
+     "query": "軍團總監察迄日：既有 ÖBL/NDB/MRP 快取",
+     "url": null,
+     "result": "no_result",
+     "note": "僅載 1914 年接第 4 軍，無明確轉任日"
+    },
+    {
+     "step": 102,
+     "sourceType": "other",
+     "query": "WebSearch：Auffenberg Armeeinspektor 1912-1914",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基類與回憶錄頁，未明載該職迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -3612,10 +3670,10 @@
      "originalPositionKind": "legislator",
      "period": {
       "start": "1938-12-31",
-      "end": null
+      "end": "1948-01-26"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "kure-kk",
@@ -3627,6 +3685,18 @@
        "grade": "C",
        "datePrecision": "day",
        "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-kk",
+       "locator": "Kâzım Karabekir 條目生平段末",
+       "quote": "Meclis başkanlığı görevi Ankara’da vefat edinceye kadar sürdü (26 Ocak 1948)",
+       "quoteLang": "tr",
+       "evidenceNote": "1938 年當選議員後續任至任內逝世、TBMM 議長任職至 1948-01-26 止；議員任期終點依此推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": "議員任期迄日",
        "policyVersion": "bio-2026-11-v0"
       }
      ],
@@ -3803,6 +3873,20 @@
      "result": "found_B",
      "note": "curl 成功；與既有 Küre 條目同文",
      "round": "retry"
+    },
+    {
+     "step": 101,
+     "sourceType": "other",
+     "query": "既有 kure-kk 快取：議員任期迄日",
+     "url": null,
+     "result": "found_C",
+     "note": "Kure 明載議長任職至 1948-01-26 逝世；以此補迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

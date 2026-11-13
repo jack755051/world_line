@@ -825,10 +825,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1915-08-01",
-      "end": null
+      "end": "1918-01-03"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "afm-trench",
@@ -851,6 +851,18 @@
        "accessedOn": "2026-11-12",
        "grade": "B",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-30457",
+       "locator": "The London Gazette, 4 Jan 1918",
+       "quote": "Trenchard, K.C.B., D.S.O., to be Chief of the Air Staff.",
+       "quoteLang": "en",
+       "evidenceNote": "依此人下一個職位的起日推得（推論）：1918-01-03 皇家令狀任命為空軍參謀長",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1030,13 +1042,6 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:trenchard-rfc-france",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查：London Gazette 1918-01-04（只載 Air Council 任命，未載 RFC 卸任）、Hansard 1956 悼詞、Hansard 1931–1934 警察總監質詢、德國 GND（lobid）、TNA 目錄；RAF Air Power Review（raf.mod.uk）與 RAF 博物館 1915／1919／1927 年表頁被擋或 404。",
-     "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
     {
@@ -1314,9 +1319,50 @@
      "result": "not_relevant",
      "note": "PDF 已抓取，未見 Trenchard 任期日期可引",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Trenchard 皇家飛行團駐法司令 迄日 1917年底",
+     "url": "https://www.canada.ca/content/dam/themes/defence/caf/militaryhistory/dhh/popular/airmen-ww1-11.pdf",
+     "result": "no_result",
+     "note": "curl 逾時（Recv failure），未取得原文"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "RAF Museum British Military Aviation 1918",
+     "url": "https://www.rafmuseum.org.uk/research/research-enquiries/history-of-aviation-timeline/british-military-aviation/1918-2/",
+     "result": "challenge_page",
+     "note": "回應為 Cloudflare 挑戰／頁面不存在，未取得原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "既有快取 afm-trench／ency-trenchard／gaz-30457 搜尋 1917／1918 年交接",
+     "url": "/tmp/generals-bios/A/batch011/raw",
+     "result": "found_A",
+     "note": "僅公報載 1918-01-03 任命為空軍參謀長，無明載離開法國日；以下一職起日推得上限"
     }
    ],
-   "nameZhOrig": "第一代特伦查德子爵休·特伦查德"
+   "nameZhOrig": "第一代特伦查德子爵休·特伦查德",
+   "resolvedGaps": [
+    {
+     "target": "position:trenchard-rfc-france",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查：London Gazette 1918-01-04（只載 Air Council 任命，未載 RFC 卸任）、Hansard 1956 悼詞、Hansard 1931–1934 警察總監質詢、德國 GND（lobid）、TNA 目錄；RAF Air Power Review（raf.mod.uk）與 RAF 博物館 1915／1919／1927 年表頁被擋或 404。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "julianbyng1stviscountbyngofvimy",
@@ -2147,10 +2193,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1912-10-30",
-      "end": null
+      "end": "1914-08-12"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "dcb-byng",
@@ -2159,6 +2205,18 @@
        "quoteLang": "en",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dcb-byng",
+       "locator": "Dictionary of Canadian Biography",
+       "quote": "On the 12th the secretary of state for war recalled Byng to England",
+       "quoteLang": "en",
+       "evidenceNote": "大戰爆發後（1914年8月）陸軍大臣於12日召回",
+       "accessedOn": "2026-11-13",
        "grade": "A",
        "datePrecision": "day",
        "claimSpan": null,
@@ -2184,10 +2242,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1915-04-01",
-      "end": null
+      "end": "1915-08-24"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "dcb-byng",
@@ -2198,6 +2256,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dcb-byng",
+       "locator": "Dictionary of Canadian Biography",
+       "quote": "he arrived at Suvla Bay (Anafarta Liman) on 24 August",
+       "quoteLang": "en",
+       "evidenceNote": "依此人下一個職位的起日推得（推論）：改赴加里波利指揮第九軍，抵蘇弗拉灣日",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2319,10 +2389,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1917-06-01",
-      "end": null
+      "end": "1918-11-11"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "dcb-byng",
@@ -2333,6 +2403,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dcb-byng",
+       "locator": "Dictionary of Canadian Biography",
+       "quote": "by 11 Nov. 1918, the day of the armistice",
+       "quoteLang": "en",
+       "evidenceNote": "來源載第三軍團打到停戰日（推論：任期延續至停戰，實際交卸日未見明載）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2356,10 +2438,10 @@
      "positionKind": "other",
      "period": {
       "start": "1921-08-02",
-      "end": null
+      "end": "1926-09-30"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "dcb-byng",
@@ -2368,6 +2450,18 @@
        "quoteLang": "en",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gg-byng2",
+       "locator": "加拿大總督府官方頁",
+       "quote": "On leaving Canada on September 30, 1926",
+       "quoteLang": "en",
+       "evidenceNote": "離開加拿大日（總督任期終點）",
+       "accessedOn": "2026-11-13",
        "grade": "A",
        "datePrecision": "day",
        "claimSpan": null,
@@ -2436,37 +2530,9 @@
      "checkedOn": "2026-11-12"
     },
     {
-     "target": "position:byng-egypt",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查：DCB 重讀（只寫 1914-08-12 戰爭大臣召回英國、9 月初啟程，未寫卸任日）、加拿大戰爭博物館（只寫曾任埃及高階指揮）、TNA（只寫 1914 年 Maxwell 為埃及英軍司令，無交接日）；加拿大百科（403）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:byng-third-army",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查：DCB（寫到 1918-11-11 停戰，戰後「returned to England」無日期）、加拿大戰爭博物館（只寫 1917 年 6 月升任）、IWM 館藏說明（無 Byng 卸任日）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:byng-cavalry-corps",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查 DCB、加拿大戰爭博物館、AWM 館藏說明，皆未寫騎兵軍軍長卸任日（DCB 只寫 1915-04 暫代、1915-05 轉正式、1915-07 返倫敦）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:byng-9th-corps",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；本輪（retry）再查 DCB（1915-08-24 抵蘇弗拉灣、12 月初撤退完成）、AWM 展覽頁（撤退最後部隊 1915-12-19／20 離開）、AWM 館藏（Birdwood 與 Byng 往來信件）；皆未寫 Byng 卸任第九軍軍長的日期。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:byng-governor-general",
-     "gapKind": "conflict",
-     "note": "待查證：缺迄日；來源互相矛盾，不採：加拿大總督府官方歷任名單寫「August 2, 1921 - August 5, 1926」（同日 Willingdon 任命、1926-10-02 才在魁北克宣誓）；同站 Lord Byng 頁寫 1926-09-30 離開加拿大；DCB 寫夫婦延後到 10 月 29 日選舉結束才離加。本輪（retry）再查 gg.ca Willingdon 頁、加拿大百科（403）、LAC（403）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -2678,6 +2744,66 @@
      "result": "unrated",
      "note": "個人網站型條目，不評等不採用",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Byng 第九軍軍長 迄日 加里波利 1915 12月",
+     "url": "/tmp/generals-bios/A/batch011/raw/dcb-byng.txt",
+     "result": "not_relevant",
+     "note": "DCB 僅載「12月初下令撤退」「1916年3月任第17軍」，未明載第九軍軍長交卸日"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "King's Collections Serving Soldier Dill",
+     "url": "https://kingscollections.org/servingsoldier/biographies/field-marshal-sir-john-greer-dill-(1881-1944)",
+     "result": "blocked_403",
+     "note": "Cloudflare 封鎖（僅作查證 Dill 用）"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:byng-egypt",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查：DCB 重讀（只寫 1914-08-12 戰爭大臣召回英國、9 月初啟程，未寫卸任日）、加拿大戰爭博物館（只寫曾任埃及高階指揮）、TNA（只寫 1914 年 Maxwell 為埃及英軍司令，無交接日）；加拿大百科（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:byng-cavalry-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查 DCB、加拿大戰爭博物館、AWM 館藏說明，皆未寫騎兵軍軍長卸任日（DCB 只寫 1915-04 暫代、1915-05 轉正式、1915-07 返倫敦）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:byng-third-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查：DCB（寫到 1918-11-11 停戰，戰後「returned to England」無日期）、加拿大戰爭博物館（只寫 1917 年 6 月升任）、IWM 館藏說明（無 Byng 卸任日）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:byng-governor-general",
+     "gapKind": "conflict",
+     "note": "待查證：缺迄日；來源互相矛盾，不採：加拿大總督府官方歷任名單寫「August 2, 1921 - August 5, 1926」（同日 Willingdon 任命、1926-10-02 才在魁北克宣誓）；同站 Lord Byng 頁寫 1926-09-30 離開加拿大；DCB 寫夫婦延後到 10 月 29 日選舉結束才離加。本輪（retry）再查 gg.ca Willingdon 頁、加拿大百科（403）、LAC（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -3080,6 +3206,110 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "period": {
+      "start": "1940-05-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "敦克爾克之後的戰略與作戰規劃",
+      "en": "Strategy and operational planning after Dunkirk"
+     },
+     "body": {
+      "zh-Hant": "丹切夫（Danchev）寫道，1940年5月敦克爾克撤退即將展開之際，迪爾出任帝國總參謀長；他曾花三個月在地中海一帶旅行，爭取希臘與土耳其支持對抗軸心國。1941年12月珍珠港事件後，他被調往美國，出任英國駐華盛頓聯合參謀代表團團長。馬歇爾基金會的文章則記載，迪爾曾向倫敦示警：若否決「大錘」（SLEDGEHAMMER，1942年在西北歐登陸）而改採「GYMNAST」（北非登陸，來源拼作 GYNMAST），後果為何；1943年11至12月開羅／德黑蘭會議期間，馬歇爾曾提議由迪爾出任「霸王」（OVERLORD，西北歐登陸）最高統帥，邱吉爾對此不滿。",
+      "en": "Alex Danchev writes that Dill was made Chief of the Imperial General Staff in May 1940, as the evacuations from Dunkirk were about to get under way, and that he spent three months travelling in the Mediterranean canvassing Greek and Turkish support against the Axis. After Pearl Harbor in December 1941 he was sent to the United States as head of the British Joint Staff Mission in Washington. The Marshall Foundation article records that Dill alerted London to the consequences of rejecting SLEDGEHAMMER (a 1942 landing in northwest Europe) in favour of GYMNAST (a North African landing, spelled GYNMAST in the source), and that during the Cairo/Teheran Conferences of November-December 1943 Marshall suggested Dill as Supreme Commander for OVERLORD, which Churchill resented."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cup-dill",
+       "locator": "第353頁",
+       "quote": "as the evacuations from Dunkirk were about to get under way",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cup-dill",
+       "locator": "第355頁",
+       "quote": "canvassing Greek and Turkish support against the Axis",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cup-dill",
+       "locator": "第353頁",
+       "quote": "he was translated to the United States to become head of the British Joint",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "msh-dill",
+       "locator": "第2頁",
+       "quote": "rejecting SLEDGEHAMMER (a 1942 landing in northwest Europe)",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "msh-dill",
+       "locator": "第2頁",
+       "quote": "GYNMAST (a landing in North Africa)",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "msh-dill",
+       "locator": "第3頁",
+       "quote": "Marshall’s suggestion of Dill as Supreme Commander for OVERLORD",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "msh-dill",
+       "locator": "第3頁",
+       "quote": "the Cairo/Teheran Conferences of November-December 1943",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
     }
    ],
    "positions": [
@@ -3484,9 +3714,23 @@
      "url": "https://discovery.nationalarchives.gov.uk/details/r/C14487",
      "result": "no_result",
      "note": "回應空白，未得文字"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "John Dill 戰役 作戰 傳記",
+     "url": "https://www.britannica.com/biography/John-Greer-Dill",
+     "result": "challenge_page",
+     "note": "Britannica 回應 60 位元組挑戰頁；King's Collections 為 Cloudflare 封鎖；改以既有 Cambridge／Marshall Foundation 原文寫作戰規劃段"
     }
    ],
-   "nameZhOrig": "约翰·迪尔"
+   "nameZhOrig": "约翰·迪尔",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "dudleypound",
@@ -4002,10 +4246,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1932-08-01",
-      "end": null
+      "end": "1935-09-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "hw-rn-i2",
@@ -4014,6 +4258,18 @@
        "quoteLang": "en",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-rn-i2",
+       "locator": "第二章",
+       "quote": "In September 1935 he went back to the Mediterranean",
+       "quoteLang": "en",
+       "evidenceNote": "依此人下一個職位的起日推得（推論）：同源載任第二海務大臣三年，1935年9月轉任地中海艦隊總司令",
+       "accessedOn": "2026-11-13",
        "grade": "A",
        "datePrecision": "month",
        "claimSpan": null,
@@ -4094,10 +4350,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1939-06-01",
-      "end": null
+      "end": "1943-10-21"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "hw-rn-i2",
@@ -4122,6 +4378,18 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fh-anchor",
+       "locator": "書評",
+       "quote": "suitably on Trafalgar Day, 21 October 1943",
+       "quoteLang": "en",
+       "evidenceNote": "來源載辭職後數週於1943-10-21病逝，以逝世日為任期終點上限（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -4137,33 +4405,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:pound-second-sea-lord",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；官方戰史寫「任第二海務大臣三年」與 1935 年 9 月回地中海，未明寫迄日；不以此推算。已查官方戰史、Finest Hour 書評。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:pound-first-sea-lord",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；A／B 來源只寫病逝於 1943-10-21、魁北克會議期間中風後請辭，未寫卸任日；RMG（無署名館藏說明）寫 1943 年 9 月辭職、History of War（無署名）寫 9 月 10 日通知邱吉爾，皆為未評等。",
-     "candidateCitations": [
-      {
-       "sourceKey": "rmg-pound",
-       "locator": "館藏說明",
-       "quote": "until illness forced him to resign in September 1943",
-       "quoteLang": "en",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": null,
-       "datePrecision": "month",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      }
-     ],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:pound-first-sea-lord",
      "gapKind": "conflict",
@@ -4272,9 +4513,56 @@
      "url": "https://archivesearch.lib.cam.ac.uk/repositories/9/resources/1540",
      "result": "blocked_403",
      "note": "403"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Pound resign September 1943 Royal Museums Greenwich",
+     "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-14433",
+     "result": "unrated",
+     "note": "館藏圖說無署名（Q9），不採；僅作旁證載1943年9月辭職"
     }
    ],
-   "nameZhOrig": "达德利·庞德"
+   "nameZhOrig": "达德利·庞德",
+   "resolvedGaps": [
+    {
+     "target": "position:pound-second-sea-lord",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；官方戰史寫「任第二海務大臣三年」與 1935 年 9 月回地中海，未明寫迄日；不以此推算。已查官方戰史、Finest Hour 書評。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:pound-first-sea-lord",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；A／B 來源只寫病逝於 1943-10-21、魁北克會議期間中風後請辭，未寫卸任日；RMG（無署名館藏說明）寫 1943 年 9 月辭職、History of War（無署名）寫 9 月 10 日通知邱吉爾，皆為未評等。",
+     "candidateCitations": [
+      {
+       "sourceKey": "rmg-pound",
+       "locator": "館藏說明",
+       "quote": "until illness forced him to resign in September 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": null,
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   },
   {
    "key": "georgescatroux",
@@ -5332,10 +5620,10 @@
      "positionKind": "other",
      "period": {
       "start": "1943-06-03",
-      "end": null
+      "end": "1944-09-09"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "ordre-catroux",
@@ -5344,6 +5632,18 @@
        "quoteLang": "fr",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cdm-catroux",
+       "locator": "人物頁",
+       "quote": "Gouvernement provisoire de la République française le 9 septembre suivant",
+       "quoteLang": "fr",
+       "evidenceNote": "依此人下一個職位的起日推得（推論）：CFLN 委員改任臨時政府國務部長",
+       "accessedOn": "2026-11-13",
        "grade": "A",
        "datePrecision": "day",
        "claimSpan": null,
@@ -5369,10 +5669,10 @@
      "positionKind": "other",
      "period": {
       "start": "1943-11-01",
-      "end": null
+      "end": "1944-09-09"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "ordre-catroux",
@@ -5383,6 +5683,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cdm-catroux",
+       "locator": "人物頁",
+       "quote": "le 9 septembre suivant",
+       "quoteLang": "fr",
+       "evidenceNote": "依此人下一個職位的起日推得（推論）：改任臨時政府國務部長",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -5406,10 +5718,10 @@
      "positionKind": "minister",
      "period": {
       "start": "1944-09-01",
-      "end": null
+      "end": "1945-01-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "ordre-catroux",
@@ -5432,6 +5744,18 @@
        "accessedOn": "2026-11-12",
        "grade": "A",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ordre-catroux",
+       "locator": "傳記",
+       "quote": "En janvier 1945, il est nommé ambassadeur en URSS",
+       "quoteLang": "fr",
+       "evidenceNote": "依此人下一個職位的起日推得（推論）：1945年1月轉任駐蘇大使",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -5687,27 +6011,6 @@
      "checkedOn": "2026-11-12"
     },
     {
-     "target": "position:catroux-cfln",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查 Ordre、Chemins de mémoire、Sénat 載 CFLN 1944-01-07 文件（仍署名為 Commissaire d'Etat），皆未寫何時離任；Légifrance 被 Cloudflare 擋。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:catroux-muslim-affairs",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查：Sénat 載文件署名 1944-01-07 仍為 Commissaire d'Etat aux Affaires Musulmanes（只證明當日在任），Ordre、Chemins de mémoire 無卸任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:catroux-minister-north-africa",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；本輪（retry）再查 Ordre、Légion d'honneur 檔案頁、Assemblée nationale 歷史頁（只載政府成立法令日期，無名單日期）、Sycomore，皆未寫 1944-09 之後何時離任（Ordre 只寫 1945-01 改任駐蘇大使）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "paragraph:length",
      "gapKind": "not_found",
      "note": "來源不足：本人 5 段、856 字（篇幅達標），指揮職與主要戰役（1941 敘利亞—黎巴嫩戰役）已寫；本輪補上大馬士革、黎凡特高級專員、中東總代表、黎凡特部隊司令、榮譽軍團大總長的起迄後，15 筆職位中仍有 4 筆缺迄日（1942 法軍指揮官、民族解放委員會委員、穆斯林事務國務委員、北非國務部長），印度支那總督起日兩官方頁矛盾、高級專員起日兩份來源不同。本輪（retry）已查來源類型：權威檔（BnF、GND／lobid、Deutsche Biographie）、官方（國防部 Chemins de mémoire、SHD 檔案目錄、外交檔案館、榮譽軍團檔案館、Sénat、EHRI 載 JO 3 June 1943）、官方公報（Légifrance 被擋）、機構百科（Britannica 被擋）、具名網刊（Les clés du Moyen-Orient）、學術出版（Sorbonne 被 Anubis 擋）。",
@@ -5934,9 +6237,52 @@
      "result": "not_relevant",
      "note": "2026 新傳記書評，無任期日期",
      "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Catroux commandant des forces françaises 25 novembre 1942 fin de fonctions",
+     "url": "/tmp/generals-bios/A/batch011/raw/cdm-catroux.txt",
+     "result": "not_relevant",
+     "note": "既有快取未載該職迄日；其他來源未取得"
     }
    ],
-   "nameZhOrig": "乔治·卡特鲁"
+   "nameZhOrig": "乔治·卡特鲁",
+   "resolvedGaps": [
+    {
+     "target": "position:catroux-cfln",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查 Ordre、Chemins de mémoire、Sénat 載 CFLN 1944-01-07 文件（仍署名為 Commissaire d'Etat），皆未寫何時離任；Légifrance 被 Cloudflare 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:catroux-muslim-affairs",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查：Sénat 載文件署名 1944-01-07 仍為 Commissaire d'Etat aux Affaires Musulmanes（只證明當日在任），Ordre、Chemins de mémoire 無卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:catroux-minister-north-africa",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；本輪（retry）再查 Ordre、Légion d'honneur 檔案頁、Assemblée nationale 歷史頁（只載政府成立法令日期，無名單日期）、Sycomore，皆未寫 1944-09 之後何時離任（Ordre 只寫 1945-01 改任駐蘇大使）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
   }
  ]
 }

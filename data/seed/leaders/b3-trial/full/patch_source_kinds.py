@@ -46,6 +46,14 @@ POLICY = [  # (domain, source_kind, grade, 依據, 決定)
     ("anb.org", "encyclopedia", "B", "ANB 同上（無 www 主機名）", "主管 2026-11-12 06:32"),
     ("academic.oup.com", "encyclopedia", "B", "OUP Academic：ODNB／ANB 現轉址主機（只限 /oxford-dictionary-of-national-biography、/american-national-biography 的公開內容）", "主管 2026-11-12 06:32"),
     ("www.nam.ac.uk", "encyclopedia", "B", "National Army Museum（英國國家陸軍博物館，具名機構）", "主管 2026-11-12 06:32"),
+    # 寫庫前未歸類的 7 個網域（主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1））
+    ("www.kantei.go.jp", "official_website", "A", "首相官邸（日本內閣官方網站）歷代內閣頁；官方機關", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
+    ("www.normattiva.it", "official_record", "A", "Normattiva（義大利政府官方法規資料庫）；官方法規文本", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
+    ("armed.mapn.ro", "official_website", "A", "羅馬尼亞國防部（Ministerul Apărării Naționale）官方網站", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
+    ("finland.fi", "official_website", "A", "thisisFINLAND（芬蘭外交部營運之政府官方網站）", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
+    ("www.ipsb.nina.gov.pl", "encyclopedia", "A", "Internetowy Polski Słownik Biograficzny（波蘭國家級傳記辭典 PSB 數位版，具名作者）", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
+    ("avalon.law.yale.edu", "archive", "B", "Avalon Project（耶魯法學院 Lillian Goldman Law Library）學術機構文件庫；seed 另有 3 筆標 C，寫庫照 seed 等級", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
+    ("marskinmaja.net", "official_website", "C", "Suomen Marsalkka Mannerheimin Metsästysmaja ry（具名登記協會）網站；具名 C", "主管 2026-11-13 11:05（寫庫前 7 個未歸類網域，§16 T1）"),
     # 禁用（source_kind None＝寫庫腳本 DROP；grade X）：主管 2026-11-12 22:08 套用 Tai 既有「個人網站不收」
     ("generals.dk", None, "X", "個人網站（Steen Ammentorp 個人經營的將領資料庫）；具名 C 須為具名作者或機構的正當出版物，個人網站不收", "主管 2026-11-12 22:08"),
     ("www.generals.dk", None, "X", "generals.dk 同上（www 主機名）", "主管 2026-11-12 22:08"),

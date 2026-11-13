@@ -38,6 +38,8 @@ DROP = "drop"  # overrides 放棄標記（值 null 或 "drop"）
 OVERRIDES = os.path.join(HERE, "source-kind-overrides.json")
 
 PRECISIONS = {"day", "month", "year"}
+# T1 修訂（Tai 2026-11-12 09:37；寫庫方案 2026-11-13 11:05，migration 20261113030933_BioCitationGradeC）：具名 C 可入庫，X 不入庫。
+GRADES_OK = (None, "A", "B", "C")
 FIELDS = {"name", "nameZh", "birthDate", "deathDate", "birthPlace", "deathPlace", "party", "summary", "portrait"}
 FIELD_ALIAS = {"birth_date": "birthDate", "death_date": "deathDate", "birth_place": "birthPlace", "birthplace": "birthPlace",
                "death_place": "deathPlace", "deathplace": "deathPlace", "name_zh": "nameZh"}
@@ -253,8 +255,8 @@ def plan(batches, st, overrides):
             if sid is None:
                 P["cit_dropped"].append((owner, c.get("sourceKey"), "來源無 URL／未分類／已放棄"))
                 continue
-            if not (c.get("locator") or "").strip() or not (c.get("quote") or "").strip() or c.get("grade") not in (None, "A", "B"):
-                P["cit_dropped"].append((owner, c.get("sourceKey"), "locator／quote 空白或 grade 非 A/B"))
+            if not (c.get("locator") or "").strip() or not (c.get("quote") or "").strip() or c.get("grade") not in GRADES_OK:
+                P["cit_dropped"].append((owner, c.get("sourceKey"), "locator／quote 空白或 grade 非 A/B/C"))
                 continue
             note, merged = merge_claim_span(c.get("evidenceNote"), c.get("claimSpan"))
             P["claimspan_merged"] += merged

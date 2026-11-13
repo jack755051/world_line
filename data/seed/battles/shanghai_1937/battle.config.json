@@ -1,0 +1,97 @@
+{
+ "battle": "shanghai_1937",
+ "mainPhase": {
+  "start": "1937-08-13",
+  "end": "1937-11-26",
+  "basis": "主管 2026-11-13 14:58：主期 1937-08-13 至 11-26；疆界切片 8/13 ＋主權資料實際有變的日期"
+ },
+ "leadIn": null,
+ "battleFactGrades": [
+  "A",
+  "B"
+ ],
+ "sourceFamilies": {
+  "rule": "同一來源家族只算一個獨立來源（沿用 14:03 規則）。JM-179／JM-70 為前日軍軍官為美軍撰寫之紀錄，合為 jp-monographs；JACAR 防衛研究所藏陸軍原始檔案為 jp-jacar（與前者作者群可能重疊於日軍參謀系統，但文本獨立：一為戰時檔案、一為戰後回憶）；國史館館刊兩文與國防部《海軍學術雙月刊》一文同屬中華民國官方出版、且同承國防部史政編譯局戰史脈絡，保守合為 tw-roc（待主管裁示是否拆分）。",
+  "map": {
+   "jm179": "jp-monographs",
+   "jm70": "jp-monographs",
+   "jacar-c13071346000": "jp-jacar",
+   "jacar-c11112056100": "jp-jacar",
+   "su2015": "tw-roc",
+   "chang2016": "tw-roc",
+   "mnd2017": "tw-roc",
+   "old-campaign-file": "lead-only"
+  }
+ },
+ "r8": {
+  "box": [
+   119.0,
+   29.5,
+   122.5,
+   32.5
+  ],
+  "window": [
+   "1937-08-13",
+   "1937-11-26"
+  ],
+  "focusRegimes": [],
+  "decision": "主管 2026-11-13 14:58：疆界切片取 8/13，另加主權資料實際有變的日期；R8 只用主專案主權資料，不手描；focusRegimes 於 R8 依 API 實際 slug 填"
+ },
+ "texts": {
+  "note": "tools/battles/fetch_readable.py 與 citelib.py 讀；本機文字放 .dev/battle/shanghai/（不進版控，可重建）",
+  "workDir": ".dev/battle/shanghai",
+  "readable": {
+   "jm179": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+   "jm70": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-70/JM-70.pdf",
+   "su2015": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+   "chang2016": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+   "jacar-c13071346000": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+   "mnd2017": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+   "jacar-c11112056100": "https://www.jacar.archives.go.jp/das/meta/C11112056100"
+  },
+  "cite": {
+   "jm179": {
+    "kind": "pdf-text",
+    "file": "rd/jm179.txt",
+    "locator": "Japanese Monograph No. 179",
+    "lang": "en"
+   },
+   "jm70": {
+    "kind": "pdf-text",
+    "file": "rd/jm70.txt",
+    "locator": "Japanese Monograph No. 70",
+    "lang": "en"
+   },
+   "su2015": {
+    "kind": "pdf-text",
+    "file": "rd/su2015.txt",
+    "locator": "蘇聖雄，《國史館館刊》46",
+    "lang": "zh-Hant"
+   },
+   "chang2016": {
+    "kind": "pdf-text",
+    "file": "rd/chang2016.txt",
+    "locator": "張鑄勳，《國史館館刊》50",
+    "lang": "zh-Hant"
+   },
+   "mnd2017": {
+    "kind": "pdf-text",
+    "file": "rd/mnd2017.txt",
+    "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4",
+    "lang": "zh-Hant"
+   },
+   "jacar-c13071346000": {
+    "kind": "single",
+    "file": "rd/jacar-c13071346000.txt",
+    "locator": "JACAR C13071346000 目錄頁「内容」欄",
+    "lang": "ja"
+   },
+   "jacar-c11112056100": {
+    "kind": "single",
+    "file": "rd/jacar-c11112056100.txt",
+    "locator": "JACAR C11112056100 目錄頁「内容」欄",
+    "lang": "ja"
+   }
+  }
+ }
+}

@@ -19,8 +19,8 @@ REPO = Path(__file__).resolve().parents[2]
 UA = "WorldLine-research/0.1"
 CACHE = REPO / ".dev" / "battle-cache"
 TODAY = datetime.date.today().isoformat()
-BANNED = ("generals.dk", "historyofwar.org", "rafweb.org", "worldwar2.ro", "lonesentry.com", "britishmilitaryhistory.co.uk",
-          "beachesofnormandy.com", "erenow.org", "victoriacrossonline.co.uk", "liquisearch.com", "wikipedia.org", "wikidata.org", "baidu.com")
+sys.path.insert(0, str(REPO / "tools"))
+from source_policy import BANNED_HOSTS as BANNED  # 全專案唯一清單：data/source-policy.json
 _last = {}
 
 

@@ -1,0 +1,22 @@
+{
+ "version": "source-2026-11-13",
+ "rules": "docs/source-rules.md",
+ "note": "全專案唯一的來源政策資料檔。檢查程式一律讀這一份，不要各自維護清單。改這份檔案前先改 docs/source-rules.md。",
+ "grades": ["A", "B", "C", "X"],
+ "bannedHosts": [
+  "wikipedia.org", "wikidata.org", "wikimedia.org", "baidu.com", "enciclopediadelecuador.com",
+  "generals.dk", "historyofwar.org", "rafweb.org", "worldwar2.ro", "lonesentry.com", "britishmilitaryhistory.co.uk",
+  "beachesofnormandy.com", "erenow.org", "victoriacrossonline.co.uk", "liquisearch.com"
+ ],
+ "bannedHostLabels": ["forum", "forums", "bbs", "blog", "blogs", "wiki", "fandom", "blogspot", "wordpress"],
+ "bannedHostLabelsNote": "網域中有一段剛好等於這些字樣就不收（例：forum.example.com、x.fandom.com）；austria-forum.org 這類不受影響。",
+ "bannedPublishers": ["自製", "自制", "self-made", "own work"],
+ "geometryLicenses": ["cc0", "cc_by", "cc_by_sa", "pd_expired", "us_federal_pd"],
+ "datasetSourceKinds": ["dataset"],
+ "verified": {"oneA": true, "independentBFamilies": 2, "opposingSideAloneNeverVerified": true},
+ "quoteMaxChars": 80,
+ "minGrade": {
+  "sovereignty": "B", "control": "B", "regime": "B", "event": "B", "capital": "B", "alignment": "A",
+  "leader_record": "B", "bio": "B", "bio_general": "C", "battle": "B", "admin_division": "B"
+ }
+}

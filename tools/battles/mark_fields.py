@@ -16,12 +16,19 @@ REPO = Path(__file__).resolve().parents[2]
 TARGETS = [("r1-units.json", "units", "period"), ("r5-engagements.json", "engagements", "period"), ("r7-commanders.json", "commanders", "tenure"),
            ("r7-missing-people.json", "people", "tenure"), ("phase-leadin.json", "phases", "period"),
            ("r3-unit-positions.json", "positions", None), ("r6-site-control.json", "sites", None), ("r4-leadin-fronts.json", "fronts", None)]
-MONTHS = {"05": "May", "06": "June"}
+MONTHS = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July",
+          "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
+# 德文、波蘭文月份（引文非英文時用；波蘭文取屬格）
+MONTHS_DE = {"09": "September", "10": "Oktober", "05": "Mai", "06": "Juni"}
+MONTHS_PL = {"09": "września", "10": "października", "05": "maja", "06": "czerwca"}
 
 
 def date_in_quotes(rec, iso):
     y, m, d = iso.split("-"); d = str(int(d))
-    pat = re.compile(rf"\b{d}(st|nd|rd|th)?\s+{MONTHS.get(m, '')}|{MONTHS.get(m, '')}\s+{d}\b|\b{d}(st|nd|rd|th)\b")
+    alts = [rf"\b{d}(st|nd|rd|th)?\s+{MONTHS.get(m, '')}", rf"{MONTHS.get(m, '')}\s+{d}\b", rf"\b{d}(st|nd|rd|th)\b"]
+    if m in MONTHS_DE: alts.append(rf"\b{d}\.\s*{MONTHS_DE[m]}")
+    if m in MONTHS_PL: alts.append(rf"\b{d}\.?\s+{MONTHS_PL[m]}")
+    pat = re.compile("|".join(alts))
     return any(pat.search(c.get("quote") or "") for c in rec.get("citations", []) or [])
 
 

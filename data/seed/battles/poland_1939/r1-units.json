@@ -1,0 +1,4318 @@
+{
+ "schema": "battle-data/0.1 r1",
+ "researchedOn": "2026-11-13",
+ "gradePolicy": "AB-only (C only in leads)",
+ "sideNote": "side：axis＝德國；allied＝波蘭；soviet＝蘇聯（1939 年非同盟國亦非軸心）",
+ "units": [
+  {
+   "unitKey": "de-okh",
+   "nameOrig": "Oberkommando des Heeres (OKH)",
+   "nameZh": "德國陸軍總司令部",
+   "echelon": "hq",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 78 (HyperWar Campaign-III.html)",
+     "quote": "OKH directed the Army effort from a field headquarters at Zossen",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-hgr-nord",
+   "nameOrig": "Heeresgruppe Nord (Army Group North)",
+   "nameZh": "北方集團軍群",
+   "echelon": "army_group",
+   "parentKey": "de-okh",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 79 (HyperWar Campaign-III.html)",
+     "quote": "as Bock's Army Group North moved into Poland",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "Heeresgruppe Nord unter Generaloberst Fedor von Bock",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（de-academic、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-hgr-sued",
+   "nameOrig": "Heeresgruppe Süd (Army Group South)",
+   "nameZh": "南方集團軍群",
+   "echelon": "army_group",
+   "parentKey": "de-okh",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 83 (HyperWar Campaign-III.html)",
+     "quote": "The morning of 1 September was clear on the front of Rundstedt's Army Group Sout",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "Heeresgruppe Süd unter Generaloberst Gerd von Rundstedt",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（de-academic、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-3-armee",
+   "nameOrig": "3. Armee (Third Army)",
+   "nameZh": "第3集團軍",
+   "echelon": "army",
+   "parentKey": "de-hgr-nord",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 79 (HyperWar Campaign-III.html)",
+     "quote": "Third Army debouched from East Prussia",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-4-armee",
+   "nameOrig": "4. Armee (Fourth Army)",
+   "nameZh": "第4集團軍",
+   "echelon": "army",
+   "parentKey": "de-hgr-nord",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 79 (HyperWar Campaign-III.html)",
+     "quote": "Fourth Army attacked eastward across the Corridor from Pomerania",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-8-armee",
+   "nameOrig": "8. Armee (Eighth Army)",
+   "nameZh": "第8集團軍",
+   "echelon": "army",
+   "parentKey": "de-hgr-sued",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 75 (HyperWar Campaign-II.html)",
+     "quote": "Eighth Army, the smallest of the three armies",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "bereitete die deutsche 8. Armee den Angriff auf Warschau vor",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（de-academic、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-10-armee",
+   "nameOrig": "10. Armee (Tenth Army)",
+   "nameZh": "第10集團軍",
+   "echelon": "army",
+   "parentKey": "de-hgr-sued",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "Tenth Army would attack in the center of Army Group South",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-14-armee",
+   "nameOrig": "14. Armee (Fourteenth Army)",
+   "nameZh": "第14集團軍",
+   "echelon": "army",
+   "parentKey": "de-hgr-sued",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "Fourteenth Army would commit the XVIII Corps",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-luftflotte-1",
+   "nameOrig": "Luftflotte 1 (First Air Force)",
+   "nameZh": "第1航空隊",
+   "echelon": "air_command",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 69 (HyperWar Campaign-II.html)",
+     "quote": "The First Air Force would operate in the area of",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-luftflotte-4",
+   "nameOrig": "Luftflotte 4 (Fourth Air Force)",
+   "nameZh": "第4航空隊",
+   "echelon": "air_command",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 72 (HyperWar Campaign-II.html)",
+     "quote": "The Fourth Air Force controlled 590 aircraft",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-i-ak",
+   "nameOrig": "I. Armeekorps (I Corps)",
+   "nameZh": "第1軍",
+   "echelon": "corps",
+   "parentKey": "de-3-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 79 (HyperWar Campaign-III.html)",
+     "quote": "with its I Corps and Corps Wodrig in line",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-korps-wodrig",
+   "nameOrig": "Korps Wodrig (Corps Wodrig)",
+   "nameZh": "沃德里希軍",
+   "echelon": "corps",
+   "parentKey": "de-3-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 74 (HyperWar Campaign-II.html)",
+     "quote": "A provisional corps, called Wodrig after its commander",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xxi-ak",
+   "nameOrig": "XXI. Armeekorps (XXI Corps)",
+   "nameZh": "第21軍",
+   "echelon": "corps",
+   "parentKey": "de-3-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 79 (HyperWar Campaign-III.html)",
+     "quote": "southwestward on Grudziadz with its XXI Corps",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-korps-brand",
+   "nameOrig": "Korps Brand (Corps Brand)",
+   "nameZh": "布蘭德軍",
+   "echelon": "corps",
+   "parentKey": "de-3-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 75 (HyperWar Campaign-II.html)",
+     "quote": "This force, named Brand, had only two brigades",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "nameOrig": "XIX. Armeekorps (mot.) (XIX Corps)",
+   "nameZh": "第19（摩托化）軍",
+   "echelon": "corps",
+   "parentKey": "de-4-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 74 (HyperWar Campaign-II.html)",
+     "quote": "The XIX Corps, an active command formed in the course of the summer",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-ii-ak",
+   "nameOrig": "II. Armeekorps (II Corps)",
+   "nameZh": "第2軍",
+   "echelon": "corps",
+   "parentKey": "de-4-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 75 (HyperWar Campaign-II.html)",
+     "quote": "II Corps would commit two infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-iii-ak",
+   "nameOrig": "III. Armeekorps (III Corps)",
+   "nameZh": "第3軍",
+   "echelon": "corps",
+   "parentKey": "de-4-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 75 (HyperWar Campaign-II.html)",
+     "quote": "The III Corps would control one infantry division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xiii-ak",
+   "nameOrig": "XIII. Armeekorps (XIII Corps)",
+   "nameZh": "第13軍",
+   "echelon": "corps",
+   "parentKey": "de-8-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 75 (HyperWar Campaign-II.html)",
+     "quote": "would have on its right XIII Corps with two infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-x-ak",
+   "nameOrig": "X. Armeekorps (X Corps)",
+   "nameZh": "第10軍",
+   "echelon": "corps",
+   "parentKey": "de-8-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 75 (HyperWar Campaign-II.html)",
+     "quote": "The X Corps with two infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xv-ak",
+   "nameOrig": "XV. Armeekorps (mot.) (XV Corps)",
+   "nameZh": "第15（摩托化）軍",
+   "echelon": "corps",
+   "parentKey": "de-10-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "On the right XV Corps would commit one light division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-iv-ak",
+   "nameOrig": "IV. Armeekorps (IV Corps)",
+   "nameZh": "第4軍",
+   "echelon": "corps",
+   "parentKey": "de-10-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "In the right center IV Corps would have two infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xvi-ak",
+   "nameOrig": "XVI. Armeekorps (mot.) (XVI Corps)",
+   "nameZh": "第16（摩托化）軍",
+   "echelon": "corps",
+   "parentKey": "de-10-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "The XVI Corps, consisting of two Panzer and two infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xi-ak",
+   "nameOrig": "XI. Armeekorps (XI Corps)",
+   "nameZh": "第11軍",
+   "echelon": "corps",
+   "parentKey": "de-10-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "The XI Corps would be on the left of the Tenth Army front",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xiv-ak",
+   "nameOrig": "XIV. Armeekorps (mot.) (XIV Corps)",
+   "nameZh": "第14（摩托化）軍",
+   "echelon": "corps",
+   "parentKey": "de-10-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "The XIV Corps, with two motorized infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xviii-ak",
+   "nameOrig": "XVIII. Armeekorps (XVIII Corps)",
+   "nameZh": "第18軍",
+   "echelon": "corps",
+   "parentKey": "de-14-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "the XVIII Corps, made up of one mountain, one light,",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xvii-ak",
+   "nameOrig": "XVII. Armeekorps (XVII Corps)",
+   "nameZh": "第17軍",
+   "echelon": "corps",
+   "parentKey": "de-14-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "The XVII Corps would form the center of the Fourteenth Army line",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-viii-ak",
+   "nameOrig": "VIII. Armeekorps (VIII Corps)",
+   "nameZh": "第8軍",
+   "echelon": "corps",
+   "parentKey": "de-14-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "held by the VIII Corps, with one Panzer and two infantry divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-vii-ak",
+   "nameOrig": "VII. Armeekorps (VII Corps)",
+   "nameZh": "第7軍",
+   "echelon": "corps",
+   "parentKey": "de-hgr-sued",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 76 (HyperWar Campaign-II.html)",
+     "quote": "one infantry division of the VII Corps",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-xxii-ak",
+   "nameOrig": "XXII. Armeekorps (mot.) (XXII Corps)",
+   "nameZh": "第22（摩托化）軍",
+   "echelon": "corps",
+   "parentKey": "de-14-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-04",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 85 (HyperWar Campaign-III.html)",
+     "quote": "The XXII Corps was operational under Fourteenth Army control on 4 September",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-gruppe-falkenhorst",
+   "nameOrig": "Gruppe Falkenhorst (Group Falkenhorst)",
+   "nameZh": "法爾肯霍斯特集群",
+   "echelon": "corps",
+   "parentKey": "de-hgr-nord",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；由 XXI 軍改稱；改稱日期出處未載（起日空）",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 94 (HyperWar Campaign-III.html)",
+     "quote": "was redesignated Group Falkenhorst, after its commander",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-gruppe-gienanth",
+   "nameOrig": "Gruppe Gienanth (Group Gienanth)",
+   "nameZh": "吉南特集群",
+   "echelon": "corps",
+   "parentKey": "de-8-armee",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；臨時編組；成立日期出處未載（起日空）",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 86 (HyperWar Campaign-III.html)",
+     "quote": "into a task force known as Group Gienanth",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-pz-div-kempf",
+   "nameOrig": "Panzer-Division Kempf",
+   "nameZh": "肯普夫裝甲師",
+   "echelon": "division",
+   "parentKey": "de-i-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 74 (HyperWar Campaign-II.html)",
+     "quote": "committed to operations as Panzer Division Kempf",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-10-pz-div",
+   "nameOrig": "10. Panzer-Division",
+   "nameZh": "第10裝甲師",
+   "echelon": "division",
+   "parentKey": "de-hgr-nord",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 74 (HyperWar Campaign-II.html)",
+     "quote": "The 10th Panzer Division had been added to Army Group North",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-3-pz-div",
+   "nameOrig": "3. Panzer-Division",
+   "nameZh": "第3裝甲師",
+   "echelon": "division",
+   "parentKey": "de-xix-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 95 (HyperWar Campaign-III.html)",
+     "quote": "followed by the 3d Panzer Division, which had meanwhile rejoined the corps",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-20-mot-div",
+   "nameOrig": "20. Infanterie-Division (mot.)",
+   "nameZh": "第20摩托化步兵師",
+   "echelon": "division",
+   "parentKey": "de-xix-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 94 (HyperWar Campaign-III.html)",
+     "quote": "The 20th Motorized Infantry Division arrived as the first of the XIX Corps units",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-2-mot-div",
+   "nameOrig": "2. Infanterie-Division (mot.)",
+   "nameZh": "第2摩托化步兵師",
+   "echelon": "division",
+   "parentKey": "de-xix-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 96 (HyperWar Campaign-III.html)",
+     "quote": "the 2d Motorized Infantry Division began moving southward to rejoin XIX Corps",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-4-pz-div",
+   "nameOrig": "4. Panzer-Division",
+   "nameZh": "第4裝甲師",
+   "echelon": "division",
+   "parentKey": "de-xvi-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 101 (HyperWar Campaign-III.html)",
+     "quote": "XVI Corps reached the suburbs of Warsaw with its 4th Panzer Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "powstrzymał pod Mokrą 4. dywizję pancerną",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-1-pz-div",
+   "nameOrig": "1. Panzer-Division",
+   "nameZh": "第1裝甲師",
+   "echelon": "division",
+   "parentKey": "de-xvi-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 101 (HyperWar Campaign-III.html)",
+     "quote": "its 1st Panzer Division penetrated to the Vistula",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-2-pz-div",
+   "nameOrig": "2. Panzer-Division",
+   "nameZh": "第2裝甲師",
+   "echelon": "division",
+   "parentKey": "de-hgr-sued",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 99 (HyperWar Campaign-III.html)",
+     "quote": "The 2d Panzer Division of Army Group South",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-5-pz-div",
+   "nameOrig": "5. Panzer-Division",
+   "nameZh": "第5裝甲師",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "13. pułku strzelców 5. Dywizji Pancernej",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-1-geb-div",
+   "nameOrig": "1. Gebirgs-Division",
+   "nameZh": "第1山地師",
+   "echelon": "division",
+   "parentKey": "de-xviii-ak",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 107 (HyperWar Campaign-III.html)",
+     "quote": "the XVIII Corps' 1st Mountain Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "de-50-inf-div",
+   "nameOrig": "50. Infanterie-Division",
+   "nameZh": "第50步兵師",
+   "echelon": "division",
+   "parentKey": "de-hgr-nord",
+   "side": "axis",
+   "nation": "de",
+   "regimeSlug": "deutsches-reich",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 74 (HyperWar Campaign-II.html)",
+     "quote": "redesignated the 50th Infantry Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-naczelny-wodz",
+   "nameOrig": "Naczelny Wódz i sztab (Polish High Command)",
+   "nameZh": "波蘭總司令與總參謀部",
+   "echelon": "hq",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Naczelnego Wodza, który od 7 września stacjonował wraz ze sztabem w Brześciu",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 96 (HyperWar Campaign-III.html)",
+     "quote": "the Polish High Command had established headquarters",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-modlin",
+   "nameOrig": "Armia „Modlin” (Modlin Army)",
+   "nameZh": "莫德林集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 56 (HyperWar Campaign-II.html)",
+     "quote": "the direct route to Warsaw (Modlin Army)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Armia „Modlin” gen. Emila Krukowicza-Przedżymirskiego",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-sgo-narew",
+   "nameOrig": "Samodzielna Grupa Operacyjna „Narew” (Narew Group)",
+   "nameZh": "納雷夫獨立作戰群",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；Kennedy 稱 Narew Group；SGO 為集團軍級獨立作戰群",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 56 (HyperWar Campaign-II.html)",
+     "quote": "the frontier with Lithuania (Narew Group)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-pomorze",
+   "nameOrig": "Armia „Pomorze” (Pomorze Army)",
+   "nameZh": "波美拉尼亞集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 56 (HyperWar Campaign-II.html)",
+     "quote": "(Pomorze Army), under the command of Maj. Gen. W. Bortnowski",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "armię „Pomorze” gen. Władysława Bortnowskiego",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-poznan",
+   "nameOrig": "Armia „Poznań” (Poznan Army)",
+   "nameZh": "波茲南集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 56 (HyperWar Campaign-II.html)",
+     "quote": "for the defense of the Poznan salient (Poznan Army)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "dokonany siłami armii „Poznań” i „Pomorze”",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-lodz",
+   "nameOrig": "Armia „Łódź” (Lodz Army)",
+   "nameZh": "羅茲集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 56 (HyperWar Campaign-II.html)",
+     "quote": "held the Lodz area (Lodz Army)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "armii „Łódź” (gen. Juliusza Rómmla)",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-krakow",
+   "nameOrig": "Armia „Kraków” (Cracow Army)",
+   "nameZh": "克拉科夫集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 57 (HyperWar Campaign-II.html)",
+     "quote": "vital Cracow region (Cracow Army)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "„Kraków” (gen. Antoniego Szyllinga)",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-karpaty",
+   "nameOrig": "Armia „Karpaty” (Carpathian Army)",
+   "nameZh": "喀爾巴阡集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 57 (HyperWar Campaign-II.html)",
+     "quote": "The Carpathian Army was formed under Maj. Gen. K. Fabrycy",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "współdziałanie armiom „Kraków” i „Karpaty”",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-prusy",
+   "nameOrig": "Armia „Prusy”（odwód）",
+   "nameZh": "普魯士集團軍（總預備隊）",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；Kennedy 僅稱 general reserve，未用 Prusy 之名；指揮官出處未載",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "odwodową armię „Prusy”, rozbitą pod Piotrkowem",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-armia-lublin",
+   "nameOrig": "Armia „Lublin”",
+   "nameZh": "盧布林集團軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-04",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；9/4 為下令組建日",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "już 4 września Rydz-Śmigły nakazał utworzenie armii „Lublin”",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-front-poludniowy",
+   "nameOrig": "Front Południowy (gen. Sosnkowski)",
+   "nameZh": "南方方面軍",
+   "echelon": "army_group",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；組建日期出處未載",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "wojska frontu południowego na czele z gen. Kazimierzem Sosnkowskim",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-sgo-polesie",
+   "nameOrig": "Samodzielna Grupa Operacyjna „Polesie”",
+   "nameZh": "波萊西獨立作戰群",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": null,
+    "end": "1939-10-06",
+    "startPrecision": null,
+    "endPrecision": "day",
+    "startBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；Kennedy 稱 the Kock force，未用 SGO Polesie 之名，視為同一部隊屬執行者判讀",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "pod Kockiem siły SGO „Polesie” gen. Franciszka Kleeberga",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 119 (HyperWar Campaign-III.html)",
+     "quote": "the Kock force surrendered on 6 October",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-obrona-warszawy",
+   "nameOrig": "Obrona Warszawy (Warsaw garrison)",
+   "nameZh": "華沙守軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": null,
+    "end": "1939-09-27",
+    "startPrecision": null,
+    "endPrecision": "day",
+    "startBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；Kennedy 稱 garrison of Warsaw",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 110 (HyperWar Campaign-III.html)",
+     "quote": "the garrison of Warsaw was composed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "27 września skapitulowała broniąca się zaciekle Warszawa",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-obrona-modlina",
+   "nameOrig": "Twierdza Modlin (Modlin force)",
+   "nameZh": "莫德林要塞守軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": null,
+    "end": "1939-09-29",
+    "startPrecision": null,
+    "endPrecision": "day",
+    "startBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；Kennedy：9/28 07:30 停火、翌日正式投降；IPN「W dwa dni później」＝9/29；LeMO 作 9/28",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 113 (HyperWar Campaign-III.html)",
+     "quote": "General Thommee, commander of the Modlin force",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 113 (HyperWar Campaign-III.html)",
+     "quote": "the formal surrender to Third Army's II Corps took place the following day",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-low",
+   "nameOrig": "Lądowa Obrona Wybrzeża (Gdynia area force)",
+   "nameZh": "陸上海岸防衛（格丁尼亞）",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；Kennedy 稱 small division 規模",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 57 (HyperWar Campaign-II.html)",
+     "quote": "The port area of Gdynia also organized a defense force",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "siły komandora Józefa Unruga i płk Stanisława Dąbka",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-rejon-umocniony-hel",
+   "nameOrig": "Rejon Umocniony Hel (Hela)",
+   "nameZh": "海爾半島要塞區",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": "1939-10-02",
+    "startPrecision": "day",
+    "endPrecision": "day",
+    "startBasis": "default-main-phase-start"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；投降日：IPN 10/2；Kennedy 記 10/1 請求談判，見 R6",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 115 (HyperWar Campaign-III.html)",
+     "quote": "Rear Admiral J. Unrug, commander at Hela",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "2 października złożyli broń obrońcy Helu",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-westerplatte",
+   "nameOrig": "Wojskowa Składnica Tranzytowa na Westerplatte",
+   "nameZh": "西盤半島軍需轉運站守軍",
+   "echelon": "garrison",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": "1939-09-07",
+    "startPrecision": "day",
+    "endPrecision": "day",
+    "startBasis": "default-main-phase-start"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；止日 9/7 取 IPN 照片說明「7 września ... chwilę po kapitulacji」",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 78 (HyperWar Campaign-III.html)",
+     "quote": "the Polish fortress of Westerplatte in Danzig Harbor",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Westerplatte, zamiast godzin 12, broniło się przez długich 7 dni",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "7 września, oficerowie Wojska Polskiego z placówki na Westerplatte",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-obrona-lwowa",
+   "nameOrig": "Obrona Lwowa (Lwow garrison)",
+   "nameZh": "利沃夫守軍",
+   "echelon": "army",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null；投降日見 R6（9/21 對 9/22 待定）",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 107 (HyperWar Campaign-III.html)",
+     "quote": "garrison of 12,000 men",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "dowódca obrony Lwowa, gen. Władysław Langner",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-7-dp",
+   "nameOrig": "7 Dywizja Piechoty",
+   "nameZh": "第7步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-krakow",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 85 (HyperWar Campaign-III.html)",
+     "quote": "the Cracow Army's 7th Infantry Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "osamotniona 7. DP, okrążona i zniszczona",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-6-dp",
+   "nameOrig": "6 Dywizja Piechoty",
+   "nameZh": "第6步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-krakow",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "the 6th Infantry Division of the Cracow Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-21-dpg",
+   "nameOrig": "21 Dywizja Piechoty Górskiej",
+   "nameZh": "第21山地步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-krakow",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "the Cracow Army's 21st Mountain Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-23-dp",
+   "nameOrig": "23 Dywizja Piechoty",
+   "nameZh": "第23步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-krakow",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "the Cracow Army's 23d Infantry Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-9-dp",
+   "nameOrig": "9 Dywizja Piechoty",
+   "nameZh": "第9步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-pomorze",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 82 (HyperWar Campaign-III.html)",
+     "quote": "sealed off the Pomorze Army's 9th Infantry Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "oddziały 9. i 27. DP",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-27-dp",
+   "nameOrig": "27 Dywizja Piechoty",
+   "nameZh": "第27步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-pomorze",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 82 (HyperWar Campaign-III.html)",
+     "quote": "and the 27th Infantry Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "oddziały 9. i 27. DP",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-16-dp",
+   "nameOrig": "16 Dywizja Piechoty",
+   "nameZh": "第16步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-pomorze",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 82 (HyperWar Campaign-III.html)",
+     "quote": "identified the Pomorze Army's 16th Infantry Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-10-dp",
+   "nameOrig": "10 Dywizja Piechoty",
+   "nameZh": "第10步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-lodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "the 10th Infantry Division of the Lodz Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-28-dp",
+   "nameOrig": "28 Dywizja Piechoty",
+   "nameZh": "第28步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-lodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "28th and 30th Infantry Divisions and Wolynska Cavalry Brigade of the Lodz Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-30-dp",
+   "nameOrig": "30 Dywizja Piechoty",
+   "nameZh": "第30步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-lodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "28th and 30th Infantry Divisions and Wolynska Cavalry Brigade of the Lodz Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-14-dp",
+   "nameOrig": "14 Dywizja Piechoty",
+   "nameZh": "第14步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-poznan",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "the 14th and 25th Infantry Divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "Wielkopolska Cavalry Brigade of the Poznan Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-25-dp",
+   "nameOrig": "25 Dywizja Piechoty",
+   "nameZh": "第25步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-poznan",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "the 14th and 25th Infantry Divisions",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "Wielkopolska Cavalry Brigade of the Poznan Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-8-dp",
+   "nameOrig": "8 Dywizja Piechoty",
+   "nameZh": "第8步兵師",
+   "echelon": "division",
+   "parentKey": "pl-armia-modlin",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Siły armii „Modlin”, po przełamaniu obrony Mazowieckiej BK i rozbiciu 8. DP",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-18-dp",
+   "nameOrig": "18 Dywizja Piechoty",
+   "nameZh": "第18步兵師",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "Podlaskiej Brygady Kawalerii i 18. DP",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（pl-ipn）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "pl-ipn"
+    ],
+    "effectiveGrade": "C",
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py",
+    "battleFactNote": "單一來源降級後為 C 級，戰役只收 A/B：保留作候選，不當戰役事實（主管 2026-11-13 14:03）"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-5-dp",
+   "nameOrig": "5 Dywizja Piechoty",
+   "nameZh": "第5步兵師",
+   "echelon": "division",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 84 (HyperWar Campaign-III.html)",
+     "quote": "The Polish 5th Infantry Division from the general reserve",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "pl-12-dp",
+   "nameOrig": "12 Dywizja Piechoty",
+   "nameZh": "第12步兵師",
+   "echelon": "division",
+   "parentKey": "pl-naczelny-wodz",
+   "side": "allied",
+   "nation": "pl",
+   "regimeSlug": "polish-republic",
+   "period": {
+    "start": "1939-09-01",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 103 (HyperWar Campaign-III.html)",
+     "quote": "the 12th Infantry Division from the general reserve",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "needs-check",
+    "why": "單一來源降一級：只有一個獨立 A/B 來源家族（us-army-dapam）",
+    "singleSource": true,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "su-belorussian-front",
+   "nameOrig": "Belorusskiy front (White Russian Front)",
+   "nameZh": "白俄羅斯方面軍",
+   "echelon": "army_group",
+   "parentKey": null,
+   "side": "soviet",
+   "nation": "su",
+   "regimeSlug": "soviet-union",
+   "period": {
+    "start": "1939-09-17",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 124 (HyperWar Campaign-III.html)",
+     "quote": "The White Russian Front, in the north, was commanded by Army Commander",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "17 września, znienacka",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "mit dem Überfall von zwei Heeresgruppen der Roten Armee auf Ostpolen",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（de-academic、pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "su-ukrainian-front",
+   "nameOrig": "Ukrainskiy front (Ukrainian Front)",
+   "nameZh": "烏克蘭方面軍",
+   "echelon": "army_group",
+   "parentKey": null,
+   "side": "soviet",
+   "nation": "su",
+   "regimeSlug": "soviet-union",
+   "period": {
+    "start": "1939-09-17",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1939-09-01～10-06）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標），止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 125 (HyperWar Campaign-III.html)",
+     "quote": "The Ukrainian Front, on the south, was commanded by Army Commander Timoshenko",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "ipn-suleja-wrzesien-1939",
+     "locator": "Przystanek Historia 線上專文（單頁）",
+     "quote": "17 września, znienacka",
+     "quoteLang": "pl",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/94916,Wrzesien-1939-roku.html",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "lemo-scriba-polen-1939",
+     "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+     "quote": "mit dem Überfall von zwei Heeresgruppen der Roten Armee auf Ostpolen",
+     "quoteLang": "de",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/ueberfall-auf-polen-1939",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（de-academic、pl-ipn、us-army-dapam）",
+    "singleSource": false,
+    "sourceFamilies": [
+     "de-academic",
+     "pl-ipn",
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  }
+ ]
+}

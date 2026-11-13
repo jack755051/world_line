@@ -59,6 +59,10 @@ POLICY = [  # (domain, source_kind, grade, 依據, 決定)
     ("www.generals.dk", None, "X", "generals.dk 同上（www 主機名）", "主管 2026-11-12 22:08"),
 ]
 
+# 主管 2026-11-13 11:05：寫庫前其餘 262 個未歸類網域依同一規則歸類，清單存 domain-policy-additions-20261113.json（含 review 旗標）
+POLICY += [(x["domain"], x["source_kind"], x["grade"], x["basis"], x["decision"])
+           for x in json.loads((Path(__file__).resolve().parent / "domain-policy-additions-20261113.json").read_text(encoding="utf-8"))]
+
 # 具名 C 級（Tai 本人 2026-11-12 06:34「將領生平來源放寬到具名 C 級」）：依每一頁的具名作者／具名出版機構判定，
 # 不用網域白名單，所以不進 POLICY；規則另輸出 grade-c-policy.json，verify.py 對將領生平檔同步檢查。
 GRADE_C = {

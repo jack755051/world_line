@@ -136,6 +136,22 @@
    "archive_url": null,
    "catalog_id": null,
    "license_code": null
+  },
+  "rf-booksite-fronts": {
+   "title": "Фронты Советских Вооружённых Сил во время Великой Отечественной войны 1941—45（《偉大衛國戰爭1941—1945百科全書》條目）",
+   "authors": [
+    "С. И. Исаев"
+   ],
+   "publisher": "Советская энциклопедия（booksite.ru 全文轉載）",
+   "published_text": "Москва, 1985",
+   "url": "https://booksite.ru/fulltext/1/001/008/117/708.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 С. И. Исаев（條目末署名）、具名出版機構 Советская энциклопедия 之軍事百科條目；具名 C 級",
+   "addedAt": "2026-11-13T08:36:10+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -1200,10 +1216,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1942-04-01",
-      "end": null
+      "end": "1945-05-09"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "spb-gov",
@@ -1238,6 +1254,30 @@
        "accessedOn": "2026-11-12",
        "grade": "C",
        "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「Ленинградский фронт」條",
+       "quote": "Ленинградский фронт (26. 8.1941 — 9.5.1945).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「Ленинградский фронт」條（司令名單）",
+       "quote": "Л. А. Говоров (до 9.5.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1294,26 +1334,6 @@
    "roleCandidates": [],
    "gaps": [
     {
-     "target": "position:govorov-leningrad-front",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；來源只寫「to the end of war」未寫卸任日；已查 聖彼得堡百科全書、立陶宛通用百科全書、Britannica（403）。",
-     "candidateCitations": [
-      {
-       "sourceKey": "spb-gov",
-       "locator": "全文",
-       "quote": "from June 1942 to the end of war, served as commander of Leningrad Front forces",
-       "quoteLang": "en",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "month",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      }
-     ],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "field:primary_sources",
      "gapKind": "not_found",
      "note": "來源不足：未取得 A／B 級來源（Britannica 403、encyclopedia.com 無條目）；列寧格勒方面軍迄日來源只寫「到戰爭結束」，僅以具名 C 級支撐，T14 不升角色。",
@@ -1353,6 +1373,52 @@
      "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/govorov-leonid-aleksandrovich",
      "result": "no_result",
      "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Говоров Ленинградский фронт 1945 расформирован командующий",
+     "url": "https://booksite.ru/fulltext/1/001/008/117/708.htm",
+     "result": "found_C",
+     "note": "方面軍列表載列寧格勒方面軍 26.8.1941—9.5.1945，戈沃羅夫「до 9.5.1945」，補迄日。"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Britannica／bigenc.ru Говоров",
+     "url": "https://bigenc.ru/c/govorov-leonid-aleksandrovich",
+     "result": "challenge_page",
+     "note": "bigenc.ru 回傳 qrator 防機器人挑戰頁，未繞過。"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:govorov-leningrad-front",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；來源只寫「to the end of war」未寫卸任日；已查 聖彼得堡百科全書、立陶宛通用百科全書、Britannica（403）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "from June 1942 to the end of war, served as commander of Leningrad Front forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1921,10 +1987,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1945-08-01",
-      "end": null
+      "end": "1945-09-03"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "bk-mer",
@@ -1949,6 +2015,30 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「1-й Дальневосточный фронт」條",
+       "quote": "1-й Дальневосточный фронт (5.8. — 3.9.1945).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「1-й Дальневосточный фронт」條（司令）",
+       "quote": "Командующий — Маршал Советского Союза К. А. Мерецков.",
+       "quoteLang": "ru",
+       "evidenceNote": "迄日採來源所載該方面軍存續終日 3.9.1945（方面軍撤銷日）。",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -1965,26 +2055,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:meretskov-1st-far-eastern-front",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；《大蘇維埃百科全書》只寫1945年8月任遠東第1方面軍司令，未寫迄日；已查 BSE、聖彼得堡百科全書、Britannica（403）。",
-     "candidateCitations": [
-      {
-       "sourceKey": "bk-mer",
-       "locator": "全文",
-       "quote": "В августе 1945 командующий войсками 1-го Дальневосточного фронта",
-       "quoteLang": "ru",
-       "evidenceNote": null,
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "month",
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      }
-     ],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "field:postwar_district_commands",
      "gapKind": "not_found",
@@ -2055,6 +2125,52 @@
      "url": "https://ww2db.com/person_bio.php?person_id=1181",
      "result": "blocked_403",
      "note": "403，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Мерецков 1-й Дальневосточный фронт расформирован 1945",
+     "url": "https://booksite.ru/fulltext/1/001/008/117/708.htm",
+     "result": "found_C",
+     "note": "方面軍列表載遠東第1方面軍 5.8.—3.9.1945，司令梅列茨科夫，補迄日。"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "bigenc.ru Мерецков",
+     "url": "https://bigenc.ru/c/meretskov-kirill-afanas-evich-9a17a2",
+     "result": "challenge_page",
+     "note": "bigenc.ru 回傳 qrator 防機器人挑戰頁，未繞過。"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:meretskov-1st-far-eastern-front",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；《大蘇維埃百科全書》只寫1945年8月任遠東第1方面軍司令，未寫迄日；已查 BSE、聖彼得堡百科全書、Britannica（403）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В августе 1945 командующий войсками 1-го Дальневосточного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },

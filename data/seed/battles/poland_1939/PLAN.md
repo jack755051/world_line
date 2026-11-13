@@ -140,3 +140,10 @@ claude 撞到 5 小時用量上限時，由包裝腳本等到重置時間後以 
 - `tools/battles/georef.py` 強制：readings.json 的 `controlPointExclusions[].decidedBeforeResiduals` 不是 true，或有頂層 `referenceOnly`，輸出一律 `threshold.passes=false`、`referenceOnly=true`。
 - 依此 OKH д.355 Luftgau IV 圖（P95 1.77 km）改為僅參考：Tschenstochau、Bielitz、Grottkau 是看過殘差後才排除，且無第二次判讀；兩條 Armeegrenze 自 R4 移出（r4-fronts.json 只剩文字頂點 1 條），排除理由保留在 readings.json。
 - USMA 04／07 的捨棄點來自配準前執行的機械規則（cp_refine.py --require-ring），記為 decidedBeforeResiduals=true（兩圖本來就未過門檻）。
+
+## 主管 2026-11-13 20:22：停止配準，文字推定前線＋生平缺口
+- 前線改「文字推定」（text-inferred，全部待查證）：claude -p（$1.14）自 Kennedy 摘出各日到達城鎮（21 段逐字引文），OSM 城鎮中心以直線相連。
+  - 9/5（Grudziądz–Kraków）、9/10（Zambrów–Przemyśl）、9/17（Białystok–Brześć–Lublin–Biłgoraj）三條德軍前鋒線；10/1 沿用德蘇分界線北段。
+  - 9/1＝國界（R8）、9/28、10/6：原文無具名到達點，不成線，記入 r4.dateGapNotes。被圍區（Radom、Kutno、Warsaw、Modlin、Hela、Kock）不列前線。
+  - 新工具 tools/battles/osm_coords.py：以 OSM id 補座標（Nominatim /lookup）。
+- r7-missing-people 24 人無生平：不補，gaps.json 以 commander_missing_bio 標記（新增 19，另 5 人已有同 target 缺口）。

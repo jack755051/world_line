@@ -282,6 +282,34 @@
    "license_code": null,
    "grade": "C",
    "gradeBasis": "具名作者 Paweł Sztama、具名出版機構波蘭國家記憶研究院（IPN）之文章"
+  },
+  "rf-booksite-tol": {
+   "title": "Толбухин Федор Иванович（Советская военная энциклопедия）",
+   "authors": [],
+   "publisher": "Воениздат（Военное издательство）",
+   "published_text": null,
+   "url": "https://booksite.ru/FullText/1/001/008/111/120.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構 Воениздат 出版之《Советская военная энциклопедия》條目；非個人網站",
+   "addedAt": "2026-11-13T08:37:15+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-gs-tukh": {
+   "title": "1930-1937 Tukhachevsky",
+   "authors": [],
+   "publisher": "GlobalSecurity.org",
+   "published_text": null,
+   "url": "https://www.globalsecurity.org/military/world/russia/army-cccp-tukhachevsky.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 GlobalSecurity.org 之 Red Army / Soviet Army 專題頁（機構發布）",
+   "addedAt": "2026-11-13T08:37:15+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -1090,10 +1118,10 @@
      "positionKind": "minister",
      "period": {
       "start": "1934-01-01",
-      "end": null
+      "end": "1937-05-11"
      },
      "startPrecision": "year",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "booksite-tukh",
@@ -1104,6 +1132,18 @@
        "accessedOn": "2026-11-12",
        "grade": "C",
        "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gs-tukh",
+       "locator": "1930-1937 Tukhachevsky 段",
+       "quote": "On 11 May 1937, Tukhachevsky was demoted and made commander of the Volga",
+       "quoteLang": "en",
+       "evidenceNote": "來源明寫1937-05-11降職改任伏爾加軍區司令，據此推定副國防人民委員任期止於該日（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1157,13 +1197,6 @@
      "target": "position:tukhachevsky-armaments",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；條目只寫「С 1931」，已查 Советская военная энциклопедия、Encyclopedia of Russian History、Russian Life，均未寫軍備部長迄日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
-     "target": "position:tukhachevsky-deputy-commissar",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；條目只寫「с 1934」，另有1936年任第一副國防人民委員，已查三來源，均未寫卸任日（Russian Life 僅寫1937年5月26日被捕）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-12"
     },
@@ -1230,6 +1263,55 @@
      "url": "https://znanierussia.ru/",
      "result": "unrated",
      "note": "curl 成功但頁面過大且署名不明，未採用"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Тухачевский 1937 снят с должности заместителя наркома обороны Приволжский военный округ",
+     "url": "https://www.globalsecurity.org/military/world/russia/army-cccp-tukhachevsky.htm",
+     "result": "found_C",
+     "note": "GlobalSecurity 明載1937-05-11降職任伏爾加軍區司令；用於副國防人民委員迄日"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Tukhachevsky armaments chief end date / candidate member Central Committee end date",
+     "url": "https://encspb.ru/object/2804021699?lc=en",
+     "result": "not_relevant",
+     "note": "圣彼得堡百科僅寫1931-36副國防人民委員，與既有條目（1934起）衝突，未採；仍未見軍備部長與中央候補委員迄日"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "AUSA LWP_56W Tukhachevsky practitioner and theorist of war",
+     "url": "https://www.ausa.org/SiteCollectionDocuments/ILW%20Web-ExclusivePubs/Land%20Warfare%20Papers/LWP_56W.pdf",
+     "result": "challenge_page",
+     "note": "回傳 HTML 擋頁（非 PDF），未取得"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "DTIC ADA510945 Tukhachevsky",
+     "url": "https://apps.dtic.mil/sti/pdfs/ADA510945.pdf",
+     "result": "challenge_page",
+     "note": "回傳 HTML 擋頁，未取得"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:tukhachevsky-deputy-commissar",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；條目只寫「с 1934」，另有1936年任第一副國防人民委員，已查三來源，均未寫卸任日（Russian Life 僅寫1937年5月26日被捕）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -4779,10 +4861,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1938-07-01",
-      "end": null
+      "end": "1941-08-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "gb-tol",
@@ -4791,6 +4873,18 @@
        "quoteLang": "en",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-tol",
+       "locator": "全文",
+       "quote": "начальник штаба Закавказского (август— декабрь 1941)",
+       "quoteLang": "ru",
+       "evidenceNote": "依名簿下一任起日推得（推論）：同條目前文「С июля 1938 начальник штаба Закавказского военного округа」，其後轉任Закавказский фронт參謀長（1941年8月起）",
+       "accessedOn": "2026-11-13",
        "grade": "C",
        "datePrecision": "month",
        "claimSpan": null,
@@ -5161,13 +5255,6 @@
    "roleCandidates": [],
    "gaps": [
     {
-     "target": "position:tolbukhin-transcaucasus-chief-of-staff",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；傳略只寫「Since July 1938」，Russia Beyond 寫1941年6月仍任此職，但無具體卸任日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:tolbukhin-acc-bulgaria",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；傳略只寫「Since September 1944」，已查 ГБУ«МАЦ»、Russia Beyond，未載卸任日。",
@@ -5228,6 +5315,63 @@
      "url": "https://www.encyclopedia.com/",
      "result": "no_result",
      "note": "搜尋未見條目"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Толбухин начальник штаба Закавказского военного округа 1938 1941 Советская военная энциклопедия",
+     "url": "https://booksite.ru/FullText/1/001/008/111/120.htm",
+     "result": "found_C",
+     "note": "Воениздат 條目：1941年8月起任外高加索方面軍參謀長；用於軍區參謀長迄日（推論）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Толбухин bigenc.ru Большая российская энциклопедия",
+     "url": "https://bigenc.ru/c/tolbukhin-fiodor-ivanovich-52adf3",
+     "result": "no_result",
+     "note": "頁面為 JS 動態載入，curl 僅得空文字，未取得"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Allied Control Commission Bulgaria chairman Tolbukhin end of chairmanship Biryuzov",
+     "url": "https://history.state.gov/historicaldocuments/frus1945v04/d303",
+     "result": "not_relevant",
+     "note": "FRUS 1944–46 文件只見 Biryuzov 稱副主席，未載 Tolbukhin 卸任主席日"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Толбухин председатель Союзной контрольной комиссии Болгария迄日",
+     "url": "https://orlova-center.ru/en/drying/tolbuhin-fedor-ivanovich-zhizn-i-deyatelnost-syn-otechestva-istoricheskaya/",
+     "result": "no_result",
+     "note": "SSL 憑證主機名不符，依規則不使用 -k，未取得"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Толбухин СКК Болгария 1945 Бирюзов председатель",
+     "url": null,
+     "result": "no_result",
+     "note": "兩輪中俄文搜尋均無來源明載 ACC 主席迄日；維持既有 gap"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:tolbukhin-transcaucasus-chief-of-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；傳略只寫「Since July 1938」，Russia Beyond 寫1941年6月仍任此職，但無具體卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

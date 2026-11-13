@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>戰役動態地圖</title>
 <link rel="stylesheet" href="vendor/maplibre-gl.css">
-<link rel="stylesheet" href="style.css?v=2.10.0">
+<link rel="stylesheet" href="style.css?v=2.11.2">
 <link rel="icon" href="data:,">
 </head>
 <body>
@@ -62,11 +62,9 @@
   </main>
   <footer id="timeline">
     <div id="tl-controls">
-      <button id="btn-prev" aria-label="上一個關鍵日">⏮</button>
-      <button id="btn-play" aria-label="播放">▶</button>
-      <button id="btn-next" aria-label="下一個關鍵日">⏭</button>
+      <button id="btn-play" aria-label="播放" title="播放／暫停（空白鍵）；← → 跳到上一個／下一個關鍵日">▶</button>
       <div id="speed" role="group" aria-label="速度">
-        <button data-s="0.25" title="每秒 6 小時">6時/秒</button><button data-s="1" class="on" title="每秒 1 天">1日/秒</button><button data-s="3" title="每秒 3 天">3日/秒</button>
+        <button data-s="0.25" title="每秒 6 小時">6時/秒</button><button data-s="0.5" class="on" title="每秒 12 小時">12時/秒</button><button data-s="1" title="每秒 1 天">1日/秒</button>
       </div>
     </div>
     <div id="tl-track-wrap">
@@ -81,7 +79,7 @@
 <script src="vendor/maplibre-gl.js"></script>
 <script src="vendor/earcut.min.js"></script>
 <script src="vendor/milsymbol.js"></script>
-<script src="js/gl.js?v=2.10.0"></script>
-<script src="app.js?v=2.10.0"></script>
+<script src="js/gl.js?v=2.11.2"></script>
+<script src="app.js?v=2.11.2"></script>
 </body>
 </html>

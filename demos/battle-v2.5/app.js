@@ -20,10 +20,13 @@ const $ = s => document.querySelector(s);
 // ================= 外殼（整個頁面只做一次）=================
 // 讀戰役清單 → 決定開哪一場 → 抓那一場的資料 → 建立一個「戰役實例」。
 // 戰役的全部狀態都關在 createBattle() 裡面；外殼只留著目前這一個實例（window.__battle）。
-const J = (u, dflt) => fetch(u).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }).catch(e => { if (dflt !== undefined) return dflt; throw e; });
+// cache: 'no-cache'＝每次都向伺服器確認有沒有新版（沒變就回 304）。資料檔沒有版本號，不這樣做瀏覽器會拿舊的底圖配新的設定。
+const J = (u, dflt) => fetch(u, { cache: 'no-cache' }).then(r => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); }).catch(e => { if (dflt !== undefined) return dflt; throw e; });
 const fatal = e => { console.error(e); const d = document.createElement('div'); d.id = 'fatal'; d.textContent = '戰役資料載入失敗：' + (e.message || e); document.body.appendChild(d); $('#veil').classList.add('off'); };
 const fetchBattle = id => { const base = `battles/${id}/`;
-  return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {}), J(base + 'sourced.json', null), J(base + 'confidence.json', null)]).then(([data, asg, th, sourced, conf]) => ({ data, asg, th, sourced, conf })); };
+  return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {}), J(base + 'sourced.json', null), J(base + 'confidence.json', null),
+    Promise.all(GEO.map(n => J(`${base}geo/${n}.geojson`, { type: 'FeatureCollection', features: [] }))).then(a => Object.fromEntries(GEO.map((n, i) => [n, a[i]])))]).then(([data, asg, th, sourced, conf, geo]) => ({ data, asg, th, sourced, conf, geo })); };
+const GEO = ['land', 'landc', 'rivers', 'borders', 'sea', 'graticule'];   // 底圖也由這裡抓（同樣會確認新版），再整包交給地圖
 let INDEX = [], DFLT = '', CUR = null, busy = false;
 // 遮蓋：第一次載入蓋整頁；原地換戰役時只蓋地圖（標題列和面板留著），手機版面板疊在地圖上所以還是蓋整頁
 function veilOn(text, mapOnly) { const v = $('#veil'), r = mapOnly && innerWidth > 700 ? $('#map-wrap').getBoundingClientRect() : null;
@@ -75,7 +78,7 @@ const AXIS_FILL = rgba(186, 66, 48, 0.24), ALLIED_FILL = rgba(227, 234, 242, 1);
 const INK = [38, 32, 28], ACC = [214, 96, 20];   // 墨色、橘色（橘色只用在交戰和選取）
 let D, MAP, W = 0, H = 0, DPR = 1, MOBILE = false;
 let KD = [], FR = [], PKS = [], unitIdx = {}, posBy = {}, SP = {}, CITYIDX = {};
-let day = 0, playing = false, speed = 1, lastT = 0, lastEventKey = -1, selected = null, hover = null, hits = [];
+let day = 0, playing = false, speed = 0.5, lastT = 0, lastEventKey = -1, selected = null, hover = null, hits = [];
 let TOUR = Q.get('mode') === 'tour';
 let follow = TOUR && Q.get('follow') !== '0', resume = null, dtGlobal = 0.016;
 let lockId = null, ASG = {};
@@ -135,9 +138,10 @@ function edt2(g, w, h) { const n = Math.max(w, h), INF = 1e20, f = new Float64Ar
 function prepAreas() { const C = TH.control; if (!C || C.mode !== 'areas') return;
   const B = C.border; BASE_RING = new Float64Array(B.length * 2); B.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
   AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; });
-  J(`battles/${BID}/geo/landc.geojson`, { features: [] }).then(buildFields); }
+  setTimeout(() => buildFields(cfg.geo.landc), 0); }
 function buildFields(landc) { if (dead) return; const C = TH.control, t0 = performance.now();
-  const x0 = mx(BBOX[0]), x1 = mx(BBOX[2]), y0 = my(BBOX[1]), y1 = my(BBOX[3]), GW = innerWidth <= 700 ? 448 : 640, GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
+  const FB = C.bbox || BBOX;   // 勢力場只算戰區那一塊（底圖範圍可以比它大）
+  const x0 = mx(FB[0]), x1 = mx(FB[2]), y0 = my(FB[1]), y1 = my(FB[3]), GW = innerWidth <= 700 ? 448 : 640, GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
   const cv = document.createElement('canvas'); cv.width = GW; cv.height = GH; const g = cv.getContext('2d', { willReadFrequently: true });
   const CH = { axis: '#f00', allied: '#0f0', third: '#00f' }, gx = lo => (mx(lo) - x0) / (x1 - x0) * GW, gy = la => (y1 - my(la)) / (y1 - y0) * GH;
   const poly = (rings, col) => { g.fillStyle = col; g.beginPath(); for (const r of rings) { r.forEach((p, k) => k ? g.lineTo(gx(p[0]), gy(p[1])) : g.moveTo(gx(p[0]), gy(p[1]))); g.closePath(); } g.fill('evenodd'); };
@@ -249,7 +253,7 @@ function setFollow(v) { if (v && !follow) { const c = MAP.getCenter(); resume = 
 
 // ---------- 地圖 ----------
 function initMap() {
-  const src = n => ({ type: 'geojson', data: `battles/${BID}/geo/${n}.geojson`, maxzoom: 7, tolerance: 0.3, buffer: 16 });
+  const src = n => ({ type: 'geojson', data: cfg.geo[n], maxzoom: 7, tolerance: 0.3, buffer: 16 });
   const style = { version: 8, sources: { land: src('land'), landc: src('landc'), rivers: src('rivers'), borders: src('borders'), sea: src('sea'), grat: src('graticule') },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': COL.sea } },
@@ -266,11 +270,12 @@ function initMap() {
     ] };
   const c0 = CAM.overview;
   // 戰區外留一圈紙色邊（可以縮小到看見整個戰區，不會卡在邊界）；底圖資料只到 bbox，外面用紙色蓋掉
-  const PADX = (BBOX[2] - BBOX[0]) * 0.2, PADY = (BBOX[3] - BBOX[1]) * 0.2, bb = [[BBOX[0], BBOX[1]], [BBOX[2], BBOX[1]], [BBOX[2], BBOX[3]], [BBOX[0], BBOX[3]], [BBOX[0], BBOX[1]]];
+  const VP = TH.view_pad ?? 0.2, PADX = (BBOX[2] - BBOX[0]) * VP, PADY = (BBOX[3] - BBOX[1]) * VP,   /* view_pad 0＝底圖範圍已經夠大，不准拖到範圍外（永遠不露白） */ bb = [[BBOX[0], BBOX[1]], [BBOX[2], BBOX[1]], [BBOX[2], BBOX[3]], [BBOX[0], BBOX[3]], [BBOX[0], BBOX[1]]];
   MAP = new maplibregl.Map({ container: 'map', style, center: [ilon(c0.x), ilat(c0.y)], zoom: c0.z, minZoom: (TH.min_zoom || 4.6) - 0.8, maxZoom: 10.5, maxBounds: [[BBOX[0] - PADX, Math.max(BBOX[1] - PADY, -80)], [BBOX[2] + PADX, Math.min(BBOX[3] + PADY, 80)]],
     dragRotate: false, pitchWithRotate: false, touchPitch: false, keyboard: false, fadeDuration: 0, attributionControl: false, pixelRatio: DPR, antialias: false, renderWorldCopies: false, maxTileCacheSize: 200 });
   MAP.touchZoomRotate.disableRotation();
   MAP.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+  MAP.addControl(new maplibregl.ScaleControl({ unit: 'metric', maxWidth: MOBILE ? 80 : 130 }), 'bottom-left');   // 比例尺（公里），隨縮放更新
   MAP.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: '底圖：Natural Earth（公有領域）｜MapLibre GL JS' }), 'bottom-right');
   MAP.on('load', () => { if (TH.control && TH.control.border) { const B = TH.control.border, runs = []; let run = [];
       for (let i = 0; i <= B.length; i++) { const p = B[i % B.length]; run.push([p[0], p[1]]); if (p[2] === 'sea' || i === B.length) { if (run.length > 1) runs.push(run); run = []; } }
@@ -688,15 +693,15 @@ function bindUI() {
   renderChips(); buildSheets();
   if (Q.get('glass') === '0') document.body.classList.add('no-blur');
   $('#btn-play').onclick = () => playing ? pause() : play(true);
-  $('#btn-prev').onclick = () => { pause(); const i = KD.findLastIndex(k => k < day - 1e-3); jumpTo(Math.max(i, 0)); };
-  $('#btn-next').onclick = () => { pause(); const i = KD.findIndex(k => k > day + 1e-3); jumpTo(i < 0 ? KD.length - 1 : i); };
+  // 上一個／下一個關鍵日：畫面上不放按鈕了（鍵盤 ←／→、章節清單、時間軸上的日期都能跳）
+  const stepKey = d => { pause(); const i = d < 0 ? KD.findLastIndex(k => k < day - 1e-3) : KD.findIndex(k => k > day + 1e-3); jumpTo(d < 0 ? Math.max(i, 0) : i < 0 ? KD.length - 1 : i); };
   $('#follow').onclick = () => setFollow(true);
   document.querySelectorAll('#speed button').forEach(b => b.onclick = () => setSpeed(+b.dataset.s));
   const tr = $('#tl-track'); let drag = false;
   const seek = ev => { const r = tr.getBoundingClientRect(); setDay(clamp((ev.clientX - r.left) / r.width, 0, 1) * KD[KD.length - 1], true); };
   on(tr, 'pointerdown', ev => { drag = true; pause(); tr.setPointerCapture(ev.pointerId); seek(ev); });
   on(tr, 'pointermove', ev => drag && seek(ev)); on(tr, 'pointerup', () => drag = false);
-  on(window, 'keydown', ev => { if (ev.code === 'Space') { ev.preventDefault(); playing ? pause() : play(true); } if (ev.code === 'ArrowRight') $('#btn-next').click(); if (ev.code === 'ArrowLeft') $('#btn-prev').click(); if (ev.code === 'ArrowUp' || ev.code === 'ArrowDown') { ev.preventDefault(); switchBattle(ev.code === 'ArrowUp' ? -1 : 1); } if (ev.code === 'Escape') closeInfo(); if (ev.key === 'f' && TOUR) setFollow(true); if (ev.key === 't') setTour(!TOUR); if (ev.key === 'l' && selected && selected.type === 'unit') setLock(lockId === selected.id ? null : selected.id); });
+  on(window, 'keydown', ev => { if (ev.code === 'Space') { ev.preventDefault(); playing ? pause() : play(true); } if (ev.code === 'ArrowRight') stepKey(1); if (ev.code === 'ArrowLeft') stepKey(-1); if (ev.code === 'ArrowUp' || ev.code === 'ArrowDown') { ev.preventDefault(); switchBattle(ev.code === 'ArrowUp' ? -1 : 1); } if (ev.code === 'Escape') closeInfo(); if (ev.key === 'f' && TOUR) setFollow(true); if (ev.key === 't') setTour(!TOUR); if (ev.key === 'l' && selected && selected.type === 'unit') setLock(lockId === selected.id ? null : selected.id); });
   document.body.classList.toggle('tour', TOUR); if (TOUR) oobTab = 'ch';
   on($('#info-body'), 'click', onPanelClick); on($('#oob-body'), 'click', onPanelClick); on($('#now'), 'click', onPanelClick); document.body.dataset.view = VIEW;
   $('#lg-branch').innerHTML = [['infantry', '步兵'], ['armor', '裝甲'], ['motorized', '摩托化'], ['air', '空軍'], ['naval', '海軍']].map(([b, t]) => `<div class="lg-row"><img alt="" src="${counterCanvas({ side: 'allied', branch: b, label: '', tier: 1, echelon: '' }, 1).cv.toDataURL()}">${t}</div>`).join('');
@@ -927,7 +932,7 @@ function start() {
   D = data; ENGM = asg.engagements || {}; (asg.assignments || []).forEach(a => { if (a.role === 'commander') ASG[a.unit_id] = a; }); prep(); prepSourced(); measure(); buildSprites(); initMap(); bindUI();
   const qd = Q.get('date'); if (qd) day = clamp(dayOf(qd), 0, KD[KD.length - 1]); if (Q.get('day')) day = clamp(+Q.get('day'), 0, KD[KD.length - 1]);
   setDay(day, true); $('#follow').hidden = follow || !TOUR;
-  setSpeed(Q.get('speed') ? +Q.get('speed') : 1);
+  setSpeed(Q.get('speed') ? +Q.get('speed') : 0.5);
   const vw = Q.get('view'); if (vw) { const [lo, la, z] = vw.split(',').map(Number); setFollow(false); MAP.jumpTo({ center: [lo, la], zoom: z }); }
   else applyCamera(performance.now());
   if (Q.get('sel')) { selectUnit(Q.get('sel'), !vw); if (Q.get('lock') === '1') setLock(Q.get('sel')); } else if (Q.get('eng')) selectEng(Q.get('eng')); else if (Q.get('src') && SRC) openInfo({ type: 'src', id: Q.get('src') });   // v2.3：可以用網址直接開在某個部隊／交戰

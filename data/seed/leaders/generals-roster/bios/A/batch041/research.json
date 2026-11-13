@@ -100,6 +100,22 @@
    "archive_url": null,
    "catalog_id": null,
    "license_code": null
+  },
+  "rf-ipn-armia-wschod": {
+   "title": "Armia Polska na Bliskim i Środkowym Wschodzie",
+   "authors": [
+    "Teodor Gąsiorowski"
+   ],
+   "publisher": "Instytut Pamięci Narodowej（Przystanek Historia）",
+   "published_text": "2025-03-09",
+   "url": "https://przystanekhistoria.pl/pa2/teksty/99388,Armia-Polska-na-Bliskim-i-Srodkowym-Wschodzie.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "波蘭國家記憶研究院（IPN）官方教育網站，具名作者 Teodor Gąsiorowski",
+   "addedAt": "2026-11-13T08:38:29+08:00",
+   "addedBy": "refill-2026-11-12"
   }
  },
  "people": [
@@ -509,10 +525,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-08-10",
-      "end": null
+      "end": "1942-09-12"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "ipn-anders",
@@ -521,6 +537,18 @@
        "quoteLang": "pl",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ipn-armia-wschod",
+       "locator": "全文",
+       "quote": "12 września 1942 r. gen. Władysław Sikorski wydał rozkaz tworzący Armię",
+       "quoteLang": "pl",
+       "evidenceNote": "迄日取全部波蘭部隊改編為「波蘭東方軍」命令日（推論）；該軍由自蘇聯撤出的 Anders 部隊併編，Anders 續任指揮",
+       "accessedOn": "2026-11-13",
        "grade": "A",
        "datePrecision": "day",
        "claimSpan": null,
@@ -541,13 +569,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:anders-polish-army-ussr",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；IPN 傳記只寫1941-08-10 被指派為波蘭軍隊指揮官，未寫卸任日，已查 IPN 傳記 PDF。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:anders-2nd-corps",
      "gapKind": "not_found",
@@ -601,6 +622,14 @@
      "url": "https://szlakinadziei.ipn.gov.pl/sne/exposures/people/9364,Wladyslaw-Albert-Anders-1892-1970.html",
      "result": "no_result",
      "note": "未抓取，預算所限"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Armia Polska w ZSRR Anders 12 września 1942 Armia Polska na Wschodzie",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/99388,Armia-Polska-na-Bliskim-i-Srodkowym-Wschodzie.pdf",
+     "result": "found_A",
+     "note": "IPN Przystanek Historia 文章明載 1942-09-12 命令成立波蘭東方軍、由 Anders 指揮"
     }
    ],
    "majorBattles": [
@@ -619,6 +648,23 @@
      },
      "date": "1939-09-27",
      "sourceKey": "ipn-anders"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:anders-polish-army-ussr",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；IPN 傳記只寫1941-08-10 被指派為波蘭軍隊指揮官，未寫卸任日，已查 IPN 傳記 PDF。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -936,10 +982,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1916-08-01",
-      "end": null
+      "end": "1916-12-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "bucharest-prezan",
@@ -962,6 +1008,18 @@
        "accessedOn": "2026-11-12",
        "grade": "C",
        "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bucharest-prezan",
+       "locator": "全文",
+       "quote": "In December 1916, Prezan was promoted to general of army corps",
+       "quoteLang": "en",
+       "evidenceNote": "依此人下一職或後繼編制起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1049,13 +1107,6 @@
    "roleCandidates": [],
    "gaps": [
     {
-     "target": "position:prezan-4th-army",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；bucharest.ro 只寫1916年8月受命指揮第4軍團，未寫卸任日，已查 bucharest.ro 專文。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:prezan-great-headquarters-chief-2",
      "gapKind": "not_found",
      "note": "待查證：缺起日；bucharest.ro 只寫1918年秋天「重新執掌大本營」，未寫確切起日，止於1920年大本營解散（年），已查 bucharest.ro 專文，故不寫入 positions。",
@@ -1109,6 +1160,14 @@
      "url": "https://generals.dk/general/Prezan/Constantin/Romania.html",
      "result": "unrated",
      "note": "私人彙編，僅作線索，未當出處"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Prezan 4th Army command end 1916",
+     "url": "https://www.bucharest.ro/articles/famous-boulevard-names-marshal-constantin-prezan-one-of-the-heroes-of-the-first-world-war-1169",
+     "result": "found_C",
+     "note": "既有快取：1916年12月改任大本營首長，以此推得迄日"
     }
    ],
    "majorBattles": [
@@ -1119,6 +1178,23 @@
      },
      "date": "1916-12-06",
      "sourceKey": "bucharest-prezan"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:prezan-4th-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；bucharest.ro 只寫1916年8月受命指揮第4軍團，未寫卸任日，已查 bucharest.ro 專文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1395,10 +1471,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1916-08-01",
-      "end": null
+      "end": "1917-07-01"
      },
      "startPrecision": "month",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "bucharest-grigorescu",
@@ -1421,6 +1497,18 @@
        "accessedOn": "2026-11-12",
        "grade": "C",
        "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "europecentenary-grigorescu",
+       "locator": "全文",
+       "quote": "and of the 6th Army Corps (June 1917)",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取1917年6月改任第6軍軍長（月精度）下一單位起日（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -1526,13 +1614,6 @@
    "roleCandidates": [],
    "gaps": [
     {
-     "target": "position:grigorescu-15th-division",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；兩篇專文只寫1916年出任第15師師長，1917年7月改任第6軍軍長或第1軍團司令，均未寫確切卸任日，已查 bucharest.ro、Europe Centenary。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
-    {
      "target": "position:grigorescu-1st-army",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；專文只寫接任第1軍團司令（7月30日／8月12日），未寫卸任日，已查 bucharest.ro、Europe Centenary。",
@@ -1578,6 +1659,14 @@
      "url": "https://www.aosr.ro/wp-content/uploads/2018/08/General-Eremia-Grigorescu.pdf",
      "result": "no_result",
      "note": "curl 逾時 40 秒（兩次）"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Grigorescu Armata 1 command end 1918",
+     "url": "https://www.aosr.ro/wp-content/uploads/2018/08/General-Eremia-Grigorescu.pdf",
+     "result": "no_result",
+     "note": "aosr.ro PDF 抓取逾時（60 秒）；標準搜尋僅得維基類與論壇，不收；第1軍團迄日仍待查證"
     }
    ],
    "majorBattles": [
@@ -1596,6 +1685,23 @@
      },
      "date": "1916-10-01",
      "sourceKey": "europecentenary-grigorescu"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:grigorescu-15th-division",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；兩篇專文只寫1916年出任第15師師長，1917年7月改任第6軍軍長或第1軍團司令，均未寫確切卸任日，已查 bucharest.ro、Europe Centenary。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -1908,10 +2014,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-03-25",
-      "end": null
+      "end": "1944-08-29"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "day",
      "citations": [
       {
        "sourceKey": "ww2ro-3rd",
@@ -1936,6 +2042,18 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ww2ro-3rd",
+       "locator": "全文",
+       "quote": "25 March 1940 – 29 August 1944: 3rd Army",
+       "quoteLang": "en",
+       "evidenceNote": "該頁職涯列表明載第3軍團任期迄 1944-08-29；起日該頁標題寫 1940、內文寫 1941-03-25，起日不動",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -1952,13 +2070,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:dumitrescu-3rd-army",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；WorldWar2.ro 只寫1944年8月23日事變後約三週退役，未寫確切卸任日（亦無資料顯示指揮至退役日止；另有來源稱1943年春曾短暫由他人代理），已查 WorldWar2.ro、Boaru 論文。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:dumitrescu-army-group",
      "gapKind": "not_found",
@@ -1998,6 +2109,14 @@
      "url": "https://www.worldwar2.ro/arr/?article=98",
      "result": "unrated",
      "note": "未抓取"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Petre Dumitrescu 3rd Army end 1944",
+     "url": "https://www.worldwar2.ro/generali/index.php?article=98",
+     "result": "found_C",
+     "note": "既有快取頁面職涯列表載迄日 1944-08-29"
     }
    ],
    "majorBattles": [
@@ -2016,6 +2135,23 @@
      },
      "date": "1942-11-19",
      "sourceKey": "ww2ro-3rd"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:dumitrescu-3rd-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；WorldWar2.ro 只寫1944年8月23日事變後約三週退役，未寫確切卸任日（亦無資料顯示指揮至退役日止；另有來源稱1943年春曾短暫由他人代理），已查 WorldWar2.ro、Boaru 論文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   },
@@ -2212,10 +2348,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1939-12-07",
-      "end": null
+      "end": "1940-01-01"
      },
      "startPrecision": "day",
-     "endPrecision": null,
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "talvisota-suomussalmi",
@@ -2240,6 +2376,30 @@
        "datePrecision": "day",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "talvisota-suomussalmi",
+       "locator": "全文",
+       "quote": "More troops were concentrated in the Suomussalmi area at the end of December.",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取1939年12月底（月精度）下一單位起日（推論）：同段寫新編第9師由其指揮",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "talvisota-suomussalmi",
+       "locator": "全文",
+       "quote": "A new 9th Division was formed under Siilasvuo’s command.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
       }
      ],
      "t14Overlap": "general",
@@ -2249,13 +2409,6 @@
    ],
    "roleCandidates": [],
    "gaps": [
-    {
-     "target": "position:siilasvuo-group-siilasvuo",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；talvisota.fi 只寫1939年12月7日受命指揮及12月底新編第9師，未寫卸任日，已查 talvisota.fi。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-12"
-    },
     {
      "target": "position:siilasvuo-9th-division",
      "gapKind": "not_found",
@@ -2317,6 +2470,22 @@
      "url": "https://generals.dk/general/Siilasvuo/Hjalmar_Fridolf/Finland.html",
      "result": "unrated",
      "note": "私人彙編，僅作線索（生卒、晉升）；未當出處"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Siilasvuo 9th Division command 1939-1940",
+     "url": "https://talvisota.fi/en/battles/north-finland-group/the-battle-of-suomussalmi-1939/",
+     "result": "found_C",
+     "note": "既有快取：1939年12月底新編第9師歸其指揮"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Hjalmar Siilasvuo Kansallisbiografia 9. divisioona",
+     "url": "https://talvisota.fi/en/battles/north-finland-group/",
+     "result": "not_relevant",
+     "note": "搜尋僅得維基類與個人網站，不收"
     }
    ],
    "majorBattles": [
@@ -2327,6 +2496,23 @@
      },
      "date": "1939-12-11",
      "sourceKey": "talvisota-suomussalmi"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:siilasvuo-group-siilasvuo",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；talvisota.fi 只寫1939年12月7日受命指揮及12月底新編第9師，未寫卸任日，已查 talvisota.fi。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
     }
    ]
   }

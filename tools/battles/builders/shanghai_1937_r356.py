@@ -12,6 +12,10 @@ if len(sys.argv) < 2 or sys.argv[1] != "shanghai_1937":
 BATTLE = sys.argv[1]
 _C = Cites(BATTLE)
 J, JA, JB, SU, MN = (_C.short(k) for k in ("jm179", "jacar-c13071346000", "jacar-c11112056100", "su2015", "mnd2017"))
+# 主管 2026-11-13 20:56：兩件 JACAR 戰鬥詳報（歩34 大場鎮、歩38 滸浦鎮），只引「内容」欄
+JC, JD = (_C.short(k) for k in ("jacar-c11111926900", "jacar-c11111935000"))
+JD_NOTE = "JACAR C11111935000 情報「佐々木支隊ハ本十三日重藤兵団ニ続イテ上陸シ」支持 11/13（或之前）登陸，但未出現「白茆口」地名，且同段翻刻另作「十二月十三日」（與標題 11/14–15 月份矛盾）；日期仍留空"
+JDQ = JD("佐々木支隊ハ本十三日重藤兵団ニ続イテ上陸シ")
 OUT = REPO / "data/seed/battles" / BATTLE
 _OP = json.loads((OUT / "osm-places.json").read_text())
 OSM, AC = _OP["results"], _OP.get("adminCentre", {})
@@ -54,10 +58,10 @@ R3("cn-63-div", "1937-11-05", "金山衛附近", "金山卫", "defending", [MN("
 R3("cn-107-div", "1937-11-08", "得勝口", None, "defending", [MN("江北岸。8日，日軍擊退107師，由得勝口渡")], dnote="得勝口 OSM 查無（黃浦江渡口）", attr="日軍擊退 107 師後由得勝口渡江向松江")
 R3("cn-15-ag", "1937-11-12", "瀏河鎮至嘉定一線", "浏河镇", "covering_withdrawal", [MN("21集團軍固守瀏河鎮至嘉定一線，掩護戰區"), MN("主力撤退。該兩集團軍於12日夜達成任務後")], also=[("嘉定", "嘉定城")], attr="上一行「所幸第15、」接本行「21集團軍」（同一欄）")
 R3("cn-21-ag", "1937-11-12", "瀏河鎮至嘉定一線", "浏河镇", "covering_withdrawal", [MN("21集團軍固守瀏河鎮至嘉定一線，掩護戰區"), MN("主力撤退。該兩集團軍於12日夜達成任務後")], also=[("嘉定", "嘉定城")])
-R3("jp-16-div", None, "白茆口、滸浦口（Paimaokou）", "白茆", "landed", [MN("同時以新增之第16師配屬重藤旅團於白茆"), MN("口、滸浦口登陸，企圖切斷國軍主力退路。"), J("(the 16th Division and an element of the Shigeto"), J("kou on 16 November, landed on the ]Jth.")],
-   dnote="JM-179 原定 16 日；mnd2017 未載日期", extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」"), "dateUncertain": OCRQ})
-R3("jp-shigeto-det", None, "白茆口、滸浦口（Paimaokou）", "白茆", "landed", [MN("同時以新增之第16師配屬重藤旅團於白茆"), J("(the 16th Division and an element of the Shigeto"), J("kou on 16 November, landed on the ]Jth.")], attr="JM：an element of the Shigeto Detachment", extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」"), "dateUncertain": OCRQ})
-R3("jp-16-div", None, "ten kilometers east of Changshu", "常熟", "reached", [J("opposition and advanced to within ten kilometers east of Changshu")], attr="常熟以東 10 km，place 只取常熟", dnote="JM 同日（same day），即白茆口登陸日", extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」"), "dateUncertain": OCRQ})
+R3("jp-16-div", None, "白茆口、滸浦口（Paimaokou）", "白茆", "landed", [MN("同時以新增之第16師配屬重藤旅團於白茆"), MN("口、滸浦口登陸，企圖切斷國軍主力退路。"), J("(the 16th Division and an element of the Shigeto"), J("kou on 16 November, landed on the ]Jth."), JDQ],
+   dnote="JM-179 原定 16 日；mnd2017 未載日期", extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）"), "dateUncertain": OCRQ, "candidateNote": JD_NOTE})
+R3("jp-shigeto-det", None, "白茆口、滸浦口（Paimaokou）", "白茆", "landed", [MN("同時以新增之第16師配屬重藤旅團於白茆"), J("(the 16th Division and an element of the Shigeto"), J("kou on 16 November, landed on the ]Jth."), JDQ], attr="JM：an element of the Shigeto Detachment", extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）"), "dateUncertain": OCRQ, "candidateNote": JD_NOTE})
+R3("jp-16-div", None, "ten kilometers east of Changshu", "常熟", "reached", [J("opposition and advanced to within ten kilometers east of Changshu")], attr="常熟以東 10 km，place 只取常熟", dnote="JM 同日（same day），即白茆口登陸日", extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）"), "dateUncertain": OCRQ, "candidateNote": JD_NOTE})
 R3("cn-40-div", "1937-11-13", "江防（地點未載）", None, "defending", [MN("13日日軍擊破任江防之第40師，並以空軍猛")], dnote="地點出處未載")
 # ---------- R5 ----------
 eng = []
@@ -76,7 +80,7 @@ E("wusong-liuhe", "吳淞至瀏河鎮間反登陸作戰", "吳淞至瀏河鎮間
   [MN("(二)吳淞至瀏河鎮間反登陸作戰(8月23"), MN("23日晨日軍第3、11師團各以一部分別"), MN("15集團軍自8月23日至9月11日間，分向吳淞"), JA("上海派遣軍ハ八月二十三日川沙鎮"), J("On . 23 August, the Shanghai Expeditionary Army landed at the")],
   conflict="止日：mnd2017 節名 9/10；同文正文 15 集團軍攻擊至 9/11。取節名 9/10", note="日方攻方含「第3、9、11師團及重籐旅團」（mnd2017 正文）")
 E("defensive-phase", "國軍守勢時期", "國軍守勢時期（蘊藻濱、大場鎮）", "1937-09-06", "1937-11-05", "蘊藻濱；大場鎮附近", "大场镇", ["jp-sea", "jp-9-div", "jp-13-div", "jp-101-div"], ["cn-central", "cn-left-wing"],
-  [MN("(三)國軍守勢時期(9月6日至11月5日)"), MN("至10月1日，國軍左翼方面被迫退守楊涇"), MN("師團、第101師團及戰車聯隊、重砲兵聯隊"), JA("十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ"), J("Toward the end of the month, however, it started to break")],
+  [MN("(三)國軍守勢時期(9月6日至11月5日)"), MN("至10月1日，國軍左翼方面被迫退守楊涇"), MN("師團、第101師團及戰車聯隊、重砲兵聯隊"), JA("十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ"), J("Toward the end of the month, however, it started to break"), JC("聯隊ノ果敢ナル大場鎮攻略ハ師団全般ノ攻撃ヲ容易")],
   note="涵蓋大場鎮失守；大場失守日出處只到「同月下旬」（JACAR），見 R6")
 E("suzhou-creek", "蘇州河", "蘇州河之戰", None, "1937-11-09", "蘇州河（同河畔ノ既設特火点陣地）", None, ["jp-sea"], ["cn-central"],
   [JA("同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ"), JA("九日遂ニ敵ヲ撃退シ十一日上海南市ヲ掃蕩セリ"), J("through enemy positions and pursued the enemy toward the Suchou Ho.")], prec="approx", zhb="執行者譯名",
@@ -88,8 +92,8 @@ E("hangzhou-bay", "杭州灣北岸反登陸作戰", "杭州灣北岸反登陸作
   [MN("(四)杭州灣北岸反登陸作戰(11月5日至"), MN("11月5日拂曉，日軍以其第10軍在金山"), MN("江北岸。8日，日軍擊退107師，由得勝口渡"), JB("五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ"), J("As soon as the lOth Army landed in the vicinity of Hangchou")],
   note="第 6、18 師團與國崎支隊隨第十軍航渡（JACAR c111 上文），各自登陸點出處未分")
 E("baimao-landing", "白茆口登陸", "白茆口、滸浦口登陸", None, None, "白茆口、滸浦口（Paimaokou）", "白茆", ["jp-16-div", "jp-shigeto-det"], [],
-  [MN("同時以新增之第16師配屬重藤旅團於白茆"), MN("口、滸浦口登陸，企圖切斷國軍主力退路。"), J("kou on 16 November, landed on the ]Jth."), J("It enoountered. very little")], zhb="出處原文（mnd2017）",
-  note="JM-179：幾無抵抗；守方出處未載", status="partial", extra={"periodCandidate": {"start": CAND("1937-11-13", "JM-179 OCR「]Jth」"), "end": CAND("1937-11-13", "JM-179 OCR「]Jth」")}, "periodUncertain": OCRQ})
+  [MN("同時以新增之第16師配屬重藤旅團於白茆"), MN("口、滸浦口登陸，企圖切斷國軍主力退路。"), J("kou on 16 November, landed on the ]Jth."), J("It enoountered. very little"), JDQ], zhb="出處原文（mnd2017）",
+  note="JM-179：幾無抵抗；守方出處未載", status="partial", extra={"periodCandidate": {"start": CAND("1937-11-13", "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）"), "end": CAND("1937-11-13", "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）")}, "periodUncertain": OCRQ, "candidateNote": JD_NOTE})
 E("retreat-pursuit", "轉進作戰", "轉進作戰（日軍追擊至常熟—蘇州—嘉興線）", "1937-11-08", "1937-11-26", "京滬兩側地區；吳福線；錫澄線", None, ["jp-ccaa", "jp-sea", "jp-10-army", "jp-16-div"], ["cn-3rd-war-zone", "cn-9-ag", "cn-15-ag", "cn-19-ag", "cn-21-ag"],
   [MN("(五)轉進作戰(11月8日至12月7日)"), J("the Chinese began a general retreat on 12 Novem.ber"), J("12 November, the Expeditionary Army began a full-scale pursuit and"), MN("擊，掩護友軍通過。19日追擊部隊已進抵至"), MN("常熟、吳興、嘉興之線(達日軍大本營原定"), MN("興激戰，迄26日吳興失陷，第7軍向孝豐轉")],
   conflict="起日：mnd2017 11/8（轉進令）、JM 11/12（全面撤退／追擊開始）；止日 mnd2017 12/7，本表截至主期止日 11/26（吳興失陷）")
@@ -109,13 +113,13 @@ def S(asin, pk, date, ctrl, ev, cites, status="sourced", note=None, conflict=Non
 S("呉淞（呉淞桟橋附近）／吳淞", "吴淞街道", "1937-08-23", "axis", "landed", [JA("呉淞桟橋附近ニ上陸シテ"), MN("於吳淞、寶山、川沙口附近地區登陸，擊破")], status="partial", note="登陸點，非全鎮控制；吳淞鎮全面易手日出處未載")
 S("閘北", "闸北", "1937-10-26", None, "main_force_withdrew_garrison_left", [SU("同日夜間，淞滬前線國軍移轉陣"), SU("地，並在閘北留一團死守，以「感動中外」")], status="partial",
   dnote="su2015「26 日……同日夜間」，上下文為 10 月", note="國軍主力移轉、留一團死守；日軍占領日出處未載，controllerAfter 留空")
-S("大場鎮", "大场镇", None, "axis", "captured", [JA("十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ"), JA("同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ")], status="partial", dp="十月下旬",
-  dnote="出處只到「十月下旬」（JACAR「同月下旬」）；主管 2026-11-13 16:14 Q6：精度記十月下旬，10/26 只作候選，不再找來源",
+S("大場鎮", "大场镇", None, "axis", "captured", [JA("十月上旬ヨリ重点ヲ大場鎮附近ニ指向シ攻撃セシガ"), JA("同月下旬戦況漸ク進展ス軍ハ直チニ蘇州河ニ向ヒ追撃シ"), JC("聯隊ノ果敢ナル大場鎮攻略ハ師団全般ノ攻撃ヲ容易"), JC("同日正午頃敵ノ主陣地ヲ奪取シタリ"), JC("二十七日蘇州河ニ敵ヲ圧迫セリ")], status="partial", dp="十月下旬",
+  dnote="出處只到「十月下旬」（JACAR「同月下旬」）；主管 2026-11-13 16:14 Q6：精度記十月下旬，10/26 只作候選，不再找來源；JACAR C11111926900（歩34 戦闘詳報）：10/25 正午奪取敵主陣地、10/27 壓迫至蘇州河，「大場鎮攻略」未明載日，10/25 與 10/26 皆只作候選",
   extra={"dateRange": {"from": "1937-10-21", "to": "1937-10-31", "label": "十月下旬"}, "dateCandidate": CAND("1937-10-26", "常見說法；本輪 A/B 出處未見")}, note="控制方為日軍屬推定（下旬戰況進展、轉向蘇州河追擊）")
 S("金山衛（金出衛城南方）", "金山卫", "1937-11-05", "axis", "landed", [MN("11月5日拂曉，日軍以其第10軍在金山"), MN("衛附近行登陸，擊破國軍薄弱守備部隊(63"), JB("五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ")])
 S("上海南市／Shanghai", "上海南市", "1937-11-11", "axis", "cleared", [JA("九日遂ニ敵ヲ撃退シ十一日上海南市ヲ掃蕩セリ"), J("12 November, the Expeditionary Army began a full-scale pursuit and"), J("cleared Shanghai and its vicinity of Chinese troops.")],
   conflict="JACAR：11/11 掃蕩南市；JM-179：11/12 起追擊並肅清上海及附近。取 JACAR 11/11（南市）", note="上海公共租界與法租界不在此列（主權／控制另見 R8）")
-S("白茆口", "白茆", None, "axis", "landed", [MN("同時以新增之第16師配屬重藤旅團於白茆"), J("kou on 16 November, landed on the ]Jth.")], status="partial", dp=None, extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」"), "dateUncertain": OCRQ})
+S("白茆口", "白茆", None, "axis", "landed", [MN("同時以新增之第16師配屬重藤旅團於白茆"), J("kou on 16 November, landed on the ]Jth."), JDQ], status="partial", dp=None, extra={"dateCandidate": CAND("1937-11-13", "JM-179 OCR「]Jth」；JACAR C11111935000 旁證（見 candidateNote）"), "dateUncertain": OCRQ, "candidateNote": JD_NOTE})
 for asin, pk in [("常熟（Changshu）", "常熟"), ("蘇州／吳縣（Suchou）", "苏州"), ("嘉興（Chiahsing）", "嘉兴")]:
     S(asin, pk, "1937-11-19", "axis", "line_reached", [J("advanced to the line connecting Cba~ahu, Suchou and ClUAhai!lg"), J("on 19 ~ovEmber"), MN("擊，掩護友軍通過。19日追擊部隊已進抵至"), MN("常熟、吳興、嘉興之線(達日軍大本營原定"), MN("追擊，先頭已進抵至常熟-吳縣-嘉興之線，")],
       conflict="mnd2017 同文兩處：「常熟、吳興、嘉興之線」與「常熟-吳縣-嘉興之線」；JM 作 Changshu–Suchou–Chiahsing。採吳縣（蘇州）", note="抵達線，非城市攻占日；JM OCR 地名照錄（Cba~ahu＝Changshu、ClUAhai!lg＝Chiahsing）")

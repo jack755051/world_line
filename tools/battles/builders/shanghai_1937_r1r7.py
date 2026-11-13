@@ -12,6 +12,7 @@ if len(sys.argv) < 2 or sys.argv[1] != "shanghai_1937":
 BATTLE = sys.argv[1]
 _C = Cites(BATTLE)
 J, J70, JA, JB, SU, CH, MN = (_C.short(k) for k in ("jm179", "jm70", "jacar-c13071346000", "jacar-c11112056100", "su2015", "chang2016", "mnd2017"))
+JD = _C.short("jacar-c11111935000")  # 主管 2026-11-13 20:56
 OUT = REPO / "data/seed/battles" / BATTLE
 MS = "1937-08-13"
 NOTE = "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null"
@@ -72,7 +73,7 @@ U("jp-kunisaki-det", "国崎支隊（Kunisaki Detachment）", "國崎支隊", "d
   [JB("八口浦ニ於テ北支那方面ヨリ転用セラレタル第六師団及国崎支隊等ヲ掌握シ"), CH("由華北調用第六師團及第五師團的一部（國崎支隊）")], ZS("chang2016", "國崎支隊"), start="1937-11-05",
   note="第五師團之一部（chang2016）；JM-179 註：主力為步兵第九旅團")
 U("jp-shigeto-det", "重藤支隊（Shigeto Detachment）", "重藤支隊", "detachment", "jp-sea",
-  [J("was commanded by Lt Gen Chiaki Shigeto"), MN("其第3、9、11師團及重籐旅團")], ZT("mnd2017 作「重籐旅團」、圖上作「重藤」；JM-179 作 Detachment，取支隊，待審"), start=None,
+  [J("was commanded by Lt Gen Chiaki Shigeto"), MN("其第3、9、11師團及重籐旅團"), JD("（二）重藤兵団（重藤少将ノ指揮スル歩兵第三聯隊")], ZT("mnd2017 作「重籐旅團」、圖上作「重藤」；JM-179 作 Detachment，取支隊，待審"), start=None,
   note="JM-179 註：9/7 配屬上海派遣軍（OCR「7 Septenb er」），臺灣守備隊編成；抵達日未載（起日空）")
 U("jp-amaya-det", "天谷支隊（Amaya Detachment）", "天谷支隊", "detachment", "jp-11-div",
   [J("(minus the Amaya Detachment)"), CH("9月2日，另從青島增援的天谷支隊從海路抵達吳淞外海")], ZS("chang2016", "天谷支隊"), start="1937-09-02",

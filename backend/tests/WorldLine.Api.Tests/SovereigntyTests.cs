@@ -157,6 +157,21 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         var bp2 = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");
         Assert.Equal("baseline", bp2.GetProperty("confidenceBasis").GetString());
         Assert.Equal("year", bp2.GetProperty("startDatePrecision").GetString()); // 起始日只確定到年
+        // beyond_source：形狀沿用前一筆，但前一筆的出處撐不到這一段 → 不沿用前一筆的已查證；再往後接續它的也一樣
+        var fourth = await k.Id(await Post(k, Body(hu, ohm, "1923-01-01", "1923-06-01")));
+        var fifth = await k.Id(await Post(k, Body(hu, ohm, "1923-06-01", "1924-01-01")));
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand($"INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id) VALUES ('{fourth}', 'beyond_source', '{third}'), ('{fifth}', 'continuation', '{fourth}')", c);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        foreach (var rec in new[] { (fourth, "1923-02-01"), (fifth, "1923-07-01") })
+        {
+            var pb = (await FeatureOn(k, rec.Item2, rec.Item1))!.Value.GetProperty("properties");
+            Assert.Equal("needs_check", pb.GetProperty("confidence").GetString());
+            Assert.Equal("beyond_source", pb.GetProperty("confidenceBasis").GetString());
+        }
 
         // 國界本身的引文：期初既有的紀錄沒有事件可補，附一筆 A 級的地圖集圖版 → verified；資料集不能當出處
         var atlas = await k.Source(kind: "atlas_map", title: "Atlas 1907", grade: "A");

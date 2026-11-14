@@ -303,6 +303,8 @@ public sealed class SovereigntyRecord
 /// </summary>
 public sealed class SovereigntyRecordLink
 {
+    // kind 另有 beyond_source（Tai 2026-11-14「切段」）：形狀沿用前一筆，但前一筆的出處是某個年代的快照（例：1910 年的地圖集），
+    // 撐不到這一段（憲法 I1）。這一段不沿用前一筆的可信程度，要有自己的出處才算已查證。
     public Guid Id { get; set; }
     public Guid RecordId { get; set; }
     public string Kind { get; set; } = "";

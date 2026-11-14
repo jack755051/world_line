@@ -238,6 +238,10 @@ supersedes: null
 
 ## 修訂紀錄
 
+### 2026-11-14 使用者拍板：網域字樣規則的誤判例外
+
+Tai 2026-11-14 選擇修正 `www.bbs.bt`（Bhutan Broadcasting Service，不丹國家廣播公司）被「網域含 bbs 字樣＝論壇」規則誤擋一事。`docs/source-rules.md` §2 新增一條：字樣規則可列誤判例外（`data/source-policy.json` 的 `bannedHostLabelExceptions`），只免除字樣規則，來源照常評等，指名禁用的網域照擋。本文條文（R7、I6）不變。
+
 ### 2026-11-13 使用者拍板：資料來源規則（D1–D6）
 
 Tai 2026-11-13 回覆「D1–D6 都照建議」，核准 `docs/source-rules.md` §8 六項：

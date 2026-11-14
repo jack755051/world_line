@@ -26,6 +26,8 @@ def banned(url, as_fact_source=True):
     if not h: return None
     for b in BANNED_HOSTS + (FILE_HOSTS if as_fact_source else ()):
         if h == b or h.endswith("." + b): return b
+    if any(h == e or h.endswith("." + e) for e in POLICY.get("bannedHostLabelExceptions", ())):
+        return None  # 字樣規則的誤判例外（例：bbs.bt 是不丹國家廣播公司，不是論壇）
     for label in h.split("."):
         if label in POLICY["bannedHostLabels"]: return label
     return None

@@ -28,6 +28,7 @@
 
 - **資料集不是出處。** OpenHistoricalMap 等資料集只提供幾何（形狀），不能當作「這條疆界在這一天生效」的出處。
 - **索引不是出處。** Wikipedia 列表、Wikidata 編號只能用來找人、找候選值，值本身要另外用 A／B 來源核對。
+- **網域字樣規則有誤判例外**（Tai 2026-11-14）。網域裡有一段剛好是 forum、bbs、blog、wiki 等字樣就不收，但字樣不是那個意思時（例：`bbs.bt` 是不丹國家廣播公司 Bhutan Broadcasting Service），列進 `source-policy.json` 的 `bannedHostLabelExceptions` 就只免除字樣規則；來源本身照常評等，指名禁用的網域照擋。
 - **轉錄本記 B。** 讀到的不是原件，而是第三方逐字轉錄的版本時，原件是 A 的一律記成 B，並在評等依據寫明是轉錄本。
 - **Wikisource 是轉錄本，不是 Wikipedia**（Tai 2026-11-14）。只在同時符合三個條件時才收，等級照上一條記 B：轉錄的是官方文件或原始文獻；該頁附原書掃描可以對照（有 Index 頁）；引文在頁面上逐字找得到。Wikipedia、Wikidata 仍然不收，只當索引。
 - 禁用網域只維護一份清單（`SourcePolicy`），所有檢查程式共用。現在有 6 份不同的清單。

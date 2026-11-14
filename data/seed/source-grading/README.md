@@ -305,6 +305,8 @@ python3 -I tools/db/apply_border_events.py data/seed/source-grading/borders-with
 
 另外：`data/seed/australia-1914` 補上澳洲 1914 年上半年的空白；四筆跨洲紀錄補比對完（丹麥、鄂圖曼各附一筆引文；西班牙的撒哈拉北段、法國的阿爾及利亞南界無法確認）。全面檢查「陸地上沒有紀錄的地方」的結果在 `coverage-gaps.md`。
 
+主權爭議（憲法 R6、I3，2026-11-14 起有資料表）：拉布拉多（`data/seed/labrador-dispute`）、北查科與亞馬遜上游（`data/seed/south-america-disputes`）已標記。先前記的「資料庫把查科大半算給巴拉圭」是誤判，兩國紀錄本來就重疊。
+
 下面的總表是修正之前的比對結果；修正之後，非洲的「已查證」多 3 筆、「不符或待查」少 3 筆，亞洲的暹羅仍算待查。逐筆現況以 `baseline-borders.csv` 為準。
 
 ### 165 筆期初既有國界的總表

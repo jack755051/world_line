@@ -8,6 +8,7 @@ import { formatPartialDate, formatTerm, inclusiveEnd, pickLocalized, portraitDis
 import { detailCitationItems, fieldSourceItems, portraitSourceItems, termSourceItems } from '../../core/person-sources';
 import { MOTION_SPEC, MotionService, type MotionContext, type MotionTimeline } from '../../core/motion';
 import { SourceDisclosure, type SourceItem } from '../source-disclosure/source-disclosure';
+import { numberSources } from '../../core/footnotes';
 import { lifeText } from './life-format';
 
 /** 根元素 data-motion-state（§17.3）；關閉卸載後元素不存在。 */
@@ -46,7 +47,6 @@ const TXT = {
 type SectionKey = 'basics' | 'bio' | 'terms' | 'positions' | 'roles' | 'sources';
 
 /** 一筆去重後的來源（底部註腳）：編號、內容、用在哪些欄位。 */
-interface Footnote { n: number; item: SourceItem; usedFor: string[] }
 
 let seq = 0;
 const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government: 1 } as Record<string, number>)[r] ?? 2;
@@ -486,23 +486,7 @@ export class PersonDialog {
     return out;
   });
   /** 去重後的註腳（同一出處用在多個欄位只列一次）＋每個欄位對應的編號。 */
-  private readonly notes = computed(() => {
-    const list: Footnote[] = [];
-    const byKey = new Map<string, Footnote>();
-    const fieldNotes = new Map<string, number[]>();
-    for (const f of this.fieldItems()) {
-      const ns: number[] = [];
-      for (const it of f.items) {
-        const k = [it.kind, it.title, it.url ?? '', it.locator ?? '', it.note ?? '', it.licenseCode ?? '', it.quote ?? ''].join('\u0001');
-        let fn = byKey.get(k);
-        if (!fn) { fn = { n: list.length + 1, item: it, usedFor: [] }; byKey.set(k, fn); list.push(fn); }
-        if (!fn.usedFor.includes(f.label)) fn.usedFor.push(f.label);
-        if (!ns.includes(fn.n)) ns.push(fn.n);
-      }
-      fieldNotes.set(f.key, ns);
-    }
-    return { list, fieldNotes };
-  });
+  private readonly notes = computed(() => numberSources(this.fieldItems()));
   protected readonly footnotes = computed(() => this.notes().list);
   protected notesFor(key: string): number[] { return this.notes().fieldNotes.get(key) ?? []; }
   /** 缺來源的欄位（只列有值或有段落的；沒有值的欄位本來就顯示「尚無資料」）。 */

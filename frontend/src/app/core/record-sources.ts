@@ -3,6 +3,7 @@ import type { CapitalRecord } from './api/world-line-api';
 import type { SourceItem } from '../shared/source-disclosure/source-disclosure';
 
 type CitationDto = components['schemas']['CitationDto'];
+type GeometryProvenanceDto = components['schemas']['GeometryProvenanceDto'];
 
 /**
  * 國界卡片的資料來源 → 共用的來源項（與人物卡同一個 wl-source-disclosure 元件；Tai 2026-11-14：出處獨立成自己的區塊）。
@@ -23,4 +24,11 @@ export function capitalSourceItems(cap: Pick<CapitalRecord, 'sourceRef'> | null 
   if (!text || text.startsWith('待查證')) return [];
   // 短的（一行）直接當標題；長的放進說明，標題用欄位名，避免整段擠在標題列
   return text.length <= 60 ? [{ kind: 'legacy', title: text }] : [{ kind: 'legacy', title, note: text }];
+}
+
+/** 國界形狀的來源（資料集、引用位置、授權與署名）。資料集只提供形狀，不是這段疆界的出處。 */
+export function geometrySourceItems(g: GeometryProvenanceDto | null | undefined, extraNote?: string | null): SourceItem[] {
+  if (!g) return [];
+  const note = [g.attribution, extraNote].filter((x): x is string => !!x && x.trim() !== '').join('\n') || null;
+  return [{ kind: 'structured', title: g.sourceTitle, publisher: g.publisher ?? null, locator: g.locator, licenseCode: g.geometryLicense, note, sourceKind: 'dataset' }];
 }

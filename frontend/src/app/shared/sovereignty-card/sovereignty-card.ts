@@ -11,7 +11,8 @@ import { campOf, type Evidence } from '../map/map-style';
 import { CitationPopover } from '../citation/citation-popover';
 import { PersonCard } from '../person-card/person-card';
 import { SourceDisclosure } from '../source-disclosure/source-disclosure';
-import { capitalSourceItems, citationItems } from '../../core/record-sources';
+import { capitalSourceItems, citationItems, geometrySourceItems } from '../../core/record-sources';
+import { numberSources } from '../../core/footnotes';
 import { groupLeaders } from '../../core/person-format';
 
 /** 控制區欄位（從 atlas 頁傳入，顯示在面板「概要」分頁的控制區區塊）。 */
@@ -25,7 +26,7 @@ const TXT = {
   'zh-Hant': {
     period: '國界期間', status: '性質', deJure: '國界', notSovereign: '非主權（佔領行政區）', start: '起始變動', end: '結束變動',
     none: '本試驗範圍前即存在（不追溯）', open: '本試驗範圍內未結束', camp: '陣營（補充）',
-    campNone: '陣營未建置', dispute: '主權爭議', disputeLayered: '主權並存', disputeLayeredNote: '名義上的主權與實際治理並存，不是兩方爭地；本系統兩者都記。', disputeNote: '這塊地有不只一方主張；本系統不裁判誰對。', disputeNoRecord: '查無出處，未畫範圍', disputeEffective: '當時實際生效', confBeyond: '形狀沿用前一段，但前一段的出處是 1910 年前後的地圖，證明不到這一段；這一段還沒有自己的出處', confidence: '可信程度', confVerified: '已查證', confPending: '待查證', confDataset: '國界形狀取自資料集；起訖日還沒有正式出處', confRecordB: '這段疆界有出處，但只有一個 B 級來源', startMonth: '起始日只確定到月；畫面用的日期取自資料集，沒有正式出處', startYear: '起始日只確定到年；畫面用的日期取自資料集，沒有正式出處', borderSources: '疆界出處', grade: '等級', confBaseline: '1908 年起點時既有的疆界；形狀取自資料集，還沒有正式出處', confNew: '這個政權或領地是新出現的，但還沒有記載它成立的事件與出處', confChange: '疆界在這一天有變動，但還沒有記載變動原因的事件與出處', confMinor: '形狀與前一段只有細微差異，可能是資料版本不同，也可能是小幅調整，尚未確認', confNoCite: '起始變動沒有出處', confBelow: '起始變動有出處，但還不到已查證的門檻（一筆 A 級，或兩個獨立來源的 B 級）', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
+    campNone: '陣營未建置', dispute: '主權爭議', disputeLayered: '主權並存', disputeLayeredNote: '名義上的主權與實際治理並存，不是兩方爭地；本系統兩者都記。', disputeNote: '這塊地有不只一方主張；本系統不裁判誰對。', disputeNoRecord: '查無出處，未畫範圍', disputeEffective: '當時實際生效', confBeyond: '形狀沿用前一段，但前一段的出處是 1910 年前後的地圖，證明不到這一段；這一段還沒有自己的出處', sourcesTitle: '資料來源', usedFor: '用於', sourceRef: '來源', noCitation: '尚無正式出處', eventBelow: '有出處，但還不到已查證的門檻（一筆 A 級，或兩個獨立來源的 B 級）', confidence: '可信程度', confVerified: '已查證', confPending: '待查證', confDataset: '國界形狀取自資料集；起訖日還沒有正式出處', confRecordB: '這段疆界有出處，但只有一個 B 級來源', startMonth: '起始日只確定到月；畫面用的日期取自資料集，沒有正式出處', startYear: '起始日只確定到年；畫面用的日期取自資料集，沒有正式出處', borderSources: '疆界出處', grade: '等級', confBaseline: '1908 年起點時既有的疆界；形狀取自資料集，還沒有正式出處', confNew: '這個政權或領地是新出現的，但還沒有記載它成立的事件與出處', confChange: '疆界在這一天有變動，但還沒有記載變動原因的事件與出處', confMinor: '形狀與前一段只有細微差異，可能是資料版本不同，也可能是小幅調整，尚未確認', confNoCite: '起始變動沒有出處', confBelow: '起始變動有出處，但還不到已查證的門檻（一筆 A 級，或兩個獨立來源的 B 級）', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
     loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於', verifiedTag: '已查證', showOnMap: '在地圖上看', battle: '戰役', pendingTag: '待考證',
@@ -44,7 +45,7 @@ const TXT = {
   en: {
     period: 'Valid', status: 'Status', deJure: 'Border', notSovereign: 'Not sovereign (occupation administration)', start: 'Began with', end: 'Ended with',
     none: 'Existed before this trial (not traced)', open: 'Not ended within this trial', camp: 'Camp (supplement)',
-    campNone: 'Camp not set', dispute: 'Sovereignty dispute', disputeLayered: 'Layered sovereignty', disputeLayeredNote: 'Nominal sovereignty and actual government stood side by side; this was not a territorial quarrel. Both are recorded.', disputeNote: 'More than one party claimed this land; this system does not rule on who was right.', disputeNoRecord: 'no source found; extent not drawn', disputeEffective: 'in effect at the time', confBeyond: 'Same shape as the preceding period, whose sources are maps of about 1910 and do not reach this period; no source of its own yet', confidence: 'Confidence', confVerified: 'Verified', confPending: 'Pending verification', confDataset: 'Border shape comes from a dataset; its dates have no formal source yet', confRecordB: 'This border has a source, but only one grade-B source', startMonth: 'The start date is certain only to the month; the day shown comes from the dataset and has no formal source', startYear: 'The start date is certain only to the year; the day shown comes from the dataset and has no formal source', borderSources: 'Border sources', grade: 'grade', confBaseline: 'Border as it stood at the 1908 starting point; shape comes from a dataset and has no formal source yet', confNew: 'This regime or territory is new here, but the event that created it has not been recorded with a source', confChange: 'The border changed on this day, but the event behind the change has not been recorded with a source', confMinor: 'The shape differs only slightly from the previous segment; it may be a dataset revision or a small adjustment — not yet confirmed', confNoCite: 'The starting change has no source', confBelow: 'The starting change is sourced but below the verified threshold (one grade-A source, or grade-B sources from two independent families)', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
+    campNone: 'Camp not set', dispute: 'Sovereignty dispute', disputeLayered: 'Layered sovereignty', disputeLayeredNote: 'Nominal sovereignty and actual government stood side by side; this was not a territorial quarrel. Both are recorded.', disputeNote: 'More than one party claimed this land; this system does not rule on who was right.', disputeNoRecord: 'no source found; extent not drawn', disputeEffective: 'in effect at the time', confBeyond: 'Same shape as the preceding period, whose sources are maps of about 1910 and do not reach this period; no source of its own yet', sourcesTitle: 'Sources', usedFor: 'Used for', sourceRef: 'Source', noCitation: 'No formal source yet', eventBelow: 'Sourced, but below the threshold for verified (one grade A, or two independent grade B sources)', confidence: 'Confidence', confVerified: 'Verified', confPending: 'Pending verification', confDataset: 'Border shape comes from a dataset; its dates have no formal source yet', confRecordB: 'This border has a source, but only one grade-B source', startMonth: 'The start date is certain only to the month; the day shown comes from the dataset and has no formal source', startYear: 'The start date is certain only to the year; the day shown comes from the dataset and has no formal source', borderSources: 'Border sources', grade: 'grade', confBaseline: 'Border as it stood at the 1908 starting point; shape comes from a dataset and has no formal source yet', confNew: 'This regime or territory is new here, but the event that created it has not been recorded with a source', confChange: 'The border changed on this day, but the event behind the change has not been recorded with a source', confMinor: 'The shape differs only slightly from the previous segment; it may be a dataset revision or a small adjustment — not yet confirmed', confNoCite: 'The starting change has no source', confBelow: 'The starting change is sourced but below the verified threshold (one grade-A source, or grade-B sources from two independent families)', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
     loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added', verifiedTag: 'Verified', showOnMap: 'Show on map', battle: 'Battle', pendingTag: 'Unverified',
@@ -90,6 +91,8 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
  * 出處預設只顯示簡短引用，點一下展開完整書目；沒有正式出處就標「待查證」，不補造）、
  * 國界幾何來源（OHM 關係 id／版本、授權、署名），陣營只在這裡作補充。
  */
+let sovSeq = 0;
+
 @Component({
   selector: 'wl-sovereignty-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -360,9 +363,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         <dt class="text-wl-on-surface-variant">{{ t().capital }}</dt>
         <dd data-testid="sovereignty-card-capital">
           @if (capital(); as cap) {
-            <span data-testid="sovereignty-card-capital-name">{{ capitalName() }}</span>
-            <!-- 出處一律交給共用的來源區塊（與人物卡同一個元件）：預設收合，不把整段出處文字攤在欄位裡 -->
-            @if (capitalSources().length) { <wl-source-disclosure data-testid="sovereignty-card-capital-source" [items]="capitalSources()" [lang]="lang()" [label]="t().capital" /> }
+            <span data-testid="sovereignty-card-capital-name">{{ capitalName() }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('capital') }" />
           } @else {
             <span class="text-wl-on-surface-variant" data-testid="sovereignty-card-capital-none">{{ t().capitalNone }}</span>
           }
@@ -375,8 +376,17 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           <dt class="text-wl-on-surface-variant">{{ row.label }}</dt>
           <dd [attr.data-testid]="'sovereignty-card-' + row.key" class="min-w-0">
             @if (row.ev; as ev) {
-              <!-- 起始／結束變動同一結構：事件名稱 → 日期 → 查證狀態＋出處（Tai 2026-10-31；與衝突卡共用 wl-event-ref） -->
-              <wl-event-ref [ev]="ev" prefix="sovereignty-card" [lang]="lang()" />
+              <!-- 標籤在最前面，接著日期、事件名稱，出處用上標編號（統一列在底部「資料來源」；Tai 2026-11-14） -->
+              <span data-testid="sovereignty-card-evidence" class="mr-1 inline-block align-baseline">
+                @if (ev.verification === 'pending') {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confPending, tip: eventWhy(ev), verified: false, testId: 'sovereignty-card-pending' }" />
+                } @else {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confVerified, tip: '', verified: true, testId: 'sovereignty-card-verified' }" />
+                }
+              </span>
+              <span data-testid="sovereignty-card-event-date" class="mr-1 tabular-nums text-wl-on-surface-variant">{{ ev.occurred.start }}</span>
+              <span data-testid="sovereignty-card-event-name">{{ loc(ev.summary) || ev.eventKind }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor(row.key) }" />
+              @if (!ev.citations.length) { <span class="sr-only" data-testid="sovereignty-card-no-citation">{{ t().noCitation }}</span> }
             } @else {
               <span class="text-wl-on-surface-variant">{{ row.key === 'start' ? t().none : t().open }}</span>
             }
@@ -390,16 +400,15 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         @if (props().confidence; as conf) {
           <dt class="text-wl-on-surface-variant">{{ t().confidence }}</dt>
           <dd data-testid="sovereignty-card-confidence" [attr.data-confidence]="conf" class="min-w-0">
+            <!-- 原因放在標籤的提示裡（滑鼠移上去或鍵盤聚焦時顯示），不再佔一行 -->
             @if (conf === 'verified') {
-              <span class="wl-stamp">{{ t().confVerified }}</span>
+              <ng-container *ngTemplateOutlet="chip; context: { text: t().confVerified, tip: '', verified: true, testId: 'sovereignty-card-confidence-chip' }" />
             } @else {
-              <span class="wl-chip-interp">{{ t().confPending }}</span>
-              <div class="text-wl-on-surface-variant">{{ confidenceWhy() }}</div>
-            }
+              <ng-container *ngTemplateOutlet="chip; context: { text: t().confPending, tip: confidenceWhy(), verified: false, testId: 'sovereignty-card-confidence-chip' }" />
+            }<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('confidence') }" />
             @if (props().startDatePrecision; as sp) {
               <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-start-precision" [attr.data-precision]="sp">{{ sp === 'year' ? t().startYear : t().startMonth }}</div>
             }
-            @if (recordSources().length) { <wl-source-disclosure data-testid="sovereignty-card-record-citation" [items]="recordSources()" [lang]="lang()" [label]="t().confidence" /> }
           </dd>
         }
         @for (d of props().disputes ?? []; track d.id) {
@@ -418,13 +427,55 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           </dd>
         }
         <dt class="text-wl-on-surface-variant">{{ t().geometry }}</dt>
-        <dd data-testid="sovereignty-card-geometry">
-          <div>{{ props().geometry.sourceTitle }}</div>
-          <div class="text-wl-on-surface-variant">{{ props().geometry.locator }}</div>
-          <div class="text-wl-on-surface-variant">{{ t().license }}：{{ props().geometry.geometryLicense }}@if (props().geometry.attribution; as a) {；{{ a }}}</div>
+        <dd data-testid="sovereignty-card-geometry" class="min-w-0">
+          <!-- 國界形狀的來源也是來源：只留名稱與上標，引用位置、授權、署名在底部「資料來源」 -->
+          <span>{{ props().geometry.sourceTitle }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('geometry') }" />
           @if (osmDerived()) { <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-osm">{{ t().osm }}</div> }
         </dd>
       </dl>
+      <!-- 資料來源：與人物彈窗同一種做法——內容旁只放編號，出處統一列在這裡（core/footnotes.ts 編號、wl-source-disclosure 顯示） -->
+      <section data-testid="sovereignty-card-sources" class="mt-3 rounded-md border border-wl-outline-variant bg-wl-surface-container">
+        <h3 class="m-0">
+          <button type="button" data-testid="sovereignty-card-sources-toggle" [attr.aria-expanded]="sourcesOpen() ? 'true' : 'false'"
+            class="flex min-h-9 w-full items-center gap-2 px-3 text-left wl-text2 font-semibold text-wl-on-surface focus-visible:outline-2 focus-visible:outline-wl-secondary"
+            (click)="sourcesOpen.set(!sourcesOpen())">
+            <span aria-hidden="true" class="inline-block w-2 text-center">{{ sourcesOpen() ? '▾' : '▸' }}</span>
+            <span data-testid="sovereignty-card-sources-label" class="flex-1">{{ t().sourcesTitle }} ({{ footnotes().length }})</span>
+          </button>
+        </h3>
+        <div data-testid="sovereignty-card-sources-panel" [hidden]="!sourcesOpen()" class="border-t border-wl-outline-variant px-3 py-2">
+          <ol class="space-y-2">
+            @for (f of footnotes(); track f.n) {
+              <li data-testid="sovereignty-card-source-note" [id]="srcId(f.n)" [attr.data-n]="f.n" tabindex="-1" class="flex gap-2 rounded-sm outline-none focus-visible:outline-2 focus-visible:outline-wl-secondary">
+                <span class="w-6 flex-none pt-1 text-right font-mono text-[12px] text-wl-primary">[{{ f.n }}]</span>
+                <div class="min-w-0 flex-1">
+                  <div data-testid="sovereignty-card-source-used-for" class="mb-0.5 text-[11px] text-wl-on-surface-variant">{{ t().usedFor }}：{{ f.usedFor.join('、') }}</div>
+                  <wl-source-disclosure [items]="[f.item]" [lang]="lang()" [inline]="true" />
+                </div>
+              </li>
+            }
+          </ol>
+        </div>
+      </section>
+      </ng-template>
+      <!-- 上標來源編號：點了展開底部「資料來源」並捲到該筆 -->
+      <ng-template #sup let-ns>
+        @for (n of ns; track n) {
+          <button type="button" data-testid="sovereignty-card-sup" [attr.data-n]="n" [attr.aria-label]="t().sourceRef + ' ' + n"
+            class="relative ml-0.5 inline-block px-px align-super font-mono text-[10px] leading-none text-wl-primary after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
+            (click)="showNote(n)">{{ n }}</button>
+        }
+      </ng-template>
+      <!-- 狀態標籤；有說明時做成提示（hover／focus 顯示，同時給 title 與螢幕閱讀器） -->
+      <ng-template #chip let-text="text" let-tip="tip" let-verified="verified" let-testId="testId">
+        @if (tip) {
+          <span class="group relative inline-block">
+            <button type="button" [attr.data-testid]="testId" [attr.title]="tip" [attr.aria-label]="text + '：' + tip" [class]="verified ? 'wl-stamp' : 'wl-chip-interp'" class="cursor-help">{{ text }}</button>
+            <span role="tooltip" data-testid="sovereignty-card-tip" class="pointer-events-none absolute left-0 top-full z-10 mt-1 hidden w-56 rounded-sm border border-wl-outline-variant bg-wl-surface px-2 py-1 text-[12px] font-normal leading-snug text-wl-on-surface shadow-md group-focus-within:block group-hover:block">{{ tip }}</span>
+          </span>
+        } @else {
+          <span [attr.data-testid]="testId" [class]="verified ? 'wl-stamp' : 'wl-chip-interp'">{{ text }}</span>
+        }
       </ng-template>
     </article>
   `,
@@ -434,6 +485,35 @@ export class SovereigntyCard {
   /** 首都、主權紀錄引文的來源項（core/record-sources.ts）；顯示交給 wl-source-disclosure。 */
   protected readonly capitalSources = computed(() => capitalSourceItems(this.capital(), this.t().capital));
   protected readonly recordSources = computed(() => citationItems(this.props().recordCitations));
+  /** 概要各欄的來源 → 編號清單（與人物彈窗共用 core/footnotes.ts）。欄位順序＝編號順序。 */
+  private readonly notes = computed(() => {
+    const t = this.t(); const p = this.props();
+    return numberSources([
+      { key: 'capital', label: t.capital, items: this.capitalSources() },
+      { key: 'start', label: t.start, items: citationItems(p.startEvent?.citations) },
+      { key: 'end', label: t.end, items: citationItems(p.endEvent?.citations) },
+      { key: 'confidence', label: t.confidence, items: this.recordSources() },
+      { key: 'geometry', label: t.geometry, items: geometrySourceItems(p.geometry) },
+    ]);
+  });
+  protected readonly footnotes = computed(() => this.notes().list);
+  protected notesFor(key: string): number[] { return this.notes().fieldNotes.get(key) ?? []; }
+  protected readonly sourcesOpen = signal(false);
+  private readonly uid = `wl-sov-src-${++sovSeq}`;
+  protected srcId(n: number): string { return `${this.uid}-${n}`; }
+  /** 上標編號：展開「資料來源」、捲到該筆並聚焦。 */
+  protected showNote(n: number): void {
+    this.sourcesOpen.set(true);
+    setTimeout(() => {
+      const el = document.getElementById(this.srcId(n));
+      el?.scrollIntoView({ block: 'nearest' });
+      el?.focus({ preventScroll: true });
+    });
+  }
+  /** 事件標「待查證」的原因（放在標籤的提示裡）。 */
+  protected eventWhy(ev: { citations: readonly unknown[] }): string {
+    return ev.citations.length ? this.t().eventBelow : this.t().noCitation;
+  }
   readonly regimeName = input('');
   /** 爭議各方的顯示名稱（regimeId → 名稱）；沒給的用代號。 */
   readonly claimantNames = input<Record<string, string>>({});

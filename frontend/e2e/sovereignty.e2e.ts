@@ -40,9 +40,11 @@ test('1938-10-15：點柏林 → 德意志國卡片（蘇台德修正紀錄）�
   await expect(card).toBeVisible();
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
   await expect(page.getByTestId('sovereignty-card-start')).toContainText('已查證');
-  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-citation').first()).toContainText('Doc. 682, p. 702');
+  // 出處不攤在欄位裡：點上標編號展開底部「資料來源」
+  await page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-sup').first().click();
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('Doc. 682, p. 702');
   await expect(page.getByTestId('sovereignty-card-end').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
-  await expect(page.getByTestId('sovereignty-card-geometry')).toContainText('relation/2704712 v208 ∪ (relation/2704711 v199');
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('relation/2704712 v208 ∪ (relation/2704711 v199');
   await expect(page.getByTestId('sovereignty-card-osm')).toBeVisible();
   // 陣營只作補充（開發庫沒有陣營切片 → 未建置，不推定）
   await expect(page.getByTestId('sovereignty-card-camp')).toHaveAttribute('data-camp', 'unassigned');
@@ -56,7 +58,8 @@ test('1938-10-05：蘇台德為德軍分區進駐中（非主權斜線，慕尼�
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('蘇台德');
   await expect(page.getByTestId('sovereignty-card-status')).toContainText('非主權');
   await expect(page.getByTestId('sovereignty-card-start')).toContainText('已查證');
-  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-citation').first()).toContainText('No. 675, pp. 1014–1015');
+  await page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-sup').first().click();
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('No. 675, pp. 1014–1015');
   await expect(page.getByTestId('sovereignty-card-body')).toContainText('簡化');
   // 布拉格仍屬捷克斯洛伐克
   await page.keyboard.press('Escape');
@@ -172,7 +175,8 @@ test('國界補完整：1941-12-15 新西伯利亞、塔什干、烏蘇里斯克
     await jump(page, [...at], 4.5);
     await clickLngLat(page, [...at]);
     await expect(page.getByTestId('sovereignty-card-title')).toContainText(title);
-    await expect(page.getByTestId('sovereignty-card-geometry')).toContainText('完整，不受歐陸框裁切');
+    await page.getByTestId('sovereignty-card-geometry').getByTestId('sovereignty-card-sup').first().click();
+    await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('完整，不受歐陸框裁切');
   }
 });
 
@@ -278,20 +282,21 @@ test('1939-10-23：德佔波蘭資訊卡不被時間軸／視窗邊緣擋住；�
   await expect(start.getByTestId('sovereignty-card-event-name')).toContainText('德蘇邊界暨友好條約');
   await expect(start.getByTestId('sovereignty-card-event-date')).toHaveText('1939-09-28');
   await expect(start.getByTestId('sovereignty-card-evidence').getByTestId('sovereignty-card-verified')).toHaveText('已查證');
-  const toggles = start.getByTestId('sovereignty-card-citation-toggle');
-  await expect(toggles.first()).toHaveText('DGFP D/VIII, Doc. 157, pp. 164–165');
-  await expect(toggles.nth(1)).toHaveText(/^FRUS 1939 I, Doc\. 514, p\. 495/);
-  await expect(start.getByTestId('sovereignty-card-citation-full')).toHaveCount(0);
-  await toggles.first().click();
-  await expect(start.getByTestId('sovereignty-card-citation-full')).toContainText('Documents on German Foreign Policy 1918–1945, Series D');
-  await toggles.first().click();
-  await expect(start.getByTestId('sovereignty-card-citation-full')).toHaveCount(0);
+  // 欄位旁只有上標編號（兩筆出處兩個編號）；書目在底部「資料來源」，預設收合
+  const sups = start.getByTestId('sovereignty-card-sup');
+  await expect(sups).toHaveCount(2);
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toBeHidden();
+  await sups.first().click();
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('Documents on German Foreign Policy 1918–1945, Series D');
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('Doc. 157, pp. 164–165');
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('Doc. 514, p. 495');
 
   const end = page.getByTestId('sovereignty-card-end');
   await expect(end.getByTestId('sovereignty-card-event-name')).toContainText('法蘭克就任總督');
   await expect(end.getByTestId('sovereignty-card-event-date')).toHaveText('1939-10-25');
   await expect(end.getByTestId('sovereignty-card-evidence').getByTestId('sovereignty-card-verified')).toBeVisible();
-  await expect(end.getByTestId('sovereignty-card-citation-toggle').first()).toHaveText(/^DGFP D\/VIII, Doc\. 477, p\. 560/);
+  await expect(end.getByTestId('sovereignty-card-sup').first()).toBeVisible();
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('Doc. 477, p. 560');
 });
 
 test('1939-10-23：德意志國結束變動沒有正式出處 → 待查證＋尚無正式出處（不補造）', async ({ page }) => {
@@ -301,7 +306,7 @@ test('1939-10-23：德意志國結束變動沒有正式出處 → 待查證＋�
   const end = page.getByTestId('sovereignty-card-end');
   await expect(end.getByTestId('sovereignty-card-evidence').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
   await expect(end.getByTestId('sovereignty-card-no-citation')).toHaveText('尚無正式出處');
-  await expect(end.getByTestId('sovereignty-card-citation')).toHaveCount(0);
+  await expect(end.getByTestId('sovereignty-card-sup')).toHaveCount(0);
 });
 
 test('小視窗：點下方的政權，側邊面板不超出地圖區、內部可捲動', async ({ page }) => {
@@ -337,7 +342,8 @@ test('1942-11-01：德國、蘇聯國界與東方佔領行政區（非主權斜�
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('烏克蘭總督轄區');
   const start = page.getByTestId('sovereignty-card-start');
   await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
-  await expect(start.getByTestId('sovereignty-card-citation-toggle').first()).toHaveText('NCA III, Doc. 197-PS, p. 210');
+  await start.getByTestId('sovereignty-card-sup').first().click();
+  await expect(page.getByTestId('sovereignty-card-sources-panel')).toContainText('Doc. 197-PS, p. 210');
 
   await clickAt(page, [24.1, 56.95]); // 里加
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('東方總督轄區');
@@ -346,7 +352,7 @@ test('1942-11-01：德國、蘇聯國界與東方佔領行政區（非主權斜�
   await clickAt(page, [13.4, 52.5]); // 柏林：起始變動（東加利西亞併入總督府）沒有正式出處 → 待查證
   await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
   await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-pending')).toHaveText('待查證');
-  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-no-citation')).toBeVisible();
+  await expect(page.getByTestId('sovereignty-card-start').getByTestId('sovereignty-card-no-citation')).toHaveText('尚無正式出處');
 });
 
 /** 先把地圖中心移到該點再點擊，避免資訊卡蓋住點擊位置。 */

@@ -38,45 +38,52 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(el.textContent).toContain('Deutsches Reich');
     expect(el.textContent).toContain('1938-10-10');
     expect(q(el, 'sovereignty-card-start')?.textContent).toContain('已查證');
-    expect(q(el, 'sovereignty-card-citation')?.textContent).toContain('Doc. 710, p. 734');
+    // 出處不攤在欄位裡：欄位旁只有上標編號，出處統一列在底部「資料來源」（與人物彈窗同一種做法）
+    expect(q(el, 'sovereignty-card-start')?.querySelector('[data-testid="sovereignty-card-sup"]')).not.toBeNull();
+    expect(q(el, 'sovereignty-card-sources-panel')?.textContent).toContain('Doc. 710, p. 734');
     expect(q(el, 'sovereignty-card-end')?.querySelector('[data-testid="sovereignty-card-pending"]')?.textContent).toBe('待查證');
   });
 
-  it('起訖變動同一結構：事件名稱 → 日期 → 徽章＋出處；徽章在名稱下方、與出處同一區塊', async () => {
+  it('起訖變動同一結構：標籤 → 日期 → 事件名稱 → 上標編號；沒有出處時不放編號', async () => {
     const { el } = await render(props());
     for (const key of ['start', 'end']) {
       const row = q(el, 'sovereignty-card-' + key)!;
-      const kids = [...row.querySelector('wl-event-ref')!.children].map((c) => c.getAttribute('data-testid'));
-      expect(kids).toEqual(['sovereignty-card-event-name', 'sovereignty-card-event-date', 'sovereignty-card-evidence']);
+      const kids = [...row.children].map((c) => c.getAttribute('data-testid')).filter((x) => x && x !== 'sovereignty-card-sup' && x !== 'sovereignty-card-no-citation');
+      expect(kids).toEqual(['sovereignty-card-evidence', 'sovereignty-card-event-date', 'sovereignty-card-event-name']);
       expect(row.querySelector('[data-testid="sovereignty-card-event-date"]')?.textContent?.trim()).toBe('1938-09-29');
-      const evidence = row.querySelector('[data-testid="sovereignty-card-evidence"]')!;
-      expect(evidence.firstElementChild?.getAttribute('data-testid')).toMatch(/^sovereignty-card-(verified|pending)$/);
+      expect(row.querySelector('[data-testid="sovereignty-card-evidence"] [data-testid]')?.getAttribute('data-testid')).toMatch(/^sovereignty-card-(verified|pending)$/);
     }
-    // 結束變動沒有出處：只標待查證與「尚無正式出處」，不補造
+    // 結束變動沒有出處：標待查證，原因在提示裡，沒有上標編號，不補造
     const end = q(el, 'sovereignty-card-end')!;
-    expect(end.querySelector('[data-testid="sovereignty-card-citation"]')).toBeNull();
+    expect(end.querySelector('[data-testid="sovereignty-card-sup"]')).toBeNull();
+    expect(end.querySelector('[data-testid="sovereignty-card-pending"]')?.getAttribute('title')).toContain('尚無正式出處');
     expect(end.querySelector('[data-testid="sovereignty-card-no-citation"]')?.textContent).toContain('尚無正式出處');
   });
 
-  it('出處預設只顯示簡短引用，點一下展開完整書目、再點收合', async () => {
+  it('資料來源區：預設收合；點上標編號會展開，列出完整書目、等級與用於哪一欄', async () => {
     const title = 'Documents on German Foreign Policy 1918–1945, Series D (1937–1945), Volume VIII: The War Years, September 4, 1939–March 18, 1940（美國國務院版）';
     const { fixture, el } = await render(props({
-      startEvent: ev('verified', [{ sourceId: 's', sourceTitle: title, publisher: 'U.S. Department of State', licenseCode: 'us_federal_pd', locator: 'Doc. 157, pp. 164–165', role: 'primary', evidenceNote: '' }]),
+      startEvent: ev('verified', [{ sourceId: 's', sourceTitle: title, publisher: 'U.S. Department of State', licenseCode: 'us_federal_pd', locator: 'Doc. 157, pp. 164–165', role: 'primary', evidenceNote: '', grade: 'A' }]),
     }));
     const start = q(el, 'sovereignty-card-start')!;
-    const toggle = start.querySelector('[data-testid="sovereignty-card-citation-toggle"]') as HTMLButtonElement;
-    expect(toggle.textContent?.trim()).toBe('DGFP D/VIII, Doc. 157, pp. 164–165');
-    expect(toggle.getAttribute('aria-expanded')).toBe('false');
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')).toBeNull();
-    expect(start.textContent).not.toContain('The War Years');
-    toggle.click();
+    expect(start.textContent).not.toContain('The War Years'); // 欄位裡不放書目
+    const panel = q(el, 'sovereignty-card-sources-panel') as HTMLElement;
+    expect(panel.hidden).toBe(true);
+    const sup = start.querySelector('[data-testid="sovereignty-card-sup"]') as HTMLButtonElement;
+    const n = sup.getAttribute('data-n');
+    sup.click();
     await fixture.whenStable();
-    expect(toggle.getAttribute('aria-expanded')).toBe('true');
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')?.textContent).toContain(title);
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')?.textContent).toContain('U.S. Department of State');
-    toggle.click();
-    await fixture.whenStable();
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')).toBeNull();
+    expect(panel.hidden).toBe(false);
+    const note = panel.querySelector(`[data-testid="sovereignty-card-source-note"][data-n="${n}"]`)!;
+    expect(note.textContent).toContain(title);
+    expect(note.textContent).toContain('U.S. Department of State');
+    expect(note.textContent).toContain('Doc. 157, pp. 164–165');
+    expect(note.querySelector('[data-testid="source-grade"]')?.textContent).toContain('A');
+    expect(note.querySelector('[data-testid="sovereignty-card-source-used-for"]')?.textContent).toContain('起始變動');
+    // 國界形狀的來源也編號列在同一區
+    const g = q(el, 'sovereignty-card-geometry')!.querySelector('[data-testid="sovereignty-card-sup"]')!.getAttribute('data-n');
+    expect(g).not.toBe(n);
+    expect(q(el, 'sovereignty-card-sources-label')?.textContent).toMatch(/\(\d+\)/);
   });
 
   it('卡片內容可捲動（太高時不超出外框）', async () => {
@@ -87,9 +94,11 @@ describe('SovereigntyCard（國界資訊卡）', () => {
 
   it('幾何出處：OHM 關係／版本、授權與署名；含 OSM 線段時標 ODbL', async () => {
     const { el } = await render(props());
-    const g = q(el, 'sovereignty-card-geometry')!.textContent!;
+    // 欄位只留名稱與上標；引用位置、授權、署名在底部「資料來源」
+    expect(q(el, 'sovereignty-card-geometry')!.textContent).not.toContain('relation/2704712 v208');
+    const g = q(el, 'sovereignty-card-sources-panel')!.textContent!;
     expect(g).toContain('relation/2704712 v208');
-    expect(g).toContain('cc_by');
+    expect(g).toMatch(/CC BY/); // 授權以名稱顯示（共用來源區塊的做法）
     expect(g).toContain('© GURS');
     expect(q(el, 'sovereignty-card-osm')?.textContent).toContain('ODbL');
     const clean = await render(props({ geometry: { ...props().geometry, flags: { osmDerivedWayCount: 0 } } }));
@@ -283,7 +292,8 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
     expect(q(el, 'sovereignty-card-capital-name')?.textContent?.trim()).toBe('柏林');
-    expect(q(el, 'sovereignty-card-capital-source')?.textContent).toContain('Wikipedia: Berlin'); // 出處在共用的來源區塊裡（預設收合）
+    expect(q(el, 'sovereignty-card-capital')?.querySelector('[data-testid="sovereignty-card-sup"]')).not.toBeNull(); // 首都旁只有上標編號
+    expect(q(el, 'sovereignty-card-sources-panel')?.textContent).toContain('Wikipedia: Berlin');
     expect(q(el, 'sovereignty-card-capital-none')).toBeNull();
     // 英文介面
     fixture.componentRef.setInput('lang', 'en');

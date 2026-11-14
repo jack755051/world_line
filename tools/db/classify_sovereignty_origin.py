@@ -6,6 +6,7 @@
   minor_revision  同上但形狀差在 0.1%–2% 之間：多半是資料版本差異，也可能是小幅調整，要人看
   change          同上但形狀差 ≥ 2%：疆界有變動，需要有出處的事件
   new             同一政權沒有前一筆：新出現的政權或領地，需要有出處的事件
+主權紀錄被撤回重寫後，指向舊紀錄的來歷會先被撤回再重新判定；事後補上的起始事件（start_event_id）若在被撤回的來歷上，要用 apply_border_events.py 重新連。
 只連 5442 開發庫的容器；預設交易最後 ROLLBACK，--apply 才 COMMIT。可重跑。重建資料庫後要重跑一次。
 """
 import subprocess, sys
@@ -13,6 +14,11 @@ CONTAINER, DB = "worldline-borders-dev-db", "worldline_borders_dev"
 PHASE_START = "1908-01-01"
 SQL = f"""\\set ON_ERROR_STOP on
 BEGIN;
+-- 主權紀錄被撤回重寫後（例：補回被裁切的幾何），指向舊紀錄的來歷已經失效：先撤回，下面再替新紀錄重新判定
+WITH stale AS (UPDATE sovereignty_record_links l SET retracted_at = now(), retraction_reason = '所指的主權紀錄已撤回重寫，重新判定'
+  WHERE l.retracted_at IS NULL AND (EXISTS (SELECT 1 FROM sovereignty_records v WHERE v.id = l.record_id AND v.retracted_at IS NOT NULL)
+     OR EXISTS (SELECT 1 FROM sovereignty_records v WHERE v.id = l.continues_record_id AND v.retracted_at IS NOT NULL)) RETURNING 1)
+SELECT '撤回失效的來歷', count(*) FROM stale;
 CREATE TEMP TABLE wl_t ON COMMIT DROP AS
 SELECT v.id, v.regime_id, lower(v.valid_period) AS s, v.geom
 FROM sovereignty_records v

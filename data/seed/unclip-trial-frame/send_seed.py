@@ -18,13 +18,15 @@ ap.add_argument('--env', default=os.path.join(HERE, '../../../.env'))
 ap.add_argument('--prior', action='append', default=[], help='前置 id 對照表（可重複）')
 ap.add_argument('--ids', default=os.path.join(HERE, 'sent-ids.json'), help='本批寫入的 id 對照表（只對應該資料庫）')
 a = ap.parse_args()
-if a.send and a.base.rstrip('/').endswith(':5051'):
-    sys.exit('拒絕：5051 是正式 appdb_ww2 的 API；這批只寫入開發／測試資料庫。')
+if not re.search(r'://(127\.0\.0\.1|localhost):5052/?$', a.base):
+    sys.exit('拒絕：這批只寫入開發 API 127.0.0.1:5052。')
 
 def api_key():
-    for line in open(a.env, encoding='utf-8'):
+    for line in open(os.path.expanduser(a.env), encoding='utf-8'):
+        line = line.strip()
+        if line.startswith('export '): line = line[7:]
         if line.startswith('WORLDLINE_API_KEY='):
-            return line.split('=', 1)[1].strip()
+            return line.split('=', 1)[1].strip().strip('"').strip("'")   # env 檔的值可能帶引號
     sys.exit('找不到 WORLDLINE_API_KEY')
 
 prior = {}

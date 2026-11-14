@@ -48,7 +48,7 @@ def norm(s):
     return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s or "")).strip().lower()
 
 
-EDITORIAL = re.compile(r"redaktion|redaksjon|redakcija|editors?\b|store norske leksikon|leksikon \(|encyclopedia\.com|gale", re.I)
+EDITORIAL = re.compile(r"redaktion|redaksjon|redakcija|editors?\b|store norske leksikon|leksikon \(|encyclopedia\.com|gale|copyright|university press", re.I)
 
 
 def judge_ec(page, src):
@@ -61,10 +61,12 @@ def judge_ec(page, src):
         author = None
         if last_p:
             raw = last_p[-1]
-            if raw.startswith("\xa0") or raw.startswith("&nbsp;"):
-                cand = text(raw)
-                if cand and len(cand) < 120 and not EDITORIAL.search(cand):
-                    author = cand
+            cand = text(raw)
+            # 署名＝條目最後一段的短人名：有的前面縮排（&nbsp;），有的是普通段落（例：<p>Stephen Jones</p>）；
+            # 書目條目通常以句點結尾、含出版地或年份，不算
+            looks_name = bool(re.fullmatch(r"(?:[A-ZÀ-ÞĀ-Ž][\w'’.\-]*\s+){1,5}[A-ZÀ-ÞĀ-Ž][\w'’\-]+(?:\s*(?:,|and|&)\s*(?:[A-ZÀ-ÞĀ-Ž][\w'’.\-]*\s+){1,5}[A-ZÀ-ÞĀ-Ž][\w'’\-]+)*", cand or ""))
+            if cand and len(cand) < 120 and not EDITORIAL.search(cand) and (raw.startswith("\xa0") or raw.startswith("&nbsp;") or looks_name):
+                author = cand
         start = body.rfind('class="bylinecontainer"')
         entries.append({"book": book, "author": author, "text": norm(text(body[-60000:]))})
     if not entries:
@@ -141,12 +143,15 @@ def judge_cat(page, src):
     return ("C", "只有縮寫署名 %s，無全名（Enciclopèdia.cat）" % text(m.group(1)) if m else "條目無署名（Enciclopèdia.cat）")
 
 
+RECHECK = False
 JUDGE = {"encyclopedia.com": judge_ec, "vle.lt": judge_vle, "snl.no": judge_snl, "lex.dk": judge_lex,
          "encyclopediaofukraine.com": judge_eu, "enciclopedia.cat": judge_cat}
 
 
 def main():
+    global RECHECK
     apply = "--apply" in sys.argv
+    RECHECK = "--recheck-ec" in sys.argv  # 2026-11-14：署名偵測修正後，重判先前記 C 的 Encyclopedia.com 條目
     files = sorted(glob.glob(str(REPO / "data/seed/leaders/gap-830/*/research.json")) +
                    glob.glob(str(REPO / "data/seed/leaders/batch-p1-20261107/**/research.json"), recursive=True))
     stat, fails, detail = collections.Counter(), collections.Counter(), []
@@ -155,7 +160,8 @@ def main():
         def walk(o):
             nonlocal changed
             if isinstance(o, dict):
-                if "url" in o and o.get("gradePending"):
+                recheck = RECHECK and "encyclopedia.com" in (o.get("url") or "") and o.get("grade") == "C" and RUN in (o.get("gradeBasis") or "")
+                if "url" in o and (o.get("gradePending") or recheck):
                     h = (urlparse(o["url"]).hostname or "").lower().removeprefix("www.")
                     page = fetch(o["url"])
                     res = JUDGE[h](page, o) if page and h in JUDGE else None

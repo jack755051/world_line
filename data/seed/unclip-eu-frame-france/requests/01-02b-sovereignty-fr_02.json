@@ -1,0 +1,125 @@
+{
+ "_placeholder": "UNCLIP_FR_02",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "U_01a19112-06a6-796a-8249-cd685b21a0d6",
+ "_meta": {
+  "replaces": "01a19112-06a6-796a-8249-cd685b21a0d6",
+  "slug": "french-state-vichy",
+  "old_km2": 775443,
+  "new_km2": 2841403,
+  "inside_change_km2": 0
+ },
+ "body": {
+  "regimeId": "01a18e71-cb9b-790b-8f4b-671d0e7359bc",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1940-06-25",
+   "end": "1942-11-08"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a18e71-c8a6-74a4-b3a1-e0e3a3762eac",
+  "geometryLocator": "relation/2747868 v94（框外阿爾及利亞南部取自 v96）",
+  "geometryLicense": "cc_by",
+  "attribution": "© Instituto Geográfico Nacional de España（CNIG，Líneas límite municipales），CC BY 4.0",
+  "startEventId": "01a18e71-cf6d-7e60-adb3-1813e221262f",
+  "endEventId": "01a19112-056a-79a5-b1f7-e975f7580ec2",
+  "ohmRelationId": 2747868,
+  "ohmVersion": 94,
+  "ohmFetchedAt": "2026-10-30T19:27:46+00:00",
+  "ohmStartRaw": "1940-06-25",
+  "ohmEndRaw": "1942-11-11",
+  "provenance": {
+   "fixBatch": "borders-1942-fix",
+   "ohmFixme": "Border with the Military Administration in Belgium and Northern France not yet shown",
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "supersedes": "01a18e71-d73c-7e0d-9b6e-dc3f1feb0418",
+   "ohmChangeset": 275240,
+   "ohmTimestamp": "2026-10-11T13:18:45Z",
+   "licenseReview": null,
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "cc0": 1,
+    "cnig": 85,
+    "untagged(OHM CC0)": 448
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 0,
+   "unclip": {
+    "batch": "unclip-eu-frame-france",
+    "replaces": "01a19112-06a6-796a-8249-cd685b21a0d6",
+    "frameRemoved": "box(-12,34,42,72)",
+    "method": "框內幾何沿用原紀錄；框外部分（阿爾及利亞北緯 34 度以南）取自同一 OHM 關係，Natural Earth 10m 陸地裁切、簡化到 0.02 度後併入",
+    "outsideFromVersion": 96,
+    "outsideVersionTimestamp": "2026-11-13T20:33:13Z",
+    "rawRefetched": "2026-11-14T11:48:41Z",
+    "versionNote": "紀錄記的是 v94，原始下載檔不在本機；OHM 於 2026-11-13 改過這個關係，2026-11-14 取回的是 v96，舊版本取不回來。框外部分用 v96。新版本與原紀錄在阿爾及利亞北部（框內）相差約 1103.9 平方公里。",
+    "outsideMemberWayLicense": {
+     "untagged(OHM CC0)": 20
+    },
+    "cutAgainstExisting": [
+     {
+      "slug": "spanish-state",
+      "period": [
+       "1939-04-01",
+       "1945-09-03"
+      ],
+      "km2": 7
+     },
+     {
+      "slug": "italian-libya",
+      "period": [
+       "1934-01-01",
+       "1941-01-22"
+      ],
+      "km2": 1119
+     },
+     {
+      "slug": "french-protectorate-tunisia",
+      "period": [
+       "1918-11-12",
+       "1942-11-09"
+      ],
+      "km2": 1258
+     },
+     {
+      "slug": "mauritania-french-1912",
+      "period": [
+       "1918-11-12",
+       "1945-09-03"
+      ],
+      "km2": 146
+     },
+     {
+      "slug": "french-west-africa",
+      "period": [
+       "1932-09-05",
+       "1945-09-03"
+      ],
+      "km2": 687
+     },
+     {
+      "slug": "french-protectorate-morocco",
+      "period": [
+       "1926-05-27",
+       "1945-10-01"
+      ],
+      "km2": 384
+     },
+     {
+      "slug": "spanish-protectorate-morocco",
+      "period": [
+       "1926-05-27",
+       "1945-10-01"
+      ],
+      "km2": 53
+     }
+    ],
+    "cutNote": "與同期其他政權既有紀錄重疊處扣除，保留既有紀錄"
+   }
+  },
+  "note": {
+   "zh-Hant": "阿爾及利亞北部（阿爾及爾、奧蘭、君士坦丁三省）當時屬法國本土的省份，依 OHM 事實國界與法國本土同一紀錄。1942-11-08 盟軍登陸法屬北非後另分段。（2026-11-14 修正：補回試驗框外的幾何——阿爾及利亞北緯 34 度以南。南界是資料集的線，沒有另外查證。）",
+   "en": "Northern Algeria (then French départements) is drawn with metropolitan France per OHM, until the Allied landings of 8 Nov 1942. (Fixed 2026-11-14: geometry outside the trial frame restored — Algeria south of 34°N.)"
+  }
+ }
+}

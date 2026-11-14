@@ -50,7 +50,7 @@ interface SheetInfo {
  * 地圖只顯示後端 API 的資料；每個控制區都帶 API 回傳的引用（I6），點區塊 → 卡片 → 「來源」popover。
  */
 import { CampaignCard } from '../../shared/campaign-card/campaign-card';
-import { CampaignService, campaignsForConflict, campaignsForRegime, type CampaignIndexEntry } from '../../core/campaign';
+import { CampaignService, campaignsForConflict, campaignsForRegime, type CampaignIndexEntry, splitCampaignName } from '../../core/campaign';
 @Component({
   selector: 'wl-atlas-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -163,8 +163,17 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                 @if (sheet(); as sh) {
                   @if (sh.sov; as s) {
                     @for (cp of regimeCampaigns(); track cp.key) {
-                      <button type="button" data-testid="campaign-entry" class="mb-2 flex flex-none items-center gap-2 self-start rounded border border-wl-outline-variant px-3 py-1.5 wl-text2 font-semibold hover:bg-wl-surface-container" (click)="openCampaign(cp.key)">
-                        ⚔ 戰役簡報：{{ cp.name_zh }}<span class="font-normal text-wl-on-surface-variant">{{ cp.start }} – {{ cp.end }}</span></button>
+                      <!-- 戰役簡報入口：列點顯示戰役名稱／行動代號（有才列）／時間（Tai 2026-11-14） -->
+                      <button type="button" data-testid="campaign-entry" class="mb-2 flex flex-none flex-col items-start gap-0.5 self-stretch rounded border border-wl-outline-variant px-3 py-2 text-left wl-text2 hover:bg-wl-surface-container" (click)="openCampaign(cp.key)">
+                        <span class="font-semibold">⚔ {{ lang() === 'en' ? 'Battle briefing' : '戰役簡報' }}</span>
+                        <ul class="list-disc pl-5">
+                          <li data-testid="campaign-entry-name"><span class="text-wl-on-surface-variant">{{ lang() === 'en' ? 'Battle' : '戰役名稱' }}：</span>{{ campaignName(cp.name_zh).name }}</li>
+                          @if (campaignName(cp.name_zh).codename; as code) {
+                            <li data-testid="campaign-entry-codename"><span class="text-wl-on-surface-variant">{{ lang() === 'en' ? 'Codename' : '行動代號' }}：</span>{{ code }}</li>
+                          }
+                          <li data-testid="campaign-entry-dates"><span class="text-wl-on-surface-variant">{{ lang() === 'en' ? 'Dates' : '時間' }}：</span><span class="tabular-nums">{{ cp.start }} – {{ cp.end }}</span></li>
+                        </ul>
+                      </button>
                     }
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [claimantNames]="regimeDisplayNames()" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
@@ -592,6 +601,7 @@ export class AtlasPage {
     const y = Number(this.state.date().slice(0, 4));
     return campaignsForRegime(this.campaigns.index(), slug).filter((c) => Math.abs(Number(c.start.slice(0, 4)) - y) <= 1);
   });
+  protected campaignName(name: string) { return splitCampaignName(name); }
   private campaignSaved: { date: string } | null = null;
   private readonly returns = inject(CampaignReturn);
   /** §19.2.5：從 URL（regime／tab）或返回快照還原時，等政權選上後再套分頁與面板捲動。 */

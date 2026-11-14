@@ -37,6 +37,15 @@ export interface Campaign {
 }
 export interface CampaignIndexEntry { key: string; name_zh: string; start: string; end: string; scale?: string; regime_slugs: string[]; event_ids: string[] }
 
+/**
+ * 戰役名稱拆成「名稱」與「行動代號」。資料裡代號寫在全形括號內（例：「敦克爾克撤退（發電機行動）」）；
+ * 括號內以「行動」「作戰」「計畫」結尾才當作代號，其他括號（例：「閃擊波蘭（波蘭戰役）」是別稱）不拆。
+ */
+export function splitCampaignName(name: string): { name: string; codename: string | null } {
+  const m = /^(.+?)（([^（）]+(?:行動|作戰|計畫))）$/.exec(name.trim());
+  return m ? { name: m[1].trim(), codename: m[2].trim() } : { name: name.trim(), codename: null };
+}
+
 export type CampaignOrigin = 'api' | 'static';
 export type CampaignStatus = 'idle' | 'loading' | 'ready' | 'playing' | 'paused' | 'ended' | 'error';
 export const PHASE_MS = 3000;

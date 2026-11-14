@@ -10,6 +10,8 @@ import { SANRING_TABS_IMPORTS } from '../../components/ui/tabs';
 import { campOf, type Evidence } from '../map/map-style';
 import { CitationPopover } from '../citation/citation-popover';
 import { PersonCard } from '../person-card/person-card';
+import { SourceDisclosure } from '../source-disclosure/source-disclosure';
+import { capitalSourceItems, citationItems } from '../../core/record-sources';
 import { groupLeaders } from '../../core/person-format';
 
 /** 控制區欄位（從 atlas 頁傳入，顯示在面板「概要」分頁的控制區區塊）。 */
@@ -91,7 +93,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
 @Component({
   selector: 'wl-sovereignty-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideX, EventRef, NgTemplateOutlet, CitationPopover, PersonCard, ...SANRING_TABS_IMPORTS],
+  imports: [LucideX, EventRef, NgTemplateOutlet, CitationPopover, PersonCard, SourceDisclosure, ...SANRING_TABS_IMPORTS],
   template: `
     <article data-testid="sovereignty-card" [class]="embedded() ? 'flex min-h-0 flex-1 flex-col' : 'wl-paper flex max-h-[inherit] min-h-0 w-[340px] flex-col p-4'"
       [attr.role]="embedded() ? null : 'dialog'" [attr.aria-label]="embedded() ? null : regimeName()" [attr.data-layer-status]="props().layerStatus">
@@ -121,7 +123,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
             }
           </sanring-tabs-trigger>
         </sanring-tabs-list>
-        <div data-testid="sovereignty-card-body" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+        <div data-testid="sovereignty-card-body" class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain pr-1 [overflow-wrap:anywhere]">
           <sanring-tabs-content value="overview" class="mt-3">
             <div data-testid="sovereignty-card-panel-overview">
               <ng-container *ngTemplateOutlet="overview" />
@@ -273,7 +275,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         </div>
       </sanring-tabs>
       } @else {
-      <div data-testid="sovereignty-card-body" class="mt-2 min-h-0 overflow-y-auto overscroll-contain pr-1">
+      <div data-testid="sovereignty-card-body" class="mt-2 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain pr-1 [overflow-wrap:anywhere]">
         <ng-container *ngTemplateOutlet="overview" />
       </div>
       }
@@ -282,7 +284,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         <!-- 控制區欄位：史料狀態、有效期間、戰區、陣營＋依據、補充（預設收合）、爭議 -->
         <section class="mb-4 border-b border-wl-outline-variant pb-4">
           <h3 class="wl-sub-title mb-2">{{ t().controlZone }}</h3>
-          <dl class="grid grid-cols-[72px_1fr] gap-x-2 gap-y-1.5 wl-text2">
+          <dl class="grid grid-cols-[72px_minmax(0,1fr)] gap-x-2 gap-y-1.5 wl-text2">
             <dt class="text-wl-on-surface-variant">{{ t().czEvidence }}</dt>
             <dd data-testid="feature-card-evidence">
               @if (czEvidence() === 'attested') {
@@ -335,7 +337,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           </footer>
         </section>
       }
-      <dl class="grid grid-cols-[76px_1fr] gap-x-2 gap-y-1.5 wl-text2">
+      <dl class="grid grid-cols-[76px_minmax(0,1fr)] gap-x-2 gap-y-1.5 wl-text2">
         <dt class="text-wl-on-surface-variant">{{ t().status }}</dt>
         <dd data-testid="sovereignty-card-status" [attr.data-control-kind]="occupation()?.controlKind ?? null">{{ statusText() }}</dd>
         @if (occupation(); as o) {
@@ -359,7 +361,8 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         <dd data-testid="sovereignty-card-capital">
           @if (capital(); as cap) {
             <span data-testid="sovereignty-card-capital-name">{{ capitalName() }}</span>
-            @if (cap.sourceRef) { <span class="block text-[11px] text-wl-on-surface-variant" data-testid="sovereignty-card-capital-source">{{ cap.sourceRef }}</span> }
+            <!-- 出處一律交給共用的來源區塊（與人物卡同一個元件）：預設收合，不把整段出處文字攤在欄位裡 -->
+            @if (capitalSources().length) { <wl-source-disclosure data-testid="sovereignty-card-capital-source" [items]="capitalSources()" [lang]="lang()" [label]="t().capital" /> }
           } @else {
             <span class="text-wl-on-surface-variant" data-testid="sovereignty-card-capital-none">{{ t().capitalNone }}</span>
           }
@@ -396,9 +399,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
             @if (props().startDatePrecision; as sp) {
               <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-start-precision" [attr.data-precision]="sp">{{ sp === 'year' ? t().startYear : t().startMonth }}</div>
             }
-            @for (c of props().recordCitations ?? []; track $index) {
-              <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-record-citation">{{ c.sourceTitle }}，{{ c.locator }}（{{ t().grade }} {{ c.grade }}）</div>
-            }
+            @if (recordSources().length) { <wl-source-disclosure data-testid="sovereignty-card-record-citation" [items]="recordSources()" [lang]="lang()" [label]="t().confidence" /> }
           </dd>
         }
         @for (d of props().disputes ?? []; track d.id) {
@@ -430,6 +431,9 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
 })
 export class SovereigntyCard {
   readonly props = input.required<SovereigntyFeatureProperties>();
+  /** 首都、主權紀錄引文的來源項（core/record-sources.ts）；顯示交給 wl-source-disclosure。 */
+  protected readonly capitalSources = computed(() => capitalSourceItems(this.capital(), this.t().capital));
+  protected readonly recordSources = computed(() => citationItems(this.props().recordCitations));
   readonly regimeName = input('');
   /** 爭議各方的顯示名稱（regimeId → 名稱）；沒給的用代號。 */
   readonly claimantNames = input<Record<string, string>>({});

@@ -57,18 +57,18 @@ let seq = 0;
         @for (s of items(); track $index) {
           <div data-testid="source-item" [attr.data-kind]="s.kind">
             @if (s.kind === 'legacy') { <div class="text-[11px] text-wl-on-surface-variant">{{ t().legacy }}</div> }
-            <div class="break-words">
+            <div class="break-words [overflow-wrap:anywhere]">
               @if (s.url) { <a data-testid="source-link" [href]="s.url" target="_blank" rel="noopener noreferrer" class="text-wl-secondary hover:underline max-md:py-3.5">{{ s.title }}</a> } @else { {{ s.title }} }
               @if (s.publisher && s.publisher !== s.title) { <span class="text-wl-on-surface-variant">·{{ s.publisher }}</span> }
             </div>
             @if (kindLabel(s.sourceKind); as kl) { <div data-testid="source-kind" [attr.data-source-kind]="s.sourceKind" class="text-wl-on-surface-variant">{{ t().kind }}：{{ kl }}</div> }
-            @if (s.locator) { <div class="text-wl-on-surface-variant">{{ t().locator }}：{{ s.locator }}</div> }
+            @if (s.locator) { <div class="text-wl-on-surface-variant [overflow-wrap:anywhere]">{{ t().locator }}：{{ s.locator }}</div> }
             @if (s.grade) { <div data-testid="source-grade" class="text-wl-on-surface-variant">{{ t().grade }}：{{ s.grade }}</div> }
             <!-- 引文：逐字、不截斷；與出處備註相同時只列引文一次 -->
             @if (s.quote) {
               <blockquote data-testid="source-quote" class="my-0.5 whitespace-pre-line break-words border-l-2 border-wl-outline pl-2 font-wl-serif text-[13px] leading-relaxed text-wl-on-surface"><span class="sr-only">{{ t().quote }}：</span><span aria-hidden="true">{{ t().qOpen }}</span><span data-testid="source-quote-text" [attr.lang]="s.quoteLang || null">{{ s.quote }}</span><span aria-hidden="true">{{ t().qClose }}</span></blockquote>
             }
-            @if (s.note && s.note !== s.quote) { <div class="whitespace-pre-line text-wl-on-surface-variant">{{ s.note }}</div> }
+            @if (s.note && s.note !== s.quote) { <div class="whitespace-pre-line break-words text-wl-on-surface-variant [overflow-wrap:anywhere]">{{ s.note }}</div> }
             @if (s.licenseCode || s.accessedOn) {
               <div class="text-[11px] text-wl-on-surface-variant">
                 @if (s.licenseCode) { {{ t().license }}：{{ license(s.licenseCode) }} }

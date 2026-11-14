@@ -283,7 +283,7 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
     expect(q(el, 'sovereignty-card-capital-name')?.textContent?.trim()).toBe('柏林');
-    expect(q(el, 'sovereignty-card-capital-source')?.textContent?.trim()).toBe('Wikipedia: Berlin');
+    expect(q(el, 'sovereignty-card-capital-source')?.textContent).toContain('Wikipedia: Berlin'); // 出處在共用的來源區塊裡（預設收合）
     expect(q(el, 'sovereignty-card-capital-none')).toBeNull();
     // 英文介面
     fixture.componentRef.setInput('lang', 'en');

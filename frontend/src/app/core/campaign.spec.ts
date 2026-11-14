@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
-import { CAMPAIGNS_ENABLED, CampaignService } from './campaign';
+import { CAMPAIGNS_ENABLED, CampaignService, splitCampaignName } from './campaign';
 import { CampaignPlayer, campaignsForConflict, formatCampaignDate, inclusiveEnd, campaignsForEvent, campaignsForRegime, phaseForDate } from './campaign';
 
 describe('CampaignPlayer（§11.2 階段播放）', () => {
@@ -191,5 +191,13 @@ describe('CampaignPlayer 播放時鐘（§19.2.4：GSAP timeline 只追隨狀態
     p.play(); c.tick();
     expect(p.status).toBe('ended');
     expect(c.calls.at(-1)).toBe('stop');
+  });
+});
+
+describe('splitCampaignName：戰役名稱與行動代號', () => {
+  it('括號內以「行動」結尾才拆成代號；別稱不拆', () => {
+    expect(splitCampaignName('敦克爾克撤退（發電機行動）')).toEqual({ name: '敦克爾克撤退', codename: '發電機行動' });
+    expect(splitCampaignName('閃擊波蘭（波蘭戰役）')).toEqual({ name: '閃擊波蘭（波蘭戰役）', codename: null });
+    expect(splitCampaignName('淞滬會戰')).toEqual({ name: '淞滬會戰', codename: null });
   });
 });

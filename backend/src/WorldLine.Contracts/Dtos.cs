@@ -468,10 +468,11 @@ public sealed record LeaderPortraitDto(
 /// <summary>
 /// 生平欄位引用。quote：引自該來源的原文短引（逐字，≤ 80 字，見 ARCHITECTURE §16.7.4）；
 /// DB 為 NULL 時輸出 null（不轉空字串）。quoteLang：引文語言（BCP 47），可為 null。
+/// grade：這筆引用文件的等級 A｜B｜C（docs/source-rules.md §2；前端每筆來源都顯示等級）；datePrecision：此出處能支撐的日期精度 day｜month｜year。
 /// </summary>
 public sealed record LeaderBioFieldCitationDto(
     Guid Id, string Field, string Locator, string? EvidenceNote, string AccessedOn, SourceDto Source,
-    string? Quote = null, string? QuoteLang = null);
+    string? Quote = null, string? QuoteLang = null, string? Grade = null, string? DatePrecision = null);
 
 /// <summary>人物詳情的任期清單（含已結束任期）。validPeriod.end 不含當天。</summary>
 public sealed record LeaderTermDto(

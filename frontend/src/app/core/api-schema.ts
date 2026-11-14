@@ -1782,6 +1782,8 @@ export interface components {
             source: components["schemas"]["SourceDto"];
             quote?: null | string;
             quoteLang?: null | string;
+            grade?: null | string;
+            datePrecision?: null | string;
         };
         LeaderBioSummaryDto: {
             /** Format: uuid */

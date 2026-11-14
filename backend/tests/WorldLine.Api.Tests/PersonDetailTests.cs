@@ -97,7 +97,7 @@ public sealed class PersonDetailTests(PostGisFixture fx)
         {
             await c.OpenAsync();
             await using var cmd = new NpgsqlCommand(
-                "UPDATE leader_bio_field_citations SET quote = @q, quote_lang = 'de' WHERE bio_id = @b AND field = 'birthDate'", c);
+                "UPDATE leader_bio_field_citations SET quote = @q, quote_lang = 'de', grade = 'C', date_precision = 'year' WHERE bio_id = @b AND field = 'birthDate'", c);
             cmd.Parameters.AddWithValue("q", quote);
             cmd.Parameters.AddWithValue("b", bioId);
             Assert.Equal(1, await cmd.ExecuteNonQueryAsync());
@@ -108,9 +108,13 @@ public sealed class PersonDetailTests(PostGisFixture fx)
         var withQuote = Assert.Single(cits, x => x.GetProperty("field").GetString() == "birthDate");
         Assert.Equal(quote, withQuote.GetProperty("quote").GetString());
         Assert.Equal("de", withQuote.GetProperty("quoteLang").GetString());
+        // 等級與日期精度（前端每筆來源都顯示等級，docs/source-rules.md §2）
+        Assert.Equal("C", withQuote.GetProperty("grade").GetString());
+        Assert.Equal("year", withQuote.GetProperty("datePrecision").GetString());
         var noQuote = Assert.Single(cits, x => x.GetProperty("field").GetString() == "name");
         Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("quote").ValueKind); // NULL 輸出 null，不轉空字串
         Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("quoteLang").ValueKind);
+        Assert.Equal(JsonValueKind.Null, noQuote.GetProperty("grade").ValueKind);
     }
 
     [Theory]

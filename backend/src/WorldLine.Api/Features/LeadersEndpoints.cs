@@ -459,7 +459,7 @@ public static class LeadersEndpoints
 
     private static LeaderBioFieldCitationDto ToCitationDto(LeaderBioFieldCitation c, Source s) =>
         new(c.Id, c.Field, c.Locator, c.EvidenceNote, c.AccessedOn.ToString("yyyy-MM-dd"), SourcesEndpoints.ToDto(s),
-            c.Quote, c.QuoteLang);
+            c.Quote, c.QuoteLang, c.Grade, c.DatePrecision);
 
     private static LeaderBioSummaryDto ToBioSummaryDto(LeaderBio b) =>
         new(b.Id, b.Name, b.NameZh,

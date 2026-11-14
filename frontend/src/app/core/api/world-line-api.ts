@@ -42,7 +42,7 @@ export interface CapitalsDto {
 export interface LeaderBioFieldSource {
   source?: string | null;
   url?: string | null;
-  /** verified | 待查證 | 不適用（建檔時的考證狀態文字）。 */
+  /** verified | 待查證 | 不適用 | 說法衝突（考證狀態文字；說法衝突時 note 寫兩說，docs/source-rules.md §5）。 */
   status?: string | null;
   note?: string | null;
 }
@@ -83,6 +83,10 @@ export interface LeaderBioFieldCitation {
   quote?: string | null;
   /** 引文語言（BCP 47），可為 null。 */
   quoteLang?: string | null;
+  /** 這筆引用文件的等級 A｜B｜C（docs/source-rules.md §2）；null＝尚未評等。 */
+  grade?: string | null;
+  /** 此出處能支撐的日期精度 day｜month｜year；null＝未標。 */
+  datePrecision?: string | null;
 }
 
 /** 人物詳情的任期（validPeriod.end 不含當天）。 */

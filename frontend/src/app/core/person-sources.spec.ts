@@ -38,6 +38,24 @@ describe('person-sources', () => {
     expect(items.map((i) => [i.quote, i.quoteLang])).toEqual([['born 14 October 1882', 'en'], [null, null], [null, null]]);
   });
 
+  it('欄位引用帶出等級（Tai 2026-11-12：每筆來源都顯示等級）；API 未帶時為 null', () => {
+    const src = { id: 's', sourceKind: 'encyclopedia', title: 'Gale', publisher: 'Gale', authors: null, publishedText: null, licenseCode: null, licenseEvidenceUrl: null, url: 'https://g', archiveUrl: null };
+    const b = bio({
+      fieldCitations: [
+        { id: 'c1', field: 'summary', locator: 'entry', evidenceNote: null, accessedOn: '2026-11-14', source: src, grade: 'C' },
+        { id: 'c2', field: 'summary', locator: 'entry 2', evidenceNote: null, accessedOn: '2026-11-14', source: src },
+      ],
+    });
+    expect(fieldSourceItems(b, 'summary').map((i) => i.grade)).toEqual(['C', null]);
+  });
+
+  it('說法衝突：沒有出處文字也列出兩說，並去掉內部批次代號', () => {
+    const it1 = legacyItem({ status: '說法衝突', note: 'BnF、GND 記 1883，LC 記 1882（rule-corrections-2026-11-14）' });
+    expect(it1).toEqual({ kind: 'legacy', title: '說法衝突', note: 'BnF、GND 記 1883，LC 記 1882' });
+    expect(legacyItem({ status: '說法衝突', note: '  ' })).toBeNull();
+    expect(legacyItem({ status: '待查證', note: '原出處評為 X（rule-corrections-2026-11-14）' })).toBeNull();
+  });
+
   it('任期出處是舊格式文字', () => {
     expect(termSourceItems({ source: 'Archontology', sourceUrl: 'https://www.archontology.org/' })[0].kind).toBe('legacy');
     expect(termSourceItems({ source: '', sourceUrl: null })).toEqual([]);

@@ -6,6 +6,7 @@
   minor_revision  同上但形狀差在 0.1%–2% 之間：多半是資料版本差異，也可能是小幅調整，要人看
   change          同上但形狀差 ≥ 2%：疆界有變動，需要有出處的事件
   new             同一政權沒有前一筆：新出現的政權或領地，需要有出處的事件
+  beyond_source   形狀與前一筆相同，但這一筆是「出處撐不到的後段」（provenance.split.part = late，見 data/seed/split-1912）：不沿用前一筆的可信程度
 主權紀錄被撤回重寫後，指向舊紀錄的來歷會先被撤回再重新判定；事後補上的起始事件（start_event_id）若在被撤回的來歷上，要用 apply_border_events.py 重新連。
 只連 5442 開發庫的容器；預設交易最後 ROLLBACK，--apply 才 COMMIT。可重跑。重建資料庫後要重跑一次。
 """
@@ -20,12 +21,12 @@ WITH stale AS (UPDATE sovereignty_record_links l SET retracted_at = now(), retra
      OR EXISTS (SELECT 1 FROM sovereignty_records v WHERE v.id = l.continues_record_id AND v.retracted_at IS NOT NULL)) RETURNING 1)
 SELECT '撤回失效的來歷', count(*) FROM stale;
 CREATE TEMP TABLE wl_t ON COMMIT DROP AS
-SELECT v.id, v.regime_id, lower(v.valid_period) AS s, v.geom
+SELECT v.id, v.regime_id, lower(v.valid_period) AS s, v.geom, coalesce(v.provenance -> 'split' ->> 'part', '') = 'late' AS late
 FROM sovereignty_records v
 WHERE v.retracted_at IS NULL AND v.start_event_id IS NULL
   AND NOT EXISTS (SELECT 1 FROM sovereignty_record_links l WHERE l.record_id = v.id AND l.retracted_at IS NULL);
 CREATE TEMP TABLE wl_c ON COMMIT DROP AS
-SELECT t.id, t.s, p.id AS prev, p.ratio
+SELECT t.id, t.s, t.late, p.id AS prev, p.ratio
 FROM wl_t t LEFT JOIN LATERAL (
   SELECT p.id, ST_Area(ST_SymDifference(ST_MakeValid(t.geom), ST_MakeValid(p.geom))::geography) / NULLIF(ST_Area(ST_MakeValid(p.geom)::geography), 0) AS ratio
   FROM sovereignty_records p
@@ -34,6 +35,7 @@ FROM wl_t t LEFT JOIN LATERAL (
 INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id, shape_change_ratio, note)
 SELECT id,
        CASE WHEN s <= DATE '{PHASE_START}' THEN 'baseline' WHEN prev IS NULL THEN 'new'
+            WHEN late AND ratio < 0.001 THEN 'beyond_source'
             WHEN ratio < 0.001 THEN 'continuation' WHEN ratio < 0.02 THEN 'minor_revision' ELSE 'change' END,
        CASE WHEN s <= DATE '{PHASE_START}' THEN NULL ELSE prev END,
        CASE WHEN s <= DATE '{PHASE_START}' THEN NULL ELSE ratio END,

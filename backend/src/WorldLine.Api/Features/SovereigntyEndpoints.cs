@@ -184,7 +184,8 @@ public static class SovereigntyEndpoints
         var slugs = await db.Regimes.AsNoTracking().Where(g => regimeIds.Contains(g.Id) && g.RetractedAt == null).ToDictionaryAsync(g => g.Id, g => g.Slug, ct);
         var recordIds = claims.Select(c => c.RecordId).OfType<Guid>().ToList();
         var owners = await db.SovereigntyRecords.AsNoTracking().Where(r => recordIds.Contains(r.Id) && r.RetractedAt == null).ToDictionaryAsync(r => r.Id, r => r.RegimeId, ct);
-        var dispute = new SovereigntyDispute { Id = Guid.CreateVersion7(), Slug = slug, Summary = summary };
+        var kind = req.Kind is null ? "contested" : Mapping.RequireOneOf(req.Kind, ["contested", "layered"], "kind");
+        var dispute = new SovereigntyDispute { Id = Guid.CreateVersion7(), Slug = slug, Summary = summary, Kind = kind };
         db.SovereigntyDisputes.Add(dispute);
         var rows = new List<SovereigntyDisputeClaim>();
         foreach (var c in claims)
@@ -202,7 +203,7 @@ public static class SovereigntyEndpoints
         db.SovereigntyDisputeClaims.AddRange(rows);
         await db.SaveChangesAsync(ct);
         return ApiResults.Created($"/api/v1/sovereignty-disputes/{dispute.Id}", new SovereigntyDisputeDto(dispute.Id, slug, Mapping.ReadLocalized(summary),
-            rows.Select(x => new SovereigntyDisputeClaimDto(x.ClaimantRegimeId, slugs[x.ClaimantRegimeId], x.RecordId, Mapping.ReadLocalized(x.Position), x.Effective)).ToList()));
+            rows.Select(x => new SovereigntyDisputeClaimDto(x.ClaimantRegimeId, slugs[x.ClaimantRegimeId], x.RecordId, Mapping.ReadLocalized(x.Position), x.Effective)).ToList(), kind));
     }
 
     /// <summary>撤回主權爭議（I5）；各方的主張跟著失效。更正＝撤回後重寫。</summary>
@@ -224,7 +225,7 @@ public static class SovereigntyEndpoints
                 from c in db.SovereigntyDisputeClaims.AsNoTracking()
                 join x in db.SovereigntyDisputes on c.DisputeId equals x.Id
                 where x.RetractedAt == null && c.RecordId != null && recordIds.Contains(c.RecordId.Value)
-                select new { RecordId = c.RecordId!.Value, x.Id, x.Slug, x.Summary })
+                select new { RecordId = c.RecordId!.Value, x.Id, x.Slug, x.Summary, x.Kind })
             .ToListAsync(ct);
         if (mine.Count == 0) return Enumerable.Empty<(Guid, SovereigntyDisputeDto)>().ToLookup(x => x.Item1, x => x.Item2);
         var disputeIds = mine.Select(x => x.Id).Distinct().ToList();
@@ -237,7 +238,7 @@ public static class SovereigntyEndpoints
                 select new { c.DisputeId, c.ClaimantRegimeId, g.Slug, c.RecordId, c.Position, c.Effective })
             .ToListAsync(ct))
             .ToLookup(x => x.DisputeId, x => new SovereigntyDisputeClaimDto(x.ClaimantRegimeId, x.Slug, x.RecordId, Mapping.ReadLocalized(x.Position), x.Effective));
-        return mine.OrderBy(x => x.Slug).ToLookup(x => x.RecordId, x => new SovereigntyDisputeDto(x.Id, x.Slug, Mapping.ReadLocalized(x.Summary), claims[x.Id].ToList()));
+        return mine.OrderBy(x => x.Slug).ToLookup(x => x.RecordId, x => new SovereigntyDisputeDto(x.Id, x.Slug, Mapping.ReadLocalized(x.Summary), claims[x.Id].ToList(), x.Kind));
     }
 
     public static async Task<IResult> GetDisputeZones(DateOnly? date, WorldLineDbContext db, CancellationToken ct)

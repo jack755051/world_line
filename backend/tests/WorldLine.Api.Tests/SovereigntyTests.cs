@@ -319,6 +319,7 @@ public sealed class SovereigntyTests(PostGisFixture fx)
             var d = (await FeatureOn(k, "1910-01-01", rec))!.Value.GetProperty("properties").GetProperty("disputes");
             Assert.Equal(1, d.GetArrayLength());
             Assert.StartsWith("interior-", d[0].GetProperty("slug").GetString());
+            Assert.Equal("contested", d[0].GetProperty("kind").GetString());   // 沒指定＝爭奪同一塊地
             var claims = d[0].GetProperty("claims").EnumerateArray().ToList();
             Assert.Equal(new[] { "claimant-a", "claimant-b", "claimant-c" }, claims.Select(c => c.GetProperty("claimantRegimeSlug").GetString()![..10]).ToArray());
             Assert.True(claims[0].GetProperty("effective").GetBoolean());
@@ -341,8 +342,13 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         var xs = zone.GetProperty("geometry").GetProperty("coordinates")[0][0].EnumerateArray().Select(pt => pt[0].GetDouble()).ToList();
         Assert.Equal(11, xs.Min(), 3); Assert.Equal(12, xs.Max(), 3);
 
+        // 宗主權與實際治理並存：kind = layered；其他值不收
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = $"bad-{k.Tag}", kind = "x", summary, claims = new[] { Claim(ca, ra), Claim(third, null) } }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = $"layered-{k.Tag}", kind = "layered", summary, claims = new[] { Claim(ca, ra), Claim(third, null) } }), HttpStatusCode.Created);
+        var kinds = (await FeatureOn(k, "1910-01-01", ra))!.Value.GetProperty("properties").GetProperty("disputes").EnumerateArray().Select(x => x.GetProperty("kind").GetString()).OrderBy(x => x).ToArray();
+        Assert.Equal(new[] { "contested", "layered" }, kinds);
         await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-disputes/{id}/retraction", new { reason = "重寫" }), HttpStatusCode.OK);
         await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-disputes/{id}/retraction", new { reason = "重寫" }), HttpStatusCode.Conflict);
-        Assert.Equal(0, (await FeatureOn(k, "1910-01-01", ra))!.Value.GetProperty("properties").GetProperty("disputes").GetArrayLength());
+        Assert.Equal(1, (await FeatureOn(k, "1910-01-01", ra))!.Value.GetProperty("properties").GetProperty("disputes").GetArrayLength());   // 只剩 layered 那一筆
     }
 }

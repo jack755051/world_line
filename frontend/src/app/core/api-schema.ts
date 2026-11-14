@@ -1591,6 +1591,7 @@ export interface components {
                 [key: string]: string;
             };
             claims: null | components["schemas"]["CreateSovereigntyDisputeClaimRequest"][];
+            kind?: null | string;
         };
         CreateSovereigntyRecordCitationRequest: {
             /** Format: uuid */
@@ -2067,6 +2068,8 @@ export interface components {
                 [key: string]: string;
             };
             claims: components["schemas"]["SovereigntyDisputeClaimDto"][];
+            /** @default contested */
+            kind: string;
         };
         SovereigntyEventRefDto: {
             /** Format: uuid */

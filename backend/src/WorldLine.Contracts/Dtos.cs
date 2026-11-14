@@ -267,9 +267,10 @@ public sealed record SovereigntyFeatureProperties(
 /// <summary>
 /// 主權爭議（憲法 R6、I3）：同一塊地有不只一方主張。summary＝爭議點；claims＝各方的主張。
 /// 系統不裁判誰對。掛在主權紀錄上回傳時，claims 含這筆紀錄自己那一方與其他各方。
+/// kind：contested＝各方爭奪同一塊地（畫面標「主權爭議」）；layered＝名義上的宗主權與實際治理並存（畫面標「主權並存」）。
 /// </summary>
 public sealed record SovereigntyDisputeDto(
-    Guid Id, string Slug, IReadOnlyDictionary<string, string> Summary, IReadOnlyList<SovereigntyDisputeClaimDto> Claims);
+    Guid Id, string Slug, IReadOnlyDictionary<string, string> Summary, IReadOnlyList<SovereigntyDisputeClaimDto> Claims, string Kind = "contested");
 
 /// <summary>
 /// 爭議裡某一方的主張。recordId＝畫出這一方主張範圍的主權紀錄；null＝這一方的主張查無出處，沒有畫範圍。
@@ -280,7 +281,7 @@ public sealed record SovereigntyDisputeClaimDto(
 
 /// <summary>新增主權爭議：slug、爭議點（多語）、至少兩方的主張。同一方跨好幾筆前後相接的主權紀錄時，每筆紀錄各給一列。</summary>
 public sealed record CreateSovereigntyDisputeRequest(
-    string? Slug, IReadOnlyDictionary<string, string>? Summary, IReadOnlyList<CreateSovereigntyDisputeClaimRequest>? Claims);
+    string? Slug, IReadOnlyDictionary<string, string>? Summary, IReadOnlyList<CreateSovereigntyDisputeClaimRequest>? Claims, string? Kind = null);
 
 public sealed record CreateSovereigntyDisputeClaimRequest(
     Guid? ClaimantRegimeId, Guid? RecordId, IReadOnlyDictionary<string, string>? Position, bool? Effective = null);

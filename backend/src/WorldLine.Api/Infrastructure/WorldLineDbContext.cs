@@ -342,10 +342,12 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             {
                 t.HasCheckConstraint("ck_sovereignty_disputes_slug", "slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'");
                 t.HasCheckConstraint("ck_sovereignty_disputes_summary_object", "jsonb_typeof(summary) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_disputes_kind", "kind IN ('contested', 'layered')");
                 t.HasCheckConstraint("ck_sovereignty_disputes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
             });
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.Slug).HasMaxLength(80);
+            e.Property(x => x.Kind).HasMaxLength(16).HasDefaultValue("contested");
             e.Property(x => x.Summary).HasColumnType("jsonb");
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
             e.HasIndex(x => x.Slug).IsUnique().HasFilter("retracted_at IS NULL").HasDatabaseName("ux_sovereignty_disputes_slug_live");

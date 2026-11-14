@@ -6841,6 +6841,12 @@
             "items": {
               "$ref": "#/components/schemas/CreateSovereigntyDisputeClaimRequest"
             }
+          },
+          "kind": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
@@ -8869,6 +8875,10 @@
             "items": {
               "$ref": "#/components/schemas/SovereigntyDisputeClaimDto"
             }
+          },
+          "kind": {
+            "type": "string",
+            "default": "contested"
           }
         }
       },

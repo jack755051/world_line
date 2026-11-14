@@ -347,6 +347,11 @@ public sealed class SovereigntyDispute
 {
     public Guid Id { get; set; }
     public string Slug { get; set; } = "";
+    /// <summary>
+    /// contested＝各方爭奪同一塊地；layered＝名義上的主權（宗主權）與實際治理並存，不是爭地（例：1908 年的保加利亞公國、1914 年以前的埃及）。
+    /// 畫面上前者標「主權爭議」，後者標「主權並存」（Tai 2026-11-14）。
+    /// </summary>
+    public string Kind { get; set; } = "contested";
     /// <summary>爭議點（多語 jsonb）：爭的是哪裡、何時起訖、各方依據為何。</summary>
     public string Summary { get; set; } = "";
     public DateTimeOffset? RetractedAt { get; set; }

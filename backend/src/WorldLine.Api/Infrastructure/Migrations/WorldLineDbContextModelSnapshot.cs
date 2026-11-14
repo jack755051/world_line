@@ -3281,6 +3281,14 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("now()");
 
+                    b.Property<string>("Kind")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasDefaultValue("contested")
+                        .HasColumnName("kind");
+
                     b.Property<DateTimeOffset?>("RetractedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("retracted_at");
@@ -3310,6 +3318,8 @@ namespace WorldLine.Api.Infrastructure.Migrations
 
                     b.ToTable("sovereignty_disputes", null, t =>
                         {
+                            t.HasCheckConstraint("ck_sovereignty_disputes_kind", "kind IN ('contested', 'layered')");
+
                             t.HasCheckConstraint("ck_sovereignty_disputes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
 
                             t.HasCheckConstraint("ck_sovereignty_disputes_slug", "slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'");

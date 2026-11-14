@@ -310,8 +310,8 @@
     "sources": []
    },
    "birthDate": {
-    "value": "1864-12-29",
-    "precision": "day",
+    "value": "1864-01-01",
+    "precision": "year",
     "sources": [
      {
       "title": "The Cardinals of the Holy Roman Church – Consistory of March 7, 1921: Benlloch y Vivó",
@@ -350,11 +350,12 @@
       "gradeBasis": "德國國家圖書館 GND 人名權威檔（lobid.org 官方 JSON 輸出）（old-format-cfields-2026-11-14）",
       "datePrecision": "year"
      }
-    ]
+    ],
+    "note": "合格出處只撐到年，依 source-rules §7 降低精度（rule-corrections-2026-11-14）"
    },
    "deathDate": {
-    "value": "1926-02-14",
-    "precision": "day",
+    "value": "1926-01-01",
+    "precision": "year",
     "sources": [
      {
       "title": "The Cardinals of the Holy Roman Church – Consistory of March 7, 1921: Benlloch y Vivó",
@@ -381,7 +382,8 @@
       "gradeBasis": "德國國家圖書館 GND 人名權威檔（lobid.org 官方 JSON 輸出）（old-format-cfields-2026-11-14）",
       "datePrecision": "year"
      }
-    ]
+    ],
+    "note": "說法衝突（source-rules §5）：LC（引 Enciclopedia universal ilustrada）記 1926-02-15，原值 02-14 只有不合格出處（rule-corrections-2026-11-14）"
    },
    "birthPlace": {
     "value": {
@@ -1504,8 +1506,8 @@
     "sources": []
    },
    "birthDate": {
-    "value": "1893-10-15",
-    "precision": "day",
+    "value": "1893-10-01",
+    "precision": "month",
     "sources": [
      {
       "title": "King Carol II",
@@ -1543,7 +1545,8 @@
       "grade": "A",
       "gradeBasis": "美國國會圖書館名稱權威檔（權威人名檔，A）；以官方 .madsrdf.json 匯出讀取（old-format-cfields-2026-11-14）"
      }
-    ]
+    ],
+    "note": "說法衝突（source-rules §5）：原值 1893-10-15，BnF cb14403314n 記 1893-10-16（rule-corrections-2026-11-14）"
    },
    "deathDate": null,
    "birthPlace": {
@@ -1751,26 +1754,6 @@
      }
     ]
    },
-   "birthPlace": {
-    "value": {
-     "zh-Hant": "埃及開羅",
-     "en": "Cairo, Egypt"
-    },
-    "sources": [
-     {
-      "title": "Farouk I",
-      "publisher": "Encyclopedia of World Biography (Gale), via Encyclopedia.com",
-      "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/farouk-i",
-      "sourceKind": "peer_reviewed",
-      "licenseCode": null,
-      "locator": "Encyclopedia of World Biography entry 'Farouk I', opening paragraph",
-      "evidence": "Farouk, the only son of Fuad I, was born in Cairo on Feb. 11, 1920.",
-      "accessedOn": "2026-11-07",
-      "grade": "C",
-      "gradeBasis": "無署名條目（Encyclopedia of World Biography，Encyclopedia.com）（old-format-enc-authors-2026-11-14）"
-     }
-    ]
-   },
    "summary": {
     "value": {
      "zh-Hant": "埃及國王，福阿德一世之子，1936年即位、1937年加冕，1952年7月26日被軍方逼迫退位並流亡義大利。",
@@ -1810,6 +1793,29 @@
      "field": "portrait",
      "clue": "Commons files 'King Farouk I 1948.jpg' and 'Farouk I 1946.jpg' are tagged PD-Egypt",
      "why": "source given only as Pinterest links, author 'Not credited'; US status not clearly templated"
+    },
+    {
+     "field": "birthPlace",
+     "note": "補查後仍只有 C／X 出處（Encyclopedia of World Biography (Gale), ），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "埃及開羅",
+      "en": "Cairo, Egypt"
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Farouk I",
+       "publisher": "Encyclopedia of World Biography (Gale), via Encyclopedia.com",
+       "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/farouk-i",
+       "sourceKind": "peer_reviewed",
+       "licenseCode": null,
+       "locator": "Encyclopedia of World Biography entry 'Farouk I', opening paragraph",
+       "evidence": "Farouk, the only son of Fuad I, was born in Cairo on Feb. 11, 1920.",
+       "accessedOn": "2026-11-07",
+       "grade": "C",
+       "gradeBasis": "無署名條目（Encyclopedia of World Biography，Encyclopedia.com）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
     }
    ]
   },
@@ -2459,26 +2465,6 @@
      }
     ]
    },
-   "birthPlace": {
-    "value": {
-     "zh-Hant": "尼加拉瓜瓊塔萊斯省阿科亞帕",
-     "en": "Acoyapa, Chontales, Nicaragua"
-    },
-    "sources": [
-     {
-      "title": "Efemérides del General Emiliano Chamorro (Revista Conservadora, 1961)",
-      "publisher": "Revista Conservadora; digitized by Fundación Enrique Bolaños",
-      "url": "https://sajurin.enriquebolanos.org/docs/91.pdf",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "Efemérides, entry '1871', p. 1",
-      "evidence": "Nace el 11 de Mayo en el pueblo de Acoyapa, Chontales. Fueron sus padres don Salvador Chamorro y doña Gregoria Vargas Báez.",
-      "accessedOn": "2026-11-07",
-      "grade": "C",
-      "gradeBasis": "Fundación Enrique Bolaños 數位化期刊（old-format-grade-2026-11-14）"
-     }
-    ]
-   },
    "party": {
     "value": {
      "zh-Hant": "保守黨",
@@ -2542,7 +2528,31 @@
     "retrievedOn": "2026-11-07"
    },
    "conflicts": [],
-   "unverified": []
+   "unverified": [
+    {
+     "field": "birthPlace",
+     "note": "補查後仍只有 C／X 出處（Revista Conservadora; digitized by Funda），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "尼加拉瓜瓊塔萊斯省阿科亞帕",
+      "en": "Acoyapa, Chontales, Nicaragua"
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Efemérides del General Emiliano Chamorro (Revista Conservadora, 1961)",
+       "publisher": "Revista Conservadora; digitized by Fundación Enrique Bolaños",
+       "url": "https://sajurin.enriquebolanos.org/docs/91.pdf",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "Efemérides, entry '1871', p. 1",
+       "evidence": "Nace el 11 de Mayo en el pueblo de Acoyapa, Chontales. Fueron sus padres don Salvador Chamorro y doña Gregoria Vargas Báez.",
+       "accessedOn": "2026-11-07",
+       "grade": "C",
+       "gradeBasis": "Fundación Enrique Bolaños 數位化期刊（old-format-grade-2026-11-14）"
+      }
+     ]
+    }
+   ]
   }
  ],
  "staging": []

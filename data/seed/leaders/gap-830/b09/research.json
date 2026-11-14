@@ -1429,8 +1429,8 @@
     "sources": []
    },
    "birthDate": {
-    "value": "1861-06-16",
-    "precision": "day",
+    "value": "1861-01-01",
+    "precision": "year",
     "sources": [
      {
       "title": "Emiliano González Navero (ABC Revista, 16 April 2006)",
@@ -1469,11 +1469,12 @@
       "gradeBasis": "德國國家圖書館 GND 人名權威檔（lobid.org 官方 JSON 輸出）（old-format-cfields-2026-11-14）",
       "datePrecision": "year"
      }
-    ]
+    ],
+    "note": "合格出處只撐到年，依 source-rules §7 降低精度（rule-corrections-2026-11-14）"
    },
    "deathDate": {
-    "value": "1934-10-18",
-    "precision": "day",
+    "value": "1934-01-01",
+    "precision": "year",
     "sources": [
      {
       "title": "Emiliano González Navero (ABC Revista, 16 April 2006)",
@@ -1512,27 +1513,8 @@
       "gradeBasis": "德國國家圖書館 GND 人名權威檔（lobid.org 官方 JSON 輸出）（old-format-cfields-2026-11-14）",
       "datePrecision": "year"
      }
-    ]
-   },
-   "birthPlace": {
-    "value": {
-     "zh-Hant": "巴拉圭科迪勒拉省卡拉瓜塔伊",
-     "en": "Caraguatay, Cordillera, Paraguay"
-    },
-    "sources": [
-     {
-      "title": "Emiliano González Navero — from Forjadores del Paraguay: Diccionario biográfico (2001)",
-      "publisher": "Portal Guaraní (text from Forjadores del Paraguay, Aramí Grupo Empresarial)",
-      "url": "https://www.portalguarani.com/2042_emiliano_gonzalez_navero.html",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "Nacimiento",
-      "evidence": "Nacimiento: Caraguatay , Cordillera , Paraguay 16 de Junio de 1861",
-      "accessedOn": "2026-11-07",
-      "grade": "C",
-      "gradeBasis": "Portal Guaraní（轉載出版書籍內容）（old-format-grade-2026-11-14）"
-     }
-    ]
+    ],
+    "note": "合格出處只撐到年，依 source-rules §7 降低精度（rule-corrections-2026-11-14）"
    },
    "summary": {
     "value": {
@@ -1590,6 +1572,29 @@
      "field": "portrait",
      "clue": "",
      "why": "Commons file pages not checked in this batch; left null."
+    },
+    {
+     "field": "birthPlace",
+     "note": "補查後仍只有 C／X 出處（Portal Guaraní (text from Forjadores del），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "巴拉圭科迪勒拉省卡拉瓜塔伊",
+      "en": "Caraguatay, Cordillera, Paraguay"
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Emiliano González Navero — from Forjadores del Paraguay: Diccionario biográfico (2001)",
+       "publisher": "Portal Guaraní (text from Forjadores del Paraguay, Aramí Grupo Empresarial)",
+       "url": "https://www.portalguarani.com/2042_emiliano_gonzalez_navero.html",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "Nacimiento",
+       "evidence": "Nacimiento: Caraguatay , Cordillera , Paraguay 16 de Junio de 1861",
+       "accessedOn": "2026-11-07",
+       "grade": "C",
+       "gradeBasis": "Portal Guaraní（轉載出版書籍內容）（old-format-grade-2026-11-14）"
+      }
+     ]
     }
    ]
   },

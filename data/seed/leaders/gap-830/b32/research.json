@@ -679,7 +679,7 @@
     "sources": []
    },
    "birthDate": {
-    "value": "1890-02-03",
+    "value": "1890-01-01",
     "sources": [
      {
       "title": "Vytautas Petrulis",
@@ -707,10 +707,11 @@
       "datePrecision": "year"
      }
     ],
-    "precision": "day"
+    "precision": "year",
+    "note": "合格出處只撐到年，依 source-rules §7 降低精度（rule-corrections-2026-11-14）"
    },
    "deathDate": {
-    "value": "1941-12-03",
+    "value": "1941-01-01",
     "sources": [
      {
       "title": "Vytautas Petrulis",
@@ -738,47 +739,8 @@
       "datePrecision": "year"
      }
     ],
-    "precision": "day"
-   },
-   "birthPlace": {
-    "value": {
-     "zh-Hant": "帕內韋日斯縣卡泰利什基艾",
-     "en": "Kateliškiai, Panevėžys district"
-    },
-    "sources": [
-     {
-      "title": "Vytautas Petrulis",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/vytautas-petrulis/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio pradžia",
-      "evidence": "Vytautas 1890 02 03 Kateliškiai (Panevėžio apskr.) 1941 12 03 prie Uchtos (Komija)",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ]
-   },
-   "party": {
-    "value": {
-     "zh-Hant": "立陶宛農民聯盟",
-     "en": "Lithuanian Farmers' Union"
-    },
-    "sources": [
-     {
-      "title": "Vytautas Petrulis",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/vytautas-petrulis/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio tekstas",
-      "evidence": "1923–26 II Seimo atstovas nuo Lietuvos ūkininkų sąjungos, 1925 12–1926 02 Seimo pirmininkas.",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ]
+    "precision": "year",
+    "note": "說法衝突（source-rules §5）：LC 記 1941，GND 141512172 記 1942（rule-corrections-2026-11-14）"
    },
    "summary": {
     "value": {
@@ -836,7 +798,55 @@
      }
     ]
    },
-   "portrait": null
+   "portrait": null,
+   "unverified": [
+    {
+     "field": "birthPlace",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "帕內韋日斯縣卡泰利什基艾",
+      "en": "Kateliškiai, Panevėžys district"
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Vytautas Petrulis",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/vytautas-petrulis/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio pradžia",
+       "evidence": "Vytautas 1890 02 03 Kateliškiai (Panevėžio apskr.) 1941 12 03 prie Uchtos (Komija)",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
+    },
+    {
+     "field": "party",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "立陶宛農民聯盟",
+      "en": "Lithuanian Farmers' Union"
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Vytautas Petrulis",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/vytautas-petrulis/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio tekstas",
+       "evidence": "1923–26 II Seimo atstovas nuo Lietuvos ūkininkų sąjungos, 1925 12–1926 02 Seimo pirmininkas.",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
+    }
+   ]
   },
   {
    "key": "lt-antanas-tumenas",
@@ -865,121 +875,137 @@
       "grade": "C",
       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
      }
-    ]
+    ],
+    "note": "姓名不可空白，保留並標待查證：補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）"
    },
    "nameZh": {
     "value": "安塔納斯·圖梅納斯",
     "sources": []
    },
-   "birthDate": {
-    "value": "1880-05-13",
-    "sources": [
-     {
-      "title": "Antanas Tumėnas",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio pradžia",
-      "evidence": "Antanas 1880 05 13 Kurkliečiai (Ragelių vlsč., Novoaleksandrovsko apskr.) 1946 02 08 Bachmanning (prie Linzo)",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ],
-    "precision": "day"
-   },
-   "deathDate": {
-    "value": "1946-02-08",
-    "sources": [
-     {
-      "title": "Antanas Tumėnas",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio pradžia",
-      "evidence": "Antanas 1880 05 13 Kurkliečiai (Ragelių vlsč., Novoaleksandrovsko apskr.) 1946 02 08 Bachmanning (prie Linzo)",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ],
-    "precision": "day"
-   },
-   "birthPlace": {
-    "value": {
-     "zh-Hant": "庫爾克列奇艾",
-     "en": "Kurkliečiai"
+   "portrait": null,
+   "unverified": [
+    {
+     "field": "birthDate",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": "1880-05-13",
+     "retractedPrecision": "day",
+     "retractedSources": [
+      {
+       "title": "Antanas Tumėnas",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio pradžia",
+       "evidence": "Antanas 1880 05 13 Kurkliečiai (Ragelių vlsč., Novoaleksandrovsko apskr.) 1946 02 08 Bachmanning (prie Linzo)",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
     },
-    "sources": [
-     {
-      "title": "Antanas Tumėnas",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio pradžia",
-      "evidence": "Antanas 1880 05 13 Kurkliečiai (Ragelių vlsč., Novoaleksandrovsko apskr.) 1946 02 08 Bachmanning (prie Linzo)",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ]
-   },
-   "party": {
-    "value": {
-     "zh-Hant": "立陶宛基督教民主黨",
-     "en": "Lithuanian Christian Democratic Party"
+    {
+     "field": "deathDate",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": "1946-02-08",
+     "retractedPrecision": "day",
+     "retractedSources": [
+      {
+       "title": "Antanas Tumėnas",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio pradžia",
+       "evidence": "Antanas 1880 05 13 Kurkliečiai (Ragelių vlsč., Novoaleksandrovsko apskr.) 1946 02 08 Bachmanning (prie Linzo)",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
     },
-    "sources": [
-     {
-      "title": "Antanas Tumėnas",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio tekstas",
-      "evidence": "1919–26 Lietuvių krikščionių demokratų partijos centro komiteto narys.",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ]
-   },
-   "summary": {
-    "value": {
-     "zh-Hant": "立陶宛法學家與基督教民主黨政治人物，主持 1922 年憲法起草委員會；1924 年 6 月至 1925 年 2 月任總理兼司法部長。",
-     "en": "Lithuanian lawyer and Christian Democrat who chaired the commission drafting the 1922 constitution; he was prime minister and justice minister from June 1924 to February 1925."
-    },
-    "sources": [
-     {
-      "title": "Antanas Tumėnas",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio tekstas",
-      "evidence": "Konstitucijos rengimo komisijos pirmininkas, daug prisidėjo prie 1922 Lietuvos Valstybės Konstitucijos parengimo",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+    {
+     "field": "birthPlace",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "庫爾克列奇艾",
+      "en": "Kurkliečiai"
      },
-     {
-      "title": "Antanas Tumėnas",
-      "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
-      "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
-      "sourceKind": "official_history",
-      "licenseCode": null,
-      "locator": "straipsnio tekstas",
-      "evidence": "1924 06–1925 02 ministras pirmininkas (Antano Tumėno vadovaujama Vyriausybė 1924–1925) ir teisingumo ministras",
-      "accessedOn": "2026-11-10",
-      "grade": "C",
-      "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
-     }
-    ]
-   },
-   "portrait": null
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Antanas Tumėnas",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio pradžia",
+       "evidence": "Antanas 1880 05 13 Kurkliečiai (Ragelių vlsč., Novoaleksandrovsko apskr.) 1946 02 08 Bachmanning (prie Linzo)",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
+    },
+    {
+     "field": "party",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "立陶宛基督教民主黨",
+      "en": "Lithuanian Christian Democratic Party"
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Antanas Tumėnas",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio tekstas",
+       "evidence": "1919–26 Lietuvių krikščionių demokratų partijos centro komiteto narys.",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
+    },
+    {
+     "field": "summary",
+     "note": "補查後仍只有 C／X 出處（Visuotinė lietuvių enciklopedija (Mokslo），依 source-rules §5 補充 5 撤回（rule-corrections-2026-11-14）",
+     "retractedValue": {
+      "zh-Hant": "立陶宛法學家與基督教民主黨政治人物，主持 1922 年憲法起草委員會；1924 年 6 月至 1925 年 2 月任總理兼司法部長。",
+      "en": "Lithuanian lawyer and Christian Democrat who chaired the commission drafting the 1922 constitution; he was prime minister and justice minister from June 1924 to February 1925."
+     },
+     "retractedPrecision": null,
+     "retractedSources": [
+      {
+       "title": "Antanas Tumėnas",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio tekstas",
+       "evidence": "Konstitucijos rengimo komisijos pirmininkas, daug prisidėjo prie 1922 Lietuvos Valstybės Konstitucijos parengimo",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      },
+      {
+       "title": "Antanas Tumėnas",
+       "publisher": "Visuotinė lietuvių enciklopedija (Mokslo ir enciklopedijų leidybos centras)",
+       "url": "https://www.vle.lt/straipsnis/antanas-tumenas/",
+       "sourceKind": "official_history",
+       "licenseCode": null,
+       "locator": "straipsnio tekstas",
+       "evidence": "1924 06–1925 02 ministras pirmininkas (Antano Tumėno vadovaujama Vyriausybė 1924–1925) ir teisingumo ministras",
+       "accessedOn": "2026-11-10",
+       "grade": "C",
+       "gradeBasis": "條目無署名（VLE）（old-format-enc-authors-2026-11-14）"
+      }
+     ]
+    }
+   ]
   },
   {
    "key": "lv-arturs-alberings",

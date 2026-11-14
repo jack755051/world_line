@@ -25,6 +25,8 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<EventCitationGrade> EventCitationGrades => Set<EventCitationGrade>();
     public DbSet<SovereigntyRecordLink> SovereigntyRecordLinks => Set<SovereigntyRecordLink>();
     public DbSet<SovereigntyRecordCitation> SovereigntyRecordCitations => Set<SovereigntyRecordCitation>();
+    public DbSet<SovereigntyDispute> SovereigntyDisputes => Set<SovereigntyDispute>();
+    public DbSet<SovereigntyDisputeClaim> SovereigntyDisputeClaims => Set<SovereigntyDisputeClaim>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
@@ -331,6 +333,35 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => new { x.RecordId, x.SourceId, x.Locator }).IsUnique().HasFilter("retracted_at IS NULL")
                 .HasDatabaseName("ux_sovereignty_record_citations_live");
+        });
+
+        // 主權爭議（憲法 R6、I3）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyDispute>(e =>
+        {
+            e.ToTable("sovereignty_disputes", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_disputes_slug", "slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'");
+                t.HasCheckConstraint("ck_sovereignty_disputes_summary_object", "jsonb_typeof(summary) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_disputes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Slug).HasMaxLength(80);
+            e.Property(x => x.Summary).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasIndex(x => x.Slug).IsUnique().HasFilter("retracted_at IS NULL").HasDatabaseName("ux_sovereignty_disputes_slug_live");
+        });
+        b.Entity<SovereigntyDisputeClaim>(e =>
+        {
+            e.ToTable("sovereignty_dispute_claims", t =>
+                t.HasCheckConstraint("ck_sovereignty_dispute_claims_position_object", "jsonb_typeof(position) = 'object'"));
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Position).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<SovereigntyDispute>().WithMany().HasForeignKey(x => x.DisputeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.ClaimantRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            // 同一方可以有多筆（前後相接的幾筆主權紀錄各一列）；同一筆主權紀錄在一筆爭議裡只能出現一次
+            e.HasIndex(x => new { x.DisputeId, x.RecordId }).IsUnique().HasFilter("record_id IS NOT NULL").HasDatabaseName("ux_sovereignty_dispute_claims_record");
         });
 
         // 事件引文的等級（docs/source-rules.md §2）。guard trigger 在 migration 以 SQL 建立。

@@ -260,6 +260,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sovereignty-disputes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateSovereigntyDispute"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty-disputes/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractSovereigntyDispute"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sovereignty-records/{id}/retraction": {
         parameters: {
             query?: never;
@@ -628,6 +660,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sovereignty/dispute-zones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetSovereigntyDisputeZones"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/regimes/{id}/geometry": {
         parameters: {
             query?: never;
@@ -818,6 +866,16 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfDisputeZonesDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["DisputeZonesDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfEventDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -993,6 +1051,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["SourceDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfSovereigntyDisputeDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["SovereigntyDisputeDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -1507,6 +1575,23 @@ export interface components {
             gradeBasis?: null | string;
             family?: null | string;
         };
+        CreateSovereigntyDisputeClaimRequest: {
+            /** Format: uuid */
+            claimantRegimeId: null | string;
+            /** Format: uuid */
+            recordId: null | string;
+            position: null | {
+                [key: string]: string;
+            };
+            effective?: null | boolean;
+        };
+        CreateSovereigntyDisputeRequest: {
+            slug: null | string;
+            summary: null | {
+                [key: string]: string;
+            };
+            claims: null | components["schemas"]["CreateSovereigntyDisputeClaimRequest"][];
+        };
         CreateSovereigntyRecordCitationRequest: {
             /** Format: uuid */
             sourceId: null | string;
@@ -1555,6 +1640,31 @@ export interface components {
             start: null | string;
             /** Format: date */
             end: null | string;
+        };
+        DisputeZoneCollection: {
+            features: components["schemas"]["DisputeZoneFeature"][];
+            type?: null | string;
+        };
+        DisputeZoneFeature: {
+            /** Format: uuid */
+            id: string;
+            geometry: components["schemas"]["JsonElement"];
+            properties: components["schemas"]["DisputeZoneProperties"];
+            type?: null | string;
+        };
+        DisputeZoneProperties: {
+            /** Format: uuid */
+            disputeId: string;
+            slug: string;
+            summary: {
+                [key: string]: string;
+            };
+            claimantRegimeSlugs: string[];
+        };
+        DisputeZonesDto: {
+            /** Format: date */
+            date: string;
+            featureCollection: components["schemas"]["DisputeZoneCollection"];
         };
         EventCitationInput: {
             /** Format: uuid */
@@ -1936,6 +2046,26 @@ export interface components {
             gradeBasis?: null | string;
             family?: null | string;
         };
+        SovereigntyDisputeClaimDto: {
+            /** Format: uuid */
+            claimantRegimeId: string;
+            claimantRegimeSlug: string;
+            /** Format: uuid */
+            recordId: null | string;
+            position: {
+                [key: string]: string;
+            };
+            effective: null | boolean;
+        };
+        SovereigntyDisputeDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            summary: {
+                [key: string]: string;
+            };
+            claims: components["schemas"]["SovereigntyDisputeClaimDto"][];
+        };
         SovereigntyEventRefDto: {
             /** Format: uuid */
             id: string;
@@ -1978,6 +2108,7 @@ export interface components {
             confidenceBasis?: null | string;
             recordCitations?: null | components["schemas"]["CitationDto"][];
             startDatePrecision?: null | string;
+            disputes?: null | components["schemas"]["SovereigntyDisputeDto"][];
         };
         SovereigntyMapDto: {
             /** Format: date */
@@ -2956,6 +3087,119 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponseOfCitationDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateSovereigntyDispute: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSovereigntyDisputeRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyDisputeDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractSovereigntyDispute: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
                 };
             };
             /** @description Bad Request */
@@ -4001,6 +4245,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponseOfSovereigntyMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetSovereigntyDisputeZones: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfDisputeZonesDto"];
                 };
             };
             /** @description Bad Request */

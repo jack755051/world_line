@@ -91,7 +91,8 @@ export interface LegendRegime {
               @for (k of occKinds; track k.kind) {
                 <li class="row" [attr.data-testid]="'legend-sov-occupation-' + k.kind"><span class="sw" [style.background]="k.bg" style="border:1px dashed #3a2f28"></span>{{ lang() === 'en' ? k.en : k.zh }}</li>
               }
-              <li class="row" data-testid="legend-sov-blank"><span class="sw border border-wl-outline-variant" style="background:#ece4d2"></span>{{ lang() === 'en' ? 'Blank = no qualified source yet (pending)' : '空白＝尚無合格出處（待查證）' }}</li>
+              <li class="row" data-testid="legend-sov-dispute"><span class="sw" [style.background]="sovDispute" style="border:1.25px dotted #b3261e"></span>{{ lang() === 'en' ? 'Red hatch, dotted edge = disputed (claims overlap)' : '朱紅斜線＋點線邊＝主權爭議（各方主張重疊）' }}</li>
+              <li class="row" data-testid="legend-sov-blank"><span class="sw border border-wl-outline-variant" style="background:#ece4d2"></span>{{ lang() === 'en' ? 'Blank = sovereignty data gap (no qualified source found)' : '空白＝主權資料缺（查無合格出處）' }}</li>
             </ul>
             <p class="mt-1 text-wl-on-surface-variant">{{ lang() === 'en' ? 'Borders as drawn by OpenHistoricalMap (de facto). Camp is a supplement only.' : '國界依 OpenHistoricalMap 所畫的事實國界；陣營只作補充。' }}</p>
           </div>
@@ -181,6 +182,7 @@ export class Legend {
 
   protected readonly sovSample = 'linear-gradient(90deg, #a99dc4 0 33%, #c9a87c 33% 66%, #8fb39a 66% 100%)';
   protected readonly sovHatch = 'repeating-linear-gradient(-45deg, #a99dc4 0 1.5px, #ece4d2 1.5px 5px)';
+  protected readonly sovDispute = 'repeating-linear-gradient(45deg, #b3261e 0 1.5px, #c9a87c 1.5px 5px)';
   /** 佔領區三種深淺（德國色示範）：併入最深、民政中等、軍事管理最淺；都疊佔領國色加深的斜線 */
   protected readonly occKinds = (
     [

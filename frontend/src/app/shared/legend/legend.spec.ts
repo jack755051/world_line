@@ -96,7 +96,8 @@ describe('Legend：主權圖層與收合動畫', () => {
     expect(el.querySelector('[data-testid="legend-sov-occupation-annexed"]')?.textContent).toContain('併入');
     expect(el.querySelector('[data-testid="legend-sov-occupation-civil_administration"]')?.textContent).toContain('總督府');
     expect(el.querySelector('[data-testid="legend-sov-occupation-military_administration"]')?.textContent).toContain('軍事管理');
-    expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('待查證');
+    expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('主權資料缺');
+    expect(el.querySelector('[data-testid="legend-sov-dispute"]')?.textContent).toContain('主權爭議'); // 憲法 R6、I3
   });
 
   it('收合：先播淡出收合（data-state=closing），結束後才換成收合按鈕；展開也播；不 tween 高度（§17.5）', async () => {

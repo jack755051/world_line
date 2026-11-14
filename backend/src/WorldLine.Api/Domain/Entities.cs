@@ -340,6 +340,37 @@ public sealed class SovereigntyRecordCitation
 }
 
 /// <summary>
+/// 主權爭議（憲法 R6、I3「明確標記為爭議並存」）：同一塊地在同一期間有不只一方主張時，用一筆爭議把各方的主張串起來。
+/// 系統不裁判誰對；summary 寫爭議點。不可修改，更正用「撤回＋重寫」（I5）。主張列跟著爭議一起撤回。
+/// </summary>
+public sealed class SovereigntyDispute
+{
+    public Guid Id { get; set; }
+    public string Slug { get; set; } = "";
+    /// <summary>爭議點（多語 jsonb）：爭的是哪裡、何時起訖、各方依據為何。</summary>
+    public string Summary { get; set; } = "";
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 爭議裡某一方的主張。record_id＝畫出這一方主張範圍的主權紀錄；這一方的主張查無出處、畫不出範圍時為 null（只記有這個主張，不替它畫範圍）。
+/// 同一方的主張範圍跨好幾筆前後相接的主權紀錄時，每筆紀錄各寫一列。
+/// position＝這一方主張什麼、誰承認（R6：標明主張方與承認方）。effective＝當時實際生效的是不是這一方；有爭議或未判定為 null。
+/// </summary>
+public sealed class SovereigntyDisputeClaim
+{
+    public Guid Id { get; set; }
+    public Guid DisputeId { get; set; }
+    public Guid ClaimantRegimeId { get; set; }
+    public Guid? RecordId { get; set; }
+    public string Position { get; set; } = "";
+    public bool? Effective { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
 /// 佔領歸屬（occupation_attributions）：某政權（非主權的佔領區、併入區）在某期間由哪個政權佔領、控制程度為何。
 /// 依政權＋期間（不綁單筆主權紀錄，國界修正撤回再新增時不必重寫）；同一被佔領政權的有效紀錄期間不可重疊（EXCLUDE）。
 /// basis_event_id＝有出處的事件；沒有事件或事件沒有引用＝「待查證」。共同佔領缺分區幾何時記主要佔領方並 co_occupied＝true、在 note 註記。

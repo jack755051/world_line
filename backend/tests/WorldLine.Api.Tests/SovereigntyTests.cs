@@ -287,4 +287,62 @@ public sealed class SovereigntyTests(PostGisFixture fx)
             $"SELECT regime_id, geom, daterange('1940-01-01','1941-01-01'), layer_status, geometry_source_id, 'y', geometry_license FROM sovereignty_records WHERE id = '{id}'"));
         Assert.Equal(PostgresErrorCodes.ExclusionViolation, ex.SqlState);
     }
+
+    /// <summary>
+    /// 主權爭議（憲法 R6、I3）：兩個政權的紀錄可以重疊；用一筆爭議把各方主張串起來，兩邊的紀錄都帶出這筆爭議。
+    /// 查無出處的一方只記主張、不接紀錄。只能撤回，不可修改。
+    /// </summary>
+    [Fact]
+    public async Task Disputes_link_competing_claims_and_show_on_each_record()
+    {
+        var k = new ApiTestKit(fx);
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var ca = await k.Regime("claimant-a"); var nf = await k.Regime("claimant-b"); var third = await k.Regime("claimant-c");
+        var ra = await k.Id(await Post(k, Body(ca, ohm, "1908-01-01", "1927-03-01", ApiTestKit.Square(10, 48, 2))));
+        var rb = await k.Id(await Post(k, Body(nf, ohm, "1908-01-01", "1927-03-01", ApiTestKit.Square(11, 48, 2))));   // 與 ra 重疊
+        object Claim(Guid regime, Guid? record, bool? effective = null) => new
+        {
+            claimantRegimeId = regime, recordId = record, effective,
+            position = new Dictionary<string, string> { ["zh-Hant"] = "主張整個內陸", ["en"] = "Claims the whole interior" },
+        };
+        var summary = new Dictionary<string, string> { ["zh-Hant"] = "內陸歸屬未定", ["en"] = "Interior undetermined" };
+        // 至少兩方；recordId 必須是主張方自己的紀錄；不能全部都沒有紀錄
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = "d-one", summary, claims = new[] { Claim(ca, ra) } }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = "d-wrong", summary, claims = new[] { Claim(ca, rb), Claim(nf, ra) } }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = "d-none", summary, claims = new[] { Claim(ca, null), Claim(nf, null) } }), HttpStatusCode.BadRequest);
+        var id = await k.Id(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes",
+            new { slug = $"interior-{k.Tag}", summary, claims = new[] { Claim(ca, ra, true), Claim(nf, rb), Claim(third, null) } }));
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = $"interior-{k.Tag}", summary, claims = new[] { Claim(ca, ra), Claim(nf, rb) } }), HttpStatusCode.Conflict);
+
+        foreach (var rec in new[] { ra, rb })
+        {
+            var d = (await FeatureOn(k, "1910-01-01", rec))!.Value.GetProperty("properties").GetProperty("disputes");
+            Assert.Equal(1, d.GetArrayLength());
+            Assert.StartsWith("interior-", d[0].GetProperty("slug").GetString());
+            var claims = d[0].GetProperty("claims").EnumerateArray().ToList();
+            Assert.Equal(new[] { "claimant-a", "claimant-b", "claimant-c" }, claims.Select(c => c.GetProperty("claimantRegimeSlug").GetString()![..10]).ToArray());
+            Assert.True(claims[0].GetProperty("effective").GetBoolean());
+            Assert.Equal(JsonValueKind.Null, claims[2].GetProperty("recordId").ValueKind);   // 查無出處的一方沒有畫範圍
+        }
+
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            foreach (var sql in new[] { $"UPDATE sovereignty_disputes SET slug = 'x' WHERE id = '{id}'", $"DELETE FROM sovereignty_dispute_claims WHERE dispute_id = '{id}'", $"UPDATE sovereignty_dispute_claims SET effective = false WHERE dispute_id = '{id}'" })
+            {
+                await using var cmd = new NpgsqlCommand(sql, c);
+                await Assert.ThrowsAsync<PostgresException>(() => cmd.ExecuteNonQueryAsync());
+            }
+        }
+        // 地圖上的爭議範圍＝兩方主張紀錄重疊的部分（ra：10–12、rb：11–13 → 11–12）
+        var map = await ApiTestKit.Body(await k.R.GetAsync("/api/v1/sovereignty/dispute-zones?date=1910-01-01"));
+        var zone = map.GetProperty("data").GetProperty("featureCollection").GetProperty("features").EnumerateArray().Single(z => z.GetProperty("properties").GetProperty("disputeId").GetGuid() == id);
+        Assert.Equal(2, zone.GetProperty("properties").GetProperty("claimantRegimeSlugs").GetArrayLength());
+        var xs = zone.GetProperty("geometry").GetProperty("coordinates")[0][0].EnumerateArray().Select(pt => pt[0].GetDouble()).ToList();
+        Assert.Equal(11, xs.Min(), 3); Assert.Equal(12, xs.Max(), 3);
+
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-disputes/{id}/retraction", new { reason = "重寫" }), HttpStatusCode.OK);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-disputes/{id}/retraction", new { reason = "重寫" }), HttpStatusCode.Conflict);
+        Assert.Equal(0, (await FeatureOn(k, "1910-01-01", ra))!.Value.GetProperty("properties").GetProperty("disputes").GetArrayLength());
+    }
 }

@@ -3267,6 +3267,112 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyDispute", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)")
+                        .HasColumnName("slug");
+
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("summary");
+
+                    b.HasKey("Id")
+                        .HasName("pk_sovereignty_disputes");
+
+                    b.HasIndex("Slug")
+                        .IsUnique()
+                        .HasDatabaseName("ux_sovereignty_disputes_slug_live")
+                        .HasFilter("retracted_at IS NULL");
+
+                    b.ToTable("sovereignty_disputes", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_sovereignty_disputes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_sovereignty_disputes_slug", "slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'");
+
+                            t.HasCheckConstraint("ck_sovereignty_disputes_summary_object", "jsonb_typeof(summary) = 'object'");
+                        });
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyDisputeClaim", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<Guid>("ClaimantRegimeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("claimant_regime_id");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Guid>("DisputeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("dispute_id");
+
+                    b.Property<bool?>("Effective")
+                        .HasColumnType("boolean")
+                        .HasColumnName("effective");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("position");
+
+                    b.Property<Guid?>("RecordId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("record_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_sovereignty_dispute_claims");
+
+                    b.HasIndex("ClaimantRegimeId")
+                        .HasDatabaseName("ix_sovereignty_dispute_claims_claimant_regime_id");
+
+                    b.HasIndex("RecordId")
+                        .HasDatabaseName("ix_sovereignty_dispute_claims_record_id");
+
+                    b.HasIndex("DisputeId", "RecordId")
+                        .IsUnique()
+                        .HasDatabaseName("ux_sovereignty_dispute_claims_record")
+                        .HasFilter("record_id IS NOT NULL");
+
+                    b.ToTable("sovereignty_dispute_claims", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_sovereignty_dispute_claims_position_object", "jsonb_typeof(position) = 'object'");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4197,6 +4303,29 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("fk_regime_relations_regimes_regime_b_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyDisputeClaim", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.Regime", null)
+                        .WithMany()
+                        .HasForeignKey("ClaimantRegimeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_sovereignty_dispute_claims_regimes_claimant_regime_id");
+
+                    b.HasOne("WorldLine.Api.Domain.SovereigntyDispute", null)
+                        .WithMany()
+                        .HasForeignKey("DisputeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_sovereignty_dispute_claims_sovereignty_disputes_dispute_id");
+
+                    b.HasOne("WorldLine.Api.Domain.SovereigntyRecord", null)
+                        .WithMany()
+                        .HasForeignKey("RecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("fk_sovereignty_dispute_claims_sovereignty_records_record_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecord", b =>

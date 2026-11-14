@@ -1,3 +1,4 @@
+import type { components } from '../api-schema';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
@@ -29,6 +30,8 @@ export interface CapitalRecord {
   validPeriod: { start: string; end: string | null };
   sourceRef: string;
 }
+
+export type DisputeZonesDto = components['schemas']['DisputeZonesDto'];
 
 export interface CapitalsDto {
   date: string;
@@ -335,6 +338,11 @@ export class WorldLineApi {
   async source(id: string): Promise<SourceDto> {
     const res = await firstValueFrom(this.http.get<ApiEnvelope<SourceDto>>(`${WorldLineApi.base}/sources/${id}`));
     return res.data;
+  }
+
+  /** GET /sovereignty/dispute-zones?date=：該日各筆主權爭議的重疊範圍（憲法 R6、I3）；沒有爭議時 features 為空。 */
+  async disputeZones(date: string, signal?: AbortSignal): Promise<DisputeZonesDto> {
+    return this.getByDate<DisputeZonesDto>('/sovereignty/dispute-zones', date, signal);
   }
 
   /** GET /capitals?date=：該日首都記錄（城市名稱、位置）。 */

@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { ConflictMapDto, ControlMapDto, RegimeDto, SovereigntyMapDto, TimelineSnapshotDto, RegimeEventDto } from './api/api-types';
 import { LruCache, addDaysIso, intervalKey, neighborDates } from './change-points';
 import { WorldLineApi } from './api/world-line-api';
-import type { CapitalsDto, LeadersDto } from './api/world-line-api';
+import type { CapitalsDto, DisputeZonesDto, LeadersDto } from './api/world-line-api';
 import { AtlasState } from './atlas-state';
 import { isAbort } from './delayed-flag';
 import { readBoundarySource, type BoundarySource } from './boundary-source';
@@ -90,6 +90,10 @@ export class AtlasData {
 
   /** 衝突圖示資料：失敗時保留上一次成功的結果（圖示只在點選政權後才顯示）。 */
   readonly conflicts = signal<ConflictMapDto | null>(null);
+  /** 當天各筆主權爭議的重疊範圍（憲法 R6、I3）；geojson、tiles 兩種模式都直接向 API 取（資料量很小）。 */
+  readonly disputeZones = signal<DisputeZonesDto | null>(null);
+  private readonly dzCache = new LruCache<DisputeZonesDto>(60);
+  private dzSeq = 0;
   readonly conflictsStatus = signal<LoadStatus>('idle');
   /** 政權相關事件（政權面板時間線），依政權 id 快取；不隨日期變。 */
   readonly regimeEvents = signal<Record<string, RegimeEventDto[]>>({});
@@ -443,6 +447,23 @@ export class AtlasData {
     this.cfKey = key;
     this.conflicts.set(dto);
     this.conflictsStatus.set('ok');
+  }
+
+  /** 載入某日的主權爭議範圍。失敗時不顯示（不影響其他圖層），不重試。 */
+  async loadDisputeZones(date: string): Promise<void> {
+    const my = ++this.dzSeq;
+    const hit = this.dzCache.get(date);
+    if (hit) {
+      this.disputeZones.set(hit);
+      return;
+    }
+    try {
+      const dto = await this.api.disputeZones(date);
+      this.dzCache.set(date, dto);
+      if (my === this.dzSeq) this.disputeZones.set(dto);
+    } catch {
+      if (my === this.dzSeq) this.disputeZones.set(null);
+    }
   }
 
   async loadCapitals(date: string): Promise<void> {

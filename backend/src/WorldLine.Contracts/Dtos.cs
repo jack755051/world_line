@@ -262,7 +262,28 @@ public sealed record SovereigntyFeatureProperties(
     SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
     IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null,
     string? Confidence = null, string? ConfidenceBasis = null, IReadOnlyList<CitationDto>? RecordCitations = null,
-    string? StartDatePrecision = null);
+    string? StartDatePrecision = null, IReadOnlyList<SovereigntyDisputeDto>? Disputes = null);
+
+/// <summary>
+/// 主權爭議（憲法 R6、I3）：同一塊地有不只一方主張。summary＝爭議點；claims＝各方的主張。
+/// 系統不裁判誰對。掛在主權紀錄上回傳時，claims 含這筆紀錄自己那一方與其他各方。
+/// </summary>
+public sealed record SovereigntyDisputeDto(
+    Guid Id, string Slug, IReadOnlyDictionary<string, string> Summary, IReadOnlyList<SovereigntyDisputeClaimDto> Claims);
+
+/// <summary>
+/// 爭議裡某一方的主張。recordId＝畫出這一方主張範圍的主權紀錄；null＝這一方的主張查無出處，沒有畫範圍。
+/// position＝主張什麼、誰承認。effective＝當時實際生效的是不是這一方（null＝未判定或本身有爭議）。
+/// </summary>
+public sealed record SovereigntyDisputeClaimDto(
+    Guid ClaimantRegimeId, string ClaimantRegimeSlug, Guid? RecordId, IReadOnlyDictionary<string, string> Position, bool? Effective);
+
+/// <summary>新增主權爭議：slug、爭議點（多語）、至少兩方的主張。同一方跨好幾筆前後相接的主權紀錄時，每筆紀錄各給一列。</summary>
+public sealed record CreateSovereigntyDisputeRequest(
+    string? Slug, IReadOnlyDictionary<string, string>? Summary, IReadOnlyList<CreateSovereigntyDisputeClaimRequest>? Claims);
+
+public sealed record CreateSovereigntyDisputeClaimRequest(
+    Guid? ClaimantRegimeId, Guid? RecordId, IReadOnlyDictionary<string, string>? Position, bool? Effective = null);
 
 /// <summary>
 /// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|
@@ -293,6 +314,22 @@ public sealed record SovereigntyFeatureCollection(IReadOnlyList<SovereigntyFeatu
 }
 
 public sealed record SovereigntyMapDto(DateOnly Date, SovereigntyFeatureCollection FeatureCollection);
+
+/// <summary>GET /sovereignty/dispute-zones?date=：當天各筆主權爭議的重疊範圍；沒有爭議時 features 為空。</summary>
+public sealed record DisputeZonesDto(DateOnly Date, DisputeZoneCollection FeatureCollection);
+
+/// <summary>主權爭議在地圖上的範圍：各方主張紀錄互相重疊的部分。只有一方畫得出範圍的爭議沒有 zone。</summary>
+public sealed record DisputeZoneProperties(Guid DisputeId, string Slug, IReadOnlyDictionary<string, string> Summary, IReadOnlyList<string> ClaimantRegimeSlugs);
+
+public sealed record DisputeZoneFeature(Guid Id, JsonElement Geometry, DisputeZoneProperties Properties)
+{
+    public string Type => "Feature";
+}
+
+public sealed record DisputeZoneCollection(IReadOnlyList<DisputeZoneFeature> Features)
+{
+    public string Type => "FeatureCollection";
+}
 
 // ───────────── 衝突圖示（交叉雙劍；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
 /// <summary>

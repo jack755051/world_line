@@ -95,7 +95,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
               [bp]="vp.bp()" [compact]="vp.compact()" [showCamps]="showCamps()" (campsToggle)="showCamps.set(!showCamps())" (datePick)="openDatePicker()" />
             }
             <div #mapArea data-testid="map-area" [attr.data-ready-for]="mapReady() ? state.date() : null" class="relative flex-1 overflow-hidden bg-[#cfdbe0]">
-              <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
+              <wl-atlas-map [collection]="collection()" [labels]="allLabels()" [gaps]="gaps()" [disputeZones]="disputeZonesFc()" [selectedVersionId]="selected()?.versionId ?? null" [engineErrorText]="tr('map.engineError')"
  [axis]="state.axis()" [reducedMotion]="motion.reduced()"
                 [fadeArmed]="fadeArmed()" (fadeConsumed)="fadeArmed.set(false)" (renderBusy)="mapRenderBusy.set($event)" (userMove)="onMapUserMove()"
                 [conflicts]="conflictIcons()" [popupEl]="mobile() ? null : conflictPopEl()?.nativeElement ?? null" [popupLngLat]="conflictLngLat()" (conflictClick)="onConflictClick($event)"
@@ -167,7 +167,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                         ⚔ 戰役簡報：{{ cp.name_zh }}<span class="font-normal text-wl-on-surface-variant">{{ cp.start }} – {{ cp.end }}</span></button>
                     }
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
-                    <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
+                    <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [claimantNames]="regimeDisplayNames()" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
                       [conflicts]="sovConflicts()" [regimeEvents]="data.regimeEvents()[s.props.regimeId] ?? null" [eventsStatus]="data.regimeEventsStatus()[s.props.regimeId] ?? 'loading'"
                       [currentDate]="state.date()" [capital]="selectedCapital()" [leaders]="selectedLeaders()" [inheritedLeaders]="inheritedLeaders().leaders" [inheritedFrom]="inheritedLeaders().from" (personOpen)="openPerson($event)" [tab]="sovTab()" (tabChange)="sovTab.set($event)" (conflictSelect)="selectConflict($event)" (eventJump)="jumpToEvent($event)" [highlightEvent]="conflictHighlight()"
                       [controlZone]="sh.control" />
@@ -311,6 +311,17 @@ export class AtlasPage {
   protected readonly motion = inject(MotionService);
   /** 主權圖層（國界）：填色依政權；陣營只作補充。 */
   protected readonly sovereigntyFc = computed(() => decorateSovereignty(this.data.sovereignty()));
+  /** 已載入政權的顯示名稱（regimeId → 自稱，依語系）；爭議各方的名稱用。沒載入的政權卡片上顯示代號。 */
+  protected readonly regimeDisplayNames = computed(() => {
+    const out: Record<string, string> = {};
+    for (const [id, r] of Object.entries(this.data.regimes())) {
+      const n = regimeSelfName(r, this.lang())?.display;
+      if (n) out[id] = n;
+    }
+    return out;
+  });
+  /** 主權爭議範圍（憲法 R6、I3）：API 給什麼畫什麼，前端不推導。 */
+  protected readonly disputeZonesFc = computed(() => (this.data.disputeZones()?.featureCollection ?? null) as unknown as FeatureCollection<Geometry> | null);
   /** tiles 模式（§9 步驟 4）：已載入政權的填色（依 slug 用與 geojson 模式相同的 regimeColor）。 */
   protected readonly tileRegimeColors = computed(() => {
     if (this.data.boundarySource !== 'tiles') return {};
@@ -995,6 +1006,7 @@ export class AtlasPage {
     void this.data.loadControl(date);
     void this.data.loadCapitals(date);
     void this.data.loadLeaders(date);
+    void this.data.loadDisputeZones(date);
     const playing = this.playing();
     void Promise.all([this.data.loadSovereignty(date), this.data.loadConflicts(date)]).then(() => {
       if (this.state.date() === date) void this.data.prefetch(date, 4, !playing);

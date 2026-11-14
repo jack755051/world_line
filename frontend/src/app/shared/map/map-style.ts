@@ -76,6 +76,10 @@ export function campTonesFrom(dto: ControlMapDto | null | undefined): CampTones 
 export const GAP_STYLE = { dotColor: 'rgba(58,47,40,0.35)', grid: 6 } as const;
 export const GAP_IMAGE_ID = 'wl-gap-dots';
 
+/** 主權爭議範圍（憲法 R6、I3）：朱紅斜線＋點線外框，疊在各方的國界填色上；不與非主權（政權色斜線）、控制資料缺（墨點）共用樣式。 */
+export const DISPUTE_COLOR = '#b3261e';
+export const DISPUTE_IMAGE_ID = 'wl-hatch-partial-b3261e';
+
 export interface GapProps {
   gapId: string;
   reason: string;

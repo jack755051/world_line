@@ -19,7 +19,7 @@ import type { Popup } from 'maplibre-gl';
 import type { GeoJSONSource, GeoJSONSourceDiff, Map as MlMap, MapLayerMouseEvent, StyleSpecification, LayerSpecification } from 'maplibre-gl';
 import { captureMapCanvas } from './scan-snapshot';
 import { gapDotsImage, hatchImage, patternIds } from './hatch';
-import { GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
+import { DISPUTE_COLOR, DISPUTE_IMAGE_ID, GAP_IMAGE_ID, GAP_STYLE, MAP_COLORS, type ControlLabel, type DecoratedProps, type GapProps } from './map-style';
 import { AtlasState, type Axis } from '../../core/atlas-state';
 import { AXIS_TRANSITION_MS } from '../../core/motion';
 import { focusMaskPath, focusPadding, geometryBounds, measuredPadding, polygonRings, type FocusInset, type LngLatBounds, type Padding } from './focus';
@@ -248,6 +248,7 @@ export function buildBaseStyle(opts?: { bordersAttribution?: boolean }): StyleSp
       land: { type: 'geojson', data: BASEMAP_URL, attribution: '底圖 Base map: Natural Earth（公有領域 public domain）' },
       control: { type: 'geojson', data: EMPTY, promoteId: 'versionId' },
       gaps: { type: 'geojson', data: EMPTY, promoteId: 'gapId' },
+      disputes: { type: 'geojson', data: EMPTY },
       sovereignty: {
         type: 'geojson',
         data: EMPTY,
@@ -277,6 +278,9 @@ export function buildBaseStyle(opts?: { bordersAttribution?: boolean }): StyleSp
         filter: ['!=', ['get', 'wlPattern'], ''],
         paint: { 'line-color': MAP_COLORS.ink, 'line-width': 1, 'line-opacity': 0.8, 'line-dasharray': [2, 2] },
       },
+      // 主權爭議範圍（憲法 R6、I3）：各方主張重疊的部分，疊在國界填色上——朱紅斜線＋點線外框。不表示哪一方有理。
+      { id: 'dispute-fill', type: 'fill', source: 'disputes', paint: { 'fill-pattern': DISPUTE_IMAGE_ID } },
+      { id: 'dispute-line', type: 'line', source: 'disputes', paint: { 'line-color': DISPUTE_COLOR, 'line-width': 1.25, 'line-dasharray': [0.5, 2] } },
       {
         // 陣營外框（補充，可開關，預設關）：只描有陣營切片的國家，不改填色
         id: 'sov-camp-line',
@@ -547,6 +551,8 @@ export const SCALE_MIN_ZOOM = 3;
 export class AtlasMap {
   readonly collection = input<FeatureCollection<Geometry, DecoratedProps> | null>(null);
   readonly gaps = input<FeatureCollection<Geometry, GapProps> | null>(null);
+  /** 主權爭議範圍（GET /sovereignty/dispute-zones）。 */
+  readonly disputeZones = input<FeatureCollection<Geometry> | null>(null);
   readonly sovereignty = input<FeatureCollection<Geometry, SovereigntyProps> | null>(null);
   /** 疆界來源（§9 步驟 4）：tiles 時國界、國名改由向量圖磚畫，換日期只改 filter。 */
   readonly boundarySource = input<BoundarySource>('geojson');
@@ -794,6 +800,14 @@ export class AtlasMap {
       });
     });
     effect(() => {
+      const data = this.disputeZones();
+      if (!this.ready()) return;
+      untracked(() => {
+        this.addHatch(DISPUTE_IMAGE_ID);
+        (this.map?.getSource('disputes') as GeoJSONSource | undefined)?.setData(data ?? EMPTY);
+      });
+    });
+    effect(() => {
       const data = this.gaps();
       if (!this.ready()) return;
       untracked(() => {
@@ -930,6 +944,8 @@ export class AtlasMap {
         this.placeConflicts();
         (map.getSource('gaps') as GeoJSONSource | undefined)?.setData(this.gaps() ?? EMPTY);
         this.addHatch(GAP_IMAGE_ID);
+        this.addHatch(DISPUTE_IMAGE_ID);
+        (map.getSource('disputes') as GeoJSONSource | undefined)?.setData(this.disputeZones() ?? EMPTY);
         this.ensurePatterns(this.sovereignty());
         this.applySovereigntyData(this.sovereignty());
         map.setLayoutProperty('sov-camp-line', 'visibility', this.showCamps() && this.boundarySource() !== 'tiles' ? 'visible' : 'none');

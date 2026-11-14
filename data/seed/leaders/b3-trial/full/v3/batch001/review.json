@@ -1,0 +1,88 @@
+{
+ "batch": "001",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 12,
+  "editedSentences": 5,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "gb-churchill",
+   "bioId": "01a1c86e-c89b-70af-afe0-1ad0f4be2bf8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 10,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 27,
+   "changes": [
+    "段1 補引文 'during the first three decades of the century'（支撐「二十世紀前三十年」子句）",
+    "段5 補引文 'when he did not seek re-election'（支撐「不再參選」子句）",
+    "churchill-chancellor t14Reason 改寫：1 筆 A 已足，僅缺 regime（原文「另只有 1 筆 A」易誤解）",
+    "Nobel 機構傳記維持 B（domain-policy 主管 2026-11-13 已定 B）；major★ 搜尋量達標（6 類、27 步、4 個 A／B 含 3 A，指定來源皆查）",
+    "重抓 Hansard 人物頁比對 PM 與 Home Secretary 引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ie-de-valera",
+   "bioId": "01a1b4b0-6fbb-7a56-8a6b-9a671ff693cc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 3,
+   "gaps": 3,
+   "searchLogSteps": 18,
+   "changes": [
+    "段1 刪「1916年」（引文無年份）；period 改 1917-01-01(year)～1919-03-01(month)（原 start 1919-02 晚於段內 1917 事件，end 空）",
+    "段2 補引文 'he recovered the leadership amongst republicans after the conflict'，中文改為「內戰結束後在共和派中重拾領導，被關押到1924年反而有助益」以符原文 aided by",
+    "段3 補 3 筆外交部長逐屆引文（1937–38、1938–43、1943–44）支撐「歷第八至第十二屆」",
+    "段4 補 3 筆 Taoiseach 逐屆引文（1938–43、1943–44、1944–48）支撐「一直任到第十二屆」",
+    "dv-external-affairs：年精度已可證明 ≥90 天，roleGap 刪 dates 只留 regime，t14Reason 改寫",
+    "重抓 Oireachtas 議員頁比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gt-ubico",
+   "bioId": "01a1b4af-e4cc-783b-b657-f81348ad4493",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1 period.end 1906-01-01→1907-01-01（Q3：1906 年事件，年精度終點寫下一年）",
+    "段3 補引文 'substituted a labor obligation to the state'（中文「改為對國家的勞動義務」原無引文），英文同步補該子句；刪 Grieb「個人化進步軍事」形容（引文只有 dictatorship for thirteen years）；period.end 補 1945-01-01(year)",
+    "段4 「6月30日前後下定辭職決心」改為「突然決定辭職，顯然在6月30日認定再努力徒勞」，補引文 'Ubico abruptly decided to resign'；補引文 'was declared Provisional President'；'July 4 . On this date Congress accepted the resignation' 加 evidenceNote（該句受詞為前任 Designates，只取日期標題）",
+    "重抓 FRUS 1944 d1127 比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引半句、漏掉中文子句的支撐（年份、修飾語、逐屆連續性），本批補 12 筆原文引文",
+  "段落 period 迄點空白或與段內事件不符（Q3），已修 3 段；邱吉爾段1、段3 迄點仍為 null（最後事件無明確日期，未推定）",
+  "依 docs/source-rules.md 核對：無禁用網域／wiki 類網址（52 個 URL）；Encyclopedia.com 轉錄本記 B；生平出處皆 A／B，未評等來源（Treccani、VLE 無署名條目）只在 searchLog；Ubico 戰爭部長日期的不合格檢索摘要未當衝突，正確",
+  "本批實際只有 3 人（指示寫 5 人）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

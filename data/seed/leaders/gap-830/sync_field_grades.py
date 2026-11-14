@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""舊格式人物生平（gap-830）欄位出處等級 → 5442 開發庫 leader_bio_field_citations.grade（Tai 2026-11-14 做法 3「繼續做」）。
+"""舊格式人物生平（gap-830、batch-p1-20261107）欄位出處等級 → 5442 開發庫 leader_bio_field_citations.grade（Tai 2026-11-14 做法 3「繼續做」）。
 
 - 以各批 sent.5052.json 的「人物 key → bio id」對照，依 (bio, 欄位, 來源網址, locator) 對到庫內有效的欄位引文。
 - seed 等級 A／B／C 與庫內不同 → 就地 UPDATE grade（欄位引文表允許改等級；保護機制只擋刪除與撤銷撤回）。
@@ -48,12 +48,14 @@ def main():
     send = "--send" in sys.argv; allow = "--allow-write" in sys.argv
     want = collections.defaultdict(set)  # (bio, field, url, locator) -> {grade}
     no_bio = 0
-    for d in sorted(HERE.glob("b[0-9][0-9]")):
-        led = d / "sent.5052.json"
-        if not (d / "research.json").exists() or not led.exists():
+    P1 = HERE.parent / "batch-p1-20261107"
+    sets = [(d / "research.json", d / "sent.5052.json") for d in sorted(HERE.glob("b[0-9][0-9]"))] + \
+           [(P1 / n, P1 / "sent-p1.5052.json") for n in ("roc.json", "su-tr.json", "us-es.json")]  # batch-p1：同一份記帳
+    for seed, led in sets:
+        if not seed.exists() or not led.exists():
             continue
         bios = json.loads(led.read_text()).get("bios") or {}
-        for p in json.loads((d / "research.json").read_text()).get("people") or []:
+        for p in json.loads(seed.read_text()).get("people") or []:
             bio = bios.get(p["key"])
             if not bio:
                 no_bio += 1; continue
@@ -61,6 +63,13 @@ def main():
                 for s in sources_of(p.get(f)):
                     if s.get("grade"):
                         want[(bio, f, s["url"], s.get("locator"))].add(s["grade"])
+    dp = P1 / "death-precision.json"  # 卒日精度修正（revise_death_p1.py 寫入，條目直接帶 bioId）
+    remap = json.loads((P1 / "sent-death.5052.json").read_text()).get("bios") or {} if (P1 / "sent-death.5052.json").exists() else {}
+    if dp.exists():  # 寫入時以撤回重寫改了主檔：sent-death.5052.json 記「舊 bio → 新 bio」
+        for it in json.loads(dp.read_text()).get("items") or []:
+            s = it.get("source") or {}
+            if it.get("bioId") and s.get("grade"):
+                want[(remap.get(it["bioId"], it["bioId"]), "deathDate", s["url"], s.get("locator"))].add(s["grade"])
     bios = sorted({k[0] for k in want})
     rows = []
     for i in range(0, len(bios), 400):

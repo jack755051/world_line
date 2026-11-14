@@ -58,6 +58,14 @@ GRADES = {
     "www.nato.int": (A_, "北約官方網站（歷任秘書長）"), "patriarhia.ro": (A_, "羅馬尼亞東正教牧首區官方網站（歷任牧首）"),
     "encykorea.aks.ac.kr": (A_, "韓國學中央研究院《韓國民族文化大百科》（國家級，具名作者）"),
     "vlex.com.pe": (B_, "vLex 法律資料庫收錄之官方法令（第三方轉錄，原件 A 記 B）"), "aman.ro": (C_, "Aman 博物館（克拉約瓦）介紹頁"),
+    # batch-p1-20261107（roc／su-tr／us-es.json）
+    "ataturkansiklopedisi.gov.tr": (A_, "Atatürk Ansiklopedisi（土耳其 Atatürk 研究中心，國家機構編纂）"),
+    "sunology.yatsen.gov.tw": (A_, "國立國父紀念館（政府機關）"), "museum.mof.gov.tw": (A_, "財政部財政史料陳列室（政府機關）"),
+    "www.tccb.gov.tr": (A_, "土耳其總統府"), "guides.loc.gov": (A_, "美國國會圖書館研究指南"), "www.tbmm.gov.tr": (A_, "土耳其大國民議會"),
+    "hoover.archives.gov": (A_, "胡佛總統圖書館（NARA）"), "www.fdrlibrary.org": (A_, "羅斯福總統圖書館（NARA）"), "www.mfa.gov.tr": (A_, "土耳其外交部"),
+    "www.ly.gov.tw": (A_, "立法院"), "dict.revised.moe.edu.tw": (A_, "教育部《重編國語辭典修訂本》"), "www.basbakanlik.gov.tr": (A_, "土耳其總理府（已停用網站）"),
+    "museopresidentes.org.mx": (C_, "Museo de los Presidentes Coahuilenses（博物館出版品）"), "www.gobiernoenlinea.ve": (A_, "委內瑞拉政府入口網站（存檔）"),
+    "www.knowbysight.info": (C_, "網站轉載之《Справочник по истории КПСС и Советского Союза 1898–1991》；編者與授權待確認，保守記 C"),
     # 學術機構、期刊、學術資料庫
     "www.parlement.com": (B_, "萊頓大學議會文獻中心（PDC）"), "islamansiklopedisi.org.tr": (B_, "TDV İslâm Ansiklopedisi（具名學者條目）"),
     "tekst.devb.be": (B_, "Nieuwe Encyclopedie van de Vlaamse Beweging（具名作者學術百科）"), "cbdb.fas.harvard.edu": (B_, "哈佛中國歷代人物傳記資料庫（學術資料庫）"),
@@ -109,7 +117,8 @@ def grade_for(url):
 def main():
     apply = "--apply" in sys.argv
     files = sorted(glob.glob(str(REPO / "data/seed/leaders/gap-830/*/research.json")) +
-                   glob.glob(str(REPO / "data/seed/leaders/batch-p1-20261107/**/research.json"), recursive=True))
+                   glob.glob(str(REPO / "data/seed/leaders/batch-p1-20261107/**/research.json"), recursive=True) +
+                   [str(REPO / "data/seed/leaders/batch-p1-20261107" / n) for n in ("roc.json", "su-tr.json", "us-es.json", "death-precision.json")])
     stat, unknown = collections.Counter(), collections.Counter()
     for f in files:
         raw = Path(f).read_text(); d = json.loads(raw)

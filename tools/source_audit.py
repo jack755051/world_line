@@ -124,7 +124,7 @@ def bios():
                 elif cand and not grade_ok(g, pol): hit(kind, f"缺口候選（不是出處）：等級 {g}")
                 elif not grade_ok(g, pol): hit(kind, f"不可寫入：等級 {g} 不到這類資料的最低等級", f)
                 else: hit(kind, f"等級 {g}")
-    for f in glob.glob(str(SEED / "leaders/gap-830/*/research.json")) + glob.glob(str(SEED / "leaders/batch-p1-20261107/**/research.json"), recursive=True):
+    for f in glob.glob(str(SEED / "leaders/gap-830/*/research.json")) + glob.glob(str(SEED / "leaders/batch-p1-20261107/**/research.json"), recursive=True) + [str(SEED / "leaders/batch-p1-20261107" / n) for n in ("roc.json", "su-tr.json", "us-es.json", "death-precision.json")]:
         d = load(f)
         def walk(o):
             if isinstance(o, dict):

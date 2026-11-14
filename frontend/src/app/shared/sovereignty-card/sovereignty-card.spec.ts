@@ -339,14 +339,15 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(cards[1].querySelector('[data-testid="person-card-title"]')?.textContent?.trim()).toBe('Reichskanzler');
     expect(cards[1].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('1933-01-30 – 1945-04-29');
     expect(cards[0].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('迄今不明');
-    // 來源：有出處 → 收合按鈕（aria-expanded=false，內容 hidden）；沒有 → 靜態「待補來源」
-    const toggle = cards[1].querySelector('[data-testid="source-toggle"]') as HTMLButtonElement;
+    // 來源：有出處 → 任期旁有上標編號，卡片底部「資料來源」預設收合，點編號才展開；沒有 → 靜態「待補來源」
+    const toggle = cards[1].querySelector('[data-testid="person-card-sources-toggle"]') as HTMLButtonElement;
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
-    expect((cards[1].querySelector('[data-testid="source-panel"]') as HTMLElement).hidden).toBe(true);
-    toggle.click();
+    expect((cards[1].querySelector('[data-testid="person-card-sources-panel"]') as HTMLElement).hidden).toBe(true);
+    (cards[1].querySelector('[data-testid="person-card-sup"]') as HTMLButtonElement).click();
     await fixture.whenStable();
     expect(toggle.getAttribute('aria-expanded')).toBe('true');
-    expect(cards[0].querySelector('[data-testid="source-toggle"]')).toBeNull();
+    expect(cards[0].querySelector('[data-testid="person-card-sup"]')).toBeNull();
+    expect(cards[0].querySelector('[data-testid="person-card-sources"]')).toBeNull();
     expect(cards[0].querySelector('[data-testid="source-pending"]')?.textContent?.trim()).toBe('待補來源');
     // 沒有生平 → 沒有「查看詳情」；沒有照片 → 中性佔位
     expect(cards[0].querySelector('[data-testid="person-card-details"]')).toBeNull();
@@ -460,7 +461,7 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(rows.map((r) => r.getAttribute('data-role'))).toEqual(['head_of_state', 'head_of_government']);
     expect(rows[1].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('1933-01-30 – 1945-04-29');
     // 來源各自保留：國家元首有出處、政府首腦沒有 → 待補來源
-    expect(rows[0].querySelector('[data-testid="source-toggle"]')).not.toBeNull();
+    expect(rows[0].querySelector('[data-testid="person-card-sup"]')).not.toBeNull();
     expect(rows[1].querySelector('[data-testid="source-pending"]')).not.toBeNull();
     expect(cards[0].querySelectorAll('[data-testid="person-card-details"]').length).toBe(1);
     expect(q(el, 'sovereignty-card-tab-leaders-count')?.textContent?.trim()).toBe('2');

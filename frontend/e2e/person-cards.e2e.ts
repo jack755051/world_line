@@ -139,7 +139,7 @@ test('人物分頁（1944-09-17 德國）：分頁數量＝不重複人數、希
   await expect(trigger).toHaveCount(1);
   const pid = await trigger.getAttribute('data-person-trigger');
   expect(pid).toBe(hit.personId);
-  for (const t of await page.getByTestId('person-card').getByTestId('source-toggle').all()) await expect(t).toHaveAttribute('aria-expanded', 'false');
+  for (const t of await page.getByTestId('person-card').getByTestId('person-card-sources-toggle').all()) await expect(t).toHaveAttribute('aria-expanded', 'false');
   await hitlerCard.scrollIntoViewIfNeeded();
   await page.screenshot({ path: `${V2}/a-germany-people-tab.png` });
 

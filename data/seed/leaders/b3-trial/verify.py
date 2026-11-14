@@ -47,7 +47,7 @@ EXCLUDED_HOSTS = tuple(h for h in _sp.BANNED_HOSTS if h not in _DATED) + _sp.FIL
 # C 級來源須有具名作者或具名出版機構，且網域不得是論壇／部落格／維基類／AI 內容農場。
 GRADE_C_POLICY = "ABC-2026-11-12"
 C_BANNED_HOSTS = EXCLUDED_HOSTS + tuple(_sp.POLICY["bannedHostsForC"])
-C_BANNED_HOST_HINTS = ("forum", "bbs.", "blog.", ".blog", "wiki.")
+# 網域字樣（forum／bbs／blog／wiki…）改讀政策檔的 bannedHostLabels（整段字樣比對，含誤判例外），不再自帶子字串清單（2026-11-14）
 # 主管 2026-11-12 22:08（套用 Tai 既有「個人網站不收」）：generals.dk 禁用。只擋本規則生效後新增的來源——
 # apply_refill.py 對新增來源蓋 addedAt＝該補跑批開跑時間；addedAt ≥ 生效時間且網域命中 → 錯誤。既有已 commit 的引用（無 addedAt 或較早）不擋，
 # 由 bios/refill/final_refill_report.py 列為「待替換」。
@@ -118,6 +118,18 @@ def main():
     srcs = data.get("sources") or {}
     allow_c = data.get("gradePolicy") == GRADE_C_POLICY or "/generals-" in str(data.get("rawDir") or "")
     OKG = ("A", "B", "C") if allow_c else ("A", "B")
+
+    # 只出現在缺口候選的來源：照 2026-11-13 來源規則（I6／D4）也要評等，C 級可留（候選本來就不是出處，Q9）；
+    # 段落／職位／角色的 citation 仍只收 OKG（下方逐筆檢查）。
+    def _fact_keys(o, cand=False, out=None):
+        out = set() if out is None else out
+        if isinstance(o, dict):
+            if "sourceKey" in o and not cand: out.add(o["sourceKey"])
+            for kk, v in o.items(): _fact_keys(v, cand or kk == "candidateCitations", out)
+        elif isinstance(o, list):
+            for v in o: _fact_keys(v, cand, out)
+        return out
+    fact_keys = _fact_keys(data.get("people") or [])
     for k, s in srcs.items():
         for u in (s.get("url"), s.get("archive_url")):
             host = (urlparse(u).hostname or "") if u else ""
@@ -128,7 +140,7 @@ def main():
             for h, since in DATED_BANNED_HOSTS.items():
                 if (host == h or host.endswith("." + h)) and str(s.get("addedAt") or "") >= since:
                     errs.append(f"來源 {k} 網域已禁用（{h}，{BAN_DECISION[h]}，個人／無署名網站）：addedAt {s.get('addedAt')}")
-        if s.get("grade") not in (None,) + OKG:
+        if s.get("grade") not in (None,) + OKG and not (s.get("grade") == "C" and k not in fact_keys):
             errs.append(f"來源 {k} grade 非法：{s.get('grade')}")
         if s.get("grade") == "C":
             if not ([a for a in (s.get("authors") or []) if str(a).strip()] or str(s.get("publisher") or "").strip()):
@@ -139,7 +151,7 @@ def main():
                 host = (urlparse(u).hostname or "").lower()
                 full = u.lower()
                 if any(host == h or host.endswith("." + h) or (("/" in h) and h in full) for h in C_BANNED_HOSTS) \
-                        or any(x in host for x in C_BANNED_HOST_HINTS):
+                        or _sp.banned_label(u):
                     errs.append(f"來源 {k}：C 級網域不收（論壇／部落格／維基類／內容農場）：{host}")
     blob = json.dumps(data, ensure_ascii=False).lower()
     if "wikipedia" in blob or "wikidata.org" in blob:

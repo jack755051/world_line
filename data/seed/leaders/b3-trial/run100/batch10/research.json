@@ -31,8 +31,8 @@
    "archive_url": null,
    "catalog_id": "http://dspace.bcucluj.ro/handle/123456789/82613",
    "license_code": null,
-   "grade": null,
-   "gradeBasis": "審查（Opus 2026-11-11）：條目與館藏頁（bcu-maniu-meta）均無具名作者或編者，僅書名／出版社／年份 → 依 Q9 視為無具名作者條目，未評等，只入 gap 候選"
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：BCU Cluj 數位館藏（節錄自《Contribuția avocaților din Transilvania și Banat la Marea Unire》，Cluj-Napoca: Argonaut, 2018） → C（grade-ungraded-b3-2026-11-14，原：審查（Opus 2026-11-11）：條目與館藏頁（bcu-maniu-meta）均無具名作者或編者，僅書名／出版社／年份 → 依 Q9 視為無具名作者條目，未評等，只入 gap 候選）"
   },
   "gov-ro-pm": {
    "title": "Prime Ministers in history",
@@ -111,8 +111,8 @@
    "archive_url": null,
    "catalog_id": null,
    "license_code": null,
-   "grade": null,
-   "gradeBasis": "無具名作者的百科條目，未評等（Q9），僅作 gap 候選"
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Encyclopedia.com（Gale，Encyclopedia of Latin American History and Culture） → C（grade-ungraded-b3-2026-11-14，原：無具名作者的百科條目，未評等（Q9），僅作 gap 候選）"
   },
   "ency-castaneda": {
    "title": "Castañeda Castro, Salvador (1888–1965)",
@@ -123,8 +123,8 @@
    "archive_url": null,
    "catalog_id": null,
    "license_code": null,
-   "grade": null,
-   "gradeBasis": "無具名作者的百科條目，未評等（Q9），僅作 gap 候選"
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Encyclopedia.com（Gale，Encyclopedia of Latin American History and Culture） → C（grade-ungraded-b3-2026-11-14，原：無具名作者的百科條目，未評等（Q9），僅作 gap 候選）"
   },
   "ucr-80": {
    "title": "LXXX aniversario de la Universidad de Costa Rica (1940-2020): antecedentes históricos de su creación",
@@ -135,20 +135,8 @@
    "archive_url": null,
    "catalog_id": null,
    "license_code": null,
-   "grade": null,
-   "gradeBasis": "機構官網歷史頁，無具名作者、非政府／議會官方頁，保守視為未評等，僅作 gap 候選"
-  },
-  "histdoc-hall1917": {
-   "title": "1917. The Collection of Decrees of the Grand Duchy of Finland. Nr 102.",
-   "authors": [],
-   "publisher": "histdoc.net（私人彙編的法令英譯）",
-   "published_text": "1917-11-27 法令",
-   "url": "https://histdoc.net/history/hall1917.html",
-   "archive_url": null,
-   "catalog_id": null,
-   "license_code": null,
-   "grade": null,
-   "gradeBasis": "私人網站轉載之法令譯文，未評等，僅作 gap 候選"
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Universidad de Costa Rica 官網 → C（grade-ungraded-b3-2026-11-14，原：機構官網歷史頁，無具名作者、非政府／議會官方頁，保守視為未評等，僅作 gap 候選）"
   }
  },
  "people": [
@@ -317,13 +305,15 @@
        "sourceKey": "ency-castaneda",
        "locator": "第3段",
        "quote": "minister of the interior under General Maximiliano Hernández Martínez",
-       "quoteLang": "en"
+       "quoteLang": "en",
+       "grade": "C"
       },
       {
        "sourceKey": "ency-castaneda",
        "locator": "第3段",
        "quote": "director of the military school",
-       "quoteLang": "en"
+       "quoteLang": "en",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -529,15 +519,8 @@
     {
      "target": "position:diet-vice-speaker-1917",
      "gapKind": "not_found",
-     "note": "1917-11-27 邦議會公告簽署人列「Lauri Ingman, Vice Chairman」（histdoc.net，私人轉載，未評等）；議會副議長（1913–14、1917–18）、議長（1918）、議員（1907–19、1922–29）、教育部長（1920–21 等）、神學教授（1916–30）皆未有 A／B 來源。需 Eduskunta／Kansallisbiografia／Uppslagsverket（後者為 JS 動態頁，curl 無正文）。",
-     "candidateCitations": [
-      {
-       "sourceKey": "histdoc-hall1917",
-       "locator": "公告簽署",
-       "quote": "Lauri Ingman,",
-       "quoteLang": "en"
-      }
-     ],
+     "note": "1917-11-27 邦議會公告簽署人列「Lauri Ingman, Vice Chairman」（histdoc.net，私人轉載，未評等）；議會副議長（1913–14、1917–18）、議長（1918）、議員（1907–19、1922–29）、教育部長（1920–21 等）、神學教授（1916–30）皆未有 A／B 來源。需 Eduskunta／Kansallisbiografia／Uppslagsverket（後者為 JS 動態頁，curl 無正文）。；已試 https://histdoc.net/history/hall1917.html（histdoc.net 私人網站轉載，grade-ungraded-b3-2026-11-14）",
+     "candidateCitations": [],
      "checkedOn": "2026-11-11"
     },
     {
@@ -1878,7 +1861,8 @@
        "sourceKey": "lehoucq-cr",
        "locator": "「El camino hacia el 48」節",
        "quote": "apoyaron a Teodoro Picado para Presidente del Congreso",
-       "quoteLang": "es"
+       "quoteLang": "es",
+       "grade": "B"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -1899,13 +1883,15 @@
        "sourceKey": "ency-picado",
        "locator": "第3段",
        "quote": "secretary of education under President Ricardo Jiménez Oreamuno (1932–1936)",
-       "quoteLang": "en"
+       "quoteLang": "en",
+       "grade": "C"
       },
       {
        "sourceKey": "ucr-80",
        "locator": "第5節",
        "quote": "el entonces Secretario de Instrucción Pública, Lic. Teodoro Picado Michalski",
-       "quoteLang": "es"
+       "quoteLang": "es",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2129,31 +2115,36 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "în anul 1906, Maniu alături de alți intelectuali români",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "reușesc să intre în Parlamentul de la Budapesta ca deputați",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "în luna mai 1915, Iuliu Maniu a fost încorporat în armata austro-ungară",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "comandant de baterie în regimentul 14",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "dezertează și merge la Arad",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2167,31 +2158,36 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "La 14 noiembrie 1918 Maniu s-a întors la Arad",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "hotărârii Consiliului Național, de separare deplină de Ungaria",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "unde a fost delegat din partea cercului electoral Vințul de Jos",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Consiliul Dirigent compus din 15 membri",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Iuliu Maniu a fost ales președintele acestui guvern provizoriu",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2205,37 +2201,43 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "În august 1919 Iuliu Maniu a preluat conducerea Partidului Național Român",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "decedase în luna februarie",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Acum schimbă și sediul acestuia de la Sibiu la Cluj",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Partidul Național Român fuzionând cu Partidul Țărănesc al lui Ion Mihalache",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "constituindu-se Partidul Național Țărănesc",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Iuliu Maniu a fost președintele acestui partid între 1926-1933 și 1937-1947",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2249,13 +2251,15 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "reușesc să intre în Parlamentul de la Budapesta ca deputați",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "în anul 1906, Maniu alături de alți intelectuali români",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2269,13 +2273,15 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Iuliu Maniu a fost ales președintele acestui guvern provizoriu",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Consiliul Dirigent compus din 15 membri",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2289,13 +2295,15 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "În august 1919 Iuliu Maniu a preluat conducerea Partidului Național Român",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       },
       {
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Partidul Național Român fuzionând cu Partidul Țărănesc al lui Ion Mihalache",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2309,7 +2317,8 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Iuliu Maniu a fost președintele acestui partid între 1926-1933 și 1937-1947",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2323,7 +2332,8 @@
        "sourceKey": "bcu-maniu",
        "locator": "生平段",
        "quote": "Iuliu Maniu a fost președintele acestui partid între 1926-1933 și 1937-1947",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"
@@ -2351,7 +2361,8 @@
        "sourceKey": "bcu-maniu",
        "locator": "標題",
        "quote": "n. 8 ianuarie 1873, Bădăcin, jud. Sălaj",
-       "quoteLang": "ro"
+       "quoteLang": "ro",
+       "grade": "C"
       }
      ],
      "checkedOn": "2026-11-11"

@@ -33,6 +33,14 @@ def banned(url, as_fact_source=True):
     return None
 
 
+def banned_label(url):
+    """只檢查網域字樣規則（bannedHostLabels，含 bannedHostLabelExceptions 例外）；命中回傳字樣，否則 None。"""
+    h = host(url or "")
+    if not h or any(h == e or h.endswith("." + e) for e in POLICY.get("bannedHostLabelExceptions", ())):
+        return None
+    return next((label for label in h.split(".") if label in POLICY["bannedHostLabels"]), None)
+
+
 def grade_ok(grade, kind):
     """這個等級能不能當這類資料的出處（kind 見 source-policy.json 的 minGrade）。"""
     return grade in RANK and RANK[grade] <= RANK[POLICY["minGrade"][kind]]

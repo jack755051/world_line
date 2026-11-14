@@ -100,12 +100,14 @@ def capitals_py():
         R["首都"]["其中出處以「待查證」開頭"] = t
 
 
-def citations_in(o, path=""):
+def citations_in(o, candidate=False, with_flag=False):
+    """走過所有 citation；with_flag=True 時回傳 (citation, 是否為缺口候選)。
+    缺口候選（gaps[].candidateCitations）本來就不是出處，可放未達最低等級的來源（Q9）。"""
     if isinstance(o, dict):
-        if "sourceKey" in o and ("quote" in o or "locator" in o): yield o
-        for v in o.values(): yield from citations_in(v)
+        if "sourceKey" in o and ("quote" in o or "locator" in o): yield (o, candidate) if with_flag else o
+        for k, v in o.items(): yield from citations_in(v, candidate or k == "candidateCitations", with_flag)
     elif isinstance(o, list):
-        for v in o: yield from citations_in(v)
+        for v in o: yield from citations_in(v, candidate, with_flag)
 
 
 def bios():
@@ -115,10 +117,11 @@ def bios():
             d = load(f)
             if not isinstance(d, dict): continue
             src = d.get("sources") if isinstance(d.get("sources"), dict) else {}
-            for c in citations_in(d.get("people") or d):
+            for c, cand in citations_in(d.get("people") or d, with_flag=True):
                 hit(kind, "引文總數"); g = c.get("grade"); u = (src.get(c.get("sourceKey")) or {}).get("url")
                 if banned(u): hit(kind, "違規：禁用網域", f)
                 if g is None: hit(kind, "落差：沒有等級")
+                elif cand and not grade_ok(g, pol): hit(kind, f"缺口候選（不是出處）：等級 {g}")
                 elif not grade_ok(g, pol): hit(kind, f"不可寫入：等級 {g} 不到這類資料的最低等級", f)
                 else: hit(kind, f"等級 {g}")
     for f in glob.glob(str(SEED / "leaders/gap-830/*/research.json")) + glob.glob(str(SEED / "leaders/batch-p1-20261107/**/research.json"), recursive=True):

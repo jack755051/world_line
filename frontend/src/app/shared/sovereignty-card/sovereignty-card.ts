@@ -287,7 +287,7 @@ let sovSeq = 0;
         <!-- 控制區欄位：史料狀態、有效期間、戰區、陣營＋依據、補充（預設收合）、爭議 -->
         <section class="mb-4 border-b border-wl-outline-variant pb-4">
           <h3 class="wl-sub-title mb-2">{{ t().controlZone }}</h3>
-          <dl class="grid grid-cols-[72px_minmax(0,1fr)] gap-x-2 gap-y-1.5 wl-text2">
+          <dl class="grid grid-cols-[72px_minmax(0,1fr)] gap-x-2 gap-y-3.5 wl-text2">
             <dt class="text-wl-on-surface-variant">{{ t().czEvidence }}</dt>
             <dd data-testid="feature-card-evidence">
               @if (czEvidence() === 'attested') {
@@ -340,7 +340,7 @@ let sovSeq = 0;
           </footer>
         </section>
       }
-      <dl class="grid grid-cols-[76px_minmax(0,1fr)] gap-x-2 gap-y-1.5 wl-text2">
+      <dl class="grid grid-cols-[76px_minmax(0,1fr)] gap-x-2 gap-y-3.5 wl-text2">
         <dt class="text-wl-on-surface-variant">{{ t().status }}</dt>
         <dd data-testid="sovereignty-card-status" [attr.data-control-kind]="occupation()?.controlKind ?? null">{{ statusText() }}</dd>
         @if (occupation(); as o) {
@@ -434,7 +434,7 @@ let sovSeq = 0;
         </dd>
       </dl>
       <!-- 資料來源：與人物彈窗同一種做法——內容旁只放編號，出處統一列在這裡（core/footnotes.ts 編號、wl-source-disclosure 顯示） -->
-      <section data-testid="sovereignty-card-sources" class="mt-3 rounded-md border border-wl-outline-variant bg-wl-surface-container">
+      <section data-testid="sovereignty-card-sources" class="mt-5 rounded-md border border-wl-outline-variant bg-wl-surface-container">
         <h3 class="m-0">
           <button type="button" data-testid="sovereignty-card-sources-toggle" [attr.aria-expanded]="sourcesOpen() ? 'true' : 'false'"
             class="flex min-h-9 w-full items-center gap-2 px-3 text-left wl-text2 font-semibold text-wl-on-surface focus-visible:outline-2 focus-visible:outline-wl-secondary"

@@ -56,6 +56,15 @@ describe('person-sources', () => {
     expect(legacyItem({ status: '待查證', note: '原出處評為 X（rule-corrections-2026-11-14）' })).toBeNull();
   });
 
+  it('任期：結構化引文（帶等級）在前，舊格式文字在後；只有引文時不補空的舊格式項', () => {
+    const src = { id: 's', sourceKind: 'official_website', title: '歴代内閣', publisher: '首相官邸', authors: null, publishedText: null, licenseCode: null, licenseEvidenceUrl: null, url: 'https://www.kantei.go.jp/', archiveUrl: null };
+    const cite = { id: 'c', locator: '一覽', quote: '第17代 大隈 重信', quoteLang: 'ja', evidenceNote: null, accessedOn: '2026-11-14', grade: 'A', datePrecision: 'day', source: src };
+    const both = termSourceItems({ source: 'Kantei', sourceUrl: 'https://www.kantei.go.jp/', citations: [cite] });
+    expect(both.map((i) => [i.kind, i.grade ?? null])).toEqual([['structured', 'A'], ['legacy', null]]);
+    expect(termSourceItems({ source: '', sourceUrl: null, citations: [cite] }).map((i) => i.kind)).toEqual(['structured']);
+    expect(termSourceItems({ source: '', sourceUrl: null, citations: null })).toEqual([]);
+  });
+
   it('任期出處是舊格式文字', () => {
     expect(termSourceItems({ source: 'Archontology', sourceUrl: 'https://www.archontology.org/' })[0].kind).toBe('legacy');
     expect(termSourceItems({ source: '', sourceUrl: null })).toEqual([]);

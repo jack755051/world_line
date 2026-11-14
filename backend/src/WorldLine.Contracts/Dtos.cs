@@ -420,7 +420,8 @@ public sealed record LeaderFeature(
     Guid RecordId, Guid RegimeId, string RegimeSlug,
     string Name, string? NameZh, string Role, string? Title,
     DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified,
-    Guid? PersonId = null, LeaderBioSummaryDto? Bio = null);
+    Guid? PersonId = null, LeaderBioSummaryDto? Bio = null,
+    IReadOnlyList<BioDetailCitationDto>? Citations = null);
 
 public sealed record LeaderMapDto(DateOnly Date, IReadOnlyList<LeaderFeature> Features);
 
@@ -476,9 +477,11 @@ public sealed record LeaderBioFieldCitationDto(
     string? Quote = null, string? QuoteLang = null, string? Grade = null, string? DatePrecision = null);
 
 /// <summary>人物詳情的任期清單（含已結束任期）。validPeriod.end 不含當天。</summary>
+/// <remarks>citations：任期的結構化引文（leader_record_citations，帶等級；docs/source-rules.md §6 D6）。source／sourceUrl 是舊格式自由文字出處。</remarks>
 public sealed record LeaderTermDto(
     Guid RecordId, Guid RegimeId, string RegimeSlug, IReadOnlyDictionary<string, string>? RegimeName,
-    string Role, string? Title, DatePeriodDto ValidPeriod, string Source, string? SourceUrl);
+    string Role, string? Title, DatePeriodDto ValidPeriod, string Source, string? SourceUrl,
+    IReadOnlyList<BioDetailCitationDto>? Citations = null);
 
 /// <summary>
 /// 生平摘要（GET /leaders 回應內嵌用，不含 fieldSources）。

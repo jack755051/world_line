@@ -1817,6 +1817,7 @@ export interface components {
             /** Format: uuid */
             personId?: null | string;
             bio?: null | components["schemas"]["LeaderBioSummaryDto"];
+            citations?: null | components["schemas"]["BioDetailCitationDto"][];
         };
         LeaderMapDto: {
             /** Format: date */
@@ -1862,6 +1863,7 @@ export interface components {
             validPeriod: components["schemas"]["DatePeriodDto"];
             source: string;
             sourceUrl: null | string;
+            citations?: null | components["schemas"]["BioDetailCitationDto"][];
         };
         LinkLeaderPersonRequest: {
             /** Format: uuid */

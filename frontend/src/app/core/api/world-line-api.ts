@@ -100,6 +100,8 @@ export interface LeaderTerm {
   validPeriod: { start: string; end: string | null };
   source: string;
   sourceUrl: string | null;
+  /** 任期的結構化引文（leader_record_citations，帶等級；source-rules §6 D6）。舊版 API 不帶。 */
+  citations?: BioDetailCitation[] | null;
 }
 
 /** 領導人完整生平（GET /leader-bios/{id} 回應）。 */
@@ -225,6 +227,8 @@ export interface LeaderRecord {
   verified: boolean;
   personId: string | null;
   bio: LeaderBioSummary | null;
+  /** 任期的結構化引文（leader_record_citations，帶等級）。舊版 API 不帶。 */
+  citations?: BioDetailCitation[] | null;
 }
 
 export interface LeadersDto {

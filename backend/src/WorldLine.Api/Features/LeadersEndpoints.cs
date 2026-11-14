@@ -121,6 +121,7 @@ public static class LeadersEndpoints
             .ToListAsync(ct);
 
         var verified = await RecordConfidence.VerifiedIdsAsync(db, RecordConfidence.LeaderRecord, rows.Select(x => x.l.Id).ToList(), ct);
+        var recordCitations = await LoadRecordCitationsAsync(rows.Select(x => x.l.Id).ToList(), db, ct);
         return rows.Select(x => new LeaderFeature(
             x.l.Id,
             x.l.RegimeId,
@@ -134,7 +135,25 @@ public static class LeadersEndpoints
             x.l.SourceUrl,
             verified.Contains(x.l.Id),
             x.l.PersonId,
-            x.bio == null ? null : ToBioSummaryDto(x.bio))).ToList();
+            x.bio == null ? null : ToBioSummaryDto(x.bio),
+            recordCitations.GetValueOrDefault(x.l.Id) ?? [])).ToList();
+    }
+
+    /// <summary>任期的結構化引文（leader_record_citations，未撤回；帶等級與日期精度），依任期分組。</summary>
+    private static async Task<Dictionary<Guid, List<BioDetailCitationDto>>> LoadRecordCitationsAsync(
+        List<Guid> recordIds, WorldLineDbContext db, CancellationToken ct)
+    {
+        if (recordIds.Count == 0) return [];
+        var rows = await (
+                from c in db.LeaderRecordCitations.AsNoTracking()
+                join s in db.Sources.AsNoTracking() on c.SourceId equals s.Id
+                where recordIds.Contains(c.RecordId) && c.RetractedAt == null
+                orderby c.RecordId, c.CreatedAt
+                select new { c, s })
+            .ToListAsync(ct);
+        return rows.GroupBy(x => x.c.RecordId).ToDictionary(g => g.Key, g => g.Select(x => new BioDetailCitationDto(
+            x.c.Id, x.c.Locator, x.c.Quote, x.c.QuoteLang, x.c.EvidenceNote, x.c.AccessedOn.ToString("yyyy-MM-dd"),
+            x.c.Grade, x.c.DatePrecision, SourcesEndpoints.ToDto(x.s))).ToList());
     }
 
     // ── 生平 ──
@@ -360,6 +379,7 @@ public static class LeadersEndpoints
                 where l.PersonId == id && l.RetractedAt == null
                 select new { l, r.Slug })
             .ToListAsync(ct);
+        var termCitations = await LoadRecordCitationsAsync(terms.Select(t => t.l.Id).ToList(), db, ct);
         var regimeIds = terms.Select(t => t.l.RegimeId).Distinct().ToList();
         var names = (await db.RegimeNames.AsNoTracking()
                 .Where(n => regimeIds.Contains(n.RegimeId) && n.NameKind == NameKinds.Self && n.RetractedAt == null)
@@ -383,7 +403,8 @@ public static class LeadersEndpoints
             citations.Select(x => ToCitationDto(x.c, x.s)).ToList(),
             terms.OrderBy(t => t.l.ValidPeriod.LowerBound).ThenBy(t => t.l.Role)
                 .Select(t => new LeaderTermDto(t.l.Id, t.l.RegimeId, t.Slug, names.GetValueOrDefault(t.l.RegimeId),
-                    t.l.Role, t.l.Title, Mapping.ToDto(t.l.ValidPeriod)!, t.l.Source, t.l.SourceUrl))
+                    t.l.Role, t.l.Title, Mapping.ToDto(t.l.ValidPeriod)!, t.l.Source, t.l.SourceUrl,
+                    termCitations.GetValueOrDefault(t.l.Id) ?? []))
                 .ToList(),
             detail.Paragraphs, detail.Positions, detail.Roles, detail.Gaps);
     }

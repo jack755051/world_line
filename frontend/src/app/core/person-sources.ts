@@ -32,11 +32,12 @@ export function fieldSourceItems(bio: LeaderBio, field: string): SourceItem[] {
   return legacy ? [...structured, legacy] : structured;
 }
 
-/** 任期的出處（leader_records.source 自由文字＋網址，屬舊格式）。 */
-export function termSourceItems(t: Pick<LeaderTerm | LeaderRecord, 'source' | 'sourceUrl'>): SourceItem[] {
+/** 任期的出處：先列結構化引文（leader_record_citations，帶等級），再列舊格式自由文字出處（leader_records.source＋網址）。 */
+export function termSourceItems(t: Pick<LeaderTerm | LeaderRecord, 'source' | 'sourceUrl'> & { citations?: readonly BioDetailCitation[] | null }): SourceItem[] {
+  const structured = detailCitationItems(t.citations);
   const text = (t.source ?? '').trim();
-  if (!text && !t.sourceUrl) return [];
-  return [{ kind: 'legacy', title: text || t.sourceUrl!, url: t.sourceUrl ?? null }];
+  if (!text && !t.sourceUrl) return structured;
+  return [...structured, { kind: 'legacy', title: text || t.sourceUrl!, url: t.sourceUrl ?? null }];
 }
 
 /** 照片出處（授權、作者、署名、查證日期）。 */

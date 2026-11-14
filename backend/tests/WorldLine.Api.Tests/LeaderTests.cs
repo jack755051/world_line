@@ -64,6 +64,32 @@ public sealed class LeaderTests(PostGisFixture fx)
     }
 
     [Fact]
+    public async Task Leader_feature_carries_structured_citations_with_grade()
+    {
+        var k = new ApiTestKit(fx);
+        var it = await k.Regime("it-leader-cite-test");
+        var id = await CreateLeader(k, it, "Antonio Salandra", "head_of_government", "1914-03-21", "1916-06-18");
+
+        // 任期引文由批次腳本寫入（source-rules §6 D6）；測試直接寫入一筆
+        await using (var c = new Npgsql.NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new Npgsql.NpgsqlCommand(
+                "WITH s AS (INSERT INTO sources (id,source_kind,title,publisher,url) VALUES (gen_random_uuid(),'official_record','Volume dei Governi','MEF','https://example.test/mef') RETURNING id) " +
+                "INSERT INTO leader_record_citations (record_id,source_id,locator,quote,quote_lang,accessed_on,grade,date_precision) " +
+                "SELECT @r, s.id, 'p. 12', 'Governo Salandra I', 'it', '2026-11-14', 'A', 'day' FROM s", c);
+            cmd.Parameters.AddWithValue("r", id);
+            Assert.Equal(1, await cmd.ExecuteNonQueryAsync());
+        }
+
+        var f = Assert.Single(await FeaturesOn(k, "1915-01-01"), x => x.GetProperty("recordId").GetGuid() == id);
+        var cite = Assert.Single(f.GetProperty("citations").EnumerateArray());
+        Assert.Equal("A", cite.GetProperty("grade").GetString());
+        Assert.Equal("Governo Salandra I", cite.GetProperty("quote").GetString());
+        Assert.Equal("MEF", cite.GetProperty("source").GetProperty("publisher").GetString());
+    }
+
+    [Fact]
     public async Task Leader_validTo_boundary_is_exclusive()
     {
         var k = new ApiTestKit(fx);

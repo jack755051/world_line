@@ -7875,6 +7875,15 @@
                 "$ref": "#/components/schemas/LeaderBioSummaryDto"
               }
             ]
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BioDetailCitationDto"
+            }
           }
         }
       },
@@ -8057,6 +8066,15 @@
               "null",
               "string"
             ]
+          },
+          "citations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/BioDetailCitationDto"
+            }
           }
         }
       },

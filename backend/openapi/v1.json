@@ -1136,6 +1136,90 @@
         ]
       }
     },
+    "/api/v1/sovereignty-records/{id}/citations": {
+      "post": {
+        "tags": [
+          "Sovereignty"
+        ],
+        "operationId": "AddSovereigntyRecordCitation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSovereigntyRecordCitationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfCitationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseOfObject"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { }
+        ]
+      }
+    },
     "/api/v1/sovereignty-records/{id}/retraction": {
       "post": {
         "tags": [
@@ -2867,6 +2951,55 @@
               },
               {
                 "$ref": "#/components/schemas/CapitalRecordDto"
+              }
+            ]
+          },
+          "code": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "errors": {
+            "type": [
+              "null",
+              "object"
+            ],
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ApiResponseOfCitationDto": {
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/CitationDto"
               }
             ]
           },
@@ -6353,6 +6486,49 @@
           }
         }
       },
+      "CreateSovereigntyRecordCitationRequest": {
+        "required": [
+          "sourceId",
+          "locator",
+          "evidenceNote",
+          "grade",
+          "gradeBasis"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "locator": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "evidenceNote": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "grade": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "gradeBasis": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
       "CreateSovereigntyRecordRequest": {
         "required": [
           "regimeId",
@@ -8347,6 +8523,15 @@
               "null",
               "string"
             ]
+          },
+          "recordCitations": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/CitationDto"
+            }
           }
         }
       },

@@ -317,6 +317,24 @@ public sealed class SovereigntyRecordLink
 }
 
 /// <summary>
+/// 主權紀錄本身的引文（docs/source-rules.md D5）：支持「這段期間的疆界是這樣」的出處，例如當時的地圖集圖版、劃界條約。
+/// 給沒有起始事件可補的紀錄用（期初既有的疆界）。等級記在每筆引文上；不可修改，更正用「撤回＋重寫」（I5）。
+/// </summary>
+public sealed class SovereigntyRecordCitation
+{
+    public Guid Id { get; set; }
+    public Guid RecordId { get; set; }
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string EvidenceNote { get; set; } = "";
+    public string Grade { get; set; } = "";
+    public string GradeBasis { get; set; } = "";
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
 /// 佔領歸屬（occupation_attributions）：某政權（非主權的佔領區、併入區）在某期間由哪個政權佔領、控制程度為何。
 /// 依政權＋期間（不綁單筆主權紀錄，國界修正撤回再新增時不必重寫）；同一被佔領政權的有效紀錄期間不可重疊（EXCLUDE）。
 /// basis_event_id＝有出處的事件；沒有事件或事件沒有引用＝「待查證」。共同佔領缺分區幾何時記主要佔領方並 co_occupied＝true、在 note 註記。

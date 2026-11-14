@@ -204,6 +204,12 @@ public sealed record RetractionRequest(string? Reason);
 
 public sealed record RetractionDto(Guid Id, DateTimeOffset RetractedAt, string Reason);
 
+/// <summary>
+/// 替主權紀錄本身附引文（docs/source-rules.md D5）：支持「這段期間的疆界是這樣」的出處，例如當時地圖集的圖版、劃界條約。
+/// grade：被引用那一份文件的等級 A｜B｜C；gradeBasis：評等依據；evidenceNote：這份出處怎麼支持這段疆界。
+/// </summary>
+public sealed record CreateSovereigntyRecordCitationRequest(Guid? SourceId, string? Locator, string? EvidenceNote, string? Grade, string? GradeBasis);
+
 // ───────────── 主權圖層（法理國界；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
 /// <summary>
 /// 新增主權紀錄。validPeriod.start 必填，迄日未知可留空。geometrySourceId 必須是授權在允許清單的資料集來源；
@@ -249,13 +255,13 @@ public sealed record GeometryProvenanceDto(
 /// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
 /// confidence：這筆國界的可信程度 verified｜needs_check（docs/source-rules.md §5，取自 v_record_confidence）；
 /// confidenceBasis：依據。start_event_*＝依起始事件的出處（接續前一筆、形狀相同的紀錄沿用前一筆的）；baseline＝1908 起點時既有；
-/// new_no_event＝新出現但沒有事件；change_no_event＝疆界有變但沒有事件；minor_revision_no_event＝形狀細微差異未確認；dataset_only＝尚未判定來歷。
+/// record_citation_*＝依這筆國界自己的引文（recordCitations）；new_no_event＝新出現但沒有事件；change_no_event＝疆界有變但沒有事件；minor_revision_no_event＝形狀細微差異未確認；dataset_only＝尚未判定來歷。
 /// </summary>
 public sealed record SovereigntyFeatureProperties(
     Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
     SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
     IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null,
-    string? Confidence = null, string? ConfidenceBasis = null);
+    string? Confidence = null, string? ConfidenceBasis = null, IReadOnlyList<CitationDto>? RecordCitations = null);
 
 /// <summary>
 /// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|

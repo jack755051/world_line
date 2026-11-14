@@ -156,6 +156,17 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         Assert.Equal("start_event_one_a", p3.GetProperty("confidenceBasis").GetString());
         Assert.Equal("baseline", (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties").GetProperty("confidenceBasis").GetString());
 
+        // 國界本身的引文：期初既有的紀錄沒有事件可補，附一筆 A 級的地圖集圖版 → verified；資料集不能當出處
+        var atlas = await k.Source(kind: "atlas_map", title: "Atlas 1907", grade: "A");
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-records/{bare}/citations",
+            new { sourceId = ohm, locator = "x", evidenceNote = "n", grade = "A", gradeBasis = "b" }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-records/{bare}/citations",
+            new { sourceId = atlas, locator = "Plate 12", evidenceNote = "圖版所繪疆界與此紀錄相符", grade = "A", gradeBasis = "當時出版的地圖集" }), HttpStatusCode.Created);
+        var bc = (await FeatureOn(k, "1921-06-15", bare))!.Value.GetProperty("properties");
+        Assert.Equal("verified", bc.GetProperty("confidence").GetString());
+        Assert.Equal("record_citation_one_a", bc.GetProperty("confidenceBasis").GetString());
+        Assert.Equal("Plate 12", bc.GetProperty("recordCitations")[0].GetProperty("locator").GetString());
+
         var evA = await Event(k, "1921-07-01", C(a));
         var good = await k.Id(await Post(k, Body(hu, ohm, "1921-07-01", "1921-08-01", startEvent: evA)));
         Assert.Equal("verified", (await FeatureOn(k, "1921-07-01", good))!.Value.GetProperty("properties").GetProperty("confidence").GetString());

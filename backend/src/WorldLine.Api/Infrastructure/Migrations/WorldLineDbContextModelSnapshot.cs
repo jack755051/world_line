@@ -3414,6 +3414,78 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecordCitation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("EvidenceNote")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("evidence_note");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("character varying(1)")
+                        .HasColumnName("grade");
+
+                    b.Property<string>("GradeBasis")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("grade_basis");
+
+                    b.Property<string>("Locator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("locator");
+
+                    b.Property<Guid>("RecordId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("record_id");
+
+                    b.Property<DateTimeOffset?>("RetractedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("retracted_at");
+
+                    b.Property<string>("RetractionReason")
+                        .HasColumnType("text")
+                        .HasColumnName("retraction_reason");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("source_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_sovereignty_record_citations");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_sovereignty_record_citations_source_id");
+
+                    b.HasIndex("RecordId", "SourceId", "Locator")
+                        .IsUnique()
+                        .HasDatabaseName("ux_sovereignty_record_citations_live")
+                        .HasFilter("retracted_at IS NULL");
+
+                    b.ToTable("sovereignty_record_citations", null, t =>
+                        {
+                            t.HasCheckConstraint("ck_sovereignty_record_citations_grade", "grade IN ('A', 'B', 'C')");
+
+                            t.HasCheckConstraint("ck_sovereignty_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_sovereignty_record_citations_text", "btrim(locator) <> '' AND btrim(evidence_note) <> '' AND btrim(grade_basis) <> ''");
+                        });
+                });
+
             modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecordLink", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4147,6 +4219,23 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasForeignKey("StartEventId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .HasConstraintName("fk_sovereignty_records_historical_events_start_event_id");
+                });
+
+            modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecordCitation", b =>
+                {
+                    b.HasOne("WorldLine.Api.Domain.SovereigntyRecord", null)
+                        .WithMany()
+                        .HasForeignKey("RecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_sovereignty_record_citations_sovereignty_records_record_id");
+
+                    b.HasOne("WorldLine.Api.Domain.Source", null)
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("fk_sovereignty_record_citations_sources_source_id");
                 });
 
             modelBuilder.Entity("WorldLine.Api.Domain.SovereigntyRecordLink", b =>

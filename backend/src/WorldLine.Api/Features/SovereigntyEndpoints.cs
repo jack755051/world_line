@@ -45,6 +45,8 @@ public static class SovereigntyEndpoints
             .Ok<SovereigntyMapDto>().Errors(400, 404);
         write.MapPost("/sovereignty-records", Create).WithTags("Sovereignty").WithName("CreateSovereigntyRecord")
             .RequiresApiKey().Created<SovereigntyRecordDto>().Errors(400, 401, 409);
+        write.MapPost("/sovereignty-records/{id:guid}/citations", AddCitation).WithTags("Sovereignty").WithName("AddSovereigntyRecordCitation")
+            .RequiresApiKey().Created<CitationDto>().Errors(400, 401, 404, 409);
         write.MapPost("/sovereignty-records/{id:guid}/retraction", Retract).WithTags("Sovereignty").WithName("RetractSovereigntyRecord")
             .RequiresApiKey().Ok<RetractionDto>().Errors(400, 401, 404, 409);
     }
@@ -122,6 +124,35 @@ public static class SovereigntyEndpoints
     }
 
     /// <summary>撤回主權紀錄（I5：不刪除，只寫一次 retracted_at＋原因）。修正＝撤回後新增。</summary>
+    /// <summary>
+    /// 替主權紀錄本身附一筆引文（docs/source-rules.md D5）。原紀錄不動（I5）；資料集不能當出處；禁用網域與 X 級不收。
+    /// </summary>
+    public static async Task<IResult> AddCitation(Guid id, CreateSovereigntyRecordCitationRequest req, WorldLineDbContext db, CancellationToken ct)
+    {
+        if (!await db.SovereigntyRecords.AsNoTracking().AnyAsync(x => x.Id == id && x.RetractedAt == null, ct))
+            throw ApiError.NotFound("主權紀錄");
+        var source = req.SourceId is { } sid ? await db.Sources.AsNoTracking().FirstOrDefaultAsync(x => x.Id == sid, ct) : null;
+        if (source is null)
+            throw ApiError.BadRequest(ErrorCodes.CitationRequired, "引用的來源不存在。", "sourceId");
+        if (source.SourceKind == "dataset")
+            throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, "資料集只提供形狀，不能當這段疆界的出處（docs/source-rules.md §2）。", "sourceId");
+        if (BioSourcePolicy.WhyNotQualifiedSource(source) is { } why)
+            throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, why, "sourceId");
+        var locator = Mapping.RequireText(req.Locator, "locator");
+        var c = new SovereigntyRecordCitation
+        {
+            Id = Guid.CreateVersion7(), RecordId = id, SourceId = source.Id, Locator = locator,
+            EvidenceNote = Mapping.RequireText(req.EvidenceNote, "evidenceNote"),
+            Grade = Mapping.RequireOneOf(req.Grade, ["A", "B", "C"], "grade"),
+            GradeBasis = Mapping.RequireText(req.GradeBasis, "gradeBasis"),
+        };
+        if (await db.SovereigntyRecordCitations.AnyAsync(x => x.RecordId == id && x.SourceId == source.Id && x.Locator == locator && x.RetractedAt == null, ct))
+            throw new ApiError(StatusCodes.Status409Conflict, ErrorCodes.ValidationFailed, "同一來源與 locator 的引文已存在。");
+        db.SovereigntyRecordCitations.Add(c);
+        await db.SaveChangesAsync(ct);
+        return ApiResults.Created($"/api/v1/sovereignty-records/{id}", new CitationDto(source.Id, source.Title, source.Publisher, source.LicenseCode, c.Locator, CitationRoles.Primary, c.EvidenceNote, c.Grade));
+    }
+
     public static async Task<IResult> Retract(Guid id, RetractionRequest req, WorldLineDbContext db, CancellationToken ct)
     {
         var reason = Mapping.RequireText(req.Reason, "reason");
@@ -197,6 +228,15 @@ public static class SovereigntyEndpoints
         // 幾何只對還沒簡化過的紀錄才從 PostGIS 取原始幾何（以前每次都把當天全部原始幾何讀進來，一天約 80 萬點）
         var geometries = await GeoJsonForAsync(db, rows.Select(x => x.Id).ToList(), tolerance, ct);
         var confidence = await RecordConfidence.LookupAsync(db, RecordConfidence.Sovereignty, rows.Select(x => x.Id).ToList(), ct);
+        var recordIds = rows.Select(x => x.Id).ToList();
+        var recordCites = (await (
+                from c in db.SovereigntyRecordCitations.AsNoTracking()
+                join s in db.Sources on c.SourceId equals s.Id
+                where recordIds.Contains(c.RecordId) && c.RetractedAt == null
+                orderby s.Title, c.Locator
+                select new { c.RecordId, Dto = new CitationDto(s.Id, s.Title, s.Publisher, s.LicenseCode, c.Locator, CitationRoles.Primary, c.EvidenceNote, c.Grade) })
+            .ToListAsync(ct))
+            .ToLookup(x => x.RecordId, x => x.Dto);
 
         return rows.Select(r =>
         {
@@ -210,7 +250,8 @@ public static class SovereigntyEndpoints
                 Mapping.ReadLocalizedOrNull(r.Note),
                 alignments.GetValueOrDefault(r.RegimeId),
                 occupations.GetValueOrDefault(r.RegimeId),
-                confidence.GetValueOrDefault(r.Id)?.Confidence, confidence.GetValueOrDefault(r.Id)?.Basis));
+                confidence.GetValueOrDefault(r.Id)?.Confidence, confidence.GetValueOrDefault(r.Id)?.Basis,
+                recordCites[r.Id].ToList()));
         }).ToList();
     }
 

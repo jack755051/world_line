@@ -24,6 +24,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
     public DbSet<EventCitationGrade> EventCitationGrades => Set<EventCitationGrade>();
     public DbSet<SovereigntyRecordLink> SovereigntyRecordLinks => Set<SovereigntyRecordLink>();
+    public DbSet<SovereigntyRecordCitation> SovereigntyRecordCitations => Set<SovereigntyRecordCitation>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
@@ -310,6 +311,24 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.ContinuesRecordId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
             e.HasIndex(x => x.RecordId).IsUnique().HasFilter("retracted_at IS NULL").HasDatabaseName("ux_sovereignty_record_links_live");
+        });
+
+        // 主權紀錄本身的引文（docs/source-rules.md D5）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyRecordCitation>(e =>
+        {
+            e.ToTable("sovereignty_record_citations", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_record_citations_grade", "grade IN ('A', 'B', 'C')");
+                t.HasCheckConstraint("ck_sovereignty_record_citations_text", "btrim(locator) <> '' AND btrim(evidence_note) <> '' AND btrim(grade_basis) <> ''");
+                t.HasCheckConstraint("ck_sovereignty_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.RecordId, x.SourceId, x.Locator }).IsUnique().HasFilter("retracted_at IS NULL")
+                .HasDatabaseName("ux_sovereignty_record_citations_live");
         });
 
         // 事件引文的等級（docs/source-rules.md §2）。guard trigger 在 migration 以 SQL 建立。

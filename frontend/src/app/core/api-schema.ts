@@ -244,6 +244,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sovereignty-records/{id}/citations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AddSovereigntyRecordCitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sovereignty-records/{id}/retraction": {
         parameters: {
             query?: never;
@@ -727,6 +743,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["CapitalRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfCitationDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CitationDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -1481,6 +1507,14 @@ export interface components {
             gradeBasis?: null | string;
             family?: null | string;
         };
+        CreateSovereigntyRecordCitationRequest: {
+            /** Format: uuid */
+            sourceId: null | string;
+            locator: null | string;
+            evidenceNote: null | string;
+            grade: null | string;
+            gradeBasis: null | string;
+        };
         CreateSovereigntyRecordRequest: {
             /** Format: uuid */
             regimeId: null | string;
@@ -1942,6 +1976,7 @@ export interface components {
             occupation?: null | components["schemas"]["OccupationRefDto"];
             confidence?: null | string;
             confidenceBasis?: null | string;
+            recordCitations?: null | components["schemas"]["CitationDto"][];
         };
         SovereigntyMapDto: {
             /** Format: date */
@@ -2880,6 +2915,68 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    AddSovereigntyRecordCitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSovereigntyRecordCitationRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCitationDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };

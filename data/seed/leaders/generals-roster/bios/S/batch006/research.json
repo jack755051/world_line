@@ -227,18 +227,6 @@
    "grade": "C",
    "gradeBasis": "具名作者 Denis Richards；英國官方戰史附錄（HyperWar 轉載頁）"
   },
-  "rf-rafweb-tedder": {
-   "title": "Marshal of the RAF Lord Tedder (Air of Authority - A History of RAF Organisation)",
-   "authors": [],
-   "publisher": "Air of Authority – A History of RAF Organisation (rafweb.org)",
-   "published_text": null,
-   "url": "https://www.rafweb.org/Biographies/Tedder.htm",
-   "archive_url": null,
-   "catalog_id": null,
-   "license_code": null,
-   "grade": "C",
-   "gradeBasis": "具名出版機構 Air of Authority（RAF 組織史網站，頁尾署名更新者 P W Taylor）；列 Tedder 1946-01-01 任空軍參謀長"
-  },
   "rf-ics-milburn": {
    "title": "Churchill and Portal: A Strategic Relationship (Finest Hour 185)",
    "authors": [
@@ -2489,10 +2477,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1940-10-25",
-      "end": "1946-01-01"
+      "end": "1945-01-01"
      },
      "startPrecision": "day",
-     "endPrecision": "day",
+     "endPrecision": "year",
      "citations": [
       {
        "sourceKey": "rf-richards-air-council",
@@ -2523,22 +2511,10 @@
        "locator": "Oxford Companion to British History",
        "quote": "which he retained until the end of the war",
        "quoteLang": "en",
-       "evidenceNote": null,
+       "evidenceNote": "the end of the war 即1945年（推論）；繼任者接任日原僅禁用網域支撐，已移除",
        "accessedOn": "2026-11-12",
        "grade": "C",
-       "datePrecision": null,
-       "claimSpan": null,
-       "policyVersion": "bio-2026-11-v0"
-      },
-      {
-       "sourceKey": "rf-rafweb-tedder",
-       "locator": "Air of Authority: Tedder",
-       "quote": "1 Jan 1946: Chief of the Air Staff",
-       "quoteLang": "en",
-       "evidenceNote": "依繼任者 Tedder 起日推得（推論）；Portal 迄日取下一任起日",
-       "accessedOn": "2026-11-12",
-       "grade": "C",
-       "datePrecision": "day",
+       "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       }
@@ -2692,6 +2668,33 @@
     {
      "run": "refill-2026-11-12",
      "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "portal-chief-air-staff",
+     "basis": "rf-encyc-portal",
+     "diff": "原：迄日1946-01-01（day，依 rafweb 的 Tedder 接任日推得）；改：移除 rafweb 引文，依《牛津英國史指南》『retained until the end of the war』降為1945年（推論）",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1940-10-25",
+        "end": "1946-01-01"
+       },
+       "after": {
+        "start": "1940-10-25",
+        "end": "1945-01-01"
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "以新來源為準"
     }
    ]
   },

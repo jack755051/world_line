@@ -173,24 +173,8 @@
    "archive_url": null,
    "catalog_id": null,
    "license_code": null,
-   "grade": null,
-   "gradeBasis": "無署名條目，依 Q9 未評等，只放 gap 候選"
-  },
-  "rf-seac": {
-   "title": "South East Asia Command (History & Personnel)",
-   "authors": [
-    "Robert Palmer"
-   ],
-   "publisher": "BritishMilitaryHistory.co.uk",
-   "published_text": "2020-07-03",
-   "url": "https://www.britishmilitaryhistory.co.uk/wp-content/uploads/sites/124/2020/08/South-East-Asia-Command-SEAC.pdf",
-   "archive_url": null,
-   "catalog_id": null,
-   "license_code": null,
    "grade": "C",
-   "gradeBasis": "具名作者 Robert Palmer, M.A.（署名，Stephen Heal 協助），BritishMilitaryHistory.co.uk 發行之東南亞戰區司令部沿革與任職名簿，附參考書目（陸軍名冊、官方戰史）",
-   "addedAt": "2026-11-13T08:15:13+08:00",
-   "addedBy": "refill-2026-11-12"
+   "gradeBasis": "具名出版機構：Columbia Encyclopedia 6th ed.（Columbia University Press）無署名條目 → C（grade-ungraded-2026-11-14，原：無署名條目，依 Q9 未評等，只放 gap 候選）"
   },
   "rf-jta-plumer": {
    "title": "Lord Plumer, Former High Commissioner of Palestine, Dies at Age of Seventy-six",
@@ -205,6 +189,22 @@
    "gradeBasis": "具名機構 Jewish Telegraphic Agency（猶太電訊社，1917 年創立的具名通訊社）1932 年 7 月 18 日當日訃告",
    "addedAt": "2026-11-13T08:15:13+08:00",
    "addedBy": "refill-2026-11-12"
+  },
+  "kirby-waj-iv": {
+   "title": "The War Against Japan, Volume IV: The Reconquest of Burma (History of the Second World War, UK Military Series)",
+   "authors": [
+    "S. Woodburn Kirby"
+   ],
+   "publisher": "HMSO, London (Google Books scan PDF hosted at generalstaff.org)",
+   "published_text": "1965",
+   "url": "https://www.generalstaff.org/WW2/Hist_UK/WarAgainstJapanVol4.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "英國官方戰史（HMSO 1965，原著 A）；讀到的是第三方網站 generalstaff.org 託管的 Google Books 掃描 PDF（內嵌 OCR），依轉錄本規則記 B",
+   "addedAt": "2026-11-14T00:00:00+08:00",
+   "addedBy": "banned-replace-2026-11-14"
   }
  },
  "people": [
@@ -686,10 +686,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1944-04-16",
-      "end": "1944-12-26"
+      "end": "1945-01-01"
      },
      "startPrecision": "day",
-     "endPrecision": "day",
+     "endPrecision": "month",
      "citations": [
       {
        "sourceKey": "paradata-browning",
@@ -704,15 +704,27 @@
        "policyVersion": "bio-2026-11-v0"
       },
       {
-       "sourceKey": "rf-seac",
-       "locator": "第4頁 Chief of Staff 名簿",
-       "quote": "26th December 1944 – 12th July 1946 Lieutenant General Frederick A. M. BROWNING",
+       "sourceKey": "kirby-waj-iv",
+       "locator": "Chapter X, New appointments in S.E.A.C.",
+       "quote": "On the 20th December Lieut.-General Pownall, who had been suffering from bad",
        "quoteLang": "en",
-       "evidenceNote": "依名簿下一職（東南亞戰區司令部參謀長）起日推得（推論）；同名簿載前任 Pownall 任至 26th December 1944",
-       "accessedOn": "2026-11-13",
-       "grade": "C",
-       "datePrecision": "day",
-       "claimSpan": "Browning 自 1944-12-26 任蒙巴頓參謀長",
+       "evidenceNote": "推論：官方戰史記 Pownall 於（1944 年）12 月 20 日卸任東南亞司令部參謀長、由 Browning 接替；據此推得 Browning 交出第1空降軍在 1944 年 12 月，確切日未載；迄點依 Q3 與本檔慣例取下一月起日（1945-01-01）",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kirby-waj-iv",
+       "locator": "Chapter X, New appointments in S.E.A.C.",
+       "quote": "was replaced by Lieut.-General F. A. M. Browning.",
+       "quoteLang": "en",
+       "evidenceNote": "同上句續文",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -896,6 +908,27 @@
     {
      "run": "refill-2026-11-12",
      "on": "2026-11-13"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "browning-1st-airborne-corps",
+     "basis": "kirby-waj-iv",
+     "diff": "原：迄日 1944-12-26（day），依禁用來源 rf-seac 名簿；改：迄日 1945-01-01（month，依本檔慣例取 1944 年 12 月的下一月起日），依官方戰史 Kirby 卷四（Pownall 12-20 卸任由 Browning 接替）推得；禁用來源不算出處，新來源未載確切日",
+     "changes": {
+      "period.end": {
+       "before": "1944-12-26",
+       "after": "1945-01-01"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "以新來源為準"
     }
    ]
   },
@@ -1874,7 +1907,7 @@
        "quoteLang": "en",
        "evidenceNote": null,
        "accessedOn": "2026-11-12",
-       "grade": null,
+       "grade": "C",
        "datePrecision": "year",
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"

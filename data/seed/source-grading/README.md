@@ -303,6 +303,8 @@ python3 -I tools/db/apply_border_events.py data/seed/source-grading/borders-with
 | `data/seed/barotse-1905` | 安哥拉、巴羅策蘭—西北羅德西亞、北羅德西亞（1911–1915）改用 1905 年仲裁裁決線 | 安哥拉、巴羅策蘭已查證 |
 | `data/seed/italian-somaliland-1908` | 義屬索馬利蘭 1908–1920 補上內陸 | 已查證；內陸界線只是大致位置 |
 
+另外：`data/seed/australia-1914` 補上澳洲 1914 年上半年的空白；四筆跨洲紀錄補比對完（丹麥、鄂圖曼各附一筆引文；西班牙的撒哈拉北段、法國的阿爾及利亞南界無法確認）。全面檢查「陸地上沒有紀錄的地方」的結果在 `coverage-gaps.md`。
+
 下面的總表是修正之前的比對結果；修正之後，非洲的「已查證」多 3 筆、「不符或待查」少 3 筆，亞洲的暹羅仍算待查。逐筆現況以 `baseline-borders.csv` 為準。
 
 ### 165 筆期初既有國界的總表

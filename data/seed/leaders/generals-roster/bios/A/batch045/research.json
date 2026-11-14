@@ -949,10 +949,10 @@
      "positionKind": "military_command",
      "period": {
       "start": "1941-08-01",
-      "end": "1943-01-01"
+      "end": "1942-04-30"
      },
      "startPrecision": "month",
-     "endPrecision": "year",
+     "endPrecision": "day",
      "t14Rule": "R5",
      "t14Reason": "師級指揮職，歸 R5。",
      "t14Overlap": "general",
@@ -974,7 +974,7 @@
        "locator": "全文",
        "quote": "1941-08-14 - 1942-04-30",
        "quoteLang": "en",
-       "evidenceNote": null,
+       "evidenceNote": "迄日依 AWM 人物頁任職紀錄（1941-08-14 - 1942-04-30）；ADB 記 1942 年 3 月受命北領地部隊司令，兩者不衝突（交接期）",
        "accessedOn": "2026-11-14",
        "grade": "A",
        "datePrecision": "day",
@@ -1630,6 +1630,31 @@
       }
      },
      "rule": "查無移除"
+    },
+    {
+     "run": "herring-6div-fix-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "herring-goc-6div",
+     "basis": "awm-herring",
+     "diff": "原：迄日 1943-01-01（year），無來源支撐；改：1942-04-30（day），依 AWM 人物頁任職紀錄；ADB 記 1942 年 3 月受命北領地部隊司令，與此不矛盾",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1941-08-01",
+        "end": "1943-01-01"
+       },
+       "after": {
+        "start": "1941-08-01",
+        "end": "1942-04-30"
+       }
+      },
+      "endPrecision": {
+       "before": "year",
+       "after": "day"
+      }
+     },
+     "rule": "以既有 A 級來源為準（Tai 2026-11-14）"
     }
    ]
   },

@@ -63,6 +63,22 @@ POLICY = [  # (domain, source_kind, grade, 依據, 決定)
 POLICY += [(x["domain"], x["source_kind"], x["grade"], x["basis"], x["decision"])
            for x in json.loads((Path(__file__).resolve().parent / "domain-policy-additions-20261113.json").read_text(encoding="utf-8"))]
 
+# 禁用網域替換（banned-replace-2026-11-14）新增來源的未歸類網域：依 §16 T1 同一原則（Tai 2026-11-14「繼續處理」）。
+# 等級仍取 seed citation 的 grade（轉錄本已依 Tai 2026-11-14 記 B）；共用主機（S3、RAF Museum 文件區）用完整 URL 當鍵。
+_D = "Tai 2026-11-14（banned-replace 寫庫前未歸類網域，§16 T1 同一原則）"
+POLICY += [
+    ("teara.govt.nz", "encyclopedia", "A", "Dictionary of New Zealand Biography（紐西蘭國家級傳記辭典，Te Ara／文化遺產部）", _D),
+    ("adb.anu.edu.au", "encyclopedia", "A", "Australian Dictionary of Biography（澳洲國家級傳記辭典，ANU）", _D),
+    ("nzetc.victoria.ac.nz", "official_history", "B", "紐西蘭官方二戰戰史（War History Branch）經 NZETC 轉錄；原著 A，轉錄記 B", _D),
+    ("https://s3-ap-southeast-2.amazonaws.com/awm-media/collection/RCDIG1070073/document/5519402.PDF", "official_history", "A",
+     "澳洲官方戰史（Long, The Final Campaigns 第 5 章），AWM 官方數位化 PDF（AWM 的 S3 媒體庫）", _D),
+    ("https://www.rafmuseum.org.uk/documents/Research/RAF-Historical-Society-Journals/Journal-8-Dr-Philip-Towle-on-Air-Control-Vincent-Orange.pdf", "peer_reviewed", "B",
+     "RAF Historical Society Journal 第 8 期（Vincent Orange 具名論文），RAF Museum 文件區", _D),
+    ("vintageaviationnews.com", "encyclopedia", "C", "Vintage Aviation News（具名記者的航空史文章）；具名 C，比照 historynet.com", _D),
+    ("www.seaforces.org", "encyclopedia", "C", "seaforces.org（具名網站，轉載海軍官方傳記但未標原始出處）；具名 C", _D),
+    ("www.generalstaff.org", "official_history", "B", "英國官方戰史（Kirby, The War Against Japan Vol. IV, HMSO）掃描本，放在第三方網站；原著 A，第三方副本記 B", _D),
+]
+
 # 具名 C 級（Tai 本人 2026-11-12 06:34「將領生平來源放寬到具名 C 級」）：依每一頁的具名作者／具名出版機構判定，
 # 不用網域白名單，所以不進 POLICY；規則另輸出 grade-c-policy.json，verify.py 對將領生平檔同步檢查。
 GRADE_C = {

@@ -308,6 +308,11 @@ public sealed class SovereigntyRecordLink
     public string Kind { get; set; } = "";
     public Guid? ContinuesRecordId { get; set; }
     public Guid? StartEventId { get; set; }
+    /// <summary>
+    /// 起始日能由出處確定到什麼精度（day｜month｜year）；null＝未標示（視為 day）。
+    /// 主權紀錄的日期取自資料集且不可改；出處只能確定到月或年時在這裡標明，畫面照實顯示（docs/source-rules.md §5）。
+    /// </summary>
+    public string? StartDatePrecision { get; set; }
     /// <summary>與前一筆的形狀差（對稱差面積／前一筆面積）；沒有前一筆為 null。</summary>
     public double? ShapeChangeRatio { get; set; }
     public string? Note { get; set; }

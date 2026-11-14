@@ -148,13 +148,15 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         await using (var c = new NpgsqlConnection(fx.ConnectionString))
         {
             await c.OpenAsync();
-            await using var cmd = new NpgsqlCommand($"INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id) VALUES ('{second}', 'continuation', '{first}'), ('{third}', 'continuation', '{second}'), ('{bare}', 'baseline', NULL)", c);
+            await using var cmd = new NpgsqlCommand($"INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id) VALUES ('{second}', 'continuation', '{first}'), ('{third}', 'continuation', '{second}'), ('{bare}', 'baseline', NULL); UPDATE sovereignty_record_links SET retracted_at = now(), retraction_reason = 't' WHERE record_id = '{bare}'; INSERT INTO sovereignty_record_links (record_id, kind, start_date_precision) VALUES ('{bare}', 'baseline', 'year')", c);
             await cmd.ExecuteNonQueryAsync();
         }
         var p3 = (await FeatureOn(k, "1922-10-01", third))!.Value.GetProperty("properties");
         Assert.Equal("verified", p3.GetProperty("confidence").GetString());
         Assert.Equal("start_event_one_a", p3.GetProperty("confidenceBasis").GetString());
-        Assert.Equal("baseline", (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties").GetProperty("confidenceBasis").GetString());
+        var bp2 = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");
+        Assert.Equal("baseline", bp2.GetProperty("confidenceBasis").GetString());
+        Assert.Equal("year", bp2.GetProperty("startDatePrecision").GetString()); // 起始日只確定到年
 
         // 國界本身的引文：期初既有的紀錄沒有事件可補，附一筆 A 級的地圖集圖版 → verified；資料集不能當出處
         var atlas = await k.Source(kind: "atlas_map", title: "Atlas 1907", grade: "A");

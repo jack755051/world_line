@@ -229,6 +229,9 @@ public static class SovereigntyEndpoints
         var geometries = await GeoJsonForAsync(db, rows.Select(x => x.Id).ToList(), tolerance, ct);
         var confidence = await RecordConfidence.LookupAsync(db, RecordConfidence.Sovereignty, rows.Select(x => x.Id).ToList(), ct);
         var recordIds = rows.Select(x => x.Id).ToList();
+        var precisions = await db.SovereigntyRecordLinks.AsNoTracking()
+            .Where(l => recordIds.Contains(l.RecordId) && l.RetractedAt == null && l.StartDatePrecision != null && l.StartDatePrecision != DatePrecisions.Day)
+            .ToDictionaryAsync(l => l.RecordId, l => l.StartDatePrecision, ct);
         var recordCites = (await (
                 from c in db.SovereigntyRecordCitations.AsNoTracking()
                 join s in db.Sources on c.SourceId equals s.Id
@@ -251,7 +254,7 @@ public static class SovereigntyEndpoints
                 alignments.GetValueOrDefault(r.RegimeId),
                 occupations.GetValueOrDefault(r.RegimeId),
                 confidence.GetValueOrDefault(r.Id)?.Confidence, confidence.GetValueOrDefault(r.Id)?.Basis,
-                recordCites[r.Id].ToList()));
+                recordCites[r.Id].ToList(), precisions.GetValueOrDefault(r.Id)));
         }).ToList();
     }
 

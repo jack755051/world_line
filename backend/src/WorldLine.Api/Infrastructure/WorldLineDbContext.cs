@@ -302,10 +302,12 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             {
                 t.HasCheckConstraint("ck_sovereignty_record_links_kind", "kind IN ('baseline', 'continuation', 'minor_revision', 'change', 'new')");
                 t.HasCheckConstraint("ck_sovereignty_record_links_continuation", "kind <> 'continuation' OR continues_record_id IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_record_links_start_date_precision", "start_date_precision IS NULL OR start_date_precision IN ('day', 'month', 'year')");
                 t.HasCheckConstraint("ck_sovereignty_record_links_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
             });
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.Kind).HasMaxLength(16);
+            e.Property(x => x.StartDatePrecision).HasMaxLength(8);
             e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
             e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
             e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.ContinuesRecordId).OnDelete(DeleteBehavior.Restrict);

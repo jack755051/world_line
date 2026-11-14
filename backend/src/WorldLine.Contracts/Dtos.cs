@@ -255,13 +255,14 @@ public sealed record GeometryProvenanceDto(
 /// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
 /// confidence：這筆國界的可信程度 verified｜needs_check（docs/source-rules.md §5，取自 v_record_confidence）；
 /// confidenceBasis：依據。start_event_*＝依起始事件的出處（接續前一筆、形狀相同的紀錄沿用前一筆的）；baseline＝1908 起點時既有；
-/// record_citation_*＝依這筆國界自己的引文（recordCitations）；new_no_event＝新出現但沒有事件；change_no_event＝疆界有變但沒有事件；minor_revision_no_event＝形狀細微差異未確認；dataset_only＝尚未判定來歷。
+/// startDatePrecision：起始日能由出處確定到的精度 month｜year（null＝到日，或尚未標示）。record_citation_*＝依這筆國界自己的引文（recordCitations）；new_no_event＝新出現但沒有事件；change_no_event＝疆界有變但沒有事件；minor_revision_no_event＝形狀細微差異未確認；dataset_only＝尚未判定來歷。
 /// </summary>
 public sealed record SovereigntyFeatureProperties(
     Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
     SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
     IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null,
-    string? Confidence = null, string? ConfidenceBasis = null, IReadOnlyList<CitationDto>? RecordCitations = null);
+    string? Confidence = null, string? ConfidenceBasis = null, IReadOnlyList<CitationDto>? RecordCitations = null,
+    string? StartDatePrecision = null);
 
 /// <summary>
 /// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|

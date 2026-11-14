@@ -1977,6 +1977,7 @@ export interface components {
             confidence?: null | string;
             confidenceBasis?: null | string;
             recordCitations?: null | components["schemas"]["CitationDto"][];
+            startDatePrecision?: null | string;
         };
         SovereigntyMapDto: {
             /** Format: date */

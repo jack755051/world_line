@@ -3530,6 +3530,11 @@ namespace WorldLine.Api.Infrastructure.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("shape_change_ratio");
 
+                    b.Property<string>("StartDatePrecision")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
+                        .HasColumnName("start_date_precision");
+
                     b.Property<Guid?>("StartEventId")
                         .HasColumnType("uuid")
                         .HasColumnName("start_event_id");
@@ -3555,6 +3560,8 @@ namespace WorldLine.Api.Infrastructure.Migrations
                             t.HasCheckConstraint("ck_sovereignty_record_links_kind", "kind IN ('baseline', 'continuation', 'minor_revision', 'change', 'new')");
 
                             t.HasCheckConstraint("ck_sovereignty_record_links_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+
+                            t.HasCheckConstraint("ck_sovereignty_record_links_start_date_precision", "start_date_precision IS NULL OR start_date_precision IN ('day', 'month', 'year')");
                         });
                 });
 

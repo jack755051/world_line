@@ -43,7 +43,7 @@ def main():
     tdir = Path([a for a in sys.argv[1:] if not a.startswith("--")][0])
     build, send, allow = "--build" in sys.argv, "--send" in sys.argv, "--allow-write" in sys.argv
     entries, fetches = [], []
-    for g in ("t1", "t2", "t3", "t4"):
+    for g in ("t1", "t2", "t3", "t4", "t5v"):  # t5v：21 筆舊版被撤回後仍在使用的新版任期（_id＝舊版 seed id，dbId＝新版）
         for r in json.loads((tdir / g / "result.json").read_text()):
             cits = []
             for c in r.get("citations") or []:
@@ -56,10 +56,14 @@ def main():
                 cits.append({"source": {k: s.get(k) for k in ("title", "publisher", "authors", "url", "sourceKind", "grade", "gradeBasis")},
                              "locator": c["locator"], "quote": c["quote"], "quoteLang": c.get("quoteLang"), "datePrecision": c.get("datePrecision"),
                              "supports": c.get("supports"), "archive": str(dst)})
-            entries.append({"_id": r["_id"], "dbId": r["dbId"], "status": r["status"], "note": note_for(r), "citations": cits})
+            e = {"_id": r["_id"], "dbId": r["dbId"], "status": r["status"], "note": note_for(r), "citations": cits}
+            if g == "t5v":
+                e["replacementOfRetiredSeed"] = True
+            entries.append(e)
     # 資料庫已撤回（被新版本取代）的任期：seed 送出程式仍留舊版，記下來讓稽核分開列，不再算自由文字落差
-    retracted = [{"_id": r["_id"], "dbId": r["dbId"], "status": "retracted_in_db", "note": "資料庫中此任期已撤回（後續版本取代），不需另接出處", "citations": []}
-                 for r in json.loads((tdir / "records.json").read_text()) if r.get("dbRetracted")]
+    covered = {e["_id"] for e in entries if e.get("replacementOfRetiredSeed")}
+    retracted = [{"_id": r["_id"], "dbId": r["dbId"], "status": "retracted_in_db", "note": "資料庫中此任期已撤回，且查無仍在使用的新版本", "citations": []}
+                 for r in json.loads((tdir / "records.json").read_text()) if r.get("dbRetracted") and r["_id"] not in covered]
     if build:
         SEED.write_text(json.dumps({"run": RUN, "convention": CONVENTION, "records": entries + retracted}, ensure_ascii=False, indent=1) + "\n")
         CACHE.mkdir(parents=True, exist_ok=True)

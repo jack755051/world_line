@@ -136,11 +136,27 @@ def bios():
             elif isinstance(o, list):
                 for v in o: walk(v)
         walk(d)
+    # 已接上結構化出處的任期（leaders/leader-record-citations/citations-*.json，source-rules §6 D6）不再算自由文字落差
+    re_ = __import__("re")
+    cited, kinds = set(), collections.Counter()
+    for cf in glob.glob(str(SEED / "leaders/leader-record-citations/citations-*.json")):
+        for rec in (load(cf) or {}).get("records") or []:
+            if rec.get("status") == "retracted_in_db":
+                cited.add(rec["_id"]); kinds["資料庫已撤回（後續版本取代），不需另接出處"] += 1
+            elif rec.get("citations"):
+                cited.add(rec["_id"]); kinds["已接上 A／B 出處（" + {"supported": "起訖皆有出處", "partial": "部分有出處", "value_differs": "迄日依繼任者就任日，另附出處"}.get(rec.get("status"), rec.get("status")) + "）"] += 1
+                for c in rec["citations"]:
+                    if banned((c.get("source") or {}).get("url")): hit("元首任期", "違規：禁用網域", cf)
     for f in ("leaders/send_leaders.py", "leaders/send_leaders_batch2.py"):
         p = SEED / f
         if p.exists():
-            n = len(__import__("re").findall(r"""["']verified["']\s*:\s*True""", p.read_text(encoding="utf-8")))
-            R.setdefault("元首任期", collections.Counter())["落差：標已查證但出處是自由文字、沒有等級"] += n
+            txt = p.read_text(encoding="utf-8")
+            ids = re_.findall(r"""["']_id["']\s*:\s*["']([^"']+)["'][^{}]*?["']verified["']\s*:\s*True""", txt, re_.S)
+            n = sum(1 for i in ids if i not in cited)
+            if n:
+                R.setdefault("元首任期", collections.Counter())["落差：標已查證但出處是自由文字、沒有等級"] += n
+    for k, v in kinds.items():
+        R.setdefault("元首任期", collections.Counter())[k] += v
 
 
 def battles():

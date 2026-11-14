@@ -26,7 +26,7 @@ const TXT = {
     photo: '照片', noPhoto: '無授權照片', test: '測試資料', name: '姓名', dossier: '人物詳情', sections: '詳情區塊',
     termNote: '任期迄日不含當天，畫面顯示最後在任日。', dialog: '人物詳情', portraitOf: '的肖像',
     sources: '資料來源', pending: '待補來源', usedFor: '用於', missing: '以下欄位待補來源', sourceRef: '來源',
-    mainRole: '主要職位', regime: '所屬政權', bornAt: '生於 ', diedAt: '卒於 ', placeSep: '·', lifeGap: '\u3000',
+    mainRole: '主要職位', regime: '所屬政權', bornAt: '生於 ', diedAt: '卒於 ', bornIn: '生於 ', placeSep: '·', lifeGap: '\u3000',
     role: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
     roleKind: { head_of_state: '國家元首', head_of_government: '政府首腦', de_facto_leader: '實際掌權者', cabinet_minister: '閣員' } as Record<string, string>,
     positionKind: { minister: '部長', legislator: '議員', diplomat: '外交官', military_command: '軍事指揮', military_education: '軍事教育', judicial: '司法', police: '警察', other: '其他' } as Record<string, string>,
@@ -37,7 +37,7 @@ const TXT = {
     photo: 'Photo', noPhoto: 'No licensed photo', test: 'Test data', name: 'Name', dossier: 'Person details', sections: 'Sections',
     termNote: 'Term end dates are exclusive; the last day in office is shown.', dialog: 'Person details', portraitOf: ' — portrait',
     sources: 'Sources', pending: 'Source needed', usedFor: 'Used for', missing: 'Fields without a source', sourceRef: 'Source',
-    mainRole: 'Main office', regime: 'Regime', bornAt: 'Born ', diedAt: 'Died ', placeSep: ', ', lifeGap: '\u2003',
+    mainRole: 'Main office', regime: 'Regime', bornAt: 'Born ', diedAt: 'Died ', bornIn: 'Born in ', placeSep: ', ', lifeGap: '\u2003',
     role: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
     roleKind: { head_of_state: 'Head of State', head_of_government: 'Head of Government', de_facto_leader: 'De facto leader', cabinet_minister: 'Cabinet minister' } as Record<string, string>,
     positionKind: { minister: 'Minister', legislator: 'Legislator', diplomat: 'Diplomat', military_command: 'Military command', military_education: 'Military education', judicial: 'Judicial', police: 'Police', other: 'Other' } as Record<string, string>,
@@ -124,19 +124,12 @@ const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government:
                   </ul>
                 }
                 @if (life(); as l) {
-                  <!-- 生卒：傳記式（大字年份＋小字生於／卒於＋享年）；值旁上標對應各自欄位 -->
+                  <!-- 生卒：一行「出生日 – 逝世日」（數字式、依精度），下面只列出生地；不再另列大字年份與享年（Tai 2026-11-14：重複）。值旁上標對應各自欄位 -->
                   <div data-testid="person-dialog-life" class="mt-3">
-                    <p data-testid="person-dialog-life-years" class="font-wl-serif text-[22px] leading-tight tabular-nums text-wl-on-surface md:text-[26px]">{{ l.years }}</p>
-                    <p data-testid="person-dialog-life-detail" class="mt-1 text-[13px] leading-relaxed text-wl-on-surface-variant md:text-[14px]">
-                      @if (l.born) {
-                        <span class="block"><span data-testid="person-field-birthDate">{{ t().bornAt }}{{ l.born }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthDate') }" /></span>@if (l.place) {<span data-testid="person-life-birthPlace" class="inline-block">{{ t().placeSep }}{{ l.place }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthPlace') }" /></span>}</span>
-                      }
-                      @if (l.born && l.died) {<span class="sr-only">{{ t().lifeGap }}</span>}
-                      @if (l.died) {
-                        <span data-testid="person-field-deathDate" class="block">{{ t().diedAt }}{{ l.died }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('deathDate') }" /></span>
-                      }
-                    </p>
-                    @if (l.age) { <p data-testid="person-dialog-life-age" class="mt-0.5 text-[13px] text-wl-on-surface md:text-[14px]">{{ l.age }}</p> }
+                    <p data-testid="person-dialog-life-years" class="font-wl-serif text-[22px] leading-tight tabular-nums text-wl-on-surface md:text-[26px]">@if (l.bornNum) {<span data-testid="person-field-birthDate"><span class="sr-only">{{ t().bornAt }}</span>{{ l.bornNum }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthDate') }" /></span>} – @if (l.diedNum) {<span data-testid="person-field-deathDate"><span class="sr-only">{{ t().diedAt }}</span>{{ l.diedNum }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('deathDate') }" /></span>}</p>
+                    @if (l.place) {
+                      <p data-testid="person-dialog-life-detail" class="mt-1 text-[13px] leading-relaxed text-wl-on-surface-variant md:text-[14px]"><span data-testid="person-life-birthPlace">{{ t().bornIn }}{{ l.place }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthPlace') }" /></span></p>
+                    }
                   </div>
                 }
               </div>

@@ -9,8 +9,11 @@ export interface LifeText {
   /** 「1874年11月30日」／「30 November 1874」；依精度，不補造月日。 */
   born: string;
   died: string;
-  /** 享年：生卒兩端都精確到日才寫；否則空字串（不寫「約」，避免假裝精確）。 */
+  /** 享年：生卒兩端都精確到日才寫；否則空字串（不寫「約」，避免假裝精確）。畫面已不顯示（Tai 2026-11-14），保留計算。 */
   age: string;
+  /** 數字式日期：`1889/04/20`、`1945/04`、`1868`；依精度，不補造月日。版頭用 `bornNum – diedNum` 一行。 */
+  bornNum: string;
+  diedNum: string;
 }
 
 const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -39,6 +42,12 @@ function fmt(x: Ymd, lang: Lang): string {
   return `${x.y}年${x.m}月${x.d}日`;
 }
 
+/** 數字式日期（依精度）：日＝YYYY/MM/DD、月＝YYYY/MM、年＝YYYY。 */
+function num(x: Ymd): string {
+  const p2 = (n: number) => String(n).padStart(2, '0');
+  return x.p === 'year' ? `${x.y}` : x.p === 'month' ? `${x.y}/${p2(x.m)}` : `${x.y}/${p2(x.m)}/${p2(x.d)}`;
+}
+
 /** 滿歲：卒日未到當年生日就減一；卒日即生日算已滿。 */
 export function ageAtDeath(born: { y: number; m: number; d: number }, died: { y: number; m: number; d: number }): number {
   const before = died.m < born.m || (died.m === born.m && died.d < born.d);
@@ -54,5 +63,5 @@ export function lifeText(birthDate: string | null | undefined, birthPrecision: P
     const n = ageAtDeath(b, d);
     if (n >= 0) age = lang === 'en' ? `aged ${n}` : `享年 ${n} 歲`;
   }
-  return { years, born: b ? fmt(b, lang) : '', died: d ? fmt(d, lang) : '', age };
+  return { years, born: b ? fmt(b, lang) : '', died: d ? fmt(d, lang) : '', age, bornNum: b ? num(b) : '', diedNum: d ? num(d) : '' };
 }

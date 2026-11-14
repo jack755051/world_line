@@ -5,6 +5,13 @@ import { PersonDialog } from './person-dialog';
 
 const q = (el: HTMLElement, id: string) => el.querySelector(`[data-testid="${id}"]`);
 /** 文字（去掉上標編號、空白正規化）。 */
+/** 看得到的文字：去掉上標編號與只給螢幕閱讀器的字。 */
+const shown = (el: Element | null) => {
+  if (!el) return '';
+  const c = el.cloneNode(true) as Element;
+  c.querySelectorAll('[data-testid="person-field-sup"], .sr-only').forEach((x) => x.remove());
+  return (c.textContent ?? '').replace(/\s+/g, ' ').trim();
+};
 const plain = (el: Element | null) => {
   if (!el) return '';
   const c = el.cloneNode(true) as Element;
@@ -38,9 +45,10 @@ describe('PersonDialog（Stitch 版面、羊皮紙配色）', () => {
     expect(q(el, 'person-dialog-title')?.textContent?.trim()).toBe('阿道夫·希特勒');
     expect(q(el, 'person-dialog-original-name')?.textContent).toContain('Adolf Hitler');
     expect(qa(el, 'person-dialog-role').map((x) => x.textContent?.trim())).toEqual(['國家元首 1934–1945', '政府首腦 1933–1945']);
-    expect(q(el, 'person-dialog-life-years')?.textContent?.trim()).toBe('1889 – 1945');
-    expect(plain(q(el, 'person-dialog-life-detail'))).toBe('生於 1889年4月20日·布勞瑙 卒於 1945年4月30日');
-    expect(q(el, 'person-dialog-life-age')?.textContent?.trim()).toBe('享年 56 歲');
+    // 生卒合成一行（數字式），下面只列出生地；不再另列年份大字與享年（Tai 2026-11-14）
+    expect(shown(q(el, 'person-dialog-life-years'))).toBe('1889/04/20 – 1945/04/30');
+    expect(plain(q(el, 'person-dialog-life-detail'))).toBe('生於 布勞瑙');
+    expect(q(el, 'person-dialog-life-age')).toBeNull();
     expect(q(el, 'person-dialog-life')?.querySelector('svg')).toBeNull(); // 不再用日曆圖示
     expect(q(el, 'person-dialog-placeholder')).not.toBeNull();
   });
@@ -158,30 +166,26 @@ describe('PersonDialog：版頭摘要與傳記式生卒', () => {
     expect(q(el, 'person-field-regime')).toBeNull();
   });
 
-  it('年份精度：只寫年、不寫享年', async () => {
+  it('年份精度：只寫年', async () => {
     const { el } = await render(bio({ birthDate: '1868-01-01', birthDatePrecision: 'year', deathDate: '1943-01-01', deathDatePrecision: 'year' }));
-    expect(q(el, 'person-dialog-life-years')?.textContent?.trim()).toBe('1868 – 1943');
-    expect(plain(q(el, 'person-dialog-life-detail'))).toBe('生於 1868年·布勞瑙 卒於 1943年');
+    expect(shown(q(el, 'person-dialog-life-years'))).toBe('1868 – 1943');
+    expect(plain(q(el, 'person-dialog-life-detail'))).toBe('生於 布勞瑙');
     expect(q(el, 'person-dialog-life-age')).toBeNull();
   });
 
-  it('一端只有月或年精度：不寫享年', async () => {
-    let r = await render(bio({ deathDate: '1945-04-01', deathDatePrecision: 'month' }));
-    expect(q(r.el, 'person-field-deathDate')?.textContent).toContain('卒於 1945年4月');
-    expect(q(r.el, 'person-dialog-life-age')).toBeNull();
-    r = await render(bio({ birthDate: '1889-01-01', birthDatePrecision: 'year' }));
-    expect(q(r.el, 'person-dialog-life-age')).toBeNull();
+  it('一端只有月精度：只寫到月，不補造日', async () => {
+    const r = await render(bio({ deathDate: '1945-04-01', deathDatePrecision: 'month' }));
+    expect(shown(q(r.el, 'person-field-deathDate'))).toBe('1945/04');
+    expect(shown(q(r.el, 'person-dialog-life-years'))).toBe('1889/04/20 – 1945/04');
   });
 
-  it('只有生年：大字「1889 –」、只寫生於、不寫享年；只有卒年：對稱；生卒都沒有：不顯示', async () => {
+  it('只有出生日：「1889/04/20 –」；只有逝世日：對稱；生卒都沒有：不顯示', async () => {
     let r = await render(bio({ deathDate: null, deathDatePrecision: null }));
-    expect(q(r.el, 'person-dialog-life-years')?.textContent?.trim()).toBe('1889 –');
-    expect(q(r.el, 'person-dialog-life-detail')?.textContent).not.toContain('卒於');
-    expect(q(r.el, 'person-dialog-life-age')).toBeNull();
+    expect(shown(q(r.el, 'person-dialog-life-years'))).toBe('1889/04/20 –');
+    expect(q(r.el, 'person-field-deathDate')).toBeNull();
     r = await render(bio({ birthDate: null, birthDatePrecision: null }));
-    expect(q(r.el, 'person-dialog-life-years')?.textContent?.trim()).toBe('– 1945');
-    expect(plain(q(r.el, 'person-dialog-life-detail'))).toBe('卒於 1945年4月30日'); // 無生日不硬加出生地
-    expect(q(r.el, 'person-dialog-life-age')).toBeNull();
+    expect(shown(q(r.el, 'person-dialog-life-years'))).toBe('– 1945/04/30');
+    expect(q(r.el, 'person-dialog-life-detail')).toBeNull(); // 無生日不硬加出生地
     r = await render(bio({ birthDate: null, deathDate: null }));
     expect(q(r.el, 'person-dialog-life')).toBeNull();
   });
@@ -189,24 +193,26 @@ describe('PersonDialog：版頭摘要與傳記式生卒', () => {
   it('有生日無出生地：不硬加出生地', async () => {
     const { el } = await render(bio({ birthPlace: null }));
     expect(q(el, 'person-life-birthPlace')).toBeNull();
-    expect(q(el, 'person-field-birthDate')?.textContent).toContain('生於 1889年4月20日');
+    expect(shown(q(el, 'person-field-birthDate'))).toBe('1889/04/20');
+    // 螢幕閱讀器仍讀得到「生於」
+    expect(q(el, 'person-field-birthDate')?.textContent).toContain('生於');
   });
 
-  it('英文介面：英文月份、Born／Died、aged N', async () => {
+  it('英文介面：同樣的數字式日期；出生地前面是 Born in', async () => {
     const fixture = TestBed.createComponent(PersonDialog);
     fixture.componentRef.setInput('state', { status: 'ok', data: bio({ birthPlace: { en: 'Braunau am Inn' } }) });
     fixture.componentRef.setInput('lang', 'en');
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
-    expect(q(el, 'person-dialog-life-years')?.textContent?.trim()).toBe('1889 – 1945');
-    expect(plain(q(el, 'person-dialog-life-detail'))).toBe('Born 20 April 1889, Braunau am Inn Died 30 April 1945');
-    expect(q(el, 'person-dialog-life-age')?.textContent?.trim()).toBe('aged 56');
+    expect(shown(q(el, 'person-dialog-life-years'))).toBe('1889/04/20 – 1945/04/30');
+    expect(plain(q(el, 'person-dialog-life-detail'))).toBe('Born in Braunau am Inn');
+    expect(q(el, 'person-dialog-life-age')).toBeNull();
   });
 });
 
 describe('lifeText／ageAtDeath（享年以生卒日計算）', () => {
   it('未過生日減一、卒日即生日算已滿', () => {
-    expect(lifeText('1874-11-30', 'day', '1965-01-24', 'day', 'zh-Hant')).toEqual({ years: '1874 – 1965', born: '1874年11月30日', died: '1965年1月24日', age: '享年 90 歲' });
+    expect(lifeText('1874-11-30', 'day', '1965-01-24', 'day', 'zh-Hant')).toEqual({ years: '1874 – 1965', born: '1874年11月30日', died: '1965年1月24日', age: '享年 90 歲', bornNum: '1874/11/30', diedNum: '1965/01/24' });
     expect(ageAtDeath({ y: 1900, m: 5, d: 10 }, { y: 1950, m: 5, d: 9 })).toBe(49);
     expect(ageAtDeath({ y: 1900, m: 5, d: 10 }, { y: 1950, m: 5, d: 10 })).toBe(50);
     expect(ageAtDeath({ y: 1900, m: 5, d: 10 }, { y: 1950, m: 6, d: 1 })).toBe(50);
@@ -215,8 +221,8 @@ describe('lifeText／ageAtDeath（享年以生卒日計算）', () => {
   });
   it('精度未標：完整日期視為日；year／month 不寫享年', () => {
     expect(lifeText('1874-11-30', null, '1965-01-24', null, 'zh-Hant').age).toBe('享年 90 歲');
-    expect(lifeText('1874-01-01', 'year', '1965-01-24', 'day', 'zh-Hant')).toEqual({ years: '1874 – 1965', born: '1874年', died: '1965年1月24日', age: '' });
-    expect(lifeText('1874-11-01', 'month', '1965-01-24', 'day', 'en')).toEqual({ years: '1874 – 1965', born: 'November 1874', died: '24 January 1965', age: '' });
+    expect(lifeText('1874-01-01', 'year', '1965-01-24', 'day', 'zh-Hant')).toEqual({ years: '1874 – 1965', born: '1874年', died: '1965年1月24日', age: '', bornNum: '1874', diedNum: '1965/01/24' });
+    expect(lifeText('1874-11-01', 'month', '1965-01-24', 'day', 'en')).toEqual({ years: '1874 – 1965', born: 'November 1874', died: '24 January 1965', age: '', bornNum: '1874/11', diedNum: '1965/01/24' });
     expect(lifeText(null, null, null, null, 'zh-Hant').years).toBe('');
   });
 });

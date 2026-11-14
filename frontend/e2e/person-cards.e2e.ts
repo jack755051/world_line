@@ -168,7 +168,7 @@ test('人物分頁（1944-09-17 德國）：分頁數量＝不重複人數、希
   // 版面：標頭、角色、生卒、分頁籤、各區塊
   await expect(dlg.getByTestId('person-dialog-hero')).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-role')).toHaveCount(2);
-  await expect(dlg.getByTestId('person-dialog-life')).toContainText('1889年4月20日');
+  await expect(dlg.getByTestId('person-dialog-life')).toContainText('1889/04/20');
   for (const k of ['basics', 'bio', 'terms', 'sources']) await expect(dlg.getByTestId(`person-dialog-tab-${k}`)).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-basics')).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-section-bio')).toBeAttached();
@@ -314,7 +314,7 @@ test('有結構化來源與授權照片的人物（美國 1940：羅斯福）：
   const dlg = page.getByTestId('person-dialog');
   await expect(dlg.getByTestId('person-dialog-photo')).toBeVisible();
   await expect(dlg.getByTestId('person-dialog-photo-credit')).toContainText('CC BY');
-  await expect(dlg.getByTestId('person-field-birthDate')).toContainText('1882年1月30日');
+  await expect(dlg.getByTestId('person-field-birthDate')).toContainText('1882/01/30');
   // 出生欄位：上標編號（結構化＋舊格式備註＝2 筆）；點了展開底部來源，該筆是結構化來源並帶連結
   const sups = dlg.getByTestId('person-field-birthDate').getByTestId('person-field-sup');
   await expect(sups).toHaveCount(2);

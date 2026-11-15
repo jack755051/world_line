@@ -1182,7 +1182,8 @@ export class AtlasMap {
     const legendRight = legend ? legend.right - box.left : null;
     const legendInBounds = legend ? (legend.top - box.top) < h : false;
     // 量測 sheet 面板左緣到容器右緣距離（量不到則 null，由 measuredPadding 退回 inset.right）
-    const sheetRect = document.querySelector('wl-regime-sheet [data-testid="regime-sheet"]')?.getBoundingClientRect();
+    // 只量右側面板；手機的底部面板橫跨整個寬度，量進來會把右邊距算成整個螢幕寬，鏡頭就不動了（下方已由 inset.bottom 扣掉）
+    const sheetRect = document.querySelector('wl-regime-sheet [data-testid="regime-sheet"][data-side="right"]')?.getBoundingClientRect();
     const sheetGap = sheetRect ? box.right - sheetRect.left : null;
     return measuredPadding(base, w, legendRight, legendInBounds, sheetGap);
   }

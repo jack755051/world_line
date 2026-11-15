@@ -42,6 +42,9 @@ async function selectRegimeAt(page: Page, lngLat: [number, number]): Promise<voi
   const p = await page.evaluate((ll) => (window as unknown as { __wlMap: WlMap }).__wlMap.project(ll), lngLat);
   await page.mouse.click(box.x + p.x, box.y + p.y);
   await expect(page.getByTestId('regime-sheet')).toBeVisible();
+  // 手機：面板先開在收合（只露名稱），點提示列展開後才有分頁
+  const expand = page.getByTestId('regime-sheet-expand');
+  if (await expand.count()) await expand.click();
   await page.getByTestId('sovereignty-card-tab-leaders').click();
   await expect(page.getByTestId('sovereignty-card-panel-leaders')).toBeVisible();
 }

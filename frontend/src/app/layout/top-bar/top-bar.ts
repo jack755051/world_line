@@ -36,16 +36,27 @@ import { versionInfo } from '../../core/version';
           <button type="button" data-testid="topbar-menu-button" class="wl-icon-btn size-10" aria-haspopup="menu" [attr.aria-expanded]="menuOpen()"
             [attr.aria-label]="lang() === 'en' ? 'Menu' : '選單'" (click)="menuOpen.set(!menuOpen())"><svg lucideEllipsis class="size-5"></svg></button>
           @if (menuOpen()) {
-            <div data-testid="topbar-menu" role="menu" class="wl-paper absolute right-0 top-full z-40 mt-1 flex w-[240px] flex-col gap-2 p-2 wl-text2 shadow-[var(--wl-shadow-panel)]">
-              <ng-container [ngTemplateOutlet]="axisSeg" />
-              <ng-container [ngTemplateOutlet]="langSeg" />
+            <!-- 手機選單（Tai 2026-11-15 重新設計）：每一列「標籤＋控制項」，切換鈕縮成一般大小；版本號放最下面一小列 -->
+            <div data-testid="topbar-menu" role="menu" class="wl-paper absolute right-0 top-full z-40 mt-1 flex w-[272px] flex-col py-1 wl-text2 shadow-[var(--wl-shadow-panel)]">
+              <div class="flex min-h-14 items-center justify-between gap-3 px-3">
+                <span class="flex-none text-wl-on-surface-variant">{{ lang() === 'en' ? 'View' : '檢視' }}</span>
+                <span class="w-[168px] flex-none"><ng-container [ngTemplateOutlet]="axisSeg" /></span>
+              </div>
+              <div class="flex min-h-14 items-center justify-between gap-3 px-3">
+                <span class="flex-none text-wl-on-surface-variant">{{ lang() === 'en' ? 'Language' : '語言' }}</span>
+                <span class="w-[168px] flex-none"><ng-container [ngTemplateOutlet]="langSeg" /></span>
+              </div>
+              <div class="my-1 h-px bg-wl-outline-variant" aria-hidden="true"></div>
               <button type="button" role="menuitemcheckbox" data-testid="camp-layer-toggle" [attr.aria-checked]="showCamps()" [attr.aria-pressed]="showCamps()"
-                class="flex min-h-11 items-center gap-2 rounded-wl-sm px-2 text-left hover:bg-wl-surface-container" (click)="campsToggle.emit()">
-                <span class="inline-block size-4 border border-wl-outline" [class.bg-wl-secondary]="showCamps()"></span>{{ campText() }}</button>
-              <a href="version" role="menuitem" data-testid="topbar-menu-version" class="flex min-h-11 items-center gap-2 rounded-wl-sm px-2 font-mono text-[12px] text-wl-on-surface-variant hover:bg-wl-surface-container"
-                [attr.aria-label]="versionTitle">{{ versionText }}</a>
-              <button type="button" role="menuitem" data-testid="topbar-menu-legend" class="flex min-h-11 items-center gap-2 rounded-wl-sm px-2 text-left hover:bg-wl-surface-container"
-                (click)="menuOpen.set(false); legendToggle.emit()"><svg lucideBookOpen class="size-4"></svg>{{ tr('legend.title') }}</button>
+                class="flex min-h-12 items-center justify-between gap-3 px-3 text-left hover:bg-wl-surface-container" (click)="campsToggle.emit()">
+                <span>{{ campText() }}</span>
+                <span class="relative h-5 w-9 flex-none rounded-full transition-colors" [class.bg-wl-primary]="showCamps()" [class.bg-wl-outline-variant]="!showCamps()" aria-hidden="true">
+                  <span class="absolute top-0.5 size-4 rounded-full bg-wl-surface shadow-sm transition-[left]" [style.left.px]="showCamps() ? 18 : 2"></span></span></button>
+              <button type="button" role="menuitem" data-testid="topbar-menu-legend" class="flex min-h-12 items-center justify-between gap-3 px-3 text-left hover:bg-wl-surface-container"
+                (click)="menuOpen.set(false); legendToggle.emit()"><span>{{ tr('legend.title') }}</span><svg lucideBookOpen class="size-4 text-wl-on-surface-variant"></svg></button>
+              <div class="my-1 h-px bg-wl-outline-variant" aria-hidden="true"></div>
+              <a href="version" role="menuitem" data-testid="topbar-menu-version" class="flex min-h-11 items-center justify-between gap-3 px-3 text-[12px] text-wl-on-surface-variant hover:bg-wl-surface-container"
+                [attr.aria-label]="versionTitle"><span>{{ lang() === 'en' ? 'Version' : '版本' }}</span><span class="font-mono">{{ versionText }}</span></a>
             </div>
           }
         </div>
@@ -82,14 +93,14 @@ import { versionInfo } from '../../core/version';
     }
     <ng-template #axisSeg>
       <div class="wl-seg wl-seg-anim" role="group" data-testid="axis-toggle" [attr.data-axis]="axis()" [attr.aria-label]="lang() === 'en' ? 'View' : '檢視'"
-        [class.w-[120px]]="bp() === 'md'" [class.w-full]="compact()" [class.min-h-11]="compact()">
+        [class.w-[120px]]="bp() === 'md'" [class.w-full]="compact()">
         <span #thumb class="wl-seg-thumb" data-testid="axis-toggle-thumb" aria-hidden="true"></span>
         <button #btnControl type="button" class="flex-1 whitespace-nowrap" data-testid="axis-toggle-control" [class.!h-11]="compact()" [attr.aria-pressed]="axis() === 'control'" (click)="pick('control')">{{ tr('axis.control') }}</button>
         <button #btnSov type="button" class="flex-1 whitespace-nowrap" data-testid="axis-toggle-sovereignty" [class.!h-11]="compact()" [attr.aria-pressed]="axis() === 'sovereignty'" (click)="pick('sovereignty')">{{ tr('axis.sovereignty') }}</button>
       </div>
     </ng-template>
     <ng-template #langSeg>
-      <div class="wl-seg" role="group" aria-label="語言 Language" [class.w-[72px]]="bp() === 'md'" [class.w-full]="compact()" [class.min-h-11]="compact()">
+      <div class="wl-seg" role="group" aria-label="語言 Language" [class.w-[72px]]="bp() === 'md'" [class.w-full]="compact()">
         <button type="button" class="flex-1" data-testid="lang-toggle-zh" [class.!h-11]="compact()" [attr.aria-pressed]="lang() === 'zh-Hant'" (click)="langChange.emit('zh-Hant')" lang="zh-Hant">中</button>
         <button type="button" class="flex-1" data-testid="lang-toggle-en" [class.!h-11]="compact()" [attr.aria-pressed]="lang() === 'en'" (click)="langChange.emit('en')" lang="en">EN</button>
       </div>

@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { vi } from 'vitest';
+import { versionInfo } from '../../core/version';
 import { VersionPage } from './version.page';
 
 describe('VersionPage', () => {
@@ -15,13 +16,13 @@ describe('VersionPage', () => {
     vi.restoreAllMocks();
   });
 
-  it('顯示版號 0.0.1', async () => {
+  it('顯示目前的版號（來自建置時產生的 core/version.ts）', async () => {
     const fixture = TestBed.createComponent(VersionPage);
     await fixture.whenStable();
     fixture.detectChanges();
     const el = fixture.nativeElement as HTMLElement;
     const versionEl = el.querySelector('[data-testid="version-number"]');
-    expect(versionEl?.textContent).toContain('0.0.1');
+    expect(versionEl?.textContent).toContain(versionInfo.version);
   });
 
   it('回主地圖連結 href="/"', async () => {

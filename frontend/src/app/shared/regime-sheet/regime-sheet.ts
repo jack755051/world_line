@@ -13,7 +13,8 @@ export type SheetState = 'closed' | 'opening' | 'open' | 'closing';
 
 const SIDE_CLASS = {
   right: 'inset-y-0 right-0 h-full border-l border-[var(--sanring-border)]',
-  bottom: 'inset-x-0 bottom-0 border-t border-[var(--sanring-border)]',
+  // 手機底部面板（Tai 2026-11-15 重新設計）：上緣圓角、不留整圈 24px 內距，把手疊在標頭上方，peek 就看得到完整的名稱
+  bottom: 'inset-x-0 bottom-0 gap-0 rounded-t-[16px] border-x-0 border-b-0 border-t border-[var(--sanring-border)] p-0 shadow-[0_-6px_20px_rgba(60,40,20,0.14)]',
 } as const;
 /** 只動 transform：右側用 xPercent、底部用 yPercent。 */
 const AXIS_PROP = { right: 'xPercent', bottom: 'yPercent' } as const;
@@ -41,10 +42,10 @@ const AXIS_PROP = { right: 'xPercent', bottom: 'yPercent' } as const;
           @if (side() === 'bottom') {
             <!-- bottom sheet 三段高度（96px／50vh／90vh）：點把手或上下拖切換 -->
             <button type="button" data-testid="regime-sheet-snap" [attr.data-snap]="snap()" [attr.aria-label]="snapLabel()"
-              class="mx-auto flex h-11 w-full flex-none cursor-grab touch-none items-center justify-center" (pointerdown)="startSnapDrag($event)" (click)="cycleSnap()">
-              <span class="h-1 w-8 rounded-full bg-wl-outline-variant"></span></button>
+              class="absolute inset-x-0 top-0 z-[1] flex h-11 cursor-grab touch-none items-start justify-center pt-2" (pointerdown)="startSnapDrag($event)" (click)="cycleSnap()">
+              <span class="h-1 w-9 rounded-full bg-wl-outline"></span></button>
           }
-          <sanring-sheet-header align="start" class="min-h-[56px] flex-none pr-8">
+          <sanring-sheet-header align="start" [class]="side() === 'bottom' ? 'min-h-[56px] flex-none gap-0.5 px-4 pb-2 pt-6 pr-14' : 'min-h-[56px] flex-none pr-8'">
             <div class="flex min-w-0 flex-wrap items-baseline gap-x-2">
               <sanring-sheet-title [attr.data-testid]="titleTestId()">{{ title() }}</sanring-sheet-title>
               <!-- §10：標頭顯示首都（政權名稱、首都、關閉按鈕） -->
@@ -54,8 +55,12 @@ const AXIS_PROP = { right: 'xPercent', bottom: 'yPercent' } as const;
               <sanring-sheet-description data-testid="regime-sheet-description" [attr.lang]="descriptionLang() || null">{{ description() }}</sanring-sheet-description>
             }
           </sanring-sheet-header>
-          <div data-testid="regime-sheet-body" class="flex min-h-0 flex-1 flex-col"><ng-content /></div>
-          <button type="button" [attr.data-testid]="closeTestId()" [attr.aria-label]="closeLabel()" [class]="closeClass" (click)="closed.emit()">
+          @if (bodyHidden()) {
+            <button type="button" data-testid="regime-sheet-expand" class="flex-none px-4 pb-2 text-left text-[12px] text-wl-on-surface-variant" (click)="snapChange.emit('half')">{{ lang() === 'en' ? 'Swipe up or tap for details' : '往上滑或點一下看詳細資料' }}</button>
+          }
+          <div data-testid="regime-sheet-body" class="flex min-h-0 flex-1 flex-col" [class.px-4]="side() === 'bottom'" [class.pb-2]="side() === 'bottom'"
+            [class.hidden]="bodyHidden()"><ng-content /></div>
+          <button type="button" [attr.data-testid]="closeTestId()" [attr.aria-label]="closeLabel()" [class]="side() === 'bottom' ? closeClassBottom : closeClass" (click)="closed.emit()">
             <svg lucideX [class]="closeIconClass"></svg>
           </button>
         </section>
@@ -94,7 +99,11 @@ export class RegimeSheet {
   private token = 0;
 
   protected readonly closeClass = OVERLAY_ABSOLUTE_CLOSE_BUTTON_CLASS;
+  /** 手機：關閉鈕可點範圍 44px，疊在把手之上。 */
+  protected readonly closeClassBottom = cn(OVERLAY_ABSOLUTE_CLOSE_BUTTON_CLASS, 'right-1 top-1 z-[2] flex size-11 items-center justify-center opacity-100');
   protected readonly closeIconClass = OVERLAY_CLOSE_ICON_CLASS;
+  /** 手機 peek 只露出名稱那一段：內容不顯示（不然會露出被切一半的第一列），拖拉中照常顯示。 */
+  protected readonly bodyHidden = computed(() => this.side() === 'bottom' && this.snap() === 'peek' && this.dragSize() === null);
   protected readonly closeLabel = computed(() => (this.lang() === 'en' ? 'Close panel' : '關閉面板'));
   protected readonly panelClass = computed(() => cn(OVERLAY_SURFACE_CLASS, SHEET_SURFACE_CLASS, 'absolute z-30 rounded-none outline-none', SIDE_CLASS[this.side()]));
 

@@ -104,6 +104,33 @@ test('§12 政權面板手機：點國家開到 peek 120px；拖把手（可點�
   expect(Math.abs(sb.y + sb.height - tl.y)).toBeLessThanOrEqual(1);
 });
 
+test('§12 手機點政權：鏡頭移到該政權（跟電腦版一樣調整比例），整個政權落在底部面板上方', async ({ page }) => {
+  await open(page, 390);
+  type M = WlMap & { getZoom(): number };
+  const box = (await page.getByTestId('map-canvas').boundingBox())!;
+  // 先停在看得到整個歐洲、德國偏在一邊的位置（世界視圖下德國太小，點不準）
+  await page.evaluate(() => (window as unknown as { __wlMap: M }).__wlMap.jumpTo({ center: [30, 45], zoom: 2.4 }));
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  await page.waitForTimeout(400);
+  const z0 = await page.evaluate(() => (window as unknown as { __wlMap: M }).__wlMap.getZoom());
+  const p = await page.evaluate(() => (window as unknown as { __wlMap: M }).__wlMap.project([10.5, 51]));
+  await page.mouse.click(box.x + p.x, box.y + p.y);
+  await expect(page.getByTestId('sovereignty-card-title')).toContainText('德意志國');
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __wlMap: M }).__wlMap.getZoom())).toBeGreaterThan(z0 + 1);
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-camera', 'idle');
+  // 柏林在畫面內、且在面板上緣之上
+  const berlin = await page.evaluate(() => (window as unknown as { __wlMap: M }).__wlMap.project([13.4, 52.52]));
+  const sb = (await page.getByTestId('regime-sheet').boundingBox())!;
+  expect(berlin.x).toBeGreaterThan(0);
+  expect(berlin.x).toBeLessThan(390);
+  expect(box.y + berlin.y).toBeLessThan(sb.y);
+  // peek 就看得到完整的名稱與原文名
+  const title = (await page.getByTestId('sovereignty-card-title').boundingBox())!;
+  const desc = (await page.getByTestId('regime-sheet-description').boundingBox())!;
+  expect(title.y).toBeGreaterThanOrEqual(sb.y);
+  expect(desc.y + desc.height).toBeLessThanOrEqual(sb.y + sb.height);
+});
+
 test('§12 L1 圖例手機：沒有 ⓘ 與圖例分頁；⋯ 選單「圖例」開獨立 bottom sheet（≤60vh、兩欄、色票 20px、13px）；往下滑或點地圖關閉；選政權時也能開', async ({ page }) => {
   await open(page, 390);
   await expect(page.getByTestId('legend-expand')).toHaveCount(0);

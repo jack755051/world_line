@@ -281,6 +281,10 @@ if os.path.exists(CAMP):
 for sh in L('schematic.json', {'shapes': []})['shapes']:
     cits = [c for c in sh.get('citations', []) if c.get('grade') in ('A', 'B') and c.get('quote') and (c.get('quoteCheck') or {}).get('status', 'verbatim') != 'failed']
     if not cits: schem_skip.append(f"{sh['key']}（沒有通過核對的 A／B 引文）"); continue
+    if sh['kind'] == 'front':   # 示意前線：放進戰線清單，示意領地會優先用它
+        lines.append({'phase': ph_of(sh['from']), 'from': sh['from'], 'to': sh['to'], 'name': sh.get('labelZh'), 'side': sh.get('side'), 'kind': 'front', 'vertices': [q['place'] for q in sh['path']], 'path': [q['lonlat'] for q in sh['path']],
+                      'precision': None, 'precision_m': None, 'verified': True, 'level': 'estimate', 'basis': 'text', 'schematic': True, 'refs': refs(cits), 'note': sh.get('waypointNote')})
+        continue
     schem.append({'phase': ph_of(sh['from']), 'from': sh['path'][0]['place'], 'to': sh['path'][-1]['place'], 'path': [q['lonlat'] for q in sh['path']], 'unit': sh.get('labelZh'), 'side': sh.get('side'),
                   'verified': True, 'schematic': True, 'kind': sh['kind'], 'date': sh['from'], 'date_to': sh['to'], 'note': sh.get('waypointNote'), 'refs': refs(cits)})
 

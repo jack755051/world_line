@@ -152,8 +152,8 @@ function prepAreas() { const C = TH.control; if (!C || (C.mode !== 'areas' && C.
   setTimeout(() => buildFields(cfg.geo.landc), 0); }
 function buildFields(landc) { if (dead) return; const C = TH.control, t0 = performance.now();
   // 示意領地用的防線：只在「這個關鍵日沒有任何部隊位置」時才用；取當天生效、出處是文字敘述的戰線。盟軍實際到達前（schematic_from 之前）不畫
-  SCHL = D.keyframes.map((k, ki) => { if (C.mode !== 'units' || !SRC || (UPOS[ki] || []).length || (C.schematic_from && k.date < C.schematic_from)) return null;
-    const ls = SRC.lines.filter(l => l.basis === 'text' && l.from <= k.date && k.date <= (l.to || l.from) && (l.path || []).length > 1); return ls.length ? ls : null; });
+  SCHL = D.keyframes.map((k, ki) => { if (C.mode !== 'units' || !SRC || (UPOS[ki] || []).length) return null;
+    const ls = SRC.lines.filter(l => l.basis === 'text' && l.from <= k.date && k.date <= (l.to || l.from) && (l.path || []).length > 1), sc = ls.filter(l => l.schematic); return sc.length ? sc : ls.length ? ls : null; });   /* 當天有專門的示意前線就只用它 */
   const FB = C.bbox || BBOX;   // 勢力場只算戰區那一塊（底圖範圍可以比它大）
   const x0 = mx(FB[0]), x1 = mx(FB[2]), y0 = my(FB[1]), y1 = my(FB[3]), GW = innerWidth <= 700 ? 448 : 640, GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
   const cv = document.createElement('canvas'); cv.width = GW; cv.height = GH; const g = cv.getContext('2d', { willReadFrequently: true });

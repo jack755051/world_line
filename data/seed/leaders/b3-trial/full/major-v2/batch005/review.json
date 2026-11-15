@@ -1,0 +1,96 @@
+{
+ "batch": "005",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-major-v2",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 1,
+  "deletedCitations": 0,
+  "addedCitations": 16,
+  "editedSentences": 7,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "gb-lloyd-george",
+   "bioId": "01a19f15-33c3-7fff-a8d9-5521e842fb87",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 15,
+   "changes": [
+    "段2 period.end 1916-12-06→1916-06-01(month)（Q3：段內最後事件為 1916 年 5 月任陸軍大臣）",
+    "段4 補引文 'he outlined his programme for re-establishing national prosperity'、\"the ' New Deal ' policy\"（支撐「重建國家繁榮的新政」）",
+    "lg-mp-caernarvon 補 Hansard 1918–1922、1922–1923 兩段選區引文（原只引首尾兩段，中間連續性無支撐）",
+    "searchLog 第 13、14 步 London Gazette 來源類型 official→treaty_law（政府公報屬第 4 類），來源類型 4→5 種",
+    "抽查重抓 Hansard 人物頁：首相 1916-12-06～1922-10-22、選區 1923–1945 與原文一致",
+    "保留：DWB 寫基奇納 1916 年 5 月去世（實為 6 月），A 來源原文如此，陸軍大臣起日 1916-05 照來源，未改"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gb-chamberlain-neville",
+   "bioId": "01a19f15-3507-788a-9d61-83862bf96e28",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 8,
+   "roleCandidates": 3,
+   "gaps": 5,
+   "searchLogSteps": 16,
+   "changes": [
+    "段2 GOV.UK 引文 'appointed him Director General…' 刪 datePrecision（引文無日期，Q8），補 Cadbury 'by Lloyd George in 1916' 支撐年份；1918 保守黨議員句改為「GOV.UK 記…」（Cadbury 作 Liberal Unionist，見 conflict gap）",
+    "段3 引文改為 'made him Chancellor in his national government'（支撐「國民政府」），補 'During the economic crisis, he achieved his father’s protectionist ambitions'",
+    "段4「一心避免戰爭」改為「致力於幾乎不惜代價恢復和平」並補引文；補「英德不再交戰協議」「波蘭被入侵」「解放挪威」三筆引文，「挪威方面的英軍行動」改為「英國解放挪威的行動」",
+    "nc-mp-ladywood-edgbaston 拆分：Ladywood 1918-12-14～1929-05-30 留 roleCandidates（R1，補 Hansard 1922–1929 選區引文）；Edgbaston 1929-05-30～1940-11-09 移回 positions（legislator，R5，partyPostAmbiguous：來源未寫以何黨身分當選）",
+    "searchLog 第 11、12 步 London Gazette 來源類型改 treaty_law",
+    "check_min 未達：nc-conservative-chairman（1930 起）、nc-conservative-leader（1937-05 起）缺迄日，已有「待查證：缺迄日」gap，但 verify.py 只收 position: 而 check_min 只認 role:，兩工具衝突，記為 missing；迄日來源（下議院圖書館 SN01366）403 不繞過",
+    "抽查重抓 GOV.UK 頁：1937 年 5 月接任、解放挪威失敗後辭職等句與原文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "us-wilson",
+   "bioId": "01a1b48b-c814-7f78-bba8-753c5a5ea41f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 2,
+   "gaps": 4,
+   "searchLogSteps": 18,
+   "changes": [
+    "段1「普林斯頓前身的新澤西學院」改為「普林斯頓大學就讀三年」、「短暫執業」改為「執業一年」（照引文）；補 Miller 引文 'as a graduate student in history and political science'",
+    "段2 period.end 1913-03-04→1913-03-05（半開區間，最後事件 3/4 就任）；補引文 'the reforms he had outlined in his book The New Freedom'",
+    "段3 補引文 '«unrestricted submarine warfare» was already started'",
+    "段4 引文改為 '…January 8, 1918, on the «Fourteen Points»'、'a week later suffered a cerebral haemorrhage'；「巴黎和會」改為「在凡爾賽召開的和會」並補引文（Nobel 原文寫 Versailles）",
+    "searchLog 第 18 步 London Gazette 來源類型改 treaty_law（類型 4→5 種；但此筆與美國總統任期關聯低，近乎湊數，見 issues）",
+    "wilson-hos-1913／wilson-hog-1913 保留：起日有來源，迄日 1914-07-29 為 5442 起日推論且已註明；屬系統時間窗切割同一任期，是否採用待 Tai 決定",
+    "抽查重抓 Nobel 傳記頁：凡爾賽和會、一週後腦出血等句與原文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者多處只引半句、漏掉中文子句支撐（新政、國民政府、挪威、凡爾賽、十四點、無限制潛艇戰等），本批補 16 筆原文引文",
+  "以政黨身分取得的席位：研究者把張伯倫兩個不同選區合併成一筆黨職席位，但 Edgbaston 無來源寫明黨籍；已拆分",
+  "工具衝突：verify.py gap target 不收 role:，check_min 對 roleCandidates 只認 role:<key>，導致黨職缺迄日即使有待查證 gap 仍算 missing（張伯倫 2 筆）；需主管決定改哪個工具",
+  "searchLog 步數含大量 curl 猜網址；若『查詢』只算 WebSearch／站內搜尋，三人皆遠低於 15 次（研究者自報未達）；本審查依前例以步數計。威爾遜第 17、18 步搜英國 Hansard／Gazette 屬湊數，建議下一輪改查 American National Biography、LoC Wilson Papers 說明、NJ Legislative Manual",
+  "Hansard 與 5442 首相起迄差一日（勞合·喬治 12-06/12-07；張伯倫 05-09/05-10），已記 gap，未改名單",
+  "威爾遜 1913-03-04～1914-07-29 名單外總統候選待 Tai 裁決",
+  "未發現禁用網域、wiki 類出處或繞過防機器人取得的原文；來源等級 A／B 合理（Cadbury 指南為指定 B 來源）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "batch": "006",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-major-v2",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 8,
+  "deletedParagraphs": 1,
+  "deletedPositions": 3,
+  "deletedRoleCandidates": 3,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 22,
+  "addedCitations": 31,
+  "editedSentences": 19,
+  "spotRefetched": 4,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "fr-clemenceau",
+   "bioId": "ef990cdf-5286-44c4-8e0a-1e8aaa1c629b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 19,
+   "changes": [
+    "補 18 筆 Sénat／Sycomore／Académie 原文引文，支撐旺代、行醫、帝國末年／9 月 4 日、J'accuse、首腦期間（Chef du Gouvernement）、1907 卡薩布蘭卡、德爾卡塞與海軍、最高統帥部批評與報紙查禁、faire la guerre、兩國軍方、福煦同時當選、未入院、和會 1919-01-18、6 月 28 日、1 月 16 日預備會議、陸軍部長迄日",
+    "換掉截掉受詞的引文（Le 20 juillet 1909… par）與未含日期／未含職稱的引文；中文改寫未被支撐的子句（「入薩里安內閣」「第二帝國末年與1870年9月」「留在參議院」）",
+    "第 5 段 period 迄點改為段內最後事件 1929-11-24",
+    "票數改寫為「以8610票對9503票」避免誤讀"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "es-franco",
+   "bioId": "01a1b48b-c890-7320-84f4-1442207f5f03",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 1,
+   "gaps": 13,
+   "searchLogSteps": 25,
+   "changes": [
+    "Gran Enciclopèdia Catalana 條目無具名作者（唯一人名 Jaime de Andrade 是佛朗哥筆名），依 Q9 由 B 降為 C；21 筆 GEC 引文移入 gap 候選",
+    "刪第 4 段（全依 GEC）；第 1–3 段改寫為只含 GND、陸軍學院沿革、Gaceta 1936、BOE 1936／1938 內容，補 5 筆 BOE／Gaceta 引文",
+    "總軍官學院院長、中央參謀長（缺起日）、加那利軍事司令（Gaceta OCR 無完整逐字句、迄日只有 GEC）三筆 positions 移 gap",
+    "1938 國家元首候選（BOE 未點名、日期推論）、FET y de las JONS 首領（只有 GEC）兩筆 roleCandidates 移 gap",
+    "政府首長候選刪除 GEC 迄日引文，迄日改 null 並加「待查證：缺迄日」gap（5442 下一筆是本人 spanish-state 任期，不符 Q7）",
+    "加 paragraph:length 篇幅不足 gap；thickness 改薄"
+   ],
+   "returnedReasons": [
+    "指定來源 Congreso de los Diputados／Cortes 歷史資料未查（searchLog 無此步）；建議下一步：congreso.es 歷史議員檔（Serie documentación electoral）",
+    "降級 GEC 後只剩 3 段／280 字，未達 v3 最低標準；建議以瀏覽器渲染取得 dbe.rah.es biografias/9565 正文（A），並找 BOE 1937-04-20 統一法令清晰版"
+   ]
+  },
+  {
+   "key": "tr-ataturk",
+   "bioId": "01a1b492-3f04-7906-a59b-b9bfcc8f374d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 1,
+   "gaps": 7,
+   "searchLogSteps": 27,
+   "changes": [
+    "人民黨「創建者與黨魁」候選移 gap：A／B 來源無逐字黨職頭銜，原以 İnönü 代理主席反推、以逝世日推迄日，均屬推論",
+    "雷霆軍團集團司令迄日 1918-11-13（以抵伊斯坦堡日推得）改 null，加缺迄日 gap，roleGap 加 dates",
+    "Hareket Ordusu 引文原本不含日期卻填 datePrecision=day：補含日期引文、原引文 datePrecision 清空（Q8）",
+    "補 10 筆原文引文支撐免職與辭職、主持大會、薩卡里亞會戰前後、消滅希臘軍大部、加齊穆斯塔法·凱末爾與護權協會；刪「安納托利亞與魯米利亞」（引文未含）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "工具衝突沿前例：verify.py gap target 不收 role:，check_min 對 roleCandidates 只認 role:<key>，佛朗哥政府首長候選雖有「待查證：缺迄日」gap 仍算 missing",
+  "無具名作者的機構百科（GEC）被研究者記 B；審查一律降 C，只留 gap 候選",
+  "研究者多處以刊載日、抵達日、逝世日、反推頭銜補日期或職稱，審查一律改 null／移 gap",
+  "5442 待主管核對：克里蒙梭首腦迄日（庫 1909-07-24／1920-01-20 vs Sénat、Sycomore 1909-07-20／1920-01-18）；spanish-republic 1939 佛朗哥兩筆任期查無來源；阿塔圖克 1923-08-11～08-13 空檔",
+  "regimeId 不連庫一律 null，R3／R4 類 R6（roleGap regime）",
+  "未發現 Wikipedia／Wikidata／禁用網域出處或繞過防機器人取得的原文；抽查重抓 senat.fr、boe.es、tccb.gov.tr、enciclopedia.cat 一致"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

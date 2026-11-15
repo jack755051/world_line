@@ -1,0 +1,2280 @@
+{
+ "batch": "b3-full-major-v2-batch001",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；直接寫 b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6 兩層互斥）；regimeId 因不連庫無法查證一律 null＋organization，R3／R4 類以 R6（roleGap 含 regime）留 positions；元首／首腦任期在 5442 leader_records 不重建；來源依 docs/source-rules.md（2026-11-13／14）。",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；黨職在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。角色（role）缺迄日的 gap 因 verify.py 的 target 格式不收 role:，改用 position:<key>。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-major/batch001/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndb-hitler": {
+   "title": "Hitler, Adolf（Neue Deutsche Biographie 9, 1972, Joachim Fest；NDB-online 2024 Lebenslauf, Wolfram Pyta）",
+   "authors": [
+    "Joachim Fest",
+    "Wolfram Pyta"
+   ],
+   "publisher": "Deutsche Biographie（Bayerische Akademie der Wissenschaften／Bayerische Staatsbibliothek）",
+   "published_text": "NDB 9 (1972), S. 250-266；NDB-online 2024-07-01",
+   "url": "https://www.deutsche-biographie.de/gnd118551655.html",
+   "archive_url": null,
+   "catalog_id": "GND 118551655",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie 官方頁），具名作者，含大事年表與 Lebenslauf 表"
+  },
+  "lobid-hitler": {
+   "title": "Hitler, Adolf（GND 118551655）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）／hbz lobid",
+   "published_text": "GND 權威檔（lobid.org 鏡像）",
+   "url": "https://lobid.org/gnd/118551655.json",
+   "archive_url": null,
+   "catalog_id": "GND 118551655",
+   "license_code": "cc0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，DNB 維護；以官方鏡像 lobid.org 取得）"
+  },
+  "lemo-hitler": {
+   "title": "LeMO Biografie: Adolf Hitler",
+   "authors": [
+    "Daniel Wosnitzka"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO）",
+   "published_text": "Stand 12. Oktober 1998",
+   "url": "https://www.dhm.de/lemo/biografie/adolf-hitler",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館 LeMO 具名作者人物傳記（機構百科 B）"
+  },
+  "treccani-hitler": {
+   "title": "Hitler, Adolf（Enciclopedia on line）",
+   "authors": [
+    "Gabriella Nisticò"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana Treccani",
+   "published_text": "Enciclopedia on line",
+   "url": "https://www.treccani.it/enciclopedia/adolf-hitler/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Treccani 具名作者條目（機構百科 B）"
+  },
+  "bundesarchiv-akten-1934": {
+   "title": "Akten der Reichskanzlei. Regierung Hitler, Band I, Nr. 382 Ministerbesprechung vom 1. August 1934, 21.30 Uhr",
+   "authors": [],
+   "publisher": "Bundesarchiv（Akten der Reichskanzlei）",
+   "published_text": "R 43-I/1469, S. 595–599",
+   "url": "https://aktenreichskanzlei.bundesarchiv.de/resources/pdf/arh01d382.pdf",
+   "archive_url": null,
+   "catalog_id": "R 43-I/1469",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方編印的內閣會議紀錄（官方檔案），含 RGBl. I S. 747 出處"
+  },
+  "lobid-stalin": {
+   "title": "Stalin, Josif Vissarionovič（GND 118642499）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）／hbz lobid",
+   "published_text": "GND 權威檔（lobid.org 鏡像）",
+   "url": "https://lobid.org/gnd/118642499.json",
+   "archive_url": null,
+   "catalog_id": "GND 118642499",
+   "license_code": "cc0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，DNB 維護；以官方鏡像 lobid.org 取得）"
+  },
+  "lemo-stalin": {
+   "title": "LeMO Biografie: Josef W. Stalin",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO）",
+   "published_text": "Stand 20. Januar 2016",
+   "url": "https://www.dhm.de/lemo/biografie/josef-stalin",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館 LeMO 具名作者人物傳記（機構百科 B）"
+  },
+  "histrf-zhukov": {
+   "title": "Система государственной власти в СССР в годы Великой Отечественной войны",
+   "authors": [
+    "Ю. Н. Жуков"
+   ],
+   "publisher": "Российское историческое общество（history.ru；ИРИ РАН 研究者撰）",
+   "published_text": "Том VIII（作者：歷史學博士、俄羅斯科學院俄羅斯歷史研究所首席研究員）",
+   "url": "https://history.ru/uploads/media/default/0001/37/b329ba5691a8ab0e17e29a9770006ffdffcea279.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名學者（歷史學博士）撰寫、由學術機構出版的論文／專書章節（學術出版 B）"
+  },
+  "encyclopedia-gko": {
+   "title": "State Defense Committee（Encyclopedia of Russian History）",
+   "authors": [
+    "Roger R. Reese"
+   ],
+   "publisher": "Macmillan Reference USA／Gale（經 encyclopedia.com 取得）",
+   "published_text": "Encyclopedia of Russian History (2004)",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/state-defense-committee",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術參考書具名作者條目（Roger R. Reese，學術出版社百科 B）"
+  }
+ },
+ "people": [
+  {
+   "key": "de-hitler",
+   "bioId": "01a19f15-35f4-7d9a-847a-aeccc98305ec",
+   "name": "Adolf Hitler",
+   "nameZh": "阿道夫·希特勒",
+   "recordIds": [
+    "01a19e05-fb24-7cf1-a00b-a8fd87176d7e",
+    "01a19e05-faa8-70e5-8688-09a1850e0e6f"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1889-04-20",
+      "end": "1920-03-31"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、一戰與入黨",
+      "en": "Origins, war service and joining the DAP"
+     },
+     "body": {
+      "zh-Hant": "希特勒1889年4月20日生於上奧地利的布勞瑙（因河畔），是海關官員阿洛伊斯·希特勒之子。第一次世界大戰期間他志願從軍，主要擔任傳令兵，隸屬巴伐利亞後備步兵第16團。1919年9月起他在慕尼黑加入德意志工人黨，黨員編號555。他於1920年3月31日自國防軍退伍，此後專心從事黨務。",
+      "en": "Hitler was born on 20 April 1889 in Braunau am Inn, Upper Austria, the son of the customs official Alois Hitler. In the First World War he served as a volunteer, mainly as a dispatch runner, in the Bavarian Reserve Infantry Regiment No. 16. From September 1919 he was a member of the German Workers' Party in Munich, with membership number 555. He was discharged from the Reichswehr on 31 March 1920 and from then on devoted himself exclusively to party work."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "20. April 1889 - Braunau am Inn (Oberösterreich)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1889",
+       "quote": "wird als Sohn des Zollbeamten Alois Hitler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "freiwilliger Kriegsdienst v. a. als Meldegänger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "Bayerisches Reserve-Infanterie-Regiment Nr. 16",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "September 1919 - Februar 1920 - München Mitglied Deutsche Arbeiterpartei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1919",
+       "quote": "tritt ihr wenige Tage später mit der Mitgliedsnummer 555 bei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "31.3.1920 Entlassung aus der Reichswehr",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Biographie/Zeittafel",
+       "quote": "widmet sich seither ausschließlich der Parteiarbeit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-07-29",
+      "end": "1925-02-27"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "黨魁、慕尼黑政變與重建黨",
+      "en": "Party leader, the Munich putsch and refounding of the party"
+     },
+     "body": {
+      "zh-Hant": "1921年7月29日，納粹黨（NSDAP）臨時黨員大會選希特勒為第一任黨主席，他並取得獨裁性質的全權。1923年11月8至9日，他與魯登道夫發動的慕尼黑政變失敗。1924年4月1日，他在慕尼黑人民法院因叛國罪被判五年要塞監禁，同日送入蘭茨貝格監獄，其間開始撰寫《我的奮鬥》第一卷，同年12月20日提前獲釋。1925年2月27日他重建NSDAP，此後擔任黨主席至1945年。",
+      "en": "On 29 July 1921 an extraordinary members' meeting of the NSDAP elected Hitler its first chairman, with dictatorial powers. The Munich putsch he launched with Ludendorff on 8-9 November 1923 failed. On 1 April 1924 the Munich People's Court sentenced him for high treason to five years of fortress detention, and he was taken to Landsberg prison the same day; there he began writing the first volume of Mein Kampf, and he was released early on 20 December 1924. He refounded the NSDAP on 27 February 1925 and remained party chairman until 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1921",
+       "quote": "29.7.: Eine außerordentliche Mitgliederversammlung der NSDAP",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1921",
+       "quote": "wählt nach heftigen internen Streitigkeiten H. zu ihrem 1. Vorsitzenden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1921",
+       "quote": "die Führung der Partei mit diktatorischen Vollmachten zu übernehmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "8.11.1923 - 9.11.1923 - München gescheiterter Putschversuch mit Erich Ludendorff",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf/Online-Text",
+       "quote": "am 1. April 1924 vor dem Volksgericht München I wegen Hochverrats",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Online-Text",
+       "quote": "zu fünf Jahren Festungshaft verurteilt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Online-Text",
+       "quote": "am selben Tag in die Justizvollzugsanstalt Landsberg am Lech verbracht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "Beginn der Niederschrift des ersten Bands von „Mein Kampf“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1924",
+       "quote": "20. Dezember: Vorzeitige Entlassung aus der Festung Landsberg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1925",
+       "quote": "27. Februar: Neugründung der NSDAP",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "27.2.1925 - 30.4.1945 - München Parteivorsitzender",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1925-02-27",
+      "end": "1933-01-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "從黨魁到出任總理",
+      "en": "From party leader to Chancellor"
+     },
+     "body": {
+      "zh-Hant": "重建後的納粹黨在1930年9月的國會選舉中得票逾六百萬。1932年2月26日希特勒取得德國國籍，同年春天他在總統選舉中對上興登堡，得票超過三分之一。7月31日國會選舉後納粹黨成為最大黨團，但他8月13日要求出任總理，被興登堡拒絕。1933年1月30日，他被任命為保守派主導、僅三名納粹黨人入閣的聯合內閣總理。",
+      "en": "In the Reichstag election of September 1930 the refounded Nazi Party won more than six million votes. Hitler obtained German citizenship on 26 February 1932 and in the spring of that year ran against Hindenburg for the presidency, winning more than a third of the votes. After the Reichstag election of 31 July the NSDAP was the strongest group, but on 13 August Hindenburg rejected his demand to be appointed Chancellor. On 30 January 1933 he was appointed Chancellor of a conservative-led coalition cabinet with only three National Socialists."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "Enciclopedia on line",
+       "quote": "Reichstag del settembre 1930, in cui ottenne oltre sei milioni di voti",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "26.2.1932 - Freistaat Braunschweig deutscher Staatsbürger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Biographie",
+       "quote": "Im Frühjahr 1932 fühlte er sich stark genug",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Biographie",
+       "quote": "Reichspräsidenten von Hindenburg , im Kampf um die Präsidentschaft anzutreten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Biographie",
+       "quote": "gewann dabei tatsächlich über ein Drittel der Stimmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1932",
+       "quote": "13. August: Nach den Reichstagswahlen vom 31. Juli",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1932",
+       "quote": "aus denen die NSDAP als stärkste Fraktion hervorgeht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1932",
+       "quote": "Hitlers Forderung auf Ernennung zum Reichskanzler von Hindenburg zurückgewiesen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "30.1.1933 - 30.4.1945 Reichskanzler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1933",
+       "quote": "Hitler wird zum Reichskanzler eines national-konservativen Kabinetts ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Biographie",
+       "quote": "eines mit nur 3 Nationalsozialisten besetzten Koalitionskabinetts",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1933-01-30",
+      "end": "1945-04-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總理、元首與戰爭",
+      "en": "Chancellor, Führer and war"
+     },
+     "body": {
+      "zh-Hant": "任總理後，1933年3月24日授權法在除社民黨與已被排除的共產黨之外的各黨支持下通過。1934年8月2日興登堡逝世；依前一日簽署的法律，希特勒合併總統與總理職權，稱「元首兼總理」，軍隊也改向他個人宣誓。1938年2月4日他撤換軍方高層，親自接掌國防軍統帥權。1939年9月1日德軍進攻波蘭，第二次世界大戰爆發。1941年12月19日他兼任陸軍總司令。1945年4月30日他在柏林總理府地下掩體自殺。",
+      "en": "After he became Chancellor, the Enabling Act was passed on 24 March 1933 with the votes of all parties except the SPD and the already eliminated KPD. When Hindenburg died on 2 August 1934, Hitler, under a law signed the day before, united the offices of President and Chancellor under the title Führer und Reichskanzler, and the armed forces were sworn to him personally. On 4 February 1938 he dismissed the military leadership and took over supreme command of the Wehrmacht himself. The German attack on Poland on 1 September 1939 began the Second World War. From 19 December 1941 he was also commander-in-chief of the Army. On 30 April 1945 he killed himself in the bunker beneath the Reich Chancellery in Berlin."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1933",
+       "quote": "24.3.: Ermächtigungsgesetz durch alle Parteien mit Ausnahme der SPD",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1933",
+       "quote": "sowie der inzwischen ausgeschalteten KPD verabschiedet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1934",
+       "quote": "2. August: Reichspräsident Hindenburg stirbt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bundesarchiv-akten-1934",
+       "locator": "Nr. 382, Anm. 4",
+       "quote": "am 1. 8. 34 unterzeichnet (RGBl. I, S. 747)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1934",
+       "quote": "Nach dem am Tage zuvor verabschiedeten Gesetz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1934",
+       "quote": "vereinigt H. in seiner Person die Ämter von Reichspräsident und Reichskanzler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1934",
+       "quote": "wird auf ihn persönlich vereidigt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1938",
+       "quote": "1938 4.2.: H. entläßt die militärische Spitze",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1938",
+       "quote": "übernimmt selber den Oberbefehl über die Wehrmacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1939",
+       "quote": "1. September: Mit dem deutschen Angriff auf Polen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1939",
+       "quote": "beginnt der Zweite Weltkrieg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "19.12.1941 - 30.4.1945 Oberbefehlshaber des Heeres",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Zeittafel 1945",
+       "quote": "30.4.: H. begeht im Bunker unter der Reichskanzlei Selbstmord",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hitler-wehrmacht-supreme-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志國防軍",
+      "en": "Wehrmacht (German Reich)"
+     },
+     "title": {
+      "orig": "Oberster Befehlshaber der Wehrmacht",
+      "zh-Hant": "國防軍最高統帥",
+      "en": "Supreme Commander of the Wehrmacht"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1934-08-02",
+      "end": "1945-04-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "2.8.1934 - 30.4.1945 Oberster Befehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "R4 類（國家級最高軍職，職位等級引文明寫「Oberster Befehlshaber」、起迄日完整），但 regimeId 因不連庫無法查證（deutsches-reich 之 UUID 未取得），R4② 無法證明→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "hitler-army-commander-in-chief",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志國防軍陸軍",
+      "en": "Army of the Wehrmacht (German Reich)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber des Heeres",
+      "zh-Hant": "陸軍總司令",
+      "en": "Commander-in-Chief of the Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-19",
+      "end": "1945-04-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "19.12.1941 - 30.4.1945 Oberbefehlshaber des Heeres",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "R4 類（軍種總司令，職位等級引文明寫「Oberbefehlshaber des Heeres」、起迄日完整），但 regimeId 因不連庫無法查證，R4② 無法證明→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "hitler-nsdap-chair-1921",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家社會主義德意志工人黨（NSDAP）",
+      "en": "National Socialist German Workers' Party (NSDAP)"
+     },
+     "title": {
+      "orig": "1. Vorsitzender der NSDAP",
+      "zh-Hant": "黨第一主席",
+      "en": "First Chairman of the NSDAP"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1921-07-29",
+      "end": "1923-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "seit 29.7.1921 erster Vorsitzender",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "November 1923 - München Mitglied; seit 29.7.1921 erster Vorsitzender",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依 Lebenslauf 列「Februar 1920 - November 1923」月精度寫下一月起日；該表列同時涵蓋黨員身分，主席任期止於1923年11月NSDAP被禁（LeMO：「Die NSDAP wird am folgenden Tag verboten」）的推定",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1921",
+       "quote": "die Führung der Partei mit diktatorischen Vollmachten zu übernehmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "hitler-nsdap-chair-1925",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家社會主義德意志工人黨（NSDAP）",
+      "en": "National Socialist German Workers' Party (NSDAP)"
+     },
+     "title": {
+      "orig": "Parteivorsitzender mit diktatorischen Vollmachten",
+      "zh-Hant": "黨主席（獨裁全權）",
+      "en": "Party chairman with dictatorial powers"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1925-02-27",
+      "end": "1945-04-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "27.2.1925 - 30.4.1945 - München Parteivorsitzender",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hitler",
+       "locator": "Lebenslauf",
+       "quote": "Parteivorsitzender mit diktatorischen Vollmachten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:reichstagMembership",
+     "gapKind": "not_found",
+     "note": "待查證：Reichstag-Abgeordnetendatenbank（BIORAB／BSB reichstag-abgeordnetendatenbank.de）與 reichstagsprotokolle.de 皆回 Anubis 機器人驗證頁，依規則不繞過，未取得希特勒國會議員（若有）任期；Deutsche Biographie 僅列該資料庫為連結。未建立議員職位。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:obersterGerichtsherr1942",
+     "gapKind": "not_found",
+     "note": "待查證：LeMO 載1942-04-26 國會授予「Oberster Gerichtsherr」全權，未載迄日且屬特別授權而非任期職位；NDB 與其他已抓來源未列，未建職位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-hitler",
+       "locator": "1942",
+       "quote": "26. April: Hitler lässt sich vom Reichstag eine durch kein Gesetz",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:gesetzStaatsoberhauptRgbl",
+     "gapKind": "not_found",
+     "note": "待查證：RGBl. I S. 747 原件（ONB ALEX alex.onb.ac.at）回「Sicherheitsüberprüfung」挑戰頁，未取得；改以 Bundesarchiv《Akten der Reichskanzlei》Nr. 382 的編者註（A）載明簽署日與出處。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND 檢索 Hitler, Adolf（Person）",
+     "url": "https://lobid.org/gnd/search?q=Hitler%2C+Adolf&filter=type%3APerson&format=json",
+     "result": "found_A",
+     "note": "確認 GND 118551655（1889-04-20～1945-04-30）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118551752 直接取 JSON（憑記憶猜的 ID）",
+     "url": "https://lobid.org/gnd/118551752.json",
+     "result": "not_relevant",
+     "note": "實為 Hockl, Elisabeth（ID 猜錯），已改用步驟 1 的 ID"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "GND 118551655 權威檔 JSON",
+     "url": "https://lobid.org/gnd/118551655.json",
+     "result": "found_A",
+     "note": "「Reichskanzler 1933-1945, Diktator, Nationalsozialist…」"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "LoC Name Authority Hitler, Adolf",
+     "url": "https://id.loc.gov/authorities/names/n79052420.html",
+     "result": "blocked_403",
+     "note": "Cloudflare「Just a moment」挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie sfz29330（憑記憶猜）",
+     "url": "https://www.deutsche-biographie.de/sfz29330.html",
+     "result": "not_relevant",
+     "note": "實為 Heinrich, Placidus，ID 猜錯"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 搜尋 Hitler Adolf（name=）",
+     "url": "https://www.deutsche-biographie.de/search?name=Hitler+Adolf&st=erw",
+     "result": "found_A",
+     "note": "找到 gnd118551655 條目"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie pnd118551655 → gnd118551655（NDB 9, Fest 1972；NDB-online 2024, Pyta）",
+     "url": "https://www.deutsche-biographie.de/gnd118551655.html",
+     "result": "found_A",
+     "note": "取得 NDB 全文、大事年表與 Lebenslauf 表（含任期起迄日）；存 ndb-hitler.txt"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記 Adolf Hitler",
+     "url": "https://www.dhm.de/lemo/biografie/adolf-hitler",
+     "result": "found_B",
+     "note": "具名作者 Daniel Wosnitzka，逐年大事記"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia on line: Adolf Hitler",
+     "url": "https://www.treccani.it/enciclopedia/adolf-hitler/",
+     "result": "found_B",
+     "note": "具名作者 Gabriella Nisticò；義大利文"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Dizionario di Storia: Hitler, Adolf（義大利文）",
+     "url": "https://www.treccani.it/enciclopedia/adolf-hitler_(Dizionario-di-Storia)/",
+     "result": "unrated",
+     "note": "已抓；未見具名作者，不引用"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "WebSearch：Gesetz über das Staatsoberhaupt des Deutschen Reichs 1. August 1934 Reichsgesetzblatt Hitler Führer und Reichskanzler",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Bundesarchiv Akten der Reichskanzlei Nr. 382 PDF、Avalon 2003-PS、ONB 等候選"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Bundesarchiv Akten der Reichskanzlei Regierung Hitler Bd. I Nr. 382 (1.8.1934)",
+     "url": "https://aktenreichskanzlei.bundesarchiv.de/resources/pdf/arh01d382.pdf",
+     "result": "found_A",
+     "note": "取得內閣會議紀錄與編者註（RGBl. I S. 747、§1 草案原文）"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "bundesarchiv.de 站內搜尋 Hitler Reichskanzler",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=Hitler+Reichskanzler",
+     "result": "no_result",
+     "note": "回傳首頁，無可用條目"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Reichstag-Abgeordnetendatenbank 查 pnd=118551655（德文）",
+     "url": "https://www.reichstag-abgeordnetendatenbank.de/selectmaske.html?pnd=118551655",
+     "result": "challenge_page",
+     "note": "Anubis 機器人驗證，不繞過"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "Reichstagsprotokolle（BSB）Blatt2_n8（德文）",
+     "url": "https://www.reichstagsprotokolle.de/Blatt2_n8_bsb00000106.html",
+     "result": "challenge_page",
+     "note": "Anubis 機器人驗證，不繞過"
+    },
+    {
+     "step": 16,
+     "sourceType": "treaty_law",
+     "query": "ONB ALEX Reichsgesetzblatt 1934 Teil I S. 747 附近頁（德文）",
+     "url": "https://alex.onb.ac.at/cgi-content/alex?aid=dra&datum=1934&page=801&size=45",
+     "result": "challenge_page",
+     "note": "「Sicherheitsüberprüfung」挑戰頁，不繞過"
+    },
+    {
+     "step": 17,
+     "sourceType": "treaty_law",
+     "query": "Yale Avalon Project：Nazi Conspiracy and Aggression 2003-PS（Law on the Head of State）",
+     "url": "https://avalon.law.yale.edu/imt/2003-ps.asp",
+     "result": "unrated",
+     "note": "已抓；為英譯轉錄的美國檢察官文件集，未採為出處"
+    }
+   ]
+  },
+  {
+   "key": "su-stalin",
+   "bioId": "01a1b492-3efd-7d05-8a70-3f38fdf9d599",
+   "name": "Иосиф Виссарионович Сталин (Джугашвили)",
+   "nameZh": "約瑟夫·史達林",
+   "recordIds": [
+    "01a1aacc-d4a0-7155-89f6-16cf22143d7d"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1878-12-18",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與革命起步",
+      "en": "Origins and early revolutionary career"
+     },
+     "body": {
+      "zh-Hant": "史達林生於1878年12月18日（一說1879年12月21日），出生地為格魯吉亞的哥里，原名約瑟夫·維薩里奧諾維奇·朱加施維利（Dschugaschwili）。1894年進入第比利斯東正教神學院，1898年成為俄國社會民主工黨黨員，次年因參與革命活動被神學院開除。1903年黨分裂後，他站到列寧領導的布爾什維克一邊；1912年列寧欣賞他的組織才能，召他進入布爾什維克中央委員會。",
+      "en": "Stalin was born on 18 December 1878 (by another account 21 December 1879) in Gori, Georgia, as Josef Vissarionovich Dzhugashvili. He entered the Orthodox seminary in Tiflis in 1894, became a member of the Russian Social Democratic Labour Party in 1898 and was expelled from the seminary the next year for taking part in revolutionary activities. After the party split in 1903 he sided with the Bolsheviks under Lenin; in 1912 Lenin, who valued him as a brilliant organiser, called him into the Bolshevik Central Committee."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1878/79",
+       "quote": "18. Dezember 1878 (oder nach anderen Angaben 21. Dezember 1879)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1878/79",
+       "quote": "Stalin wird als Josef Wissarionowitsch Dschugaschwili in Gori",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1894",
+       "quote": "1894 Eintritt in das orthodoxe Priesterseminar von Tiflis",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1898",
+       "quote": "1898 Stalin wird Mitglied der Sozialdemokratischen Arbeiterpartei Russlands",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1899",
+       "quote": "1899 Wegen seiner Beteiligung an revolutionären Aktivitäten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1899",
+       "quote": "wird er aus dem Priesterseminar ausgeschlossen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1903",
+       "quote": "1903 Nach der Spaltung der SDAPR geht Stalin auf die Seite der Bolschewiken",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1912",
+       "quote": "1912 Lenin, der ihn als glänzenden Organisator schätzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1912",
+       "quote": "beruft ihn in das Zentralkomitee der Bolschewiken",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-01-01",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "人民委員與總書記",
+      "en": "People's commissar and General Secretary"
+     },
+     "body": {
+      "zh-Hant": "1917至1923年間，史達林在列寧的布爾什維克政府中先任民族事務人民委員；1919至1922年又任工農檢查人民委員，負責監督政府決議的執行並參與人事決定。1919年黨重組後，他成為政治局與組織局的成員，是唯一同時列席兩個領導機構的人。1922年新設總書記一職，由他出任，他並將之經營成黨內權力的關鍵；俄羅斯學者茹科夫（Ю. Н. Жуков）記他自1922年4月3日起任黨中央總書記。",
+      "en": "From 1917 to 1923 Stalin served in Lenin's Bolshevik government first as People's Commissar for Nationalities, and from 1919 to 1922 as People's Commissar for Workers' and Peasants' Inspection, overseeing the execution of government decisions and taking part in personnel decisions. After the party's reorganisation in 1919 he was a member of both the Politburo and the Orgburo, the only person to sit on both. In 1922 the newly created post of General Secretary went to him, and he built it into the key to his power in the party; the Russian historian Yu. N. Zhukov records him as General Secretary of the party Central Committee from 3 April 1922."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1917-1923",
+       "quote": "1917-1923 In der bolschewistischen Regierung Lenins",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1917-1923",
+       "quote": "wird er zunächst Volkskommissar für Nationalitätenfragen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919-1922",
+       "quote": "1919-1922 Als Volkskommissar für Arbeiter- und Bauerninspektion",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919-1922",
+       "quote": "überwacht er die Ausführung der Regierungsbeschlüsse",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919-1922",
+       "quote": "entscheidet auch über Personalfragen mit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919",
+       "quote": "1919 Mit der Neuorganisation der Partei wird Stalin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919",
+       "quote": "sowohl Mitglied des Polit- als auch des Organisationsbüros",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919",
+       "quote": "da er als einziger beiden Leitungsorganen angehört",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1922",
+       "quote": "1922 Das neugeschaffene Amt des Generalsekretärs wird von Stalin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1922",
+       "quote": "zur Schlüsselstellung seiner innerparteilichen Machtbasis ausgebaut",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "Генеральный секретарь ЦК партии с 3 апреля 1922 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1940-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "權力鞏固與大清洗",
+      "en": "Consolidation of power and the Great Purge"
+     },
+     "body": {
+      "zh-Hant": "列寧去世後，史達林保有其職務（1924至1929年），並憑藉權力地位逐一排除競爭對手。1929年起他推動農業強制集體化；1934至1939年的「大清洗」剷除所有潛在與被指為對手的人。1939年蘇聯與德意志國簽訂互不侵犯條約。德國國家圖書館的權威檔把1927至1953年稱為他在蘇聯的獨裁時期。",
+      "en": "After Lenin's death Stalin kept his offices (1924-1929) and used his position of power to eliminate his rivals one after another. From 1929 he pushed through forced collectivisation of agriculture, and in the Great Purge of 1934-1939 he destroyed all potential and alleged opponents. In 1939 the USSR concluded a non-aggression pact with the German Reich. The German National Library authority record describes 1927 to 1953 as the period of his dictatorship over the Soviet Union."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1924-1929",
+       "quote": "1924-1929 Trotz der Warnungen Lenins vor den Ambitionen Stalins",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1924-1929",
+       "quote": "behält er seine Ämter nach dessen Tod",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1924-1929",
+       "quote": "kann Stalin seine Konkurrenten nacheinander ausschalten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1929",
+       "quote": "1929 Unter der Maxime des",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1929",
+       "quote": "zur Durchsetzung der Zwangskollektivierung in der Landwirtschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1934-1939",
+       "quote": "1934-1939 Mit der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1934-1939",
+       "quote": "vernichtet Stalin alle potentiellen und vermeintlichen Gegner",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1939",
+       "quote": "1939 Als Ergebnis einer um Sicherheit bemühten Außenpolitik",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1939",
+       "quote": "schließt die UdSSR den Nichtangriffspakt mit dem Deutschen Reich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-stalin",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Diktator der Sowjetunion von 1927 bis 1953",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-05-06",
+      "end": "1945-09-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰時最高領導",
+      "en": "Supreme wartime leadership"
+     },
+     "body": {
+      "zh-Hant": "1941年5月6日史達林出任人民委員會議主席。德軍入侵後，國家國防委員會（ГКО）於6月30日成立，由他任主席；7月19日他兼國防人民委員，8月8日任蘇聯武裝力量最高統帥。該委員會的決議具有法律效力，至1945年9月4日才正式解散。1945年在雅爾達與波茨坦會議上，他的擴張性權力企圖得以貫徹。",
+      "en": "On 6 May 1941 Stalin became Chairman of the Council of People's Commissars. After the German invasion the State Defense Committee (GKO) was created on 30 June, with Stalin as chairman; on 19 July he also became People's Commissar for Defense and on 8 August Supreme Commander-in-Chief of the armed forces of the USSR. The committee's decisions had the force of law, and it was formally dissolved only on 4 September 1945. In 1945, at the Yalta and Potsdam conferences, his expansionist drive for power prevailed."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "председатель Совета народных комиссаров с 6 мая 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1941",
+       "quote": "1941 Stalin wird Vorsitzender des Rates der Volkskommissare",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyclopedia-gko",
+       "locator": "State Defense Committee",
+       "quote": "on June 30, 1941, Josef Stalin created the State Defense Council",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "председатель Государственного комитета обороны с 30 июня 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "нарком обороны с 19 июля 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "главнокомандующий вооруженными силами СССР с 8 августа 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyclopedia-gko",
+       "locator": "State Defense Committee",
+       "quote": "Its decisions and resolutions had the force of law",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyclopedia-gko",
+       "locator": "State Defense Committee",
+       "quote": "the GKO was formally dissolved on September 4,1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1945",
+       "quote": "1945 Auf den Konferenzen von Jalta und Potsdam",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1945",
+       "quote": "setzt sich Stalins expansionistisches Machtstreben erfolgreich durch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "stalin-nationalities-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯蘇維埃聯邦社會主義共和國政府（列寧政府）",
+      "en": "Government of Soviet Russia (Lenin's government)"
+     },
+     "title": {
+      "orig": "Volkskommissar für Nationalitätenfragen",
+      "zh-Hant": "民族事務人民委員",
+      "en": "People's Commissar for Nationalities"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1917-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1917-1923",
+       "quote": "1917-1923 In der bolschewistischen Regierung Lenins",
+       "quoteLang": "de",
+       "evidenceNote": "「1917-1923」為 LeMO 該條目的年代標題；引文寫「zunächst」（起初）任此職，未明寫此職迄年，起年依標題取 1917",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1917-1923",
+       "quote": "wird er zunächst Volkskommissar für Nationalitätenfragen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "民族事務人民委員非外交、國防、財政、內政四部之一→R5"
+    },
+    {
+     "key": "stalin-rabkrin-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯蘇維埃聯邦社會主義共和國政府（列寧政府）",
+      "en": "Government of Soviet Russia (Lenin's government)"
+     },
+     "title": {
+      "orig": "Volkskommissar für Arbeiter- und Bauerninspektion",
+      "zh-Hant": "工農檢查人民委員",
+      "en": "People's Commissar for Workers' and Peasants' Inspection"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1923-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919-1922",
+       "quote": "1919-1922 Als Volkskommissar für Arbeiter- und Bauerninspektion",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日（來源「1919-1922」）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "工農檢查人民委員非四部之一→R5"
+    },
+    {
+     "key": "stalin-gko-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家國防委員會（ГКО）",
+      "en": "State Defense Committee (GKO)"
+     },
+     "title": {
+      "orig": "Председатель Государственного комитета обороны",
+      "zh-Hant": "國家國防委員會主席",
+      "en": "Chairman of the State Defense Committee"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1941-06-30",
+      "end": "1945-09-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "председатель Государственного комитета обороны с 30 июня 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyclopedia-gko",
+       "locator": "State Defense Committee",
+       "quote": "the GKO was formally dissolved on September 4,1945",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依該委員會正式解散日推得（推論）；來源未直接載主席卸任日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyclopedia-gko",
+       "locator": "State Defense Committee",
+       "quote": "all the power and authority of the state are vested in it",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "戰時最高權力機關主席：非元首／首腦（首腦職在 5442 為人民委員會議主席）、非黨職、非四部閣員或軍職，T14 R0–R6 無對應；來源稱「all the power and authority of the state are vested in it」是否算 de_facto_leader 待主管判斷，暫留 positions"
+    },
+    {
+     "key": "stalin-defense-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯人民委員會議（國防人民委員部）",
+      "en": "USSR Council of People's Commissars (People's Commissariat of Defense)"
+     },
+     "title": {
+      "orig": "нарком обороны",
+      "zh-Hant": "國防人民委員",
+      "en": "People's Commissar for Defense"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1941-07-19",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "нарком обороны с 19 июля 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "R3 類（國防四部之一、正職），但缺迄日（無法證明≥90天）且 regimeId 無法查證→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "stalin-supreme-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯武裝力量",
+      "en": "Armed Forces of the USSR"
+     },
+     "title": {
+      "orig": "главнокомандующий вооруженными силами СССР",
+      "zh-Hant": "武裝力量最高統帥",
+      "en": "Supreme Commander-in-Chief of the Armed Forces of the USSR"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-08-08",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "главнокомандующий вооруженными силами СССР с 8 августа 1941 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "R4 類（全軍總司令，職位等級引文明寫），但缺迄日且 regimeId 無法查證→R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "stalin-cc-member",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the Communist Party of the Soviet Union (Bolsheviks)"
+     },
+     "title": {
+      "orig": "Zentralkomitee der Bolschewiken（Mitglied）",
+      "zh-Hant": "黨中央委員",
+      "en": "Member of the Bolshevik Central Committee"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1912-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1912",
+       "quote": "1912 Lenin, der ihn als glänzenden Organisator schätzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1912",
+       "quote": "beruft ihn in das Zentralkomitee der Bolschewiken",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "stalin-politburo-orgburo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）政治局與組織局",
+      "en": "Politburo and Orgburo of the Communist Party"
+     },
+     "title": {
+      "orig": "Mitglied des Polit- und des Organisationsbüros",
+      "zh-Hant": "政治局與組織局成員",
+      "en": "Member of the Politburo and the Orgburo"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1919-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919",
+       "quote": "1919 Mit der Neuorganisation der Partei wird Stalin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1919",
+       "quote": "sowohl Mitglied des Polit- als auch des Organisationsbüros",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "stalin-gensec",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the Communist Party of the Soviet Union (Bolsheviks)"
+     },
+     "title": {
+      "orig": "Генеральный секретарь ЦК партии",
+      "zh-Hant": "黨中央總書記",
+      "en": "General Secretary of the Party Central Committee"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1922-04-03",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "histrf-zhukov",
+       "locator": "Том VIII 內文，Сталин 職銜列",
+       "quote": "Генеральный секретарь ЦК партии с 3 апреля 1922 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-stalin",
+       "locator": "1922",
+       "quote": "1922 Das neugeschaffene Amt des Generalsekretärs wird von Stalin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:stalin-nationalities-commissar",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；審查（opus 2026-11-15）：LeMO「1917-1923」是條目年代標題，引文只說「zunächst Volkskommissar für Nationalitätenfragen」，未明寫此職迄年，原寫 1924-01-01 改為待查證。已查 LeMO、lobid GND、Zhukov、Reese；prlib、bigenc、rgaspi、LoC 被擋未繞過。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stalin-cc-member",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 LeMO（Wichmann）、lobid GND、Zhukov（ИРИ РАН）、Reese（Encyclopedia of Russian History）；Президентская библиотека 回挑戰頁、БРЭ bigenc.ru 回 401、РГАСПИ 憑證錯誤、LoC／VIAF／Britannica 被 Cloudflare 擋，皆未繞過。已抓來源只載1912年進入中央委員會，未載迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stalin-politburo-orgburo",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 LeMO（Wichmann）、lobid GND、Zhukov（ИРИ РАН）、Reese（Encyclopedia of Russian History）；Президентская библиотека 回挑戰頁、БРЭ bigenc.ru 回 401、РГАСПИ 憑證錯誤、LoC／VIAF／Britannica 被 Cloudflare 擋，皆未繞過。已抓來源只載1919年起任政治局與組織局成員，未載迄日（政治局／組織局後來改組，成員任期需逐次查）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stalin-gensec",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 LeMO（Wichmann）、lobid GND、Zhukov（ИРИ РАН）、Reese（Encyclopedia of Russian History）；Президентская библиотека 回挑戰頁、БРЭ bigenc.ru 回 401、РГАСПИ 憑證錯誤、LoC／VIAF／Britannica 被 Cloudflare 擋，皆未繞過。Zhukov 載起日 1922-04-03，未載迄日；總書記一職後來改稱書記，改稱日期未取得 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stalin-defense-commissar",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 LeMO（Wichmann）、lobid GND、Zhukov（ИРИ РАН）、Reese（Encyclopedia of Russian History）；Президентская библиотека 回挑戰頁、БРЭ bigenc.ru 回 401、РГАСПИ 憑證錯誤、LoC／VIAF／Britannica 被 Cloudflare 擋，皆未繞過。Zhukov 只載起日 1941-07-19；人民委員部改制為部的日期未取得 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stalin-supreme-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 LeMO（Wichmann）、lobid GND、Zhukov（ИРИ РАН）、Reese（Encyclopedia of Russian History）；Президентская библиотека 回挑戰頁、БРЭ bigenc.ru 回 401、РГАСПИ 憑證錯誤、LoC／VIAF／Britannica 被 Cloudflare 擋，皆未繞過。Zhukov 只載起日 1941-08-08，未載迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:stalinPrimarySources",
+     "gapKind": "not_found",
+     "note": "待查證：指定的 A 級來源（prlib.ru 挑戰頁、bigenc.ru 401、rgaspi.org 憑證錯誤）皆無法取得原文；本人物的 A 級僅 GND 權威檔，職位日期多靠 B 級（LeMO、Zhukov、Reese）。需下一輪以可存取的官方檔案或國家級傳記辭典補。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lobid-stalin",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Diktator der Sowjetunion von 1927 bis 1953",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND 檢索 Stalin, Josef（Person）",
+     "url": "https://lobid.org/gnd/search?q=Stalin%2C+Josef&filter=type%3APerson&format=json",
+     "result": "found_A",
+     "note": "確認 GND 118642499（1878-12-18～1953-03-05）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118642499 權威檔 JSON",
+     "url": "https://lobid.org/gnd/118642499.json",
+     "result": "found_A",
+     "note": "含「Diktator der Sowjetunion von 1927 bis 1953」"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "LoC Name Authority Stalin（id.loc.gov n79043253）",
+     "url": "https://id.loc.gov/authorities/names/n79043253.html",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "VIAF 檢索 Stalin, Joseph",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Stalin%2C%20Joseph%22&httpAccept=application/json",
+     "result": "blocked_403",
+     "note": "Cloudflare 封鎖，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie gnd118642499（Stalin）",
+     "url": "https://www.deutsche-biographie.de/gnd118642499.html",
+     "result": "no_result",
+     "note": "僅索引頁，無 NDB 本文"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon der Schweiz 041979",
+     "url": "https://hls-dhs-dss.ch/de/articles/041979/",
+     "result": "not_relevant",
+     "note": "ID 猜錯，實為 General Motors"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 人物傳記 Josef W. Stalin（德文）",
+     "url": "https://www.dhm.de/lemo/biografie/josef-stalin",
+     "result": "found_B",
+     "note": "具名作者 Manfred Wichmann，含1917–1923、1919–1922、1922、1941 等"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia on line: Stalin, Iosif Vissarionovič（義大利文）",
+     "url": "https://www.treccani.it/enciclopedia/iosif-vissarionovic-stalin/",
+     "result": "unrated",
+     "note": "已抓；頁面未見具名作者（僅機構版權），依 Q9 不引用"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Большая российская энциклопедия 條目 Сталин（俄文）",
+     "url": "https://bigenc.ru/c/stalin-iosif-vissarionovich-9a8ee5",
+     "result": "blocked_403",
+     "note": "HTTP 401，無內容；不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Joseph Stalin",
+     "url": "https://www.britannica.com/biography/Joseph-Stalin",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Stalin, Josef Vissarionovich（Encyclopedia of Russian History）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/stalin-josef-vissarionovich",
+     "result": "unrated",
+     "note": "已抓；頁面未見該條具名作者，不引用"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "WebSearch（俄文）：Сталин Генеральный секретарь ЦК РКП(б) 1922 биография prlib.ru",
+     "url": null,
+     "result": "no_result",
+     "note": "無 prlib.ru 結果；找到 3 апреля 1922 的二手說法（未採）"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "Президентская библиотека 站內搜尋 Сталин（俄文）",
+     "url": "https://www.prlib.ru/search?search_api_fulltext=%D0%A1%D1%82%D0%B0%D0%BB%D0%B8%D0%BD",
+     "result": "challenge_page",
+     "note": "重導 challenge-ru.html 安全檢查頁，不繞過"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "РГАСПИ rgaspi.org fond-558（俄文）",
+     "url": "https://rgaspi.org/fond-558",
+     "result": "no_result",
+     "note": "SSL 憑證主機名不符，依規則不用 -k，放棄"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "WebSearch（俄文）：Сталин Председатель СНК 6 мая 1941 Верховный Главнокомандующий ГКО 30 июня 1941",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Wikisource 決議轉錄、bigenc ГКО、histrf PDF（Жуков）、encyclopedia.com ГКО"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "histrf／history.ru PDF：Ю. Н. Жуков《Система государственной власти в СССР в годы ВОВ》（俄文）",
+     "url": "https://history.ru/uploads/media/default/0001/37/b329ba5691a8ab0e17e29a9770006ffdffcea279.pdf",
+     "result": "found_B",
+     "note": "具名學者；逐列載 Генеральный секретарь 1922-04-03、СНК 1941-05-06、ГКО 1941-06-30、нарком обороны 1941-07-19、главнокомандующий 1941-08-08"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "encyclopedia.com：State Defense Committee（Encyclopedia of Russian History, Roger R. Reese）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/state-defense-committee",
+     "result": "found_B",
+     "note": "ГКО 1941-06-30 成立、1945-09-04 正式解散"
+    },
+    {
+     "step": 18,
+     "sourceType": "treaty_law",
+     "query": "ru.wikisource 決議 30.06.1941 о создании ГКО（俄文）",
+     "url": "https://ru.wikisource.org/wiki/Постановление_Президиума_ВС_СССР,_СНК_СССР_и_ЦК_ВКП(б)_от_30.06.1941_о_создании_ГКО",
+     "result": "unrated",
+     "note": "已抓；第三方轉錄，因已有 B 級來源足以支撐未採用"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "bigenc.ru Государственный комитет обороны（俄文）",
+     "url": "https://bigenc.ru/c/gosudarstvennyi-komitet-oborony-89b417",
+     "result": "blocked_403",
+     "note": "HTTP 401，無內容；不繞過"
+    },
+    {
+     "step": 20,
+     "sourceType": "other",
+     "query": "WebSearch（俄文）：Сталин нарком обороны 19 июля 1941 … 1946 迄日",
+     "url": null,
+     "result": "no_result",
+     "note": "未得迄日的 A／B 原文，故各職位寫缺迄日 gap"
+    }
+   ]
+  }
+ ]
+}

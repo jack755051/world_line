@@ -321,7 +321,7 @@ def main():
             elif not x.get("organization"):
                 errs.append(f"{key} 職位 {x.get('key')}：regimeId 空時須填 organization（Q5）")
         for g in gaps:
-            if not re.fullmatch(r"(field:\w+|position:[\w-]+|paragraph:[\w-]+|identity)", g.get("target", "")):
+            if not re.fullmatch(r"(field:\w+|position:[\w-]+|role:[\w-]+|paragraph:[\w-]+|identity)", g.get("target", "")):  # role: 與 DB 約束、check_min.py 一致（2026-11-15）
                 errs.append(f"{key} gap target 格式：{g.get('target')}")
             if g.get("gapKind") not in GAP_KINDS:
                 errs.append(f"{key} gap_kind 非法：{g.get('gapKind')}")

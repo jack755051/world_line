@@ -1,0 +1,3182 @@
+{
+ "batch": "b3-full-major-v2-batch002",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式寫成：positionKind／role_kind 分層，黨職與以政黨身分取得的席位在 roleCandidates（de_facto_leader，R1），T14 R0–R6 研究時即套用。Tai 2026-11-11 12:12／12:47；B3 full v3 最低標準（Tai 2026-11-11 22:02）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；每筆 positions／roleCandidates 皆有起迄日。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-major/batch002/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "fdrlib-bio": {
+   "title": "FDR Biography",
+   "authors": [],
+   "publisher": "FDR Presidential Library & Museum (NARA)",
+   "published_text": "fdrlibrary.org 官方傳記頁",
+   "url": "https://www.fdrlibrary.org/fdr-biography",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國家檔案館羅斯福總統圖書館官方傳記頁"
+  },
+  "fdr-facts": {
+   "title": "Facts & Figures: FDR",
+   "authors": [],
+   "publisher": "FDR Presidential Library & Museum (NARA)",
+   "published_text": "fdrlibrary.org 官方問答頁",
+   "url": "https://www.fdrlibrary.org/fdr-facts",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國家檔案館羅斯福總統圖書館官方頁"
+  },
+  "wh-fdr": {
+   "title": "Franklin D. Roosevelt",
+   "authors": [],
+   "publisher": "The White House",
+   "published_text": "whitehouse.gov 歷任總統頁",
+   "url": "https://www.whitehouse.gov/presidents/franklin-d-roosevelt/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "白宮官網歷任總統頁"
+  },
+  "nps-fdr-timeline": {
+   "title": "Timeline of Franklin D. Roosevelt's Life",
+   "authors": [],
+   "publisher": "U.S. National Park Service",
+   "published_text": "nps.gov 文章頁（轉自 FDR 圖書館年表）",
+   "url": "https://www.nps.gov/articles/timeline-of-franklin-d-roosevelt-s-life.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國聯邦政府機構（國家公園管理局）官方頁"
+  },
+  "nysl-gov": {
+   "title": "Public Papers of New York State Governors",
+   "authors": [],
+   "publisher": "New York State Library",
+   "published_text": "nysl.nysed.gov 歷任州長公文集名錄",
+   "url": "https://nysl.nysed.gov/scandocs/nysgovernors",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "紐約州政府機構（州立圖書館）官方名錄"
+  },
+  "histstate-travel": {
+   "title": "Franklin D. Roosevelt - Travels of the President",
+   "authors": [],
+   "publisher": "Office of the Historian, U.S. Department of State",
+   "published_text": "history.state.gov 總統出訪名錄",
+   "url": "https://history.state.gov/departmenthistory/travels/president/roosevelt-franklin-d",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史學家辦公室官方頁"
+  },
+  "miller-fdr": {
+   "title": "Franklin D. Roosevelt: Life in Brief",
+   "authors": [],
+   "publisher": "Miller Center, University of Virginia",
+   "published_text": "millercenter.org 總統傳略",
+   "url": "https://millercenter.org/president/fdroosevelt/life-in-brief",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學研究機構傳記頁"
+  },
+  "lobid-fdr-search": {
+   "title": "lobid GND 檢索 Roosevelt, Franklin D.",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "GND 118602551",
+   "url": "https://lobid.org/gnd/search?q=Roosevelt%2C+Franklin+D.+1882&format=json&size=2",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔"
+  },
+  "treccani-mus": {
+   "title": "MUSSOLINI, Benito",
+   "authors": [
+    "Emilio Gentile"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario Biografico degli Italiani, Volume 77 (2012)",
+   "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Dizionario-Biografico)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（Dizionario Biografico degli Italiani），具名作者"
+  },
+  "lemo-mus": {
+   "title": "Benito Mussolini 1883-1945",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum (LeMO)",
+   "published_text": "LeMO Biografie（Stand: 14. September 2014）",
+   "url": "https://www.dhm.de/lemo/biografie/benito-mussolini",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館 LeMO 人物傳記，具名作者"
+  },
+  "lobid-mus-search": {
+   "title": "lobid GND 檢索 Mussolini, Benito",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "GND 118585967",
+   "url": "https://lobid.org/gnd/search?q=Mussolini%2C+Benito+1883&format=json&size=3",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔"
+  },
+  "treccani-mus-ei": {
+   "title": "MUSSOLINI, Benito",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana (1934)",
+   "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "線上版無署名（Q9：無作者條目只作缺口候選）"
+  },
+  "treccani-mus-storia": {
+   "title": "Mussolini, Benito",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario di Storia (2010)",
+   "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Dizionario-di-Storia)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名（Q9：無作者條目只作缺口候選）"
+  },
+  "deutsche-bio-mus": {
+   "title": "Deutsche Biographie - Mussolini, Benito",
+   "authors": [],
+   "publisher": "Deutsche Biographie (BSB／Historische Kommission)",
+   "published_text": "Deutsche Biographie 索引頁",
+   "url": "https://www.deutsche-biographie.de/gnd118585967.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "僅索引頁，無 NDB 條目本文，未取為出處"
+  },
+  "kunai-showa": {
+   "title": "昭和天皇・香淳皇后（ご略歴）",
+   "authors": [],
+   "publisher": "宮内庁",
+   "published_text": "kunaicho.go.jp 皇室の歴史を知る",
+   "url": "https://www.kunaicho.go.jp/learn/about/history/history11.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "宮内庁官方頁"
+  },
+  "kunai-nenpyo": {
+   "title": "宮内庁関係年表（慶応3年以後）",
+   "authors": [],
+   "publisher": "宮内庁",
+   "published_text": "kunaicho.go.jp 年表",
+   "url": "https://www.kunaicho.go.jp/kunaicho/kunaicho/kunaicho-nenpyo.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "宮内庁官方年表"
+  },
+  "ndl-const": {
+   "title": "憲法条文・重要文書（大日本帝国憲法）",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "ndl.go.jp 日本国憲法の誕生",
+   "url": "https://www.ndl.go.jp/constitution/etc/j02.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館官方頁（憲法條文原文）"
+  },
+  "ndl-shosho": {
+   "title": "終戦の詔書 1945年8月14日",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "ndl.go.jp 日本国憲法の誕生 資料と解説 1-7",
+   "url": "https://www.ndl.go.jp/constitution/shiryo/01/017shoshi.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館官方頁（原所蔵：国立公文書館）"
+  },
+  "jacar-daihonei": {
+   "title": "大本営（辞書検索［用語詳細］）",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "jacar.archives.go.jp 辞書検索",
+   "url": "https://www.jacar.archives.go.jp/das/term/00000086",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "アジア歴史資料センター官方辞書"
+  },
+  "jacar-shosho": {
+   "title": "御署名原本・昭和二十年・詔書八月十四日・大東亜戦争終結ニ関スル詔書",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "レファレンスコード A04017702300",
+   "url": "https://www.jacar.archives.go.jp/das/meta/A04017702300",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館所蔵御署名原本の官方目録"
+  },
+  "ndl-auth-hirohito": {
+   "title": "昭和天皇, 1901-1989",
+   "authors": [],
+   "publisher": "国立国会図書館（Web NDL Authorities）",
+   "published_text": "典拠ID 00083479",
+   "url": "https://id.ndl.go.jp/auth/ndlna/00083479",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館人名權威檔"
+  },
+  "treccani-hirohito": {
+   "title": "Hirohito",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario di Storia (2010)",
+   "url": "https://www.treccani.it/enciclopedia/hirohito_(Dizionario-di-Storia)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名（Q9：未用為出處）"
+  },
+  "treccani-fdr": {
+   "title": "Roosevelt, Franklin Delano",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario di Storia (2011)",
+   "url": "https://www.treccani.it/enciclopedia/franklin-delano-roosevelt_(Dizionario-di-Storia)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名（Q9：未用為出處）"
+  }
+ },
+ "people": [
+  {
+   "key": "us-fdr",
+   "bioId": "01a1b48b-c87a-768a-b372-2918df397b6c",
+   "name": "Franklin D. Roosevelt",
+   "nameZh": "富蘭克林·德拉諾·羅斯福",
+   "recordIds": [
+    "01a1a20c-bbd0-7bf9-bde7-ed7f7312950d",
+    "01a1a20c-bbd6-7ea0-a746-4c656c9d31c4"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-01-30",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、求學與州參議員",
+      "en": "Origins, schooling and the state senate"
+     },
+     "body": {
+      "zh-Hant": "羅斯福1882年1月30日生於紐約州海德公園，是詹姆斯·羅斯福與莎拉·德拉諾·羅斯福之子。他就讀格羅頓學校（1896至1900年），三年內取得哈佛歷史學士（1900至1903年），1907年通過律師資格考試。1905年他與遠房表親安娜·愛蓮娜·羅斯福結婚。1910年他踏入政壇，當選紐約州參議員，1912年連任。",
+      "en": "Franklin D. Roosevelt was born at Hyde Park, New York on 30 January 1882, son of James and Sara Delano Roosevelt. He attended Groton (1896-1900), took a Harvard history BA in three years (1900-03) and passed the bar in 1907. In 1905 he married a distant cousin, Anna Eleanor Roosevelt. He entered politics in 1910, was elected to the New York State Senate and was re-elected in 1912."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "born in Hyde Park, New York on January 30, 1882",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "He was the son of James Roosevelt and Sara Delano Roosevelt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "He attended Groton (1896-1900)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "received a BA degree in history from Harvard in only three years (1900-03)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "When he passed the bar examination in 1907",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "in 1905, he had married a distant cousin, Anna Eleanor Roosevelt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "He entered politics in 1910 and was elected to the New York State Senate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "Roosevelt was reelected to the State Senate in 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1913-03-17",
+      "end": "1920-11-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "海軍助理部長與副總統候選人",
+      "en": "Assistant Secretary of the Navy and vice-presidential nominee"
+     },
+     "body": {
+      "zh-Hant": "1913年3月17日，羅斯福在威爾遜政府宣誓就任海軍助理部長；來源說明這是威爾遜對他支持的回報。1914年他在民主黨初選中敗給傑拉德，未能取得聯邦參議員提名。1920年7月6日，他在舊金山的民主黨全國大會被提名為副總統候選人，與俄亥俄州的考克斯搭檔；8月6日他辭去海軍助理部長，11月2日在大選中落敗。",
+      "en": "On 17 March 1913 Roosevelt was sworn in as Assistant Secretary of the Navy in the Wilson administration, a reward for his support. In 1914 he lost the Democratic primary for the US Senate to James W. Gerard. On 6 July 1920 the Democratic convention in San Francisco nominated him for Vice-President on the ticket headed by James M. Cox of Ohio; he resigned from the Navy post on 6 August and was defeated on 2 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1913",
+       "quote": "March 17. Sworn in as Assistant Secretary of the Navy",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1913 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "As a reward for his support, Wilson appointed him",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1914",
+       "quote": "Defeated in Democratic primary, for the U.S. Senate by James W. Gerard.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1914 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1920",
+       "quote": "July 6. Nominated for Vice-President at Democratic National Convention",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1920 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1920",
+       "quote": "Democratic National Convention in San Francisco on ticket with James N. Cox",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "on a ticket headed by James M. Cox of Ohio",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1920",
+       "quote": "August 6. Resigns as Assistant Secretary of the Navy.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1920 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1920",
+       "quote": "November 2. Defeated in election for Vice-President.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1920 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-08-01",
+      "end": "1932-11-09"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "小兒麻痺、紐約州長與當選總統",
+      "en": "Polio, governorship and election as President"
+     },
+     "body": {
+      "zh-Hant": "1921年8月，羅斯福在坎波貝洛島罹患小兒麻痺症，此後再也無法恢復雙腿的功能。1927年他成立喬治亞溫泉基金會。1928年10月2日紐約州民主黨提名他競選州長，11月6日當選；他任州長至1932年底，1930年連任。1932年7月1日民主黨在芝加哥大會第四輪投票提名他為總統候選人，11月8日他擊敗胡佛當選總統。",
+      "en": "In August 1921 Roosevelt was stricken with poliomyelitis at Campobello and never regained the use of his legs. In 1927 he formed the Georgia Warm Springs Foundation. New York Democrats nominated him for governor on 2 October 1928 and he was elected on 6 November; he served 1929-1932 and was re-elected in 1930. The party nominated him for president on the fourth ballot on 1 July 1932 and he defeated Hoover on 8 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1921",
+       "quote": "August. Stricken with poliomyelitis at Campobello",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1921 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "he never regained the use of his legs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1927",
+       "quote": "1927 Forms the Georgia Warm Springs Foundation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1928",
+       "quote": "October 2. New York State Democrats nominate FDR for governor.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1928 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1928",
+       "quote": "November 6. Elected governor of New York.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1928 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表小標",
+       "quote": "Governor of New York (1929-1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "Following his reelection as governor in 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1932",
+       "quote": "July 1. Democratic Party nominates him for president on the fourth ballot",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1932 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1932",
+       "quote": "November 8. Elected president, defeating Herbert Hoover.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1932 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1933-03-04",
+      "end": "1945-04-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總統任內：新政、戰爭與逝世",
+      "en": "Presidency: New Deal, war and death"
+     },
+     "body": {
+      "zh-Hant": "1933年3月4日羅斯福就職，面對美國自內戰以來最嚴重的危機，隨即推動新政；1935年又有一波新政立法。他在1936年擊敗蘭登、1940年擊敗威爾基、1944年擊敗杜威，成為唯一任期超過兩任的美國總統。1941年8月他在紐芬蘭阿根夏與邱吉爾會談並公布《大西洋憲章》；12月7日珍珠港遭日本突襲。1945年1月20日他第四度就職，4月12日在喬治亞州溫泉鎮突發嚴重中風，兩個半小時後去世，葬於海德公園。",
+      "en": "Roosevelt was inaugurated on 4 March 1933 facing the greatest crisis since the Civil War and launched the New Deal; another wave of legislation followed in 1935. He defeated Landon (1936), Willkie (1940) and Dewey (1944), the only president to serve more than two terms. In August 1941 he met Churchill at Argentia, Newfoundland, and announced the Atlantic Charter; Pearl Harbor was attacked on 7 December 1941. He was inaugurated a fourth time on 20 January 1945 and died of a massive stroke at Warm Springs, Georgia, on 12 April 1945; he was buried at Hyde Park."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1933",
+       "quote": "March 4. FDR inaugurated",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1933 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Great Depression",
+       "quote": "Roosevelt faced the greatest crisis in American history since the Civil War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Great Depression",
+       "quote": "He undertook immediate actions to initiate his New Deal programs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Great Depression",
+       "quote": "Another flurry of New Deal legislation followed in 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Great Depression",
+       "quote": "Roosevelt easily defeated Alfred M. Landon in 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Great Depression",
+       "quote": "Wendell Willkie in 1940 and Thomas E. Dewey in 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Great Depression",
+       "quote": "only American president to serve more than two terms",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-travel",
+       "locator": "Argentia (Newfoundland) 列",
+       "quote": "Argentia (Newfoundland) Attended conference with Prime Minister Churchill.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-travel",
+       "locator": "Argentia (Newfoundland) 列",
+       "quote": "Announced the Atlantic Charter. August 9–12, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "World War II",
+       "quote": "The Japanese surprise attack on Pearl Harbor, December 7, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1945",
+       "quote": "January 20. Roosevelt inaugurated for fourth time.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1945 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "World War II",
+       "quote": "During a vacation at Warm Springs, Georgia, on April 12, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "World War II",
+       "quote": "he suffered a massive stroke and died two and one-half hours later",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "World War II",
+       "quote": "buried in the Rose Garden of his estate at Hyde Park, New York",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wh-fdr",
+       "locator": "歷任總統頁",
+       "quote": "He was the only President elected to four terms.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "fdr-asst-sec-navy",
+     "positionKind": "minister",
+     "title": {
+      "orig": "Assistant Secretary of the Navy",
+      "zh-Hant": "海軍助理部長",
+      "en": "Assistant Secretary of the Navy"
+     },
+     "regimeId": "01a191b4-36ac-792e-9113-9a46cc51fc9b",
+     "organization": null,
+     "period": {
+      "start": "1913-03-17",
+      "end": "1920-08-06"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1913",
+       "quote": "March 17. Sworn in as Assistant Secretary of the Navy",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1913 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1920",
+       "quote": "August 6. Resigns as Assistant Secretary of the Navy.",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1920 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "a position he held until 1920",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "助理職；海軍部不在四部（T14 §1 R5）"
+    },
+    {
+     "key": "fdr-ny-governor",
+     "positionKind": "other",
+     "title": {
+      "orig": "Governor of New York",
+      "zh-Hant": "紐約州州長",
+      "en": "Governor of New York"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紐約州",
+      "en": "State of New York"
+     },
+     "period": {
+      "start": "1929-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表小標",
+       "quote": "Governor of New York (1929-1932)",
+       "quoteLang": "en",
+       "evidenceNote": "迄點依年精度寫下一年起日（Q3）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fdr-facts",
+       "locator": "Facts & Figures",
+       "quote": "two terms as Governor of New York (1929-1933)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nysl-gov",
+       "locator": "名錄",
+       "quote": "Roosevelt, Franklin D . 1929-1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "us-ny-state-senator-democrat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紐約州參議院",
+      "en": "New York State Senate"
+     },
+     "title": {
+      "orig": "New York State Senator (elected as a Democrat)",
+      "zh-Hant": "紐約州參議員（以民主黨身分當選）",
+      "en": "New York State Senator (elected as a Democrat)"
+     },
+     "period": {
+      "start": "1910-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "fdrlib-bio",
+       "locator": "The Early Years",
+       "quote": "was elected to the New York State Senate as a Democrat",
+       "quoteLang": "en",
+       "evidenceNote": "來源明寫以民主黨身分當選；任期起點只知當選年（1910），以年精度近似",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nps-fdr-timeline",
+       "locator": "年表 1910",
+       "quote": "1910 Elected to the New York State Senate from the 26th District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；FDR 圖書館原文寫 elected to the New York State Senate as a Democrat"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:fdr-ny-governor",
+     "gapKind": "not_found",
+     "note": "只查到州長任期年份（1929–1932／1933），未見就任與卸任的具體日期；期間以年精度寫，日期待查證。已查：FDR 圖書館傳記與 Facts 頁、NPS 年表、紐約州立圖書館州長名錄。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:bioguide",
+     "gapKind": "not_found",
+     "note": "指定來源 Biographical Directory of the U.S. Congress（bioguide.congress.gov/search/bio/R000451）回應 Cloudflare 挑戰頁，依規則不繞過；羅斯福未任國會議員，該檔本即非主要職位來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:hos_hog_terms",
+     "gapKind": "not_found",
+     "note": "總統任期（1933-03-04～1945-04-12）已在名單 5442（recordId 01a1a20c-bbd0-7bf9-bde7-ed7f7312950d、01a1a20c-bbd6-7ea0-a746-4c656c9d31c4），本檔不重建；白宮頁僅寫 1933–1945，逝世日取自 FDR 圖書館。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:us-ny-state-senator-democrat",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；來源只寫 1910 當選、1912 連任，未寫卸任州參議員之日；原迄日 1913-03-17 是以接任海軍助理部長宣誓日推得，不符 Q7（審查移除）。已查：FDR 圖書館傳記與 Facts 頁、NPS 年表、NPS hofr。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "FDR Presidential Library biography timeline governor navy",
+     "url": "https://www.nps.gov/articles/timeline-of-franklin-d-roosevelt-s-life.htm",
+     "result": "found_A",
+     "note": "WebSearch 找到 NPS 年表與 fdrlibrary.org/fdr-biography"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Franklin Delano Roosevelt whitehouse.gov presidents 32nd President",
+     "url": "https://www.whitehouse.gov/presidents/franklin-d-roosevelt/",
+     "result": "found_A",
+     "note": "WebSearch 找到白宮歷任總統頁"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Miller Center FDR Life in Brief",
+     "url": "https://millercenter.org/president/fdroosevelt/life-in-brief",
+     "result": "found_B",
+     "note": "curl 取得；Miller Center 為大學研究機構（B）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Biographical Directory of the U.S. Congress R000451",
+     "url": "https://bioguide.congress.gov/search/bio/R000451",
+     "result": "challenge_page",
+     "note": "Cloudflare『Just a moment』挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "whitehouse.gov/about-the-white-house/presidents/franklin-d-roosevelt/",
+     "url": "https://www.whitehouse.gov/about-the-white-house/presidents/franklin-d-roosevelt/",
+     "result": "no_result",
+     "note": "404；改用 WebSearch 找到的新網址（步驟 2）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "fdrlibrary.org/biographical-sketch",
+     "url": "https://www.fdrlibrary.org/biographical-sketch",
+     "result": "no_result",
+     "note": "404；改用 /fdr-biography"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "history.state.gov departmenthistory people roosevelt-franklin-delano",
+     "url": "https://history.state.gov/departmenthistory/people/roosevelt-franklin-delano",
+     "result": "no_result",
+     "note": "404（羅斯福非國務院人物條目）"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Roosevelt, Franklin Delano Treccani Dizionario di Storia",
+     "url": "https://www.treccani.it/enciclopedia/franklin-delano-roosevelt_(Dizionario-di-Storia)/",
+     "result": "unrated",
+     "note": "已抓取但無署名，不用為出處"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "FDR Biography fdrlibrary.org",
+     "url": "https://www.fdrlibrary.org/fdr-biography",
+     "result": "found_A",
+     "note": "curl 取得；主要出處"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "NPS Timeline of Franklin D. Roosevelt's Life",
+     "url": "https://www.nps.gov/articles/timeline-of-franklin-d-roosevelt-s-life.htm",
+     "result": "found_A",
+     "note": "curl 取得；有逐日年表（海軍助理部長宣誓／辭職、副總統提名）"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "history.state.gov travels of the president Roosevelt",
+     "url": "https://history.state.gov/departmenthistory/travels/president/roosevelt-franklin-d",
+     "result": "found_A",
+     "note": "WebSearch＋curl；取得大西洋憲章（1941-08）條目"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Franklin D. Roosevelt Governor of New York 1929 1932 sworn in",
+     "url": "https://nysl.nysed.gov/scandocs/nysgovernors",
+     "result": "found_A",
+     "note": "WebSearch 找到州立圖書館名錄與 FDR 圖書館 Facts 頁"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "nysl.nysed.gov scandocs nysgovernors",
+     "url": "https://nysl.nysed.gov/scandocs/nysgovernors",
+     "result": "found_A",
+     "note": "curl 取得；州長任期 1929-1932"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "fdrlibrary.org/fdr-facts",
+     "url": "https://www.fdrlibrary.org/fdr-facts",
+     "result": "found_A",
+     "note": "curl 取得；州長 (1929-1933)"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "nps.gov/hofr Franklin D. Roosevelt",
+     "url": "https://www.nps.gov/hofr/learn/historyculture/franklindroosevelt.htm",
+     "result": "found_A",
+     "note": "curl 取得；內容與 FDR 圖書館傳記同文，未另引"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "Library of Congress Name Authority n79021788",
+     "url": "https://id.loc.gov/authorities/names/n79021788.html",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "Roosevelt, Franklin D. 1882 GND（lobid.org 官方鏡像）",
+     "url": "https://lobid.org/gnd/search?q=Roosevelt%2C+Franklin+D.+1882&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 118602551；生卒 1882-01-30／1945-04-12，與傳記一致"
+    }
+   ]
+  },
+  {
+   "key": "it-mussolini-benito",
+   "bioId": "0ff6f55e-8f9c-49aa-b9ba-5858a17c9dc3",
+   "name": "Benito Mussolini",
+   "nameZh": "貝尼托·墨索里尼",
+   "recordIds": [
+    "01a19eb7-b070-7bd6-9122-7f7eb2606029"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1883-07-29",
+      "end": "1912-07-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、流亡瑞士與社會黨早年",
+      "en": "Origins, Switzerland and early socialist career"
+     },
+     "body": {
+      "zh-Hant": "墨索里尼1883年7月29日生於福爾利省普雷達皮奧的多維亞。1901年7月取得小學教師文憑，1902年7月出走瑞士，1909年2月6日轉往特倫托任勞工會書記，同年9月27日被逐出特倫托地區。他回到福爾利，在社會黨地方組織中活動。1912年7月7日至10日在雷焦艾米利亞召開的社會黨第十三屆黨大會上，他所屬的革命派奪得黨的領導權。",
+      "en": "Mussolini was born on 29 July 1883 at Dovia di Predappio. He took his teaching diploma in July 1901, left for Switzerland in July 1902, moved to Trento on 6 February 1909 as secretary of the labour chamber and was expelled from the Trentino on 27 September 1909. Back in Forli he worked in the local socialist organisation. At the 13th PSI congress at Reggio Emilia (7-10 July 1912) the revolutionary faction he belonged to won the leadership of the party."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce 開頭",
+       "quote": "Nacque il 29 luglio 1883 a Dovia, frazione di Predappio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Conseguito il diploma magistrale nel luglio 1901",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "fu nominato nel febbraio 1902 maestro supplente a Gualtieri Emilia",
+       "quoteLang": "it",
+       "evidenceNote": "出走瑞士的年份依此句（同段 A luglio 承接 1902）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1902 年）",
+       "quote": "A luglio emigrò in Svizzera",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Trasferitosi a Trento il 6 febbraio 1909",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1909 年）",
+       "quote": "il 27 settembre fu espulso dal Trentino",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1909",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "Tornato a Forlì",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "diventare segretario della Federazione socialista forlivese",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "partecipò al XIII congresso del PSI (Reggio Emilia, 7-10 luglio 1912)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "che conquistò la guida del PSI",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1912-11-01",
+      "end": "1919-03-23"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "《前進報》、中途轉向與法西斯戰鬥團",
+      "en": "Avanti!, the break with the PSI and the Fasci"
+     },
+     "body": {
+      "zh-Hant": "1912年底他出任社會黨機關報《前進報》主編並遷往米蘭。1914年10月20日，他的立場轉變在波隆那會議上遭黨領導層否決，辭去主編職務；11月15日他創辦《義大利人民報》，24日米蘭社會黨支部決議將他逐出社會黨。1915年8月31日他入伍；戰後他於1919年3月23日創立法西斯戰鬥團。",
+      "en": "At the end of 1912 he became editor of the party daily Avanti! and moved to Milan. On 20 October 1914 his change of position was rejected by the party leadership at a meeting in Bologna and he resigned the editorship; on 15 November he launched Il Popolo d'Italia, and on 24 November the Milan socialist section expelled him from the PSI. He became a soldier on 31 August 1915 and on 23 March 1919 founded the Fasci italiani di combattimento."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1912",
+       "quote": "November: Mussolini wird Chefredakteur der sozialistischen Tageszeitung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Nominato direttore dell’ Avanti! , nel dicembre 1912 si trasferì a Milano",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "Il 20 ottobre, in una riunione a Bologna",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1914",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "la svolta mussoliniana fu respinta dalla dirigenza del partito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1914-10-20）",
+       "quote": "Mussolini si dimise dalla direzione dell’ Avanti!",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1914）",
+       "quote": "Il 15 novembre usciva nelle edicole Il Popolo d’Italia",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1914",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "Il 24 novembre, a conclusione di una tumultuosa assemblea in cui Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1914",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1914-11-24）",
+       "quote": "la sezione socialista milanese decretò la sua espulsione dal PSI",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1915",
+       "quote": "31. August: Mussolini wird Soldat.",
+       "quoteLang": "de",
+       "evidenceNote": "年份 1915 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "il 23 marzo 1919 diede vita ai Fasci italiani di combattimento",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-11-01",
+      "end": "1922-10-31"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國會議員、國家法西斯黨與進軍羅馬",
+      "en": "Deputy, the PNF and the March on Rome"
+     },
+     "body": {
+      "zh-Hant": "1919年11月選舉，墨索里尼得票不到五千票。1921年5月，法西斯戰鬥團參加國會選舉，他在博洛尼亞與米蘭當選。同年11月7日至10日在羅馬召開的大會決議把運動改組為國家法西斯黨（PNF），與會者承認他為「領袖」。1922年10月，動員日定在10月28日；法克塔內閣任期至10月31日為止。",
+      "en": "In the November 1919 election Mussolini won fewer than 5,000 votes. In May 1921 the Fasci stood in the general election and he was elected at Bologna and Milan. The congress held in Rome on 7-10 November 1921 turned the movement into the National Fascist Party (PNF), whose members recognised him as 'duce'. In October 1922 mobilisation was fixed for 28 October; Facta's government lasted until 31 October 1922."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "disfatta nelle elezioni politiche del novembre di quell’anno",
+       "quoteLang": "it",
+       "evidenceNote": "「quell’anno」依同段敘述為 1919",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1919 年 11 月選舉）",
+       "quote": "Mussolini ebbe meno di 5000 voti",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Nel maggio 1921 i Fasci parteciparono alle elezioni politiche",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Mussolini fu eletto a Bologna e a Milano con oltre 300.000 voti",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "deliberò la trasformazione del movimento in Partito nazionale fascista (PNF)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1921 年）",
+       "quote": "si svolse a Roma dal 7 al 10 novembre e deliberò",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1921",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "Mussolini si riconciliò con i ribelli, che lo riconobbero come ‘duce’",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1922 年）",
+       "quote": "la mobilitazione fu fissata per il 28 ottobre",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1922",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Luigi Facta (26 febbraio-31 ottobre 1922)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1922-10-31",
+      "end": "1943-07-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "政府首腦與法西斯政權",
+      "en": "Head of government and the Fascist regime"
+     },
+     "body": {
+      "zh-Hant": "1922年10月29日他受命組閣，國王任命他為首相；同年12月成立法西斯大委員會。1924年4月6日的選舉後，6月10日社會黨議員馬泰奧蒂遭殺害；1925年1月3日他在眾議院發表演說，走向公開獨裁。1926年底各政黨被取締。1935年10月3日他發動衣索比亞戰爭，1936年5月9日宣告帝國重現；1940年6月10日義大利參戰。1943年7月25日起，法西斯政權崩潰。",
+      "en": "On 29 October 1922 he was charged with forming a government and the king appointed him prime minister; the Fascist Grand Council was set up in December 1922. After the election of 6 April 1924 the socialist deputy Matteotti was killed on 10 June; on 3 January 1925 Mussolini spoke in the Chamber and moved to open dictatorship. Parties were suppressed at the end of 1926. He launched the Ethiopian war on 3 October 1935, announced the Empire on 9 May 1936 and took Italy into war on 10 June 1940. The regime collapsed after 25 July 1943."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "Il 29 ottobre,",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1922",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "Mussolini ricevette con un telegramma l’incarico di formare il governo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1922",
+       "quote": "König Viktor Emanuel III. beruft ihn zum Ministerpräsidenten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "costituito nel dicembre 1922 per volontà di Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Le elezioni, che si tennero il 6 aprile 1924",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1924 年）",
+       "quote": "assassinio del deputato socialista Giacomo Matteotti, compiuto il 10 giugno",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1924",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "il 3 gennaio 1925 Mussolini, con un discorso alla Camera",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "avviò una decisa politica dittatoriale",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Alla fine del 1926 furono soppressi i partiti",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "La svolta decisiva avvenne nel 1935, con l’aggressione all’Etiopia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Le operazioni militari iniziarono il 3 ottobre 1935",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "il 9 maggio 1936 il duce annunciò «la riapparizione dell’Impero",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "il 10 giugno 1940 trascinò il paese in guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Il regime fascista crollò all’indomani del 25 luglio 1943",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1943-07-25",
+      "end": "1945-04-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "撒羅共和國與死亡",
+      "en": "The Salo Republic and death"
+     },
+     "body": {
+      "zh-Hant": "1943年7月24日至25日，墨索里尼被法西斯大委員會推翻，國王將他免職並逮捕；9月12日德軍將他救出。9月23日他在德國協助下組成法西斯反政府，建立義大利社會共和國（撒羅共和國），並以其首腦自居。1945年4月27日他被游擊隊俘虜，次日在朱利諾迪梅扎格拉遭槍決。",
+      "en": "On 24-25 July 1943 the Fascist Grand Council deposed Mussolini, and the king dismissed and arrested him; on 12 September German troops freed him. On 23 September, with German help, he formed a Fascist counter-government and proclaimed the Italian Social Republic (Salo), placing himself at its head. On 27 April 1945 he was captured by partisans and the next day shot at Giulino di Mezzegra."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1943",
+       "quote": "24./25. Juli: Mussolini wird durch den \"Faschistischen Großen Rat\" abgesetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "fu destituito dal re, arrestato",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "il 12 settembre, quattro giorni dopo la resa dell’Italia agli Alleati",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "fu liberato dai tedeschi e condotto in Germania",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1943",
+       "quote": "23. September: Mit deutscher Hilfe bildet Mussolini",
+       "quoteLang": "de",
+       "evidenceNote": "日期錨點；本句受詞見下一筆引文。年份 1943 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1943",
+       "quote": "Mit deutscher Hilfe bildet Mussolini eine faschistische Gegenregierung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "mettersi a capo di un nuovo Stato fascista, la Repubblica sociale italiana (RSI)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（1945 年）",
+       "quote": "il 27 aprile fu catturato dai partigiani",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1945",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Il giorno successivo fu fucilato insieme con l’amante a Giulino di Mezzegra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "trento-labour-chamber-secretary",
+     "positionKind": "other",
+     "title": {
+      "orig": "segretario della Camera del lavoro di Trento",
+      "zh-Hant": "特倫托勞工會書記",
+      "en": "Secretary of the Trento Chamber of Labour"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "特倫托勞工會（Camera del lavoro）",
+      "en": "Trento Chamber of Labour"
+     },
+     "period": {
+      "start": "1909-02-06",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Trasferitosi a Trento il 6 febbraio 1909",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "come segretario della Camera del lavoro",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "勞工會（工會）屬社會黨外圍組織，是否算黨職不明確；依規則不猜，留在 positions"
+    },
+    {
+     "key": "avanti-editor",
+     "positionKind": "other",
+     "title": {
+      "orig": "direttore dell'Avanti!",
+      "zh-Hant": "社會黨機關報《前進報》主編",
+      "en": "Editor of the socialist daily Avanti!"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "《前進報》（義大利社會黨機關報）",
+      "en": "Avanti! (Italian Socialist Party daily)"
+     },
+     "period": {
+      "start": "1912-11-01",
+      "end": "1914-10-20"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1912",
+       "quote": "November: Mussolini wird Chefredakteur der sozialistischen Tageszeitung",
+       "quoteLang": "de",
+       "evidenceNote": "年份 1912 取自該列所屬年份標題；DBI 寫『nel dicembre 1912 si trasferì a Milano』，不矛盾",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Nominato direttore dell’ Avanti! , nel dicembre 1912",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Mussolini si dimise dalla direzione dell’ Avanti!",
+       "quoteLang": "it",
+       "evidenceNote": "DBI 寫『Il 20 ottobre』；年份依同段敘述為 1914",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "黨報主編是否算黨職，規則列為不明確；不猜，留在 positions"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "psi-executive-committee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利社會黨（PSI）",
+      "en": "Italian Socialist Party (PSI)"
+     },
+     "title": {
+      "orig": "Exekutivausschuss der PSI（Mitglied）",
+      "zh-Hant": "社會黨執行委員會成員",
+      "en": "Member of the PSI executive committee"
+     },
+     "period": {
+      "start": "1912-07-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1912",
+       "quote": "Juli: Er wird in den Exekutivausschuss der PSI berufen.",
+       "quoteLang": "de",
+       "evidenceNote": "年份 1912 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（LeMO 寫 1912-07 被選入社會黨執行委員會）"
+    },
+    {
+     "key": "pnf-duce",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家法西斯黨（PNF）",
+      "en": "National Fascist Party (PNF)"
+     },
+     "title": {
+      "orig": "duce del Partito nazionale fascista",
+      "zh-Hant": "國家法西斯黨領袖（duce）",
+      "en": "Duce of the National Fascist Party"
+     },
+     "period": {
+      "start": "1921-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce（PNF 成立大會，1921）",
+       "quote": "si svolse a Roma dal 7 al 10 novembre e deliberò",
+       "quoteLang": "it",
+       "evidenceNote": "年份依同段敘述為 1921；起點月精度",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "Mussolini si riconciliò con i ribelli, che lo riconobbero come ‘duce’",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（DBI 寫 1921-11 PNF 成立大會後他被承認為 duce）"
+    },
+    {
+     "key": "rsi-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利社會共和國（撒羅共和國）",
+      "en": "Italian Social Republic (Republic of Salo)"
+     },
+     "title": {
+      "orig": "capo della Repubblica sociale italiana（來源：mettersi a capo）",
+      "zh-Hant": "義大利社會共和國首腦",
+      "en": "Head of the Italian Social Republic"
+     },
+     "period": {
+      "start": "1943-09-23",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1943",
+       "quote": "23. September: Mit deutscher Hilfe bildet Mussolini",
+       "quoteLang": "de",
+       "evidenceNote": "日期錨點；本句受詞見下一筆引文。年份 1943 取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1943",
+       "quote": "Mit deutscher Hilfe bildet Mussolini eine faschistische Gegenregierung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "voce",
+       "quote": "mettersi a capo di un nuovo Stato fascista, la Repubblica sociale italiana (RSI)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "DBI 明寫他『mettersi a capo』新法西斯國家 RSI，並『cercò di esercitare il ruolo di capo』；來源未明寫官方職稱（國家元首或首相），故不定 head_of_state／head_of_government，列實際掌權者候選",
+     "t14Rule": "R0",
+     "t14Reason": "非黨職的實際掌權者（國家首腦層級），依 R0 判斷進角色層；官方職稱未明，見 gap field:rsi_official_title"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:mussolini-interior-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺起訖日（合格來源）；內政部長（Ministro dell'interno，四部之一，R3）。已查：Treccani DBI（未寫部長任期日）、LeMO、GND；Camera dei deputati Portale storico（storia.camera.it）回 F5 403 拒絕頁，依規則不繞過。《Enciclopedia Italiana》1934 無署名條目有日期，只能作候選：1922-10-31 起兼內政、1924-06-17 卸任、1926-11-06 再任。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-mus-ei",
+       "locator": "Enciclopedia Italiana (1934)",
+       "quote": "Riassunse il 6 novembre 1926 il Ministero degl'interni",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mus-ei",
+       "locator": "Enciclopedia Italiana (1934)",
+       "quote": "che aveva lasciato il 17 giugno 1924",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:mussolini-foreign-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺起訖日（合格來源）；外交部長（R3）。同上，Camera 入口被擋；EI 1934 無署名條目為候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-mus-ei",
+       "locator": "Enciclopedia Italiana (1934)",
+       "quote": "che lasciò il 12 settembre 1929 per riassumerlo il 20 luglio 1932",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:mussolini-war-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺起訖日（合格來源）；陸軍（戰爭）部長（R3），DBI 只寫『dopo il 1933 … anche i tre militari』，無日期。EI 1934 無署名條目為候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-mus-ei",
+       "locator": "Enciclopedia Italiana (1934)",
+       "quote": "Per interim resse i ministeri della Guerra, della Marina e dell'Aeronautica",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:mussolini-deputy",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；眾議員（1921 當選；DBI 寫 eletto a Bologna e a Milano，未寫以何黨身分，不算黨職席位）。Camera 議員頁被 F5 403 擋。EI 1934 無署名條目為候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-mus-ei",
+       "locator": "Enciclopedia Italiana (1934)",
+       "quote": "è eletto deputato il 15 maggio 1921 per Milano",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:mussolini-popolo-ditalia-director",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；《義大利人民報》創辦人兼主編（1914-11 起，DBI），來源未寫卸任日；不是黨職。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-mus-ei",
+       "locator": "Enciclopedia Italiana (1934)",
+       "quote": "Lasciato il giornale il 20 ottobre 1914, il 14 novembre fonda Il Popolo d'Italia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:mussolini-forli-federation-secretary",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；（DBI 只寫 1909-09-27 被逐出特倫托後返回福爾利出任，無就任日）亦缺迄日；福爾利社會黨聯合會書記（黨職，R1；DBI 寫 1909 年 9 月 27 日被逐出特倫托後返回福爾利出任），來源未寫卸任日，故未列入 roleCandidates。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-mus",
+       "locator": "Dizionario Biografico",
+       "quote": "diventare segretario della Federazione socialista forlivese",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:fascist_seats_1921",
+     "gapKind": "conflict",
+     "note": "1921 年大選法西斯議席數：DBI 寫 35 席（『i fascisti ottennero 35 seggi』），LeMO 寫 34 席（『34 Sitze』）。兩份合格來源矛盾，正文不寫席數。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-mus",
+       "locator": "Lebenslauf 1921",
+       "quote": "15. Mai: Die Faschisten erringen bei den Wahlen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:rsi_official_title",
+     "gapKind": "not_found",
+     "note": "RSI 的官方職稱（Capo dello Stato／首相）合格來源未明寫，候選角色以 de_facto_leader 列出；RSI 是否在 5442 政權清單也待查證（regimeId 留 null）。已查：Treccani DBI、LeMO。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:rsi-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；原迄日 1945-04-27 是以被游擊隊俘虜日推得，不符 Q7（審查移除）；合格來源未寫其 RSI 首腦職務終止日。已查：Treccani DBI、LeMO。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:trento-labour-chamber-secretary",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；原迄日 1909-09-27 是以被逐出特倫托之日推得，不符 Q7（審查移除）；DBI 未寫卸任日。已查：Treccani DBI、LeMO。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:psi-executive-committee",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；原迄日 1914-11-24 是以米蘭支部開除其黨籍之日推得，不符 Q7（審查移除）；LeMO／DBI 未寫其離開執行委員會之日。已查：Treccani DBI、LeMO。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:pnf-duce",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；原迄日 1943-07-25 是以被法西斯大委員會推翻之日推得，不符 Q7（審查移除）；合格來源未寫其 PNF 領袖身分終止日。已查：Treccani DBI、LeMO。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Mussolini Benito GND（lobid.org 官方鏡像）",
+     "url": "https://lobid.org/gnd/search?q=Mussolini%2C+Benito+1883&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118585967；生卒 1883-07-29／1945-04-28；先前一次以錯誤 GND 編號（118585827，Karoline Bonaparte）抓到不相干條目，已丟棄"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "benito-mussolini Dizionario Biografico degli Italiani",
+     "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "curl 取得；Emilio Gentile 具名；主要出處"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Camera dei deputati storia.camera.it deputato benito-mussolini-18830729",
+     "url": "https://storia.camera.it/deputato/benito-mussolini-18830729",
+     "result": "blocked_403",
+     "note": "F5『request was rejected』拒絕頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Mussolini Benito storia.camera.it governo Mussolini 1922 ministro（WebSearch）",
+     "url": "https://storia.camera.it/governi/i-governo-mussolini",
+     "result": "found_A",
+     "note": "WebSearch 只得搜尋摘要（31.10.1922–25.07.1943），無原文"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "storia.camera.it governi i-governo-mussolini",
+     "url": "https://storia.camera.it/governi/i-governo-mussolini",
+     "result": "blocked_403",
+     "note": "F5 403；同站內政／外交／陸軍／海軍部頁亦 403（逐一試過）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "dati.camera.it presidenteConsiglioMinistri pcmr4690_68",
+     "url": "https://dati.camera.it/ocd/presidenteConsiglioMinistri.rdf/pcmr4690_68",
+     "result": "blocked_403",
+     "note": "F5 403，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Mussolini Benito Enciclopedia Italiana 1934 Treccani",
+     "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Enciclopedia-Italiana)/",
+     "result": "unrated",
+     "note": "已抓取；無署名，只作缺口候選（Q9）"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Mussolini Benito Treccani Dizionario di Storia",
+     "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Dizionario-di-Storia)/",
+     "result": "unrated",
+     "note": "已抓取；無署名，只作交叉參考，未引用"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "governo.it benito-mussolini",
+     "url": "https://www.governo.it/it/benito-mussolini",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Senato della Repubblica scheda Mussolini（notes9.senato.it）",
+     "url": "https://notes9.senato.it/web/senregno.nsf/P_Regno?OpenPage",
+     "result": "no_result",
+     "note": "連線逾時（60 秒）"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Mussolini 1914-1918-online",
+     "url": "https://encyclopedia.1914-1918-online.net/article/mussolini_benito",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Benito Mussolini LeMO Biografie DHM",
+     "url": "https://www.dhm.de/lemo/biografie/benito-mussolini",
+     "result": "found_B",
+     "note": "curl 取得；Manfred Wichmann 具名（B）"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "Mussolini Benito Deutsche Biographie NDB（WebSearch）",
+     "url": "https://www.deutsche-biographie.de/gnd118585967.html",
+     "result": "unrated",
+     "note": "WebSearch＋curl；僅索引頁、無 NDB 條目本文，不用"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Bundesarchiv Akten der Reichskanzlei Mussolini 1.292",
+     "url": "https://www.bundesarchiv.de/aktenreichskanzlei/1919-1933/1d01/adr/adrmr/kap1_1/para2_292.html",
+     "result": "no_result",
+     "note": "curl 只得空殼（內容由 JavaScript 載入）；搜尋摘要寫 1922-10-30 任首相（與 Camera／DBI 之 10-31 不同，未採）"
+    },
+    {
+     "step": 15,
+     "sourceType": "treaty_law",
+     "query": "Gazzetta Ufficiale 1922 regio decreto 31 ottobre 1922 Mussolini presidente del Consiglio（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果無該任命公告原文，只有其他日期的公報 PDF"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "Mussolini Senato della Repubblica Presidente del Consiglio scheda（WebSearch，限 senato.it 等）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果幾乎全是被擋的 Camera 入口；Senato 無 Mussolini 議員頁（他不是參議員）"
+    }
+   ]
+  },
+  {
+   "key": "jp-hirohito",
+   "bioId": "01a1b4b2-2f65-7cca-9a4b-ff875f18c192",
+   "name": "昭和天皇（裕仁）",
+   "nameZh": "昭和天皇（裕仁）",
+   "recordIds": [
+    "01a1aacc-d49f-7647-88f6-cdfa80138fbd"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1901-04-29",
+      "end": "1921-09-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "誕生、立太子與歐洲訪問",
+      "en": "Birth, investiture as crown prince and the European tour"
+     },
+     "body": {
+      "zh-Hant": "昭和天皇（裕仁）1901年4月29日生於東京青山的東宮御所，是大正天皇的長子。1912年7月30日明治天皇駕崩，他成為皇太子，1916年11月3日舉行立太子禮，1919年5月7日舉行成年式。1921年3月起他訪問歐洲諸國約六個月，9月3日返國。",
+      "en": "Hirohito was born on 29 April 1901 at the Togu Palace in Aoyama, Tokyo, first son of the Taisho Emperor. On 30 July 1912, with the death of the Meiji Emperor, he became crown prince; the investiture took place on 3 November 1916 and his coming-of-age ceremony on 7 May 1919. From March 1921 he toured Europe for six months and returned on 3 September."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "昭和天皇",
+       "quote": "明治34年4月29日、大正天皇の第1皇男子として東京・青山の東宮御所でご誕生になりました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "昭和天皇",
+       "quote": "明治45年7月30日、明治天皇の崩御により皇太子となられました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "大正5年11月3日 立太子の礼",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "大正8年5月7日 成年式（18歳）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "昭和天皇",
+       "quote": "大正10年3月から6か月間、ヨーロッパ諸国をご訪問になり",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "宮内庁関係年表 大正10年",
+       "quote": "ご帰国：9月3日",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-11-25",
+      "end": "1926-12-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "攝政時期",
+      "en": "The regency"
+     },
+     "body": {
+      "zh-Hant": "1921年11月25日，因大正天皇患病，皇太子裕仁就任攝政。依大日本帝國憲法第17條，攝政以天皇的名義行使大權。1924年1月26日他與久邇宮邦彥王的長女良子女王結婚。攝政期間至1926年12月25日大正天皇駕崩為止。",
+      "en": "On 25 November 1921, because the Taisho Emperor was ill, Crown Prince Hirohito became regent; under Article 17 of the Meiji Constitution a regent exercised the prerogatives in the Emperor's name. On 26 January 1924 he married Princess Nagako, eldest daughter of Prince Kuninomiya Kuniyoshi. The regency lasted until the Taisho Emperor's death on 25 December 1926."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "昭和天皇",
+       "quote": "同年11月25日からは大正天皇のご病気のため摂政に就任されました",
+       "quoteLang": "ja",
+       "evidenceNote": "『同年』指大正10年（1921）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "宮内庁関係年表 大正10年",
+       "quote": "皇太子裕仁（ひろひと）親王摂政となる。",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-const",
+       "locator": "大日本帝国憲法 第17条",
+       "quote": "２ 摂政ハ天皇ノ名ニ於テ大権ヲ行フ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "昭和天皇",
+       "quote": "大正13年1月26日、久邇宮邦彦（くにのみや くによし）王の第1女子良子（ながこ）女王とご結婚になりました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1926-12-25",
+      "end": "1928-11-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "踐祚與即位禮",
+      "en": "Accession and enthronement"
+     },
+     "body": {
+      "zh-Hant": "1926年12月25日大正天皇駕崩，裕仁立即踐祚，成為第124代天皇，當日改元昭和。1928年11月10日在京都舉行即位禮，11月14日、15日舉行大嘗祭。",
+      "en": "On the death of the Taisho Emperor on 25 December 1926 Hirohito acceded at once as the 124th emperor and the era was renamed Showa the same day. The enthronement ceremony was held in Kyoto on 10 November 1928 and the Daijosai on 14-15 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "昭和天皇",
+       "quote": "大正15年12月25日、大正天皇の崩御により践祚（せんそ）され、第124代の天皇となられました",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "宮内庁関係年表 大正15年",
+       "quote": "皇太子裕仁（ひろひと）親王践祚（せんそ）、昭和と改元",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "昭和3年11月10日 即位の礼",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "昭和3年11月14・15日 大嘗祭",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1937-11-20",
+      "end": "1945-09-14"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "統帥權、大本營與戰爭終結",
+      "en": "Supreme command, Imperial Headquarters and the end of the war"
+     },
+     "body": {
+      "zh-Hant": "大日本帝國憲法第11條規定天皇統帥陸海軍。1937年11月20日，作為戰時最高統帥機關的大本營設於宮中，存續至1945年9月13日。1945年東京遭空襲，宮殿於5月26日燒毀。8月14日終戰詔書發布，天皇當日錄音，15日正午透過廣播向國民宣布。",
+      "en": "Article 11 of the Meiji Constitution gave the Emperor command of the army and navy. On 20 November 1937 Imperial Headquarters, the supreme wartime command organ, was set up in the palace and lasted until 13 September 1945. In 1945 Tokyo was bombed and the palace burned on 26 May. The rescript ending the war was issued on 14 August; the Emperor recorded it that day and it was broadcast at noon on 15 August."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-const",
+       "locator": "大日本帝国憲法",
+       "quote": "第11条 天皇ハ陸海軍ヲ統帥ス",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-daihonei",
+       "locator": "大本営",
+       "quote": "戦時または事変に際しての最高統帥機関",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-daihonei",
+       "locator": "大本営",
+       "quote": "同年11月20日、宮中に大本営が設置され、1945年9月13日まで存続した",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "宮内庁関係年表 昭和20年",
+       "quote": "東京空襲を受け、宮殿焼失（5月26日）",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-shosho",
+       "locator": "終戦の詔書",
+       "quote": "1945（昭和20）年8月14日発布され、戦争終結が公式に表明された",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-shosho",
+       "locator": "終戦の詔書",
+       "quote": "同日、天皇は詔書を録音、翌15日正午、その内容はラジオ放送を通じて広く国民に報じられた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "crown-prince",
+     "positionKind": "other",
+     "title": {
+      "orig": "皇太子",
+      "zh-Hant": "皇太子",
+      "en": "Crown Prince"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本皇室",
+      "en": "Imperial House of Japan"
+     },
+     "period": {
+      "start": "1912-07-30",
+      "end": "1926-12-25"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "明治45年7月30日 皇太子",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "大正15年12月25日 践祚",
+       "quoteLang": "ja",
+       "evidenceNote": "迄日以踐祚日推得（推論）；來源未直接寫皇太子身分終止日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "regent-1921",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本帝國（皇室）",
+      "en": "Empire of Japan (Imperial House)"
+     },
+     "title": {
+      "orig": "摂政",
+      "zh-Hant": "攝政",
+      "en": "Regent"
+     },
+     "period": {
+      "start": "1921-11-25",
+      "end": "1926-12-25"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "大正10年11月25日 摂政ご就任",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "宮内庁関係年表 大正10年",
+       "quote": "皇太子裕仁（ひろひと）親王摂政となる。",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自該列所屬年份標題",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-showa",
+       "locator": "年表列",
+       "quote": "大正15年12月25日 践祚",
+       "quoteLang": "ja",
+       "evidenceNote": "迄日以踐祚（即位）日推得（推論）；攝政於踐祚時終止",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-const",
+       "locator": "大日本帝国憲法 第17条",
+       "quote": "２ 摂政ハ天皇ノ名ニ於テ大権ヲ行フ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "acting": true,
+     "t14Rule": "R0",
+     "reason": "R0 攝政／代理：憲法第17條規定攝政以天皇名義行使大權；任期 1921-11-25～1926-12-25 不在名單 5442 的天皇任期（1926-12-25 起）內"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:supreme_command",
+     "gapKind": "not_found",
+     "note": "天皇作為陸海軍最高統帥（大元帥）的任期無日期可寫成職位：合格來源只有憲法第11條與大本營設置（1937-11-20～1945-09-13），未明寫『大元帥』稱號與起訖。已查：NDL 憲法條文、JACAR 大本營辭典、防衛研究所戰史叢書索引（無相關原文可抓）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-const",
+       "locator": "大日本帝国憲法",
+       "quote": "第11条 天皇ハ陸海軍ヲ統帥ス",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:emperor_end_1945",
+     "gapKind": "not_found",
+     "note": "天皇任期已在名單 5442（recordId 01a1aacc-d49f-7647-88f6-cdfa80138fbd，1926-12-25～1945-10-01），本檔不重建；本批合格來源（宮内庁）只寫在位至 1989 年崩御，沒有 1945-10-01 這個日期，該迄日仍待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:ndl_portrait",
+     "gapKind": "not_found",
+     "note": "NDL『近代日本人の肖像』查無昭和天皇頁（搜尋＋站內直連皆未命中）；改用 NDL 人名權威檔（典拠 ID 00083479）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-auth-hirohito",
+       "locator": "Web NDL Authorities",
+       "quote": "昭和天皇, 1901-1989",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "昭和天皇 裕仁 摂政 1921 即位 1926 宮内庁 歴代天皇",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 只得百科類與維基類索引，不採"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "kunaicho.go.jp about/pastemperors/index.html",
+     "url": "https://www.kunaicho.go.jp/about/pastemperors/index.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "NDL 近代日本人の肖像 ndl.go.jp/portrait/datas/422.html",
+     "url": "https://www.ndl.go.jp/portrait/datas/422.html",
+     "result": "not_relevant",
+     "note": "該頁是重光葵，非昭和天皇；丟棄"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "JACAR listPhoto 昭和天皇",
+     "url": "https://www.jacar.archives.go.jp/aj/meta/listPhoto?LANG=default&BID=F2008110711423987000",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "昭和天皇 摂政 大正10年11月25日 即位 大正15年12月25日（限 kunaicho／jacar／ndl 等）",
+     "url": "https://www.kunaicho.go.jp/learn/about/history/history11.html",
+     "result": "found_A",
+     "note": "WebSearch 找到宮内庁『昭和天皇・香淳皇后』與年表頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "kunaicho.go.jp about/koushitsu/emperor/shouwa.html 及 pastemperors.html、jitsuroku/index.html",
+     "url": "https://www.kunaicho.go.jp/about/koushitsu/emperor/shouwa.html",
+     "result": "no_result",
+     "note": "三個猜測網址皆 404"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "宮内庁 昭和天皇・香淳皇后（ご略歴）",
+     "url": "https://www.kunaicho.go.jp/learn/about/history/history11.html",
+     "result": "found_A",
+     "note": "curl 取得；主要出處"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "宮内庁関係年表（慶応3年以後）",
+     "url": "https://www.kunaicho.go.jp/kunaicho/kunaicho/kunaicho-nenpyo.html",
+     "result": "found_A",
+     "note": "curl 取得；摂政・践祚・終戦の詔書"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "大日本帝国憲法 第十一条 天皇ハ陸海軍ヲ統帥ス 国立国会図書館",
+     "url": "https://www.ndl.go.jp/constitution/etc/j02.html",
+     "result": "found_A",
+     "note": "WebSearch＋curl；憲法原文第11、17條"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "大本営 設置 昭和12年11月18日 天皇 大元帥 アジア歴史資料センター 防衛研究所",
+     "url": "https://www.jacar.archives.go.jp/das/term/00000086",
+     "result": "found_A",
+     "note": "WebSearch＋curl；JACAR 大本営辭典"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "防衛研究所『大本営発表綴』PDF（nids.mod.go.jp 201603/02.pdf）",
+     "url": "https://www.nids.mod.go.jp/publication/senshi/pdf/201603/02.pdf",
+     "result": "not_relevant",
+     "note": "已抓取（約 600KB PDF）但內容為大本營發表綴解題，與天皇個人任期無關，未引用、未留原文"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "防衛研究所 戦史叢書 大本営 昭和天皇 統帥権 大元帥（WebSearch）",
+     "url": "https://www.nids.mod.go.jp/military_archives/senshi_sousyo/index.html",
+     "result": "no_result",
+     "note": "只有叢書索引，無關於天皇統帥身分的可抓原文"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Hirohito Treccani Dizionario di Storia",
+     "url": "https://www.treccani.it/enciclopedia/hirohito_(Dizionario-di-Storia)/",
+     "result": "unrated",
+     "note": "已抓取；無署名，未用"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Hirohito Treccani Enciclopedia on line",
+     "url": "https://www.treccani.it/enciclopedia/hirohito/",
+     "result": "unrated",
+     "note": "已抓取；無署名，未用"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "昭和天皇 近代日本人の肖像 国立国会図書館 裕仁（WebSearch）",
+     "url": "https://id.ndl.go.jp/auth/ndlna/00083479",
+     "result": "found_A",
+     "note": "找到 NDL 人名權威檔；肖像頁無昭和天皇"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "昭和天皇, 1901-1989 Web NDL Authorities",
+     "url": "https://id.ndl.go.jp/auth/ndlna/00083479",
+     "result": "found_A",
+     "note": "curl 取得；別名『裕仁』，生卒 1901／1989"
+    },
+    {
+     "step": 17,
+     "sourceType": "treaty_law",
+     "query": "終戦の詔書 昭和20年8月14日 アジア歴史資料センター（WebSearch）",
+     "url": "https://www.jacar.archives.go.jp/das/meta/A04017702300",
+     "result": "found_A",
+     "note": "WebSearch 找到 JACAR 御署名原本與 NDL『終戦の詔書』頁"
+    },
+    {
+     "step": 18,
+     "sourceType": "treaty_law",
+     "query": "JACAR A04017702300 御署名原本 大東亜戦争終結ニ関スル詔書",
+     "url": "https://www.jacar.archives.go.jp/das/meta/A04017702300",
+     "result": "found_A",
+     "note": "curl 取得；資料作成日 1945-08-14"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "NDL 終戦の詔書 1945年8月14日",
+     "url": "https://www.ndl.go.jp/constitution/shiryo/01/017shoshi.html",
+     "result": "found_A",
+     "note": "curl 取得；錄音與 15 日正午放送"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "国立公文書館 大正15年12月 昭和と改元",
+     "url": "https://www.archives.go.jp/ayumi/kobetsu/t15_1926_01.html",
+     "result": "no_result",
+     "note": "curl 取得但為 Shift_JIS，未轉碼，未引用"
+    }
+   ]
+  }
+ ]
+}

@@ -164,6 +164,15 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                   @if (sh.sov; as s) {
                     @for (cp of regimeCampaigns(); track cp.key) {
                       <!-- 戰役簡報入口：列點顯示戰役名稱／行動代號（有才列）／時間（Tai 2026-11-14） -->
+                      @if (mobile()) {
+                      <!-- 手機：縮成一行（戰役名稱＋時間），行動代號進戰役簡報頁再看 -->
+                      <button type="button" data-testid="campaign-entry" class="mb-2 flex min-h-11 flex-none items-center gap-2 self-stretch rounded border border-wl-outline-variant px-3 text-left wl-text2 hover:bg-wl-surface-container" (click)="openCampaign(cp.key)">
+                        <span class="flex-none font-semibold">⚔</span>
+                        <span data-testid="campaign-entry-name" class="min-w-0 flex-1 truncate font-semibold">{{ campaignName(cp.name_zh).name }}</span>
+                        <span data-testid="campaign-entry-dates" class="flex-none text-[12px] tabular-nums text-wl-on-surface-variant">{{ cp.start }} – {{ cp.end.slice(5) }}</span>
+                        <span class="flex-none text-wl-on-surface-variant" aria-hidden="true">›</span>
+                      </button>
+                      } @else {
                       <button type="button" data-testid="campaign-entry" class="mb-2 flex flex-none flex-col items-start gap-0.5 self-stretch rounded border border-wl-outline-variant px-3 py-2 text-left wl-text2 hover:bg-wl-surface-container" (click)="openCampaign(cp.key)">
                         <span class="font-semibold">⚔ {{ lang() === 'en' ? 'Battle briefing' : '戰役簡報' }}</span>
                         <ul class="list-disc pl-5">
@@ -174,6 +183,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                           <li data-testid="campaign-entry-dates"><span class="text-wl-on-surface-variant">{{ lang() === 'en' ? 'Dates' : '時間' }}：</span><span class="tabular-nums">{{ cp.start }} – {{ cp.end }}</span></li>
                         </ul>
                       </button>
+                      }
                     }
                     <!-- 主權卡（含控制區卡在概要頂部，若 sh.control 有值） -->
                     <wl-sovereignty-card [embedded]="true" class="flex min-h-0 flex-1 flex-col" [props]="s.props" [claimantNames]="regimeDisplayNames()" [regimeName]="s.name" [originalName]="s.original" [originalLang]="s.originalLang" [occupierName]="s.occupierName" [lang]="lang()"
@@ -239,10 +249,13 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
                 (dateChange)="setDate($event)" (retry)="data.loadSnapshots()" (invalidInput)="onInvalidInput()" />
             </div>
             <!-- 署名列（Tai 2026-11-05）：時間軸正下方獨立一列，矮、低調；不疊在地圖、圖例、出處或面板上 -->
-            <footer data-testid="app-footer" class="flex h-[var(--wl-footer-height)] flex-none items-start justify-center gap-2 border-t border-wl-outline-variant/70 bg-wl-surface px-3 pb-[var(--wl-safe-bottom)] text-[10px] leading-[17px] tracking-[0.04em] whitespace-nowrap text-wl-on-surface-variant/75 select-none md:justify-between md:px-4 md:text-[10.5px] md:leading-[19px] md:tracking-[0.06em]" [class.hidden]="campaignFull()">
+            <footer data-testid="app-footer" class="flex h-[var(--wl-footer-height)] flex-none items-start justify-center gap-2 border-t border-wl-outline-variant/70 bg-wl-surface px-3 pb-[var(--wl-safe-bottom)] text-[10px] leading-[17px] tracking-[0.04em] whitespace-nowrap text-wl-on-surface-variant/75 select-none md:justify-between md:px-4 md:text-[10.5px] md:leading-[19px] md:tracking-[0.06em]" [class.hidden]="campaignFull()" [class.border-t-0]="vp.compact()">
+              <!-- 手機（精簡版）：這一列只剩底部安全區，署名在 ⋯ 選單底部 -->
+              @if (!vp.compact()) {
               <span data-testid="app-footer-copyright">{{ tr('app.copyright') }}</span>
               <span class="text-wl-outline-variant md:hidden" aria-hidden="true">·</span>
               <span data-testid="app-footer-credit">{{ tr('app.credit') }}</span>
+              }
             </footer>
           </div>
           <!-- 全畫面載入蒙版（Tai 2026-11-02）：蓋住整個視窗（含時間軸與側欄），擋住操作；資料就緒後淡出 -->

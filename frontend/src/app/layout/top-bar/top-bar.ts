@@ -57,6 +57,7 @@ import { versionInfo } from '../../core/version';
               <div class="my-1 h-px bg-wl-outline-variant" aria-hidden="true"></div>
               <a href="version" role="menuitem" data-testid="topbar-menu-version" class="flex min-h-11 items-center justify-between gap-3 px-3 text-[12px] text-wl-on-surface-variant hover:bg-wl-surface-container"
                 [attr.aria-label]="versionTitle"><span>{{ lang() === 'en' ? 'Version' : '版本' }}</span><span class="font-mono">{{ versionText }}</span></a>
+              <div data-testid="topbar-menu-credit" class="px-3 pb-2 pt-1 text-[10px] leading-[16px] tracking-[0.04em] text-wl-on-surface-variant/75">{{ tr('app.copyright') }}<br />{{ tr('app.credit') }}</div>
             </div>
           }
         </div>

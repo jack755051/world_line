@@ -1656,6 +1656,26 @@ export class AtlasMap {
       const p = map.project([near(ll[0]), ll[1]]);
       out.push({ key: `r-${l.versionId}`, kind: 'regime', text: l.text, x: p.x, y: p.y, rotation: l.rotation ?? 0, side: 'right' });
     }
+    // 磚片模式（正式站預設）沒有 regime-label 資料：圖磚的國名圖層又排除了被選政權，名字會整個不見。
+    // 改從圖磚的候選點取：畫面內面積最大的那一塊；都不在畫面內就取最大塊。
+    if (!one && this.boundarySource() === 'tiles' && map.getSource(TILE_SOURCE)) {
+      const text = this.regimeNames()[sel];
+      const b = map.getBounds();
+      let best: { lng: number; lat: number; score: number } | null = null;
+      for (const f of text ? map.querySourceFeatures(TILE_SOURCE, { sourceLayer: 'labels', filter: tileDateFilter(this.tileDay) }) : []) {
+        const g = f.geometry;
+        if (f.properties?.['regime_id'] !== sel || g.type !== 'Point') continue;
+        const lng = near(g.coordinates[0]);
+        const lat = g.coordinates[1];
+        const inView = lng >= b.getWest() && lng <= b.getEast() && lat >= b.getSouth() && lat <= b.getNorth();
+        const score = Number(f.properties?.['area'] ?? 0) + (inView ? 1e12 : 0);
+        if (!best || score > best.score) best = { lng, lat, score };
+      }
+      if (best && text) {
+        const p = map.project([best.lng, best.lat]);
+        out.push({ key: `r-tile-${sel}`, kind: 'regime', text, x: p.x, y: p.y, rotation: 0, side: 'right' });
+      }
+    }
     for (const f of this._enrichedCapitals?.features ?? []) {
       const pr = (f.properties ?? {}) as Record<string, unknown>;
       if (pr['regimeId'] !== sel || f.geometry.type !== 'Point') continue;

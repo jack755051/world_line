@@ -76,7 +76,7 @@ const mx = lon => lon * R, my = lat => Math.log(Math.tan(Math.PI / 4 + lat * R /
 const ilon = x => x / R, ilat = y => (2 * Math.atan(Math.exp(y)) - Math.PI / 2) / R;
 const N = 420, NPK = 72;
 const SEC_PER_DAY = 1.2;
-let BBOX = [-180, -85, 180, 85], CITIES = [], SEAS = [], KEY_RIVERS = [], SIDE_NAME = { axis: '軸心', allied: '盟軍' }, SIDES = ['axis', 'allied'], AREAS = null, BASE_RING = null;
+let BBOX = [-180, -85, 180, 85], CITIES = [], SEAS = [], KEY_RIVERS = [], SIDE_NAME = { axis: '軸心', allied: '盟軍' }, SIDES = ['axis', 'allied'], AREAS = null, BASE_RING = null, UPOS = null;
 const rgba = (r, g, b, a) => [r / 255, g / 255, b / 255, a];
 const COL = { sea: '#d6e1e7', land: '#f4f1ea', uk: '#f4f1ea', allied: '#e3eaf2', axis: '#e6c7bd', third: '#d3d7c3', paper: '#faf8f3', coast: '#8fa2ad', river: 'rgba(104,152,190,0.75)', border: 'rgba(80,72,60,0.3)' };
 let VIEW = ['axis', 'allied', 'third'].includes(Q.get('side')) ? Q.get('side') : 'all', ENGM = {}, layOpen = false, oobTab = 'units', oobSide = VIEW === 'all' ? 'axis' : VIEW, infoTab = 'ov', KCAM = [];
@@ -142,7 +142,12 @@ function edt2(g, w, h) { const n = Math.max(w, h), INF = 1e20, f = new Float64Ar
     for (let q = 1; q < len; q++) { let sx; do { const r = v[k]; sx = (f[q] - f[r] + q * q - r * r) / (q - r) / 2; } while (sx <= z[k] && --k > -1); k++; v[k] = q; z[k] = sx; z[k + 1] = INF; }
     k = 0; for (let q = 0; q < len; q++) { while (z[k + 1] < q) k++; const r = v[k]; g[off + q * st] = f[r] + (q - r) * (q - r); } };
   for (let x = 0; x < w; x++) run(x, w, h); for (let y = 0; y < h; y++) run(y * w, 1, w); }
-function prepAreas() { const C = TH.control; if (!C || C.mode !== 'areas') return;
+function prepAreas() { const C = TH.control; if (!C || (C.mode !== 'areas' && C.mode !== 'units')) return;
+  if (C.mode === 'units') {   /* 推導的控制區（憲法 Decision 5 的推導圖形）：由當日態勢圖上雙方部隊的位置算出，只有有位置的日期才有 */
+    const b = C.bbox, R = [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]]]; BASE_RING = new Float64Array(8); R.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
+    const side = Object.fromEntries(D.units.map(u => [u.id, u.side]));
+    UPOS = D.keyframes.map(k => D.positions.filter(p => p.date === k.date && p.status === 'map' && side[p.unit_id]).map(p => [p.lng, p.lat, side[p.unit_id]]));
+    AREAS = D.keyframes.map(() => ({})); setTimeout(() => buildFields(cfg.geo.land), 0); return; }
   const B = C.border; BASE_RING = new Float64Array(B.length * 2); B.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
   AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; });
   setTimeout(() => buildFields(cfg.geo.landc), 0); }
@@ -154,10 +159,18 @@ function buildFields(landc) { if (dead) return; const C = TH.control, t0 = perfo
   const poly = (rings, col) => { g.fillStyle = col; g.beginPath(); for (const r of rings) { r.forEach((p, k) => k ? g.lineTo(gx(p[0]), gy(p[1])) : g.moveTo(gx(p[0]), gy(p[1]))); g.closePath(); } g.fill('evenodd'); };
   const under = C.under_ids || [], a = new Float64Array(NP), o = new Float64Array(NP), n = new Float64Array(NP), m = new Uint8Array(NP);
   D.keyframes.forEach((kf, ki) => { g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH);
+    if (C.mode === 'units') {   /* 每一格歸給最近的部隊那一方，但只算到 radius_km 以內；更遠的地方沒有依據，不塗色。只塗陸地 */
+      const U = UPOS[ki].map(u => [gx(u[0]), gy(u[1]), u[2] === 'axis' ? 0 : u[2] === 'allied' ? 1 : 2]), latc = (FB[1] + FB[3]) / 2, kmpp = (FB[2] - FB[0]) * 111.32 * Math.cos(latc * Math.PI / 180) / GW, R2 = Math.pow((C.radius_km || 14) / kmpp, 2);
+      const im = g.createImageData(GW, GH), dd = im.data;
+      if (U.length) for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { let bd = R2, bs = -1; for (let q = 0; q < U.length; q++) { const dx = U[q][0] - x, dy = U[q][1] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; bs = U[q][2]; } } if (bs >= 0) { const i = 4 * (y * GW + x); dd[i + bs] = 255; dd[i + 3] = 255; } }
+      const t = document.createElement('canvas'); t.width = GW; t.height = GH; t.getContext('2d').putImageData(im, 0, 0);
+      g.clearRect(0, 0, GW, GH); for (const f of landc.features) { if (!f.geometry) continue; (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(rs => poly(rs, '#fff')); }
+      g.globalCompositeOperation = 'source-in'; g.drawImage(t, 0, 0); g.globalCompositeOperation = 'destination-over'; g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH); g.globalCompositeOperation = 'source-over';
+    } else {
     for (const f of landc.features) { const col = CH[f.properties.k]; if (!col || !f.geometry) continue; (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(rs => poly(rs, col)); }
     poly([C.border], CH[C.base_side || 'axis']);
     const ar = D.areas.filter(q => q.date === kf.date);
-    for (const [side, un] of [['allied', true], ['third', false], ['allied', false]]) ar.forEach(q => { if (q.side === side && under.includes(q.id) === un) poly([q.ring], CH[side]); });
+    for (const [side, un] of [['allied', true], ['third', false], ['allied', false]]) ar.forEach(q => { if (q.side === side && under.includes(q.id) === un) poly([q.ring], CH[side]); }); }
     const px = g.getImageData(0, 0, GW, GH).data, out = new Float32Array(NP * 4);
     // 各方的有號距離：自己範圍內＝到「其他交戰方」的距離（中立國界不算邊界，否則夾在中立國之間的狹長地帶會整塊同時易手）；範圍外＝負的到自己的距離
     const outer = v => v === 1 ? 0 : v === 0 ? 1e20 : Math.pow(Math.max(0, 0.5 - v), 2);
@@ -178,10 +191,11 @@ function buildFields(landc) { if (dead) return; const C = TH.control, t0 = perfo
   FLD = { x0, x1, y0, y1, flat, idx, from, gw: GW, gh: GH }; window.__fieldMs = Math.round(performance.now() - t0); if (MAP) MAP.triggerRepaint(); }
 const hexc = h => [parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255, 1];
 function drawAreas() { F.pockets = []; if (!FLD) return; const S = F.S, L = FLD;
+  if (UPOS && !(UPOS[S.i].length && UPOS[S.j].length)) return;   // 前後兩個關鍵日都要有部隊位置才畫；不拿「沒有資料」去補間
   const U = x => (x - L.x0) / (L.x1 - L.x0), V = y => (L.y1 - y) / (L.y1 - L.y0);
   const com = { a: 'k' + S.i, b: 'k' + S.j, e: S.e || 0, gate: L.from != null && day < L.from, dpr: DPR, ppc: (L.x1 - L.x0) * SC / L.gw, c0: hexc(COL.axis), c1: hexc(COL.allied), c2: hexc(COL.third), ink: rgba(...INK, cfLevel('map:areas') === 'estimate' ? 0.6 : 0.92), lc: rgba(...SIDE_COL.third, 0.75) };
   const fv = new Float32Array(L.idx.length * 4); L.idx.forEach((q, k) => { const x = L.flat[2 * q], y = L.flat[2 * q + 1]; fv[4 * k] = PX(x); fv[4 * k + 1] = PY(y); fv[4 * k + 2] = U(x); fv[4 * k + 3] = V(y); });
-  BGL.field(Object.assign({ mode: 0, verts: fv }, com));
+  BGL.field(Object.assign({ mode: UPOS ? 2 : 0, verts: fv }, com));   /* 2＝沒有依據的地方不塗色（推導的控制區用） */
   const X0 = PX(L.x0), X1 = PX(L.x1), Y0 = PY(L.y1), Y1 = PY(L.y0);
   BGL.field(Object.assign({ mode: 1, verts: new Float32Array([X0, Y0, 0, 0, X1, Y0, 1, 0, X1, Y1, 1, 1, X0, Y0, 0, 0, X1, Y1, 1, 1, X0, Y1, 0, 1]) }, com));
   // 口袋名稱（放大才顯示）：位置在兩個關鍵日之間內插；只存在於其中一天的，淡入或淡出
@@ -748,7 +762,7 @@ function initBattleNav() {
   $('#lg-sides').textContent = `部隊牌（${SIDES.map(k => ({ axis: '紅', allied: '藍', third: '綠' }[k] + '＝' + SIDE_NAME[k])).join('，')}）`;
   if (SIDES.includes('third')) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row lg-dyn"><i class="sw sw-third"></i>${esc(SIDE_NAME.third)}控制區</div>`);
   if (TH.control && TH.control.border_name_zh) $('#lg-allied').parentElement.insertAdjacentHTML('afterend', `<div class="lg-row lg-dyn"><i class="sw sw-hist"></i>${esc(TH.control.border_name_zh)}</div>`); $('#lg-axis').textContent = `${SIDE_NAME.axis}控制區`; $('#lg-allied').textContent = `${SIDE_NAME.allied}控制區`;
-  if (SRC) $('#lg-note').insertAdjacentHTML('beforebegin', `<div class="lg-dyn lg-src"><div class="lg-row"><i class="sw sw-srcsite"></i>史料據點（實心＝易手日已查證）</div><div class="lg-row"><i class="sw sw-srcarrow"></i>史料箭頭／戰線（虛線＝待查證）</div>${SRC.arrows.some(a => a.schematic) ? '<div class="lg-row"><i class="sw sw-schem"></i>示意箭頭：依出處敘述畫出方向，非實際路線</div>' : ''}<div class="lg-row">${['verified', 'needs-check', 'estimate', 'conflict'].map(cfBadge).join(' ')}</div>${cfLevel('map:areas') === 'estimate' ? '<div class="lg-row">控制區與灰色前線是推估；黑色實線才是史料戰線。</div>' : ''}</div>`);
+  if (SRC) $('#lg-note').insertAdjacentHTML('beforebegin', `<div class="lg-dyn lg-src"><div class="lg-row"><i class="sw sw-srcsite"></i>史料據點（實心＝易手日已查證）</div><div class="lg-row"><i class="sw sw-srcarrow"></i>史料箭頭／戰線（虛線＝待查證）</div>${SRC.arrows.some(a => a.schematic) ? '<div class="lg-row"><i class="sw sw-schem"></i>示意箭頭：依出處敘述畫出方向，非實際路線</div>' : ''}<div class="lg-row">${['verified', 'needs-check', 'estimate', 'conflict'].map(cfBadge).join(' ')}</div>${cfLevel('map:areas') === 'estimate' ? `<div class="lg-row">控制區與灰色前線是推估；黑色實線才是史料戰線。${TH.control && TH.control.note ? esc(TH.control.note) : ''}</div>` : ''}</div>`);
   $('#lg-note').textContent = `${m.note || ''} 拉遠看集團軍，拉近展開成軍、師。部隊位置是關鍵日之間的內插，不是逐時紀錄。底圖：Natural Earth（公有領域，現代國界）。`;
   const multi = INDEX.length > 1; $('#bt-prev').hidden = $('#bt-next').hidden = !multi; $('#bt-title').disabled = !multi;
   [['#bt-prev', -1], ['#bt-next', 1]].forEach(([s, d]) => { const b = $(s), n = INDEX[i + d]; b.disabled = !n; b.title = n ? `${d < 0 ? '上一場' : '下一場'}：${n.title_zh}（鍵盤 ${d < 0 ? '↑' : '↓'}）` : (d < 0 ? '已是第一場' : '已是最後一場'); b.onclick = () => switchBattle(d); });
@@ -909,7 +923,7 @@ function drawSourced(LA) { const inPh = p => day >= p.t0 - 1e-6 && day < p.t1, i
     BGL.line([s0, e], false, w + 3, wc); BGL.tris([[tip[0] + ux * 2.5, tip[1] + uy * 2.5, wc], [e[0] - uy * 9 - ux * 2, e[1] + ux * 9 - uy * 2, wc], [e[0] + uy * 9 - ux * 2, e[1] - ux * 9 - uy * 2, wc]]);
     if (a.schematic) {   /* 示意箭頭（憲法 Decision 5）：寬、半透明、點狀邊，和史料戰線（黑色細線）、部隊牌都分得出來 */
       const cs = rgba(...(SIDE_COL[a.sd] || INK), (hot ? 0.62 : 0.42) * LA), bw = hot ? 11 : 9;
-      BGL.line([s0, e], false, bw, cs, [2, 5]); BGL.tris([[tip[0], tip[1], cs], [e[0] - uy * 12, e[1] + ux * 12, cs], [e[0] + uy * 12, e[1] - ux * 12, cs]]);
+      BGL.line([s0, e], false, bw, cs, [2, 5, RM ? 0 : (performance.now() / 55) % 7]);   /* 點沿著方向流動：只表示方向，不表示推進到哪裡 */ BGL.tris([[tip[0], tip[1], cs], [e[0] - uy * 12, e[1] + ux * 12, cs], [e[0] + uy * 12, e[1] - ux * 12, cs]]);
       hits.push({ type: 'src', id: a.id, x: (A[0] + B[0]) / 2, y: (A[1] + B[1]) / 2, r: 16 }, { type: 'src', id: a.id, x: e[0], y: e[1], r: 14 }); continue; }
     BGL.line([s0, e], false, w, c, a.verified ? null : [7, 5]); BGL.tris([[tip[0], tip[1], c], [e[0] - uy * 6.5, e[1] + ux * 6.5, c], [e[0] + uy * 6.5, e[1] - ux * 6.5, c]]);
     hits.push({ type: 'src', id: a.id, x: (A[0] + B[0]) / 2, y: (A[1] + B[1]) / 2, r: 16 }, { type: 'src', id: a.id, x: e[0], y: e[1], r: 14 }); }
@@ -963,7 +977,7 @@ function start() {
   const vw = Q.get('view'); if (vw) { const [lo, la, z] = vw.split(',').map(Number); setFollow(false); MAP.jumpTo({ center: [lo, la], zoom: z }); }
   else applyCamera(performance.now());
   if (Q.get('sel')) { selectUnit(Q.get('sel'), !vw); if (Q.get('lock') === '1') setLock(Q.get('sel')); } else if (Q.get('eng')) selectEng(Q.get('eng')); else if (Q.get('src') && SRC) openInfo({ type: 'src', id: Q.get('src') });   // v2.3：可以用網址直接開在某個部隊／交戰
-  MAP.once('load', () => { const chk = () => { if (MAP.areTilesLoaded() && MAP.getLayer('battle') && (!(TH.control && TH.control.mode === 'areas') || FLD)) { window.__ready = true; requestAnimationFrame(() => requestAnimationFrame(() => $('#veil').classList.add('off'))); if (Q.get('autoplay') === '1') play(true); } else if (!dead) setTimeout(chk, 80); }; chk(); });
+  MAP.once('load', () => { const chk = () => { if (MAP.areTilesLoaded() && MAP.getLayer('battle') && (!(TH.control && (TH.control.mode === 'areas' || TH.control.mode === 'units')) || FLD)) { window.__ready = true; requestAnimationFrame(() => requestAnimationFrame(() => $('#veil').classList.add('off'))); if (Q.get('autoplay') === '1') play(true); } else if (!dead) setTimeout(chk, 80); }; chk(); });
   raf = requestAnimationFrame(loop);
 }
 try { start(); } catch (e) { destroy(); throw e; }

@@ -265,6 +265,7 @@ W('assignments.json', {'meta': {'is_example': False, 'note': f'指揮官取自 {
 W('sourced.json', {'meta': {'from': REL, 'schema': 'battle-data', 'campaign_key': slug, 'name_zh': VIEW.get('title_zh'), 'date_start': D0, 'date_end': D1, 'generated_by': 'tools/import_battle_data.py',
                             'note': '由主線考證檔轉出，只搬運不補。前段（5/10–5/25）的戰線是文字地名連線；主期的戰線讀自態勢圖，屬推估。'},
                    'phases': phases, 'arrows': schem, 'lines': lines, 'sites': list(sites.values()), 'sources': src_out})
+conf['map:areas'] = {'level': 'estimate', 'fields': {}}   # 控制區是推導圖形（由部隊位置算出），一律推估
 summ = collections.Counter(v['level'] for v in conf.values())
 W('confidence.json', {'meta': {'generated_by': 'tools/import_battle_data.py', 'tiers': {'1': '官方紀錄／戰史', '2': '同行審查研究', '3': '專書', '4': '百科（線索）', '5': '無出處'},
                                'note': '等級取自主線依 docs/source-rules.md 判定的可信程度：已查證＝一筆 A 或兩個獨立家族的 B；只有對手方說法或不到門檻＝待查證；讀圖＝推估。'},

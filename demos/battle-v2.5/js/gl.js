@@ -34,6 +34,7 @@ const FLD_FS = `#extension GL_OES_standard_derivatives : enable
 precision highp float;uniform sampler2D ta;uniform sampler2D tb;uniform float e;uniform float gate;uniform float mode;uniform float dpr;uniform float ppc;uniform vec4 c0;uniform vec4 c1;uniform vec4 c2;uniform vec4 ink;uniform vec4 lc;varying vec2 uv;
 void main(){vec4 s=mix(texture2D(ta,uv),texture2D(tb,uv),e);
 if(gate>0.5){s.a=max(s.a,s.b);s.b=-1e4;}
+if(mode>1.5){if(s.a>=max(s.r,max(s.g,s.b))){gl_FragColor=vec4(0.0);return;}gl_FragColor=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);return;}
 if(mode<0.5){gl_FragColor=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);return;}
 float en=max(s.r,s.b);float f=s.g-en;float d=abs(f)/max(length(vec2(dFdx(f),dFdy(f)))*dpr,1.0/ppc);float ok=step(s.a,min(s.g,en)+0.5);
 float ca=(1.0-smoothstep(2.4,3.4,d))*0.85*ok;float co=(1.0-smoothstep(0.6,1.6,d))*ink.a*ok;
@@ -73,9 +74,10 @@ function fillIdx(flat, idx, c) { geoStart(idx.length, 'f'); for (let i = 0; i < 
 // 三角形（每頂點各自顏色）
 function tris(list) { geoStart(list.length, 'f'); for (const t of list) v(t[0], t[1], t[2], 0, 0, 0, 0, 0); geoEnd(); }
 // 反鋸齒粗線（miter 接頭）；pts=[[x,y],...]
+// dash=[on, off, phase?]：phase 是虛線起點的位移（像素），每幀改它就會沿線流動
 function line(pts, closed, width, c, dash) {
   const n = pts.length; if (n < 2) return; const hw = width / 2, ex = hw + 1, on = dash ? dash[0] : 0, off = dash ? dash[1] : 0;
-  const Lx = new Float32Array(n), Ly = new Float32Array(n), Rx = new Float32Array(n), Ry = new Float32Array(n), Sd = new Float32Array(n); let s = 0;
+  const Lx = new Float32Array(n), Ly = new Float32Array(n), Rx = new Float32Array(n), Ry = new Float32Array(n), Sd = new Float32Array(n); let s = dash && dash[2] ? -dash[2] : 0;
   for (let i = 0; i < n; i++) {
     const p = pts[i], a = closed ? pts[(i - 1 + n) % n] : pts[Math.max(i - 1, 0)], b = closed ? pts[(i + 1) % n] : pts[Math.min(i + 1, n - 1)];
     let d1x = p[0] - a[0], d1y = p[1] - a[1], d2x = b[0] - p[0], d2y = b[1] - p[1]; let l1 = Math.hypot(d1x, d1y), l2 = Math.hypot(d2x, d2y);

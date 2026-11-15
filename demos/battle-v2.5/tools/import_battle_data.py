@@ -277,6 +277,13 @@ if os.path.exists(CAMP):
                           'verified': True, 'schematic': True, 'date': p['start_date'], **({'note': a['note']} if a.get('note') else {}),
                           'refs': [{'src': camp_src(c), 'quote': c['quote'], 'loc': None, 'url': c.get('url'), 'grade': GRADE_OF[c['type']], 'checked': None} for c in cits]})
 
+# 主線戰役資料夾裡的 schematic.json：示意箭頭與示意航線，每個都帶引文（引文由 tools/battles/verify_quotes.py 逐字核對）
+for sh in L('schematic.json', {'shapes': []})['shapes']:
+    cits = [c for c in sh.get('citations', []) if c.get('grade') in ('A', 'B') and c.get('quote') and (c.get('quoteCheck') or {}).get('status', 'verbatim') != 'failed']
+    if not cits: schem_skip.append(f"{sh['key']}（沒有通過核對的 A／B 引文）"); continue
+    schem.append({'phase': ph_of(sh['from']), 'from': sh['path'][0]['place'], 'to': sh['path'][-1]['place'], 'path': [q['lonlat'] for q in sh['path']], 'unit': sh.get('labelZh'), 'side': sh.get('side'),
+                  'verified': True, 'schematic': True, 'kind': sh['kind'], 'date': sh['from'], 'date_to': sh['to'], 'note': sh.get('waypointNote'), 'refs': refs(cits)})
+
 battle = {'meta': meta, 'keyframes': keyframes, 'units': units, 'positions': positions, 'fronts': [], 'arrows': [], 'engagements': engs}
 W = lambda n, o: json.dump(o, open(OUT + n, 'w'), ensure_ascii=False, indent=1)
 W('battle.json', battle)
@@ -312,7 +319,7 @@ rep = f"""# 匯入報告：{bid}
 
 ## 示意圖形
 
-示意箭頭 {len(schem)} 支（取自 `data/campaigns/{slug}.json`，每支掛在一段官方戰史引文上；只表示方向，不是實際路線）。
+示意箭頭與航線 {len(schem)} 個（取自 `data/campaigns/{slug}.json` 的進攻箭頭與主線資料夾的 `schematic.json`，每個都掛在官方戰史引文上；只表示方向或走向，不是實際路線）。
 沒有畫的 {len(schem_skip)} 支：{'；'.join(schem_skip) or '—'}。
 
 ## 還缺什麼

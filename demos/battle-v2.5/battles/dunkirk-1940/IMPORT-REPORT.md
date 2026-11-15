@@ -20,7 +20,7 @@
 
 ## 示意圖形
 
-示意箭頭 3 支（取自 `data/campaigns/dunkirk_1940.json`，每支掛在一段官方戰史引文上；只表示方向，不是實際路線）。
+示意箭頭與航線 7 個（取自 `data/campaigns/dunkirk_1940.json` 的進攻箭頭與主線資料夾的 `schematic.json`，每個都掛在官方戰史引文上；只表示方向或走向，不是實際路線）。
 沒有畫的 4 支：Diksmuide→Nieuwpoort（起點 Diksmuide 與部隊番號為推定，未核實；終點已核實）；Nieuwpoort→De Panne（攻擊方向與部隊番號未核實；僅攻擊地點已核實）；Veurne→De Panne（同上）；Hoymille→Teteghem（終點 Teteghem 為推定方向，未核實）。
 
 ## 還缺什麼

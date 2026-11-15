@@ -416,10 +416,12 @@ test.describe('手機', () => {
         const cx = b.left + b.width / 2, cy = b.top + b.height / 2;
         const hit = (x: number, y: number) => document.elementFromPoint(x, y) === el;
         const group = [...el.parentElement!.querySelectorAll('[data-testid="person-field-sup"]')];
-        return { w: parseFloat(a.width), h: parseFloat(a.height), single: group.length === 1, up: hit(cx, cy - 20), down: hit(cx, cy + 20), center: hit(cx, cy) };
+        const i = group.indexOf(el);
+        return { w: parseFloat(a.width), h: parseFloat(a.height), single: group.length === 1, edge: i === 0 || i === group.length - 1, up: hit(cx, cy - 20), down: hit(cx, cy + 20), center: hit(cx, cy) };
       });
       expect(r.h).toBeGreaterThanOrEqual(44);
-      expect(r.w).toBeGreaterThanOrEqual(r.single ? 44 : 38);
+      // 單一編號 44；一組裡頭尾各往外延伸 6px＝38；三個以上時中間的編號是 32（設計：每個編號實寬 ≥32px、相鄰不重疊）
+      expect(r.w).toBeGreaterThanOrEqual(r.single ? 44 : r.edge ? 38 : 32);
       expect(r.center && r.up && r.down).toBe(true);
     }
   });

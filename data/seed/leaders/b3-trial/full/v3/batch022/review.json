@@ -1,0 +1,102 @@
+{
+ "batch": "022",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 7,
+  "deletedParagraphs": 6,
+  "deletedPositions": 5,
+  "deletedRoleCandidates": 1,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 80,
+  "addedCitations": 5,
+  "editedSentences": 7,
+  "spotRefetched": 6,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cn-lin-sen",
+   "bioId": "01a1b490-dcec-7c4e-9a70-1998abcae454",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 18,
+   "changes": [
+    "來源 linsen-people（宋海東，原載通俗文史雜誌《文史天地》，人民文摘轉摘）由 B 改評 C",
+    "來源 linsen-rmzxw（人民政協報史話專文）由 B 改評 C",
+    "刪段 2（1931 立法院長）、段 4（1937 遷渝），段 1／3／5 刪去只靠 C 來源的子句（出生地、中山陵、國府看印的、三不、車禍等）並改寫，3 段改編號",
+    "刪 positions 3 筆（國民政府委員、立法院副院長、立法院長，唯一出處為 C），連同 3 筆缺迄日 gap；引文移入 gap field:positions1928to1931",
+    "新增 gap paragraph:early_life_and_1931、paragraph:wartime_1937 收 C 來源候選引文",
+    "field:chairmanStart 由 conflict 改 not_found（人民文摘改 C 後不構成兩個合格出處衝突）",
+    "paragraph:length 篇幅不足 gap 改寫為審查後實況（3 段／126 字）",
+    "thickness 中→薄",
+    "抽查重抓 GND（lobid）與 ctbu PDF，與原文一致"
+   ],
+   "returnedReasons": [
+    "審查後只剩 GND（A）與重慶工商大學學報論文（B），3 段／126 字，未達 3 段 300 字最低標準",
+    "研究者 retry 輪因搜尋額度用盡未完成（step 13、18 註明），加強搜尋不足",
+    "建議下一個具體來源：國史館《國民政府公報》數位典藏（林森任立法院長／國府主席任免令）、近史所檔案館人物權威（archives.sinica.edu.tw）、立法院官網歷任院長頁、國家圖書館臺灣記憶或學術專書（如林森年譜類學術出版）、LoC 權威檔 JSON 以外的 NDL 典藏"
+   ]
+  },
+  {
+   "key": "mx-carranza",
+   "bioId": "01a1b488-14b7-79d8-b825-78d8d5c687e0",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 18,
+   "changes": [
+    "來源 carranza-cndh（CNDH 無署名紀念文 Fecha Relevante Nacional）由 A 改評 C（機構無署名介紹文，比照 batch017 bpb）",
+    "5 段刪為 1 段，只保留 GND 可支撐的生卒、出生地、1914–1920 總統與遭殺害；新增 3 筆 GND 引文（placeOfBirth、dateOfDeath、placeOfDeath，皆在已抓原文）",
+    "刪 positions 2 筆（科阿韋拉臨時州長、州長）與 roleCandidate 1 筆（立憲軍第一首領；另 de_facto_leader 標 R0 不當），引文移入 gap field:primerJefe、field:coahuilaGovernor、paragraph:narrative_1859_1920",
+    "刪原州長缺迄日 gap 與 field:dayDates gap；field:secondSource note 更新；paragraph:length 改寫為審查後實況",
+    "thickness 中→薄",
+    "抽查重抓 GND 與 CNDH PDF，與原文一致"
+   ],
+   "returnedReasons": [
+    "CNDH 改評 C 後只剩 GND 權威檔，1 段／81 字，未達最低標準",
+    "retry 輪 step 18 因搜尋額度用盡未執行",
+    "建議下一個具體來源：INEHRM《A 100 años, iconografía de Venustiano Carranza》（inehrm.gob.mx 出版品 PDF）、Memoria Política de México 改日重試（不繞過）、Biblioteca Nacional de México 權威檔、Senado 歷任總統資料、El Colegio de México／UNAM IIH 學術出版開放取用章節"
+   ]
+  },
+  {
+   "key": "lu-bech",
+   "bioId": "01a1b4b0-7015-7c59-8efb-ae8bdd8d10e8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 11,
+   "changes": [
+    "來源 bech-eu（歐盟官網 EU pioneers 無署名頁）由 A 改評 C，刪其 3 筆引文（段 4 比荷盧關稅同盟、段 5 墨西拿會議、外交部長職位第二出處），句子一併刪除，引文移入新 gap paragraph:eu_pioneer",
+    "段 2 刪無引文支撐的「之後在1926年出任首相」子句；補「le plus jeune membre de la Chambre des Députés」與「Membre du Parlement (19141921)」2 筆引文（已抓 BID 原文）",
+    "段 4 period 起點改 1945-01-01、標題改",
+    "bech-foreign-minister R6 的 t14Reason 改為 1 筆 A（regime 仍為 roleGap）",
+    "field:birthDate 由 conflict 改 not_found（單一來源內部不一致，非兩個合格出處）",
+    "抽查重抓 GND 與 BID 1975 PDF，與原文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把報刊／通俗文史專文（人民文摘、人民政協報）記 B，把機構無署名介紹文（CNDH 紀念文、EU pioneers 頁）記 A；依 source-rules §2 與 batch012／016／017 先例改評 C，導致林森、卡蘭薩主要敘述全部移入 gaps",
+  "positions 的 t14Reason 套用同一句「轄區內地方長官」樣板，未對應實際職位（已隨職位刪除）",
+  "gapKind conflict 被用於單一合格來源對庫值或單一來源內部不一致（林森主席起日、貝希生日），已改 not_found",
+  "兩人 retry 輪因搜尋額度用盡未完成，需重跑研究"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

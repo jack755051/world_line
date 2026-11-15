@@ -1,0 +1,93 @@
+{
+ "batch": "023",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 1,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 2,
+  "addedCitations": 10,
+  "editedSentences": 7,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "bo-montes",
+   "bioId": "01a1b4b0-701c-7890-8b7e-603a2e65fe39",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "段1 出生地譯法改為「拉巴斯帕卡赫斯省的科羅科羅」（原文 La Paz, Provinz Pacajes）",
+    "段2、段3 任期引文由僅日期的 periodOfActivity 改為 biographicalOrHistoricalInformation 的「bolivianischer Präsident: 14.08.1904-12.08.1909 und 14.08.1913-15.08.1917」，使「總統」與日期同句支撐",
+    "段3「職業欄除總統與政治人物外」原無引文，補 GND 職業欄 Präsident、Politiker 兩筆（已抓原文）",
+    "positions montes-diplomat-1919 的 t14Reason 原為跨人套用的通用句，改為外交官專屬說明",
+    "刪除 paragraph:length「篇幅不足」gap：重跑 check_min 為 4 段 331 字，已達最低標準",
+    "重抓 lobid GND 1057234923 比對，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "us-coolidge",
+   "bioId": "01a1b48b-c85e-7824-a2ee-c5d29129b255",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1「父親經營鄉間商店」無「鄉間」出處，改為「幫開店的父親記帳」；「在北安普敦開設律師事務所」引文未含地點，刪「在北安普敦」",
+    "段1 補 Amherst College 引文（原只引 graduated with honors in 1895）",
+    "段3 原寫死訊「傳到佛蒙特老家」與宣誓同日，引文不支撐，改寫為父親叫醒度假中的他告知死訊；宣誓引文換成含 justice of the peace 的句子",
+    "段4 刪「約」（原文 54 percent）；補「1924 Republican nomination」引文；口號引文改為含 a popular slogan 的完整片段",
+    "三筆 positions 的 t14Reason 改為各自說明（副州長、州長、副總統皆 R5）",
+    "新增 conflict gap：副州長迄年 GND 1919 vs Miller Center 1918（兩份已抓來源矛盾）",
+    "重抓 Miller Center Life Before the Presidency 比對，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ec-ayora",
+   "bioId": "01a1aa4a-e5ec-7671-9fce-28be457620db",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 21,
+   "changes": [
+    "刪原段3（LoC「Banco Central del Ecuador. Colección Isidro Ayora」款目）：「以他的名字命名」為推論，來源未說明與本人關係，屬湊篇幅",
+    "段2 職業欄改照原文（Chirurg、Politiker、Präsident），「醫師」只出現在簡註",
+    "段3（原段4）period 迄點改 1918-01-01／year（段內最後一件事為1917年）",
+    "段4「州（cantonal）議會」改「縣（cantonal）議會」；appointed rector 引文無日期，datePrecision 改 null",
+    "段5 補 4 筆引文（顧問使節團、財政問題對策、政策受批評、基多群眾示威），原句子缺出處",
+    "searchLog step 19 網址屬 bannedHosts（enciclopediadelecuador.com），改 null",
+    "重抓 Encyclopedia.com 條目比對，引文一致；重跑 check_min 為 5 段 592 字，已達標"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者 t14Reason 用同一句通用文字套在不同性質職位，需逐筆寫理由",
+  "Ayora 1926-01-10 臨時執政委員會成員兼社會福利、勞工與農業部長只寫在正文，未建 positions（非四部，R5）；執政委員會成員是否屬集體元首（R0）待主管判斷，審查未新增",
+  "check_min-report 原為研究重跑前舊版（Ayora 3 段 287 字），已依現檔重跑",
+  "三人元首任期在名簿，A／B 來源未給逐段起訖，未建候選"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

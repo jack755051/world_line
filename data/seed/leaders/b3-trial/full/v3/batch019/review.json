@@ -1,0 +1,89 @@
+{
+ "batch": "019",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 21,
+  "editedSentences": 3,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pl-moscicki",
+   "bioId": "01a1b4b0-6fc6-76e6-926d-908d2e6d07da",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 24,
+   "changes": [
+    "P1 補 2 筆 IPN 引文（studiował na wydziale chemicznym、Zagrożony aresztowaniem）支撐「化學系」「有被捕之虞」子句",
+    "P2 補 3 筆 IPN 引文（弗里堡大學教授、旋焰爐、1922 年自德國接收霍茹夫廠）；P2 period 迄點依 Q3 由 1926-01-01 改 1927-01-01（段內最後一事為 do 1926 r.）",
+    "P3 periodStartPrecision month→day（1926-06-01 選舉為日精度）；城堡派引文改用含「Po śmierci Piłsudskiego」的完整片段以支撐「畢蘇斯基死後」",
+    "P4 補 IPN「Zwolniony z internowania…」支撐「獲釋後」、補 HLS「Als Schweizer Bürger…」支撐瑞士公民與聯邦委員會准許居留",
+    "院長、講座兩筆缺迄日已有「待查證：缺迄日」gap；篇幅不足 gap 與 round=retry 搜尋紀錄齊備，documentedShortfall=true",
+    "抽查重抓 hls-moscicki、ipn-wynalazki，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pt-salazar",
+   "bioId": "01a1b4b0-6fce-7392-8b0a-241baf36d38f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 1,
+   "gaps": 7,
+   "searchLogSteps": 22,
+   "changes": [
+    "P2 補 Costa Pinto 3 筆引文（1926 政變後入閣邀請、政局不穩、解決預算危機）與「came to dominate them ilitary dictatorship」（原文排版照錄）支撐各子句；P2 period 起點改 1926-01-01（段內首事為 1926 政變後邀請）",
+    "P3「體制出現法西斯式組織」無引文支撐，改寫為「新國家體制趨於激進」並補引文 The Portuguese New State became radicalized；補 Carmona 引文支撐「總統卡爾莫納」",
+    "新增 conflict gap：1921 議席迄日 Costa Pinto（1921 年 7 月解散時離席）與 Lex（僅一天即放棄）兩份已抓 B 來源不同；候選迄日暫依 Costa Pinto",
+    "財政部長 R6（dates、regime）判定正確，缺迄日 gap 齊備；戰爭／外交部 Treccani 無署名只在 gaps 候選，正確",
+    "抽查重抓 lex-salazar，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-ferdinand-i",
+   "bioId": "01a1b4af-e50c-7284-b42c-51fdb906b08b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "P1 刪「（卡羅一世）」（原文未以此名稱指叔父於引文中），補 NDB「kinderlosen Onkels Karl von Hohenzollern-Sigmaringen…」支撐叔父名",
+    "P2 刪「一年後，」相對時間子句（日期已由 10.10.1914 引文支撐）",
+    "P3 補 NDB 3 筆（協約國一方、宮廷、多數民意、決定參戰後堅持）與 Lex 3 筆（戰爭結局、1918 年底合併、大羅馬尼亞）引文，原段此兩句缺支撐",
+    "P4 補 NDB 卒地引文支撐「在布加勒斯特去世」",
+    "抽查重抓 ndb-ferdinand，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常以單一短引文支撐含多個子句的長句（地點、背景、評語未被引文涵蓋），本批補 21 筆引文、改寫 3 句",
+  "段落 period 迄點未依 Q3 以段內最後一事定（莫希奇茨基 P2）",
+  "莫希奇茨基、薩拉查仍有職位缺迄日（院長、講座、財政部長），已有待查證 gap 與篇幅不足 gap；加強搜尋因搜尋額度用盡未做足，下一輪建議查 Diário do Governo（財政部長 1928–1940 任免）與利沃夫理工學院院長名錄（官方／學術）",
+  "名單人數標示為 5 人，實際 3 人"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

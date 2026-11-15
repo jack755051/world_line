@@ -1,0 +1,86 @@
+{
+ "batch": "020",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 7,
+  "editedSentences": 0,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cr-gonzalez-viquez",
+   "bioId": "01a1b4b0-6ff3-71b3-b24a-82ff16022dbe",
+   "verdict": "pass",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 11,
+   "changes": [
+    "逐條核對 22 筆引文，均逐字見於 ency-gonzalez／presidencia-cr-expresidencias／gnd-gonzalez 原文且支撐對應子句，無需修改",
+    "重抓 presidencia.go.cr/expresidencias，「Presidente electo el 12 de febrero de 1928」與快取一致",
+    "國會議員、minister of Government、國家共和黨影響力皆無任期或黨職，維持 gap；1906 起任 vs 庫值 1908-01-01 屬時間窗截斷，非衝突"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "sv-melendez-carlos",
+   "bioId": "01a1b4b0-7001-7012-8b7a-a01f3de55605",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 12,
+   "changes": [
+    "段1：補引文「The Meléndez presidents' fourteen-year occupancy」支撐「十四年任期」子句",
+    "段3：補引文「his tenure in office is most notable for two policies」「as stipulated by the Bryan-Chamorro Treaty of 1913」支撐「最受矚目的兩項政策」與「1913 年布賴恩—查莫羅條約」子句",
+    "searchLog step 5：url 誤植為哥斯大黎加總統府頁，改為 null 並註明",
+    "重抓 encyclopedia.com Meléndez Family，引文與快取一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ar-justo",
+   "bioId": "76c55fff-9320-406e-a86d-9136b32a2b0b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 13,
+   "changes": [
+    "段3與 justo-war-minister：引文「el presidente Alvear lo nombró Ministro de Guerra」不含日期，datePrecision 由 year 改 null（Q8）",
+    "段4：補引文「dirigida por el general José Félix Uriburu」「la Unión Cívica Radical Antipersonalista y el Partido Socialista Independiente」",
+    "段5：補引文「fomentó desde el Estado un proceso de semindustrialización liviana」「the establishment of a national income tax」；引文「electoral fraud, censorship, and repression」擴為「the growing reliance on …」以支撐「日益」",
+    "戰爭部長 R6（roleGap=regime）依 batch001 先例維持；軍校兩職 military_education R5、特使 R5 正確；陸軍總司令無日期留 gap（缺起日）正確",
+    "重抓 AGN ISAAR PDF 與 Casa Rosada 阿爾維亞爾頁，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常漏補次要子句的引文（條約年份、支持政黨全名、所得稅等），審查以已抓原文補 7 筆",
+  "不含日期的引文誤填 datePrecision（Q8）",
+  "searchLog url 誤植（薩爾瓦多查詢填了哥斯大黎加網址）",
+  "ency-melendez 寫 Bryan-Chamorro 條約為 1913 年（一般記為 1914 年簽訂），段落依原文照寫；單一來源，未建 conflict",
+  "任務提示寫「本批 5 人」但名單只有 3 人，依名單審 3 人"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

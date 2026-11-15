@@ -1,0 +1,87 @@
+{
+ "batch": "031",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 23,
+  "editedSentences": 5,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "be-broqueville",
+   "bioId": "01a1b4b8-e9e3-7275-baa5-57b0b93c22cc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 37,
+   "changes": [
+    "第1段刪「比利時的」（無引文支撐）；補 3 筆引文（DB 生卒年 1860–1940、Palo「late-comer to political prominence」、Brieven/De Vos 1910 首次入閣）",
+    "第2段 quote「le gouvernement catholique homogène Schollaert tomba」不含年份卻標 year → 改為含「Quant en 1911」的完整片段；補「初等教育補助」「cette question scolaire」2 筆引文",
+    "第3段：「引發權力鬥爭」改為「牽涉權力鬥爭」（Gérard 只說此事件是權力鬥爭的一環）；補勒阿弗爾政府、一戰、在野黨領袖入閣共 4 筆引文",
+    "第4段：「必讀之作」改「參考之作」（原文 ouvrage de référence）；補兩卷專著與 1910 起始的 2 筆引文",
+    "重抓 Revue du Nord 1993 書評比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ve-medina-angarita",
+   "bioId": "01a1aa4a-da75-7538-8f9f-0cb2ae258371",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 26,
+   "changes": [
+    "戰爭與海軍部長迄日 1941-05-05 係依就任總統日推得（非名簿下一任，不符 Q7）→ 迄日改 null，刪該推論引文，加「待查證：缺迄日」gap；t14Reason 更新（仍 R6，roleGap dates/regime）",
+    "Camacho quote 截斷於「de」→ 補全為「…Ministro de Guerra y Marina de López」",
+    "Wright quote 改為含「served briefly」的完整片段（支撐「短暫」）",
+    "第1段：軍校 quote 補「a Caracas」；「regresa…」quote 無日期卻標 day → datePrecision 改 null，另補「hasta el 3 de febrero de 1919」與「y profesor」引文",
+    "第2–4段補引文：教職、辦公室主任兼秘書全稱、轉入待命參選、聖卡洛斯、國會選舉日 28.4.1941、concejales",
+    "篇幅不足 gap 已載明，searchLog 有 round=retry；重抓 DHV 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ht-lescot",
+   "bioId": "01a1b4b5-f9dd-736b-9749-8cc6481c38b7",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "第2段：sisal 誤譯「糖麻」→「瓊麻」；刪無引文支撐的「二戰期間」；「其中的」改寫為獨立句（原文是美援開發計畫，非援助本身）；補「close cooperation with U.S. government and business interests」引文",
+    "第3段：「students…demanded」quote 無年份卻標 year → 改為含「By the end of 1945」的片段，另補「an end to the dictatorship」「Following the Revolution of 1946」引文",
+    "searchLog 9 步（1 步未執行），達薄人物最低嘗試但偏低；只有 1 個 B 來源；重抓 Encyclopedia.com 條目比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "多筆 quote 本身不含日期卻填 datePrecision（違 Q8），已逐筆修正",
+  "多處子句（地點、年份、評語）缺 quote 支撐，審查以已抓原文補引文共 23 筆，未新增事實",
+  "迄日以非名簿下一任的事件推論（就任總統日）不符 Q7，改為待查證",
+  "WebSearch 額度用盡，三人 searchLog 均有未執行步驟；萊斯科只有 1 個 B 來源，建議下一輪查 Persée Nicholls 全文、LoC Haiti Country Study、海地官方歷任總統頁"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

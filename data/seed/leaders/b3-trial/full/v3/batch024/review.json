@@ -1,0 +1,90 @@
+{
+ "batch": "024",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 22,
+  "editedSentences": 8,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "rs-petar-i",
+   "bioId": "01a1b4b5-fa1f-795d-bad5-3703dfd0736d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 11,
+   "changes": [
+    "段1：1875 年起義改為「波士尼亞的塞爾維亞人起義反抗鄂圖曼」（原文 serberne i Bosnia），補巴黎受教育、普法戰爭、回到巴爾幹、尼古拉之女 4 筆引文",
+    "段2：補度假、宮內、亞歷山大·奧布雷諾維奇、英國要求懲處 4 筆引文",
+    "段3：改正「1906 年簽訂貿易協定」為「奧地利於 1906 年禁止進口」，補禁令、第二次巴爾幹戰爭 1913、健康原因 3 筆引文",
+    "段4：Lex 引文講的是 1918 年後兒子仍為實際攝政，刪「自1914年起」改寫並補 1918-12-01 引文；補阿爾巴尼亞山區引文",
+    "中文正文 Petar 改為彼得",
+    "抽查重抓 snl.no 條目：引文與原檔一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ve-lopez-contreras",
+   "bioId": "01a1aa4a-da75-71d2-9b14-f5b9feaed5f8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 19,
+   "changes": [
+    "段1：補舅父負責教養引文",
+    "段2：periodStartPrecision 由 year 改 month（引文 enero 1900）；補趕赴現場、戈麥斯 2 筆引文",
+    "段3：補托比亞斯·烏里韋、戈麥斯 1931–1936 總統 3 筆引文",
+    "段5：1951 引文延長至「retirado de toda actividad」以支撐退休子句",
+    "中文正文人名改中文譯名",
+    "2 筆職位（1930 暫代參謀長、1931 暫代部長）缺迄日，已有「待查證：缺迄日」gap 且 searchLog 有 retry，check_min 記 flagged，比照 batch007／017 不退回",
+    "抽查重抓 Fundación Polar 條目：引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "nl-ruijs-de-beerenbrouck",
+   "bioId": "01a1b4ae-0ddc-79c6-ad25-0cddd7bc4cf4",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 17,
+   "roleCandidates": 1,
+   "gaps": 1,
+   "searchLogSteps": 8,
+   "changes": [
+    "段1：學歷句改為 1892-09-28～1895-12-17 在萊登修習法學並以論文取得博士（原文為修業期間，非取得學位期間）",
+    "段3：補「Zijn eerste kabinet」引文",
+    "段5：補 1932-05-01 部名改為內政部的引文（Stb. 501）",
+    "職位 ruijs-agri-interim-1922 補含職稱的引文",
+    "T14：四部正職閣員 R6（source、regime）、代理／非四部 R5、戰爭部代理 85 天 R5 皆核對無誤；議員席位只寫選區未寫政黨，不移候選",
+    "抽查重抓 parlement.com：引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引日期片段而漏掉支撐人名、地點、原因子句的引文，本批補 22 筆",
+  "WebSearch 額度用盡，三人皆只有 B 級來源，四部閣員因此均為 R6"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 77
+ }
+}

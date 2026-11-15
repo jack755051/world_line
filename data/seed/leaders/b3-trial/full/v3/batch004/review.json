@@ -1,0 +1,85 @@
+{
+ "batch": "004",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 9,
+  "deletedParagraphs": 3,
+  "deletedPositions": 5,
+  "deletedRoleCandidates": 1,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 10,
+  "editedSentences": 4,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "uk-george-v",
+   "bioId": "01a19f15-3219-7d80-bda3-689198e9ac72",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 0,
+   "searchLogSteps": 10,
+   "changes": [
+    "第 1 段補 3 筆引文（Royal Navy 生涯、兄長猝逝、成為直接繼承人），原句「兄長猝逝使他成為直接繼承人」原無 quote 支撐",
+    "第 2 段補「陪同父王出席新朝第一次樞密院會議」引文；婚禮引文延長含 St James's Palace 以支撐「聖詹姆斯宮」",
+    "第 3 段補「否決權」引文；第 4 段補「聖誕廣播」引文（原引文只有 1932 年份）",
+    "royal.uk 重抓比對一致；名單 5442 內國王任期未重建，正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "br-tasso-fragoso",
+   "bioId": "a4c5697f-a435-4b8a-91a3-9af54161192e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 0,
+   "searchLogSteps": 11,
+   "changes": [
+    "第 4 段改寫事件順序：原文中梅納·巴雷托的提議在 10 月 23 日夜會面之前，原稿把兩者寫成同一晚；補「推翻總統的軍事行動」「協調最後準備」「次日上午前往瓜納巴拉宮」3 筆引文",
+    "執政委員會主席候選角色補「Na manhã seguinte…」引文，起日 1930-10-24 的 evidenceNote 改寫為依原文敘事順序推得（推論）",
+    "EME 兩任維持 R6（rank、regime），STM、總統軍事辦公室維持 positions；DHBB 重抓比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "co-angulo-lemos",
+   "bioId": "16a8717e-1661-451d-95a1-5f41bd023a5c",
+   "verdict": "returned",
+   "paragraphs": 0,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 9,
+   "searchLogSteps": 15,
+   "changes": [
+    "DiCCOL（diccionariodecolombia.expert）由 B 降為未評等：作者自營網站、站方徵求讀者補正、條目自註轉載 Banrepcultural，屬私人彙編／非 A 原件的轉錄",
+    "全部 3 段、5 筆 positions（四任閣員、制憲議會）、1 筆代理總統候選角色撤下，引文改放 gaps candidateCitations（各 position／role 一筆 gap，另 paragraph:bio）",
+    "加 paragraph:length「篇幅不足」gap；thickness 改薄；searchLog step 3、10 改 unrated"
+   ],
+   "returnedReasons": [
+    "無合格 A／B 出處：唯一用作出處的 DiCCOL 為私人彙編轉載，降為未評等後 0 段",
+    "最低標準未達（0 段／0 字）且 searchLog 無 round: retry 加強搜尋",
+    "建議下一個來源：Banrepcultural Biblioteca Virtual 原傳記頁（具名作者 Jorge Alejandro Medellín；本輪遇 perfdrive 驗證，換時段重試，仍擋則放棄）；historico.presidencia.gov.co 歷任總統頁（本輪逾時，重試）；Biblioteca Nacional de Colombia 權威檔／目錄；Diario Oficial 1905–1909 任命令（Imprenta Nacional 數位版）；Carrizosa Argáez《Linajes y bibliografías de nuestros gobernantes》的出版社書目或學術引用"
+   ]
+  }
+ ],
+ "issues": [
+  "研究者把轉載站記為「保守 B」：轉錄本只有原件為 A 且可對照時才記 B，自營彙編站一律不收",
+  "部分子句（如因果、地點、節目名稱）只有日期片段引文支撐，審查補引文"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

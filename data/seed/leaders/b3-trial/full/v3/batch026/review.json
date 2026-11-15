@@ -1,0 +1,89 @@
+{
+  "batch": "026",
+  "reviewedOn": "2026-11-15",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "full-v3",
+  "counts": {
+    "returned": 0,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 0,
+    "movedToPositions": 0,
+    "deletedCitations": 0,
+    "addedCitations": 25,
+    "editedSentences": 2,
+    "spotRefetched": 3,
+    "searchLogShort": 0
+  },
+  "people": [
+    {
+      "key": "gb-george-vi",
+      "bioId": "01a1aa4a-da2e-7907-b1fa-858d55b7918a",
+      "verdict": "pass_with_changes",
+      "paragraphs": 4,
+      "positions": 0,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 10,
+      "changes": [
+        "第1段補引文2筆（愛爾蘭法案第3(2)款 shall have effect…、shall henceforth be the person who），支撐「使遜位書生效」「此後國王」子句",
+        "第2段 period.start 1938-01-01→1923-01-01（段內含1923年結婚）",
+        "第4段補引文1筆（the strain of the Second World War…），支撐健康受損原因子句",
+        "重抓 royal.uk 比對引文一致"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "cl-sanfuentes",
+      "bioId": "7a262bba-0d62-44de-8faf-a7cf77471d62",
+      "verdict": "pass_with_changes",
+      "paragraphs": 6,
+      "positions": 2,
+      "roleCandidates": 1,
+      "gaps": 3,
+      "searchLogSteps": 9,
+      "changes": [
+        "第1段補引文2筆（兄長姓名、智利大學修法律）",
+        "第2段補引文1筆（1891年內戰政府戰敗）",
+        "第3段引文 el Partido se dividió… 改為含年份的 En 1900, el Partido se dividió…（原 quote 無日期卻標 datePrecision=year，違反 Q8）",
+        "第4段補引文4筆（el senador、1915年、國民黨與自由民主黨、對手菲格羅亞姓名）",
+        "第5段補引文4筆（議會制時期常態、親德、協約國、戰後）",
+        "重抓 Memoria Chilena Carrera política 比對引文一致"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "cl-barros-luco",
+      "bioId": "425e0a7f-058d-447b-9228-cc0ec4497806",
+      "verdict": "pass_with_changes",
+      "paragraphs": 5,
+      "positions": 1,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 7,
+      "changes": [
+        "第1段補引文2筆（智利大學修法律、論文主題民法）",
+        "第2段補引文3筆（埃拉蘇里斯政府、聖瑪麗亞政府、第三次內政部長再任）",
+        "第3段補引文4筆（1891年1月、瓦爾多·席爾瓦、登艦北上、普拉西利亞戰役）",
+        "第4段補引文1筆（當年當選）",
+        "第5段改寫1句：原文未說全國兒童保護會創於卸任後（且卸任至去世不足十年），改為「他也曾創辦…」；補引文1筆（慈善）",
+        "重抓 BCN Reseña 比對引文一致"
+      ],
+      "returnedReasons": []
+    }
+  ],
+  "issues": [
+    "研究者常只引用子句的一部分，人名、政府、年份等子句缺 quote；審查從已抓原文補 25 筆引文，未新增事實",
+    "本批 3 人皆非 major★、非薄人物，最低嘗試規則（rule 6）不適用；三人皆達最低標準（≥3段、≥300字）",
+    "名單抬頭寫5人，實際只有3人",
+    "Barros Luco 約1903年任自由黨主席在窗外且日期不明，只記在 gap note，未建候選（可接受）"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 80
+  }
+}

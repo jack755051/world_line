@@ -1,0 +1,1615 @@
+{
+ "batch": "b3-full-v3-batch025",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；黨職在 roleCandidates（role_kind=de_facto_leader）；T14 R0–R6 兩層互斥。regimeId 因不連庫無法查證一律 null＋organization，R3 類因此以 R6（roleGap=regime）留在 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md 與 data/source-policy.json（2026-11-13）：無署名條目（Treccani Enciclopedia on line）與私人彙編只放 gap 候選。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch025/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "lobid-molotov": {
+   "title": "Molotov, Vjačeslav Michajlovič (GND 11873461X)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "Gemeinsame Normdatei 權威記錄",
+   "url": "https://lobid.org/gnd/search?q=Molotow+Wjatscheslaw&format=json&size=3",
+   "archive_url": null,
+   "catalog_id": "GND 11873461X",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（經 lobid.org 取得），列生卒與職位期間"
+  },
+  "lemo-molotov": {
+   "title": "Biografie Wjatscheslaw Molotow",
+   "authors": [
+    "Irmgard Zündorf"
+   ],
+   "publisher": "Stiftung Haus der Geschichte der Bundesrepublik Deutschland / Deutsches Historisches Museum",
+   "published_text": "LeMO-Biografien, Lebendiges Museum Online（Stand 02.06.2020）",
+   "url": "https://www.dhm.de/lemo/biografie/wjatscheslaw-molotow",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者（Irmgard Zündorf）之機構傳記（德國歷史博物館／聯邦德國歷史之家基金會 LeMO）"
+  },
+  "lobid-bethlen": {
+   "title": "Bethlen, István (GND 119340925)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "Gemeinsame Normdatei 權威記錄",
+   "url": "https://lobid.org/gnd/search?q=Bethlen+Istv%C3%A1n&format=json&size=5",
+   "archive_url": null,
+   "catalog_id": "GND 119340925",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（經 lobid.org 取得），列生卒與總理任期"
+  },
+  "romsics-bethlen": {
+   "title": "Bethlen István: Politikai életrajz",
+   "authors": [
+    "Romsics Ignác"
+   ],
+   "publisher": "Magyarságkutató Intézet",
+   "published_text": "A Magyarságkutatás Könyvtára VIII., Budapest 1991（Europeana 數位化，OCR 文字）",
+   "url": "https://kisebbsegkutato.tk.hu/uploads/files/olvasoszoba/magyarsagkutataskonyvtara/bethlen_istvan.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Romsics Ignác）之學術機構專書（Magyarságkutató Intézet 出版，Lektorálta: Hajdu Tibor）；文字為 OCR，引文依 OCR 原樣"
+  },
+  "lobid-carol": {
+   "title": "Karl II., Rumänien, König (GND 118720929)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "Gemeinsame Normdatei 權威記錄",
+   "url": "https://lobid.org/gnd/search?q=Karl+II+Rum%C3%A4nien&format=json&size=5",
+   "archive_url": null,
+   "catalog_id": "GND 118720929",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（經 lobid.org 取得），列生卒與頭銜"
+  },
+  "cme-carol2": {
+   "title": "Regele Carol al II-lea",
+   "authors": [],
+   "publisher": "Casa Majestății Sale Regelui Mihai I / Familia Regală a României（皇室官方網站，內含註腳之歷史敘述）",
+   "published_text": "Istoria Familiei Regale",
+   "url": "https://casamajestatiisale.ro/familia-regala/istorie/regele-carol-al-ii-lea/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "王室機構網站的無署名介紹文（羅馬尼亞為共和國，王室非國家機關），依 docs/source-rules.md §2 記 C（審查 2026-11-15 由 B 降 C，比照 batch005 kungahuset）；人物生平不收，只作 gap 候選"
+  },
+  "treccani-molotov": {
+   "title": "Molotov, Vjačeslav Michajlovič",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line（無署名）",
+   "url": "https://www.treccani.it/enciclopedia/vjaceslav-michajlovic-molotov/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名條目，未評等；只作 gap 候選"
+  },
+  "treccani-carol": {
+   "title": "Carlo II re di Romania",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line（無署名）",
+   "url": "https://www.treccani.it/enciclopedia/carlo-ii-re-di-romania/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名條目，未評等；只作 gap 候選"
+  }
+ },
+ "people": [
+  {
+   "key": "su-molotov",
+   "bioId": "01a1b492-3ef5-7772-92ed-e17a239dc5c7",
+   "name": "Vyacheslav Mikhaylovich Molotov (Skryabin)",
+   "nameZh": "維亞切斯拉夫·莫洛托夫",
+   "recordIds": [
+    "01a19eb7-b12b-77ec-83b1-9285f23b1adc"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-03-09",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年革命活動",
+      "en": "Origins and early revolutionary activity"
+     },
+     "body": {
+      "zh-Hant": "LeMO 傳記記載，莫洛托夫本名斯克里亞賓，1890年3月9日生於維亞特卡省庫卡爾卡，父親經營商店。他1906年加入社會主義者並取黨名「莫洛托夫」（意為鐵錘），1909年因政治煽動被捕並流放沃洛格達省，1912年參與創辦黨機關報《真理報》並主持其編輯部，1916年逃出流放地返回彼得格勒。",
+      "en": "The LeMO biography records that Molotov, born Skryabin on 9 March 1890 in Kukarka, Vyatka province, was a shopkeeper's son. He joined the socialists in 1906 and took the party name Molotov (hammer), was arrested for political agitation in 1909 and exiled to Vologda province, in 1912 co-founded the party organ Pravda and headed its editorial board, and in 1916 escaped exile and returned to Petrograd."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1890",
+       "quote": "9. März: Wjatscheslaw Michailowitsch Skrjabin wird",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1890",
+       "quote": "wird als Sohn eines Ladenbesitzers in Kukarka/Gouvernement Wjatka",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1906",
+       "quote": "1906 Beitritt zu den Sozialisten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1906",
+       "quote": "nimmt den Parteinamen \"Molotow\" (Hammer) an",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1909",
+       "quote": "1909 Verhaftung wegen politischer Agitationen und Verbannung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1909",
+       "quote": "Verbannung ins Gouvernement Wologda",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1912",
+       "quote": "1912 Mitbegründer und Leiter der Redaktion des Parteiorgans",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1912",
+       "quote": "Parteiorgans der Kommunistischen Partei \"Prawda\" (Wahrheit)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1916",
+       "quote": "1916 Flucht aus der Verbannung nach Petrograd",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-molotov",
+       "locator": "GND dateOfBirth",
+       "quote": "1890-03-09",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-01-01",
+      "end": "1931-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "黨內職務的累積（1917-1930）",
+      "en": "Rising through party posts, 1917–1930"
+     },
+     "body": {
+      "zh-Hant": "LeMO 列出，1917至1920年他是彼得格勒、下諾夫哥羅德與頓巴斯等地區的領導幹部。1921年起他連續擔任聯共（布）中央委員直到1957年，並自1921至1926年任政治局候補委員，其後任政治局委員至1952年。1924至1930年他主持黨的農村工作委員會；1928年起兼任莫斯科市黨委書記。",
+      "en": "LeMO lists him as a leading functionary in the Petrograd, Nizhny Novgorod and Donbass regions in 1917–1920. From 1921 he was an uninterrupted member of the Central Committee until 1957, and a candidate member of the Politburo in 1921–1926 and then a member until 1952. In 1924–1930 he headed the party committee for village work, and from 1928 he was secretary of the Moscow city party committee."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1917-1920",
+       "quote": "1917-1920 Leitender Funktionär in den Gebieten Petrograd",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1917-1920",
+       "quote": "Nischni-Nowgorod und im Donbass",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1921-1957",
+       "quote": "1921-1957 Ununterbrochen Mitglied des ZK der KPdSU",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1921-1952",
+       "quote": "Kandidat (1921-1926) und anschließend Mitglied des Politbüros der KPdSU",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1921-1952",
+       "quote": "1921-1952 Kandidat (1921-1926)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1924-1930",
+       "quote": "1924-1930 Leiter des Parteikomitees für Dorfarbeit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1924-1930",
+       "quote": "ab 1928 Sekretär des Stadtparteikomitees Moskau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1930-12-19",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "政府首腦與外交人民委員（1930-1945）",
+      "en": "Head of government and foreign commissar, 1930–1945"
+     },
+     "body": {
+      "zh-Hant": "據LeMO，莫洛托夫1930至1941年任人民委員會議主席，即蘇聯總理，並被視為史達林最親近的夥伴；1939至1949年任外交人民委員，1939年簽署對希特勒德國的互不侵犯條約，1941年簽署對日中立條約。1941年起史達林親任人民委員會議主席，莫洛托夫成為其副手；他也出席1943年德黑蘭、1945年雅爾達與波茨坦會議。GND 權威檔同樣載其1930至1941年為人民委員會議主席、1939至1949年為外交部長。",
+      "en": "According to LeMO, Molotov chaired the Council of People's Commissars in 1930–1941, making him prime minister of the Soviet Union and Stalin's closest companion. He was People's Commissar for Foreign Affairs in 1939–1949, signing the non-aggression pact with Hitler's Germany in 1939 and the neutrality pact with Japan in 1941. From 1941 Stalin himself took the chairmanship of the Council and Molotov became his deputy; Molotov also attended the Tehran (1943), Yalta (1945) and Potsdam (1945) conferences. The GND authority record likewise gives him as chairman of the Council in 1930–1941 and foreign minister in 1939–1949."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1930-1941",
+       "quote": "1930-1941 Vorsitzender des Rates der Volkskommissare",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1930-1941",
+       "quote": "Ministerpräsident der Sowjetunion",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1930-1941",
+       "quote": "Molotow wird zum engsten Gefährten Josef Stalins",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1939-1949",
+       "quote": "1939-1949 Als sowjetischer Volkskommissar für Äußeres",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1939-1949",
+       "quote": "den Nichtangriffspakt mit Adolf Hitler (1939)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1939-1949",
+       "quote": "den Neutralitätspakt mit Japan (1941)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, ab 1941",
+       "quote": "Stalin übernimmt den Vorsitz im Rat der Volkskommissare",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, ab 1941",
+       "quote": "Molotow wird sein Stellvertreter",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1939-1949",
+       "quote": "Konferenzen von Teheran (1943), Jalta (1945) und Potsdam (1945)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-molotov",
+       "locator": "GND biographicalOrHistoricalInformation",
+       "quote": "1930-1941 Vorsitzender des Rates der Volkskommissare",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-molotov",
+       "locator": "GND biographicalOrHistoricalInformation",
+       "quote": "1939-1949 und 1953-1956 Außenminister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1953-01-01",
+      "end": "1986-11-09"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後晚年與去世",
+      "en": "Later career and death"
+     },
+     "body": {
+      "zh-Hant": "LeMO 載，史達林死後莫洛托夫與馬林科夫、貝利亞組成三人核心，直到赫魯雪夫勝出。1953至1957年他先再任外交部長，1956年起轉任國家監察部長；1957年因圖謀推翻赫魯雪夫失敗，被指為「黨的敵人」，撤去全部黨政職務並調任駐烏蘭巴托大使。1984年恢復黨籍，1986年11月8日在莫斯科去世。",
+      "en": "LeMO records that after Stalin's death Molotov formed a decisive triumvirate with Malenkov and Beria until Khrushchev prevailed. In 1953–1957 he was first foreign minister again and from 1956 minister of state control; in 1957, after a failed attempt to overthrow Khrushchev, he was declared a party enemy, stripped of all party and government offices and sent as ambassador to Ulan Bator. He was readmitted to the party in 1984 and died in Moscow on 8 November 1986."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1953-1957",
+       "quote": "1953-1957 Zunächst erneut Außenminister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1953-1957",
+       "quote": "ab 1956 Minister für Staatskontrolle",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1957",
+       "quote": "als \"Parteifeind\" sämtlicher Partei- und Regierungsämter enthoben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1957",
+       "quote": "als Botschafter nach Ulan Bator/Mongolei versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1984",
+       "quote": "1984 Wiederaufnahme in die Partei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1986",
+       "quote": "8. November: Wjatscheslaw M. Molotow stirbt in Moskau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1953",
+       "quote": "das entscheidende Triumvirat",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "molotov-foreign-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯人民委員會議（外交人民委員部）",
+      "en": "Soviet Union, People's Commissariat for Foreign Affairs"
+     },
+     "title": {
+      "orig": "Volkskommissar für Äußeres",
+      "zh-Hant": "外交人民委員",
+      "en": "People's Commissar for Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1950-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1939-1949",
+       "quote": "1939-1949 Als sowjetischer Volkskommissar für Äußeres",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-molotov",
+       "locator": "GND biographicalOrHistoricalInformation",
+       "quote": "1939-1949 und 1953-1956 Außenminister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部門正職、任期（1939–1949，年精度）可證明 ≥90 天且有 A（GND）與 B（LeMO）來源，但不連庫無法確認 regimeId（政權是否在系統中），門檻無法證明故 R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "molotov-central-committee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（聯共（布））",
+      "en": "Communist Party of the Soviet Union"
+     },
+     "title": {
+      "orig": "Mitglied des ZK der KPdSU",
+      "zh-Hant": "黨中央委員",
+      "en": "Member of the Central Committee"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1921-01-01",
+      "end": "1958-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1921-1957",
+       "quote": "1921-1957 Ununterbrochen Mitglied des ZK der KPdSU",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（黨中央委員會職務）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "molotov-politburo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（聯共（布））",
+      "en": "Communist Party of the Soviet Union"
+     },
+     "title": {
+      "orig": "Kandidat und Mitglied des Politbüros der KPdSU",
+      "zh-Hant": "政治局候補委員、委員",
+      "en": "Candidate member, then member, of the Politburo"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1921-01-01",
+      "end": "1953-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1921-1952",
+       "quote": "1921-1952 Kandidat (1921-1926)",
+       "quoteLang": "de",
+       "evidenceNote": "候補期1921-1926，其後為委員至1952；迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1921-1952",
+       "quote": "Kandidat (1921-1926) und anschließend Mitglied des Politbüros der KPdSU",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（黨政治局職務；候補與正式委員合為一筆）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "molotov-village-work-committee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（聯共（布））",
+      "en": "Communist Party of the Soviet Union"
+     },
+     "title": {
+      "orig": "Leiter des Parteikomitees für Dorfarbeit",
+      "zh-Hant": "黨農村工作委員會負責人",
+      "en": "Head of the party committee for village work"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1931-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1924-1930",
+       "quote": "1924-1930 Leiter des Parteikomitees für Dorfarbeit",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（黨委員會負責人職務）",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:molotov-moscow-city-secretary",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；LeMO 只寫「ab 1928 Sekretär des Stadtparteikomitees Moskau」，無迄日；GND、Treccani（無署名，未評等）亦未載。未建立該筆候選角色（黨職，R1），待有迄日來源再補",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-molotov",
+       "locator": "LeMO Zeitleiste, 1924-1930",
+       "quote": "ab 1928 Sekretär des Stadtparteikomitees Moskau",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:molotov-central-committee-secretary",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Treccani Enciclopedia on line（無署名，未評等，僅作候選）稱1921至1930年為中央委員會書記，LeMO 無此職；未取得 A／B 來源，未建立該筆黨職候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-molotov",
+       "locator": "Enciclopedia on line",
+       "quote": "dal 1921 al 1930 fu segretario del comitato centrale",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:molotov-foreign-commissar",
+     "gapKind": "not_found",
+     "note": "外交人民委員的月日（LeMO 與 GND 只到年精度；Jewish Virtual Library 等未評等來源稱1939年5月）未取得 A／B 月日來源，故以年精度寫入；Президентская библиотека (prlib.ru)、БРЭ (bigenc.ru 401) 未取得可抓頁面",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Molotov GND lobid.org",
+     "url": "https://lobid.org/gnd/search?q=Molotov+Vja%C4%8Deslav+Michajlovi%C4%8D&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 11873461X；生卒與職位期間"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Molotow Wjatscheslaw GND",
+     "url": "https://lobid.org/gnd/search?q=Molotow+Wjatscheslaw&format=json&size=3",
+     "result": "found_A",
+     "note": "同一筆權威記錄，異寫 Molotow"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Vyacheslav Molotov",
+     "url": "https://www.britannica.com/biography/Vyacheslav-Molotov",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，放棄"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print article 388488",
+     "url": "https://www.britannica.com/print/article/388488",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO Wjatscheslaw Molotow",
+     "url": "https://www.dhm.de/lemo/biografie/wjatscheslaw-molotow",
+     "result": "found_B",
+     "note": "具名作者 Irmgard Zündorf；逐年大事"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Molotov Vjačeslav Michajlovič",
+     "url": "https://www.treccani.it/enciclopedia/vjaceslav-michajlovic-molotov/",
+     "result": "unrated",
+     "note": "Enciclopedia on line 無署名，僅作 gap 候選"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Президентская библиотека Молотов Вячеслав Михайлович",
+     "url": "https://www.prlib.ru/",
+     "result": "not_relevant",
+     "note": "首頁可抓但無人物頁；站內無法取得"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "Большая российская энциклопедия Молотов",
+     "url": "https://bigenc.ru/c/molotov-viacheslav-mikhailovich-6f7ab1",
+     "result": "blocked_403",
+     "note": "回應 401（需授權），放棄"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Вячеслав Молотов биография Президентская библиотека председатель Совнаркома 1930 Политбюро",
+     "url": "https://www.jewishvirtuallibrary.org/vyacheslav-molotov",
+     "result": "unrated",
+     "note": "WebSearch 原文語言；結果為私人／彙編站（cyclowiki、archontology、Jewish Virtual Library），未評等，僅供比對，未作出處"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "id.loc.gov Molotov",
+     "url": "https://id.loc.gov/search/?q=Molotov%2C+V.+M.&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "搜尋頁無可用權威記錄文字"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Molotow Deutsche Biographie",
+     "url": "https://www.deutsche-biographie.de/search?name=Molotow",
+     "result": "no_result",
+     "note": "僅 Bethlen／Karl II 的 Deutsche Biographie 頁取得，Molotov 無 NDB 條目頁"
+    }
+   ]
+  },
+  {
+   "key": "hu-bethlen",
+   "bioId": "01a1b4ae-0dee-72c3-8f2b-a956a3c39f39",
+   "name": "István Bethlen",
+   "nameZh": "貝特倫·伊什特萬",
+   "recordIds": [
+    "01a1aa4a-4a59-79cc-8a7a-a1b420b0b2d2"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1901-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "地方貴族與早期議員生涯",
+      "en": "Transylvanian noble and early parliamentary career"
+     },
+     "body": {
+      "zh-Hant": "羅姆西奇的傳記指出，貝特倫伯爵1901年起成為議員；選上議員後，他的生活方式略有改變。該書把他1901至1918年的身分概括為帶有特蘭西瓦尼亞色彩的地區政治人物。他首次公開的政治演說被書中歸納為明確的農業主義綱領，但演說以對自由主義與自由黨的信念作結。",
+      "en": "Romsics's biography says Count Bethlen became a deputy in 1901, and that being elected somewhat changed his way of life. The book characterises him in 1901–1918 as a regional politician with distinctive Transylvanian features. It summarises his first public political speech as an openly agrarian programme, though the speech closed with a profession of faith in liberalism and the Liberal Party."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 第1章",
+       "quote": "Bár Bethlen 1901 után is maga felügyelte gazdaságait, képviselővé választása",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 第1章",
+       "quote": "némileg mégis megváltoztatta életformáját",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "1901 és 1918 között sajátos erdélyi jegyekkel rendelkező regionális politikus",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 第1章",
+       "quote": "Nyíltan és egyértelműen agrárius program",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 第1章",
+       "quote": "a szabadelvűség és a Sza- badelvű Párt melletti hitvallással zárta",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1918-01-01",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "反革命與和平代表團（1918-1920）",
+      "en": "Counter-revolution and the peace delegation, 1918–1920"
+     },
+     "body": {
+      "zh-Hant": "同一著作概括，1918至1920年間貝特倫是反革命力量的主要組織者之一，並擔任匈牙利和平代表團的首席全權代表。書中寫到，五月底至八月初他是塞格德政府駐維也納的代表；和平代表團辭職後，他的首席全權代表任務隨之結束。",
+      "en": "The same work summarises him in 1918–1920 as one of the chief organisers of the counter-revolutionary forces and as chief commissioner of the Hungarian peace delegation. It says that from the end of May to the beginning of August he acted as the Szeged government's representative in Vienna, and that his mandate as chief commissioner ended when the peace delegation resigned."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "1918-20-ban az ellenforradalmi erók egyik fő organizátora",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "a magyar békedelegáció fömegbízottja",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 1919 年章",
+       "quote": "május végétól augusztus elejéig Bethlen a szegedi kormány bécsi megbízottjaként",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 1920 年章",
+       "quote": "Ezzel Bethlen fómegbízotti megbízatása is megszúnt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總理任期與統一黨（1921-1931）",
+      "en": "Prime minister and the Unity Party, 1921–1931"
+     },
+     "body": {
+      "zh-Hant": "羅姆西奇稱他1921至1931年任匈牙利總理，是所謂霍爾蒂體制的建構者與鞏固者；GND 權威檔同樣記他1921至1931年任總理。書中說，他在擔任政府首腦期間同時是黨領袖。統一黨在隨後的國民議會選舉取得245席中的144席，而他恢復了二元帝國時期的公開投票制度。",
+      "en": "Romsics says he was Hungary's prime minister in 1921–1931 and the creator and consolidator of the so-called Horthy system; the GND authority record likewise gives him as prime minister in 1921–1931. The book says he was both head of government and party leader during that time. In the following national assembly election the Unity Party won 144 of 245 seats, and he restored the open voting of the dualist era."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "1921-től 1931- ig Magyarország miniszterelnöke",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "az ún. Horthy-rendszer megalkotója és konszolidálója",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-bethlen",
+       "locator": "GND biographicalOrHistoricalInformation",
+       "quote": "Ministerpräsident von 1921-1931",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 後段",
+       "quote": "Mindaddig, amíg kormányfő és pártvezér volt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 國民議會選舉段",
+       "quote": "Az Egységes Párt a nyílt szavazásos kerületekben",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 國民議會選舉段",
+       "quote": "Ennek alapján a 245 mandátumból 144-et kapott",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 選舉法段",
+       "quote": "visszaállította a dualizmuskori nyílt szavazást",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1946-10-06"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總理任後至去世",
+      "en": "After the premiership and death"
+     },
+     "body": {
+      "zh-Hant": "羅姆西奇說，他此後直到1945年是反納粹、親西方政治傾向的領袖人物。GND 權威檔記載他1946年10月5日去世。",
+      "en": "Romsics says that afterwards, until 1945, he was the leading figure of the anti-Nazi and pro-Western political currents. The GND authority record gives his death as 5 October 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "ezt követően pedig 1945-ig a náciellenes és nyugatbarát politikai",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 導論",
+       "quote": "irányzatok vezéralakja volt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-bethlen",
+       "locator": "GND dateOfDeath",
+       "quote": "1946-10-05",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "role:bethlen-unity-party-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Romsics 書中寫「Mindaddig, amíg kormányfő és pártvezér volt」，只說他任首相期間為黨領袖，無黨職起迄日；Deutsche Biographie 頁（Anubis 驗證、放棄）、Britannica（403）未取得。未建立黨職候選（R1）",
+     "candidateCitations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 後段",
+       "quote": "Mindaddig, amíg kormányfő és pártvezér volt",
+       "quoteLang": "hu"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:bethlen-deputy-1901",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Romsics 只寫1901年起為議員，未給議員任期迄日與具體選區日期，亦未明寫以自由黨身分取得席位（只說「pártjának, a Szabadelvű Pártnak」），故不當黨籍席位；未建立該筆職位",
+     "candidateCitations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 第1章",
+       "quote": "pártjának, a Szabadelvű Pártnak",
+       "quoteLang": "hu"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:bethlen-peace-delegation-chief",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Romsics 書中載1920年1月赴巴黎、5月19日和平代表團辭職，但 OCR 日期殘缺且引文無年份，未建立該筆職位（外交）",
+     "candidateCitations": [
+      {
+       "sourceKey": "romsics-bethlen",
+       "locator": "Romsics 1991, 1920 年章",
+       "quote": "május 19-én a békedelegáció lemondott",
+       "quoteLang": "hu"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Bethlen István GND lobid.org",
+     "url": "https://lobid.org/gnd/search?q=Bethlen+Istv%C3%A1n&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 119340925；總理 1921-1931、生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Deutsche Biographie Bethlen István",
+     "url": "https://www.deutsche-biographie.de/119340925.html",
+     "result": "challenge_page",
+     "note": "Anubis 驗證，不繞過；僅得 Normdaten 片段，未作出處"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Istvan Bethlen",
+     "url": "https://www.britannica.com/biography/Istvan-Bethlen",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani István Bethlen",
+     "url": "https://www.treccani.it/enciclopedia/istvan-bethlen/",
+     "result": "unrated",
+     "note": "頁面非條目全文／無署名，未評等，未用"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "ÖBL Bethlen Stephan",
+     "url": "https://www.biographien.ac.at/oebl/oebl_B/Bethlen-Bethlen_Stephan_1874_1946.xml",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Magyar életrajzi lexikon Bethlen István",
+     "url": "https://mek.oszk.hu/00300/00355/html/ABC01123/01592.htm",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO István Bethlen",
+     "url": "https://www.dhm.de/lemo/biografie/istvan-bethlen",
+     "result": "no_result",
+     "note": "404，無條目"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Bethlen István gróf miniszterelnök 1921 1931 Magyar életrajzi lexikon",
+     "url": "https://kisebbsegkutato.tk.hu/uploads/files/olvasoszoba/magyarsagkutataskonyvtara/bethlen_istvan.pdf",
+     "result": "found_B",
+     "note": "WebSearch 原文語言；Romsics Ignác 專書（Magyarságkutató Intézet 1991）全文 PDF，已 curl 並 pdftotext"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Bethlen István miniszterelnöksége 1921–1931 (CEEOL)",
+     "url": "https://ceeol.com/search/article-detail?id=991055",
+     "result": "not_relevant",
+     "note": "搜尋結果列出，未抓（付費頁）"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "István Bethlen EHRI authority",
+     "url": "https://portal.ehri-project.eu/authorities/ehri_pers-000570",
+     "result": "challenge_page",
+     "note": "Anubis 驗證，放棄"
+    }
+   ]
+  },
+  {
+   "key": "ro-carol-ii",
+   "bioId": "01a1b4ae-0df7-796e-9736-62a1ffc5cd62",
+   "name": "Carol II",
+   "nameZh": "卡羅爾二世",
+   "recordIds": [
+    "01a1aa4a-4de4-7a46-a66d-f5d8401a2c78"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1893-10-15",
+      "end": "1953-04-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生平概略",
+      "en": "Outline"
+     },
+     "relatedRecordIds": [],
+     "body": {
+      "zh-Hant": "GND 權威檔將卡羅爾二世列為羅馬尼亞國王，記其生於1893年10月15日，1953年4月4日去世。",
+      "en": "The GND authority record lists Carol II as King of Romania, born on 15 October 1893 and died on 4 April 1953."
+     },
+     "citations": [
+      {
+       "sourceKey": "lobid-carol",
+       "locator": "GND biographicalOrHistoricalInformation",
+       "quote": "König von Rumänien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-carol",
+       "locator": "GND dateOfBirth",
+       "quote": "1893-10-15",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-carol",
+       "locator": "GND dateOfDeath",
+       "quote": "1953-04-04",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:carol-crown-prince",
+     "gapKind": "not_found",
+     "note": "待查證：王儲任期（1914 至 1925-12-28）只見於羅馬尼亞王室網站無署名介紹文（審查降 C），人物生平不收；需國家級傳記辭典、官方公報或學術專書確認",
+     "candidateCitations": [
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "În 1914, la înscăunarea tatălui său, Carol devine Principe Moştenitor",
+       "quoteLang": "ro"
+      },
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "La 28 decembrie 1925, Principele Carol renunţă la toate drepturile",
+       "quoteLang": "ro"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:royal-house-narrative",
+     "gapKind": "not_found",
+     "note": "待查證：原研究依王室網站（C）寫成的出身、流亡回國、1938 年王權獨裁、1940 年流亡等四段已刪；該頁生日記1893年10月3日（舊曆），GND 記1893-10-15，依合格出處優先以 GND 為準。需以 A／B 來源（如 Dicționarul biografic、羅馬尼亞學術院出版品、具名作者百科）重查",
+     "candidateCitations": [
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "Principele Carol s-a născut la Sinaia, la 3 octombrie 1893",
+       "quoteLang": "ro"
+      },
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "Carol coboară din avion la 6 iunie 1930, iar la 8 iunie este proclamat Rege",
+       "quoteLang": "ro"
+      },
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "Noua Constituţie din 27 februarie 1938",
+       "quoteLang": "ro"
+      },
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "Regele Carol al II-lea a plecat în exil, la 6 septembrie 1940",
+       "quoteLang": "ro"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:carol-fnr-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；皇室頁只寫1938年12月15日成立單一政黨民族復興陣線，未明寫卡羅爾二世的黨職與起迄日（Treccani 無署名、未評等，稱他創立並領導該陣線）。未建立黨職候選（R1）",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-carol",
+       "locator": "Enciclopedia on line",
+       "quote": "creò e assunse la direzione del \"Fronte di rinascita nazionale\"",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:carol-straja-tarii-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；皇室頁只寫「Strajei ţării, al cărei comandant era」，無起迄日；未建立該筆職位（青少年組織首長）",
+     "candidateCitations": [
+      {
+       "sourceKey": "cme-carol2",
+       "locator": "皇室頁 Carol al II-lea",
+       "quote": "al cărei comandant era",
+       "quoteLang": "ro"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：審查後 1 段、約 40 字（王室網站降 C 後只剩 GND 權威檔）；已查來源類型：authority（GND）、named_encyclopedia（Britannica 403、Treccani 無署名、LeMO 404）、official（Deutsche Biographie Anubis、王室網站 C）；未做加強搜尋（round: retry），未查羅馬尼亞語國家級傳記辭典、學術專書",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Karl II Rumänien König GND lobid.org",
+     "url": "https://lobid.org/gnd/search?q=Karl+II+Rum%C3%A4nien&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 118720929；生卒與頭銜"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Carol II",
+     "url": "https://www.britannica.com/biography/Carol-II",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Carlo II re di Romania",
+     "url": "https://www.treccani.it/enciclopedia/carlo-ii-re-di-romania/",
+     "result": "unrated",
+     "note": "Enciclopedia on line 無署名；且稱退位為 10 月 6 日，與皇室頁不符；僅作 gap 候選"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Deutsche Biographie Karl II Rumänien",
+     "url": "https://www.deutsche-biographie.de/118720929.html",
+     "result": "challenge_page",
+     "note": "Anubis 驗證，不繞過；僅得異寫名稱，未作出處"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO Carol II / Karl II",
+     "url": "https://www.dhm.de/lemo/biografie/carol-ii",
+     "result": "no_result",
+     "note": "404（另試 karl-ii、karl-ii-von-rumaenien 皆 404）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Casa Regală familiaregala.ro",
+     "url": "https://www.familiaregala.ro/",
+     "result": "unrated",
+     "note": "首頁；連到 casamajestatiisale.ro 歷史頁（審查 2026-11-15：王室網站無署名介紹文降 C）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Regele Carol al II-lea casamajestatiisale.ro",
+     "url": "https://casamajestatiisale.ro/familia-regala/istorie/regele-carol-al-ii-lea/",
+     "result": "unrated",
+     "note": "王室官方網站歷史條目（機構頁，附註腳），已 curl 取原文（審查 2026-11-15：王室網站無署名介紹文降 C）"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Casa Regală Istorie",
+     "url": "https://casamajestatiisale.ro/familia-regala/istorie/",
+     "result": "unrated",
+     "note": "列出歷任國王頁連結（審查 2026-11-15：王室網站無署名介紹文降 C）"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "Carol al II-lea rege al României (WebSearch，原文語言)",
+     "url": "https://casamajestatiisale.ro/familia-regala/istorie/",
+     "result": "no_result",
+     "note": "WebSearch 額度已用盡，未能再查羅馬尼亞語國家級來源"
+    }
+   ]
+  }
+ ]
+}

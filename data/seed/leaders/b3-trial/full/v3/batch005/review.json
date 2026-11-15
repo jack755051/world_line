@@ -1,0 +1,107 @@
+{
+ "batch": "005",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 20,
+  "editedSentences": 1,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "br-mena-barreto",
+   "bioId": "61e6f4a9-feff-481e-bc3a-f70d5fda1b00",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 4,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2補引文：蛇島海軍營叛亂子句",
+    "段2補引文：12月正式任第一軍區司令子句",
+    "段2『logo após…』引文無日期，datePrecision 改 null（Q8）",
+    "段3補引文：『次日早晨』對應 10-23 夜，支撐 10月24日",
+    "段3補引文：要求總統辭職",
+    "段3補引文：總統拒絕",
+    "段3補引文：FRUS 委員會已成立並接管政府",
+    "段4 兩筆無日期引文 datePrecision 改 null（Q8）；停火談判引文擴為含『No mês de setembro』以支撐 9 月",
+    "段4補引文：不同意 8 月公布的干預官法典",
+    "position inspector-1st-rm-group：起日引文原截掉年份，擴為含 1926",
+    "role junta：補 DHBB 10-24 日期引文（起日不再只靠 FRUS）",
+    "role junta：補 FRUS『接管政府』引文",
+    "FRUS 三份電報由 A 降 B（第三方當時官方紀錄）；DHBB 補作者 Renato Lemos",
+    "重抓 DHBB 比對：41 筆引文逐字吻合"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "se-gustaf-v",
+   "bioId": "01a1b4af-e4a4-7075-a947-1647dcac89ad",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 9,
+   "changes": [
+    "段2補引文：春天攝政期間",
+    "段3刪 kungligaslotten 引文（王室宮殿網站無署名介紹文降 C，人物生平不收）",
+    "段3補引文：最能保證可靠外交路線",
+    "段3補引文：雖不情願",
+    "段3補引文：艾登出任首相",
+    "段4補引文：支持受威脅的芬蘭",
+    "段4補引文：世界大戰非常時期",
+    "段4『att vid flera tillfällen…』無日期，datePrecision 改 null（Q8）",
+    "kungligaslotten-g5、kungahuset-g5 來源由 A 降 C（未用於段落）",
+    "重抓 SBL、Kungliga slotten 比對：引文逐字吻合"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "nl-wilhelmina",
+   "bioId": "01a1b4af-e4bc-73ab-84f6-562455079367",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 8,
+   "changes": [
+    "段1補引文：威廉三世之女",
+    "段1補引文：父王去世",
+    "段1補引文：成為荷蘭女王",
+    "段4補引文：由強勢的格爾布蘭迪接任",
+    "段5補引文：范穆克",
+    "段5刪無引文支撐的『荷屬東印度』修飾語（中英）",
+    "gap role:head-of-state-exile-1940-1945 gapKind conflict→not_found（來源 vs 庫值）",
+    "重抓 Parlement.com 比對：21 筆引文逐字吻合；BWN 重抓逾時（記錄，不影響）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批名單標 5 人，實際只有 3 人（Mena Barreto、Gustaf V、Wilhelmina）",
+  "段落多個子句（地點、修飾語、日期依據）未有 quote 支撐，審查自已抓原文補 20 筆引文；1 處修飾語（荷屬東印度）無引文，刪除",
+  "FRUS 外交電報對巴西人物屬第三方當時官方紀錄，依 source-rules §2 由 A 降 B；王室機構網站無署名介紹文降 C",
+  "無日期引文誤填 datePrecision（4 筆）改 null",
+  "Wilhelmina 流亡期 1940-05-13～1945-05-05 不在 5442 任期內，兩份來源皆寫在位；研究者以 gap 交主 session，未建候選；gapKind 由 conflict 改 not_found",
+  "Mena Barreto 1930 三人臨時軍政委員會以 head_of_state 候選（R0）保留，集體元首入庫方式待主 session 決定；政權對應（巴西第一共和國）亦待確認"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

@@ -1,0 +1,1508 @@
+{
+ "batch": "b3-full-v3-batch017",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式。三人的元首任期均在名簿 leader_records；索古總理（1922-12～1924）、福阿德蘇丹（1917～1922-02-28）為名單外、來源明寫的任期，寫為 roleCandidates（R0）；大正天皇皇太子時期為 positions（other）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；roleCandidates／T14 R0–R6 依 ALIGN.md 規則；來源規則依 docs/source-rules.md 與 data/source-policy.json（無署名條目只放 gap 候選）。三人的元首任期（大正天皇；索古總統、國王；福阿德國王）均在名簿 leader_records；名單外但來源明寫的索古總理、福阿德蘇丹任期寫為 roleCandidates。regimeId 因不連庫無法查證，一律 null。loc-albania-cs 為美國國會圖書館國別研究的第三方轉載頁，依規則 A 原件之轉載記 B。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch017/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "gnd-taisho": {
+   "title": "Taishō, Japan, Kaiser (GND 119094304)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/119094304.json",
+   "archive_url": null,
+   "catalog_id": "GND 119094304",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "kunaicho-nenpyo": {
+   "title": "宮内庁関係年表（慶応3年以後）",
+   "authors": [],
+   "publisher": "宮内庁",
+   "published_text": "宮内庁官方年表頁",
+   "url": "https://www.kunaicho.go.jp/kunaicho/kunaicho/kunaicho-nenpyo.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本宮內廳官方網頁"
+  },
+  "kunaicho-tama": {
+   "title": "大正天皇 多摩陵",
+   "authors": [],
+   "publisher": "宮内庁",
+   "published_text": "宮内庁「歴代天皇陵のご案内」",
+   "url": "https://www.kunaicho.go.jp/visit/ryobo/123.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本宮內廳官方網頁"
+  },
+  "gnd-zog": {
+   "title": "Zogu I., Albanien, König (GND 128420634)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/128420634.json",
+   "archive_url": null,
+   "catalog_id": "GND 128420634",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "loc-albania-cs": {
+   "title": "Albania: A Country Study, \"1918-1925 - Government and Politics\"（轉載頁）",
+   "authors": [
+    "Library of Congress Federal Research Division（Zickel, Iwaskiw 主編）"
+   ],
+   "publisher": "GlobalSecurity.org（轉載美國國會圖書館國別研究）",
+   "published_text": "Albania: A Country Study（美國政府出版品，1992）轉載",
+   "url": "https://www.globalsecurity.org/military/world/europe/al-history-43.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "原件為美國國會圖書館聯邦研究處之國別研究（A）；本頁為第三方網站逐字轉載，依規則第三方轉錄本原件 A 記 B；審查 2026-11-15 以 tile.loc.gov 原書 PDF（albaniacountryst00zick）比對，所用引文逐字見於原書（僅逗號小異），確認為轉錄本"
+  },
+  "osu-origins": {
+   "title": "Albania's First Republic",
+   "authors": [
+    "Christopher Kinley"
+   ],
+   "publisher": "Origins（Ohio State University 歷史期刊）",
+   "published_text": "Origins: Current Events in Historical Perspective",
+   "url": "https://origins.osu.edu/index.php/read/albanias-first-republic",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Christopher Kinley）之大學歷史期刊文章"
+  },
+  "gnd-fuad": {
+   "title": "Fuʾād I., Ägypten, König (GND 133467503)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/133467503.json",
+   "archive_url": null,
+   "catalog_id": "GND 133467503",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "bpb-egypt": {
+   "title": "Vor 100 Jahren: Großbritannien entlässt Ägypten in die Unabhängigkeit",
+   "authors": [],
+   "publisher": "Bundeszentrale für politische Bildung (bpb)",
+   "published_text": "Hintergrund aktuell",
+   "url": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/505568/vor-100-jahren-grossbritannien-entlaesst-aegypten-in-die-unabhaengigkeit/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "聯邦政治教育中心「Hintergrund aktuell」欄目文章，署名僅「Redaktion」（編輯部），非當事機關文件、非國家級傳記辭典，屬機構網站無署名介紹文；依 docs/source-rules.md §2 記 C（審查 2026-11-15 由 A 降 C，比照 batch005 王室網站介紹文、本批 Universalis 編輯部署名），人物生平不收，只作 gap 候選"
+  },
+  "ewb-fuad": {
+   "title": "Fuad I（Encyclopedia of World Biography，無署名）",
+   "authors": [],
+   "publisher": "Gale／Encyclopedia.com",
+   "published_text": "Encyclopedia of World Biography",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/fuad-i",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無具名作者的百科條目，只作 gap 候選（Q9）"
+  },
+  "universalis-fuad": {
+   "title": "FU'ĀD Ier (1868-1936) roi d'Égypte (1922-1936)",
+   "authors": [],
+   "publisher": "Encyclopædia Universalis",
+   "published_text": "Universalis 編輯部（機構署名，無具名作者）",
+   "url": "https://www.universalis.fr/encyclopedie/fu-ad-ier/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "署名為編輯部服務，無具名作者，只作 gap 候選（Q9）"
+  }
+ },
+ "people": [
+  {
+   "key": "jp-taisho",
+   "bioId": "01a1b4b0-6f9f-7bc1-b1a2-6951d0cc6fd1",
+   "name": "Emperor Taishō (Yoshihito)",
+   "nameZh": "大正天皇（嘉仁）",
+   "recordIds": [
+    "01a19eb7-b37e-7540-99a6-d553f8b780b0"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1879-08-31",
+      "end": "1926-12-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒與身分",
+      "en": "Birth, death and identity"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的人名權威檔稱他為日本天皇「大正」，記他生於1879年，卒於1926年，卒地為葉山，簡註寫他在位為1912至1926年。日本宮內廳的年表則記載，嘉仁親王於明治12年（1879年）8月31日誕生。",
+      "en": "The German National Library authority record lists him as Taishō, Emperor of Japan, born in 1879 and died in 1926 at Hayama, and its short note gives his reign as 1912–1926. The Imperial Household Agency chronology records the birth of Prince Yoshihito (Emperor Taishō) on 31 August 1879 (Meiji 12)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-taisho",
+       "locator": "preferredName",
+       "quote": "Taishō, Japan, Kaiser",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-taisho",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1879\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-taisho",
+       "locator": "placeOfDeath",
+       "quote": "Hayama",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-taisho",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1926\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-taisho",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1912-1926 Kaiser",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 明治12年",
+       "quote": "明治12年 1879 8 31 嘉仁（よしひと）親王（大正天皇）ご誕生",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1889-11-03",
+      "end": "1912-07-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "皇太子時代",
+      "en": "Years as crown prince"
+     },
+     "body": {
+      "zh-Hant": "宮內廳年表記載，明治22年（1889年）11月3日舉行嘉仁親王的立太子儀式。明治33年（1900年）5月10日，皇太子嘉仁親王與九條節子結婚。明治45年（1912年）7月30日明治天皇駕崩，皇太子嘉仁親王踐祚，改元大正。",
+      "en": "The Imperial Household Agency chronology records the ceremony proclaiming Prince Yoshihito crown prince on 3 November 1889 (Meiji 22) and his marriage to Kujō Sadako on 10 May 1900 (Meiji 33). On 30 July 1912 (Meiji 45) the Meiji Emperor died, Crown Prince Yoshihito acceded, and the era was renamed Taishō."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 明治22年",
+       "quote": "11 3 嘉仁（よしひと）親王立太子の儀",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自同表上方「明治22年 1889」標題列",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 明治33年",
+       "quote": "明治33年 1900 5 10 皇太子嘉仁（よしひと）親王九條節子（さだこ）とご結婚",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 明治45年",
+       "quote": "7 30 明治（めいじ）天皇崩御 皇太子嘉仁（よしひと）親王践祚（せんそ）、大正と改元",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自同表「明治45年 1912」標題列",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1912-07-30",
+      "end": "1926-12-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "在位與崩御",
+      "en": "Reign and death"
+     },
+     "body": {
+      "zh-Hant": "宮內廳年表記載，大正4年（1915年）11月10日舉行即位之禮。大正10年（1921年）11月25日，皇太子裕仁親王擔任攝政。大正15年（1926年）12月25日大正天皇駕崩，皇太子裕仁親王踐祚，改元昭和。他的陵墓是多摩陵，位於東京都八王子市長房町的武藏陵墓地，宮內廳列他為第123代天皇。",
+      "en": "The Imperial Household Agency chronology records the enthronement ceremony on 10 November 1915 (Taishō 4) and the crown prince Hirohito becoming regent on 25 November 1921 (Taishō 10). The Emperor Taishō died on 25 December 1926 (Taishō 15) and Hirohito acceded. His mausoleum is the Tama no Misasagi in the Musashi Imperial Cemetery in Hachiōji, Tokyo, and the Agency numbers him the 123rd emperor."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 大正4年",
+       "quote": "大正4年 1915 11 10 即位の礼",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 大正10年",
+       "quote": "11 25 皇太子裕仁（ひろひと）親王摂政となる。",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自同表「大正10年 1921」標題列",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 大正15年",
+       "quote": "12 25 大正（たいしょう）天皇崩御",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自同表「大正15年 1926」標題列",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 大正15年",
+       "quote": "皇太子裕仁（ひろひと）親王践祚（せんそ）、昭和と改元",
+       "quoteLang": "ja",
+       "evidenceNote": "與上筆同屬大正15年12月25日條",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-tama",
+       "locator": "基本資料",
+       "quote": "第123代",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-tama",
+       "locator": "基本資料",
+       "quote": "多摩陵（たまのみささぎ）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-tama",
+       "locator": "所在地",
+       "quote": "東京都八王子市長房町 武蔵陵墓地",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "taisho-crown-prince",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本皇室（大日本帝國）",
+      "en": "Imperial House of Japan (Empire of Japan)"
+     },
+     "title": {
+      "orig": "皇太子",
+      "zh-Hant": "皇太子",
+      "en": "Crown Prince"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1889-11-03",
+      "end": "1912-07-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 明治22年",
+       "quote": "11 3 嘉仁（よしひと）親王立太子の儀",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自同表上方「明治22年 1889」標題列",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunaicho-nenpyo",
+       "locator": "年表 明治45年",
+       "quote": "7 30 明治（めいじ）天皇崩御 皇太子嘉仁（よしひと）親王践祚（せんそ）、大正と改元",
+       "quoteLang": "ja",
+       "evidenceNote": "年份取自同表「明治45年 1912」標題列；迄日為踐祚日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:thickness",
+     "gapKind": "not_found",
+     "note": "待查證：已取得 A 級權威檔與宮內廳年表，但生平事蹟（健康、政務、外交）的國家級傳記辭典、國史大辞典、NDL 人物頁、JACAR 檔案說明未取得（國史大辞典為 JapanKnowledge 付費，NDL 肖像展未收，Britannica 403）；留待下一輪",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Taisho Tenno GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Taisho+Tenno&format=json&size=5",
+     "result": "found_A",
+     "note": "找到 GND 119094304，簡註「1912-1926 Kaiser」"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 119094304 JSON",
+     "url": "https://lobid.org/gnd/119094304.json",
+     "result": "found_A",
+     "note": "已抓，存 gnd-taisho.txt"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "kunaicho.go.jp about/koshitsu/taisho.html",
+     "url": "https://www.kunaicho.go.jp/about/koshitsu/taisho.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Taisho",
+     "url": "https://www.britannica.com/biography/Taisho",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "近代日本人の肖像 大正天皇 嘉仁",
+     "url": "https://www.ndl.go.jp/portrait/",
+     "result": "not_relevant",
+     "note": "WebSearch 與人名索引（indexes）皆查無大正天皇條目；該展覽未收"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "大正天皇 宮内庁 多摩陵 明治12年8月31日 践祚 崩御",
+     "url": "https://www.kunaicho.go.jp/visit/ryobo/123.html",
+     "result": "found_A",
+     "note": "宮內廳多摩陵頁，已抓存 kunaicho-tama.txt"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "宮内庁関係年表（慶応3年以後）",
+     "url": "https://www.kunaicho.go.jp/kunaicho/kunaicho/kunaicho-nenpyo.html",
+     "result": "found_A",
+     "note": "已抓存 kunaicho-nenpyo.txt；含誕生、立太子、結婚、踐祚、即位禮、攝政、崩御"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "id.ndl.go.jp 典拠検索 大正天皇",
+     "url": "https://id.ndl.go.jp/auth/ndla?searchCode=ndla&query=大正天皇",
+     "result": "no_result",
+     "note": "查詢式解析錯誤，無內容"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "kunaicho ryobo/guide/145 等舊式網址",
+     "url": "https://www.kunaicho.go.jp/ryobo/guide/145/index.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "NDL Search 大正天皇実録 書誌",
+     "url": "https://ndlsearch.ndl.go.jp/en/books/R100000002-I029746637",
+     "result": "not_relevant",
+     "note": "書目頁，不含生平原文，未當出處"
+    }
+   ]
+  },
+  {
+   "key": "al-zog",
+   "bioId": "01a1b4ae-0de8-78db-92bc-175befc7448a",
+   "name": "Zog I",
+   "nameZh": "索古一世",
+   "recordIds": [
+    "01a1aa4a-655d-7a31-bcd7-3592fd9176c6",
+    "01a1aa4a-655d-7bff-8eb1-f310ebaea31a"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1895-01-01",
+      "end": "1962-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "生卒與政治生涯概略",
+      "en": "Birth, death and career outline"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的人名權威檔稱他為阿爾巴尼亞國王索古一世，記他生於1895年，地點為阿爾巴尼亞的布爾加杰特，1961年卒於絮雷訥。該檔簡註概括他的經歷：1922年任總理，1925年任總統，1928至1939年為國王，1939年義大利入侵後流亡。",
+      "en": "The German National Library authority record lists him as Zogu I, King of Albania, born in 1895 at Burgajet in Albania and died in 1961 at Suresnes. Its short note summarises his career: prime minister in 1922, president in 1925, king 1928–1939, and in exile from 1939 after the Italian invasion."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "preferredName",
+       "quote": "Zogu I., Albanien, König",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1895\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "placeOfBirthAsLiteral",
+       "quote": "Burgajet, Albanien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1961\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "placeOfDeath",
+       "quote": "Suresnes",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1922 Ministerpräsident, 1925 Präsident, 1928-1939 König",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-zog",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "ab 1939 nach der italienischen Invasion im Exil",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-12-01",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1921至1922年的崛起",
+      "en": "Rise in 1921–1922"
+     },
+     "body": {
+      "zh-Hant": "美國國會圖書館的阿爾巴尼亞國別研究寫道，索古屬人民黨，當時二十四歲，是中部穆斯林部族馬蒂酋長之子。1921年12月，人民黨領袖賈費爾·伊皮組成政府，索古任內政部長。他其後留守首都，在英國大使協助下擊退進攻，後來接任總理。",
+      "en": "The Library of Congress country study says Zogu belonged to the Popular Party and was the twenty-four-year-old son of the chief of the Mati, a central Albanian Muslim tribe. In December 1921 the party head Xhafer Ypi formed a government with Zogu as internal affairs minister. Zogu later stayed in the capital and, with the British ambassador's help, repulsed the assault; he later took over the premiership."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "The Popular Party also included Ahmed Zogu, the twenty-four-year-old son",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "The Popular Party's head, Xhafer Ypi, formed a government in December 1921",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Zogu as internal affairs minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Zogu stayed in the capital and, with the help of the British ambassador",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "with the help of the British ambassador, repulsed the assault.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "He took over the premiership later in the year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1922-12-01",
+      "end": "1925-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總理任期與流亡",
+      "en": "Premiership and exile"
+     },
+     "body": {
+      "zh-Hant": "俄亥俄州立大學的《Origins》刊文稱，索古於1922年12月出任總理，1924年遭暗殺未遂、身受重傷後辭職。國會圖書館國別研究則寫，他的黨在1924年初的國民議會選舉中大勝，隨後他在財務醜聞與暗殺未遂之後讓位給韋爾拉奇；1924年7月農民支持的叛亂控制地拉那，諾里出任總理，索古逃往南斯拉夫。",
+      "en": "Origins, the Ohio State University history magazine, says Zog became premier in December 1922 and resigned in 1924 after surviving an assassination attempt that severely wounded him. The Library of Congress study adds that his party won the early-1924 National Assembly elections, after which he stepped aside for Verlaci amid a financial scandal; by July 1924 a peasant-backed insurgency held Tirana, Noli became prime minister, and Zogu fled to Yugoslavia."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The Rise of Zog",
+       "quote": "becoming the Premier in December 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The Rise of Zog",
+       "quote": "Zog survived an assassination attempt in 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The Rise of Zog",
+       "quote": "he was severely wounded and resigned his position",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Zogu's party handily won elections for a National Assembly in early 1924.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "handing over the premiership to Verlaci",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "in the wake of a financial scandal and an assassination attempt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "by July 1924 a peasant-backed insurgency had won control",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Noli became prime minister, and Zogu fled to Yugoslavia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1924-12-13",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "重返、總統與國王",
+      "en": "Return, presidency and kingship"
+     },
+     "body": {
+      "zh-Hant": "國會圖書館國別研究記載，1924年12月13日索古的南斯拉夫支持軍越境進入阿爾巴尼亞；他其後被選為總統，任期七年，該文寫的日期是1月31日。《Origins》文章稱，1925年1月31日他當選新共和國總統，並說1928年9月1日他解散共和國，自立為國王，統治到1939年墨索里尼命令義軍入侵為止。",
+      "en": "The Library of Congress study records that on 13 December 1924 Zogu's Yugoslav-backed army crossed into Albanian territory and that he was elected president for a seven-year term on 31 January. Origins says he was elected president of the new republic on 31 January 1925, dissolved the republic and declared himself king on 1 September 1928, and ruled until 1939, when Mussolini ordered Italian forces to invade."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "On December 13, 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Zogu's Yugoslav-backed army crossed into Albanian territory",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "On January 31, Zogu was elected president for a seven-year term.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The First Republic",
+       "quote": "was elected as the President of the new Republic of Albania on January 31",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "導言",
+       "quote": "founded the First Albanian Republic on January 31, 1925, and elected Ahmet Zog",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The First Republic",
+       "quote": "On September 1, 1928, Zog dissolved the republic and declared himself King",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The First Republic",
+       "quote": "until 1939, when Mussolini commanded Italian forces to invade and occupy Albania",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "zog-interior-minister-1921",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "阿爾巴尼亞政府（賈費爾·伊皮內閣）",
+      "en": "Government of Albania (Xhafer Ypi cabinet)"
+     },
+     "title": {
+      "orig": "internal affairs minister",
+      "zh-Hant": "內政部長",
+      "en": "Minister of Internal Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1921-12-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "The Popular Party's head, Xhafer Ypi, formed a government in December 1921",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Zogu as internal affairs minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "source",
+      "regime"
+     ],
+     "t14Reason": "R3 類別（內政部、正職、1921 在時間窗內），但迄日 NULL 無法證明 ≥90 天、只有 1 筆 B（轉錄本）、1921 年政權是否在系統中待查 → R6（審查由 gap 改建職位，事實與引文皆為原段落已有）"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "zog-prime-minister-1922",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "阿爾巴尼亞政府",
+      "en": "Government of Albania"
+     },
+     "title": {
+      "orig": "Premier（Prime Minister）",
+      "zh-Hant": "總理",
+      "en": "Prime Minister of Albania"
+     },
+     "period": {
+      "start": "1922-12-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The Rise of Zog",
+       "quote": "becoming the Premier in December 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-albania-cs",
+       "locator": "1918-1925",
+       "quote": "Zogu's party handily won elections for a National Assembly in early 1924.",
+       "quoteLang": "en",
+       "evidenceNote": "迄日僅知於1924年內辭任（引文：1924年初選舉後「soon stepped aside」），依年精度寫下一年起日；實際迄日應早於此，細節見缺漏",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The Rise of Zog",
+       "quote": "Zog survived an assassination attempt in 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "osu-origins",
+       "locator": "The Rise of Zog",
+       "quote": "he was severely wounded and resigned his position",
+       "quoteLang": "en",
+       "evidenceNote": "與上筆「1924年暗殺未遂」同句，支撐1924年辭職",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "R0：阿爾巴尼亞總理（政府首腦）；任期在名簿 leader_records（總統、國王）之外，且落在1908–1945；來源明寫1922年12月出任總理、1924年辭職",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:zog-interior-minister-1921",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；內政部長（1921年12月起，來源：美國國會圖書館國別研究轉載頁，月精度）：已查 GND、國別研究轉載頁、Origins，皆未寫內政部長的結束時間或是否同任總理期間兼任；Britannica、president.al 被擋。審查 2026-11-15 依規則改為照寫起日的 positions（R6），迄日仍待查證",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:zog-prime-minister-1922",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日（精確日）；總理任期僅知1922年12月起（Origins，月精度）、1924年內止（國別研究：1924年初選舉後「soon stepped aside」；Origins：1924年暗殺未遂後辭職）。已查 GND（只寫1922年）、兩份具名來源，皆無日；Britannica、kryeministria.al（空頁）未取得。候選的迄日 1925-01-01 為年精度的上限，非實際迄日",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Zogu Ahmed GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Zogu+Ahmed&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 128420634"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 128420634 JSON",
+     "url": "https://lobid.org/gnd/128420634.json",
+     "result": "found_A",
+     "note": "已抓存 gnd-zog.txt"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "id.loc.gov Zog King of the Albanians",
+     "url": "https://id.loc.gov/search/?q=Zog+King+of+the+Albanians",
+     "result": "no_result",
+     "note": "搜尋頁無可用條目內容，未當出處"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Zog I",
+     "url": "https://www.britannica.com/biography/Zog-I",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "History Today King Zog I of Albania",
+     "url": "https://www.historytoday.com/archive/king-zog-i-albania",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Ahmet Zogu prime minister 1922 1924 (WebSearch)",
+     "url": null,
+     "result": "no_result",
+     "note": "結果多為被禁網域或私人網站，未用"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "kryeministria.al 歷任總理",
+     "url": "https://kryeministria.al/en/kryeministrat-e-shqiperise/",
+     "result": "no_result",
+     "note": "頁面僅回 212 位元組空殼，無內文"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "president.al",
+     "url": "https://president.al/en/",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "Albania: A Country Study 1918-1925（美國國會圖書館，轉載）",
+     "url": "https://www.globalsecurity.org/military/world/europe/al-history-43.htm",
+     "result": "found_B",
+     "note": "已抓存 globalsec-albania.txt；loc.gov 原站 403／404（tile.loc.gov 404、loc.gov/item 403）故以轉載頁為出處，記 B"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Albania's First Republic（Origins, Ohio State）",
+     "url": "https://origins.osu.edu/index.php/read/albanias-first-republic",
+     "result": "found_B",
+     "note": "具名作者 Christopher Kinley，已抓"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "ih-revista.edu.al 阿爾巴尼亞史學期刊文章",
+     "url": "https://ih-revista.edu.al/index.php/ih-revista/article/download/115/108/213",
+     "result": "no_result",
+     "note": "HTTP 526，無內容"
+    }
+   ]
+  },
+  {
+   "key": "eg-fuad-i",
+   "bioId": "01a1b4b0-6fa7-77d3-b478-e72f161b3319",
+   "name": "Fuʾād I, King of Egypt",
+   "nameZh": "福阿德一世",
+   "recordIds": [
+    "01a1aa4a-7e36-7a72-9fdd-ac858007e0ed",
+    "01a1aa4a-7e36-7c61-a6fd-0422999211d3"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1868-01-01",
+      "end": "1937-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "生卒與頭銜",
+      "en": "Birth, death and titles"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的人名權威檔稱他為埃及國王福阿德一世，記他生於1868年，卒於1936年。該檔簡註寫他先是埃及蘇丹（1917至1922年），後為埃及國王（1922至1936年）。",
+      "en": "The German National Library authority record lists him as Fuʾād I, King of Egypt, born in 1868 and died in 1936. Its short note gives his titles as Sultan of Egypt (1917–1922) and King of Egypt (1922–1936)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-fuad",
+       "locator": "preferredName",
+       "quote": "Fuʾād I., Ägypten, König",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-fuad",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1868\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-fuad",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1936\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-fuad",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Sultan von Ägypten (1917-1922), König von Ägypten (1922-1936)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "fuad-sultan-1917",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "埃及蘇丹國",
+      "en": "Sultanate of Egypt"
+     },
+     "title": {
+      "orig": "Sultan von Ägypten",
+      "zh-Hant": "埃及蘇丹",
+      "en": "Sultan of Egypt"
+     },
+     "period": {
+      "start": "1917-01-01",
+      "end": "1922-02-28"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gnd-fuad",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Sultan von Ägypten (1917-1922), König von Ägypten (1922-1936)",
+       "quoteLang": "de",
+       "evidenceNote": "起日只到年（1917）；迄日 1922-02-28 依名簿下一任起日（kingdom-of-egypt head_of_state 1922-02-28）推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "R0：埃及蘇丹（元首）；任期在名簿 leader_records（1922-02-28 起）之前，名單外但 GND 明寫1917至1922年、落在1908–1945；迄日依名簿下一任起日推得",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:fuad-sultan-1917",
+     "gapKind": "not_found",
+     "note": "待查證：蘇丹任期起日只到年（1917，GND）；確切日無 A／B 來源可抓原文；Britannica 403、presidency.eg 挑戰頁未取得。迄日 1922-02-28 為依名簿下一任起日推得；bpb（審查降 C）寫1922年3月15日宣告為國王，名簿首筆 head_of_state 1922-02-28～03-16 與此差異未查明",
+     "candidateCitations": [
+      {
+       "sourceKey": "ewb-fuad",
+       "locator": "條目第一段",
+       "quote": "In 1917 Fuad assumed power as sultan",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Am 15. März 1922 wird Ahmad Fuad zum König von Ägypten proklamiert.",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:thickness",
+     "gapKind": "not_found",
+     "note": "待查證：生平（早年留學義大利、任蘇丹前的職務、1930年憲法）只見於無署名條目（Encyclopedia of World Biography、Universalis 編輯部署名），不可當出處；A／B 來源只取得 GND 與 bpb。需國家級傳記辭典或學術專書（Encyclopaedia of Islam、Cambridge History of Egypt）。審查 2026-11-15：bpb 文章（署名 Redaktion）降 C，原段2（由蘇丹到國王）、段3（與華夫脫黨的關係）刪除，其引文移入本筆候選，待 A／B 來源佐證後再寫回",
+     "candidateCitations": [
+      {
+       "sourceKey": "ewb-fuad",
+       "locator": "條目 Constitutional Crisis",
+       "quote": "the abolition of the first constitution and its replacement by another",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "universalis-fuad",
+       "locator": "條目第二段",
+       "quote": "Fu'̄ad prend le titre de roi le 15 mars 1922",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Absatz 1",
+       "quote": "Am 28. Februar 1922 entließ Großbritannien",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Absatz 2",
+       "quote": "Ahmad Fuad als Fuad I., der seit 1917 Sultan des Landes war",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Am 15. März 1922 wird Ahmad Fuad zum König von Ägypten proklamiert.",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Im folgenden Jahr die Verfassung des Königreichs Ägypten beschlossen.",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Am 27. September 1923 und am 12. Januar 1924",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Die Wafd-Partei errang 188 von 214 Sitzen im Repräsentantenhaus",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Häufig gab es Unstimmigkeiten zwischen der Wafd und dem König.",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "bpb-egypt",
+       "locator": "Zeitleiste",
+       "quote": "Mehrfach wurde das Parlament aufgelöst, teils per Dekret regiert.",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：審查降級 bpb 後僅剩 1 段、約 90 字（GND 權威檔）。已查來源類型：權威檔（GND）、具名百科（Britannica 403；EWB、Universalis 無署名）、官方（presidency.eg 挑戰頁、countrystudies.us 403、globalsecurity 404）；未做阿拉伯文查詢、未查學術出版與國家級傳記辭典，需 retry",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Fu'ad I Ägypten GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Fu%27ad+I+%C3%84gypten",
+     "result": "no_result",
+     "note": "首查只回大學機構條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Fuad I. Ägypten GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Fuad+I.+%C3%84gypten",
+     "result": "found_A",
+     "note": "GND 133467503"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "GND 133467503 JSON",
+     "url": "https://lobid.org/gnd/133467503.json",
+     "result": "found_A",
+     "note": "已抓存 gnd-fuad.txt"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Fuad I",
+     "url": "https://www.britannica.com/biography/Fuad-I",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "presidency.eg 國王艾哈邁德·福阿德一世",
+     "url": "https://www.presidency.eg/en/",
+     "result": "challenge_page",
+     "note": "瀏覽器驗證挑戰頁，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of World Biography Fuad I（encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/fuad-i",
+     "result": "unrated",
+     "note": "已抓；無署名條目，僅作 gap 候選"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Universalis FU'ĀD Ier",
+     "url": "https://www.universalis.fr/encyclopedie/fu-ad-ier/",
+     "result": "unrated",
+     "note": "已抓；署名為編輯部，無具名作者，僅作 gap 候選"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Egypt country study LoC（countrystudies.us）",
+     "url": "https://countrystudies.us/egypt/16.htm",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "bpb Vor 100 Jahren: Großbritannien entlässt Ägypten in die Unabhängigkeit",
+     "url": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/505568/vor-100-jahren-grossbritannien-entlaesst-aegypten-in-die-unabhaengigkeit/",
+     "result": "found_A",
+     "note": "德國聯邦政治教育中心，已抓存 bpb-egypt.txt"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "globalsecurity.org Egypt history",
+     "url": "https://www.globalsecurity.org/military/world/egypt/history-1.htm",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  }
+ ]
+}

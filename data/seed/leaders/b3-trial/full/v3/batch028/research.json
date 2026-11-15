@@ -1,0 +1,2782 @@
+{
+  "batch": "b3-full-v3-batch028",
+  "researchedOn": "2026-11-15",
+  "policyVersion": "bio-2026-11-v0",
+  "alignedTo": "b0b0e0f",
+  "alignNote": "直接寫 b0b0e0f 對齊格式。三人元首／首腦任期均在名簿 leader_records，不重建；格賴瑟的黨職與以政黨身分取得的席位進 roleCandidates（R1）；帝國總督因 regimeId 未查（不連庫）歸 R6 留 positions。阿亞拉以人名權威檔與 FRUS 官方公文寫成 7 段（審查 2026-11-15 更正此註）。",
+  "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md 與 data/source-policy.json（無署名條目只放 gap 候選）。",
+  "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch028/raw",
+  "rawMap": "rawmap.json",
+  "sources": {
+    "vatican-pio-xi": {
+      "title": "Pio XI（Biografia）",
+      "authors": [],
+      "publisher": "Santa Sede（vatican.va）",
+      "published_text": "教廷官網 Pio XI 傳記頁",
+      "url": "https://www.vatican.va/content/pius-xi/it/biography/documents/hf_p-xi_bio_20070330_biography.html",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "教廷官方網站教宗傳記頁（官方頁）"
+    },
+    "treccani-pio-xi": {
+      "title": "Pio XI（Enciclopedia dei Papi）",
+      "authors": [
+        "Francesco Margiotta Broglio"
+      ],
+      "publisher": "Istituto della Enciclopedia Italiana Treccani",
+      "published_text": "Enciclopedia dei Papi（2000）",
+      "url": "https://www.treccani.it/enciclopedia/pio-xi_(Enciclopedia-dei-Papi)/",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "Treccani 機構百科具名作者條目"
+    },
+    "ndb-greiser": {
+      "title": "Greiser, Arthur",
+      "authors": [
+        "Alexander Kranz"
+      ],
+      "publisher": "Deutsche Biographie（NDB-online，Historische Kommission bei der Bayerischen Akademie der Wissenschaften）",
+      "published_text": "NDB-online，2022-10-01 發表",
+      "url": "https://www.deutsche-biographie.de/gnd121617688.html",
+      "archive_url": null,
+      "catalog_id": "GND 121617688",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "德國國家級傳記辭典 NDB-online 具名條目"
+    },
+    "gnd-greiser": {
+      "title": "Greiser, Arthur Karl（GND 121617688）",
+      "authors": [],
+      "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 鏡像）",
+      "published_text": "GND 人名權威檔",
+      "url": "https://lobid.org/gnd/search?q=Arthur+Greiser&format=json",
+      "archive_url": null,
+      "catalog_id": "GND 121617688",
+      "license_code": "CC0",
+      "grade": "A",
+      "gradeBasis": "人名權威檔（德國國家圖書館 GND）"
+    },
+    "gnd-ayala": {
+      "title": "Ayala, Eusebio（GND 1057279307）",
+      "authors": [],
+      "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 鏡像）",
+      "published_text": "GND 人名權威檔",
+      "url": "https://lobid.org/gnd/search?q=Eusebio+Ayala&format=json",
+      "archive_url": null,
+      "catalog_id": "GND 1057279307",
+      "license_code": "CC0",
+      "grade": "A",
+      "gradeBasis": "人名權威檔（德國國家圖書館 GND）"
+    },
+    "bnf-ayala": {
+      "title": "Ayala, Eusebio (1875-1942)（notice de personne）",
+      "authors": [],
+      "publisher": "Bibliothèque nationale de France",
+      "published_text": "BnF 人名權威檔 cb121259132",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb121259132",
+      "archive_url": null,
+      "catalog_id": "ark:/12148/cb121259132",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "人名權威檔（法國國家圖書館）"
+    },
+    "bio-ayala-unrated": {
+      "title": "Eusebio Ayala（Biografías y Vidas）",
+      "authors": [],
+      "publisher": "biografiasyvidas.com",
+      "published_text": "無署名條目",
+      "url": "https://www.biografiasyvidas.com/biografia/a/ayala_eusebio.htm",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "C",
+      "gradeBasis": "無具名作者的網站條目，未評等，只放 gap 候選"
+    },
+    "frus-1915-d33": {
+      "title": "Foreign Relations of the United States, 1915, Minister Mooney to the Secretary of State (July 29, 1915)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1915/d33",
+      "archive_url": null,
+      "catalog_id": "frus1915/d33",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1914-d35": {
+      "title": "Foreign Relations of the United States, 1914, Minister Grevstad to the Secretary of State",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1914/d35",
+      "archive_url": null,
+      "catalog_id": "frus1914/d35",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1919-d170": {
+      "title": "Foreign Relations of the United States, 1919, Volume I, The Minister in Paraguay (Mooney) to the Acting Secretary of State",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1919v01/d170",
+      "archive_url": null,
+      "catalog_id": "frus1919v01/d170",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1921-d572": {
+      "title": "Foreign Relations of the United States, 1921, Volume II, The Chargé in Paraguay (Dickson) to the Secretary of State (No. 890)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1921v02/d572",
+      "archive_url": null,
+      "catalog_id": "frus1921v02/d572",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1921-d573": {
+      "title": "Foreign Relations of the United States, 1921, Volume II, The Chargé in Paraguay (Dickson) to the Secretary of State (No. 929)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1921v02/d573",
+      "archive_url": null,
+      "catalog_id": "frus1921v02/d573",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1921-d574": {
+      "title": "Foreign Relations of the United States, 1921, Volume II, The Secretary of State to the Chargé in Paraguay (Dickson)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1921v02/d574",
+      "archive_url": null,
+      "catalog_id": "frus1921v02/d574",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1927-d244": {
+      "title": "Foreign Relations of the United States, 1927, Volume I, The Ambassador in Argentina (Bliss) to the Secretary of State (No. 92)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1927v01/d244",
+      "archive_url": null,
+      "catalog_id": "frus1927v01/d244",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1928-d448": {
+      "title": "Foreign Relations of the United States, 1928, Volume I, The Minister in Paraguay (Kreeck) to the Secretary of State (December 7, 1928)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1928v01/d448",
+      "archive_url": null,
+      "catalog_id": "frus1928v01/d448",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1932-toc": {
+      "title": "Foreign Relations of the United States, 1932, Volume V, List of Papers",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1932v05/toc-papers",
+      "archive_url": null,
+      "catalog_id": "frus1932v05/toc-papers",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1933-d145": {
+      "title": "Foreign Relations of the United States, 1933, Volume IV, The Ambassador in Argentina (Bliss) to the Secretary of State",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1933v04/d145",
+      "archive_url": null,
+      "catalog_id": "frus1933v04/d145",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1936-d751": {
+      "title": "Foreign Relations of the United States, 1936, Volume V, The Minister in Paraguay (Howard) to the Secretary of State (February 20, 1936)",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1936v05/d751",
+      "archive_url": null,
+      "catalog_id": "frus1936v05/d751",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "frus-1937-d703": {
+      "title": "Foreign Relations of the United States, 1937, Volume V, The Minister in Paraguay (Howard) to the Secretary of State",
+      "authors": [],
+      "publisher": "U.S. Department of State, Office of the Historian（Foreign Relations of the United States）",
+      "published_text": "FRUS 官方數位版",
+      "url": "https://history.state.gov/historicaldocuments/frus1937v05/d703",
+      "archive_url": null,
+      "catalog_id": "frus1937v05/d703",
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "政府官方出版（美國國務院歷史學家辦公室 FRUS）"
+    },
+    "persee-search-ayala": {
+      "title": "Persée 站內搜尋「Eusebio Ayala」結果頁（含 Herken Krauer 1983、Oliveira-Cézar 2010 摘錄）",
+      "authors": [],
+      "publisher": "Persée",
+      "published_text": "搜尋結果頁",
+      "url": "https://www.persee.fr/search?ta=article&q=%22Eusebio+Ayala%22",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "C",
+      "gradeBasis": "搜尋結果摘錄頁，原文全文未取得（PDF 403 未繞過），只作 gap 候選"
+    }
+  },
+  "people": [
+    {
+      "key": "py-ayala",
+      "bioId": "01a1aa4a-e5ef-7da3-a021-6c4738cdbbe2",
+      "name": "Eusebio Ayala",
+      "nameZh": "尤塞維奧·阿亞拉",
+      "recordIds": [
+        "fa894166-1f58-41ce-9808-6a6074373dc3",
+        "cfbfd3ff-d931-40ab-b219-3b3d39357e50",
+        "65b78f04-9858-48f3-a9b9-d55a2d1106ea",
+        "7aedba78-1057-48e7-818a-8e8bee7040b7"
+      ],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1875-08-14",
+            "end": "1942-06-04"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "出身與卒年",
+            "en": "Birth and death"
+          },
+          "body": {
+            "zh-Hant": "尤塞維奧·阿亞拉生於1875年8月14日，出生地為巴拉圭的巴雷羅格蘭德（Barrero Grande）；1942年6月4日在布宜諾斯艾利斯去世。德國國家圖書館的人名檔稱他是政治人物與經濟學者。",
+            "en": "Eusebio Ayala was born on 14 August 1875 at Barrero Grande, Paraguay and died in Buenos Aires on 4 June 1942. The German National Library authority record describes him as a politician and economist."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "bnf-ayala",
+              "locator": "Naissance",
+              "quote": "1875-08-14, Barrero Grande, Paraguay",
+              "quoteLang": "fr",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "bnf-ayala",
+              "locator": "Mort",
+              "quote": "1942-06-04, Buenos Aires",
+              "quoteLang": "fr",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "gnd-ayala",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "Paraguay. Politiker und Wirtschaftswissenschaftler",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1921-01-01",
+            "end": "1937-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "總統任期",
+            "en": "Presidencies"
+          },
+          "body": {
+            "zh-Hant": "人名權威檔記載他曾在1921至1923年與1932至1936年擔任巴拉圭總統。",
+            "en": "The authority record states that he was president of Paraguay in 1921–1923 and again in 1932–1936."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "gnd-ayala",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "1921-1923 und 1932-1936 Präsident von Paraguay",
+              "quoteLang": "de",
+              "evidenceNote": "年精度；段落迄點取 1936 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1913-04-05",
+            "end": "1913-04-06"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "外交部長與1913年議定書",
+            "en": "Foreign Minister and the 1913 protocol"
+          },
+          "body": {
+            "zh-Hant": "1913年4月5日，阿亞拉以外交部長身分在亞松森的外交部與玻利維亞公使里卡多·穆希亞會面，同意簽署一份議定書；條文要求雙方在兩年內談判確定的邊界條約。美國公使的後續公文把這份協定稱為阿亞拉—穆希亞議定書，並說它規定兩國在查科維持現狀兩年。",
+            "en": "On 5 April 1913 Ayala, as Foreign Minister, met Bolivia's envoy Ricardo Mujía at the Ministry of Foreign Affairs in Asunción and agreed to sign a protocol; its first article bound both sides to negotiate a definitive boundary treaty within two years. A later US legation despatch calls the agreement the Ayala-Mujía protocol and says it keeps the status quo in the Chaco for two years."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "frus-1915-d33",
+              "locator": "Inclosure, Ayala-Mujía Agreement",
+              "quote": "on April 5, 1913, meeting at the Ministry of Foreign Affairs",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1915-d33",
+              "locator": "Inclosure, Ayala-Mujía Agreement",
+              "quote": "Dr. Eusebio Ayala, Foreign Minister, agreed to sign the following Protocol",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1915-d33",
+              "locator": "Inclosure, Ayala-Mujía Agreement",
+              "quote": "Dr. Ricardo Mujía, Envoy Extraordinary and Minister Plenipotentiary of Bolivia",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1915-d33",
+              "locator": "Inclosure, Article I",
+              "quote": "negotiate a definitive boundary treaty within two years",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1914-d35",
+              "locator": "despatch text",
+              "quote": "known as the Ayala-Mujía protocol",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1914-d35",
+              "locator": "despatch text",
+              "quote": "maintain the status quo in the Chaco for two years",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1918-12-10",
+            "end": "1918-12-11"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "1918年的外交部長身分",
+            "en": "Foreign Minister in December 1918"
+          },
+          "body": {
+            "zh-Hant": "1918年12月10日的美國駐巴拉圭公使公文稱，阿亞拉當時是巴拉圭外交部長，公使在該日上午拜會了他。公文轉述阿亞拉的話：巴拉圭政府特別希望南美各共和國嚴格維持友好關係。",
+            "en": "A US legation despatch dated 10 December 1918 identifies Ayala as Paraguay's Minister for Foreign Affairs and says the minister called on him on the morning of that day. The despatch reports Ayala as saying that the Paraguayan government was especially anxious to see friendly relations between the South American republics strictly maintained."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "frus-1919-d170",
+              "locator": "Extract, header",
+              "quote": "December 10, 1918",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1919-d170",
+              "locator": "Extract",
+              "quote": "Dr. Eusebio Ayala, Paraguayan Minister for Foreign Affairs",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1919-d170",
+              "locator": "Extract",
+              "quote": "on the morning of December 10th",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1919-d170",
+              "locator": "Extract",
+              "quote": "Dr. Ayala told me that, particularly at this time",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1919-d170",
+              "locator": "Extract",
+              "quote": "especially anxious to see a strict maintenance of friendly relations",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 5,
+          "period": {
+            "start": "1921-09-23",
+            "end": "1921-10-29"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "1921年引渡條約往來",
+            "en": "Extradition treaty correspondence, 1921"
+          },
+          "body": {
+            "zh-Hant": "1921年9月23日的美國代辦公文說，美巴引渡條約的原件由尼古拉·A·格雷夫斯塔德與阿亞拉簽署，且有英文與西班牙文兩種文本。同年10月28日的公文附上阿亞拉的信，他寫道第二條第19款的兩種文本無法完全對應，並說偽證在巴拉圭法典中不受處罰；美國國務院的回覆稱他是代表巴拉圭簽署該條約的人。",
+            "en": "A US chargé's despatch of 23 September 1921 says the original extradition treaty between the United States and Paraguay, signed by Nicolay A. Grevstad and Ayala, exists in both English and Spanish. A despatch of 28 October 1921 encloses Ayala's letter, which says the two texts of Article II No. 19 could not be made to coincide and that perjury is not punishable under the Paraguayan Code. The State Department's reply describes him as the signatory for Paraguay."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "frus-1921-d572",
+              "locator": "header",
+              "quote": "September 23, 1921",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d572",
+              "locator": "despatch No. 890",
+              "quote": "signed by Nicolay A. Grevstad and Doctor Eusebio Ayala",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d572",
+              "locator": "despatch No. 890",
+              "quote": "is in both English and Spanish",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d573",
+              "locator": "header",
+              "quote": "October 28, 1921",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d573",
+              "locator": "Enclosure, Ayala letter",
+              "quote": "Article II No. 19 of the Treaty",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d573",
+              "locator": "Enclosure, Ayala letter",
+              "quote": "it has not been possible to make the two texts coincide",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d573",
+              "locator": "Enclosure, Ayala letter",
+              "quote": "Perjury is not punishable according to the Paraguayan Code",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1921-d574",
+              "locator": "reply",
+              "quote": "who signed the treaty in question on behalf of Paraguay",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 6,
+          "period": {
+            "start": "1927-12-06",
+            "end": "1928-12-08"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "1927至1928年的談判與外交",
+            "en": "Negotiations and diplomacy, 1927-1928"
+          },
+          "body": {
+            "zh-Hant": "1927年12月6日美國駐阿根廷大使的公文載明，巴拉圭全權代表包括阿亞拉、何塞·P·瓜吉亞里與富爾亨西奧·R·莫雷諾。1928年12月7日駐巴拉圭公使的電報稱阿亞拉是前巴拉圭駐華盛頓公使，正前往蒙特維多，正式請烏拉圭政府召集岡德拉條約所定的調查委員會。",
+            "en": "A US ambassador's despatch of 6 December 1927 lists the Paraguayan plenipotentiaries as Eusebio Ayala, José P. Guggiari and Fulgencio R. Moreno. A telegram of 7 December 1928 from the US minister in Paraguay calls Ayala a former Paraguayan Minister in Washington, on his way to Montevideo to ask the Uruguayan government to convoke the Commission of Inquiry provided for by the Gondra Treaty."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "frus-1927-d244",
+              "locator": "header",
+              "quote": "December 6, 1927",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1927-d244",
+              "locator": "despatch No. 92",
+              "quote": "The Paraguayan Plenipotentiaries, Doctors Eusebio Ayala, José P. Guggiari",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1927-d244",
+              "locator": "despatch No. 92",
+              "quote": "José P. Guggiari and Fulgencio R. Moreno",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1928-d448",
+              "locator": "telegram No. 26",
+              "quote": "December 7, 1928",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1928-d448",
+              "locator": "telegram No. 26",
+              "quote": "Dr. Eusebio Ayala, former Paraguayan Minister in Washington",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1928-d448",
+              "locator": "telegram No. 26",
+              "quote": "is now on his way to Montevideo officially to request Uruguayan Government",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1928-d448",
+              "locator": "telegram No. 26",
+              "quote": "convoke Commission of Inquiry provided by the Gondra Treaty",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 7,
+          "period": {
+            "start": "1932-01-01",
+            "end": "1937-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "總統任內的外交往來與政變",
+            "en": "Presidency, Chaco diplomacy and the 1936 coup"
+          },
+          "body": {
+            "zh-Hant": "美國國務院1932年8月15日的電報指示公使就查科局勢與阿亞拉總統商談；1933年的公文註腳註明阿亞拉是巴拉圭總統。1936年2月20日的公使電報稱佛朗哥上校當天宣誓就任臨時總統，同一卷公文把這場政變的首要目標說成推翻阿亞拉—埃斯蒂加里維亞政權，1937年的公文則稱阿亞拉為前總統。",
+            "en": "A State Department telegram of 15 August 1932 instructs the US minister to discuss the Chaco situation with President Ayala, and a 1933 despatch footnote identifies Eusebio Ayala as President of Paraguay. A telegram of 20 February 1936 reports that Colonel Franco took the oath as Provisional President that day; the same volume says the coup's first objective was to overthrow the Ayala-Estigarribia regime, and a 1937 despatch footnote calls Ayala a former President of Paraguay."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "frus-1932-toc",
+              "locator": "Aug. 15 entry (1932 vol. V)",
+              "quote": "Aug. 15 (32) To the Minister in Paraguay",
+              "quoteLang": "en",
+              "evidenceNote": "年份取自 1932 年卷（Volume V）目錄頁；此引文未含年份",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1932-toc",
+              "locator": "Aug. 15 entry",
+              "quote": "Instructions to discuss the Chaco situation with President Ayala",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1933-d145",
+              "locator": "footnote 6",
+              "quote": "Eusebio Ayala, President of Paraguay",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1936-d751",
+              "locator": "header",
+              "quote": "February 20, 1936",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1936-d751",
+              "locator": "telegram No. 23",
+              "quote": "Colonel Franco today took oath as",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1936-d751",
+              "locator": "despatch text",
+              "quote": "overthrow of the Ayala-Estigarribia regime",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "frus-1937-d703",
+              "locator": "footnote 8",
+              "quote": "Eusebio Ayala, former President of Paraguay",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "field:partyRoles",
+          "gapKind": "not_found",
+          "note": "待查證：已查 GND、BnF，皆未載政黨職務（自由黨黨職等）；總統任期（1921-11-07～1923-04-11、1932-08-15～1936-02-17）已在 leader_records，不重建。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "position:py-ayala-foreign-minister",
+          "gapKind": "not_found",
+          "note": "待查證：缺起日；外交部長（巴拉圭）FRUS 1913／1914／1918 公文只證明其在任（1913-04-05 簽署議定書、1918-12-10 仍在任），無起訖日；已查 history.state.gov FRUS 12 份公文、Persée 搜尋（Herken Krauer 1983 摘錄提及 1908 年外交部長，PDF 403 未繞過，全文未取得）、DB~e（前端殼頁）、Treccani、Britannica（挑戰頁）、encyclopedia.com（無條目）。需 DB~e 或巴拉圭國會／外交部官方名錄。",
+          "candidateCitations": [
+            {
+              "sourceKey": "persee-search-ayala",
+              "locator": "Herken Krauer 1983 摘錄",
+              "quote": "ministro de relaciones exteriores, Eusebio Ayala",
+              "quoteLang": "es"
+            }
+          ],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "position:py-ayala-minister-washington",
+          "gapKind": "not_found",
+          "note": "待查證：缺起日；駐華盛頓公使：FRUS 1928-12-07 電報僅稱「former Paraguayan Minister in Washington」，無起訖日；已查來源同外交部長條。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "field:ministerialCareer",
+          "gapKind": "not_found",
+          "note": "待查證：財政部等其他閣員與議員經歷仍未取得 A／B 級傳記原文；本輪新增查 FRUS、Persée、archive.org（Historical dictionary of Paraguay 僅有借閱殼頁）、Cervantes Virtual（Cloudflare）、巴拉圭參議院／經濟部官網（無相關頁）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "authority",
+          "query": "Eusebio Ayala（GND via lobid.org）",
+          "url": "https://lobid.org/gnd/search?q=Eusebio+Ayala&format=json",
+          "result": "found_A",
+          "note": "GND 1057279307；生卒、總統任期"
+        },
+        {
+          "step": 2,
+          "sourceType": "authority",
+          "query": "Ayala, Eusebio（BnF 權威檔）",
+          "url": "https://catalogue.bnf.fr/ark:/12148/cb121259132",
+          "result": "found_A",
+          "note": "生卒日與地"
+        },
+        {
+          "step": 3,
+          "sourceType": "authority",
+          "query": "data.bnf.fr Eusebio Ayala",
+          "url": "https://data.bnf.fr/fr/ark:/12148/cb121259132",
+          "result": "not_relevant",
+          "note": "僅書目頁"
+        },
+        {
+          "step": 4,
+          "sourceType": "authority",
+          "query": "LoC 名稱權威 n83179686",
+          "url": "https://id.loc.gov/authorities/names/n83179686.html",
+          "result": "blocked_403",
+          "note": "403，未繞過"
+        },
+        {
+          "step": 5,
+          "sourceType": "authority",
+          "query": "VIAF 站內搜尋 Ayala, Eusebio",
+          "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Ayala%2C%20Eusebio%22",
+          "result": "blocked_403",
+          "note": "403，未繞過"
+        },
+        {
+          "step": 6,
+          "sourceType": "authority",
+          "query": "BNE datos.bne.es Eusebio Ayala",
+          "url": "https://datos.bne.es/find?s=Eusebio+Ayala",
+          "result": "blocked_403",
+          "note": "403，未繞過"
+        },
+        {
+          "step": 7,
+          "sourceType": "national_dictionary",
+          "query": "Real Academia de la Historia DB~e Eusebio Ayala",
+          "url": "https://dbe.rah.es/biografias/eusebio-ayala",
+          "result": "no_result",
+          "note": "回應為前端殼頁（historia-hispanica.rah.es），無傳記文字"
+        },
+        {
+          "step": 8,
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica Eusebio Ayala",
+          "url": "https://www.britannica.com/biography/Eusebio-Ayala",
+          "result": "blocked_403",
+          "note": "Cloudflare 403，未繞過"
+        },
+        {
+          "step": 9,
+          "sourceType": "named_encyclopedia",
+          "query": "encyclopedia.com Eusebio Ayala（三種路徑）",
+          "url": "https://www.encyclopedia.com/people/history/south-american-history-biographies/eusebio-ayala",
+          "result": "no_result",
+          "note": "HTTP 404"
+        },
+        {
+          "step": 10,
+          "sourceType": "official",
+          "query": "CIDOB 領導人傳記 Eusebio Ayala",
+          "url": "https://www.cidob.org/en/biografias-lideres-politicos/america-del-sur/paraguay/eusebio-ayala",
+          "result": "no_result",
+          "note": "HTTP 404"
+        },
+        {
+          "step": 11,
+          "sourceType": "official",
+          "query": "巴拉圭總統府官網",
+          "url": "https://www.presidencia.gov.py/",
+          "result": "no_result",
+          "note": "連線逾時"
+        },
+        {
+          "step": 12,
+          "sourceType": "other",
+          "query": "Biografías y Vidas Eusebio Ayala",
+          "url": "https://www.biografiasyvidas.com/biografia/a/ayala_eusebio.htm",
+          "result": "unrated",
+          "note": "無署名條目，只放 gap 候選"
+        },
+        {
+          "step": 13,
+          "sourceType": "other",
+          "query": "Eusebio Ayala presidente Paraguay biografía Partido Liberal 1921 1932 1936（WebSearch）",
+          "url": null,
+          "result": "unrated",
+          "note": "結果多為百科鏡像與維基類索引，不採用"
+        },
+        {
+          "step": 14,
+          "sourceType": "other",
+          "query": "Arthur Greiser…（WebSearch 額度用盡，後續改以 curl 直取權威／官方頁）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡"
+        },
+        {
+          "step": 15,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "history.state.gov 站內搜尋 Eusebio Ayala（en）",
+          "url": "https://history.state.gov/search?q=Eusebio+Ayala",
+          "result": "found_A",
+          "note": "23 筆結果，其中 10 份相關 FRUS 公文"
+        },
+        {
+          "step": 16,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "history.state.gov 搜尋第 2、3 頁 Eusebio Ayala",
+          "url": "https://history.state.gov/search?q=Eusebio+Ayala&page=2",
+          "result": "found_A",
+          "note": "與第 1 頁重複"
+        },
+        {
+          "step": 17,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "history.state.gov 搜尋 President Ayala Paraguay inaugurated（en）",
+          "url": "https://history.state.gov/search?q=President+Ayala+Paraguay+inaugurated",
+          "result": "found_A",
+          "note": "得 1932 年卷目錄"
+        },
+        {
+          "step": 18,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "history.state.gov 搜尋 Ayala Paraguay coup February 1936（en）",
+          "url": "https://history.state.gov/search?q=Ayala+Paraguay+coup+February+1936",
+          "result": "found_A",
+          "note": "得 FRUS 1936 d751"
+        },
+        {
+          "step": 19,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1915 d33（Ayala-Mujía 議定書）",
+          "url": "https://history.state.gov/historicaldocuments/frus1915/d33",
+          "result": "found_A",
+          "note": "1913-04-05 簽署；外交部長"
+        },
+        {
+          "step": 20,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1914 d35",
+          "url": "https://history.state.gov/historicaldocuments/frus1914/d35",
+          "result": "found_A",
+          "note": "then Minister of Foreign Affairs"
+        },
+        {
+          "step": 21,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1919 v01 d170",
+          "url": "https://history.state.gov/historicaldocuments/frus1919v01/d170",
+          "result": "found_A",
+          "note": "1918-12-10 公文"
+        },
+        {
+          "step": 22,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1921 v02 d572",
+          "url": "https://history.state.gov/historicaldocuments/frus1921v02/d572",
+          "result": "found_A",
+          "note": "引渡條約簽署人"
+        },
+        {
+          "step": 23,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1921 v02 d573",
+          "url": "https://history.state.gov/historicaldocuments/frus1921v02/d573",
+          "result": "found_A",
+          "note": "Ayala 信件"
+        },
+        {
+          "step": 24,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1921 v02 d574",
+          "url": "https://history.state.gov/historicaldocuments/frus1921v02/d574",
+          "result": "found_A",
+          "note": "國務院覆文"
+        },
+        {
+          "step": 25,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1927 v01 d244",
+          "url": "https://history.state.gov/historicaldocuments/frus1927v01/d244",
+          "result": "found_A",
+          "note": "全權代表名單"
+        },
+        {
+          "step": 26,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1928 v01 d448",
+          "url": "https://history.state.gov/historicaldocuments/frus1928v01/d448",
+          "result": "found_A",
+          "note": "前駐華盛頓公使"
+        },
+        {
+          "step": 27,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1932 v05 目錄頁",
+          "url": "https://history.state.gov/historicaldocuments/frus1932v05/toc-papers",
+          "result": "found_A",
+          "note": "1932-08-15 起稱 President Ayala"
+        },
+        {
+          "step": 28,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1933 v04 d145",
+          "url": "https://history.state.gov/historicaldocuments/frus1933v04/d145",
+          "result": "found_A",
+          "note": "註腳：President of Paraguay"
+        },
+        {
+          "step": 29,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1936 v05 d751",
+          "url": "https://history.state.gov/historicaldocuments/frus1936v05/d751",
+          "result": "found_A",
+          "note": "1936-02-20 佛朗哥宣誓；政變"
+        },
+        {
+          "step": 30,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1937 v05 d703",
+          "url": "https://history.state.gov/historicaldocuments/frus1937v05/d703",
+          "result": "found_A",
+          "note": "註腳：former President"
+        },
+        {
+          "step": 31,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "FRUS 1946 v11 d947",
+          "url": "https://history.state.gov/historicaldocuments/frus1946v11/d947",
+          "result": "not_relevant",
+          "note": "指另一人 Juan B. Ayala"
+        },
+        {
+          "step": 32,
+          "round": "retry",
+          "sourceType": "national_dictionary",
+          "query": "Treccani「Eusebio Ayala」（it）",
+          "url": "https://www.treccani.it/enciclopedia/eusebio-ayala/",
+          "result": "no_result",
+          "note": "回傳通用首頁，無條目"
+        },
+        {
+          "step": 33,
+          "round": "retry",
+          "sourceType": "national_dictionary",
+          "query": "RAH Historia Hispánica 「eusebio-ayala」（es）",
+          "url": "https://historia-hispanica.rah.es/biografias/eusebio-ayala",
+          "result": "no_result",
+          "note": "前端殼頁，無傳記文字；未繞過"
+        },
+        {
+          "step": 34,
+          "round": "retry",
+          "sourceType": "named_encyclopedia",
+          "query": "encyclopedia.com ayala-eusebio-1875-1942／chaco-war／站內搜尋（en）",
+          "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/ayala-eusebio-1875-1942",
+          "result": "no_result",
+          "note": "三個路徑皆 404"
+        },
+        {
+          "step": 35,
+          "round": "retry",
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica Paraguay: The Chaco War（en）",
+          "url": "https://www.britannica.com/place/Paraguay/The-Chaco-War",
+          "result": "challenge_page",
+          "note": "Cloudflare 挑戰頁，未繞過"
+        },
+        {
+          "step": 36,
+          "round": "retry",
+          "sourceType": "academic",
+          "query": "Oxford Research Encyclopedia 搜尋 Eusebio Ayala（en）",
+          "url": "https://oxfordre.com/latinamericanhistory/search?q=Eusebio+Ayala",
+          "result": "blocked_403",
+          "note": "403，未繞過"
+        },
+        {
+          "step": 37,
+          "round": "retry",
+          "sourceType": "academic",
+          "query": "Oxford Reference 搜尋 Eusebio Ayala（en）",
+          "url": "https://www.oxfordreference.com/search?q=Eusebio+Ayala",
+          "result": "blocked_403",
+          "note": "403，未繞過"
+        },
+        {
+          "step": 38,
+          "round": "retry",
+          "sourceType": "academic",
+          "query": "Persée 搜尋「Eusebio Ayala」（es／fr）",
+          "url": "https://www.persee.fr/search?ta=article&q=%22Eusebio+Ayala%22",
+          "result": "unrated",
+          "note": "3 篇論文摘錄；文章頁無全文、PDF 403 未繞過；只放 gap 候選"
+        },
+        {
+          "step": 39,
+          "round": "retry",
+          "sourceType": "academic",
+          "query": "archive.org Historical dictionary of Paraguay（Nickson 等）全文",
+          "url": "https://archive.org/stream/historicaldictio0000nick/historicaldictio0000nick_djvu.txt",
+          "result": "no_result",
+          "note": "僅借閱殼頁，無書文"
+        },
+        {
+          "step": 40,
+          "round": "retry",
+          "sourceType": "authority",
+          "query": "Cervantes Virtual 資料搜尋 Eusebio Ayala（es）",
+          "url": "https://data.cervantesvirtual.com/search?q=Eusebio+Ayala",
+          "result": "challenge_page",
+          "note": "Cloudflare 挑戰頁，未繞過"
+        },
+        {
+          "step": 41,
+          "round": "retry",
+          "sourceType": "other",
+          "query": "DuckDuckGo HTML 搜尋 Eusebio Ayala presidente del Paraguay biografía（es）",
+          "url": "https://html.duckduckgo.com/html/?q=Eusebio+Ayala+presidente+del+Paraguay",
+          "result": "challenge_page",
+          "note": "機器人驗證，放棄"
+        },
+        {
+          "step": 42,
+          "round": "retry",
+          "sourceType": "other",
+          "query": "DuckDuckGo HTML 搜尋 Eusebio Ayala 1875 1942 Partido Liberal（es）",
+          "url": "https://html.duckduckgo.com/html/?q=Eusebio+Ayala+1875+1942+Paraguay+Partido+Liberal",
+          "result": "challenge_page",
+          "note": "機器人驗證，放棄"
+        },
+        {
+          "step": 43,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "巴拉圭外交部／經濟部／參議院官網",
+          "url": "https://www.mre.gov.py/",
+          "result": "blocked_403",
+          "note": "mre.gov.py 403；hacienda.gov.py、senado.gov.py 首頁無相關內容；bnp.gov.py 連線失敗"
+        }
+      ]
+    },
+    {
+      "key": "va-pius-xi",
+      "bioId": "01a1b4ae-0d7b-7b5b-9867-6f0fdde207f4",
+      "name": "Pius XI",
+      "nameZh": "庇護十一世",
+      "recordIds": [
+        "01a1aa4a-65c4-72bb-bf6b-d42a1361f6bc"
+      ],
+      "thickness": "厚",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1857-05-31",
+            "end": "1913-01-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與學術生涯",
+            "en": "Birth and scholarly career"
+          },
+          "body": {
+            "zh-Hant": "阿基萊·拉蒂（後來的庇護十一世）1857年5月31日生於米蘭附近的代西奧，1879年12月20日在拉特朗聖若望大殿晉鐸，1882年取得神學、教會法與哲學三項學位。他是米蘭安布羅夏納圖書館的學者，1907年出任館長，任職至1912年。",
+            "en": "Achille Ratti, later Pius XI, was born at Desio near Milan on 31 May 1857 and was ordained a priest in the Basilica of St John Lateran on 20 December 1879. In 1882 he took degrees in theology, canon law and philosophy. A doctor of the Biblioteca Ambrosiana in Milan, he became its prefect in 1907 and remained there until 1912."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "nasce a Desio (Milano) il 31 maggio 1857",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "il 20 dicembre 1879",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "della quale diviene prefetto nel 1907 e dove rimane fino al 1912",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "viene ordinato sacerdote nella Basilica di San Giovanni in Laterano",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "Il 1882 è l’anno della sua consacrazione culturale",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "consegue la laurea in teologia",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "la laurea in diritto canonico",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "la laurea in filosofia",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "cooptato fra i dottori della famosa Biblioteca Ambrosiana",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1914-09-01",
+            "end": "1922-02-06"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "梵蒂岡圖書館、波蘭與米蘭",
+            "en": "Vatican Library, Poland and Milan"
+          },
+          "body": {
+            "zh-Hant": "1914年9月1日拉蒂升任梵蒂岡圖書館館長；1918年5月教宗本篤十五世派他赴波蘭與立陶宛任宗座視察員，1919年7月3日獲確認為宗座大使，同年10月28日在華沙受祝聖為總主教。1921年9月8日他在米蘭主教座堂舉行接掌米蘭教區的典禮，留在米蘭直到1922年2月初的教宗選舉會議為止。",
+            "en": "Ratti became prefect of the Vatican Library on 1 September 1914. In May 1918 Benedict XV sent him to Poland and Lithuania as apostolic visitor; on 3 July 1919 he was confirmed as nuncio, and on 28 October he was consecrated archbishop in Warsaw. On 8 September 1921 he took possession of the diocese of Milan in a ceremony in the Duomo; he stayed there until the conclave of early February 1922."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "ne diviene prefetto il 1° settembre 1914",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "Nel maggio 1918 il Papa Benedetto XV",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "il 3 luglio 1919",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "il successivo 28 ottobre viene consacrato Arcivescovo",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "L’8 settembre 1921",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "treccani-pio-xi",
+              "locator": "Ratti nacque",
+              "quote": "vi restò solo fino al conclave del 2 febbraio 1922",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "quale vice-prefetto della Biblioteca Vaticana",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "lo manda in Polonia e in Lituania",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "dotato della qualifica di Visitatore apostolico",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "con il titolo di Nunzio apostolico",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "viene consacrato Arcivescovo nella Cattedrale San Giovanni di Varsavia",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "nel Duomo per la « presa di possesso » della diocesi di Milano",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1922-02-06",
+            "end": "1939-02-10"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "教宗與拉特朗條約",
+            "en": "Pontificate and the Lateran Treaty"
+          },
+          "body": {
+            "zh-Hant": "1922年2月2日舉行的教宗選舉會議於2月6日結束，拉蒂在第十四輪投票中獲選教宗，取名庇護十一世。1929年2月11日簽署的條約中，義大利承認梵蒂岡城國在教宗主權之下；他於1939年2月10日去世。",
+            "en": "The conclave that opened on 2 February 1922 closed on 6 February, and Ratti was elected pope on the fourteenth ballot, taking the name Pius XI. In the treaty signed on 11 February 1929 Italy recognised the Vatican City State under the sovereignty of the Supreme Pontiff. He died on 10 February 1939."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "treccani-pio-xi",
+              "locator": "Ratti nacque",
+              "quote": "iniziato il 2 febbraio 1922 e conclusosi il 6",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "al quattordicesimo scrutinio, Achille Ratti viene eletto Papa",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "Egli assume il nome di Pio XI",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "l’11 febbraio 1929 verrà sottoscritto il Trattato",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "l’Italia riconosce lo Stato della Città del Vaticano",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "treccani-pio-xi",
+              "locator": "Ratti nacque",
+              "quote": "avvenuta il 10 febbraio 1939",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "lo Stato della Città del Vaticano sotto la sovranità del Sommo Pontefice",
+              "quoteLang": "it",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "ratti-ambrosiana",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "安布羅夏納圖書館（米蘭）",
+            "en": "Biblioteca Ambrosiana, Milan"
+          },
+          "title": {
+            "orig": "Prefetto della Biblioteca Ambrosiana",
+            "zh-Hant": "安布羅夏納圖書館館長",
+            "en": "Prefect of the Biblioteca Ambrosiana"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1907-01-01",
+            "end": "1913-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "della quale diviene prefetto nel 1907 e dove rimane fino al 1912",
+              "quoteLang": "it",
+              "evidenceNote": "年精度；迄日取 1912 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "ratti-milan-archbishop",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "米蘭總教區",
+            "en": "Archdiocese of Milan"
+          },
+          "title": {
+            "orig": "Arcivescovo di Milano",
+            "zh-Hant": "米蘭總主教",
+            "en": "Archbishop of Milan"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1921-09-08",
+            "end": "1922-02-06"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "vatican-pio-xi",
+              "locator": "Biografia",
+              "quote": "L’8 settembre 1921",
+              "quoteLang": "it",
+              "evidenceNote": "起日取「presa di possesso」就任典禮日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "treccani-pio-xi",
+              "locator": "Ratti nacque",
+              "quote": "iniziato il 2 febbraio 1922 e conclusosi il 6",
+              "quoteLang": "it",
+              "evidenceNote": "迄日取教宗選出日；來源寫他留在米蘭至教宗選舉會議，迄日為推論",
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "field:nuncioEnd",
+          "gapKind": "conflict",
+          "note": "待查證：駐華沙教廷大使（1919-07-03 起）迄日，教廷官網（A）寫「sulla fine dell'anno」（1920 年底）離開波蘭，Treccani（B）寫 1921-06-08 返回羅馬，兩份已抓來源不一致，故未建職位；需官方文件（Acta Apostolicae Sedis）核對。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "field:partyRoles",
+          "gapKind": "not_found",
+          "note": "待查證：教廷官網（A）與 Treccani（B）未載政黨職務；元首任期（教宗 1922-02-06～1939-02-10；梵蒂岡城國元首 1929-06-07～1939-02-10）已在 leader_records，不重建。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "official",
+          "query": "vatican.va Pio XI 傳記索引",
+          "url": "https://www.vatican.va/content/pius-xi/it/biography.html",
+          "result": "found_A",
+          "note": "取得索引頁，找到傳記文件路徑"
+        },
+        {
+          "step": 2,
+          "sourceType": "official",
+          "query": "vatican.va 猜測路徑 hf_p-xi_bio_20130718_pio-xi.html",
+          "url": "https://www.vatican.va/content/pius-xi/it/biography/documents/hf_p-xi_bio_20130718_pio-xi.html",
+          "result": "no_result",
+          "note": "HTTP 404，改從索引取正確路徑"
+        },
+        {
+          "step": 3,
+          "sourceType": "official",
+          "query": "vatican.va Pio XI Biografia（正確文件）",
+          "url": "https://www.vatican.va/content/pius-xi/it/biography/documents/hf_p-xi_bio_20070330_biography.html",
+          "result": "found_A",
+          "note": "取得完整傳記原文，用於引文"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "Treccani Pio XI（Enciclopedia dei Papi）",
+          "url": "https://www.treccani.it/enciclopedia/pio-xi_(Enciclopedia-dei-Papi)/",
+          "result": "found_B",
+          "note": "具名作者條目（Francesco Margiotta Broglio），取得原文"
+        },
+        {
+          "step": 5,
+          "sourceType": "authority",
+          "query": "GND／lobid 以 Pius XI 查詢",
+          "url": "https://lobid.org/gnd/search?q=Pius+XI&format=json",
+          "result": "not_relevant",
+          "note": "未用於引文；身分已由教廷官網確認"
+        }
+      ]
+    },
+    {
+      "key": "danzig-greiser",
+      "bioId": "01a1b4ae-0db5-7e9f-8f85-2ef9f6583b4d",
+      "name": "Arthur Greiser",
+      "nameZh": "阿圖爾·格賴瑟",
+      "recordIds": [
+        "01a1aa4a-b7d2-76c5-96a4-ed26239f5744",
+        "01a1aa4a-b7d3-78eb-91c7-85e0875c6059",
+        "01a1aa4a-b7d3-7ae1-9cc8-e621d89e950b",
+        "01a1aa4a-b7d2-7989-a41c-31c65a4a5a32"
+      ],
+      "thickness": "厚",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1897-01-22",
+            "end": "1930-01-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與早年",
+            "en": "Early life"
+          },
+          "body": {
+            "zh-Hant": "格賴瑟在普魯士波森省的小資產階級家庭長大，1914年9月以戰時志願兵加入海軍，1919年加入在波羅的海地區活動、屬「東部邊境防衛」的義勇軍。1922年起他是德意志社會黨（DSP）黨員，20年代在但澤自由市經商，1929年底加入納粹黨與衝鋒隊。",
+            "en": "Greiser grew up in a lower-middle-class family in the Prussian province of Posen. He volunteered for the navy in September 1914 and in 1919 joined a Freikorps active in the Baltic and belonging to the 'Grenzschutz Ost'. From 1922 he was a member of the German-Social Party (DSP), worked as a merchant in the Free City of Danzig in the 1920s, and joined the NSDAP and SA at the end of 1929."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Aufgewachsen in einer kleinbürgerlichen Familie in der preußischen Provinz Posen",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "meldete sich im September 1914 als Kriegsfreiwilliger zur Marine",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "zum „Grenzschutz Ost“ zählenden Freikorps",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1922 - 1929 - Danzig Mitglied Deutschsoziale Partei (DSP)",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Ende desselben Jahres trat er in die NSDAP und SA ein",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "schloss sich 1919 einem im Baltikum aktiven",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "war Greiser während der 1920er Jahre in der dem Völkerbund unterstellten",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Freien Stadt Danzig (heute Gdańsk, Polen) als Kaufmann tätig",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1929 - 1945 Mitglied NSDAP",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1930-01-01",
+            "end": "1934-11-28"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "納粹黨在但澤的崛起",
+            "en": "Rise within the Danzig NSDAP"
+          },
+          "body": {
+            "zh-Hant": "1930年至1933年格賴瑟擔任納粹黨在但澤人民議會的黨團主席，並在1930至1939年任但澤的副大區黨部領袖。1931至1933年他任《前哨》報總編輯；1933年6月起任參議院副議長兼內政參議員。",
+            "en": "From 1930 to 1933 Greiser chaired the NSDAP group in the Danzig Volkstag, and from 1930 to 1939 he was deputy Gauleiter in Danzig. From 1931 to 1933 he was editor-in-chief of Der Vorposten. From June 1933 he served as deputy president of the Senate and senator for the interior."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "von 1930 bis 1933 Fraktionsvorsitzender der NSDAP im Danziger Volkstag",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1930 - 1939 - Danzig stellvertretender Gauleiter",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1931 - 1933 - Danzig Chefredakteur Der Vorposten (Zeitung)",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "seit Juni 1933 als stellvertretender Senatspräsident und Senator für Inneres",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1934-11-28",
+            "end": "1939-09-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "但澤參議院議長",
+            "en": "President of the Danzig Senate"
+          },
+          "body": {
+            "zh-Hant": "1934年11月28日起格賴瑟任但澤參議院議長，至1939年9月1日止。他取代赫爾曼·勞施寧，成為但澤最高政府機關的首長。同時他仍是大區黨部領袖阿爾貝特·福爾斯特的副手，並自1934年起與他推動反波蘭、反猶政策。",
+            "en": "Greiser was president of the Danzig Senate from 28 November 1934 until 1 September 1939. He succeeded Hermann Rauschning and stood at the head of the city's highest governing body. At the same time he remained deputy to Gauleiter Albert Forster and from 1934 drove anti-Polish and anti-Jewish policy with him."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "gnd-greiser",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "28.11.1934 bis 01.09.1939 Senatspräsident von Danzig",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Nachfolger Hermann Rauschnings (1887–1982) als Senatspräsident",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Stellvertreter von Gauleiter Albert Forster (1902–1952)",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "mit dem er seit 1934 die antipolnische und antijüdische Politik",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "womit er an der Spitze der obersten Danziger Regierungsbehörde stand",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1939-09-01",
+            "end": "1946-07-21"
+          },
+          "periodStartPrecision": "month",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "瓦爾特蘭帝國大區與審判",
+            "en": "Reichsgau Wartheland and trial"
+          },
+          "body": {
+            "zh-Hant": "1939年9月他轉任波森軍區的民政長官，10月任命為波森帝國大區（1940年起稱瓦爾特蘭）的大區黨部領袖兼帝國總督，並自1940年起為納粹黨帝國議會議員。他推行針對波蘭人、猶太人與天主教徒的日耳曼化政策。1946年他被引渡給波蘭，6月21日被判死刑，7月21日在波森城堡前公開處決。",
+            "en": "In September 1939 Greiser became head of civil administration in the Posen military district, and in October he was appointed Gauleiter and Reichsstatthalter of Reichsgau Posen (Wartheland from 1940). From 1940 he was also an NSDAP Reichstag deputy. He pursued a rigid Germanisation policy directed against Poles, Jews and Catholics. Extradited to Poland in 1946, he was sentenced to death on 21 June and publicly executed before the Poznan citadel on 21 July."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "September 1939 - Oktober 1939 - Militärbezirk Posen Chef der Zivilverwaltung",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "im Oktober 1939 zum Gauleiter und Reichstatthalter des Reichsgaus Posen",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1940 - 1945 - Berlin Abgeordneter der NSDAP Reichstag",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "verfolgte Greiser eine rigide Germanisierungspolitik",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Im März 1946 wurde er an Polen ausgeliefert",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "am 21. Juni vom Obersten Nationalen Tribunal Polens zum Tode verurteilt",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "fand am 21. Juli 1946 vor der Posener Zitadelle statt",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "des Reichsgaus Posen (seit 1940 Reichsgau „Wartheland“) ernannt",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "die sich gegen Polen, Juden und Katholiken richtete",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "Seine öffentliche Hinrichtung fand am 21. Juli 1946",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "greiser-vorposten",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "《前哨》報（但澤）",
+            "en": "Der Vorposten (Danzig)"
+          },
+          "title": {
+            "orig": "Chefredakteur Der Vorposten (Zeitung)",
+            "zh-Hant": "《前哨》報總編輯",
+            "en": "Editor-in-chief, Der Vorposten"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1931-01-01",
+            "end": "1934-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1931 - 1933 - Danzig Chefredakteur Der Vorposten (Zeitung)",
+              "quoteLang": "de",
+              "evidenceNote": "年精度；迄日取 1933 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "partyPostAmbiguous": true,
+          "partyPostAmbiguousReason": "來源只稱「Der Vorposten (Zeitung)」，未寫明是否為納粹黨機關報；黨報主編是否算黨職不明，不猜（審查已同步刪去正文「黨報」字樣）"
+        },
+        {
+          "key": "greiser-dep-senate-interior",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "但澤自由市參議院",
+            "en": "Senate of the Free City of Danzig"
+          },
+          "title": {
+            "orig": "stellvertretender Senatspräsident; Senator für Inneres",
+            "zh-Hant": "參議院副議長兼內政參議員",
+            "en": "Deputy President of the Senate and Senator for the Interior"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1933-06-01",
+            "end": "1934-11-28"
+          },
+          "startPrecision": "month",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "seit Juni 1933 als stellvertretender Senatspräsident und Senator für Inneres",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "gnd-greiser",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "28.11.1934 bis 01.09.1939 Senatspräsident von Danzig",
+              "quoteLang": "de",
+              "evidenceNote": "迄日依名簿下一任（Senatspräsident）起日推得（推論）；來源另寫 Ende November 1934 接任",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Ambiguous": true,
+          "t14AmbiguousReason": "來源把「副議長」與「內政參議員」合為一職寫在同一期間，副職（R5）與內政部正職（R3）無法分開判斷，且是否相當四部之內政部閣員未明"
+        },
+        {
+          "key": "greiser-zivilverwaltung-posen",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波森軍區（軍事指揮官轄下民政）",
+            "en": "Military district Posen (civil administration under the military commander)"
+          },
+          "title": {
+            "orig": "Chef der Zivilverwaltung beim Militärbefehlshaber in Posen",
+            "zh-Hant": "波森軍事指揮官轄下民政長官",
+            "en": "Head of Civil Administration under the Military Commander in Posen"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1939-09-01",
+            "end": "1939-10-21"
+          },
+          "startPrecision": "month",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "September 1939 - Oktober 1939 - Militärbezirk Posen Chef der Zivilverwaltung",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "gnd-greiser",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "ab 21.10.1939 Gauleiter und Reichsstatthalter Wartheland",
+              "quoteLang": "de",
+              "evidenceNote": "迄日依名簿下一任（Reichsstatthalter）起日推得（推論）",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "occupation_colonial",
+          "t14Rule": "R5",
+          "t14Reason": "R5：職稱為軍事指揮官轄下的民政長官，非轄區最高行政長官，且期間不足 30 天無法證明（R2 ①③不成立）"
+        },
+        {
+          "key": "greiser-reichsstatthalter-posen",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波森帝國大區（1940年起瓦爾特蘭）",
+            "en": "Reichsgau Posen (Wartheland from 1940)"
+          },
+          "title": {
+            "orig": "Reichsstatthalter",
+            "zh-Hant": "帝國總督（波森／瓦爾特蘭帝國大區）",
+            "en": "Reichsstatthalter of Reichsgau Posen (Wartheland)"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1939-10-21",
+            "end": "1946-01-01"
+          },
+          "startPrecision": "day",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "gnd-greiser",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "ab 21.10.1939 Gauleiter und Reichsstatthalter Wartheland",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "NSDAP-Gauleiter und Reichsstatthalter",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "November 1939 - 1945",
+              "quoteLang": "de",
+              "evidenceNote": "迄日年精度，取 1945 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "occupation_colonial",
+          "t14Rule": "R6",
+          "t14Reason": "類別符合 R2（併入地的轄區最高行政長官），但該轄區在系統中的 regimeId 未查（不連庫）、政權待查證，故門檻無法證明",
+          "roleEligible": true,
+          "roleEligibleKind": "occupation_administrator",
+          "roleGap": [
+            "regime"
+          ]
+        }
+      ],
+      "roleCandidates": [
+        {
+          "key": "greiser-nsdap-fraktion",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "納粹黨（但澤人民議會黨團）",
+            "en": "NSDAP (Danzig Volkstag group)"
+          },
+          "title": {
+            "orig": "NSDAP-Fraktionsführer Volkstag",
+            "zh-Hant": "納粹黨但澤人民議會黨團主席",
+            "en": "NSDAP group leader in the Danzig Volkstag"
+          },
+          "period": {
+            "start": "1930-01-01",
+            "end": "1934-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1930 - 1933 - Danzig NSDAP-Fraktionsführer Volkstag",
+              "quoteLang": "de",
+              "evidenceNote": "年精度；迄日取 1933 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Biografie",
+              "quote": "von 1930 bis 1933 Fraktionsvorsitzender der NSDAP im Danziger Volkstag",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "de_facto_leader",
+          "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader；納粹黨黨團職務（議會黨團主席）",
+          "t14Rule": "R1",
+          "originalPositionKind": "legislator"
+        },
+        {
+          "key": "greiser-dep-gauleiter",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "納粹黨但澤大區黨部",
+            "en": "NSDAP Gau Danzig"
+          },
+          "title": {
+            "orig": "stellvertretender Gauleiter",
+            "zh-Hant": "副大區黨部領袖（但澤）",
+            "en": "Deputy Gauleiter of Danzig"
+          },
+          "period": {
+            "start": "1930-01-01",
+            "end": "1940-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1930 - 1939 - Danzig stellvertretender Gauleiter",
+              "quoteLang": "de",
+              "evidenceNote": "年精度；迄日取 1939 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "de_facto_leader",
+          "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+          "t14Rule": "R1"
+        },
+        {
+          "key": "greiser-gauleiter-wartheland",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "納粹黨波森／瓦爾特蘭大區黨部",
+            "en": "NSDAP Gau Posen / Wartheland"
+          },
+          "title": {
+            "orig": "NSDAP-Gauleiter",
+            "zh-Hant": "納粹黨大區黨部領袖（波森／瓦爾特蘭）",
+            "en": "NSDAP Gauleiter of Posen / Wartheland"
+          },
+          "period": {
+            "start": "1939-10-21",
+            "end": "1946-01-01"
+          },
+          "startPrecision": "day",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "gnd-greiser",
+              "locator": "biographicalOrHistoricalInformation",
+              "quote": "ab 21.10.1939 Gauleiter und Reichsstatthalter Wartheland",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "NSDAP-Gauleiter und Reichsstatthalter",
+              "quoteLang": "de",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "November 1939 - 1945",
+              "quoteLang": "de",
+              "evidenceNote": "迄日年精度，取 1945 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "de_facto_leader",
+          "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+          "t14Rule": "R1"
+        },
+        {
+          "key": "greiser-reichstag-nsdap",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "德意志帝國議會（納粹黨議員）",
+            "en": "Reichstag (NSDAP deputy)"
+          },
+          "title": {
+            "orig": "Abgeordneter der NSDAP Reichstag",
+            "zh-Hant": "帝國議會議員（納粹黨）",
+            "en": "Reichstag deputy (NSDAP)"
+          },
+          "period": {
+            "start": "1940-01-01",
+            "end": "1946-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "ndb-greiser",
+              "locator": "Lebenslauf",
+              "quote": "1940 - 1945 - Berlin Abgeordneter der NSDAP Reichstag",
+              "quoteLang": "de",
+              "evidenceNote": "年精度；迄日取 1945 的下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "de_facto_leader",
+          "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；來源明寫「Abgeordneter der NSDAP」",
+          "t14Rule": "R1",
+          "originalPositionKind": "legislator"
+        }
+      ],
+      "gaps": [
+        {
+          "target": "field:deathDate",
+          "gapKind": "conflict",
+          "note": "待查證：死亡日兩份已抓 A 級來源不一致：NDB-online 寫 1946-07-21 處決，GND（lobid）寫 1946-06-20；正文採 NDB-online（有判決日 6 月 21 日與處決日 7 月 21 日互相對得上），GND 日期疑誤，需波蘭官方檔案核對。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "field:gauleiterStartDate",
+          "gapKind": "conflict",
+          "note": "待查證：大區黨部領袖／帝國總督起日，GND 寫 1939-10-21，NDB-online 傳記文字寫 1939 年 10 月任命，但其 Lebenslauf 表寫 1939 年 11 月；本檔取 1939-10-21。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "field:senatePresidencyTerm",
+          "gapKind": "not_found",
+          "note": "名單內 Senatspräsident 任期（1934-11-28～1939-08-23）已在 leader_records，不重建；GND 寫迄於 1939-09-01，與名簿 1939-08-23 差 9 天，僅提醒，不在本批改動範圍。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "authority",
+          "query": "Arthur Greiser（GND via lobid.org）",
+          "url": "https://lobid.org/gnd/search?q=Arthur+Greiser&format=json",
+          "result": "found_A",
+          "note": "GND 121617688；任期日期"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "Greiser Arthur（Deutsche Biographie 舊 pnd 路徑）",
+          "url": "https://www.deutsche-biographie.de/pnd118696130.html",
+          "result": "not_relevant",
+          "note": "該 ID 為另一人（Goldast）"
+        },
+        {
+          "step": 3,
+          "sourceType": "national_dictionary",
+          "query": "Greiser Arthur（Deutsche Biographie GND 路徑）",
+          "url": "https://www.deutsche-biographie.de/121617688.html",
+          "result": "found_A",
+          "note": "NDB-online 條目（Alexander Kranz，2022），取得全文與 Lebenslauf"
+        },
+        {
+          "step": 4,
+          "sourceType": "academic",
+          "query": "Greiser, Arthur Karl 人名檔（Kalliope）",
+          "url": "https://kalliope-verbund.info/gnd/121617688",
+          "result": "unrated",
+          "note": "僅人名檔，未用於引文"
+        },
+        {
+          "step": 5,
+          "sourceType": "official",
+          "query": "DHM LeMO Greiser 傳記（兩種路徑）",
+          "url": "https://www.dhm.de/lemo/biografie/arthur-greiser",
+          "result": "no_result",
+          "note": "HTTP 404，LeMO 無此條目"
+        },
+        {
+          "step": 6,
+          "sourceType": "official",
+          "query": "DHM LeMO 站內搜尋 Greiser",
+          "url": "https://www.dhm.de/lemo/suche?q=Greiser",
+          "result": "no_result",
+          "note": "搜尋頁未列 Greiser 條目"
+        },
+        {
+          "step": 7,
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica Arthur Greiser",
+          "url": "https://www.britannica.com/biography/Arthur-Greiser",
+          "result": "blocked_403",
+          "note": "Cloudflare 403，未繞過"
+        },
+        {
+          "step": 8,
+          "sourceType": "named_encyclopedia",
+          "query": "Gedanopedia Greiser（多種路徑）",
+          "url": "https://gedanopedia.pl/gdansk/?title=GREISER_ARTHUR",
+          "result": "no_result",
+          "note": "HTTP 404，找不到正確 slug"
+        },
+        {
+          "step": 9,
+          "sourceType": "official",
+          "query": "Deutsche Digitale Bibliothek Greiser 人物頁",
+          "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/121617688",
+          "result": "challenge_page",
+          "note": "Anubis 挑戰頁，未繞過"
+        },
+        {
+          "step": 10,
+          "sourceType": "official",
+          "query": "Reichstag-Abgeordnetendatenbank（BSB）Greiser",
+          "url": "https://www.reichstag-abgeordnetendatenbank.de/selectmaske.html?pnd=121617688",
+          "result": "challenge_page",
+          "note": "Anubis 挑戰頁，未繞過"
+        },
+        {
+          "step": 11,
+          "sourceType": "authority",
+          "query": "Archivportal-D Greiser",
+          "url": "https://www.archivportal-d.de/person/gnd/121617688",
+          "result": "challenge_page",
+          "note": "Anubis 挑戰頁，未繞過"
+        },
+        {
+          "step": 12,
+          "sourceType": "academic",
+          "query": "Pressemappe 20. Jahrhundert（ZBW）Greiser",
+          "url": "https://pm20.zbw.eu/search?q=Greiser",
+          "result": "challenge_page",
+          "note": "Anubis 挑戰頁，未繞過"
+        },
+        {
+          "step": 13,
+          "sourceType": "authority",
+          "query": "LoC 站內搜尋 Greiser, Arthur",
+          "url": "https://id.loc.gov/search/?q=Greiser%2C+Arthur",
+          "result": "unrated",
+          "note": "列出 Epstein《Model Nazi》（OUP）等書目，未用於引文"
+        },
+        {
+          "step": 14,
+          "sourceType": "academic",
+          "query": "Epstein, Model Nazi（OUP 出版社頁／DOI）",
+          "url": "https://global.oup.com/academic/product/model-nazi-9780199546282",
+          "result": "no_result",
+          "note": "HTTP 202 無內容；academic.oup.com 403，未繞過"
+        },
+        {
+          "step": 15,
+          "sourceType": "other",
+          "query": "Arthur Greiser Biographie Senatspräsident Danzig Reichsstatthalter Warthegau（WebSearch）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡，未取得結果"
+        }
+      ]
+    }
+  ]
+}

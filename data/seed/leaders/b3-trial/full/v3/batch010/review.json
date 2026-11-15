@@ -1,0 +1,92 @@
+{
+ "batch": "010",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 9,
+  "editedSentences": 5,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pt-carmona",
+   "bioId": "01a1b4b2-2f00-733b-8d99-f824ac9205ca",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 26,
+   "changes": [
+    "第 4 段「得到民主黨與自由共和聯盟支持」原引文只含民主黨：補 museu-carmona 引文（同段原文，逐字核對）支撐 União Liberal Republicana 子句",
+    "carmona-foreign-minister-1926：起日最早 1926-06-01、迄日 1926-07-06，最長約 35 天，確定未達 90 天（不是無法證明），t14Rule R6→R5，移除 roleEligible／roleEligibleKind／roleGap，改寫 t14Reason",
+    "重抓 museu.presidencia.pt Carmona 頁比對 4 筆引文，皆一致",
+    "未達最低標準：carmona-war-minister-1926 缺迄日（有待查證 gap）；已有「篇幅不足：」gap 且 searchLog 有 retry 加強搜尋（官方、權威檔、百科、學術），依 6c 不退回"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "tr-inonu",
+   "bioId": "01a1b492-3f0b-7ae0-abea-db47e3277815",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 2,
+   "gaps": 7,
+   "searchLogSteps": 28,
+   "changes": [
+    "第 1 段刪「中尉級的」（kolağası 等級無引文支撐）；段落 period 迄點依 Q3 由 1908-01-01 改為 1909-01-01（最後一件事在 1908 年）",
+    "第 3 段「人民黨副主席」改「代理主席」（Genel Başkan Vekili）；「1923-10-30 至 1937-11-01 出任歷屆政府總理」改為「八屆政府中出任七屆總理」，補 Lüleci 同句引文",
+    "第 4 段「阿塔圖克去世後、由大國民議會選出」原無引文：補 TCCB 引文",
+    "inonu-chp-vice-chair-1923：TCCB 引文無日期，datePrecision year→null，改 evidenceNote",
+    "inonu-foreign-minister-1922：kure 兩筆片段引文合併為同句完整引文（刪 1 筆）；t14Reason 更正為起日已有日精度、僅迄日缺",
+    "inonu-chp-chairman：補漏 t14Rule=R1；職稱改為「CHP Genel Başkanı（1938-12-26 起為 değişmez genel başkan）」，使 1938–1972 整段與兩來源一致",
+    "inonu-edirne-deputy 迄日 1923-08-11 為依第二屆議會開議日推得（evidenceNote 已標推論），保留",
+    "重抓 tccb.gov.tr 頁比對 4 筆引文，皆一致",
+    "未達最低標準：4 筆任期缺迄日（皆有待查證 gap）；已有「篇幅不足：」gap 且 searchLog 有 retry，依 6c 不退回"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cl-alessandri",
+   "bioId": "9f340844-7855-4a49-8095-93b6379958c9",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 7,
+   "gaps": 4,
+   "searchLogSteps": 11,
+   "changes": [
+    "第 2 段「1915 年當選」原引文只寫參選：補 BCN「fue electo senador」引文；1920 聯盟引文截掉謂語：補「lo proclamó candidato…」引文",
+    "第 3 段 1924 年句改寫為來源所述（國會因擔心政變一日內通過先前否決的全部法案；軍事委員會要求解散國會後辭職），刪無引文的「在軍官施壓下」「社會法案」，補 3 筆 BCN 引文；「推動 1925 年憲法」改為「其後產生的」（surgió）",
+    "無日期引文 datePrecision 改 null 共 2 筆（Ante esto…、presidente a contar de esta última fecha）",
+    "alessandri-diputado-1906／1909 迄日依 Q3 改為 1910-01-01／1913-01-01（原取同年起日）；alessandri-diputado-1912 依 BCN 內文 1913 年 6 月中離任改迄日 1913-07-01（month），補引文",
+    "重抓 bcn.cl 頁比對引文，皆一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "任務提示寫「本批 5 人」，名單與 research.json 實為 3 人",
+  "研究者對引文本身無日期者仍填 datePrecision（違反 Q8），本批修 3 筆",
+  "年精度屆期迄日未照 Q3 取下一單位起日（智利眾議員屆期），已改",
+  "T14：確定未達門檻（最長任期 <90 天）者誤判為 R6，應為 R5",
+  "引文截掉謂語或只支撐部分子句的情形仍有（Alessandri 1920 聯盟、1915 參選／當選、Carmona 支持政黨），已補同頁引文"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

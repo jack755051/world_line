@@ -1,0 +1,84 @@
+{
+ "batch": "009",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 13,
+  "editedSentences": 3,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "do-trujillo",
+   "bioId": "01a1b488-147a-7166-9528-0f859bb609dd",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 24,
+   "changes": [
+    "P1 刪「簡註終點與本庫名簿任期不同、止於1945年」子句（名簿1945-10-01為時間窗截斷，非史實終點，屬無出處評述）；補 GND placeOfDeath 引文（Santo Domingo）",
+    "P2 補 3 筆 Moya Pons 引文（解除武裝、游擊首領勢力消失、政權長久穩定關鍵），原句缺 quote 支撐",
+    "P3 刪「摘要頁沒有寫…起日…任期日期」後設句（非事實句）；補 forced to submit 引文；period 迄點依 1961（年精度）改 1962-01-01＋year",
+    "職位、候選角色為 0；警察首長、陸軍總司令、黨職三項 gap 維持（僅 EWB 無署名候選，T14 判斷正確）",
+    "重抓 cambridge-moyapons 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "lu-charlotte",
+   "bioId": "01a1b4af-e518-79ed-9e67-e75cb49d4e9e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 9,
+   "changes": [
+    "P1 修正歸屬：「超然於政治事務之上」出自政府出版品而非眾議院看板，拆分子句並補 Bei der Eidesleistung 引文；補「在她統治下」引文",
+    "P2 補「兩次世界大戰之間」引文；P3 引文改含 In London，補支持抵抗運動引文（原缺）；P4 補隱居費施巴赫城堡引文",
+    "來源 chd-charlotte-panel 的 published_text 去掉誤植的「François Altwies 條」",
+    "附註：同一政府出版品內攝政任命日期 28.4.1961 與 4.5.1961 不一致（單一來源，非 conflict；範圍外，僅記錄）",
+    "重抓 chd-charlotte-panel PDF 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "li-johann-ii",
+   "bioId": "01a1b4b2-2ef6-76b9-a880-8e41a9e0854f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 10,
+   "changes": [
+    "P2 補兩筆引文（民眾不理解、議會反對 1866 決定）；P3 補 Leopold von Imhof 人名引文",
+    "重抓 hls-johann2 比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者多處只引用句首片段，子句（人名、地點、評價）缺 quote 支撐；本批補 13 筆已抓原文引文",
+  "段落內不應寫與庫值比較或來源缺什麼的後設句，應放 gaps",
+  "名單任期終點 1945-10-01 是時間窗截斷，不可當成與來源矛盾的史實終點"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

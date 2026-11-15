@@ -1,0 +1,1703 @@
+{
+ "batch": "b3-full-v3-batch009",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式。三人的元首任期均在名簿 leader_records，本批 positions、roleCandidates 為空；特魯希略名單外的警察、軍職、黨職來源未載或缺起日，寫成 gaps。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；roleCandidates／T14 R0–R6 依 ALIGN.md 規則；來源規則依 docs/source-rules.md 與 data/source-policy.json（無署名條目只放 gap 候選）。三人的元首任期均在名簿 leader_records，故 positions、roleCandidates 為空；特魯希略的其他職位未取得 A／B 日期，寫成 gaps。regimeId 因不連庫無法查證，一律 null。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch009/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "gnd-trujillo": {
+   "title": "Trujillo Molina, Rafael Leónidas (GND 118761021)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118761021",
+   "archive_url": null,
+   "catalog_id": "GND 118761021",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "cambridge-moyapons": {
+   "title": "The Dominican Republic since 1930 (Chapter 11)",
+   "authors": [
+    "Frank Moya Pons"
+   ],
+   "publisher": "Cambridge University Press",
+   "published_text": "The Cambridge History of Latin America, ed. Leslie Bethell, pp. 509–544, 1990",
+   "url": "https://cambridge.org/core/product/identifier/CBO9781139055239A017/type/BOOK_PART",
+   "archive_url": null,
+   "catalog_id": "DOI 10.1017/CHOL9780521245180.012",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社專書章節（劍橋大學出版社），具名作者；僅用公開的章節摘要頁"
+  },
+  "cambridge-hoetink": {
+   "title": "The Dominican Republic, c. 1870–1930",
+   "authors": [
+    "H. Hoetink"
+   ],
+   "publisher": "Cambridge University Press",
+   "published_text": "The Cambridge History of Latin America, ed. Leslie Bethell, pp. 287–306, 1986",
+   "url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-latin-america/dominican-republic-c-18701930/BD83B9A11C3C3D4AFBA41AC0EAA003C7",
+   "archive_url": null,
+   "catalog_id": "DOI 10.1017/CHOL9780521245173.008",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社專書章節（劍橋大學出版社），具名作者；僅用公開的章節摘要頁"
+  },
+  "ewb-trujillo": {
+   "title": "Rafael Leonidas Trujillo Molina",
+   "authors": [],
+   "publisher": "Encyclopedia of World Biography（經 encyclopedia.com 轉載）",
+   "published_text": "Encyclopedia of World Biography",
+   "url": "https://www.encyclopedia.com/people/history/dominican-history-biographies/rafael-leonidas-trujillo-molina",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名條目（Q9），只放 gap 候選引文"
+  },
+  "gnd-charlotte": {
+   "title": "Charlotte, Luxemburg, Großherzogin (GND 119029243)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/119029243",
+   "archive_url": null,
+   "catalog_id": "GND 119029243",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "gouv-lu-famille": {
+   "title": "Apropos ... die großherzogliche Familie",
+   "authors": [],
+   "publisher": "Presse- und Informationsamt der Luxemburger Regierung（Service information et presse, gouvernement.lu）",
+   "published_text": "Apropos ... die großherzogliche Familie（政府出版品 PDF）",
+   "url": "https://luxembourg.public.lu/dam-assets/publications/a-propos-famille-grand-ducale/A-propos-Famille-grand-ducale-DE.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "盧森堡政府官方出版品（政府新聞資訊局）"
+  },
+  "chd-charlotte-panel": {
+   "title": "Großherzogin Charlotte: eine lange Herrschaft über turbulente Jahrzehnte hinweg",
+   "authors": [],
+   "publisher": "Chambre des Députés du Grand-Duché de Luxembourg（盧森堡眾議院）",
+   "published_text": "眾議院展覽看板（PDF）",
+   "url": "https://www.chd.lu/sites/default/files/2025-06/05_cdd_panneau-charlotte_de.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "盧森堡議會（眾議院）官方展覽資料，引用議事紀錄"
+  },
+  "gnd-johann2": {
+   "title": "Johann II., Liechtenstein, Fürst (GND 117003360)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/117003360",
+   "archive_url": null,
+   "catalog_id": "GND 117003360",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "hls-johann2": {
+   "title": "Liechtenstein, Johann II. von",
+   "authors": [
+    "Peter Geiger"
+   ],
+   "publisher": "Historisches Lexikon der Schweiz (HLS)",
+   "published_text": "HLS，Version von 2006（Druckversion，bearbeitet am 21.01.2008）",
+   "url": "https://hls-dhs-dss.ch/de/articles/021120/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "瑞士國家歷史辭典（HLS），具名作者"
+  },
+  "hlfl-johann2": {
+   "title": "Liechtenstein, Johann II. von",
+   "authors": [
+    "Evelin Oberhammer"
+   ],
+   "publisher": "Historisches Lexikon des Fürstentums Liechtenstein online (eHLFL), Liechtenstein-Institut",
+   "published_text": "eHLFL，Stand 31.12.2011",
+   "url": "https://historisches-lexikon.li/Liechtenstein,_Johann_II._von",
+   "archive_url": null,
+   "catalog_id": "GND 1089325185",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "列支敦士登國家歷史辭典（Liechtenstein-Institut），具名作者"
+  }
+ },
+ "people": [
+  {
+   "key": "do-trujillo",
+   "bioId": "01a1b488-147a-7166-9528-0f859bb609dd",
+   "name": "Rafael Leónidas Trujillo y Molina",
+   "nameZh": "拉斐爾·萊昂尼達斯·特魯希略",
+   "recordIds": [
+    "8b23cfb0-4c0f-4421-a4d9-e301b5989416",
+    "28cebdab-58f2-4d72-9486-e871fbf92a49",
+    "8ffe13c2-0777-4111-a5ea-fcb24ba03dab",
+    "61f7673b-f015-40c3-9c4d-2a3067745494"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-10-24",
+      "end": "1961-05-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒與身分",
+      "en": "Birth, death and identity"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的人名權威檔記載，特魯希略生於1891年10月24日，地點是多明尼加共和國的聖克里斯托瓦爾，1961年5月30日卒於聖多明各。該檔的簡註稱他是多明尼加的將軍與獨裁者，並寫他於1930至1938年及1942至1961年擔任多明尼加共和國總統。",
+      "en": "The German National Library authority record says Trujillo was born on 24 October 1891 in San Cristóbal in the Dominican Republic and died on 30 May 1961 in Santo Domingo. Its short note calls him a Dominican general and dictator and gives his presidency of the Dominican Republic as 1930–1938 and 1942–1961."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-trujillo",
+       "locator": "dateOfBirth",
+       "quote": "1891-10-24",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-trujillo",
+       "locator": "placeOfBirth",
+       "quote": "San Cristóbal (Dominikanische Republik)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-trujillo",
+       "locator": "dateOfDeath",
+       "quote": "1961-05-30",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-trujillo",
+       "locator": "placeOfDeath",
+       "quote": "Santo Domingo",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-trujillo",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Dominikan. General u. Diktator",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-trujillo",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1930-1938 u. 1942-1961 Präsident d. Dominikan. Republik",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1916-05-01",
+      "end": "1924-08-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "美軍占領與全國警察",
+      "en": "US occupation and the national police"
+     },
+     "body": {
+      "zh-Hant": "多明尼加共和國在1916年被美國軍事占領，美國海軍陸戰隊自1916年5月起治理該國，直到1924年7月。莫亞·蓬斯指出，海軍陸戰隊強制的全面解除武裝，使傳統游擊首領的勢力永遠消失，並使一支只服從中央政府的專業全國警察得以成立；他認為這是理解特魯希略政權何以長久穩定的關鍵。",
+      "en": "Hoetink writes that from 1916 to 1924 the Dominican Republic was under military occupation by the United States, and Moya Pons says the U.S. Marines governed the country from May 1916 until July 1924. Moya Pons argues that the general disarmament the Marines imposed ended the power of the traditional guerrilla leaders and made possible a professional national police force obedient only to the central government, which he sees as the key to the longevity of Trujillo's regime."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cambridge-hoetink",
+       "locator": "Summary",
+       "quote": "from 1916–24 it was under military occupation by the United States",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "who governed the country from May 1916 until July 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "a professional national police force obedient only to the central government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "lies in the general disarmament imposed by the U.S. Marines",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "destroyed forever the power and influence of the traditional guerrilla leaders",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "understanding the longevity and stability of Trujillo's thirty-year regime",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1930-02-23",
+      "end": "1962-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1930年政變與長期獨裁",
+      "en": "The 1930 coup and the long dictatorship"
+     },
+     "body": {
+      "zh-Hant": "據莫亞·蓬斯所述，1930年2月23日，奧拉西奧·巴斯克斯總統的政府被一場政變推翻，領導者是陸軍總司令特魯希略將軍。這位作者認為，此後多明尼加人被迫屈服於一場長達三十一年的極權獨裁，直到1961年特魯希略遇刺才結束。",
+      "en": "According to Moya Pons, on 23 February 1930 the government of President Horacio Vásquez was overthrown by a coup led by the commander-in-chief of the army, General Rafael Leónidas Trujillo. He describes a totalitarian dictatorship that lasted thirty-one years and was ended only by the assassination of the tyrant in 1961."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "On 23 February 1930, the government of President Horacio Vásquez",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "was overthrown by a coup d'état led by the commander-in-chief of the army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "General Rafael Leónidas Trujillo",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "The Dominican people were forced to submit",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "a totalitarian dictatorship that lasted for thirty-one years",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-moyapons",
+       "locator": "Summary",
+       "quote": "brought to an end only by the assassination of the tyrant in 1961",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:natl-police-chief-1924",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；多明尼加國家警察首長（1924，試跑檔曾列）未取得 A／B 來源：權威檔、劍橋兩章摘要都沒寫他的警察職務與日期；DBE（dbe.rah.es 為純前端頁面無內文）、LoC 國別研究（403）、Britannica（403）未取得；Encyclopedia of World Biography 無署名，只能作候選。且依 T14 此職屬 R5（國家警察首長），即使補到日期也只進 positions",
+     "candidateCitations": [
+      {
+       "sourceKey": "ewb-trujillo",
+       "locator": "條目第二段",
+       "quote": "Trujillo was named second-in-command of the Guard.",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:armed-forces-cic",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；莫亞·蓬斯（B）寫1930年2月政變時他是陸軍總司令（職位等級明寫），但摘要頁沒有任命日期，也無法確認是否即國家級最高軍職的起訖；Encyclopedia of World Biography（無署名）只作候選，且所說的 commander in chief 指 Guard。DBE、LoC、Britannica 未取得，故不建 R4 候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "ewb-trujillo",
+       "locator": "條目第二段",
+       "quote": "On June 22, 1925, he became its commander in chief.",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:partyPosts",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；未取得 A／B 來源寫明黨職（如多明尼加黨黨魁）的職稱與日期，故未建黨職候選；Encyclopedia of World Biography（無署名）只寫 head of the only legal political party，作候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "ewb-trujillo",
+       "locator": "條目倒數第三段",
+       "quote": "As head of the only legal political party",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:presidencyTermEnd",
+     "gapKind": "not_found",
+     "note": "待查證：GND 簡註寫1942–1961年任總統，但本庫名簿的第二任期止於1945-10-01，且1945年以後屬 Q4 範圍外只寫正文；未取得 A／B 原文逐日記載他1945年以後的職務，故不判斷衝突",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "GND 118761021 lobid.org",
+     "url": "https://lobid.org/gnd/search?q=Trujillo+Molina+Rafael",
+     "result": "found_A",
+     "note": "已抓；確認生卒、地點與簡註"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND JSON 118761021",
+     "url": "https://lobid.org/gnd/118761021.json",
+     "result": "found_A",
+     "note": "轉文字作引文原文（gnd-trujillo.txt）"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie GND 118761021",
+     "url": "https://www.deutsche-biographie.de/gnd118761021.html",
+     "result": "unrated",
+     "note": "只有索引頁，無傳記內文"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "DBE Real Academia de la Historia Trujillo Molina",
+     "url": "https://dbe.rah.es/biografias/10849/rafael-leonidas-trujillo-molina",
+     "result": "no_result",
+     "note": "頁面為純前端殼，無人物內文；WebSearch 亦未找到條目網址"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "LoC Country Study Dominican Republic",
+     "url": "https://www.loc.gov/item/89600481/",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Rafael Trujillo",
+     "url": "https://www.britannica.com/biography/Rafael-Trujillo",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，放棄；未用其他途徑取代"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Cambridge History of Latin America Moya Pons ch.11",
+     "url": "https://cambridge.org/core/product/identifier/CBO9781139055239A017/type/BOOK_PART",
+     "result": "found_B",
+     "note": "只有公開章節摘要"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Cambridge History of Latin America Hoetink ch. Dominican Republic c.1870-1930",
+     "url": "https://www.cambridge.org/core/books/abs/cambridge-history-of-latin-america/dominican-republic-c-18701930/BD83B9A11C3C3D4AFBA41AC0EAA003C7",
+     "result": "found_B",
+     "note": "摘要頁，只用占領年份"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of World Biography Trujillo",
+     "url": "https://www.encyclopedia.com/people/history/dominican-history-biographies/rafael-leonidas-trujillo-molina",
+     "result": "unrated",
+     "note": "無署名條目，只放 gap 候選"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "history.state.gov Dominican Republic countries 頁",
+     "url": "https://history.state.gov/countries/dominican-republic",
+     "result": "not_relevant",
+     "note": "只有外交關係，無特魯希略個人"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "history.state.gov milestones Dominican Republic",
+     "url": "https://history.state.gov/milestones/1921-1936/dominican-republic",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "data.bnf.fr Trujillo",
+     "url": "https://data.bnf.fr/fr/11927386/rafael_leonidas_trujillo_molina/",
+     "result": "no_result",
+     "note": "取得頁面無相關內容"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Biblioteca Nacional de España 權威檔 Trujillo Molina",
+     "url": "https://datos.bne.es/find?s=Trujillo+Molina+Rafael",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Trujillo",
+     "url": "https://www.treccani.it/enciclopedia/rafael-leonidas-trujillo-molina/",
+     "result": "no_result",
+     "note": "頁面不含該條目"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Universalis Trujillo y Molina",
+     "url": "https://www.universalis.fr/encyclopedie/rafael-leonidas-trujillo-y-molina/",
+     "result": "no_result",
+     "note": "取得頁面無內文（付費牆）"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "Oxford Research Encyclopedia Latin American History Trujillo",
+     "url": "https://oxfordre.com/latinamericanhistory/search?q=Trujillo",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "Biblioteca Nacional Pedro Henríquez Ureña Military biography of Trujillo (1956)",
+     "url": "https://bd.bnphu.gob.do/items/e56da95c-c8bf-4052-94f6-863710776b87/full",
+     "result": "unrated",
+     "note": "只有館藏書目頁，全文 PDF 為政權時期頌揚傳記，未採"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Academia Dominicana de la Historia Clio 1955 PDF",
+     "url": "https://catalogo.academiadominicanahistoria.org.do/opac-tmpl/files/ppcodice/Clio-1955-023-103-061-063.pdf",
+     "result": "not_relevant",
+     "note": "內容為他人訃告"
+    },
+    {
+     "step": 19,
+     "sourceType": "other",
+     "query": "WebSearch Rafael Leónidas Trujillo Molina biografía dbe.rah.es presidente 1930",
+     "url": "",
+     "result": "unrated",
+     "note": "結果多為維基類與私人傳記站，未用"
+    },
+    {
+     "step": 20,
+     "sourceType": "other",
+     "query": "WebSearch Trujillo 1924 jefe Policía Nacional 1928 comandante en jefe Ejército Nacional",
+     "url": "",
+     "result": "unrated",
+     "note": "結果為媒體與私人網站，各說法不一，未用"
+    },
+    {
+     "step": 21,
+     "sourceType": "other",
+     "query": "WebSearch Trujillo commander National Police 1925 army chief 1928 journal article",
+     "url": "",
+     "result": "unrated",
+     "note": "未找到可抓原文的 A／B 論文"
+    },
+    {
+     "step": 22,
+     "sourceType": "other",
+     "query": "WebSearch Trujillo Universalis OR Treccani Guardia Nacional Ejército Nacional",
+     "url": "",
+     "result": "unrated",
+     "note": "未找到合格來源"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "presidencia.gob.do 歷史頁",
+     "url": "https://presidencia.gob.do/historia",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 24,
+     "sourceType": "authority",
+     "query": "Library of Congress Federal Research Division 國別研究 tile.loc.gov",
+     "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/do/dominicanrepubl00hav_0/dominicanrepubl00hav_0_djvu.txt",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  },
+  {
+   "key": "lu-charlotte",
+   "bioId": "01a1b4af-e518-79ed-9e67-e75cb49d4e9e",
+   "name": "Charlotte",
+   "nameZh": "夏洛特女大公",
+   "recordIds": [
+    "01a1aa4a-59b2-70b6-b85d-d3d4d0a51424",
+    "01a1aa96-cf95-712c-973c-b8e89a1c69ff"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1919-01-15",
+      "end": "1919-09-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "繼位、宣誓與公投",
+      "en": "Accession, oath and the referendum"
+     },
+     "body": {
+      "zh-Hant": "1919年1月15日，夏洛特登上盧森堡大公之位。盧森堡政府的出版品說，國務大臣埃米爾·勒伊特為了挽救王朝，說服大公瑪麗-阿德萊德把位子讓給較年輕的妹妹夏洛特。眾議院的資料記載，她於同年1月15日在貝爾格城堡宣誓；政府出版品說，她在宣誓時表示要超然於政治事務之上。1919年9月28日的公民投票中，77.8%的盧森堡人支持在她統治下保留王朝。",
+      "en": "On 15 January 1919 Charlotte became Grand Duchess of Luxembourg. A Luxembourg government publication says that State Minister Émile Reuter, to save the dynasty, persuaded Grand Duchess Marie-Adélaïde to abdicate in favour of her younger sister Charlotte. The Chamber of Deputies' material records that she took her oath at Berg Castle on 15 January 1919, and the government publication says she affirmed her will to stand above political affairs. In the referendum of 28 September 1919, 77.8 per cent of Luxembourgers voted to keep the dynasty under her."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "chd-charlotte-panel",
+       "locator": "展覽看板首列",
+       "quote": "15/01/1919 – Abdankung 12/11/1964",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Um die Dynastie zu retten, überzeugt Staatsminister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "ihrer jüngeren Schwester Charlotte abzudanken.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "chd-charlotte-panel",
+       "locator": "宣誓說明",
+       "quote": "15. Januar 1919 auf Schloss Berg den Amtseid der Großherzogin Charlotte ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Bei der Eidesleistung am 15. Januar 1919",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "bekräftigt sie ihren Willen, über den politischen Angelegenheiten zu stehen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "vom 28. September 1919, bei dem 77,8 % der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Luxemburger für die Aufrechterhaltung der",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "unter Großherzogin Charlotte stimmen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-11-06",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "婚姻、修憲與國際關係",
+      "en": "Marriage, constitutional change and foreign relations"
+     },
+     "body": {
+      "zh-Hant": "1919年11月6日，夏洛特在盧森堡與波旁-帕爾馬的菲利克斯親王結婚。同年，王權的特權經修憲重新界定：國家被宣告為主權者，統治者的權力受到限制。兩次世界大戰之間，盧森堡於1920年12月16日加入國際聯盟，並在1921年成立比利時－盧森堡經濟聯盟。",
+      "en": "On 6 November 1919 Charlotte married Prince Felix of Bourbon-Parma in Luxembourg. In the same year the prerogatives of the Crown were redefined by a constitutional amendment: the nation was declared sovereign and the ruler's power was limited. Between the two world wars Luxembourg joined the League of Nations on 16 December 1920, and the Belgium-Luxembourg Economic Union was founded in 1921."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Am 6. November 1919 heiratet sie in Luxemburg Prinz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Felix von Bourbon von Parma",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "1919 werden die Vorrechte der Krone durch eine Verfassungsänderung neu definiert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Die Nation wird als souverän erklärt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "die Macht des Herrschers wird beschränkt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Die Jahre zwischen den zwei Weltkriegen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "in den Völkerbund am 16. Dezember 1920",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "(BLWU) im Jahr 1921",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-05-10",
+      "end": "1945-04-14"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "德軍入侵、流亡與返國",
+      "en": "German invasion, exile and return"
+     },
+     "body": {
+      "zh-Hant": "1940年5月10日，德軍侵入盧森堡。夏洛特偕家人與政府流亡，並在倫敦與同盟國結盟。政府出版品說，她從倫敦支持盧森堡的抵抗運動，1945年4月14日返國時受到歡呼的群眾迎接。",
+      "en": "On 10 May 1940 German troops marched into Luxembourg. Charlotte went into exile with her family and the government and, in London, allied herself with the Allies. The government publication says she supported the Luxembourg resistance from London and that on her return on 14 April 1945 she was received by a cheering crowd."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Am 10. Mai 1940 marschieren die deutschen Truppen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "mit ihrer Familie und der Regierung ins Exil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "In London verbündet die Großherzogin sich mit den Alliierten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "unterstützt die Großherzogin die luxemburgische Widerstandsbewegung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Rückkehr am 14. April 1945 wird sie von einer",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "jubelnden Menschenmenge empfangen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1961-04-28",
+      "end": "1985-07-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年與退位（範圍外，只寫正文）",
+      "en": "Later years and abdication (outside the window; narrative only)"
+     },
+     "body": {
+      "zh-Hant": "1961年4月28日，夏洛特任命長子讓為攝政親王（Statthalter），並於1964年11月12日讓位給他。之後她隱居費施巴赫城堡，1985年7月9日在該處去世。",
+      "en": "On 28 April 1961 Charlotte appointed her eldest son Jean as Lieutenant-Representative (Statthalter), and on 12 November 1964 she abdicated in his favour. She then withdrew to Fischbach Castle, where she died on 9 July 1985."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Am 28. April 1961 ernennt die Großherzogin ihren",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "ältesten Sohn Jean zum Statthalter",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "dankt am 12. November 1964 zu seinen Gunsten ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "Sie zieht sich auf Schloss Fischbach zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gouv-lu-famille",
+       "locator": "夏洛特條",
+       "quote": "wo sie am 9. Juli 1985 stirbt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:interregnum1940to1945",
+     "gapKind": "not_found",
+     "note": "待查證：名簿第二筆任期自1945-05-08起，來源（盧森堡政府出版品）只寫1945年4月14日返國，未寫流亡期間是否仍視為在位的法律日期；DHM／1914-1918-online（Anubis 挑戰頁）與 monarchie.lu（404）未取得，故不判斷也不建紀錄",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "GND Charlotte Luxemburg Großherzogin",
+     "url": "https://lobid.org/gnd/search?q=Charlotte+Luxemburg+Gro%C3%9Fherzogin",
+     "result": "found_A",
+     "note": "確認 GND 119029243（1896-01-23～1985-07-09）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND JSON 119029243",
+     "url": "https://lobid.org/gnd/119029243.json",
+     "result": "found_A",
+     "note": "簡註：Großherzogin 1919-1964"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie 119029243",
+     "url": "https://www.deutsche-biographie.de/119029243.html",
+     "result": "unrated",
+     "note": "只有索引頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "盧森堡政府出版品 A propos Famille grand-ducale (DE)",
+     "url": "https://luxembourg.public.lu/dam-assets/publications/a-propos-famille-grand-ducale/A-propos-Famille-grand-ducale-DE.pdf",
+     "result": "found_A",
+     "note": "pdftotext 轉文字；引文避開軟連字號行"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "盧森堡眾議院 Großherzogin Charlotte 展覽看板",
+     "url": "https://www.chd.lu/sites/default/files/2025-06/05_cdd_panneau-charlotte_de.pdf",
+     "result": "found_A",
+     "note": "pdftotext 轉文字"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "monarchie.lu 大公家族歷史",
+     "url": "https://monarchie.lu/en/grand-ducal-family/history",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Charlotte grand duchess of Luxembourg",
+     "url": "https://www.britannica.com/biography/Charlotte-grand-duchess-of-Luxembourg",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Charlotte histperson 119029243",
+     "url": "https://encyclopedia.1914-1918-online.net/histperson/119029243/",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "WebSearch Charlotte Großherzogin von Luxemburg Deutsche Biographie 1919 Thronbesteigung",
+     "url": "",
+     "result": "unrated",
+     "note": "確認官方來源，未用維基類"
+    }
+   ]
+  },
+  {
+   "key": "li-johann-ii",
+   "bioId": "01a1b4b2-2ef6-76b9-a880-8e41a9e0854f",
+   "name": "Johann II von und zu Liechtenstein",
+   "nameZh": "約翰二世",
+   "recordIds": [
+    "01a1aa4a-659f-7369-a1f1-c18aa4557591"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1840-10-05",
+      "end": "1861-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、教育與繼位",
+      "en": "Birth, education and succession"
+     },
+     "body": {
+      "zh-Hant": "約翰二世生於1840年10月5日，地點在摩拉維亞的艾斯格魯布，是阿洛伊斯二世之子。他修習自然科學與藝術史，地點在波昂。他在1858年繼承父親，成為世襲領地的繼承者與列支敦士登親王；他求學期間，母親弗朗齊絲卡於1859至1860年間代為執政。",
+      "en": "Johann II was born on 5 October 1840 at Eisgrub in Moravia, the son of Prince Alois II. He studied natural science and art history at Bonn. In 1858 he succeeded his father as heir to the entailed estates and Prince of Liechtenstein, and while he was studying his mother Franziska conducted the government in his place in 1859–1860."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "5.10.1840 Eisgrub (Mähren, heute Lednice, Tschech. Republik)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "Sohn des Fürsten Alois II.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "Stud. der Naturwissenschaften und Kunstgeschichte in Bonn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第二段",
+       "quote": "Da Johann seinem Vater Alois schon 1858 als Majoratsherr",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第二段",
+       "quote": "und Fürst von Liechtenstein nachfolgte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第二段",
+       "quote": "führte während seiner Studienjahre seine Mutter Franziska",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第二段",
+       "quote": "stellvertretend die Regierungsgeschäfte (1859–1860)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1862-01-01",
+      "end": "1869-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1862年憲法與軍隊廢止",
+      "en": "The 1862 constitution and the end of the army"
+     },
+     "body": {
+      "zh-Hant": "1862年，約翰二世簽署了他與等級議會談妥的列支敦士登第一部君主立憲憲法。1866年普奧戰爭時，他把列支敦士登的部隊交給奧地利使用，民眾難以理解，議會也反對這項決定。1868年，他在議會推動下勉強同意解散這支部隊；瑞士歷史辭典則記載他在1868年廢除了軍隊。",
+      "en": "In 1862 Johann II signed the first constitutional charter of Liechtenstein, negotiated between him and the Estates. In the Austro-Prussian War of 1866 he placed the Liechtenstein contingent at Austria's disposal, which the population did not understand and the Landtag opposed. In 1868, at the Landtag's urging, he reluctantly disbanded the contingent, and the Swiss historical lexicon records that he abolished the army in 1868."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "1862 unterzeichnete Johann II. die zwischen ihm und den Landständen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "ausgehandelte erste konstitutionelle Verfassung Liechtensteins",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Im Preussisch-Österreichischen Krieg 1866 stellte Johann II.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Österreich das liechtensteinische Kontingent",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "was in der Bevölkerung auf kein Verständnis stiess",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Der Landtag widersetzte sich dem Entscheid des Fürsten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "1868 löste er das Kontingent auf Betreiben des Landtags widerstrebend auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "schaffte 1868 das Militär ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-11-01",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰後政局與1921年憲法",
+      "en": "Postwar crisis and the 1921 constitution"
+     },
+     "body": {
+      "zh-Hant": "1918年11月，約翰二世免去被議會推翻的邦長利奧波德·馮·因霍夫的職務。同年12月，他派卡爾親王前往列支敦士登調停，並應議會之請任命他為新邦長。他於1921年簽署建立在議會民主基礎上的憲法；1923年，他支持與瑞士簽訂關稅同盟條約。",
+      "en": "In November 1918 Johann II relieved Landesverweser Leopold von Imhof, who had been overthrown by the Landtag, of his office. In December he sent Prince Karl to Liechtenstein as a mediator and, at the Landtag's wish, appointed him the new Landesverweser. In 1921 he signed the constitution on a parliamentary-democratic basis, and in 1923 he supported the customs treaty with Switzerland."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Im November 1918 enthob Johann II. den vom Landtag gestürzten Landesverweser",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Leopold von Imhof in Gnaden seines Amts",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Im Dezember 1918 sandte er Prinz Karl von Liechtenstein als Vermittler",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "ernannte ihn auf Wunsch des Landtags zum neuen Landesverweser",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "1921 die Verfassung auf parlamentarisch-demokratischer Grundlage",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "1923 einen Zollanschlussvertrag mit der Schweiz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "1923 unterstützte er den Zollanschlussvertrag mit der Schweiz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1928-01-01",
+      "end": "1929-02-11"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年與去世",
+      "en": "Last years and death"
+     },
+     "body": {
+      "zh-Hant": "1928年，因儲蓄銀行醜聞，約翰二世解散議會，並迫使古斯塔夫·施德勒領導的政府辭職。他於1929年2月11日在摩拉維亞的費爾茨貝格去世；瑞士歷史辭典稱他是科學、藝術與教堂建築的贊助者。",
+      "en": "In 1928, because of the savings-bank scandal, Johann II dissolved the Landtag and forced the government under Gustav Schädler to resign. He died on 11 February 1929 at Feldsberg in Moravia, and the Historical Lexicon of Switzerland calls him a patron of science, art and church building."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "Aufgrund des Sparkassaskandals löste Johann II. 1928 den Landtag auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "第三段",
+       "quote": "zwang die Regierung um Gustav Schädler zur Demission",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-johann2",
+       "locator": "生平首段",
+       "quote": "†11.2.1929 Feldsberg (CZ)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "11.2.1929 Feldsberg (Mähren, heute Valtice, Tschech. Republik)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-johann2",
+       "locator": "生平首段",
+       "quote": "Er war ein Förderer der Wissenschaft, der Kunst und des Kirchenbaus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:headOfStateStart",
+     "gapKind": "not_found",
+     "note": "待查證：名簿任期起日1908-01-01（窗內截斷）；A 來源（HLS、eHLFL）只寫1858年繼位，無日期級起日，故不判斷；元首任期在 leader_records，不重建",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "GND Johann II Liechtenstein Fürst",
+     "url": "https://lobid.org/gnd/search?q=Johann+II+Liechtenstein+F%C3%BCrst",
+     "result": "found_A",
+     "note": "確認 GND 117003360（1840～1929）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND JSON 117003360",
+     "url": "https://lobid.org/gnd/117003360.json",
+     "result": "found_A",
+     "note": "簡註：1858-1929 Fürst von Liechtenstein"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon der Schweiz Johann II. von Liechtenstein",
+     "url": "https://hls-dhs-dss.ch/de/articles/021120/",
+     "result": "found_A",
+     "note": "Peter Geiger"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon des Fürstentums Liechtenstein Johann II.",
+     "url": "https://historisches-lexikon.li/Johann_II.",
+     "result": "no_result",
+     "note": "頁名不對（404），改用站內搜尋"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "eHLFL 站內搜尋 Johann II",
+     "url": "https://historisches-lexikon.li/index.php?title=Spezial:Suche&search=Johann+II&fulltext=1",
+     "result": "found_A",
+     "note": "找到頁名 Liechtenstein,_Johann_II._von"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "eHLFL Liechtenstein, Johann II. von",
+     "url": "https://historisches-lexikon.li/Liechtenstein,_Johann_II._von",
+     "result": "found_A",
+     "note": "Evelin Oberhammer，Stand 31.12.2011"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie GND 117003360",
+     "url": "https://www.deutsche-biographie.de/gnd117003360.html",
+     "result": "unrated",
+     "note": "索引頁（連到 NDB／ÖBL）"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "AEIOU Austria-Forum Liechtenstein, Johannes II. Fürst (english)",
+     "url": "https://austria-forum.org/af/AEIOU/Liechtenstein%2C_Johannes_II._F%C3%BCrst/Liechtenstein%2C_Johannes_II._F%C3%BCrst_english",
+     "result": "unrated",
+     "note": "無署名編輯條目（Q9），未用"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica John II prince of Liechtenstein",
+     "url": "https://www.britannica.com/biography/John-II-prince-of-Liechtenstein",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "WebSearch Johann II. Fürst von Liechtenstein Historisches Lexikon 1840 1929",
+     "url": "",
+     "result": "unrated",
+     "note": "找到 HLS 與 Deutsche Biographie 連結"
+    }
+   ]
+  }
+ ]
+}

@@ -5,7 +5,7 @@
  "researcher": "sonnet",
  "promptVersion": "full-major-v2",
  "counts": {
-  "returned": 1,
+  "returned": 0,
   "toUnverified": 3,
   "deletedParagraphs": 0,
   "deletedPositions": 1,
@@ -13,10 +13,10 @@
   "movedToRoleCandidates": 0,
   "movedToPositions": 0,
   "deletedCitations": 1,
-  "addedCitations": 2,
-  "editedSentences": 2,
-  "spotRefetched": 3,
-  "searchLogShort": 1
+  "addedCitations": 3,
+  "editedSentences": 3,
+  "spotRefetched": 5,
+  "searchLogShort": 0
  },
  "people": [
   {
@@ -57,25 +57,27 @@
   {
    "key": "ru-nicholas-ii",
    "bioId": "01a1b4b5-f9bc-7f2f-90ba-f2af428ba89c",
-   "verdict": "returned",
+   "verdict": "pass_with_changes",
    "paragraphs": 4,
    "positions": 1,
    "roleCandidates": 0,
-   "gaps": 4,
-   "searchLogSteps": 16,
+   "gaps": 5,
+   "searchLogSteps": 43,
    "changes": [
     "position nicholas-supreme-commander-1915 迄日 1917-03-15（退位日推論，不符 Q7）改為留空，刪退位引文，gap 改「待查證：缺迄日；」→ check_min 未達",
     "新增 gap field:calendar：LeMO 1905-10-17、1906-04-25、1907-06-03 未註曆法，疑為舊曆",
-    "重抓 prlib PDF：HTTP 200 application/pdf、sha256 與原檔一致，非繞過驗證"
+    "重抓 prlib PDF：HTTP 200 application/pdf、sha256 與原檔一致，非繞過驗證",
+    "重試複審：最高統帥迄日 1917-03-15 改依下一任（接任者大公尼古拉·尼古拉耶維奇）任命日推得（Q7），保留 gap「待查證：迄日為推論」；補 Safonov 引文「Данилов в 1.00 3 марта…」作為任命時點的日期依據；刪 evidenceNote 中 LeMO「新曆」的無據說法",
+    "pravoby-svod 降 A→B（白俄羅斯法律門戶轉錄俄帝法典，第三方轉錄本）；段落 2 與 fundamentalLawDate gap 刪「舊曆」（引文未註曆法），改稱「法典彙編轉錄本」",
+    "searchLog 已達 6 種來源類型（新增 academic、treaty_law），俄文查詢 ≥4、實抓 ≥6，主要領導人規格通過",
+    "重抓 snl.no（301→Nikolaj_2.，200，92 人句一致；source url 改為最終網址）與 hoover.org（200，11:50 p.m. 句一致）",
+    "check_min：4 段／642 字／1 職位起迄齊"
    ],
-   "returnedReasons": [
-    "最低嘗試未達：缺第 5 種來源類型（searchLog 僅 authority／national_dictionary／named_encyclopedia／official）；建議下一個：treaty_law——1915 年接掌最高統帥的 Высочайший приказ（23.08.1915 舊曆）／Собрание узаконений（prlib 或 nlr.ru 數位版），或 academic——De Gruyter／Cambridge 開放章節",
-    "最高統帥職位缺迄日（check_min 未達）"
-   ]
+   "returnedReasons": []
   }
  ],
  "issues": [
-  "研究者以退位日推職位迄日（兩人），不符 Q7，審查一律改為留空或移出",
+  "研究者以退位日推職位迄日（兩人），不符 Q7，審查一律改為留空或移出；尼古拉二世重試後改依接任者任命詔令推得迄日，審查接受",
   "「5 種來源類型」按 searchLog sourceType 值計；若按搜尋策略 1–5 類計（national_dictionary 與 official 同屬第 2 類），三人都只有 4 類、都沒查 academic，請主 session 裁定",
   "LeMO 俄國年表新舊曆混用"
  ],

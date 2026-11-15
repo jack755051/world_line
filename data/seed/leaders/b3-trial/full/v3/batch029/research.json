@@ -1,0 +1,2823 @@
+{
+ "batch": "b3-full-v3-batch029",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；元首／首腦／實際掌權者與黨職在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。regimeId 因不連庫無法查證一律 null＋organization，R3／R4 類因此以 R6（roleGap 含 regime）留在 positions；本批無此類。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md（2026-11-13／14）：轉錄本原件 A 記 B、合格出處優先；未評等來源只放 gaps 候選。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch029/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "byv-orellana": {
+   "title": "Biografia de José María Orellana",
+   "authors": [
+    "Tomás Fernández",
+    "Elena Tamaro"
+   ],
+   "publisher": "Editorial Biografías y Vidas（Barcelona）",
+   "published_text": "biografiasyvidas.com，2004",
+   "url": "https://www.biografiasyvidas.com/biografia/o/orellana_jose_maria.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "網路傳記條目，本專案前批（batch023）依同網站一律記未評等；只放 gap 候選，不作出處"
+  },
+  "frus1921-d174": {
+   "title": "Papers Relating to the Foreign Relations of the United States Document 174（1921, Volume II）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Foreign Relations of the United States（FRUS）",
+   "url": "https://history.state.gov/historicaldocuments/frus1921v02/d174",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方出版的外交檔案電報（當時駐瓜地馬拉使館的第一手報告）；只用於電報明寫之事"
+  },
+  "frus1922-d381": {
+   "title": "Papers Relating to the Foreign Relations of the United States Document 381（1922, Volume II）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Foreign Relations of the United States（FRUS）",
+   "url": "https://history.state.gov/historicaldocuments/frus1922v02/d381",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方出版的外交檔案電報（當時駐瓜地馬拉使館的第一手報告）；只用於電報明寫之事"
+  },
+  "frus1922-d382": {
+   "title": "Papers Relating to the Foreign Relations of the United States Document 382（1922, Volume II）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Foreign Relations of the United States（FRUS）",
+   "url": "https://history.state.gov/historicaldocuments/frus1922v02/d382",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方出版的外交檔案電報（當時駐瓜地馬拉使館的第一手報告）；只用於電報明寫之事"
+  },
+  "frus1922-d385": {
+   "title": "Papers Relating to the Foreign Relations of the United States Document 385（1922, Volume II）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Foreign Relations of the United States（FRUS）",
+   "url": "https://history.state.gov/historicaldocuments/frus1922v02/d385",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方出版的外交檔案電報（當時駐瓜地馬拉使館的第一手報告）；只用於電報明寫之事"
+  },
+  "frus1922-d504": {
+   "title": "Papers Relating to the Foreign Relations of the United States Document 504（1922, Volume II）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Foreign Relations of the United States（FRUS）",
+   "url": "https://history.state.gov/historicaldocuments/frus1922v02/d504",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方出版的外交檔案電報（當時駐瓜地馬拉使館的第一手報告）；只用於電報明寫之事"
+  },
+  "frus1922-d510": {
+   "title": "Papers Relating to the Foreign Relations of the United States Document 510（1922, Volume II）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "Foreign Relations of the United States（FRUS）",
+   "url": "https://history.state.gov/historicaldocuments/frus1922v02/d510",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方出版的外交檔案電報（當時駐瓜地馬拉使館的第一手報告）；只用於電報明寫之事"
+  },
+  "gnd-franz": {
+   "title": "Franz I., Liechtenstein, Fürst (GND 119497638)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "Gemeinsame Normdatei 權威記錄",
+   "url": "https://lobid.org/gnd/119497638.json",
+   "archive_url": null,
+   "catalog_id": "GND 119497638",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND），經 lobid.org 取得；只用於確認身分與生卒"
+  },
+  "hlfl-franz": {
+   "title": "Liechtenstein, Franz I. (Franciscus de Paula) von",
+   "authors": [
+    "Marija Wakounig"
+   ],
+   "publisher": "Liechtenstein-Institut（Historisches Lexikon des Fürstentums Liechtenstein online）",
+   "published_text": "Stand: 31.12.2011",
+   "url": "https://historisches-lexikon.li/Liechtenstein,_Franz_I._(Franciscus_de_Paula)_von",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "列支敦斯登國家級歷史辭典（Liechtenstein-Institut 出版的官方辭典），具名作者條目，附書目與卒年訃告來源"
+  },
+  "lex-knudsen": {
+   "title": "Gunnar Knudsen（Lex）",
+   "authors": [
+    "Knut Are Tvedt"
+   ],
+   "publisher": "Lex（丹麥 Lex／Den Store Danske）",
+   "published_text": "條目文字含 Den Store Danske",
+   "url": "https://lex.dk/Gunnar_Knudsen",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（cand.philol. Knut Are Tvedt）的丹麥機構百科條目"
+  },
+  "loc-orellana": {
+   "title": "Orellana, José María, 1872-1926（LCNAF n86010537）",
+   "authors": [],
+   "publisher": "Library of Congress（LC Name Authority File）",
+   "published_text": "LC 人名權威檔搜尋結果",
+   "url": "https://id.loc.gov/search/?q=Orellana+Pinto%2C+Jos%C3%A9+Mar%C3%ADa&q=cs:http://id.loc.gov/authorities/names",
+   "archive_url": null,
+   "catalog_id": "LCNAF n86010537",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國會圖書館人名權威檔；只確認姓名寫法與生卒年"
+  },
+  "snl-knudsen": {
+   "title": "Gunnar Knudsen（Store norske leksikon）",
+   "authors": [
+    "Per Fuglum",
+    "Harald Kjølås"
+   ],
+   "publisher": "Store norske leksikon（挪威各大學共同擁有）",
+   "published_text": "文章含 Norsk biografisk leksikon 文字",
+   "url": "https://snl.no/Gunnar_Knudsen",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Per Fuglum、Harald Kjølås）的機構百科條目；經 nbl.snl.no 網址轉向，頁面標示為 Store norske leksikon，記 B"
+  }
+ },
+ "people": [
+  {
+   "key": "li-franz-i",
+   "bioId": "01a1b4ae-0da5-74fa-9e13-d8faa3f65fc4",
+   "name": "Franz I. von Liechtenstein",
+   "nameZh": "法蘭茲一世",
+   "recordIds": [
+    "01a1aa4a-659f-75d7-837a-cbf9e6c4ed33"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1853-08-28",
+      "end": "1880-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、求學與初入外交界",
+      "en": "Birth, studies and entry into the diplomatic service"
+     },
+     "body": {
+      "zh-Hant": "法蘭茲一世生於1853年8月28日，卒於1938年7月25日，是阿洛伊斯二世·約瑟夫之子。他在維也納就讀 Schottengymnasium，1871至1878年在維也納與布拉格修讀法律，隨後進入奧匈帝國外交界。1878年秋，他以臨時隨員的身分被派往奧地利駐布魯塞爾公使館；1879年，他應兄長約翰二世之請不再返回布魯塞爾，轉而進入親王家產的管理，並在典禮場合代表親王。",
+      "en": "Franz I was born on 28 August 1853 and died on 25 July 1938; he was a son of Alois II Josef. He attended the Schottengymnasium in Vienna and studied law in Vienna and Prague from 1871 to 1878, then entered the Austro-Hungarian diplomatic service. In the autumn of 1878 he was assigned as a provisional attaché to the Austrian legation in Brussels; in 1879, at the wish of his brother Prince Johann II, he did not return to Brussels but entered the administration of the princely estates and represented the prince on ceremonial occasions."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-franz",
+       "locator": "dateOfBirth",
+       "quote": "1853-08-28",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-franz",
+       "locator": "dateOfDeath",
+       "quote": "1938-07-25",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目首段",
+       "quote": "Sohn des Alois II. Josef und der Franziska",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目首段",
+       "quote": "Schottengymnasium in Wien, 1871–1878 Studium der Rechtswissenschaften",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目首段",
+       "quote": "Eintritt in den diplomatischen Dienst Österreich-Ungarns.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "Im Herbst 1878 wurde Franz I. der österreichischen Gesandtschaft in Brüssel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "als provisorischer Attaché zugeteilt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "auf Wunsch seines Bruders Fürst Johanns II. 1879 nicht mehr nach Brüssel zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "trat in die Verwaltung des fürstlichen Besitzes ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "vertrat den Fürsten bei repräsentativen Anlässen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1887-01-01",
+      "end": "1899-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "軍職與駐聖彼得堡大使",
+      "en": "Army service and the embassy in St Petersburg"
+     },
+     "body": {
+      "zh-Hant": "1887年，奧匈外交部與維也納宮廷因他代表親王出席典禮而注意到他，委以出使羅馬與聖彼得堡的外交任務。1888年，他在對俄戰爭一觸即發之際自願從軍，軍階先為少尉（1888），後升中尉（1893）。1894年12月至1898年12月，他任奧匈帝國駐聖彼得堡大使；1897年的皇帝會晤（Kaiser-Entrevue）是其外交生涯的高峰，他在奧匈代表團離開後以口頭談成十年期的協約。他主張與沙俄結盟，在維也納遭遇阻力，終致被迫辭職。",
+      "en": "In 1887 the Austro-Hungarian foreign ministry and the Viennese court took notice of him and entrusted him with diplomatic missions to Rome and St Petersburg. In 1888, when war with Russia threatened, he volunteered for the army, where he was a lieutenant (1888) and later a first lieutenant (1893). From December 1894 to December 1898 he was the Austro-Hungarian ambassador in St Petersburg; the high point of his diplomatic career was the Emperors' meeting of 1897, when he negotiated a ten-year entente orally after the Austro-Hungarian delegation had left. He sought an alliance with Russia, met resistance in Vienna, and this led to his involuntary resignation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "Letzteres lenkte 1887 das Interesse des österreichisch-ungarischen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "Aussenministeriums und des Wiener Hofs auf ihn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "und er wurde mit diplomatischen Missionen in Rom und St. Petersburg betraut",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "1888 meldete sich Franz I., als ein Krieg mit Russland drohte, freiwillig",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第二段",
+       "quote": "erst den Rang eines Leutnants (1888) und danach eines Oberleutnants (1893)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "Von Dezember 1894 bis Dezember 1898 war Franz I.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "österreichisch-ungarischer Botschafter in St. Petersburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "Den Höhepunkt seiner Diplomatenkarriere stellte 1897 die Kaiser-Entrevue",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "nach der Abreise der österreichisch-ungarischen Delegation",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "mündlich eine zehnjährige Entente auszuhandeln",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "der ein Bündnis der Donaumonarchie mit dem Zarenreich anstrebte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "traf mit seinen Ideen in Wien auf Widerstand",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "was letztlich zu seinem unfreiwilligen Rücktritt führte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1899-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "學術贊助、戰時與貴族院",
+      "en": "Patronage, the war years and the Herrenhaus"
+     },
+     "body": {
+      "zh-Hant": "1899年自聖彼得堡返回後，他協助兄長約翰二世充實親王畫廊，並贊助藝術與科學；1907年，他大力促成維也納大學設立東歐史講座與研討班。1904至1914年，他代表親王參與瓦杜茲城堡的重建委員會。1914年獲選為維也納科學院名譽院士。一戰期間他率領馬爾他騎士團（Malteser）的醫療列車；1916年，他阻止了埃茨貝格爾把列支敦斯登交給教廷作為教皇國的計畫；1917年5月19日，他成為奧地利貴族院的世襲議員。1918年帝國崩潰後，他支援末代皇帝卡爾流亡的家人。",
+      "en": "After returning from St Petersburg in 1899 he advised his brother Johann II on furnishing the princely picture gallery and promoted art and scholarship; in 1907 he was instrumental in creating a chair and seminar for East European history at the University of Vienna. From 1904 to 1914 he represented the prince on the commission for rebuilding Vaduz Castle. In 1914 he became an honorary member of the Academy of Sciences in Vienna. In the First World War he led a Maltese hospital train; in 1916 he prevented Matthias Erzberger's plan to hand Liechtenstein to the Holy See as a papal state; on 19 May 1917 he became a hereditary member of the Austrian Herrenhaus. After the collapse of the empire in 1918 he supported the family of the last emperor, Charles, in exile."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "Nach seiner Rückkehr aus St. Petersburg 1899 beriet Franz I. seinen Bruder",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "Johann II. unter anderem bei der weiteren Ausstattung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "der fürstlichen Gemäldegalerie und förderte Kunst und Wissenschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "Er war massgeblich an der Schaffung eines Lehrstuhls",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "an der Schaffung eines Lehrstuhls und Seminars für osteuropäische Geschichte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "an der Universität Wien beteiligt (1907)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "Kommission zum Wiederaufbau von Schloss Vaduz (1904–1914)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "1914 wurde er zum Ehrenmitglied der Akademie der Wissenschaft in Wien ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第五段",
+       "quote": "Im Ersten Weltkrieg leitete Franz I. einen Malteser-Lazarettzug",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第五段",
+       "quote": "1916 verhinderte Franz I. die Realisierung des Plans von Matthias Erzberger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第五段",
+       "quote": "der vorsah, Liechtenstein dem Heiligen Stuhl als Kirchenstaat zu überlassen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第五段",
+       "quote": "Am 19.5.1917 wurde er erbliches Mitglied des österreichischen Herrenhauses",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第五段",
+       "quote": "Nach dem Zusammenbruch der Donaumonarchie 1918 unterstützte er die Familie",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第五段",
+       "quote": "des letzten Kaisers Karl im Exil",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1929-02-11"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "外交代理與繼位",
+      "en": "Foreign-policy deputy and succession"
+     },
+     "body": {
+      "zh-Hant": "自1921年起，他又擔任親王在外交事務上的代理人。他早在繼位之前，就對列支敦斯登一戰後的重新定位有重大影響，此一定位帶來新憲法，以及與瑞士緊密的經濟結合。1929年2月11日約翰二世去世後，76歲的他以法蘭茲一世之名成為在位親王。此後他才得以與艾爾莎·埃羅什·馮·貝特倫法爾瓦結婚，因為約翰二世不允許這段婚姻。",
+      "en": "From 1921 he was also the prince's deputy in foreign policy. Long before his accession he had considerable influence on the reorientation of Liechtenstein after 1918, which led to a new constitution and a close economic link with Switzerland. After the death of Johann II on 11 February 1929 he became reigning prince, as Franz I, at the age of 76. Only then could he marry Elsa Erős von Bethlenfalva, since Johann II had not permitted the marriage."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "Ab 1921 war er zudem Stellvertreter des Fürsten in der Aussenpolitik.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "Franz I. hatte schon lange vor seinem Regierungsantritt massgeblichen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "Neuorientierung des Landes nach 1918, welche zu einer neuen Verfassung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "und zur engen wirtschaftlicher Verbindung mit der Schweiz führte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "Nach dem Tod Johanns II. am 11.2.1929 wurde er als Franz I. mit 76 Jahren",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "mit 76 Jahren Landesfürst",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "Erst jetzt konnte er Elsa Erős von Bethlenfalva heiraten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "Denn Fürst Johann II. hatte die Ehe mit Elsa",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第六段",
+       "quote": "ungleichen Stands war, nicht erlaubt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1929-02-11",
+      "end": "1938-07-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "在位時期（1929–1938）",
+      "en": "The reign, 1929–1938"
+     },
+     "body": {
+      "zh-Hant": "1929年3月13日在邦議會、同年8月11日在瓦杜茲的城堡草地，分別舉行了效忠儀式；同年他與夫人創立「弗蘭茨親王暨艾爾莎親王妃基金會」。在位的1929至1938年間，他讓約瑟夫·霍普領導的政府有相當自由的施政空間，對邦議會通過的每部法律都予批准。1935年起，疾病與年老使他不再訪問列支敦斯登。他是最後一位從維也納、塔爾霍夫、費爾茨貝格或艾斯格魯布治理領地的親王，1938年7月25日在費爾茨貝格去世。",
+      "en": "The oath of homage took place in the Landtag on 13 March 1929 and on the castle meadow in Vaduz on 11 August 1929; in the same year he and his wife founded the Prince Franz and Princess Elsa Foundation. During his reign of 1929–1938 he left the government under Josef Hoop considerable freedom and approved every law passed by the Landtag. From 1935 illness and frailty prevented further visits to Liechtenstein. He was the last prince to rule his country from Vienna, Thalhof, Feldsberg or Eisgrub, and he died at Feldsberg on 25 July 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第七段",
+       "quote": "Am 13.3.1929 fand im Landtag und am 11.8.1929 auf der Schlosswiese",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第七段",
+       "quote": "in Vaduz die Erbhuldigung statt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第七段",
+       "quote": "ebenfalls 1929 die «Fürst-Franz-und-Fürstin-Elsa-Stiftung»",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第八段",
+       "quote": "Franz I. liess der Regierung unter Josef Hoop",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第八段",
+       "quote": "in seinen Regierungsjahren 1929–1938 recht freie Hand.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第八段",
+       "quote": "Er billigte mit seiner Sanktion jedes vom Landtag beschlossene Gesetz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第八段",
+       "quote": "Ab 1935 verhinderten Krankheit und Altersschwäche des Fürsten weitere Besuche",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第九段",
+       "quote": "Franz I. war der letzte Fürst, der sein Land von Wien, Thalhof (NÖ),",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第九段",
+       "quote": "Feldsberg (Valtice, CZ) oder Eisgrub (Lednice, CZ) aus regierte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第七段",
+       "quote": "Das Fürstenpaar besuchte in der Folge alle elf Gemeinden und gründete",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目首段",
+       "quote": "†25.7.1938 Feldsberg (Valtice, CZ)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "franz-ambassador-stpetersburg",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧匈帝國外交部（駐俄羅斯帝國大使館）",
+      "en": "Austria-Hungary, Embassy in St Petersburg (Russian Empire)"
+     },
+     "title": {
+      "orig": "österreichisch-ungarischer Botschafter in St. Petersburg",
+      "zh-Hant": "奧匈帝國駐聖彼得堡大使",
+      "en": "Austro-Hungarian ambassador in St Petersburg"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1894-12-01",
+      "end": "1899-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "Von Dezember 1894 bis Dezember 1898 war Franz I.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依月精度寫下一月起日（1899-01-01）；窗外（1908 前）職位，只列職位不建角色",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第三段",
+       "quote": "österreichisch-ungarischer Botschafter in St. Petersburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "franz-vaduz-castle-commission",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瓦杜茲城堡重建委員會",
+      "en": "Commission for the rebuilding of Vaduz Castle"
+     },
+     "title": {
+      "orig": "Vertreter des Fürsten in der Kommission zum Wiederaufbau von Schloss Vaduz",
+      "zh-Hant": "瓦杜茲城堡重建委員會中的親王代表",
+      "en": "Prince's representative on the Vaduz Castle rebuilding commission"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1904-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "Kommission zum Wiederaufbau von Schloss Vaduz (1904–1914)",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日（1915-01-01）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hlfl-franz",
+       "locator": "條目第四段",
+       "quote": "Franz I. vertrat den Fürsten in der Kommission zum Wiederaufbau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:herrenhausEnd",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；HLFL 只載 1917-05-19 起成為奧地利貴族院（Herrenhaus）世襲議員，未寫議員身分何時結束（帝國 1918 年崩潰，但來源未明寫其任期終點），故未建職位。已查來源：HLFL、GND（lobid）、ÖBL 紙本掃描 PDF（無文字層，無法取原文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:foreignDeputyEnd",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；HLFL 只寫「ab 1921」為親王外交代理，未寫終點（1929 年繼位後是否自然終止，來源未載，不推論），故未建職位。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:zentralkommission",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；HLFL 稱他曾任 Zentralkommission 為研究與維護文化及歷史古蹟的主席，但無任期；馬爾他騎士團醫療列車的指揮期間也只寫「第一次世界大戰期間」，未建職位。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:headOfStateTerm",
+     "gapKind": "not_found",
+     "note": "首任元首任期（1929-02-11～1938-07-25）已在名單 5442（recordId 01a1aa4a-659f-75d7-837a-cbf9e6c4ed33），依規則不重建；HLFL 載 1929-02-11 約翰二世去世後繼位，與名簿起日一致。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "GND Franz I. Liechtenstein Fürst 1853（lobid.org）",
+     "url": "https://lobid.org/gnd/search?q=Franz+I.+Liechtenstein+1853&format=json",
+     "result": "found_A",
+     "note": "GND 119497638；經 lobid.org 官方鏡像；確認生卒與別名"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 119497638 單筆記錄",
+     "url": "https://lobid.org/gnd/119497638.json",
+     "result": "found_A",
+     "note": "取為 gnd-franz（原文 JSON 轉文字）"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon des Fürstentums Liechtenstein「Franz I.」",
+     "url": "https://historisches-lexikon.li/Franz_I.",
+     "result": "no_result",
+     "note": "HTTP 404，頁面空白（本站條目名稱不同）；另試 Franz_I._(Liechtenstein)、Franz_I._(Fürst)、Franz_I._(Fuerst)、search 皆 404"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "WebSearch：historisches-lexikon.li Franz I. Fürst von Liechtenstein 1853 1938 Regierungsantritt 1929",
+     "url": null,
+     "result": "not_relevant",
+     "note": "搜尋結果只有維基類頁面（只當索引，未用）；由索引頁的參考文獻連結取得正式條目名稱"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "eHLFL 條目 Liechtenstein, Franz I. (Franciscus de Paula) von",
+     "url": "https://historisches-lexikon.li/Liechtenstein,_Franz_I._(Franciscus_de_Paula)_von",
+     "result": "found_A",
+     "note": "Marija Wakounig 具名條目（Stand 31.12.2011），取為 hlfl-franz"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon der Schweiz 條目 Franz I. von Liechtenstein",
+     "url": "https://hls-dhs-dss.ch/de/articles/021121",
+     "result": "no_result",
+     "note": "頁面顯示「Die Seite existiert noch nicht」，無內文；另試 articles/004532 為他人條目（not_relevant）"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Österreichisches Biographisches Lexikon Bd. 5 S. 204f. Liechtenstein, Franz (I.)",
+     "url": "https://www.biographien.ac.at/oebl_5/205.pdf",
+     "result": "no_result",
+     "note": "PDF 為掃描影像，無文字層（pdftotext 空白），無法取原文；oebl_5/204.pdf 同"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "HLS 站內搜尋 Franz I. Liechtenstein",
+     "url": "https://hls-dhs-dss.ch/de/search/?text=Franz+I.+Liechtenstein",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    }
+   ]
+  },
+  {
+   "key": "gt-orellana",
+   "bioId": "01a1b4ae-0e1f-70e2-878c-07ceacd3f7c9",
+   "name": "José María Orellana Pinto",
+   "nameZh": "何塞·瑪麗亞·奧雷利亞納",
+   "recordIds": [
+    "01a1aa4a-721f-792e-88b9-b0e8cd6de3d0",
+    "01a1aa4a-7230-7d8c-b88f-750118c65417",
+    "01a1aa4a-7231-7399-8167-76a3d882e9ab",
+    "01a1aa4a-7231-769f-a0c2-a94780251a1e"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1921-12-06",
+      "end": "1921-12-07"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1921年12月的軍事政變",
+      "en": "The army revolution of December 1921"
+     },
+     "body": {
+      "zh-Hant": "美國國會圖書館人名權威檔登錄何塞·瑪麗亞·奧雷利亞納（José María Orellana）的生卒年為1872年與1926年。1921年12月6日，美國駐瓜地馬拉公使麥克米林（McMillin）電告國務卿：一場軍事革命自午夜持續到清晨五時，推翻了埃雷拉（Herrera）政府；奧雷利亞納、利馬（Lima）與拉拉韋（Larrave）三位將軍領導一個臨時政府。總統埃雷拉被軟禁在自宅，全體閣員被關進軍事監獄，警方的抵抗造成約十二人死亡，市區平靜。",
+      "en": "The Library of Congress name authority record gives the years of José María Orellana as 1872 to 1926. On 6 December 1921 the US Minister in Guatemala, McMillin, telegraphed the Secretary of State that an army revolution, running from midnight until five in the morning, had overthrown the Herrera government; Generals Orellana, Lima and Larrave headed a provisional government. President Herrera was a prisoner in his home, his whole cabinet was in military prison, about a dozen people were killed by police resistance, and the city was quiet."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-orellana",
+       "locator": "Results 第1筆",
+       "quote": "Orellana, José María, 1872-1926",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報標題",
+       "quote": "The Minister in Guatemala ( McMillin ) to the Secretary of State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報日期",
+       "quote": "Guatemala , December 6, 1921—9 a.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "A revolution through the Army began at midnight ending five this",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "morning overthrowing Herrera government.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "Generals Orellana, Lima, and Larrave head a provisional government.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "President Herrera prisoner in his home.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "All his Cabinet in military prison.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "About a dozen killed by police resistance.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1921-d174",
+       "locator": "電報本文",
+       "quote": "City quiet.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1922-01-12",
+      "end": "1922-01-22"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1922年1月：召集選舉與黨內提名",
+      "en": "January 1922: calling elections and the party nomination"
+     },
+     "body": {
+      "zh-Hant": "1922年1月12日，美國代辦柯蒂斯（Curtis）電告國務卿：議會當天下午對一項決議做了三次逐日朗讀中的第一次，宣告「聯盟」（Union）不復存在、瓜地馬拉重為獨立共和國；奧雷利亞納將軍同日頒布命令，定於2月15日至22日舉行選舉。1月22日，柯蒂斯再電告：自由黨的大會當天下午提名奧雷利亞納；電報的註腳另記烏維科（Ubico）將軍也曾是該提名的候選人。",
+      "en": "On 12 January 1922 the US Chargé, Curtis, telegraphed the Secretary of State that the Assembly that afternoon had given the first of three daily readings to a resolution declaring the Union non-existent and Guatemala again an independent republic; General Orellana that day issued a decree calling elections for 15 to 22 February. On 22 January Curtis reported that the convention of the Liberal Party that afternoon had nominated Orellana; a footnote adds that General Ubico had also been a candidate for the nomination."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "frus1922-d381",
+       "locator": "電報標題",
+       "quote": "The Chargé in Guatemala ( Curtis ) to the Secretary of State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d381",
+       "locator": "電報日期",
+       "quote": "Guatemala , January 12, 1922—9 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d381",
+       "locator": "電報本文",
+       "quote": "The Assembly this afternoon gave first of three daily readings to a resolution",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d381",
+       "locator": "電報本文",
+       "quote": "declaring the Union non-existent and Guatemala again an independent republic.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d381",
+       "locator": "電報本文",
+       "quote": "General Orellana today issued a decree calling the elections for February",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d381",
+       "locator": "電報本文",
+       "quote": "15th to 22nd.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d382",
+       "locator": "電報日期",
+       "quote": "Guatemala , January 22, 1922—10 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d382",
+       "locator": "電報本文",
+       "quote": "Convention of the Liberal Party this afternoon nominated Orellana.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d382",
+       "locator": "註腳",
+       "quote": "General Ubico, also, had been a candidate for the nomination.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1922-03-04",
+      "end": "1922-03-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1922年3月4日就任總統",
+      "en": "Inauguration as President on 4 March 1922"
+     },
+     "body": {
+      "zh-Hant": "1922年3月4日中午，美國代辦索思蓋特（Southgate）電告國務卿：奧雷利亞納當天上午就任共和國總統，其就職演說強調政治和平與勤奮工作的必要。",
+      "en": "On 4 March 1922, at noon, the US Chargé, Southgate, telegraphed the Secretary of State that the inauguration of Orellana as President of the Republic had taken place that morning, and that his address emphasised the necessity of political peace and hard work."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "frus1922-d385",
+       "locator": "電報標題",
+       "quote": "The Chargé in Guatemala ( Southgate ) to the Secretary of State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d385",
+       "locator": "電報日期",
+       "quote": "Guatemala , March 4, 1922—noon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d385",
+       "locator": "電報本文",
+       "quote": "Inauguration of Orellana as President of the Republic took place this",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d385",
+       "locator": "電報本文",
+       "quote": "His address emphasized the necessity of political peace and hard work.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1922-08-01",
+      "end": "1922-08-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1922年8月：對鄰國的態度",
+      "en": "August 1922: attitude toward neighbouring states"
+     },
+     "body": {
+      "zh-Hant": "1922年8月1日，美國公使蓋斯勒（Geissler）電告，瓜地馬拉總統對一場針對宏都拉斯政府的革命運動表達嚴重關切；奧雷利亞納說他掌握可靠消息，其目的是在宏都拉斯建立一個保守、親墨西哥的政府。8月18日，蓋斯勒電告，他前一天拜會了奧雷利亞納總統，後者表示瓜地馬拉政府沒有也不會干涉鄰國的內政，並且不想參加三位中美洲總統的會議；蓋斯勒認為他在不介入各國爭端上態度十分誠懇。",
+      "en": "On 1 August 1922 the US Minister, Geissler, reported that the President of Guatemala expressed very grave concern over a revolutionary movement against the Honduran government; Orellana said he had reliable information that its purpose was to install a conservative, pro-Mexican government in Honduras. On 18 August Geissler reported that he had called on President Orellana the previous day; Orellana stated that the Guatemalan government had not intervened and would not intervene in the domestic affairs of neighbouring countries and had no desire to join the conference of the three Central American Presidents; Geissler found him absolutely sincere in wishing to stay out of the controversies."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "frus1922-d504",
+       "locator": "電報日期",
+       "quote": "Guatemala , August 1, 1922—4 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d504",
+       "locator": "電報本文",
+       "quote": "63. President of Guatemala expresses very grave concern over",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d504",
+       "locator": "電報本文",
+       "quote": "revolutionary movement against Honduran Government said to be",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d504",
+       "locator": "電報本文",
+       "quote": "Orellana says he has reliable information that purpose is installation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d504",
+       "locator": "電報本文",
+       "quote": "of a government in Honduras which will be conservative, pro-Mexican,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報日期",
+       "quote": "Guatemala , August 18, 1922—6 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "I called on President Orellana yesterday",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "He states that Guatemalan Government has not intervened and",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "will not intervene in domestic affairs of neighboring countries",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "Orellana has no desire to join the conference of the three",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "conference of the three Central American Presidents",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "Orellana appears absolutely sincere in desire to keep out of Honduras,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1922-d510",
+       "locator": "電報本文",
+       "quote": "Nicaragua, Salvadoran controversy relying upon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:deputyAndParty",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；Biografías y Vidas 稱他「Miembro del Partido Liberal, fue elegido diputado en varias legislaturas consecutivas」，但該條目依本專案前批（batch023）處理方式記未評等（C），不能當出處，且未列任期；國家級傳記辭典 DBE（dbe.rah.es，現轉至 historia-hispanica.rah.es，動態頁抓不到內文）與瓜地馬拉國會官網（403）均未取得。議員、自由黨黨籍與是否以黨身分取得席位皆未證實，故未建職位或黨職候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "byv-orellana",
+       "locator": "條目首段",
+       "quote": "Miembro del Partido Liberal, fue elegido diputado en varias legislaturas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:provisionalGovernment1921",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；FRUS 1921 電報載 1921-12-06 奧雷利亞納與兩位將軍共同領導臨時政府（三人集體，非單一首腦），但各人任期與迄日未見於已抓的 A／B 來源；1922-01-14 起的代行總統／總統任期已在名單 5442，不重建，故未建職位或候選。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:biography",
+     "gapKind": "not_found",
+     "note": "待查證：生平（出身、軍旅、1926 年卒因與任期結束）僅 Biografías y Vidas（未評等）有述，FRUS 與 LC 權威檔只涵蓋 1921–1922 年事件與生卒年。已查：LC 權威檔（found_A）、GND（lobid，無記錄）、BnF（無結果）、VIAF／BNE（403）、DBE（動態頁）、Britannica（403）、瓜地馬拉國會（403）、美國國務院 FRUS（found_A）。FRUS 1930／1931 電報提到的 Orellana 是 1930 年代行總統馬努埃爾·奧雷利亞納（Manuel Orellana），與本人不同，未採用。",
+     "candidateCitations": [
+      {
+       "sourceKey": "byv-orellana",
+       "locator": "條目首段",
+       "quote": "presidente de la República de Guatemala entre 1922 y 1926",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:headOfStateTerms",
+     "gapKind": "not_found",
+     "note": "代行總統與總統任期（1922-01-14～1922-03-04 與 1922-03-04～1926-09-26）已在名單 5442（recordId 01a1aa4a-721f-792e-88b9-b0e8cd6de3d0 等四筆），依規則不重建；FRUS 電報載 1922-03-04 就職，與名簿一致；1926 年卒日與任期終點未取得 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "WebSearch：José María Orellana Pinto presidente Guatemala 1921 1926 biografía",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果為維基類、Biografías y Vidas、EcuRed 等；維基類只當索引未用；EcuRed 為使用者編輯百科不收"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "LC Name Authority Orellana Pinto, José María",
+     "url": "https://id.loc.gov/search/?q=Orellana+Pinto%2C+Jos%C3%A9+Mar%C3%ADa&q=cs:http://id.loc.gov/authorities/names",
+     "result": "found_A",
+     "note": "LCNAF n86010537，Orellana, José María, 1872-1926；異寫 Orellana Pinto；取為 loc-orellana（只用生卒年）"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "GND（lobid.org）Orellana José María 1872",
+     "url": "https://lobid.org/gnd/search?q=Orellana+Jos%C3%A9+Mar%C3%ADa+1872&format=json&size=5",
+     "result": "no_result",
+     "note": "無記錄"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "BnF data Orellana Pinto",
+     "url": "https://data.bnf.fr/search?term=Orellana+Pinto",
+     "result": "no_result",
+     "note": "data.bnf.fr 無結果"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "VIAF Orellana Pinto",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Orellana%20Pinto%22&httpAccept=application/json",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "Biblioteca Nacional de España Orellana Pinto",
+     "url": "https://datos.bne.es/find?s=Orellana+Pinto",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Orellana Pinto, José María",
+     "url": "https://dbe.rah.es/biografias/orellana-pinto-jose-maria",
+     "result": "no_result",
+     "note": "轉向 historia-hispanica.rah.es 首頁，動態載入，抓不到條目內文；另試站內搜尋亦同"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica José María Orellana",
+     "url": "https://www.britannica.com/search?query=Jose+Maria+Orellana",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "unrated",
+     "query": "Biografías y Vidas Orellana",
+     "url": "https://www.biografiasyvidas.com/biografia/o/orellana_jose_maria.htm",
+     "result": "unrated",
+     "note": "有具名作者（Tomás Fernández、Elena Tamaro），但依前批（batch023）處理記未評等，只作 gap 候選"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "瓜地馬拉國會官網 歷任總統",
+     "url": "https://www.congreso.gob.gt/",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Library of Congress Country Study Guatemala（lcweb2.loc.gov）",
+     "url": "https://lcweb2.loc.gov/frd/cs/gttoc.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 12,
+     "sourceType": "treaty_law",
+     "query": "history.state.gov 站內搜尋 Orellana Guatemala（FRUS）",
+     "url": "https://history.state.gov/search?q=Orellana+Guatemala&within=documents",
+     "result": "found_A",
+     "note": "列出 FRUS 1921／1922 電報（d174、d381、d382、d385、d504、d510）；1930／1931 的 Orellana 為另一人（Manuel Orellana），排除"
+    },
+    {
+     "step": 13,
+     "sourceType": "treaty_law",
+     "query": "FRUS 1921 v.2 d174；1922 v.2 d381、d382、d385、d504、d510 全文",
+     "url": "https://history.state.gov/historicaldocuments/frus1921v02/d174",
+     "result": "found_A",
+     "note": "六份電報逐一抓取轉文字，取為段落出處"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "WebSearch：Academia de Geografía e Historia de Guatemala 傳記（西文第二次）",
+     "url": null,
+     "result": "no_result",
+     "note": "工作階段 WebSearch 額度用盡，未能執行，未改用其他搜尋引擎"
+    }
+   ]
+  },
+  {
+   "key": "no-knudsen",
+   "bioId": "01a1b4ae-0dd2-7345-b4e3-e8ba1ff01118",
+   "name": "Gunnar Knudsen",
+   "nameZh": "貢納爾·克努森",
+   "recordIds": [
+    "01a1aa4a-59ab-715d-9acf-4d4368b656cc",
+    "01a1aa4a-59ab-781d-8e12-f20d7d758ecf"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1848-09-19",
+      "end": "1906-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早期仕途",
+      "en": "Background and early career"
+     },
+     "body": {
+      "zh-Hant": "克努森生於1848年9月19日，是挪威的船東與政治人物，屬自由黨（Venstre）。他的政治生涯始於1886年，當年獲選為耶爾彭（Gjerpen）的鎮長。1901至1903年，他是自由黨的斯廷（Johannes Steen）與布勒（Otto Blehr）兩屆政府的成員，先在斯德哥爾摩的國務院部門服務，後來任農業部長，再任財政部長。1905年3月，他在米凱爾森（Christian Michelsen）的聯合政府出任財政大臣；同年10月，因身為共和派反對選丹麥的卡爾親王為國王而辭職。",
+      "en": "Knudsen was born on 19 September 1848, a Norwegian shipowner and politician for the Liberal party Venstre. His political career began in 1886, when he was elected mayor of Gjerpen. From 1901 to 1903 he was a member of the Venstre governments of Johannes Steen and Otto Blehr, serving first in the Council of State department in Stockholm and later as minister of agriculture and then of finance. In March 1905 he became finance minister in Christian Michelsen's coalition government; in October of that year he resigned, having opposed as a republican the election of Prince Carl of Denmark as king."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Faktaboks",
+       "quote": "19. september 1848, Stokken, Arendal",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Faktaboks",
+       "quote": "Skipsreiar og politikar",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "導言",
+       "quote": "Gunnar Knudsen var ein norsk politikar for Venstre",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Stortingsrepresentant",
+       "quote": "Knudsens politiske karriere starta i 1886, då han blei vald til ordførar",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Stortingsrepresentant",
+       "quote": "blei vald til ordførar i Gjerpen",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Statsråd",
+       "quote": "I åra 1901–1903 var Knudsen medlem av Venstre-regjeringane til Johannes Steen",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Statsråd",
+       "quote": "Det første året gjorde han teneste i statsrådsavdelinga i Stockholm",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Statsråd",
+       "quote": "seinare var han landbruks- og deretter finansminister",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-knudsen",
+       "locator": "導言",
+       "quote": "i marts 1905 blev han finansminister i samlingsregeringen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-knudsen",
+       "locator": "導言",
+       "quote": "samlingsregeringen under Christian Michelsen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-knudsen",
+       "locator": "第三段",
+       "quote": "var som republikaner modstander af valget af prins Carl af Danmark",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-knudsen",
+       "locator": "第三段",
+       "quote": "tog derfor sin afsked i oktober samme år",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1910-02-02"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第一屆政府（1908–1910）",
+      "en": "The first government, 1908–1910"
+     },
+     "body": {
+      "zh-Hant": "1908年1月自由黨「鞏固」之後，克努森主導解散議會自由黨協會，另組新協會並由自己出任主席。1908年3月18日，他以首相兼財政大臣的身分重返政府；該屆政府從3月19日任職到1910年2月2日，是倚賴議會逐案支持的少數政府。1909年，國家開辦公共疾病保險。同年卡爾·貝爾納（Carl Berner）卸任自由黨主席，由克努森接任，任至1927年。1909年的選舉由右派與新的自由思想自由黨勝出，他的政府隨之下台，由科諾夫（Wollert Konow）內閣接替。",
+      "en": "After the Venstre 'consolidation' of January 1908 Knudsen had the parliamentary Venstre association dissolved and a new one formed with himself as chairman. On 18 March 1908 he returned to government as prime minister and finance minister; the government sat from 19 March 1908 to 2 February 1910 and was a minority government dependent on case-by-case support in the Storting. In 1909 public health insurance was introduced. In the same year Carl Berner stepped down as Venstre chairman and was succeeded by Knudsen, who held the post until 1927. The 1909 election was a victory for the Conservatives and the new Free-minded Liberals, his government fell as a result and was replaced by Wollert Konow's ministry."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "Bakgrunnen var Venstres «konsolidering» i januar 1908.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "På initiativ av Knudsen hadde Stortingets Venstreforening blitt oppløyst",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "ei ny foreining danna med han sjølv som formann",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "18. mars 1908 gjorde Knudsen comeback som regjeringsmedlem",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "no som stats- og finansminister.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "Regjeringa satt frå 19. mars 1908 til 2. februar 1910.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "var ei mindretalsregjering som var avhengig av støtte i Stortinget",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "I 1909 blei det innført offentleg sjukeforsikring",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "I 1909 gjekk Carl Berner av som Venstres formann.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "Han blei etterfølgd av Knudsen, som hadde formannsvervet heilt til 1927.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "Valet i 1909 blei ein siger for Høgre og det nye Frisinnede Venstre",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "Som ei følgje av valutfallet gjekk Knudsens regjering av",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "blei avløyst av Wollert Konow",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1912-01-01",
+      "end": "1920-06-21"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第二屆政府（1913–1920）",
+      "en": "The second government, 1913–1920"
+     },
+     "body": {
+      "zh-Hant": "1912年的選舉中，自由黨取得其歷來最大的勝利之一，在123席中拿下70席而掌握絕對多數；克努森本人在兩個月內發表了65場演說。他於1913年1月底組成第二屆政府，並在1913至1918年兼任農業與審計部首長。第一次世界大戰爆發時，他同情英國，但支持外交大臣伊倫（Nils Claus Ihlen）的中立路線。自由黨在1918年的選舉失利，絕對多數就此結束。1920年6月，他為「公路百萬」（vegmillionen）一案提出內閣信任問題，政府於1920年6月21日下台。",
+      "en": "In the 1912 election Venstre won one of its greatest victories, taking 70 of 123 seats and a clear majority; Knudsen himself gave 65 speeches in two months. He formed his second government at the end of January 1913 and in 1913–1918 was also head of the Ministry of Agriculture and Auditing. When the First World War broke out he sympathised with Britain but supported the neutrality line of Foreign Minister Nils Claus Ihlen. Venstre lost the 1918 election and its majority position ended. In June 1920 he made the 'road million' a question of confidence, and the government resigned on 21 June 1920."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "Ved valet i 1912 vann Venstre ein av sine største valsigrar nokon gong.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "Venstre fekk 70 av 123 representantar og reint fleirtal.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "På to månader heldt han 65 foredrag rundt om i landet",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "I slutten av januar 1913 skipa Knudsen si andre regjering",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "I åra 1913–1918 var han dessutan sjef for landbruks - og revisjonsdepartementet",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Første verdskrigen",
+       "quote": "I krigen sympatiserte Knudsen med Storbritannia",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Første verdskrigen",
+       "quote": "støtta likevel utanriksminister Nils Claus Ihlens nøytralitetslinje",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Første verdskrigen",
+       "quote": "Venstre tapte valet i 1918.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Første verdskrigen",
+       "quote": "Dette valet markerer også slutten på Venstres fleirtalsposisjon",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Vegmillionen",
+       "quote": "I juni 1920 gjekk Knudsen mot å auke løyvingane til vegbygging",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Vegmillionen",
+       "quote": "han stilte kabinettsspørsmål på «vegmillionen»",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Vegmillionen",
+       "quote": "som førte til hans avgang 21. juni 1920",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1920-06-21",
+      "end": "1928-12-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "下台之後",
+      "en": "After leaving office"
+     },
+     "body": {
+      "zh-Hant": "下台後，克努森在議會擔任議長直到會期結束，但此後婉拒再度參選。1921年哈爾沃森（Otto Bahr Halvorsen）的政府下台時，有人請他出任首相，他拒絕了。他仍擔任自由黨主席直到1927年，並在黨內保持很大的影響力。1928年12月1日，他在斯基恩（Skien）的博格斯塔德（Borgestad）去世。",
+      "en": "After leaving office Knudsen was President of the Storting until the end of the session, but then declined to stand for election. When Otto Bahr Halvorsen's government fell in 1921 he was asked to become prime minister but said no. He remained chairman of Venstre until 1927 and kept great influence in the party. He died on 1 December 1928 at Borgestad in Skien."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "Etter avgangen til regjeringa var han Stortingets president",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "inntil slutten av sesjonen",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "men avslo sidan å stille til val",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "Han vart spurt om å bli statsminister då regjeringa til Otto Bahr Halvorsen",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "Otto Bahr Halvorsen gjekk i 1921, men då sa han nei",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "Han vart likevel ståande som Venstres formann heilt til 1927",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "øvde i denne tida framleis stor innverknad i partiet",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Faktaboks",
+       "quote": "1. desember 1928, Borgestad i Gjerpen, Skien",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "knudsen-storting-president-1906",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威議會（Stortinget）",
+      "en": "Storting (Norwegian parliament)"
+     },
+     "title": {
+      "orig": "Stortingspresident",
+      "zh-Hant": "議會議長",
+      "en": "President of the Storting"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1906-01-01",
+      "end": "1909-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Stortingsrepresentant",
+       "quote": "Han var stortingspresident frå 1906 til 1908",
+       "quoteLang": "nn",
+       "evidenceNote": "迄日依年精度寫下一年起日（1909-01-01）；與 1908 窗口僅部分重疊",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "knudsen-storting-president-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威議會（Stortinget）",
+      "en": "Storting (Norwegian parliament)"
+     },
+     "title": {
+      "orig": "Stortingspresident",
+      "zh-Hant": "議會議長（較短期間）",
+      "en": "President of the Storting (shorter period)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1913-01-01",
+      "end": "1914-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Stortingsrepresentant",
+       "quote": "og i kortare periodar i 1913 og 1920–1921",
+       "quoteLang": "nn",
+       "evidenceNote": "來源只寫「1913年的較短期間」；起迄依年精度取該年起日與下一年起日，實際期間較短",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "knudsen-storting-president-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威議會（Stortinget）",
+      "en": "Storting (Norwegian parliament)"
+     },
+     "title": {
+      "orig": "Stortingspresident",
+      "zh-Hant": "議會議長（較短期間）",
+      "en": "President of the Storting (shorter period)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1920-01-01",
+      "end": "1922-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Stortingsrepresentant",
+       "quote": "og i kortare periodar i 1913 og 1920–1921",
+       "quoteLang": "nn",
+       "evidenceNote": "來源寫「1920–1921」的較短期間；迄日依年精度寫下一年起日（1922-01-01），實際期間較短",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "Etter avgangen til regjeringa var han Stortingets president",
+       "quoteLang": "nn",
+       "evidenceNote": "首相下台（1920-06-21）後任議長至會期結束，與上列年精度一致",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "knudsen-agri-audit-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威政府（農業與審計部）",
+      "en": "Government of Norway (Ministry of Agriculture and Auditing)"
+     },
+     "title": {
+      "orig": "sjef for landbruks- og revisjonsdepartementet",
+      "zh-Hant": "農業與審計部首長（與首相並任）",
+      "en": "Head of the Ministry of Agriculture and Auditing (alongside the premiership)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens andre regjering",
+       "quote": "I åra 1913–1918 var han dessutan sjef for landbruks - og revisjonsdepartementet",
+       "quoteLang": "nn",
+       "evidenceNote": "迄日依年精度寫下一年起日（1919-01-01）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "農業與審計部不屬外交、國防、財政、內政四部，依 R3① 不入角色層，屬 R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "knudsen-venstre-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "自由黨（Venstre）",
+      "en": "Venstre (Liberal Party)"
+     },
+     "title": {
+      "orig": "formann i Venstre",
+      "zh-Hant": "自由黨主席",
+      "en": "Chairman of Venstre"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1909-01-01",
+      "end": "1928-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "I 1909 gjekk Carl Berner av som Venstres formann.",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Knudsens første regjering",
+       "quote": "Han blei etterfølgd av Knudsen, som hadde formannsvervet heilt til 1927.",
+       "quoteLang": "nn",
+       "evidenceNote": "迄日依年精度寫下一年起日（1928-01-01）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Utdrag",
+       "quote": "Han vart likevel ståande som Venstres formann heilt til 1927",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:finance1908",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；SNL 稱他 1908-03-18 以「stats- og finansminister」重返政府，但財政大臣職的結束時間未明寫（政府 1910-02-02 結束，但來源未說財政職同日止），故未建職位；Lex 另稱 1919 年他接掌財政，亦未載期間。已查：SNL、Lex，regjeringen.no（403）與 Stortinget 傳記頁（404）未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:cabinet1901",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源對他早期入閣期間說法不同：SNL 寫 1901–1903 為斯廷與布勒兩屆政府成員，Lex 寫 1902–1903 為布勒政府成員。窗外（1908 前），只寫正文並採 SNL 的涵蓋說法，未建職位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "snl-knudsen",
+       "locator": "Statsråd",
+       "quote": "I åra 1901–1903 var Knudsen medlem av Venstre-regjeringane til Johannes Steen",
+       "quoteLang": "nn",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-knudsen",
+       "locator": "導言",
+       "quote": "I perioden 1902-1903 var han medlem af regeringen Blehr",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:stortingTenure",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；SNL 內部對議員任期的敘述前後不一（導言稱 1891–1921，「Stortingsrepresentant」節稱 1919–1924 代表 Telemark，但同文又稱他 1921 年未再參選），Lex 稱 1892 起，未建議員職位；已查 SNL、Lex，Stortinget 官方傳記頁（404）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:headOfGovernmentTerms",
+     "gapKind": "not_found",
+     "note": "首相任期（1908-03-19～1910-02-02、1913-01-31～1920-06-21）已在名單 5442（recordId 01a1aa4a-59ab-715d-9acf-4d4368b656cc、01a1aa4a-59ab-781d-8e12-f20d7d758ecf），依規則不重建；SNL 與 Lex 載相同起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:stortingVenstreforeningChair",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；SNL 載 1908 年 1 月「konsolidering」時，由他發起解散議會自由黨協會（Stortingets Venstreforening）另組新協會並自任主席（formann），屬黨內職務（依 Tai 2026-11-11 12:12 應為 de_facto_leader 候選），但來源未寫任職起訖日，故未建候選角色（審查補記）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon／NBL Gunnar Knudsen",
+     "url": "https://nbl.snl.no/Gunnar_Knudsen",
+     "result": "found_B",
+     "note": "轉向 snl.no/Gunnar_Knudsen；具名作者 Per Fuglum、Harald Kjølås，文字含 NBL；取為 snl-knudsen"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Lex Gunnar Knudsen",
+     "url": "https://lex.dk/Gunnar_Knudsen",
+     "result": "found_B",
+     "note": "Knut Are Tvedt 具名條目；取為 lex-knudsen"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Stortinget 議員傳記 Gunnar Knudsen",
+     "url": "https://www.stortinget.no/no/Representanter-og-komiteer/Representantene/Biografi/?perid=GUKN",
+     "result": "no_result",
+     "note": "HTTP 404（人員代碼為推測）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "regjeringen.no 歷任政府名單",
+     "url": "https://www.regjeringen.no/no/om-regjeringa/tidligere-regjeringer-og-historie/historiske-regjeringer/",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "WebSearch：Gunnar Knudsen statsminister 1908 1910 1913 1920 regjeringen.no historiske regjeringer",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果含 lokalhistoriewiki、維基類、Wikiwand（只當索引，未用）與 regjeringen.no／KulturNav 連結"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "regjeringen.no Gunnar Knudsen 首相頁",
+     "url": "https://regjeringen.no/en/the-government/previous-governments/historiske-artikler/offices/prime-minister-since-1814/aanon-gunerius-gunnar-knudsen/id463347",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "KulturNav Gunnar Knudsen（挪威人名權威）",
+     "url": "https://kulturnav.org/1bc2e14b-8380-4aad-9296-23b245413cbc",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    }
+   ]
+  }
+ ]
+}

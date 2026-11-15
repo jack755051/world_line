@@ -1,0 +1,44 @@
+{
+ "batch": "015",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {"returned": 1, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 14, "editedSentences": 5, "spotRefetched": 4, "searchLogShort": 1},
+ "people": [
+  {"key": "ar-yrigoyen", "bioId": "477e851d-8e39-4da5-8a50-33d0c8a77067", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 3, "roleCandidates": 0, "gaps": 2, "searchLogSteps": 8,
+   "changes": [
+    "第1段：刪去引文未支撐的「師範學校」「公民教育和哲學」，改為「擔任阿根廷歷史教師」（中英）",
+    "第2段：刪去引文未支撐的「隔年」（中英）",
+    "第3段：補 2 筆引文（su mandato se vio manchado…／con gran cantidad de obreros muertos…）支撐「任內」與工人遭鎮壓子句",
+    "第4段：補引文「No pudo terminar su segundo mandado」支撐「無法任滿」；「獲釋」改「結束囚禁」（原文其後仍軟禁），引文延長為「…finalizó la dictadura y también el cautiverio」",
+    "gap field:uclLeadership：note 改為「待查證：缺起日；」並說明省委員會主席屬黨職（R1）但起年只有相對表述、無迄日；補 candidateCitation",
+    "重抓 argentina.gob.ar 頁比對引文一致"
+   ], "returnedReasons": []},
+  {"key": "dk-stauning", "bioId": "01a1b4b2-2fb7-7c78-bf22-fbe84d15332c", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 3, "roleCandidates": 1, "gaps": 3, "searchLogSteps": 3,
+   "changes": [
+    "第3段：「解散議會」無引文支撐，改為「政府宣布於1926年12月2日舉行選舉」；裁軍等主張引文延長至「…men gennemførtes ikke」以支撐「未能實現」",
+    "第4段：補引文「afløstes han pga. svigtende helbred som partiformand af Hans Hedtoft」支撐「因健康欠佳」",
+    "第5段：補引文「og argumenterede for en samarbejdspolitik」支撐「主張採取合作政策」",
+    "核對：Folketing 席位來源未明寫以黨身分取得，留 positions；控制部長 R5 正確；黨主席 R1 正確",
+    "重抓 lex.dk 頁比對引文一致"
+   ], "returnedReasons": []},
+  {"key": "ni-diaz", "bioId": "01a1b4b2-2fc7-7851-8574-dfdd27852988", "verdict": "returned", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 2, "searchLogSteps": 4,
+   "changes": [
+    "第1段：補引文（Previously a secretary for La Luz and Los Angeles Mining Company；a revolt led by Minister of War Luis Mena）",
+    "第2段：補引文「his forging of closer ties between Nicaragua and the United States」",
+    "第3段：人名誤譯「桑切斯」改「薩卡薩」（Sacasa）、「莫卡達」改「蒙卡達」（Moncada），並補「前自由派副總統」；補 6 筆引文支撐重組國會、11月17日美國代辦、薩卡薩、蒙卡達起兵、結束內戰、合作發展國民警衛隊",
+    "重抓 history.state.gov 與 encyclopedia.com 頁比對引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 僅 4 筆、2 種來源類型（official、named_encyclopedia）、原文語言查詢 0 次；缺 authority、national_dictionary／official（尼加拉瓜）、academic 類，缺 ≥4 次查詢與 ≥2 次西班牙文查詢",
+    "建議下一步：LoC／VIAF 權威檔「Díaz, Adolfo, 1875-1964」；西文查詢「Adolfo Díaz Recinos presidente de Nicaragua」；Real Academia de la Historia DB~e（dbe.rah.es）；Asamblea Nacional de Nicaragua／Biblioteca Enrique Bolaños 歷任總統資料；La Gaceta Diario Oficial 1911、1926 就職公告"
+   ]}
+ ],
+ "issues": [
+  "研究者仍有子句缺引文（地點、評語、因果、相對日期如「隔年」），本批補 14 筆引文、改 5 句",
+  "中文人名轉寫錯誤（Sacasa 誤作桑切斯）",
+  "薄人物 searchLog 未達最低嘗試即停（raw 目錄另有 hs-dollar、hs-nic-intervention、brit-diaz 抓取檔未記入 searchLog）"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 79}
+}

@@ -1,0 +1,87 @@
+{
+ "batch": "018",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 6,
+  "editedSentences": 7,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "lt-smetona",
+   "bioId": "01a1b4b0-6fb0-74de-9782-9ddf646af24a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 20,
+   "changes": [
+    "段4：引文「Iron Wolf paramilitary organization」延長為原文「Voldemaras, his arrogant personality and Iron Wolf paramilitary organization」，以支撐「與瓦爾德馬拉斯及其鐵狼組織」子句",
+    "段2 period 迄點補 1918-07-12（day，段內最後事件 7 月 11 日夜，Q3 半開）",
+    "重抓 lituanus-eidintas、lnb-ps205 與快取逐位元一致；黨魁（tautininkų lyderis）無 A／B 起日，維持 gap，正確；VLE 無署名條目只在 gap 候選，正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ht-vincent",
+   "bioId": "01a1b488-14ab-7c0d-ac90-6de4edf3f6a2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1：引文延長為「En janvier 1930, il fonde Haïti Journal, fer de lance de la campagne électorale」以支撐「作為競選的利器」",
+    "段2：引文改為「par 30 voix contre 19 à son compétiteur le plus proche, Seymour Pradel」並補「au quatrième tour de scrutin」「une constitution soumise à plébiscite」；「經公民投票通過的憲法」改「交付公民投票的憲法」（原文只寫 soumise à plébiscite），刪無引文的「其後」",
+    "段3：補引文「instead retired peaceably」支撐「平和退休」；「1935年的修憲」改「1935年的再次變更」（引文只寫 changement）",
+    "段1、段2 period 迄點補 1930-02-01（month）、1935-06-03（day）",
+    "重抓 emb-vincent PDF 與快取一致；名單任期 1934-08-01 與兩份來源 1930-11 起任不同，gap 記 not_found 正確（非來源互相矛盾）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fr-poincare",
+   "bioId": "fd700a99-a8ac-4166-8fa5-43411fd03113",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "中文正文「龐加萊」統一為名單譯名「普恩加萊」",
+    "段2：刪無引文的「總統」（法利埃）；「向這座殉難之城頒授」改「頒授」（ville martyre 不在引文內）；補引文「message de Raymond Poincaré qui lance la formule de \"l'Union sacrée\"」支撐「咨文」",
+    "段3：補引文「pour obtenir de l'Allemagne les réparations de guerre qu’elle refuse de payer」「démission de Poincaré et du président Millerand」；「他隨總統米勒蘭辭職」改「導致他與總統米勒蘭辭職」",
+    "段1、段2 period 迄點補 1903-02-23、1920-02-18（day）",
+    "三筆外長／財長 R6（roleGap=regime）依 batch001 先例維持；重抓 elysee 與快取一致；生日、公共教育部長年份兩筆 conflict 皆為兩份已抓 A 來源矛盾，正確"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者仍有子句缺引文（對手姓名、公民投票、退休方式、因果、受贈對象、職稱「總統」），本批補 6 筆、延長 3 筆引文、改 7 句",
+  "段落 period 迄點空白（Q3），已補 5 段",
+  "依 docs/source-rules.md：無禁用網域；VLE 無署名條目只在 gap 候選；Encyclopedia.com 轉錄本記 B",
+  "名單列 5 人但本批實際 3 人；名單中文名漏 Vincent（研究者譯作斯泰尼奧·文森）",
+  "Poincaré 第二任參議員只寫 gap（target=field:），未依最低標準建 position＋缺迄日 gap；不影響 check_min，未新增事實故未補建"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

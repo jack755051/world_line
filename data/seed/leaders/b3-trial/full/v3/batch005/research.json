@@ -1,0 +1,2342 @@
+{
+ "batch": "b3-full-v3-batch005",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2–§16.4；直接寫 b0b0e0f 對齊格式。bioId、recordIds 取自 selection-sample.json batch 005 名單。lobid.org 為 GND 官方鏡像。regimeId 一律 null 並填 organization。",
+ "alignNote": "黨職一律 de_facto_leader；以政黨身分取得的席位比照黨職；T14 R0–R6 於研究時套用；元首／首腦任期已在名單 5442 者不重建；未寫庫。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch005/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "dhbb-mena": {
+   "title": "BARRETO, Mena（João de Deus Mena Barreto）：Dicionário Histórico-Biográfico Brasileiro 傳記條目",
+   "authors": [
+    "Renato Lemos"
+   ],
+   "publisher": "CPDOC／Fundação Getulio Vargas",
+   "published_text": "DHBB 傳記條目（CPDOC 網站）",
+   "url": "https://www18.fgv.br/CPDOC/ACERVO/dicionarios/verbete-biografico/joao-de-deus-mena-barreto-1",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "FGV CPDOC 編的巴西歷史傳記辭典（DHBB），條目末署名 Renato Lemos；具名作者的學術機構傳記，記 B"
+  },
+  "frus-463": {
+   "title": "Papers Relating to the Foreign Relations of the United States, 1930, Volume I, Document 463（832.00 Revolutions/146）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1930 vol. I",
+   "url": "https://history.state.gov/historicaldocuments/frus1930v01/d463",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國務院 FRUS 所收駐巴西大使電報：對巴西人物與事件屬第三方當時的官方紀錄（465 另轉錄巴西外交部通告，轉錄本記 B），依 docs/source-rules.md §2 記 B（審查 2026-11-15 由 A 降 B）"
+  },
+  "frus-465": {
+   "title": "FRUS 1930, Volume I, Document 465（832.00 Revolutions/160）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1930 vol. I",
+   "url": "https://history.state.gov/historicaldocuments/frus1930v01/d465",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國務院 FRUS 所收駐巴西大使電報：對巴西人物與事件屬第三方當時的官方紀錄（465 另轉錄巴西外交部通告，轉錄本記 B），依 docs/source-rules.md §2 記 B（審查 2026-11-15 由 A 降 B）"
+  },
+  "frus-469": {
+   "title": "FRUS 1930, Volume I, Document 469（832.01/3）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1930 vol. I",
+   "url": "https://history.state.gov/historicaldocuments/frus1930v01/d469",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國務院 FRUS 所收駐巴西大使電報：對巴西人物與事件屬第三方當時的官方紀錄（465 另轉錄巴西外交部通告，轉錄本記 B），依 docs/source-rules.md §2 記 B（審查 2026-11-15 由 A 降 B）"
+  },
+  "sbl-gustav5": {
+   "title": "Gustav V（Svenskt biografiskt lexikon，Band 17，s. 482）",
+   "authors": [
+    "Nils F Holm"
+   ],
+   "publisher": "Riksarkivet（Svenskt biografiskt lexikon）",
+   "published_text": "Band 17 (1967-1969)",
+   "url": "https://sok.riksarkivet.se/sbl/Artikel/13319",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "瑞典國家檔案館出版的國家級傳記辭典，具名作者"
+  },
+  "kungahuset-g5": {
+   "title": "Gustaf V（The Bernadotte Dynasty）",
+   "authors": [],
+   "publisher": "Kungahuset.se（瑞典王室官方網站）",
+   "published_text": "官網頁面",
+   "url": "https://kungligastiftelser.se/english/royal-house/the-bernadotte-dynasty/gustaf-v",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "王室機構網站的無署名介紹文，依 docs/source-rules.md §2 記 C（審查 2026-11-15 由 A 降 C）；人物生平不收，未用於段落"
+  },
+  "kungligaslotten-g5": {
+   "title": "Gustaf V（List of Swedish monarchs）",
+   "authors": [],
+   "publisher": "Kungliga slotten（The Royal Palaces）",
+   "published_text": "官網頁面",
+   "url": "https://www.kungligaslotten.se/english/list-of-swedish-monarchs/gustaf-v.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "王室機構網站的無署名介紹文，依 docs/source-rules.md §2 記 C（審查 2026-11-15 由 A 降 C）；人物生平不收，未用於段落"
+  },
+  "bwn-wilhelmina": {
+   "title": "Wilhelmina, koningin der Nederlanden (1880-1962)",
+   "authors": [
+    "I. Schöffer"
+   ],
+   "publisher": "Huygens ING（Biografisch Woordenboek van Nederland）",
+   "published_text": "BWN 1880-2000",
+   "url": "https://resources.huygens.knaw.nl/bwn1880-2000/lemmata/bwn2/wilhelmina",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "荷蘭國家級傳記辭典（Huygens ING／KNAW），具名作者"
+  },
+  "parlement-wilhelmina": {
+   "title": "H.M. koningin Wilhelmina（Parlement.com 人物條目）",
+   "authors": [],
+   "publisher": "Parlement.com（Montesquieu Instituut）",
+   "published_text": "人物資料庫條目",
+   "url": "https://parlement.com/biografie/hm-koningin-wilhelmina",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "荷蘭議會制度研究機構 Montesquieu Instituut 編的議會人物資料庫；學術機構資料庫，記 B"
+  },
+  "lobid-gustav5": {
+   "title": "GND 檢索結果：Gustav V., Schweden, König（GND 118719548）",
+   "authors": [],
+   "publisher": "lobid.org（德國國家圖書館 GND 官方鏡像）",
+   "published_text": "JSON 檢索結果",
+   "url": "https://lobid.org/gnd/search?q=Gustaf+V+Schweden+K%C3%B6nig&format=json&size=3",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "GND 人名權威檔（官方鏡像）"
+  },
+  "lobid-wilhelmina": {
+   "title": "GND 檢索結果：Wilhelmina, Niederlande, Königin（GND 118771892）",
+   "authors": [],
+   "publisher": "lobid.org（德國國家圖書館 GND 官方鏡像）",
+   "published_text": "JSON 檢索結果",
+   "url": "https://lobid.org/gnd/search?q=Wilhelmina+Niederlande+K%C3%B6nigin&format=json&size=3",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "GND 人名權威檔（官方鏡像）"
+  },
+  "ne-gustaf5": {
+   "title": "Gustaf V（Nationalencyklopedin 預覽）",
+   "authors": [
+    "Jörgen Weibull"
+   ],
+   "publisher": "Nationalencyklopedin（NE）",
+   "published_text": "NE 線上版（付費牆，僅預覽）",
+   "url": "https://www.ne.se/uppslagsverk/encyklopedi/lång/gustaf-v",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者機構百科；僅有預覽，未用於段落"
+  },
+  "db-wilhelmina": {
+   "title": "Deutsche Biographie 索引頁：Wilhelmina, Nederland, Koningin",
+   "authors": [],
+   "publisher": "Deutsche Biographie",
+   "published_text": "索引頁",
+   "url": "https://deutsche-biographie.de/sfz19000.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名索引頁（僅作權威線索，未用於段落）"
+  }
+ },
+ "people": [
+  {
+   "key": "br-mena-barreto",
+   "bioId": "61e6f4a9-feff-481e-bc3a-f70d5fda1b00",
+   "name": "João de Deus Mena Barreto",
+   "nameZh": "梅納·巴雷托",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1874-06-30",
+      "end": "1900-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身、家世與早年軍旅",
+      "en": "Birth, family and early army training"
+     },
+     "body": {
+      "zh-Hant": "若昂·德·德烏斯·梅納·巴雷托1874年6月30日生於阿雷格里港，父親是將軍若澤·路易斯·梅納·巴雷托。家族自18世紀起多人從軍，約有15人官至將軍。他1890年1月進入里約帕爾多戰術射擊學校，1898年3月進入里約的巴西軍事學校，1900年9月升任中尉。",
+      "en": "João de Deus Mena Barreto was born in Porto Alegre on 30 June 1874, the son of General José Luís Mena Barreto. Many members of his family had followed military careers since the 18th century, and about 15 reached the rank of general. He entered the Tactical and Shooting School of Rio Pardo in January 1890, joined the Military School of Brazil in Rio de Janeiro in March 1898, and was promoted to lieutenant in September 1900."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "nasceu em Porto Alegre no dia 30 de junho de 1874, filho do general José Luís",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Desde o século XVIII, muitos membros da sua família seguiram a carreira militar",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "cerca de 15 deles atingiram o generalato",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "ingressou na Escola Tática e de Tiro de Rio Pardo (RS) em janeiro de 1890",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "março de 1898, ingressou na Escola Militar do Brasil, no Rio de Janeiro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "sendo promovido a tenente em setembro de 1900",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1910-11-01",
+      "end": "1926-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "從鎮壓叛亂到第一軍區司令",
+      "en": "From suppressing revolts to commanding the 1st Military Region"
+     },
+     "body": {
+      "zh-Hant": "1910年11月他參與鎮壓里約蛇島海軍陸戰營的叛亂。1921年9月升任准將，1922年2月出任第二步兵旅指揮官。1924年7月聖保羅爆發新一輪尉官叛亂，他被任命為北方支隊總司令，前往馬瑙斯對付第27獵兵營的叛變。1924年10月他代理第一軍區司令，同年12月獲少將軍銜並正式任職，1926年3月請辭。",
+      "en": "In November 1910 he took part in suppressing the revolt of the Naval Battalion on Cobras Island, Rio de Janeiro. He was promoted to brigadier general in September 1921 and became commander of the 2nd Infantry Brigade in February 1922. When a new lieutenants' revolt broke out in São Paulo in July 1924, he was named commander-in-chief of the Northern Detachment sent to Manaus against the mutiny of the 27th Chasseur Battalion. In October 1924 he acted as commander of the 1st Military Region, was confirmed in December after being made a general of division, and resigned the command in March 1926."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Em novembro de 1910, Mena Barreto participou da repressão à",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Promovido a general-de-brigada em setembro de 1921",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Em fevereiro de 1922 tornou-se comandante da 2ª Brigada de Infantaria",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Em julho de 1924, irrompeu em São Paulo nova revolta tenentista",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "foi então nomeado comandante-em-chefe do chamado Destacamento do Norte",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "para combater, em Manaus, a sublevação do 27º Batalhão de Caçadores,",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Em outubro de 1924, Mena Barreto substituiu interinamente o",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "logo após receber a patente de general-de-divisão",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "exonerou-se do comando da 1ª RM em março de 1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "revolta do Batalhão Naval da ilha das Cobras, no Rio de Janeiro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "sendo efetivado nesse posto em dezembro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1930-10-03",
+      "end": "1930-11-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1930年革命與臨時軍政委員會",
+      "en": "The 1930 revolution and the provisional governing junta"
+     },
+     "body": {
+      "zh-Hant": "1930年10月3日推翻總統華盛頓·路易斯的革命爆發後，首都的高階軍官在梅納·巴雷托的領導下策劃軍事政變。10月24日早晨他與塔索·弗拉戈索前往瓜納巴拉宮，要求總統辭職；總統不肯，隨即組成臨時軍政委員會，由塔索·弗拉戈索任主席，梅納·巴雷托與伊薩亞斯·德諾羅尼亞為成員。美國大使的電報同日記載委員會已成立並接管政府；11月3日瓦加斯接任臨時政府首腦。",
+      "en": "After the revolution that toppled President Washington Luís broke out on 3 October 1930, senior officers in the capital began planning a military coup under Mena Barreto's leadership. On the morning of 24 October he and Tasso Fragoso went to Guanabara Palace to demand that the president resign; he refused, and a provisional governing junta was formed, presided over by Tasso Fragoso with Mena Barreto and Isaías de Noronha as members. The US ambassador's telegram of the same day recorded that the junta had been formed and had taken over the government; on 3 November Vargas assumed the leadership of the Provisional Government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "foi deflagrada, em 3 de outubro de 1930, a revolução que derrubou o",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "sob a liderança de Mena Barreto, um golpe militar",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Na manhã seguinte se dirigiram para o palácio Guanabara",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Formou-se então uma junta governativa provisória, que, presidida por",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Tasso Fragoso e composta por Mena Barreto e Isaías de Noronha",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-463",
+       "locator": "電報 124（1930-10-24）",
+       "quote": "October 24, 1930—4 p.m.[Received 4:52 p.m.] 124. A military junta",
+       "quoteLang": "en",
+       "evidenceNote": "電報首行日期為 1930-10-24；該電報列出的成員比後來的三人委員會多",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "No dia 3 de novembro, Vargas assumiu a chefia do Governo Provisório.",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Na noite de 23 de outubro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "a fim de intimá-lo a renunciar",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Washington Luís se recusou a deixar o governo.",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-463",
+       "locator": "電報 124（1930-10-24）",
+       "quote": "has been formed, and has taken over the Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1930-11-03",
+      "end": "1933-03-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "瓦加斯執政後至去世",
+      "en": "Under Vargas until his death"
+     },
+     "body": {
+      "zh-Hant": "瓦加斯上台後，梅納·巴雷托仍任第一軍區群監察長；1931年5月起兼任里約熱內盧州聯邦干預官，因不同意8月公布的《干預官法典》，三個月後請辭，接著被任命為最高軍事法院法官。1932年聖保羅爆發憲政革命時，他保持中立，並在9月介入停火談判。他於1933年3月25日在最高軍事法院任內於里約熱內盧去世。",
+      "en": "After Vargas took power, Mena Barreto was kept as inspector of the 1st Group of Military Regions; from May 1931 he also served as federal interventor in Rio de Janeiro, but he disagreed with the Code of Interventors published in August, resigned three months later, and was then appointed a minister of the Superior Military Tribunal. He stayed neutral during the Constitutionalist Revolution of São Paulo in 1932 and intervened in the September negotiations to end the hostilities. He died in Rio de Janeiro on 25 March 1933 while still serving on the tribunal."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Depois da posse de Vargas, Mena Barreto foi mantido como inspetor do 1º",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "a partir de maio de 1931, acumulou",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "esse cargo com o de interventor federal no Rio de Janeiro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "levaram-no a pedir exoneração três meses depois",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "e, em seguida, nomeado ministro do STM",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "manteve posição de neutralidade diante da Revolução Constitucionalista",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "No mês de setembro, interveio nas negociações para a cessação das hostilidades",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Faleceu no Rio de Janeiro em 25 de março de 1933",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "divergências em relação ao Código dos Interventores, publicado em agosto",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "rm1-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴西陸軍第一軍區（聯邦區）",
+      "en": "Brazilian Army, 1st Military Region (Federal District)"
+     },
+     "title": {
+      "orig": "comandante da 1ª Região Militar",
+      "zh-Hant": "第一軍區司令",
+      "en": "Commander of the 1st Military Region"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1924-10-01",
+      "end": "1926-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Em outubro de 1924, Mena Barreto substituiu interinamente o",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 標題行",
+       "quote": "comte. 1ª RM 1924-1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "exonerou-se do comando da 1ª RM em março de 1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令，非國家級最高軍職、亦無戰役連結；R5"
+    },
+    {
+     "key": "inspector-1st-rm-group",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴西陸軍第一軍區群",
+      "en": "Brazilian Army, 1st Group of Military Regions"
+     },
+     "title": {
+      "orig": "inspetor do 1º Grupo de Regiões Militares",
+      "zh-Hant": "第一軍區群監察長",
+      "en": "Inspector of the 1st Group of Military Regions"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1926-11-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Nomeado inspetor do 1º Grupo de Regiões Militares em novembro de 1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 標題行",
+       "quote": "insp. 1º Grupo de RMs 1926-1931",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區群監察長，非國家級最高軍職；R5"
+    },
+    {
+     "key": "interventor-rio-de-janeiro",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "里約熱內盧州",
+      "en": "State of Rio de Janeiro"
+     },
+     "title": {
+      "orig": "interventor federal no Rio de Janeiro",
+      "zh-Hant": "里約熱內盧州聯邦干預官",
+      "en": "Federal interventor in Rio de Janeiro"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1931-05-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "a partir de maio de 1931, acumulou",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 標題行",
+       "quote": "interv. RJ 1931",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "轄區內州級地方長官；R5"
+    },
+    {
+     "key": "stm-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "最高軍事法院",
+      "en": "Superior Military Tribunal (STM)"
+     },
+     "title": {
+      "orig": "ministro do Superior Tribunal Militar",
+      "zh-Hant": "最高軍事法院法官",
+      "en": "Minister of the Superior Military Tribunal"
+     },
+     "positionKind": "judicial",
+     "period": {
+      "start": "1931-01-01",
+      "end": "1933-03-25"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 標題行",
+       "quote": "min. STM 1931-1933",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "verbete 正文",
+       "quote": "Faleceu no Rio de Janeiro em 25 de março de 1933",
+       "quoteLang": "pt",
+       "evidenceNote": "來源寫「在最高軍事法院任內去世」，迄日取死亡日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "法官職位，非四部閣員／將領／長官；R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "junta-governativa-provisoria-1930",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "臨時軍政委員會（Junta Governativa Provisória）",
+      "en": "Provisional Governing Junta of 1930"
+     },
+     "title": {
+      "orig": "membro da Junta Governativa Provisória",
+      "zh-Hant": "臨時軍政委員會成員（三人集體執政）",
+      "en": "Member of the Provisional Governing Junta"
+     },
+     "period": {
+      "start": "1930-10-24",
+      "end": "1930-11-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "frus-463",
+       "locator": "電報 124（1930-10-24）",
+       "quote": "October 24, 1930—4 p.m.[Received 4:52 p.m.] 124. A military junta",
+       "quoteLang": "en",
+       "evidenceNote": "電報日期 1930-10-24：軍事委員會已成立並接管政府（成員名單含 Menna Barreto）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-465",
+       "locator": "電報 131（1930-10-27）",
+       "quote": "and João de Deus Menna Barreto and Vice Admiral Isaias Noronha",
+       "quoteLang": "en",
+       "evidenceNote": "電報日期 1930-10-27，轉述 10-26 外交部通告：三人委員會（塔索·弗拉戈索任主席）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Formou-se então uma junta governativa provisória, que, presidida por",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Tasso Fragoso e composta por Mena Barreto e Isaías de Noronha",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-469",
+       "locator": "電報 141（1930-11-05）",
+       "quote": "A circular note, dated November 3rd, from the Ministry of Foreign",
+       "quoteLang": "en",
+       "evidenceNote": "外交部通告日期 1930-11-03",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-469",
+       "locator": "電報 141（1930-11-05）",
+       "quote": "delivered the administration of the country to Dr. Getulio Vargas",
+       "quoteLang": "en",
+       "evidenceNote": "同通告：臨時委員會交出國家行政權；迄日取 1930-11-03",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "No dia 3 de novembro, Vargas assumiu a chefia do Governo Provisório.",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhbb-mena",
+       "locator": "Na Revolução de 1930",
+       "quote": "Às cinco horas da tarde do dia 24 de outubro, Washington Luís consentiu",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-463",
+       "locator": "電報 124（1930-10-24）",
+       "quote": "has been formed, and has taken over the Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "t14Rule": "R0",
+     "reason": "R0：1930-10-24 至 11-03 由三人臨時軍政委員會集體接管並行使國家行政權（FRUS 電報稱其 took over the Government，11-03 交給瓦加斯）；梅納·巴雷托為成員；名單 5442 無此人任期，故補候選。集體元首是否算 head_of_state 請審查者確認。 審查（opus 2026-11-15）：三人委員會於 10-24 至 11-03 行使國家行政權（DHBB、FRUS 均載），維持 head_of_state 候選、t14Rule R0；集體元首如何入庫交主 session。FRUS 降為 B。"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:interventor-rio-de-janeiro",
+     "gapKind": "not_found",
+     "note": "待查證：僅有年精度；CPDOC 條目只寫 1931 年 5 月起任聯邦干預官、因對 8 月公布的《干預官法典》有異議而在「三個月後」請辭，沒有確切起迄日。已查：CPDOC DHBB 條目、FRUS 電報。需官方公報（Diário Oficial）任免令。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stm-minister",
+     "gapKind": "not_found",
+     "note": "待查證：起日僅年精度（1931）；CPDOC 條目寫「請辭後隨即被任命為最高軍事法院法官」，無確切任命日。需最高軍事法院官方歷任法官名錄或官方公報。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:junta-governativa-provisoria-1930",
+     "gapKind": "not_found",
+     "note": "待查證：委員會成立日與成員名單在兩份 FRUS 電報不同（10-24 電報列五位將領，10-27 電報為三人）；起日採 10-24（電報日期）、迄日採 11-03（通告日期），未有巴西官方公報（Diário Oficial）或總統府歷任名單佐證。已查：CPDOC DHBB 條目、FRUS 三份電報。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:regime",
+     "gapKind": "identity_uncertain",
+     "note": "名單推定「地區／政權不明」；實查為巴西（第一共和國末期）。5442 無此人任期，政權對應待主 session 確認。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Mena Barreto João de Deus（GND／lobid.org）",
+     "url": "https://lobid.org/gnd/search?q=Mena+Barreto+Jo%C3%A3o+de+Deus&format=json&size=5",
+     "result": "no_result",
+     "note": "totalItems=0，GND 查無此人"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Mena Barreto João de Deus CPDOC FGV verbete biográfico",
+     "url": "https://www18.fgv.br/cpdoc/acervo/dicionarios/verbete-biografico/mena-barreto-joao-de-deus",
+     "result": "no_result",
+     "note": "猜測的網址 404"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "\"MENA BARRETO, João de Deus\" DHBB CPDOC",
+     "url": "https://www18.fgv.br/CPDOC/ACERVO/dicionarios/verbete-biografico/joao-de-deus-mena-barreto-1",
+     "result": "found_B",
+     "note": "CPDOC DHBB 完整條目（取為 dhbb-mena）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "同上（另一路徑）",
+     "url": "https://atlas.fgv.br/verbetes/mena-barreto-joao-de-deus",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Junta Governativa Provisória 1930 Senado OR Planalto OR Arquivo Nacional",
+     "url": "https://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes/menna-barreto/nome-do-presidente",
+     "result": "no_result",
+     "note": "curl 連線被重設（Connection reset），未取得；搜尋摘要有生卒日但未取原文"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Junta 1930 FRUS history.state.gov",
+     "url": "https://history.state.gov/historicaldocuments/frus1930v01/d465",
+     "result": "found_A",
+     "note": "美國國務院 FRUS 電報 465（取為 frus-465）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "FRUS 1930 vol. I 相鄰文件",
+     "url": "https://history.state.gov/historicaldocuments/frus1930v01/d463",
+     "result": "found_A",
+     "note": "電報 463（10-24）取為 frus-463；464、466–471 另抓，468 為 11-04 電報、469 為 11-05（取為 frus-469）"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Junta Governativa Provisória 1930 infoescola",
+     "url": "https://www.infoescola.com/historia/junta-provisoria-militar-de-1930",
+     "result": "unrated",
+     "note": "教育網站，無署名，不收（僅線索）"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Mena Barreto cpdoc Primeira República PDF",
+     "url": "https://cpdoc.fgv.br/sites/default/files/verbetes/primeira-republica/BARRETO,%20Mena.pdf",
+     "result": "no_result",
+     "note": "搜尋結果有此 PDF，未另抓（與 DHBB 條目同源）"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "CPDOC 舊網址 A Era Vargas 傳記",
+     "url": "https://cpdoc.fgv.br/producao/dossies/AEraVargas1/biografias/mena_barreto",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "CPDOC 主題條目 JUNTAS MILITARES",
+     "url": "https://www18.fgv.br/cpdoc/acervo/dicionarios/verbete-tematico/juntas-militares",
+     "result": "unrated",
+     "note": "已抓取（dhbb-juntas.txt）但未用於引文；主要內容與人物條目重複"
+    }
+   ]
+  },
+  {
+   "key": "se-gustaf-v",
+   "bioId": "01a1b4af-e4a4-7075-a947-1647dcac89ad",
+   "name": "Gustaf V",
+   "nameZh": "古斯塔夫五世",
+   "recordIds": [
+    "891a984e-d811-4064-adcd-7fd9aae526e2"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1858-06-16",
+      "end": "1881-09-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、王儲與婚姻",
+      "en": "Birth, crown prince and marriage"
+     },
+     "body": {
+      "zh-Hant": "古斯塔夫五世1858年6月16日生於德羅特寧霍爾姆宮，父母是國王奧斯卡二世與拿騷的索菲亞，同年6月19日受封為韋姆蘭公爵。1872年9月18日他成為瑞典與挪威的王儲，1881年9月20日在卡爾斯魯厄與巴登的維多利亞成婚。",
+      "en": "Gustaf V was born at Drottningholm Palace on 16 June 1858, the son of King Oscar II and Sophia of Nassau, and was made Duke of Värmland on 19 June of that year. He became crown prince of Sweden and Norway on 18 September 1872 and married Victoria of Baden at Karlsruhe on 20 September 1881."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Meriter",
+       "quote": "Gustav V, f 16 juni 1858 på Drottningholms slott",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Meriter",
+       "quote": "Föräldrar: konung Oscar II o Sofia av Nassau.",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Meriter",
+       "quote": "Hertig av Värmland 19 juni 58, Sveriges o Norges kronprins 18 sept 72",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Meriter",
+       "quote": "G 20 sept 81 i Karlsruhe m Sofia Maria Victoria av Baden",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-gustav5",
+       "locator": "GND JSON",
+       "quote": "\"dateOfBirth\" : [ \"1858-06-16\" ]",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1905-06-07",
+      "end": "1907-12-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "聯盟解體與登基",
+      "en": "Dissolution of the union and accession"
+     },
+     "body": {
+      "zh-Hant": "1905年6月7日挪威議會宣布終止聯盟時，王儲古斯塔夫正在柏林訪問；他在春天的攝政期間已判斷局勢無望，並支持和平解散聯盟。1907年12月8日他繼位為瑞典國王，並決定放棄加冕。",
+      "en": "When the Norwegian Storting broke the union on 7 June 1905, Crown Prince Gustaf was on a visit to Berlin; during his regency that spring he had already judged the situation hopeless, and he backed a peaceful dissolution. He became King of Sweden on 8 December 1907 and decided to forgo a coronation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Då norska stortinget 7 juni 1905 bröt unionen, befann sig G på besök i Berlin.",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "hade G funnit situationen »alldeles hopplös»",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "nödvändigheten av en snabb och fredlig avveckling av unionen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Meriter",
+       "quote": "Sveriges konung 8 dec 07.",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "beslut att avstå från kröning",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Under sitt regentskap i Kristiania på våren detta år",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-02-01",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1914年農民遊行與一戰期間",
+      "en": "The 1914 farmers' march and the First World War"
+     },
+     "body": {
+      "zh-Hant": "1914年2月他在農民遊行上發表演說，史塔夫政府隨後下台，這場「庭院危機」是他政治活動的頂點。大戰期間他努力支持並保住哈馬舍爾德內閣，認為它最能保證可靠的外交路線。1917年秋，他雖不情願，仍接受由艾登出任首相的新政權，等於承認了議會制。",
+      "en": "In February 1914 his speech to the farmers' march was followed by the fall of Staaff's government; the \"courtyard crisis\" marked the peak of his political activity. During the war he worked to support and keep the Hammarskjöld ministry, which he thought best guaranteed a reliable foreign course. In autumn 1917, although reluctantly, he accepted the new regime under Prime Minister Edén, thereby recognising parliamentarism."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "G:s tal till bondetåget i febr 1914 och den Staaffska regeringens avgång",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Med borggårdskrisen kulminerade G:s politiska aktivitet.",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Under kriget inriktade han sina ansträngningar på att stödja och behålla den",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Hammarskjöldska ministären",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Regimskiftet hösten 1917 accepterade G",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "hade G också erkänt parlamentarismen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "som enligt hans mening bäst garanterade en pålitlig utrikeskurs",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "om också motvilligt",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "den nye statsministern Edén",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1925-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "裁軍之爭與二戰",
+      "en": "The 1925 disarmament dispute and the Second World War"
+     },
+     "body": {
+      "zh-Hant": "1925年面對裁軍決議，他反應激烈，一度考慮拒絕批准。1939年10月他倡議在斯德哥爾摩召開國家元首會議，以支持受威脅的芬蘭。1943年85歲生日的「庭院演說」中，他說明自己在世界大戰的非常時期出面協助國家度過難關。1945年夏他說：先是挪威、再是兩次世界大戰，實在太多。",
+      "en": "Faced with the 1925 disarmament decision he reacted fiercely and considered refusing sanction. In October 1939 he took the initiative for a meeting of heads of state in Stockholm to support threatened Finland. In his \"courtyard speech\" on his 85th birthday in 1943 he explained that during the great world crisis he had seen it as his duty to help the country through its difficulties. In summer 1945 he remarked that first Norway and then two world wars was too much."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Inför nedrustningsbeslutet 1925 reagerade han häftigt",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "och övervägde att vägra sanktion och upplösa riksdagen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "initiativ till det statschefsmöte i Sthlm i okt 1939",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "I ett nytt »borggårdstal» på 85-årsdagen 1943",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "att vid flera tillfällen söka hjälpa landet ur stundens svårigheter",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "yttrade han sommaren 1945",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Först det där med Norge och sedan två världskrig, det är för mycket",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "som avsåg att stödja det hotade Finland",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Biografi",
+       "quote": "Men under nu rådande stora världskris har jag ansett det vara min",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:head_of_state_term",
+     "gapKind": "not_found",
+     "note": "5442 已有 kingdom-of-sweden head_of_state 1908-01-01～1945-10-01（recordId 891a984e-…）；SBL 與王室官網皆寫他 1907-12-08 繼位、1950-10-29 去世，與名單起訖（取窗內裁切）不衝突，故不重建候選。無缺口，僅記錄。",
+     "candidateCitations": [
+      {
+       "sourceKey": "sbl-gustav5",
+       "locator": "Meriter",
+       "quote": "Sveriges konung 8 dec 07.",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Gustaf V Schweden König GND",
+     "url": "https://lobid.org/gnd/search?q=Gustaf+V+Schweden+K%C3%B6nig&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118719548 Gustav V., Schweden, König，生卒 1858-06-16／1950-10-29（取為 lobid-gustav5）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Gustaf V Svenskt biografiskt lexikon（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋首輪未回 SBL 頁"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "sok.riksarkivet.se sbl \"Gustav V\" konung",
+     "url": "https://sok.riksarkivet.se/sbl/Artikel/13319",
+     "result": "found_A",
+     "note": "SBL Band 17 s.482，Nils F Holm（取為 sbl-gustav5）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "猜測 SBL id=18072／18110",
+     "url": "https://sok.riksarkivet.se/sbl/Presentation.aspx?id=18072",
+     "result": "not_relevant",
+     "note": "抓到 Simon Brandell 條目，非本人，棄用"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Gustaf V Kungliga slotten",
+     "url": "https://www.kungligaslotten.se/english/list-of-swedish-monarchs/gustaf-v.html",
+     "result": "found_A",
+     "note": "王室宮殿官網（取為 kungligaslotten-g5）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Gustaf V royal house Bernadotte dynasty",
+     "url": "https://kungligastiftelser.se/english/royal-house/the-bernadotte-dynasty/gustaf-v",
+     "result": "found_A",
+     "note": "王室官網頁（取為 kungahuset-g5；段落未引用）"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Gustaf V Nationalencyklopedin",
+     "url": "https://www.ne.se/uppslagsverk/encyklopedi/lång/gustaf-v",
+     "result": "found_B",
+     "note": "具名作者 Jörgen Weibull，但付費牆只見預覽（ne-gustaf5，未引用）"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Gustav V Britannica",
+     "url": "https://www.britannica.com/biography/Gustav-V",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Gustaf V Svenskt biografiskt lexikon 原文語言檢索",
+     "url": "https://sok.riksarkivet.se/sbl/Search.aspx?t=0&s=Gustav+V",
+     "result": "no_result",
+     "note": "站內搜尋頁抓到但無條目連結"
+    }
+   ]
+  },
+  {
+   "key": "nl-wilhelmina",
+   "bioId": "01a1b4af-e4bc-73ab-84f6-562455079367",
+   "name": "Wilhelmina",
+   "nameZh": "威廉明娜",
+   "recordIds": [
+    "01a1aa4a-59b0-7cb1-a58e-bb85a8db8b48",
+    "01a1aa4a-59b0-7ee4-ad4f-85e8dd72547b"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-08-31",
+      "end": "1898-09-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、繼位與親政",
+      "en": "Birth, accession and inauguration"
+     },
+     "body": {
+      "zh-Hant": "威廉明娜1880年8月31日生於海牙，是威廉三世之女。1890年11月23日父王去世，她成為荷蘭女王，但在滿十八歲前由母后艾瑪攝政。1898年9月6日舉行加冕（就職）典禮，開始親自執政。",
+      "en": "Wilhelmina was born in The Hague on 31 August 1880, the daughter of William III. Her father died on 23 November 1890 and she became Queen of the Netherlands, but until her eighteenth year she reigned under the regency of her mother, Queen Emma. Her inauguration took place on 6 September 1898, after which she ruled in her own right."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Personalia",
+       "quote": "'s-Gravenhage, 31 augustus 1880",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目首段",
+       "quote": "Dochter van Willem Alexander Paul Frederik Lodewijk. Koning der",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目首段",
+       "quote": "op 23 november 1890 en Wilhelmina werd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目首段",
+       "quote": "zij het tot haar achttiende jaar onder regentschap van koningin-moeder Emma",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "eenmaal zelfstandig Koningin (op 6 september 1898 vond de inhuldiging plaats)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Hoofdfuncties/beroepen",
+       "quote": "(inhuldiging 6 september 1898)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "條目導言",
+       "quote": "Dochter van koning Willem III",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "De Koning zelf stierf",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "Wilhelmina werd Koningin der Nederlanden",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-02-11",
+      "end": "1918-09-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "內閣組成與第一次世界大戰",
+      "en": "Cabinet formation and the First World War"
+     },
+     "body": {
+      "zh-Hant": "1908年2月11日與12日，她主持海姆斯克爾克內閣大臣宣誓；1913年8月29日又主持科爾特·范德林登內閣宣誓。大戰期間荷蘭中立屢受威脅，1918年5月她拒絕解除總司令斯奈德斯的職務，內閣於6月8日讓步。同年9月9日，她主持首屆呂伊斯·德貝倫布魯克內閣宣誓。",
+      "en": "On 11 and 12 February 1908 she swore in the ministers of the Heemskerk cabinet, and on 29 August 1913 those of the Cort van der Linden cabinet. During the war, as Dutch neutrality was repeatedly threatened, she refused in May 1918 to dismiss the commander-in-chief C.J. Snijders, and the cabinet gave way on 8 June. On 9 September 1918 she swore in the ministers of the first Ruijs de Beerenbrouck cabinet."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Beëdigde op 11 en 12 februari 1908 de ministers van het kabinet-Heemskerk",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Beëdigde op 29 augustus 1913 de ministers van het kabinet-Cort van der Linden",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "waarin Nederlands neutraliteit herhaaldelijk werd bedreigd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Weigerde in mei 1918 C.J. Snijders ontslag te verlenen als opperbevelhebber.",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "het kabinet legde zich op 8 juni 1918 neer bij Wilhemina's besluit",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Beëdigde op 9 september 1918 de ministers van het eerste kabinet-Ruijs",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-07-27",
+      "end": "1940-05-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1939年內閣更迭與德軍入侵",
+      "en": "The 1939 cabinet change and the German invasion"
+     },
+     "body": {
+      "zh-Hant": "1939年7月27日科林的事務內閣在數日內被推翻，她只得接受沒有科林的德格爾內閣（1939–1940）。1940年5月德軍入侵荷蘭，她於5月13日搭英國驅逐艦「赫里沃德號」離開荷蘭，當晚在英國登陸。",
+      "en": "On 27 July 1939 the Colijn business cabinet was brought down within days, and she had to accept a government without Colijn, the De Geer cabinet (1939–1940). When the German forces overran the Netherlands in May 1940, she left the country on 13 May aboard the British destroyer HMS Hereward and came ashore in Britain that evening."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "ten val werd gebracht (27 juli 1939)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "dat er een regering kwam zonder Colijn (kabinet-De Geer 1939-1940)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "overrompeling van Nederland door Hitlers krijgsmacht in mei 1940",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Verliet op 13 mei 1940 met de Britse destroyer h.m.s. 'Hereward' het land",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "en zette 's avonds voet aan wal in Groot-Brittannië",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-05-13",
+      "end": "1945-05-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "流亡倫敦時期",
+      "en": "Years of exile in London"
+     },
+     "body": {
+      "zh-Hant": "流亡英國期間，她從1940年7月28日起經「橙色電台」向國民廣播並呼籲抵抗。1940年9月4日首相德格爾下台，由強勢的格爾布蘭迪接任；她也阻止了政府遷往巴達維亞。1942年8月她向美國國會演說，同年12月7日在廣播中宣布調整與荷屬東印度的關係。1945年3月13日她在埃德重新踏上荷蘭土地，5月5日發表解放廣播。",
+      "en": "In exile in Britain she broadcast regularly on Radio Oranje from 28 July 1940, urging resistance. Prime Minister De Geer fell on 4 September 1940 and was replaced by the forceful P.S. Gerbrandy; she also prevented the seat of government from moving to Batavia. She addressed the US Congress in August 1942 and announced on 7 December 1942 a reform of relations with the Netherlands Indies. She set foot on Dutch soil again at Eede on 13 March 1945 and gave a radio speech on the liberation on 5 May 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Hield vanaf 28 juli 1940 tot 1945 regelmatig toespraken voor 'Radio Oranje'",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "waarin ze onder meer opriep tot verzet tegen de bezetter",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "De Geer -in haar ogen een laffe capitulant - de laan uitging (4 september 1940)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "zij verhinderde dat de regeringszetel van Londen naar het te verre Batavia",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Sprak in augustus 1942 het Amerikaanse Congres toe",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "op 7 december 1942 hervorming van de verhoudingen met Nederlands-Indië",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Zette op 13 maart 1945 in Eede (Z.Vl.) weer voet op Nederlandse bodem",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Publicaties",
+       "quote": "Radiorede bij de bevrijding van Nederland, 5 mei 1945",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-wilhelmina",
+       "locator": "條目",
+       "quote": "en werd opgevolgd door de krachtige P.S. Gerbrandy",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1945-05-29",
+      "end": "1948-09-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後與退位",
+      "en": "After the liberation and abdication"
+     },
+     "body": {
+      "zh-Hant": "1945年5月29日她任命斯海默霍恩與德里斯為組閣人，6月27日主持斯海默霍恩—德里斯內閣宣誓。同年11月她反對解除副總督範穆克的職務。她作為荷蘭女王的任期一直持續到1948年9月4日。",
+      "en": "On 29 May 1945 she named Schermerhorn and Drees as formateurs and on 27 June swore in the Schermerhorn–Drees cabinet. In November 1945 she opposed the dismissal of Lieutenant Governor-General Van Mook. Her reign as queen ran until 4 September 1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Benoemde op 29 mei 1945 W. Schermerhorn en W. Drees tot formateurs",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Beëdigde op 27 juni 1945 de nieuwe ministers van het kabinet-Schermerhorn/Drees",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Keerde zich in november 1945 tegen het ontslag van luitenant-Gouverneur-",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Hoofdfuncties/beroepen",
+       "quote": "van 31 augustus 1898 tot 4 september 1948",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "tegen het ontslag van luitenant-Gouverneur-Generaal Van Mook",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "role:head-of-state-exile-1940-1945",
+     "gapKind": "not_found",
+     "note": "5442 的兩筆 head_of_state（1908-01-01～1940-05-13、1945-05-05～1945-10-01）之間缺 1940-05-13～1945-05-05（流亡期）；兩份已抓來源（BWN、Parlement.com）都寫她在流亡期間仍是在位女王（Parlement.com：koningin 1898-08-31～1948-09-04，期間未中斷）。是否補 5442 或補候選，交主 session 決定；本批不重建。 審查 2026-11-15：此為來源 vs 名單庫值，非兩份已抓來源矛盾，gapKind 由 conflict 改 not_found。",
+     "candidateCitations": [
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Hoofdfuncties/beroepen",
+       "quote": "van 31 augustus 1898 tot 4 september 1948",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-wilhelmina",
+       "locator": "Wetenswaardigheden",
+       "quote": "Verliet op 13 mei 1940 met de Britse destroyer h.m.s. 'Hereward' het land",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:reign_start",
+     "gapKind": "not_found",
+     "note": "5442 以 1908-01-01 起算屬窗內裁切；BWN／Parlement.com 皆寫 1890-11-23 成為女王（攝政下）、1898 年親政，兩者不矛盾，僅記錄。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wilhelmina Niederlande Königin GND",
+     "url": "https://lobid.org/gnd/search?q=Wilhelmina+Niederlande+K%C3%B6nigin&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118771892，生卒僅年（1880／1962）（取為 lobid-wilhelmina，未引用段落）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Wilhelmina Königin Deutsche Biographie",
+     "url": "https://deutsche-biographie.de/sfz19000.html",
+     "result": "found_A",
+     "note": "索引頁（取為 db-wilhelmina，未引用）"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "猜測 BWN 網址 bwn1/wilhelmina",
+     "url": "https://resources.huygens.knaw.nl/bwn1880-2000/lemmata/bwn1/wilhelmina",
+     "result": "no_result",
+     "note": "404（應為 bwn2）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Wilhelmina Biografisch Woordenboek van Nederland huygens",
+     "url": "https://resources.huygens.knaw.nl/bwn1880-2000/lemmata/bwn2/wilhelmina",
+     "result": "found_A",
+     "note": "BWN，I. Schöffer（取為 bwn-wilhelmina）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "猜測 parlement.com 人物頁",
+     "url": "https://www.parlement.com/id/vg09ll0klqz1/wilhelmina_h_p_1880_1962",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "H.M. koningin Wilhelmina parlement.com",
+     "url": "https://parlement.com/biografie/hm-koningin-wilhelmina",
+     "result": "found_B",
+     "note": "Parlement.com 人物條目（取為 parlement-wilhelmina）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "koninklijkhuis.nl 女王威廉明娜頁（猜測網址）",
+     "url": "https://www.koninklijkhuis.nl/onderwerpen/geschiedenis-van-het-koninklijk-huis/inhoud/koningin-wilhelmina",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "royal-house.nl Queen Wilhelmina（猜測網址）",
+     "url": "https://www.royal-house.nl/topics/history-of-the-royal-house/contents/queen-wilhelmina",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  }
+ ]
+}

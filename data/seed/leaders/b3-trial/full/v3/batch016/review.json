@@ -1,0 +1,89 @@
+{
+ "batch": "016",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 29,
+  "addedCitations": 37,
+  "editedSentences": 14,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pe-leguia",
+   "bioId": "453b3d70-de7b-40e9-abd6-642afa07ae47",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 16,
+   "changes": [
+    "來源 elperuano-leguia 由 B 改評 C：El Peruano「Opinión／Perfiles」版記者（Periodista）署名專欄，屬通俗歷史，不是具名學者／學術機構研究或傳記辭典；gradeBasis「非傳記辭典，記 B」不成立",
+    "四段正文改為只用 Encyclopedia（Quiroz，B）與 Lex（Castro-Becker，B）已抓原文支撐：刪去只靠 El Peruano 的子句（父母、Prevest、米拉弗洛雷斯、卡爾德隆、皮耶羅拉兄弟 1909-05、鎮壓工人、巴拿馬、阿斯皮利亞加與 1.5 萬票、1919-07-04 臨時總統、制憲議會與 1920 年憲法、奧塞尼奧、取締政黨與管制新聞、1922 哥倫比亞、塔克納／阿里卡、1929-10-12 第四任期）",
+    "同段事實改引 Encyclopedia／Lex 原句（財長任職、文官黨支持、1909 政變企圖、1919 勝選與政變、新祖國與操縱連任、外國貸款與公共工程、邊界爭端、1930 政變、卡亞俄獄中）；1930 年改引 Lex 含年份原句（原引文無年份卻標 year，違反 Q8）",
+    "刪 gap field:death_date（conflict）：不合格來源 El Peruano 與合格來源不同時以合格出處為準；Encyclopedia 與 Lex 均記 1932-02-07，正文改寫到日",
+    "新增 gap field:unverified_claims，列出原據 El Peruano 的事項待 A／B 查證，El Peruano 引文移入 candidateCitations（C）",
+    "第 3 段 period 迄改 1920-01-01、第 4 段改 1924-01-01～1932-02-08（依段內事件）；finance-minister gap note 同步更新",
+    "重抓 Encyclopedia.com 條目比對引文一致；El Peruano 亦重抓確認署名 Periodista"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "hn-bertrand",
+   "bioId": "01a1b4b0-6f81-7988-ac08-c17aa61767fe",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "段1刪「是宏都拉斯政治人物」子句（無引文）；「1911至1919年間三度任總統」改引含年份的原句",
+    "段2補引文：Puerto Cortés 會址、美國提供斡旋（good offices）、達維拉政府與博尼利亞叛軍",
+    "段3補 FRUS d676「死訊」原句；代理總統起訖改引含 interim 的完整原句",
+    "gap field:interim_term_dates 由 conflict 改 not_found：FRUS 電報只說已接任、未寫接任日，不構成兩份來源矛盾；1915-07-28 與 5442 不同屬單一來源 vs 庫值",
+    "重抓 FRUS 1911 d385 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "uy-terra",
+   "bioId": "2e0b6c36-be5e-46a5-a532-cc3098f29ca0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "段3中文把巴爾多米爾名誤寫「阿方索」改為「阿爾弗雷多」，「姻親布蘭科·阿塞韋多」改依原文為「女婿之父愛德華多·布蘭科·阿塞韋多」，英文同步",
+    "段1截斷引文（缺受詞 a Batllist）改為完整片段；補「巴特耶追隨者」與「就任恰逢大蕭條」引文",
+    "段2補「日益不滿」引文；「1933年初」原引文無日期卻標 year，改 null 並補含 1933 的原句",
+    "段3補引文：貶值以助畜產出口、1938 首次婦女投票、兩名候選人",
+    "重抓 GlobalSecurity 轉載頁比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把官方報社的記者署名專欄評為 B；依來源規則 B 限具名學者／學術機構研究，報紙人物專欄應為 C，只能放 gaps 候選",
+  "多處引文不含日期卻標 datePrecision（Q8），或引文截掉受詞；子句缺引文約每人 2–5 處",
+  "三人元首／首腦任期皆在名單 5442，未建候選；1908–1945 窗內其他職位（萊吉亞財長、貝特朗政府司法部長、特拉 1931 年前職務）均因缺起日留 gap，符合規則"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

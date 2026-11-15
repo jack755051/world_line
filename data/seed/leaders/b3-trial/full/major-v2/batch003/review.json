@@ -4,97 +4,79 @@
  "reviewer": "opus",
  "researcher": "sonnet",
  "promptVersion": "full-major-v2",
+ "round": "retry-review",
  "counts": {
-  "returned": 3,
-  "toUnverified": 3,
-  "deletedParagraphs": 1,
-  "deletedPositions": 3,
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
   "deletedRoleCandidates": 0,
   "movedToRoleCandidates": 0,
   "movedToPositions": 0,
-  "deletedCitations": 24,
-  "addedCitations": 18,
-  "editedSentences": 10,
-  "spotRefetched": 4,
-  "searchLogShort": 3
+  "deletedCitations": 1,
+  "addedCitations": 0,
+  "editedSentences": 2,
+  "spotRefetched": 3,
+  "searchLogShort": 0
  },
  "people": [
   {
    "key": "jp-tojo-hideki",
    "bioId": "62241525-b2f1-4931-bfb3-30ecf9dd3094",
-   "verdict": "returned",
+   "verdict": "pass_with_changes",
    "paragraphs": 4,
-   "positions": 5,
+   "positions": 10,
    "roleCandidates": 0,
-   "gaps": 7,
-   "searchLogSteps": 19,
+   "gaps": 8,
+   "searchLogSteps": 39,
    "changes": [
-    "第3段英文「Toshikazu Tobe」改「Tobe Ryōichi」（防衛研究所論文作者戸部良一）",
-    "position tojo-kwantung-cos、tojo-vice-army-minister 的迄日是用履歷中本人下一職起日推得，不符 Q7（只可用名簿下一任起日）→ 移到 gaps「待查證：缺迄日」，與研究者對航空總監、關東憲兵隊司令官的處理一致",
-    "保留陸相、內相（R6 regime）、參謀總長（R6 regime/rank）；外相 16 天、軍需相 R5 判斷正確；內相、外相迄日依閣僚名簿下一任起日（Q7，evidenceNote 有寫）",
-    "重抓首相官邸 040 頁與 NDL 憲政資料室頁比對一致",
-    "datePrecision 檢查：無 quote 不含日期卻填精度者需改（全批合計清 9 筆）"
+    "新增來源 nids-siryo36、kantei-041、da-shosho-s16 引文逐字核對原文一致；重抓 NIDS siryo_36 頁比對一致",
+    "陸相、軍需相迄日 1944-07-22 依小磯內閣名簿下一任（杉山元、藤原銀次郎）起日推論，evidenceNote 標推論，符合 Q7，保留",
+    "5 筆只有起日的 positions（關東憲兵隊、關東軍參謀長、陸軍次官、航空總監、對滿事務局）皆有「待查證：缺迄日」gap；刪去 gap 內與現況矛盾的「故未建職位」字句",
+    "tojo-aviation-inspector 加 t14Ambiguous：航空總監是否屬 R4 軍種總司令存疑，暫留 R6",
+    "加強規格：sourceType 5 類（含 treaty_law）、39 筆 searchLog、實抓頁 ≥6、A／B ≥3，指定來源均已查"
    ],
-   "returnedReasons": [
-    "最低嘗試未達（加強規格）：searchLog sourceType 只有 authority／official／named_encyclopedia／academic 4 類，且 academic 那筆（NDL 憲法年表）實為官方頁；缺第 5 類。建議下一個：treaty_law——官報（NDL デジタルコレクション）昭和16年10月18日、19年2月21日（參謀總長）任免記事；或 academic——防衛研究所『戦史叢書』相關卷的公開目錄頁"
-   ]
+   "returnedReasons": []
   },
   {
    "key": "cn-chiang-kai-shek",
    "bioId": "01a1b490-dcc7-76dc-82d7-da76fb59d7d2",
-   "verdict": "returned",
-   "paragraphs": 4,
+   "verdict": "pass",
+   "paragraphs": 5,
    "positions": 0,
-   "roleCandidates": 0,
-   "gaps": 9,
-   "searchLogSteps": 18,
+   "roleCandidates": 1,
+   "gaps": 10,
+   "searchLogSteps": 35,
    "changes": [
-    "kmt-zongcai（中國國民黨網站傳略，無具名作者）由 B 改 C：屬 source-rules §2「機構網站的介紹文」，人物生平不收",
-    "段落中 24 筆 KMT 引文移除；段落改寫為只留國史館小傳（A）可支撐的子句（全部引文取自已抓 drnh-zong.txt），5 段→4 段（原第4段林森／開羅／受降無 A／B 支撐刪除）",
-    "只有 KMT 支撐的日期與事實（生日、1927 辭職、1928 復任、總裁、中國戰區統帥、1943-10-10 就主席等）列入新 gap field:chiang_kmt_only_facts",
-    "position chiang-nra-commander-1：國史館只有 1926年7月起、無迄日；原日期出自 KMT 且迄日推論 → 移到 gaps「待查證：缺迄日」",
-    "gap chiang_national_government_chairman_dates：gapKind conflict→not_found（單一來源對庫值）",
-    "第4段補國史館引文支撐「5月20日就職」；重抓國史館 PDF，sha256 與原檔相同",
-    "9 筆 citation 的 datePrecision 清為 null（quote 本身不含日期，Q8；多為 LeMO 年表條目、KMT 句）"
+    "行政院歷任院長表 5 段任期引文逐筆核對原文一致，與 5442 相同；只寫入段落、不重建（庫已有）；重抓 ey.gov.tw 比對一致",
+    "總裁 roleCandidate（R1、de_facto_leader、Tai 12:12）起日 1938-04-01 由王良卿論文兩段引文＋附注支撐，B 評等合理；缺迄日有 gap",
+    "加強規格：sourceType 5 類（treaty_law 一筆查無）、35 筆、A／B 3 個（國史館、行政院 A；王良卿 B）",
+    "未修改；黃埔校長、國民革命軍總司令、軍委會委員長仍只在 gaps（未建 start-only position），與東條作法不一致，請主 session 裁定是否補建"
    ],
-   "returnedReasons": [
-    "加強規格未達：可用 A／B 來源只剩國史館小傳 1 個（需 ≥3，KMT 傳略改 C）；sourceType 有效類別只有 authority／official／academic／named_encyclopedia 4 類（other 不算）",
-    "建議下一個：國史館《蔣中正先生年譜長編》或國史館數位典藏「蔣中正總統文物」相關任免檔目錄頁；《國民政府公報》任免令（treaty_law）；中研院近史所集刊具名論文（academic）；總統府歷任總統個人頁（本次只抓到列表頁）",
-    "黃埔校長、軍委會委員長、總裁、中執委、戰區統帥、國民革命軍總司令皆缺迄日（gap），總裁等黨職尚未建 roleCandidates"
-   ]
+   "returnedReasons": []
   },
   {
    "key": "ru-lenin",
    "bioId": "01a1b492-3ee1-75ee-8fc7-306c07a85a65",
-   "verdict": "returned",
+   "verdict": "pass_with_changes",
    "paragraphs": 4,
    "positions": 0,
    "roleCandidates": 0,
-   "gaps": 4,
-   "searchLogSteps": 19,
+   "gaps": 5,
+   "searchLogSteps": 36,
    "changes": [
-    "sources.lemo-lenin 補作者 Manfred Wichmann（原文署名）",
-    "第1段 1887、1891 引文改為含年份的原句；補「進入喀山大學」「因參與學潮」「對他影響很大」三筆引文",
-    "第2段「因政治鼓動被捕」改「入獄兩年」（LeMO：zwei Jahre im Gefängnis）並補引文；補「西歐流亡」引文；1912 引文補足受詞 von der Sozialdemokratie ab",
-    "第3段補「當晚第二屆全俄蘇維埃代表大會」引文；SNK 引文 datePrecision day→null（quote 無日期）",
-    "第4段補「仍繼續領導國家」引文；LeMO 無年份引文加 evidenceNote（年份依年表條目標題）",
-    "重抓總統圖書館頁比對一致",
-    "9 筆 citation 的 datePrecision 清為 null（quote 本身不含日期，Q8；多為 LeMO 年表條目、KMT 句）"
+    "化名年份 LeMO 1900 vs HLS 1901 為兩合格來源衝突：自第2段刪「並從此使用列寧為化名」子句（中英）及 LeMO 引文，移入 conflict gap 候選",
+    "兩筆 field:lenin_ussr_sovnarkom_dates gap 合併為一筆",
+    "HLS（A）、SNL（B）引文核對一致；重抓 HLS 條目比對一致；MSU、Hrvatska enciklopedija 為 C 只在 gap 候選，正確",
+    "加強規格：sourceType 5 類、36 筆、A／B 4 個；БРЭ、prlib node、1914-1918-online 被擋未繞過，有記錄"
    ],
-   "returnedReasons": [
-    "最低嘗試未達（加強規格）：sourceType 只有 authority／national_dictionary／official／named_encyclopedia 4 類（other 不算），缺 treaty_law／academic",
-    "建議下一個：treaty_law——Собрание узаконений РСФСР 1917 / Декреты Советской власти т.1 的總統圖書館數位版（СНК 成立與主席任命）；academic——De Gruyter／Cambridge 開放章節或 Treccani Dizionario 具名條目；РГАСПИ、БРЭ 本次被擋未繞過"
-   ]
+   "returnedReasons": []
   }
  ],
  "issues": [
-  "三人 searchLog 都只有 4 個有效來源類型（沒查 treaty_law／academic），比照 batch004 尼古拉二世判 returned；研究者自報搜尋量未達",
-  "政黨網站傳略（kmt.org.tw）不是 A／B：無具名作者的機構介紹文依 source-rules §2 為 C，人物生平不收",
-  "研究者以本人下一職起日推前職迄日（東條兩筆、蔣國民革命軍總司令），不符 Q7，審查一律移到 gaps",
-  "缺迄日職位研究者一律不建、改寫 gap（加強規格第3條原文是照寫 start＋gap）；審查沿用批內一致做法，請主 session 裁定",
-  "datePrecision 填在不含日期的 quote 上（Q8），共清 9 筆",
-  "regimeId 不連庫一律 null，R3／R4 類全部 R6（roleGap regime）",
-  "庫值差異待主 session 決定：列寧 СНК 主席起日（來源 11-07 vs 5442 11-08）；蔣就主席日（KMT 1943-10-10，已改 C，vs 5442 1943-09-13）"
+  "東條、蔣 check_min 未達僅因職位缺迄日（已標待查證）；非篇幅問題",
+  "缺迄日職位：東條建 start-only position，蔣仍只寫 gap，批內不一致，請主 session 裁定",
+  "庫值差異仍待主 session：列寧 СНК 起日（A 來源 11-07 vs 5442 11-08，支持 11-08 者僅 C）"
  ],
  "verify": {
   "ok": true,

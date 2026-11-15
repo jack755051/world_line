@@ -500,7 +500,8 @@ function drawArrows(S, LA) {
 function aggW(u, lam) {
   // 自己出現的權重：每一層上級都要「展開」到這一層
   let w = 1, c = u;
-  while (c.parent_id) { const p = unitIdx[c.parent_id]; w *= clamp(lam - (c.tier - 1), 0, 1); c = p; }
+  // 上級此刻不在圖上（沒有位置紀錄）時不套這一層：否則拉遠時下級被收起來、上級又不存在，整支部隊就從地圖上消失
+  while (c.parent_id) { const p = unitIdx[c.parent_id]; if (!p) break; if (p._present) w *= clamp(lam - (c.tier - 1), 0, 1); c = p; }
   if (!u.parent_id && u.display === 'detail') w *= clamp(lam - (u.tier - 1), 0, 1);
   if (u.replace && u._hasKids) { const mt = Math.min(...u.children.filter(id => unitIdx[id]._present).map(id => unitIdx[id].tier)); w *= 1 - clamp(lam - (mt - 1), 0, 1); }
   return w;
@@ -880,7 +881,7 @@ function rosterHTML(u) { if (!SRC) return ''; const tp = u.text_positions || [];
 function unitLive(h) { const u = unitIdx[h.id], S = state(day); if (!u._present || u._mx === undefined) return `<dl><dt>狀態</dt><dd>${u.roster && !u.kpos.some(Boolean) ? '地圖上沒有畫（位置尚未對到態勢圖標註）' : '這個時間不在戰場上'}</dd></dl>`;
   const lat = ilat(u._my), lng = ilon(u._mx); const pr = (posBy[u.id][D.keyframes[S.i].date] || posBy[u.id][D.keyframes[S.j].date] || {}).precision_m;
   const mv = u._spd > 1 ? `約 ${Math.round(u._spd)} 公里／日，往${DIRS[((Math.round(u._brg / (Math.PI / 4)) % 8) + 8) % 8]}` : '停留';
-  return `<dl><dt>狀態</dt><dd>${ST[u._stNow] || '—'}</dd><dt>移動</dt><dd>${mv}</dd><dt>位置</dt><dd>${lat.toFixed(2)}°N　${Math.abs(lng).toFixed(2)}°${lng < 0 ? 'W' : 'E'}${pr ? `（±${Math.round(pr / 1000)} 公里）` : ''}</dd><dt>依據</dt><dd>${(() => { const pk = posBy[u.id][D.keyframes[S.i].date] || {}, dg = pk.status === 'map' && (D.meta.digitized || []).find(x => 'map:' + x.file.slice(0, -5) === pk.source); if (S.atKey && dg) return `${cfBadge(cfLevel('unit:' + u.id, 'position') === 'estimate' && u.map_mark ? 'estimate' : 'verified')} 地圖數位化：${esc(dg.short_zh || dg.citation)}（圖上標「${esc(pk.map_label)}」，${esc(pk.map_date)}）`; if (S.atKey && u.kpos[S.i] && u.kpos[S.i].fill) return '這一天沒有紀錄點：由前後兩個有出處的紀錄點內插（推估）'; if (S.atKey && pk.status === 'text') return `${cfBadge('verified')} 出處文字寫到在「${esc(pk.place_zh || '')}」；圖上畫在該地名的中心，不是精確位置`; return (S.atKey ? '關鍵日的紀錄點' : '兩個紀錄點之間內插（推估）') + (cfLevel('unit:' + u.id, 'position') === 'estimate' ? '；紀錄點是依敘述手擺的推估' : ''); })()}</dd></dl>`; }
+  return `<dl><dt>狀態</dt><dd>${ST[u._stNow] || '—'}</dd><dt>移動</dt><dd>${mv}</dd><dt>位置</dt><dd>${lat.toFixed(2)}°N　${Math.abs(lng).toFixed(2)}°${lng < 0 ? 'W' : 'E'}${pr ? `（±${Math.round(pr / 1000)} 公里）` : ''}</dd><dt>依據</dt><dd>${(() => { const pk = posBy[u.id][D.keyframes[S.i].date] || {}, dg = pk.status === 'map' && (D.meta.digitized || []).find(x => 'map:' + x.file.slice(0, -5) === pk.source); if (S.atKey && dg) return `${cfBadge(cfLevel('unit:' + u.id, 'position') === 'estimate' && u.map_mark ? 'estimate' : 'verified')} 地圖數位化：${esc(dg.short_zh || dg.citation)}（圖上標「${esc(pk.map_label)}」，${esc(pk.map_date)}）`; if (S.atKey && u.kpos[S.i] && u.kpos[S.i].fill) return '這一天沒有紀錄點：由前後兩個有出處的紀錄點內插（推估）'; if (S.atKey && pk.status === 'text') return `${cfBadge(pk.opposing ? 'needs-check' : 'verified')}${pk.opposing ? ' 只有對手方的出處；' : ' '}出處文字寫到在「${esc(pk.place_zh || '')}」；圖上畫在該地名的中心，不是精確位置`; return (S.atKey ? '關鍵日的紀錄點' : '兩個紀錄點之間內插（推估）') + (cfLevel('unit:' + u.id, 'position') === 'estimate' ? '；紀錄點是依敘述手擺的推估' : ''); })()}</dd></dl>`; }
 function engStatic(h) { const e = D.engagements.find(x => x.id === h.id);
   const side = r => e.units.filter(x => x.role === r).map(x => `<div class="pr">${ulink(x.unit_id)}${cmdHTML(x.unit_id, true)}</div>`).join('') || '<span class="none">—</span>';
   return `<div class="ih"><div class="ic eng i${e.imp}">⚔</div><div><h3>${esc(e.label)}</h3><div class="orig">${e.date}｜${esc(e.interaction_zh)}</div></div></div>

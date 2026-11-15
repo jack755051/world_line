@@ -34,7 +34,7 @@ def plus(s, n): return (day(s) + datetime.timedelta(days=n)).isoformat()
 VIEW = json.load(open(OUT + 'view.json'))
 SOURCES = L('sources.json')
 R1 = L('r1-units.json')['units']
-R3 = L('r3-unit-positions.json', {'positions': []})['positions']
+R3 = L('r3-unit-positions.json', {'positions': []})['positions'] + L('r3-leadin-positions.json', {'positions': []})['positions']   # 後者＝前段（5/10–5/25）集團軍／軍層級的文字位置
 R4 = L('r4-fronts.json', {'fronts': []})
 R4L = L('r4-leadin-fronts.json', {'fronts': []})['fronts']
 R5 = L('r5-engagements.json', {'engagements': []})['engagements']
@@ -89,7 +89,7 @@ by_date = collections.defaultdict(list)
 for m in usable: by_date[m['mapDate']].append(m)
 # 同一天有兩張圖：部隊標註取標註較多的那張（另一張的前線仍會用）
 mark_map = {d: max(ms, key=lambda m: len(m['features'])) for d, ms in by_date.items()}
-TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 'rearguard', 'evacuating', 'fighting', 'surrounded', 'reserve', 'surrendered', 'capturing', 'supporting', 'reinforcing'}
+TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 'rearguard', 'evacuating', 'fighting', 'surrounded', 'reserve', 'surrendered', 'capturing', 'supporting', 'reinforcing', 'arriving'}
 TEXT_ST = {'attacking': 'attack', 'capturing': 'attack', 'holding': 'defend', 'rearguard': 'defend', 'within_perimeter': 'defend', 'fighting': 'defend', 'withdrew_to': 'retreat', 'evacuating': 'evacuating', 'surrounded': 'encircled', 'surrendered': 'surrendered'}
 # 有文字位置的日期也當關鍵日（否則 5/31、6/2 這些沒有態勢圖的日子，出處明明寫到部隊在哪，卻畫不出來）
 kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1} | {p['date'] for p in R3 if p.get('relation') in TEXT_REL and D0 <= (p.get('date') or '') <= D1}
@@ -196,7 +196,8 @@ for p in R3:
     if not ll: continue
     have.add((p['unitKey'], p['date'])); n_text += 1
     positions.append({'unit_id': p['unitKey'], 'date': p['date'], 'lng': ll[0], 'lat': ll[1], 'state': TEXT_ST.get(p['relation'], 'move'), 'status': 'text', 'precision_m': 5000,
-                      'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation']})
+                      'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation'],
+                      **({'opposing': True} if p.get('sourceSide') == 'opposing' else {})})   # 只有對手方出處＝待查證（docs/source-rules.md）
 for uid, u in marks.items():
     units.append(u)
     conf['unit:' + uid] = {'level': 'estimate', 'fields': {'oob': {'level': 'needs-check', 'used': None, 'claims': [], 'note': '圖上標註尚未對到名冊單位'},

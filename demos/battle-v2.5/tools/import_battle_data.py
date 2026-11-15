@@ -93,7 +93,8 @@ TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 're
 TEXT_ST = {'attacking': 'attack', 'capturing': 'attack', 'holding': 'defend', 'rearguard': 'defend', 'within_perimeter': 'defend', 'fighting': 'defend', 'withdrew_to': 'retreat', 'evacuating': 'evacuating', 'surrounded': 'encircled', 'surrendered': 'surrendered'}
 # 有文字位置的日期也當關鍵日（否則 5/31、6/2 這些沒有態勢圖的日子，出處明明寫到部隊在哪，卻畫不出來）
 kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1} | {p['date'] for p in R3 if p.get('relation') in TEXT_REL and D0 <= (p.get('date') or '') <= D1}
-                | {f['date'] for f in R4L if D0 <= f['date'] <= D1})   # 文字防線生效的日期也當關鍵日（示意領地要在那一天換線）
+                | {f['date'] for f in R4L if D0 <= f['date'] <= D1}
+                | {x['from'] for x in L('schematic.json', {'shapes': []})['shapes'] if x['kind'] in ('country', 'arrow') and D0 <= x['from'] <= D1} | {x['to'] for x in L('schematic.json', {'shapes': []})['shapes'] if x['kind'] == 'arrow' and D0 <= x['to'] <= D1})   # 文字防線生效的日期也當關鍵日（示意領地要在那一天換線）
 def cam(d):
     c = VIEW['camera_from'][0][1]
     for dd, name in VIEW['camera_from']:
@@ -257,7 +258,7 @@ meta = {'campaign': bid, 'title_zh': VIEW.get('title_zh', bid), 'is_example': Fa
 # ---------- 示意圖形：進攻箭頭（憲法 Decision 5，2026-11-15）----------
 # 來源：主專案考證檔 data/campaigns/<slug>.json 的 attack_arrows。只收來源檔自己標 verified、而且帶有官方戰史／學術專書逐字引文的；
 # 方向或番號是推定的（verified=false）不畫，列在匯入報告。箭頭只表示出處敘述的方向，不是實際路線。
-schem, schem_skip = [], []
+schem, schem_skip, falls = [], [], []
 CAMP = os.path.normpath(os.path.join(SRC, '../../../campaigns', slug + '.json'))
 GRADE_OF = {'official_history': 'A', 'official_record': 'A', 'academic': 'B', 'monograph': 'B'}
 def camp_src(c):
@@ -281,6 +282,7 @@ if os.path.exists(CAMP):
 for sh in L('schematic.json', {'shapes': []})['shapes']:
     cits = [c for c in sh.get('citations', []) if c.get('grade') in ('A', 'B') and c.get('quote') and (c.get('quoteCheck') or {}).get('status', 'verbatim') != 'failed']
     if not cits: schem_skip.append(f"{sh['key']}（沒有通過核對的 A／B 引文）"); continue
+    if sh['kind'] == 'country': falls.append({'country': sh['country'], 'date': sh['from'], 'name': sh.get('labelZh'), 'note': sh.get('waypointNote'), 'refs': refs(cits)}); continue
     if sh['kind'] == 'front':   # 示意前線：放進戰線清單，示意領地會優先用它
         lines.append({'phase': ph_of(sh['from']), 'from': sh['from'], 'to': sh['to'], 'name': sh.get('labelZh'), 'side': sh.get('side'), 'kind': 'front', 'vertices': [q['place'] for q in sh['path']], 'path': [q['lonlat'] for q in sh['path']],
                       'precision': None, 'precision_m': None, 'verified': True, 'level': 'estimate', 'basis': 'text', 'schematic': True, 'refs': refs(cits), 'note': sh.get('waypointNote')})
@@ -294,7 +296,7 @@ W('battle.json', battle)
 W('assignments.json', {'meta': {'is_example': False, 'note': f'指揮官取自 {REL}r7-commanders.json；任期只填出處有載的日期。'}, 'assignments': asg, 'engagements': {}})
 W('sourced.json', {'meta': {'from': REL, 'schema': 'battle-data', 'campaign_key': slug, 'name_zh': VIEW.get('title_zh'), 'date_start': D0, 'date_end': D1, 'generated_by': 'tools/import_battle_data.py',
                             'note': '由主線考證檔轉出，只搬運不補。前段（5/10–5/25）的戰線是文字地名連線；主期的戰線讀自態勢圖，屬推估。'},
-                   'phases': phases, 'arrows': schem, 'lines': lines, 'sites': list(sites.values()), 'sources': src_out})
+                   'phases': phases, 'arrows': schem, 'falls': falls, 'lines': lines, 'sites': list(sites.values()), 'sources': src_out})
 conf['map:areas'] = {'level': 'estimate', 'fields': {}}   # 控制區是推導圖形（由部隊位置算出），一律推估
 summ = collections.Counter(v['level'] for v in conf.values())
 W('confidence.json', {'meta': {'generated_by': 'tools/import_battle_data.py', 'tiers': {'1': '官方紀錄／戰史', '2': '同行審查研究', '3': '專書', '4': '百科（線索）', '5': '無出處'},

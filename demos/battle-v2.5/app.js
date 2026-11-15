@@ -30,7 +30,7 @@ const fatal = e => { console.error(e); const d = document.createElement('div'); 
 const fetchBattle = id => { const base = `battles/${id}/`;
   return Promise.all([J(Q.get('data') || base + 'battle.json'), J(Q.get('asg') || base + 'assignments.json', { assignments: [] }), J(base + 'theatre.json', {}), J(base + 'sourced.json', null), J(base + 'confidence.json', null),
     Promise.all(GEO.map(n => J(`${base}geo/${n}.geojson`, { type: 'FeatureCollection', features: [] }))).then(a => Object.fromEntries(GEO.map((n, i) => [n, a[i]])))]).then(([data, asg, th, sourced, conf, geo]) => ({ data, asg, th, sourced, conf, geo })); };
-const GEO = ['land', 'landc', 'rivers', 'borders', 'sea', 'graticule'];   // 底圖也由這裡抓（同樣會確認新版），再整包交給地圖
+const GEO = ['land', 'landc', 'rivers', 'borders', 'sea', 'graticule', 'countries'];   // 底圖也由這裡抓（同樣會確認新版），再整包交給地圖
 let INDEX = [], DFLT = '', CUR = null, busy = false;
 // 遮蓋：第一次載入蓋整頁；原地換戰役時只蓋地圖（標題列和面板留著），手機版面板疊在地圖上所以還是蓋整頁
 function veilOn(text, mapOnly) { const v = $('#veil'), r = mapOnly && innerWidth > 700 ? $('#map-wrap').getBoundingClientRect() : null;
@@ -76,7 +76,7 @@ const mx = lon => lon * R, my = lat => Math.log(Math.tan(Math.PI / 4 + lat * R /
 const ilon = x => x / R, ilat = y => (2 * Math.atan(Math.exp(y)) - Math.PI / 2) / R;
 const N = 420, NPK = 72;
 const SEC_PER_DAY = 1.2;
-let BBOX = [-180, -85, 180, 85], CITIES = [], SEAS = [], KEY_RIVERS = [], SIDE_NAME = { axis: '軸心', allied: '盟軍' }, SIDES = ['axis', 'allied'], AREAS = null, BASE_RING = null, UPOS = null, SCHL = [];
+let BBOX = [-180, -85, 180, 85], CITIES = [], SEAS = [], KEY_RIVERS = [], SIDE_NAME = { axis: '軸心', allied: '盟軍' }, SIDES = ['axis', 'allied'], AREAS = null, BASE_RING = null, UPOS = null, SCHL = [], UM = null;
 const rgba = (r, g, b, a) => [r / 255, g / 255, b / 255, a];
 const COL = { sea: '#d6e1e7', land: '#f4f1ea', uk: '#f4f1ea', allied: '#e3eaf2', axis: '#e6c7bd', third: '#d3d7c3', paper: '#faf8f3', coast: '#8fa2ad', river: 'rgba(104,152,190,0.75)', border: 'rgba(80,72,60,0.3)' };
 let VIEW = ['axis', 'allied', 'third'].includes(Q.get('side')) ? Q.get('side') : 'all', ENGM = {}, layOpen = false, oobTab = 'units', oobSide = VIEW === 'all' ? 'axis' : VIEW, infoTab = 'ov', KCAM = [];
@@ -146,36 +146,44 @@ function prepAreas() { const C = TH.control; if (!C || (C.mode !== 'areas' && C.
   if (C.mode === 'units') {   /* 推導的控制區（憲法 Decision 5 的推導圖形）：由當日態勢圖上雙方部隊的位置算出，只有有位置的日期才有 */
     const b = C.bbox, R = [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]]]; BASE_RING = new Float64Array(8); R.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
     UPOS = D.keyframes.map(() => []);   // 真正的清單在 prep() 算完各單位的關鍵日位置（含補洞）之後填
-    AREAS = D.keyframes.map(() => ({})); setTimeout(() => buildFields(cfg.geo.land), 0); return; }
+    AREAS = D.keyframes.map(() => ({})); setTimeout(() => buildFields(cfg.geo.landc), 0); return; }
   const B = C.border; BASE_RING = new Float64Array(B.length * 2); B.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
   AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; });
   setTimeout(() => buildFields(cfg.geo.landc), 0); }
 function buildFields(landc) { if (dead) return; const C = TH.control, t0 = performance.now();
   // 示意領地用的防線：只在「這個關鍵日沒有任何部隊位置」時才用；取當天生效、出處是文字敘述的戰線。盟軍實際到達前（schematic_from 之前）不畫
-  SCHL = D.keyframes.map((k, ki) => { if (C.mode !== 'units' || !SRC || (UPOS[ki] || []).length) return null;
-    const ls = SRC.lines.filter(l => l.basis === 'text' && l.from <= k.date && k.date <= (l.to || l.from) && (l.path || []).length > 1), sc = ls.filter(l => l.schematic); return sc.length ? sc : ls.length ? ls : null; });   /* 當天有專門的示意前線就只用它 */
+  SCHL = D.keyframes.map((k, ki) => C.mode === 'units' && !(UPOS[ki] || []).length);   // 這一天沒有部隊位置＝整張底色都是示意（斜線）
   const FB = C.bbox || BBOX;   // 勢力場只算戰區那一塊（底圖範圍可以比它大）
-  const x0 = mx(FB[0]), x1 = mx(FB[2]), y0 = my(FB[1]), y1 = my(FB[3]), GW = innerWidth <= 700 ? 448 : 640, GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
+  const x0 = mx(FB[0]), x1 = mx(FB[2]), y0 = my(FB[1]), y1 = my(FB[3]), GW = C.grid_w || (innerWidth <= 700 ? 448 : 640), GH = Math.round(GW * (y1 - y0) / (x1 - x0)), NP = GW * GH;
   const cv = document.createElement('canvas'); cv.width = GW; cv.height = GH; const g = cv.getContext('2d', { willReadFrequently: true });
   const CH = { axis: '#f00', allied: '#0f0', third: '#00f' }, gx = lo => (mx(lo) - x0) / (x1 - x0) * GW, gy = la => (y1 - my(la)) / (y1 - y0) * GH;
   const poly = (rings, col) => { g.fillStyle = col; g.beginPath(); for (const r of rings) { r.forEach((p, k) => k ? g.lineTo(gx(p[0]), gy(p[1])) : g.moveTo(gx(p[0]), gy(p[1]))); g.closePath(); } g.fill('evenodd'); };
   const under = C.under_ids || [], a = new Float64Array(NP), o = new Float64Array(NP), n = new Float64Array(NP), m = new Uint8Array(NP);
   D.keyframes.forEach((kf, ki) => { g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH);
-    if (C.mode === 'units') {   /* 每一格歸給最近的部隊那一方，但只算到 radius_km 以內；更遠的地方沒有依據，不塗色。只塗陸地 */
-      const SL = SCHL[ki];
-      const latc = (FB[1] + FB[3]) / 2, kmpp = (FB[2] - FB[0]) * 111.32 * Math.cos(latc * Math.PI / 180) / GW, R2 = Math.pow((C.radius_km || 14) / kmpp, 2);
-      const U = SL ? [] : UPOS[ki].map(u => [(u[0] - x0) / (x1 - x0) * GW, (y1 - u[1]) / (y1 - y0) * GH, u[2] === 'axis' ? 0 : u[2] === 'allied' ? 1 : 2]);
-      const im = g.createImageData(GW, GH), dd = im.data;
-      if (SL) {   /* 示意領地（憲法 Decision 5）：這一天沒有部隊位置，依出處寫明的防線畫。線的兩側各塗 schematic_km 公里；哪一側是盟軍，看 allied_ref（一個確定在盟軍這邊的地點）落在哪一側 */
-        const RS = Math.pow((C.schematic_km || 25) / kmpp, 2), ref = C.allied_ref || [2.38, 51.03], rx = gx(ref[0]), ry = gy(ref[1]);
-        const segs = []; for (const l of SL) { const q = l.path.map(v => [gx(v[0]), gy(v[1])]); for (let k = 0; k + 1 < q.length; k++) { const ax = q[k][0], ay = q[k][1], bx = q[k + 1][0], by = q[k + 1][1]; segs.push([ax, ay, bx - ax, by - ay, Math.sign((bx - ax) * (ry - ay) - (by - ay) * (rx - ax)) || 1]); } }
-        for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { let bd = RS, sg = 0; for (const sgm of segs) { const L2 = sgm[2] * sgm[2] + sgm[3] * sgm[3] || 1, t = clamp(((x - sgm[0]) * sgm[2] + (y - sgm[1]) * sgm[3]) / L2, 0, 1), dx = x - sgm[0] - t * sgm[2], dy = y - sgm[1] - t * sgm[3], d2 = dx * dx + dy * dy;
-            if (d2 < bd) { bd = d2; sg = (Math.sign(sgm[2] * (y - sgm[1]) - sgm[3] * (x - sgm[0])) || 1) === sgm[4] ? 1 : 0; sg += 1; } }
-          if (sg) { const i = 4 * (y * GW + x); dd[i + (sg === 2 ? 1 : 0)] = 255; dd[i + 3] = 255; } } }
-      if (U.length) for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { let bd = R2, bs = -1; for (let q = 0; q < U.length; q++) { const dx = U[q][0] - x, dy = U[q][1] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; bs = U[q][2]; } } if (bs >= 0) { const i = 4 * (y * GW + x); dd[i + bs] = 255; dd[i + 3] = 255; } }
-      const t = document.createElement('canvas'); t.width = GW; t.height = GH; t.getContext('2d').putImageData(im, 0, 0);
-      g.clearRect(0, 0, GW, GH); for (const f of landc.features) { if (!f.geometry) continue; (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(rs => poly(rs, '#fff')); }
-      g.globalCompositeOperation = 'source-in'; g.drawImage(t, 0, 0); g.globalCompositeOperation = 'destination-over'; g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH); g.globalCompositeOperation = 'source-over';
+    if (C.mode === 'units') {
+      /* 領地底色（Tai 2026-11-15：要像蒙版一樣從國界蓋上去、隨推進擴大）。逐個關鍵日累積「軸心已到」的範圍 ACC：
+         起點＝軸心國本土（國界，底圖是現代國界）；
+         示意：當天生效、出處寫明的防線，德軍那一側 schematic_km 公里內併入；示意箭頭到達日之後，箭頭沿線 corridor_km 公里內併入；出處寫明停火的國家，那一天起整國併入；
+         推導：當天離軸心部隊 radius_km 公里內併入。
+         顯示：離盟軍部隊 radius_km 公里內＝盟軍；否則 ACC＝軸心；否則盟國國土＝盟軍。只塗陸地。 */
+      const kmpp = (FB[2] - FB[0]) * 111.32 * Math.cos((FB[1] + FB[3]) / 2 * Math.PI / 180) / GW, R2 = Math.pow((C.radius_km || 14) / kmpp, 2), RS = Math.pow((C.schematic_km || 80) / kmpp, 2), RC = Math.pow((C.corridor_km || 25) / kmpp, 2);
+      const polys = f => f.geometry ? (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates) : [];
+      const mask = feats => { g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH); feats.forEach(f => polys(f).forEach(rs => poly(rs, '#fff'))); const d = g.getImageData(0, 0, GW, GH).data, mk = new Uint8Array(NP); for (let q = 0; q < NP; q++) mk[q] = d[4 * q] > 127 ? 1 : 0; return mk; };
+      if (!ki) { const CT = (cfg.geo.countries || {}).features || [], byName = n => CT.filter(f => f.properties.name === n);
+        const LM = mask(cfg.geo.land.features), onLand = mk => { for (let q = 0; q < NP; q++) if (!LM[q]) mk[q] = 0; return mk; }, AL = Object.entries(TH.land_classes || {}).filter(([k]) => k === 'allied' || k === 'uk').flatMap(([, v]) => Array.isArray(v) ? v : []);
+        UM = { land: LM, safe: mask((C.never_axis || ['United Kingdom']).flatMap(byName)), allied: onLand(mask(AL.flatMap(byName))), acc: onLand(mask((C.axis_countries || []).flatMap(byName))),
+          falls: (SRC && SRC.falls || []).map(f => ({ date: f.date, mk: mask(byName(f.country)) })) }; }
+      const acc = UM.acc, segDist = (segs, lim, fn) => { for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { const q = y * GW + x; if (acc[q] || !UM.land[q] || UM.safe[q]) continue; for (const sg of segs) { const L2 = sg[2] * sg[2] + sg[3] * sg[3] || 1, t = clamp(((x - sg[0]) * sg[2] + (y - sg[1]) * sg[3]) / L2, 0, 1), dx = x - sg[0] - t * sg[2], dy = y - sg[1] - t * sg[3]; if (dx * dx + dy * dy < lim && fn(sg, x, y)) { acc[q] = 1; break; } } } };
+      const toSegs = (path, ref) => { const q = path.map(v => [gx(v[0]), gy(v[1])]), o = []; for (let k = 0; k + 1 < q.length; k++) { const ax = q[k][0], ay = q[k][1], bx = q[k + 1][0], by = q[k + 1][1]; o.push([ax, ay, bx - ax, by - ay, ref ? (Math.sign((bx - ax) * (ref[1] - ay) - (by - ay) * (ref[0] - ax)) || 1) : 0]); } return o; };
+      const ref = C.allied_ref || [2.38, 51.03], rxy = [gx(ref[0]), gy(ref[1])];
+      for (const f of UM.falls) if (f.date <= kf.date) for (let q = 0; q < NP; q++) if (f.mk[q]) acc[q] = 1;
+      if (SRC) { const ls = SRC.lines.filter(l => l.basis === 'text' && l.from <= kf.date && kf.date <= (l.to || l.from) && (l.path || []).length > 1), sc = ls.filter(l => l.schematic), use = sc.length ? sc : ls;
+        if (use.length) segDist(use.flatMap(l => toSegs(l.path, rxy)), RS, (sg, x, y) => (Math.sign(sg[2] * (y - sg[1]) - sg[3] * (x - sg[0])) || 1) !== sg[4]);
+        const ar = SRC.arrows.filter(a => a.schematic && a.kind === 'arrow' && a.side === 'axis' && a.date_to && a.date_to <= kf.date); if (ar.length) segDist(ar.flatMap(a => toSegs(a.path, null)), RC, () => true); }
+      const U = UPOS[ki].map(u => [(u[0] - x0) / (x1 - x0) * GW, (y1 - u[1]) / (y1 - y0) * GH, u[2] === 'axis' ? 0 : 1]), im = g.createImageData(GW, GH), dd = im.data;
+      for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { const q = y * GW + x; if (!UM.land[q]) continue; let bd = R2, bs = -1; for (let k = 0; k < U.length; k++) { const dx = U[k][0] - x, dy = U[k][1] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; bs = U[k][2]; } }
+        if (bs === 0 && !UM.safe[q]) acc[q] = 1; const side = bs === 1 ? 1 : acc[q] ? 0 : UM.allied[q] ? 1 : -1; if (side >= 0) { dd[4 * q + side] = 255; dd[4 * q + 3] = 255; } }
+      g.putImageData(im, 0, 0); g.globalCompositeOperation = 'destination-over'; g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH); g.globalCompositeOperation = 'source-over';
     } else {
     for (const f of landc.features) { const col = CH[f.properties.k]; if (!col || !f.geometry) continue; (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).forEach(rs => poly(rs, col)); }
     poly([C.border], CH[C.base_side || 'axis']);
@@ -201,7 +209,6 @@ function buildFields(landc) { if (dead) return; const C = TH.control, t0 = perfo
   FLD = { x0, x1, y0, y1, flat, idx, from, gw: GW, gh: GH }; window.__fieldMs = Math.round(performance.now() - t0); if (MAP) MAP.triggerRepaint(); }
 const hexc = h => [parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255, 1];
 function drawAreas() { F.pockets = []; if (!FLD) return; const S = F.S, L = FLD;
-  if (UPOS && !((UPOS[S.i].length || SCHL[S.i]) && (UPOS[S.j].length || SCHL[S.j]))) return;   // 前後兩個關鍵日都要有依據（部隊位置或出處寫明的防線）才畫   // 前後兩個關鍵日都要有部隊位置才畫；不拿「沒有資料」去補間
   const U = x => (x - L.x0) / (L.x1 - L.x0), V = y => (L.y1 - y) / (L.y1 - L.y0);
   const com = { a: 'k' + S.i, b: 'k' + S.j, e: S.e || 0, gate: L.from != null && day < L.from, dpr: DPR, ppc: (L.x1 - L.x0) * SC / L.gw, c0: hexc(COL.axis), c1: hexc(UPOS ? '#b9cde6' : COL.allied),   /* 推導／示意的控制區：盟軍用較深的藍。原本的淡藍和底圖的盟國陸地同色，塗了也看不出來 */ c2: hexc(COL.third), ink: rgba(...INK, cfLevel('map:areas') === 'estimate' ? 0.6 : 0.92), lc: rgba(...SIDE_COL.third, 0.75) };
   const fv = new Float32Array(L.idx.length * 4); L.idx.forEach((q, k) => { const x = L.flat[2 * q], y = L.flat[2 * q + 1]; fv[4 * k] = PX(x); fv[4 * k + 1] = PY(y); fv[4 * k + 2] = U(x); fv[4 * k + 3] = V(y); });

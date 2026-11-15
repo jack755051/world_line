@@ -36,7 +36,7 @@ void main(){vec4 s=mix(texture2D(ta,uv),texture2D(tb,uv),e);
 if(gate>0.5){s.a=max(s.a,s.b);s.b=-1e4;}
 if(mode>1.5){if(s.a>=max(s.r,max(s.g,s.b))){gl_FragColor=vec4(0.0);return;}vec4 cc=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);
 // 示意領地：斜線，和推導的控制區（實色）分得出來
-float hs=step(0.5,fract((gl_FragCoord.x+gl_FragCoord.y)/(9.0*dpr)));gl_FragColor=cc*mix(1.0,hs,sch*0.75);return;}
+float hs=step(0.5,fract((gl_FragCoord.x+gl_FragCoord.y)/(9.0*dpr)));gl_FragColor=cc*mix(1.0,hs,sch*0.4);return;}
 if(mode<0.5){gl_FragColor=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);return;}
 float en=max(s.r,s.b);float f=s.g-en;float d=abs(f)/max(length(vec2(dFdx(f),dFdy(f)))*dpr,1.0/ppc);float ok=step(s.a,min(s.g,en)+0.5);
 float ca=(1.0-smoothstep(2.4,3.4,d))*0.85*ok;float co=(1.0-smoothstep(0.6,1.6,d))*ink.a*ok;

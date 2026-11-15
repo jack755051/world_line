@@ -60,12 +60,16 @@ async function hitlerRecord(page: Page, date = DATE): Promise<{ personId: string
 }
 const hitlerId = async (page: Page, date = DATE): Promise<string> => (await hitlerRecord(page, date)).personId;
 
-/** 有多筆引文的人物：1940 愛爾蘭 德瓦萊拉（4 個來源、11 筆引文；以姓名從 /leaders 取 personId）。 */
+/** 有多筆引文的人物：1940 愛爾蘭 德瓦萊拉（以姓名從 /leaders 取 personId）。
+ *  有分段生平（paragraphs）時，對話框的「生平」改用段落，不列舊格式 summary 欄位出處（person-dialog sourceGroups），
+ *  所以預期引文要排除 summary 欄；2026-11-15 德瓦萊拉已寫入 B3 v3 分段生平。 */
 async function deValera(page: Page): Promise<{ pid: string; quotes: string[] }> {
   const f = (await (await page.request.get(`/api/v1/leaders?date=${DATE}`)).json()).data.features as { personId: string | null; name: string }[];
   const pid = f.find((x) => x.name === 'Éamon de Valera' && x.personId)!.personId!;
-  const d = (await (await page.request.get(`/api/v1/leader-bios/${pid}`)).json()).data as { fieldCitations: { quote?: string | null }[] };
-  return { pid, quotes: d.fieldCitations.map((c) => c.quote).filter((q): q is string => !!q) };
+  const d = (await (await page.request.get(`/api/v1/leader-bios/${pid}`)).json()).data as {
+    fieldCitations: { field: string; quote?: string | null }[]; paragraphs?: unknown[] | null };
+  const hasParagraphs = (d.paragraphs ?? []).length > 0;
+  return { pid, quotes: d.fieldCitations.filter((c) => !(hasParagraphs && c.field === 'summary')).map((c) => c.quote).filter((q): q is string => !!q) };
 }
 
 /** 對話框捲到底部「資料來源」區（不點分頁籤，以免自動展開）。 */

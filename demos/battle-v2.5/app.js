@@ -17,6 +17,10 @@
 const Q = new URLSearchParams(location.search);
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches || Q.get('rm') === '1';
 const $ = s => document.querySelector(s);
+// 正式頁模式（?app=1，從主地圖的「戰役簡報」進來）：只列資料全部來自主線、有出處的戰役；未查證資料不能打開；左上角多一個回地圖的連結。
+const APP = Q.get('app') === '1';
+if (APP) { const b = Q.get('back') || '', a = document.createElement('a'); a.id = 'app-back'; a.textContent = '← 地圖'; a.title = '回到主地圖';
+  a.href = /^\/(?!\/)/.test(b) ? b : '../'; const h = $('.hd-title'); h.insertBefore(a, h.firstChild); document.body.classList.add('app-mode'); }
 // ================= 外殼（整個頁面只做一次）=================
 // 讀戰役清單 → 決定開哪一場 → 抓那一場的資料 → 建立一個「戰役實例」。
 // 戰役的全部狀態都關在 createBattle() 裡面；外殼只留著目前這一個實例（window.__battle）。
@@ -41,7 +45,7 @@ function go(id, url, push = true) { const n = INDEX.find(b => b.id === id); if (
     .finally(() => { busy = false; const want = new URLSearchParams(location.search).get('battle'); if (CUR && want && want !== CUR.id) go(want, null, false); });
 }
 addEventListener('popstate', () => go(new URLSearchParams(location.search).get('battle') || DFLT, null, false));   // 瀏覽器上一頁／下一頁
-J('battles/index.json').then(idx => { INDEX = idx.battles || []; DFLT = idx.default || (INDEX[0] || {}).id; let id = Q.get('battle') || DFLT; if (!INDEX.some(b => b.id === id)) id = DFLT;
+J('battles/index.json').then(idx => { INDEX = (idx.battles || []).filter(b => !APP || b.status === 'sourced'); DFLT = idx.default || (INDEX[0] || {}).id; let id = Q.get('battle') || DFLT; if (!INDEX.some(b => b.id === id)) id = DFLT;
   return fetchBattle(id).then(d => { CUR = window.__battle = createBattle(Object.assign({ INDEX, BID: id, go }, d)); }); }).catch(fatal);
 
 // ================= 戰役實例 =================
@@ -52,7 +56,7 @@ const Q = new URLSearchParams(location.search);   // 蓋掉外殼的 Q：原地�
 const data = cfg.data, asg = cfg.asg;
 // 史料骨架（主專案考證檔轉出）與每筆資料的可信度（tools/crosscheck.py 算出）；兩個檔都可以沒有
 // v2.12：未查證資料預設不畫（主專案憲法 Decision 5：上圖的每一筆都要有出處）。?unverified=1 或圖層選單可以打開，只給試驗場用。
-let SHOWU = Q.get('unverified') === '1';
+let SHOWU = !APP && Q.get('unverified') === '1';
 const engShown = e => SHOWU || cfLevel('eng:' + e.id) === 'verified';
 const SRC = cfg.sourced || null, CONF = (cfg.conf || {}).items || {}, CSUM = (cfg.conf || {}).summary || null;
 let dead = false, raf = 0, evBound = false; const offs = [];
@@ -683,7 +687,7 @@ function renderChips() {
   const box = document.createElement('div'); box.id = 'lay-pop'; box.hidden = !layOpen; const lg = document.createElement('button'); lg.className = 'chip'; lg.textContent = '圖例'; lg.onclick = () => $('#legend-btn').click(); root.append(seg, lb, lg, box);
   { const ms = document.createElement('div'); ms.className = 'seg mode'; ms.setAttribute('role', 'group'); ms.setAttribute('aria-label', '模式');
     [[false, '追蹤', '追蹤模式：自由鏡頭，點部隊看細節'], [true, '導覽', '導覽模式：照章節自動移動鏡頭，只強調當日焦點（快捷鍵 T）']].forEach(([v, t, tt]) => { const b = document.createElement('button'); b.textContent = t; b.title = tt; b.className = TOUR === v ? 'on' : ''; b.setAttribute('aria-pressed', TOUR === v); b.onclick = () => setTour(v); ms.appendChild(b); }); root.prepend(ms); }
-  { const b = document.createElement('button'); b.className = 'chip ' + (SHOWU ? 'on' : 'off'); b.setAttribute('aria-pressed', SHOWU); b.innerHTML = `<i style="background:#b9a26a"></i>未查證資料<small>${SHOWU ? '顯示' : '隱藏'}</small>`; b.title = '沒有官方紀錄、官方戰史或學術專書出處的部隊位置、交戰與史料待查證項目。預設隱藏。'; b.onclick = () => setShowU(!SHOWU); box.appendChild(b); }
+  if (!APP) { const b = document.createElement('button'); b.className = 'chip ' + (SHOWU ? 'on' : 'off'); b.setAttribute('aria-pressed', SHOWU); b.innerHTML = `<i style="background:#b9a26a"></i>未查證資料<small>${SHOWU ? '顯示' : '隱藏'}</small>`; b.title = '沒有官方紀錄、官方戰史或學術專書出處的部隊位置、交戰與史料待查證項目。預設隱藏。'; b.onclick = () => setShowU(!SHOWU); box.appendChild(b); }
   const a = document.createElement('button'); a.className = 'chip locked'; a.disabled = true; a.innerHTML = '<i style="background:#ff4b3a"></i>A｜控制區<small>常駐</small>'; box.appendChild(a);
   for (const k of ['forces', 'eng', 'places']) { const L = LAYERS[k]; const b = document.createElement('button');
     b.className = 'chip ' + L.mode; b.setAttribute('aria-pressed', L.mode !== 'off');
@@ -733,7 +737,7 @@ function bindUI() {
 }
 // ---------- v2.6：多場戰役 ----------
 // 換戰役交給外殼的 go()：原地換，不重新載入。網址保留模式和視角。
-function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); if (TOUR) q.set('mode', 'tour'); if (VIEW !== 'all') q.set('side', VIEW); if (SHOWU) q.set('unverified', '1'); ['rm', 'pr'].forEach(k => Q.get(k) && q.set(k, Q.get(k))); return location.pathname + '?' + q; }
+function battleURL(id) { const q = new URLSearchParams(); q.set('battle', id); if (APP) { q.set('app', '1'); if (Q.get('back')) q.set('back', Q.get('back')); } if (TOUR) q.set('mode', 'tour'); if (VIEW !== 'all') q.set('side', VIEW); if (SHOWU) q.set('unverified', '1'); ['rm', 'pr'].forEach(k => Q.get(k) && q.set(k, Q.get(k))); return location.pathname + '?' + q; }
 function gotoBattle(id) { cfg.go(id, battleURL(id)); }
 function switchBattle(dir) { const i = INDEX.findIndex(b => b.id === BID), n = INDEX[i + dir]; if (n) gotoBattle(n.id); }
 function initBattleNav() {
@@ -854,7 +858,7 @@ function refreshInfo(force) { if (!D) return; const now = performance.now(); if 
   if (selected) { const st = selected.type === 'unit' ? unitStatic(selected) : selected.type === 'src' ? srcStatic(selected) : engStatic(selected); if (st !== infoKey) { infoKey = st; liveKey = ''; $('#info-body').innerHTML = st; }
     const lv = selected.type === 'unit' ? unitLive(selected) : selected.type === 'src' ? '' : engLive(selected); if (lv !== liveKey) { liveKey = lv; const el = $('#info-live'); if (el) el.innerHTML = lv; } }
   { const n = HIDU + HIDE, k = SHOWU ? 'on' : String(n), el = $('#uv-note'); if (k !== uvKey) { uvKey = k; el.hidden = SHOWU ? !CSUM : n === 0;
-      el.innerHTML = SHOWU ? '正在顯示未查證資料（沒有正式出處，或出處只查到一部分）<button data-uv="0">隱藏</button>' : `這個時間有 ${HIDU} 個部隊、${HIDE} 場交戰沒有正式出處，沒有畫出來<button data-uv="1">顯示未查證資料</button>`; } }
+      el.innerHTML = SHOWU ? '正在顯示未查證資料（沒有正式出處，或出處只查到一部分）<button data-uv="0">隱藏</button>' : `這個時間有 ${HIDU} 個部隊、${HIDE} 場交戰沒有正式出處，沒有畫出來${APP ? '' : '<button data-uv="1">顯示未查證資料</button>'}`; } }
   if (!$('#oob').hidden) { const html = oobHTML(); if (html !== oobKey) { oobKey = html; const box = $('#oob-body'), old = box.querySelector('.ob-list'), k0 = old && old.dataset.k, st = old ? old.scrollTop : 0; box.innerHTML = html;
       const nl = box.querySelector('.ob-list'); if (nl.dataset.k === k0) nl.scrollTop = st;   // 重畫時保留捲動位置
       const on = oobTab === 'ch' && nl.querySelector('.ch.on'); if (on && (on.offsetTop < nl.scrollTop || on.offsetTop + on.offsetHeight > nl.scrollTop + nl.clientHeight)) nl.scrollTop = Math.max(0, on.offsetTop - 60); } }

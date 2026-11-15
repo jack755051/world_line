@@ -74,6 +74,8 @@ async function atlasState(page: Page) {
 }
 
 async function openAtlasWithRegime(page: Page): Promise<void> {
+  // 這個檔測的是原本的戰役頁（/campaign/:slug）；敦克爾克的入口預設已改開新版 /battle/
+  await page.addInitScript(() => sessionStorage.setItem('wl.battlePage', 'classic'));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(`/?date=1940-05-28&axis=sovereignty&regime=${UK}&tab=events`);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
@@ -178,3 +180,21 @@ for (const [w, h] of [[360, 780], [390, 844], [768, 1024], [1024, 768], [1440, 9
     await page.screenshot({ path: `${DIR}/${w}-p6.png` });
   });
 }
+
+test('敦克爾克的戰役簡報入口開新版戰役頁（/battle/），「← 地圖」回到原本的日期與政權', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await mockApi(page);
+  await page.goto(`/?date=1940-05-28&axis=sovereignty&regime=${UK}&tab=events`);
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
+  await page.getByTestId('campaign-entry').filter({ hasText: '敦克爾克' }).click();
+  await expect(page).toHaveURL(/\/battle\/index\.html\?battle=dunkirk-1940&app=1&back=/);
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __ready?: boolean }).__ready === true), { timeout: 20000 }).toBe(true);
+  // 正式頁模式：只列有出處的戰役、沒有「未查證資料」開關
+  await expect(page.locator('#bt-menu a')).toHaveCount(1);
+  await expect(page.locator('#layers .chip', { hasText: '未查證資料' })).toHaveCount(0);
+  await page.locator('#app-back').click();
+  await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');
+  await expect(page).toHaveURL(/date=1940-05-28/);
+  await expect(page).toHaveURL(new RegExp(`regime=${UK}`));
+  await expect(page.getByTestId('sovereignty-card-title')).toBeVisible();
+});

@@ -7,6 +7,8 @@ test.skip(true, '§19 C2a：入口改連戰役獨立頁，由 campaign-page.e2e.
 
 async function openRegime(page: Page, w: number, h: number, date: string, center: [number, number], at: [number, number]): Promise<void> {
   await page.setViewportSize({ width: w, height: h });
+  // 這個檔測的是原本的戰役頁（/campaign/:slug）；敦克爾克的入口預設已改開新版 /battle/
+  await page.addInitScript(() => sessionStorage.setItem('wl.battlePage', 'classic'));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(`/?date=${date}&axis=sovereignty`);
   const canvas = page.getByTestId('map-canvas');

@@ -18,17 +18,35 @@ w3 = importlib.util.module_from_spec(spec); spec.loader.exec_module(w3)
 def main():
     names = [a for a in sys.argv[1:] if not a.startswith("--")]
     send, allow = "--send" in sys.argv, "--allow-write" in sys.argv
+    opt = lambda k: next((sys.argv[i + 1] for i, a in enumerate(sys.argv) if a == k and i + 1 < len(sys.argv)), None)
+    base = HERE / opt("--dir") if opt("--dir") else HERE          # 例：--dir v3（批次在 full/v3/batchNNN）
+    replace = set((opt("--replace") or "").split(",")) - {""}       # 例：--replace <bioId>：先撤回該人既有段落／經歷／角色／缺口，再寫新版（I5 不刪）
+    names = [n for n in names if n not in (opt("--dir"), opt("--replace"))]
     if not names:
         raise SystemExit("請指定批次（例：batch001 batch002）")
-    batches = [(n, json.loads((HERE / n / "research.json").read_text(encoding="utf-8"))) for n in names]
+    batches = [(n, json.loads((base / n / "research.json").read_text(encoding="utf-8"))) for n in names]
     overrides = json.load(open(w3.OVERRIDES)) if os.path.exists(w3.OVERRIDES) else {}
     st = w3.db_state(None)
+    for k in ("paragraphs", "positions", "roles"):  # 要取代的人：視為庫內沒有，讓 plan 產出全部新列
+        st["existing"][k] = {x for x in st["existing"][k] if x[0] not in replace}
     P = w3.plan(batches, st, overrides)
     if P["unclassified"] or P["bad"] or P["bio_missing"]:
         raise SystemExit("有未歸類網域、驗證不過或庫內無 bio：%s" % json.dumps({"unclassified": list(P["unclassified"]), "bad": P["bad"], "bio_missing": P["bio_missing"]}, ensure_ascii=False))
     P["par"] = [r for r in P["par"] if r["cit"]]; P["pos"] = [r for r in P["pos"] if r["cit"]]; P["role_ok"] = [r for r in P["role_ok"] if r.get("cit")]
     sql = w3.build_sql(P)
     lines = sql.split("\n"); assert lines[0] == "BEGIN;" and lines[-1] == "COMMIT;"
+    if replace:
+        why = "b3-v3-replace-2026-11-15：由 B3 full v3 規格版本取代（Tai 2026-11-15「好」）"
+        L = w3.sql_lit
+        pre = []
+        for bio in sorted(replace):
+            for t, ct, fk in (("leader_bio_paragraphs", "leader_bio_paragraph_citations", "paragraph_id"),
+                              ("person_positions", "person_position_citations", "position_id"), ("person_roles", "person_role_citations", "role_id")):
+                pre.append("UPDATE %s SET retracted_at=now(), retraction_reason=%s WHERE retracted_at IS NULL AND %s IN (SELECT id FROM %s WHERE bio_id=%s AND retracted_at IS NULL);" % (ct, L(why), fk, t, L(bio)))
+                pre.append("UPDATE %s SET retracted_at=now(), retraction_reason=%s WHERE bio_id=%s AND retracted_at IS NULL;" % (t, L(why), L(bio)))
+            pre.append("UPDATE leader_bio_gaps SET retracted_at=now(), retraction_reason=%s WHERE bio_id=%s AND retracted_at IS NULL AND resolved_at IS NULL;" % (L(why), L(bio)))
+        lines = [lines[0]] + pre + lines[1:]
+        sql = "\n".join(lines)
     dev = REPO / ".dev" / "dbwrite"; dev.mkdir(parents=True, exist_ok=True)
     (dev / "b3full-write.sql").write_text(sql + "\n", encoding="utf-8")
     per = {}

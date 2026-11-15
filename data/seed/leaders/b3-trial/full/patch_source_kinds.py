@@ -76,6 +76,14 @@ POLICY += [
      "RAF Historical Society Journal 第 8 期（Vincent Orange 具名論文），RAF Museum 文件區", _D),
     ("vintageaviationnews.com", "encyclopedia", "C", "Vintage Aviation News（具名記者的航空史文章）；具名 C，比照 historynet.com", _D),
     ("www.seaforces.org", "encyclopedia", "C", "seaforces.org（具名網站，轉載海軍官方傳記但未標原始出處）；具名 C", _D),
+    ("www.oireachtas.ie", "official_website", "A", "愛爾蘭國會（Houses of the Oireachtas）官方議員名錄", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("www.irishstatutebook.ie", "official_record", "A", "Irish Statute Book（愛爾蘭總檢察長辦公室，憲法與法令原文）", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("digar.ee", "archive", "B", "DIGAR（愛沙尼亞國家圖書館數位典藏）收錄之出版品", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("www.riigikogu.ee", "official_website", "A", "愛沙尼亞國會（Riigikogu）官方頁", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("riigikogu.ee", "official_website", "A", "愛沙尼亞國會（Riigikogu）官方頁（無 www 主機名）", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("www.ra.ee", "archive", "A", "愛沙尼亞國家檔案館（Rahvusarhiiv）", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("www.nepjol.info", "peer_reviewed", "B", "NepJOL（尼泊爾學術期刊平台）具名論文", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
+    ("www.berlin.de", "official_website", "A", "柏林市政府官方網站", "Tai 2026-11-15（B3 v3 寫庫前未歸類網域，§16 T1 同一原則）"),
     ("www.generalstaff.org", "official_history", "B", "英國官方戰史（Kirby, The War Against Japan Vol. IV, HMSO）掃描本，放在第三方網站；原著 A，第三方副本記 B", _D),
 ]
 

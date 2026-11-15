@@ -10,6 +10,7 @@ import { formatDisplayDate } from '../../core/dates';
 import { MOTION_DURATION, MotionService } from '../../core/motion';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { InterpChip } from '../../shared/interp-chip/interp-chip';
+import { versionInfo } from '../../core/version';
 
 /**
  * 頂部列（PRD §8.1，`layout/top-bar`）。
@@ -41,6 +42,8 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
               <button type="button" role="menuitemcheckbox" data-testid="camp-layer-toggle" [attr.aria-checked]="showCamps()" [attr.aria-pressed]="showCamps()"
                 class="flex min-h-11 items-center gap-2 rounded-wl-sm px-2 text-left hover:bg-wl-surface-container" (click)="campsToggle.emit()">
                 <span class="inline-block size-4 border border-wl-outline" [class.bg-wl-secondary]="showCamps()"></span>{{ campText() }}</button>
+              <a href="version" role="menuitem" data-testid="topbar-menu-version" class="flex min-h-11 items-center gap-2 rounded-wl-sm px-2 font-mono text-[12px] text-wl-on-surface-variant hover:bg-wl-surface-container"
+                [attr.aria-label]="versionTitle">{{ versionText }}</a>
               <button type="button" role="menuitem" data-testid="topbar-menu-legend" class="flex min-h-11 items-center gap-2 rounded-wl-sm px-2 text-left hover:bg-wl-surface-container"
                 (click)="menuOpen.set(false); legendToggle.emit()"><svg lucideBookOpen class="size-4"></svg>{{ tr('legend.title') }}</button>
             </div>
@@ -52,6 +55,9 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
       <span class="flex flex-none items-center gap-2">
         <img src="logo.svg" alt="" width="28" height="28" class="size-7 flex-none rounded-[6px]" aria-hidden="true" />
         <span class="whitespace-nowrap font-wl-serif text-[17px] font-semibold tracking-wide text-wl-on-surface">Sanring World Line</span>
+        <!-- 版本號（Tai 2026-11-15：一眼看得出目前版本）：版本＋標籤後第幾個提交＋提交編號；點了到「版本資訊」頁 -->
+        <a href="version" data-testid="topbar-version" class="whitespace-nowrap font-mono text-[11px] leading-none text-wl-on-surface-variant hover:text-wl-on-surface hover:underline"
+          [attr.title]="versionTitle" [attr.aria-label]="versionTitle">{{ versionText }}</a>
       </span>
       <span class="h-6 w-px bg-wl-outline-variant" aria-hidden="true"></span>
       @if (loading()) {
@@ -89,6 +95,9 @@ import { InterpChip } from '../../shared/interp-chip/interp-chip';
   `,
 })
 export class TopBar {
+  /** 頁首的版本字樣：v0.0.1+525 · aa11a0c（正好在標籤上時不寫 +N）。資料來自建置時產生的 core/version.ts。 */
+  protected readonly versionText = `v${versionInfo.version}${versionInfo.ahead > 0 ? '+' + versionInfo.ahead : ''} · ${versionInfo.commit}`;
+  protected readonly versionTitle = `版本 ${versionInfo.version}${versionInfo.ahead > 0 ? '（標籤之後第 ' + versionInfo.ahead + ' 個提交）' : ''}，提交 ${versionInfo.commit}，建置時間 ${versionInfo.buildTime}`;
   readonly date = input.required<string>();
   readonly lang = input<Lang>('zh-Hant');
   readonly loading = input(false);

@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
+    "prestart": "node scripts/write-version.mjs",
     "start": "ng serve",
     "prebuild": "node scripts/write-version.mjs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "pretest": "node scripts/write-version.mjs",
     "test": "ng test",
     "gen:api": "openapi-typescript ../backend/openapi/v1.json -o src/app/core/api-schema.ts",
     "check:api": "openapi-typescript ../backend/openapi/v1.json -o tmp/api-schema.check.ts && node -e \"const f=require('fs');if(f.readFileSync('tmp/api-schema.check.ts','utf8')!==f.readFileSync('src/app/core/api-schema.ts','utf8')){console.error('api-schema.ts 過期：請執行 pnpm gen:api');process.exit(1)}console.log('api-schema.ts 與 OpenAPI 一致')\"",

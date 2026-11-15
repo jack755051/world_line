@@ -83,4 +83,13 @@ describe('TopBar：§12 手機精簡版', () => {
     expect(legends).toBe(1);
     expect(q('topbar-menu')).toBeNull();
   });
+
+  it('頁首顯示版本號與提交編號，連到版本資訊頁', async () => {
+    const fixture = TestBed.createComponent(TopBar);
+    fixture.componentRef.setInput('date', '1940-06-01');
+    await fixture.whenStable();
+    const a = (fixture.nativeElement as HTMLElement).querySelector('[data-testid="topbar-version"]') as HTMLAnchorElement | null;
+    expect(a?.textContent?.trim()).toMatch(/^v\d+\.\d+\.\d+(\+\d+)? · [0-9a-f]{7,}|unknown$/);
+    expect(a?.getAttribute('href')).toBe('version');
+  });
 });

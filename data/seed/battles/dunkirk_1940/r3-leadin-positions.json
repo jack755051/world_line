@@ -1,7 +1,7 @@
 {
  "schema": "dunkirk-data/0.1 r3-leadin",
  "researchedOn": "2026-11-15",
- "note": "前導期 5/10–5/25；全部引自英國官方戰史（Ellis，HyperWar 轉錄，第 III–X 章），引文逐字（含轉錄錯字）。地點只給出處地名＋OSM 編號，不含座標；河線／防線取原文點名的一個城鎮為 place，其餘列 alsoPlaces。德軍各筆為對方（英方）史料，標 sourceSide=opposing。命令、意圖不列為位置，改記 notFound。司令部駐地（GHQ Arras、Command Post 等）未列入。datePrecision=approx 表示原文未明寫該日，理由見 attributionNote。",
+ "note": "前導期 5/10–5/25；全部引自英國官方戰史（Ellis，HyperWar 轉錄，第 III–X 章），引文逐字（含轉錄錯字）。地點只給出處地名＋OSM 編號，不含座標；河線／防線取原文點名的一個城鎮為 place，其餘列 alsoPlaces。德軍各筆為對方（英方）史料，標 sourceSide=opposing。命令、意圖不列為位置，改記 notFound。司令部駐地（GHQ Arras、Command Post 等）未列入。datePrecision=approx 表示原文未明寫該日，理由見 attributionNote。2026-11-15 補：另自同書 Supplement（The Planning and Conduct of the German Campaign，p.333–353）與 Appendix II（書中引文的德文原文，只取 Supplement 部分）補入德軍 5/23 各筆；Appendix III（5/24 編組）無地點。Supplement 對 5/10–22 無任何可定位記載。",
  "positions": [
   {
    "unitKey": "uk-bef",
@@ -1666,6 +1666,52 @@
    ]
   },
   {
+   "unitKey": "de-hgr-a",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "the Canal Line … at Aire",
+   "place": {
+    "nameOsm": "Aire-sur-la-Lys",
+    "osm": {
+     "type": "relation",
+     "id": 138297
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "attributionNote": "his＝Rundstedt（A 集團軍群）。到達 Aire 的是其三個師的先頭（同段下一句：6th、8th 裝甲師 opposite Aire），非集團軍群主力位置；日期取自同段開頭「on the night of the 23rd」。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Three of his divisions were approaching the Canal Line",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "their advanced formations had reached it at Aire that evening",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
    "unitKey": "de-hgr-b",
    "date": "1940-05-21",
    "datePrecision": "day",
@@ -1707,6 +1753,52 @@
      "quote": "At this point the enemy established a small bridgehead about three miles south of Tournai",
      "quoteLang": "en",
      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-6.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-hgr-b",
+   "date": "1940-05-23",
+   "datePrecision": "approx",
+   "placeAsInSource": "the area of Audenarde",
+   "place": {
+    "nameOsm": "Oudenaarde",
+    "osm": {
+     "type": "relation",
+     "id": 416207
+    }
+   },
+   "basis": "text",
+   "relation": "fighting",
+   "attributionNote": "正文未寫日期；5/23 是 Halder 日記該條的日期（註 17），不是戰鬥起始日（第 VI 章 p.101 把 Bock 改變主攻方向記在 5/21），故 approx。正文歸於 Bock（B 集團軍群）；Appendix II p.397 的德文原文作「schlägt von Reichenau seine Privatschlacht in Gegend Audenarde」，點名 von Reichenau，本書未說明其職務，未另列。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 346 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Bock's decision to attack the right of the Belgian front",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 346 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "'private battle in the area of Audenarde",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347, footnote 17 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "17 Halder's Diary, 23rd May, 1940",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
      "accessedOn": "2026-11-15",
      "grade": "A"
     }
@@ -1772,6 +1864,78 @@
      "quote": "The bulk of the motorised units of the German Fourth Army and some of the infantry divisions reached the French frontier fortifications south-east of Maubeuge during the day",
      "quoteLang": "en",
      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-4.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-4-armee",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "Südlich Calais und bei Boulogne",
+   "place": {
+    "nameOsm": "Boulogne-sur-Mer",
+    "osm": {
+     "type": "relation",
+     "id": 240377
+    }
+   },
+   "basis": "text",
+   "relation": "fighting",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "Südlich Calais",
+     "nameOsm": "Calais",
+     "osm": {
+      "type": "relation",
+      "id": 286380
+     }
+    },
+    {
+     "placeAsInSource": "südlich St Omer",
+     "nameOsm": "Saint-Omer",
+     "osm": {
+      "type": "relation",
+      "id": 94401
+     }
+    },
+    {
+     "placeAsInSource": "ostwärts Arras",
+     "nameOsm": "Arras",
+     "osm": {
+      "type": "relation",
+      "id": 1121015
+     }
+    }
+   ],
+   "attributionNote": "Appendix II 所載第 4 軍團戰爭日誌德文原文（列於「Page 348」下，16.40 Uhr，O.B.＝Kluge 向 Rundstedt 報告戰況）；日期取自 Supplement p.348 正文「on May the 23rd」與註 19（Fourth Army War Diary, 23rd May, 1940）。「Bilgund」為轉錄錯字（Bildung）。軍團正面多處並舉，place 取 Boulogne；同一報告稱「die Loretto-Höhe ist fest in deutscher Hand」，與 Supplement p.348 正文「the Lorette Heights and teh Vimy Ridge … was still in enemy hands」不一致。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Appendix II, p. 398 (HyperWar UK-NWE-Flanders-II.html)",
+     "quote": "Südlich Calais und bei Boulogne wird noch gekämpft, südlich St Omer ist es vorwärts gegangen",
+     "quoteLang": "de",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-II.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Appendix II, p. 398 (HyperWar UK-NWE-Flanders-II.html)",
+     "quote": "beim II.A.K. ist ostwärts Arras die Bilgund eines Brückenkopfes im Gange",
+     "quoteLang": "de",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-II.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "a talk (on May the 23rd) with Kluge, the commander of the Fourth Army",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
      "accessedOn": "2026-11-15",
      "grade": "A"
     }
@@ -2148,6 +2312,52 @@
    ]
   },
   {
+   "unitKey": "de-3-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "near Arras",
+   "place": {
+    "nameOsm": "Arras",
+    "osm": {
+     "type": "relation",
+     "id": 1121015
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「near Arras」為四個師並稱的概略位置，未分各師地段。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 3rd, 4th, 5th and 7th near Arras",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
    "unitKey": "de-4-pzdiv",
    "date": "1940-05-11",
    "datePrecision": "day",
@@ -2170,6 +2380,52 @@
      "quote": "on May the 11th the Maastricht bridges and the marching volumes of the 4th Armoured Division 'are separately attacked by enemy bombers",
      "quoteLang": "en",
      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-3.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-4-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "near Arras",
+   "place": {
+    "nameOsm": "Arras",
+    "osm": {
+     "type": "relation",
+     "id": 1121015
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「near Arras」為四個師並稱的概略位置，未分各師地段。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 3rd, 4th, 5th and 7th near Arras",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
      "accessedOn": "2026-11-15",
      "grade": "A"
     }
@@ -2298,6 +2554,52 @@
    ]
   },
   {
+   "unitKey": "de-7-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "near Arras",
+   "place": {
+    "nameOsm": "Arras",
+    "osm": {
+     "type": "relation",
+     "id": 1121015
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「near Arras」為四個師並稱的概略位置，未分各師地段。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 3rd, 4th, 5th and 7th near Arras",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
    "unitKey": "de-8-pzdiv",
    "date": "1940-05-19",
    "datePrecision": "day",
@@ -2400,6 +2702,52 @@
      "quote": "the 8th Armoured Division, after its encounter with the 70th brigade near Ficheux and Blairville, went on through Saulty and Avesnes le Comte, and by nightfall not only reached its objective at Hesdin but had advanced units at Montreuil",
      "quoteLang": "en",
      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-5.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-8-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "opposite Aire",
+   "place": {
+    "nameOsm": "Aire-sur-la-Lys",
+    "osm": {
+     "type": "relation",
+     "id": 138297
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「opposite」＝隔運河面對 Aire。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 6th and 8th opposite Aire",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
      "accessedOn": "2026-11-15",
      "grade": "A"
     }
@@ -2560,6 +2908,52 @@
      "quote": "move going eastward towards St Omer",
      "quoteLang": "en",
      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-10.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-6-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "opposite Aire",
+   "place": {
+    "nameOsm": "Aire-sur-la-Lys",
+    "osm": {
+     "type": "relation",
+     "id": 138297
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「opposite」＝隔運河面對 Aire。同日第 X 章記該師 moving_to Saint-Omer（見前一筆），兩者並存。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 6th and 8th opposite Aire",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
      "accessedOn": "2026-11-15",
      "grade": "A"
     }
@@ -2753,6 +3147,52 @@
   },
   {
    "unitKey": "de-1-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "fronting Gravelines",
+   "place": {
+    "nameOsm": "Gravelines",
+    "osm": {
+     "type": "relation",
+     "id": 139316
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「fronting」＝面對 Gravelines，非已入城。同日第 X 章記該師 moving_to Guînes（見前一筆），兩者並存。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 1st fronting Gravelines",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-1-pzdiv",
    "date": "1940-05-24",
    "datePrecision": "day",
    "placeAsInSource": "the bridges at Gravelines",
@@ -2902,6 +3342,52 @@
   },
   {
    "unitKey": "de-2-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "at Boulogne (and Calais)",
+   "place": {
+    "nameOsm": "Boulogne-sur-Mer",
+    "osm": {
+     "type": "relation",
+     "id": 240377
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。原文「the 2nd and 10th at Boulogne and Calais」未寫 respectively；依語序 2nd→Boulogne，與第 X 章（2nd 攻 Boulogne）一致。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 2nd and 10th at Boulogne and Calais",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-2-pzdiv",
    "date": "1940-05-25",
    "datePrecision": "day",
    "placeAsInSource": "Boulogne",
@@ -2951,6 +3437,52 @@
      "quote": "By now yet another German armoured division—the 10th—had come up from the south and was shelling Calais from the high ground which overlooks it",
      "quoteLang": "en",
      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-10.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-10-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "at (Boulogne and) Calais",
+   "place": {
+    "nameOsm": "Calais",
+    "osm": {
+     "type": "relation",
+     "id": 286380
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。原文「the 2nd and 10th at Boulogne and Calais」未寫 respectively；依語序 10th→Calais，與第 X 章（10th 攻 Calais）一致。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 2nd and 10th at Boulogne and Calais",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
      "accessedOn": "2026-11-15",
      "grade": "A"
     }
@@ -3066,6 +3598,52 @@
      "grade": "A"
     }
    ]
+  },
+  {
+   "unitKey": "de-5-pzdiv",
+   "date": "1940-05-23",
+   "datePrecision": "day",
+   "placeAsInSource": "near Arras",
+   "place": {
+    "nameOsm": "Arras",
+    "osm": {
+     "type": "relation",
+     "id": 1121015
+    }
+   },
+   "basis": "text",
+   "relation": "at",
+   "attributionNote": "日期取自同段開頭「on the night of the 23rd」（Rundstedt 5/23 夜的判斷；同段上一句「that evening」）；出自 Supplement（德方作戰檢討），句子本身未另寫日期。「near Arras」為四個師並稱的概略位置，未分各師地段。",
+   "sourceSide": "opposing",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "His armoured divisions were widely dispersed",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 348 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "the 3rd, 4th, 5th and 7th near Arras",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Supplement, p. 347 (HyperWar UK-NWE-Flanders-Supplement.html)",
+     "quote": "Rundstedt did not consider, on the night of the 23rd",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-Supplement.html",
+     "accessedOn": "2026-11-15",
+     "grade": "A"
+    }
+   ]
   }
  ],
  "notFound": [
@@ -3076,8 +3654,23 @@
   },
   {
    "unitKey": "de-hgr-a",
-   "period": "1940-05-21/1940-05-25",
-   "note": "只有命令與判斷（5/21 令裝甲師北轉、5/23–25 停於運河線）；集團軍群本身無城鎮位置。所屬 Kleist／Hoth 集群 5/25 在 Lens–Gravelines 線（見 positions）。"
+   "period": "1940-05-21/1940-05-22",
+   "note": "只有命令與判斷（5/21 令裝甲師北轉、5/23–25 停於運河線）；集團軍群本身無城鎮位置。所屬 Kleist／Hoth 集群 5/25 在 Lens–Gravelines 線（見 positions）。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-hgr-a",
+   "period": "1940-05-24/1940-05-25",
+   "note": "只有命令與判斷（5/21 令裝甲師北轉、5/23–25 停於運河線）；集團軍群本身無城鎮位置。所屬 Kleist／Hoth 集群 5/25 在 Lens–Gravelines 線（見 positions）。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-hgr-a",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：5/10 只說攻擊部隊已在「within easy striking distance of the frontier」（p.346，無城鎮；所附「Forward German Divisions disposed for attack on 10th May, 1940」是地圖非文字）；5/11–22 無位置記載。"
+  },
+  {
+   "unitKey": "de-hgr-a",
+   "period": "1940-05-24/1940-05-25",
+   "note": "Supplement：5/24 Hitler 至該集團軍群司令部，Appendix II p.398 的 Jodl 日記德文原文作「z. H.Gr.A nach Charleville」（司令部駐地，依本檔慣例不列位置；英文正文只說「Visiting Rundstedt on the 24th」）。5/25 Jodl 記 Brauchitsch 請求讓裝甲與摩托化師「from the high ground Vimy–St Omer–Gravelines」出擊（p.350，請求／意圖，且未指明單位）。p.352「to secure the high ground between Arras and the La Bassée Canal till the 25th」無城鎮。"
   },
   {
    "unitKey": "de-hgr-b",
@@ -3086,8 +3679,8 @@
   },
   {
    "unitKey": "de-hgr-b",
-   "period": "1940-05-22/1940-05-23",
-   "note": "5/22「Bock's attempt to break through towards Courtrai was renewed」（Ch. VII p.114）只有方向，攻擊正面為第 44、4 師地段，無城鎮。5/23 無記載。"
+   "period": "1940-05-22",
+   "note": "5/22「Bock's attempt to break through towards Courtrai was renewed」（Ch. VII p.114）只有方向，攻擊正面為第 44、4 師地段，無城鎮。5/23 見 positions（Supplement p.346，approx）。"
   },
   {
    "unitKey": "de-hgr-b",
@@ -3095,9 +3688,24 @@
    "note": "「the attack was to be continued in the general direction of Ypres」（Ch. IX p.149–150）為意圖／命令，不列位置。"
   },
   {
+   "unitKey": "de-hgr-b",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：無位置記載（「Bock's armies on the eastern front—at one point they were only forty miles way」，p.348，5/23 夜，無城鎮）。"
+  },
+  {
+   "unitKey": "de-hgr-b",
+   "period": "1940-05-24/1940-05-25",
+   "note": "Supplement p.349：5/24「Army Group B, which was already attacking British, French and Belgian forces from the east」，無城鎮。"
+  },
+  {
    "unitKey": "de-18-armee",
    "period": "1940-05-10/1940-05-25",
    "note": "第 III–X 章未提及第 18 軍團（荷蘭戰事只稱「the enemy」）。"
+  },
+  {
+   "unitKey": "de-18-armee",
+   "period": "1940-05-10/1940-05-25",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：唯一提及為 5/26 Jodl 日記「18th and 6th Armies are making only slow progress」（p.350），超出期間且無地點；Supplement 未敘述荷蘭戰事。"
   },
   {
    "unitKey": "de-6-armee",
@@ -3110,14 +3718,34 @@
    "note": "無位置記載。5/25 繳獲的第 6 軍團命令：IX Corps 攻向 Ypres、VI Corps 攻向 Wytschaete（Ch. IX p.148），屬命令；同日該軍團增配 X Corps（p.150）。"
   },
   {
+   "unitKey": "de-6-armee",
+   "period": "1940-05-10/1940-05-25",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：無第 6 軍團位置。Halder 5/23 日記德文原文（Appendix II p.397）稱「von Reichenau」在 Audenarde 一帶打「Privatschlacht」，但本書未說明 Reichenau 的職務，英文正文歸於 Bock，故記在 de-hgr-b（approx 5/23），未列第 6 軍團。5/26 Jodl「18th and 6th Armies are making only slow progress」（p.350）超出期間且無地點。"
+  },
+  {
    "unitKey": "de-4-armee",
    "period": "1940-05-10/1940-05-15",
    "note": "無記載。"
   },
   {
    "unitKey": "de-4-armee",
-   "period": "1940-05-17/1940-05-24",
-   "note": "只有命令與報告（5/16 只准先頭越過 Beaumont–Hirson–Montcornet–Guignicourt 線；5/22 報告將自三面攻 Arras，Ch. VIII p.132）；無軍團位置。"
+   "period": "1940-05-17/1940-05-22",
+   "note": "只有命令與報告（5/16 只准先頭越過 Beaumont–Hirson–Montcornet–Guignicourt 線；5/22 報告將自三面攻 Arras，Ch. VIII p.132）；無軍團位置。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-4-armee",
+   "period": "1940-05-24",
+   "note": "只有命令與報告（5/16 只准先頭越過 Beaumont–Hirson–Montcornet–Guignicourt 線；5/22 報告將自三面攻 Arras，Ch. VIII p.132）；無軍團位置。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-4-armee",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：無位置記載。"
+  },
+  {
+   "unitKey": "de-4-armee",
+   "period": "1940-05-24",
+   "note": "Supplement p.349：「Rundstedt's Fourth Army, which contained all the armour and was attacking the British and French forces from the south and west」，無城鎮；p.348「will, in the main, halt tomorrow」為命令。"
   },
   {
    "unitKey": "de-kleist-gr",
@@ -3130,9 +3758,19 @@
    "note": "5/23 傍晚：「the advanced units of Kleist and Hoth Groups should deny the Canal Line to the enemy but should not cross it」（Ch. IX p.138）為指示；5/24 停止令同。5/23 Kleist 獲准向海峽港口行動（Ch. VIII p.132），無位置。"
   },
   {
+   "unitKey": "de-kleist-gr",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：無位置記載。5/23–25 只有停止／收攏命令（p.348–351）。"
+  },
+  {
    "unitKey": "de-hoth-gr",
    "period": "1940-05-10/1940-05-24",
    "note": "除 5/19–20 與 Kleist 並稱（Ch. V p.77）及 5/23–24 的停止指示外無記載；無可單獨歸屬的位置。"
+  },
+  {
+   "unitKey": "de-hoth-gr",
+   "period": "1940-05-10/1940-05-24",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：無位置記載（Appendix II p.398：5/23 18.10 Uhr 軍團司令告知 Hoth 集群參謀長次日原地停止，命令）。"
   },
   {
    "unitKey": "de-xix-ak",
@@ -3150,9 +3788,19 @@
    "note": "軍級無位置；所屬 2nd 在 Boulogne、10th 攻 Calais、1st 在 Gravelines（見各師）。"
   },
   {
+   "unitKey": "de-xix-ak",
+   "period": "1940-05-10/1940-05-25",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：XIX Corps 只見於 1939-11-15 第三版 Plan Yellow 的任務（「the west bank of the Meuse at and south-east of Sedan」，p.338，計畫）與 5/24 編成；戰役期間無位置。"
+  },
+  {
    "unitKey": "de-xxxxi-ak",
    "period": "1940-05-10/1940-05-25",
    "note": "軍級無位置。只見於：5/20 日誌評 6th、8th 裝甲師進展（Ch. V p.81）與「the German 6th Armoured Division (of Reinhardt's XXXXI Corps)」（Ch. X p.162）。請看 6th／8th 裝甲師各筆。"
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "period": "1940-05-10/1940-05-25",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：只有 5/24 編成（6th、8th 裝甲師與 S.S. Verfügungs 師，p.403）；軍級無位置。5/23 所屬 6th／8th 裝甲師 opposite Aire（見各師）。"
   },
   {
    "unitKey": "de-xxxix-ak",
@@ -3160,9 +3808,19 @@
    "note": "只有 5/24 日誌的編成與損失（「XXXIX Corps in the Hoth Group, which then comprised the 5th and 7th Armoured and the 20th Motorised Divisions」，Ch. IX p.151）；無位置。"
   },
   {
+   "unitKey": "de-xxxix-ak",
+   "period": "1940-05-10/1940-05-25",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：只有 5/24 編成（5th、7th 裝甲師與 20th 摩托化師，p.403）；軍級無位置。5/23 所屬 5th／7th 裝甲師 near Arras（見各師）。"
+  },
+  {
    "unitKey": "de-xvi-ak",
    "period": "1940-05-10/1940-05-25",
    "note": "只有 5/11 XVI Corps 戰爭日誌提到 Maastricht 橋與 4th Armoured Division 行軍縱隊遭轟炸（Ch. III p.54）；軍本身無位置，之後未再出現。"
+  },
+  {
+   "unitKey": "de-xvi-ak",
+   "period": "1940-05-10/1940-05-25",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：只有 5/24 編成（3rd、4th 裝甲師與 S.S. Totenkopf 師，p.403）；軍級無位置。5/23 所屬 3rd／4th 裝甲師 near Arras（見各師）。"
   },
   {
    "unitKey": "de-1-pzdiv",
@@ -3180,6 +3838,11 @@
    "note": "「advanced units of the 1st, 3rd, 4th, 6th, 7th and 8th Armoured Divisions were facing the Canal Line defences」（Ch. IX p.151）——運河線全長、未分各師地段，無法取城鎮。"
   },
   {
+   "unitKey": "de-1-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
+  },
+  {
    "unitKey": "de-2-pzdiv",
    "period": "1940-05-10/1940-05-18",
    "note": "無記載。"
@@ -3195,9 +3858,19 @@
    "note": "只有命令：14:00 令該師準備修復 Boulogne 工事（Ch. X p.158）；前後兩日皆在 Boulogne。"
   },
   {
+   "unitKey": "de-2-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
+  },
+  {
    "unitKey": "de-10-pzdiv",
    "period": "1940-05-10/1940-05-22",
    "note": "5/19：「Immediately behind the two flank divisions were the 5th Armoured Division (on the north) and the 10th (on the south)」（Ch. V p.79），無城鎮；5/22–23 在 Kleist 集群預備隊（Ch. X p.158），無位置。"
+  },
+  {
+   "unitKey": "de-10-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
   },
   {
    "unitKey": "de-6-pzdiv",
@@ -3220,14 +3893,29 @@
    "note": "5/25 僅「facing the Canal Line defences」（Ch. IX p.151），無城鎮。"
   },
   {
+   "unitKey": "de-6-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
+  },
+  {
    "unitKey": "de-8-pzdiv",
    "period": "1940-05-10/1940-05-18",
    "note": "無記載。"
   },
   {
    "unitKey": "de-8-pzdiv",
-   "period": "1940-05-21/1940-05-25",
-   "note": "5/21 只有命令（沿 St Pol 公路展開，Ch. VI p.95）；5/25 僅「facing the Canal Line defences」（Ch. IX p.151）。"
+   "period": "1940-05-21/1940-05-22",
+   "note": "5/21 只有命令（沿 St Pol 公路展開，Ch. VI p.95）；5/25 僅「facing the Canal Line defences」（Ch. IX p.151）。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-8-pzdiv",
+   "period": "1940-05-24/1940-05-25",
+   "note": "5/21 只有命令（沿 St Pol 公路展開，Ch. VI p.95）；5/25 僅「facing the Canal Line defences」（Ch. IX p.151）。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-8-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
   },
   {
    "unitKey": "de-7-pzdiv",
@@ -3245,6 +3933,11 @@
    "note": "5/25 僅「facing the Canal Line defences」（Ch. IX p.151）。"
   },
   {
+   "unitKey": "de-7-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
+  },
+  {
    "unitKey": "de-5-pzdiv",
    "period": "1940-05-10/1940-05-20",
    "note": "5/19 在北翼師之後（Ch. V p.79），無城鎮。"
@@ -3255,14 +3948,39 @@
    "note": "無單獨記載（5/25 Canal Line 清單未列 5th）。"
   },
   {
+   "unitKey": "de-5-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
+  },
+  {
    "unitKey": "de-3-pzdiv",
-   "period": "1940-05-10/1940-05-25",
-   "note": "唯一一次出現：5/25「advanced units of the 1st, 3rd, 4th, 6th, 7th and 8th Armoured Divisions were facing the Canal Line defences」（Ch. IX p.151），無城鎮，未列位置。"
+   "period": "1940-05-10/1940-05-22",
+   "note": "唯一一次出現：5/25「advanced units of the 1st, 3rd, 4th, 6th, 7th and 8th Armoured Divisions were facing the Canal Line defences」（Ch. IX p.151），無城鎮，未列位置。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-3-pzdiv",
+   "period": "1940-05-24/1940-05-25",
+   "note": "唯一一次出現：5/25「advanced units of the 1st, 3rd, 4th, 6th, 7th and 8th Armoured Divisions were facing the Canal Line defences」（Ch. IX p.151），無城鎮，未列位置。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-3-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
   },
   {
    "unitKey": "de-4-pzdiv",
-   "period": "1940-05-12/1940-05-25",
-   "note": "5/11 之後只在 5/25 Canal Line 清單出現（Ch. IX p.151），無城鎮。"
+   "period": "1940-05-12/1940-05-22",
+   "note": "5/11 之後只在 5/25 Canal Line 清單出現（Ch. IX p.151），無城鎮。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-4-pzdiv",
+   "period": "1940-05-24/1940-05-25",
+   "note": "5/11 之後只在 5/25 Canal Line 清單出現（Ch. IX p.151），無城鎮。（原條目涵蓋的 5/23 已由 Supplement 補入，見 positions。）"
+  },
+  {
+   "unitKey": "de-4-pzdiv",
+   "period": "1940-05-10/1940-05-22",
+   "note": "Supplement（p.333–353）與 Appendix III（p.401–403，5/24 編組，無地點）：各裝甲師只在 5/23 夜的分布句（p.348）與 5/24 編成出現；5/10–22 無位置記載。"
   },
   {
    "unitKey": "uk-bef",

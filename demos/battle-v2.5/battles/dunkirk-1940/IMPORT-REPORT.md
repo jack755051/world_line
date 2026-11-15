@@ -14,6 +14,11 @@
 | 交戰（R5） | 28 | 17 | 未匯入：cand-hannut（來源檔標為查無）；cand-sedan（來源檔標為查無）；cand-dinant（來源檔標為查無）；cand-gembloux（來源檔標為查無）；cand-stonne（來源檔標為查無）；cand-montcornet（來源檔標為查無）；cand-abbeville（來源檔標為查無）；cand-arras（來源檔標為查無）；cand-aa（來源檔標為查無）；cand-boulogne（來源檔標為查無）；cand-abb2（來源檔標為查無） |
 | 據點（R6） | 23 | 22 筆／15 處 | 控制方未載的 8 筆照樣帶入，標待查證 |
 
+## 示意圖形
+
+示意箭頭 3 支（取自 `data/campaigns/dunkirk_1940.json`，每支掛在一段官方戰史引文上；只表示方向，不是實際路線）。
+沒有畫的 4 支：Diksmuide→Nieuwpoort（起點 Diksmuide 與部隊番號為推定，未核實；終點已核實）；Nieuwpoort→De Panne（攻擊方向與部隊番號未核實；僅攻擊地點已核實）；Veurne→De Panne（同上）；Hoymille→Teteghem（終點 Teteghem 為推定方向，未核實）。
+
 ## 還缺什麼
 
 1. **圖上標註沒有對到名冊**：211 個位置的 `unitKey` 都是空的。補上之後重跑，這些位置就會直接掛到名冊單位上，卡片才看得到指揮官與出處。

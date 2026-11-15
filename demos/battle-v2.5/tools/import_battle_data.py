@@ -235,13 +235,36 @@ single = sum(1 for u in R1 if u['status'] != 'gap' and n_src(u['citations']) <= 
 meta = {'campaign': bid, 'title_zh': VIEW.get('title_zh', bid), 'is_example': False, 'banner': '出處幾乎只有一部官方戰史；部隊位置讀自態勢圖，是推估', 'schema_version': 2, 'generated_by': 'tools/import_battle_data.py', 'from': REL,
         'note': f"資料全部來自主線的考證檔（{REL}），展示頁只搬運、不補。名冊 {len(roster_ids)} 個單位中 {single} 個只有一個來源。地圖上的部隊符號是態勢圖上的標註，還沒有對到名冊。不含傷亡數字。",
         'date_start': D0, 'date_end': D1, 'cameras': VIEW['cameras'], 'cameras_mobile': VIEW['cameras_mobile'], 'digitized': digitized}
+# ---------- 示意圖形：進攻箭頭（憲法 Decision 5，2026-11-15）----------
+# 來源：主專案考證檔 data/campaigns/<slug>.json 的 attack_arrows。只收來源檔自己標 verified、而且帶有官方戰史／學術專書逐字引文的；
+# 方向或番號是推定的（verified=false）不畫，列在匯入報告。箭頭只表示出處敘述的方向，不是實際路線。
+schem, schem_skip = [], []
+CAMP = os.path.normpath(os.path.join(SRC, '../../../campaigns', slug + '.json'))
+GRADE_OF = {'official_history': 'A', 'official_record': 'A', 'academic': 'B', 'monograph': 'B'}
+def camp_src(c):
+    host = (c.get('url') or '').rsplit('/', 1)[0]
+    key = next((k for k, v in SOURCES.items() if host and (v.get('url') or '').startswith(host)), None)
+    if key: return sid(key, c.get('url'))
+    key = 'campaign:' + slugify(c.get('citation') or c.get('url') or 'x')[:40]
+    src_out.setdefault(key, {'type': 'official' if GRADE_OF.get(c.get('type')) == 'A' else 'study', 'grade': GRADE_OF.get(c.get('type')), 'citation': c.get('citation') or key, 'url': c.get('url')})
+    return key
+if os.path.exists(CAMP):
+    for p in json.load(open(CAMP)).get('phases', []):
+        for a in p.get('attack_arrows', []):
+            cits = [c for c in a.get('sources', []) if GRADE_OF.get(c.get('type')) and c.get('quote')]
+            if not a.get('verified') or not cits:
+                schem_skip.append(f"{a['from']}→{a['to']}（{a.get('note') or '來源檔標未核實'}）"); continue
+            schem.append({'phase': ph_of(p['start_date']), 'from': a['from'], 'to': a['to'], 'path': [a['from_lonlat'], a['to_lonlat']], 'unit': a.get('unit'), 'side': a.get('side'),
+                          'verified': True, 'schematic': True, 'date': p['start_date'], **({'note': a['note']} if a.get('note') else {}),
+                          'refs': [{'src': camp_src(c), 'quote': c['quote'], 'loc': None, 'url': c.get('url'), 'grade': GRADE_OF[c['type']], 'checked': None} for c in cits]})
+
 battle = {'meta': meta, 'keyframes': keyframes, 'units': units, 'positions': positions, 'fronts': [], 'arrows': [], 'engagements': engs}
 W = lambda n, o: json.dump(o, open(OUT + n, 'w'), ensure_ascii=False, indent=1)
 W('battle.json', battle)
 W('assignments.json', {'meta': {'is_example': False, 'note': f'指揮官取自 {REL}r7-commanders.json；任期只填出處有載的日期。'}, 'assignments': asg, 'engagements': {}})
 W('sourced.json', {'meta': {'from': REL, 'schema': 'battle-data', 'campaign_key': slug, 'name_zh': VIEW.get('title_zh'), 'date_start': D0, 'date_end': D1, 'generated_by': 'tools/import_battle_data.py',
                             'note': '由主線考證檔轉出，只搬運不補。前段（5/10–5/25）的戰線是文字地名連線；主期的戰線讀自態勢圖，屬推估。'},
-                   'phases': phases, 'arrows': [], 'lines': lines, 'sites': list(sites.values()), 'sources': src_out})
+                   'phases': phases, 'arrows': schem, 'lines': lines, 'sites': list(sites.values()), 'sources': src_out})
 summ = collections.Counter(v['level'] for v in conf.values())
 W('confidence.json', {'meta': {'generated_by': 'tools/import_battle_data.py', 'tiers': {'1': '官方紀錄／戰史', '2': '同行審查研究', '3': '專書', '4': '百科（線索）', '5': '無出處'},
                                'note': '等級取自主線依 docs/source-rules.md 判定的可信程度：已查證＝一筆 A 或兩個獨立家族的 B；只有對手方說法或不到門檻＝待查證；讀圖＝推估。'},
@@ -262,6 +285,11 @@ rep = f"""# 匯入報告：{bid}
 | 前線（R4 前段，文字） | {len(R4L)} | {sum(1 for l in lines if l['basis'] == 'text')} | |
 | 交戰（R5） | {len(R5)} | {len(engs)} | 未匯入：{'；'.join(f'{k}（{w}）' for k, w in eng_skip) or '—'} |
 | 據點（R6） | {len(R6)} | {sum(len(s['changes']) for s in sites.values())} 筆／{len(sites)} 處 | 控制方未載的 {sum(1 for s in R6 if not s.get('controllerAfter'))} 筆照樣帶入，標待查證 |
+
+## 示意圖形
+
+示意箭頭 {len(schem)} 支（取自 `data/campaigns/{slug}.json`，每支掛在一段官方戰史引文上；只表示方向，不是實際路線）。
+沒有畫的 {len(schem_skip)} 支：{'；'.join(schem_skip) or '—'}。
 
 ## 還缺什麼
 

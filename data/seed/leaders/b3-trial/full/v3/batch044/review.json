@@ -1,0 +1,86 @@
+{
+ "batch": "044",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 8,
+  "addedCitations": 25,
+  "editedSentences": 4,
+  "spotRefetched": 5,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "uy-batlle-y-ordonez",
+   "bioId": "80d07942-b011-4896-9ce0-1110104bf3fc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 8,
+   "changes": [
+    "段2補引文：1907 任滿、隨即啟程赴歐（原引文缺年份與「隨即」）",
+    "段3補引文：第二任期主語、制憲會議選舉、繼任者 Viera、民主化、卒日 1929-10-20；段落迄點改 1929-10-21（day），原寫 1930-01-01（year）",
+    "uy-pres-banda 引文 locator 由「Serrato 條目後段」改為「1919 憲法說明段（Viera 條目之後）」",
+    "國家行政委員會主席維持 t14Ambiguous；1921–1923（總統府 A）與 Caetano「1921 and 1927」的 conflict gap 經核對兩份原文確實矛盾，保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "py-guggiari",
+   "bioId": "01a1b4b7-28c9-79ff-9d3d-7588b4fb765e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 22,
+   "changes": [
+    "段3：1928 年對手名誤寫「埃烏塞維奧」，依原文 Eduardo Fleitas 改為「愛德華多·弗萊塔斯」",
+    "段3：截斷引文「…protested his government's」刪除，改為三筆完整片段（日期與學生抗議、對玻利維亞入侵的謹慎回應、國宮前集會）；補「努力被大廈科爭端掩蓋」「間接導致下台」引文，並補卒年引文支撐段落迄點",
+    "段2：引文「unable to reach a consensus…」與正文不符，換成「divided into various bickering factions」；補「only partly successful」「rose to the highest ranks within the party／legislative branch」「Two years later…」引文；段落迄點依「1918 後兩年」改 1921-01-01",
+    "眾議院議長缺迄日、內政部長缺起日均已有待查證 gap；篇幅不足 gap 存在且 searchLog 有 round=retry 共 13 步，接受為已記錄的不足"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "uy-serrato",
+   "bioId": "07f71547-cb57-483b-9bee-02bdd68da485",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 8,
+   "roleCandidates": 3,
+   "gaps": 2,
+   "searchLogSteps": 12,
+   "changes": [
+    "段1刪去重複子句（卒日、BnF 所記 1923–1927 總統；段4、段5 已有）及其兩筆引文，避免湊字與段落迄點不符",
+    "段1「道路橋樑方向」改引「De Puentes y Caminos, integrando…」完整片段",
+    "段2「推動巴特列候選」依原文改為 1903 年並換含年份引文，刪去引文未寫的「總統」",
+    "段4：Ley Serrato 引文補 1921；補「para la adquisición vivienda propia」「1923 - 1927 Presidente de la República」與 1919 憲法兩筆引文",
+    "段3迄起點改 1908-01-01；段5迄點改 1960-09-08（day）",
+    "三筆參議員 roleCandidates（R1，席位明列 PARTIDO COLORADO）evidenceNote 改寫各自年份推算；財政部、外交部 R6（roleGap=regime）、代理內政部長 t14Ambiguous、反集體制委員會 partyPostAmbiguous 均核對無誤"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引用子句的一部分（缺年份、主語或受詞），本批補 25 筆引文；一筆引文被截斷掉受詞",
+  "regimeId 不連庫一律 null，四部閣員因此全部 R6（roleGap=regime），寫庫前須對 5442 政權重判",
+  "1919 憲法下國家行政委員會主席是否屬 R0 文件未涵蓋，留 t14Ambiguous 待 Tai 裁定"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

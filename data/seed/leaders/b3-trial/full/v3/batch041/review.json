@@ -1,0 +1,80 @@
+{
+ "batch": "041",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 5,
+  "editedSentences": 7,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cr-cortes",
+   "bioId": "01a1b4b7-28d2-7069-af93-43a6b37d926b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 9,
+   "changes": [
+    "段2：「這段任期讓他贏得…聲譽」改為來源原意「希門尼斯任內公共工程部長任期鞏固了…聲譽」（中英），補引文 consolidated Cortés's reputation…",
+    "段4：補引文 Shortly after Rafael Angel Calderón Guardia's inauguration in 1940（支撐首子句）與 his sudden death following a heart attack in 1946（支撐心臟病子句）",
+    "cortes-education-minister organization 刪去來源未載的「克萊托·岡薩雷斯·比克斯政府」",
+    "重抓 sinabi-cortes 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "hn-paz",
+   "bioId": "01a1b4b7-28e2-719a-8182-d937a044a56b",
+   "verdict": "pass",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "無修改；重抓 country-studies.com 轉載頁比對引文一致（LoC 國別研究第三方轉錄記 B，依 2026-11-15 來源規則）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "co-ospina",
+   "bioId": "30f1120f-a7e5-4bef-b09e-668a599b5803",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 12,
+   "changes": [
+    "ospina-war-minister-1901：任期 1901 在 1908–1945 時間窗外，t14Rule R6→R5，移除 roleEligible／roleEligibleKind／roleGap，改寫 t14Reason",
+    "段1：「回到安蒂奧基亞」改「定居安蒂奧基亞」（原文 Settling）；補引文 which were concentrated in coffee but also included mining",
+    "段2：刪無引文支撐的「表現突出」；「剛」奪權改「此前已」；「麥德林附近第一座現代紡織廠」誤譯改為「該國第一座現代紡織廠，1906年設於麥德林附近」（中文），英文同步，補引文 He was later a founder of the country's first modern textile factory",
+    "重抓 enc-lac-ospina、mindef-ministros 比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把時間窗外（1901）的四部閣員誤標 R6；窗外一律 R5",
+  "數處中文改寫加入原文沒有的細節（政府名稱、時間副詞、評語），且部分子句缺引文；已由審查補引文或刪字句"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 77
+ }
+}

@@ -1,0 +1,87 @@
+{
+ "batch": "038",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 3,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 25,
+  "editedSentences": 1,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "br-bernardes-artur",
+   "bioId": "1d7886ac-03b6-4018-81d1-1537ff78eb98",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "roleCandidates": 6,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "3 段聯邦眾議員任期（1909–1910、1915–1918、1935–1937）由 positions 移至 roleCandidates（de_facto_leader，originalPositionKind=legislator，t14Rule=R1，Tai 12:47 薩拉查裁決）：DHBB 明寫由 PRM 提名參選／列入 PRM 名單當選；各補 DHBB 原文引文",
+    "段2：補引文支撐 1904 年、市議員選舉、聯邦眾議員子句",
+    "段3：period 迄點改 1926-11-16（day）；「共和黨各政黨機器」改為「各共和黨的黨機器」",
+    "段4：補引文支撐 PSN 成立、列名領導委員會、流亡",
+    "段5：period 改 1945-04-07～1955-03-24；補 UDN 成立與脫離 UDN 引文",
+    "roleCandidates bernardes-psn／bernardes-udn：補「na comissão diretora」「14 de agosto」「desligamento…da UDN」引文",
+    "不含日期的引文 datePrecision 改 null（Q8）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "co-santos-eduardo",
+   "bioId": "db5f1565-69d9-4069-95b9-45300c73823c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 9,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 14,
+   "changes": [
+    "段3：截斷的總統任期引文改為含「entre 1938 y 1942」，另補「Ocupó el cargo de Presidente de la República」；補「were created during his administration」",
+    "段4：退休金引文延長為含「una generosa donación」以支撐捐贈子句",
+    "不含日期的引文 datePrecision 改 null（Q8）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "py-schaerer-eduardo",
+   "bioId": "01a1b4b7-28b7-7ef1-b3ab-26d72b85f8e6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 8,
+   "changes": [
+    "段1：補引文支撐「戰爭後」（War of the Triple Alliance）、都市氣質與效率、商業事務；period 迄點補 1941-11-13",
+    "段2：補引文支撐「要職」與「亞松森現代化」",
+    "段3：period 迄點改 1941-11-13",
+    "不含日期的引文 datePrecision 改 null（Q8）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者漏移以政黨身分取得的席位：Bernardes 三段聯邦眾議員任期 DHBB 明寫由 PRM 提名或列入 PRM 名單，已比照 Tai 12:47 移至 roleCandidates。",
+  "引文常截斷在謂語或時間狀語前（如「…período comprendido」「…na comissão diretora」），致子句無支撐；已以已抓原文逐字片段補齊，未新增事實。",
+  "14 筆不含日期的引文誤填 datePrecision，已改 null。",
+  "抽樣重抓 CPDOC DHBB、Academia Colombiana de Historia、Encyclopedia.com（Santos、Schaerer）4 頁皆 200 且含引文。名單寫「本批 5 人」實際 3 人。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

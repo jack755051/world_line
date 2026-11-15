@@ -1,0 +1,41 @@
+{
+ "batch": "035", "reviewedOn": "2026-11-15", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 10, "editedSentences": 5, "spotRefetched": 4, "searchLogShort": 0},
+ "people": [
+  {"key": "ye-yahya", "bioId": "01a1b4b5-fa07-7891-b5f8-6b36cbc96506", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 0, "roleCandidates": 1, "gaps": 2, "searchLogSteps": 13,
+   "changes": [
+    "段1「隸屬薩那的」刪除、引文改為含 Kafletüazir 的完整片段（原引文未含地點）；「以所召部族」刪除（引文未含）",
+    "段2「事實上」刪除（fiilî vaziyet gereği 不在引文內）",
+    "段3 奈季蘭句改寫：原寫「首次會議之前已佔領」為推論，改為並列兩事並補引文「iki heyet San’a’da bir araya geldi」；補「Taif Antlaşması her iki tam yetkili tarafından…」支撐條約名與全權代表；「İmam Yahya 26 Haziran 1934’te San’a’da」補上謂語 onaylamış",
+    "段4 補 history.state.gov 引文「agreed to the appointment of an American Special Diplomatic Mission」支撐派遣使團子句",
+    "gap role:yahya-imam-yemen 刪去未出現在任何已抓來源的「1948-02-17」",
+    "重抓 snl.no Jemens_nyere_historie 比對，引文逐字吻合"],
+   "returnedReasons": []},
+  {"key": "sa-ibn-saud", "bioId": "01a1b4b5-fa0c-7978-b7ac-e9ed00d0aa5c", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 0, "roleCandidates": 1, "gaps": 2, "searchLogSteps": 13,
+   "changes": [
+    "段2 宣誓效忠子句：日期引文改為「Hicaz halkı İbn-i Suud’a, 22 Cemaziyelsani 1344/7 Ocak 1926」並補「“Hicaz Meliki” olarak biat etmiştir」",
+    "段3「國王頒布敕令」改為「依…敕令，國名改為」（來源未寫國王頒布）；9月22日通告的主語改為王國宣告（照 Bostancı）",
+    "刪 gap paragraph:3（gapKind=conflict）：國務院寫敕令日 9-18、SNL 寫 9-23 成為王國，屬不同事件，非兩來源矛盾",
+    "段4 阿西爾引文補上動詞 erobret（「erobret i årene 1921 til 1925 Hijaz og i 1933 til 1934 Asir」）；補塔伊夫條約全權代表引文",
+    "段5 補 SNL 圖說「Ibn Saud i møte med USAs president Franklin D. Roosevelt」支撐會見羅斯福",
+    "重抓 history.state.gov Saudi Arabia 與 snl.no Abdulaziz_Al_Saud 比對，引文逐字吻合"],
+   "returnedReasons": []},
+  {"key": "fr-lebrun", "bioId": "b3595aed-e835-4c0e-9341-c2fb8c75856f", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 10, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 12,
+   "changes": [
+    "段1 補愛麗舍宮「1900 Élu député de Briey, réélu de 1902 à 1919」支撐布里埃選區當選",
+    "段3 補參議院「Sénateur de Meurthe-et-Moselle de 1920 à 1932」（省名）與「Quand Paul Doumer devint Président de la République, en 1931」（杜梅爾當選子句）",
+    "段4 補「6 février 1934 Après l’émeute」；Doumergue 引文擴為含「ancien président de la République」支撐「前總統」",
+    "T14 核可：殖民地部、封鎖與解放區部 R5（非四部）；戰爭部 1913-01-12～21 共 9 天 <90 天 R5；眾議員席位僅寫 étiquette「républicain de gauche」，維持 partyPostAmbiguous",
+    "重抓 elysee.fr/albert-lebrun 比對，引文逐字吻合"],
+   "returnedReasons": []}
+ ],
+ "issues": [
+  "本批 3 人（提示寫 5 人，名單僅列 3 人）",
+  "regimeId 不連庫一律 null；三人皆無四部閣員／將領須判 R6",
+  "葉海亞 head_of_state 候選起於 1904-06-05 就任伊瑪目（奧斯曼名義宗主期），獨立統治起日無來源明寫（已有 gap）；與名單 5442 1937-07-07～1945-10-01 重疊，主 session 寫庫時須依名單裁切",
+  "Bostancı 論文 3.2 標題寫 Taif Antlaşması（20 Mayıs 1934），正文寫 19 Mayıs 1934 簽署；段落採正文，未建 gap",
+  "勒布倫總統任期迄日：來源 1940-07-10／07-11 與名單 1940-06-22 不同，已有 gap 待主 session 比對",
+  "段落 period 迄點沿用研究者寫法（日精度以事件當日為迄），未逐段改為次日"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 78}
+}

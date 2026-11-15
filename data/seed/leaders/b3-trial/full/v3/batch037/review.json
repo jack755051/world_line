@@ -1,0 +1,81 @@
+{
+ "batch": "037",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 12,
+  "editedSentences": 1,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "bo-villazon",
+   "bioId": "01a1b4b5-fa33-7029-8daf-d4adfb8672e8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 14,
+   "changes": [
+    "段2：引文「At the National Convention of 1880」延長為含「he caught the attention of Narciso Campero」以支撐「引起注意」子句",
+    "段2：補 2 筆已抓原文引文（Under Campero…appointed minister of finance；After returning from abroad）支撐「在坎佩羅政府下」「返國後」子句",
+    "段3：引文延長為「In 1909 the leader of the Liberals, Ismael Montes」以支撐 1909 年，datePrecision=year",
+    "gap position:villazon-foreign-minister：刪除誤植的 Cervantes（與財政部長相關）說明"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "at-hainisch",
+   "bioId": "01a1b4b5-fa3b-7433-a303-f12a360e0a81",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 7,
+   "changes": [
+    "positions hainisch-trade-minister：起日由 1929-01-01（year）改為 1929-09-01（month），補 ÖBL 引文「Sept. 1929 Schober für sein neues Kabinett」；更新 evidenceNote",
+    "gap position:hainisch-trade-minister note 改為起日僅月精度"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cu-zayas",
+   "bioId": "01a1b488-1350-7dc3-9268-6e569b2d4d20",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1：引文改為「recibió una educación esmerada, que culminó…」支撐「受過良好教育」；「Su padre y su hermano —muerto en campaña—」改為「fueron unos activos militantes en la lucha contra la metrópoli」並另補「Su padre y su hermano」；補「tras ser detenido y juzgado」支撐逮捕審判",
+    "段4：補引文「He succeeded in keeping within certain bounds the interference」支撐「設法限制干預」",
+    "段5：「1914年初版」改為「哈瓦那，1914年」（來源未明寫初版）；補 6 筆 BVFE 原文引文支撐業餘詞典學者、兩卷本、原住民語言詞彙、詞源語義、退出政治轉向學術"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引半句（缺謂語或時間狀語），致段落子句（如「返國後」「引起注意」「1909年」「受過良好教育」）無引文支撐；本批以已抓原文逐字片段補齊，未新增事實。",
+  "本批名單第 3 人缺中文名，研究者自訂「阿爾弗雷多·薩亞斯」；Villazón 生卒年 EoLAHC 與 GND 不同、Zayas 副總統起年兩來源不同，均已以 conflict gap 並陳。",
+  "3 人皆無 roleCandidates：總統任期已在 5442；Hainisch 商務部長非四部→R5；Zayas 副總統→R5；Zayas 1921『encabezando al Partido Liberal』無黨職職稱與任期，留 gap。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

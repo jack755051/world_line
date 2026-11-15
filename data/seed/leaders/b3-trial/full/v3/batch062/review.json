@@ -1,0 +1,81 @@
+{
+ "batch": "062",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 2,
+  "editedSentences": 1,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "fi-stahlberg",
+   "bioId": "01a1b4bb-073c-7549-a02a-3200064a5ee6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 3,
+   "gaps": 4,
+   "searchLogSteps": 8,
+   "changes": [
+    "第4段 period 迄點 1934-01-01 改 1953-01-01（段內最後事件為1952年卒）",
+    "最高行政法院院長起日依議會資料「Siirtynyt 10.8.1918 korkeimman hallinto-oikeuden presidentiksi」改為 1918-08-10（day），position 與第3段各補此引文；第3段該句改寫為1918年8月10日轉任",
+    "field:kho_end gap 改 target=position:stahlberg-kho-president，note 改「待查證：缺迄日；」格式",
+    "新增 gap role:stahlberg-young-finn-central-committee：議會資料列青年芬蘭黨中央委員會（黨職）但無起迄，待查證：缺起日",
+    "重抓 Eduskunta API 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "py-franco",
+   "bioId": "01a1aa4a-e5ef-7aaa-9df1-cade27aefaea",
+   "verdict": "pass",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 16,
+   "changes": [
+    "篇幅不足 gap 字數改為實測127字",
+    "重抓 GND（lobid）與 LoC 權威檔比對引文一致；Biografías y Vidas 正確留作 gap 候選"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "py-gonzalez-navero",
+   "bioId": "01a1b4bb-0770-7487-8139-21464939d107",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 15,
+   "changes": [
+    "searchLog step 11 是誤貼的 Manuel Franco 查詢，result 改 not_relevant 並加註不計入",
+    "篇幅不足 gap 字數改為實測121字",
+    "重抓 GND（lobid）比對引文一致；1931 年 Staatspräsident 候選（R0，月精度）保留"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "兩位巴拉圭人物的 WebSearch 因額度用盡未實際執行，retry 輪多為泛巴拉圭頁且兩人共用同一組抓取；下一輪建議：dbe.rah.es 具體條目、BNE 權威檔（換時段）、巴拉圭國會圖書館（bacn.gov.py）、學術專書（Llano 2007, La muerte de un presidente）書目頁",
+  "Stahlberg 黨中央委員會職務在議會資料無日期，需 Kansallisbiografia 補（JS 載入無法 curl）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

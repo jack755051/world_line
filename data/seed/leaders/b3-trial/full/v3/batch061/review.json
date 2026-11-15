@@ -1,0 +1,89 @@
+{
+ "batch": "061",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 3,
+  "editedSentences": 0,
+  "spotRefetched": 3,
+  "searchLogShort": 2
+ },
+ "people": [
+  {
+   "key": "bo-gutierrez-guerra",
+   "bioId": "01a1b4bb-075a-7505-995e-ddbb4d5a4c34",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 5,
+   "changes": [
+    "P1 period.end 1917-08-15→1929-02-04（段內最後事件為1929-02-03逝世，Q3）",
+    "P3 period.end 1920-07-13(day)→1920-08-01(month)：引文只寫 July 1920",
+    "重抓 Encyclopedia.com 條目比對一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：實際執行查詢僅4次（step5 未執行）、來源類型僅 authority／named_encyclopedia／national_dictionary 3類、原文語言查詢0次已執行；缺 official 類與原文語言查詢",
+    "建議下一步：Biblioteca y Archivo Histórico de la Asamblea Legislativa Plurinacional（Bolivia）歷任總統頁、Vicepresidencia del Estado Plurinacional 歷任總統資料、Biblioteca Nacional de Bolivia 權威檔、LoC Name Authority（id.loc.gov）、BNE datos.bne.es；以西文「José Gutiérrez Guerra presidente Bolivia 1917」查詢"
+   ]
+  },
+  {
+   "key": "cz-svehla",
+   "bioId": "01a1b4bb-0764-7958-8cdb-73515884c8ae",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 10,
+   "changes": [
+    "P3 period.end 1918-10-01→1918-11-01（引文 Ende Oktober 1918，month 精度 Q3）",
+    "P3 補3筆 ÖBL 引文（已逐字核對）：Nationalausschusses（原引文截掉受詞）、In den letzten Kriegsjahren（戰爭末期子句）、einer jener vier Politiker（四位政治人物子句）",
+    "角色 svehla-agrarian-chair：刪除以「1929年12月辭去所有職務」推得迄日的引文與迄日（非 Q7 允許的推論，來源未明指黨主席），end=null，加 gap role:svehla-agrarian-chair「待查證：缺迄日」",
+    "重抓 ÖBL 條目比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pe-prado",
+   "bioId": "ea760663-7065-4f3e-9765-caa89277c76a",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 7,
+   "changes": [
+    "P1 period.end 1939-12-08→1968-01-01(year)：段內含1967年逝世（Q3）",
+    "P2 period 1939-12-08～1945-07-29(day)→1939-01-01～1946-01-01(year)：引文只寫1939-1945，日精度來自名單非引文",
+    "死亡日 conflict（GND A 1967-08-15 vs Encyclopedia.com B 1967-08-14）屬兩合格來源，保留",
+    "重抓 Encyclopedia.com 條目比對一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：實際執行查詢僅6次（step7 未執行）、原文語言查詢0次已執行；缺≥8次查詢與≥2次西文查詢",
+    "建議下一步：Congreso de la República del Perú 歷任國會議員／總統資料（museo del Congreso）、Presidencia del Perú（gob.pe）歷任總統頁、Biblioteca Nacional del Perú 權威檔、LoC Name Authority、datos.bne.es；以西文「Manuel Prado Ugarteche diputado 1919」查詢以補1919–21議員任期（現僅 Treccani 無署名 C 級）"
+   ]
+  }
+ ],
+ "issues": [
+  "兩位薄人物 searchLog 最後一步都寫「工作階段搜尋額度用盡，未能執行搜尋」，最低嘗試因此未達；RAWDIR 另有多個未登記於 searchLog 的抓取檔（bnp、cong、ine、pi、pr、ws、vh、mvcr 等），應補記或確認無用",
+  "段落 period 迄點多次未依段內最後事件定（含逝世句的出身段），及以名單日精度取代引文精度",
+  "Švehla 1908 波希米亞邦議會議員兼捷克農業黨團主席（Obmann des agrar. Klubs，屬黨職應進 roleCandidates）與1902年農民聯合會副主席只放 gaps，未依最低標準以起日＋缺迄日 gap 建立；審查不新增，留待下輪"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

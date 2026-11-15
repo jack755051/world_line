@@ -1,0 +1,83 @@
+{
+ "batch": "059",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 2,
+  "addedCitations": 7,
+  "editedSentences": 2,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "gr-constantine-i",
+   "bioId": "01a1b4bb-06f7-754c-b2fe-fa28dec6c363",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "段3：補 Treccani 引文 'aveva poi deciso \"non ancora\", si dimise'（支撐「還不是時候」與韋尼澤洛斯辭職子句）、\"Nel giugno 1917 l'Intesa si decise finalmente\"（支撐1917年）；10 Dec 1916 引文延長至 'accantonate ad Atene'（支撐「駐雅典」）",
+    "段3、段4：刪 GND 兩筆截斷謂語的引文（'1917 aufgrund seiner deutschfreundlichen Haltung'、'1922 aufgrund der Niederlage…'）",
+    "段4：補 Treccani 引文 'un vero plebiscito…'、'C. fu finalmente richiamato'、\"In seguito all'esito disastroso di questa guerra\"（支撐近乎公民投票、被召回、戰爭慘敗子句）",
+    "重抓 Treccani 比對引文一致；卒年 conflict（lex.dk 1922 vs Treccani/GND 1923）為兩份合格來源矛盾，保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "lv-kviesis",
+   "bioId": "01a1b4bb-0723-7242-8e8c-684b71fbfa9a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 12,
+   "changes": [
+    "司法總監 position：刪除研究者依「一年後」推得的迄日 1944-04-01（引文無此日期），end 改 null，新增「待查證：缺迄日」gap",
+    "段4：任命者引文改為含 'Drekslers' 的完整片段；補引文 'to the Nazis established collaborationist Latvian self-government'（支撐納粹設立的合作性自治機構子句）",
+    "重抓 president.lv 比對引文一致；GND 1917 農民聯盟為黨員身分非黨職，人民議會席位來源未寫以黨身分取得，不移候選"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fi-relander",
+   "bioId": "01a1b4bb-0734-7349-baa7-235e76e2967b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 3,
+   "gaps": 4,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1：刪無出處子句「開始其政黨政治生涯」（中英）",
+    "段2：補 GND 引文 '1908-1917 Assistent am Wirtschaftsforschungszentrum'（原引文不含年份卻標 year 精度）",
+    "段3：GND 截斷引文改為 '1931 Rückzug aus der Politik nach Nichtnominierung für eine zweite Amtszeit'；刪「內戰後」（Lex 該句未寫）",
+    "重抓 SNL 與 GND（lobid）比對引文一致；兩段以農民聯盟身分議員席位與黨主席 R1 候選、省長 R5、議長 R5 判定正確"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批 WebSearch 額度用盡，三人原文語言查詢未實際執行；三人皆已有 A/B 來源 4 段，未達最低嘗試的條款不觸發 returned，但下輪可補原文查詢（Kansallisbiografia、enciklopedija.lv、希臘議會）",
+  "研究者多處引用截斷謂語的 GND 片段或以 quote 無日期卻標 datePrecision，審查已修",
+  "三人 meetsMinimum=false 均因任期缺迄日（已有待查證 gap 與篇幅不足 gap、searchLog 有 retry）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

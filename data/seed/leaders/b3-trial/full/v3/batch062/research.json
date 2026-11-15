@@ -1,0 +1,1570 @@
+{
+ "batch": "b3-full-v3-batch062",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）；名單5442已有的元首／首腦任期不重建；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch062/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "eduskunta-stahlberg": {
+   "title": "Ståhlberg, Carl Johan (Kaarlo Juho, K.J.)（Eduskunta 開放資料 MemberOfParliament，personId 911547）",
+   "authors": [],
+   "publisher": "Eduskunta（芬蘭國會）",
+   "published_text": "Eduskunta 開放資料 API 議員資料列",
+   "url": "https://avoindata.eduskunta.fi/api/v1/tables/MemberOfParliament/rows?perPage=2&columnName=lastname&columnValue=St%C3%A5hlberg",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "芬蘭國會官方議員資料庫（官方議會頁）"
+  },
+  "presidentti-fi": {
+   "title": "Edelliset presidentit（歷任總統）",
+   "authors": [],
+   "publisher": "Tasavallan presidentin kanslia（芬蘭總統府）",
+   "published_text": "總統府官網歷任總統頁",
+   "url": "https://www.presidentti.fi/presidentin-toimi/edelliset-presidentit/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "總統府官方網站歷任總統名單"
+  },
+  "gnd-stahlberg": {
+   "title": "Ståhlberg, Kaarlo Juho（GND 128938560）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/128938560",
+   "archive_url": null,
+   "catalog_id": "GND 128938560",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔；經 lobid.org 官方鏡像取得"
+  },
+  "gnd-franco": {
+   "title": "Franco, Manuel（GND 1057379093）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/1057379093",
+   "archive_url": null,
+   "catalog_id": "GND 1057379093",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔；經 lobid.org 官方鏡像取得"
+  },
+  "loc-franco": {
+   "title": "Franco, Manuel, 1871-1919（LCNAF n 2007089853）",
+   "authors": [],
+   "publisher": "Library of Congress",
+   "published_text": "LC Name Authority File",
+   "url": "https://id.loc.gov/authorities/names/n2007089853.json",
+   "archive_url": null,
+   "catalog_id": "LCCN n 2007089853",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國會圖書館人名權威檔（含編目者查證註記）"
+  },
+  "gnd-gonzalez": {
+   "title": "González Navero, Emiliano（GND 1057466638）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/1057466638",
+   "archive_url": null,
+   "catalog_id": "GND 1057466638",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔；經 lobid.org 官方鏡像取得"
+  },
+  "bv-franco": {
+   "title": "Biografia de Manuel Franco",
+   "authors": [],
+   "publisher": "Biografías y Vidas（無具名作者）",
+   "published_text": "Biografías y Vidas 線上傳記",
+   "url": "https://www.biografiasyvidas.com/biografia/f/franco_manuel.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無具名作者、無書目的線上傳記彙編，未評等；只作 gap 候選線索"
+  },
+  "bv-gonzalez": {
+   "title": "Biografia de Emiliano González Navero",
+   "authors": [],
+   "publisher": "Biografías y Vidas（無具名作者）",
+   "published_text": "Biografías y Vidas 線上傳記",
+   "url": "https://www.biografiasyvidas.com/biografia/g/gonzalez_navero.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無具名作者、無書目的線上傳記彙編，未評等；只作 gap 候選線索"
+  }
+ },
+ "people": [
+  {
+   "key": "fi-stahlberg",
+   "bioId": "01a1b4bb-073c-7549-a02a-3200064a5ee6",
+   "name": "Kaarlo Juho Ståhlberg",
+   "nameZh": "卡羅·尤荷·斯托爾貝里",
+   "recordIds": [
+    "01a1aa4a-4c32-71d9-bf4c-60762b54f5c3"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1865-01-01",
+      "end": "1894-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與學歷",
+      "en": "Birth and education"
+     },
+     "body": {
+      "zh-Hant": "斯托爾貝里生於1865年，地點是蘇奧穆薩爾米；他1884年成為大學新生，1887年取得哲學候補學位，1889年取得法學候補學位，1892年取得代理法官資格，1893年取得法學博士。德國國家圖書館權威檔也記他生於1865年。",
+      "en": "Ståhlberg was born in 1865 in Suomussalmi; he matriculated in 1884, took a candidate degree in philosophy in 1887 and a candidate degree in law in 1889, qualified as a deputy judge (varatuomari) in 1892, and gained a doctorate in law in 1893. The German National Library authority record also gives 1865 as his birth year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "生卒地",
+       "quote": "1865 Suomussalmi 1952 Helsinki",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "學歷",
+       "quote": "ylioppilas 1884 filosofian kandidaatti 1887",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "學歷",
+       "quote": "lakitieteen kandidaatti 1889 varatuomari 1892",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "學歷",
+       "quote": "lakitieteen lisensiaatti 1893 lakitieteen tohtori 1893",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-stahlberg",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1865\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1893-01-01",
+      "end": "1908-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "官職、學術與社會工作",
+      "en": "Official, academic and civic work"
+     },
+     "body": {
+      "zh-Hant": "1893至1903年間他任參議院民政處的紀要秘書，後來被以行政途徑免職；1894至1898年他在赫爾辛基大學擔任行政法與國民經濟的助理，1903至1905年任手工業與工廠協會秘書，1905至1907年擔任參議院經濟部商工處的首長。",
+      "en": "From 1893 to 1903 he was protocol secretary of the Senate civil office and was later dismissed by administrative means; from 1894 to 1898 he was an assistant in administrative law and national economy at the University of Helsinki, from 1903 to 1905 secretary of the Handicraft and Factory Association, and from 1905 to 1907 head of the trade and industry commission of the Senate economic division."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "senaatin siviilitoimituskunnan protokollasihteeri 1893-1903",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "erotettiin hallinnollista tietä",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "hallinto-oikeuden ja kansantalouden apulainen 1894-1898",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "Käsityö- ja tehdasyhdistyksen sihteeri 1903-1905",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "senaatin talousosasto, kauppa- ja teollisuustoimituskunta, päällikkö 1905-1907",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "教授、議員與最高行政法院院長",
+      "en": "Professor, member of parliament and chief justice"
+     },
+     "body": {
+      "zh-Hant": "1908至1918年他在赫爾辛基大學擔任行政法教授；議會資料記他1908年8月1日至1910年2月28日代表海梅省南部選區、1914年2月2日至1918年8月10日代表奧盧省南部選區，兩屆都隸屬青年芬蘭黨。1914年2月3日至1917年4月3日他任議長；1918年8月10日他轉任最高行政法院院長，議會資料記此職為1918至1919年。",
+      "en": "From 1908 to 1918 he was professor of administrative law at the University of Helsinki. Parliament records show him sitting for the southern Häme constituency from 1 August 1908 to 28 February 1910 and for the southern Oulu constituency from 2 February 1914 to 10 August 1918, both terms under the Young Finnish Party. He was Speaker from 3 February 1914 to 3 April 1917 and on 10 August 1918 he moved to become president of the Supreme Administrative Court, a post the parliament record dates 1918–1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "Helsingin yliopiston hallinto-oikeuden professori 1908-1918",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "選區",
+       "quote": "Hämeen läänin eteläinen vaalipiiri 01.08.1908 28.02.1910",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "選區",
+       "quote": "Oulun läänin eteläinen vaalipiiri 02.02.1914 10.08.1918",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "黨籍",
+       "quote": "Nuorsuomalainen puolue lpk01 01.08.1908 28.02.1910 02.02.1914 10.08.1918",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "議長",
+       "quote": "Puhemiehistö pmt01 Puhemies 03.02.1914 03.04.1917",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "Korkeimman hallinto-oikeuden presidentti 1918-1919",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "議員異動註記",
+       "quote": "Siirtynyt 10.8.1918 korkeimman hallinto-oikeuden presidentiksi",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1953-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總統任期與晚年",
+      "en": "Presidency and later years"
+     },
+     "body": {
+      "zh-Hant": "總統府官網列他為1919至1925年的總統；德國國家圖書館權威檔同樣記他1919至1925年任國家元首。1926至1945年他是法律準備委員會的資深成員，1930年10月21日至1933年8月31日又代表烏西馬省選區，這次隸屬國民進步黨；他1952年卒於赫爾辛基。",
+      "en": "The President's Office lists him as president for 1919–1925, and the German National Library authority record likewise gives 1919–1925 as his years as head of state. From 1926 to 1945 he was a senior member of the law preparation committee, and from 21 October 1930 to 31 August 1933 he again sat for the Uusimaa constituency, this time for the National Progressive Party; he died in Helsinki in 1952."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "presidentti-fi",
+       "locator": "歷任總統",
+       "quote": "Ståhlberg, Kaarlo Juho (1865–1952) 1919–1925",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-stahlberg",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1919-1925 Staatspräsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "lainvalmistelukunnan vanhempi jäsen 1926-1945",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "選區",
+       "quote": "Uudenmaan läänin vaalipiiri 21.10.1930 31.08.1933",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "黨籍",
+       "quote": "Kansallinen edistyspuolue lkp01 21.10.1930 31.08.1933",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "生卒地",
+       "quote": "1865 Suomussalmi 1952 Helsinki",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "stahlberg-professor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "赫爾辛基大學",
+      "en": "University of Helsinki"
+     },
+     "title": {
+      "orig": "Helsingin yliopiston hallinto-oikeuden professori",
+      "zh-Hant": "赫爾辛基大學行政法教授",
+      "en": "Professor of administrative law, University of Helsinki"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1908-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "Helsingin yliopiston hallinto-oikeuden professori 1908-1918",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-stahlberg",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1908-1918 Professor für Verwaltungsrecht an der Universität Helsinki",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "stahlberg-speaker",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭國會（Eduskunta）",
+      "en": "Parliament of Finland (Eduskunta)"
+     },
+     "title": {
+      "orig": "Puhemies",
+      "zh-Hant": "議長",
+      "en": "Speaker"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1914-02-03",
+      "end": "1917-04-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "議長",
+       "quote": "Puhemiehistö pmt01 Puhemies 03.02.1914 03.04.1917",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "stahlberg-kho-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "最高行政法院",
+      "en": "Supreme Administrative Court of Finland"
+     },
+     "title": {
+      "orig": "Korkeimman hallinto-oikeuden presidentti",
+      "zh-Hant": "最高行政法院院長",
+      "en": "President of the Supreme Administrative Court"
+     },
+     "positionKind": "judicial",
+     "period": {
+      "start": "1918-08-10",
+      "end": "1920-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "議員異動註記",
+       "quote": "Siirtynyt 10.8.1918 korkeimman hallinto-oikeuden presidentiksi",
+       "quoteLang": "fi",
+       "evidenceNote": "起日依議會資料議員異動註記（1918-08-10 轉任）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "Korkeimman hallinto-oikeuden presidentti 1918-1919",
+       "quoteLang": "fi",
+       "evidenceNote": "年精度迄點：1918–1919，迄日取 1919 的下一年起日；與同年7月起的總統任期重疊，來源未另寫離任日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "stahlberg-law-prep-committee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法律準備委員會",
+      "en": "Law Preparation Committee"
+     },
+     "title": {
+      "orig": "lainvalmistelukunnan vanhempi jäsen",
+      "zh-Hant": "法律準備委員會資深成員",
+      "en": "Senior member of the law preparation committee"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1926-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "經歷",
+       "quote": "lainvalmistelukunnan vanhempi jäsen 1926-1945",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "stahlberg-mp-1908-young-finn",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭國會（Eduskunta）",
+      "en": "Parliament of Finland (Eduskunta)"
+     },
+     "title": {
+      "orig": "Kansanedustaja（Nuorsuomalainen puolue）",
+      "zh-Hant": "國會議員（青年芬蘭黨）",
+      "en": "Member of Parliament (Young Finnish Party)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1908-08-01",
+      "end": "1910-02-28"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "選區",
+       "quote": "Hämeen läänin eteläinen vaalipiiri 01.08.1908 28.02.1910",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "黨籍",
+       "quote": "Nuorsuomalainen puolue lpk01 01.08.1908 28.02.1910 02.02.1914 10.08.1918",
+       "quoteLang": "fi",
+       "evidenceNote": "議會資料以一句列出兩屆（1908-08-01～1910-02-28、1914-02-02～1918-08-10）在該黨名下；日精度，迄日照原值",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；國會資料明列該席位屬青年芬蘭黨（Nuorsuomalainen puolue）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "stahlberg-mp-1914-young-finn",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭國會（Eduskunta）",
+      "en": "Parliament of Finland (Eduskunta)"
+     },
+     "title": {
+      "orig": "Kansanedustaja（Nuorsuomalainen puolue）",
+      "zh-Hant": "國會議員（青年芬蘭黨）",
+      "en": "Member of Parliament (Young Finnish Party)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1914-02-02",
+      "end": "1918-08-10"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "選區",
+       "quote": "Oulun läänin eteläinen vaalipiiri 02.02.1914 10.08.1918",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "黨籍",
+       "quote": "Nuorsuomalainen puolue lpk01 01.08.1908 28.02.1910 02.02.1914 10.08.1918",
+       "quoteLang": "fi",
+       "evidenceNote": "議會資料以一句列出兩屆（1908-08-01～1910-02-28、1914-02-02～1918-08-10）在該黨名下；日精度，迄日照原值",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；國會資料明列該席位屬青年芬蘭黨（Nuorsuomalainen puolue）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "stahlberg-mp-1930-progressive",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭國會（Eduskunta）",
+      "en": "Parliament of Finland (Eduskunta)"
+     },
+     "title": {
+      "orig": "Kansanedustaja（Kansallinen edistyspuolue）",
+      "zh-Hant": "國會議員（國民進步黨）",
+      "en": "Member of Parliament (National Progressive Party)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1930-10-21",
+      "end": "1933-08-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "選區",
+       "quote": "Uudenmaan läänin vaalipiiri 21.10.1930 31.08.1933",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eduskunta-stahlberg",
+       "locator": "黨籍",
+       "quote": "Kansallinen edistyspuolue lkp01 21.10.1930 31.08.1933",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；國會資料明列該席位屬國民進步黨（Kansallinen edistyspuolue）",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:kansallisbiografia",
+     "gapKind": "not_found",
+     "note": "待查證：Kansallisbiografia（A）傳記全文因頁面為 JavaScript 載入而無法以 curl 取得；Britannica 403。目前正文僅依國會資料庫、總統府官網與 GND。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:presidency_dates",
+     "gapKind": "not_found",
+     "note": "總統任期1919-07-26～1925-03-01 已在名單5442，本檔未重建；總統府官網與 GND 只到年精度（1919–1925）。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:stahlberg-kho-president",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；起日依議會資料「Siirtynyt 10.8.1918」為1918-08-10，迄點只有年精度「1918-1919」（暫寫1920-01-01），且與1919年7月起的總統任期重疊，確切離任日來源未寫。已查：Eduskunta 開放資料、GND、總統府官網。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:stahlberg-young-finn-central-committee",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；議會資料列有「Nuorsuomalaisen puolueen keskustoimikunta」（青年芬蘭黨中央委員會，黨職→若有日期應入 roleCandidates de_facto_leader／R1，Tai 2026-11-11 12:12），但未寫任期起迄，故不寫入 roleCandidates。需要 Kansallisbiografia 或黨史資料。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Ståhlberg Kaarlo Juho",
+     "url": "https://lobid.org/gnd/search?q=St%C3%A5hlberg+Kaarlo+Juho&format=json&size=3",
+     "result": "found_A",
+     "note": "兩筆：128938560（生卒年、職業）與 1157674399（僅著作）；第一次未編碼查詢回 500，改用 URL 編碼後成功"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "LoC 權威檔站內搜尋 Ståhlberg Kaarlo",
+     "url": "https://id.loc.gov/search/?q=St%C3%A5hlberg+Kaarlo",
+     "result": "no_result",
+     "note": "僅取回檢索頁，無可用紀錄"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Eduskunta 開放資料 MemberOfParliament lastname=Ståhlberg",
+     "url": "https://avoindata.eduskunta.fi/api/v1/tables/MemberOfParliament/rows?perPage=2&columnName=lastname&columnValue=St%C3%A5hlberg",
+     "result": "found_A",
+     "note": "personId 911547：學歷、經歷、選區、黨籍與議長任期"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "presidentti.fi 歷任總統頁（edelliset-presidentit）",
+     "url": "https://www.presidentti.fi/presidentin-toimi/edelliset-presidentit/",
+     "result": "found_A",
+     "note": "列 1919–1925；先試 /en/presidents/ 等猜測路徑回 404，改由首頁連結找到正確頁"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Kansallisbiografia Ståhlberg（artikkeli/626）",
+     "url": "http://www.kansallisbiografia.fi/kb/artikkeli/626/",
+     "result": "no_result",
+     "note": "頁面為 JavaScript 載入，curl 只得到導覽列，無傳記內文；另試 /henkilo/1073、/henkilo/626 亦同"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Kaarlo Juho Ståhlberg",
+     "url": "https://www.britannica.com/biography/Kaarlo-Juho-Stahlberg",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Biografiasampo p1073",
+     "url": "https://biografiasampo.fi/henkilo/p1073",
+     "result": "no_result",
+     "note": "僅取回外殼頁，無內文"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "WebSearch：Kaarlo Juho Ståhlberg Kansallisbiografia presidentti 1919",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 網路搜尋額度用盡，未取得結果"
+    }
+   ]
+  },
+  {
+   "key": "py-franco",
+   "bioId": "01a1aa4a-e5ef-7aaa-9df1-cade27aefaea",
+   "name": "Manuel Franco",
+   "nameZh": "曼努埃爾·弗朗科",
+   "recordIds": [
+    "5a8659c4-1ff1-4e58-ba3e-ce669ed4e567",
+    "4330f7ef-3f94-42a2-940c-143ec2e51b1b"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1871-01-01",
+      "end": "1872-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身",
+      "en": "Birth"
+     },
+     "body": {
+      "zh-Hant": "曼努埃爾·弗朗科生於1871年，地點是巴拉圭的康塞普西翁。",
+      "en": "Manuel Franco was born in 1871 in Concepción, Paraguay."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-franco",
+       "locator": "citationNote",
+       "quote": "b. 1871 in Concepción, Paraguay",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-franco",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1871\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1916-01-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "教育家與總統",
+      "en": "Educator and president"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔稱他為教育家與政治人物，並記他1916至1919年任國家元首；美國國會圖書館權威檔的註記也寫他1916年成為巴拉圭總統。",
+      "en": "The German National Library authority record calls him an educator and politician and gives 1916–1919 as his years as head of state; the Library of Congress authority record likewise notes that he became president of Paraguay in 1916."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-franco",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Pädagoge u. Politiker, von 1916 - 1919 Staatspräsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-franco",
+       "locator": "citationNote",
+       "quote": "1916 becomes president of Paraguay",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-06-05",
+      "end": "1919-06-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "逝世",
+      "en": "Death"
+     },
+     "body": {
+      "zh-Hant": "美國國會圖書館權威檔的註記記他在1919年6月5日逝世。",
+      "en": "The Library of Congress authority record notes that he died on 5 June 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-franco",
+       "locator": "citationNote",
+       "quote": "died June 5, 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-franco",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1919\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前3段、中文127字（最低標準為3段300字）。已查來源類型：權威檔（GND、LoC 為A；VIAF、BNE 403）、國家傳記辭典（DB~e 無內文）、百科（Britannica 403）、官方（總統府官網逾時）；未取得可抓原文的A／B傳記全文。 加強重跑：搜尋額度用盡，僅嘗試7次直接抓取（Britannica 403、LoC 國別研究404、Wikisource 404、參議院官網無資料、國家圖書館 DNS 失敗、Encyclopedia.com 404），未取得新的A／B原文；仍不足。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:early_career",
+     "gapKind": "not_found",
+     "note": "待查證：1908年任司法、宗教與公共教育部長，之後轉內政部長；1910年進最高法院；1912–1916年任參議員；1913年任檢察總長（僅見 Biografías y Vidas，無具名作者，未評等，不能入正文或 positions）。需要國家級傳記辭典、議會或政府官方名單佐證。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "bv-franco",
+       "locator": "全文",
+       "quote": "En 1908 fue ministro de Justicia, Culto e Instrucción Pública",
+       "quoteLang": "es"
+      }
+     ]
+    },
+    {
+     "target": "field:birth_place",
+     "gapKind": "not_found",
+     "note": "待查證：出生地與年份。LoC 註記為1871年生於 Concepción（A，已用於正文）；Biografías y Vidas（未評等）寫「Asunción, 1875」。兩者非皆合格出處，不構成 conflict，仍以 LoC／GND 的1871為準；出生地需第二個A／B來源。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "bv-franco",
+       "locator": "全文",
+       "quote": "(Asunción, 1875-1919)",
+       "quoteLang": "es"
+      }
+     ]
+    },
+    {
+     "target": "field:presidency_dates",
+     "gapKind": "not_found",
+     "note": "待查證：總統任期1916-08-15～1919-06-05 已在名單5442，本檔未重建；本批未取得A／B來源逐日核對，GND 只到年精度。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Franco Manuel Paraguay",
+     "url": "https://lobid.org/gnd/search?q=Franco+Manuel+Paraguay&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 1057379093：1871–1919、教育家與政治人物、1916–1919 總統"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "LoC 權威檔 n2007089853（由 GND sameAs 取得）",
+     "url": "https://id.loc.gov/authorities/names/n2007089853.json",
+     "result": "found_A",
+     "note": "含編目者查證註記：1916 成為總統、1919-06-05 逝世、1871 生於 Concepción"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "VIAF 65930322",
+     "url": "https://viaf.org/viaf/65930322/viaf.json",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e manuel-franco",
+     "url": "https://dbe.rah.es/biografias/manuel-franco",
+     "result": "no_result",
+     "note": "頁面無傳記內文（猜測路徑），站內搜尋回外殼頁"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Manuel Franco",
+     "url": "https://www.britannica.com/biography/Manuel-Franco",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Presidencia de la República del Paraguay 官網",
+     "url": "https://www.presidencia.gov.py/",
+     "result": "no_result",
+     "note": "連線逾時（60 秒）"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "Biblioteca Nacional de España datos.bne.es",
+     "url": "https://datos.bne.es/find?s=Manuel+Franco+Paraguay",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Biografías y Vidas Manuel Franco",
+     "url": "https://www.biografiasyvidas.com/biografia/f/franco_manuel.htm",
+     "result": "unrated",
+     "note": "無具名作者彙編，未評等，只放 gap 候選；其內容（1875 生於 Asunción、1908 司法部長等）與 LoC 的 1871／Concepción 不一致，但因未評等不構成 conflict"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "WebSearch：Manuel Franco presidente del Paraguay 1916 1919 biografía",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 網路搜尋額度用盡，未取得結果"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Paraguay Liberal era",
+     "url": "https://www.britannica.com/place/Paraguay/The-Liberal-era",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Library of Congress Paraguay country study 全文",
+     "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/pa/paraguaycountrys00hans/paraguaycountrys00hans_djvu.txt",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Wikisource 西文 Manuel Franco",
+     "url": "https://es.wikisource.org/wiki/Manuel_Franco",
+     "result": "no_result",
+     "note": "404（且 Wikisource 須附掃描才收）"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Senado del Paraguay 官網",
+     "url": "https://www.senado.gov.py/",
+     "result": "not_relevant",
+     "note": "首頁可連線，無歷史人物資料"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Biblioteca Nacional del Paraguay",
+     "url": "https://www.bnp.gov.py/",
+     "result": "no_result",
+     "note": "DNS 無法解析"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Paraguay",
+     "url": "https://www.encyclopedia.com/places/latin-america-and-caribbean/paraguayan-political-geography/paraguay",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "WebSearch（西文姓名＋biografía）",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 網路搜尋額度用盡（200 次上限），拒絕執行；未繞過"
+    }
+   ]
+  },
+  {
+   "key": "py-gonzalez-navero",
+   "bioId": "01a1b4bb-0770-7487-8139-21464939d107",
+   "name": "Emiliano González Navero",
+   "nameZh": "埃米利亞諾·岡薩雷斯·納韋羅",
+   "recordIds": [
+    "7f78a049-76f0-4e41-8a7f-35fef01025c8",
+    "de1db222-3b14-4ec0-b27b-0bbd128e49c2",
+    "b8fe41ba-1e3a-4fd4-ad85-6b4ad55c8167",
+    "c6c255e7-f699-4cb9-98a0-d642a42845d5"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1861-01-01",
+      "end": "1935-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "生卒與職業",
+      "en": "Life dates and occupation"
+     },
+     "body": {
+      "zh-Hant": "岡薩雷斯·納韋羅生於1861年，卒於1934年；德國國家圖書館權威檔稱他為法學家與政治人物。",
+      "en": "González Navero was born in 1861 and died in 1934; the German National Library authority record calls him a jurist and politician."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1861\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1934\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Jurist u. Politiker",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-07-01",
+      "end": "1910-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1908至1910年的任期",
+      "en": "Term of 1908–1910"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記他1908年7月至1910年11月任國家元首。",
+      "en": "The German National Library authority record gives July 1908 to November 1910 as his term as head of state."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Staatspräsident von Juli 1908 - Nov. 1910",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1912-03-01",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1912年與1931年的任期",
+      "en": "Terms of 1912 and 1931"
+     },
+     "body": {
+      "zh-Hant": "同一筆權威檔另記他1912年3月至8月，以及1931年11月至12月再任國家元首。",
+      "en": "The same authority record also gives March to August 1912 and November to December 1931 as further terms as head of state."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "von März - August 1912",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "von Nov. - Dez. 1931",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "gonzalez-navero-head-of-state-1931",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拉圭",
+      "en": "Paraguay"
+     },
+     "title": {
+      "orig": "Staatspräsident（GND 德文記載，西文職稱待查證）",
+      "zh-Hant": "國家元首（總統）",
+      "en": "Head of state (president)"
+     },
+     "period": {
+      "start": "1931-11-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "von Nov. - Dez. 1931",
+       "quoteLang": "de",
+       "evidenceNote": "月精度：Nov.–Dez. 1931，迄日取下一單位（1932-01-01）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "GND 明寫 1931 年 11 月至 12 月任 Staatspräsident；此任期落在 1908–1945，且不在名單 5442 任期內（名單只有 1908–1910 與 1912 兩段），故列為候選",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前3段、中文121字（最低標準為3段300字）。已查來源類型：權威檔（GND 為A；LoC 無紀錄、VIAF 403）、國家傳記辭典（DB~e 無內文）、官方（總統府官網逾時、國會首頁無資料）；未取得可抓原文的A／B傳記全文。 加強重跑：搜尋額度用盡，僅嘗試7次直接抓取（Britannica 403、LoC 國別研究404、Wikisource 404、參議院官網無資料、國家圖書館 DNS 失敗、Encyclopedia.com 404），未取得新的A／B原文；仍不足。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:gonzalez-navero-head-of-state-1931",
+     "gapKind": "not_found",
+     "note": "待查證：1931年任期只有月精度（Nov.–Dez. 1931），逐日起迄與西文職稱（例：臨時總統／代理）未取得；GND 為唯一來源。已查：GND（A）、LoC（無）、DB~e（無內文）、總統府官網（逾時）。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:death_year",
+     "gapKind": "not_found",
+     "note": "待查證：卒年。GND 記1934；Biografías y Vidas（未評等）寫「1938」。非兩份合格來源互相矛盾，不構成 conflict，暫依 GND。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "bv-gonzalez",
+       "locator": "全文",
+       "quote": "(?, 1861-?, 1938)",
+       "quoteLang": "es"
+      }
+     ]
+    },
+    {
+     "target": "field:other_terms",
+     "gapKind": "not_found",
+     "note": "待查證：Biografías y Vidas（未評等）稱他1915年與1931–1932年再任臨時總統，與 GND 的1912年與1931年11–12月不一致；僅一份未評等來源，未採用，需A／B來源確認1915年是否有任期。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "bv-gonzalez",
+       "locator": "全文",
+       "quote": "Volvió a ser presidente provisional en 1915 y en 1931-1932",
+       "quoteLang": "es"
+      }
+     ]
+    },
+    {
+     "target": "field:vice_presidency",
+     "gapKind": "not_found",
+     "note": "待查證：1908年7月起的職稱在名單5442為「副總統代行行政權」，GND 寫 Staatspräsident；未取得第二份A／B來源說明兩者關係，本檔不重建此任期。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND González Navero Emiliano",
+     "url": "https://lobid.org/gnd/search?q=Gonz%C3%A1lez+Navero+Emiliano&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 1057466638：1861–1934、法學家與政治人物、國家元首三段任期（1908-07～1910-11、1912-03～08、1931-11～12）；第一次未編碼查詢回 500，改編碼後成功"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "LoC 權威檔站內搜尋 González Navero",
+     "url": "https://id.loc.gov/search/?q=Gonz%C3%A1lez%20Navero&format=json",
+     "result": "no_result",
+     "note": "0 筆"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "VIAF 310661372（GND sameAs）",
+     "url": "http://viaf.org/viaf/310661372",
+     "result": "blocked_403",
+     "note": "VIAF 先前同類請求皆 403，不繞過（未再請求）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e 站內搜尋 Emiliano González Navero",
+     "url": "https://dbe.rah.es/buscador?search_api_fulltext=Emiliano+Gonz%C3%A1lez+Navero",
+     "result": "no_result",
+     "note": "只取回外殼頁"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Presidencia de la República del Paraguay 官網",
+     "url": "https://www.presidencia.gov.py/",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Cámara de Diputados del Paraguay 官網",
+     "url": "https://www.diputados.gov.py/",
+     "result": "not_relevant",
+     "note": "首頁可連線，無歷史人物資料"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Biografías y Vidas Emiliano González Navero",
+     "url": "https://www.biografiasyvidas.com/biografia/g/gonzalez_navero.htm",
+     "result": "unrated",
+     "note": "無具名作者彙編，只放 gap 候選；其「卒於1938」「1915年、1931–1932年再任臨時總統」與 GND 不一致，但未評等，不構成 conflict"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "WebSearch：Emiliano González Navero presidente provisorio Paraguay 1912 biografía",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 網路搜尋額度用盡，未取得結果"
+    },
+    {
+     "step": 9,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Paraguay Liberal era",
+     "url": "https://www.britannica.com/place/Paraguay/The-Liberal-era",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Library of Congress Paraguay country study 全文",
+     "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/pa/paraguaycountrys00hans/paraguaycountrys00hans_djvu.txt",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Wikisource 西文 Manuel Franco",
+     "url": "https://es.wikisource.org/wiki/Manuel_Franco",
+     "result": "not_relevant",
+     "note": "404；審查註：此步查的是 Manuel Franco 頁面（與本人無關），不計入本人的有效查詢"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Senado del Paraguay 官網",
+     "url": "https://www.senado.gov.py/",
+     "result": "not_relevant",
+     "note": "首頁可連線，無歷史人物資料"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Biblioteca Nacional del Paraguay",
+     "url": "https://www.bnp.gov.py/",
+     "result": "no_result",
+     "note": "DNS 無法解析"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Paraguay",
+     "url": "https://www.encyclopedia.com/places/latin-america-and-caribbean/paraguayan-political-geography/paraguay",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "WebSearch（西文姓名＋biografía）",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 網路搜尋額度用盡（200 次上限），拒絕執行；未繞過"
+    }
+   ]
+  }
+ ]
+}

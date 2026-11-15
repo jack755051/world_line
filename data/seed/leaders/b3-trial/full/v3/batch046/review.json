@@ -1,0 +1,86 @@
+{
+ "batch": "046",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 7,
+  "editedSentences": 1,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "br-washington-luis",
+   "bioId": "152a7405-9dbc-443d-9159-e06c01b7dc99",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "P1 補 2 筆 DHBB 引文（Transferindo-se para a cidade de São Paulo em 1888／freqüentou o preparatório do curso anexo da Faculdade de Direito）支撐「聖保羅法學院」子句",
+    "P2 刪「（時稱州總統）」：段內引文無此支撐",
+    "P3 引文改為完整片段「forçando a junta a entregar o poder…」並補「A junta governativa que assumiu o poder」支撐「接管權力的軍人委員會」",
+    "P3 補「foi recebido na praça Mauá…Rio de Janeiro」支撐返抵里約、補「…se dedicou a estudos históricos」支撐專心歷史研究",
+    "新增 conflict gap：市長推選日期 DHBB 記 1913 年 10 月、Apartes 記 1914-01-14（兩份已抓合格來源）",
+    "重抓 Apartes 頁比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "is-hermann-jonasson",
+   "bioId": "01a1b4b7-2910-7305-a33b-612f5b383f13",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 2,
+   "gaps": 1,
+   "searchLogSteps": 12,
+   "changes": [
+    "P2 補 SNL 引文「spille en avgjørende rolle i islandsk politikk」「rundt utbruddet av andre verdenskrig」支撐「關鍵角色」「大戰爆發」子句",
+    "P3 引文「og igen 1956-58」擴為「Han var regeringsleder frem til 1942 og igen 1956-58」，使「再度出任首相」有主詞支撐",
+    "searchLog 第 12 步標 no_result 但實際未執行（額度用盡）；非薄人物，不影響判定",
+    "重抓 SNL 與冰島總理府頁比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "lu-eyschen",
+   "bioId": "01a1b4b7-291b-79b6-8536-2335abcaf6ce",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 12,
+   "changes": [
+    "P1 救護隊引文改為「During the Franco-Prussian War, Paul Eyschen was a member」以支撐「普法戰爭期間」，並刪除原誤填的 datePrecision=year（quote 無日期，Q8）",
+    "外交事務總局長維持 R6（roleGap=regime，不連庫無法證明 regimeId）",
+    "重抓盧森堡市府頁比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "多處子句（地名、機構、評語）只靠相鄰句意支撐、quote 本身未含該詞，審查補引文；研究者應取完整語意片段",
+  "無日期 quote 誤填 datePrecision（艾申 P1）",
+  "批次名單標 5 人，實際 3 人",
+  "艾申 P1 period 迄點 1867-01-01 未涵蓋段內普法戰爭事件，但來源無該事件日期，未改（不補常識日期）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

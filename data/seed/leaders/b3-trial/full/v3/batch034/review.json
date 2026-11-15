@@ -1,0 +1,88 @@
+{
+ "batch": "034",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 8,
+  "editedSentences": 0,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "lt-tubelis",
+   "bioId": "01a1b4b5-f9f9-7925-b31a-2a0015dedf5f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 1,
+   "gaps": 6,
+   "searchLogSteps": 40,
+   "changes": [
+    "段3：「主席改由總統斯梅托納任命」子句原無引文支撐總統斯梅托納，補 Kundrotas 原文引文「Dabar vadovybė perduodama Tautos Vadui, prezidentui A. Smetonai」",
+    "財政部長缺迄日：已有「待查證：缺迄日」gap 與篇幅不足 gap，searchLog 有 24 筆 round=retry（官方／權威檔／目錄／學術等），依 6c 屬已記錄的不足，不退回",
+    "附註：Terleckas 摘要英文版寫行長任期至 1939-09-09，立陶宛文版與 Jakubavičienė 皆寫 09-30；同一來源內部不一致，非兩份來源衝突，維持 09-30",
+    "抽查重抓 lituanistika.lt/content/12567：200，引文逐字相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fr-doumergue",
+   "bioId": "1d0b434e-a53c-4e2f-a709-4ec2c74dd56d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 7,
+   "roleCandidates": 1,
+   "gaps": 6,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2 period 迄點 1910-03-06 → 1910-11-02（段內最後一件事為公共教育部長任期到 1910-11-02）",
+    "段3：「總統普恩加萊請他組閣」補參議院歷史頁引文「appelé par le président de la République, Raymond Poincaré」",
+    "段5：「1934年2月」「再任內閣總理」「在艾格維夫去世」三子句原無引文，補總統府年表引文「Février 1934」「pour être à nouveau président du Conseil」「s'éteint à Aigues-Vives.」",
+    "職位 doumergue-senate-president：迄日原誤用 Q7「名簿下一任起日」寫法（1924-06-13 是他本人當選總統日，不是議長下一任），改補手冊引文「Mais sa présidence de la Haute assemblée sera relativement brève」並改寫 evidenceNote 為推論說明；gap note 同步修正",
+    "抽查重抓 elysee.fr/gaston-doumergue：200，「à la demande du président Poincaré」等原文相符（HTML 實體解碼後）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "om-said-bin-taymur",
+   "bioId": "01a1b4b5-fa01-70e9-8c9d-6aded3dba351",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 16,
+   "changes": [
+    "段3：引文「when the PDO sent exploration teams to the interior」不含日期卻標 datePrecision=year（違反 Q8），改為原文完整片段「materialized in 1954 when the PDO sent exploration teams to the interior」",
+    "段3：「開始分離運動」子句補引文「who led a breakaway movement seeking independence from coastal Oman」",
+    "段4：「不必頻繁接見部落長老、發放補助」子句原無引文，補「was also no longer obligated to meet frequently with tribal shaykhs」，並把「avoided depleting the treasury」改為原文較完整片段「distribute subsidies and thereby avoided depleting the treasury」",
+    "保留 field:biography gap：名單首任起日 1937-07-07 與兩份 B 來源的 1932-02-10 即位不符，需主管核對",
+    "抽查重抓 country-studies.com Said ibn Taimur 頁：200，引文相符"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "子句級引文缺漏仍常見：人名（普恩加萊、斯梅托納）、年份、地點（艾格維夫）等子句未被任何 quote 覆蓋，本批補 8 筆原文引文",
+  "Q8：截短引文後仍標 datePrecision（引文本身不含日期）",
+  "Q7 誤用：以本人下一職位起日當前一職位迄日，卻寫成「依名簿下一任起日推得」",
+  "regimeId 全批 null，四部閣員（杜梅格 1913 外交部長、圖貝利斯財政部長）以 R6 roleGap=regime 留 positions，入庫前需補 regimeId 後重判 R3",
+  "1906-03-14～10-24 杜梅格任商業、工業與勞動部長只寫在正文、未建 positions（Q6 屬可選，未補）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

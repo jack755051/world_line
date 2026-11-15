@@ -1,0 +1,86 @@
+{
+ "batch": "042",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 7,
+  "editedSentences": 4,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "mx-calles",
+   "bioId": "01a1aa4a-da3f-726b-8f6b-e22fcd1e304c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 8,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 15,
+   "changes": [
+    "段2：「遷往阿瓜普列塔」改為「在阿瓜普列塔與人合開雜貨店」（引文只寫開店）",
+    "段5：補 FAPECFT 引文支撐「革命最高領袖」子句；period 迄點 1934→Q3 改 1935-01-01",
+    "段6：引文擴為 'When Calles resisted, he was deported (April 1936)'，並補 FAPECFT 'el presidente Lázaro Cárdenas decidió exiliarlo' 支撐「抵制卡德納斯」",
+    "calles-war-navy-1929：日精度 75 天已可證明 <90 天，R6→R5，移除 roleEligible／roleEligibleKind／roleGap",
+    "新增 conflict gap：索諾拉州長起始年（Colmex 1914-08 vs FAPECFT／Encyclopedia 1915）",
+    "抽查重抓 fapecft.org.mx 傳記頁，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cr-calderon-guardia",
+   "bioId": "01a1b4b7-28eb-71e4-9908-c8c6048e90e0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2 period 迄點依最後一事（總統指定人 1936–1940）改 1941-01-01",
+    "段4：SINABI 截斷引文 4 筆補完整（1948 再度參選、1948-12 入侵、1955 第二次入侵、1962 落敗），另補 3 筆引文支撐「內戰爆發」「入侵失敗」「同樣失敗」子句",
+    "抽查重抓 sinabi.go.cr 條目（latin-1），內容一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "br-venceslau-bras",
+   "bioId": "1afda7b1-14a7-437c-9980-81bfbde4eb36",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1：引文補完整 'Secretaria do Interior'、'Retornando a Minas, ...'（支撐內政廳長與回米納斯）",
+    "段2：刪無引文支撐的「1913年」，改「其後米納斯與聖保羅兩州政府推出他為候選人」；引文補完整",
+    "段3：截斷的對德宣戰引文拆為日期句＋'para a declaração de guerra à Alemanha'",
+    "刪除 gap bras-minas-state-posts-pre1908（窗外職位、起迄皆有，不是缺漏，誤標「待查證：缺迄日」）",
+    "抽查重抓 CPDOC DHBB 條目，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常截斷引文（尾字停在介系詞或受詞前，如 'Costa'、'guerra à'），違反「不可截掉受詞或謂語」；審查已補完整",
+  "段落 period 迄點未一律依 Q3 推到下一單位起日（2 處）",
+  "日精度已證明 <90 天的閣員任期被標 R6，應為 R5"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

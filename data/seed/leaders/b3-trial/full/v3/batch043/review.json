@@ -1,0 +1,17 @@
+{
+ "batch": "043", "reviewedOn": "2026-11-15", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 7, "editedSentences": 4, "spotRefetched": 3, "searchLogShort": 0},
+ "people": [
+  {"key": "mx-obregon", "bioId": "01a1aa4a-da3e-7f67-903a-634f2b79b0b6", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 1, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 16,
+   "changes": ["段1 刪「年輕時」（引文無此意）", "段2 原文 early 1913 修飾的是韋爾塔推翻馬德羅的政變而非任命時間：改寫為「為對抗1913年初韋爾塔推翻馬德羅的政變，他被任命為州軍隊指揮」（中英同步），並去掉引文未寫的「索諾拉」", "段4「任滿」補引文 Obregón finished his full term of office（EBSCO 原文已抓、已核）", "重抓 EBSCO 頁比對 4 句引文一致"],
+   "returnedReasons": []},
+  {"key": "uy-brum", "bioId": "fdcd45e1-a80c-424a-9844-f895a0f31497", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 5, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 17,
+   "changes": ["段1「隨即回到家鄉」無引文支撐，改為「並在薩爾托執業」；蒙特維多大學一句改用含校名的完整引文", "段2 與職位 brum-interior-minister-1915：原引文不含年份卻標 datePrecision=year（違 Q8），改為 null，另補含（OCR 誤字）年份的引文 In 19^5 he was again called into the Cabinet＋推論註記", "段2 補「應威爾遜總統特別邀請」的引文", "段3 截斷引文（…of a collegial）改為完整片段 …collegial executive branch", "職位 brum-foreign-minister-1914 片段引文改為含主語的完整片段", "職位 brum-interior-minister-1915 迄日 1916-01-01 → 1917-01-01（Q3：1916 年內改任，年精度寫下一年起日）", "Parker 原文經重抓 Internet Archive djvu 全文比對，引文一致（只差行末連字號合併）"],
+   "returnedReasons": []},
+  {"key": "uy-viera", "bioId": "3c86f58b-e71f-4145-b117-eedd2b1df3ab", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 2, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 14,
+   "changes": ["段2 國務會議、「同年」任民政長官兩子句改用含 Council of State／Later in the same year 的引文", "段4「歐戰期間」無引文支撐，改為「他任內」；Redalyc 黨大會引文不含日期，datePrecision 改 null；補「1919年」移交權力的引文", "段5 補「依前任總統的資格」「從巴特列派分裂」兩子句的引文", "職位 viera-senator 迄日 1912-01-01 → 1913-01-01（1906 起六年＝1912 年內，年精度依 Q3 寫下一年起日；仍為推論）", "重抓 Encyclopedia.com Viera 條目核對"],
+   "returnedReasons": []}
+ ],
+ "issues": ["研究者偶有子句（時間副詞、地名、因果連接）未被引文覆蓋，已補引文或刪子句", "年精度迄日 Q3 換算有兩處錯（推論迄日寫成當年起日）", "引文不含日期卻填 datePrecision 兩處", "三人 regimeId 皆 null（不連庫），四部閣員一律 R6＋regime；國家行政委員會主席是否 R0 維持 t14Ambiguous，待 Tai 裁定"],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

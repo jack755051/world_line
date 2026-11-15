@@ -1,0 +1,85 @@
+{
+ "batch": "036",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 5,
+  "editedSentences": 0,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "nikola-i-montenegro",
+   "bioId": "01a1b4bf-610f-7502-b963-13422303a898",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 15,
+   "changes": [
+    "段2：補引文 strinse alleanza con Milan di Serbia（原僅 1866 年份引文，未支撐「與塞爾維亞結盟」）",
+    "段2：引文擴為 con sbocco nell'Adriatico, a Dulcigno e Antivari，支撐「阿德里亞海岸」",
+    "段4：補引文 Questa non fu stipulata…（支撐「未成」）",
+    "段4：死地引文改為含日期的 Død 1. marts 1921, Antibes, Frankrig；段落 period 迄點由 1919-01-01 改 1922-01-01（段內最後事件為 1921 年去世）",
+    "抽查重抓 lex.dk 原文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pa-arias-harmodio",
+   "bioId": "01a1b4b5-fa26-76c6-a546-d6a8611ccd42",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1：補引文 Ese año ingresa al doctorado（支撐「同年」）",
+    "段4：補引文 eliminar la cláusula del Tratado de 1903（支撐「1903年條約」條款）",
+    "段5：引文擴為 …sufre un infarto y su corazón deja de latir（支撐「去世」）；period 起點 1937-01-01 改 1936-01-01（卸任年依兩來源 1932–1936）",
+    "抽查重抓 launiversidad.up.ac.pa 原文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "de-bethmann-hollweg",
+   "bioId": "01a19f15-369b-7322-8ba3-e8969a578b89",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 8,
+   "changes": [
+    "段5：NDB 引文擴為 dem 2. Unterausschuß des Parlamentarischen Untersuchungsausschusses，並補 LeMO 引文 …Untersuchungsausschuss der Nationalversammlung（支撐「國民議會調查委員會」）",
+    "職位 bethmann-staatssekretaer-reichsamt-inneres：中英標題刪去「兼普魯士國務院副議長」（原文標題只有國務秘書；兼職應拆段，副議長屬 R5，已在正文）",
+    "保留：帝國黨議員 1890 因時間窗外歸 R5；國務秘書 t14Ambiguous 理由成立",
+    "抽查重抓 dhm.de LeMO 與 deutsche-biographie.de NDB 原文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "子句支撐不足：多處只引年份片段或縮短引文，未涵蓋句中的動作／地點（結盟、阿德里亞海岸、去世、國民議會），已以已抓原文補引文或擴引文",
+  "段落 period 迄點／起點未依段內最後（第一）事件訂，已修 2 處",
+  "本名單寫 5 人但實際 3 人；Bethmann 普魯士首相／外交部長缺迄日只記 gap 未建 positions（邦級、歸屬不明），保留"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

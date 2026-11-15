@@ -1,0 +1,93 @@
+{
+ "batch": "051",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 3,
+  "deletedCitations": 0,
+  "addedCitations": 21,
+  "editedSentences": 2,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ie-hyde",
+   "bioId": "01a1b4b8-e9dd-7daf-b8d9-222d3c96c2ee",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1：刪去無引文支撐的「愛爾蘭語中的」「例如」，改為「記錄他的別名An Craoibhin Aoibhinn」（中英）",
+    "段2：補引文『University of New Brunswick in Kanada』（支撐「加拿大」）與『Gaelic League』（原引文『gründete im Jahre 1893 die』截掉受詞；原文為 JSON，帶跳脫引號無法整段引用，改補一筆）；hyde-gaelic-league-president 同補",
+    "段3：period 迄點 1945-01-01 → 1946-01-01（Q3，到1945年）；段3與 hyde-senator-1938 補引文『\"showAs\": \"2nd Seanad\"』（支撐「第二屆」）",
+    "重抓 Oireachtas API 與 lobid GND 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cl-rios",
+   "bioId": "b7991836-d5f3-485d-b167-9bbfb376de3d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 4,
+   "roleCandidates": 3,
+   "gaps": 5,
+   "searchLogSteps": 3,
+   "changes": [
+    "段2：補引文『Durante el gobierno de Arturo Alessandri Palma』『donde resultó electo diputado』（原缺「阿萊散德里政府任內」「當選」）",
+    "段3：參議員引文原截在『…de Arauco』，改為『electo senador por la Octava Agrupación Provincial de Arauco, Malleco y Cautín』；補『Término de periodo: 6 de junio de 1932』（原引文無月份年份）",
+    "段4：補5筆引文（激進黨質疑合作、推翻蒙特羅、出任內政部長、出任司法部長、1933年當選眾議員），『fue reintegrado…』改為含『El mismo año de su ingreso a la Cámara』的完整句；period 迄點 1933-01-01 → 1934-01-01（Q3）",
+    "段5：補3筆引文（人民陣線成員黨、讓位阿吉雷·塞爾達、阿吉雷·塞爾達任內）；period 迄點改為最後一事 1941-11-25（day）",
+    "段6：補 ENAP、CAP、美國壓力3筆引文；「代理副總統職務」改「接任副總統職務」（來源寫 asumió la vicepresidencia，無「代理」）",
+    "gap rios-consul-panama：刪去 searchLog 無紀錄的「Biblioteca Nacional」",
+    "內政部長 R5 維持（日精度兩說27／89天皆<90）",
+    "重抓 BCN 頁比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "no-mowinckel",
+   "bioId": "01a1b4b8-e9ec-7533-80c1-227a1aee3713",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 11,
+   "roleCandidates": 5,
+   "gaps": 3,
+   "searchLogSteps": 7,
+   "changes": [
+    "mow-foreign-minister-pm1/pm2/pm3 三筆 R3 cabinet_minister 由 roleCandidates 移回 positions：regimeId 未連庫為 NULL，R3④政權在系統中無法證明，比照試跑 #12 #28 #29 與本輪各批作法改 R6（roleEligible、roleGap=regime）；標題改為 utanriksminister（首相任期已在 5442）",
+    "mow-foreign-minister-1922 roleGap 由 dates 改 dates+regime",
+    "段1：補引文『Slekta Mowinckel høyrde til det gamle bergenske handelspatrisiatet』（支撐商人世家）",
+    "段3：補引文『og frå 1922 og fram til sin død』（支撐「至去世」）",
+    "段4：period 迄點 1924-01-01 → 1934-01-01（段內有1925、1930、1933事）",
+    "段6、mow-consultative-minister：引文改為『søkte avskil og reiste mai 1942 til New York』（支撐退出內閣）；段6、mow-nortraship-advisory-chair：截斷引文改為『for å overta som formann i skipsfartsdirektørens rådgjevande utval』",
+    "新增 gap role:mow-bergen-venstre-chair（1899年起卑爾根自由黨支部主席屬黨職，缺迄日，未建候選）；1937年起議會黨團領袖 gap 補上引文說明",
+    "重抓 snl.no 條目比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本輪資料不連庫，regimeId 一律 NULL；R2–R4 類別即使門檻其餘條件可證明，也只能 R6（roleGap=regime），研究者把莫溫克爾三段外交大臣直接放 R3，已改回",
+  "研究者多處引文只取日期或截斷受詞，子句（地名、職稱、政權）缺 quote，本批補 21 筆",
+  "段落 period 迄點未依段內最後一事計（3段）",
+  "里奧斯 searchLog 僅 3 步（WebSearch 額度用盡），因已有 A 來源且達最低標準，不退回；黨職『缺迄日』者研究者選擇不建候選只寫 gap（check_min 對已建但缺迄日者判未達），本批沿用"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

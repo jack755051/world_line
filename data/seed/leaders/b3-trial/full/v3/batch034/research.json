@@ -1,0 +1,3216 @@
+{
+ "batch": "b3-full-v3-batch034",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式；regimeId 因不連庫一律 null＋organization，R3 類因此以 R6（roleGap 含 regime）留在 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch034/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "elysee-doumergue": {
+   "title": "Gaston Doumergue（官方肖像與年表）",
+   "authors": [],
+   "publisher": "Présidence de la République française（Élysée）",
+   "published_text": "Source : Service des archives et de l'information documentaire de la Présidence de la République；Mis à jour le 15 décembre 2022",
+   "url": "https://www.elysee.fr/gaston-doumergue",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國總統府官方歷任總統頁，年表列職位與起訖日"
+  },
+  "senat-medaille-doumergue": {
+   "title": "Gaston Doumergue (1863-1937)",
+   "authors": [],
+   "publisher": "Sénat（法國參議院）",
+   "published_text": "Dossiers d'histoire，參議院官方網站",
+   "url": "https://www.senat.fr/connaitre-le-senat/lhistoire-du-senat/dossiers-dhistoire/default-0828a4dd4d0098449b6b3e5e104c53fe/gaston-doumergue.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國參議院官方歷史頁（原網址 senat.fr/evenement/archives/D43/doumergue.html 轉址至此）"
+  },
+  "senat-brochure-doumergue": {
+   "title": "Gaston Doumergue (1863-1937)：Un Président à l'accent méridional（參議院檔案處展覽手冊）",
+   "authors": [
+    "Stéphanie Sanna"
+   ],
+   "publisher": "Sénat, direction de la Bibliothèque et des Archives, division des Archives",
+   "published_text": "2024-11",
+   "url": "https://archives.senat.fr/pdf/brochures/ARCH_2024_0230_Brochure_Gaston_DOUMERGUE_vdef.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國參議院檔案處官方出版品，內含議員辭典式生平摘錄與職位起訖"
+  },
+  "lituanistika-12567": {
+   "title": "„Gaspadoriškasis“ Juozas Tūbelis（摘要頁）",
+   "authors": [
+    "Vladas Terleckas"
+   ],
+   "publisher": "Lituanistika（Pinigų studijos 2000 年第 2 期，70–77 頁）",
+   "published_text": "Pinigų studijos, 2000, 2",
+   "url": "https://www.lituanistika.lt/content/12567",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的學術期刊論文（立陶宛銀行貨幣研究期刊），本批僅用摘要頁"
+  },
+  "lituanistika-tubelis": {
+   "title": "Ministro pirmininko Juozo Tūbelio vaidmuo išlaikant lito stabilumą 1927-1939 m.（摘要頁）",
+   "authors": [
+    "Ingrida Jakubavičienė"
+   ],
+   "publisher": "Lituanistika（收錄於 Litas: šimtmečio kelias，Vilnius: Lietuvos bankas，2023，50–56 頁）",
+   "published_text": "2023",
+   "url": "https://www.lituanistika.lt/content/109869",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的學術專書章節（立陶宛銀行出版），本批僅用摘要頁"
+  },
+  "vdu-istorija2010": {
+   "title": "Lietuva tautininkų epochoje: tarp autoritarinės diktatūros ir konsoliduotos demokratijos",
+   "authors": [
+    "Marius Kundrotas"
+   ],
+   "publisher": "Istorija（Lietuvos aukštųjų mokyklų mokslo darbai），2010, 3(79)",
+   "published_text": "2010",
+   "url": "https://portalcris.vdu.lt/server/api/core/bitstreams/7ebd9788-8018-4420-ae2e-459b7857e736/content",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（維爾紐斯大學）的同行評審學術期刊論文"
+  },
+  "vle-tubelis": {
+   "title": "Juozas Tūbelis",
+   "authors": [],
+   "publisher": "Visuotinė lietuvių enciklopedija（Mokslo ir enciklopedijų leidybos centras）",
+   "published_text": "vle.lt 條目",
+   "url": "https://www.vle.lt/straipsnis/juozas-tubelis/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：條目頁未顯示作者（Autorius 欄空白），依 Q9 無具名作者條目只放 gap 候選"
+  },
+  "vle-gov-1934": {
+   "title": "Juozo Tūbelio vadovaujama Vyriausybė 1934–1935",
+   "authors": [],
+   "publisher": "Visuotinė lietuvių enciklopedija（Mokslo ir enciklopedijų leidybos centras）",
+   "published_text": "vle.lt 條目",
+   "url": "https://www.vle.lt/straipsnis/juozo-tubelio-vadovaujama-vyriausybe-1934-1935/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：條目頁未顯示作者（Autorius 欄空白），依 Q9 無具名作者條目只放 gap 候選"
+  },
+  "cambridge-oman-ch4": {
+   "title": "The Sultanate as Nation, 1932–1959（A History of Modern Oman 第 4 章，摘要頁）",
+   "authors": [
+    "Jeremy Jones",
+    "Nicholas Ridout"
+   ],
+   "publisher": "Cambridge University Press",
+   "published_text": "2015",
+   "url": "https://www.cambridge.org/core/books/abs/history-of-modern-oman/sultanate-as-nation-19321959/9C17A20B10BB74D2AFD6B9D268CADD33",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社專書章節（劍橋大學出版社；作者任職牛津大學、倫敦瑪麗皇后學院），僅用公開摘要頁"
+  },
+  "countrystudies-com-said": {
+   "title": "Oman: Said ibn Taimur, 1932-70（Persian Gulf States: A Country Study 轉載）",
+   "authors": [],
+   "publisher": "country-studies.com（轉載美國國會圖書館 Federal Research Division 國家研究叢書）",
+   "published_text": "原書：Helen Chapin Metz 編，Persian Gulf States: A Country Study，1994",
+   "url": "https://country-studies.com/persian-gulf-states/oman-said-ibn-taimur,-1932-70.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國會圖書館官方國家研究（原件 A）的第三方轉錄本，依規則 A 記 B"
+  },
+  "countrystudies-com-taimur": {
+   "title": "Oman: Taimur ibn Faisal, 1913-32（Persian Gulf States: A Country Study 轉載）",
+   "authors": [],
+   "publisher": "country-studies.com（轉載美國國會圖書館 Federal Research Division 國家研究叢書）",
+   "published_text": "原書：Helen Chapin Metz 編，Persian Gulf States: A Country Study，1994",
+   "url": "https://country-studies.com/persian-gulf-states/oman-taimur-ibn-faisal,-1913-32.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國會圖書館官方國家研究（原件 A）的第三方轉錄本，依規則 A 記 B"
+  }
+ },
+ "people": [
+  {
+   "key": "lt-tubelis",
+   "bioId": "01a1b4b5-f9f9-7925-b31a-2a0015dedf5f",
+   "name": "Juozas Tūbelis",
+   "nameZh": "尤奧扎斯·圖貝利斯",
+   "recordIds": [
+    "01a1aa4a-6698-7755-bcb4-3e7347d319a7",
+    "01a1aa4a-6698-7d50-a218-7b098f5ace8a",
+    "01a1aa4a-6699-7303-977a-156fbd6a6e39"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-04-18",
+      "end": "1928-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、求學與合作社事業",
+      "en": "Origins, studies and cooperative work"
+     },
+     "body": {
+      "zh-Hant": "圖貝利斯1882年4月18日生於羅基什基斯一帶，家境富裕，父親是精力充沛的農民。他還是學生時就參與民族解放運動，後來在里加理工學院修完農學。立陶宛恢復獨立、組成臨時政府時，他受邀出任農業與國有財產部長。1920至1927年間，他與他人合力建立經濟組織，並領導其中幾個。",
+      "en": "Tūbelis was born on 18 April 1882 near Rokiškis, in the family of a well-off and energetic farmer. As a pupil he already took part in the national liberation movement, and he later completed agronomy at the Riga Polytechnic Institute. When the Provisional Government was formed after Lithuania regained independence, he was invited to serve as Minister of Agriculture and State Property. From 1920 to 1927 he worked with others to build economic organisations and led some of them."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "J. Tūbelis - rokiškėnas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "gimęs 1882 m. balandžio 18 d. pasiturinčio ir energingo ūkininko šeimoje",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "Dar būdamas mokinys pradėjo dalyvauti nacionalinio išsivadavimo judėjime",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "Studijavo ir baigė Rygos politechnikos institute agronomiją",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "Po Lietuvos nepriklausomybės atgavimo sudarant Laikinąją Vyriausybę",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "buvo pakviestas dirbti žemės ūkio ir valstybės turtų ministru",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "1920-1927 m. J. Tūbelis su kitais energingai kūrė ūkines organizacijas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "kai kurioms jų vadovavo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1927-05-03",
+      "end": "1938-03-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "財政部長與總理",
+      "en": "Finance Minister and Prime Minister"
+     },
+     "body": {
+      "zh-Hant": "1927年5月3日起，財政部長一職由圖貝利斯擔任。1929年9月19日，總統不得不撤換當時的政府首腦，圖貝利斯被任命為總理；他自9月23日起出任總理，直到1938年3月24日他領導的第17屆內閣辭職。擔任總理期間，他保留財政部長職位，並一度代理外交部長。他任財政部長逾10年，任政府首腦8年半。",
+      "en": "From 3 May 1927 the post of Minister of Finance went to Tūbelis. On 19 September 1929 the president had no choice but to dismiss the head of government, and Tūbelis was appointed prime minister; he held the office from 23 September 1929 until 24 March 1938, when the 17th cabinet under his leadership resigned. While prime minister he kept the finance portfolio and for a time also acted as foreign minister. He was finance minister for more than ten years and head of government for eight and a half."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（立陶宛文）",
+       "quote": "nuo 1927 m. gegužės 3 d. finansų ministrų portfelis atiteko J. Tūbeliui",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1929 m. rugsėjo 19 d. prezidentui beliko atstatydinti vyriausybės vadovą",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "Premjeru skiriamas Juozas Tūbelis.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（立陶宛文）",
+       "quote": "Nuo 1929 m. rugsėjo 23 d. J. Tūbelis buvo paskirtas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（立陶宛文）",
+       "quote": "buvo paskirtas ir į ministro pirmininko pareigas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（立陶宛文）",
+       "quote": "Šias pareigas J. Tūbelis ėjo iki pat 1938 m. kovo 24 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（立陶宛文）",
+       "quote": "atsistatydino jo vadovaujamas 17-asis Ministrų kabinetas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "išsaugodamas finansų ministro postą",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "laikinai eidamas užsienio ministro pareigas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "ilgiau negu 10 metų būdamas finansų ministru ir 8,5 metų Vyriausybės vadovu",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-06-01",
+      "end": "1939-01-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "民族主義者聯盟主席",
+      "en": "Chairman of the Nationalist Union"
+     },
+     "body": {
+      "zh-Hant": "1931年6月1日，總理圖貝利斯成為立陶宛民族主義者聯盟（LTS）的主席；聯盟與政府形成事實上的人事合一。1933年12月15日聯盟大會改組，主席改由總統斯梅托納任命，圖貝利斯獲確認留任。1931至1938年間他兼任這兩個職務；1938年3月24日米羅納斯出任總理，1939年1月5日接手聯盟主席。",
+      "en": "On 1 June 1931 Prime Minister Tūbelis became chairman of the Lithuanian Nationalist Union (LTS), and the union and the government formed a de facto personal union. When the LTS was reformed at its congress on 15 December 1933, the chairmanship became an appointment of President Smetona, and Tūbelis was confirmed in it. He held both posts from 1931 to 1938; V. Mironas became prime minister on 24 March 1938 and took over the union chairmanship on 5 January 1939."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1931 m. birželio 1 d. juo tampa vyriausybės premjeras J. Tūbelis",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Įvadas / Autoritetinė valdžia",
+       "quote": "Lietuvių tautininkų sąjungos (LTS)",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "Sąjunga ir vyriausybė sudaro faktinę personalinę uniją.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1933 m. gruodžio 15 d. suvažiavime LTS reformuojama.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "Dabar vadovybė perduodama Tautos Vadui, prezidentui A. Smetonai",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "sąjungos pirmininko pareigybė tampa jo skiriama",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "J. Tūbelis patvirtintas LTS pirmininku",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1931–1938 m. šias pozicijas užima J. Tūbelis",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1938 m. kovo 24 d. vyriausybės premjeru tapęs V. Mironas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1939 m. sausio 5 d. perima sąjungos pirmininko pareigas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1938-10-01",
+      "end": "1939-09-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "財政政策與立陶宛銀行行長",
+      "en": "Financial policy and governor of the Bank of Lithuania"
+     },
+     "body": {
+      "zh-Hant": "圖貝利斯的財政政策要點是預算平衡、高度節約、抑制非生產性開支、避免外債，整個內閣的經濟政策都以維持立特幣值穩定為導向。1938年10月1日他被任命為立陶宛銀行第三任行長，領導銀行恰好一年，到1939年9月30日去世。",
+      "en": "The main points of Tūbelis's financial policy were a balanced state budget, great frugality, restraint of unproductive spending and the avoidance of foreign debt, and the economic policy of his whole government was oriented towards preserving the stability of the litas. He was appointed third governor of the Bank of Lithuania on 1 October 1938 and led the bank for exactly one year, until his death on 30 September 1939."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "valstybės biudžeto subalansuotumas, didelis taupumas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "neproduktyvių išlaidų varžymas, užsienio skolų vengimas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "ekonominė politika buvo orientuota į lito stabilumo išsaugojimą",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "trečiasis Lietuvos banko valdytojas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "buvo paskirtas 1938 m. spalio 1 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "Bankui vadovavo lygiai metus, iki savo mirties 1939 rugsėjo 30 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（英文）",
+       "quote": "From October 1, 1938, until his death on September 30, 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tubelis-finance-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛共和國政府",
+      "en": "Government of the Republic of Lithuania"
+     },
+     "title": {
+      "orig": "Finansų ministras",
+      "zh-Hant": "財政部長",
+      "en": "Minister of Finance"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1927-05-03",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（立陶宛文）",
+       "quote": "nuo 1927 m. gegužės 3 d. finansų ministrų portfelis atiteko J. Tūbeliui",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "Iš pradžių paskiriamas finansų ministru",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職，但迄日未載（來源只寫「逾 10 年」），最短任期無法證明；regimeId 亦未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "tubelis-bank-governor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛銀行",
+      "en": "Bank of Lithuania"
+     },
+     "title": {
+      "orig": "Lietuvos banko valdytojas",
+      "zh-Hant": "立陶宛銀行行長",
+      "en": "Governor of the Bank of Lithuania"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1938-10-01",
+      "end": "1939-09-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "buvo paskirtas 1938 m. spalio 1 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-12567",
+       "locator": "摘要",
+       "quote": "Bankui vadovavo lygiai metus, iki savo mirties 1939 rugsėjo 30 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanistika-tubelis",
+       "locator": "摘要（英文）",
+       "quote": "From October 1, 1938, until his death on September 30, 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "tubelis-nationalist-union-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛民族主義者聯盟（Lietuvių tautininkų sąjunga）",
+      "en": "Lithuanian Nationalist Union"
+     },
+     "title": {
+      "orig": "Lietuvių tautininkų sąjungos (LTS) pirmininkas",
+      "zh-Hant": "立陶宛民族主義者聯盟主席",
+      "en": "Chairman of the Lithuanian Nationalist Union"
+     },
+     "period": {
+      "start": "1931-06-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1931 m. birželio 1 d. juo tampa vyriausybės premjeras J. Tūbelis",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "1931–1938 m. šias pozicijas užima J. Tūbelis",
+       "quoteLang": "lt",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vdu-istorija2010",
+       "locator": "Politinio režimo konsolidacija",
+       "quote": "J. Tūbelis patvirtintas LTS pirmininku",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（黨主席）",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:tubelis-finance-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Terleckas（Pinigų studijos 2000）與 Jakubavičienė（Litas: šimtmečio kelias 2023）摘要，只寫起日 1927-05-03 與「逾 10 年」；財政部官網（finmin.lrv.lt）被 Cloudflare 擋（403），Britannica 403，未取得；未評等的 VLE 寫「1927–29 finansų …、1929 09–1938 03 … ministras pirmininkas … ir finansų ministras」，不能當出處",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-tubelis",
+       "locator": "Apie autorių 下正文",
+       "quote": "1929 09–1938 03 trijų vyriausybių ministras pirmininkas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tubelis-foreign-minister-acting",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Terleckas 摘要寫他任總理期間「laikinai eidamas užsienio ministro pareigas」（一度代理外交部長），未載起訖日，故未建職位",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tubelis-agriculture-minister-1938",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；未評等的 VLE 條目寫「1938 03–10 žemės ūkio ministras」，不能當出處；已查合格來源（Terleckas、Jakubavičienė、Kundrotas）均未載，下輪需政府或議會官方名錄",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-tubelis",
+       "locator": "Apie autorių 下正文",
+       "quote": "1938 03–10 žemės ūkio ministras",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tubelis-agriculture-minister-1918",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Terleckas 只寫臨時政府時期受邀任農業與國有財產部長，未載日期；時間窗外（1908–1945 內雖有交集，但 1918–1920 起訖日皆未取得）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:tubelis-pm-1929",
+     "gapKind": "not_found",
+     "note": "首腦任期（1929-09-23～1934-06-08、1934-06-12～1935-09-06、1935-09-06～1938-03-24）已在名單 5442，不重建；段落正文僅引 Jakubavičienė 的 1929-09-23 與 1938-03-24；三屆內閣分界日只見於未評等的 VLE（vle-gov-1929／1934／1935），不能當出處",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-gov-1934",
+       "locator": "正文第一段",
+       "quote": "1934 06 12 po nepavykusio 06 07 A. Voldemaro rėmėjų",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 4 段／538 字（已達 3 段 300 字），但財政部長（tubelis-finance-minister）仍缺迄日，未達最低標準；加強重跑已查官方（finmin／lb.lt／lrv.lt／lrp.lt／檔案館／國會）、權威檔（GND 經 lobid、BnF、VIAF）、國家圖書館目錄、學術論文、百科（VLE 無署名）、搜尋引擎等 6 類來源，官方頁多為 403 挑戰不繞過，合格來源皆無迄日；另 GND 生日 1882-04-09 與 Terleckas 的 1882-04-18 不同，未採 GND",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "VLE Juozas Tūbelis（原文語言）",
+     "url": "https://www.vle.lt/straipsnis/juozas-tubelis/",
+     "result": "unrated",
+     "note": "條目頁未顯示作者，依 Q9 只放 gap 候選"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "VLE 三屆內閣條目（1929–1934、1934–1935、1935–1938）",
+     "url": "https://www.vle.lt/straipsnis/juozo-tubelio-vadovaujama-vyriausybe-1929-1934/",
+     "result": "unrated",
+     "note": "同上，未顯示作者"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Juozas-Tubelis",
+     "url": "https://www.britannica.com/biography/Juozas-Tubelis",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "WebSearch：Juozas Tūbelis ministras pirmininkas 1929 1938 Lietuvos Vyriausybė istorija（立陶宛文）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 lituanistika.lt 論文摘要與 VLE"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Lituanistika 論文摘要：Jakubavičienė《Ministro pirmininko Juozo Tūbelio vaidmuo…》",
+     "url": "https://www.lituanistika.lt/content/109869",
+     "result": "found_B",
+     "note": "1927-05-03 財政部長、1929-09-23～1938-03-24 總理、1938-10 銀行行長"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "WebSearch：Juozas Tūbelis Lietuvos banko valdytojas 1938 spalio 1 finansų ministras 1927 gegužės 3",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Terleckas 摘要與財政部史頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "財政部（finmin.lrv.lt）1918–1940 歷史頁",
+     "url": "https://finmin.lrv.lt/lt/apie-ministerija/istorija/1918-1940-m/",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁（Just a moment），不繞過；英文版頁同被擋"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "立陶宛貨幣博物館（pinigumuziejus.lt）Tūbelis 條目",
+     "url": "https://www.pinigumuziejus.lt/en/news/juozas-tubelis-the-third-chairman-of-the-bank-of-lithuania",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Lituanistika 論文摘要：Terleckas《„Gaspadoriškasis“ Juozas Tūbelis》",
+     "url": "https://www.lituanistika.lt/content/12567",
+     "result": "found_B",
+     "note": "出身、教育、部長與總理、銀行行長起訖"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "WebSearch：Tūbelis Lietuvių tautininkų sąjungos pirmininkas 1931 1938 centro valdyba（立陶宛文）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Kundrotas 論文（Istorija 2010）"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Kundrotas 論文（archyvas.istorijoszurnalas.lt 版）",
+     "url": "https://archyvas.istorijoszurnalas.lt/index.php?Itemid=66&id=256&option=com_content&view=article",
+     "result": "no_result",
+     "note": "連線逾時（60 秒）"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Kundrotas 論文（VDU portalcris PDF）",
+     "url": "https://portalcris.vdu.lt/server/api/core/bitstreams/7ebd9788-8018-4420-ae2e-459b7857e736/content",
+     "result": "found_B",
+     "note": "1929-09-19 撤換首腦、1931-06-01 任 LTS 主席、1933 改組"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "istorijatau.lt 詞典 Tūbelis Juozas",
+     "url": "https://istorijatau.lt/rubrikos/zodynas/tubelis-juozas",
+     "result": "not_relevant",
+     "note": "頁面無條目內文"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "visitrokiskis.lt（羅基什基斯旅遊站）紀念碑頁",
+     "url": "https://www.rokiskiotic.lt/en/objektai/a-monument-to-prime-minister-j-tubelis",
+     "result": "not_relevant",
+     "note": "轉址至旅遊首頁，非 A／B"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "LoC Name Authority 搜尋 Tubelis, Juozas",
+     "url": "https://id.loc.gov/search/?q=Tubelis%2C+Juozas&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "搜尋結果頁由 JS 載入，抓回無條目"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "WebSearch：Juozas Tūbelis Lithuanian prime minister Encyclopedia Lituanica / Historical Dictionary of Lithuania（英文）",
+     "url": null,
+     "result": "no_result",
+     "note": "只回索引與私人網站，未取得 A／B"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lb.lt/lt/juozas-tubelis",
+     "result": "blocked_403",
+     "note": "立陶宛銀行官網 403 挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lb.lt/en/juozas-tubelis",
+     "result": "blocked_403",
+     "note": "同上，英文版",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://www.lb.lt/lt/lietuvos-banko-valdytojai",
+     "result": "blocked_403",
+     "note": "歷任行長頁 403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://lrv.lt/lt/apie-vyriausybe/vyriausybes-istorija/",
+     "result": "blocked_403",
+     "note": "政府官網歷屆內閣頁 403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://lrp.lt/lt/",
+     "result": "blocked_403",
+     "note": "總統府官網 403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://www.archyvai.lt/lt/lcva/",
+     "result": "blocked_403",
+     "note": "中央國家檔案館 403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1&p_t=261003",
+     "result": "not_relevant",
+     "note": "國會頁抓回與人物無關內容",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lrs.lt/sip/portal.show?p_r=36099&p_k=1&p_t=261003",
+     "result": "not_relevant",
+     "note": "同上",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "named_encyclopedia",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://www.vle.lt/straipsnis/juozas-tubelis/",
+     "result": "unrated",
+     "note": "重抓確認仍無署名作者，只能放 gap 候選",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "catalog",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.epaveldas.lt/search?q=Juozas+T%C5%ABbelis",
+     "result": "no_result",
+     "note": "搜尋頁由 JS 載入，無條目",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "catalog",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lnb.lt/",
+     "result": "no_result",
+     "note": "國家圖書館首頁，無人物條目",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "catalog",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://www.mazvydas.lt/",
+     "result": "no_result",
+     "note": "馬茲維達斯數位館首頁，無條目",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "authority",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://lobid.org/gnd/search?q=T%C5%ABbelis+Juozas&format=json",
+     "result": "found_A",
+     "note": "GND 權威檔（lobid 鏡像）：1929–1938 總理、1938–1939 中央銀行行長；生日寫 1882-04-09，與 Terleckas 的 04-18 不同；無財政部長迄日",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "authority",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://d-nb.info/gnd/119183366",
+     "result": "blocked_403",
+     "note": "DNB 頁 Anubis 挑戰，不繞過，改用 lobid 鏡像",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "authority",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Tubelis%2C+Juozas%22",
+     "result": "blocked_403",
+     "note": "VIAF 403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "authority",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://data.bnf.fr/en/search?term=Tubelis",
+     "result": "no_result",
+     "note": "BnF 無此人",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "academic",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lituanistika.lt/search?query=T%C5%ABbelis%20finans%C5%B3%20ministras",
+     "result": "no_result",
+     "note": "站內搜尋 404",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "academic",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://portalcris.vdu.lt/server/api/core/bitstreams/7ebd9788-8018-4420-ae2e-459b7857e736/content",
+     "result": "found_B",
+     "note": "重讀 Kundrotas 全文：只有 1931–1938 LTS 與 1938-03-24 米羅納斯接任，無財政部長迄日",
+     "round": "retry"
+    },
+    {
+     "step": 35,
+     "sourceType": "academic",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lituanistika.lt/content/109869",
+     "result": "found_B",
+     "note": "重讀 Jakubavičienė 摘要：只寫起日與「paired with Minister of Finance」，無迄日",
+     "round": "retry"
+    },
+    {
+     "step": 36,
+     "sourceType": "other",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://archive.org/advancedsearch.php?q=Lietuvos+ministr%C5%B3+kabinetai+1918-1940",
+     "result": "no_result",
+     "note": "無結果",
+     "round": "retry"
+    },
+    {
+     "step": 37,
+     "sourceType": "other",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://html.duckduckgo.com/html/?q=T%C5%ABbelis+finans%C5%B3+ministras+1938",
+     "result": "blocked_403",
+     "note": "搜尋引擎回機器人驗證（202），放棄",
+     "round": "retry"
+    },
+    {
+     "step": 38,
+     "sourceType": "other",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.pinigumuziejus.lt/lt/naujienos/juozas-tubelis-trecias-lietuvos-banko-valdytojas",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 39,
+     "sourceType": "other",
+     "query": "Juozas Tūbelis finance minister end date / Tūbelis finansų ministras",
+     "url": "https://www.lrt.lt/naujienos/lietuvoje/2/1217283/juozas-tubelis",
+     "result": "not_relevant",
+     "note": "新聞站頁面無關",
+     "round": "retry"
+    },
+    {
+     "step": 40,
+     "sourceType": "other",
+     "query": "Juozas Tūbelis 財政部長迄日（原文語言）",
+     "url": "https://www.britannica.com/biography/Juozas-Tubelis",
+     "result": "blocked_403",
+     "note": "重試仍 403",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "fr-doumergue",
+   "bioId": "1d0b434e-a53c-4e2f-a709-4ec2c74dd56d",
+   "name": "Gaston Doumergue",
+   "nameZh": "加斯東·杜梅格",
+   "recordIds": [
+    "01a19eb7-aff3-71c9-b665-591add422865",
+    "01a19eb7-b355-7343-b0c7-098752461230",
+    "01a1a20c-baf7-7db6-8d39-4fe9a9cfff1e"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1863-08-01",
+      "end": "1893-12-17"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與進入議會",
+      "en": "Origins and entry to the Chamber"
+     },
+     "body": {
+      "zh-Hant": "杜梅格1863年8月1日生於加爾省的艾格維夫，出身新教家庭。他1885年登記為尼姆的律師，1890年被任命為印度支那的法官。1893年12月17日，他在尼姆第二選區當選眾議員，並加入激進社會黨團；總統府年表稱他為尼姆的激進派議員。",
+      "en": "Doumergue was born on 1 August 1863 at Aigues-Vives in the Gard, into a Protestant family. He enrolled at the Nîmes bar in 1885 and was appointed a judge in Indochina in 1890. On 17 December 1893 he was elected deputy for the second constituency of Nîmes and joined the radical-socialist group; the presidential chronology calls him a radical deputy for Nîmes."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Naissance de Pierre, Paul, Henri, Gaston Doumergue à Aigues-Vives (Gard)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "1er août 1863",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "d'une famille protestante",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "il s'inscrit en 1885 au barreau de Nîmes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第二段",
+       "quote": "nommé juge en Indochine en 1890",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "le 17 décembre 1893, fut élu député de la deuxième circonscription de Nîmes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Élu député radical de Nîmes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "s'inscrivit au groupe radical-socialiste",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1902-06-07",
+      "end": "1910-11-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "殖民、商業與公共教育部長",
+      "en": "Minister of Colonies, Commerce and Public Instruction"
+     },
+     "body": {
+      "zh-Hant": "1902年6月7日，杜梅格在孔布政府出任殖民地部長，任至1905年1月23日。1906年3月14日他改掌商業、工業與勞動，其後職稱為商業與工業部長；1908年1月4日轉任公共教育與美術部長，任期到1910年11月2日。任內他為把左拉的骨灰移入先賢祠辯護。1910年3月6日，他在補選中當選加爾省參議員。",
+      "en": "On 7 June 1902 Doumergue became Minister of the Colonies in the Combes government, serving until 23 January 1905. On 14 March 1906 he took Commerce, Industry and Labour, later styled Commerce and Industry; on 4 January 1908 he moved to Public Instruction and Fine Arts, serving until 2 November 1910. In that office he defended the transfer of Zola's ashes to the Panthéon. On 6 March 1910 he was elected senator for the Gard in a by-election."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "7 juin 1902-23 janvier 1905",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre des Colonies dans le gouvernement Combes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "14 mars-24 octobre 1906",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre du Commerce, de l'Industrie et du Travail",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre du Commerce et de l'Industrie",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "4 janvier 1908-2 novembre 1910",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre de l'Instruction publique et des Beaux-Arts.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第四段",
+       "quote": "défendre le transfert des cendres de Zola au Panthéon",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "6 mars 1910",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第五段",
+       "quote": "Élu sénateur du Gard en 1910, à la faveur d’une élection partielle",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1910-03-06",
+      "end": "1914-06-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "參議員與首度組閣",
+      "en": "Senator and first premiership"
+     },
+     "body": {
+      "zh-Hant": "杜梅格在參議院加入左翼民主激進與激進社會黨團，1912年連任。1913年底，總統普恩加萊請他組閣，他以內閣總理兼外交部長的身分執政，任期從1913年12月9日到1914年6月8日。",
+      "en": "In the Senate Doumergue joined the democratic-left radical and radical-socialist group and was re-elected in 1912. At the end of 1913 President Poincaré called on him to form a cabinet, in which he combined the offices of President of the Council and Foreign Minister, from 9 December 1913 to 8 June 1914."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第五段",
+       "quote": "s’inscrit au groupe de la gauche démocratique radicale et radicale socialiste",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第六段",
+       "quote": "Il est réélu en 1912.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第六段",
+       "quote": "À la fin de l’année 1913",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第六段",
+       "quote": "appelé par le président de la République, Raymond Poincaré",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第六段",
+       "quote": "constituer un cabinet d’entente républicaine",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Président du Conseil et ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "9 décembre 1913- 8 juin 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-08-03",
+      "end": "1917-03-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰時外交與殖民部",
+      "en": "Wartime Foreign Affairs and Colonies"
+     },
+     "body": {
+      "zh-Hant": "第一次世界大戰期間，杜梅格先在1914年8月3日至26日任外交部長，隨即從8月26日起任殖民地部長，直到1917年3月19日。擔任殖民地部長時，他代表法國出席聖彼得堡的盟國會議。",
+      "en": "During the First World War Doumergue was Foreign Minister from 3 to 26 August 1914 and then, from 26 August 1914 until 19 March 1917, Minister of the Colonies. In the latter capacity he represented France at the inter-allied conference in Saint Petersburg."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "3-26 août 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "26 août 1914-19 mars 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre des Colonies.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第七段",
+       "quote": "il représente la France à la conférence interalliée de Saint-Pétersbourg",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1923-02-22",
+      "end": "1937-06-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "參議院議長、總統與再任總理",
+      "en": "Senate President, President of the Republic and second premiership"
+     },
+     "body": {
+      "zh-Hant": "1923年2月22日，杜梅格在參議院第二輪投票中當選議長，接替退任的布儒瓦。1924年6月13日他當選共和國總統，七年任期到1931年屆滿。1934年2月，二月六日的暴動過後，他被召回再任內閣總理，11月8日辭職並退出政壇。他1937年6月18日在艾格維夫去世。",
+      "en": "On 22 February 1923 Doumergue was elected President of the Senate at the second ballot, replacing Léon Bourgeois, who had given up the office. He was elected President of the Republic on 13 June 1924, and his seven-year term ended in 1931. In February 1934, after the riot of 6 February, he was recalled to serve again as President of the Council; he resigned on 8 November and withdrew from political life. He died at Aigues-Vives on 18 June 1937."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "Le 22 février 1923, Léon BOURGEOIS ayant abandonné la présidence du Sénat",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "fut élu pour le remplacer, au second tour de scrutin",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "fut élu Président de la République le 13 juin 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Fin du septennat de Gaston Doumergue",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Février 1934",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Après l’émeute du 6 février",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "est rappelé par le président Albert Lebrun",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "pour être à nouveau président du Conseil",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "8 novembre 1934",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Il démissionne et se retire définitivement de la vie politique.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "18 juin 1937",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "s'éteint à Aigues-Vives.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "doumergue-commerce-industry-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre du Commerce et de l'Industrie",
+      "zh-Hant": "商業與工業部長",
+      "en": "Minister of Commerce and Industry"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1906-10-25",
+      "end": "1908-01-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "25 octobre 1906-4 janvier 1908",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre du Commerce et de l'Industrie",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "商業與工業部不屬外交、國防、財政、內政四部，歸 R5"
+    },
+    {
+     "key": "doumergue-public-instruction-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de l'Instruction publique et des Beaux-Arts",
+      "zh-Hant": "公共教育與美術部長",
+      "en": "Minister of Public Instruction and Fine Arts"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-01-04",
+      "end": "1910-11-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "4 janvier 1908-2 novembre 1910",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre de l'Instruction publique et des Beaux-Arts.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "公共教育部不屬四部，歸 R5"
+    },
+    {
+     "key": "doumergue-foreign-minister-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères（兼 Président du Conseil）",
+      "zh-Hant": "外交部長（兼內閣總理）",
+      "en": "Foreign Minister (concurrently President of the Council)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-12-09",
+      "end": "1914-06-08"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Président du Conseil et ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "9 décembre 1913- 8 juin 1914",
+       "quoteLang": "fr",
+       "evidenceNote": "總統府年表止於 6 月 8 日；參議院手冊列至 6 月 9 日（名簿首腦任期亦至 6-09），差一日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職，任期約 181 天可證明 ≥90 天，來源 1 筆 A 以上；regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "doumergue-foreign-minister-1914",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères",
+      "zh-Hant": "外交部長",
+      "en": "Minister of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1914-08-03",
+      "end": "1914-08-26"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "3-26 août 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "外交部屬四部，但任期僅約 23 天，不足 90 天，歸 R5"
+    },
+    {
+     "key": "doumergue-colonies-minister-1914",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Colonies",
+      "zh-Hant": "殖民地部長",
+      "en": "Minister of the Colonies"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1914-08-26",
+      "end": "1917-03-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "26 août 1914-19 mars 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Ministre des Colonies.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "殖民地部不屬四部，歸 R5"
+    },
+    {
+     "key": "doumergue-senator-gard",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院（加爾省）",
+      "en": "Senate of France (Gard)"
+     },
+     "title": {
+      "orig": "Sénateur du Gard",
+      "zh-Hant": "加爾省參議員",
+      "en": "Senator for the Gard"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1910-03-06",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "Sénateur du Gard de 1910 à 1924.",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "6 mars 1910",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第五段",
+       "quote": "s’inscrit au groupe de la gauche démocratique radicale et radicale socialiste",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "來源只寫他「加入」參議院的左翼民主激進與激進社會黨團（議會黨團），未寫是以政黨身分當選；是否算黨職不明，不猜，留經歷層"
+    },
+    {
+     "key": "doumergue-senate-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院",
+      "en": "Senate of France"
+     },
+     "title": {
+      "orig": "Président du Sénat",
+      "zh-Hant": "參議院議長",
+      "en": "President of the Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1923-02-22",
+      "end": "1924-06-13"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "Le 22 février 1923, Léon BOURGEOIS ayant abandonné la présidence du Sénat",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "Mais sa présidence de la Haute assemblée sera relativement brève",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "fut élu Président de la République le 13 juin 1924",
+       "quoteLang": "fr",
+       "evidenceNote": "手冊寫他的議長任期「relativement brève」，因 1924 年 5 月危機使他入主愛麗舍宮；迄日取當選總統日（推論：來源未寫議長離任日）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "doumergue-deputy-gard-radical",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（加爾省，激進社會黨團）",
+      "en": "Chamber of Deputies of France (Gard, radical-socialist group)"
+     },
+     "title": {
+      "orig": "Député du Gard（radical）",
+      "zh-Hant": "加爾省眾議員（激進派）",
+      "en": "Radical deputy for the Gard"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1893-12-17",
+      "end": "1911-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "elysee-doumergue",
+       "locator": "年表",
+       "quote": "Élu député radical de Nîmes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "le 17 décembre 1893, fut élu député de la deuxième circonscription de Nîmes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "Député du Gard de 1893 à 1910.",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "s'inscrivit au groupe radical-socialiste",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；總統府年表明寫「Élu député radical」，手冊寫他加入激進社會黨團",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:doumergue-public-instruction-minister",
+     "gapKind": "conflict",
+     "note": "總統府年表（4 janvier 1908-2 novembre 1910）與參議院手冊的職位列表（「Ministre de l'Instruction publique du 4 janvier au 3 novembre 1910」）起迄年不同、迄日差一日；手冊同文敘事寫「Le 4 janvier 1908, il remplaça BRIAND」，與年表一致，手冊列表的起年疑為筆誤。本檔採年表日期，兩份合格來源不一致，待查證",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "Ministre de l'Instruction publique du 4 janvier au 3 novembre 1910",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:doumergue-commerce-industry-minister",
+     "gapKind": "conflict",
+     "note": "總統府年表與參議院手冊敘事皆寫商業部長至 1908-01-04；但手冊列表寫「Ministre du Commerce et de l'Industrie du 25 octobre 1906 au 24 juillet 1909」。兩者不一致，本檔採 1908-01-04（兩份來源敘事一致），待查證",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "du 25 octobre 1906 au 24 juillet 1909",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:doumergue-senator-gard",
+     "gapKind": "not_found",
+     "note": "待查證：缺精確迄日；手冊只寫「Sénateur du Gard de 1910 à 1924」（年精度），未載確切離任日；已查總統府年表、參議院歷史頁、參議院手冊",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:doumergue-senate-president",
+     "gapKind": "not_found",
+     "note": "待查證：迄日以當選總統日推得；手冊寫 1923-02-22 當選、1924-01-19 連任，議長任期因入主愛麗舍宮而「relativement brève」，但未寫確切離任日；已查總統府年表、參議院歷史頁、參議院手冊",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:doumergue-gauche-democratique-president",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；參議院手冊寫他回到參議院後在「左翼民主」黨團「assez vite président」，但未載起訖日；黨團主席是否算黨職亦不明（議會黨團），故未建候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-brochure-doumergue",
+       "locator": "Notice biographique",
+       "quote": "dont il devait devenir assez vite président",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:5",
+     "gapKind": "conflict",
+     "note": "1934 年召他組閣的總統：總統府年表寫 Albert Lebrun，參議院歷史頁寫 Doumer；兩份合格來源不一致，段落正文不寫總統姓名；本檔不裁決，待查證",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-medaille-doumergue",
+       "locator": "第十一段",
+       "quote": "le président Doumer à venir chercher",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Élysée 歷任總統頁 Gaston Doumergue（年表）",
+     "url": "https://www.elysee.fr/gaston-doumergue",
+     "result": "found_A",
+     "note": "官方年表：生卒、各部長、議員、總統與兩度總理起訖日"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Sénat 參議院歷史頁 Gaston Doumergue",
+     "url": "https://www.senat.fr/connaitre-le-senat/lhistoire-du-senat/dossiers-dhistoire/default-0828a4dd4d0098449b6b3e5e104c53fe/gaston-doumergue.html",
+     "result": "found_A",
+     "note": "參議院官方生平敘事"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Sénat 檔案處 Brochure Gaston Doumergue (PDF)",
+     "url": "https://archives.senat.fr/pdf/brochures/ARCH_2024_0230_Brochure_Gaston_DOUMERGUE_vdef.pdf",
+     "result": "found_A",
+     "note": "含議員辭典式職位列表與當選日"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "senat.fr 前參議員頁 doumergue_gaston0640r3",
+     "url": "https://www.senat.fr/senateur-3eme-republique/doumergue_gaston0640r3.html",
+     "result": "no_result",
+     "note": "404（猜測網址）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Assemblée nationale Sycomore 首頁",
+     "url": "https://sycomore.assemblee-nationale.fr/",
+     "result": "no_result",
+     "note": "DNS 無法解析"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Gaston-Doumergue",
+     "url": "https://www.britannica.com/biography/Gaston-Doumergue",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "LoC Name Authority 搜尋 Doumergue, Gaston",
+     "url": "https://id.loc.gov/search/?q=Doumergue%2C+Gaston&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "搜尋結果頁由 JS 載入，抓回無條目"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "BnF data 搜尋 Gaston Doumergue",
+     "url": "https://data.bnf.fr/fr/search?term=Gaston+Doumergue",
+     "result": "no_result",
+     "note": "僅回搜尋殼頁，無生平文字"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "WebSearch：Gaston Doumergue sénateur du Gard 1910 1924 député du Gard 1893 1910 sénat.fr（原文語言）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到參議院手冊與歷史頁；另有 Wikipedia 等索引項，未採用"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "WebSearch 結果之 elysee.fr 英文頁 / vikidia / objectifgard",
+     "url": "https://www.elysee.fr/en/gaston-doumergue",
+     "result": "not_relevant",
+     "note": "與已抓總統府頁重複；vikidia 與地方媒體非 A／B，不採"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Sénat 手冊內引 Robert & Cougny《Dictionnaire des Parlementaires》摘錄",
+     "url": "https://archives.senat.fr/pdf/brochures/ARCH_2024_0230_Brochure_Gaston_DOUMERGUE_vdef.pdf",
+     "result": "found_A",
+     "note": "手冊轉載摘錄，作為手冊內容引用"
+    }
+   ]
+  },
+  {
+   "key": "om-said-bin-taymur",
+   "bioId": "01a1b4b5-fa01-70e9-8c9d-6aded3dba351",
+   "name": "Saʿid bin Taymur",
+   "nameZh": "賽義德·本·泰穆爾",
+   "recordIds": [
+    "01a1aa96-cf95-73fb-84d9-bfcffdbe3d7c"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1929-01-01",
+      "end": "1932-02-10"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大臣會議主席與繼位",
+      "en": "President of the Council of Ministers and accession"
+     },
+     "body": {
+      "zh-Hant": "賽義德·本·泰穆爾自1929年起擔任父親泰穆爾蘇丹的大臣會議主席，在父親長期不在馬斯喀特時實際主持政府。1932年泰穆爾因財政因素退位，他依原定計畫繼位，於2月10日成為馬斯喀特與阿曼的蘇丹；據美國國會圖書館的研究，當時22歲的他接手的是一個負債的行政體系。",
+      "en": "Said bin Taimur had served as President of his father Sultan Taimur's Council of Ministers since 1929, effectively in charge of the government during his father's prolonged absences from Muscat. When Taimur abdicated for financial reasons in 1932, he succeeded him, as had been planned, becoming Sultan of Muscat and Oman on 10 February 1932; according to the Library of Congress study, the 22-year-old inherited an administration that was in debt."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "had served as the President of Sultan Taimur's Council of Ministers since 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "effectively in charge of the government during his father's prolonged absences",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "abdicated for financial reasons in 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "he succeeded him, as had been planned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "becoming Sultan of Muscat and Oman on February 10, 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "the twenty-two-year-old Said ibn Taimur",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "inherited an administration that was in debt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1932-02-10",
+      "end": "1938-03-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "即位初期的處境",
+      "en": "Situation in the early reign"
+     },
+     "body": {
+      "zh-Hant": "美國國務院1938年2月的一份公報描述這位年輕蘇丹接手時的處境：國家幾近破產，部落騷動，又有他幾位叔伯的陰謀，其中一人隨即趁機另立獨立政權。公報說，蘇丹果斷處理，不久即制服了那位叔父、平息動亂，最重要的是使國家財政穩固得多。",
+      "en": "A United States Department of State bulletin of February 1938 describes the situation the young sultan found: the country practically bankrupt, tribal unrest, and conspiracy by certain of his uncles, one of whom immediately set up an independent regime. According to the bulletin the sultan tackled the situation with resolution and within a short time subdued the uncle, quelled the unrest and, most important, put state finances on a much more solid footing."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "A United States Department of State bulletin",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "in February 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "The young Sultan found the country practically bankrupt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "tribal unrest and conspiracy by certain of his uncles",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "immediately profited by the occasion to set up an independent regime",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "The Sultan tackled the situation with resolution",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "the traitorous uncle had been subdued, unrest quelled",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-taimur",
+       "locator": "正文",
+       "quote": "state finances put on much more solid footing",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1932-02-10",
+      "end": "1960-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "統一國家與內陸衝突",
+      "en": "State-building and the conflict in the interior"
+     },
+     "body": {
+      "zh-Hant": "劍橋大學出版社的專書指出，1932至1959年間蘇丹賽義德設法建立統一國家，同時盡量減少對英國的依賴，卻仍倚靠英方的政治與軍事支持來確保統一與獨立。1954年PDO派探勘隊進入內陸，部落長老視之為違反1920年《錫卜條約》，同年選出新的伊瑪目，開始分離運動；英國介入支持蘇丹，到1959年重建了他的權威，並廢除該條約、終結伊瑪目職位。",
+      "en": "The Cambridge University Press study says that from 1932 to 1959 Sultan Said oversaw a complex and difficult attempt to forge a unified state while limiting its dependence on the British, even while relying on their political and military support to secure its unity and independence. In 1954 the PDO sent exploration teams into the interior, which the tribal shaykhs read as a violation of the 1920 Treaty of As Sib; a new imam was elected that year and a secessionist movement began. The British intervened on behalf of the sultan and by 1959 had re-established his authority, abrogated the treaty and ended the office of imam."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "From 1932 to 1959, then",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "Sultan Said oversaw a complex and difficult attempt to forge a unified state",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "he sought to limit the extent of its dependence upon the British",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "their political and military support to secure its unity and its independence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "materialized in 1954 when the PDO sent exploration teams to the interior",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "interpreted by the tribal shaykhs as a violation of the 1920 Treaty of As Sib",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "the election in 1954 of a new imam",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "who led a breakaway movement seeking independence from coastal Oman",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "The British intervened on behalf of the sultan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "by 1959 reestablished the sultan's authority",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "The British abrogated the Treaty of As Sib and ended the office of imam.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1958-01-01",
+      "end": "1959-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "遷居薩拉拉",
+      "en": "Move to Salalah"
+     },
+     "body": {
+      "zh-Hant": "1958年之後，賽義德把居所設在佐法爾的薩拉拉附近的哈斯恩，除了定期造訪倫敦，長住於此。據美國國會圖書館的研究，退居南方使他較不易遇刺，也不必頻繁接見部落長老、發放補助，以免耗盡國庫。劍橋的專書則指出，他對他的統治的負面評價，多半來自他退居薩拉拉的統治最後十年。",
+      "en": "After 1958 Said established his residence at Al Hisn near Salalah in Dhofar, where he remained permanently except for periodic visits to London. According to the Library of Congress study, retiring to the south made him more secure from assassination and spared him from meeting tribal shaykhs and distributing subsidies, thereby avoiding depleting the treasury. The Cambridge study adds that much of the negative reputation of his reign derives from its last decade, when he had withdrawn to Salalah."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "After 1958",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "established his residence at Al Hisn near Salalah, in Dhofar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "where he remained permanently except for periodic visits to London",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "was not only more secure from assassination",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "was also no longer obligated to meet frequently with tribal shaykhs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "countrystudies-com-said",
+       "locator": "正文",
+       "quote": "distribute subsidies and thereby avoided depleting the treasury",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "Much of this reputation appears to derive from the last decade of his reign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "he had withdrawn to Salalah",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "said-council-of-ministers-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "馬斯喀特與阿曼蘇丹國",
+      "en": "Sultanate of Muscat and Oman"
+     },
+     "title": {
+      "orig": "President of the Council of Ministers",
+      "zh-Hant": "大臣會議主席",
+      "en": "President of Sultan Taimur's Council of Ministers"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1929-01-01",
+      "end": "1932-02-10"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "had served as the President of Sultan Taimur's Council of Ministers since 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cambridge-oman-ch4",
+       "locator": "摘要",
+       "quote": "becoming Sultan of Muscat and Oman on February 10, 1932",
+       "quoteLang": "en",
+       "evidenceNote": "迄日以繼位日推得（推論）：來源寫自 1929 年起任此職、泰穆爾退位後繼位為蘇丹，未明寫此職迄日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "職稱「大臣會議主席」在蘇丹之下，來源只說他「實際主持政府」（父親不在時），是否等同 R0 政府首腦不明；不猜，留經歷層並標記"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:biography",
+     "gapKind": "not_found",
+     "note": "待查證：名單寫首任元首任期 1937-07-07～1945-10-01，但已抓 B 級來源（Jones & Ridout；LoC 國家研究轉載）寫他 1932-02-10 即位；名單起日與來源不符，名單內元首任期不重建，需主管核對；另未取得 A 級來源（Britannica 403、LoC 官方頁 403／404、Qatar Digital Library 403、Project MUSE 挑戰頁）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Said-ibn-Taymur",
+     "url": "https://www.britannica.com/biography/Said-ibn-Taymur",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "WebSearch：Said bin Taimur Sultan of Muscat and Oman 1932 1970 biography Encyclopaedia",
+     "url": null,
+     "result": "found_B",
+     "note": "回傳多為 Wikipedia 鏡像（不採）；線索指向 Cambridge 專書與 Qatar Digital Library"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Qatar Digital Library 條目 The Financial Troubles of Said bin Taimur",
+     "url": "https://www.qdl.qa/financial-troubles-said-bin-taimur",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Cambridge 專書章節 The Sultanate as Nation, 1932–1959（摘要頁）",
+     "url": "https://www.cambridge.org/core/books/abs/history-of-modern-oman/sultanate-as-nation-19321959/9C17A20B10BB74D2AFD6B9D268CADD33",
+     "result": "found_B",
+     "note": "1929 起任大臣會議主席、1932-02-10 即位"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Cambridge 專書章節 Oil, Government and Security, 1955–1980（摘要頁）",
+     "url": "https://www.cambridge.org/core/books/abs/history-of-modern-oman/oil-government-and-security-19551980/A03A2E043E4322C93C67920CF68FBEB3",
+     "result": "found_B",
+     "note": "主要涉 1955 年後，窗外，未引"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "countrystudies.us Oman 頁（LoC 國家研究鏡像）",
+     "url": "https://countrystudies.us/persian-gulf-states/60.htm",
+     "result": "blocked_403",
+     "note": "403，不繞過；改用 country-studies.com 同內容轉載"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "LoC Persian Gulf States 國家研究 PDF（tile.loc.gov）",
+     "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/om/omancountrystud00metz_0/omancountrystud00metz_0.pdf",
+     "result": "no_result",
+     "note": "404（猜測網址）"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "marines.mil 轉載 Persian Gulf States Study_1.pdf",
+     "url": "https://www.marines.mil/portals/1/Publications/Persian%20Gulf%20States%20Study_1.pdf",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "country-studies.com Oman: Said ibn Taimur, 1932-70",
+     "url": "https://country-studies.com/persian-gulf-states/oman-said-ibn-taimur,-1932-70.html",
+     "result": "found_B",
+     "note": "LoC 國家研究第三方轉載；1954 起內陸衝突、1958 遷居薩拉拉"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "country-studies.com Oman: Taimur ibn Faisal, 1913-32",
+     "url": "https://country-studies.com/persian-gulf-states/oman-taimur-ibn-faisal,-1913-32.html",
+     "result": "found_B",
+     "note": "1932 退位、美國國務院 1938 年 2 月公報"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "globalsecurity.org Oman - Said ibn Taimur",
+     "url": "https://www.globalsecurity.org/military/world/gulf/oman-said.htm",
+     "result": "unrated",
+     "note": "私人網站轉載，未評等，未引用"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "LoC Name Authority 搜尋 Said bin Taymur",
+     "url": "https://id.loc.gov/search/?q=Said+bin+Taymur&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "搜尋結果頁由 JS 載入，無條目"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "VIAF 搜尋 Said bin Taimur",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Said%20bin%20Taimur%22",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 14,
+     "sourceType": "academic",
+     "query": "Project MUSE Jones & Ridout 書評／書頁",
+     "url": "https://muse.jhu.edu/article/614804",
+     "result": "challenge_page",
+     "note": "Verification required 挑戰頁，不繞過"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "WebSearch：Sa'id ibn Taymur Encyclopaedia Iranica / Encyclopedia of the Modern Middle East / Historical Dictionary of Oman",
+     "url": null,
+     "result": "no_result",
+     "note": "未回傳 A／B 條目"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "WebSearch：Library of Congress Persian Gulf States Country Studies Oman Said ibn Taimur",
+     "url": null,
+     "result": "found_B",
+     "note": "確認 country-studies.com／countrystudies.us 為 LoC 國家研究轉載"
+    }
+   ]
+  }
+ ]
+}

@@ -1,13 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal, viewChild } from '@angular/core';
 import { LucideUserRound } from '@lucide/angular';
 import type { LeaderRecord } from '../../core/api/world-line-api';
 import type { Lang } from '../../core/i18n';
 import { formatTerm, portraitDisplayable } from '../../core/person-format';
 import { termSourceItems } from '../../core/person-sources';
-import { SourceDisclosure } from '../source-disclosure/source-disclosure';
+import { FootnoteList, FootnoteSups } from '../footnotes/footnote-ui';
 import { numberSources } from '../../core/footnotes';
 
-let cardSeq = 0;
 
 const TXT = {
   'zh-Hant': {
@@ -29,7 +28,7 @@ const TXT = {
 @Component({
   selector: 'wl-person-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideUserRound, SourceDisclosure],
+  imports: [LucideUserRound, FootnoteSups, FootnoteList],
   host: { class: 'block' },
   template: `
     <article data-testid="person-card" [attr.data-record-id]="first().recordId" [attr.data-person-id]="first().personId" [attr.data-role-count]="records().length"
@@ -56,33 +55,12 @@ const TXT = {
               </div>
               <!-- 任期旁只放上標編號，出處統一列在卡片底部「資料來源」（與人物彈窗、國界卡片同一種做法；Tai 2026-11-14） -->
               <div data-testid="person-card-term" class="mt-0.5 font-mono tabular-nums">
-                <span class="sr-only">{{ t().term }}</span>{{ r.term }}@for (n of notesFor(r.recordId); track n) {<button type="button" data-testid="person-card-sup" [attr.data-n]="n" [attr.aria-label]="t().sourceRef + ' ' + n"
-                  class="relative ml-0.5 inline-block px-px align-super font-mono text-[10px] leading-none text-wl-primary after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
-                  (click)="showNote(n)">{{ n }}</button>}</div>
+                <span class="sr-only">{{ t().term }}</span>{{ r.term }}<wl-footnote-sups [ns]="notesFor(r.recordId)" prefix="person-card" [lang]="lang()" (pick)="showNote($event)" /></div>
               @if (!r.sources.length) { <span data-testid="source-pending" class="mt-0.5 inline-flex min-h-6 items-center rounded-sm border border-dashed border-wl-outline px-1.5 text-[11px]">{{ t().pending }}</span> }
             </li>
           }
         </ul>
-        @if (footnotes().length) {
-          <section data-testid="person-card-sources" class="mt-2 rounded-sm border border-wl-outline-variant bg-wl-surface-container">
-            <button type="button" data-testid="person-card-sources-toggle" [attr.aria-expanded]="sourcesOpen() ? 'true' : 'false'"
-              class="flex min-h-11 w-full items-center gap-1.5 px-2 text-left text-[12px] font-semibold text-wl-on-surface md:min-h-7 focus-visible:outline-2 focus-visible:outline-wl-secondary"
-              (click)="sourcesOpen.set(!sourcesOpen())">
-              <span aria-hidden="true" class="inline-block w-2 text-center">{{ sourcesOpen() ? '▾' : '▸' }}</span>{{ t().sources }} ({{ footnotes().length }})
-            </button>
-            <ol data-testid="person-card-sources-panel" [hidden]="!sourcesOpen()" class="space-y-1.5 border-t border-wl-outline-variant px-2 py-1.5">
-              @for (f of footnotes(); track f.n) {
-                <li data-testid="person-card-source-note" [id]="srcId(f.n)" [attr.data-n]="f.n" tabindex="-1" class="flex gap-1.5 rounded-sm outline-none focus-visible:outline-2 focus-visible:outline-wl-secondary">
-                  <span class="w-5 flex-none pt-1 text-right font-mono text-[11px] text-wl-primary">[{{ f.n }}]</span>
-                  <div class="min-w-0 flex-1">
-                    <div class="mb-0.5 text-[11px] text-wl-on-surface-variant">{{ t().usedFor }}：{{ f.usedFor.join('、') }}</div>
-                    <wl-source-disclosure [items]="[f.item]" [lang]="lang()" [inline]="true" />
-                  </div>
-                </li>
-              }
-            </ol>
-          </section>
-        }
+        <wl-footnote-list #srcList class="mt-2" prefix="person-card" [dense]="true" [footnotes]="footnotes()" [lang]="lang()" />
         @if (canOpen()) {
           <button type="button" data-testid="person-card-details" [attr.data-person-trigger]="first().personId"
             class="wl-btn-secondary mt-1.5 inline-flex min-h-11 items-center px-3 text-[13px] md:min-h-8"
@@ -113,17 +91,9 @@ export class PersonCard {
   private readonly notes = computed(() => numberSources(this.roles().map((r) => ({ key: r.recordId, label: `${r.roleText} ${this.t().tenureSource}`, items: r.sources }))));
   protected readonly footnotes = computed(() => this.notes().list);
   protected notesFor(key: string): number[] { return this.notes().fieldNotes.get(key) ?? []; }
-  protected readonly sourcesOpen = signal(false);
-  private readonly uid = `wl-pc-src-${++cardSeq}`;
-  protected srcId(n: number): string { return `${this.uid}-${n}`; }
-  protected showNote(n: number): void {
-    this.sourcesOpen.set(true);
-    setTimeout(() => {
-      const el = document.getElementById(this.srcId(n));
-      el?.scrollIntoView({ block: 'nearest' });
-      el?.focus({ preventScroll: true });
-    });
-  }
+  private readonly srcListRef = viewChild<FootnoteList>('srcList');
+  /** 上標編號：展開「資料來源」並捲到該筆（樣板裡的 #srcList 會蓋掉同名成員，所以另取名）。 */
+  protected showNote(n: number): void { this.srcListRef()?.reveal(n); }
   /** 同一人的生平摘要（任一角色帶到即可）。 */
   private readonly bio = computed(() => this.records().find((r) => r.bio)?.bio ?? null);
   protected readonly portrait = computed(() => {

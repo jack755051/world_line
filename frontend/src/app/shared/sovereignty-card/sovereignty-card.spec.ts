@@ -400,7 +400,9 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     // 陣營
     expect(q(el, 'feature-card-camp')?.getAttribute('data-camp')).not.toBe('unassigned');
     // 依據
-    expect(q(el, 'feature-card-camp-basis')?.textContent).toContain('FRUS 1939');
+    // 陣營依據：欄位旁只有上標編號，出處在底部「資料來源」
+    expect(q(el, 'feature-card-camp-basis')?.querySelector('[data-testid="sovereignty-card-sup"]')).not.toBeNull();
+    expect(q(el, 'sovereignty-card-sources-panel')?.textContent).toContain('FRUS 1939');
     // 補充：sup2 的日期 1946 > currentDate 1941，不顯示；sup1 顯示
     const supplements = q(el, 'feature-card-supplements');
     expect(supplements).not.toBeNull();

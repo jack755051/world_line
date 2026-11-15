@@ -53,11 +53,9 @@ test('1939-09-15：平時沒有衝突圖示；點波蘭 → 只出現德—波�
   const start = page.getByTestId('conflict-card-start');
   await expect(start.getByTestId('conflict-card-event-date')).toHaveText('1939-09-01');
   await expect(start.getByTestId('conflict-card-evidence').getByTestId('conflict-card-verified')).toHaveText('已查證');
-  const toggles = start.getByTestId('conflict-card-citation-toggle');
-  await expect(toggles).toHaveCount(2);
-  await expect(toggles.first()).toHaveText(/^FRUS 1939 I, Doc\. 40[23]/);
-  await toggles.first().click();
-  await expect(start.getByTestId('conflict-card-citation-full')).toContainText('Foreign Relations of the United States');
+  // 出處是上標編號；點了展開「資料來源」
+  await start.getByTestId('conflict-card-sup').first().click();
+  await expect(page.getByTestId('conflict-card-sources-panel')).toContainText('Foreign Relations of the United States');
   const end = page.getByTestId('conflict-card-end');
   await expect(end.getByTestId('conflict-card-event-date')).toHaveText('1939-10-06');
   await expect(end.getByTestId('conflict-card-pending')).toHaveText('待查證');

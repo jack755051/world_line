@@ -1,11 +1,10 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
 import { LucideX } from '@lucide/angular';
 import type { ControlFeatureProperties, RegimeEventDto, SovereigntyFeatureProperties, TheaterStateDto } from '../../core/api/api-types';
 import type { CapitalRecord, LeaderRecord } from '../../core/api/world-line-api';
 import { localized, type Lang } from '../../core/i18n';
 import { theaterLabel } from '../../core/theater-tracks';
-import { EventRef } from '../event-ref/event-ref';
 import { SANRING_TABS_IMPORTS } from '../../components/ui/tabs';
 import { campOf, type Evidence } from '../map/map-style';
 import { CitationPopover } from '../citation/citation-popover';
@@ -13,6 +12,7 @@ import { PersonCard } from '../person-card/person-card';
 import { SourceDisclosure } from '../source-disclosure/source-disclosure';
 import { capitalSourceItems, citationItems, geometrySourceItems } from '../../core/record-sources';
 import { numberSources } from '../../core/footnotes';
+import { FootnoteList, FootnoteSups, StatusChip } from '../footnotes/footnote-ui';
 import { groupLeaders } from '../../core/person-format';
 
 /** 控制區欄位（從 atlas 頁傳入，顯示在面板「概要」分頁的控制區區塊）。 */
@@ -91,12 +91,10 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
  * 出處預設只顯示簡短引用，點一下展開完整書目；沒有正式出處就標「待查證」，不補造）、
  * 國界幾何來源（OHM 關係 id／版本、授權、署名），陣營只在這裡作補充。
  */
-let sovSeq = 0;
-
 @Component({
   selector: 'wl-sovereignty-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideX, EventRef, NgTemplateOutlet, CitationPopover, PersonCard, SourceDisclosure, ...SANRING_TABS_IMPORTS],
+  imports: [LucideX, NgTemplateOutlet, CitationPopover, PersonCard, SourceDisclosure, FootnoteList, FootnoteSups, StatusChip, ...SANRING_TABS_IMPORTS],
   template: `
     <article data-testid="sovereignty-card" [class]="embedded() ? 'flex min-h-0 flex-1 flex-col' : 'wl-paper flex max-h-[inherit] min-h-0 w-[340px] flex-col p-4'"
       [attr.role]="embedded() ? null : 'dialog'" [attr.aria-label]="embedded() ? null : regimeName()" [attr.data-layer-status]="props().layerStatus">
@@ -245,7 +243,14 @@ let sovSeq = 0;
                                     </p>
                                   }
                                   <!-- C1：出處只在選取後顯示（不重複標題與日期） -->
-                                  <wl-event-ref [ev]="e.ev" prefix="sovereignty-card-timeline-detail" [lang]="lang()" [head]="false" />
+                                  <!-- 查證標籤＋出處：出處用共用的來源元件列出（含等級）；沒有出處時寫明 -->
+                                  <div class="mb-1"><wl-status-chip [text]="e.ev.verification === 'pending' ? t().confPending : t().confVerified" [tip]="e.ev.verification === 'pending' ? eventWhy(e.ev) : ''"
+                                    [verified]="e.ev.verification !== 'pending'" [testId]="e.ev.verification === 'pending' ? 'sovereignty-card-timeline-detail-pending' : 'sovereignty-card-timeline-detail-verified'" /></div>
+                                  @if (e.ev.citations.length) {
+                                    <wl-source-disclosure data-testid="sovereignty-card-timeline-detail-sources" [items]="eventSources(e.ev)" [lang]="lang()" [inline]="true" />
+                                  } @else {
+                                    <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-timeline-detail-no-citation">{{ t().noCitation }}</div>
+                                  }
                                   <div class="mt-2 flex gap-2">
                                     <button type="button" data-testid="sovereignty-card-timeline-map" class="wl-btn-secondary h-8 px-3 text-[12px]"
                                       (click)="showEventOnMap(e.ev.occurred.start ?? '')">{{ t().showOnMap }}</button>
@@ -305,10 +310,7 @@ let sovSeq = 0;
             <dt class="text-wl-on-surface-variant">{{ t().czCamp }}</dt>
             <dd data-testid="feature-card-camp" [attr.data-camp]="czCamp() ?? 'unassigned'">
               @if (cz.props.controllerAlignment; as al) {
-                {{ czCampLabel() }}（{{ czAlignmentPeriod() }}）
-                @for (c of czPrimaryAlignmentCitations(); track c.sourceId + c.locator) {
-                  <div class="text-wl-on-surface-variant" data-testid="feature-card-camp-basis">{{ t().czCampBasis }}：{{ c.sourceTitle }}，{{ c.locator }}</div>
-                }
+                {{ czCampLabel() }}（{{ czAlignmentPeriod() }}）<span data-testid="feature-card-camp-basis"><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('cz-camp') }" /></span>
               } @else {
                 <span class="text-wl-on-surface-variant">{{ t().czCampNone }}</span>
               }
@@ -322,10 +324,7 @@ let sovSeq = 0;
                   <summary class="cursor-pointer text-wl-on-surface-variant wl-text2">（{{ czSupplements().length }}）</summary>
                   @for (e of czSupplements(); track e.eventId) {
                     <div class="mt-1" data-testid="feature-card-supplement">
-                      <span>{{ e.date }}　{{ e.summary }}</span>
-                      @for (c of e.citations; track c.sourceId + c.locator) {
-                        <div class="text-wl-on-surface-variant">{{ t().czCampBasis }}：{{ c.sourceTitle }}，{{ c.locator }}</div>
-                      }
+                      <span>{{ e.date }}　{{ e.summary }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('cz-supp:' + e.eventId) }" />
                     </div>
                   }
                 </details>
@@ -354,7 +353,15 @@ let sovSeq = 0;
           <dt class="text-wl-on-surface-variant">{{ t().occBasis }}</dt>
           <dd data-testid="sovereignty-card-occupation-basis" class="min-w-0" [attr.data-verification]="o.verification">
             @if (o.basisEvent; as ev) {
-              <wl-event-ref [ev]="ev" prefix="sovereignty-card-occupation" [lang]="lang()" />
+              <span data-testid="sovereignty-card-occupation-evidence" class="mr-1 inline-block align-baseline">
+                @if (ev.verification === 'pending') {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confPending, tip: eventWhy(ev), verified: false, testId: 'sovereignty-card-occupation-pending' }" />
+                } @else {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confVerified, tip: '', verified: true, testId: 'sovereignty-card-occupation-verified' }" />
+                }
+              </span>
+              <span data-testid="sovereignty-card-occupation-event-date" class="mr-1 tabular-nums text-wl-on-surface-variant">{{ ev.occurred.start }}</span>
+              <span data-testid="sovereignty-card-occupation-event-name">{{ loc(ev.summary) || ev.eventKind }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('occupation') }" />
             } @else { <span class="text-wl-on-surface-variant">{{ t().occNoBasis }}</span> }
           </dd>
         }
@@ -433,50 +440,12 @@ let sovSeq = 0;
           @if (osmDerived()) { <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-osm">{{ t().osm }}</div> }
         </dd>
       </dl>
-      <!-- 資料來源：與人物彈窗同一種做法——內容旁只放編號，出處統一列在這裡（core/footnotes.ts 編號、wl-source-disclosure 顯示） -->
-      <section data-testid="sovereignty-card-sources" class="mt-5 rounded-md border border-wl-outline-variant bg-wl-surface-container">
-        <h3 class="m-0">
-          <button type="button" data-testid="sovereignty-card-sources-toggle" [attr.aria-expanded]="sourcesOpen() ? 'true' : 'false'"
-            class="flex min-h-9 w-full items-center gap-2 px-3 text-left wl-text2 font-semibold text-wl-on-surface focus-visible:outline-2 focus-visible:outline-wl-secondary"
-            (click)="sourcesOpen.set(!sourcesOpen())">
-            <span aria-hidden="true" class="inline-block w-2 text-center">{{ sourcesOpen() ? '▾' : '▸' }}</span>
-            <span data-testid="sovereignty-card-sources-label" class="flex-1">{{ t().sourcesTitle }} ({{ footnotes().length }})</span>
-          </button>
-        </h3>
-        <div data-testid="sovereignty-card-sources-panel" [hidden]="!sourcesOpen()" class="border-t border-wl-outline-variant px-3 py-2">
-          <ol class="space-y-2">
-            @for (f of footnotes(); track f.n) {
-              <li data-testid="sovereignty-card-source-note" [id]="srcId(f.n)" [attr.data-n]="f.n" tabindex="-1" class="flex gap-2 rounded-sm outline-none focus-visible:outline-2 focus-visible:outline-wl-secondary">
-                <span class="w-6 flex-none pt-1 text-right font-mono text-[12px] text-wl-primary">[{{ f.n }}]</span>
-                <div class="min-w-0 flex-1">
-                  <div data-testid="sovereignty-card-source-used-for" class="mb-0.5 text-[11px] text-wl-on-surface-variant">{{ t().usedFor }}：{{ f.usedFor.join('、') }}</div>
-                  <wl-source-disclosure [items]="[f.item]" [lang]="lang()" [inline]="true" />
-                </div>
-              </li>
-            }
-          </ol>
-        </div>
-      </section>
+      <!-- 資料來源：與人物彈窗同一種做法——內容旁只放編號，出處統一列在這裡（core/footnotes.ts 編號、shared/footnotes 顯示） -->
+      <wl-footnote-list #srcList class="mt-5" prefix="sovereignty-card" [footnotes]="footnotes()" [lang]="lang()" />
       </ng-template>
-      <!-- 上標來源編號：點了展開底部「資料來源」並捲到該筆 -->
-      <ng-template #sup let-ns>
-        @for (n of ns; track n) {
-          <button type="button" data-testid="sovereignty-card-sup" [attr.data-n]="n" [attr.aria-label]="t().sourceRef + ' ' + n"
-            class="relative ml-0.5 inline-block px-px align-super font-mono text-[10px] leading-none text-wl-primary after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary"
-            (click)="showNote(n)">{{ n }}</button>
-        }
-      </ng-template>
-      <!-- 狀態標籤；有說明時做成提示（hover／focus 顯示，同時給 title 與螢幕閱讀器） -->
-      <ng-template #chip let-text="text" let-tip="tip" let-verified="verified" let-testId="testId">
-        @if (tip) {
-          <span class="group relative inline-block">
-            <button type="button" [attr.data-testid]="testId" [attr.title]="tip" [attr.aria-label]="text + '：' + tip" [class]="verified ? 'wl-stamp' : 'wl-chip-interp'" class="cursor-help">{{ text }}</button>
-            <span role="tooltip" data-testid="sovereignty-card-tip" class="pointer-events-none absolute left-0 top-full z-10 mt-1 hidden w-56 rounded-sm border border-wl-outline-variant bg-wl-surface px-2 py-1 text-[12px] font-normal leading-snug text-wl-on-surface shadow-md group-focus-within:block group-hover:block">{{ tip }}</span>
-          </span>
-        } @else {
-          <span [attr.data-testid]="testId" [class]="verified ? 'wl-stamp' : 'wl-chip-interp'">{{ text }}</span>
-        }
-      </ng-template>
+      <!-- 上標來源編號、狀態標籤：共用零件（shared/footnotes/footnote-ui.ts） -->
+      <ng-template #sup let-ns><wl-footnote-sups [ns]="ns" prefix="sovereignty-card" [lang]="lang()" (pick)="showNote($event)" /></ng-template>
+      <ng-template #chip let-text="text" let-tip="tip" let-verified="verified" let-testId="testId"><wl-status-chip [text]="text" [tip]="tip" [verified]="verified" [testId]="testId" /></ng-template>
     </article>
   `,
 })
@@ -488,7 +457,13 @@ export class SovereigntyCard {
   /** 概要各欄的來源 → 編號清單（與人物彈窗共用 core/footnotes.ts）。欄位順序＝編號順序。 */
   private readonly notes = computed(() => {
     const t = this.t(); const p = this.props();
+    const cz = this.controlZone();
     return numberSources([
+      ...(cz ? [
+        { key: 'cz-camp', label: t.czCamp, items: citationItems(this.czPrimaryAlignmentCitations()) },
+        ...this.czSupplements().map((e) => ({ key: 'cz-supp:' + e.eventId, label: t.czSupplement, items: citationItems(e.citations) })),
+      ] : []),
+      { key: 'occupation', label: t.occBasis, items: citationItems(p.occupation?.basisEvent?.citations) },
       { key: 'capital', label: t.capital, items: this.capitalSources() },
       { key: 'start', label: t.start, items: citationItems(p.startEvent?.citations) },
       { key: 'end', label: t.end, items: citationItems(p.endEvent?.citations) },
@@ -498,18 +473,11 @@ export class SovereigntyCard {
   });
   protected readonly footnotes = computed(() => this.notes().list);
   protected notesFor(key: string): number[] { return this.notes().fieldNotes.get(key) ?? []; }
-  protected readonly sourcesOpen = signal(false);
-  private readonly uid = `wl-sov-src-${++sovSeq}`;
-  protected srcId(n: number): string { return `${this.uid}-${n}`; }
+  private readonly srcListRef = viewChild<FootnoteList>('srcList');
   /** 上標編號：展開「資料來源」、捲到該筆並聚焦。 */
-  protected showNote(n: number): void {
-    this.sourcesOpen.set(true);
-    setTimeout(() => {
-      const el = document.getElementById(this.srcId(n));
-      el?.scrollIntoView({ block: 'nearest' });
-      el?.focus({ preventScroll: true });
-    });
-  }
+  protected showNote(n: number): void { this.srcListRef()?.reveal(n); }
+  /** 事件的出處 → 來源項（事件分頁展開時用）。 */
+  protected eventSources(ev: { citations: Parameters<typeof citationItems>[0] }) { return citationItems(ev.citations); }
   /** 事件標「待查證」的原因（放在標籤的提示裡）。 */
   protected eventWhy(ev: { citations: readonly unknown[] }): string {
     return ev.citations.length ? this.t().eventBelow : this.t().noCitation;

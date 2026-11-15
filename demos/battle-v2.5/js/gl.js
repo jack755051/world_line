@@ -31,10 +31,12 @@ function upload(cv) { gl.bindTexture(gl.TEXTURE_2D, tex); gl.pixelStorei(gl.UNPA
 // ---- 勢力場（v2.8）：每個關鍵日一張浮點貼圖，RGBA＝各方的有號距離；兩張貼圖依時間內插後取最大者＝該點歸誰 ----
 const FLD_VS = `attribute vec2 p;attribute vec2 t;uniform vec2 res;varying vec2 uv;void main(){uv=t;gl_Position=vec4(p.x/res.x*2.0-1.0,1.0-p.y/res.y*2.0,0.0,1.0);}`;
 const FLD_FS = `#extension GL_OES_standard_derivatives : enable
-precision highp float;uniform sampler2D ta;uniform sampler2D tb;uniform float e;uniform float gate;uniform float mode;uniform float dpr;uniform float ppc;uniform vec4 c0;uniform vec4 c1;uniform vec4 c2;uniform vec4 ink;uniform vec4 lc;varying vec2 uv;
+precision highp float;uniform sampler2D ta;uniform sampler2D tb;uniform float e;uniform float gate;uniform float mode;uniform float sch;uniform float dpr;uniform float ppc;uniform vec4 c0;uniform vec4 c1;uniform vec4 c2;uniform vec4 ink;uniform vec4 lc;varying vec2 uv;
 void main(){vec4 s=mix(texture2D(ta,uv),texture2D(tb,uv),e);
 if(gate>0.5){s.a=max(s.a,s.b);s.b=-1e4;}
-if(mode>1.5){if(s.a>=max(s.r,max(s.g,s.b))){gl_FragColor=vec4(0.0);return;}gl_FragColor=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);return;}
+if(mode>1.5){if(s.a>=max(s.r,max(s.g,s.b))){gl_FragColor=vec4(0.0);return;}vec4 cc=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);
+// 示意領地：斜線，和推導的控制區（實色）分得出來
+float hs=step(0.5,fract((gl_FragCoord.x+gl_FragCoord.y)/(9.0*dpr)));gl_FragColor=cc*mix(1.0,hs,sch*0.75);return;}
 if(mode<0.5){gl_FragColor=(s.r>=s.g&&s.r>=s.b)?c0:(s.g>=s.b?c1:c2);return;}
 float en=max(s.r,s.b);float f=s.g-en;float d=abs(f)/max(length(vec2(dFdx(f),dFdy(f)))*dpr,1.0/ppc);float ok=step(s.a,min(s.g,en)+0.5);
 float ca=(1.0-smoothstep(2.4,3.4,d))*0.85*ok;float co=(1.0-smoothstep(0.6,1.6,d))*ink.a*ok;
@@ -47,14 +49,14 @@ function drawField(d, W, H) {
     fldOK = gl2 ? 2 : (gl.getExtension('OES_texture_float') && gl.getExtension('OES_texture_float_linear') && gl.getExtension('OES_standard_derivatives') ? 1 : 0);
     if (fldOK) { try { const vs = fldOK === 2 ? '#version 300 es\n' + FLD_VS.replace(/attribute/g, 'in').replace(/varying/g, 'out') : FLD_VS;
       const fs = fldOK === 2 ? '#version 300 es\n' + FLD_FS.replace(/^#extension.*\n/, '').replace(/varying/g, 'in').replace(/texture2D/g, 'texture').replace(/gl_FragColor/g, 'oc').replace('varying vec2 uv;', '').replace('in vec2 uv;', 'in vec2 uv;out vec4 oc;') : FLD_FS;
-      fldP = prog(vs, fs, ['p', 't']); ['ta', 'tb', 'e', 'gate', 'mode', 'dpr', 'ppc', 'c0', 'c1', 'c2', 'ink', 'lc'].forEach(n => fldP.u[n] = gl.getUniformLocation(fldP.p, n)); bufF = gl.createBuffer(); } catch (err) { console.warn('field shader', err); fldOK = 0; } } }
+      fldP = prog(vs, fs, ['p', 't']); ['ta', 'tb', 'e', 'gate', 'mode', 'sch', 'dpr', 'ppc', 'c0', 'c1', 'c2', 'ink', 'lc'].forEach(n => fldP.u[n] = gl.getUniformLocation(fldP.p, n)); bufF = gl.createBuffer(); } catch (err) { console.warn('field shader', err); fldOK = 0; } } }
   if (!fldOK) return;
   for (const id of [d.a, d.b]) { const pd = fldPending[id]; if (!pd) continue; delete fldPending[id]; const t = fldTex[id] = fldTex[id] || gl.createTexture(); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, t);
     gl.texImage2D(gl.TEXTURE_2D, 0, fldOK === 2 ? gl.RGBA16F : gl.RGBA, pd.w, pd.h, 0, gl.RGBA, gl.FLOAT, pd.data);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE); }
   if (!fldTex[d.a] || !fldTex[d.b]) return;
   const p = fldP; gl.useProgram(p.p); gl.uniform2f(p.u.res, W, H); gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, fldTex[d.b]); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, fldTex[d.a]);
-  gl.uniform1i(p.u.ta, 0); gl.uniform1i(p.u.tb, 1); gl.uniform1f(p.u.e, d.e); gl.uniform1f(p.u.gate, d.gate ? 1 : 0); gl.uniform1f(p.u.mode, d.mode); gl.uniform1f(p.u.dpr, d.dpr); gl.uniform1f(p.u.ppc, d.ppc);
+  gl.uniform1i(p.u.ta, 0); gl.uniform1i(p.u.tb, 1); gl.uniform1f(p.u.e, d.e); gl.uniform1f(p.u.gate, d.gate ? 1 : 0); gl.uniform1f(p.u.mode, d.mode); gl.uniform1f(p.u.sch, d.sch || 0); gl.uniform1f(p.u.dpr, d.dpr); gl.uniform1f(p.u.ppc, d.ppc);
   gl.uniform4fv(p.u.c0, d.c0); gl.uniform4fv(p.u.c1, d.c1); gl.uniform4fv(p.u.c2, d.c2); gl.uniform4fv(p.u.ink, d.ink); gl.uniform4fv(p.u.lc, d.lc);
   gl.bindBuffer(gl.ARRAY_BUFFER, bufF); gl.bufferData(gl.ARRAY_BUFFER, d.verts, gl.STREAM_DRAW);
   gl.enableVertexAttribArray(p.a.p); gl.vertexAttribPointer(p.a.p, 2, gl.FLOAT, false, 16, 0); gl.enableVertexAttribArray(p.a.t); gl.vertexAttribPointer(p.a.t, 2, gl.FLOAT, false, 16, 8);

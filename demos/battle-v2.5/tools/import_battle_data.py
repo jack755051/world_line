@@ -92,7 +92,8 @@ mark_map = {d: max(ms, key=lambda m: len(m['features'])) for d, ms in by_date.it
 TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 'rearguard', 'evacuating', 'fighting', 'surrounded', 'reserve', 'surrendered', 'capturing', 'supporting', 'reinforcing'}
 TEXT_ST = {'attacking': 'attack', 'capturing': 'attack', 'holding': 'defend', 'rearguard': 'defend', 'within_perimeter': 'defend', 'fighting': 'defend', 'withdrew_to': 'retreat', 'evacuating': 'evacuating', 'surrounded': 'encircled', 'surrendered': 'surrendered'}
 # 有文字位置的日期也當關鍵日（否則 5/31、6/2 這些沒有態勢圖的日子，出處明明寫到部隊在哪，卻畫不出來）
-kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1} | {p['date'] for p in R3 if p.get('relation') in TEXT_REL and D0 <= (p.get('date') or '') <= D1})
+kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1} | {p['date'] for p in R3 if p.get('relation') in TEXT_REL and D0 <= (p.get('date') or '') <= D1}
+                | {f['date'] for f in R4L if D0 <= f['date'] <= D1})   # 文字防線生效的日期也當關鍵日（示意領地要在那一天換線）
 def cam(d):
     c = VIEW['camera_from'][0][1]
     for dd, name in VIEW['camera_from']:

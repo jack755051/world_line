@@ -8,7 +8,7 @@
 | 指揮官（R7） | 41 | 41 | |
 | 文字位置（R3） | 138 | 138 | 其中 44 筆畫上地圖（該單位當天沒有圖上位置、且關係表示部隊所在）；其餘只顯示在單位卡片 |
 | 態勢圖 | 8 | 6 | 未通過配準門檻不用：usma-13-4jun；同日多張只取一張的標註 |
-| 圖上標註 | 477 | 411 | **已對到名冊 212 個**；其餘 155 個位置歸成 81 個「圖上標註」 |
+| 圖上標註 | 477 | 256 | **已對到名冊 212 個**；其餘 0 個位置歸成 0 個「圖上標註」 |
 | 前線（R4 主期，讀圖） | 27 | 27 | 推估，虛線 |
 | 前線（R4 前段，文字） | 7 | 8 | |
 | 交戰（R5） | 28 | 17 | 未匯入：cand-hannut（來源檔標為查無）；cand-sedan（來源檔標為查無）；cand-dinant（來源檔標為查無）；cand-gembloux（來源檔標為查無）；cand-stonne（來源檔標為查無）；cand-montcornet（來源檔標為查無）；cand-abbeville（來源檔標為查無）；cand-arras（來源檔標為查無）；cand-aa（來源檔標為查無）；cand-boulogne（來源檔標為查無）；cand-abb2（來源檔標為查無） |
@@ -18,6 +18,11 @@
 
 師以下（旅、團、營）不上圖（憲法 Decision 5）：56 個位置、52 種標號：1 GDS B?、1 Gds Bde、1 HAA Regt、10 BDE、11 BDE、11 Mot Bde、110 RI、12 BDE、126 BDE、129 RI、137 RI、138 BDE、139 BDE、139 Bde、14 A/Tk Regt、14 Ter Regt、145 Bde Gp、15 Regional Regt、150 BDE、150 RI、151 BDE、151 Bde、16 & 53 Fd Regts、16 Fd Regt、18 Fd Regt、19 Fd Regt、2 Fd Regt、208 RI、22 Fd Regt、225 RI、27 A Fd Regt、270 RI、3 BDE、30 Fd Regt、310 RI、341 RI、407 AR、48 RI、53 Fd Regt、65 RI、7 & 76 Fd Regt、7 Gds Bde、8 BDE、8 Zouaves、88 A Fd Regt、9 BDE、91 & 92 Fd Regts、92 Fd Regt、GRD 9?、Mot Regt "Grossdeutschland"、Recce G? GRD 92、SS "Adolf Hitler" Regt。
 
+## 沒對到名冊的圖上標註（待辦）
+
+設計規則 R2：不上圖、不進清單。155 個位置、81 種標號。補上 `unitKey` 後重跑就會掛到名冊單位上。
+德「12」×4、德「19」×4、德「208」×4、德「217」×4、盟「23」×4、德「251」×4、德「253」×4、德「255」×4、德「267」×4、德「30」×4、德「31」×4、德「32」×4、德「35」×4、盟「68」×4、德「11」×3、德「13 Mot」×3、德「225」×3、德「269」×3、盟「32」×3、德「46」×3、盟「I」×3、盟「SFF」×3、盟「1 DWR」×2、盟「1 E Lan R」×2、盟「1 KSLI」×2、盟「1 Loyals」×2、德「1, 28, 8, 83」×2、盟「2 Hamps」×2、德「2 Mot」×2、盟「2/5 Foresters」×2、盟「2/5 Leicesters」×2、德「227」×2、德「27」×2、德「28」×2、德「29 Mot」×2、盟「5 Border」×2、盟「9 Foresters」×2、盟「III」×2、盟「1 Coldm Gds」×1、盟「1 Gren Gds」×1、盟「1 KOSB」×1、盟「1 S Lan R」×1、盟「1 Suffolk」×1、盟「1/6 S Staffords」×1、盟「1/6 Surreys」×1、盟「2 Bedfs Herts」×1、盟「2 C?」×1、盟「2 DCLI」×1、盟「2 E Yorks」×1、盟「2 Gren Gds」×1、盟「2 Lincolns」×1、盟「2 RF」×1、盟「2 RUR」×1、盟「21 C.I.DIV」×1、德「223」×1、盟「23 DIV」×1、盟「3 Gren Gds」×1、盟「32 DI」×1、盟「32 DIV」×1、盟「4 E Yorks」×1、盟「4 Green Howards」×1、盟「4 NF」×1、盟「4 R Berks」×1、盟「5 Green Howards」×1、盟「6 Bw」×1、盟「6 DLI」×1、盟「6 Lincolns」×1、盟「6 Y&L」×1、盟「68 DIV」×1、德「68 DIV」×1、盟「8 DLI」×1、德「83」×1、盟「88 A Fd R?」×1、盟「9 DLI」×1、盟「? Own」×1、盟「ADAMFORCE」×1、盟「Det 2 Foresters」×1、盟「IX CORPS」×1、盟「King's Own」×1、盟「V」×1、德「XIV CORPS」×1
+
 ## 示意圖形
 
 示意箭頭與航線 7 個（取自 `data/campaigns/dunkirk_1940.json` 的進攻箭頭與主線資料夾的 `schematic.json`，每個都掛在官方戰史引文上；只表示方向或走向，不是實際路線）。
@@ -25,7 +30,7 @@
 
 ## 還缺什麼
 
-1. **圖上標註沒有對到名冊**：155 個位置的 `unitKey` 都是空的。補上之後重跑，這些位置就會直接掛到名冊單位上，卡片才看得到指揮官與出處。
+1. **圖上標註沒有對到名冊**：0 個位置的 `unitKey` 都是空的。補上之後重跑，這些位置就會直接掛到名冊單位上，卡片才看得到指揮官與出處。
 2. **沒有控制區**：來源檔沒有可以圍成面的前線（主期各日是分段的線，5/30 之後沒有線），所以地圖不塗陣營底色。
 3. **疆界（R8）只有紀錄編號**，沒有幾何；展示頁離線讀不到，底圖仍是現代國界。
 4. **查不到座標的地名**：無。

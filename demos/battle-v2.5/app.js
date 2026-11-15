@@ -56,7 +56,7 @@ const Q = new URLSearchParams(location.search);   // 蓋掉外殼的 Q：原地�
 const data = cfg.data, asg = cfg.asg;
 // 史料骨架（主專案考證檔轉出）與每筆資料的可信度（tools/crosscheck.py 算出）；兩個檔都可以沒有
 // v2.12：未查證資料預設不畫（主專案憲法 Decision 5：上圖的每一筆都要有出處）。?unverified=1 或圖層選單可以打開，只給試驗場用。
-let SHOWU = !APP && Q.get('unverified') === '1';
+let SHOWU = !APP && Q.get('unverified') === '1', SHOWL = Q.get('lines') === '1';
 const engShown = e => SHOWU || cfLevel('eng:' + e.id) === 'verified';
 const SRC = cfg.sourced || null, CONF = (cfg.conf || {}).items || {}, CSUM = (cfg.conf || {}).summary || null;
 let dead = false, raf = 0, evBound = false; const offs = [];
@@ -724,6 +724,7 @@ function renderChips() {
   const box = document.createElement('div'); box.id = 'lay-pop'; box.hidden = !layOpen; const lg = document.createElement('button'); lg.className = 'chip'; lg.textContent = '圖例'; lg.onclick = () => $('#legend-btn').click(); root.append(seg, lb, lg, box);
   { const ms = document.createElement('div'); ms.className = 'seg mode'; ms.setAttribute('role', 'group'); ms.setAttribute('aria-label', '模式');
     [[false, '追蹤', '追蹤模式：自由鏡頭，點部隊看細節'], [true, '導覽', '導覽模式：照章節自動移動鏡頭，只強調當日焦點（快捷鍵 T）']].forEach(([v, t, tt]) => { const b = document.createElement('button'); b.textContent = t; b.title = tt; b.className = TOUR === v ? 'on' : ''; b.setAttribute('aria-pressed', TOUR === v); b.onclick = () => setTour(v); ms.appendChild(b); }); root.prepend(ms); }
+  if (TH.control && TH.control.mode === 'units' && SRC && SRC.lines.length) { const b = document.createElement('button'); b.className = 'chip ' + (SHOWL ? 'on' : 'off'); b.setAttribute('aria-pressed', SHOWL); b.innerHTML = `<i style="background:#26201c"></i>史料戰線<small>${SHOWL ? '顯示' : '隱藏'}</small>`; b.title = '官方戰史寫明的防線與態勢圖上讀出的線段。預設隱藏：地圖上的前線是領地的邊界那一條。'; b.onclick = () => { SHOWL = !SHOWL; renderChips(); }; box.appendChild(b); }
   if (!APP) { const b = document.createElement('button'); b.className = 'chip ' + (SHOWU ? 'on' : 'off'); b.setAttribute('aria-pressed', SHOWU); b.innerHTML = `<i style="background:#b9a26a"></i>未查證資料<small>${SHOWU ? '顯示' : '隱藏'}</small>`; b.title = '沒有官方紀錄、官方戰史或學術專書出處的部隊位置、交戰與史料待查證項目。預設隱藏。'; b.onclick = () => setShowU(!SHOWU); box.appendChild(b); }
   const a = document.createElement('button'); a.className = 'chip locked'; a.disabled = true; a.innerHTML = '<i style="background:#ff4b3a"></i>A｜控制區<small>常駐</small>'; box.appendChild(a);
   for (const k of ['forces', 'eng', 'places']) { const L = LAYERS[k]; const b = document.createElement('button');
@@ -943,7 +944,7 @@ function drawSchemPath(a, hot, LA, hits) { const P = a.m.map(q => [PX(q[0]), PY(
   BGL.line([...P.slice(0, n - 1), e], false, w, cs, route ? [8, 6, ph] : [2, 5, ph]); BGL.tris([[B[0], B[1], cs], [e[0] - uy * hd * 0.8, e[1] + ux * hd * 0.8, cs], [e[0] + uy * hd * 0.8, e[1] - ux * hd * 0.8, cs]]);
   for (let k = 0; k + 1 < n; k++) hits.push({ type: 'src', id: a.id, x: (P[k][0] + P[k + 1][0]) / 2, y: (P[k][1] + P[k + 1][1]) / 2, r: 16 }); }
 function drawSourced(LA) { const inPh = p => day >= p.t0 - 1e-6 && day < p.t1, isSel = id => selected && selected.type === 'src' && selected.id === id, isHov = id => hover && hover.type === 'src' && hover.id === id;
-  for (const l of SRC.lines) { if ((!inPh(l.p) && !isSel(l.id)) || (!SHOWU && !l.verified && l.level !== 'estimate')) continue; const pts = l.m.map(q => [PX(q[0]), PY(q[1])]), hot = isSel(l.id) || isHov(l.id);
+  for (const l of SRC.lines) { if ((!inPh(l.p) && !isSel(l.id)) || (!SHOWU && !l.verified && l.level !== 'estimate')) continue; if (UPOS && !SHOWL && !isSel(l.id)) continue;   /* 設計規則 R5：有領地蒙版時，前線就是蒙版的邊界那一條；史料戰線預設不畫，從圖層選單打開 */ const pts = l.m.map(q => [PX(q[0]), PY(q[1])]), hot = isSel(l.id) || isHov(l.id);
     BGL.line(pts, false, hot ? 7 : 5, [1, 1, 1, 0.9 * LA]); BGL.line(pts, false, hot ? 3 : 2, rgba(...INK, 0.95 * LA), l.verified ? null : [6, 4]);
     for (let k = 0; k < pts.length - 1; k++) hits.push({ type: 'src', id: l.id, x: (pts[k][0] + pts[k + 1][0]) / 2, y: (pts[k][1] + pts[k + 1][1]) / 2, r: 14 }); }
   for (const a of SRC.arrows) { if ((!(a.d0 != null ? day >= a.d0 - 1e-6 && day < a.d1 : inPh(a.p)) && !isSel(a.id)) || (!SHOWU && !a.verified)) continue;

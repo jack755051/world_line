@@ -119,6 +119,7 @@ def branch(name, ech):
     if '(mot' in n or 'motoris' in n or 'mécanique' in n or ' mot' in n: return 'motorized'
     return 'infantry'
 def label_of(u):
+    if u['unitKey'] in VIEW.get('labels', {}): return VIEW['labels'][u['unitKey']]
     m = re.search(r'-(\d+|[ivxl]+)-', u['unitKey'] + '-')
     return (m.group(1).upper() if m else u['nameOrig'].split(' (')[0])[:10]
 cmd_by = collections.defaultdict(list)
@@ -158,6 +159,8 @@ SIDE = {'german': 'axis', 'allied': 'allied'}
 def slugify(s): return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-') or 'x'
 SUB_DIV = re.compile(r'\b(RI|RA|AR|RAD|Regt|Rgt|Bde|Bn|GRD|GRCA|DBLE|Zouaves|Ter|Regional|Recce|Gds B)', re.I)
 sub_div = collections.Counter()
+unmatched = collections.Counter()
+SHOW_UNMATCHED = '--unmatched' in sys.argv   # 只給除錯用：把沒對到名冊的標註也畫出來
 marks, positions, digitized, linked = {}, [], [], 0
 for d in sorted(mark_map):
     m = mark_map[d]
@@ -170,6 +173,7 @@ for d in sorted(mark_map):
         # 憲法 Decision 5：部隊最細只到師。圖上的旅、團、營級標註（來源檔層級是 other，標號看得出是旅／團）不上圖。
         if f.get('unitKey') not in roster_ids and f.get('echelon') not in ('army_group', 'army', 'corps', 'division') and SUB_DIV.search(f['label']): sub_div[f['label']] += 1; continue
         if f.get('unitKey') in roster_ids: uid = f['unitKey']; linked += 1
+        elif not SHOW_UNMATCHED: unmatched[(f.get('sideGuess'), f['label'])] += 1; continue   # 設計規則 R2：沒對到名冊的圖上標註不上圖、不進清單
         else:
             key = (f['sideGuess'], f.get('echelon'), f['label'])
             uid = f"mk-{SIDE[f['sideGuess']][:2]}-{(f.get('echelon') or 'x')[:3]}-{slugify(f['label'])}"
@@ -322,6 +326,11 @@ rep = f"""# 匯入報告：{bid}
 ## 沒有上圖的圖上標註
 
 師以下（旅、團、營）不上圖（憲法 Decision 5）：{sum(sub_div.values())} 個位置、{len(sub_div)} 種標號：{'、'.join(sorted(sub_div)) or '—'}。
+
+## 沒對到名冊的圖上標註（待辦）
+
+設計規則 R2：不上圖、不進清單。{sum(unmatched.values())} 個位置、{len(unmatched)} 種標號。補上 `unitKey` 後重跑就會掛到名冊單位上。
+{'、'.join(f"{'德' if k[0] == 'german' else '盟'}「{k[1]}」×{v}" for k, v in sorted(unmatched.items(), key=lambda x: (-x[1], x[0][1])))}
 
 ## 示意圖形
 

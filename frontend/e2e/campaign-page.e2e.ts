@@ -181,8 +181,9 @@ for (const [w, h] of [[360, 780], [390, 844], [768, 1024], [1024, 768], [1440, 9
   });
 }
 
-test('敦克爾克的戰役簡報入口開新版戰役頁（/battle/），「← 地圖」回到原本的日期與政權', async ({ page }) => {
+test('?battlePage=new：敦克爾克的戰役簡報入口開新版戰役頁（/battle/，補資料中，不是正式入口），「← 地圖」回到原本的日期與政權', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
+  await page.addInitScript(() => sessionStorage.setItem('wl.battlePage', 'new'));
   await mockApi(page);
   await page.goto(`/?date=1940-05-28&axis=sovereignty&regime=${UK}&tab=events`);
   await expect(page.getByTestId('map-canvas')).toHaveAttribute('data-map-ready', 'true');

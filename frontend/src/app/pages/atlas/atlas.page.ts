@@ -51,19 +51,23 @@ interface SheetInfo {
  */
 import { CampaignCard } from '../../shared/campaign-card/campaign-card';
 import { CampaignService, campaignsForConflict, campaignsForRegime, type CampaignIndexEntry, splitCampaignName } from '../../core/campaign';
-/** 已有新版戰役頁的戰役：主線戰役代號 → /battle/ 的戰役編號。只放資料全部有出處的（展示頁 index.json 的 status＝sourced）。 */
-const NEW_BATTLE_PAGE: Record<string, string> = { dunkirk_1940: 'dunkirk-1940' };
+/**
+ * 新版戰役頁（/battle/）的戰役：主線戰役代號 → 戰役編號。
+ * 正式入口（NEW_BATTLE_PAGE）只放通過憲法 Decision 5「戰役頁的最低上線標準」與設計規則 R1–R7 的戰役；目前沒有。
+ * 還在補資料的放 PREVIEW_BATTLE_PAGE：網址加 ?battlePage=new（這個分頁之後都算）才會從入口開新版。
+ */
+const NEW_BATTLE_PAGE: Record<string, string> = {};
+const PREVIEW_BATTLE_PAGE: Record<string, string> = { dunkirk_1940: 'dunkirk-1940' };
 
-/** 網址帶 ?battlePage=classic 時（這個分頁之後都算），戰役入口仍開原本的 /campaign/:slug；給比對新舊版與舊版戰役頁的測試用。 */
-function classicBattlePage(): boolean {
+/** 網址帶 ?battlePage=classic｜new 時（這個分頁之後都算）：classic＝一律開原本的 /campaign/:slug；new＝還在補資料的戰役也開新版。 */
+function battlePageMode(): string | null {
   try {
     const q = new URLSearchParams(location.search).get('battlePage');
     if (q) sessionStorage.setItem('wl.battlePage', q);
-    return sessionStorage.getItem('wl.battlePage') === 'classic';
-  } catch { return false; }
+    return sessionStorage.getItem('wl.battlePage');
+  } catch { return null; }
 }
-
-classicBattlePage(); // 開頁當下就記住（之後網址會被改寫）
+battlePageMode(); // 開頁當下就記住（之後網址會被改寫）
 
 @Component({
   selector: 'wl-atlas-page',
@@ -648,8 +652,9 @@ export class AtlasPage {
     this.returns.save(snap);
     if (typeof history !== 'undefined') history.replaceState({ ...(history.state ?? {}), [RETURN_STATE_KEY]: snap }, '');
     // 新版戰役頁（Tai 2026-11-15）：資料已全部改由主線匯入的戰役，改開 /battle/ 的動態地圖；其餘仍用原本的 /campaign/:slug
-    const battleId = NEW_BATTLE_PAGE[key];
-    if (battleId && typeof location !== 'undefined' && !classicBattlePage()) {
+    const mode = battlePageMode();
+    const battleId = mode === 'classic' ? undefined : NEW_BATTLE_PAGE[key] ?? (mode === 'new' ? PREVIEW_BATTLE_PAGE[key] : undefined);
+    if (battleId && typeof location !== 'undefined') {
       const back = location.pathname + location.search;
       location.assign(new URL(`battle/index.html?battle=${battleId}&app=1&back=${encodeURIComponent(back)}`, document.baseURI).href);
       return;

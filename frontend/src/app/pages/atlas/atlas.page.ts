@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, effect, inject, linkedSignal, signal, untracked, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, effect, inject, linkedSignal, signal, untracked, viewChild, isDevMode } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -54,7 +54,7 @@ import { CampaignService, campaignsForConflict, campaignsForRegime, type Campaig
 /**
  * 新版戰役頁（/battle/）的戰役：主線戰役代號 → 戰役編號。
  * 正式入口（NEW_BATTLE_PAGE）只放通過憲法 Decision 5「戰役頁的最低上線標準」與設計規則 R1–R7 的戰役；目前沒有。
- * 還在補資料的放 PREVIEW_BATTLE_PAGE：網址加 ?battlePage=new（這個分頁之後都算）才會從入口開新版。
+ * 還在補資料的放 PREVIEW_BATTLE_PAGE：開發環境的入口預設開新版；正式環境要網址加 ?battlePage=new（這個分頁之後都算）才會。
  */
 const NEW_BATTLE_PAGE: Record<string, string> = {};
 const PREVIEW_BATTLE_PAGE: Record<string, string> = { dunkirk_1940: 'dunkirk-1940' };
@@ -64,7 +64,8 @@ function battlePageMode(): string | null {
   try {
     const q = new URLSearchParams(location.search).get('battlePage');
     if (q) sessionStorage.setItem('wl.battlePage', q);
-    return sessionStorage.getItem('wl.battlePage');
+    // 開發環境預設開新版（還在補資料，方便邊做邊看）；正式環境沒有指定時走原本的戰役頁
+    return sessionStorage.getItem('wl.battlePage') ?? (isDevMode() ? 'new' : null);
   } catch { return null; }
 }
 battlePageMode(); // 開頁當下就記住（之後網址會被改寫）

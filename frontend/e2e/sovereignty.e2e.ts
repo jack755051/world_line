@@ -378,7 +378,8 @@ test('1942-12-01：南歐、東南歐與法國（佔領行政區為非主權斜�
   await clickAt(page, [20.46, 44.82]); // 貝爾格勒
   await expect(title).toContainText('塞爾維亞軍事指揮官轄區');
   await expect(card).toHaveAttribute('data-layer-status', 'not_sovereign');
-  await expect(start.getByTestId('sovereignty-card-verified')).toBeVisible();
+  // 來源規則 2026-11-13 起：兩筆同一家族的 B 級引文不到已查證門檻 → 待查證
+  await expect(start.getByTestId('sovereignty-card-pending')).toBeVisible();
 
   await clickAt(page, [19.26, 42.44]); // 波德戈里察：總督轄區設立沒有正式出處 → 待查證
   await expect(title).toContainText('蒙特內哥羅總督轄區');

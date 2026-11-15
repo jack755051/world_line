@@ -628,8 +628,10 @@ export class AtlasData {
     }
     this.regimesStatus.set('loading');
     try {
-      // 批次拉（最多 200，超過分批）；避免 N 個逐一請求導致前端換年份卡頓
-      const BATCH = 200;
+      // 批次拉，超過分批；避免 N 個逐一請求導致前端換年份卡頓。
+      // 一批 80 個：每個 id 在網址裡佔 41 個位元組，200 個會超過伺服器請求列 8,192 位元組的上限（整批失敗、所有國名變成代號；
+      // 2026-11-15 在單日政權數超過約 195 個的日期發生）。80 個約 3.3 KB，留足餘裕。
+      const BATCH = 80;
       const loaded: import('./api/api-types').RegimeDto[] = [];
       for (let i = 0; i < missing.length; i += BATCH) {
         const chunk = missing.slice(i, i + BATCH);

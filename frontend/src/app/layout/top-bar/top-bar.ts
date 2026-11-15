@@ -55,9 +55,11 @@ import { versionInfo } from '../../core/version';
       <span class="flex flex-none items-center gap-2">
         <img src="logo.svg" alt="" width="28" height="28" class="size-7 flex-none rounded-[6px]" aria-hidden="true" />
         <span class="whitespace-nowrap font-wl-serif text-[17px] font-semibold tracking-wide text-wl-on-surface">Sanring World Line</span>
-        <!-- 版本號（Tai 2026-11-15：一眼看得出目前版本）：只寫版本號，與 logo 同高置中；點了到「版本資訊」頁 -->
+        <!-- 版本號（Tai 2026-11-15：一眼看得出目前版本）：只寫版本號，與 logo 同高置中；點了到「版本資訊」頁。平板寬度（md，768–1023px）頂列放不下，不顯示 -->
+        @if (bp() !== 'md') {
         <a href="version" data-testid="topbar-version" class="inline-flex h-7 items-center whitespace-nowrap font-mono text-[11px] leading-none text-wl-on-surface-variant hover:text-wl-on-surface hover:underline"
           [attr.title]="versionTitle" [attr.aria-label]="versionTitle">{{ versionText }}</a>
+        }
       </span>
       <span class="h-6 w-px bg-wl-outline-variant" aria-hidden="true"></span>
       @if (loading()) {

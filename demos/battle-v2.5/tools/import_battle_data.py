@@ -7,7 +7,7 @@
   · 態勢圖上的標註（digitized/*.json 的 features）若來源檔沒有填 unitKey，就當成獨立的「圖上標註」畫出來，
     不自動對到名冊（同號的步兵師／裝甲師、英軍／法軍無法只靠數字分辨）。來源檔之後補上 unitKey，重跑就會併到名冊單位。
   · 同一張圖系列裡「陣營＋層級＋標號」相同的標註視為同一個標註的前後位置（只用來畫移動，不代表已對到單位）。
-  · 名冊單位的文字位置（R3）多半只到「某地一帶」，不畫上地圖，放在單位卡片裡。
+  · 名冊單位的文字位置（R3）多半只到「某地一帶」：該單位當天沒有圖上位置時，用地名座標畫上地圖（±5 公里）；其餘放在單位卡片裡。
   · 地名座標取自態勢圖控制點（OSM）與 battles/<id>/gazetteer.json（OSM 物件編號查得）；座標是地理參照，不是史料。
   · 未通過配準門檻（threshold.passes=false）的圖不使用。
 
@@ -89,7 +89,10 @@ by_date = collections.defaultdict(list)
 for m in usable: by_date[m['mapDate']].append(m)
 # 同一天有兩張圖：部隊標註取標註較多的那張（另一張的前線仍會用）
 mark_map = {d: max(ms, key=lambda m: len(m['features'])) for d, ms in by_date.items()}
-kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1})
+TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 'rearguard', 'evacuating', 'fighting', 'surrounded', 'reserve', 'surrendered', 'capturing', 'supporting', 'reinforcing'}
+TEXT_ST = {'attacking': 'attack', 'capturing': 'attack', 'holding': 'defend', 'rearguard': 'defend', 'within_perimeter': 'defend', 'fighting': 'defend', 'withdrew_to': 'retreat', 'evacuating': 'evacuating', 'surrounded': 'encircled', 'surrendered': 'surrendered'}
+# 有文字位置的日期也當關鍵日（否則 5/31、6/2 這些沒有態勢圖的日子，出處明明寫到部隊在哪，卻畫不出來）
+kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1} | {p['date'] for p in R3 if p.get('relation') in TEXT_REL and D0 <= (p.get('date') or '') <= D1})
 def cam(d):
     c = VIEW['camera_from'][0][1]
     for dd, name in VIEW['camera_from']:
@@ -151,6 +154,8 @@ for u in R1:
 
 SIDE = {'german': 'axis', 'allied': 'allied'}
 def slugify(s): return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-') or 'x'
+SUB_DIV = re.compile(r'\b(RI|RA|AR|RAD|Regt|Rgt|Bde|Bn|GRD|GRCA|DBLE|Zouaves|Ter|Regional|Recce|Gds B)', re.I)
+sub_div = collections.Counter()
 marks, positions, digitized, linked = {}, [], [], 0
 for d in sorted(mark_map):
     m = mark_map[d]
@@ -160,6 +165,8 @@ for d in sorted(mark_map):
     idx = collections.Counter()
     for f in m['features']:
         if not f.get('usable', True) or f.get('sideGuess') not in SIDE: continue
+        # 憲法 Decision 5：部隊最細只到師。圖上的旅、團、營級標註（來源檔層級是 other，標號看得出是旅／團）不上圖。
+        if f.get('unitKey') not in roster_ids and f.get('echelon') not in ('army_group', 'army', 'corps', 'division') and SUB_DIV.search(f['label']): sub_div[f['label']] += 1; continue
         if f.get('unitKey') in roster_ids: uid = f['unitKey']; linked += 1
         else:
             key = (f['sideGuess'], f.get('echelon'), f['label'])
@@ -168,11 +175,22 @@ for d in sorted(mark_map):
             if uid not in marks:
                 lab = f['label']
                 marks[uid] = {'id': uid, 'side': SIDE[f['sideGuess']], 'name_zh': f'圖上標註「{lab}」', 'name_orig': f"{lab}（{'德軍' if f['sideGuess'] == 'german' else '盟軍'}，尚未對到名冊）", 'echelon': ECH.get(f.get('echelon'), 'corps'),
-                              'echelon_src': f.get('echelon'), 'branch': 'motorized' if re.search(r'mot|dlm', lab, re.I) else 'infantry', 'parent_id': None, 'label': lab[:12], 'display': 'both', 'domain': 'ground',
+                              'echelon_src': f.get('echelon'), 'branch': 'motorized' if re.search(r'mot|dlm', lab, re.I) else 'infantry', 'parent_id': None, 'label': lab[:12], 'display': 'detail', 'domain': 'ground',   # detail＝拉遠時不顯示，拉近到它的層級才出現（沒有上級可以併，否則拉遠會擠成一團）
                               'map_mark': True, 'note': '這是態勢圖上的一個標註，陣營依圖例的符號樣式判讀，還沒有對到名冊裡的單位。', 'mark_notes': []}
             if f.get('note') or f.get('sideNote'): marks[uid]['mark_notes'].append({'date': d, 'note': f.get('note'), 'side_note': f.get('sideNote')})
         positions.append({'unit_id': uid, 'date': d, 'lng': f['lonlat'][0], 'lat': f['lonlat'][1], 'state': 'move', 'status': 'map', 'precision_m': m['precision_m'], 'place_zh': None,
                           'source': 'map:' + m['mapKey'], 'map_label': f['label'], 'map_date': d})
+# 文字位置（R3）上圖（Tai 2026-11-15）：名冊單位在某個關鍵日沒有圖上位置、但出處文字寫到它「在某地」時，用那個地名的座標畫出來。
+# 只收表示部隊本身所在的關係；開會、指派防區、出發、指揮這類不代表部隊位置的不收。座標是地名中心，精度標 ±5 公里。
+have = {(p['unit_id'], p['date']) for p in positions}
+n_text = 0
+for p in R3:
+    if p.get('unitKey') not in roster_ids or p.get('date') not in kdates or p.get('relation') not in TEXT_REL or (p['unitKey'], p['date']) in have: continue
+    ll = lonlat(p.get('place'), 'r3')
+    if not ll: continue
+    have.add((p['unitKey'], p['date'])); n_text += 1
+    positions.append({'unit_id': p['unitKey'], 'date': p['date'], 'lng': ll[0], 'lat': ll[1], 'state': TEXT_ST.get(p['relation'], 'move'), 'status': 'text', 'precision_m': 5000,
+                      'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation']})
 for uid, u in marks.items():
     units.append(u)
     conf['unit:' + uid] = {'level': 'estimate', 'fields': {'oob': {'level': 'needs-check', 'used': None, 'claims': [], 'note': '圖上標註尚未對到名冊單位'},
@@ -279,13 +297,17 @@ rep = f"""# 匯入報告：{bid}
 |---|---|---|---|
 | 名冊單位（R1） | {len(R1)} | {len(roster_ids)} | 未匯入 {len(gaps_units)} 個標為查無：{'、'.join(gaps_units) or '—'}；只有一個來源的 {single} 個 |
 | 指揮官（R7） | {len(R7)} | {len(asg)} | |
-| 文字位置（R3） | {len(R3)} | {sum(len(u.get('text_positions', [])) for u in units)} | 只顯示在單位卡片，不畫上地圖 |
+| 文字位置（R3） | {len(R3)} | {sum(len(u.get('text_positions', [])) for u in units)} | 其中 {n_text} 筆畫上地圖（該單位當天沒有圖上位置、且關係表示部隊所在）；其餘只顯示在單位卡片 |
 | 態勢圖 | {len(MAPS)} | {len(mark_map)} | 未通過配準門檻不用：{'、'.join(skipped_maps) or '—'}；同日多張只取一張的標註 |
 | 圖上標註 | {sum(len(m['features']) for m in MAPS)} | {len(positions)} | **已對到名冊 {linked} 個**；其餘 {npos_mark} 個位置歸成 {nmark} 個「圖上標註」 |
 | 前線（R4 主期，讀圖） | {len(R4['fronts'])} | {sum(1 for l in lines if l['basis'] == 'map')} | 推估，虛線 |
 | 前線（R4 前段，文字） | {len(R4L)} | {sum(1 for l in lines if l['basis'] == 'text')} | |
 | 交戰（R5） | {len(R5)} | {len(engs)} | 未匯入：{'；'.join(f'{k}（{w}）' for k, w in eng_skip) or '—'} |
 | 據點（R6） | {len(R6)} | {sum(len(s['changes']) for s in sites.values())} 筆／{len(sites)} 處 | 控制方未載的 {sum(1 for s in R6 if not s.get('controllerAfter'))} 筆照樣帶入，標待查證 |
+
+## 沒有上圖的圖上標註
+
+師以下（旅、團、營）不上圖（憲法 Decision 5）：{sum(sub_div.values())} 個位置、{len(sub_div)} 種標號：{'、'.join(sorted(sub_div)) or '—'}。
 
 ## 示意圖形
 

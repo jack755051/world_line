@@ -145,8 +145,7 @@ function edt2(g, w, h) { const n = Math.max(w, h), INF = 1e20, f = new Float64Ar
 function prepAreas() { const C = TH.control; if (!C || (C.mode !== 'areas' && C.mode !== 'units')) return;
   if (C.mode === 'units') {   /* 推導的控制區（憲法 Decision 5 的推導圖形）：由當日態勢圖上雙方部隊的位置算出，只有有位置的日期才有 */
     const b = C.bbox, R = [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]]]; BASE_RING = new Float64Array(8); R.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
-    const side = Object.fromEntries(D.units.map(u => [u.id, u.side]));
-    UPOS = D.keyframes.map(k => D.positions.filter(p => p.date === k.date && p.status === 'map' && side[p.unit_id]).map(p => [p.lng, p.lat, side[p.unit_id]]));
+    UPOS = D.keyframes.map(() => []);   // 真正的清單在 prep() 算完各單位的關鍵日位置（含補洞）之後填
     AREAS = D.keyframes.map(() => ({})); setTimeout(() => buildFields(cfg.geo.land), 0); return; }
   const B = C.border; BASE_RING = new Float64Array(B.length * 2); B.forEach((p, i) => { BASE_RING[2 * i] = mx(p[0]); BASE_RING[2 * i + 1] = my(p[1]); });
   AREAS = D.keyframes.map(k => { const o = {}; D.areas.filter(a => a.date === k.date).forEach(a => { o[a.id] = Object.assign(ringPrep(a.ring, NA), { id: a.id, side: a.side, name: a.name_zh || '' }); }); return o; });
@@ -160,7 +159,7 @@ function buildFields(landc) { if (dead) return; const C = TH.control, t0 = perfo
   const under = C.under_ids || [], a = new Float64Array(NP), o = new Float64Array(NP), n = new Float64Array(NP), m = new Uint8Array(NP);
   D.keyframes.forEach((kf, ki) => { g.fillStyle = '#000'; g.fillRect(0, 0, GW, GH);
     if (C.mode === 'units') {   /* 每一格歸給最近的部隊那一方，但只算到 radius_km 以內；更遠的地方沒有依據，不塗色。只塗陸地 */
-      const U = UPOS[ki].map(u => [gx(u[0]), gy(u[1]), u[2] === 'axis' ? 0 : u[2] === 'allied' ? 1 : 2]), latc = (FB[1] + FB[3]) / 2, kmpp = (FB[2] - FB[0]) * 111.32 * Math.cos(latc * Math.PI / 180) / GW, R2 = Math.pow((C.radius_km || 14) / kmpp, 2);
+      const U = UPOS[ki].map(u => [(u[0] - x0) / (x1 - x0) * GW, (y1 - u[1]) / (y1 - y0) * GH, u[2] === 'axis' ? 0 : u[2] === 'allied' ? 1 : 2]), latc = (FB[1] + FB[3]) / 2, kmpp = (FB[2] - FB[0]) * 111.32 * Math.cos(latc * Math.PI / 180) / GW, R2 = Math.pow((C.radius_km || 14) / kmpp, 2);
       const im = g.createImageData(GW, GH), dd = im.data;
       if (U.length) for (let y = 0; y < GH; y++) for (let x = 0; x < GW; x++) { let bd = R2, bs = -1; for (let q = 0; q < U.length; q++) { const dx = U[q][0] - x, dy = U[q][1] - y, d2 = dx * dx + dy * dy; if (d2 < bd) { bd = d2; bs = U[q][2]; } } if (bs >= 0) { const i = 4 * (y * GW + x); dd[i + bs] = 255; dd[i + 3] = 255; } }
       const t = document.createElement('canvas'); t.width = GW; t.height = GH; t.getContext('2d').putImageData(im, 0, 0);
@@ -221,7 +220,13 @@ function prep() {
     const em = ENGM[e.id] || {}; e.imp = e.importance || em.importance || 1; e.sum = e.summary_zh || em.summary_zh || ''; e.label = e.name_zh.replace(/（示例）/, '');
     // v2.3：交戰是一段時間。資料有 from／to 就用；沒有就當作關鍵日前後各半天
     const END = KD[KD.length - 1]; e.t0 = clamp(e.from ? dayOf(e.from) : dayOf(e.date) - 0.5, 0, END); e.t1 = clamp(e.to ? dayOf(e.to) : dayOf(e.date) + 0.5, 0, END); });
-  D.units.forEach(u => { u.kpos = D.keyframes.map(k => { const p = posBy[u.id][k.date]; return p ? { x: mx(p.lng), y: my(p.lat), st: p.state, src: p.status === 'map' } : null; }); });
+  D.units.forEach(u => { u.kpos = D.keyframes.map(k => { const p = posBy[u.id][k.date]; return p ? { x: mx(p.lng), y: my(p.lat), st: p.state, src: p.status === 'map' || p.status === 'text' } : null; }); });
+  // 補洞：某個關鍵日沒有紀錄點、但前後三天內各有一個有出處的紀錄點時，用時間內插補上（推估）。
+  // 不補的話，只有少數單位有紀錄的日子（例如 5/31 只有文字位置）其他單位會整批消失再出現。
+  D.units.forEach(u => { const kp = u.kpos; for (let k = 1; k < kp.length - 1; k++) { if (kp[k]) continue; let a = k - 1, b = k + 1; while (a >= 0 && !kp[a]) a--; while (b < kp.length && !kp[b]) b++;
+    if (a < 0 || b >= kp.length || kp[a].fill || !kp[a].src || !kp[b].src || KD[b] - KD[a] > 3) continue; const t = (KD[k] - KD[a]) / (KD[b] - KD[a]);
+    kp[k] = { x: lerp(kp[a].x, kp[b].x, t), y: lerp(kp[a].y, kp[b].y, t), st: kp[a].st, src: true, fill: true }; } });
+  if (TH.control && TH.control.mode === 'units') UPOS = D.keyframes.map((k, ki) => D.units.filter(u => u.kpos[ki] && u.kpos[ki].src).map(u => [u.kpos[ki].x, u.kpos[ki].y, u.side]));
   D.units.forEach(u => { u.children = D.units.filter(c => c.parent_id === u.id).map(c => c.id); u.tier = u.tier ?? TIER[u.echelon] ?? 1; u.replace = (TH.replace_units || []).includes(u.id) || u.replace === true; u._st = 0; u._sa = 0; });
   D.keyframes.forEach(k => { const f = new Set(k.focus_units || []);
     for (let r = 0; r < 3; r++) D.units.forEach(u => { if (u.parent_id && f.has(u.parent_id)) f.add(u.id); });
@@ -856,7 +861,7 @@ function rosterHTML(u) { if (!SRC) return ''; const tp = u.text_positions || [];
 function unitLive(h) { const u = unitIdx[h.id], S = state(day); if (!u._present || u._mx === undefined) return `<dl><dt>狀態</dt><dd>${u.roster && !u.kpos.some(Boolean) ? '地圖上沒有畫（位置尚未對到態勢圖標註）' : '這個時間不在戰場上'}</dd></dl>`;
   const lat = ilat(u._my), lng = ilon(u._mx); const pr = (posBy[u.id][D.keyframes[S.i].date] || posBy[u.id][D.keyframes[S.j].date] || {}).precision_m;
   const mv = u._spd > 1 ? `約 ${Math.round(u._spd)} 公里／日，往${DIRS[((Math.round(u._brg / (Math.PI / 4)) % 8) + 8) % 8]}` : '停留';
-  return `<dl><dt>狀態</dt><dd>${ST[u._stNow] || '—'}</dd><dt>移動</dt><dd>${mv}</dd><dt>位置</dt><dd>${lat.toFixed(2)}°N　${Math.abs(lng).toFixed(2)}°${lng < 0 ? 'W' : 'E'}${pr ? `（±${Math.round(pr / 1000)} 公里）` : ''}</dd><dt>依據</dt><dd>${(() => { const pk = posBy[u.id][D.keyframes[S.i].date] || {}, dg = pk.status === 'map' && (D.meta.digitized || []).find(x => 'map:' + x.file.slice(0, -5) === pk.source); if (S.atKey && dg) return `${cfBadge(cfLevel('unit:' + u.id, 'position') === 'estimate' && u.map_mark ? 'estimate' : 'verified')} 地圖數位化：${esc(dg.short_zh || dg.citation)}（圖上標「${esc(pk.map_label)}」，${esc(pk.map_date)}）`; return (S.atKey ? '關鍵日的紀錄點' : '兩個紀錄點之間內插（推估）') + (cfLevel('unit:' + u.id, 'position') === 'estimate' ? '；紀錄點是依敘述手擺的推估' : ''); })()}</dd></dl>`; }
+  return `<dl><dt>狀態</dt><dd>${ST[u._stNow] || '—'}</dd><dt>移動</dt><dd>${mv}</dd><dt>位置</dt><dd>${lat.toFixed(2)}°N　${Math.abs(lng).toFixed(2)}°${lng < 0 ? 'W' : 'E'}${pr ? `（±${Math.round(pr / 1000)} 公里）` : ''}</dd><dt>依據</dt><dd>${(() => { const pk = posBy[u.id][D.keyframes[S.i].date] || {}, dg = pk.status === 'map' && (D.meta.digitized || []).find(x => 'map:' + x.file.slice(0, -5) === pk.source); if (S.atKey && dg) return `${cfBadge(cfLevel('unit:' + u.id, 'position') === 'estimate' && u.map_mark ? 'estimate' : 'verified')} 地圖數位化：${esc(dg.short_zh || dg.citation)}（圖上標「${esc(pk.map_label)}」，${esc(pk.map_date)}）`; if (S.atKey && u.kpos[S.i] && u.kpos[S.i].fill) return '這一天沒有紀錄點：由前後兩個有出處的紀錄點內插（推估）'; if (S.atKey && pk.status === 'text') return `${cfBadge('verified')} 出處文字寫到在「${esc(pk.place_zh || '')}」；圖上畫在該地名的中心，不是精確位置`; return (S.atKey ? '關鍵日的紀錄點' : '兩個紀錄點之間內插（推估）') + (cfLevel('unit:' + u.id, 'position') === 'estimate' ? '；紀錄點是依敘述手擺的推估' : ''); })()}</dd></dl>`; }
 function engStatic(h) { const e = D.engagements.find(x => x.id === h.id);
   const side = r => e.units.filter(x => x.role === r).map(x => `<div class="pr">${ulink(x.unit_id)}${cmdHTML(x.unit_id, true)}</div>`).join('') || '<span class="none">—</span>';
   return `<div class="ih"><div class="ic eng i${e.imp}">⚔</div><div><h3>${esc(e.label)}</h3><div class="orig">${e.date}｜${esc(e.interaction_zh)}</div></div></div>

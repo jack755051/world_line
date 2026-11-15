@@ -21,10 +21,15 @@ def main():
     opt = lambda k: next((sys.argv[i + 1] for i, a in enumerate(sys.argv) if a == k and i + 1 < len(sys.argv)), None)
     base = HERE / opt("--dir") if opt("--dir") else HERE          # 例：--dir v3（批次在 full/v3/batchNNN）
     replace = set((opt("--replace") or "").split(",")) - {""}       # 例：--replace <bioId>：先撤回該人既有段落／經歷／角色／缺口，再寫新版（I5 不刪）
-    names = [n for n in names if n not in (opt("--dir"), opt("--replace"))]
+    exclude = set((opt("--exclude") or "").split(",")) - {""}       # 例：--exclude <personKey>：審查退回或待補缺口的人不寫
+    names = [n for n in names if n not in (opt("--dir"), opt("--replace"), opt("--exclude"))]
     if not names:
         raise SystemExit("請指定批次（例：batch001 batch002）")
     batches = [(n, json.loads((base / n / "research.json").read_text(encoding="utf-8"))) for n in names]
+    for _, d in batches:
+        d["people"] = [p for p in d["people"] if p["key"] not in exclude]
+    if exclude:
+        print("排除：" + "、".join(sorted(exclude)))
     overrides = json.load(open(w3.OVERRIDES)) if os.path.exists(w3.OVERRIDES) else {}
     st = w3.db_state(None)
     for k in ("paragraphs", "positions", "roles"):  # 要取代的人：視為庫內沒有，讓 plan 產出全部新列
@@ -36,7 +41,7 @@ def main():
     sql = w3.build_sql(P)
     lines = sql.split("\n"); assert lines[0] == "BEGIN;" and lines[-1] == "COMMIT;"
     if replace:
-        why = "b3-v3-replace-2026-11-15：由 B3 full v3 規格版本取代（Tai 2026-11-15「好」）"
+        why = "b3-v3-replace-2026-11-15：由 B3 full v3 規格版本取代（Tai 2026-11-15 同意寫入）"
         L = w3.sql_lit
         pre = []
         for bio in sorted(replace):

@@ -5,7 +5,7 @@
     "ng": "ng",
     "prestart": "node scripts/write-version.mjs && node scripts/sync-battle-page.mjs",
     "start": "ng serve",
-    "prebuild": "node scripts/write-version.mjs && node scripts/sync-battle-page.mjs",
+    "prebuild": "node scripts/write-version.mjs && node scripts/sync-battle-page.mjs --prod",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "pretest": "node scripts/write-version.mjs && node scripts/sync-battle-page.mjs",

@@ -98,7 +98,7 @@ POLICY += [
     ('fapecft.org.mx', 'archive', 'B', 'Plutarco Elías Calles 與 Fernando Torreblanca 檔案基金會', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),
     ('guides.loc.gov', 'official_website', 'A', '美國國會圖書館研究指南', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),
     ('historiasuniversitarias.edu.uy', 'encyclopedia', 'B', '烏拉圭共和國大學 Historias Universitarias 人物條目', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),
-    ('hoover.blogs.archives.gov', 'official_website', 'B', '美國國家檔案館 Hoover 總統圖書館官方部落格（機構發布）', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),
+    ('hoover.blogs.archives.gov', None, 'X', 'Hoover 總統圖書館部落格；主機名含 source-policy 禁用標籤 blogs（2026-11-17 誤歸類已更正，引用撤回）', "B3 v3 第二段寫庫後更正（source-policy bannedHostLabels）"),
     ('launiversidad.up.ac.pa', 'peer_reviewed', 'B', '巴拿馬大學官方刊物 La Universidad', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),
     ('orbilu.uni.lu', 'peer_reviewed', 'B', '盧森堡大學典藏庫 ORBilu 收錄之具名文章', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),
     ('portal.amelica.org', 'peer_reviewed', 'B', 'AmeliCA 學術期刊平台（Realidad，中美洲大學）', "B3 v3 第二段寫庫前未歸類網域，§16 T1 同一原則（Tai 2026-11-17「繼續處理」）"),

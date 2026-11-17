@@ -140,6 +140,9 @@ def main():
             for h, since in DATED_BANNED_HOSTS.items():
                 if (host == h or host.endswith("." + h)) and str(s.get("addedAt") or "") >= since:
                     errs.append(f"來源 {k} 網域已禁用（{h}，{BAN_DECISION[h]}，個人／無署名網站）：addedAt {s.get('addedAt')}")
+        for u in (s.get("url"), s.get("archive_url")):  # 網域字樣（blogs／forum…）不分等級都禁用（2026-11-17：B 級 hoover.blogs 漏網）
+            if u and _sp.banned_label(u):
+                errs.append(f"來源 {k}：網域含禁用字樣「{_sp.banned_label(u)}」（source-policy bannedHostLabels）：{urlparse(u).hostname}")
         if s.get("grade") not in (None,) + OKG and not (s.get("grade") == "C" and k not in fact_keys):
             errs.append(f"來源 {k} grade 非法：{s.get('grade')}")
         if s.get("grade") == "C":

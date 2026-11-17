@@ -88,7 +88,9 @@ skipped_maps = [m['mapKey'] for m in MAPS if not m['threshold']['passes']]
 by_date = collections.defaultdict(list)
 for m in usable: by_date[m['mapDate']].append(m)
 # 同一天有兩張圖：部隊標註取標註較多的那張（另一張的前線仍會用）
-mark_map = {d: max(ms, key=lambda m: len(m['features'])) for d, ms in by_date.items()}
+# 全戰區圖（coarse）另外處理：同一天有一般態勢圖時以一般圖為主，全戰區圖只補一般圖上沒有的單位。
+mark_map = {d: max(ms, key=lambda m: (not m.get('coarse'), len(m['features']))) for d, ms in by_date.items()}
+mark_maps = {d: [mark_map[d]] + sorted((m for m in ms if m.get('coarse') and m is not mark_map[d]), key=lambda m: m['precision_m']) for d, ms in by_date.items()}
 TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 'rearguard', 'evacuating', 'fighting', 'surrounded', 'reserve', 'surrendered', 'capturing', 'supporting', 'reinforcing', 'arriving'}
 TEXT_ST = {'attacking': 'attack', 'capturing': 'attack', 'holding': 'defend', 'rearguard': 'defend', 'within_perimeter': 'defend', 'fighting': 'defend', 'withdrew_to': 'retreat', 'evacuating': 'evacuating', 'surrounded': 'encircled', 'surrendered': 'surrendered'}
 # 有文字位置的日期也當關鍵日（否則 5/31、6/2 這些沒有態勢圖的日子，出處明明寫到部隊在哪，卻畫不出來）
@@ -162,30 +164,32 @@ sub_div = collections.Counter()
 unmatched = collections.Counter()
 SHOW_UNMATCHED = '--unmatched' in sys.argv   # 只給除錯用：把沒對到名冊的標註也畫出來
 marks, positions, digitized, linked = {}, [], [], 0
-for d in sorted(mark_map):
-    m = mark_map[d]
-    digitized.append({'file': m['mapKey'] + '.json', 'citation': m['source']['citation'], 'short_zh': 'Ellis 態勢圖 ' + (re.search(r"'[^']+'.*", m['source']['citation']) or re.search(r'.*', m['source']['citation'].split("Situation Map ")[-1])).group(0).split('（')[0], 'url': m['source']['url'],
-                      'map_date': d, 'loo_p95_km': m['threshold']['loo_p95_km'], 'precision_m': m['precision_m'], 'control_points': m['georef']['control_points']})
-    seen = collections.Counter((f.get('sideGuess'), f.get('echelon'), f['label']) for f in m['features'])
-    idx = collections.Counter()
-    for f in m['features']:
-        if not f.get('usable', True) or f.get('sideGuess') not in SIDE: continue
-        # 憲法 Decision 5：部隊最細只到師。圖上的旅、團、營級標註（來源檔層級是 other，標號看得出是旅／團）不上圖。
-        if f.get('unitKey') not in roster_ids and f.get('echelon') not in ('army_group', 'army', 'corps', 'division') and SUB_DIV.search(f['label']): sub_div[f['label']] += 1; continue
-        if f.get('unitKey') in roster_ids: uid = f['unitKey']; linked += 1
-        elif not SHOW_UNMATCHED: unmatched[(f.get('sideGuess'), f['label'])] += 1; continue   # 設計規則 R2：沒對到名冊的圖上標註不上圖、不進清單
-        else:
-            key = (f['sideGuess'], f.get('echelon'), f['label'])
-            uid = f"mk-{SIDE[f['sideGuess']][:2]}-{(f.get('echelon') or 'x')[:3]}-{slugify(f['label'])}"
-            if seen[key] > 1: idx[key] += 1; uid += f"-{d[5:].replace('-', '')}-{idx[key]}"   # 同圖同號兩個以上：無法分辨誰是誰，只在當天出現
-            if uid not in marks:
-                lab = f['label']
-                marks[uid] = {'id': uid, 'side': SIDE[f['sideGuess']], 'name_zh': f'圖上標註「{lab}」', 'name_orig': f"{lab}（{'德軍' if f['sideGuess'] == 'german' else '盟軍'}，尚未對到名冊）", 'echelon': ECH.get(f.get('echelon'), 'corps'),
-                              'echelon_src': f.get('echelon'), 'branch': 'motorized' if re.search(r'mot|dlm', lab, re.I) else 'infantry', 'parent_id': None, 'label': lab[:12], 'display': 'detail', 'domain': 'ground',   # detail＝拉遠時不顯示，拉近到它的層級才出現（沒有上級可以併，否則拉遠會擠成一團）
-                              'map_mark': True, 'note': '這是態勢圖上的一個標註，陣營依圖例的符號樣式判讀，還沒有對到名冊裡的單位。', 'mark_notes': []}
-            if f.get('note') or f.get('sideNote'): marks[uid]['mark_notes'].append({'date': d, 'note': f.get('note'), 'side_note': f.get('sideNote')})
-        positions.append({'unit_id': uid, 'date': d, 'lng': f['lonlat'][0], 'lat': f['lonlat'][1], 'state': 'move', 'status': 'map', 'precision_m': m['precision_m'], 'place_zh': None,
-                          'source': 'map:' + m['mapKey'], 'map_label': f['label'], 'map_date': d, **({'coarse': True} if m.get('coarse') else {})})   # coarse＝全戰區圖（±十幾公里）：畫部隊牌，不拿來算領地
+placed = set(); coarse_later = []   # 全戰區圖的位置排在文字位置之後：同一天出處文字寫到地名（±5 公里）就用文字的
+for d in sorted(mark_maps):
+    for m in mark_maps[d]:
+        digitized.append({'file': m['mapKey'] + '.json', 'citation': m['source']['citation'], 'short_zh': ('西點軍校地圖集 ' if m['mapKey'].startswith('usma') else 'Ellis 態勢圖 ') + (re.search(r"'[^']+'.*", m['source']['citation']) or re.search(r'.*', m['source']['citation'].split("Situation Map ")[-1])).group(0).split('（')[0], 'url': m['source']['url'],
+                          'map_date': d, 'loo_p95_km': m['threshold']['loo_p95_km'], 'precision_m': m['precision_m'], 'control_points': m['georef']['control_points']})
+        seen = collections.Counter((f.get('sideGuess'), f.get('echelon'), f['label']) for f in m['features'])
+        idx = collections.Counter()
+        for f in m['features']:
+            if not f.get('usable', True) or f.get('sideGuess') not in SIDE: continue
+            # 憲法 Decision 5：部隊最細只到師。圖上的旅、團、營級標註（來源檔層級是 other，標號看得出是旅／團）不上圖。
+            if f.get('unitKey') not in roster_ids and f.get('echelon') not in ('army_group', 'army', 'corps', 'division') and SUB_DIV.search(f['label']): sub_div[f['label']] += 1; continue
+            if f.get('unitKey') in roster_ids and (f['unitKey'], d) in placed: continue   # 較精確的圖已經給了這個單位當天的位置
+            if f.get('unitKey') in roster_ids: uid = f['unitKey']; linked += 1; placed.add((uid, d))
+            elif not SHOW_UNMATCHED: unmatched[(f.get('sideGuess'), f['label'])] += 1; continue   # 設計規則 R2：沒對到名冊的圖上標註不上圖、不進清單
+            else:
+                key = (f['sideGuess'], f.get('echelon'), f['label'])
+                uid = f"mk-{SIDE[f['sideGuess']][:2]}-{(f.get('echelon') or 'x')[:3]}-{slugify(f['label'])}"
+                if seen[key] > 1: idx[key] += 1; uid += f"-{d[5:].replace('-', '')}-{idx[key]}"   # 同圖同號兩個以上：無法分辨誰是誰，只在當天出現
+                if uid not in marks:
+                    lab = f['label']
+                    marks[uid] = {'id': uid, 'side': SIDE[f['sideGuess']], 'name_zh': f'圖上標註「{lab}」', 'name_orig': f"{lab}（{'德軍' if f['sideGuess'] == 'german' else '盟軍'}，尚未對到名冊）", 'echelon': ECH.get(f.get('echelon'), 'corps'),
+                                  'echelon_src': f.get('echelon'), 'branch': 'motorized' if re.search(r'mot|dlm', lab, re.I) else 'infantry', 'parent_id': None, 'label': lab[:12], 'display': 'detail', 'domain': 'ground',   # detail＝拉遠時不顯示，拉近到它的層級才出現（沒有上級可以併，否則拉遠會擠成一團）
+                                  'map_mark': True, 'note': '這是態勢圖上的一個標註，陣營依圖例的符號樣式判讀，還沒有對到名冊裡的單位。', 'mark_notes': []}
+                if f.get('note') or f.get('sideNote'): marks[uid]['mark_notes'].append({'date': d, 'note': f.get('note'), 'side_note': f.get('sideNote')})
+            (coarse_later if m.get('coarse') else positions).append({'unit_id': uid, 'date': d, 'lng': f['lonlat'][0], 'lat': f['lonlat'][1], 'state': 'move', 'status': 'map', 'precision_m': m['precision_m'], 'place_zh': None,
+                              'source': 'map:' + m['mapKey'], 'map_label': f['label'], 'map_date': d, **({'coarse': True} if m.get('coarse') else {})})   # coarse＝全戰區圖（±十幾公里）：畫部隊牌，不拿來算領地
 # 文字位置（R3）上圖（Tai 2026-11-15）：名冊單位在某個關鍵日沒有圖上位置、但出處文字寫到它「在某地」時，用那個地名的座標畫出來。
 # 只收表示部隊本身所在的關係；開會、指派防區、出發、指揮這類不代表部隊位置的不收。座標是地名中心，精度標 ±5 公里。
 have = {(p['unit_id'], p['date']) for p in positions}
@@ -198,6 +202,8 @@ for p in R3:
     positions.append({'unit_id': p['unitKey'], 'date': p['date'], 'lng': ll[0], 'lat': ll[1], 'state': TEXT_ST.get(p['relation'], 'move'), 'status': 'text', 'precision_m': 5000,
                       'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation'],
                       **({'opposing': True} if p.get('sourceSide') == 'opposing' else {})})   # 只有對手方出處＝待查證（docs/source-rules.md）
+for p in coarse_later:
+    if (p['unit_id'], p['date']) not in have: have.add((p['unit_id'], p['date'])); positions.append(p)
 for uid, u in marks.items():
     units.append(u)
     conf['unit:' + uid] = {'level': 'estimate', 'fields': {'oob': {'level': 'needs-check', 'used': None, 'claims': [], 'note': '圖上標註尚未對到名冊單位'},

@@ -9,8 +9,8 @@
 
 全戰區圖（Tai 2026-11-17 拍板，docs/source-rules.md「讀圖配準門檻」）：readings.json 頂層有
      "scaleClass": {"class": "theatre", "basis": "…", "decidedBeforeFit": true} 的圖走另一級門檻：
-     模型改用仿射（經、緯度各 3 個係數；這類圖的控制點少，二次式的留一法不成立）；留一 95 百分位 ≤ 15 km 才通過；
-     通過後只有集團軍群、集團軍、裝甲師的標註可用（usable），前線頂點一律不可用；輸出 coarse=true，展示頁不拿它算領地。
+     控制點不到 12 個時模型改用仿射（經、緯度各 3 個係數；二次式的留一法不成立）；留一 95 百分位 ≤ 15 km 才通過；
+     通過後只有集團軍群、集團軍、軍、裝甲師的標註可用（usable），前線頂點一律不可用；輸出 coarse=true，展示頁不拿它算領地。
      分級必須在配準前依圖本身決定（圖幅橫跨超過 200 公里、畫的是集團軍層級的配置），不得因為過不了 2 km 才改級：
      decidedBeforeFit 不是 true 一律僅供參考。
 
@@ -46,7 +46,7 @@ def solve(A, b):  # 高斯消去（小矩陣）
 
 
 THEATRE_P95_KM = 15.0
-THEATRE_RULE = "全戰區圖：留一法 95 百分位 ≤ 15 km，只用於集團軍群、集團軍、裝甲師（Tai 2026-11-17）"
+THEATRE_RULE = "全戰區圖：留一法 95 百分位 ≤ 15 km，只用於集團軍群、集團軍、軍、裝甲師（Tai 2026-11-17）"
 ORDER = 6  # 模型係數個數：6＝二次多項式；3＝仿射（全戰區圖）
 
 
@@ -56,7 +56,7 @@ def design(p, c0, s0):
 
 
 def theatre_ok(f):
-    return f.get("echelon") in ("army_group", "army") or (f.get("echelon") == "division" and f.get("armoured") is True)
+    return f.get("echelon") in ("army_group", "army", "corps") or (f.get("echelon") == "division" and f.get("armoured") is True)
 
 
 def fit(P, G, c0, s0):
@@ -91,7 +91,7 @@ def run(path, frame_km, threshold_km=None, rule=None):
     global ORDER
     sc = R.get("scaleClass") or {}
     theatre = sc.get("class") == "theatre"
-    ORDER = 3 if theatre else 6
+    ORDER = 3 if theatre and len(R["control_points"]) < 12 else 6   # 全戰區圖控制點不到 12 個才退到仿射
     if theatre: threshold_km, rule = THEATRE_P95_KM, THEATRE_RULE
     names = list(R["control_points"]); P = [R["control_points"][n]["px"] for n in names]; G = [R["control_points"][n]["lonlat"] for n in names]
     c0 = [sum(p[0] for p in P) / len(P), sum(p[1] for p in P) / len(P)]
@@ -127,8 +127,8 @@ def run(path, frame_km, threshold_km=None, rule=None):
            "threshold": {"rule": rule, "loo_p95_km": round(p95, 2), "p95Passes": p95_ok, "passes": passes,
                          "referenceOnly": bool(ref_only), "referenceOnlyReasons": ref_only,
                          "controlPointExclusions": excl,
-                         "use": ("只可用於集團軍群、集團軍、裝甲師的位置；不得用於前線頂點，不得用來推算領地" if theatre else "可用於部隊位置與前線頂點") if passes else "僅供參考：不得用於部隊位置或前線頂點"},
-           "georef": {"tool": "tools/battles/georef.py", "model": "仿射（經、緯度各 3 個係數）" if theatre else "二次多項式（經、緯度各一）", "control_points": len(P),
+                         "use": ("只可用於集團軍群、集團軍、軍、裝甲師的位置；不得用於前線頂點，不得用來推算領地" if theatre else "可用於部隊位置與前線頂點") if passes else "僅供參考：不得用於部隊位置或前線頂點"},
+           "georef": {"tool": "tools/battles/georef.py", "model": "仿射（經、緯度各 3 個係數）" if ORDER == 3 else "二次多項式（經、緯度各一）", "control_points": len(P),
                       "residual_median_km": round(pct(res, 0.5), 2), "loo_median_km": round(med, 2), "loo_p95_km": round(p95, 2),
                       "loo_max_km": round(max(loo), 2), "suspect_control_points": bad, "frame_km": frame_km},
            **({"scaleClass": sc, "coarse": True} if theatre else {}),

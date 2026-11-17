@@ -1,5 +1,8 @@
 # B3 full v3 batch047：審查（Opus，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
+
 <!-- 佔位同 PROMPT_research.md：047、- 拉蒙·卡塞雷斯｜Ramón Cáceres Vásquez｜01a1b4b8-e97b-73a9-9693-22f309cc77bb｜dominican-republic｜首任 1908-01-01｜中（離線推定）｜dominican-republic head_of_state「Presidente de la República」1908-01-01～1911-11-19（recordId 58b726e7-de63-48d3-a24f-4b5c330b8bc4）；dominican-republic head_of_government「Presidente de la República」1908-01-01～1911-11-19（recordId 82f9fd16-5263-45ee-a542-c0b6546f42d2）
 - 佩爾·埃溫德·斯溫胡武德｜Pehr Evind Svinhufvud｜01a1b4bb-072b-763e-abc4-50f0d1067d7e｜republic-of-finland｜首任 1917-12-06｜中（離線推定）｜republic-of-finland head_of_government「Pääministeri / Senaatin (vara)puheenjohtaja（政府首腦）」1917-12-06～1918-05-27（recordId 01a1aa4a-4c33-720b-adb3-33e5553690ff）；republic-of-finland head_of_state「Suomen Senaatin puheenjohtaja（maan korkeimman vallan haltija）」1918-05-18～1918-12-12（recordId 01a1aa4a-4c31-7bba-a133-0cc7843197fd）；republic-of-finland head_of_government「Pääministeri / Senaatin (vara)puheenjohtaja（政府首腦）」1930-07-04～1931-03-21（recordId 01a1aa4a-4c35-7541-8955-d995d7ba714d）；republic-of-finland head_of_state「President of the Republic」1931-03-01～1937-03-01（recordId 01a1aa4a-4c32-7631-a650-5af92c450431）
 - 羅克·薩恩斯·佩尼亞｜Roque Sáenz Peña｜dece85ed-1168-4d8c-bc1a-1a2f6bf3e65a｜argentina｜首任 1910-10-12｜中（離線推定）｜argentina head_of_government「Presidente de la Nación Argentina」1910-10-12～1914-08-09（recordId 607936ae-fbc7-48ba-8614-fe50bdf5bc94）；argentina head_of_state「Presidente de la Nación Argentina」1910-10-12～1914-08-09（recordId 1be1ecad-e5f4-4802-9360-425134929fd7）、2026-11-15、/Users/jack755051/wl-source-cache/b3full-v3/batch047/raw、data/seed/leaders/b3-trial/full/v3/batch047 -->
@@ -14,11 +17,11 @@
 ## 必讀
 1. `ARCHITECTURE.md` §16.2、§16.3、§16.3.1、§16.3.2、§16.4 與 T11／T12／T14（只讀這幾節）。**與 `data/seed/leaders/b3-trial/ARCH_TODO.md` 所列新規則衝突處，以新規則為準**；另讀 `data/seed/leaders/b3-trial/T14_RECOMMENDATION.md` §1、§4。
 2. `data/seed/leaders/b3-trial/full/v3/PROMPT_research.md`（研究者收到的完整規則，**所有規則同樣適用於審查**）、`data/seed/leaders/b3-trial/ALIGN.md`、`data/seed/leaders/b3-trial/verify.py`。
-3. `data/seed/leaders/b3-trial/full/v3/batch047/research.json`、`data/seed/leaders/b3-trial/full/v3/batch047/rawmap.json`、原文 `/Users/jack755051/wl-source-cache/b3full-v3/batch047/raw/*.txt`。
+3. `data/seed/leaders/b3-trial/full/v3/batch047/research.json`、`data/seed/leaders/b3-trial/full/v3/batch047/rawmap.json`、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。
 
 ## 審查項目（每段、每職位、每筆候選角色、每筆 citation）
-1. 出處：sourceKey 存在、URL 真實可開（每人至少抽 1 個來源重抓比對）、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
-2. 引文逐字出現在已抓原文（不能只信 verify.py：再人工比對引文與它支撐的句子；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
+1. 出處：sourceKey 存在、URL 真實可開（全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘））、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
+2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
 3. 來源等級 A／B 合理（gradeBasis 說得通）；無具名作者的百科條目、無作者館藏圖說、私人彙編 → 降為未評等，只能在 gaps 候選。
 4. 無編造：日期、精度、半開區間、Q3 終點寫法、段落 period 迄點正確；datePrecision 只在 quote 含日期時填；conflict 只用於兩份已抓來源矛盾。
 5. **對齊格式**：`alignedTo`="b0b0e0f"；positions 用 positionKind（無 roleKind、無三種角色值、無 party）；元首／首腦／實際掌權者與**所有黨職**在 roleCandidates，`role_kind` 正確（黨職一律 de_facto_leader、t14Rule=R1，reason 註明 Tai 12:12；即使與 ARCHITECTURE §16.3.1 衝突也以此為準）；**職稱或來源明寫以某政黨身分取得的席位**也必須在 roleCandidates（de_facto_leader、originalPositionKind 照原性質，比照 Tai 12:47 薩拉查裁決），逐一檢查 legislator 類 positions 的標題與引文有沒有漏掉；不明確黨職留 positions 並有 partyPostAmbiguous＋理由（審查可把明確黨職改移候選、或把誤移的非黨職移回並標 ambiguous，但不可新增事實）。
@@ -48,3 +51,5 @@
 - 現行來源規則（docs/source-rules.md）：禁用網域只看 data/source-policy.json（含 bannedHostLabels 與例外）；Wikipedia／Wikidata／任何 wiki 類（含 ruwiki、bre.ruwiki.ru）只當索引；第三方轉錄本原件 A 記 B；人物生平只收 A／B（C 只能放 gaps 候選）；個人網站與私人彙編（如 rulers.org、archontology.org、nepalresearch.com）是 X；合格出處與不合格出處不同時以合格出處為準，兩個合格出處不同才是說法衝突。
 - 不繞過任何機器人驗證（Cloudflare、Anubis、403 一律放棄並記入 searchLog）；不用 Wayback 取代被擋頁面。
 - 目前工作目錄在分支 feature/battle-demo-v2，另一個 session 也在此目錄工作：只寫你的 OUTDIR 與 RAWDIR；不 git add／commit／push；不寫庫；不呼叫 5052 API。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

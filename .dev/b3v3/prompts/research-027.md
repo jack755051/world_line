@@ -1,5 +1,8 @@
 # B3 full v3 batch027：研究（Sonnet，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+若任務指定了 bioId：只研究那一人，只寫 `data/seed/leaders/b3-trial/full/v3/batch027/people/<bioId>.json`（`person`、`sources`、`rawMap`、`researchedOn`、`policyVersion`、`alignedTo`、`alignNote`、`schemaNote`），不要寫 research.json，不要跑 verify.py 或 check_min.py。抓取一律用下方「抓取與原文」的 fetch_source.py；已有的 sourceKey 不要重抓。禁止 Read／cat 整份 raw。WebFetch 只用於發現網址。
+
 <!-- 範本佔位：027=兩位數批號、- 斐迪南一世（保加利亞）｜Ferdinand I of Bulgaria｜01a1b4af-e512-7119-99f3-fa7b30658534｜tsardom-of-bulgaria｜首任 1908-10-05｜薄（離線推定）｜tsardom-of-bulgaria head_of_state「Car na Bãlgarija / Car na bãlgarite」1908-10-05～1918-10-03（recordId 01a1aa4a-4de5-7e90-bc3d-b0f4b1a81389）
 - ｜José Eligio Ayala｜01a1aa4a-e5f0-7059-8a6c-3f793eb06588｜paraguay｜首任 1923-04-11｜中（離線推定）｜paraguay head_of_government「Presidente Provisorio de la República」1923-04-11～1924-03-17（recordId e5af0194-997f-46b9-8bfd-67689c9d3842）；paraguay head_of_state「Presidente Provisorio de la República」1923-04-11～1924-03-17（recordId 6925a5f6-95bf-44cc-9394-38b5fb2a81a3）；paraguay head_of_government「Presidente de la República」1924-08-15～1928-08-15（recordId 6a90b027-024b-4505-b3c8-eda39baf3c19）；paraguay head_of_state「Presidente de la República」1924-08-15～1928-08-15（recordId 73a66e87-d878-47cc-a915-3863b3df8720）
 - 阿爾弗雷多·巴克里索·莫雷諾｜Alfredo Baquerizo Moreno｜01a1b4b5-fa12-71b6-ac1b-4793f524ee01｜ecuador｜首任 1912-08-10｜中（離線推定）｜ecuador head_of_government「Presidente del Senado, en ejercicio del Poder Ejecutivo」1912-08-10～1912-09-01（recordId 596c0565-1d39-4a54-ba63-7a3af8c8aac8）；ecuador head_of_state「Presidente del Senado, en ejercicio del Poder Ejecutivo」1912-08-10～1912-09-01（recordId 59782b9e-d44a-4983-99ac-07be076ceba5）；ecuador head_of_state「Presidente de la República del Ecuador」1916-09-01～1920-09-01（recordId edc8f090-c96c-4e9c-bed5-3002c5b68aff）；ecuador head_of_government「Presidente de la República del Ecuador」1916-09-01～1920-09-01（recordId 1a0b8d48-6238-489f-8145-af6ef80158b3）；ecuador head_of_government「Ministro de Gobierno y Previsión Social, encargado del Poder Ejecutivo」1931-10-15～1931-11-11（recordId 8e7ff552-e6ad-479e-9005-a275f75fbbdb）；ecuador head_of_state「Ministro de Gobierno y Previsión Social, encargado del Poder Ejecutivo」1931-10-15～1931-11-11（recordId 1d45d36c-9d7b-4c7d-aef6-134bee332e9d）；ecuador head_of_government「Encargado del Poder Ejecutivo」1931-11-11～1932-08-28（recordId 001d04e0-449e-4208-b5f3-b36411baf7db）；ecuador head_of_state「Encargado del Poder Ejecutivo」1931-11-11～1932-08-28（recordId d17af1d3-40d2-4d92-9a5b-46442261160e）=本批 5 人清單（每人一行：中文名｜原名｜bioId｜地區／政權｜年代｜預估厚薄｜5442 任期與 recordId）、2026-11-15=YYYY-MM-DD、/Users/jack755051/wl-source-cache/b3full-v3/batch027/raw=/tmp/b3full-v3/batch027/raw、data/seed/leaders/b3-trial/full/v3/batch027=data/seed/leaders/b3-trial/full/v3/batch027 -->
@@ -70,7 +73,7 @@
 
 ## 主要領導人加強規格（World Line 主管 2026-11-11 21:55，Tai 授權範圍；只適用 flags 含 major★ 者，優先於下方同名規則）
 major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適用「厚人物 2–4 個來源即可」**。
-1. **最低搜尋量（取代下方「最低嘗試」）**：每人至少 **5 種**來源類型、至少 **15 次**查詢（原文語言至少 4 次）、至少實際 curl 抓取 **6 個**候選頁；並至少取得 **3 個**可抓原文的 A／B 來源，其中至少 **1 個 A**（官方／議會／國家級傳記辭典／權威檔）。全部寫進 searchLog。
+1. **最低搜尋量（取代下方「最低嘗試」）**：每人至少 **5 種**來源類型、至少 **15 次**查詢（原文語言至少 4 次）、至少用 tools/b3v3/fetch_source.py 抓取 **6 個**候選頁；並至少取得 **3 個**可抓原文的 A／B 來源，其中至少 **1 個 A**（官方／議會／國家級傳記辭典／權威檔）。全部寫進 searchLog。
 2. **指定來源（先查這些，查不到或被擋也要寫進 searchLog）**：
    - 溫斯頓·邱吉爾（Winston Churchill）：英國：UK Parliament Historic Hansard 人物頁（api.parliament.uk/historic-hansard/people/…，A，歷任職位與起訖日）、GOV.UK Past Prime Ministers（A）、The London Gazette 任命公告（thegazette.co.uk，A）、Oxford DNB 公開摘要（A）、Churchill Archive Centre（Churchill College, Cambridge）機構傳記（B）、LoC／VIAF 權威檔
    - 阿道夫·希特勒（Adolf Hitler）：德國：Deutsche Biographie（NDB，A）、GND／lobid.org（A）、Bundesarchiv（A）、Reichstag-Abgeordnetendatenbank／Reichstagsprotokolle（BSB，A）、DHM LeMO（B）、Treccani（B）
@@ -116,7 +119,7 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
 **最低嘗試（放棄前必須做完，才可寫 0 段）**：
 - 至少 **4 種不同來源類型**（上列 1–5 類中至少 4 類），且
 - 至少 **8 次查詢**（WebSearch 或站內搜尋，含原文語言至少 2 次），且
-- 至少實際抓取（curl）**3 個**候選頁。
+- 至少用 tools/b3v3/fetch_source.py 抓取 **3 個**候選頁。
 - 每次嘗試都寫進該人的 `searchLog[]`：`{"step": n, "sourceType": "authority|national_dictionary|official|named_encyclopedia|treaty_law|academic|other", "query": "…", "url": "…或null", "result": "found_A|found_B|unrated|not_relevant|blocked_403|challenge_page|no_result", "note": "…"}`（不放 Wikipedia／Wikidata／百度網址）。
 
 **寫作門檻**：
@@ -125,13 +128,16 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
 - 確實查無 → 0 段，gap note 摘要 searchLog（嘗試了哪些來源類型、被擋的網站），讓下一輪能接著查。
 
 ## 抓取與原文（引文核對的依據）
-- 用 WebSearch／WebFetch 找來源；但**引文必須取自用 curl（不加 -k）存下的原文**：`curl -sSL --max-time 60 -A 'Mozilla/5.0' -o /Users/jack755051/wl-source-cache/b3full-v3/batch027/raw/<sourceKey>.html <url>`，再用 python3 轉成純文字 `/Users/jack755051/wl-source-cache/b3full-v3/batch027/raw/<sourceKey>.txt`（去 script/style、unescape HTML entity、保留文字；JSON／PDF 也轉成文字）。
-- 每個 sourceKey 對一個 .txt。寫 `data/seed/leaders/b3-trial/full/v3/batch027/rawmap.json`：{"<sourceKey>": "<sourceKey>.txt", ...}（含 gaps 候選來源）。research.json 頂層填 `"rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch027/raw"`、`"rawMap": "rawmap.json"`。
-- 原文不進版控（只在 /tmp）。quote 從 .txt 複製，不要從 WebFetch 的摘要複製。
+- 用 WebSearch／WebFetch **只做發現**（找候選 URL）。引文必須來自已存的 .txt。**禁止** Read／cat／head／sed 整份 raw 檔，**禁止**把整頁貼進上下文或工具參數。
+- 先看已抓過的來源，已有的 sourceKey **不要重抓**：`python3 -I tools/b3v3/fetch_source.py status --rawdir /Users/jack755051/wl-source-cache/b3full-v3/batch027/raw --rawmap data/seed/leaders/b3-trial/full/v3/batch027/rawmap.json`
+- 抓新頁（工具內建 curl、不加 -k、UA 為 Mozilla/5.0；只印短摘要與關鍵字命中的段落）：`python3 -I tools/b3v3/fetch_source.py fetch --rawdir /Users/jack755051/wl-source-cache/b3full-v3/batch027/raw --rawmap data/seed/leaders/b3-trial/full/v3/batch027/rawmap.json --source-key <sourceKey> --url <url> --keywords '<姓名|原文姓名|生卒年|職稱>'`
+- 抄 quote 前只用 lookup，不要打開整檔：`python3 -I tools/b3v3/fetch_source.py lookup --rawdir /Users/jack755051/wl-source-cache/b3full-v3/batch027/raw --rawmap data/seed/leaders/b3-trial/full/v3/batch027/rawmap.json --source-key <sourceKey> --keywords '<想核對的原文片段>'`
+- 每個 sourceKey 對一個 .txt。rawmap.json 由 fetch 維護（單人檔也可帶 rawMap）。research.json 頂層填 `"rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch027/raw"`、`"rawMap": "rawmap.json"`。
+- 原文不進版控。quote 必須是 lookup 印出的那段裡的逐字片段，不要從 WebFetch 的摘要複製。Cloudflare／Anubis／403：工具會放棄，記入 searchLog 後換站；不要加 `-k`，不要用 Wayback 代替。
 
 ## 產出
 - `data/seed/leaders/b3-trial/full/v3/batch027/research.json`（researchedOn=2026-11-15）。
-- 自檢：`python3 -I data/seed/leaders/b3-trial/verify.py data/seed/leaders/b3-trial/full/v3/batch027/research.json --report data/seed/leaders/b3-trial/full/v3/batch027/verify-report.json` 必須 ok（rawChecked=true，且因 alignedTo=b0b0e0f 會加跑對齊檢查 11–18：角色層值域、兩層互斥、R6 須 roleEligible、每筆 t14Overlap 須 t14Rule）；不 ok 就修到 ok（修不了的改成 gap 或刪掉，不可放寬規則、不可改 verify.py）。
+- 自檢改由工作流執行（verify.py 必須 ok 且 rawChecked=true；check_min.py 固定寫同目錄 `check_min-report.json`）。你不要跑這兩支，也不要為了自檢 Read 原文。只有在沒有工作流、且你寫的是整份 research.json 時才自己跑；不 ok 就修到 ok（修不了的改成 gap 或刪掉，不可放寬規則、不可改 verify.py）。
 - 每人視資料厚薄寫 1–6 段；職位與候選角色以來源明寫起訖者為主。
 - 結尾回覆：每人段落／職位／候選角色／缺漏數、searchLog 筆數、用到的來源網域、推定屬性與實查不符處、未解問題；最後單獨一行 `BATCH_RESULT=ok` 或 `BATCH_RESULT=fail`（verify 不 ok 或有違規才寫 fail）。不要 commit。
 
@@ -140,3 +146,5 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
 - 現行來源規則（docs/source-rules.md）：禁用網域只看 data/source-policy.json（含 bannedHostLabels 與例外）；Wikipedia／Wikidata／任何 wiki 類（含 ruwiki、bre.ruwiki.ru）只當索引；第三方轉錄本原件 A 記 B；人物生平只收 A／B（C 只能放 gaps 候選）；個人網站與私人彙編（如 rulers.org、archontology.org、nepalresearch.com）是 X；合格出處與不合格出處不同時以合格出處為準，兩個合格出處不同才是說法衝突。
 - 不繞過任何機器人驗證（Cloudflare、Anubis、403 一律放棄並記入 searchLog）；不用 Wayback 取代被擋頁面。
 - 目前工作目錄在分支 feature/battle-demo-v2，另一個 session 也在此目錄工作：只寫你的 OUTDIR 與 RAWDIR；不 git add／commit／push；不寫庫；不呼叫 5052 API。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

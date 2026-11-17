@@ -1,5 +1,8 @@
 # B3 full v3 batch072：審查（Opus，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
+
 <!-- 佔位同 PROMPT_research.md：072、- 約阿尼斯·梅塔克薩斯｜Ioannis Metaxas｜01a1b4c1-cde7-7e4c-8378-3c4b2f27e610｜kingdom-of-greece｜首任 1936-04-13｜中（離線推定）｜kingdom-of-greece head_of_government「Πρόεδρος του Υπουργικού Συμβουλίου / Prime Minister」1936-04-13～1941-01-29（recordId 01a1aa4a-6682-762e-96ad-ef37772d5b55）
 - 揚·泰曼特｜Jaan Teemant｜01a1b4c1-cdef-7674-bd0a-199942871ee8｜republic-of-estonia｜首任 1925-12-15｜薄（離線推定）｜republic-of-estonia head_of_state「State Elder」1925-12-15～1927-12-09（recordId 01a1aa4a-66b4-7bf4-b532-007818c1cc92）；republic-of-estonia head_of_government「riigivanem」1925-12-15～1926-07-23（recordId 01a1aa4a-66ad-799f-b69b-b36234822020）；republic-of-estonia head_of_government「riigivanem」1926-07-23～1927-03-04（recordId 01a1aa4a-66ad-7d6a-afd4-7debb0de4bc9）；republic-of-estonia head_of_government「riigivanem」1927-03-04～1927-12-09（recordId 01a1aa4a-66ae-7145-9350-7f30400a99d1）；republic-of-estonia head_of_state「State Elder」1932-02-19～1932-07-19（recordId 01a1aa4a-66b9-7138-947c-583214b3db74）；republic-of-estonia head_of_government「riigivanem」1932-02-19～1932-07-19（recordId 01a1aa4a-66af-7497-9aa6-753d811191cb）
 - 揚·托尼松｜Jaan Tõnisson｜01a1b4c1-ce04-714c-ad7b-1a484f07a3c9｜republic-of-estonia｜首任 1919-11-18｜中（離線推定）｜republic-of-estonia head_of_government「peaminister」1919-11-18～1920-07-28（recordId 01a1aa4a-668d-74fd-9693-a3c9f16f4155）；republic-of-estonia head_of_state「[1]」1919-11-18～1920-07-28（recordId 01a1aa4a-655e-7349-bc0b-34f11ac89b98）；republic-of-estonia head_of_state「[1]」1920-07-30～1920-10-26（recordId 01a1aa4a-655e-76d7-aaf5-f04673dce667）；republic-of-estonia head_of_government「peaminister」1920-07-30～1920-10-26（recordId 01a1aa4a-668e-7cc9-b06a-7ff0f90ecd8c）；republic-of-estonia head_of_government「riigivanem」1927-12-09～1928-12-04（recordId 01a1aa4a-66ae-7555-83ba-4285dcb45966）；republic-of-estonia head_of_state「State Elder」1927-12-09～1928-12-04（recordId 01a1aa4a-66b8-73c5-875e-2d84eeaf26c0）；republic-of-estonia head_of_government「riigivanem」1933-05-18～1933-10-21（recordId 01a1aa4a-66af-7ed5-8aab-79d76735ba1d）；republic-of-estonia head_of_state「State Elder」1933-05-18～1933-10-21（recordId 01a1aa4a-66b9-7a07-9d22-e5897cfb6c32）、2026-11-15、/Users/jack755051/wl-source-cache/b3full-v3/batch072/raw、data/seed/leaders/b3-trial/full/v3/batch072 -->
@@ -14,11 +17,11 @@
 ## 必讀
 1. `ARCHITECTURE.md` §16.2、§16.3、§16.3.1、§16.3.2、§16.4 與 T11／T12／T14（只讀這幾節）。**與 `data/seed/leaders/b3-trial/ARCH_TODO.md` 所列新規則衝突處，以新規則為準**；另讀 `data/seed/leaders/b3-trial/T14_RECOMMENDATION.md` §1、§4。
 2. `data/seed/leaders/b3-trial/full/v3/PROMPT_research.md`（研究者收到的完整規則，**所有規則同樣適用於審查**）、`data/seed/leaders/b3-trial/ALIGN.md`、`data/seed/leaders/b3-trial/verify.py`。
-3. `data/seed/leaders/b3-trial/full/v3/batch072/research.json`、`data/seed/leaders/b3-trial/full/v3/batch072/rawmap.json`、原文 `/Users/jack755051/wl-source-cache/b3full-v3/batch072/raw/*.txt`。
+3. `data/seed/leaders/b3-trial/full/v3/batch072/research.json`、`data/seed/leaders/b3-trial/full/v3/batch072/rawmap.json`、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。
 
 ## 審查項目（每段、每職位、每筆候選角色、每筆 citation）
-1. 出處：sourceKey 存在、URL 真實可開（每人至少抽 1 個來源重抓比對）、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
-2. 引文逐字出現在已抓原文（不能只信 verify.py：再人工比對引文與它支撐的句子；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
+1. 出處：sourceKey 存在、URL 真實可開（全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘））、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
+2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
 3. 來源等級 A／B 合理（gradeBasis 說得通）；無具名作者的百科條目、無作者館藏圖說、私人彙編 → 降為未評等，只能在 gaps 候選。
 4. 無編造：日期、精度、半開區間、Q3 終點寫法、段落 period 迄點正確；datePrecision 只在 quote 含日期時填；conflict 只用於兩份已抓來源矛盾。
 5. **對齊格式**：`alignedTo`="b0b0e0f"；positions 用 positionKind（無 roleKind、無三種角色值、無 party）；元首／首腦／實際掌權者與**所有黨職**在 roleCandidates，`role_kind` 正確（黨職一律 de_facto_leader、t14Rule=R1，reason 註明 Tai 12:12；即使與 ARCHITECTURE §16.3.1 衝突也以此為準）；**職稱或來源明寫以某政黨身分取得的席位**也必須在 roleCandidates（de_facto_leader、originalPositionKind 照原性質，比照 Tai 12:47 薩拉查裁決），逐一檢查 legislator 類 positions 的標題與引文有沒有漏掉；不明確黨職留 positions 並有 partyPostAmbiguous＋理由（審查可把明確黨職改移候選、或把誤移的非黨職移回並標 ambiguous，但不可新增事實）。
@@ -48,3 +51,5 @@
 - 現行來源規則（docs/source-rules.md）：禁用網域只看 data/source-policy.json（含 bannedHostLabels 與例外）；Wikipedia／Wikidata／任何 wiki 類（含 ruwiki、bre.ruwiki.ru）只當索引；第三方轉錄本原件 A 記 B；人物生平只收 A／B（C 只能放 gaps 候選）；個人網站與私人彙編（如 rulers.org、archontology.org、nepalresearch.com）是 X；合格出處與不合格出處不同時以合格出處為準，兩個合格出處不同才是說法衝突。
 - 不繞過任何機器人驗證（Cloudflare、Anubis、403 一律放棄並記入 searchLog）；不用 Wayback 取代被擋頁面。
 - 目前工作目錄在分支 feature/battle-demo-v2，另一個 session 也在此目錄工作：只寫你的 OUTDIR 與 RAWDIR；不 git add／commit／push；不寫庫；不呼叫 5052 API。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

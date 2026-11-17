@@ -1,5 +1,8 @@
 # B3 full v3 batch009：審查（Opus，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
+
 <!-- 佔位同 PROMPT_research.md：009、- ｜Rafael Leónidas Trujillo y Molina｜01a1b488-147a-7166-9528-0f859bb609dd｜dominican-republic｜首任 1930-08-16｜中（離線推定）｜dominican-republic head_of_government「Presidente de la República Dominicana」1930-08-16～1938-08-16（recordId 8b23cfb0-4c0f-4421-a4d9-e301b5989416）；dominican-republic head_of_state「Presidente de la República Dominicana」1930-08-16～1938-08-16（recordId 28cebdab-58f2-4d72-9486-e871fbf92a49）；dominican-republic head_of_state「Presidente de la República Dominicana」1942-05-18～1945-10-01（recordId 8ffe13c2-0777-4111-a5ea-fcb24ba03dab）；dominican-republic head_of_government「Presidente de la República Dominicana」1942-05-18～1945-10-01（recordId 61f7673b-f015-40c3-9c4d-2a3067745494）
 - 夏洛特女大公｜Charlotte｜01a1b4af-e518-79ed-9e67-e75cb49d4e9e｜grand-duchy-of-luxembourg｜首任 1919-01-15｜薄（離線推定）｜grand-duchy-of-luxembourg head_of_state「[5][6]」1919-01-15～1940-05-10（recordId 01a1aa4a-59b2-70b6-b85d-d3d4d0a51424）；grand-duchy-of-luxembourg head_of_state「Von Gottes Gnaden Großherzogin von Luxemburg, Herzogin zu Nassau, etc., etc., etc.」1945-05-08～1945-10-01（recordId 01a1aa96-cf95-712c-973c-b8e89a1c69ff）
 - 約翰二世｜Johann II von und zu Liechtenstein｜01a1b4b2-2ef6-76b9-a880-8e41a9e0854f｜principality-of-liechtenstein｜首任 1908-01-01｜中（離線推定）｜principality-of-liechtenstein head_of_state「Von Gottes Gnaden souveräner Fürst und Regierer des Hauses von und zu Liechtenstein, Herzog von Troppau und Jägersdorf, Graf zu Rietberg」1908-01-01～1929-02-11（recordId 01a1aa4a-659f-7369-a1f1-c18aa4557591）、2026-11-15、/Users/jack755051/wl-source-cache/b3full-v3/batch009/raw、data/seed/leaders/b3-trial/full/v3/batch009 -->
@@ -14,11 +17,11 @@
 ## 必讀
 1. `ARCHITECTURE.md` §16.2、§16.3、§16.3.1、§16.3.2、§16.4 與 T11／T12／T14（只讀這幾節）。**與 `data/seed/leaders/b3-trial/ARCH_TODO.md` 所列新規則衝突處，以新規則為準**；另讀 `data/seed/leaders/b3-trial/T14_RECOMMENDATION.md` §1、§4。
 2. `data/seed/leaders/b3-trial/full/v3/PROMPT_research.md`（研究者收到的完整規則，**所有規則同樣適用於審查**）、`data/seed/leaders/b3-trial/ALIGN.md`、`data/seed/leaders/b3-trial/verify.py`。
-3. `data/seed/leaders/b3-trial/full/v3/batch009/research.json`、`data/seed/leaders/b3-trial/full/v3/batch009/rawmap.json`、原文 `/Users/jack755051/wl-source-cache/b3full-v3/batch009/raw/*.txt`。
+3. `data/seed/leaders/b3-trial/full/v3/batch009/research.json`、`data/seed/leaders/b3-trial/full/v3/batch009/rawmap.json`、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。
 
 ## 審查項目（每段、每職位、每筆候選角色、每筆 citation）
-1. 出處：sourceKey 存在、URL 真實可開（每人至少抽 1 個來源重抓比對）、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
-2. 引文逐字出現在已抓原文（不能只信 verify.py：再人工比對引文與它支撐的句子；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
+1. 出處：sourceKey 存在、URL 真實可開（全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘））、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
+2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
 3. 來源等級 A／B 合理（gradeBasis 說得通）；無具名作者的百科條目、無作者館藏圖說、私人彙編 → 降為未評等，只能在 gaps 候選。
 4. 無編造：日期、精度、半開區間、Q3 終點寫法、段落 period 迄點正確；datePrecision 只在 quote 含日期時填；conflict 只用於兩份已抓來源矛盾。
 5. **對齊格式**：`alignedTo`="b0b0e0f"；positions 用 positionKind（無 roleKind、無三種角色值、無 party）；元首／首腦／實際掌權者與**所有黨職**在 roleCandidates，`role_kind` 正確（黨職一律 de_facto_leader、t14Rule=R1，reason 註明 Tai 12:12；即使與 ARCHITECTURE §16.3.1 衝突也以此為準）；**職稱或來源明寫以某政黨身分取得的席位**也必須在 roleCandidates（de_facto_leader、originalPositionKind 照原性質，比照 Tai 12:47 薩拉查裁決），逐一檢查 legislator 類 positions 的標題與引文有沒有漏掉；不明確黨職留 positions 並有 partyPostAmbiguous＋理由（審查可把明確黨職改移候選、或把誤移的非黨職移回並標 ambiguous，但不可新增事實）。
@@ -48,3 +51,5 @@
 - 現行來源規則（docs/source-rules.md）：禁用網域只看 data/source-policy.json（含 bannedHostLabels 與例外）；Wikipedia／Wikidata／任何 wiki 類（含 ruwiki、bre.ruwiki.ru）只當索引；第三方轉錄本原件 A 記 B；人物生平只收 A／B（C 只能放 gaps 候選）；個人網站與私人彙編（如 rulers.org、archontology.org、nepalresearch.com）是 X；合格出處與不合格出處不同時以合格出處為準，兩個合格出處不同才是說法衝突。
 - 不繞過任何機器人驗證（Cloudflare、Anubis、403 一律放棄並記入 searchLog）；不用 Wayback 取代被擋頁面。
 - 目前工作目錄在分支 feature/battle-demo-v2，另一個 session 也在此目錄工作：只寫你的 OUTDIR 與 RAWDIR；不 git add／commit／push；不寫庫；不呼叫 5052 API。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

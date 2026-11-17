@@ -3,6 +3,7 @@
 用法：python3 -I verify.py batchNN/research.json [--raw RAW_DIR RAWMAP.json] [--report out.json]
 - 有 --raw：引文須空白正規化後逐字出現在研究當天抓下的原文（RAW_DIR 內純文字檔；RAWMAP：sourceKey → 檔名）。
   原文不進版控（著作權），報告只記 sha256。沒有 --raw 時只做格式檢查，報告標 rawChecked=false。
+- 逐字比對由 quote_hit 做（空白正規化後的子字串）。tools/b3v3/evidence_pack.py 用同一函式產出審查用的短證據包，審查者不重讀原文。
 - 若 research.json 頂層有 "rawDir"、"rawMap" 且未給 --raw，會自動採用（rawMap 為相對 research.json 的路徑）。
 檢查：
  1. 引文 NFC ≤ 80 字元（§16.4.1）；非空；（有原文時）逐字出現。
@@ -87,6 +88,30 @@ def norm(s):
     return re.sub(r"\s+", " ", unicodedata.normalize("NFC", s)).strip()
 
 
+def quote_hit(text_norm, quote):
+    """回傳 quote 在空白正規化原文中的起點；沒有則 None。"""
+    nq = norm(quote or "")
+    if not nq or text_norm is None:
+        return None
+    i = text_norm.find(nq)
+    return i if i >= 0 else None
+
+
+def load_raw_texts(raw_dir, rawmap):
+    """rawmap：sourceKey → 檔名。回傳 (texts, hashes, missing)；missing 是 (key, path)。"""
+    texts, hashes, missing = {}, {}, []
+    raw_dir = Path(raw_dir)
+    for k, f in rawmap.items():
+        p = raw_dir / f
+        if not p.exists():
+            missing.append((k, p))
+            continue
+        b = p.read_bytes()
+        texts[k] = norm(b.decode("utf-8", errors="replace"))
+        hashes[k] = {"file": f, "sha256": hashlib.sha256(b).hexdigest()}
+    return texts, hashes, missing
+
+
 def nfc_len(s):
     return len(unicodedata.normalize("NFC", s or ""))
 
@@ -108,13 +133,9 @@ def main():
     texts, hashes, errs, warns, stats = {}, {}, [], [], {}
     if raw:
         raw_dir, rawmap = raw[0], json.load(open(raw[1]))
-        for k, f in rawmap.items():
-            p = Path(raw_dir) / f
-            if not p.exists():
-                errs.append(f"原文檔不存在：{k} → {p}"); continue
-            b = p.read_bytes()
-            texts[k] = norm(b.decode("utf-8", errors="replace"))
-            hashes[k] = {"file": f, "sha256": hashlib.sha256(b).hexdigest()}
+        texts, hashes, missing = load_raw_texts(raw_dir, rawmap)
+        for k, p in missing:
+            errs.append(f"原文檔不存在：{k} → {p}")
     srcs = data.get("sources") or {}
     allow_c = data.get("gradePolicy") == GRADE_C_POLICY or "/generals-" in str(data.get("rawDir") or "")
     OKG = ("A", "B", "C") if allow_c else ("A", "B")
@@ -174,7 +195,7 @@ def main():
         if raw:
             if sk not in texts:
                 errs.append(f"{where}：來源 {sk} 沒有原文檔，無法核對引文")
-            elif norm(q) not in texts[sk]:
+            elif quote_hit(texts[sk], q) is None:
                 errs.append(f"{where}：引文未逐字出現於 {sk}：{q}")
         return n
 
@@ -342,4 +363,5 @@ def main():
     sys.exit(0 if not errs else 1)
 
 
-main()
+if __name__ == "__main__":
+    main()

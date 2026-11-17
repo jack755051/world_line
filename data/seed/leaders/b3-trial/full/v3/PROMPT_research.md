@@ -1,5 +1,8 @@
 # B3 full v3 batch{{NN}}：研究（Sonnet，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+若任務指定了 bioId：只研究那一人，只寫 `{{OUTDIR}}/people/<bioId>.json`（`person`、`sources`、`rawMap`、`researchedOn`、`policyVersion`、`alignedTo`、`alignNote`、`schemaNote`），不要寫 research.json，不要跑 verify.py 或 check_min.py。抓取一律用下方「抓取與原文」的 fetch_source.py；已有的 sourceKey 不要重抓。禁止 Read／cat 整份 raw。WebFetch 只用於發現網址。
+
 <!-- 範本佔位：{{NN}}=兩位數批號、{{PEOPLE}}=本批 5 人清單（每人一行：中文名｜原名｜bioId｜地區／政權｜年代｜預估厚薄｜5442 任期與 recordId）、{{TODAY}}=YYYY-MM-DD、{{RAWDIR}}=/tmp/b3full-v3/batch{{NN}}/raw、{{OUTDIR}}=data/seed/leaders/b3-trial/full/v3/batch{{NN}} -->
 
 授權：Tai 2026-11-11 09:30（Sonnet 查資料、Opus 審查；不寫庫、不 push）、12:12（①先調提示再跑 100 人 ②黨職一律算 de_facto_leader ④候選角色欄位統一 role_kind）、12:47（①黨職維持一律算 de_facto_leader ②薩拉查 1921 議員算黨職 ③同意開跑 100 人 ⑤T14 建議套用）、21:24（全量其餘人物，規格與提示沿用 run100）。你只做本批 3 人的研究，產出 seed 檔。分支 feature/person-cards（不要切換分支）。
@@ -66,7 +69,7 @@
 
 ## 主要領導人加強規格（World Line 主管 2026-11-11 21:55，Tai 授權範圍；只適用 flags 含 major★ 者，優先於下方同名規則）
 major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適用「厚人物 2–4 個來源即可」**。
-1. **最低搜尋量（取代下方「最低嘗試」）**：每人至少 **5 種**來源類型、至少 **15 次**查詢（原文語言至少 4 次）、至少實際 curl 抓取 **6 個**候選頁；並至少取得 **3 個**可抓原文的 A／B 來源，其中至少 **1 個 A**（官方／議會／國家級傳記辭典／權威檔）。全部寫進 searchLog。
+1. **最低搜尋量（取代下方「最低嘗試」）**：每人至少 **5 種**來源類型、至少 **15 次**查詢（原文語言至少 4 次）、至少用 tools/b3v3/fetch_source.py 抓取 **6 個**候選頁；並至少取得 **3 個**可抓原文的 A／B 來源，其中至少 **1 個 A**（官方／議會／國家級傳記辭典／權威檔）。全部寫進 searchLog。
 2. **指定來源（先查這些，查不到或被擋也要寫進 searchLog）**：
    - 溫斯頓·邱吉爾（Winston Churchill）：英國：UK Parliament Historic Hansard 人物頁（api.parliament.uk/historic-hansard/people/…，A，歷任職位與起訖日）、GOV.UK Past Prime Ministers（A）、The London Gazette 任命公告（thegazette.co.uk，A）、Oxford DNB 公開摘要（A）、Churchill Archive Centre（Churchill College, Cambridge）機構傳記（B）、LoC／VIAF 權威檔
    - 阿道夫·希特勒（Adolf Hitler）：德國：Deutsche Biographie（NDB，A）、GND／lobid.org（A）、Bundesarchiv（A）、Reichstag-Abgeordnetendatenbank／Reichstagsprotokolle（BSB，A）、DHM LeMO（B）、Treccani（B）
@@ -112,7 +115,7 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
 **最低嘗試（放棄前必須做完，才可寫 0 段）**：
 - 至少 **4 種不同來源類型**（上列 1–5 類中至少 4 類），且
 - 至少 **8 次查詢**（WebSearch 或站內搜尋，含原文語言至少 2 次），且
-- 至少實際抓取（curl）**3 個**候選頁。
+- 至少用 tools/b3v3/fetch_source.py 抓取 **3 個**候選頁。
 - 每次嘗試都寫進該人的 `searchLog[]`：`{"step": n, "sourceType": "authority|national_dictionary|official|named_encyclopedia|treaty_law|academic|other", "query": "…", "url": "…或null", "result": "found_A|found_B|unrated|not_relevant|blocked_403|challenge_page|no_result", "note": "…"}`（不放 Wikipedia／Wikidata／百度網址）。
 
 **寫作門檻**：
@@ -121,12 +124,17 @@ major★ 者是 1908–1945 主要領導人（Tai 2026-11-11 21:25），**不適
 - 確實查無 → 0 段，gap note 摘要 searchLog（嘗試了哪些來源類型、被擋的網站），讓下一輪能接著查。
 
 ## 抓取與原文（引文核對的依據）
-- 用 WebSearch／WebFetch 找來源；但**引文必須取自用 curl（不加 -k）存下的原文**：`curl -sSL --max-time 60 -A 'Mozilla/5.0' -o {{RAWDIR}}/<sourceKey>.html <url>`，再用 python3 轉成純文字 `{{RAWDIR}}/<sourceKey>.txt`（去 script/style、unescape HTML entity、保留文字；JSON／PDF 也轉成文字）。
-- 每個 sourceKey 對一個 .txt。寫 `{{OUTDIR}}/rawmap.json`：{"<sourceKey>": "<sourceKey>.txt", ...}（含 gaps 候選來源）。research.json 頂層填 `"rawDir": "{{RAWDIR}}"`、`"rawMap": "rawmap.json"`。
-- 原文不進版控（只在 /tmp）。quote 從 .txt 複製，不要從 WebFetch 的摘要複製。
+- 用 WebSearch／WebFetch **只做發現**（找候選 URL）。引文必須來自已存的 .txt。**禁止** Read／cat／head／sed 整份 raw 檔，**禁止**把整頁貼進上下文或工具參數。
+- 先看已抓過的來源，已有的 sourceKey **不要重抓**：`python3 -I tools/b3v3/fetch_source.py status --rawdir {{RAWDIR}} --rawmap {{OUTDIR}}/rawmap.json`
+- 抓新頁（工具內建 curl、不加 -k、UA 為 Mozilla/5.0；只印短摘要與關鍵字命中的段落）：`python3 -I tools/b3v3/fetch_source.py fetch --rawdir {{RAWDIR}} --rawmap {{OUTDIR}}/rawmap.json --source-key <sourceKey> --url <url> --keywords '<姓名|原文姓名|生卒年|職稱>'`
+- 抄 quote 前只用 lookup，不要打開整檔：`python3 -I tools/b3v3/fetch_source.py lookup --rawdir {{RAWDIR}} --rawmap {{OUTDIR}}/rawmap.json --source-key <sourceKey> --keywords '<想核對的原文片段>'`
+- 每個 sourceKey 對一個 .txt。rawmap.json 由 fetch 維護（單人檔也可帶 rawMap）。research.json 頂層填 `"rawDir": "{{RAWDIR}}"`、`"rawMap": "rawmap.json"`。
+- 原文不進版控。quote 必須是 lookup 印出的那段裡的逐字片段，不要從 WebFetch 的摘要複製。Cloudflare／Anubis／403：工具會放棄，記入 searchLog 後換站；不要加 `-k`，不要用 Wayback 代替。
 
 ## 產出
 - `{{OUTDIR}}/research.json`（researchedOn={{TODAY}}）。
-- 自檢：`python3 -I data/seed/leaders/b3-trial/verify.py {{OUTDIR}}/research.json --report {{OUTDIR}}/verify-report.json` 必須 ok（rawChecked=true，且因 alignedTo=b0b0e0f 會加跑對齊檢查 11–18：角色層值域、兩層互斥、R6 須 roleEligible、每筆 t14Overlap 須 t14Rule）；不 ok 就修到 ok（修不了的改成 gap 或刪掉，不可放寬規則、不可改 verify.py）。
+- 自檢改由工作流執行（verify.py 必須 ok 且 rawChecked=true；check_min.py 固定寫同目錄 `check_min-report.json`）。你不要跑這兩支，也不要為了自檢 Read 原文。只有在沒有工作流、且你寫的是整份 research.json 時才自己跑；不 ok 就修到 ok（修不了的改成 gap 或刪掉，不可放寬規則、不可改 verify.py）。
 - 每人視資料厚薄寫 1–6 段；職位與候選角色以來源明寫起訖者為主。
 - 結尾回覆：每人段落／職位／候選角色／缺漏數、searchLog 筆數、用到的來源網域、推定屬性與實查不符處、未解問題；最後單獨一行 `BATCH_RESULT=ok` 或 `BATCH_RESULT=fail`（verify 不 ok 或有違規才寫 fail）。不要 commit。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

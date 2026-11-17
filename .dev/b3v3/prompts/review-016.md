@@ -1,5 +1,8 @@
 # B3 full v3 batch016：審查（Opus，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
+
 <!-- 佔位同 PROMPT_research.md：016、- 奧古斯托·萊吉亞｜Augusto Bernardino Leguía Salcedo｜453b3d70-de7b-40e9-abd6-642afa07ae47｜peru｜首任 1908-09-24｜中（離線推定）｜peru head_of_state「Presidente Constitucional」1908-09-24～1912-09-24（recordId d86b4d32-abe6-4715-8a94-a49aad24ab21）；peru head_of_state「Presidente Provisorio」1919-07-04～1919-10-12（recordId 035138b1-5202-4bd2-99f7-2ea236e3fe21）；peru head_of_state「Presidente Constitucional」1919-10-12～1930-08-25（recordId 3e2480d5-8af3-4a7c-bd5f-c51b24c98523）
 - 弗朗西斯科·貝特朗｜Francisco Bertrand｜01a1b4b0-6f81-7988-ac08-c17aa61767fe｜honduras｜首任 1911-03-28｜中（離線推定）｜honduras head_of_government「Primer Designado, encargado del Poder Ejecutivo」1911-03-28～1912-02-01（recordId 01a1aa4a-7278-746b-a560-a9a1686d0a22）；honduras head_of_state「Primer Designado, encargado del Poder Ejecutivo」1911-03-28～1912-02-01（recordId 01a1aa4a-7278-71a7-bd4e-b9e21a58754d）；honduras head_of_state「Vicepresidente de la República de Honduras, encargado del Poder Ejecutivo」1913-03-21～1916-02-01（recordId 01a1aa4a-7278-7ad5-b8de-795dbc4bec99）；honduras head_of_government「Vicepresidente de la República de Honduras, encargado del Poder Ejecutivo」1913-03-21～1916-02-01（recordId 01a1aa4a-7278-7ce0-9f44-11f06a2bc4e6）；honduras head_of_state「Presidente de la República de Honduras」1916-02-01～1919-09-09（recordId 01a1aa4a-7278-7ef0-b205-6640a53668af）；honduras head_of_government「Presidente de la República de Honduras」1916-02-01～1919-09-09（recordId 01a1aa4a-7279-70e3-ba9a-1b44c2e8326a）
 - 加夫列爾·特拉｜Gabriel Terra｜2e0b6c36-be5e-46a5-a532-cc3098f29ca0｜uruguay｜首任 1931-03-01｜薄（離線推定）｜uruguay head_of_state「Presidente de la República」1931-03-01～1938-06-19（recordId e8820025-defe-400a-91e0-ad3fd021e44e）；uruguay head_of_government「Presidente de la República」1931-03-01～1938-06-19（recordId 7b136c03-f4b0-44cc-819c-b934bd8788a9）、2026-11-15、/Users/jack755051/wl-source-cache/b3full-v3/batch016/raw、data/seed/leaders/b3-trial/full/v3/batch016 -->
@@ -14,11 +17,11 @@
 ## 必讀
 1. `ARCHITECTURE.md` §16.2、§16.3、§16.3.1、§16.3.2、§16.4 與 T11／T12／T14（只讀這幾節）。**與 `data/seed/leaders/b3-trial/ARCH_TODO.md` 所列新規則衝突處，以新規則為準**；另讀 `data/seed/leaders/b3-trial/T14_RECOMMENDATION.md` §1、§4。
 2. `data/seed/leaders/b3-trial/full/v3/PROMPT_research.md`（研究者收到的完整規則，**所有規則同樣適用於審查**）、`data/seed/leaders/b3-trial/ALIGN.md`、`data/seed/leaders/b3-trial/verify.py`。
-3. `data/seed/leaders/b3-trial/full/v3/batch016/research.json`、`data/seed/leaders/b3-trial/full/v3/batch016/rawmap.json`、原文 `/Users/jack755051/wl-source-cache/b3full-v3/batch016/raw/*.txt`。
+3. `data/seed/leaders/b3-trial/full/v3/batch016/research.json`、`data/seed/leaders/b3-trial/full/v3/batch016/rawmap.json`、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。
 
 ## 審查項目（每段、每職位、每筆候選角色、每筆 citation）
-1. 出處：sourceKey 存在、URL 真實可開（每人至少抽 1 個來源重抓比對）、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
-2. 引文逐字出現在已抓原文（不能只信 verify.py：再人工比對引文與它支撐的句子；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
+1. 出處：sourceKey 存在、URL 真實可開（全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘））、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
+2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
 3. 來源等級 A／B 合理（gradeBasis 說得通）；無具名作者的百科條目、無作者館藏圖說、私人彙編 → 降為未評等，只能在 gaps 候選。
 4. 無編造：日期、精度、半開區間、Q3 終點寫法、段落 period 迄點正確；datePrecision 只在 quote 含日期時填；conflict 只用於兩份已抓來源矛盾。
 5. **對齊格式**：`alignedTo`="b0b0e0f"；positions 用 positionKind（無 roleKind、無三種角色值、無 party）；元首／首腦／實際掌權者與**所有黨職**在 roleCandidates，`role_kind` 正確（黨職一律 de_facto_leader、t14Rule=R1，reason 註明 Tai 12:12；即使與 ARCHITECTURE §16.3.1 衝突也以此為準）；**職稱或來源明寫以某政黨身分取得的席位**也必須在 roleCandidates（de_facto_leader、originalPositionKind 照原性質，比照 Tai 12:47 薩拉查裁決），逐一檢查 legislator 類 positions 的標題與引文有沒有漏掉；不明確黨職留 positions 並有 partyPostAmbiguous＋理由（審查可把明確黨職改移候選、或把誤移的非黨職移回並標 ambiguous，但不可新增事實）。
@@ -48,3 +51,5 @@
 - 現行來源規則（docs/source-rules.md）：禁用網域只看 data/source-policy.json（含 bannedHostLabels 與例外）；Wikipedia／Wikidata／任何 wiki 類（含 ruwiki、bre.ruwiki.ru）只當索引；第三方轉錄本原件 A 記 B；人物生平只收 A／B（C 只能放 gaps 候選）；個人網站與私人彙編（如 rulers.org、archontology.org、nepalresearch.com）是 X；合格出處與不合格出處不同時以合格出處為準，兩個合格出處不同才是說法衝突。
 - 不繞過任何機器人驗證（Cloudflare、Anubis、403 一律放棄並記入 searchLog）；不用 Wayback 取代被擋頁面。
 - 目前工作目錄在分支 feature/battle-demo-v2，另一個 session 也在此目錄工作：只寫你的 OUTDIR 與 RAWDIR；不 git add／commit／push；不寫庫；不呼叫 5052 API。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

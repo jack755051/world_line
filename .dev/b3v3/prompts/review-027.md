@@ -1,5 +1,8 @@
 # B3 full v3 batch027：審查（Opus，新 session，勿 --resume）
 
+<!-- b3v3-token-2026-11-17 -->
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
+
 <!-- 佔位同 PROMPT_research.md：027、- 斐迪南一世（保加利亞）｜Ferdinand I of Bulgaria｜01a1b4af-e512-7119-99f3-fa7b30658534｜tsardom-of-bulgaria｜首任 1908-10-05｜薄（離線推定）｜tsardom-of-bulgaria head_of_state「Car na Bãlgarija / Car na bãlgarite」1908-10-05～1918-10-03（recordId 01a1aa4a-4de5-7e90-bc3d-b0f4b1a81389）
 - ｜José Eligio Ayala｜01a1aa4a-e5f0-7059-8a6c-3f793eb06588｜paraguay｜首任 1923-04-11｜中（離線推定）｜paraguay head_of_government「Presidente Provisorio de la República」1923-04-11～1924-03-17（recordId e5af0194-997f-46b9-8bfd-67689c9d3842）；paraguay head_of_state「Presidente Provisorio de la República」1923-04-11～1924-03-17（recordId 6925a5f6-95bf-44cc-9394-38b5fb2a81a3）；paraguay head_of_government「Presidente de la República」1924-08-15～1928-08-15（recordId 6a90b027-024b-4505-b3c8-eda39baf3c19）；paraguay head_of_state「Presidente de la República」1924-08-15～1928-08-15（recordId 73a66e87-d878-47cc-a915-3863b3df8720）
 - 阿爾弗雷多·巴克里索·莫雷諾｜Alfredo Baquerizo Moreno｜01a1b4b5-fa12-71b6-ac1b-4793f524ee01｜ecuador｜首任 1912-08-10｜中（離線推定）｜ecuador head_of_government「Presidente del Senado, en ejercicio del Poder Ejecutivo」1912-08-10～1912-09-01（recordId 596c0565-1d39-4a54-ba63-7a3af8c8aac8）；ecuador head_of_state「Presidente del Senado, en ejercicio del Poder Ejecutivo」1912-08-10～1912-09-01（recordId 59782b9e-d44a-4983-99ac-07be076ceba5）；ecuador head_of_state「Presidente de la República del Ecuador」1916-09-01～1920-09-01（recordId edc8f090-c96c-4e9c-bed5-3002c5b68aff）；ecuador head_of_government「Presidente de la República del Ecuador」1916-09-01～1920-09-01（recordId 1a0b8d48-6238-489f-8145-af6ef80158b3）；ecuador head_of_government「Ministro de Gobierno y Previsión Social, encargado del Poder Ejecutivo」1931-10-15～1931-11-11（recordId 8e7ff552-e6ad-479e-9005-a275f75fbbdb）；ecuador head_of_state「Ministro de Gobierno y Previsión Social, encargado del Poder Ejecutivo」1931-10-15～1931-11-11（recordId 1d45d36c-9d7b-4c7d-aef6-134bee332e9d）；ecuador head_of_government「Encargado del Poder Ejecutivo」1931-11-11～1932-08-28（recordId 001d04e0-449e-4208-b5f3-b36411baf7db）；ecuador head_of_state「Encargado del Poder Ejecutivo」1931-11-11～1932-08-28（recordId d17af1d3-40d2-4d92-9a5b-46442261160e）、2026-11-15、/Users/jack755051/wl-source-cache/b3full-v3/batch027/raw、data/seed/leaders/b3-trial/full/v3/batch027 -->
@@ -14,11 +17,11 @@
 ## 必讀
 1. `ARCHITECTURE.md` §16.2、§16.3、§16.3.1、§16.3.2、§16.4 與 T11／T12／T14（只讀這幾節）。**與 `data/seed/leaders/b3-trial/ARCH_TODO.md` 所列新規則衝突處，以新規則為準**；另讀 `data/seed/leaders/b3-trial/T14_RECOMMENDATION.md` §1、§4。
 2. `data/seed/leaders/b3-trial/full/v3/PROMPT_research.md`（研究者收到的完整規則，**所有規則同樣適用於審查**）、`data/seed/leaders/b3-trial/ALIGN.md`、`data/seed/leaders/b3-trial/verify.py`。
-3. `data/seed/leaders/b3-trial/full/v3/batch027/research.json`、`data/seed/leaders/b3-trial/full/v3/batch027/rawmap.json`、原文 `/Users/jack755051/wl-source-cache/b3full-v3/batch027/raw/*.txt`。
+3. `data/seed/leaders/b3-trial/full/v3/batch027/research.json`、`data/seed/leaders/b3-trial/full/v3/batch027/rawmap.json`、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。
 
 ## 審查項目（每段、每職位、每筆候選角色、每筆 citation）
-1. 出處：sourceKey 存在、URL 真實可開（每人至少抽 1 個來源重抓比對）、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
-2. 引文逐字出現在已抓原文（不能只信 verify.py：再人工比對引文與它支撐的句子；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
+1. 出處：sourceKey 存在、URL 真實可開（全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘））、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
+2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
 3. 來源等級 A／B 合理（gradeBasis 說得通）；無具名作者的百科條目、無作者館藏圖說、私人彙編 → 降為未評等，只能在 gaps 候選。
 4. 無編造：日期、精度、半開區間、Q3 終點寫法、段落 period 迄點正確；datePrecision 只在 quote 含日期時填；conflict 只用於兩份已抓來源矛盾。
 5. **對齊格式**：`alignedTo`="b0b0e0f"；positions 用 positionKind（無 roleKind、無三種角色值、無 party）；元首／首腦／實際掌權者與**所有黨職**在 roleCandidates，`role_kind` 正確（黨職一律 de_facto_leader、t14Rule=R1，reason 註明 Tai 12:12；即使與 ARCHITECTURE §16.3.1 衝突也以此為準）；**職稱或來源明寫以某政黨身分取得的席位**也必須在 roleCandidates（de_facto_leader、originalPositionKind 照原性質，比照 Tai 12:47 薩拉查裁決），逐一檢查 legislator 類 positions 的標題與引文有沒有漏掉；不明確黨職留 positions 並有 partyPostAmbiguous＋理由（審查可把明確黨職改移候選、或把誤移的非黨職移回並標 ambiguous，但不可新增事實）。
@@ -48,3 +51,5 @@
 - 現行來源規則（docs/source-rules.md）：禁用網域只看 data/source-policy.json（含 bannedHostLabels 與例外）；Wikipedia／Wikidata／任何 wiki 類（含 ruwiki、bre.ruwiki.ru）只當索引；第三方轉錄本原件 A 記 B；人物生平只收 A／B（C 只能放 gaps 候選）；個人網站與私人彙編（如 rulers.org、archontology.org、nepalresearch.com）是 X；合格出處與不合格出處不同時以合格出處為準，兩個合格出處不同才是說法衝突。
 - 不繞過任何機器人驗證（Cloudflare、Anubis、403 一律放棄並記入 searchLog）；不用 Wayback 取代被擋頁面。
 - 目前工作目錄在分支 feature/battle-demo-v2，另一個 session 也在此目錄工作：只寫你的 OUTDIR 與 RAWDIR；不 git add／commit／push；不寫庫；不呼叫 5052 API。
+
+上述檔首的 2026-11-17 token 節流優先於本文其餘句子，包含文末「優先於上文」的舊追加。

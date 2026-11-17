@@ -1,0 +1,89 @@
+{
+ "batch": "100",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 2,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 10,
+  "editedSentences": 9,
+  "spotRefetched": 5,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "es-romanones",
+   "bioId": "01a1b520-ee9d-7b0b-88e6-083f17335e5e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 15,
+   "roleCandidates": 1,
+   "gaps": 6,
+   "searchLogSteps": 8,
+   "changes": [
+    "出生日：GND dateOfBirth 1863-08-09 與 Congreso 08 Aug 1863 為兩份已抓合格來源矛盾，研究者誤寫為 not_found；gap paragraph:dob 改 conflict，第1段 period.start 改 1863-08-01（month）",
+    "卒日：GND dateOfDeath 1950-09-11 與 Congreso 11 de octubre de 1950 矛盾；第5段正文改只寫 1950 年、period.end 改 1951-01-01（year），新增 gap paragraph:dod（conflict）",
+    "第3段刪去「第二度／第三度」序數（Congreso 把首任拆兩段，原文稱 la tercera／la cuarta，序數與原文不合），補 GND 引文「1912-1913, 1915-1917 und 1918-1919 Ministerpräsident」",
+    "第4段「1918年兼任」改「擔任過」（GND 只列舉，未說同時）；「談妥和平過渡」改為原文 ha de pactar 的「須商定無暴力的過渡」；補引文 durante la dictadura de Miguel Primo de Rivera、para garantizar la vida del Rey y de su familia",
+    "第5段刪「佛朗哥時期」（引文未寫）",
+    "Congreso 同頁議長任期表與傳記正文起訖不一（單一來源內部不一致），positions 保留任期表值並新增 gap position:romanones-congress-president 待核 Diario de Sesiones",
+    "重抓 congreso.es 與 lobid GND 比對一致；R1 自由黨議席（GND 明寫 Partido Liberal）、外交部長 1918／1931 R6（dates、regime）、其他閣員 R5 判斷維持；三段首相任期在 5442 不重建屬實"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pt-manuel-ii",
+   "bioId": "01a1b520-ef2b-7e82-98a8-ca68889f4542",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 8,
+   "changes": [
+    "第1段 period.start 由 1889-03-19（day）改 1889-01-01（year）：生日只有 Treccani 單一來源（GND 僅 1889），正文只寫年份，與既有 gap 一致",
+    "第2段「他撤換了…弗朗科」改被動句，對齊原文 la rimozione dell'inviso ministro",
+    "第3段補 4 筆引文（國王個人人緣、為王朝爭取民心、指控太后偏袒保守派、恐被叛艦俘獲）；第4段補引文 con la regina madre e il duca di Oporto s'imbarcò per l'Inghilterra",
+    "重抓 treccani.it 條目比對一致；國王任期在 5442 不重建屬實，0 positions／0 roleCandidates 合理"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ge-zhordania",
+   "bioId": "01a1b520-ef34-773b-8389-1664a914f47a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 8,
+   "changes": [
+    "中文正文譯名「若爾丹尼亞」統一為 nameZh「饒爾達尼亞」",
+    "生年：Suny 條目標題 1868 與 GND 1869 為兩份已抓合格來源矛盾，gap paragraph:dob 改 conflict",
+    "第1段 kvali 引文不含日期，datePrecision 由 year 改 null（Q8）",
+    "第3段「十月」改依原文引文 in October of that year（延長該 quote），補引文 Zhordania became the chairman of the Tiflis Soviet；第4段補引文 a movement whose members fought bitterly one with another",
+    "杜馬議員迄日引文 evidenceNote 註明 Vyborg 條目句法可另讀；任期在時間窗外，不影響 T14",
+    "重抓 encyclopedia.com 與 lobid GND 比對一致；Chairman of the Government 在 5442 不重建屬實；孟什維克領袖黨職缺起日留 gap 合理"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把『只有一份合格來源寫日期』與『兩份合格來源日期不同』混淆：GND JSON 的 dateOfBirth／dateOfDeath 欄位常帶完整日期，須與正文來源比對（本批 Romanones 生卒、Zhordania 生年皆屬 conflict）",
+  "中文正文常多出引文沒有的修飾（序數、兼任、談妥、佛朗哥時期、十月），審查逐句收回",
+  "regimeId 全批 null（不連庫），四部閣員以 R6 roleGap=regime 留 positions"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

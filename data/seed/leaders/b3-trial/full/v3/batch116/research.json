@@ -1,0 +1,711 @@
+{
+ "batch": "b3-full-v3-batch116",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式；regimeId 因不連庫一律 null＋organization。三人在 5442 的元首／首腦任期不重建。本批 WebSearch 額度中途用盡，只能直接 curl 權威檔與官方鏡像；LoC HTML 頁改取同一權威檔 suggest2 JSON，GND 改取 lobid.org；Britannica 403、VIAF 403、history.state.gov 403、banrepcultural Radware 驗證頁一律放棄，未繞過；LoC 記錄內的維基類引用不採。三人都因來源僅限權威檔而低於最低標準，已寫 paragraph:length gap。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch116/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "loc-leconte": {
+   "title": "Leconte, Cincinnatus, 1854-1912（LC Name Authority no2015022804）",
+   "authors": [],
+   "publisher": "Library of Congress",
+   "published_text": "Library of Congress Name Authority File",
+   "url": "https://id.loc.gov/authorities/names/suggest2?q=Leconte,%20Cincinnatus",
+   "archive_url": null,
+   "catalog_id": "no2015022804",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔（suggest2 JSON；HTML 頁為挑戰頁，改取同一權威檔 JSON）"
+  },
+  "loc-gonzalez": {
+   "title": "González Valencia, Ramón, 1851-1928（LC Name Authority n93093085）",
+   "authors": [],
+   "publisher": "Library of Congress",
+   "published_text": "Library of Congress Name Authority File",
+   "url": "https://id.loc.gov/authorities/names/suggest2?q=Gonz%C3%A1lez%20Valencia,%20Ram%C3%B3n",
+   "archive_url": null,
+   "catalog_id": "n93093085",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔（suggest2 JSON）"
+  },
+  "gnd-gonzalez": {
+   "title": "González Valencia, Ramón（GND 1056436182）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek",
+   "published_text": "Gemeinsame Normdatei (GND)，經 lobid.org 取得",
+   "url": "https://lobid.org/gnd/1056436182.json",
+   "archive_url": null,
+   "catalog_id": "1056436182",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND；lobid.org 官方鏡像）"
+  },
+  "gnd-eenpalu": {
+   "title": "Eenpalu, Kaarel August（GND 119156539）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek",
+   "published_text": "Gemeinsame Normdatei (GND)，經 lobid.org 取得",
+   "url": "https://lobid.org/gnd/119156539.json",
+   "archive_url": null,
+   "catalog_id": "119156539",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND；lobid.org 官方鏡像）"
+  },
+  "db-eenpalu": {
+   "title": "Eenpalu, Kaarel August",
+   "authors": [],
+   "publisher": "Deutsche Biographie（Bayerische Staatsbibliothek／Historische Kommission）",
+   "published_text": "Deutsche Biographie 人名頁（Normdaten）",
+   "url": "https://www.deutsche-biographie.de/pnd119156539.html",
+   "archive_url": null,
+   "catalog_id": "119156539",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "Deutsche Biographie 人名權威檔頁（依 GND）"
+  }
+ },
+ "people": [
+  {
+   "key": "ht-leconte",
+   "bioId": "01a1b488-1401-7939-8b9b-98a5de20bc31",
+   "name": "Jean-Jacques Dessalines Michel Cincinnatus Leconte",
+   "nameZh": "讓-雅克·德薩林·米歇爾·辛辛納圖斯·勒孔特",
+   "recordIds": [
+    "3ac2d23e-467e-4bb0-b077-3eb215ce4284",
+    "66019a44-55f9-43d3-bcdf-3383dee9d9f0",
+    "bc882061-0883-4070-a100-2efe497b57d8",
+    "1dad1ab6-b639-4d46-b938-58f5a6f2c471"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1854-01-01",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "權威檔所記的身分與生卒年",
+      "en": "Identity and years of life in the authority record"
+     },
+     "body": {
+      "zh-Hant": "美國國會圖書館人名權威檔以「Leconte, Cincinnatus, 1854-1912」登錄此人，生卒年為1854至1912年，職業類別標為公職人員與海地總統。",
+      "en": "The Library of Congress name authority file registers him as \"Leconte, Cincinnatus, 1854-1912\", giving his years of life as 1854 to 1912 and classifying his occupations as public officer and president of Haiti."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-leconte",
+       "locator": "suggest2 JSON hits[0]",
+       "quote": "Leconte, Cincinnatus, 1854-1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-leconte",
+       "locator": "suggest2 JSON occupations",
+       "quote": "Public officers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-leconte",
+       "locator": "suggest2 JSON occupations",
+       "quote": "Presidents--Haiti",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 1 段、約 60 字（最低標準 3 段／300 字）；已查 LoC 權威檔（suggest2 JSON，僅得姓名與生卒年）、BnF data（無結果）、lobid/GND（無此人）；Britannica 403、history.state.gov 403、Encyclopedia.com 404，均放棄；WebSearch 額度用盡，未能找到可抓原文的 A／B 傳記來源。LoC 記錄內文引用維基類來源，不採。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:1",
+     "gapKind": "not_found",
+     "note": "待查證：1911-08-05 起的元首／首腦任期在 5442 名單內不重建；內政部長（1908 年前後）、流亡牙買加、1912-08-08 去世經過等生平事實，尚無 A／B 可抓原文，未寫入正文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Leconte, Cincinnatus（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Leconte,%20Cincinnatus",
+     "result": "found_A",
+     "note": "curl 200 → loc-leconte.txt；只有姓名與生卒年／職業類別；sources 欄引用維基，不採"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Cincinnatus Leconte（BnF data）",
+     "url": "https://data.bnf.fr/en/search?term=Cincinnatus+Leconte",
+     "result": "no_result",
+     "note": "curl 200，無結果"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Cincinnatus Leconte（lobid GND）",
+     "url": "https://lobid.org/gnd/search?q=Cincinnatus+Leconte&format=json",
+     "result": "no_result",
+     "note": "totalItems 0"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Cincinnatus-Leconte",
+     "url": "https://www.britannica.com/biography/Cincinnatus-Leconte",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "history.state.gov Leconte",
+     "url": "https://history.state.gov/departmenthistory/people/leconte-cincinnatus",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Leconte",
+     "url": "https://www.encyclopedia.com/people/history/haiti-history/cincinnatus-leconte",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Leconte président d'Haïti 1911 biographie（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度（200 次／session）已用盡，無法再以搜尋找新來源；只能直接 curl 已知權威檔／官方網址"
+    }
+   ]
+  },
+  {
+   "key": "ee-eenpalu",
+   "bioId": "01a1b538-0c3e-76dd-9cca-661af7ec5c57",
+   "name": "Kaarel Eenpalu",
+   "nameZh": "卡雷爾·恩帕盧",
+   "recordIds": [
+    "01a1aa4a-66af-7831-8373-333e38db1519",
+    "01a1aa4a-66b9-7456-bc55-328d75ca439d",
+    "01a1aa4a-6690-7351-a600-df357cdc33ec"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1888-05-08",
+      "end": "1942-01-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒與姓名寫法",
+      "en": "Dates, places and name variants"
+     },
+     "body": {
+      "zh-Hant": "恩帕盧1888年5月8日生於塔爾圖縣的韋斯內里，1942年1月28日死於基洛夫（俄羅斯）。德國國家圖書館權威檔另列他的姓名異寫：Einbund, Karl August，以及西里爾字母的Ээнпалу, Каарел。",
+      "en": "Kaarel Eenpalu was born on 8 May 1888 at Vesneri, district of Tartu, and died on 28 January 1942 at Kirov (Russia). The German National Library authority file also lists variant names: Einbund, Karl August and, in Cyrillic, Ээнпалу, Каарел."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-eenpalu",
+       "locator": "Lebensdaten",
+       "quote": "1888-05-08 – 1942-01-28",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-eenpalu",
+       "locator": "Geburtsort",
+       "quote": "Vesneri, Kreis Tartu",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-eenpalu",
+       "locator": "Sterbeort",
+       "quote": "Kirow (Kirow, Oblast)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-eenpalu",
+       "locator": "Namensvarianten",
+       "quote": "Einbund, Karl August",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-eenpalu",
+       "locator": "Namensvarianten",
+       "quote": "Ээнпалу, Каарел",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1933-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "內政部長與國家元首",
+      "en": "Interior minister and head of state"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記載他的職業為政治人物與法學家，並概述其經歷：1920至1926年任內政部長，1932年任愛沙尼亞國家元首，後來死於蘇聯羈押。",
+      "en": "The German National Library authority file lists his occupations as politician and jurist and summarises his career: interior minister 1920-1926, head of state of Estonia in 1932, and death in Soviet captivity."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-eenpalu",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1920-1926 Innenminister, 1932 Staatsoberhaupt von Estland",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-eenpalu",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "starb in sowjetischer Gefangenschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-eenpalu",
+       "locator": "professionOrOccupation",
+       "quote": "Politiker",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-eenpalu",
+       "locator": "professionOrOccupation",
+       "quote": "Jurist",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "eenpalu-interior-1920-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛沙尼亞共和國政府",
+      "en": "Government of the Republic of Estonia"
+     },
+     "title": {
+      "orig": "Innenminister",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-01-01",
+      "end": "1927-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gnd-eenpalu",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1920-1926 Innenminister, 1932 Staatsoberhaupt von Estland",
+       "quoteLang": "de",
+       "evidenceNote": "GND 概述只寫「1920-1926」，未說是否連續任職、各任起迄日；迄點依 Q3 取 1926 之下一單位起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部之一且年份範圍遠超 90 天，但本檔不連庫、regimeId 為 null，政權是否在系統中無法證明（R3④），且 GND 概述未說明是否連續任職，故歸 R6。",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "dates"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 2 段、約 190 字（最低標準 3 段／300 字）；已查 Deutsche Biographie 人名頁、GND（lobid）、LoC suggest2（無此人）、riigikogu.ee／president.ee 首頁（無個人資料）；entsyklopeedia.ee 連線失敗、Britannica 403、VIAF 403，放棄；WebSearch 額度用盡，未找到 Eesti biograafiline andmebaas 等愛沙尼亞原文傳記。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:eenpalu-interior-1920-1926",
+     "gapKind": "not_found",
+     "note": "待查證：缺各任確切起迄日；GND 只寫「1920-1926 Innenminister」，已查 GND、Deutsche Biographie；愛沙尼亞官方政府名單與傳記辭典未能抓取。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待查證：1932 年國家元首（Riigivanem）與 1938–1939 年總理任期在 5442 名單內，不重建；教育、記者、黨派（如農民聯盟）、流放經過等生平事實無 A／B 可抓原文，未寫入。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Eenpalu Kaarel（lobid GND）",
+     "url": "https://lobid.org/gnd/search?q=Eenpalu&format=json",
+     "result": "found_A",
+     "note": "curl 200；GND 119156539，含生卒、職業、概述"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 119156539 單筆 JSON",
+     "url": "https://lobid.org/gnd/119156539.json",
+     "result": "found_A",
+     "note": "curl 200 → gnd-eenpalu.txt"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Eenpalu（Deutsche Biographie 人名頁）",
+     "url": "https://www.deutsche-biographie.de/pnd119156539.html",
+     "result": "found_A",
+     "note": "curl 200 → db-eenpalu.txt；生卒地、姓名異寫"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Eenpalu, Kaarel（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Eenpalu,%20Kaarel",
+     "result": "no_result",
+     "note": "無此人"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Eenpalu（VIAF）",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Eenpalu%22",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Eesti Entsüklopeedia Eenpalu Kaarel",
+     "url": "https://entsyklopeedia.ee/artikkel/eenpalu_kaarel",
+     "result": "no_result",
+     "note": "連線失敗（HTTP 000），重試兩次仍失敗"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Riigikogu 歷史",
+     "url": "https://www.riigikogu.ee/tutvustus-ja-ajalugu/riigikogu-ajalugu/",
+     "result": "not_relevant",
+     "note": "curl 200，無個人資料"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "President.ee heads of state",
+     "url": "https://www.president.ee/en/estonia/heads-of-state/",
+     "result": "not_relevant",
+     "note": "curl 200，無 Eenpalu 條目"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Kaarel-Eenpalu",
+     "url": "https://www.britannica.com/biography/Kaarel-Eenpalu",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Kaarel Eenpalu elulugu（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度（200 次／session）已用盡，無法再以搜尋找新來源；只能直接 curl 已知權威檔／官方網址"
+    }
+   ]
+  },
+  {
+   "key": "co-gonzalez-valencia",
+   "bioId": "0edfcece-da24-4b12-94a7-7d25e9366928",
+   "name": "Ramón González Valencia",
+   "nameZh": "拉蒙·岡薩雷斯·巴倫西亞",
+   "recordIds": [
+    "d21a58a9-e98a-4582-b6a1-9263591bcbd3",
+    "554415f3-9b79-4703-b96a-04eed9d8e4af"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1851-05-24",
+      "end": "1928-10-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒日期與總統任期",
+      "en": "Dates of birth and death, and the presidency"
+     },
+     "body": {
+      "zh-Hant": "美國國會圖書館人名權威檔記他生於1851年5月24日、卒於1928年10月3日，並註明他是1909至1910年的哥倫比亞總統。",
+      "en": "The Library of Congress name authority file records him as born on 24 May 1851 and died on 3 October 1928, and notes that he was president of Colombia in 1909-1910."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-gonzalez",
+       "locator": "sources",
+       "quote": "(b. 5-24-1851, d. 10-3-1928; president of Colombia, 1909-1910)",
+       "quoteLang": "en",
+       "evidenceNote": "LoC 以月-日-年格式記日期",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1851-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "德國國家圖書館權威檔的職業描述",
+      "en": "Occupational description in the German National Library file"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔（GND）以「Militär u. Politiker」描述他，即軍人兼政治人物，生卒年同為1851與1928年。",
+      "en": "The German National Library authority file (GND) describes him as \"Militär u. Politiker\", that is soldier and politician, with the same years of life, 1851 and 1928."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Militär u. Politiker",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "dateOfBirth",
+       "quote": "1851",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "dateOfDeath",
+       "quote": "1928",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 2 段、約 130 字（最低標準 3 段／300 字）；已查 LoC suggest2、lobid GND；banrepcultural.org 被 Radware 機器人驗證擋下（放棄）、dbe.rah.es 回傳無內容外殼、presidencia.gov.co 無回應；WebSearch 額度用盡，未找到 Real Academia de la Historia、共和國銀行文化網或總統府傳記的可抓原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待查證：1909-08-04～1910-08-07 總統任期在 5442 名單內不重建；任軍職經歷、礦業與政治生涯、副總統與總統前後職務等生平事實，無 A／B 可抓原文，未寫入。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "González Valencia, Ramón（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Gonz%C3%A1lez%20Valencia,%20Ram%C3%B3n",
+     "result": "found_A",
+     "note": "curl 200 → loc-gonzalez.txt；生卒與總統任期註記"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Ramón González Valencia（lobid GND）",
+     "url": "https://lobid.org/gnd/search?q=Ram%C3%B3n+Gonz%C3%A1lez+Valencia&format=json",
+     "result": "found_A",
+     "note": "curl 200；GND 1056436182"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "GND 1056436182 單筆 JSON",
+     "url": "https://lobid.org/gnd/1056436182.json",
+     "result": "found_A",
+     "note": "curl 200 → gnd-gonzalez.txt"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Ramón González Valencia（DB~e）",
+     "url": "https://dbe.rah.es/biografias/ramon-gonzalez-valencia",
+     "result": "no_result",
+     "note": "curl 200 但只有頁面外殼，無條目內容（三種網址皆同）"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Credencial Historia Ramón González Valencia",
+     "url": "https://www.banrepcultural.org/biblioteca-virtual/credencial-historia/numero-46/ramon-gonzalez-valencia",
+     "result": "challenge_page",
+     "note": "Radware Bot Manager Block，放棄不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Presidencia de Colombia 歷任總統頁",
+     "url": "https://es.presidencia.gov.co/presidencia/presidentes/ramon-gonzalez-valencia",
+     "result": "no_result",
+     "note": "連線失敗（HTTP 000）；另試 www.presidencia.gov.co 回 200 但 0 位元組"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Ramón González Valencia presidente biografía（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度（200 次／session）已用盡，無法再以搜尋找新來源；只能直接 curl 已知權威檔／官方網址"
+    }
+   ]
+  }
+ ]
+}

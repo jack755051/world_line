@@ -1,0 +1,89 @@
+{
+ "batch": "096",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 12,
+  "editedSentences": 2,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "br-pecanha-nilo",
+   "bioId": "7a6bba0c-081a-4f59-9e15-6bcc67cefa4f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2：『1890 制憲代表』補 quote（Assembleia Nacional Constituinte em 15 de novembro 1890）；'candidatou-se…' 引文無日期，datePrecision year→null",
+    "段2：PRRJ 引文改為含 Alberto Torres 的片段並補 PRRJ quote；中文改為『由他與托雷斯的結盟成立』（原文為 aliança，非『等人創立』）",
+    "段3：『確立咖啡價格政策共同基礎』『與佩納搭檔』補 quote；11 月 1 日移交州政府的引文改為含『em 1º de novembro』的片段（datePrecision day）",
+    "段5：1921 共和反動運動候選人補兩筆 quote",
+    "職位 pecanha-rj-governor-1903：迄日引文同上改為含日期片段，evidenceNote 改寫",
+    "抽查重抓 Senado perfil/2148（200，Data de Falecimento 31/03/1924 與 Senador - RJ 1921 1924 相符）",
+    "未改動但記錄：PRCF 主席（1912 起、缺迄日）研究者只放 gap，依最低標準本應以 start＋缺迄日 gap 寫入 roleCandidates（R1）；未搬移以免影響 check_min 判定，留待主 session 決定"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pe-rada-y-gamio",
+   "bioId": "01a1b520-eeec-79e9-af75-6dc731868f0d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2：1911 駐教廷公使館秘書引文改為含『(1911)』片段，datePrecision null→year",
+    "段3：『1929 年條約』補 quote（Tratado de 1929）；『率代表團赴塔克納接收該省』原只有職稱引文，補咨文三筆 quote",
+    "段4：period.start 1929-01-01 改 1926-01-01（段內首事為 1926–1930 外長）",
+    "抽查重抓 MTC history 頁（200，'Dr. Pedro Jose Rada y Gamio' 致詞句相符）",
+    "未改動但記錄：駐教廷公使館秘書（1911、缺迄日）研究者只放 gap，未依最低標準寫入 positions；內政／公共工程部長缺起日 gap 合規"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "do-jimenes-juan-isidro",
+   "bioId": "01a1b520-ef5f-70a6-8c0f-4ccb0fbf8b60",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1：刪無 quote 的評語句『這些事件構成希門內斯1914年當選前的背景』（中英）",
+    "段3：Arias 引文原截在 'led by Juan I.'（截掉受詞），改為 'Liberal guerrilla movement led by Juan I. Jiménez in the 1910s' 並另補 'Arias emerged as a key leader'；『美國立刻』補 quote",
+    "段4：period.end 1916-12-01（month）依段內最後事件 1916-11-26 改 1916-11-27（day）",
+    "searchLog step 2 sourceType 'unrated' 非合法值，改 other",
+    "抽查重抓 Encyclopedia.com Arias 條（200，引文相符）",
+    "薄人物最低嘗試已達（5 類、14 步、原文 ≥2、實抓 ≥3）；本人生卒仍缺 A／B，identity gap 保留"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把『有起日缺迄日』的職位（Peçanha PRCF 主席、Rada 駐教廷秘書）只寫 gap 而未寫入 positions／roleCandidates，與最低標準第 2 條不一致；審查未搬移（check_min 對缺迄日項判 meetsMinimum=false），請主 session 決定",
+  "多筆引文 datePrecision 填在不含日期的 quote 上或引文截掉日期，已逐筆修正"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

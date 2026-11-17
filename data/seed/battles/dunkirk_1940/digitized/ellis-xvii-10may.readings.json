@@ -10,8 +10,17 @@
   "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
  },
  "method": "用 tools/battles/mapgrid.swift 將 640×1146 原圖切成 240×220 px 的重疊小塊（重疊 30–40 px）、放大 5 倍並疊 20 px 座標格線逐塊目視讀圖（可疑處另切 10–20 倍放大），座標為原圖像素（原點左上）；城鎮取圓點中心、橢圓取橢圓中心、無框數字與標字取字樣中心，讀圖誤差約 ±2 px（依圖上比例尺 1 px ≈ 0.35 km，約 0.7 km）。經緯度取自 OSM Nominatim（皆為行政區 relation 的 lat/lon）。本圖為小比例尺示意圖，全圖只有 6 個帶圓點的城鎮可作控制點。",
- "referenceOnly": {
-  "reason": "全圖只有 6 個可用控制點（二次多項式需 6 個係數，留一法無法成立），且為小比例尺示意圖（約 0.35 km/px），部隊數字僅表示大致配置區；僅供參考"
+ "scaleClass": {
+  "class": "theatre",
+  "decidedBeforeFit": true,
+  "basis": "依圖本身：比例尺橫條量得 1 px ≈ 0.347 km，圖幅 640×1146 px 約 222×398 公里（橫跨超過 200 公里）；圖上畫的是集團軍群、集團軍的配置與界線，部隊數字只表示大致配置區。",
+  "decision": "Tai 2026-11-17「依據建議放寬」：全戰區的小比例尺圖另訂門檻（留一 95 百分位 ≤ 15 km），只用於集團軍群、集團軍、裝甲師，畫面標精度與推估。",
+  "supersedes": {
+   "referenceOnly": {
+    "reason": "全圖只有 6 個可用控制點（二次多項式需 6 個係數，留一法無法成立），且為小比例尺示意圖（約 0.35 km/px），部隊數字僅表示大致配置區；僅供參考"
+   },
+   "note": "原先依 2 km 門檻標為僅供參考；判讀內容（像素座標、標註）沒有更動"
+  }
  },
  "scaleBar": {
   "px0": [
@@ -165,7 +174,10 @@
     299,
     170
    ],
-   "note": "標字兩行（ARMY GROUP／B），px 取整組標字中心"
+   "note": "標字兩行（ARMY GROUP／B），px 取整組標字中心",
+   "unitKey": "de-hgr-b",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字即番號"
   },
   {
    "label": "ARMY GROUP A",
@@ -176,7 +188,10 @@
     421,
     388
    ],
-   "note": "標字兩行（ARMY GROUP／A），px 取整組標字中心"
+   "note": "標字兩行（ARMY GROUP／A），px 取整組標字中心",
+   "unitKey": "de-hgr-a",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字即番號"
   },
   {
    "label": "ARMY GROUP C",
@@ -187,7 +202,9 @@
     556,
     740
    ],
-   "note": "標字兩行（ARMY GROUP／C），px 取整組標字中心"
+   "note": "標字兩行（ARMY GROUP／C），px 取整組標字中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位"
   },
   {
    "label": "18 ARMY",
@@ -198,7 +215,10 @@
     271,
     75
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKey": "de-18-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字即番號"
   },
   {
    "label": "6 ARMY",
@@ -209,7 +229,10 @@
     190,
     272
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKey": "de-6-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字即番號"
   },
   {
    "label": "2 ARMY",
@@ -220,7 +243,9 @@
     283,
     383
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位"
   },
   {
    "label": "4 ARMY",
@@ -231,7 +256,10 @@
     195,
     452
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKey": "de-4-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字即番號"
   },
   {
    "label": "12 ARMY",
@@ -242,7 +270,9 @@
     170,
     599
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位"
   },
   {
    "label": "16 ARMY",
@@ -253,7 +283,9 @@
     229,
     664
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位"
   },
   {
    "label": "1 ARMY",
@@ -264,7 +296,9 @@
     417,
     756
    ],
-   "note": "px 取標字中心"
+   "note": "px 取標字中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位"
   },
   {
    "label": "7 ARMY",
@@ -275,7 +309,9 @@
     592,
     948
    ],
-   "note": "px 取標字中心；位於圖右下角、圖例框正上方"
+   "note": "px 取標字中心；位於圖右下角、圖例框正上方",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位"
   },
   {
    "label": "9",
@@ -286,7 +322,11 @@
     168,
     105
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓跨在 18 ARMY／6 ARMY 的軍團界線（點劃線）上；圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓跨在 18 ARMY／6 ARMY 的軍團界線（點劃線）上；圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群",
+   "armoured": true,
+   "unitKey": "de-9-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "3",
@@ -297,7 +337,11 @@
     185,
     220
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群",
+   "armoured": true,
+   "unitKey": "de-3-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "4",
@@ -308,7 +352,11 @@
     150,
     367
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群",
+   "armoured": true,
+   "unitKey": "de-4-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "5",
@@ -319,7 +367,11 @@
     249,
     423
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。與下方「7」橢圓相鄰；另有無框「5」在 px [306,468]，為不同符號"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。與下方「7」橢圓相鄰；另有無框「5」在 px [306,468]，為不同符號",
+   "armoured": true,
+   "unitKey": "de-5-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "7",
@@ -330,7 +382,11 @@
     267,
     448
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。與上方「5」橢圓相鄰；另有無框「7」在 px [69,314]"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。與上方「5」橢圓相鄰；另有無框「7」在 px [69,314]",
+   "armoured": true,
+   "unitKey": "de-7-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "6",
@@ -341,7 +397,11 @@
     466,
     429
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。另有無框「6」在 px [376,567]"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。另有無框「6」在 px [376,567]",
+   "armoured": true,
+   "unitKey": "de-6-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "2",
@@ -352,7 +412,11 @@
     247,
     576
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓貼著 12 ARMY／16 ARMY 軍團界線北側"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓貼著 12 ARMY／16 ARMY 軍團界線北側",
+   "armoured": true,
+   "unitKey": "de-2-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "1",
@@ -363,7 +427,11 @@
     258,
     618
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。另有無框「1」在 px [329,203]"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。另有無框「1」在 px [329,203]",
+   "armoured": true,
+   "unitKey": "de-1-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "10",
@@ -374,7 +442,11 @@
     303,
     665
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心",
+   "armoured": true,
+   "unitKey": "de-10-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "8",
@@ -385,7 +457,11 @@
     359,
     693
    ],
-   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓貼著集團軍群界線（實線）末端；圖例註 (ii) 列出 C 集團軍群地區內屬 A 集團軍群的師有「8」，圖上另有無框「8」在 px [164,478]（4 ARMY 地區），註 (ii) 指哪一個未由圖面判定"
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓貼著集團軍群界線（實線）末端；圖例註 (ii) 列出 C 集團軍群地區內屬 A 集團軍群的師有「8」，圖上另有無框「8」在 px [164,478]（4 ARMY 地區），註 (ii) 指哪一個未由圖面判定",
+   "armoured": true,
+   "unitKey": "de-8-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例 Armoured Divisions Shown：橢圓圈內數字即裝甲師番號"
   },
   {
    "label": "SSV",
@@ -396,7 +472,9 @@
     245,
     48
    ],
-   "note": "只有字母 SSV、無數字、無橢圓；圖例未說明此縮寫，層級依圖題（Divisions）推測為師級但未能由圖面確定"
+   "note": "只有字母 SSV、無數字、無橢圓；圖例未說明此縮寫，層級依圖題（Divisions）推測為師級但未能由圖面確定",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "20 MOT",
@@ -407,7 +485,9 @@
     282,
     233
    ],
-   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "13 MOT",
@@ -418,7 +498,9 @@
     575,
     362
    ],
-   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "29 MOT",
@@ -429,7 +511,9 @@
     601,
     467
    ],
-   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "2 MOT",
@@ -440,7 +524,9 @@
     549,
     510
    ],
-   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "1 MTN",
@@ -451,7 +537,9 @@
     262,
     527
    ],
-   "note": "無橢圓，數字後標 MTN（山地）；圖例無此項，依標字記錄"
+   "note": "無橢圓，數字後標 MTN（山地）；圖例無此項，依標字記錄",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "227",
@@ -462,7 +550,9 @@
     277,
     20
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "254",
@@ -473,7 +563,9 @@
     102,
     61
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "207",
@@ -484,7 +576,9 @@
     175,
     61
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "256",
@@ -495,7 +589,9 @@
     129,
     105
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "208",
@@ -506,7 +602,9 @@
     284,
     99
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "216",
@@ -517,7 +615,9 @@
     238,
     139
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "225",
@@ -528,7 +628,9 @@
     414,
     155
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "56",
@@ -539,7 +641,9 @@
     153,
     169
    ],
-   "note": "無框數字，步兵師；兩數字之間下方有一小墨點（像逗號），判為 56，非 5,6"
+   "note": "無框數字，步兵師；兩數字之間下方有一小墨點（像逗號），判為 56，非 5,6",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "255",
@@ -550,7 +654,9 @@
     474,
     198
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "1",
@@ -561,7 +667,9 @@
     329,
     203
    ],
-   "note": "無框數字，步兵師；另有橢圓「1」在 px [258,618]"
+   "note": "無框數字，步兵師；另有橢圓「1」在 px [258,618]",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "223",
@@ -572,7 +680,9 @@
     439,
     236
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "30",
@@ -583,7 +693,9 @@
     128,
     224
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "19",
@@ -594,7 +706,9 @@
     133,
     258
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "14",
@@ -605,7 +719,9 @@
     119,
     287
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "11",
@@ -616,7 +732,9 @@
     325,
     274
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "61",
@@ -627,7 +745,9 @@
     266,
     295
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "4",
@@ -638,7 +758,9 @@
     406,
     299
    ],
-   "note": "無框數字，步兵師；另有橢圓「4」在 px [150,367]"
+   "note": "無框數字，步兵師；另有橢圓「4」在 px [150,367]",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "31",
@@ -649,7 +771,9 @@
     95,
     304
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "7",
@@ -660,7 +784,9 @@
     69,
     314
    ],
-   "note": "無框數字，步兵師；無橢圓，但數字正落在國界粗線圍成的方形突出部內（Maastricht 以北），不是圖例的橢圓；另有橢圓「7」在 px [267,448]"
+   "note": "無框數字，步兵師；無橢圓，但數字正落在國界粗線圍成的方形突出部內（Maastricht 以北），不是圖例的橢圓；另有橢圓「7」在 px [267,448]",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "18",
@@ -671,7 +797,9 @@
     101,
     334
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "87",
@@ -682,7 +810,9 @@
     340,
     334
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "35",
@@ -693,7 +823,9 @@
     106,
     351
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "211",
@@ -704,7 +836,9 @@
     254,
     359
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "27",
@@ -715,7 +849,9 @@
     451,
     359
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "267",
@@ -726,7 +862,9 @@
     211,
     362
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "12",
@@ -737,7 +875,9 @@
     320,
     368
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "269",
@@ -748,7 +888,9 @@
     107,
     373
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "253",
@@ -759,7 +901,9 @@
     105,
     397
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "263",
@@ -770,7 +914,9 @@
     332,
     403
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "251",
@@ -781,7 +927,9 @@
     146,
     436
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "25",
@@ -792,7 +940,9 @@
     374,
     439
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "28",
@@ -803,7 +953,9 @@
     136,
     461
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "9",
@@ -814,7 +966,9 @@
     413,
     465
    ],
-   "note": "無框數字，步兵師；另有橢圓「9」在 px [168,105]"
+   "note": "無框數字，步兵師；另有橢圓「9」在 px [168,105]",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "5",
@@ -825,7 +979,9 @@
     306,
     468
    ],
-   "note": "無框數字，步兵師；另有橢圓「5」在 px [249,423]"
+   "note": "無框數字，步兵師；另有橢圓「5」在 px [249,423]",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "8",
@@ -836,7 +992,9 @@
     164,
     478
    ],
-   "note": "無框數字，步兵師；另有橢圓「8」在 px [359,693]；圖例註 (ii) 的「8」指哪一個未由圖面判定"
+   "note": "無框數字，步兵師；另有橢圓「8」在 px [359,693]；圖例註 (ii) 的「8」指哪一個未由圖面判定",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "21",
@@ -847,7 +1005,9 @@
     331,
     494
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "62",
@@ -858,7 +1018,9 @@
     171,
     525
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "33",
@@ -869,7 +1031,9 @@
     456,
     532
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "32",
@@ -880,7 +1044,9 @@
     123,
     561
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "6",
@@ -891,7 +1057,9 @@
     376,
     567
    ],
-   "note": "無框數字，步兵師；另有橢圓「6」在 px [466,429]"
+   "note": "無框數字，步兵師；另有橢圓「6」在 px [466,429]",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "3",
@@ -902,7 +1070,9 @@
     109,
     594
    ],
-   "note": "無框數字，步兵師；另有橢圓「3」在 px [185,220]；本數字緊貼國界線東側"
+   "note": "無框數字，步兵師；另有橢圓「3」在 px [185,220]；本數字緊貼國界線東側",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "23",
@@ -913,7 +1083,9 @@
     119,
     622
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "24",
@@ -924,7 +1096,9 @@
     132,
     641
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "16",
@@ -935,7 +1109,9 @@
     138,
     657
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "36",
@@ -946,7 +1122,9 @@
     165,
     670
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "15",
@@ -957,7 +1135,9 @@
     249,
     685
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "68",
@@ -968,7 +1148,9 @@
     189,
     698
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "26",
@@ -979,7 +1161,9 @@
     427,
     708
    ],
-   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "17",
@@ -990,7 +1174,9 @@
     183,
     717
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "71",
@@ -1001,7 +1187,9 @@
     323,
     732
    ],
-   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "34",
@@ -1012,7 +1200,9 @@
     171,
     736
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "76",
@@ -1023,7 +1213,9 @@
     169,
     757
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "73",
@@ -1034,7 +1226,9 @@
     288,
     776
    ],
-   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "58",
@@ -1045,7 +1239,9 @@
     166,
     779
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "52",
@@ -1056,7 +1252,9 @@
     366,
     784
    ],
-   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "79",
@@ -1067,7 +1265,9 @@
     204,
     792
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "94",
@@ -1078,7 +1278,9 @@
     529,
     809
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "95",
@@ -1089,7 +1291,9 @@
     226,
     813
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "93",
@@ -1100,7 +1304,9 @@
     239,
     831
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "98",
@@ -1111,7 +1317,9 @@
     560,
     831
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "258",
@@ -1122,7 +1330,9 @@
     266,
     847
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "257",
@@ -1133,7 +1343,9 @@
     357,
     861
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "75",
@@ -1144,7 +1356,9 @@
     297,
     865
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "268",
@@ -1155,7 +1369,9 @@
     393,
     875
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "262",
@@ -1166,7 +1382,9 @@
     431,
     877
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "252",
@@ -1177,7 +1395,9 @@
     317,
     881
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "215",
@@ -1188,7 +1408,9 @@
     465,
     900
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   },
   {
    "label": "246",
@@ -1199,7 +1421,9 @@
     522,
     919
    ],
-   "note": "無框數字，步兵師"
+   "note": "無框數字，步兵師",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "全戰區圖只用於集團軍群、集團軍、裝甲師；步兵師、摩托化師等不取位置"
   }
  ],
  "unresolved": [

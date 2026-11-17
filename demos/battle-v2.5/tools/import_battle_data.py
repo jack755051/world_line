@@ -164,7 +164,7 @@ SHOW_UNMATCHED = '--unmatched' in sys.argv   # 只給除錯用：把沒對到名
 marks, positions, digitized, linked = {}, [], [], 0
 for d in sorted(mark_map):
     m = mark_map[d]
-    digitized.append({'file': m['mapKey'] + '.json', 'citation': m['source']['citation'], 'short_zh': 'Ellis 態勢圖 ' + m['source']['citation'].split("Situation Map ")[-1], 'url': m['source']['url'],
+    digitized.append({'file': m['mapKey'] + '.json', 'citation': m['source']['citation'], 'short_zh': 'Ellis 態勢圖 ' + (re.search(r"'[^']+'.*", m['source']['citation']) or re.search(r'.*', m['source']['citation'].split("Situation Map ")[-1])).group(0).split('（')[0], 'url': m['source']['url'],
                       'map_date': d, 'loo_p95_km': m['threshold']['loo_p95_km'], 'precision_m': m['precision_m'], 'control_points': m['georef']['control_points']})
     seen = collections.Counter((f.get('sideGuess'), f.get('echelon'), f['label']) for f in m['features'])
     idx = collections.Counter()
@@ -185,7 +185,7 @@ for d in sorted(mark_map):
                               'map_mark': True, 'note': '這是態勢圖上的一個標註，陣營依圖例的符號樣式判讀，還沒有對到名冊裡的單位。', 'mark_notes': []}
             if f.get('note') or f.get('sideNote'): marks[uid]['mark_notes'].append({'date': d, 'note': f.get('note'), 'side_note': f.get('sideNote')})
         positions.append({'unit_id': uid, 'date': d, 'lng': f['lonlat'][0], 'lat': f['lonlat'][1], 'state': 'move', 'status': 'map', 'precision_m': m['precision_m'], 'place_zh': None,
-                          'source': 'map:' + m['mapKey'], 'map_label': f['label'], 'map_date': d})
+                          'source': 'map:' + m['mapKey'], 'map_label': f['label'], 'map_date': d, **({'coarse': True} if m.get('coarse') else {})})   # coarse＝全戰區圖（±十幾公里）：畫部隊牌，不拿來算領地
 # 文字位置（R3）上圖（Tai 2026-11-15）：名冊單位在某個關鍵日沒有圖上位置、但出處文字寫到它「在某地」時，用那個地名的座標畫出來。
 # 只收表示部隊本身所在的關係；開會、指派防區、出發、指揮這類不代表部隊位置的不收。座標是地名中心，精度標 ±5 公里。
 have = {(p['unit_id'], p['date']) for p in positions}

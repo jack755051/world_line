@@ -1,40 +1,34 @@
 {
- "note": "由 tools/b3v3/normalize_check_min.py 依各批 research.json 重跑 check_min.py，寫入固定檔名 check_min-report.json 後重算（2026-11-17）。check-min.json、check-min-report.json 已刪除。曾擔心格式不同的 096、105、107、108、112、113、114、118、121：096 三人皆達標，但該次審查中斷，列入 recheck_review；105、107、108、112、113、114、118、121 皆達標，只審查。與中斷當下那份清單相比，只有 batch102 的 Alexander Tsankov 改變：舊報告寫未達標（缺迄日），現行 research.json 已有起迄日，重算後達標，不再重跑；同批仍重跑 Emiliano Figueroa Larraín。093、095 有人補了「篇幅不足」gap，documentedShortfall 改為 true，但仍未達標，照舊重跑。097 的 José Domingo de Obaldía 字數 528 改計為 527，仍達標且已審查。reviewed 是已有 review.json 且不必重查的批。122 沒有 research.json，列入 needs_research；已存原文不要重抓。",
+ "note": "2026-11-17 試跑（台北 19:52–20:19，批次 093、105、122，9 人，約 1300 萬 token）之後，由 tools/b3v3/plan_work.py --recompute-remaining 依各批 research.json 重算，沒有重寫 check_min-report.json。略過已審查：097、098、100、093（試跑已重跑並審查）、105（試跑已審查）。093 的佩納被審查拿掉推論迄日，現況是已標註缺迄日；本輪不重跑 093。122 試跑已做完研究與加強重跑，列入 retryDone，只審查。096 審查中斷，列入 recheck_review。needs_retry_and_review 只留可補的缺欄（缺起迄日、缺引文或空白引文）。documentedShortfall 或只有篇幅不夠的人在 shortfall_review，直接送審並標篇幅不足，不再重跑。已存原文在 ~/wl-source-cache/b3full-v3，不要重抓。",
+ "generatedBy": "tools/b3v3/plan_work.py --recompute-remaining",
+ "generatedOn": "2026-11-17",
  "reviewed": [
+  "093",
   "097",
   "098",
-  "100"
+  "100",
+  "105"
  ],
+ "reviewedFailing": {
+  "093": [
+   "Alexandru Averescu",
+   "José Félix Uriburu",
+   "Afonso Augusto Moreira Pena"
+  ]
+ },
  "recheck_review": [
   "096"
  ],
- "needs_research": [
-  "122"
- ],
+ "needs_research": [],
  "needs_retry_and_review": {
-  "093": [
-   "Alexandru Averescu",
-   "José Félix Uriburu"
-  ],
   "094": [
    "Milan Hodža"
-  ],
-  "095": [
-   "Rafael Reyes Prieto",
-   "Teleki Pál",
-   "Hermann Rauschning"
   ],
   "099": [
    "Juho Emil Sunila"
   ],
-  "101": [
-   "Nikola Mushanov"
-  ],
   "102": [
    "Emiliano Figueroa Larraín"
-  ],
-  "103": [
-   "Domingos Augusto Alves da Costa Oliveira"
   ],
   "104": [
    "Marģers Skujenieks"
@@ -49,8 +43,7 @@
    "Duan Qirui"
   ],
   "110": [
-   "Manuel Teixeira Gomes",
-   "Losolyn Laagan"
+   "Manuel Teixeira Gomes"
   ],
   "111": [
    "Heinrich Brüning",
@@ -59,47 +52,23 @@
   "115": [
    "Sigurður Eggerz"
   ],
-  "116": [
-   "Jean-Jacques Dessalines Michel Cincinnatus Leconte",
-   "Kaarel Eenpalu",
-   "Ramón González Valencia"
-  ],
   "117": [
    "Władysław Grabski",
    "Afonso Augusto da Costa"
   ],
-  "119": [
-   "Jin Yunpeng"
-  ],
   "120": [
-   "Hermann Müller",
-   "Ivan Logginovich Goremykin"
+   "Hermann Müller"
   ]
  },
  "failingKeys": {
-  "093": [
-   "ro-averescu",
-   "ar-uriburu"
-  ],
   "094": [
    "cz-hodza-milan"
-  ],
-  "095": [
-   "co-reyes",
-   "hu-teleki-pal",
-   "free-city-of-danzig-rauschning"
   ],
   "099": [
    "fi-sunila"
   ],
-  "101": [
-   "bg-mushanov"
-  ],
   "102": [
    "cl-figueroa"
-  ],
-  "103": [
-   "pt-oliveira"
   ],
   "104": [
    "lv-skujenieks"
@@ -114,8 +83,7 @@
    "cn-duan-qirui"
   ],
   "110": [
-   "pt-teixeira-gomes",
-   "mn-laagan"
+   "pt-teixeira-gomes"
   ],
   "111": [
    "de-bruning-heinrich",
@@ -124,31 +92,486 @@
   "115": [
    "is-eggerz"
   ],
+  "117": [
+   "pl-grabski-wladyslaw",
+   "pt-costa-afonso"
+  ],
+  "120": [
+   "de-mueller"
+  ]
+ },
+ "shortfall_review": {
+  "095": [
+   "Rafael Reyes Prieto",
+   "Teleki Pál",
+   "Hermann Rauschning"
+  ],
+  "101": [
+   "Nikola Mushanov"
+  ],
+  "103": [
+   "Domingos Augusto Alves da Costa Oliveira"
+  ],
+  "110": [
+   "Losolyn Laagan"
+  ],
+  "116": [
+   "Jean-Jacques Dessalines Michel Cincinnatus Leconte",
+   "Kaarel Eenpalu",
+   "Ramón González Valencia"
+  ],
+  "119": [
+   "Jin Yunpeng"
+  ],
+  "120": [
+   "Ivan Logginovich Goremykin"
+  ],
+  "122": [
+   "Kǒng Xiángxī"
+  ]
+ },
+ "shortfallKeys": {
+  "095": [
+   "co-reyes",
+   "hu-teleki-pal",
+   "free-city-of-danzig-rauschning"
+  ],
+  "101": [
+   "bg-mushanov"
+  ],
+  "103": [
+   "pt-oliveira"
+  ],
+  "110": [
+   "mn-laagan"
+  ],
   "116": [
    "ht-leconte",
    "ee-eenpalu",
    "co-gonzalez-valencia"
   ],
-  "117": [
-   "pl-grabski-wladyslaw",
-   "pt-costa-afonso"
-  ],
   "119": [
    "cn-jin-yunpeng"
   ],
   "120": [
-   "de-mueller",
    "ru-goremykin"
+  ],
+  "122": [
+   "kung-hsiang-hsi"
   ]
  },
+ "missingFields": {
+  "094": {
+   "cz-hodza-milan": [
+    {
+     "field": "role:hodza-sns-1906.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "095": {
+   "co-reyes": [
+    {
+     "field": "position:reyes-constituent-council-1885.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:reyes-fomento-minister-1887.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "hu-teleki-pal": [
+    {
+     "field": "position:teleki-szolgabiro-1904.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "free-city-of-danzig-rauschning": [
+    {
+     "field": "position:rauschning-landbund-chair-1932.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "099": {
+   "fi-sunila": [
+    {
+     "field": "position:sunila-agriculture-minister-1922.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:sunila-director-general-agriculture.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:sunila-deputy-1922.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "101": {
+   "bg-mushanov": [
+    {
+     "field": "paragraphs",
+     "kind": "paragraphs",
+     "fixable": false,
+     "detail": "1/3"
+    },
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "136/300"
+    }
+   ]
+  },
+  "102": {
+   "cl-figueroa": [
+    {
+     "field": "position:figueroa-ambassador-peru.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:figueroa-banco-central.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "103": {
+   "pt-oliveira": [
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "262/300"
+    }
+   ]
+  },
+  "104": {
+   "lv-skujenieks": [
+    {
+     "field": "position:skujenieks-statistics-director.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "106": {
+   "ge-chkheidze-nikoloz": [
+    {
+     "field": "position:chkheidze-duma.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:chkheidze-seim.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "dk-madsen-mygdal-thomas": [
+    {
+     "field": "position:madsen-landbrugsraad.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "109": {
+   "it-salandra": [
+    {
+     "field": "position:salandra-delegate-league-1923.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:salandra-deputy-1924.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:salandra-senator-1928.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "jp-tanaka-giichi": [
+    {
+     "field": "position:tanaka-house-of-peers.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "role:tanaka-seiyukai-president.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "cn-duan-qirui": [
+    {
+     "field": "position:duan-war-minister-1916.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "110": {
+   "pt-teixeira-gomes": [
+    {
+     "field": "position:tg-minister-london.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:tg-league-delegate.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "mn-laagan": [
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "253/300"
+    },
+    {
+     "field": "role:laagan-cck-chair.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "111": {
+   "de-bruning-heinrich": [
+    {
+     "field": "role:bruning-zentrum-fraktion.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "se-ekman-carl-gustaf": [
+    {
+     "field": "role:ekman-frisinnade-chair.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "115": {
+   "is-eggerz": [
+    {
+     "field": "position:eggerz-minister-for-iceland-1914.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:eggerz-finance-minister-1917.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "116": {
+   "ht-leconte": [
+    {
+     "field": "paragraphs",
+     "kind": "paragraphs",
+     "fixable": false,
+     "detail": "1/3"
+    },
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "80/300"
+    }
+   ],
+   "ee-eenpalu": [
+    {
+     "field": "paragraphs",
+     "kind": "paragraphs",
+     "fixable": false,
+     "detail": "2/3"
+    },
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "179/300"
+    }
+   ],
+   "co-gonzalez-valencia": [
+    {
+     "field": "paragraphs",
+     "kind": "paragraphs",
+     "fixable": false,
+     "detail": "2/3"
+    },
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "128/300"
+    }
+   ]
+  },
+  "117": {
+   "pl-grabski-wladyslaw": [
+    {
+     "field": "position:grabski-constituent-sejm.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "position:grabski-finance-1923.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "pt-costa-afonso": [
+    {
+     "field": "role:costa-pd-chair.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  },
+  "119": {
+   "cn-jin-yunpeng": [
+    {
+     "field": "paragraphs",
+     "kind": "paragraphs",
+     "fixable": false,
+     "detail": "0/3"
+    },
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "0/300"
+    }
+   ]
+  },
+  "120": {
+   "de-mueller": [
+    {
+     "field": "role:mueller-spd-chair-1919.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    },
+    {
+     "field": "role:mueller-spd-vorstand-1906.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "ru-goremykin": [
+    {
+     "field": "paragraphs",
+     "kind": "paragraphs",
+     "fixable": false,
+     "detail": "2/3"
+    },
+    {
+     "field": "zhChars",
+     "kind": "zh-chars",
+     "fixable": false,
+     "detail": "266/300"
+    }
+   ]
+  },
+  "122": {
+   "at-schober": [
+    {
+     "field": "position:schober-interpol-president.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ],
+   "kung-hsiang-hsi": [
+    {
+     "field": "role:kung-kmt-cec.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日"
+    }
+   ],
+   "mosquera-narvaez": [
+    {
+     "field": "role:mosquera-director-supremo-plr.end",
+     "kind": "missing-end",
+     "fixable": true,
+     "detail": "缺迄日（已有待查證：缺迄日）"
+    }
+   ]
+  }
+ },
  "needs_review_only": [
-  "105",
+  "095",
+  "101",
+  "103",
   "107",
   "108",
   "112",
   "113",
   "114",
+  "116",
   "118",
-  "121"
- ]
+  "119",
+  "121",
+  "122"
+ ],
+ "retryDone": [
+  "122"
+ ],
+ "counts": {
+  "retryPeople": 16,
+  "shortfallPeople": 12,
+  "retryBatches": 11,
+  "reviewOnlyBatches": 13
+ }
 }

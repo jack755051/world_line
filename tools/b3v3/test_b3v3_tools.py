@@ -199,6 +199,33 @@ class MergeEvidenceTests(unittest.TestCase):
             self.assertEqual(json.loads(extracted.read_text(encoding="utf-8"))["person"]["bioId"], "bio-1")
             self.assertEqual(proc.returncode in (0, 1), True)
 
+    def test_string_rawmap_is_coerced_to_object(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            raw = root / "raw"
+            raw.mkdir()
+            (raw / "custom.txt").write_text("minister of war in 1907.", encoding="utf-8")
+            out = root / "batch"
+            people = out / "people"
+            people.mkdir(parents=True)
+            (out / "rawmap.json").write_text('{"src": "custom.txt"}\n', encoding="utf-8")
+            person = {
+                "person": {
+                    "key": "p", "bioId": "bio-1", "name": "N", "nameZh": "某",
+                    "paragraphs": [], "positions": [], "roleCandidates": [], "gaps": [],
+                },
+                "sources": {"src": {"title": "t", "url": "https://example.test/a", "grade": "B"}},
+                "rawMap": "rawmap.json",
+                "researchedOn": "2026-11-17",
+            }
+            (people / "bio-1.json").write_text(json.dumps(person), encoding="utf-8")
+            merge.merge(out, raw, "b3-full-v3-batcht", ["bio-1"])
+            rawmap = json.loads((out / "rawmap.json").read_text(encoding="utf-8"))
+            self.assertEqual(rawmap["src"], "custom.txt")
+            self.assertIsInstance(rawmap, dict)
+            research = json.loads((out / "research.json").read_text(encoding="utf-8"))
+            self.assertEqual(research["rawMap"], "rawmap.json")
+
     def test_check_min_alias_goes_to_fixed_name(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -231,20 +258,38 @@ class PlanTests(unittest.TestCase):
         )
         self.assertEqual(proc.returncode, 0, proc.stderr)
         data = json.loads(proc.stdout)
-        self.assertEqual(data["batchCount"], 27)
+        self.assertEqual(data["batchCount"], 25)
+        self.assertEqual(data["skipped"], ["093", "097", "098", "100", "105"])
         by_nn = {item["nn"]: item for item in data["batches"]}
-        self.assertNotIn("097", by_nn)
-        self.assertNotIn("098", by_nn)
-        self.assertNotIn("100", by_nn)
-        self.assertTrue(by_nn["122"]["research"])
-        self.assertFalse(by_nn["093"]["research"])
+        for skipped in ("093", "097", "098", "100", "105"):
+            self.assertNotIn(skipped, by_nn)
+        self.assertFalse(by_nn["122"]["research"])
+        self.assertEqual(by_nn["122"]["retry"]["mode"], "none")
+        self.assertTrue(by_nn["122"]["review"])
+        self.assertIn("Johannes Schober", [person["name"] for person in by_nn["122"]["retrySkipped"]])
         self.assertEqual(
-            [person["name"] for person in by_nn["093"]["retry"]["people"]],
-            ["Alexandru Averescu", "José Félix Uriburu"],
+            [person["name"] for person in by_nn["094"]["retry"]["people"]],
+            ["Milan Hodža"],
         )
-        self.assertEqual(by_nn["105"]["retry"]["mode"], "none")
+        fields = by_nn["094"]["retry"]["people"][0]["missingFields"]
+        self.assertEqual(fields[0]["field"], "role:hodza-sns-1906.end")
+        self.assertTrue(fields[0]["fixable"])
+        self.assertEqual(by_nn["095"]["retry"]["mode"], "none")
+        self.assertEqual(
+            [person["name"] for person in by_nn["095"]["shortfall"]],
+            ["Rafael Reyes Prieto", "Teleki Pál", "Hermann Rauschning"],
+        )
         self.assertTrue(by_nn["096"]["recheck"])
         self.assertFalse(by_nn["096"]["research"])
+        fresh = plan.recompute_chunk(REPO / "data/seed/leaders/b3-trial/full/v3")
+        on_disk = json.loads((REPO / ".dev/b3v3/partial/chunk4-remaining.json").read_text(encoding="utf-8"))
+        for key in (
+            "reviewed", "needs_retry_and_review", "shortfall_review", "needs_review_only",
+            "retryDone", "recheck_review", "needs_research",
+        ):
+            self.assertEqual(on_disk[key], fresh[key], key)
+        self.assertEqual(fresh["counts"]["retryPeople"], 16)
+        self.assertEqual(fresh["counts"]["shortfallPeople"], 12)
         trial = subprocess.run(
             [sys.executable, "-I", str(TOOLS / "plan_work.py"),
              "--repo", str(REPO),
@@ -252,12 +297,12 @@ class PlanTests(unittest.TestCase):
              "--out-root", "data/seed/leaders/b3-trial/full/v3",
              "--raw-root", "/tmp/b3-raw",
              "--resume", ".dev/b3v3/partial/chunk4-remaining.json",
-             "--chunk", "122,093,105", "--limit", "3"],
+             "--chunk", "094,122,096"],
             capture_output=True, text=True, cwd=REPO,
         )
         self.assertEqual(trial.returncode, 0, trial.stderr)
         trial_nns = [item["nn"] for item in json.loads(trial.stdout)["batches"]]
-        self.assertEqual(trial_nns, ["122", "093", "105"])
+        self.assertEqual(trial_nns, ["094", "122", "096"])
 
     def test_prompt_patch_is_idempotent_on_disk(self):
         sample = (REPO / ".dev/b3v3/prompts/research-093.md").read_text(encoding="utf-8")
@@ -270,6 +315,133 @@ class PlanTests(unittest.TestCase):
         self.assertIn("evidence-pack.json", review)
         self.assertNotIn("每人至少抽 1 個來源重抓", review)
         self.assertNotIn("raw/*.txt", review)
+
+
+class CheckMinVerdictTests(unittest.TestCase):
+    def _person(self, **overrides):
+        person = {
+            "key": "p", "name": "N",
+            "paragraphs": [{"body": {"zh-Hant": "字" * 100}} for _ in range(3)],
+            "positions": [{
+                "key": "job",
+                "period": {"start": "1908-01-01", "end": "1910-01-01"},
+            }],
+            "roleCandidates": [],
+            "gaps": [],
+        }
+        person.update(overrides)
+        return person
+
+    def test_flagged_end_is_explicit_and_not_labeled_weida(self):
+        person = self._person(
+            positions=[{"key": "job", "period": {"start": "1908-01-01", "end": None}}],
+            gaps=[{"target": "position:job", "note": "待查證：缺迄日；審查拿掉推論迄日"}],
+        )
+        row = check_min.check(person)
+        self.assertFalse(row["meetsMinimum"])
+        self.assertEqual(row["verdict"], "已標註缺迄日")
+        self.assertEqual(row["openTerms"][0]["missing"], "end")
+        self.assertTrue(row["openTerms"][0]["flagged"])
+
+    def test_missing_end_without_gap_is_weida(self):
+        person = self._person(positions=[{"key": "job", "period": {"start": "1908-01-01", "end": None}}])
+        row = check_min.check(person)
+        self.assertEqual(row["verdict"], "未達")
+        info = plan.classify_person(person, row)
+        self.assertEqual(info["action"], "retry")
+        self.assertEqual(info["fixableFields"][0]["field"], "position:job.end")
+
+    def test_documented_shortfall_is_not_retried(self):
+        person = self._person(
+            paragraphs=[{"body": {"zh-Hant": "短"}}],
+            gaps=[{"target": "paragraph:length", "note": "篇幅不足：來源只有這些"}],
+        )
+        row = check_min.check(person)
+        self.assertEqual(row["verdict"], "篇幅不足")
+        self.assertTrue(row["documentedShortfall"])
+        self.assertEqual(plan.classify_person(person, row)["action"], "shortfall")
+
+
+class DriverTests(unittest.TestCase):
+    def test_workflow_does_not_touch_the_filesystem(self):
+        text = (REPO / ".dev/b3v3/workflow/b3-v3-chunk1-and-major-retry.js").read_text(encoding="utf-8")
+        self.assertNotIn("node:fs", text)
+        self.assertNotIn("node:child_process", text)
+        self.assertNotIn("execFile", text)
+        self.assertNotIn("readFileSync", text)
+        self.assertIn("show-prompt", text)
+
+    def test_retry_prompt_lists_only_missing_fields(self):
+        agent_specs = load("agent_specs", TOOLS / "agent_specs.py")
+        batch = {"nn": "094", "outDir": "/tmp/out", "rawDir": "/tmp/raw", "retryPrompt": "/tmp/retry.md"}
+        person = {
+            "name": "Milan Hodža", "nameZh": "霍扎", "bioId": "bio-hodza",
+            "line": "霍扎｜Milan Hodža｜bio-hodza｜1920",
+            "missingFields": [{
+                "field": "role:hodza-sns-1906.end", "kind": "missing-end", "fixable": True, "detail": "缺迄日",
+            }],
+        }
+        text = agent_specs.retry_prompt(batch, person, "/repo")
+        self.assertIn("role:hodza-sns-1906.end", text)
+        self.assertIn("不要追求 15 次查詢", text)
+        self.assertNotIn("至少 5 種來源類型", text)
+        self.assertIn("不可以寫成字串", text)
+        hint = agent_specs.keyword_hint({
+            "name": "Alexandru Averescu", "nameZh": "阿維雷斯庫",
+            "bioId": "01a1b512-8b4a-70ef-8767-04121fb4dcc2",
+            "line": "阿維雷斯庫｜Alexandru Averescu｜01a1b512-8b4a-70ef-8767-04121fb4dcc2｜1920-03-13",
+        })
+        self.assertNotIn("8767", hint)
+        self.assertIn("1920", hint)
+        review = agent_specs.review_prompt(
+            {"nn": "095", "outDir": "/tmp/out", "rawDir": "/tmp/raw", "reviewPrompt": "/tmp/review.md", "recheck": False},
+            {"name": "某人", "nameZh": "某人", "bioId": "bio", "line": "某人", "shortfallFlag": True},
+            "/repo",
+        )
+        self.assertIn("篇幅不足", review)
+        self.assertIn("佩納", review)
+        self.assertIn(".evidence.json", review)
+
+    def test_dry_run_chunk4_models_and_counts(self):
+        proc = subprocess.run(
+            [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "dry-run",
+             "--repo", str(REPO),
+             "--prompt-dir", ".dev/b3v3/prompts",
+             "--out-root", "data/seed/leaders/b3-trial/full/v3",
+             "--raw-root", "/tmp/b3-raw",
+             "--resume", ".dev/b3v3/partial/chunk4-remaining.json",
+             "--concurrency", "3", "--json"],
+            capture_output=True, text=True, cwd=REPO,
+        )
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        data = json.loads(proc.stdout)
+        self.assertEqual(data["researchAgents"], 0)
+        self.assertEqual(data["retryAgents"], 16)
+        self.assertEqual(data["reviewAgents"], 75)
+        self.assertEqual(data["reviewModels"], {"sonnet": 72, "opus": 3})
+        self.assertEqual(data["shortfallPeople"], 12)
+        opus = [
+            agent for wave in data["waves"] if wave["phase"] == "review"
+            for agent in wave["agents"] if agent["model"] == "opus"
+        ]
+        self.assertEqual(sorted(agent["batch"] for agent in opus), ["122", "122", "122"])
+        self.assertNotIn("prompt", json.dumps(data["waves"][0]["agents"][0]))
+
+    def test_show_prompt_prints_only_that_agent(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            spec = Path(tmp) / "spec.json"
+            spec.write_text(json.dumps({"agents": [
+                {"id": "retry:094:bio", "prompt": "只補 role:hodza-sns-1906.end\n"},
+                {"id": "other", "prompt": "不要印這段\n"},
+            ]}), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "show-prompt",
+                 "--spec", str(spec), "--id", "retry:094:bio"],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertIn("role:hodza-sns-1906.end", proc.stdout)
+            self.assertNotIn("不要印這段", proc.stdout)
 
 
 if __name__ == "__main__":

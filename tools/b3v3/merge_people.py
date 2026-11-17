@@ -51,10 +51,41 @@ def read_person_file(path):
     if not isinstance(person, dict) or not person.get("bioId") or not person.get("key"):
         raise SystemExit(f"單人檔缺 person.bioId 或 person.key：{path}")
     sources = data.get("sources") or {}
-    raw_map = data.get("rawMap") or {}
-    if not isinstance(sources, dict) or not isinstance(raw_map, dict):
-        raise SystemExit(f"單人檔 sources／rawMap 必須是物件：{path}")
+    if not isinstance(sources, dict):
+        raise SystemExit(f"單人檔 sources 必須是物件：{path}")
+    raw_map = data.get("rawMap")
+    if raw_map is None:
+        raw_map = {}
+    if not isinstance(raw_map, (dict, str)):
+        raise SystemExit(f"單人檔 rawMap 必須是物件或檔名字串：{path}")
     return data
+
+
+def coerce_raw_map(raw_map, sources, person, rawmap_path=None):
+    """單人檔的 rawMap 必須是 sourceKey → 檔名。
+
+    研究 agent 常把 research.json 頂層的檔名 \"rawmap.json\" 抄進單人檔。
+    那是字串，這裡改成物件：能對上現有 rawmap 的用原檔名，其餘用 <sourceKey>.txt。
+    """
+    keys = set(sources or [])
+    keys.update(source_keys(person))
+    if isinstance(raw_map, dict):
+        found = {k: v for k, v in raw_map.items() if isinstance(k, str) and isinstance(v, str)}
+    else:
+        found = {}
+        if isinstance(raw_map, str) and raw_map.strip():
+            print(f"rawMap 是字串 {raw_map!r}，已改成物件", file=sys.stderr)
+        path = Path(rawmap_path) if rawmap_path else None
+        if path and path.exists():
+            try:
+                loaded = load_json(path)
+            except json.JSONDecodeError:
+                loaded = None
+            if isinstance(loaded, dict):
+                found = {k: v for k, v in loaded.items() if k in keys and isinstance(v, str)}
+    for key in sorted(keys):
+        found.setdefault(key, f"{key}.txt")
+    return found
 
 
 def union_sources(base, incoming, conflicts):
@@ -107,9 +138,12 @@ def merge(outdir, rawdir, batch, order, replace=False, overwrite=False):
     conflicts = []
     sources = dict(base.get("sources") or {})
     raw_incoming = {}
+    rawmap_path = outdir / "rawmap.json"
     for data in loaded:
         union_sources(sources, data.get("sources") or {}, conflicts)
-        raw_incoming.update(data.get("rawMap") or {})
+        raw_incoming.update(coerce_raw_map(
+            data.get("rawMap"), data.get("sources") or {}, data["person"], rawmap_path,
+        ))
 
     if replace:
         people = list(base.get("people") or [])

@@ -16,7 +16,6 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 CHECK_MIN = REPO / "data" / "seed" / "leaders" / "b3-trial" / "full" / "v3" / "check_min.py"
-RECHECK = "096"
 
 
 def load_check_min():
@@ -73,50 +72,12 @@ def normalize_range(root, start, end, module):
 
 
 def recompute_remaining(root, start, end, module):
-    reviewed, recheck, needs_research, review_only = [], [], [], []
-    retry, failing_keys = {}, {}
-    for number in range(start, end + 1):
-        nn = f"{number:03d}"
-        directory = root / f"batch{nn}"
-        research = directory / "research.json"
-        verify = directory / "verify-report.json"
-        report = directory / module.CANONICAL_NAME
-        if not research.exists() or not verify.exists() or not report.exists():
-            needs_research.append(nn)
-            continue
-        data = json.loads(report.read_text(encoding="utf-8"))
-        failing = [row for row in data.get("people") or [] if row.get("meetsMinimum") is False]
-        if (directory / "review.json").exists() and nn == RECHECK:
-            recheck.append(nn)
-            continue
-        if (directory / "review.json").exists():
-            reviewed.append(nn)
-            continue
-        if failing:
-            retry[nn] = [row.get("name") for row in failing]
-            failing_keys[nn] = [row.get("key") for row in failing]
-        else:
-            review_only.append(nn)
-    # 範圍外但仍在第四段、只有 rawmap 的批（122）由呼叫端的 end 決定。
-    # 這裡的 end 若是 121，122 要另外看。呼叫端傳 end=122 時，122 沒有 research 會進 needs_research。
-    note = (
-        "由 tools/b3v3/normalize_check_min.py 依各批 research.json 重跑 check_min.py，寫入固定檔名 check_min-report.json 後重算（2026-11-17）。"
-        "check-min.json、check-min-report.json 已刪除。"
-        "曾擔心格式不同的 096、105、107、108、112、113、114、118、121：096 三人皆達標，但該次審查中斷，列入 recheck_review；"
-        "105、107、108、112、113、114、118、121 皆達標，只審查。"
-        "與中斷當下那份清單相比，只有 batch102 的 Alexander Tsankov 改變：舊報告寫未達標（缺迄日），現行 research.json 已有起迄日，重算後達標，不再重跑；同批仍重跑 Emiliano Figueroa Larraín。"
-        "093、095 有人補了「篇幅不足」gap，documentedShortfall 改為 true，但仍未達標，照舊重跑。097 的 José Domingo de Obaldía 字數 528 改計為 527，仍達標且已審查。"
-        "reviewed 是已有 review.json 且不必重查的批。122 沒有 research.json，列入 needs_research；已存原文不要重抓。"
-    )
-    return {
-        "note": note,
-        "reviewed": reviewed,
-        "recheck_review": recheck,
-        "needs_research": needs_research,
-        "needs_retry_and_review": retry,
-        "failingKeys": failing_keys,
-        "needs_review_only": review_only,
-    }
+    """剩餘清單改由 plan_work.recompute_chunk 決定（篇幅不足不重跑、122 只審查）。"""
+    del module
+    spec = importlib.util.spec_from_file_location("plan_work", REPO / "tools" / "b3v3" / "plan_work.py")
+    module_plan = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module_plan)
+    return module_plan.recompute_chunk(root, start, end)
 
 
 def main(argv=None):

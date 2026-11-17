@@ -1,0 +1,1223 @@
+{
+ "mapKey": "ellis-xvii-10may",
+ "mapDate": "1940-05-10",
+ "dateNote": "圖題 10th May 1940",
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Sketch Map 'Forward German Divisions Disposed for Attack on 10th May 1940', p. 345（目錄列為內文附圖 Sketch Maps included in text，頁碼 345，非 facing page）",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-xvii.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "method": "用 tools/battles/mapgrid.swift 將 640×1146 原圖切成 240×220 px 的重疊小塊（重疊 30–40 px）、放大 5 倍並疊 20 px 座標格線逐塊目視讀圖（可疑處另切 10–20 倍放大），座標為原圖像素（原點左上）；城鎮取圓點中心、橢圓取橢圓中心、無框數字與標字取字樣中心，讀圖誤差約 ±2 px（依圖上比例尺 1 px ≈ 0.35 km，約 0.7 km）。經緯度取自 OSM Nominatim（皆為行政區 relation 的 lat/lon）。本圖為小比例尺示意圖，全圖只有 6 個帶圓點的城鎮可作控制點。",
+ "referenceOnly": {
+  "reason": "全圖只有 6 個可用控制點（二次多項式需 6 個係數，留一法無法成立），且為小比例尺示意圖（約 0.35 km/px），部隊數字僅表示大致配置區；僅供參考"
+ },
+ "scaleBar": {
+  "px0": [
+   370,
+   139
+  ],
+  "px25Miles": [
+   488,
+   139
+  ],
+  "px50Miles": [
+   602,
+   139
+  ],
+  "note": "比例尺橫條位於圖題下方，標 Miles 0／25／50；0 與 50 端點取橫條兩端豎線，讀圖誤差 ±1 px；0–50 英里長 232 px（1 px ≈ 0.347 km）"
+ },
+ "mapNotes": [
+  "NOTE (i) Armoured Divisions 3, 4, & 9 subsequently transferred to Army Group A",
+  "(ii) of Divisions stationed in area of Group C 8, 26, 52, 71, 73 belonged to Army Group A",
+  "(iii) Divisions in reserve omitted"
+ ],
+ "legend": {
+  "Armoured Divisions Shown": "橢圓圈內數字（圖例示例 10）",
+  "Infantry": "無框數字（圖例示例 27）",
+  "Army Group Boundaries": "細實線",
+  "Army Boundaries": "點劃線（— · — ·）"
+ },
+ "control_points": {
+  "Maastricht": {
+   "px": [
+    12,
+    366
+   ],
+   "lonlat": [
+    5.691,
+    50.8512
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2078292
+   },
+   "nameOsm": "Maastricht",
+   "nameOnMap": "Maastricht",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（取 addresstype=city 的 relation，非 municipality）；圓點緊貼圖左緣"
+  },
+  "Coblentz": {
+   "px": [
+    387,
+    504
+   ],
+   "lonlat": [
+    7.5944,
+    50.3533
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62512
+   },
+   "nameOsm": "Koblenz",
+   "nameOnMap": "Coblentz",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon；圓點在萊茵河線上"
+  },
+  "Frankfurt": {
+   "px": [
+    613,
+    578
+   ],
+   "lonlat": [
+    8.6821,
+    50.1106
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62400
+   },
+   "nameOsm": "Frankfurt am Main",
+   "nameOnMap": "Frankfurt",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon；圖上只寫 Frankfurt，位置在 Wiesbaden 以東，判為美因河畔法蘭克福"
+  },
+  "Wiesbaden": {
+   "px": [
+    521,
+    606
+   ],
+   "lonlat": [
+    8.2417,
+    50.082
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62496
+   },
+   "nameOsm": "Wiesbaden",
+   "nameOnMap": "Wiesbaden",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon；圓點畫在河線上（市中心實際在河北數公里）"
+  },
+  "Longwy": {
+   "px": [
+    22,
+    773
+   ],
+   "lonlat": [
+    5.7679,
+    49.5146
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 113134
+   },
+   "nameOsm": "Longwy",
+   "nameOnMap": "Longwy",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon；地名首字母被圖左緣切掉（只見 ongwy），圓點在其上方"
+  },
+  "Metz": {
+   "px": [
+    115,
+    907
+   ],
+   "lonlat": [
+    6.1764,
+    49.1197
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 450381
+   },
+   "nameOsm": "Metz",
+   "nameOnMap": "Metz",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（取 addresstype=city 的 relation）"
+  }
+ },
+ "controlPointExclusions": [
+  {
+   "name": "Cologne",
+   "reason": "圖上只有地名 Cologne（中心約 px [195,322]），沒有圓點或城鎮符號，無法定位；未列入控制點",
+   "decidedBeforeResiduals": true
+  },
+  {
+   "name": "Luxembourg",
+   "reason": "圖上 LUXEMBOURG 為大寫國名標字（與 HOLLAND、BELGIUM、FRANCE、GERMANY 同一字體），不是城鎮，沒有圓點；未列入控制點",
+   "decidedBeforeResiduals": true
+  }
+ ],
+ "features": [
+  {
+   "label": "ARMY GROUP B",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；集團軍群名為大字標字",
+   "px": [
+    299,
+    170
+   ],
+   "note": "標字兩行（ARMY GROUP／B），px 取整組標字中心"
+  },
+  {
+   "label": "ARMY GROUP A",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；集團軍群名為大字標字",
+   "px": [
+    421,
+    388
+   ],
+   "note": "標字兩行（ARMY GROUP／A），px 取整組標字中心"
+  },
+  {
+   "label": "ARMY GROUP C",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；集團軍群名為大字標字",
+   "px": [
+    556,
+    740
+   ],
+   "note": "標字兩行（ARMY GROUP／C），px 取整組標字中心"
+  },
+  {
+   "label": "18 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    271,
+    75
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "6 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    190,
+    272
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "2 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    283,
+    383
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "4 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    195,
+    452
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "12 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    170,
+    599
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "16 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    229,
+    664
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "1 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    417,
+    756
+   ],
+   "note": "px 取標字中心"
+  },
+  {
+   "label": "7 ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；軍團名為標字",
+   "px": [
+    592,
+    948
+   ],
+   "note": "px 取標字中心；位於圖右下角、圖例框正上方"
+  },
+  {
+   "label": "9",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    168,
+    105
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓跨在 18 ARMY／6 ARMY 的軍團界線（點劃線）上；圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群"
+  },
+  {
+   "label": "3",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    185,
+    220
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群"
+  },
+  {
+   "label": "4",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    150,
+    367
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。圖例註 (i)：裝甲師 3、4、9 其後轉隸 A 集團軍群"
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    249,
+    423
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。與下方「7」橢圓相鄰；另有無框「5」在 px [306,468]，為不同符號"
+  },
+  {
+   "label": "7",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    267,
+    448
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。與上方「5」橢圓相鄰；另有無框「7」在 px [69,314]"
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    466,
+    429
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。另有無框「6」在 px [376,567]"
+  },
+  {
+   "label": "2",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    247,
+    576
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓貼著 12 ARMY／16 ARMY 軍團界線北側"
+  },
+  {
+   "label": "1",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    258,
+    618
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。另有無框「1」在 px [329,203]"
+  },
+  {
+   "label": "10",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    303,
+    665
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心"
+  },
+  {
+   "label": "8",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：橢圓圈內數字＝裝甲師（Armoured Divisions）",
+   "px": [
+    359,
+    693
+   ],
+   "note": "橢圓圈，裝甲師；px 取橢圓中心。橢圓貼著集團軍群界線（實線）末端；圖例註 (ii) 列出 C 集團軍群地區內屬 A 集團軍群的師有「8」，圖上另有無框「8」在 px [164,478]（4 ARMY 地區），註 (ii) 指哪一個未由圖面判定"
+  },
+  {
+   "label": "SSV",
+   "echelon": "other",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；數字後加縮寫標字，圖例未說明",
+   "px": [
+    245,
+    48
+   ],
+   "note": "只有字母 SSV、無數字、無橢圓；圖例未說明此縮寫，層級依圖題（Divisions）推測為師級但未能由圖面確定"
+  },
+  {
+   "label": "20 MOT",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；數字後加縮寫標字，圖例未說明",
+   "px": [
+    282,
+    233
+   ],
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+  },
+  {
+   "label": "13 MOT",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；數字後加縮寫標字，圖例未說明",
+   "px": [
+    575,
+    362
+   ],
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+  },
+  {
+   "label": "29 MOT",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；數字後加縮寫標字，圖例未說明",
+   "px": [
+    601,
+    467
+   ],
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+  },
+  {
+   "label": "2 MOT",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；數字後加縮寫標字，圖例未說明",
+   "px": [
+    549,
+    510
+   ],
+   "note": "無橢圓，數字後標 MOT（摩托化）；圖例無此項，依標字記錄"
+  },
+  {
+   "label": "1 MTN",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；數字後加縮寫標字，圖例未說明",
+   "px": [
+    262,
+    527
+   ],
+   "note": "無橢圓，數字後標 MTN（山地）；圖例無此項，依標字記錄"
+  },
+  {
+   "label": "227",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    277,
+    20
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "254",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    102,
+    61
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "207",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    175,
+    61
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "256",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    129,
+    105
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "208",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    284,
+    99
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "216",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    238,
+    139
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "225",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    414,
+    155
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "56",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    153,
+    169
+   ],
+   "note": "無框數字，步兵師；兩數字之間下方有一小墨點（像逗號），判為 56，非 5,6"
+  },
+  {
+   "label": "255",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    474,
+    198
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "1",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    329,
+    203
+   ],
+   "note": "無框數字，步兵師；另有橢圓「1」在 px [258,618]"
+  },
+  {
+   "label": "223",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    439,
+    236
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "30",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    128,
+    224
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "19",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    133,
+    258
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "14",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    119,
+    287
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "11",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    325,
+    274
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "61",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    266,
+    295
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "4",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    406,
+    299
+   ],
+   "note": "無框數字，步兵師；另有橢圓「4」在 px [150,367]"
+  },
+  {
+   "label": "31",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    95,
+    304
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "7",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    69,
+    314
+   ],
+   "note": "無框數字，步兵師；無橢圓，但數字正落在國界粗線圍成的方形突出部內（Maastricht 以北），不是圖例的橢圓；另有橢圓「7」在 px [267,448]"
+  },
+  {
+   "label": "18",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    101,
+    334
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "87",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    340,
+    334
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "35",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    106,
+    351
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "211",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    254,
+    359
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "27",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    451,
+    359
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "267",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    211,
+    362
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "12",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    320,
+    368
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "269",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    107,
+    373
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "253",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    105,
+    397
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "263",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    332,
+    403
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "251",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    146,
+    436
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "25",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    374,
+    439
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "28",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    136,
+    461
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "9",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    413,
+    465
+   ],
+   "note": "無框數字，步兵師；另有橢圓「9」在 px [168,105]"
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    306,
+    468
+   ],
+   "note": "無框數字，步兵師；另有橢圓「5」在 px [249,423]"
+  },
+  {
+   "label": "8",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    164,
+    478
+   ],
+   "note": "無框數字，步兵師；另有橢圓「8」在 px [359,693]；圖例註 (ii) 的「8」指哪一個未由圖面判定"
+  },
+  {
+   "label": "21",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    331,
+    494
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "62",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    171,
+    525
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "33",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    456,
+    532
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "32",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    123,
+    561
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    376,
+    567
+   ],
+   "note": "無框數字，步兵師；另有橢圓「6」在 px [466,429]"
+  },
+  {
+   "label": "3",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    109,
+    594
+   ],
+   "note": "無框數字，步兵師；另有橢圓「3」在 px [185,220]；本數字緊貼國界線東側"
+  },
+  {
+   "label": "23",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    119,
+    622
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "24",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    132,
+    641
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "16",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    138,
+    657
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "36",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    165,
+    670
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "15",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    249,
+    685
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "68",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    189,
+    698
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "26",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    427,
+    708
+   ],
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+  },
+  {
+   "label": "17",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    183,
+    717
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "71",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    323,
+    732
+   ],
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+  },
+  {
+   "label": "34",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    171,
+    736
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "76",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    169,
+    757
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "73",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    288,
+    776
+   ],
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+  },
+  {
+   "label": "58",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    166,
+    779
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "52",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    366,
+    784
+   ],
+   "note": "無框數字，步兵師；圖例註 (ii)：C 集團軍群地區內的 8、26、52、71、73 屬 A 集團軍群"
+  },
+  {
+   "label": "79",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    204,
+    792
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "94",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    529,
+    809
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "95",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    226,
+    813
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "93",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    239,
+    831
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "98",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    560,
+    831
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "258",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    266,
+    847
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "257",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    357,
+    861
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "75",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    297,
+    865
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "268",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    393,
+    875
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "262",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    431,
+    877
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "252",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    317,
+    881
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "215",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    465,
+    900
+   ],
+   "note": "無框數字，步兵師"
+  },
+  {
+   "label": "246",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題「Forward German Divisions」：圖上所有師、軍團、集團軍群皆為德軍；圖例：無框數字＝步兵師（Infantry）",
+   "px": [
+    522,
+    919
+   ],
+   "note": "無框數字，步兵師"
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "8",
+   "px": [
+    359,
+    693
+   ],
+   "reason": "圖例註 (ii) 說 C 集團軍群地區內的「8」屬 A 集團軍群，但圖上有橢圓「8」（此處）與無框「8」（px [164,478]）兩個，註文指哪一個無法僅由圖面判定；兩者都已列入 features"
+  },
+  {
+   "label": "SSV",
+   "px": [
+    245,
+    48
+   ],
+   "reason": "圖例未說明 SSV 縮寫與層級；已列入 features（echelon=other）"
+  }
+ ]
+}

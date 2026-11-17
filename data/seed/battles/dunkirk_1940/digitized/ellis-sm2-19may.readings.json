@@ -1,0 +1,856 @@
+{
+ "mapKey": "ellis-sm2-19may",
+ "mapDate": "1940-05-19",
+ "dateNote": "圖題 20th May 1940；本檔只收圖例 (i)「Leading troops of Armd Divs Evening May 19」的圓圈符號",
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The German Advance to the Sea, 20th May 1940', facing p. 86",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-2.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "method": "用 tools/battles/mapgrid.swift 將 800×537 原圖切成 9 塊 300×220（重疊 30–50 px）放大 5 倍、疊 20 px 座標格線逐塊目視讀圖，部隊符號與擁擠處（Arras、Abbeville、Amiens、Albert、Péronne、Inchy、Hesdin、Douai）另切 150×110 放大 10 倍、10 px 格線複讀；座標為原圖像素（原點左上），城鎮取圓點／面狀符號中心，德軍取圓圈中心或弧內數字中心，英軍取標字中心；讀圖誤差約 ±2 px（圖上比例尺 5 英里約 38 px，1 px 約 0.21 km）。經緯度取自 OSM Nominatim search（format=jsonv2，皆為市鎮行政區 relation 的 lat/lon）。本圖同時畫 19 日傍晚與 20 日傍晚兩個時間狀態，拆成 ellis-sm2-19may 與 ellis-sm2-20may 兩份 readings，共用同一組控制點。箭頭為行進軌跡，不列為 feature。",
+ "control_points": {
+  "Boulogne-sur-Mer": {
+   "px": [
+    80,
+    9
+   ],
+   "lonlat": [
+    1.6119,
+    50.726
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 240377
+   },
+   "nameOsm": "Boulogne-sur-Mer",
+   "nameOnMap": "Boulogne",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；市區面狀符號，取面中心；緊貼圖上緣"
+  },
+  "Étaples": {
+   "px": [
+    93,
+    125
+   ],
+   "lonlat": [
+    1.6386,
+    50.514
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 157543
+   },
+   "nameOsm": "Étaples",
+   "nameOnMap": "Etaples",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Montreuil-sur-Mer": {
+   "px": [
+    136,
+    151
+   ],
+   "lonlat": [
+    1.7631,
+    50.4639
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2622231
+   },
+   "nameOsm": "Montreuil-sur-Mer",
+   "nameOnMap": "Montreuil",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；道路端點上的小城鎮符號"
+  },
+  "Le Boisle": {
+   "px": [
+    211,
+    258
+   ],
+   "lonlat": [
+    1.9853,
+    50.2718
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1804152
+   },
+   "nameOsm": "Le Boisle",
+   "nameOnMap": "Le Boisle",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點緊貼德軍弧形符號起點，仍可分辨"
+  },
+  "Abbeville": {
+   "px": [
+    157,
+    345
+   ],
+   "lonlat": [
+    1.8337,
+    50.1061
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114349
+   },
+   "nameOsm": "Abbeville",
+   "nameOnMap": "ABBEVILLE",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；市區面狀符號，位於弧形符號內，取面中心"
+  },
+  "Amiens": {
+   "px": [
+    318,
+    463
+   ],
+   "lonlat": [
+    2.2957,
+    49.8942
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114347
+   },
+   "nameOsm": "Amiens",
+   "nameOnMap": "AMIENS",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；市區面狀符號，取面中心"
+  },
+  "Doullens": {
+   "px": [
+    333,
+    322
+   ],
+   "lonlat": [
+    2.3411,
+    50.1572
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1346218
+   },
+   "nameOsm": "Doullens",
+   "nameOnMap": "Doullens",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Saint-Pol-sur-Ternoise": {
+   "px": [
+    330,
+    197
+   ],
+   "lonlat": [
+    2.3361,
+    50.3812
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1232837
+   },
+   "nameOsm": "Saint-Pol-sur-Ternoise",
+   "nameOnMap": "St Pol",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Béthune": {
+   "px": [
+    441,
+    118
+   ],
+   "lonlat": [
+    2.6389,
+    50.5309
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1016146
+   },
+   "nameOsm": "Béthune",
+   "nameOnMap": "Béthune",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Houdain": {
+   "px": [
+    406,
+    158
+   ],
+   "lonlat": [
+    2.5379,
+    50.4524
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1169130
+   },
+   "nameOsm": "Houdain",
+   "nameOnMap": "Houdain",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；緊貼書溝右側"
+  },
+  "Mingoval": {
+   "px": [
+    419,
+    200
+   ],
+   "lonlat": [
+    2.5748,
+    50.373
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1187382
+   },
+   "nameOsm": "Mingoval",
+   "nameOnMap": "Mingoval",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Lens": {
+   "px": [
+    504,
+    170
+   ],
+   "lonlat": [
+    2.832,
+    50.4292
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1175586
+   },
+   "nameOsm": "Lens",
+   "nameOnMap": "Lens",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Hénin-Beaumont": {
+   "px": [
+    547,
+    176
+   ],
+   "lonlat": [
+    2.9469,
+    50.4192
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1164845
+   },
+   "nameOsm": "Hénin-Beaumont",
+   "nameOnMap": "Henin Lietard",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圖上舊名 Henin Lietard；1971 年與 Beaumont 合併為 Hénin-Beaumont"
+  },
+  "Avesnes-le-Comte": {
+   "px": [
+    405,
+    249
+   ],
+   "lonlat": [
+    2.5277,
+    50.2762
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1122551
+   },
+   "nameOsm": "Avesnes-le-Comte",
+   "nameOnMap": "Avesnes le Comte",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；地名被書溝切開，圓點在書溝右側"
+  },
+  "Gouy-en-Artois": {
+   "px": [
+    426,
+    266
+   ],
+   "lonlat": [
+    2.5928,
+    50.2476
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2917368
+   },
+   "nameOsm": "Gouy-en-Artois",
+   "nameOnMap": "Gouy",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圖上只印 Gouy；依位置（Avesnes-le-Comte 與 Beaumetz-lès-Loges 之間）對應 Gouy-en-Artois"
+  },
+  "Beaumetz-lès-Loges": {
+   "px": [
+    449,
+    273
+   ],
+   "lonlat": [
+    2.6556,
+    50.2436
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1141529
+   },
+   "nameOsm": "Beaumetz-lès-Loges",
+   "nameOnMap": "Beaumetz-les-Loges",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Saulty": {
+   "px": [
+    406,
+    284
+   ],
+   "lonlat": [
+    2.5341,
+    50.2166
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1216389
+   },
+   "nameOsm": "Saulty",
+   "nameOnMap": "Saulty",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；地名被書溝切開，圓點在書溝右側"
+  },
+  "Arras": {
+   "px": [
+    487,
+    245
+   ],
+   "lonlat": [
+    2.7772,
+    50.291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1121015
+   },
+   "nameOsm": "Arras",
+   "nameOnMap": "ARRAS",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；大圓面狀符號，取中心"
+  },
+  "Neuville-Vitasse": {
+   "px": [
+    503,
+    269
+   ],
+   "lonlat": [
+    2.8189,
+    50.2467
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1188395
+   },
+   "nameOsm": "Neuville-Vitasse",
+   "nameOnMap": "Neuville Vitasse",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Mercatel": {
+   "px": [
+    496,
+    276
+   ],
+   "lonlat": [
+    2.7951,
+    50.2348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1187381
+   },
+   "nameOsm": "Mercatel",
+   "nameOnMap": "Mercatel",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點在箭頭線上"
+  },
+  "Ficheux": {
+   "px": [
+    475,
+    281
+   ],
+   "lonlat": [
+    2.7385,
+    50.2269
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2917736
+   },
+   "nameOsm": "Ficheux",
+   "nameOnMap": "Ficheux",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；Blairville 與 Ficheux 兩點相鄰，依地名位置分配：東北一點為 Ficheux"
+  },
+  "Blairville": {
+   "px": [
+    468,
+    284
+   ],
+   "lonlat": [
+    2.7146,
+    50.2198
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2917255
+   },
+   "nameOsm": "Blairville",
+   "nameOnMap": "Blairville",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；Blairville 與 Ficheux 兩點相鄰，依地名位置分配：西南一點為 Blairville"
+  },
+  "Croisilles": {
+   "px": [
+    523,
+    296
+   ],
+   "lonlat": [
+    2.8783,
+    50.1998
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1401224
+   },
+   "nameOsm": "Croisilles",
+   "nameOnMap": "Croisilles",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Bapaume": {
+   "px": [
+    514,
+    346
+   ],
+   "lonlat": [
+    2.8494,
+    50.1036
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1135472
+   },
+   "nameOsm": "Bapaume",
+   "nameOnMap": "Bapaume",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Acheux-en-Amiénois": {
+   "px": [
+    405,
+    365
+   ],
+   "lonlat": [
+    2.5306,
+    50.0729
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1550595
+   },
+   "nameOsm": "Acheux-en-Amiénois",
+   "nameOnMap": "Acheux",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圖上只印 Acheux；依位置（Doullens 與 Albert 之間）對應 Acheux-en-Amiénois"
+  },
+  "Albert": {
+   "px": [
+    447,
+    401
+   ],
+   "lonlat": [
+    2.6509,
+    50.0018
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1284875
+   },
+   "nameOsm": "Albert",
+   "nameOnMap": "Albert",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點與箭頭、英軍小弧線重疊，±2 px"
+  },
+  "Combles": {
+   "px": [
+    522,
+    397
+   ],
+   "lonlat": [
+    2.8649,
+    50.0099
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3350111
+   },
+   "nameOsm": "Combles",
+   "nameOnMap": "Combles",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點在箭頭線上"
+  },
+  "Cléry-sur-Somme": {
+   "px": [
+    528,
+    426
+   ],
+   "lonlat": [
+    2.8836,
+    49.9574
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2610460
+   },
+   "nameOsm": "Cléry-sur-Somme",
+   "nameOnMap": "Clery sur Somme",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Péronne": {
+   "px": [
+    545,
+    439
+   ],
+   "lonlat": [
+    2.9324,
+    49.9291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114338
+   },
+   "nameOsm": "Péronne",
+   "nameOnMap": "Peronne",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；城鎮符號在 19 日圓圈「1」的西緣內、與雙線箭頭重疊，±2 px"
+  },
+  "Lille": {
+   "px": [
+    582,
+    60
+   ],
+   "lonlat": [
+    3.0635,
+    50.6366
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58404
+   },
+   "nameOsm": "Lille",
+   "nameOnMap": "LILLE",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；市區面狀符號（約 8×10 px），取面中心"
+  },
+  "Maulde": {
+   "px": [
+    709,
+    130
+   ],
+   "lonlat": [
+    3.4331,
+    50.5033
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 56840
+   },
+   "nameOsm": "Maulde",
+   "nameOnMap": "Maulde",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Condé-sur-l'Escaut": {
+   "px": [
+    767,
+    159
+   ],
+   "lonlat": [
+    3.5929,
+    50.4483
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 53439
+   },
+   "nameOsm": "Condé-sur-l'Escaut",
+   "nameOnMap": "Conde",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Râches": {
+   "px": [
+    611,
+    177
+   ],
+   "lonlat": [
+    3.1362,
+    50.4149
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 56299
+   },
+   "nameOsm": "Râches",
+   "nameOnMap": "Raches",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Douai": {
+   "px": [
+    592,
+    202
+   ],
+   "lonlat": [
+    3.0805,
+    50.3676
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 56243
+   },
+   "nameOsm": "Douai",
+   "nameOnMap": "Douai",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；小面狀符號，取中心"
+  },
+  "Valenciennes": {
+   "px": [
+    744,
+    208
+   ],
+   "lonlat": [
+    3.5235,
+    50.3579
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 53355
+   },
+   "nameOsm": "Valenciennes",
+   "nameOnMap": "Valenciennes",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  },
+  "Arleux": {
+   "px": [
+    601,
+    250
+   ],
+   "lonlat": [
+    3.1053,
+    50.2817
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 56040
+   },
+   "nameOsm": "Arleux",
+   "nameOnMap": "Arleux",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；依位置（Canal du Nord／Sensée 交會處）對應 Nord 省 Arleux，非 Arleux-en-Gohelle"
+  },
+  "Vis-en-Artois": {
+   "px": [
+    546,
+    266
+   ],
+   "lonlat": [
+    2.9384,
+    50.2479
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1188459
+   },
+   "nameOsm": "Vis-en-Artois",
+   "nameOnMap": "Vis en Artois",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點在箭頭線上"
+  },
+  "Marquion": {
+   "px": [
+    595,
+    288
+   ],
+   "lonlat": [
+    3.0853,
+    50.2102
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1180853
+   },
+   "nameOsm": "Marquion",
+   "nameOnMap": "Marquion",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點在 19 日圓圈「7」內左上"
+  },
+  "Cambrai": {
+   "px": [
+    647,
+    308
+   ],
+   "lonlat": [
+    3.2346,
+    50.1758
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 55938
+   },
+   "nameOsm": "Cambrai",
+   "nameOnMap": "Cambrai",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；市區面狀符號，取面中心"
+  },
+  "Beaumetz-lès-Cambrai": {
+   "px": [
+    561,
+    337
+   ],
+   "lonlat": [
+    2.9836,
+    50.1214
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2171392
+   },
+   "nameOsm": "Beaumetz-lès-Cambrai",
+   "nameOnMap": "Beaumetz les-Cambrai",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）；圓點在箭頭線上"
+  },
+  "Ruyaulcourt": {
+   "px": [
+    572,
+    358
+   ],
+   "lonlat": [
+    3.0132,
+    50.0831
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1206591
+   },
+   "nameOsm": "Ruyaulcourt",
+   "nameOnMap": "Ruyaulcourt",
+   "note": "Nominatim 只回行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–2 km）"
+  }
+ },
+ "controlPointExclusions": [
+  {
+   "name": "Hesdin",
+   "reason": "城鎮圓點與 20 日裝甲師弧形符號（8）的弧頂粗線黏在一起，10 倍放大仍分不出圓點中心（約 [228,202]，±3 px），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "讀圖時決定，寫入時尚未跑任何配準"
+  },
+  {
+   "name": "Inchy en Artois",
+   "reason": "城鎮圓點位於三條箭頭線交會處、夾在 19 日圓圈 7 與 8 之間，被線條蓋住（約 [587,307]），不作控制點",
+   "decidedBeforeResiduals": true,
+   "note": "讀圖時決定，寫入時尚未跑任何配準"
+  },
+  {
+   "name": "Berle…（書溝切斷）",
+   "reason": "地名被書溝切斷只見「Berle」，圓點在 [407,217]；附近有多個 Berles-（Berles-Monchel、Berles-au-Bois 等），無法確定對應哪個現代地名，依規則不取",
+   "decidedBeforeResiduals": true,
+   "note": "讀圖時決定，寫入時尚未跑任何配準"
+  }
+ ],
+ "features": [
+  {
+   "label": "7",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    600,
+    293
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，圈住 Marquion；圓圈中心。與下方「8」圓圈相切",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-7-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  },
+  {
+   "label": "8",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    597,
+    319
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，Inchy en Artois 東側；圓圈中心。上接「7」、下接「6」圓圈",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-8-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    588,
+    343
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，Beaumetz-les-Cambrai 東、Ruyaulcourt 北；圓圈中心",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-6-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  },
+  {
+   "label": "2",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    563,
+    396
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，Combles 東；圓圈中心",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-2-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  },
+  {
+   "label": "1",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    552,
+    441
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，圈住 Péronne 東緣；圓圈中心",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-1-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    707,
+    270
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，Cambrai 東北、Valenciennes 西南空白處；圓圈中心。圖上沒有從它畫出的箭頭，也沒有對應的 20 日符號",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-5-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  },
+  {
+   "label": "10",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖題 The German Advance to the Sea；圖例 (i)(ii)(iii) 為推進中的 Armd Divs／SST 先頭部隊符號，英軍、法軍另以 (iv) RED、(v) GREEN 標示，故判為德軍",
+   "px": [
+    673,
+    438
+   ],
+   "armoured": true,
+   "note": "粗線圓圈內數字，Péronne 以東空白處；圓圈中心。圖上沒有從它畫出的箭頭，也沒有對應的 20 日符號",
+   "timeState": "Leading troops of Armd Divs Evening May 19",
+   "unitKey": "de-10-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（Leading troops of Armd Divs Evening May 19）；標號即師番號"
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "Berle…",
+   "px": [
+    407,
+    217
+   ],
+   "reason": "地名被書溝切斷，無法確定現代地名；未作控制點"
+  }
+ ]
+}

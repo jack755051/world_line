@@ -239,10 +239,10 @@ function prep() {
     // v2.3：交戰是一段時間。資料有 from／to 就用；沒有就當作關鍵日前後各半天
     const END = KD[KD.length - 1]; e.t0 = clamp(e.from ? dayOf(e.from) : dayOf(e.date) - 0.5, 0, END); e.t1 = clamp(e.to ? dayOf(e.to) : dayOf(e.date) + 0.5, 0, END); });
   D.units.forEach(u => { u.kpos = D.keyframes.map(k => { const p = posBy[u.id][k.date]; return p ? { x: mx(p.lng), y: my(p.lat), st: p.state, src: p.status === 'map' || p.status === 'text' } : null; }); });
-  // 補洞：某個關鍵日沒有紀錄點、但前後三天內各有一個有出處的紀錄點時，用時間內插補上（推估）。
+  // 補洞：某個關鍵日沒有紀錄點、但前後 fill_days 天內（theatre.json，預設 3）各有一個有出處的紀錄點時，用時間內插補上（推估）。
   // 不補的話，只有少數單位有紀錄的日子（例如 5/31 只有文字位置）其他單位會整批消失再出現。
   D.units.forEach(u => { const kp = u.kpos; for (let k = 1; k < kp.length - 1; k++) { if (kp[k]) continue; let a = k - 1, b = k + 1; while (a >= 0 && !kp[a]) a--; while (b < kp.length && !kp[b]) b++;
-    if (a < 0 || b >= kp.length || kp[a].fill || !kp[a].src || !kp[b].src || KD[b] - KD[a] > 3) continue; const t = (KD[k] - KD[a]) / (KD[b] - KD[a]);
+    if (a < 0 || b >= kp.length || kp[a].fill || !kp[a].src || !kp[b].src || KD[b] - KD[a] > (TH.fill_days || 3)) continue; const t = (KD[k] - KD[a]) / (KD[b] - KD[a]);
     kp[k] = { x: lerp(kp[a].x, kp[b].x, t), y: lerp(kp[a].y, kp[b].y, t), st: kp[a].st, src: true, fill: true }; } });
   if (TH.control && TH.control.mode === 'units') UPOS = D.keyframes.map((k, ki) => D.units.filter(u => u.kpos[ki] && u.kpos[ki].src).map(u => [u.kpos[ki].x, u.kpos[ki].y, u.side]));
   D.units.forEach(u => { u.children = D.units.filter(c => c.parent_id === u.id).map(c => c.id); u.tier = u.tier ?? TIER[u.echelon] ?? 1; u.replace = (TH.replace_units || []).includes(u.id) || u.replace === true; u._st = 0; u._sa = 0; });

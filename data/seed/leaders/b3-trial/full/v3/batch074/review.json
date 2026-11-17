@@ -1,0 +1,39 @@
+{
+ "batch": "074", "reviewedOn": "2026-11-17", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 2, "toUnverified": 1, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 25, "addedCitations": 13, "editedSentences": 13, "spotRefetched": 5, "searchLogShort": 1},
+ "people": [
+  {"key": "jp-meiji", "bioId": "01a1b4c1-ce4a-79cf-bc76-f5cd4aa33622", "verdict": "returned", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 8,
+   "changes": [
+    "宮內廳年表 1873 年改曆前的月日是舊曆（年表明治5年條：明治5年12月3日起改用太陽曆），研究者當成西曆寫「1867年1月9日」等。正文改為「慶應3年（1867）1月9日」「明治元年（1868）3月14日」等元號紀年並註明舊曆；補引年表明治5年改曆條（A）",
+    "第1段 period 改 1867-01-01～1869-01-01（year）；第2段起點改 1871-01-01（year）；舊曆引文 datePrecision 改 year（含年份者）或 null（無年份者），evidenceNote 註明舊曆未換算",
+    "重抓宮內廳年表比對一致（200）"],
+   "returnedReasons": [
+    "最低嘗試未達（研究者自評 thickness=薄）：searchLog 8 步只涵蓋 2 種來源類型（official、named_encyclopedia），缺 authority、academic／treaty_law 類（需 ≥4 類）；raw 目錄有 ndl-search.html、ndl-meiji.html、encyc-meiji-m/-p 等抓取檔未記入 searchLog",
+    "建議下一個具體來源：NDL 典拠（id.ndl.go.jp 明治天皇／睦仁）與 VIAF；アジア歴史資料センター（jacar.go.jp）詔書；国立公文書館デジタルアーカイブ；宮内庁『明治天皇紀』書誌；生年月日須另以 A／B 確認"]},
+  {"key": "gr-venizelos", "bioId": "01a1b4c1-ce54-723d-a25f-167e9fca0d16", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 1, "roleCandidates": 3, "gaps": 4, "searchLogSteps": 9,
+   "changes": [
+    "第1段補引「the committee that was appointed by the Greek government」支撐「希臘政府所派」子句",
+    "第2段補引「head the struggle for political reform」（領導改革）與 SNL「Ved utbruddet av første verdenskrig ville han ha Hellas med på Ententens side」（一戰時欲加入協約國）",
+    "第4段「病逝巴黎」改「在巴黎逝世」（來源只寫 died，無病因）",
+    "T14：克里特司法大臣 R5（窗外）、1910／1915／1917 首相 R0 候選（名單 5442 只有 1920-10-25 起各段）核對成立；自由黨黨魁缺起日 gap 成立",
+    "重抓 SNL 與 Encyclopedia.com（Voglis）條目比對一致（200）"],
+   "returnedReasons": []},
+  {"key": "pe-pardo-y-barreda", "bioId": "164b8938-b957-4966-828b-229edf3bc58b", "verdict": "returned", "paragraphs": 4, "positions": 0, "roleCandidates": 1, "gaps": 5, "searchLogSteps": 18,
+   "changes": [
+    "來源 elperuano-pardo 由 B 改評 C（比照 batch016 elperuano-leguia）：El Peruano「Opinión／Perfiles」記者（Periodista）署名專欄，屬通俗歷史",
+    "四段正文改為只用 Encyclopedia of Latin American History and Culture（Peloso，B）與 PDBA 已抓原文：刪去只靠 El Peruano 的子句（生日與出生地、學位、外交部長、卡爾德隆、1904-09-24 就任、教育法、師範學校、厄瓜多條約、巡洋艦、旅歐、校長、政變與全景監獄、比亞里茨、1944 返國）；第4段只留卒日 1947-08-03",
+    "24 筆 El Peruano 引文移入新 gap field:unverified_claims 的 candidateCitations（C）；新增 gap paragraph:length（篇幅不足：4 段 221 字）",
+    "改引含主語／受詞的完整片段（For the next four years…、at military urging…、uniting workers and university students）；「首次全國總罷工」改「史上第一次總罷工」",
+    "gap field:head_of_state_terms_in_list 更正：1904–1908 任期在 1908-01-01 前的部分屬時間窗外（Q4），非「窗內待裁示」",
+    "重抓 Encyclopedia.com（Peloso）與 El Peruano（確認署名 Periodista）比對一致"],
+   "returnedReasons": [
+    "最低標準未達：El Peruano 降 C 後只剩 4 段／221 字（需 ≥300 字）；研究者未列「篇幅不足：」gap，retry 搜尋只針對文人黨職迄日，未針對擴充篇幅（gap 為審查補記）",
+    "建議下一個具體來源：Congreso de la República del Perú 歷任總統／國會咨文（museo del Congreso，西文站內搜尋）、Biblioteca Nacional del Perú 權威檔、DB~e（dbe.rah.es，以瀏覽器可讀的 API／列印版查 José Pardo y Barreda）、PUCP Fondo Editorial／Basadre《Historia de la República del Perú》可讀章節"]}
+ ],
+ "issues": [
+  "El Peruano「Perfiles」記者專欄再次被研究者評為 B（同 batch016）；應在提示中明列為 C。",
+  "日本 1873 年改曆前的元號月日為舊曆，不可直接寫成西曆日期；宮內廳年表的「西暦」欄只對應年份。",
+  "研究者把 1904–1908 第一任期誤判為「窗內未列」：任期在 1908-01-01 前的部分屬 Q4 窗外。"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

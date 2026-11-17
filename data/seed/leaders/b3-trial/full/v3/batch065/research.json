@@ -1,0 +1,2493 @@
+{
+ "batch": "b3-full-v3-batch065",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）；名單5442已有的元首／首腦任期不重建；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch065/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "sbl-lindman": {
+   "title": "S Arvid A Lindman（Svenskt biografiskt lexikon，Band 23，sida 505）",
+   "authors": [],
+   "publisher": "Riksarkivet（瑞典國家檔案館）",
+   "published_text": "Svenskt biografiskt lexikon, Band 23 (1980-1981), s. 505",
+   "url": "https://sok.riksarkivet.se/sbl/Presentation.aspx?id=10610",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "瑞典國家級傳記辭典（Riksarkivet 官方頁）"
+  },
+  "lexdk-lindman": {
+   "title": "Arvid Lindman（Lex，Den Store Danske）",
+   "authors": [
+    "Niels Finn Christiansen"
+   ],
+   "publisher": "Lex（Gyldendal／Den Store Danske）",
+   "published_text": "Christiansen, Niels Finn: Arvid Lindman i Lex på lex.dk",
+   "url": "https://lex.dk/Arvid_Lindman",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Niels Finn Christiansen）的機構百科條目"
+  },
+  "gnd-lindman": {
+   "title": "Lindman, Arvid（GND 128351535，經 lobid.org）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）／lobid.org",
+   "published_text": "GND 權威檔 128351535",
+   "url": "https://lobid.org/gnd/search?q=Arvid+Lindman&format=json&size=5",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND 官方鏡像 lobid.org）"
+  },
+  "museo-gonzalez": {
+   "title": "Alfredo González Flores（Galería de Exmandatarios）",
+   "authors": [],
+   "publisher": "Museo Nacional de Costa Rica",
+   "published_text": "哥斯大黎加國家博物館歷任總統畫廊條目",
+   "url": "https://www.museocostarica.go.cr/divulgacion/temas-especiales/galeria-expresidentes/alfredo-gonzalez-flores/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級官方機構（Museo Nacional de Costa Rica，政府機關）官方頁"
+  },
+  "sinabi-gonzalez": {
+   "title": "Alfredo González Flores（Diccionario biográfico）",
+   "authors": [],
+   "publisher": "SINABI（哥斯大黎加國家圖書館系統）",
+   "published_text": "Diccionario biográfico de Costa Rica，條目 351",
+   "url": "https://www.sinabi.go.cr/diccionariobiografico/biografias/351.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館系統官方傳記辭典"
+  },
+  "encyc-gonzalez": {
+   "title": "González Flores, Alfredo (1877–1962)（Encyclopedia of Latin American History and Culture）",
+   "authors": [
+    "Charles D. Ameringer"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 encyclopedia.com 收錄）",
+   "published_text": "Ameringer, Charles D., Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/gonzalez-flores-alfredo-1877-1962",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Charles D. Ameringer）的學術參考百科條目"
+  },
+  "ucr-gonzalez": {
+   "title": "La administración González Flores y el golpe de Estado de 1917",
+   "authors": [
+    "Hugo Murillo Jiménez"
+   ],
+   "publisher": "Estudios（哥斯大黎加大學期刊）",
+   "published_text": "Murillo Jiménez, Hugo, La administración González Flores y el golpe de Estado de 1917",
+   "url": "https://revistas.ucr.ac.cr/index.php/estudios/article/download/31018/30804/90111",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的大學學術期刊論文"
+  },
+  "tse-presidentes": {
+   "title": "Presidentes de Costa Rica（歷任總統任期表）",
+   "authors": [],
+   "publisher": "Tribunal Supremo de Elecciones（哥斯大黎加選舉法庭）",
+   "published_text": "TSE 歷任總統表 PresidentesCR-Cuadros",
+   "url": "https://www.tse.go.cr/pdf/ifed/PresidentesCR-Cuadros.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方機關（選舉法庭）官方資料"
+  },
+  "gnd-gonzalez": {
+   "title": "González Flores, Alfredo（GND 1054730709，經 lobid.org）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）／lobid.org",
+   "published_text": "GND 權威檔 1054730709",
+   "url": "https://lobid.org/gnd/search?q=Alfredo+Gonz%C3%A1lez+Flores&format=json&size=5",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND 官方鏡像 lobid.org）"
+  },
+  "ugr-alcala": {
+   "title": "Niceto Alcalá-Zamora y Torres（Horizonte V Centenario）",
+   "authors": [],
+   "publisher": "Universidad de Granada",
+   "published_text": "格拉納達大學 Horizonte V Centenario 人物頁",
+   "url": "https://horizontevcentenario.ugr.es/print/pdf/node/283",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學（學術機構）人物傳記頁"
+  },
+  "racmyp-alcala": {
+   "title": "Homenaje a D. Niceto Alcalá-Zamora y Torres（8 junio 1999）",
+   "authors": [],
+   "publisher": "Real Academia de Ciencias Morales y Políticas",
+   "published_text": "RACMYP 年報所載 1999 年紀念演說（部長致詞與學院發言）",
+   "url": "https://racmyp.es/wp-content/uploads/2023/06/A76-33.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術院（Real Academia de Ciencias Morales y Políticas）出版的紀念演講稿，演講人具名"
+  },
+  "gec-alcala": {
+   "title": "Niceto Alcalá Zamora y Torres（Gran Enciclopèdia Catalana）",
+   "authors": [],
+   "publisher": "Enciclopèdia Catalana",
+   "published_text": "Gran Enciclopèdia Catalana 條目（署名僅縮寫 RGa）",
+   "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/niceto-alcala-zamora-y-torres",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "署名僅縮寫，未評等；只作 gap 候選"
+  },
+  "gnd-alcala": {
+   "title": "Alcalá-Zamora y Torres, Niceto（GND 121816842，經 lobid.org）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）／lobid.org",
+   "published_text": "GND 權威檔 121816842",
+   "url": "https://lobid.org/gnd/search?q=Niceto+Alcal%C3%A1-Zamora&format=json&size=5",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND 官方鏡像 lobid.org）"
+  }
+ },
+ "people": [
+  {
+   "key": "se-lindman",
+   "bioId": "01a1b4bf-60f2-74e4-829d-0f209fb93efa",
+   "name": "Arvid Lindman",
+   "nameZh": "阿爾維德·林德曼",
+   "recordIds": [
+    "8e9db32b-ea1f-433b-8032-e3f75aafd8e7",
+    "01a1aa4a-45bc-716b-b8ca-1d11b940c13f"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1862-09-19",
+      "end": "1908-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身、海軍與實業",
+      "en": "Birth, navy and industry"
+     },
+     "body": {
+      "zh-Hant": "林德曼1862年9月19日生於厄斯特爾布魯克（Österbybruk），1876年入海軍學校當學員，1882年10月18日任海軍少尉。他1889年離開海軍，轉到伊格松德（Iggesund）鋼鐵廠任職，自1892年10月起任該廠董事總經理，至1903年。1900年2月1日起他出任基律納瓦拉—盧奧薩瓦拉礦業公司（LKAB）總經理，到1901年春。1904年10月7日他轉任電報總局局長，任到1907年12月。",
+      "en": "Lindman was born on 19 September 1862 at Österbybruk, entered the naval cadet school in 1876 and became a sub-lieutenant in the navy on 18 October 1882. In 1889 he left the naval career for the Iggesund ironworks, of which he was managing director from October 1892 until 1903. From 1 February 1900 he was managing director of the Luossavaara-Kiirunavaara company (LKAB) until spring 1901, and from 7 October 1904 he was director-general of the telegraph administration until December 1907."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "f 19 sept 1862 i Österbybruk",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-lindman",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\": [ \"1862-09-19\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "aspirant vid sjökrigsskolan 28 sept 76",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "underlöjtn vid flottan 18 okt 82",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Redan 1889 lämnade han likväl den sjömilitära banan",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "anställd vid ab Iggesunds bruk 89",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "disponent o VD vid ab Iggesunds bruk okt 92—03",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "VD vid Luos-savaara-Kiirunavaara ab (LKAB) 1 febr 00— våren 01",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "generaldir o chef för telegrafstyr 7 okt 04—dec 07",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1905-01-01",
+      "end": "1911-10-07"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "上議院、海軍部長與首任首相",
+      "en": "Upper chamber, naval minister and first premiership"
+     },
+     "body": {
+      "zh-Hant": "林德曼1905至1911年是上議院議員。1905年8月2日至11月6日，他在隆德貝里內閣出任海軍部長。1906年5月29日他出任首相，在位到1911年10月6日；傳記辭典記載，這個內閣在約五年半任期內提出一千一百多件議案，其中的憲政改革使男子在下議院選舉中獲得普遍選舉權。1911年下議院選舉受挫後，內閣下台。丹麥的 Lex 條目同樣記他1906至1911年領導政府。",
+      "en": "Lindman sat in the upper chamber from 1905 to 1911. From 2 August to 6 November 1905 he was minister of naval defence in the Lundeberg cabinet. On 29 May 1906 he became prime minister and served until 6 October 1911; the biographical dictionary records that this cabinet submitted more than 1,100 bills in about five and a half years, and that a constitutional reform brought universal male suffrage to elections for the second chamber. After the setback in the 1911 elections to the second chamber the government resigned. The Danish Lex entry likewise says he headed a government in 1906-1911."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "led av FK 05-11",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "statsråd o chef for sjöförsvarsdep 2 aug—6 nov 05",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "statsminister 29 maj 06—6 okt 11",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Då den Lundebergska ministären bildades i aug 1905",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "En författningsreform genomdrevs",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Under sina 5 1/2 år avlämnade ministären L mer än 1 100 propositioner",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Allmän rösträtt för män vid AK-valen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Efter det väntade bakslaget vid AK-valen 1911 avgick regeringen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-lindman",
+       "locator": "intro",
+       "quote": "Lindman var i 1905 marineminister og i perioden 1906-1911 leder af en regering",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1912-01-01",
+      "end": "1935-07-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "右派領袖與外交大臣",
+      "en": "Conservative leader and foreign minister"
+     },
+     "body": {
+      "zh-Hant": "1912年起他領導下議院的右派黨團，直到1935年6月；1913年他又成為地主與市民黨（lantmanna- och borgarepartiet）的主席。1917年3月30日至10月18日，他在斯瓦茨（Carl Swartz）內閣擔任外交大臣；1917年10月艾登—布蘭廷政府上台。傳記辭典稱1918年之後的十年是他作為黨領袖的高峰。",
+      "en": "From 1912 he led the right-wing group of the second chamber until June 1935, and in 1913 he became chairman of the Farmers' and Burghers' Party (lantmanna- och borgarepartiet). From 30 March to 18 October 1917 he was minister for foreign affairs in the Swartz cabinet; in October 1917 the Edén-Branting government took office. The dictionary calls the decade after 1918 the high point of his career as a party leader."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "ledare för AK:s högerparti 12—juni 35",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "lantmanna- o borgarepartiet, vars ordförande L blev 1913",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "minister för utrikes ärendena 30 mars—18 okt 17",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "L gick in som utrikesminister under Swartz",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "i okt 1917 trädde regeringen Edén-Branting till",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Årtiondet efter 1918 utgjorde L:s höjdpunkt som partiledare",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1928-10-02",
+      "end": "1936-12-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第二次首相與晚年",
+      "en": "Second premiership and last years"
+     },
+     "body": {
+      "zh-Hant": "1928年10月2日林德曼再度出任首相，組成少數派政府，任到1930年6月6日；特里格（Trygger）出任他的外交大臣。1930年他在國會就穀物關稅一案敗北後辭職。1935年右派的兩個議會黨團合併，他成為合併後黨團的首任主席；之後他卸下全國選舉人聯盟（AVF）主席並離開國會。丹麥的 Lex 條目記他1936年12月9日卒於英國克羅伊登。",
+      "en": "On 2 October 1928 Lindman again became prime minister, heading a minority government until 6 June 1930; Trygger was his foreign minister. In 1930 he resigned after a defeat in the Riksdag over grain tariffs. In 1935 the two right-wing parliamentary groups merged and he became the first chairman of the merged group; he then stepped down as chairman of the General Electoral League (AVF) and left the Riksdag. The Danish Lex entry records that he died at Croydon in England on 9 December 1936."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "statsminister 2 okt 28 —6 juni 30",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "L fick istället bilda en egen minoritetsregering",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Trygger blev utrikesminister",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "1935 nådde L ett av sina mål, då riksdagens båda högerpartier sammanslogs",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "1930 avgick L efter ett nederlag i riksdagen gällande spannmålstullarna",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "Han blev dess förste ordförande",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "avgick L som AVF:s ordförande o lämnade även riksdagen",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-lindman",
+       "locator": "faktaboks",
+       "quote": "9. december 1936, Croydon, Storbritannien",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "lindman-naval-minister-1905",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞典政府（海軍部）",
+      "en": "Government of Sweden (Ministry of Naval Defence)"
+     },
+     "title": {
+      "orig": "Statsråd och chef för sjöförsvarsdepartementet",
+      "zh-Hant": "海軍部長",
+      "en": "Minister of Naval Defence"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1905-08-02",
+      "end": "1905-11-06"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "statsråd o chef for sjöförsvarsdep 2 aug—6 nov 05",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5：任期在1905年，落在1908–1945時間窗外，且海軍部單獨一部不屬四部"
+    },
+    {
+     "key": "lindman-telegraph-director",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞典電報總局",
+      "en": "Swedish Telegraph Administration (Telegrafstyrelsen)"
+     },
+     "title": {
+      "orig": "Generaldirektör och chef för telegrafstyrelsen",
+      "zh-Hant": "電報總局局長",
+      "en": "Director-General of the Telegraph Administration"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1904-10-07",
+      "end": "1908-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "generaldir o chef för telegrafstyr 7 okt 04—dec 07",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "lindman-fk-member",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞典國會上議院",
+      "en": "First Chamber of the Riksdag"
+     },
+     "title": {
+      "orig": "Ledamot av första kammaren",
+      "zh-Hant": "上議院議員（右派黨）",
+      "en": "Member of the First Chamber (Högern)"
+     },
+     "period": {
+      "start": "1905-01-01",
+      "end": "1912-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "led av FK 05-11",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-lindman",
+       "locator": "intro",
+       "quote": "som han repræsenterede i Riksdagens førstekammer i årene 1905-1911",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-lindman",
+       "locator": "intro",
+       "quote": "i partiet Högern, som han repræsenterede i Riksdagens førstekammer",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "originalPositionKind": "legislator",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；Lex（具名作者 B）明寫他代表右派黨（Högern）出任上、下議院議員",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "lindman-ak-member",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞典國會下議院",
+      "en": "Second Chamber of the Riksdag"
+     },
+     "title": {
+      "orig": "Ledamot av andra kammaren",
+      "zh-Hant": "下議院議員（右派黨）",
+      "en": "Member of the Second Chamber (Högern)"
+     },
+     "period": {
+      "start": "1912-01-01",
+      "end": "1936-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "av AK 12-35",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-lindman",
+       "locator": "intro",
+       "quote": "i partiet Högern, som han repræsenterede i Riksdagens førstekammer",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-lindman",
+       "locator": "intro",
+       "quote": "og i andetkammeret 1911-1935",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "originalPositionKind": "legislator",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；Lex（具名作者 B）明寫他代表右派黨（Högern）出任上、下議院議員",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "lindman-foreign-minister-1917",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞典政府（外交部）",
+      "en": "Government of Sweden (Ministry for Foreign Affairs)"
+     },
+     "title": {
+      "orig": "Minister för utrikes ärendena",
+      "zh-Hant": "外交大臣",
+      "en": "Minister for Foreign Affairs"
+     },
+     "originalPositionKind": "minister",
+     "period": {
+      "start": "1917-03-30",
+      "end": "1917-10-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "minister för utrikes ärendena 30 mars—18 okt 17",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Biografi",
+       "quote": "L gick in som utrikesminister under Swartz",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "cabinet_minister",
+     "reason": "T14 R3：外交部正職；任期1917-03-30至1917-10-18可證明超過90天；時間窗1908–1945內；瑞典王國在系統中",
+     "t14Rule": "R3"
+    },
+    {
+     "key": "lindman-party-leader-high",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞典國會下議院右派黨團",
+      "en": "Right-wing party group of the Second Chamber of the Riksdag"
+     },
+     "title": {
+      "orig": "Ledare för AK:s högerparti",
+      "zh-Hant": "下議院右派黨團領袖",
+      "en": "Leader of the right-wing party in the Second Chamber"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1912-01-01",
+      "end": "1935-07-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "sbl-lindman",
+       "locator": "Meriter",
+       "quote": "ledare för AK:s högerparti 12—juni 35",
+       "quoteLang": "sv",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:lantmanna_borgarepartiet_chair",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；1913年成為地主與市民黨主席（SBL），迄日與是否與1912年起的右派黨團領袖職重疊來源未寫。已查 SBL、Lex。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:riksdagshogern_chair_1935",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；1935年成為合併後「riksdagshögern」首任主席（SBL 只寫年份「1935」，未寫迄日）。已查 SBL、Lex。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:death_date",
+     "gapKind": "not_found",
+     "note": "SBL 內部「Född/Död」標頭寫 1936-12-09，同篇 Meriter 寫「d 19 dec 1936」；GND 與 Lex 皆為 1936-12-09，正文採 Lex 所記 9 日。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:regime_id",
+     "gapKind": "identity_uncertain",
+     "note": "regimeId 因不連庫一律 null；瑞典王國首相任期（1908-01-01～1911-10-07、1928-10-02～1930-06-07）已在名單5442，未重建。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:lindman-ak-member",
+     "gapKind": "conflict",
+     "note": "下議院議員起年兩份合格來源不同：SBL（A）寫「av AK 12-35」（1912 起），Lex（B）寫「i andetkammeret 1911-1935」（1911 起）；period 暫依 SBL 1912，待查證。",
+     "checkedOn": "2026-11-17"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Arvid Lindman",
+     "url": "https://lobid.org/gnd/search?q=Arvid+Lindman&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 128351535：1862-09-19～1936-12-09，Politiker／Regierungschef／Admiral"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Arvid Lindman Svenskt biografiskt lexikon riksarkivet sbl statsminister",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋摘要只指向 SBL 起始頁與親族條目，未直接給 Arvid 條目網址"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "SBL Presentation.aspx?id=13609（猜測 id）",
+     "url": "https://sok.riksarkivet.se/sbl/Presentation.aspx?id=13609",
+     "result": "not_relevant",
+     "note": "取回的是 Isaak D Hirsch，非本人"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "SBL 站內搜尋 Lindman",
+     "url": "https://sok.riksarkivet.se/sbl/Search.aspx?t=0&s=Lindman",
+     "result": "no_result",
+     "note": "站內搜尋頁沒有可用列表"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "SBL 相鄰 id 逐一比對（10605–10613）",
+     "url": "https://sok.riksarkivet.se/sbl/Presentation.aspx?id=10610",
+     "result": "found_A",
+     "note": "id=10610 為 S Arvid A Lindman（Band 23，s.505），已存原文"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Lex（Den Store Danske）Arvid Lindman",
+     "url": "https://lex.dk/Arvid_Lindman",
+     "result": "found_B",
+     "note": "具名作者 Niels Finn Christiansen"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Большая российская энциклопедия 線索 bigenc.ru Линдман Арвид",
+     "url": "https://bigenc.ru/c/lindman-arvid-e7a118",
+     "result": "blocked_403",
+     "note": "HTTP 401，未繞過，不使用"
+    }
+   ]
+  },
+  {
+   "key": "cr-gonzalez-flores",
+   "bioId": "01a1b4bb-07a9-7f47-bb1d-b913b38ae622",
+   "name": "Alfredo González Flores",
+   "nameZh": "阿爾弗雷多·岡薩雷斯·弗洛雷斯",
+   "recordIds": [
+    "01a1aa4a-728c-731f-9165-5900548877b2",
+    "01a1aa4a-728c-711a-8f9e-7c3dd7f47fe7"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1877-06-15",
+      "end": "1903-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與法律學業",
+      "en": "Birth and legal training"
+     },
+     "body": {
+      "zh-Hant": "岡薩雷斯·弗洛雷斯1877年6月15日生於埃雷迪亞（Heredia），1896年自哥斯大黎加中學（Liceo de Costa Rica）畢業；1898年他到英國旅行，對經濟學產生興趣。他在法學院取得律師資格，1902年9月1日加入律師公會。他是多明戈·岡薩雷斯·佩雷斯（Domingo González Pérez）的兒子。",
+      "en": "Alfredo González Flores was born in Heredia on 15 June 1877 and graduated from the Liceo de Costa Rica in 1896; in 1898 he travelled to Great Britain, where he became interested in economics. He qualified as a lawyer at the law school and joined the Bar Association on 1 September 1902. He was the son of Domingo González Pérez."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Nació en Heredia, Costa Rica, el 15 de junio de 1877",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-gonzalez",
+       "locator": "intro",
+       "quote": "Born in Heredia, González Flores received a law degree in 1902",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "se graduó del Liceo de Costa Rica en 1896",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "En 1898 efectuó un viaje a Gran Bretaña",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "donde se interesó por las ciencias económicas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Se graduó de abogado en la Escuela de Derecho",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "se incorporó al Colegio de Abogados el 1 de septiembre de 1902",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Fue hijo de Domingo González Pérez",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\": [ \"1877\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1905-01-01",
+      "end": "1914-05-09"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "議員與登上總統職位",
+      "en": "Deputy and the road to the presidency"
+     },
+     "body": {
+      "zh-Hant": "1905年他在選戰中支持馬克西莫·費爾南德斯（Máximo Fernández）的候選資格；1910至1914年他是埃雷迪亞省的共和黨（Partido Republicano）議員，他提出的抵押銀行案獲國會通過，卻被總統里卡多·希門尼斯否決。他由國會選為第一副總統（Primer Designado）。穆里略的論文記載，蒂諾科與共和黨人促成的協議於1914年4月28日達成，他在5月8日走出炮兵營房就任總統。",
+      "en": "In 1905 he took part in the campaign backing Máximo Fernández; from 1910 to 1914 he was a deputy of the Republican Party for Heredia province, and a mortgage-bank bill he proposed was passed by Congress but vetoed by President Ricardo Jiménez Oreamuno. Congress elected him First Designate to the presidency. Murillo's article records that the agreement brokered by Tinoco and the Republicans was reached on 28 April 1914 and that he left the artillery barracks to take office as president on 8 May."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "participó en la campaña política de 1905 apoyando la candidatura",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "apoyando la candidatura de don Máximo Fernández Alvarado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "banco hipotecario, que fue aprobado por el Congreso",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ucr-gonzalez",
+       "locator": "p.5",
+       "quote": "refugiaron en el llamado Cuartel de Artillería",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ucr-gonzalez",
+       "locator": "p.7",
+       "quote": "Ese día salió a tomar posesión de la presidencia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "De 1910 a 1914 fue diputado del Partido Republicano por la provincia de Heredia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "aprobado por el Congreso pero vetado por el Presidente Ricardo Jiménez Oreamuno",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Elegido por el Congreso como Primer Designado a la Presidencia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ucr-gonzalez",
+       "locator": "p.5",
+       "quote": "acuerdo, logrado por Tinoco y los republicanos, el 28 de abril de 1914",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ucr-gonzalez",
+       "locator": "p.7",
+       "quote": "permaneciendo ahí hasta el 8 de mayo de 1914",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Presentó un proyecto para al creación de un banco hipotecario",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-05-08",
+      "end": "1917-01-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總統任期與政變",
+      "en": "Presidency and the coup"
+     },
+     "body": {
+      "zh-Hant": "任總統期間，他在1914年創設國際銀行（Banco Internacional），作為國家發行銀行，並大膽提議徵收所得稅，以減輕窮人的困境。他的任期是1914年5月8日至1917年1月27日，選舉法庭的歷任總統表記載，國家博物館的條目則記他為1914至1917年的總統。1917年1月27日他的戰爭部長費德里科·蒂諾科（Federico Tinoco）發動政變推翻他；之後他說服美國總統威爾遜不承認蒂諾科政權。",
+      "en": "As president he founded the Banco Internacional in 1914 as the state's issuing bank and boldly proposed an income tax to ease the hardship of the poor. The Electoral Tribunal's list of presidents places his term from 8 May 1914 to 27 January 1917, and the National Museum entry gives it as 1914 to 1917. On 27 January 1917 his Minister of War, Federico Tinoco, overthrew him in a coup; he then persuaded US President Woodrow Wilson not to recognise the Tinoco regime."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "En 1914 creó el Banco Internacional como Banco emisor del estado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-gonzalez",
+       "locator": "intro",
+       "quote": "courageously proposed an income tax to try to alleviate the suffering",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ucr-gonzalez",
+       "locator": "p.1",
+       "quote": "derrocado por su Ministro de Guerra Federico Tinoco Granados",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "su Ministro de Guerra, Federico Tinoco, el 27 de enero de 1917",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Presidente de 1914 – 1917",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tse-presidentes",
+       "locator": "table",
+       "quote": "08 may 1914 - 1917 27 ene",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-gonzalez",
+       "locator": "intro",
+       "quote": "persuaded President Woodrow Wilson not to recognize the Tinoco dictatorship",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-gonzalez",
+       "locator": "body",
+       "quote": "to try to alleviate the suffering of the poor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1917-01-27",
+      "end": "1963-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "流亡、晚年與榮銜",
+      "en": "Exile, later years and honours"
+     },
+     "body": {
+      "zh-Hant": "他1917至1920年流亡美國；1918年5月他在紐約公開一項法令，把總統職位託付給任內的第三副總統弗朗西斯科·阿吉拉爾·巴爾克羅（Francisco Aguilar Barquero）。1920年他出版《石油與哥斯大黎加的政治》，1923年擔任哥斯大黎加在對英國訴訟（蒂諾科案）中的律師。1936年他被任命為國家銀行董事會主席，1940年因健康辭職。1954年7月25日他獲封「國家功勳」（Benemérito de la Patria）；他於1962年去世。",
+      "en": "He was in exile in the United States from 1917 to 1920. In May 1918, from New York, he made public a decree depositing the presidency with the Third Designate of his government, Francisco Aguilar Barquero. In 1920 he published El petróleo y la política de Costa Rica, and in 1923 he was Costa Rica's lawyer in the litigation against Great Britain (the Tinoco case). In 1936 he was named chairman of the board of the Banco Nacional, resigning in 1940 for health reasons. On 25 July 1954 he was declared Benemérito de la Patria; he died in 1962."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Estuvo exiliado en los Estados Unidos de 1917 a 1920",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "desde Nueva York",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "entregó al conocimiento público un decreto por medio del cual",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "al Tercer Designado durante su gobierno, Francisco Aguilar Barquero",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "En mayo de 1918",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "En 1920 publicó la obra El petróleo y la política de Costa Rica",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "En 1923 fue abogado de Costa Rica en el litigio contra Gran Bretaña",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Gran Bretaña (Caso Tinoco)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "En 1936 fue nombrado presidente de la Junta Directiva del Banco Nacional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "cargo al que renunció en 1940 por motivos de salud",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "Fue declarado Benemérito de la Patria el 25 de julio de 1954",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gonzalez",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\": [ \"1962\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "gonzalez-banco-nacional-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥斯大黎加國家銀行（Banco Nacional de Costa Rica）",
+      "en": "Banco Nacional de Costa Rica"
+     },
+     "title": {
+      "orig": "Presidente de la Junta Directiva del Banco Nacional de Costa Rica",
+      "zh-Hant": "國家銀行董事會主席",
+      "en": "Chairman of the board of the Banco Nacional de Costa Rica"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "En 1936 fue nombrado presidente de la Junta Directiva del Banco Nacional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "cargo al que renunció en 1940 por motivos de salud",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "gonzalez-tinoco-case-counsel",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥斯大黎加政府（對英國訴訟）",
+      "en": "Government of Costa Rica (litigation against Great Britain)"
+     },
+     "title": {
+      "orig": "Abogado de Costa Rica en el litigio contra Gran Bretaña (Caso Tinoco)",
+      "zh-Hant": "哥斯大黎加在蒂諾科案中的律師",
+      "en": "Costa Rica's counsel in the litigation against Great Britain (Tinoco case)"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "En 1923 fue abogado de Costa Rica en el litigio contra Gran Bretaña",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "gonzalez-deputy-republican-1910",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥斯大黎加國會（共和黨，埃雷迪亞省）",
+      "en": "Congress of Costa Rica (Republican Party, Heredia province)"
+     },
+     "title": {
+      "orig": "Diputado del Partido Republicano por la provincia de Heredia",
+      "zh-Hant": "國會議員（共和黨，埃雷迪亞省）",
+      "en": "Deputy (Republican Party) for Heredia province"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1910-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "museo-gonzalez",
+       "locator": "生平",
+       "quote": "De 1910 a 1914 fue diputado del Partido Republicano por la provincia de Heredia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinabi-gonzalez",
+       "locator": "生平",
+       "quote": "En 1910 fue electo diputado al Congreso",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；國家博物館條目明寫他是共和黨（Partido Republicano）議員",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:presidency",
+     "gapKind": "not_found",
+     "note": "總統任期1914-05-08～1917-01-27已在名單5442，本檔未重建；國家博物館與選舉法庭表與之一致。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:junta_nacional_de_electricidad",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；SINABI 只寫「Fundador y presidente de la Junta Nacional de Electricidad」，未寫任何年份，已查 SINABI、國家博物館、百科。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:primer_designado",
+     "gapKind": "not_found",
+     "note": "第一副總統（Primer Designado）的年份來源不一致：SINABI 寫1910年被選為議員及 Primer Designado，國家博物館寫國會選他為1914–1918年期間的 Primer Designado；因未明寫起訖日且與總統任期重疊，未建職位。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birth_date",
+     "gapKind": "not_found",
+     "note": "出生日：國家博物館與百科皆為1877-06-15；其他私人彙編寫7月15日（未採用）。僅記錄，無兩份合格來源相衝突。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:regime_id",
+     "gapKind": "identity_uncertain",
+     "note": "regimeId 因不連庫一律 null；Costa Rica 其他職位多為民間職務。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Alfredo González Flores",
+     "url": "https://lobid.org/gnd/search?q=Alfredo+Gonz%C3%A1lez+Flores&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 1054730709：1877～1962，Politiker／Präsident，1914-1917 Präsident Costas Ricas"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch：Alfredo González Flores presidente Costa Rica 1914 1917 biografía",
+     "url": null,
+     "result": "found_B",
+     "note": "取得 encyclopedia.com（Ameringer）、UCR 期刊線索"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com González Flores, Alfredo (1877–1962)",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/gonzalez-flores-alfredo-1877-1962",
+     "result": "found_B",
+     "note": "具名作者 Charles D. Ameringer"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "UCR Estudios：Murillo Jiménez 論文",
+     "url": "https://revistas.ucr.ac.cr/index.php/estudios/article/download/31018/30804/90111",
+     "result": "found_B",
+     "note": "PDF 轉文字；雙欄頁面只取首頁與段落清楚處的句子"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "TSE 歷任總統任期表 PDF",
+     "url": "https://www.tse.go.cr/pdf/ifed/PresidentesCR-Cuadros.pdf",
+     "result": "found_A",
+     "note": "8 May 1914 – 27 ene 1917"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "WebSearch：González Flores 官方（presidencia／asamblea／museo／sinabi）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到國家博物館、SINABI、Asamblea Legislativa 條目"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "presidencia.go.cr 傳記頁",
+     "url": "https://www.presidencia.go.cr/comunicados/2017/01/biografia-alfredo-gonzalez-flores/",
+     "result": "no_result",
+     "note": "HTTP 404，已丟棄"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Museo Nacional de Costa Rica 歷任總統畫廊",
+     "url": "https://www.museocostarica.go.cr/divulgacion/temas-especiales/galeria-expresidentes/alfredo-gonzalez-flores/",
+     "result": "found_A",
+     "note": "取得生平與任職年份"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "SINABI Diccionario biográfico 351",
+     "url": "https://www.sinabi.go.cr/diccionariobiografico/biografias/351.html",
+     "result": "found_A",
+     "note": "頁面 ISO-8859-1，轉碼後存檔"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "asamblea.go.cr 條目 ID=13",
+     "url": "https://www.asamblea.go.cr/ca/Lists/coleccion/DispForm.aspx?ID=13&ContentTypeId=0x010016D472012BE6F948A129C62D3DF126E1",
+     "result": "no_result",
+     "note": "curl 逾時（60 秒），未取得"
+    }
+   ]
+  },
+  {
+   "key": "es-alcala-zamora",
+   "bioId": "01a1b4bf-6119-7cd5-8b47-85c8557e0be2",
+   "name": "Niceto Alcalá-Zamora y Torres",
+   "nameZh": "尼塞托·阿爾卡拉-薩莫拉",
+   "recordIds": [
+    "01a1aa4a-4a40-7d0a-82b8-dd357e922c42",
+    "01a1aa4a-4a41-7b09-8e2e-35a535e0646c",
+    "01a1aa4a-4a43-75b3-8302-bc34bfd9c981",
+    "01a1aa4a-4a42-7859-bced-14924366f200",
+    "01a1aa4a-4a45-7da5-bffb-03cb9e5a301c"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1877-07-06",
+      "end": "1900-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與學業",
+      "en": "Birth and studies"
+     },
+     "body": {
+      "zh-Hant": "阿爾卡拉—薩莫拉1877年7月6日生於科爾多瓦省的普列戈（Priego de Córdoba）。他十七歲時已取得格拉納達大學的法學學位，二十二歲成為國務委員會的法律顧問。德國國家圖書館權威檔記他為西班牙政治家與法學家，生於1877年，是第二共和國的第一任國家元首。",
+      "en": "Alcalá-Zamora was born on 6 July 1877 at Priego de Córdoba. By the age of seventeen he held a law degree from the University of Granada, and at twenty-two he became a legal adviser (letrado) of the Council of State. The German National Library authority record describes him as a Spanish politician and jurist, born in 1877, and the first head of state of the Second Republic."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "Priego de Córdoba, 6 de julio de 1877-",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-alcala",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\": [ \"1877\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "era licenciado en Derecho por la Universidad de Granada",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "a los veintidós años, letrado del Consejo de Estado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-alcala",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Span. Politiker, Jurist, 1. Staatspräsident d. zweiten span. Republik",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "A la temprana edad de diecisiete años era licenciado en",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1913-01-01",
+      "end": "1930-04-12"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "君主制時期的政治與學院",
+      "en": "Restoration-era politics and the academy"
+     },
+     "body": {
+      "zh-Hant": "在君主制復辟時期，他屬於自由黨（Partido Liberal）。他在曼努埃爾·加西亞·普列托（Manuel García Prieto）主持的兩屆內閣裡，先後任公共工程（Fomento）部長（1917至1918年）和戰爭部長（1922至1923年）。1913年他獲准成為皇家法學與立法學院（Real Academia de Jurisprudencia y Legislación）的正式院士，1930年4月11日當選該院院長。",
+      "en": "During the Restoration monarchy he belonged to the Liberal Party. In two cabinets presided over by Manuel García Prieto he served as minister of Fomento (1917-18) and minister of War (1922-23). In 1913 he was admitted as a full member of the Royal Academy of Jurisprudence and Legislation, and on 11 April 1930 he was elected its president."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "Participó en la política de la Restauración desde las filas del Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "ministro de Fomento (1917-18) y de la Guerra (1922-23)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "presididos por Manuel García Prieto",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.671",
+       "quote": "Numerario de la Real Academia de Jurisprudencia y Legislación en 1913",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.671",
+       "quote": "Fue elegido Presidente el 11 de abril de 1930",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1930-01-01",
+      "end": "1936-04-08"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "從共和派到總統",
+      "en": "From republican to president"
+     },
+     "body": {
+      "zh-Hant": "他反對米格爾·普里莫·德里維拉的獨裁，1930年表態支持共和，參與聖塞瓦斯蒂安協定，並在阿方索十三世於1931年4月14日退位後領導臨時政府。他後來當選共和國總統；1931年11月26日他在第四次嘗試後獲選為西班牙皇家語言學院的正式院士。1936年4月7日他被免去總統職務。",
+      "en": "Opposed to the dictatorship of Miguel Primo de Rivera, he declared himself in favour of the Republic in 1930, took part in the Pact of San Sebastián, and led the provisional government after Alfonso XIII renounced the throne on 14 April 1931. He was later elected president of the Republic. On 26 November 1931, at the fourth attempt, he was elected a full member of the Royal Spanish Academy. On 7 April 1936 he was removed from the presidency."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "Su oposición a la dictadura de Miguel Primo de Rivera le llevó a declararse",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "partidario de la República en 1930",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "a participar en el Pacto de San Sebastián",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "presidir el gobierno provisional que se hizo cargo del poder tras la",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "renuncia de Alfonso XIII, el 14 de abril de 1931",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "fue elegido presidente de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.674",
+       "quote": "El 7 de abril de 1936, con su destitución de la Presidencia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.674",
+       "quote": "El 26 de noviembre de 1931 Don Niceto Alcalá-Zamora, en el cuarto intento",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.674",
+       "quote": "fue elegido Numerario de la Real Academia Española.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1945-01-01",
+      "end": "1949-02-19"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "流亡與去世",
+      "en": "Exile and death"
+     },
+     "body": {
+      "zh-Hant": "他於1949年2月18日凌晨在布宜諾斯艾利斯的流亡中去世。他留下大量著作，包括《憲法經驗三年》和《1931年憲法的缺陷》；1945年他在評述自己被免職一事時寫過文章。",
+      "en": "He died in exile in Buenos Aires in the early morning of 18 February 1949. He left a large body of writings, including Tres años de experiencia constitucional and Los defectos de la Constitución de 1931; in 1945 he wrote a commentary on his removal from office."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.667",
+       "quote": "En la madrugada del 18 de febrero de 1949, en Buenos aires, fallecía",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-alcala",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\": [ \"1949\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "Tres años de experiencia constitucional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "Los defectos de la Constitución de 1931",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "dejó una abundante obra escrita",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "p.675",
+       "quote": "Años después, en 1945, comentando su cese escribió",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "racmyp-alcala",
+       "locator": "Palabras de la ministra",
+       "quote": "fallecía en el exilio un español",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "alcala-fomento-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙政府（公共工程部）",
+      "en": "Government of Spain (Ministry of Fomento)"
+     },
+     "title": {
+      "orig": "Ministro de Fomento",
+      "zh-Hant": "公共工程（Fomento）部長",
+      "en": "Minister of Fomento"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1917-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "ministro de Fomento (1917-18) y de la Guerra (1922-23)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5：公共工程（Fomento）部不是外交、國防／戰爭、財政、內政四部之一"
+    },
+    {
+     "key": "alcala-war-minister-1922",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙政府（戰爭部）",
+      "en": "Government of Spain (Ministry of War)"
+     },
+     "title": {
+      "orig": "Ministro de la Guerra",
+      "zh-Hant": "戰爭部長",
+      "en": "Minister of War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1922-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "ministro de Fomento (1917-18) y de la Guerra (1922-23)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ugr-alcala",
+       "locator": "intro",
+       "quote": "presididos por Manuel García Prieto",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "R6：戰爭部屬國防四部、正職，但來源只到年精度（1922-23），無法證明任期至少90天；regimeId 不連庫為 null",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:presidency_and_provisional_government",
+     "gapKind": "not_found",
+     "note": "1931-04-14～1936-04-07 的臨時政府主席／首相／共和國總統任期已在名單5442，本檔未重建。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:deputy_1905",
+     "gapKind": "not_found",
+     "note": "待查證：缺起訖日；Gran Enciclopèdia Catalana 條目（署名僅縮寫 RGa，不列為合格出處）稱1905年以自由黨黨員身分當選議員；RACMYP（B）則寫他1906年起為 La Carolina 選出的議員（Diputado por La Carolina），未寫黨籍身分與迄日；合格出處以 RACMYP 為準，未建職位。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "gec-alcala",
+       "locator": "bio",
+       "quote": "Fou elegit diputat el 1905 com a membre del Partido Liberal",
+       "quoteLang": "ca",
+       "evidenceNote": "僅縮寫署名（RGa），未評等，只作線索",
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "field:academia_jurisprudencia_presidency",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；RACMYP 記1930-04-11當選皇家法學與立法學院院長、1931-05-29再度當選，未寫任期迄日。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:rae_numerario",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；1931-11-26當選皇家語言學院正式院士，來源未寫迄日。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:alcala-war-minister-1922",
+     "gapKind": "not_found",
+     "note": "戰爭部長精確起訖日待查：UGR 只寫 (1922-23)；已下載《Gaceta de Madrid》1922-10-06、1922-12-29 兩期（官方 A），內文沒有任命令；精確起訖日尚缺。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:dbe_rah",
+     "gapKind": "not_found",
+     "note": "待查證：Real Academia de la Historia DB~e（dbe.rah.es）頁面為 JavaScript 載入，curl 只取得空殼，未取得傳記全文。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:regime_id",
+     "gapKind": "identity_uncertain",
+     "note": "regimeId 因不連庫一律 null。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Niceto Alcalá-Zamora",
+     "url": "https://lobid.org/gnd/search?q=Niceto+Alcal%C3%A1-Zamora&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 121816842：1877～1949，Politiker／Rechtsanwalt；另有兒子 Alcalá-Zamora y Castillo（1906–1985）不同人"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e 條目",
+     "url": "https://dbe.rah.es/biografias/6563/niceto-alcala-zamora-y-torres",
+     "result": "no_result",
+     "note": "頁面為 JavaScript 載入，curl 只取得標題空殼；猜測的 id 未驗證"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Niceto Alcalá-Zamora y Torres dbe.rah.es biografía presidente de la República",
+     "url": null,
+     "result": "unrated",
+     "note": "搜尋結果未出現 DB~e 條目；出現 UGR、RACMYP、Gran Enciclopèdia Catalana、私人彙編"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "UGR Horizonte V Centenario PDF",
+     "url": "https://horizontevcentenario.ugr.es/print/pdf/node/283",
+     "result": "found_B",
+     "note": "大學人物頁"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "RACMYP 1999 紀念演說 PDF",
+     "url": "https://racmyp.es/wp-content/uploads/2023/06/A76-33.pdf",
+     "result": "found_B",
+     "note": "學術院出版的紀念演說（演講人具名）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Gran Enciclopèdia Catalana 條目",
+     "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/niceto-alcala-zamora-y-torres",
+     "result": "unrated",
+     "note": "署名僅縮寫 RGa，不列合格出處，只作 gap 線索"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "WebSearch：Alcalá-Zamora ministro de la Guerra 1922 1923 García Prieto Congreso de los Diputados",
+     "url": null,
+     "result": "unrated",
+     "note": "搜尋結果指向 Gaceta／BOE 1922 年 PDF 及私人彙編"
+    },
+    {
+     "step": 8,
+     "sourceType": "treaty_law",
+     "query": "BOE Gaceta de Madrid 1922-10-06",
+     "url": "https://boe.es/gazeta/dias/1922/10/06/pdfs/GMD-1922-279.pdf",
+     "result": "not_relevant",
+     "note": "下載並轉文字，未見任命令"
+    },
+    {
+     "step": 9,
+     "sourceType": "treaty_law",
+     "query": "BOE Gaceta de Madrid 1922-12-29",
+     "url": "https://www.boe.es/gazeta/dias/1922/12/29/pdfs/GMD-1922-363.pdf",
+     "result": "not_relevant",
+     "note": "下載並轉文字，未見 Alcalá-Zamora 任命令"
+    }
+   ]
+  }
+ ]
+}

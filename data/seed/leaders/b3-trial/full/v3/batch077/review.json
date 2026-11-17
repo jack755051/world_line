@@ -1,0 +1,88 @@
+{
+ "batch": "077",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 17,
+  "editedSentences": 12,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ar-de-la-plaza",
+   "bioId": "098909ab-21eb-4813-949d-dfb1dc45ea8b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 19,
+   "changes": [
+    "段4：副總統任期句改寫為「總統府薩恩斯·培尼亞頁列他為副總統，該任總統任期為…」，原句誤把總統任期說成頁面列的副總統任期",
+    "段5：補引文 'de la Plaza faced two challenges: World War I…' 支撐「第一次世界大戰」子句、'attempted to meet a growing economic crisis' 支撐「經濟危機」子句；「讓阿根廷脫離金本位」改為「試圖以…應對」以合原文 attempted",
+    "抽查重抓 cr-galeria（Mandato 句逐字相符）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ot-mehmed-vi",
+   "bioId": "01a1b4c0-c858-7beb-b955-a0a1570aae30",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1：補引文（阿卜杜勒哈米德二世贈別墅、正式宣布為繼承人、以穆罕默德六世之名即位）；英文刪 'with private teachers'（無引文）",
+    "段2：截斷引文 'Millî Meclis…görevinde' 拆為兩筆完整片段（含 bırakan）；補 'Mustafa Kemal Paşa padişaha çektiği telgrafta' 支撐發電報者；Rauf Bey／Mondros 兩筆截斷引文改為完整片段",
+    "段3：刪「協約國」（引文無主語）並改標題為「大宰相更迭與伊斯坦堡被占領」；23 Nisan 引文擴為含 Ankara’da；21 Ekim 引文加 evidenceNote 說明年份依上下文",
+    "段4：刪「安卡拉的」「英國船」「義大利政府」（引文無）；馬拉亞號句改為「依決定…被送離」並補 kararlaştırıldı 引文；熱那亞、大馬士革引文擴為含地名",
+    "職位 mehmed6-heir-apparent：補含迄日（3 Temmuz 1918）引文",
+    "抽查重抓 kure-mehmed（Cenova Limanı 句逐字相符）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cs-benes",
+   "bioId": "01a1b4c0-c85e-7df5-9a66-aa3a93ebe2c9",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 5,
+   "roleCandidates": 2,
+   "gaps": 5,
+   "searchLogSteps": 16,
+   "changes": [
+    "段1：刪「波希米亞」（引文無）；補 'moderní filologii na FF české univerzity v Praze' 支撐布拉格捷克大學；「組織者」改「組織者之一」",
+    "段2：補引文支撐「後稱捷克斯洛伐克國民委員會」與「以馬薩里克為首」",
+    "段3：「共十七年」改「此後又…十七年」（原文 dalších 17 roků）；「促成小協約」改為「參與確立新共和國在中歐的國際地位，主軸是小協約」並補引文；1924 引文擴為含 Francii；補國聯引文；刪「同時」",
+    "段4：補 mv-benes 引文支撐「馬薩里克辭職後」、mzv-benes 'přinucen k abdikaci' 支撐「被迫」",
+    "段5：補 '(jím iniciované) vytvoření…' 支撐「在他倡議下」",
+    "gap habilitation_year：候選引文 'se v roce 1913' 擴為 'se v roce 1913 stal docentem'",
+    "抽查重抓 mzv-benes（uznáno všemi státy 句逐字相符）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常以只含日期的片段引文支撐含人名、地名、主語的整句（例：Mehmed 段4、Beneš 段1–5），審查補引文或刪子句",
+  "數筆引文截掉謂語（Mehmed 段2、段4），已改為完整片段",
+  "T14 判定（Plaza 1908 外長 R3、Beneš 外長 R3、流亡總統 R0、窗外閣員 R5、副總統／王儲／國聯／議員 R5）經逐筆核對無誤；Beneš 議員來源未寫政黨身分，不算黨職"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

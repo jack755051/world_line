@@ -1,0 +1,85 @@
+{
+ "batch": "088",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 19,
+  "editedSentences": 1,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "katsura-taro",
+   "bioId": "cbfe0362-7a8d-4bb6-9b88-10626ae48fc8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1補 NDL 引文「ドイツの軍政の調査・研究に従事。」支撐「從事德國軍政的調查研究」子句",
+    "重抓 ndl.go.jp/portrait/datas/52.html 比對一致",
+    "核對：大藏兼任 R6（日期依內閣期間推得）、外務兼任 39 天 R5、內務／文部窗外 R5 皆合理；GND 1847 與 NDL 1848-01-04 生年 conflict 屬兩份已抓 A 來源，保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "es-maura",
+   "bioId": "01a1b52a-6207-75ad-a1c4-6272c5f37970",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 34,
+   "changes": [
+    "段1補 2 筆、段2補 5 筆、段4補 3 筆 Treccani 引文（律師與政治生涯、選區支持、古巴自治、國內反對、薩加斯塔未支持、年底重回內閣、Silvela、行政改革、壓制恐攻、退出政壇），皆原文已抓逐字",
+    "段4改句：「從嚴執行既有的反恐法令」→「為壓制恐怖攻擊而加嚴既有法律」（原文 si resero più rigorose le leggi esistenti 是加嚴法律，非執行）",
+    "重抓 Treccani 條目比對一致",
+    "partito neutralista 首領維持 partyPostAmbiguous；RAE 院長缺迄日 gap、司法大臣缺起日 gap 保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "de-marx-wilhelm",
+   "bioId": "01a19f15-380e-7eeb-8044-bb707caeae6d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 6,
+   "searchLogSteps": 26,
+   "changes": [
+    "段2補 2 筆、段3補 4 筆、段4補 2 筆 NDB 引文（凡爾賽條約、文化政策成果、內閣組成政黨、貨幣改革、看守內閣、道威斯、路德內閣倒臺、右派政府）",
+    "5 筆 LeMO 引文 quote 本身無日期卻填 datePrecision（DNVP 入閣、放棄議席×2、黨主席、人民協會），改 null（Q8）",
+    "新增 gap field:party_posts：NDB 列窗內黨職杜塞道夫中央黨主席 1907–19、萊茵中央黨副主席 1906–19，研究者未建 roleCandidates，審查不新增紀錄",
+    "重抓 LeMO 比對一致；國會黨團主席維持 partyPostAmbiguous（與他批一致）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批名單實為 3 人（提示寫 5 人）",
+  "多段落有子句缺 quote 支撐（Maura、Marx 尤甚），審查補 19 筆原文已抓引文",
+  "LeMO 年表條目引文不含日期卻填 datePrecision（Q8）",
+  "Marx 窗內地方／邦級黨職（NDB 明寫起迄年）研究者漏建 roleCandidates，已記 gap 待下輪；議會黨團主席是否算黨職仍待主管裁定",
+  "Maura、Marx 各有 1 筆缺迄日（已有待查證 gap 與 retry 搜尋、篇幅不足 gap），check_min 記 documentedShortfall"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

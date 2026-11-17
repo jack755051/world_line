@@ -1,0 +1,4736 @@
+{
+ "batch": "b3-full-v3-batch069",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式；regimeId 因不連庫一律 null＋organization。阿薩尼亞四段首腦／元首任期、白里安十一段總理任期、雅斯帕三段首相任期（5442 已有）不重建。四部閣員（內政、外交、陸軍）任期因 regimeId 無法填，依 R6 留經歷層並標 roleEligible；其餘依 R5。雅斯帕眾議員席位來源明寫天主教黨籍，依 Tai 12:47 裁決入角色層（R1）；白里安眾議員任期只列議會黨團，標 partyPostAmbiguous。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch069/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "mptmd-azana-infancia": {
+   "title": "Childhood and youth: 1880-1911",
+   "authors": [],
+   "publisher": "Ministerio de Política Territorial y Memoria Democrática (Gobierno de España)",
+   "published_text": "Manuel Azaña（vida y obra）線上展覽頁，西班牙政府網站",
+   "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/infancia-y-juventud",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（西班牙領土政策與民主記憶部，Manuel Azaña 生平展）"
+  },
+  "mptmd-azana-intelectual": {
+   "title": "Intellectual in the Silver Age of Spanish culture: 1911-1931",
+   "authors": [],
+   "publisher": "Ministerio de Política Territorial y Memoria Democrática (Gobierno de España)",
+   "published_text": "Manuel Azaña（vida y obra）線上展覽頁，西班牙政府網站",
+   "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/azana-intelectual-y-politico",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（西班牙領土政策與民主記憶部，Manuel Azaña 生平展）"
+  },
+  "mptmd-azana-gobierno": {
+   "title": "Proclamation of the Republic. Azaña in the Government: 1931-1933",
+   "authors": [],
+   "publisher": "Ministerio de Política Territorial y Memoria Democrática (Gobierno de España)",
+   "published_text": "Manuel Azaña（vida y obra）線上展覽頁，西班牙政府網站",
+   "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/azana-en-el-gobierno",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（西班牙領土政策與民主記憶部，Manuel Azaña 生平展）"
+  },
+  "mptmd-azana-oposicion": {
+   "title": "Azaña in the opposition: 1933-1936",
+   "authors": [],
+   "publisher": "Ministerio de Política Territorial y Memoria Democrática (Gobierno de España)",
+   "published_text": "Manuel Azaña（vida y obra）線上展覽頁，西班牙政府網站",
+   "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/azana-en-la-oposicion",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（西班牙領土政策與民主記憶部，Manuel Azaña 生平展）"
+  },
+  "mptmd-azana-guerra": {
+   "title": "President at war: 1936-1939",
+   "authors": [],
+   "publisher": "Ministerio de Política Territorial y Memoria Democrática (Gobierno de España)",
+   "published_text": "Manuel Azaña（vida y obra）線上展覽頁，西班牙政府網站",
+   "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/presidente-en-guerra",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（西班牙領土政策與民主記憶部，Manuel Azaña 生平展）"
+  },
+  "mptmd-azana-exilio": {
+   "title": "Exile, persecution and death: 1939-1940",
+   "authors": [],
+   "publisher": "Ministerio de Política Territorial y Memoria Democrática (Gobierno de España)",
+   "published_text": "Manuel Azaña（vida y obra）線上展覽頁，西班牙政府網站",
+   "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/exilio-persecucion-y-muerte",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（西班牙領土政策與民主記憶部，Manuel Azaña 生平展）"
+  },
+  "congreso-comienzos": {
+   "title": "Los comienzos de la II República - Congreso de los Diputados",
+   "authors": [],
+   "publisher": "Congreso de los Diputados (Cortes Generales)",
+   "published_text": "Papers para la Historia del Congreso (1812-1977)：II República Española 1931-1939",
+   "url": "https://www.congreso.es/ca/cem/vidparl1931-2",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方頁（西班牙眾議院歷史專頁）"
+  },
+  "gaceta-1931-04-15": {
+   "title": "Gaceta de Madrid, núm. 105, 15 de abril de 1931",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（Gazeta de Madrid 數位館藏）",
+   "published_text": "Gaceta de Madrid núm. 105 (1931-04-15)",
+   "url": "https://www.boe.es/gazeta/dias/1931/04/15/pdfs/GMD-1931-105.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方公報（Gaceta de Madrid，BOE 官方數位化版）"
+  },
+  "gaceta-1933-09-13": {
+   "title": "Gaceta de Madrid, núm. 256, 13 de septiembre de 1933",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（Gazeta de Madrid 數位館藏）",
+   "published_text": "Gaceta de Madrid núm. 256 (1933-09-13)",
+   "url": "https://www.boe.es/gazeta/dias/1933/09/13/pdfs/GMD-1933-256.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "官方公報（Gaceta de Madrid，BOE 官方數位化版；PDF 文字層為 OCR，含辨識雜訊）"
+  },
+  "sycomore-briand": {
+   "title": "Aristide Briand（1862-1932）— Base de données des députés français depuis 1789",
+   "authors": [
+    "Jean Jolly（Dictionnaire des parlementaires français 1889-1940，傳記部分）"
+   ],
+   "publisher": "Assemblée nationale",
+   "published_text": "Base de données des députés français depuis 1789（含 Jolly 傳記）",
+   "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/%28num_dept%29/1211",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方資料庫（法國國民議會 Sycomore），傳記取自 Jean Jolly 議員辭典"
+  },
+  "nobel-briand": {
+   "title": "Aristide Briand – Biographical",
+   "authors": [
+    "Frederick W. Haberman（編，Nobel Lectures, Peace 1926-1950）"
+   ],
+   "publisher": "NobelPrize.org（Nobel Foundation）",
+   "published_text": "From Nobel Lectures, Peace 1926-1950, Elsevier, Amsterdam, 1972",
+   "url": "https://www.nobelprize.org/prizes/peace/1926/briand/biographical/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "諾貝爾基金會官方傳記頁，轉載 Nobel Lectures（具名編者、學術出版）"
+  },
+  "an-hommage-briand": {
+   "title": "Discours de Mme Yaël Braun-Pivet, Présidente de l'Assemblée nationale — Apposition d'une plaque en hommage à Aristide Briand (6 décembre 2022)",
+   "authors": [
+    "Yaël Braun-Pivet"
+   ],
+   "publisher": "Assemblée nationale（Présidence）",
+   "published_text": "Discours du 6 décembre 2022（SEUL LE PRONONCÉ FAIT FOI）",
+   "url": "https://presidence.assemblee-nationale.fr/pdf/show/31312/discoursPDF/2022-12-06_Discours%20de%20Mme%20Ya%C3%ABl%20Braun-Pivet,%20Pr%C3%A9sidente%20de%20l%27Assembl%C3%A9e%20nationale%20-%20Apposition%20d%27une%20plaque%20en%20hommage%20%C3%A0%20Aristide%20Briand%20-%20H%C3%A9micycle.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁（國民議會議長府官方講稿）"
+  },
+  "an-fiche-briand": {
+   "title": "Aristide Briand — Mandats et fonctions (Chefs de l'Etat ou des gouvernements)",
+   "authors": [],
+   "publisher": "Assemblée nationale",
+   "published_text": "Fiche personnalité Briand（Gouvernement et Parlement）",
+   "url": "https://www.assemblee-nationale.fr/gouv_parl/fiches_personnalites/Briand.asp",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁（國民議會「歷任政府首長與部長」個人頁）"
+  },
+  "kaowarsom-jaspar": {
+   "title": "JASPAR (Henri), Docteur en droit, avocat, homme d'Etat",
+   "authors": [
+    "J.-M. Jadot"
+   ],
+   "publisher": "Académie royale des Sciences d'Outre-Mer, Biographie Belge d'Outre-Mer, Tome VI",
+   "published_text": "Biographie Belge d'Outre-Mer, t. VI, col. 539 ss.（署 25 juin 1957）",
+   "url": "https://www.kaowarsom.be/documents/bbom/Tome_VI/Jaspar.Henri.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構傳記（比利時皇家海外科學院，具名作者 J.-M. Jadot）"
+  },
+  "jbh-henkens-1996": {
+   "title": "De vorming van de eerste regering-van Zeeland (maart 1935). Een studie van het proces van kabinetsformatie",
+   "authors": [
+    "Bregt Henkens"
+   ],
+   "publisher": "Belgisch Tijdschrift voor Nieuwste Geschiedenis / Revue belge d'Histoire contemporaine, 26 (1996), 1-2, pp. 209-261",
+   "published_text": "BTNG-RBHC 26 (1996) 1-2, pp. 209-261（KU Leuven 研究者）",
+   "url": "https://journalbelgianhistory.be/en/system/files/article_pdf/BTNG-RBHC%2C%2026%2C%201996%2C%201-2%2C%20pp%20209-261.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術期刊論文（具名作者，KU Leuven）"
+  },
+  "db-jaspar": {
+   "title": "Jaspar, Henri — Deutsche Biographie（索引）",
+   "authors": [],
+   "publisher": "Deutsche Biographie（Bayerische Staatsbibliothek／Historische Kommission），GND 124446701",
+   "published_text": "Deutsche Biographie 索引條目（GND 正規資料）",
+   "url": "https://www.deutsche-biographie.de/pnd124446701.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "權威檔索引（GND／Deutsche Biographie 人名正規資料）"
+  }
+ },
+ "people": [
+  {
+   "key": "azana",
+   "bioId": "01a1b4c0-2f4e-74ff-a253-c3dea2be8aee",
+   "name": "Manuel Azaña y Díaz",
+   "nameZh": "曼努埃爾·阿薩尼亞",
+   "recordIds": [
+    "01a1aa4a-4a45-706c-8323-63dfde3d15f7",
+    "01a1aa4a-4a44-7266-9679-ca39db490111",
+    "01a1aa4a-4a48-75fe-9b68-5905489119d9",
+    "01a1aa4a-4a4c-7b0b-a5f3-c813887d14dd",
+    "01a1aa4a-4a47-7217-9dec-b87cd7a0fdf7"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-01-10",
+      "end": "1911-02-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、學業與初入公職",
+      "en": "Origins, studies and first public posts"
+     },
+     "body": {
+      "zh-Hant": "阿薩尼亞1880年1月10日生於阿爾卡拉德埃納雷斯。他1898年在薩拉戈薩大學取得法學學位，兩年後在馬德里大學提出博士論文《群眾的責任》。1910年，他進入司法與公證登記總局任職；1911年2月4日，他在阿爾卡拉德埃納雷斯人民之家的啟用典禮上發表第一場政治演講《西班牙問題》。",
+      "en": "Azaña was born at Alcalá de Henares on 10 January 1880. He took his law degree at the University of Zaragoza in 1898 and, two years later, presented his doctoral thesis, The Responsibility of the Multitudes, at the University of Madrid. In 1910 he joined the General Directorate of Registries and Notaries as an official, and on 4 February 1911, at the inauguration of the House of the People of Alcalá de Henares, he gave his first political lecture, The Spanish Problem."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "Alcalá de Henares on January 10, 1880",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "In 1898 he graduated in Law at the University of Zaragoza",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "two years later, he presented his doctoral thesis",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "The Responsibility of the Multitudes at the University of Madrid",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "In 1910 he joined as an official",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "he joined as an official in the General Directorate of Registries and Notaries",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "on February 4, 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "at the inauguration of the House of the People of Alcalá de Henares",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-infancia",
+       "locator": "Childhood and youth",
+       "quote": "he gave his first political conference The Spanish Problem",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1911-11-01",
+      "end": "1930-07-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "巴黎、文學會與共和主義",
+      "en": "Paris, the Ateneo and republicanism"
+     },
+     "body": {
+      "zh-Hant": "1911年11月至1912年10月，阿薩尼亞住在巴黎；他加入改良黨，1913年2月起擔任馬德里文學會（Ateneo）秘書，直到1920年。第一次世界大戰期間，他堅定支持協約國。他競選普恩特德爾阿爾索比斯波選區議員，1918年與1923年都失敗；1923年9月政變後，他公開表明反對普里莫·德里維拉的獨裁，並參與1925年創建共和行動黨（Acción Republicana）。他1926年獲國家文學獎；1930年6月，他當選馬德里文學會會長。",
+      "en": "From November 1911 to October 1912 Azaña stayed in Paris. He joined the Reformist Party, and in February 1913 he became secretary of the Ateneo de Madrid, a post he held until 1920. During the First World War he was a staunch defender of the Allied cause. His candidacy for a deputy's seat at Puente del Arzobispo failed in 1918 and 1923; after the coup of September 1923 he declared his rejection of Primo de Rivera's dictatorship and took part in the creation of Acción Republicana in 1925. He received the National Prize of Literature in 1926, and in June 1930 he was elected president of the Ateneo de Madrid."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "Between November 1911 and October 1912 he remained in Paris",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "He joined the Reformist Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "in February 1913, became secretary of the Ateneo de Madrid",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "a position he held until 1920",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "Azaña is a staunch defender of the Allied cause",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "His candidacy for a deputy for Puente del Arzobispo failed in 1918 and 1923",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "after the coup d’état of September 1923",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "he declared his rejection of the dictatorship of Primo de Rivera",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "participated in the creation of Acción Republicana in 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "In 1926 he received the National Prize of Literature",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "In June 1930 he was elected president of the Ateneo de Madrid",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-04-14",
+      "end": "1933-09-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍部長與共和國初期改革",
+      "en": "War minister and the early reforms of the Republic"
+     },
+     "body": {
+      "zh-Hant": "1931年4月14日，阿薩尼亞獲任命為陸軍部長（Ministro de la Guerra），官方公報刊出的任命令署日為4月14日。他推動軍隊改革，並在1931年10月於陸軍部之外加任政府首相。1931年12月憲法通過；1932年8月桑胡霍政變失敗後，議會通過加泰隆尼亞自治章程與土地改革法。1933年9月12日，他辭去陸軍部長職務。",
+      "en": "On 14 April 1931 Azaña was appointed Minister of War; the decree published in the Gaceta is dated that day. He pushed the reform of the army and in October 1931 added the presidency of the government to the War portfolio. The Constitution was approved in December 1931, and after the failure of General Sanjurjo's coup in August 1932 the Cortes approved the Statute of Catalonia and the Agrarian Reform Law. On 12 September 1933 his resignation as Minister of War was accepted."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gaceta-1931-04-15",
+       "locator": "Sumario, p. 194",
+       "quote": "Otro ídem Ministro de la Guerra a D. Manuel Azaña Díaz.— Página 194.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaceta-1931-04-15",
+       "locator": "Decreto, p. 194",
+       "quote": "Dado en Madrid, a catorce de Abril de mil novecientos treinta y uno.",
+       "quoteLang": "es",
+       "evidenceNote": "文字層為 OCR，標點雜訊如原文",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-comienzos",
+       "locator": "Gobierno provisional",
+       "quote": "Manuel Azaña, como ministro de Guerra",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-gobierno",
+       "locator": "Azaña in the Government",
+       "quote": "It promotes the reform of the army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-gobierno",
+       "locator": "Azaña in the Government",
+       "quote": "October 1931, adds to the portfolio of Guerra the presidency of the Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-gobierno",
+       "locator": "Azaña in the Government",
+       "quote": "In December 1931 the Constitution was approved",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-gobierno",
+       "locator": "Azaña in the Government",
+       "quote": "After overcoming the coup of General Sanjurjo, in August 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-gobierno",
+       "locator": "Azaña in the Government",
+       "quote": "the Cortes approved the Statute of Catalonia and the Agrarian Reform Law",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaceta-1933-09-13",
+       "locator": "Sumario, p. 1674",
+       "quote": "Otro ídem a D. Manuel Azaña y Díaz la dimisión del cargo-de M inistro de",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 文字層，單字間距雜訊如原文；下一行為「la Guerra.— Página 1674.」",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaceta-1933-09-13",
+       "locator": "Decreto, p. 1674",
+       "quote": "Dado en Madrid a doce (le Septiembre de mil novecientos treinta y tres.",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 文字層：「(le」應為「de」；同日另有數件辭職令，與上一筆對照確認為陸軍部長辭職令",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1933-11-01",
+      "end": "1936-02-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "在野與人民陣線",
+      "en": "Opposition and the Popular Front"
+     },
+     "body": {
+      "zh-Hant": "1933年11月選舉由右翼聯盟西班牙自治權利聯盟（CEDA）獲勝；阿薩尼亞在1934年4月創建左翼共和黨（Izquierda Republicana）。他因出席友人葬禮前往巴塞隆納，被控涉入加泰隆尼亞共和國的宣布，遭拘押於港內船艦，後來兩項指控都獲判無罪。1935年，他以露天集會演說成為共和左派的代表人物；1936年2月16日，左翼人民陣線贏得選舉。",
+      "en": "The right-wing coalition CEDA won the elections of November 1933, and in April 1934 Azaña founded Izquierda Republicana (the Republican Left). Having gone to Barcelona for the funeral of a friend, he was accused of taking part in the proclamation of the Catalan republic and was held on ships in the port; he was later acquitted of both accusations. In 1935 he emerged as the great figure of the republican left through his open-field speeches, and on 16 February 1936 the left-wing Popular Front won the elections."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "In the November 1933 elections, the right-wing coalition, CEDA, won.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "In April 1934, Azaña founded the Republican Left.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "he had gone to Barcelona to attend the funeral of his friend",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "accused of having participated in the proclamation of the Catalan republic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "He will be detained on the ships",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "He will be acquitted of both accusations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "In 1935, he revealed himself as the great figure of the Republican left",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "in the campaign of \"open field speeches\"",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-guerra",
+       "locator": "President at war",
+       "quote": "On February 16, 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-guerra",
+       "locator": "President at war",
+       "quote": "the left-wing coalition grouped in the Popular Front won the elections",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1936-02-19",
+      "end": "1940-11-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "首相、共和國總統與流亡",
+      "en": "Premier, President of the Republic and exile"
+     },
+     "body": {
+      "zh-Hant": "1936年2月19日，阿薩尼亞接掌政府，同年5月10日當選共和國總統。7月，非洲軍團起事反對共和國政府；戰事期間總統府在10月中旬離開首都，遷往巴塞隆納。他1939年2月5日離開西班牙，2月27日提出辭去共和國總統職務。他最後落腳法國蒙托邦，1940年11月3日夜間死於南方旅館（Hôtel du Midi），葬於蒙托邦。",
+      "en": "On 19 February 1936 Azaña took over the government, and on 10 May he was elected President of the Republic. In July the army of Africa rose against the Republic; the Presidency left the capital in mid-October and settled in Barcelona. He left Spain on 5 February 1939 and on 27 February presented his resignation as president of the Republic. He finally settled in Montauban in France; he died at the Hôtel du Midi on the night of 3 November 1940 and was buried in Montauban."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mptmd-azana-guerra",
+       "locator": "President at war",
+       "quote": "On February 19, Azaña took over the government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-guerra",
+       "locator": "President at war",
+       "quote": "on May 10, he was elected President of the Republic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-guerra",
+       "locator": "President at war",
+       "quote": "In July 1936, the African army took a stand against the Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-guerra",
+       "locator": "President at war",
+       "quote": "leaves the capital in mid-October and settles in Barcelona",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-exilio",
+       "locator": "Exile, persecution and death",
+       "quote": "He left Spain on February 5, 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-exilio",
+       "locator": "Exile, persecution and death",
+       "quote": "on February 27, 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-exilio",
+       "locator": "Exile, persecution and death",
+       "quote": "Azaña presented his resignation as president of the Republic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-exilio",
+       "locator": "Exile, persecution and death",
+       "quote": "In September, it is installed in Montauban",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-exilio",
+       "locator": "Exile, persecution and death",
+       "quote": "Azaña died at the Hôtel du Midi on the night of November 3, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-exilio",
+       "locator": "Exile, persecution and death",
+       "quote": "is buried in Montauban under the flag of Mexico",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "azana-war-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙第二共和國政府",
+      "en": "Government of the Second Spanish Republic"
+     },
+     "title": {
+      "orig": "Ministro de la Guerra",
+      "zh-Hant": "陸軍部長",
+      "en": "Minister of War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1931-04-14",
+      "end": "1933-09-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gaceta-1931-04-15",
+       "locator": "Sumario, p. 194",
+       "quote": "Otro ídem Ministro de la Guerra a D. Manuel Azaña Díaz.— Página 194.",
+       "quoteLang": "es",
+       "evidenceNote": "起日依任命令署日 14 April 1931（見同刊 Decreto）",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaceta-1931-04-15",
+       "locator": "Decreto, p. 194",
+       "quote": "Dado en Madrid, a catorce de Abril de mil novecientos treinta y uno.",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 文字層",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-comienzos",
+       "locator": "Gobierno provisional",
+       "quote": "Manuel Azaña, como ministro de Guerra",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaceta-1933-09-13",
+       "locator": "Sumario, p. 1674",
+       "quote": "Otro ídem a D. Manuel Azaña y Díaz la dimisión del cargo-de M inistro de",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 文字層；下一行「la Guerra.— Página 1674.」",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaceta-1933-09-13",
+       "locator": "Decreto, p. 1674",
+       "quote": "Dado en Madrid a doce (le Septiembre de mil novecientos treinta y tres.",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 文字層：「(le」應為「de」；辭職令署日為 12 September 1933",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍部屬四部、正職，且任期 >90 天可由公報日期證明；但 regimeId 不連庫無法填（政權待查證），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "azana-ateneo-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "馬德里文學會（Ateneo de Madrid）",
+      "en": "Ateneo de Madrid"
+     },
+     "title": {
+      "orig": "Secretary of the Ateneo de Madrid",
+      "zh-Hant": "馬德里文學會秘書",
+      "en": "Secretary of the Ateneo de Madrid"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1913-02-01",
+      "end": "1921-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "in February 1913, became secretary of the Ateneo de Madrid",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "a position he held until 1920",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "文化團體職務，非閣員／將領／長官，R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:2",
+     "gapKind": "conflict",
+     "note": "共和行動黨（Acción Republicana）創立年份：西班牙領土政策與民主記憶部（A）寫 Azaña 1925 年「參與創建」；西班牙眾議院官方頁（A）寫「Acción Republicana, creada por Azaña en 1926」。兩份合格來源不同，正文只寫 1925 年的「參與創建」並引前者，1926 說法留此待查。",
+     "candidateCitations": [
+      {
+       "sourceKey": "mptmd-azana-intelectual",
+       "locator": "Intellectual 1911-1931",
+       "quote": "participated in the creation of Acción Republicana in 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-comienzos",
+       "locator": "政黨段",
+       "quote": "Acción Republicana, creada por Azaña en 1926",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "未寫入職位：馬德里文學會會長（1930 年 6 月當選，見 mptmd）迄日在已抓來源未見；Real Academia de la Historia DB~e（dbe.rah.es／historia-hispanica.rah.es 為 JavaScript 殼，curl 取不到正文）、Britannica（Cloudflare 擋）、La Moncloa（逾時）皆未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:4",
+     "gapKind": "not_found",
+     "note": "待查證：未寫入黨職候選。來源只寫 Azaña「創建」共和行動黨（1925）與左翼共和黨（1934 年 4 月），未明寫其黨主席／領袖職務與任期；不推定為黨職（R1）。已查 mptmd 生平六頁、眾議院官方頁；DB~e 未能取得。",
+     "candidateCitations": [
+      {
+       "sourceKey": "mptmd-azana-oposicion",
+       "locator": "Azaña in the opposition",
+       "quote": "In April 1934, Azaña founded the Republican Left.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "待查證：1931 年制憲議會議員／後續議員任期（含是否以 Acción Republicana 名單當選）未取得官方議員名錄；眾議院歷史議員資料庫未能抓到個人頁。已查眾議院「Los comienzos de la II República」頁（只寫 AR 得 26 席，未寫 Azaña 當選選區與黨籍）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Azaña Díaz, Manuel id.loc.gov 權威檔",
+     "url": "https://id.loc.gov/authorities/names/n80137610.html",
+     "result": "challenge_page",
+     "note": "curl 403，Cloudflare「Just a moment」挑戰頁；不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Manuel Azaña Díaz biografía dbe.rah.es Real Academia de la Historia（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果只給 historia-hispanica.rah.es 條目連結與二手頁，無 dbe.rah.es 正文"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "dbe.rah.es／historia-hispanica.rah.es 5420-manuel-azana-diaz",
+     "url": "https://historia-hispanica.rah.es/biografias/5420-manuel-azana-diaz",
+     "result": "no_result",
+     "note": "curl 200 但只有 JavaScript 殼（5.6KB），無傳記文字；dbe.rah.es 同樣導向此殼"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Manuel Azaña britannica",
+     "url": "https://www.britannica.com/biography/Manuel-Azana-y-Diaz",
+     "result": "challenge_page",
+     "note": "curl 403 Cloudflare 挑戰頁；不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Manuel Azaña presidente del Gobierno La Moncloa historia presidentes",
+     "url": "https://www.lamoncloa.gob.es/lamoncloa/historiapresidentes/presidentes/paginas/azana.aspx",
+     "result": "no_result",
+     "note": "curl 逾時 60 秒，兩次皆無回應"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Manuel Azaña vida y obra Ministerio de Política Territorial y Memoria Democrática（WebSearch）",
+     "url": "https://mptmd.gob.es/en/portal/memoria-democratica/actividades-de-difusion/manuel-azana/vida-y-obra/azana-en-el-gobierno",
+     "result": "found_A",
+     "note": "政府官網「Manuel Azaña vida y obra」；curl 200，另抓其餘五頁（infancia／intelectual／oposición／presidente en guerra／exilio），轉文字 mptmd-azana-*.txt"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Azaña Díaz Congreso de los Diputados histórico de diputados 1931 Cortes Constituyentes（WebSearch）",
+     "url": "https://www.congreso.es/ca/cem/vidparl1931-2",
+     "result": "found_A",
+     "note": "眾議院官方頁；curl 200；只提到 Azaña 任陸軍部長與 AR 得 26 席，未載議員個人任期"
+    },
+    {
+     "step": 8,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid 15 abril 1931 Ministro de la Guerra Azaña（WebSearch）",
+     "url": "https://www.boe.es/gazeta/dias/1931/04/15/pdfs/GMD-1931-105.pdf",
+     "result": "found_A",
+     "note": "BOE 官方 Gaceta PDF；pdftotext 取字；任命令 14 April 1931"
+    },
+    {
+     "step": 9,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid 16 abril 1931（核對是否另有任命令）",
+     "url": "https://www.boe.es/gazeta/dias/1931/04/16/pdfs/GMD-1931-106.pdf",
+     "result": "not_relevant",
+     "note": "curl 200，全文無 Azaña 任命；任命在 15 日刊"
+    },
+    {
+     "step": 10,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid 13 septiembre 1933 Azaña dimisión Ministro de la Guerra",
+     "url": "https://www.boe.es/gazeta/dias/1933/09/13/pdfs/GMD-1933-256.pdf",
+     "result": "found_A",
+     "note": "辭職令（署 12 September 1933）；文字層 OCR 有雜訊"
+    },
+    {
+     "step": 11,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid 12 septiembre 1933",
+     "url": "https://www.boe.es/gazeta/dias/1933/09/12/pdfs/GMD-1933-255.pdf",
+     "result": "not_relevant",
+     "note": "curl 200，全文無 Azaña"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Manuel Azaña UNED Museo Virtual Historia Masonería（WebSearch）",
+     "url": "https://www.uned.es/universidad/inicio/unidad/museo-virtual-historia-masoneria/sala-v-historia-de-la-masoneria-en-espana/manuel-aza%C3%B1a.html",
+     "result": "found_B",
+     "note": "轉載 Ferrer Benimeli 專書摘錄；curl 200；內容與 mptmd 重疊，僅作核對，未引為事實出處"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Manuel Azaña y Díaz enciclopedia.cat（Gran Enciclopèdia Catalana）",
+     "url": "https://www.enciclopedia.cat/EC-GEC-0006389",
+     "result": "unrated",
+     "note": "curl 200；署名只有縮寫「JoM」，不算具名作者，只作對照、不引用"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Manuel Azaña Diaz encyclopedia.com（Encyclopedia of World Biography）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/manuel-azana-diaz",
+     "result": "unrated",
+     "note": "curl 200；無署名條目（Q9 未評等），不引用"
+    },
+    {
+     "step": 15,
+     "sourceType": "national_dictionary",
+     "query": "Manuel Azaña treccani",
+     "url": "https://www.treccani.it/enciclopedia/manuel-azana/",
+     "result": "no_result",
+     "note": "curl 200 但為站台首頁式頁面，無條目文字"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "Azaña y Diaz, Manuel Deutsche Biographie／GND",
+     "url": "https://www.deutsche-biographie.de/pnd118505319.html",
+     "result": "unrated",
+     "note": "curl 200；只有索引與異寫名，無生平文字；用以確認原文姓名寫法 Azaña Díaz, Manuel"
+    },
+    {
+     "step": 17,
+     "sourceType": "other",
+     "query": "Azaña Díaz Manuel（原文姓名）Cervantes Virtual 作者頁",
+     "url": "https://www.cervantesvirtual.com/autor/manuel-azana-diaz/",
+     "result": "no_result",
+     "note": "curl 404"
+    }
+   ]
+  },
+  {
+   "key": "briand",
+   "bioId": "a4a01ae8-8b51-46e4-bab8-d810735c17c6",
+   "name": "Aristide Briand",
+   "nameZh": "阿里斯蒂德·白里安",
+   "recordIds": [
+    "01a1a20c-b7ab-7aec-9097-cc6dcb504234",
+    "01a1a20c-b7f9-777e-9656-7f4abfddb441",
+    "01a1a20c-b892-77cb-8c7f-af50e1e8cb3e",
+    "01a1a20c-b89b-7cb1-893c-74aa1210f907",
+    "01a1a20c-b8c5-75e4-9d27-6dfdfb1a2ac3",
+    "01a1a20c-b8cf-74c8-828d-f414b68e69b5",
+    "01a1a20c-b90c-7953-b700-6ae46523e4ad",
+    "01a1a20c-b95c-72b9-9b99-ecb9fb8f1e1c",
+    "01a1a20c-b961-7caa-91bd-3f09d1771add",
+    "01a1a20c-b9a8-78e6-9e06-794d21a78a98",
+    "01a1a20c-b9c5-7627-bc5c-77fae66e680f"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1862-03-28",
+      "end": "1902-04-27"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、律師與社會主義運動",
+      "en": "Origins, the bar and the socialist movement"
+     },
+     "body": {
+      "zh-Hant": "白里安1862年3月28日生於南特，雙親在當地經營旅店。他當過律師和記者，1889年、1893年8月與1898年的立法選舉都沒有成功，其間他與維維亞尼、饒勒斯、富尼耶爾結交，並與他們共同創立「法蘭西社會黨」。1902年，他終於當選聖艾蒂安的眾議員。",
+      "en": "Aristide Briand was born at Nantes on 28 March 1862, the son of innkeepers. He practised as a lawyer and worked as a journalist; he failed in the legislative elections of 1889, in August 1893 and again in 1898, in the meantime he formed ties with Viviani, Jaurès and Fournière and with them founded the 'French Socialist Party'. In 1902 he was at last elected deputy for Saint-Étienne."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Né à Nantes (Loire-Inférieure) le 28 mars 1862",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "étaient établis aubergistes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "Although Briand studied law and established a practice",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "He wrote for Le Peuple, La Lanterne, La Petite République",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il se présenta, mais sans succès, aux élections législatives de 1889.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "aux élections d'août 1893",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "se liant avec Viviani, Jaurès et Fournière",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "En 1898, nouvelle tentative infructueuse",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "fonda avec eux le « parti socialiste français »",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "En 1902, il venait de défendre avec éclat Gustave Hervé",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "se faire élire député de Saint-Etienne",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1902-04-27",
+      "end": "1909-07-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "眾議員、政教分離法與司法部",
+      "en": "Deputy, the Separation law and the Ministry of Justice"
+     },
+     "body": {
+      "zh-Hant": "白里安1902年4月27日起擔任盧瓦爾省眾議員。當選三年後，他擔任政教分離法案的報告人，並使法案獲得多數通過。1906年3月14日他進入薩里安內閣，出任公共教育與宗教事務部長，後來在克里蒙梭內閣續任；他加入政府時被逐出社會黨。1908年1月4日，他改任司法部長，並由此掌管宗教事務，直到1909年7月克里蒙梭辭職。",
+      "en": "Briand sat as deputy for the Loire from 27 April 1902. Three years after his election he was the rapporteur of the bill separating the Churches from the State, which a large majority adopted. On 14 March 1906 he entered the Sarrien cabinet as minister of public instruction and worship and kept that post under Clemenceau; on joining the government he was expelled from the Socialist Party. From 4 January 1908 he took the Ministry of Justice, to which Worship was attached, until Clemenceau's resignation in July 1909."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats",
+       "quote": "Du 27 avril 1902 au 31 mai 1906",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-hommage-briand",
+       "locator": "Discours",
+       "quote": "Trois ans seulement après son élection",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-hommage-briand",
+       "locator": "Discours",
+       "quote": "le député Briand est le rapporteur du texte",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-hommage-briand",
+       "locator": "Discours",
+       "quote": "un texte adopté à une large majorité par les députés",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Briand reçut le portefeuille de l'Instruction publique et des Cultes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "dans le cabinet Sarrien (14 mars 1906)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "le conserva dans le ministère Clemenceau (25 octobre 1906)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "he was expelled from the Socialist Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "à partir du 4 janvier 1908 le Ministère de la Justice",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "le Ministère de la Justice auquel les Cultes furent rattachés",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "après la démission de Clemenceau (24 juillet 1909)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1909-07-24",
+      "end": "1914-08-26"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "首度組閣與鐵路罷工",
+      "en": "First premiership and the railway strike"
+     },
+     "body": {
+      "zh-Hant": "1909年7月24日克里蒙梭辭職後，白里安出任總理，並兼內政與宗教事務部長。1910年他徵用罷工的鐵路人員，10月31日茹爾·蓋得與74名社會黨議員要求對他提出控訴，但眾議院支持他；他於11月3日辭職，重組內閣不久後又在1911年2月27日下台。1912年1月14日他在普恩加萊內閣任司法部長；1913年1月21日組成第三屆內閣。",
+      "en": "After Clemenceau's resignation on 24 July 1909 Briand became president of the Council, holding the Interior and Worship portfolios as well. In 1910 he requisitioned the striking railway personnel; on 31 October Jules Guesde and the socialist deputies asked for his indictment but the Chamber approved him, and he resigned on 3 November. He reformed the ministry but resigned again on 27 February 1911. On 14 January 1912 he became minister of justice in Poincaré's cabinet, and on 21 January 1913 he formed his third cabinet."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Président du Conseil, avec les portefeuilles de l'Intérieur et des Cultes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "après la démission de Clemenceau (24 juillet 1909)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "prononça la réquisition du personnel",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Dans la séance du 31 octobre 1910, Jules Guesde et les 74 députés socialistes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "demandèrent sa mise en accusation",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "mais la Chambre l'approuva",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "il remit sa démission au Président de la République (3 novembre 1910)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "il démissionna le 27 février 1911",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Le 14 janvier 1912 après la chute du cabinet Caillaux",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Poincaré confia à Briand le portefeuille de la Justice",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "forma son 3e cabinet le 21 janvier",
+       "quoteLang": "fr",
+       "evidenceNote": "年份 1913 見同句前文「17 janvier 1913」",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-08-26",
+      "end": "1917-03-14"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大戰期間的政府",
+      "en": "In government during the First World War"
+     },
+     "body": {
+      "zh-Hant": "1914年8月26日，白里安在維維亞尼的國民聯合內閣出任司法部長兼副總理，任職至1915年10月29日。接著他自己組閣，這是他的第五屆內閣；他是薩洛尼卡遠征的推動者之一，並在1915年12月的加萊會議上使開闢巴爾幹新戰線的構想獲得採納。1916年12月12日他重組內閣、設立戰爭委員會。1917年3月14日利奧泰辭去陸軍部長，導致內閣倒台。",
+      "en": "On 26 August 1914 Briand took the portfolio of Justice and became Vice-President of the Council in Viviani's national-union cabinet, and kept that post until 29 October 1915. He then headed his own, fifth cabinet; he was one of the architects of the Salonika expedition and won acceptance for the idea of a new Balkan front at the Calais conference of December 1915. On 12 December 1916 he reshuffled his ministry to include a standing War Committee. The resignation of Lyautey as minister of war on 14 March 1917 brought the cabinet down."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Lorsque, le 26 août 1914, la guerre déclarée",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Briand prit le portefeuille de la Justice et devint Vice-Président du Conseil",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il le resta jusqu'au 29 octobre 1915",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Aristide Briand prit la tête de cette formation ; ce fut son 5e cabinet",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il fut l'un des artisans de l'expédition de Salonique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "la création d'un nouveau front dans les Balkans",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "idée qu'il sut faire triompher à la conférence de Calais (décembre 1915)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Ce même jour",
+       "quoteLang": "fr",
+       "evidenceNote": "指 12 décembre 1916（同句前文）",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "pour y introduire un Comité de guerre siégeant en permanence",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "La démission de Lyautey, ministre de la Guerre, le 14 mars 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1921-01-16",
+      "end": "1922-01-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後外交部長與華盛頓、坎城會議",
+      "en": "Foreign minister after the war: Washington and Cannes"
+     },
+     "body": {
+      "zh-Hant": "戰後白里安1921年1月16日再度組閣，並由自己兼任外交部長。他處理賠款問題、代表法國出席華盛頓軍備會議，1922年在坎城與勞合喬治談判安全協定；1月12日，他在議會反對聲中提出辭職。這屆內閣期間，他爭取恢復法國駐梵蒂岡大使館。",
+      "en": "After the war Briand formed a new cabinet on 16 January 1921, keeping the foreign affairs portfolio for himself. He sought a settlement of the reparations issue, represented France at the Washington Arms Conference, and negotiated a security pact with Lloyd George at Cannes in 1922; he resigned on 12 January 1922 amid growing opposition in Parliament. During this ministry he also obtained the re-establishment of the French embassy to the Vatican."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il ne revint aux affaires que la guerre terminée, le 16 janvier 1921.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "retaining for himself the portfolio for foreign affairs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "he tried to obtain a settlement of the reparations issue",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "represented France at the Washington Arms Conference",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "negotiated a security pact with Lloyd George at Cannes in 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "remit sa démission le 12 janvier 1922",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Une opposition grandissait en effet au Parlement",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "il avait obtenu le rétablissement de l'ambassade française",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1925-04-01",
+      "end": "1928-08-28"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "外交部長、羅卡諾與諾貝爾和平獎",
+      "en": "Foreign minister, Locarno and the Nobel Peace Prize"
+     },
+     "body": {
+      "zh-Hant": "1925年4月白里安在潘勒維內閣重返權力，並出任外交部長；10月羅卡諾會議後，他於1925年11月28日再度組閣。1926年他與施特雷澤曼同獲諾貝爾和平獎。1926年7月23日起，他又在普恩加萊內閣主管外交，同年9月與施特雷澤曼在圖瓦會晤。1928年8月27日，十五國在巴黎簽署白里安－凱洛格公約，宣告放棄戰爭。",
+      "en": "In April 1925 Briand returned to power in Painlevé's cabinet at the foreign ministry, and after the Locarno conference of October 1925 he took the premiership again on 28 November 1925. In 1926 he shared the Nobel Peace Prize with Stresemann. From 23 July 1926 he again directed foreign affairs in Poincaré's cabinets, and in September 1926 he met Stresemann at Thoiry. On 27 August 1928 fifteen nations signed the Pact of Paris, the Kellogg-Briand Pact, renouncing war."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "à son retour au pouvoir dans le cabinet Painlevé (avril 1925)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "Recalled to the foreign ministry by Painlevé in 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il reprenait la Présidence du Conseil le 28 novembre 1925",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Locarno (octobre 1925)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-hommage-briand",
+       "locator": "Discours",
+       "quote": "Briand l’a reçu en 1926, conjointement avec son homologue allemand Stresemann",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "retrouva les Affaires étrangères dans les cabinets Poincaré des 23 juillet 1926",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il provoqua à Thoiry (septembre 1926) une entrevue",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "avec le Ministre allemand Stresemann",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "on August 27, 1928",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "fifteen nations signed the Pact of Paris",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "or Kellogg-Briand Pact, for the renunciation of war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 7,
+     "period": {
+      "start": "1929-07-29",
+      "end": "1932-03-07"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "最後的內閣、總統競選與逝世",
+      "en": "Last cabinet, the presidential bid and death"
+     },
+     "body": {
+      "zh-Hant": "1929年7月29日，白里安組成他的第十一屆也是最後一屆內閣，其後的各屆內閣仍把外交部交給他；1930年5月他向二十六國遞交歐洲聯盟備忘錄。1931年5月13日，他參選共和國總統，首輪得401票，輸給得442票的杜梅，隨即退出。1932年1月14日他離開外交部，同年3月7日在巴黎去世。",
+      "en": "On 29 July 1929 Briand formed his eleventh and last cabinet, and in the ministries that followed the direction of foreign affairs was still entrusted to him; in May 1930 he sent a memorandum on a European Union to twenty-six nations. On 13 May 1931 he stood for the presidency of the Republic but won only 401 votes against Paul Doumer's 442 in the first round and withdrew. He left the Quai d'Orsay on 14 January 1932 and died in Paris on 7 March 1932."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il succéda à Poincaré le 29 juillet 1929 et ce fut son 11e et dernier cabinet.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "la direction des Affaires étrangères lui fut confiée",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "outlined in a memorandum to twenty-six nations in May, 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Lorsque le 13 mai 1931",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "il ne réunit que 401 voix contre 442 à Paul Doumer",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "le 14 janvier 1932",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "il quitta le Quai d'Orsay où il était resté sept années consécutives",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Informations générales",
+       "quote": "7 mars 1932 à Paris (Seine - France)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "briand-education-1906",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de l'Instruction publique, des Beaux-Arts et des Cultes",
+      "zh-Hant": "公共教育、美術與宗教事務部長",
+      "en": "Minister of Public Instruction, Fine Arts and Worship"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1906-03-14",
+      "end": "1908-01-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Instruction publique, Beaux-Arts et Cultes ( 14/03/1906 - 25/10/1906 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Instruction publique, Beaux-Arts et Cultes ( 25/10/1906 - 04/01/1908 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "教育部不屬四部（外交、國防、財政、內政），且任期大部分在 1908 年前，R5"
+    },
+    {
+     "key": "briand-justice-1908",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de la Justice et des Cultes",
+      "zh-Hant": "司法與宗教事務部長",
+      "en": "Minister of Justice and Worship"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-01-04",
+      "end": "1909-07-24"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Justice et Cultes ( 04/01/1908 - 24/07/1909 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "à partir du 4 janvier 1908 le Ministère de la Justice",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬四部，R5"
+    },
+    {
+     "key": "briand-interior-1909",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur（兼總理、宗教事務）",
+      "zh-Hant": "內政部長（兼總理、宗教事務）",
+      "en": "Minister of the Interior (with the premiership and Worship)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1909-07-24",
+      "end": "1911-03-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil, Intérieur et Cultes ( 24/07/1909 - 03/11/1910 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil, Intérieur et Cultes ( 03/11/1910 - 02/03/1911 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Président du Conseil, avec les portefeuilles de l'Intérieur et des Cultes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部、正職、任期 >90 天；但 regimeId 不連庫無法填（政權待查證），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "briand-war-interim-1911",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de la Guerre (par intérim)",
+      "zh-Hant": "陸軍部長（代理）",
+      "en": "Minister of War (acting)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1911-02-23",
+      "end": "1911-03-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Guerre (par intérim) ( 23/02/1911 - 02/03/1911 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "國防部門代理，僅 7 天，不足 90 天，且為代理（非正職），R5"
+    },
+    {
+     "key": "briand-justice-1912",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de la Justice",
+      "zh-Hant": "司法部長",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1912-01-14",
+      "end": "1913-01-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Justice ( 14/01/1912 - 21/01/1913 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Le 14 janvier 1912 après la chute du cabinet Caillaux",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬四部，R5"
+    },
+    {
+     "key": "briand-interior-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur（兼總理）",
+      "zh-Hant": "內政部長（兼總理）",
+      "en": "Minister of the Interior (with the premiership)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-01-21",
+      "end": "1913-03-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Intérieur ( 21/01/1913 - 18/02/1913 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Intérieur ( 18/02/1913 - 22/03/1913 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "內政部屬四部，但任期 60 天，不足 90 天，R5"
+    },
+    {
+     "key": "briand-justice-1914",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre de la Justice",
+      "zh-Hant": "司法部長",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1914-08-26",
+      "end": "1915-10-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Justice ( 26/08/1914 - 29/10/1915 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Briand prit le portefeuille de la Justice et devint Vice-Président du Conseil",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬四部，R5"
+    },
+    {
+     "key": "briand-vice-president-1914",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Vice-Président du Conseil",
+      "zh-Hant": "副總理",
+      "en": "Vice-President of the Council"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1914-08-26",
+      "end": "1915-10-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Lorsque, le 26 août 1914, la guerre déclarée",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Briand prit le portefeuille de la Justice et devint Vice-Président du Conseil",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "Il le resta jusqu'au 29 octobre 1915",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "副總理（副職），R5"
+    },
+    {
+     "key": "briand-foreign-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères（兼總理）",
+      "zh-Hant": "外交部長（兼總理）",
+      "en": "Minister of Foreign Affairs (with the premiership)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1915-10-29",
+      "end": "1917-03-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 29/10/1915 - 12/12/1916 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 12/12/1916 - 20/03/1917 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、任期 >90 天；但 regimeId 不連庫無法填（政權待查證），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "briand-foreign-1921",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères（兼總理）",
+      "zh-Hant": "外交部長（兼總理）",
+      "en": "Minister of Foreign Affairs (with the premiership)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1921-01-16",
+      "end": "1922-01-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 16/01/1921 - 15/01/1922 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "retaining for himself the portfolio for foreign affairs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、任期 >90 天；但 regimeId 不連庫無法填（政權待查證），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "briand-foreign-1925",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères",
+      "zh-Hant": "外交部長",
+      "en": "Minister of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1925-04-17",
+      "end": "1926-07-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 17/04/1925 - 29/10/1925 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 29/10/1925 - 28/11/1925 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 28/11/1925 - 09/03/1926 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 09/03/1926 - 23/06/1926 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 23/06/1926 - 19/07/1926 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、任期 >90 天；但 regimeId 不連庫無法填（政權待查證），依 R6 暫留經歷層；國民議會名錄分段列出數個連續內閣，本筆合併",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "briand-foreign-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西第三共和國政府",
+      "en": "Government of the French Third Republic"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères",
+      "zh-Hant": "外交部長",
+      "en": "Minister of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-07-23",
+      "end": "1932-01-14"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 23/07/1926 - 11/11/1928 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 11/11/1928 - 29/07/1929 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Président du Conseil et Affaires étrangères ( 29/07/1929 - 03/11/1929 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 03/11/1929 - 21/02/1930 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 21/02/1930 - 02/03/1930 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 02/03/1930 - 13/12/1930 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 13/12/1930 - 27/01/1931 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 27/01/1931 - 13/06/1931 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-fiche-briand",
+       "locator": "MANDATS ET FONCTIONS",
+       "quote": "Ministre Affaires étrangères ( 13/06/1931 - 14/01/1932 )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "il quitta le Quai d'Orsay où il était resté sept années consécutives",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、任期 >90 天；但 regimeId 不連庫無法填（政權待查證），依 R6 暫留經歷層；國民議會名錄分段列出多個連續內閣，本筆合併",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "briand-deputy-8",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire (VIIIe législature)",
+      "zh-Hant": "眾議員（Loire，第8屆）",
+      "en": "Deputy for Loire (VIIIe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1902-04-27",
+      "end": "1906-05-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 27 avril 1902 au 31 mai 1906",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Socialistes parlementaires」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    },
+    {
+     "key": "briand-deputy-9",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire (IXe législature)",
+      "zh-Hant": "眾議員（Loire，第9屆）",
+      "en": "Deputy for Loire (IXe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1906-05-06",
+      "end": "1910-05-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 6 mai 1906 au 31 mai 1910",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Socialistes parlementaires」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    },
+    {
+     "key": "briand-deputy-10",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire (Xe législature)",
+      "zh-Hant": "眾議員（Loire，第10屆）",
+      "en": "Deputy for Loire (Xe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1910-04-24",
+      "end": "1914-05-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 24 avril 1910 au 31 mai 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Républicain socialiste」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    },
+    {
+     "key": "briand-deputy-11",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire (XIe législature)",
+      "zh-Hant": "眾議員（Loire，第11屆）",
+      "en": "Deputy for Loire (XIe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1914-04-26",
+      "end": "1919-12-07"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 26 avril 1914 au 7 décembre 1919",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Non inscrit」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    },
+    {
+     "key": "briand-deputy-12",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire-Inférieure (XIIe législature)",
+      "zh-Hant": "眾議員（Loire-Inférieure，第12屆）",
+      "en": "Deputy for Loire-Inférieure (XIIe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1919-11-16",
+      "end": "1924-05-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 16 novembre 1919 au 31 mai 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Républicain socialiste」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    },
+    {
+     "key": "briand-deputy-13",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire-Inférieure (XIIIe législature)",
+      "zh-Hant": "眾議員（Loire-Inférieure，第13屆）",
+      "en": "Deputy for Loire-Inférieure (XIIIe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1924-05-11",
+      "end": "1928-05-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 11 mai 1924 au 31 mai 1928",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Républicain socialiste et socialiste français」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    },
+    {
+     "key": "briand-deputy-14",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（Chambre des députés）",
+      "en": "Chamber of Deputies of France"
+     },
+     "title": {
+      "orig": "Député de Loire-Inférieure (XIVe législature)",
+      "zh-Hant": "眾議員（Loire-Inférieure，第14屆）",
+      "en": "Deputy for Loire-Inférieure (XIVe legislature)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1928-04-22",
+      "end": "1932-03-07"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Mandats à l'Assemblée nationale ou à la Chambre des députés",
+       "quote": "Du 22 avril 1928 au 7 mars 1932",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "資料庫只列議會黨團「Républicain socialiste」，未寫他以何政黨身分當選；議會黨團不等於政黨席位，不猜（依規則留經歷層）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待查證：未寫入黨職候選。來源寫他參與創立法蘭西社會黨（Jolly 傳記，無日期）、1906 年加入政府時被逐出社會黨（Nobel），均未明寫黨內職務與任期；議會黨團（Socialistes parlementaires 等）不算政黨席位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "sycomore-briand",
+       "locator": "Biographie (Jolly)",
+       "quote": "fonda avec eux le « parti socialiste français »",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-briand",
+       "locator": "Biographical",
+       "quote": "he was expelled from the Socialist Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Aristide Briand data.bnf.fr",
+     "url": "https://data.bnf.fr/fr/11893229/aristide_briand/",
+     "result": "no_result",
+     "note": "curl 200 但為無關頁面（Thomas Bouges），無 Briand 資料"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Aristide Briand Sénat 前參議員名錄",
+     "url": "https://www.senat.fr/senateur-3eme-republique/briand_aristide0170r3.html",
+     "result": "no_result",
+     "note": "curl 404（Briand 非參議員，猜測網址不成立）"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Aristide Briand base de données des députés français Sycomore（WebSearch）",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/%28num_dept%29/1211",
+     "result": "found_A",
+     "note": "國民議會 Sycomore 個人頁；curl 200；含七屆議員任期與 Jolly 傳記"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Aristide Briand Sycomore（直接猜 num_dept=1011）",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/(num_dept)/1011",
+     "result": "not_relevant",
+     "note": "curl 200 但為另一人（Georges Boucheron），丟棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Aristide Briand Assemblée nationale hommage plaque 2022（WebSearch）",
+     "url": "https://presidence.assemblee-nationale.fr/pdf/show/31312/discoursPDF/2022-12-06_Discours%20de%20Mme%20Ya%C3%ABl%20Braun-Pivet,%20Pr%C3%A9sidente%20de%20l%27Assembl%C3%A9e%20nationale%20-%20Apposition%20d%27une%20plaque%20en%20hommage%20%C3%A0%20Aristide%20Briand%20-%20H%C3%A9micycle.pdf",
+     "result": "found_A",
+     "note": "議長講稿 PDF；curl 200；pdftotext"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Aristide Briand Assemblée nationale kakemono briand.pdf",
+     "url": "https://www.assemblee-nationale.fr/13/evenements/images/patrimoine-2010/kakemonos/briand.pdf",
+     "result": "no_result",
+     "note": "curl 傳輸中斷（partial file），PDF 損毀無法轉文字"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Aristide Briand nobelprize.org biographical",
+     "url": "https://www.nobelprize.org/prizes/peace/1926/briand/biographical/",
+     "result": "found_B",
+     "note": "諾貝爾基金會頁；curl 200；Nobel Lectures 轉載（編者 Haberman）"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Aristide Briand britannica",
+     "url": "https://www.britannica.com/biography/Aristide-Briand",
+     "result": "challenge_page",
+     "note": "curl 403 Cloudflare 挑戰頁；不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Briand, Aristide Treccani Enciclopedia on line",
+     "url": "https://www.treccani.it/enciclopedia/aristide-briand/",
+     "result": "unrated",
+     "note": "curl 200；無署名短條目（未評等），不引用"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Aristide Briand gouvernement.fr 歷任總理",
+     "url": "https://www.gouvernement.fr/partage/10976-aristide-briand",
+     "result": "challenge_page",
+     "note": "curl 403；不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Briand Aristide Gallica／BnF 搜尋",
+     "url": "https://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&query=Briand",
+     "result": "challenge_page",
+     "note": "curl 403；不繞過"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Aristide Briand ministre des Affaires étrangères 1925-1932 chronologie（WebSearch）",
+     "url": "https://www.assemblee-nationale.fr/gouv_parl/fiches_personnalites/Briand.asp",
+     "result": "found_A",
+     "note": "國民議會「Mandats et fonctions」個人頁；curl 200，頁面為 Windows-1252 編碼，另以 cp1252 轉文字；逐段列出歷任部長／總理起迄日"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Aristide Briand DHM LeMO",
+     "url": "https://www.dhm.de/mediathek/en/ida/briand",
+     "result": "no_result",
+     "note": "curl 503，無內容"
+    },
+    {
+     "step": 14,
+     "sourceType": "national_dictionary",
+     "query": "Aristide Briand Dictionnaire de biographie française／Archives nationales 598AP（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果只回 Sycomore 與二手頁，無 DBF 條目可抓"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "Aristide Briand chemins de mémoire",
+     "url": "https://www.cheminsdememoire.gouv.fr/en/aristide-briand",
+     "result": "no_result",
+     "note": "curl 無法解析網域（Could not resolve host）"
+    }
+   ]
+  },
+  {
+   "key": "jaspar",
+   "bioId": "01a1b4c0-2f5f-7fc2-8d99-98c3081b8fd3",
+   "name": "Henri Jaspar",
+   "nameZh": "亨利·雅斯帕",
+   "recordIds": [
+    "01a1aa4a-59cd-78f7-b100-de6763581e94",
+    "01a1aa4a-59cd-7c82-9662-6d3910e42b3c",
+    "01a1aa4a-59cd-7ff4-8832-5623d278612c"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1870-07-28",
+      "end": "1918-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身、法律與戰時活動",
+      "en": "Origins, the law and the war years"
+     },
+     "body": {
+      "zh-Hant": "雅斯帕1870年7月28日生於斯哈爾貝克，在布魯塞爾自由大學讀法律；他在普林斯指導下，與埃內比克共創大學犯罪學社團，1907年又與德里克雷創辦《刑法與犯罪學評論》。他曾任比利時律師聯合會秘書長，到1912年為止。第一次世界大戰期間，他留在布魯塞爾，代表律師界抗議占領者違法，並參與全國賑濟與糧食委員會；他多次被捕。",
+      "en": "Henri Jaspar was born at Schaerbeek on 28 July 1870 and studied law at the Free University of Brussels; under Adolphe Prins he founded a university criminology circle with Léon Hennebicq, and in 1907 he founded the Revue de droit pénal et de criminologie with De Ryckere. He was secretary general of the Belgian federation of bars until 1912. During the First World War he stayed in Brussels, voiced the Bar's protests against the occupier's violations of citizens' rights and took part in the National Relief and Food Committee; he was arrested several times."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "JASPAR (Henri), Docteur en droit, avocat, homme d'Etat (Schaerbeek, 28.7.1870",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Henri Jaspar fit de brillantes études de droit à l'Université libre de Bruxelles",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "sous la conduite du savant pénaliste Adolphe Prins",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il fondait avec Léon Hennebicq",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "un cercle universitaire de criminologie",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "fonda en 1907 avec De Ryckere la Revue de droit pénal et de criminologie",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "et jusqu'en 1912, secrétaire général de la Fédération belge des avocats",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Durant la première guerre mondiale, Jaspar, demeuré à Bruxelles",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "les protestations du Barreau contre les violations des droits des citoyens",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "un rôle d'importance au Comité national de secours et d'alimentation",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "plusieurs fois arrêté",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Entré en novembre 1918 avec le portefeuille",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1918-11-01",
+      "end": "1924-03-12"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後內閣與外交部長",
+      "en": "Post-war cabinets and the Foreign Ministry"
+     },
+     "body": {
+      "zh-Hant": "1918年11月，雅斯帕在德拉克魯瓦領導的聯合內閣出任經濟事務部長；1919至1936年，他以天主教黨身分，在列日選區當選。1920年6月2日至11月20日他掌管內政部，並從9月30日起代理陸軍部。1920年11月20日至1924年3月11日他主持外交部，代表比利時出席熱那亞、海牙等會議。1924年3月11日，議會否決法比商約案，他辭職，隔天被任命為國務大臣。",
+      "en": "In November 1918 Jaspar entered the Union-sacrée cabinet led by Léon Delacroix as minister of economic affairs; from 1919 to 1936 he sat as an elected member for Liège in the ranks of the Catholic party. From 2 June to 20 November 1920 he ran the Ministry of the Interior, acting also for the Ministry of War from 30 September. From 20 November 1920 to 11 March 1924 he headed the Foreign Ministry and often represented Belgium at conferences such as Genoa and The Hague. He resigned on 11 March 1924 after Parliament rejected a Franco-Belgian commercial agreement, and was named minister of state the next day."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Entré en novembre 1918 avec le portefeuille des Affaires économiques",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "le Cabinet d'Union sacrée que présidait Léon Delacroix",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "dans les rangs du parti catholique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "en élu du corps électoral liégeois, de 1919 à 1936",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Du 2 juin au 20 novembre 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Ministère de l'Intérieur, assurant d'ailleurs en même temps",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "du 30 septembre au 20 novembre, l'intérim de la Guerre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Du 20 novembre 1920 au 11 mars 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il gérera le Ministère des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "notamment, à Gênes et à La Haye",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "rejet par le Parlement d'un projet de loi approuvant un accord commercial",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "accord commercial franco-belge",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il fut, le lendemain, nommé ministre d'Etat",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1926-05-20",
+      "end": "1931-06-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "首相兼內政部長與殖民部長",
+      "en": "Prime minister, Interior and Colonies"
+     },
+     "body": {
+      "zh-Hant": "1926年5月20日，波萊－范德維爾德政府失敗後，雅斯帕成為首相，同時兼任內政部長，組成有弗蘭基扮演要角的聯合政府。這屆政府以貨幣貶值穩定法郎，1927年初社會黨閣員退出後仍執政到1931年6月5日。1927年1月20日他放下內政部，改掌殖民部，保有到1929年10月底；1930年3月起又以正式部長身分主管殖民部，直到仁金內閣在1931年6月5日組成。",
+      "en": "On 20 May 1926, after the failure of a Poullet-Vandervelde government, Jaspar became prime minister and minister of the Interior at the head of a new Union-sacrée government in which Francqui played a leading part. The government stabilised the franc by devaluation and, after the socialist members withdrew at the start of 1927, stayed in power until 5 June 1931. On 20 January 1927 he gave up the Interior for the Colonies, which he kept until the end of October 1929; from March 1930 he again held the Colonies as titular minister until the Renkin cabinet was formed on 5 June 1931."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Dès le 20 mai 1926 d'ailleurs, à la suite de",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "l'échec d'un Gouvernement Poullet-Vandervelde",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il devenait premier ministre, en même temps",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Francqui jouerait un rôle de tout premier plan",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "par une dévaluation stabilisatrice du franc",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "remanié au début de 1927, à raison d'une retraite de ses membres socialistes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "jusqu'au 5 juin 1931",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "abandonna le portefeuille de l'Intérieur",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "pour prendre en mains celui des Colonies",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "C'est le 20 janvier 1927 qu'Henri Jaspar",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Il le garderait jusqu'à la fin d'octobre 1929",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "en mars 1930, en ministre titulaire",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "jusqu'à la constitution, le 5 juin 1931, d'un Cabinet Renkin",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1934-06-12",
+      "end": "1939-02-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "外交部長、組閣失敗與逝世",
+      "en": "Foreign minister, a failed formation and death"
+     },
+     "body": {
+      "zh-Hant": "1931年下台後，雅斯帕又以財政部長身分進入德布洛克維爾內閣，並在1934年6月12日改任外交部長。1934年11月該內閣倒台時，他組閣失敗；一份研究指出，弗蘭基在最後一刻撤回支持，使他的嘗試落空，新內閣於11月20日成立。1939年2月12日，國王又請他組閣，以接替倒台的斯巴克政府；他因手術而放棄，並在2月15日死於術後栓塞。",
+      "en": "After 1931 Jaspar re-entered government as minister of Finance in a cabinet presided over by Count de Broqueville, and on 12 June 1934 he moved from Finance to Foreign Affairs. When that cabinet fell in November 1934 he failed to form a successor; a study notes that Francqui withdrew his support at the last moment and so frustrated his attempt, and the new cabinet was installed on 20 November. On 12 February 1939 the King again charged him with forming a government to replace the fallen Spaak government; he had to give up because of surgery and died of a post-operative embolism on 15 February."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "rentrera cependant encore en qualité de ministre des Finances",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "un Cabinet présidé par le comte de Broqueville",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il passera, le 12 juin 1934, des Finances aux Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "A la chute de de Broqueville, en novembre 1934",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il échouera dans la tâche de lui donner un successeur",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jbh-henkens-1996",
+       "locator": "p. 209 ss.",
+       "quote": "formateur Henri Jaspar in zijn poging doen mislukken",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jbh-henkens-1996",
+       "locator": "p. 209 ss.",
+       "quote": "door hem op het laatste ogenblik zijn steun te onttrekken",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jbh-henkens-1996",
+       "locator": "p. 209 ss.",
+       "quote": "Het nieuwe kabinet (20 november 1934)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "dimanche 12 février 1939",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "le Souverain l'avait encore chargé de constituer une équipe gouvernementale",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "remplacer un gouvernement Spaak tombé",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "quand il dut se livrer aux mains de son chirurgien",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "le i5 février, une embolie post-opératoire l'emporta",
+       "quoteLang": "fr",
+       "evidenceNote": "OCR 文字層：「i5」即「15」；年份 1939 見同段前文「dimanche 12 février 1939」",
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "jaspar-interior-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-06-02",
+      "end": "1920-11-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Du 2 juin au 20 novembre 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Ministère de l'Intérieur, assurant d'ailleurs en même temps",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部、正職、任期 >90 天可證；但 regimeId 不連庫無法填（政權待查證），且僅 1 筆 B 來源（不足 1 筆 A 或 2 筆獨立 B），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "source"
+     ]
+    },
+    {
+     "key": "jaspar-war-interim-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre de la Guerre (intérim)",
+      "zh-Hant": "陸軍部長（代理）",
+      "en": "Minister of War (acting)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-09-30",
+      "end": "1920-11-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "du 30 septembre au 20 novembre, l'intérim de la Guerre",
+       "quoteLang": "fr",
+       "evidenceNote": "年份 1920 見同句前文",
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "國防部門代理，約 51 天，不足 90 天且非正職，R5"
+    },
+    {
+     "key": "jaspar-foreign-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères",
+      "zh-Hant": "外交部長",
+      "en": "Minister of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-11-20",
+      "end": "1924-03-11"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Du 20 novembre 1920 au 11 mars 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il gérera le Ministère des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、任期 >90 天可證；但 regimeId 不連庫無法填（政權待查證），且僅 1 筆 B 來源（不足 1 筆 A 或 2 筆獨立 B），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "source"
+     ]
+    },
+    {
+     "key": "jaspar-interior-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur（兼首相）",
+      "zh-Hant": "內政部長（兼首相）",
+      "en": "Minister of the Interior (with the premiership)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-05-20",
+      "end": "1927-01-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "premier ministre et ministre de l'Intérieur depuis le 20 mai 1926",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "abandonna le portefeuille de l'Intérieur",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "pour prendre en mains celui des Colonies",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "C'est le 20 janvier 1927 qu'Henri Jaspar",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部、正職、任期 >90 天可證；但 regimeId 不連庫無法填（政權待查證），且僅 1 筆 B 來源（不足 1 筆 A 或 2 筆獨立 B），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "source"
+     ]
+    },
+    {
+     "key": "jaspar-colonies-1927",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre des Colonies",
+      "zh-Hant": "殖民部長",
+      "en": "Minister of the Colonies"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1927-01-20",
+      "end": "1929-11-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "C'est le 20 janvier 1927 qu'Henri Jaspar",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Il le garderait jusqu'à la fin d'octobre 1929",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日月精度，寫下一月起日",
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "殖民部不屬四部（外交、國防、財政、內政），R5"
+    },
+    {
+     "key": "jaspar-colonies-1930",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre des Colonies（正式部長）",
+      "zh-Hant": "殖民部長（正式）",
+      "en": "Minister of the Colonies (titular)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1930-03-01",
+      "end": "1931-06-05"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "en mars 1930, en ministre titulaire",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "jusqu'à la constitution, le 5 juin 1931, d'un Cabinet Renkin",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "殖民部不屬四部，R5"
+    },
+    {
+     "key": "jaspar-foreign-1934",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時王國政府",
+      "en": "Government of the Kingdom of Belgium"
+     },
+     "title": {
+      "orig": "Ministre des Affaires étrangères",
+      "zh-Hant": "外交部長",
+      "en": "Minister of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1934-06-12",
+      "end": "1934-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "il passera, le 12 juin 1934, des Finances aux Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "A la chute de de Broqueville, en novembre 1934",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日月精度，寫下一月起日",
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、任期 >90 天可證；但 regimeId 不連庫無法填（政權待查證），且僅 1 筆 B 來源（不足 1 筆 A 或 2 筆獨立 B），依 R6 暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "source"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "jaspar-catholic-party-seat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "比利時議會（天主教黨籍，列日選區）",
+      "en": "Belgian Parliament (Catholic party, Liège electorate)"
+     },
+     "title": {
+      "orig": "élu du corps électoral liégeois, dans les rangs du parti catholique",
+      "zh-Hant": "天主教黨籍、列日選區當選者",
+      "en": "Elected by the Liège electorate, in the ranks of the Catholic party"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1937-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "dans les rangs du parti catholique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "en élu du corps électoral liégeois, de 1919 à 1936",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；來源明寫他「dans les rangs du parti catholique」當選列日選區，1919 至 1936",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:death_place",
+     "gapKind": "conflict",
+     "note": "死亡地點兩份已抓來源不同：Biographie Belge d'Outre-Mer（B）寫 Uccle；Deutsche Biographie／GND 索引（A）寫 Saint-Gilles (Brüssel)。正文不寫死亡地點，留待查證（兩者皆為布魯塞爾都會區市鎮）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kaowarsom-jaspar",
+       "locator": "col. 539",
+       "quote": "Uccle, 15.2.1939",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-jaspar",
+       "locator": "Lebensdaten",
+       "quote": "Sterbeort Saint-Gilles (Brüssel)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待查證：未寫入職位。經濟事務部長（1918 年 11 月入閣，見 Biographie Belge d'Outre-Mer）迄日來源未明寫；國務大臣（1924-03-12 任命）無迄日；兩者皆未列職位。已查 kaowarsom（B）、BTNG 論文（B）；Britannica（Cloudflare）、premier.be（403）、1914-1918-online 與 ZBW（Anubis 挑戰頁）未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:4",
+     "gapKind": "not_found",
+     "note": "待查證：未寫入職位。財政部長任期（德布洛克維爾內閣，迄 1934-06-12 改任外交部長）起日來源未寫（BTNG 論文只見 1934-05-29 會議稱他為財政部長）；律師聯合會會長（1934 年起）亦無迄日。",
+     "candidateCitations": [
+      {
+       "sourceKey": "jbh-henkens-1996",
+       "locator": "p. 209 ss., 註 46",
+       "quote": "Minister van Financiën Jaspar",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:3",
+     "gapKind": "not_found",
+     "note": "待查證：1926-05-20 至 1931-06-05 的首相任期（5442 已有三筆）以外，眾議院議員任期個別屆次與選區未取得官方議員名錄；比利時眾議院／參議院官網與 ODIS 未抓到可用頁面。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Jaspar, Henri GND／Deutsche Biographie",
+     "url": "https://www.deutsche-biographie.de/pnd124446701.html",
+     "result": "found_A",
+     "note": "curl 200；僅索引（1870-07-28 生、1939-02-15 卒、卒地 Saint-Gilles），無生平文字；原文姓名 Jaspar, Henri"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Henri Jaspar britannica",
+     "url": "https://www.britannica.com/biography/Henri-Jaspar",
+     "result": "challenge_page",
+     "note": "curl 403 Cloudflare；不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Henri Jaspar premier.be 歷任首相",
+     "url": "https://www.premier.be/fr/henri-jaspar",
+     "result": "blocked_403",
+     "note": "curl 403 Access Denied（Akamai）；不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Henri Jaspar 1870-1939 premier ministre belge biographie（WebSearch）",
+     "url": "https://www.kaowarsom.be/documents/bbom/Tome_VI/Jaspar.Henri.pdf",
+     "result": "found_B",
+     "note": "Biographie Belge d'Outre-Mer t.VI（J.-M. Jadot）；curl 200 PDF；pdftotext"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Henri Jaspar eerste minister 1926 1931 biografie（WebSearch，荷語）",
+     "url": "https://journalbelgianhistory.be/en/system/files/article_pdf/BTNG-RBHC%2C%2026%2C%201996%2C%201-2%2C%20pp%20209-261.pdf",
+     "result": "found_B",
+     "note": "BTNG-RBHC 1996 論文（Henkens）；curl 200 PDF；用於 1934 年財政部長與組閣失敗"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Henri Jaspar 1914-1918-online（International Encyclopedia of the First World War）",
+     "url": "https://encyclopedia.1914-1918-online.net/histperson/124446701/",
+     "result": "challenge_page",
+     "note": "curl 200 但為 Anubis 工作量證明挑戰頁；不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Henri Jaspar ZBW 20th Century Press Archives",
+     "url": "https://pm20.zbw.eu/folder/pe/011544",
+     "result": "challenge_page",
+     "note": "curl 200 但為 Anubis 挑戰頁；不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "Henri Jaspar Nationaal Biografisch Woordenboek／ODIS／KADOC（WebSearch，荷語）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果無 NBW、KADOC 或 ODIS 個人頁可抓"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Henri Jaspar ministre des Affaires étrangères 1920 1924 Chambre des représentants Liège（WebSearch，法語）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果仍只回 kaowarsom 與二手頁；比利時眾議院個人頁未見"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Henri Jaspar treccani",
+     "url": "https://www.treccani.it/enciclopedia/henri-jaspar/",
+     "result": "no_result",
+     "note": "curl 200 但為站台首頁式頁面，無條目文字"
+    }
+   ]
+  }
+ ]
+}

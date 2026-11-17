@@ -1,0 +1,90 @@
+{
+ "batch": "084",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 39,
+  "editedSentences": 8,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ru-stolypin",
+   "bioId": "01a1b4c2-3f32-756e-b71e-9bade2cb5fe9",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1出生引文原不含日期卻標 day，改為含「2 (14) апреля 1862 г.」的片段；補「古老貴族家庭」引文",
+    "段2補「部分官地」引文；8月詔令引文改含「начаты им с подписания」以支撐「簽署」；杜馬解散引文改含「В 1907 г.」",
+    "段3補「1905至1911年」「最為血腥」「1911年9月13日（俄曆1日）」「9月22日安葬」引文；period 起點改 1905-01-01（year，段內最早事件）",
+    "抽查重抓 prlib.ru/history/619166，與原文一致",
+    "內政大臣 R6（regimeId 未查）維持；1 筆 A 已足，roleGap=regime 正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bg-stamboliyski",
+   "bioId": "01a1b4c2-3ed4-7c0b-813a-0e8852a86985",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 15,
+   "changes": [
+    "公共建築、道路與工程大臣 position 刪除並移至 gap：唯一出處是國家圖書館頁的無作者照片圖說（Q9 未評等），且圖說只說照片攝於1919年，不能支撐任期起迄；段2刪除該子句",
+    "段1「同年與斐迪南衝突」改依原文「奧地利吞併波士尼亞那一年」；補5筆引文（農業師範、投入運動、撰稿人、兼併那年、首次衝突）",
+    "段2補4筆引文（反德親協約國、攻擊國王、任總理、不久後）；period 迄點改 1919-11-01（month，最後有日期事件為1919年10月）",
+    "段3去掉中文段內英文 irredentism；補6筆引文（與塞爾維亞和解、共產式實驗、資產階級不滿、在斯拉沃維察、被帶至別墅、酷刑）",
+    "抽查重抓 Treccani，引文一致；黨領袖 R1 缺迄日已有 gap，篇幅不足 gap 與 retry 搜尋紀錄齊全"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "at-schuschnigg",
+   "bioId": "01a1b512-3381-7cf1-8bee-6294b446606e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 3,
+   "gaps": 5,
+   "searchLogSteps": 15,
+   "changes": [
+    "LeMO 來源補具名作者 Susanne Eckelmann（原檔 authors 空）",
+    "段2「改任教育部長」改「兼任」（議會頁司法職延續至1934-07-10、LeMO 寫 zusätzlich）；補「最年輕議員」「1934年4月」「納粹分子謀殺」及職稱引文",
+    "段3補總理任命、陸軍／國防部門職稱與日期、以出兵威脅、被迫辭職引文",
+    "段4「被關押」具體化為原文所寫在維也納受蓋世太保看管；補獲盟軍解放、國家法教授、1956、1967 回穆特斯引文",
+    "陸軍部、國防部 R6：1 筆 A 已足，roleGap 刪 source 只留 regime；「Betraut mit der Leitung」是否正職加 t14Ambiguous",
+    "gap field:ndb 改正：重試輪已取得 NDB 全文（亦寫 1922 Dr. iur.、VF 1936 無迄日），未列為出處",
+    "抽查重抓 parlament.gv.at 與 LeMO，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "多段子句（日期、地點、評語）缺 quote 支撐，審查補 39 筆取自已抓原文的引文",
+  "無作者照片圖說被當 A 級職位出處（Stamboliyski），已移 gap",
+  "R6 roleGap 誤標 source（1 筆 A 已足門檻）",
+  "本批名單標「5 人」實為 3 人"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

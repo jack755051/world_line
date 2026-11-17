@@ -1,0 +1,96 @@
+{
+ "batch": "068",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 3,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 3,
+  "addedCitations": 14,
+  "editedSentences": 7,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "mx-ortiz-rubio",
+   "bioId": "01a1aa4a-da73-7b4d-953b-79e71a51fc6d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 14,
+   "changes": [
+    "第1段：補 Camp 引文「completed his topographical engineering degree at the National College of Mines」支撐地形工程學位與國立礦業學院子句",
+    "第2段：引文「he had risen to the rank of brigadier general」不含日期卻標 year，改為「By 1915, he had risen to the rank of brigadier general」，另補「responsible for engineering supplies」",
+    "第2段：補「and directed the federal stamp bureau」支撐聯邦印花局子句、補「After his release, Ortiz Rubio joined the Constitutionalists」支撐「獲釋後」",
+    "searchLog sourceType「unrated」不在值域，改為 other",
+    "重抓 lobid GND 1057570745 比對生日與「1930-1932 Präsident von Mexiko」一致",
+    "複審：第3段 Colmich 引文「gobernó el estado hasta 1920」主語是「el grupo lidereado por Ortiz Rubio」，正文改為「他領導的派系勝出並治理該州」，補引文「el grupo lidereado por Ortiz Rubio se impuso sobre sus opositores」；州長職位刪去此引文（未明寫其職位）",
+    "複審：第5段引文「a hotly contested presidential race…in 1929」缺謂語，改為原文「He was elected in a hotly contested presidential race with José Vasconcelos」，datePrecision 改 null",
+    "複審重抓 lobid GND 1057570745.json：生卒與「1930-1932 Präsident von Mexiko」一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fr-fallieres",
+   "bioId": "d884ee29-a9ae-48dd-b7dc-8ba15639f1ca",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 8,
+   "changes": [
+    "參議院議長迄日 1906-02-13 是由參議員任期結束日推得，不符 Q7；改依 Jean Jolly 引文「Il fut constamment réélu jusqu'en 1906.」寫年精度 1907-01-01，刪原推論引文",
+    "參議員當選日 Élysée（8 janvier 1890）與參議院頁（8 juin 1890）矛盾：第3段與職位起日改為年精度 1890，新增 conflict gap",
+    "司法與宗教部長迄日（26／27 février 1892）、內政次長迄日（13／14 novembre 1881）兩份 A 來源差一天：第2段與職位改月精度，新增 2 筆 conflict gap",
+    "重抓 Élysée 頁比對年表引文一致",
+    "複審：逐條比對引文與參議院 Jean Jolly 摘錄（1899-03-03 為 1 mars 之「surlendemain」），無新增修改；重抓 Élysée 頁四處日期一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cr-tinoco",
+   "bioId": "01a1b4c0-2f1c-72b7-b821-189be2696a60",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 20,
+   "changes": [
+    "第5段：「權威檔與百科條目都說死在巴黎」中，權威檔死地無引文，改寫為權威檔記卒年、百科記死於巴黎",
+    "議員 1908 職位：來源同句寫共和黨黨籍但未明寫以黨身分取得席位，加 partyPostAmbiguous＋理由",
+    "gap target「position:tinoco-term-dates-retry」不對應任何職位，改 field:term_dates_retry；searchLog「unrated」改 other",
+    "議員缺迄日已有「待查證：缺迄日」gap 且 searchLog 有 retry 輪，check_min 計為 flagged，依 6c 可接受",
+    "重抓 Archivo Nacional docx 比對 1908 議員與 1919-08-12 交權引文一致",
+    "複審：第2段「1914年選舉後的動亂」子句無引文，補 Archivo Nacional 原句「los disturbios que tienen lugar después de las elecciones de 1914」",
+    "複審：第3段「引當時報導」改為「引述的當時文字」（原文為引號內文字，未說是報導）；第4段「反抗他們兄弟」改為「反抗蒂諾科家族」（原文 contra los Tinoco）",
+    "複審：check_min 仍判未達（議員缺迄日 flagged），依 6c 有「待查證：缺迄日」gap 與 retry 輪，可接受",
+    "複審重抓 Archivo Nacional docx：1908 議員、1917-01-27 政變、1919-08-12 交權、1868 出生句一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者以截短引文支撐多子句（印花局、工程補給、學位），審查以同一已抓原文補引文",
+  "兩份官方 A 來源（Élysée 年表與參議院 Jolly 摘錄）多處日期差一天或月份不同，研究者只記錄了總理與 1913 兩處，審查補記三處 conflict",
+  "奧爾蒂斯·魯維奧：SRE 記駐德公使任命於 1923-11-23（奧夫雷貢任內），Camp 條目寫卡列斯任命，未明顯矛盾故未立 conflict，供主管留意",
+  "蒂諾科：5442 迄日 1919-08-20 與 Archivo Nacional 1919-08-12、百科 8 月 10 日交權後兩天離開不符，已有 gap 待主管判斷",
+  "複審：研究者把『某派系治理』寫成本人治理、把引號內文字稱為報導，屬主語／性質轉述偏差，已改"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

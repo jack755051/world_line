@@ -1,0 +1,91 @@
+{
+ "batch": "086",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 3,
+  "addedCitations": 14,
+  "editedSentences": 6,
+  "spotRefetched": 4,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "pl-wojciechowski",
+   "bioId": "01a1b512-33d0-7c57-8203-1d56075b33c2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 14,
+   "changes": [
+    "第1段補引文：SGH「He took up studies at the University of Warsaw in 1888.」、IPN「włączył się w działalność niepodległościową」（華沙大學求學、獨立活動子句原無引文）",
+    "第3段三筆正文引文 locator 由「przypis 7」改「s. 174」",
+    "第4段補引文：IPN「Po zabójstwie…pierwszego prezydenta」（遇刺）、「dotyczących reformy walutowej w 1924 r.」（1924 年份）、SGH「…resigned from office.」（辭職）",
+    "第4段「白鷹勳章等多項外國與本國勳章」改為只寫權威檔所列白鷹勳章與波蘭復興勳章（大十字），補 GND 引文；「外國與本國」無引文支撐",
+    "第5段補引文：SGH「he began teaching at the Higher School of Commerce (later SGH)」、「He lived at 15 Langiewicza Street in a house」",
+    "T14：內政部長 R3 類別、regimeId=null → R6 roleGap=[regime] 核對無誤；高等商業學校教職 other 無誤；《人民意志報》主編無迄日，已在 gaps"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gr-alexander",
+   "bioId": "01a1b512-33d9-7432-8846-76b35928ec3c",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 12,
+   "changes": [
+    "第1段補 GND「placeOfBirthAsLiteral」引文（原文稱 GND 記出生地但未引）",
+    "第2段刪湊字數評語句「兩份權威檔對王位年份的記載一致，但都只給年份…」",
+    "第3段刪「德意志傳記索引…生卒年為1893至1920年」子句（無引文）",
+    "刪後 283 字，新增 paragraph:length「篇幅不足：」gap"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺原文語言（希臘文）查詢，原文語言查詢 0 次（需 ≥2）",
+    "篇幅不足（3 段／283 字）且 searchLog 無 round: retry 加強搜尋",
+    "建議下一個來源：希臘文查詢「Αλέξανδρος βασιλιάς της Ελλάδος 1917」；希臘國家圖書館權威檔（data.nlg.gr）；希臘議會（hellenicparliament.gr）；Biographisches Lexikon zur Geschichte Südosteuropas（Deutsche Biographie 已列連結）"
+   ]
+  },
+  {
+   "key": "es-dato",
+   "bioId": "01a1b512-33e1-7dcb-b060-f3195dd0f915",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 13,
+   "changes": [
+    "第2段刪 La Época 十五週年評語句與 3 筆 congreso-dato 引文（事件在 1936 年，超出段落 period 迄點 1921-03-09，且日期屬推算）",
+    "第2段補引文「el decidido impulso dado por Dato a la legislación social」（社會立法子句原無引文）",
+    "第3段引文改為「al caer la tarde del 8 de marzo de 1921…」（傍晚），補「se puso a la altura del vehículo, y desde ella comenzaron a disparar」（開槍）",
+    "第4段「Al día siguiente…」datePrecision 由 day 改 null（Q8，quote 無日期）；補「la lectura de la comunicación…dirigida por el Gobierno」；引文擴為含「anejo a la Basílica de Atocha」「La Audiencia de Madrid…」「que sus asesinos,…」",
+    "保守黨領袖、1918 國務大臣、眾議院議長、馬德里市長均無日期，留 gaps（缺起日）核對無誤；ec-dato 降 C 只作候選無誤"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者多處引文截掉支撐子句的關鍵詞（傍晚、開槍、阿托查、法院、辭職、1924 年），共補／擴 14 筆",
+  "薄人物未用原文語言（希臘文）查詢即停止",
+  "段落 period 與段內事件（身後評語）不一致"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

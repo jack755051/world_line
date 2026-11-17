@@ -1,0 +1,2351 @@
+{
+ "batch": "b3-full-v3-batch080",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）；名單5442已有的元首／首腦任期不重建；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch080/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "hls-schulthess": {
+   "title": "Schulthess, Edmund（Historisches Lexikon der Schweiz）",
+   "authors": [
+    "Andreas Steigmeier"
+   ],
+   "publisher": "Historisches Lexikon der Schweiz（HLS）",
+   "published_text": "Version von 2010 (bearbeitet am 19.08.2011)",
+   "url": "https://hls-dhs-dss.ch/de/articles/003791/2011-08-19/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（HLS），具名作者"
+  },
+  "gnd-schulthess": {
+   "title": "GND 118762281 Schulthess, Edmund（lobid.org）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/118762281.json",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "ag-grossrat": {
+   "title": "R05.26.40.982 Schulthess, Edmund, Bundesrat, Rücktritt als Grossrat, 1912.09.23（Dossier）",
+   "authors": [],
+   "publisher": "Staatsarchiv Aargau",
+   "published_text": "Archivdatenbank, Bestand R05 Akten des Regierungsrates 1898-1955",
+   "url": "https://www.ag.ch/staatsarchiv/suche/detail.aspx?ID=366088",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "邦級檔案館官方目錄（卷宗標題與日期）"
+  },
+  "gnd-gombos": {
+   "title": "GND 123390532 Gömbös, Gyula（lobid.org）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/123390532.json",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "ahea-pitt": {
+   "title": "Review of Vonyó József, Gömbös Gyula és a hatalom（Hungarian Cultural Studies 15）",
+   "authors": [
+    "George Deák"
+   ],
+   "publisher": "American Hungarian Educators Association／Pitt Open Library Publishing",
+   "published_text": "Hungarian Cultural Studies, Volume 15 (2022), DOI 10.5195/ahea.2022.472",
+   "url": "https://ahea.pitt.edu/ojs/ahea/article/view/472/827",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的學術期刊書評（專著評介）"
+  },
+  "pritz-gombos": {
+   "title": "Személyiség és történelem. Benito Mussolini és Gömbös Gyula némely pályafordulójának példáján（Világtörténet）",
+   "authors": [
+    "Pritz Pál"
+   ],
+   "publisher": "Bölcsészettudományi Kutatóközpont Történettudományi Intézete",
+   "published_text": "Világtörténet 9 (41), 2019/4",
+   "url": "https://tti.abtk.hu/images/kiadvanyok/folyoiratok/Vilagtortenet_2016_tol/vt_2019/vt_2019_4/VT_2019_4_Pritz.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的研究機構學術期刊論文"
+  },
+  "omp-ppke": {
+   "title": "Agrárválság, szociális problémák és jogalkotás",
+   "authors": [
+    "Tóth Tibor"
+   ],
+   "publisher": "PPKE Bölcsészettudományi Kar, Budapest",
+   "published_text": "2025, ISBN 978-963-308-516-5",
+   "url": "https://omp.ppke.hu/btk/catalog/download/82/274/852?inline=1",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的大學學術出版（電子書）"
+  },
+  "kath-nep": {
+   "title": "Nemzeti Egység Pártja（Magyar Katolikus Lexikon）",
+   "authors": [],
+   "publisher": "Magyar Katolikus Lexikon（Szent István Társulat）",
+   "published_text": "線上版",
+   "url": "https://lexikon.katolikus.hu/N/Nemzeti%20Egys%C3%A9g%20P%C3%A1rtja.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "機構百科條目，頁面無署名；只作缺口候選"
+  },
+  "szeged-gombos": {
+   "title": "A Gömbös-kormány belpolitikája（Gömbös Gyula miniszterelnöksége 1932-36）",
+   "authors": [],
+   "publisher": "SZTE Egyetemi Könyvtár webmúzeum",
+   "published_text": "網頁，無署名",
+   "url": "http://www.bibl.u-szeged.hu/ha/kormanyok/gombos/32_36.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "館方教學網頁，無署名；只作缺口候選"
+  },
+  "snl-gombos": {
+   "title": "Gyula von Gömbös（Store norske leksikon）",
+   "authors": [],
+   "publisher": "Store norske leksikon",
+   "published_text": "最後更新 2024-11-26",
+   "url": "https://snl.no/Gyula_von_G%C3%B6mb%C3%B6s",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "百科條目無署名作者（Av 為圖片作者）；只作缺口候選"
+  },
+  "gnd-arosemena": {
+   "title": "GND 1056480971 Arosemena, Pablo（lobid.org）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/1056480971.json",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "encyc-arosemena": {
+   "title": "Arosemena, Pablo (1836–1920)（Encyclopedia of Latin American History and Culture, via Encyclopedia.com）",
+   "authors": [
+    "Juan Manuel Pérez"
+   ],
+   "publisher": "Gale／Charles Scribner's Sons（Encyclopedia.com 轉載）",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/arosemena-pablo-1836-1920",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的學術參考書條目"
+  },
+  "pdba-panama": {
+   "title": "Panama: Chronology of Presidents（Political Database of the Americas）",
+   "authors": [],
+   "publisher": "Georgetown University, Center for Latin American Studies, Political Database of the Americas",
+   "published_text": "Last updated October 28, 2010",
+   "url": "https://pdba.georgetown.edu/Executive/Panama/pres.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "大學研究中心網站的總統年表，無署名作者、資料轉列政府名單（彙編表），不到 B；只作缺口候選（審查 2026-11-17 由 B 降級）"
+  }
+ },
+ "people": [
+  {
+   "key": "hu-gombos",
+   "bioId": "01a1b4c0-c8a8-71ec-bfd2-8f4974de6603",
+   "name": "Gyula Gömbös",
+   "nameZh": "貢伯什·久拉",
+   "recordIds": [
+    "01a1aa4a-4a5b-76c9-99b4-0ab9e36fa6bb"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1886-01-01",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與政治起步",
+      "en": "Origins and early politics"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記貢伯什·久拉生於1886年。Deák書評載，他生於托爾瑙縣、以德裔居民為主的小村莫爾加（Murga），1912年入維也納君主國最負盛名的軍官學校；1919年1月，他在新右翼支持者協助下取得全國國防聯盟（MOVE）的主席職位。Tóth Tibor載，他1920年以小農黨議席進入國會，其後在統一黨（Egységes Párt）擔任副主席；Deák則載，到1923年他被迫轉入反對陣營。",
+      "en": "The German National Library authority record gives 1886 as Gyula Gömbös's year of birth. George Deák's review says he was born in the small, mostly ethnic German village of Murga in Tolna county, and that in 1912 he was admitted to the Monarchy's most prestigious officer training school in Vienna. In January 1919 his new rightist adherents helped him gain the presidency of the Hungarian National Defense League (MOVE). Tibor Tóth writes that he entered parliament in 1920 on a Smallholders' Party mandate and later served as vice-president of the Unity Party (Egységes Párt), while Deák says that by 1923 he felt compelled to go into opposition."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-gombos",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1886\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.164",
+       "quote": "born in 1886 in the small, mostly ethnic German village of Murga",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.164",
+       "quote": "village of Murga, in Tolna county",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.164",
+       "quote": "In 1912, after several years of service in the Royal Hungarian Honvéd",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.164",
+       "quote": "Gömbös was admitted to the most prestigious officer training school",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.164",
+       "quote": "officer training school of the Monarchy in Vienna",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.165",
+       "quote": "Already in January 1919, though he was still in the employ of the liberal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.165",
+       "quote": "Gömbös's new rightist adherents helped him gain the presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.165",
+       "quote": "helped him gain the presidency of the Magyar Országos Véderő Egyesület, MOVE",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "1920-ban kisgazdapárti mandátummal került be a parlamentbe",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "Egységes Pártban alelnöki posztot töltött be",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "by 1923 Gömbös felt compelled to go into opposition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "種族保衛黨與出任國防部長",
+      "en": "The Race Protector Party and the defence ministry"
+     },
+     "body": {
+      "zh-Hant": "Deák書評載，1924年貢伯什成為匈牙利民族獨立（種族保衛）黨的領袖。Tóth Tibor載，他與Bajcsy-Zsilinszky Endre、Eckhardt Tibor等人退出執政黨並另組新黨，1928年他將該黨解散，回到執政黨。Pritz Pál也載他1928年請求重返貝特倫的黨。Deák書評載，1929年他出任國防部長。",
+      "en": "George Deák's review says that in 1924 Gömbös became leader of the Hungarian National Independence (Race Protector) Party. Tibor Tóth writes that he left the governing party together with Endre Bajcsy-Zsilinszky, Tibor Eckhardt and others and founded a new party, which he dissolved in 1928 before returning to the governing party. Pál Pritz likewise notes that in 1928 he asked to be taken back into Bethlen's party. Deák adds that in 1929 Gömbös became minister of defense."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "in 1924 became leader of the Race Protector Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.164",
+       "quote": "Magyar Nemzeti Függetlenségi (Fajvédő) Párt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "Bajcsy-Zsilinszky Endre, Eckhardt Tibor",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "kilépett a kormánypártból, majd új pártot alapított",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "Gömbös 1928-ban feloszlatta azt, majd visszatért a kormánypártba",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pritz-gombos",
+       "locator": "bevezető",
+       "quote": "1928-ban visszakéredzkedett Bethlen pártjába",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "In 1929 Gömbös became minister of defense",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1936-11-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "首相任內與死亡",
+      "en": "Prime ministership and death"
+     },
+     "body": {
+      "zh-Hant": "Deák書評載，1932年霍爾蒂任命貢伯什為首相；Pritz Pál載他1932年在很大程度上出於貝特倫的意願成為首相，並載他1932年11月以政府首腦身分首次赴羅馬。Deák書評載，他是國民統一黨（NEP）的領袖，該黨雖有近兩百萬登記黨員，但地方上投入有限；他於1936年10月去世。德國國家圖書館權威檔稱他為匈牙利政治家、1932至1936年任首相，並記他卒於慕尼黑。",
+      "en": "George Deák's review says that in 1932 Horthy appointed Gömbös prime minister; Pál Pritz adds that he became prime minister in 1932 largely by Bethlen's will and that, as head of government, he travelled to Rome for the first time in November 1932. Deák says he led the Party of National Unity (NEP), which had nearly two million registered members who were not highly committed locally, and that he died in October 1936. The German National Library authority record describes him as a Hungarian politician and prime minister in 1932-1936 and gives Munich as his place of death."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "in 1932, having lost faith in the conservative-liberal policies of Bethlen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "Horthy appointed Gömbös prime minister to reverse the political tides",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pritz-gombos",
+       "locator": "bevezető",
+       "quote": "1932-ben nem csekély mértékben Bethlen akaratából lett miniszterelnök",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pritz-gombos",
+       "locator": "Római találkozó, 1932",
+       "quote": "A miniszterelnöki székbe avanzsált Gömbös Gyula útja 1932 novemberében",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pritz-gombos",
+       "locator": "Római találkozó, 1932",
+       "quote": "kormányfőként először Rómába",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.167",
+       "quote": "the party of which he was leader",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.167",
+       "quote": "the Nemzeti Egység Párt, NEP",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.167",
+       "quote": "had nearly two million registered members",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.167",
+       "quote": "they were not highly committed at the local level",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.167",
+       "quote": "had Gömbös not died in October 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gombos",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Ungar. Politiker, Premierminister 1932-1936",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gombos",
+       "locator": "placeOfDeath",
+       "quote": "\"label\" : \"München\"",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "gombos-defence-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "匈牙利王國政府",
+      "en": "Government of the Kingdom of Hungary"
+     },
+     "title": {
+      "orig": "Minister of Defence (honvédelmi tárca)",
+      "zh-Hant": "國防部長",
+      "en": "Minister of Defence"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1929-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "In 1929 Gömbös became minister of defense",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "s nem sokkal később megkapta a honvédelmi tárcát",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "國防部屬四部、正職，但迄日為 NULL，無法證明 ≥90 天，且 regimeId 未查（不連庫），R3③④ 無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "gombos-move-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "匈牙利全國國防聯盟（MOVE）",
+      "en": "Hungarian National Defense League (MOVE)"
+     },
+     "title": {
+      "orig": "Magyar Országos Véderő Egyesület (MOVE) elnöke",
+      "zh-Hant": "匈牙利全國國防聯盟主席",
+      "en": "President of the Hungarian National Defense League (MOVE)"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1919-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.165",
+       "quote": "Already in January 1919, though he was still in the employ of the liberal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.165",
+       "quote": "helped him gain the presidency of the Magyar Országos Véderő Egyesület, MOVE",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "MOVE 在來源中是國防（退伍軍人）團體「Hungarian National Defense League」，屬黨外圍組織，來源未稱其為政黨；是否算黨職不確定，不猜"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "gombos-race-protector-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "匈牙利民族獨立（種族保衛）黨",
+      "en": "Hungarian National Independence (Race Protector) Party"
+     },
+     "title": {
+      "orig": "Magyar Nemzeti Függetlenségi (Fajvédő) Párt vezetője",
+      "zh-Hant": "匈牙利民族獨立（種族保衛）黨領袖",
+      "en": "Leader of the Hungarian National Independence (Race Protector) Party"
+     },
+     "period": {
+      "start": "1924-01-01",
+      "end": "1929-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.166",
+       "quote": "in 1924 became leader of the Race Protector Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "Gömbös 1928-ban feloszlatta azt, majd visszatért a kormánypártba",
+       "quoteLang": "hu",
+       "evidenceNote": "迄日取1928年解散該黨之年的下一年起日（Q3，年精度）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "gombos-smallholders-mp",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "匈牙利國會（小農黨議席）",
+      "en": "Hungarian Parliament (Smallholders' Party mandate)"
+     },
+     "title": {
+      "orig": "kisgazdapárti mandátummal országgyűlési képviselő",
+      "zh-Hant": "國會議員（小農黨議席）",
+      "en": "Member of Parliament (Smallholders' Party mandate)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1920-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "1920-ban kisgazdapárti mandátummal került be a parlamentbe",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；來源明寫以小農黨議席（kisgazdapárti mandátum）進入國會",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:gombos-smallholders-mp",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Tóth Tibor（B）只寫1920年以小農黨議席入國會，未寫該議席何時結束；Deák 書評、Pritz 論文亦未寫。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:gombos-defence-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Deák（B，只寫1929年出任）、Tóth（B，只寫「不久後取得國防部」）、Pritz（B，未寫）；Britannica 403。未評等頁面（SZTE 館方網頁無署名）稱1929年10月任命並於1932年10月1日首個內閣中保留國防部，Rubicon 雜誌網頁稱1928年入閣，與 Deák 的1929年不同，但皆非合格出處，不構成 conflict。",
+     "candidateCitations": [
+      {
+       "sourceKey": "szeged-gombos",
+       "locator": "A Gömbös-kormány",
+       "quote": "majd 1929 októberében Horthy honvédelmi miniszterré nevezte ki.",
+       "quoteLang": "hu"
+      },
+      {
+       "sourceKey": "szeged-gombos",
+       "locator": "A Gömbös-kormány",
+       "quote": "megtartotta a hadügyi tárcát is",
+       "quoteLang": "hu"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:gombos-move-president",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Deák 書評（B）只寫1919年1月取得 MOVE 主席職位，未寫何時卸任。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:gombos-nep-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Deák 書評（B）稱他是 NEP（國民統一黨）領袖，但沒寫就任與卸任日；Magyar Katolikus Lexikon 頁面無署名（C），只可當候選，稱1932年初他成為該黨前身統一黨的領袖、同年10月27日改名 NEP。未建候選角色。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kath-nep",
+       "locator": "Nemzeti Egység Pártja",
+       "quote": "élére 1932 elején Gömbös Gyula került",
+       "quoteLang": "hu"
+      },
+      {
+       "sourceKey": "ahea-pitt",
+       "locator": "p.167",
+       "quote": "the party of which he was leader",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:gombos-egyseges-vice-chair",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Tóth（B）只寫他在統一黨擔任副主席（alelnök），未寫起訖日；SZTE 館方網頁（C）稱1922年他獲「執行主席」頭銜，不一致且非合格出處。未建候選角色。",
+     "candidateCitations": [
+      {
+       "sourceKey": "omp-ppke",
+       "locator": "2. fejezet",
+       "quote": "Egységes Pártban alelnöki posztot töltött be",
+       "quoteLang": "hu"
+      },
+      {
+       "sourceKey": "szeged-gombos",
+       "locator": "A Gömbös-kormány",
+       "quote": "megkapta a párt ügyvezető elnöke címet",
+       "quoteLang": "hu"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:head_of_government_term",
+     "gapKind": "not_found",
+     "note": "首相任期（1932-10-01～1936-10-06）已在名單5442（recordId 01a1aa4a-4a5b-76c9-99b4-0ab9e36fa6bb），本檔未重建。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前3段、中文約548字，段落與字數已達標，但4筆任期中僅1筆有完整起迄、其餘缺迄日或起日（國防部長、MOVE主席、小農黨議席迄日；NEP領袖、統一黨副主席起日）。本輪重試已查官方（kormany.hu、parlament.hu、EHRI［Anubis］）、傳記辭典（mek.oszk.hu 404）、具名百科（Britannica 403、DHM 404）、學術論文（Klestenitz、Tóth RDSG、Kurucz）共4類來源，仍無合格出處載明起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-17"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND 搜尋 Gömbös Gyula",
+     "url": "https://lobid.org/gnd/search?q=G%C3%B6mb%C3%B6s+Gyula&format=json",
+     "result": "found_A",
+     "note": "GND 123390532：1886–1936、慕尼黑、首相1932–1936"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 123390532 紀錄",
+     "url": "https://lobid.org/gnd/123390532.json",
+     "result": "found_A",
+     "note": "curl 取得"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Gyula Gömbös",
+     "url": "https://www.britannica.com/biography/Gyula-Gombos",
+     "result": "blocked_403",
+     "note": "403，不繞過；print 頁為挑戰頁，亦不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Magyar életrajzi lexikon Gömbös（mek.oszk.hu 猜測網址）",
+     "url": "https://mek.oszk.hu/00300/00355/html/ABC02417/03090.htm",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Gömbös Gyula Magyar életrajzi lexikon mek.oszk.hu 1886 Murga 1936 Münchenben miniszterelnök",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未找到條目本文"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Gömbös Gyula miniszterelnök 1932 Nemzeti Egység Pártja honvédelmi miniszter 1929 életrajz",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Deák、Pritz 等候選"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Deák 書評 Vonyó：Gömbös Gyula és a hatalom",
+     "url": "https://ahea.pitt.edu/ojs/ahea/article/view/472/827",
+     "result": "found_B",
+     "note": "curl PDF，pdftotext；MOVE、種族保衛黨、1929、NEP、死亡"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Pritz Pál：Személyiség és történelem（Világtörténet 2019/4）",
+     "url": "https://tti.abtk.hu/images/kiadvanyok/folyoiratok/Vilagtortenet_2016_tol/vt_2019/vt_2019_4/VT_2019_4_Pritz.pdf",
+     "result": "found_B",
+     "note": "curl PDF；1928、1932、羅馬行"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Tóth Tibor：Agrárválság, szociális problémák és jogalkotás（PPKE BTK 2025）",
+     "url": "https://omp.ppke.hu/btk/catalog/download/82/274/852?inline=1",
+     "result": "found_B",
+     "note": "curl PDF；1920 小農黨議席、副主席、1924 新黨、1928 解散"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "MNL OL K 35 Gömbös Gyula miniszterelnöki iratai（EHRI）",
+     "url": "https://portal.ehri-project.eu/units/hu-002739-mnl_ol_k_35",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Magyar Katolikus Lexikon：Nemzeti Egység Pártja",
+     "url": "https://lexikon.katolikus.hu/N/Nemzeti%20Egys%C3%A9g%20P%C3%A1rtja.html",
+     "result": "unrated",
+     "note": "無署名；只放缺口候選"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "SZTE Egyetemi Könyvtár：A Gömbös-kormány belpolitikája",
+     "url": "http://www.bibl.u-szeged.hu/ha/kormanyok/gombos/32_36.html",
+     "result": "unrated",
+     "note": "無署名；只放缺口候選"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Rubicon 1932. október 1. Gömbös Gyula alakít kormányt",
+     "url": "https://rubicon.hu/hu/kalendarium/1932-oktober-1-gombos-gyula-alakit-kormanyt",
+     "result": "unrated",
+     "note": "日曆短文無署名；與 Deák 的國防部年份不同但不合格，未引用"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon：Gyula von Gömbös",
+     "url": "https://snl.no/Gyula_von_G%C3%B6mb%C3%B6s",
+     "result": "unrated",
+     "note": "條目無署名；只放備註"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie 搜尋 Gömbös",
+     "url": "https://www.deutsche-biographie.de/search?name=G%C3%B6mb%C3%B6s",
+     "result": "no_result",
+     "note": "無結果"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 人名頁（猜測網址）",
+     "url": "https://www.treccani.it/enciclopedia/gyula-gombos/",
+     "result": "no_result",
+     "note": "頁面無該人條目"
+    },
+    {
+     "step": 17,
+     "sourceType": "other",
+     "query": "Gömbös Gyula Nemzeti Egység Pártja 1932 október megalakulás pártvezér honvédelmi miniszter 1929",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Katolikus Lexikon、SZTE（皆未評等）、Rubicon"
+    },
+    {
+     "step": 18,
+     "sourceType": "other",
+     "query": "lexikon.katolikus.hu Gömbös Gyula honvédelmi miniszter 1929 Egységes Párt ügyvezető elnök",
+     "url": null,
+     "result": "no_result",
+     "note": "無條目"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "Gömbös Gyula Országgyűlési Almanach 1927-1931 honvédelmi miniszter parlament.hu",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到議會名錄頁"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "kormany.hu 歷任總理頁",
+     "url": "https://www.kormany.hu/miniszterelnokok",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "parlament.hu 議員almanach",
+     "url": "https://www.parlament.hu/orszaggyulesi-almanach",
+     "result": "not_relevant",
+     "note": "頁面無 Gömbös 任期資料"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "mek.oszk.hu 匈牙利傳記辭典 Gömbös（原文）",
+     "url": "https://mek.oszk.hu/00300/00355/html/ABC02417/03090.htm",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Gömbös 重試",
+     "url": "https://www.britannica.com/biography/Gyula-Gombos",
+     "result": "blocked_403",
+     "note": "不繞過"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO Gömbös",
+     "url": "https://www.dhm.de/lemo/biografie/gyula-goemboes",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "EHRI MNL OL K35 全宗說明（搜尋摘要稱國防部長1929-1932）",
+     "url": "https://portal.ehri-project.eu/units/hu-002739-mnl_ol_k_35",
+     "result": "challenge_page",
+     "note": "Anubis，放棄"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "WebSearch：Gömbös Gyula honvédelmi miniszter 1929 október 1932 almanach",
+     "url": null,
+     "result": "no_result",
+     "note": "僅得非合格出處／摘要"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "WebSearch：Magyar életrajzi lexikon Gömbös MOVE elnöke",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到辭典條目"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Klestenitz Tibor：Központi Sajtóvállalat Gömbös idején",
+     "url": "https://real.mtak.hu/30947/1/Klestenitz.pdf",
+     "result": "unrated",
+     "note": "僅提及「honvédelmi miniszterként」，無起迄日"
+    },
+    {
+     "step": 29,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Tóth Tibor（RDSG 2019）英文論文",
+     "url": "https://apcz.umk.pl/RDSG/article/download/RDSG.2019.10/24394/61191",
+     "result": "found_B",
+     "note": "1932年10月1日組閣；未載國防部長迄日"
+    },
+    {
+     "step": 30,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Kurucz Ádám：Betekintő 2019/3",
+     "url": "https://www.betekinto.hu/sites/default/files/betekinto-szamok/2019_3_kurucz.pdf",
+     "result": "not_relevant",
+     "note": "無關"
+    },
+    {
+     "step": 31,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Acta Historica Szeged PDF",
+     "url": "https://ojs.bibl.u-szeged.hu/index.php/acthist/article/download/9857/9749/10213",
+     "result": "no_result",
+     "note": "pdftotext 無文字"
+    }
+   ]
+  },
+  {
+   "key": "pa-arosemena",
+   "bioId": "01a1b4c0-c8ae-7c77-99fc-a69e72619780",
+   "name": "Pablo Arosemena",
+   "nameZh": "巴勃羅·阿羅塞梅納",
+   "recordIds": [
+    "01a1aa4a-729e-789c-9ac1-a2829172606f",
+    "01a1aa4a-729e-7afa-a3e5-cdef7f59a2f7"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1836-11-24",
+      "end": "1886-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與哥倫比亞時期",
+      "en": "Origins and the Colombian period"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記帕布羅·阿羅塞梅納生於1836年11月24日、卒於1920年8月29日，職業含政治家、記者與律師。Encyclopedia of Latin American History and Culture 的條目載，他曾任檢察長，1875與1885年任巴拿馬主權邦總統，兩度被哥倫比亞軍隊推翻，並在1880年當選哥倫比亞的第二副總統。",
+      "en": "The German National Library authority record gives Pablo Arosemena's birth as 24 November 1836 and death as 29 August 1920, and lists his occupations as politician, journalist and lawyer. The Encyclopedia of Latin American History and Culture says he was attorney general and president of the Sovereign State of Panama in 1875 and 1885, on both occasions overthrown by the Colombian army, and that in 1880 he was elected second vice president to the Colombian presidency."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-arosemena",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1836-11-24\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-arosemena",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1920-08-29\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-arosemena",
+       "locator": "professionOrOccupation",
+       "quote": "\"label\" : \"Politiker\"",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-arosemena",
+       "locator": "professionOrOccupation",
+       "quote": "\"label\" : \"Journalist\"",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-arosemena",
+       "locator": "professionOrOccupation",
+       "quote": "\"label\" : \"Rechtsanwalt\"",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "He was attorney general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "president of the Sovereign State of Panama in 1875 and 1885",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "on both occasions overthrown by the Colombian army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "in 1880 he was elected second vice president to the Colombian presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1904-01-01",
+      "end": "1905-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "巴拿馬獨立後與制憲會議",
+      "en": "After independence and the constituent assembly"
+     },
+     "body": {
+      "zh-Hant": "同一條目載，巴拿馬脫離哥倫比亞後，他繼續活躍於政壇；1904年他成為國家制憲會議的議長。",
+      "en": "The same entry says that he remained politically active after Panama's separation from Colombia and that in 1904 he became president of the National Constituent Assembly."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "Arosemena continued to be active in politics",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "after Panama's separation from Colombia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "In 1904 he became president of the National Constituent Assembly",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1910-09-01",
+      "end": "1912-11-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "總統任期",
+      "en": "Presidency"
+     },
+     "body": {
+      "zh-Hant": "該條目載，他自1910年9月至1912年10月任巴拿馬總統，由國民議會指派，完成何塞·多明戈·德·奧瓦爾迪亞（José Domingo de Obaldía）去世後的任期，並接替在奧瓦爾迪亞死後暫時代理總統的卡洛斯·安東尼奧·門多薩（Carlos Antonio Mendoza）。該條目另稱他是19世紀古典自由主義的熱情擁護者。",
+      "en": "The entry says he served as Panama's president from September 1910 to October 1912, appointed by the National Assembly to finish the term of José Domingo de Obaldía after Obaldía's death, and that he succeeded Carlos Antonio Mendoza, who had temporarily assumed the presidency. The entry also calls him an ardent supporter of classical nineteenth-century liberalism."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "He served as Panama's president from September 1910 to October 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "having been appointed by the National Assembly",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "to finish the term of José Domingo de Obaldía",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "Arosemena succeeded Carlos Antonio Mendoza",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "who temporarily had assumed the presidency immediately following Obaldía's death",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-arosemena",
+       "locator": "條目首段",
+       "quote": "an ardent supporter of classical nineteenth-century liberalism",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:head_of_state_term",
+     "gapKind": "not_found",
+     "note": "總統任期（Primer Designado, Encargado del Poder Ejecutivo，1910-10-01～1912-10-01）已在名單5442（head_of_state recordId 01a1aa4a-729e-789c-9ac1-a2829172606f；head_of_government recordId 01a1aa4a-729e-7afa-a3e5-cdef7f59a2f7），本檔未重建。B 來源只到月（Encyclopedia of LAHC：1910年9月至1912年10月），無日期級紀錄，與名單日期未直接核對；總統府、國會官方頁與 DBE~e 本輪未取得。PDBA 總統年表（無署名彙編，審查降為 C）列他為1910–1912年「Provisional / acting」，並列門多薩、博伊德為1910年暫代，只作候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "pdba-panama",
+       "locator": "年表",
+       "quote": "1910-1912 Pablo Arosemena Alba Provisional / acting",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "pdba-panama",
+       "locator": "年表",
+       "quote": "1910 Carlos Antonio Mendoza Provisional / acting",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "pdba-panama",
+       "locator": "年表",
+       "quote": "1910 Federico Boyd Provisional / acting",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:officialSources",
+     "gapKind": "not_found",
+     "note": "待查證：官方或國家級傳記來源。DBE~e（dbe.rah.es）頁面需 JavaScript 無內文；LoC 查詢只有名稱無傳記；Britannica 403（不繞過）；archontology.org 為私人彙編（X），未引用。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND 搜尋 Pablo Arosemena",
+     "url": "https://lobid.org/gnd/search?q=Pablo+Arosemena&format=json",
+     "result": "found_A",
+     "note": "GND 1056480971：生卒、政治家／記者／律師"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 1056480971 紀錄",
+     "url": "https://lobid.org/gnd/1056480971.json",
+     "result": "found_A",
+     "note": "curl 取得"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "LoC Name Authority 搜尋 Arosemena, Pablo",
+     "url": "https://id.loc.gov/search/?q=Arosemena%2C+Pablo",
+     "result": "no_result",
+     "note": "搜尋頁無可用傳記資料，未引用"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Pablo Arosemena",
+     "url": "https://www.britannica.com/biography/Pablo-Arosemena",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "DBE~e Real Academia de la Historia Pablo Arosemena",
+     "url": "https://dbe.rah.es/biografias/pablo-arosemena",
+     "result": "no_result",
+     "note": "頁面需 JavaScript，無內文"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Pablo Arosemena Primer Designado presidente Panamá 1910 1912 biografía Asamblea Nacional",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Encyclopedia.com 候選（B）、PDBA 候選（審查降為 C）"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture：Arosemena, Pablo",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/arosemena-pablo-1836-1920",
+     "result": "found_B",
+     "note": "curl 取得；Juan Manuel Pérez 署名"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Panamá América：Vicepresidentes: Sin rastros en la historia",
+     "url": "https://www.panamaamerica.com.pa/node/61261",
+     "result": "unrated",
+     "note": "報紙文章，頁面抓取內容未見阿羅塞梅納段落；未引用"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "archontology.org Panama Heads of State 1903-1968",
+     "url": "https://www.archontology.org/nations/panama/00_1903_1968_state.php",
+     "result": "unrated",
+     "note": "私人彙編（X），未引用"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Georgetown PDBA Panama Chronology of Presidents",
+     "url": "https://pdba.georgetown.edu/Executive/Panama/pres.html",
+     "result": "unrated",
+     "note": "curl 取得；1910–1912 暫代；無署名彙編表，審查降為 C，只作缺口候選"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Pablo Arosemena continúa con la transición liberal（La Estrella de Panamá）",
+     "url": "https://www.laestrella.com.pa/nacional/111202/pablo-liberal-continua-arosemena-transicion",
+     "result": "unrated",
+     "note": "報紙文章；未引用"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Pablo Arosemena（猜測網址）",
+     "url": "https://www.treccani.it/enciclopedia/pablo-arosemena/",
+     "result": "no_result",
+     "note": "頁面無該人條目"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Arosemena Pablo 1836 1920 Panamá Estado Soberano presidente 1875 Constituyente 1904 diccionario biográfico Biblioteca Nacional",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到 Biblioteca Nacional 辭典條目"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Pablo Arosemena Alba presidente de Panamá 1910-1912 presidencia.gob.pa galería de presidentes",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未列出總統府頁面"
+    }
+   ]
+  },
+  {
+   "key": "ch-schulthess",
+   "bioId": "01a1b4c0-c8b6-7b39-92d0-e5c3634784f9",
+   "name": "Edmund Schulthess",
+   "nameZh": "埃德蒙·舒爾特斯",
+   "recordIds": [
+    "01a1aa4a-4def-707d-8ed7-6bce767ac309",
+    "01a1aa4a-4df0-7f06-b4ab-8698b6a5d89b",
+    "01a1aa4a-4df4-7100-9d12-82bdfad0a576",
+    "01a1aa4a-4df6-777b-bad1-0726538dc7a9"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1868-03-02",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與地方政壇",
+      "en": "Background and cantonal politics"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記埃德蒙·舒爾特斯生於1868年3月2日。歷史辭典（HLS）載，他讀亞勞州立中學，先後在斯特拉斯堡、慕尼黑、萊比錫、伯爾尼與巴黎修法學，取得律師資格，1891年在布魯格開設律師事務所。他自1893至1912年代表自由民主黨（FDP）在亞勞州大議會，1897至1898年任議長；1905年在亞勞州首次人民直選中進入聯邦院（Ständerat），任至1912年。",
+      "en": "The German National Library authority record gives 2 March 1868 as Edmund Schulthess's birth date. The Historical Dictionary of Switzerland says he attended the cantonal school in Aarau, studied law in Strasbourg, Munich, Leipzig, Bern and Paris, qualified as an advocate, and opened a law practice in Brugg in 1891. From 1893 to 1912 he represented the FDP in the Aargau Grand Council, serving as its president in 1897-98. In 1905, in the first popular election in Aargau, he entered the Council of States (Ständerat), where he sat until 1912."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-schulthess",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1868-03-02\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Kantonsschule Aarau, Jusstud. in Strassburg, München, Leipzig, Bern und Paris",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Fürsprecherpatent",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "1891 eröffnete S. eine Anwaltspraxis in Brugg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "S. vertrat 1893-1912 die FDP im aarg. Grossen Rat (1897-98 Präs.).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "1905 in der ersten aarg. Volkswahl in den Ständerat",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "dem er bis 1912 angehörte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1912-07-17",
+      "end": "1936-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "聯邦委員與經濟部門",
+      "en": "Federal Councillor and the economics department"
+     },
+     "body": {
+      "zh-Hant": "HLS載，舒爾特斯在聯邦委員多伊歇爾（Adolf Deucher）去世後，於1912年7月17日當選聯邦委員，主持商業、工業與農業部，1915年由該部分出的經濟部（Volkswirtschaftsdepartement）也由他領導，共23年；他在1917、1921、1928與1933年任聯邦主席。亞勞州檔案館藏有日期為1912年9月23日、題為聯邦委員舒爾特斯辭去大議會議員的卷宗。HLS又載，1924年的延長工時至54小時方案、1926年穀物專賣與1931年老年保險方案他都未能通過；他主張法郎貶值，此事至1936年才實施。1935年他因倦於任事並受氣喘所苦而辭職。",
+      "en": "The Historical Dictionary of Switzerland says that after the death of Federal Councillor Adolf Deucher, Schulthess was elected to the Federal Council on 17 July 1912. He headed the department of trade, industry and agriculture and, from 1915, the economics department that emerged from it, for 23 years, and was Federal President in 1917, 1921, 1928 and 1933. The Aargau State Archive holds a dossier dated 23 September 1912 titled as the Federal Councillor's resignation as Grand Councillor. The same dictionary records that he did not carry the 1924 extension of working hours to 54 hours, the 1926 grain monopoly or a 1931 old-age insurance bill, and that he favoured a devaluation of the franc, which was implemented only in 1936. Tired of office and plagued by asthma, he resigned in 1935."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Nach dem Tod von Bundesrat Adolf Deucher",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "wurde er am 17.7.1912 in den Bundesrat gewählt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Er leitete das Handels-, Industrie- und Landwirtschafts- bzw. das",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "aus diesem 1915 hervorgegangene Volkswirtschaftsdepartement 23 Jahre lang",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "war 1917, 1921, 1928 und 1933 Bundespräsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ag-grossrat",
+       "locator": "Titel",
+       "quote": "Schulthess, Edmund, Bundesrat, Rücktritt als Grossrat, 1912.09.23",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "1924 die als Lex Schulthess bezeichnete Arbeitszeitverlängerung auf 54 Stunden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "1926 das Getreidemonopol und 1931 eine AHV-Vorlage",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "brachte er allerdings nicht durch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Er setzte sich für die Frankenabwertung ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "die erst 1936 umgesetzt werden sollte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Amtsmüde und von Asthma geplagt, trat er 1935 aus dem Bundesrat zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1935-01-01",
+      "end": "1944-04-22"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "銀行委員會與評價",
+      "en": "Banking Commission and assessment"
+     },
+     "body": {
+      "zh-Hant": "HLS載，他辭職後聯邦委員會選他為首任聯邦銀行委員會（Eidg. Bankenkommission）主席，任至1943年。HLS稱他是重視解決問題的務實者，他在經濟政策最困難時期的表現，於離任後獲各黨派承認。德國國家圖書館權威檔稱他為瑞士聯邦委員會成員（FDP），並記他卒於1944年4月22日。",
+      "en": "The Historical Dictionary of Switzerland says the Federal Council chose him, after his resignation, as the first president of the Federal Banking Commission, a function he held until 1943. It calls him a solution-oriented pragmatist and says his performance in the most difficult times for economic policy was recognised across the parties after he left office. The German National Library authority record describes him as a member of the Swiss Federal Council (FDP) and gives 22 April 1944 as his death date."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "der ihn zum ersten Präs. der Eidg. Bankenkommission wählte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "diese Funktion bekleidete er bis 1943",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "S. galt als lösungsorientierter Pragmatiker.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Seine Leistung in wirtschaftspolitisch schwierigster Zeit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "wurde nach seinem Rücktritt quer durch die Parteien anerkannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-schulthess",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Schweizer Politiker, Mitglied des Schweizerischen Bundesrates (FDP)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-schulthess",
+       "locator": "dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1944-04-22\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "sch-staenderat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞士聯邦議會聯邦院（Ständerat）",
+      "en": "Council of States (Ständerat), Swiss Federal Assembly"
+     },
+     "title": {
+      "orig": "Ständerat (Aargau)",
+      "zh-Hant": "聯邦院議員（亞勞州）",
+      "en": "Member of the Council of States (Aargau)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1905-01-01",
+      "end": "1913-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "1905 in der ersten aarg. Volkswahl in den Ständerat",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "dem er bis 1912 angehörte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "sch-bundesrat-volkswirtschaft",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞士聯邦委員會",
+      "en": "Swiss Federal Council"
+     },
+     "title": {
+      "orig": "Bundesrat; Vorsteher des Handels-, Industrie- und Landwirtschafts- bzw. Volkswirtschaftsdepartements",
+      "zh-Hant": "聯邦委員；商業、工業與農業部（後為經濟部）部長",
+      "en": "Federal Councillor; head of the Department of Trade, Industry and Agriculture, later the Economics Department"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1912-07-17",
+      "end": "1936-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "wurde er am 17.7.1912 in den Bundesrat gewählt",
+       "quoteLang": "de",
+       "evidenceNote": "起日取當選日（來源只寫當選日，未寫就任日）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "aus diesem 1915 hervorgegangene Volkswirtschaftsdepartement 23 Jahre lang",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Amtsmüde und von Asthma geplagt, trat er 1935 aus dem Bundesrat zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "部門為商業、工業與農業（後經濟）部，不屬外交、國防、財政、內政四部，R3① 不符，歸 R5"
+    },
+    {
+     "key": "sch-bankenkommission",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瑞士聯邦銀行委員會",
+      "en": "Swiss Federal Banking Commission"
+     },
+     "title": {
+      "orig": "Präsident der Eidg. Bankenkommission",
+      "zh-Hant": "聯邦銀行委員會首任主席",
+      "en": "First President of the Federal Banking Commission"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1935-01-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "Amtsmüde und von Asthma geplagt, trat er 1935 aus dem Bundesrat zurück",
+       "quoteLang": "de",
+       "evidenceNote": "起日依同句：1935年辭去聯邦委員後，由聯邦委員會選為首任主席（同句接續，推論同年）",
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "der ihn zum ersten Präs. der Eidg. Bankenkommission wählte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "diese Funktion bekleidete er bis 1943",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "sch-grossrat-fdp",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "亞勞州大議會（自由民主黨 FDP 席位）",
+      "en": "Grand Council of Aargau (FDP)"
+     },
+     "title": {
+      "orig": "Grossrat des Kantons Aargau (FDP)",
+      "zh-Hant": "亞勞州大議會議員（自由民主黨）",
+      "en": "Member of the Aargau Grand Council (FDP)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1893-01-01",
+      "end": "1912-09-23"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hls-schulthess",
+       "locator": "Lebenslauf",
+       "quote": "S. vertrat 1893-1912 die FDP im aarg. Grossen Rat (1897-98 Präs.).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ag-grossrat",
+       "locator": "Titel",
+       "quote": "Schulthess, Edmund, Bundesrat, Rücktritt als Grossrat, 1912.09.23",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取卷宗標題所記辭去大議會的日期（1912-09-23）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；HLS 明寫他「代表 FDP」在亞勞州大議會",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:head_of_state_term",
+     "gapKind": "not_found",
+     "note": "聯邦主席任期（1917、1921、1928、1933）已在名單5442（recordId 01a1aa4a-4def-707d-8ed7-6bce767ac309 等四筆），本檔未重建；HLS 只寫年份。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:bundesratDates",
+     "gapKind": "not_found",
+     "note": "待查證：聯邦委員就任日與辭職日。HLS 只寫當選日（17.7.1912）與「1935年辭職」；聯邦委員會官方頁（admin.ch，403）與 Dodis（Anubis 挑戰頁）未取得，未用搜尋摘要；故職位迄日以年精度（1936-01-01）寫入。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND 搜尋 Edmund Schulthess",
+     "url": "https://lobid.org/gnd/search?q=Edmund+Schulthess&format=json",
+     "result": "found_A",
+     "note": "GND 118762281：生卒、瑞士聯邦委員會成員（FDP）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "HLS 文章 id 猜測（004551）",
+     "url": "https://hls-dhs-dss.ch/de/articles/004551/2011-11-24/",
+     "result": "not_relevant",
+     "note": "404，id 錯誤，改用搜尋找正確 id"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Schulthess, Edmund Historisches Lexikon der Schweiz Bundesrat 1912 Volkswirtschaftsdepartement",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 HLS 003791"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "HLS Schulthess, Edmund（德文版）",
+     "url": "https://hls-dhs-dss.ch/de/articles/003791/2011-08-19/",
+     "result": "found_A",
+     "note": "curl 取得；Steigmeier 署名；生平、聯邦委員、銀行委員會"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "聯邦委員會官網 Edmund Schulthess",
+     "url": "https://admin.ch/gov/en/start/bundesrat/mitglieder-des-bundesrates/edmund-schulthess.html",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "bk.admin.ch 聯邦委員名單",
+     "url": "https://www.bk.admin.ch/bk/de/home/dokumentation/bundesratsmitglieder.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Dodis P2150（Schulthess）",
+     "url": "https://dodis.ch/P2150",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "parlament.ch 議員頁 Edmund Schulthess",
+     "url": "https://www.parlament.ch/de/biografie/edmund-schulthess/1060",
+     "result": "not_relevant",
+     "note": "頁面無 Schulthess 內容"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "HLS 法文與義大利文版",
+     "url": "https://hls-dhs-dss.ch/fr/articles/003791/2011-08-19/",
+     "result": "found_A",
+     "note": "同一篇文章的語言版，未另引"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Edmund Schulthess",
+     "url": "https://www.britannica.com/biography/Edmund-Schulthess",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie pnd118762281",
+     "url": "https://www.deutsche-biographie.de/pnd118762281.html",
+     "result": "no_result",
+     "note": "只有索引資訊，無傳記條目"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Edmund Schulthess Bundesrat Rücktritt 1935 Eidgenössische Bankenkommission Präsident Biographie",
+     "url": null,
+     "result": "found_A",
+     "note": "搜尋結果列出 Staatsarchiv Aargau 卷宗"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "Staatsarchiv Aargau：Rücktritt als Grossrat 1912.09.23",
+     "url": "https://www.ag.ch/staatsarchiv/suche/detail.aspx?ID=366088",
+     "result": "found_A",
+     "note": "curl 取得；卷宗標題與日期"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Staatsarchiv Aargau：Rücktritt als Mitglied der Justizkomission 1912.07.26",
+     "url": "https://www.ag.ch/staatsarchiv/suche/detail.aspx?ID=361135",
+     "result": "found_A",
+     "note": "取得；未引用（機關不明確）"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "HelveticArchives 肖像目錄",
+     "url": "https://www.helveticarchives.ch/detail.aspx?ID=281480",
+     "result": "not_relevant",
+     "note": "照片目錄，只有摘要「Bundesrat (1912-1935)」，未引用"
+    }
+   ]
+  }
+ ]
+}

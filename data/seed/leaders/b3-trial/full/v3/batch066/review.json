@@ -1,0 +1,93 @@
+{
+ "batch": "066",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 5,
+  "addedCitations": 13,
+  "editedSentences": 8,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ht-simon",
+   "bioId": "01a1b4bf-612d-7eb6-842e-19ec29fd878f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 11,
+   "changes": [
+    "FIU Island Luminous（署名編輯委員會、無具名作者的大學教學專題頁）由 B 降為未評等；5 筆引文移出段落，改放新 gap field:fall_from_power 的 candidateCitations",
+    "第2段刪 FIU 鐵路／德國社群句；第3段刪 FIU 進攻海地角、退回太子港、南部倒戈三子句，標題改「受外界鄙視與流亡」",
+    "pre_presidency_career gap note 內 FIU 等級改為未評等",
+    "刪後仍達最低標準（3 段／347 字）",
+    "第二輪審查：「第一位坐上總統職位的黑人」引文補全為「became the first black since … to occupy the president's chair」；卡科人不滿引文補全含主語 McDonald contract／especially；補 City Bank、McDonald 獲授權築路 2 筆原句引文",
+    "searchLog step 7（FIU）result 由 found_B 改 unrated"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cl-montt",
+   "bioId": "c15e6fe2-5dbb-48a7-9437-b78e7b052be8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 7,
+   "changes": [
+    "第2段刪無引文支撐的「後來正式稱為國會圖書館」，改為「身為佩托爾卡選區眾議員，創立國會圖書館並出任首任館長」",
+    "第2段補引文：工業與公共工程部長職稱、巴爾馬塞達政府、1891 年內戰後入閣、豪爾赫·蒙特政府內政部長（4 筆）",
+    "第3段 1906 年選舉引文補全至「donde resultó electo」以支撐「當選」",
+    "第4段補重建救助、設立學校引文；聖瑪利亞學校事件改寫為引文所述（硝石工人聚集伊基克聖瑪利亞學校、21 日機槍攻擊），刪無支撐的「與軍隊對峙」，補 3 筆引文",
+    "窗內（1908–1945）無非元首職位，任期已在名單，positions／roleCandidates 為空屬正常",
+    "第二輪審查：新增 gap field:tenure_dates——名單起日 1908-01-01 與 BCN（A）就任日 1906-09-18 不符，交主 session 檢視庫值"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mn-bumtsend",
+   "bioId": "01a1b4bf-613c-7e3f-bf74-c172980a7c5d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 35,
+   "changes": [
+    "第1段刪推論「以他為作者的蒙古文書」，改為 LoC 670 欄位所寫（2001 年《Dulaan khaany khu̇u̇》書名頁與內文記其姓名與 1881、1953）",
+    "第2段 period 迄點依段內最後一件事（1920 年代警察首長）由 1940-01-01 改 1930-01-01",
+    "第3段補「1940, the 10th Congress of the MPRP」引文以支撐年份與大會屆次；兩筆無日期 quote 的 datePrecision 改 null",
+    "第3段俄文片段 quote 前方截斷、看不出職稱，刪「主席一職」改為「小呼拉爾主席團方面依喬巴山提議選出」",
+    "第4段補「(head of state)」引文；Brown 引文補含 1881-1953 年份",
+    "中央委員會主席團黨職 gap note 修正：依規則缺迄日應照寫 start，研究者未建候選，交主 session 決定"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "大學／機構教學專題頁以集體編輯委員會署名者不應評 B（Q9：無具名作者 → 未評等）",
+  "Google Books 檢索片段（Sanders、Bawden、Brown/Onon、Roshchin）已逐條對回 r-gf-*.xml 的書目歸屬，作 B 使用；sanders-hdm 混合 2003 與 2017 兩版，片段前後截斷處不可推論職稱",
+  "Bumtsend 1940 年中央委員會主席團（黨職）只建 gap 未建 roleCandidate，與「缺迄日照寫 start」規則不符，待主 session 處理；名單 Bumtsend 任期迄 1945-10-01 與 Sanders 6 July 1940–23 September 1953 不符，已有 gap",
+  "多處引文截斷到不支撐子句（當選、職稱、政府名、年份）",
+  "抽查重抓 4 頁（Encyclopedia.com、BCN、LoC no2002115753、Google Books feed），內容與快取一致；Island Luminous 首頁重抓確認為教學展示站",
+  "名單任期起點與 A 來源不符（Montt 名單 1908-01-01 vs BCN 1906-09-18；Bumtsend 名單迄 1945-10-01 vs Sanders 1953-09-23），已記 gap，請主 session 核對 leader_records"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

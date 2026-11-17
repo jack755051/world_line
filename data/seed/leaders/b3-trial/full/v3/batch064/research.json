@@ -1,0 +1,3026 @@
+{
+ "batch": "b3-full-v3-batch064",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）；名單5442已有的元首／首腦任期不重建；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch064/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "parlement-heemskerk": {
+   "title": "Mr. Th. (Theo) Heemskerk（Parlement.com 人物條目）",
+   "authors": [],
+   "publisher": "Parlement.com（Montesquieu Instituut）",
+   "published_text": "人物資料庫條目",
+   "url": "https://www.parlement.com/id/vg09ll1hukzc/th_theo_heemskerk",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "荷蘭議會制度研究機構 Montesquieu Instituut 編的議會人物資料庫；學術機構資料庫，記 B（比照 batch005 parlement-wilhelmina）"
+  },
+  "bwn-heemskerk": {
+   "title": "Heemskerk, Theodorus (1852-1932)",
+   "authors": [
+    "W. Slagter"
+   ],
+   "publisher": "Huygens ING（荷蘭皇家藝術與科學院）",
+   "published_text": "Biografisch Woordenboek van Nederland",
+   "url": "https://resources.huygens.knaw.nl/bwn1880-2000/lemmata/bwn3/heemskerk",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "荷蘭國家級傳記辭典 Biografisch Woordenboek van Nederland（Huygens ING，具名作者 W. Slagter）"
+  },
+  "gnd-heemskerk": {
+   "title": "Heemskerk, Theodoor（GND 132079674）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/132079674",
+   "archive_url": null,
+   "catalog_id": "GND 132079674",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔；經 lobid.org 官方鏡像取得（欄位轉為純文字）"
+  },
+  "stj-pm": {
+   "title": "Fyrri forsætisráðherrar",
+   "authors": [],
+   "publisher": "Forsætisráðuneytið／Stjórnarráð Íslands（冰島總理府）",
+   "published_text": "冰島政府官網歷任總理名單",
+   "url": "https://www.stjornarradid.is/raduneyti/forsaetisraduneytid/fyrri-forsaetisradherrar/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "冰島政府官網歷任總理名單，記 A（比照 batch046 stjornarradid-pm）"
+  },
+  "stj-jon-1917": {
+   "title": "Ráðuneyti Jóns Magnússonar（1917）",
+   "authors": [],
+   "publisher": "Stjórnarráð Íslands（冰島政府）",
+   "published_text": "Ríkisstjórnartal（歷屆內閣）",
+   "url": "https://www.stjornarradid.is/rikisstjorn/sogulegt-efni/um-rikisstjorn/1917/01/04/Raduneyti-Jons-Magnussonar/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "冰島政府官網歷屆內閣頁（官方頁）"
+  },
+  "stj-jon-1920": {
+   "title": "Annað ráðuneyti Jóns Magnússonar（1920）",
+   "authors": [],
+   "publisher": "Stjórnarráð Íslands（冰島政府）",
+   "published_text": "Ríkisstjórnartal（歷屆內閣）",
+   "url": "https://www.stjornarradid.is/rikisstjorn/sogulegt-efni/um-rikisstjorn/1920/02/25/Annad-raduneyti-Jons-Magnussonar/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "冰島政府官網歷屆內閣頁（官方頁）"
+  },
+  "stj-jon-1924": {
+   "title": "Þriðja ráðuneyti Jóns Magnússonar（1924）",
+   "authors": [],
+   "publisher": "Stjórnarráð Íslands（冰島政府）",
+   "published_text": "Ríkisstjórnartal（歷屆內閣）",
+   "url": "https://www.stjornarradid.is/rikisstjorn/sogulegt-efni/rikisstjornartal/grein/1924-03-22-Thridja-raduneyti-Jons-Magnussonar/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "冰島政府官網歷屆內閣頁（官方頁）"
+  },
+  "gnd-jon": {
+   "title": "Magnússon, Jón（GND 1165817241）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/1165817241",
+   "archive_url": null,
+   "catalog_id": "GND 1165817241",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔；經 lobid.org 官方鏡像取得（欄位轉為純文字）"
+  },
+  "lex-jon": {
+   "title": "Jón Magnússon",
+   "authors": [
+    "Gudmundur Halfdanarson"
+   ],
+   "publisher": "Lex.dk（Den Store Danske，Gyldendal）",
+   "published_text": "Den Store Danske 具名條目，2020-05-07 更新",
+   "url": "https://lex.dk/J%C3%B3n_Magn%C3%BAsson",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "丹麥 Den Store Danske（Gyldendal）具名作者機構百科條目（作者 Gudmundur Halfdanarson）"
+  },
+  "gnd-lyapchev": {
+   "title": "Ljapčev, Andrej T.（GND 121085430）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/121085430",
+   "archive_url": null,
+   "catalog_id": "GND 121085430",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔；經 lobid.org 官方鏡像取得（欄位轉為純文字）"
+  },
+  "treccani-bulgaria": {
+   "title": "Bulgaria",
+   "authors": [
+    "Giuseppe Caraci",
+    "Luchino Franciosa",
+    "Ugo Fischetti",
+    "Anna Maria Ratti",
+    "Enrico Damiani"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana, I Appendice (1938)",
+   "url": "https://www.treccani.it/enciclopedia/bulgaria_res-42450909-8b74-11dc-8e9d-0016357eee51_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Treccani 義大利百科全書附錄條目，頁面列具名作者五人（比照 batch007 treccani-boris-cataluccio 記 B）"
+  },
+  "ceeol-parvanova": {
+   "title": "Формиране на правителството на Андрей Ляпчев (4 януари 1926 г.)",
+   "authors": [
+    "Rumyana Parvanova"
+   ],
+   "publisher": "Институт за исторически изследвания, Българска академия на науките（經 CEEOL 摘要頁）",
+   "published_text": "Исторически преглед 1991, No 11, pp. 87-98（CEEOL 摘要）",
+   "url": "https://www.ceeol.com/search/article-detail?id=1064325",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "保加利亞科學院歷史研究所出版期刊論文，具名作者；CEEOL 公開摘要頁（學術期刊 B）"
+  },
+  "treccani-liapcev": {
+   "title": "Liapčev, Andrej",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Treccani 條目（無署名）",
+   "url": "https://www.treccani.it/enciclopedia/andrej-liapcev/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名百科條目，Q9 不可作出處，只放 gap 候選"
+  },
+  "bnr-lyapchev": {
+   "title": "“With a kind word and a soft tread…” – the administration of Andrey Lyapchev",
+   "authors": [],
+   "publisher": "Bulgarian National Radio",
+   "published_text": "BNR 網站英語廣播稿（無署名）",
+   "url": "https://bnr.bg/en/post/100220165/with-a-kind-word-and-a-soft-tread-the-administration-of-andrey-lyapchev",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "公共廣播網站文稿，無具名作者無書目，Q9 不可作出處，只放 gap 候選"
+  },
+  "dbl-jon": {
+   "title": "Jón Magnússon",
+   "authors": [
+    "Heimir Thorleifsson"
+   ],
+   "publisher": "Dansk Biografisk Leksikon（3. udgave，Lex.dk）",
+   "published_text": "Dansk Biografisk Leksikon 具名條目，2011-07-18 上網",
+   "url": "https://biografiskleksikon.lex.dk/J%C3%B3n_Magn%C3%BAsson",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "丹麥國家級傳記辭典 Dansk Biografisk Leksikon 具名條目（作者 Heimir Thorleifsson）"
+  }
+ },
+ "people": [
+  {
+   "key": "nl-heemskerk",
+   "bioId": "01a1b4bb-0789-760c-80c5-eae3618dbb4c",
+   "name": "Theo Heemskerk",
+   "nameZh": "西奧·海姆斯克爾克",
+   "recordIds": [
+    "01a1aa4a-59af-76b8-b812-e8fdde5c15fe"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1852-07-20",
+      "end": "1876-05-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與學歷",
+      "en": "Origins and education"
+     },
+     "body": {
+      "zh-Hant": "特奧多魯斯（特奧）·海姆斯克爾克1852年7月20日生於阿姆斯特丹，是保守派政治人物揚·海姆斯克爾克之子。他在萊頓大學攻讀羅馬法與現代法，1876年5月13日取得博士學位。",
+      "en": "Theodorus (Theo) Heemskerk was born in Amsterdam on 20 July 1852, the son of the conservative politician Jan Heemskerk. He studied Roman and contemporary law at Leiden and took his doctorate on 13 May 1876."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Personalia",
+       "quote": "Amsterdam, 20 juli 1852",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-heemskerk",
+       "locator": "dateOfBirth",
+       "quote": "dateOfBirth: 1852-07-20",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "開頭",
+       "quote": "Zoon van Jan Heemskerk, conservatief politicus",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Opleiding",
+       "quote": "Romeins en hedendaags recht (gepromoveerd op dissertatie), Hogeschool te Leiden",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "學歷",
+       "quote": "op 13 mei 1876 zijn promotie volgt tot doctor in het Romeins en hedendaags recht",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1876-01-01",
+      "end": "1908-02-12"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "律師、議員與阿姆斯特丹市參事",
+      "en": "Advocate, MP and Amsterdam alderman"
+     },
+     "body": {
+      "zh-Hant": "他自1876年起在阿姆斯特丹執業為律師，至1901年5月。1888年5月1日起他進入第二院（眾議院）；1901年5月15日起出任阿姆斯特丹市參事，至1908年2月12日。1901年有人請他入閣，他因個人理由推辭；1903年他當選反革命黨議員團主席。",
+      "en": "He practised as an advocate in Amsterdam from 1876 until May 1901. He entered the Tweede Kamer on 1 May 1888 and from 15 May 1901 to 12 February 1908 was an Amsterdam alderman. In 1901 he was asked to take a ministerial post and declined for personal reasons; in 1903 he became chairman of the Anti-Revolutionary parliamentary club."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "advocaat te Amsterdam, van 1876 tot mei 1901",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "lid Tweede Kamer der Staten-Generaal, van 1 mei 1888 tot 15 september 1891",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "wethouder (van financiën en publieke werken) van Amsterdam",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "van Amsterdam, van 15 mei 1901 tot 12 februari 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "In 1901 wordt Heemskerk voor het eerst voor een ministerpost gevraagd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Heemskerk weigert om persoonlijke redenen",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "in 1903 voorzitter van de a.r. kamerclub",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1907-12-30",
+      "end": "1908-02-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "受命組閣",
+      "en": "Forming the cabinet"
+     },
+     "body": {
+      "zh-Hant": "1907年12月30日他受命組織新內閣，但實際的組閣工作到1908年1月16日才展開；他自1月16日至2月11日擔任組閣人。據來源，他經長時間猶豫才接受任務，兩週後就向女王提出內閣名單。庫佩爾覺得自己被繞過，海姆斯克爾克是違背庫佩爾的意思才成為內閣領導人，兩人因而起衝突。",
+      "en": "On 30 December 1907 he was charged with forming a cabinet, though his formation work only began on 16 January 1908; he served as cabinet formateur from 16 January to 11 February 1908. He accepted the task after long hesitation and within two weeks could present the new ministry to the queen. Kuyper felt passed over, and Heemskerk became cabinet leader against Kuyper's wishes, leading to a conflict."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Wetenswaardigheden",
+       "quote": "Kreeg op 30 december 1907 de opdracht een kabinet te vormen",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "kabinetsformateur, van 16 januari 1908 tot 11 februari 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "De opdracht wordt door Heemskerk na lange aarzeling aanvaard.",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Na twee weken kan hij het nieuwe ministerie reeds aan de vorstin voordragen.",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Kuyper, terug in Nederland, voelt zich gepasseerd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "摘要",
+       "quote": "werd in 1908 tegen diens zin kabinetsleider, hetgeen leidde tot een conflict",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1908-02-12",
+      "end": "1913-08-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "內閣領導人與內政大臣",
+      "en": "Prime minister and Minister of the Interior"
+     },
+     "body": {
+      "zh-Hant": "1908年2月12日起他任內政大臣，並於2月13日起擔任部長會議主席，至1913年8月29日；他並在1908年2月12日至5月18日兼任殖民大臣（代理）。1908年他完成法定時間的引入，採用阿姆斯特丹時間；1910年他設立修憲國家委員會並親任主席。1913年選舉失敗後，內閣下台。",
+      "en": "From 12 February 1908 he was Minister of the Interior and from 13 February chairman of the Council of Ministers, until 29 August 1913; he was also acting Minister of the Colonies from 12 February to 18 May 1908. In 1908 he brought in statutory time, with Amsterdam time chosen, and in 1910 he set up a State Commission on constitutional revision and chaired it himself. After the 1913 election defeat the ministry resigned."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-59af-76b8-b812-e8fdde5c15fe"
+     ],
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van Binnenlandse Zaken, van 12 februari 1908 tot 29 augustus 1913",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "voorzitter van de ministerraad, van 13 februari 1908 tot 29 augustus 1913",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van Koloniën ad interim, van 12 februari 1908 tot 18 mei 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Activiteiten",
+       "quote": "Bracht in 1908 de wet tot invoering van de wettelijk tijd tot stand",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Activiteiten",
+       "quote": "Als wettelijk tijd werd gekozen de Amsterdamse Tijd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Activiteiten",
+       "quote": "Stelde in 1910 een Staatscommissie inzake Grondwetsherziening in",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Activiteiten",
+       "quote": "waarvan hijzelf voorzitter werd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Na de verkiezingsnederlaag, in 1913, treedt het ministerie af",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1913-10-01",
+      "end": "1925-08-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國務委員會與司法大臣",
+      "en": "Council of State and Minister of Justice"
+     },
+     "body": {
+      "zh-Hant": "1913年10月1日他轉任國務委員會委員，至1918年9月9日。1918年他第二度入閣，這次擔任司法大臣，至1925年8月4日。據來源，他任內通過的法律包括1923年的拒服兵役法與1924年的海商法修訂。",
+      "en": "On 1 October 1913 he became a member of the Council of State, serving until 9 September 1918. In 1918 he entered cabinet a second time, now as Minister of Justice, until 4 August 1925. Among the laws passed under him were the 1923 conscientious-objection act and the 1924 revision of maritime law."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "lid Raad van State, van 1 oktober 1913 tot 9 september 1918",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van Justitie, van 9 september 1918 tot 4 augustus 1925",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "In 1918 volgt dan een tweede ministerschap, nu aan Justitie",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Activiteiten",
+       "quote": "Bracht in 1923 samen met minister Van Dijk de Dienstweigeringswet tot stand",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "een herziening van het zeerecht (1924)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1925-09-15",
+      "end": "1932-06-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "重返議會與逝世",
+      "en": "Return to parliament and death"
+     },
+     "body": {
+      "zh-Hant": "1925年9月15日他重返第二院，至1932年6月12日。他自1925年9月16日起任反革命黨議員團主席，1929年被科萊恩（Colijn）接替，隨後改任副主席。1926年8月27日他獲任國務部長（Minister van Staat）。他於1932年6月12日在烏特勒支病逝。",
+      "en": "He returned to the Tweede Kamer on 15 September 1925 and sat until 12 June 1932. He chaired the ARP parliamentary party from 16 September 1925 until Colijn replaced him in 1929, after which he was vice-chairman. On 27 August 1926 he was named Minister of State. He died in Utrecht on 12 June 1932."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "lid Tweede Kamer der Staten-Generaal, van 15 september 1925 tot 12 juni 1932",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "fractievoorzitter ARP Tweede Kamer der Staten-Generaal",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "Staten-Generaal, van 16 september 1925 tot 17 september 1929",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "als fractievoorzitter door Colijn wordt afgelost",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Partijpolitieke functies",
+       "quote": "vicefractievoorzitter ARP Tweede Kamer der Staten-Generaal",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Op 27 augustus 1926 wordt hij tot minister van Staat benoemd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Op 12 juni 1932 is Heemskerk, na een kort ziekbed",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-heemskerk",
+       "locator": "dateOfDeath",
+       "quote": "dateOfDeath: 1932-06-12",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Personalia",
+       "quote": "Utrecht, 12 juni 1932",
+       "quoteLang": "nl",
+       "evidenceNote": "審查補：支撐卒地烏特勒支（同一已抓原文的生卒欄）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "heemskerk-wethouder-amsterdam",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "阿姆斯特丹市政府",
+      "en": "Municipality of Amsterdam"
+     },
+     "title": {
+      "orig": "wethouder (van financiën en publieke werken) van Amsterdam",
+      "zh-Hant": "阿姆斯特丹市參事（財政與公共工程）",
+      "en": "Alderman of Amsterdam (finance and public works)"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1901-05-15",
+      "end": "1908-02-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "wethouder (van financiën en publieke werken) van Amsterdam",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "van Amsterdam, van 15 mei 1901 tot 12 februari 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非元首／首腦／黨職，亦非 R2–R4 類別（地方、委員會、議員或榮銜職務）→ 歸 R5"
+    },
+    {
+     "key": "heemskerk-colonies-interim",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭王國政府",
+      "en": "Government of the Netherlands"
+     },
+     "title": {
+      "orig": "minister van Koloniën ad interim",
+      "zh-Hant": "殖民大臣（代理）",
+      "en": "Minister of the Colonies (ad interim)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-02-12",
+      "end": "1908-05-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van Koloniën ad interim, van 12 februari 1908 tot 18 mei 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "殖民部不屬外交、國防、財政、內政四部，且為代理（ad interim）→ R3① 不符，歸 R5"
+    },
+    {
+     "key": "heemskerk-interior-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭王國政府",
+      "en": "Government of the Netherlands"
+     },
+     "title": {
+      "orig": "minister van Binnenlandse Zaken",
+      "zh-Hant": "內政大臣",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-02-12",
+      "end": "1913-08-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van Binnenlandse Zaken, van 12 februari 1908 tot 29 augustus 1913",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "als minister van Binnenlandse Zaken",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部、正職、日精度可證明 ≥90 天；BWN（A）佐證職稱、日期出自 Parlement.com（B）；僅 regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "heemskerk-staatscommissie-grondwet",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭王國政府",
+      "en": "Government of the Netherlands"
+     },
+     "title": {
+      "orig": "voorzitter Staatscommissie inzake de Grondwetsherziening",
+      "zh-Hant": "修憲國家委員會主席",
+      "en": "Chairman, State Commission on Constitutional Revision"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1910-05-02",
+      "end": "1912-05-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Nevenfuncties",
+       "quote": "voorzitter Staatscommissie inzake de Grondwetsherziening",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Nevenfuncties",
+       "quote": "Grondwetsherziening, van 2 mei 1910 tot 15 mei 1912",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非元首／首腦／黨職，亦非 R2–R4 類別（地方、委員會、議員或榮銜職務）→ 歸 R5"
+    },
+    {
+     "key": "heemskerk-raad-van-state",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國務委員會",
+      "en": "Council of State"
+     },
+     "title": {
+      "orig": "lid Raad van State",
+      "zh-Hant": "國務委員會委員",
+      "en": "Member of the Council of State"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1913-10-01",
+      "end": "1918-09-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "lid Raad van State, van 1 oktober 1913 tot 9 september 1918",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非元首／首腦／黨職，亦非 R2–R4 類別（地方、委員會、議員或榮銜職務）→ 歸 R5"
+    },
+    {
+     "key": "heemskerk-justice-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭王國政府",
+      "en": "Government of the Netherlands"
+     },
+     "title": {
+      "orig": "minister van Justitie",
+      "zh-Hant": "司法大臣",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1918-09-09",
+      "end": "1925-08-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van Justitie, van 9 september 1918 tot 4 augustus 1925",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬外交、國防、財政、內政四部 → R3① 不符，歸 R5"
+    },
+    {
+     "key": "heemskerk-minister-of-state",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭王國政府",
+      "en": "Government of the Netherlands"
+     },
+     "title": {
+      "orig": "minister van staat",
+      "zh-Hant": "國務部長（榮銜）",
+      "en": "Minister of State (honorary title)"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1926-08-27",
+      "end": "1932-06-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "minister van staat, van 27 augustus 1926 tot 12 juni 1932",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Op 27 augustus 1926 wordt hij tot minister van Staat benoemd",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非元首／首腦／黨職，亦非 R2–R4 類別（地方、委員會、議員或榮銜職務）→ 歸 R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "heemskerk-arp-kamerclub-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭眾議院（第二院）／反革命黨議員團",
+      "en": "House of Representatives (Tweede Kamer) / ARP parliamentary party"
+     },
+     "title": {
+      "orig": "voorzitter A.R.-Kamerclub",
+      "zh-Hant": "反革命黨議員團（Kamerclub）主席",
+      "en": "Chairman of the ARP parliamentary club"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1903-09-22",
+      "end": "1908-02-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "voorzitter A.R.-Kamerclub",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "Staten-Generaal, van 22 september 1903 tot 12 februari 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "in 1903 voorzitter van de a.r. kamerclub",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader；反革命黨議員團主席，屬黨團／黨內職務（Parlement.com 另將副主席列於「Partijpolitieke functies」）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "heemskerk-arp-fraction-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭眾議院（第二院）／反革命黨議員團",
+      "en": "House of Representatives (Tweede Kamer) / ARP parliamentary party"
+     },
+     "title": {
+      "orig": "fractievoorzitter ARP Tweede Kamer",
+      "zh-Hant": "反革命黨眾議院議員團主席",
+      "en": "Chairman of the ARP parliamentary party in the Tweede Kamer"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1925-09-16",
+      "end": "1929-09-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "fractievoorzitter ARP Tweede Kamer der Staten-Generaal",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "Staten-Generaal, van 16 september 1925 tot 17 september 1929",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "als fractievoorzitter door Colijn wordt afgelost",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader；反革命黨議員團主席，屬黨團／黨內職務",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "heemskerk-arp-fraction-vice-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭眾議院（第二院）／反革命黨議員團",
+      "en": "House of Representatives (Tweede Kamer) / ARP parliamentary party"
+     },
+     "title": {
+      "orig": "vicefractievoorzitter ARP Tweede Kamer",
+      "zh-Hant": "反革命黨眾議院議員團副主席",
+      "en": "Vice-chairman of the ARP parliamentary party in the Tweede Kamer"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1929-09-17",
+      "end": "1932-06-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Partijpolitieke functies",
+       "quote": "vicefractievoorzitter ARP Tweede Kamer der Staten-Generaal",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Partijpolitieke functies",
+       "quote": "Staten-Generaal, van 17 september 1929 tot 12 juni 1932",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader；Parlement.com 將此職列於「Partijpolitieke functies」",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "heemskerk-tk-1901-arp",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭眾議院（第二院）／反革命黨議員團",
+      "en": "House of Representatives (Tweede Kamer) / ARP parliamentary party"
+     },
+     "title": {
+      "orig": "lid Tweede Kamer (ARP)",
+      "zh-Hant": "眾議院議員（反革命黨）",
+      "en": "Member of the Tweede Kamer (ARP)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1901-09-17",
+      "end": "1908-02-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Heemskerk heeft voor de Anti-Revolutionaire Partij (ARP)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "lang zitting in de Tweede Kamer gehad",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "Staten-Generaal, van 17 september 1901 tot 12 februari 1908",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BWN 明寫他「voor de ARP」在第二院任席",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "heemskerk-tk-1925-arp",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "荷蘭眾議院（第二院）／反革命黨議員團",
+      "en": "House of Representatives (Tweede Kamer) / ARP parliamentary party"
+     },
+     "title": {
+      "orig": "lid Tweede Kamer (ARP)",
+      "zh-Hant": "眾議院議員（反革命黨）",
+      "en": "Member of the Tweede Kamer (ARP)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1925-09-15",
+      "end": "1932-06-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "Heemskerk heeft voor de Anti-Revolutionaire Partij (ARP)",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "lang zitting in de Tweede Kamer gehad",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "parlement-heemskerk",
+       "locator": "Hoofdfuncties",
+       "quote": "lid Tweede Kamer der Staten-Generaal, van 15 september 1925 tot 12 juni 1932",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bwn-heemskerk",
+       "locator": "生平",
+       "quote": "In 1925 keert Heemskerk terug in de Tweede Kamer",
+       "quoteLang": "nl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BWN 明寫他「voor de ARP」在第二院任席",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:heemskerk-arp-central-committee",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Parlement.com 列「lid Centraal Comité van ARP-kiesverenigingen」（反革命黨選區協會中央委員會委員，黨職→R1 de_facto_leader，Tai 2026-11-11 12:12），但未寫任期起迄，故不寫入 roleCandidates。已查：Parlement.com、BWN（Huygens）、GND。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:tk1922stint",
+     "gapKind": "not_found",
+     "note": "待查證：Parlement.com 另列 1922-07-25～1922-09-18 的第二院議席（為期不到兩個月），BWN 未提；因未見來源明寫該段以 ARP 身分取得，且與入閣身分關係未明，未另建候選。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:pm_term",
+     "gapKind": "not_found",
+     "note": "內閣領導人任期（名單 5442：1908-02-13～1913-08-30）已在 leader_records，本檔未重建；Parlement.com 記部長會議主席 1908-02-13～1913-08-29（日期差一天，來源另註「formeel tijdelijk」）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Theo Heemskerk",
+     "url": "https://lobid.org/gnd/search?q=Theo+Heemskerk&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 132079674：1852-07-20 阿姆斯特丹、1932-06-12 烏特勒支、「1908-1913 Ministerpräsident」"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid.org GND Heemskerk Theodoor",
+     "url": "https://lobid.org/gnd/search?q=Heemskerk+Theodoor&format=json&size=3",
+     "result": "found_A",
+     "note": "同一筆 132079674；另一筆為其父 J. Heemskerk（1115496689），排除"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "LoC 名稱權威檔站內搜尋 Heemskerk Theodoor",
+     "url": "https://id.loc.gov/search/?q=Heemskerk+Theodoor&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "只取回檢索頁外殼，無可用紀錄"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Parlement.com Theo Heemskerk（網路搜尋）",
+     "url": "https://www.parlement.com/id/vg09ll1hukzc/th_theo_heemskerk",
+     "result": "found_B",
+     "note": "職位與起訖日（日精度）完整；先試猜測網址 vg09ll0w1ayg 回 404，改用搜尋結果之正確網址"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Parlement.com Kabinet-Heemskerk (1908-1913)",
+     "url": "https://parlement.com/kabinet-heemskerk-1908-1913",
+     "result": "unrated",
+     "note": "同出版者，未另作出處"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Huygens BWN Heemskerk, Theodorus",
+     "url": "https://resources.huygens.knaw.nl/bwn1880-2000/lemmata/bwn3/heemskerk",
+     "result": "found_A",
+     "note": "W. Slagter 條目；先試 bwn1/heemskerk 回 404，改 bwn3"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Bornebroek 2006 Theodoor Heemskerk dissertation（網路搜尋）",
+     "url": null,
+     "result": "no_result",
+     "note": "只見書目，未取得可抓原文"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch：Theo Heemskerk minister-president 1908 1913",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果以 Wikipedia 為主（只作索引，未採用），Parlement.com 為可用結果"
+    }
+   ]
+  },
+  {
+   "key": "is-jon-magnusson",
+   "bioId": "01a1b4bb-0796-77d7-9690-273f34131dfb",
+   "name": "Jón Magnússon",
+   "nameZh": "約恩·馬格努松",
+   "recordIds": [
+    "01a1aa4a-669b-7248-b7b5-83495328093a",
+    "01a1aa4a-669b-77f6-8f15-4f8f41c425fc",
+    "01a1aa4a-669c-72f9-9fbf-e9bfc304c0bf"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1859-01-01",
+      "end": "1903-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "生卒與進入議會",
+      "en": "Life dates and election to the Althing"
+     },
+     "body": {
+      "zh-Hant": "約恩·馬格努松生於1859年，卒於1926年，是冰島政治人物與法律人（jurist）；他1902年當選阿爾庭（冰島議會）議員。丹麥人物辭典說，他在議會中的立場與哈納斯·哈夫斯坦及自治黨（hjemmestyrepartiet）一致。",
+      "en": "Jón Magnússon was born in 1859 and died in 1926, an Icelandic politician and jurist. He was elected to the Althing in 1902. The Dansk Biografisk Leksikon says he aligned himself in the Althing with Hannes Hafstein and the home-rule party."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "Jón Magnússon, 1859-1926, islandsk politiker og jurist.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "Magnússon blev valgt til Altinget i 1902",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "hvor han stillede sig på linje med Hannes Hafstein og hjemmestyrepartiet",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1881-01-01",
+      "end": "1892-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與教育",
+      "en": "Birth and education"
+     },
+     "body": {
+      "zh-Hant": "據丹麥人物辭典，他生於1859年1月16日，出生地是冰島北部的穆利（Múli）牧師住所。他1881年畢業於雷克雅維克的拉丁學校，1891年取得哥本哈根大學法學學位。",
+      "en": "According to the Dansk Biografisk Leksikon he was born on 16 January 1859 at the parsonage of Múli in northern Iceland. He finished the Reykjavik Latin school in 1881 and took his law degree at the University of Copenhagen in 1891."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "16.1.1859-23.6.1926",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "Født på præstegården Múli i Nordisland",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "student fra Reykjaviks lærde skole 1881 og cand.jur. 1891 fra Kbh.s univ.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1896-01-01",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "早期官職",
+      "en": "Early official posts"
+     },
+     "body": {
+      "zh-Hant": "同一辭典載，他畢業後先任西人島（Vestmannaeyjar）的郡長（sysselmand），1896年任土地總督（landshøvding）的辦事員（fuldmægtig）。1904年冰島部在雷克雅維克設立時，他成為部門主管（departementschef），1908年任市法官（byfoged）。",
+      "en": "The same dictionary says that after graduating he became sysselmand on the Westman Islands, in 1896 a clerk (fuldmægtig) to the landshøvding, head of department (departementschef) when the Icelandic ministry was created in Reykjavik in 1904, and in 1908 town judge (byfoged)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "Han blev derefter sysselmand på Vestmannaøerne",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "1896 fuldmægtig hos landshøvdingen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "Ved oprettelsen 1904 af det islandske ministerium i Reykjavik",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "blev han departementschef og 1908 byfoged",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1908年聯盟方案委員會",
+      "en": "The 1908 union committee"
+     },
+     "body": {
+      "zh-Hant": "1908年，他是提出丹麥與冰島關係方案的委員會成員；該方案後來未獲阿爾庭通過。",
+      "en": "In 1908 he sat on the committee that put forward a proposal on the relationship between Denmark and Iceland; it was not approved by the Althing."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "Magnússon sad i 1908 i det udvalg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "som fremsatte et forslag om forbindelsen mellem Danmark og Island",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "det blev dog ikke godkendt i Altinget",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "聯盟法與首任總理",
+      "en": "Act of Union and first premiership"
+     },
+     "body": {
+      "zh-Hant": "丹麥人物辭典說，第一次世界大戰期間他參加了丹麥與冰島《聯盟法》的談判。該法於1918年12月1日生效後，他成為冰島第一任總理；這一職位他任到1922年，1924至1926年又再任。",
+      "en": "The Dansk Biografisk Leksikon says that during the First World War he took part in the negotiations on the Danish-Icelandic Act of Union. After the Act came into force on 1 December 1918 he became Iceland's first prime minister, a post he held until 1922 and again in 1924-26."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "Under første verdenskrig",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "deltog i forhandlingerne om den dansk-islandske forbundslov",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "forbundslovens ikrafttræden 1.12.1918",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "blev han Islands første statsminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "en post han besad til 1922 og igen 1924-26",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1917-01-04",
+      "end": "1922-03-07"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第一、二屆內閣",
+      "en": "First and second ministries"
+     },
+     "body": {
+      "zh-Hant": "冰島政府官網記載，他第一屆內閣自1917年1月4日至1920年2月25日，第二屆自1920年2月25日至1922年3月7日；兩屆內閣中他都兼任總理（forsætisráðherra）與司法大臣（dómsmálaráðherra）。1917年的財政大臣先為比約恩·克里斯強松，8月28日起換為西古德·埃格爾茨。丹麥大百科稱，1918年《聯盟法》使冰島成為與丹麥共主聯合的獨立國家，那是他任總理期間。",
+      "en": "Iceland's government website dates his first ministry from 4 January 1917 to 25 February 1920 and his second from 25 February 1920 to 7 March 1922; in both he was prime minister and minister of justice. In 1917 the finance minister was first Björn Kristjánsson and from 28 August Sigurður Eggerz. Den Store Danske says that Iceland became an independent state in personal union with Denmark under the 1918 Act of Union during his time as prime minister."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-669b-7248-b7b5-83495328093a",
+      "01a1aa4a-669b-77f6-8f15-4f8f41c425fc"
+     ],
+     "citations": [
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "Ráðuneyti Jóns Magnússonar: 4. janúar 1917 - 25. febrúar 1920.",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "forsætisráðherra og dómsmálaráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1920",
+       "locator": "內閣頁",
+       "quote": "Annað ráðuneyti Jóns Magnússonar: 25. febrúar 1920 - 7. mars 1922.",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1920",
+       "locator": "內閣頁",
+       "quote": "Jón Magnússon, forsætisráðherra og dómsmálaráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "Björn Kristjánsson",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "(til 28.08.1917) fjármálaráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "Sigurður Eggerz",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "(frá 28.08.1917) fjármálaráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "Det var i hans tid som statsminister, at Island i 1918",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "med Forbundsloven blev en selvstændig stat i personalunion med Danmark",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 7,
+     "period": {
+      "start": "1924-03-22",
+      "end": "1926-06-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第三屆內閣與逝世",
+      "en": "Third ministry and death"
+     },
+     "body": {
+      "zh-Hant": "1924年3月22日起他第三度組閣。丹麥大百科記他1924至1926年這一屆由保守黨（Íhaldsflokkur）提名。冰島政府官網記載，他在這屆內閣中兼任總理與司法大臣，並於1926年6月23日去世；同日起由馬格努斯·古德蒙松接任總理。丹麥人物辭典補充，他在東冰島旅行途中去世，葬於雷克雅維克。",
+      "en": "From 22 March 1924 he formed his third ministry. Den Store Danske records that in 1924-26 he was put forward by the Conservative Party (Íhaldsflokkur). Iceland's government website lists him as prime minister and minister of justice in this ministry, notes that he died on 23 June 1926, and shows Magnús Guðmundsson as prime minister from that day. The Dansk Biografisk Leksikon adds that he died on a journey in eastern Iceland and was buried in Reykjavik."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-669c-72f9-9fbf-e9bfc304c0bf"
+     ],
+     "citations": [
+      {
+       "sourceKey": "stj-jon-1924",
+       "locator": "內閣頁",
+       "quote": "Þriðja ráðuneyti Jóns Magnússonar: 22. mars 1924 - 8. júlí 1926.",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "og 1924-26, opstillet af det konservative parti, Ihaldsflokkur",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1924",
+       "locator": "內閣頁",
+       "quote": "Jón Magnússon, forsætisráðherra og dómsmálaráðherra (lést 23.06.1926)",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1924",
+       "locator": "內閣頁",
+       "quote": "(frá 23.06.1926) forsætisráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-pm",
+       "locator": "歷任總理名單",
+       "quote": "Jón Magnússon 22.03.1924 - 23.06.1926",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-jon",
+       "locator": "條目",
+       "quote": "død under en rejse i Østisland, begravet i Reykjavik",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "jon-althing-member",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "阿爾庭（冰島議會）",
+      "en": "Althing (Parliament of Iceland)"
+     },
+     "title": {
+      "orig": "Alþingismaður",
+      "zh-Hant": "阿爾庭議員",
+      "en": "Member of the Althing"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1902-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "Magnússon blev valgt til Altinget i 1902",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非元首／首腦／黨職，亦非 R2–R4 類別（地方、委員會、議員或榮銜職務）→ 歸 R5",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "Dansk Biografisk Leksikon 寫他當選阿爾庭後「stillede sig på linje med Hannes Hafstein og hjemmestyrepartiet」（在議會中與自治黨立場一致），未明寫以該黨身分取得席位，是否比照黨職不確定（審查標註）"
+    },
+    {
+     "key": "jon-union-committee-1908",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹冰關係委員會",
+      "en": "Danish-Icelandic relations committee"
+     },
+     "title": {
+      "orig": "udvalget om forbindelsen mellem Danmark og Island",
+      "zh-Hant": "丹麥冰島關係方案委員會委員",
+      "en": "Member of the committee on the Denmark-Iceland relationship"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1908-01-01",
+      "end": "1909-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "Magnússon sad i 1908 i det udvalg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-jon",
+       "locator": "條目",
+       "quote": "som fremsatte et forslag om forbindelsen mellem Danmark og Island",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非元首／首腦／黨職，亦非 R2–R4 類別（地方、委員會、議員或榮銜職務）→ 歸 R5"
+    },
+    {
+     "key": "jon-justice-1917",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "冰島政府",
+      "en": "Government of Iceland"
+     },
+     "title": {
+      "orig": "dómsmálaráðherra",
+      "zh-Hant": "司法大臣",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1917-01-04",
+      "end": "1920-02-25"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "Ráðuneyti Jóns Magnússonar: 4. janúar 1917 - 25. febrúar 1920.",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1917",
+       "locator": "內閣頁",
+       "quote": "forsætisráðherra og dómsmálaráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬外交、國防、財政、內政四部 → R3① 不符，歸 R5"
+    },
+    {
+     "key": "jon-justice-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "冰島政府",
+      "en": "Government of Iceland"
+     },
+     "title": {
+      "orig": "dómsmálaráðherra",
+      "zh-Hant": "司法大臣",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-02-25",
+      "end": "1922-03-07"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "stj-jon-1920",
+       "locator": "內閣頁",
+       "quote": "Annað ráðuneyti Jóns Magnússonar: 25. febrúar 1920 - 7. mars 1922.",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1920",
+       "locator": "內閣頁",
+       "quote": "Jón Magnússon, forsætisráðherra og dómsmálaráðherra",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬外交、國防、財政、內政四部 → R3① 不符，歸 R5"
+    },
+    {
+     "key": "jon-justice-1924",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "冰島政府",
+      "en": "Government of Iceland"
+     },
+     "title": {
+      "orig": "dómsmálaráðherra",
+      "zh-Hant": "司法大臣",
+      "en": "Minister of Justice"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1924-03-22",
+      "end": "1926-06-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "stj-jon-1924",
+       "locator": "內閣頁",
+       "quote": "Þriðja ráðuneyti Jóns Magnússonar: 22. mars 1924 - 8. júlí 1926.",
+       "quoteLang": "is",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "stj-jon-1924",
+       "locator": "內閣頁",
+       "quote": "Jón Magnússon, forsætisráðherra og dómsmálaráðherra (lést 23.06.1926)",
+       "quoteLang": "is",
+       "evidenceNote": "迄日取來源「lést 23.06.1926」（他去世日）；內閣頁另寫內閣期間至 1926-07-08（其後由接任者繼續）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法部不屬外交、國防、財政、內政四部 → R3① 不符，歸 R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:jon-althing-member",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Dansk Biografisk Leksikon（本輪新增 A）、Den Store Danske（lex.dk）、GND、冰島政府官網皆只寫「1902 年當選阿爾庭」或總理任期，未寫議席迄日。已查（含本輪）：Alþingi 傳記頁與議員名錄（althingi.is，403 Cloudflare 挑戰頁，不繞過）、Tímarit.is、Britannica（403）、SBL、SNL、LoC、DDB、BnF、Oxford Reference（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:pm_1917_1918",
+     "gapKind": "not_found",
+     "note": "1917-01-04～1918-11-30（名單 5442 的冰島王國首腦任期自 1918-12-01 起）的總理任期：冰島政府官網記 1917-01-04 起為 forsætisráðherra，但未取得 1918-12-01 分界日與該時期政權資料的出處，不另建 roleCandidates（若建需政權待查證）。1918-12-01 起至 1920-02-25、1920-02-25～1922-03-07、1924-03-22～1926-06-23 已在名單 5442，未重建。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:partyPosts",
+     "gapKind": "not_found",
+     "note": "待查證：lex.dk 只寫他兩段總理任期分別由 Heimastjórnarflokkur（1917-22）與 Íhaldsflokkur（1924-26）提名，未寫黨職或以黨籍取得的議席，故不建黨職候選；Althing 傳記頁被 Cloudflare 擋（403），未繞過。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:earlyCareer",
+     "gapKind": "not_found",
+     "note": "待查證：本輪已由 Dansk Biografisk Leksikon 補上出生日、出生地、教育與 1881–1908 官職（見段落 2、3）；各官職（郡長、辦事員、部門主管、市法官）的起迄日只有年份或無日期，未建 positions；1902 年以前其餘經歷仍缺原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前中文 7 段／823 字（審查刪一句重複句後）（已達 3 段、300 字），但未達最低標準處是阿爾庭議員職位缺迄日（已標「待查證：缺迄日」）；本輪加強搜尋已查來源類型：權威檔、國家傳記辭典、官方／議會、具名百科、學術／報刊資料庫，議席迄日仍未由 A／B 原文取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-17"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Jón Magnússon",
+     "url": "https://lobid.org/gnd/search?q=J%C3%B3n+Magn%C3%BAsson&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 1165817241（1859–1926，「Premierminister Islands von 1917-1922 und 1924-1926」）；另四筆同名者為 17 世紀等不同人，排除"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid.org GND Magnússon Jón Forsætisminister",
+     "url": "https://lobid.org/gnd/search?q=Magn%C3%BAsson+J%C3%B3n+Forsætisminister&format=json&size=5",
+     "result": "no_result",
+     "note": "HTTP 500（未編碼的非 ASCII），改用步驟 1 的編碼查詢"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "冰島政府官網 Fyrri forsætisráðherrar",
+     "url": "https://www.stjornarradid.is/raduneyti/forsaetisraduneytid/fyrri-forsaetisradherrar/",
+     "result": "found_A",
+     "note": "三段總理任期與日期；列出各人 althingi.is 傳記連結（nfaerslunr=326 等）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Alþingi 傳記頁 althingi.is/altext/cv/is/?nfaerslunr=326（及 cv.php4 舊式網址）",
+     "url": "https://www.althingi.is/altext/cv/is/?nfaerslunr=326",
+     "result": "challenge_page",
+     "note": "403 Cloudflare「Just a moment」挑戰頁（兩種網址皆是），不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "冰島政府官網 內閣頁 1917／1920／1924",
+     "url": "https://www.stjornarradid.is/rikisstjorn/sogulegt-efni/um-rikisstjorn/1917/01/04/Raduneyti-Jons-Magnussonar/",
+     "result": "found_A",
+     "note": "1917、1920 內閣頁列部長與日期；舊式 1924 網址頁無內容，改用搜尋所得 Thridja-raduneyti 網址取得第三屆"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Jón Magnússon",
+     "url": "https://lex.dk/J%C3%B3n_Magn%C3%BAsson",
+     "result": "found_B",
+     "note": "Den Store Danske 具名條目（Gudmundur Halfdanarson）"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Statsministre på Island",
+     "url": "https://snl.no/Statsministre_p%C3%A5_Island",
+     "result": "unrated",
+     "note": "表列 1917–1920、1920–1922、1924–1926 與政黨代碼；未列作者，未採用"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "WebSearch：Jón Magnússon forsætisráðherra 1917 1922 1924 1926 alþingi.is æviágrip",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果以 Wikipedia／鏡像為主（只作索引）；vesturfarar.is、sarpur.is 為不相關或非 A／B"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Jón Magnússon",
+     "url": null,
+     "result": "no_result",
+     "note": "未搜得條目；未嘗試繞過"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "LoC id.loc.gov 搜尋 Magnússon, Jón, 1859-1926",
+     "url": "https://id.loc.gov/search/?q=Magn%C3%BAsson%2C+J%C3%B3n%2C+1859-1926",
+     "result": "unrated",
+     "note": "頁面可取，無可引任期資料"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "VIAF 搜尋 Magnusson Jon 1859",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Magnusson+Jon+1859%22",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "Deutsche Digitale Bibliothek 搜尋 Jón Magnússon 1859",
+     "url": "https://www.deutsche-digitale-bibliothek.de/searchresults?query=J%C3%B3n+Magn%C3%BAsson+1859",
+     "result": "unrated",
+     "note": "無相關任期資料"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BnF data 搜尋 Jón Magnússon 1859",
+     "url": "https://data.bnf.fr/search?term=J%C3%B3n+Magn%C3%BAsson+1859",
+     "result": "unrated",
+     "note": "無相關任期資料"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Dansk Biografisk Leksikon Jón Magnússon（丹文）",
+     "url": "https://biografiskleksikon.lex.dk/J%C3%B3n_Magn%C3%BAsson",
+     "result": "found_A",
+     "note": "具名（Heimir Thorleifsson）；新增生日、出生地、教育、1881–1908 官職、聯盟法談判；議席無迄日"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Alþingi 傳記頁 nfaerslunr=326（英文介面）",
+     "url": "https://www.althingi.is/altext/cv/en/?nfaerslunr=326",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Alþingi thingmadur 頁（冰文）",
+     "url": "https://www.althingi.is/thingmenn/thingmannalisti/thingmadur/?nfaerslunr=326",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Alþingi fyrri þingmenn 名錄（冰文）",
+     "url": "https://www.althingi.is/thingmenn/thingmannalisti/fyrri-thingmenn/",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Alþingi 1926 ræður 檢索（冰文）",
+     "url": "https://www.althingi.is/thingstorf/thingmalin/raedur/?lthing=&rn=1926",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "stjornarradid.is 歷史內閣總覽（冰文）",
+     "url": "https://www.stjornarradid.is/rikisstjorn/sogulegt-efni/",
+     "result": "unrated",
+     "note": "只有內閣導覽，無議席資料"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "stjornarradid.is 第三屆內閣頁（冰文，重查）",
+     "url": "https://www.stjornarradid.is/rikisstjorn/sogulegt-efni/um-rikisstjorn/1924/03/22/Thridja-raduneyti-Jons-Magnussonar/",
+     "result": "found_A",
+     "note": "與既有第三屆內閣引文相同，無議席迄日"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Jón Magnússon",
+     "url": "https://www.britannica.com/biography/Jon-Magnusson",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Jon Magnusson Iceland prime minister",
+     "url": "https://www.encyclopedia.com/search?q=Jon+Magnusson+Iceland+prime+minister",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Store norske leksikon Jón Magnússon（挪文）",
+     "url": "https://snl.no/J%C3%B3n_Magn%C3%BAsson",
+     "result": "no_result",
+     "note": "404，無個人條目"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Svenskt biografiskt lexikon 搜尋 Jón Magnússon（瑞文）",
+     "url": "https://sok.riksarkivet.se/sbl/Search.aspx?q=J%C3%B3n+Magn%C3%BAsson",
+     "result": "no_result",
+     "note": "無個人條目"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Jón Magnússon - islandsk politiker（丹文）",
+     "url": "https://lex.dk/J%C3%B3n_Magn%C3%BAsson_-_islandsk_politiker",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Tímarit.is 搜尋「Jón Magnússon」andlát þingmaður 1926（冰文）",
+     "url": "https://timarit.is/search?q=%22J%C3%B3n+Magn%C3%BAsson%22+andl%C3%A1t+%C3%BEingma%C3%B0ur+1926",
+     "result": "unrated",
+     "note": "報刊全文檢索頁，非 A／B 且未取得可逐字引用的訃告原文"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Nasjonalbiblioteket 搜尋 Jón Magnússon 1859（挪文）",
+     "url": "https://www.nb.no/search?q=J%C3%B3n%20Magn%C3%BAsson%201859",
+     "result": "no_result",
+     "note": "頁面需 JavaScript，無內容"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Oxford Reference 搜尋 Jón Magnússon",
+     "url": "https://www.oxfordreference.com/search?q=J%C3%B3n+Magn%C3%BAsson",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 29,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "runeberg.org 北歐人名辭典",
+     "url": "https://runeberg.org/",
+     "result": "no_result",
+     "note": "連線逾時"
+    }
+   ]
+  },
+  {
+   "key": "bg-lyapchev",
+   "bioId": "01a1b4bb-079f-79b6-881e-8cab61613615",
+   "name": "Andrey Lyapchev",
+   "nameZh": "安德烈·利亞普切夫",
+   "recordIds": [
+    "01a1aa4a-597f-7e85-87cf-d891277f11b4",
+    "01a1aa4a-5980-7039-8248-7c2611c664d2",
+    "01a1aa4a-5980-71fe-95e2-1c9218a7bd55"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1866-11-30",
+      "end": "1933-11-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒",
+      "en": "Life dates"
+     },
+     "body": {
+      "zh-Hant": "安德烈·利亞普切夫（Andrey Lyapchev）1866年11月30日生於雷森（Resen），1933年11月6日卒於索非亞。德國國家圖書館權威檔將他歸為保加利亞政治人物與政府首腦（Regierungschef）。",
+      "en": "Andrey Lyapchev was born in Resen on 30 November 1866 and died in Sofia on 6 November 1933. The German National Library authority record classes him as a Bulgarian politician and head of government (Regierungschef)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-lyapchev",
+       "locator": "dateOfBirth",
+       "quote": "dateOfBirth: 1866-11-30",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-lyapchev",
+       "locator": "placeOfBirth",
+       "quote": "placeOfBirth: Resen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-lyapchev",
+       "locator": "dateOfDeath",
+       "quote": "dateOfDeath: 1933-11-06",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-lyapchev",
+       "locator": "placeOfDeathAsLiteral",
+       "quote": "placeOfDeathAsLiteral: Sofia",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-lyapchev",
+       "locator": "professionOrOccupation",
+       "quote": "professionOrOccupation: Regierungschef",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1923-06-09",
+      "end": "1926-01-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "贊科夫內閣與1926年組閣",
+      "en": "The Tsankov cabinet and the 1926 formation"
+     },
+     "body": {
+      "zh-Hant": "義大利百科全書指出，贊科夫（Cankov）在1923年6月任內閣首長，1926年被迫辭職。保加利亞科學院歷史研究所期刊上的一篇論文，論述贊科夫內閣通過1923年6月9日的軍事政變上台，並把利亞普切夫列為「民主協定」（Democratic Agreement）黨領導人之一；論文標題記他的內閣於1926年1月4日組成。",
+      "en": "The Enciclopedia Italiana says that Cankov (Tsankov) headed the government from June 1923 and had to resign in 1926. An article in a Bulgarian Academy of Sciences history journal says the Tsankov cabinet came to power through the military coup of 9 June 1923 and names Liapchev among the leaders of the Democratic Agreement; its title dates the formation of his government to 4 January 1926."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-597f-7e85-87cf-d891277f11b4"
+     ],
+     "citations": [
+      {
+       "sourceKey": "treccani-bulgaria",
+       "locator": "Bulgaria 條",
+       "quote": "sotto la presidenza di A. Cankov (giugno 1923)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-bulgaria",
+       "locator": "Bulgaria 條",
+       "quote": "Cankov dovette dimettersi nel 1926.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ceeol-parvanova",
+       "locator": "摘要",
+       "quote": "the military coup d’état of the 9th of June 1923",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ceeol-parvanova",
+       "locator": "摘要",
+       "quote": "the leaders of the Democratic Agreement A. Liapchev",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ceeol-parvanova",
+       "locator": "標題",
+       "quote": "Формиране на правителството на Андрей Ляпчев (4 януари 1926 г.)",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1926-01-01",
+      "end": "1935-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1926至1931年掌權",
+      "en": "In power, 1926-1931"
+     },
+     "body": {
+      "zh-Hant": "據義大利百科全書，贊科夫之後由利亞普切夫（Andrea Ljapčev）接任，他掌權到1931年，接著是穆沙諾夫（Nicola Mušanov）至1934年；該書稱兩人都是民主黨人（democratici）。",
+      "en": "According to the Enciclopedia Italiana, Cankov was succeeded by Ljapčev, who stayed in power until 1931, and then by Nikola Mušanov until 1934; the encyclopedia calls both of them Democrats."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-597f-7e85-87cf-d891277f11b4",
+      "01a1aa4a-5980-7039-8248-7c2611c664d2",
+      "01a1aa4a-5980-71fe-95e2-1c9218a7bd55"
+     ],
+     "citations": [
+      {
+       "sourceKey": "treccani-bulgaria",
+       "locator": "Bulgaria 條",
+       "quote": "Gli successero Andrea Ljapčev, che restò al potere fino al 1931",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-bulgaria",
+       "locator": "Bulgaria 條",
+       "quote": "e Nicola Mušanov, che vi restò fino al 1934, ambedue democratici.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:cabinetMinistries",
+     "gapKind": "not_found",
+     "note": "待查證：1908 年起任議員與多次部長（含 1918 年財政、戰爭部長）等職位，目前只見無署名 Treccani 條目（Q9 不可作出處）與 BNR 網站文稿（無署名），無 A／B 原文可引，故未建職位；需要保加利亞國家傳記辭典、議會或政府官方名單。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-liapcev",
+       "locator": "條目",
+       "quote": "ministro della Guerra (1918)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-liapcev",
+       "locator": "條目",
+       "quote": "deputato alla Sobranie (dal 1908)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-lyapchev",
+       "locator": "廣播稿",
+       "quote": "Lyapchev was Minister of Finance",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:lyapchev-democratic-alliance-leadership",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；CEEOL 摘要（B）稱他是「民主協定」（Democratic Agreement，即民主聯盟）領導人之一，BNR 稿（無署名，不可作出處）另稱他成為該黨議員團領袖，兩者都沒有任期起迄。若有日期，屬黨職→roleCandidates de_facto_leader／R1（Tai 2026-11-11 12:12）。已查：CEEOL、Treccani、BNR、GND。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bnr-lyapchev",
+       "locator": "廣播稿",
+       "quote": "joined the party and became head of its parliamentary faction",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:pm_terms",
+     "gapKind": "not_found",
+     "note": "三屆總理任期（1926-01-04～1928-09-12、1928-09-12～1930-05-15、1930-05-15～1931-06-29）已在名單 5442，本檔未重建；A／B 原文只見到年精度（1926–1931）與標題日期 1926-01-04。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birthEducation",
+     "gapKind": "not_found",
+     "note": "待查證：1866 年之後的出身、求學（蘇黎世、柏林、巴黎）與早期政治經歷，A／B 原文未取得；Britannica、minfin.bg 回 403 挑戰頁，保加利亞科學院期刊全文站（annual.uni-sofia.bg）連線逾時，Treccani 個人條目無署名，均未採用。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid.org GND Ljapčev Andrej",
+     "url": "https://lobid.org/gnd/search?q=Andrej+Ljapcev&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 121085430：1866-11-30 Resen、1933-11-06 Sofia、Regierungschef"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid.org GND Ljapčev（帶變音符）",
+     "url": "https://lobid.org/gnd/search?q=Ljap%C4%8Dev&format=json&size=5",
+     "result": "found_A",
+     "note": "同一筆；另一筆為 Kosev, Dimităr（不相關）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Andrei Liapchev",
+     "url": "https://www.britannica.com/biography/Andrei-Liapchev",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過；/print/ 網址同樣 403"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "minfin.bg Andrei Liapchev（財政部歷任部長頁）",
+     "url": "https://www.minfin.bg/en/116",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Andrej Liapčev 條目",
+     "url": "https://www.treccani.it/enciclopedia/andrej-liapcev/",
+     "result": "unrated",
+     "note": "可抓，但無署名（Q9），只放 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia Italiana 「Bulgaria」I Appendice 1938",
+     "url": "https://www.treccani.it/enciclopedia/bulgaria_res-42450909-8b74-11dc-8e9d-0016357eee51_(Enciclopedia-Italiana)/",
+     "result": "found_B",
+     "note": "頁面列五位具名作者；有 1923 贊科夫與 1926–1931 利亞普切夫之句；先試 andrej-ljapcev_ 猜測網址得到空殼頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Parvanova 「Формиране на правителството на Андрей Ляпчев (4 януари 1926 г.)」 CEEOL",
+     "url": "https://www.ceeol.com/search/article-detail?id=1064325",
+     "result": "found_B",
+     "note": "保加利亞科學院歷史研究所《Исторически преглед》1991 年論文摘要頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "annual.uni-sofia.bg 論文全文（網路搜尋結果）",
+     "url": "https://annual.uni-sofia.bg/index.php/hist/article/download/1228/835/1824",
+     "result": "no_result",
+     "note": "連線逾時（兩次，45 與 75 秒），未取得"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "BNR “With a kind word and a soft tread…” 英語廣播稿",
+     "url": "https://bnr.bg/en/post/100220165/with-a-kind-word-and-a-soft-tread-the-administration-of-andrey-lyapchev",
+     "result": "unrated",
+     "note": "可抓，無署名，只放 gap 候選；new.bnr.bg 網域無法解析，改用 bnr.bg"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "WebSearch：Андрей Ляпчев министър-председател 1926 1931 биография（保加利亞語）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果以 Wikipedia 與鏡像為主（只作索引）；無官方議會／政府頁"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "WebSearch：Андрей Ляпчев правителство 1926 gov／parliament／minfin／nbu（保加利亞語）",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到 parliament.bg／government.bg 的相關頁"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch：Treccani Ljapčev Andrej Enciclopedia Italiana",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Treccani Liapčev 條目（無署名）與 Bulgaria 條目"
+    }
+   ]
+  }
+ ]
+}

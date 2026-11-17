@@ -1,0 +1,89 @@
+{
+ "batch": "076",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 1,
+  "deletedParagraphs": 4,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 32,
+  "addedCitations": 11,
+  "editedSentences": 7,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "bg-kyoseivanov",
+   "bioId": "01a1b4c1-ce79-7e0f-9923-d994d3d93f9b",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 15,
+   "verdict": "returned",
+   "changes": [
+    "來源 bnr-kyo（Radio Bulgaria 記者 Sylvia Nikolova 署名紀念專文）由 B 改評 C：新聞／通俗歷史，非具名學者或學術機構研究（比照 batch012 bbs.bt、batch016 El Peruano）；重抓確認作者欄為記者",
+    "刪除依賴 BNR 的段 2–5，段 1 改寫為只含 LCNAF／GND 權威檔事實（生卒年、出生地、卒地、Ministerpräsident；新增 GND 引文 1 筆），刪 BNR 引文 29 筆",
+    "新增 gap paragraph:bnr-feature（待查證），9 筆 BNR 引文改列 C 級候選",
+    "更新 field:positions、field:birth_date、paragraph:length gap 註記；searchLog 第 3 步改 unrated"
+   ],
+   "returnedReasons": [
+    "最低標準未達：審查後 1 段／123 字，有『篇幅不足』gap 但 searchLog 無 round: retry 加強搜尋",
+    "建議下一步來源：保加利亞部長會議官網歷任首相頁（gov.bg／Министерски съвет，A）、國民議會 parliament.bg 歷史資料（A）、保加利亞國家圖書館 Св. св. Кирил и Методий 權威檔（A）、Държавна агенция „Архиви“ ЦДА 個人全宗說明（A）、BAN《Енциклопедия България》或學術專書（如 Crampton 等大學出版社著作，B）"
+   ]
+  },
+  {
+   "key": "do-troncoso",
+   "bioId": "01a1b4c1-ce85-7a75-a45a-dccb5bd0b1d3",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 6,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "段1：刪無引文支撐的『文學與科學』『專業學院』子句",
+    "段2：補 Clio 引文 2 筆（檢察總長／土地高等法院、聖多明各大學教職）",
+    "段3：補歷史學院簡歷『Al morir el presidente Jacinto B. Peynado…』引文；交權引文延長至含 Trujillo，『將軍』改『大元帥（Generalísimo）』",
+    "段4：刪無引文的『場面隆重』",
+    "來源評等維持：ahd-tron 學術機構會員傳記 B；clio-tron 學報訃傳（署名 V. A. D.）B；議長起年 1942／1943 與院長 9/4／9/14 屬兩份合格來源衝突，conflict gap 正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "dk-frederik-viii",
+   "bioId": "01a1b4c0-c84d-7bde-9dc9-f7aaf1b8bbf7",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 4,
+   "verdict": "pass_with_changes",
+   "changes": [
+    "段2：『支持』改引含 støttede 的引文；補『接受和約』引文並把句子改為依原文『接受和約、並於 1864-11-12 國務會議發言』",
+    "段3：冰島訪問引文延長至含主語 Frederik",
+    "段4：補 J.C. Christensen、Holstein-Ledreborg 辭職、1910 年選舉三筆引文",
+    "無日期引文的 datePrecision 清為 null 共 8 筆（Q8）；新增引文 grade 依來源",
+    "field:positions gap 更正 5442 記錄起點為 1908-01-01"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把國家廣播電台記者署名專文評為 B；依 docs/source-rules.md §2 與 batch012／016 先例應為 C，導致基謝伊瓦諾夫幾乎所有敘述移入 gaps",
+  "多筆無日期引文仍填 datePrecision（Q8）",
+  "多個子句只靠斷行片段引文支撐，缺關鍵名詞（人名、機構名），審查補引"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

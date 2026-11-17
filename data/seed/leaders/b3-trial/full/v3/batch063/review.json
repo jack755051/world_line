@@ -1,0 +1,17 @@
+{
+ "batch": "063", "reviewedOn": "2026-11-17", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 1, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 9, "editedSentences": 1, "spotRefetched": 3, "searchLogShort": 1},
+ "people": [
+  {"key": "iq-ghazi-i", "bioId": "01a1b4bb-077b-7a42-bff6-3a5199567cf3", "verdict": "returned", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 18,
+   "changes": ["第1段：引文改為完整片段「died while out of the country seeking medical treatment.」以支撐「去世」子句", "第2段：補引文支撐「擴編軍隊」「一批部落」「憲章」「議會與司法」「自哈希米手中」子句（皆取自已抓 LoC 報告原文，延長或新增 4 筆）", "第3段：補引文「Abd al Ilah and Nuri al-Sa’id, the prime minister,」支撐首相努里子句", "重抓 LoC PDF 比對引文一致"],
+   "returnedReasons": ["最低嘗試未達：缺原文語言（阿拉伯文）查詢，至少 2 次（如 غازي بن فيصل／الملك غازي）；18 步全為英文查詢", "建議下一個具體來源：阿拉伯文權威檔與官方頁（rhc.jo 阿拉伯文版、伊拉克國家圖書館與檔案館 iraqnla 目錄）、Encyclopaedia of Islam 公開摘要（Ghāzī）"]},
+  {"key": "ar-figueroa-alcorta", "bioId": "9e640b59-f600-46cf-a0da-fc05ac69acfc", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 3, "roleCandidates": 0, "gaps": 6, "searchLogSteps": 9,
+   "changes": ["兩筆最高法院職位的 t14Reason 原誤抄「省長…」理由，改為司法職務 R5 理由；省長 t14Reason 改寫更精確", "gap field:quintanaDeparture 由 conflict 改 not_found（died 與因病離職不矛盾，研究者 note 亦自認不必然矛盾）", "重抓 CSJN 官網頁比對引文一致"],
+   "returnedReasons": []},
+  {"key": "ni-diego-chamorro", "bioId": "01a1b4bb-0781-7572-a34d-2c00c11978b9", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 17,
+   "changes": ["第1段：刪「在任的」（無引文支撐）；補電報標頭引文（美國駐尼加拉瓜公使）與「in the event of his not becoming a candidate」引文", "第2段：補電報標頭引文（公使身分）", "第3段：補電報標頭引文（駐薩爾瓦多公使）與「I suggested to the President to-day…」引文", "重抓 FRUS 1920 d343 比對引文一致"],
+   "returnedReasons": []}
+ ],
+ "issues": ["研究者常以截短引文支撐段落，致部分子句（主詞動詞、人名、身分）無 quote 對應，審查以同一已抓原文延長或補引文", "阿拉伯文人物未用原文語言查詢"],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

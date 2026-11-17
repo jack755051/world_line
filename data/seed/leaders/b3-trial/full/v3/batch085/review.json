@@ -1,0 +1,92 @@
+{
+ "batch": "085",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 3,
+  "deletedParagraphs": 1,
+  "deletedPositions": 2,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 14,
+  "addedCitations": 13,
+  "editedSentences": 4,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "fi-cajander",
+   "bioId": "01a1b512-33a3-7a04-ab6b-8f41cadbc0ec",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 20,
+   "changes": [
+    "來源 helsinki-cajander（赫爾辛基大學博物館 Flame 展覽文，無具名作者）由 B 改評 C（機構網站介紹文，docs/source-rules.md §2；比照 batch012／017／060 先例），人物生平不收",
+    "原段 2（1903 論文、32 歲任教授、林學教育改革、林業公司管理）整段刪除；原段 3 刪 1922 年受斯塔爾貝里邀任總理與此前不活躍於政治兩句；兩筆教授職位（1911–1934、1913–1927）刪除；以上 12 筆引文移入新 gap paragraph:helsinki-museum 候選",
+    "原段 3 改為段 2：補 GND「1937-1939: Ministerpräsident」引文支撐 1937 年；中文補標 Kolumäki 為出處；period 改 1937-01-01(year)～1939-12-01(month)；『its leader』引文無日期，datePrecision 改 null",
+    "新增 gap paragraph:length（篇幅不足：2 段／232 字）",
+    "抽查重抓 lobid GND 131753703：200，引文一致"
+   ],
+   "returnedReasons": [
+    "最低標準未達：刪除 C 級來源後只剩 2 段／232 字、0 筆 positions，且 searchLog 無 round=retry 加強搜尋",
+    "建議下一步：Kolumäki 論文已抓原文另有 1936 年 Kivimäki 政府倒台、1938 年任命 Erkko 為外長、任內社會立法等段落可據以改寫；再查 Kansallisbiografia（Biografiakeskus）、Eduskunta 前議員資料、Uppslagsverket／BLF（芬蘭瑞典語傳記辭典）、Halonen 2008 校史以補 1922／1924 任命、國防部長 1928–1929、黨魁與議員任期"
+   ]
+  },
+  {
+   "key": "tr-saydam",
+   "bioId": "01a1b492-3f48-774e-8715-ef76bb35545d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 6,
+   "searchLogSteps": 26,
+   "changes": [
+    "段 1：補 GND placeOfDeath、Politiker、Regierungschef 引文支撐卒地與職業；補 Gülhane 引文支撐居爾哈內；補「sınavı kazanarak」「Eğitim amacıyla」引文支撐通過選拔赴德進修；原「Almanya'ya gönderilmiştir」改為含日期的「4 Ağustos 1910’da Almanya'ya gönderilmiştir」，period 迄點由 1905-01-01 改 1910-08-05(day)",
+    "段 2：第一段衛生部長任期改寫為「在第二次伊斯麥特帕夏政府續任到 1924 年 11 月 21 日」（原文 Bu görevini İkinci İsmet Paşa Hükümeti’nde de…）",
+    "段 3：補「Atatürk’ün ölümünden bir gün sonra」引文支撐凱末爾逝世後一天",
+    "職位 saydam-interior-1938：刪除以就任總理日推論迄日的 Şimşek 引文，改用 Aksakal 任期表明寫「11 Kasım 1938 - 25 Ocak 1939…(Refik Saydam bu dönemde İçişleri Bakanıdır)」，R5（75 天）維持，t14Reason 更新",
+    "CHP 總書記（R1）缺迄日已有「待查證：缺迄日」gap，searchLog 有 retry；check_min 因此列 termsFlagged，符合 6c",
+    "抽查重抓 lobid GND 1133288642 與 DergiPark 3584997（Şimşek）：200，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "be-schollaert",
+   "bioId": "01a1b512-33bd-7b65-afe6-7d78052ae411",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 13,
+   "changes": [
+    "段 1：period 迄點由 1888-06-01 改 1917-06-30（段內最後一件事為 1917-06-29 卒）",
+    "段 2：補「E n 1900, Schollaert fut appelé à la viceprésidence」引文支撐 1900 年任副議長；period 迄點改 1908-02-01(month)（議長至 1908 年 1 月）",
+    "段 3：period 改 1907-12-31(day)～1912-01-01(year)（始於德特魯茲去世，迄於 jusqu'en 1911／1910-’11）",
+    "段 4：補「avant que se levât pour le pays l'aube de la libération」引文支撐未見解放",
+    "職位 schollaert-interior-1908（R6）：roleGap 加 regime（regimeId NULL），t14Reason 補註",
+    "抽查重抓 tekst.devb.be EVB PDF：200，議長／部長年月一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把無具名作者的大學博物館展覽文記為 B；依 source-rules §2 機構網站介紹文最高 C，人物生平不收（比照先例）",
+  "段落 period 迄點多處未依段內最後一件事定（Schollaert 段 1–3、Saydam 段 1）",
+  "以後續職位起日推論前一職位迄日卻未用 Q7 名簿格式（Saydam 內政部長），已改用來源明寫的任期表"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

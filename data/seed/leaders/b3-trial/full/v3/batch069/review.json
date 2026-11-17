@@ -1,0 +1,90 @@
+{
+ "batch": "069",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 18,
+  "editedSentences": 8,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "azana",
+   "bioId": "01a1b4c0-2f4e-74ff-a253-c3dea2be8aee",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 17,
+   "changes": [
+    "段1：補「In 1910 he joined as an official」引文支撐 1910 年，原引文（無日期）datePrecision 改 null",
+    "段2：改寫為「住在巴黎；他加入改良黨」，原文未寫在巴黎入黨",
+    "段3：『1931年10月』引文改為含 October 1931 的版本",
+    "段4：『1935年』引文改含年份版本，補『open field speeches』引文支撐露天集會演說",
+    "段5：「晚年在蒙托邦度過／死於當地」改寫為落腳蒙托邦、死於南方旅館、葬於蒙托邦，補 buried in Montauban 引文",
+    "抽查重抓 mptmd presidente-en-guerra 頁，引文一致；Gaceta 1931-04-15／1933-09-13 任免令署日人工核對無誤"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "briand",
+   "bioId": "a4a01ae8-8b51-46e4-bab8-d810735c17c6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 7,
+   "positions": 19,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 15,
+   "changes": [
+    "段1：刪無出處子句「1893年來到巴黎」與湊句「從此在議會占有一席之地」；補 Viviani／Jaurès／Fournière 引文",
+    "段2：「1905年」改為「當選三年後」並補引文；補『les Cultes furent rattachés』引文；Nobel 被逐出社會黨引文無日期，datePrecision 改 null",
+    "段3：中文誤寫「以激進社會黨為首的議員」改為蓋得與74名社會黨議員要求控訴，補 mise en accusation 引文",
+    "段4：加萊會議實為巴爾幹新戰線構想獲採納（協調在1916年巴黎會議），改寫並補引文",
+    "段5：坎城會議原引文只有年份，刪「1月」、改為與勞合喬治談判",
+    "段6：補 renunciation of war 引文",
+    "職位 briand-foreign-1925／1926：補國民議會名錄中被跳過的連續分段 7 筆引文，使合併區間連續",
+    "抽查重抓國民議會 fiche 頁，一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "jaspar",
+   "bioId": "01a1b4c0-2f5f-7fc2-8d99-98c3081b8fd3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 7,
+   "roleCandidates": 1,
+   "gaps": 4,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1：補 Léon Hennebicq 引文；刪無出處的「長期」",
+    "段3：『1927年初社會黨閣員退出』引文改含 au début de 1927 的版本",
+    "段4：補「最後一刻」「le Souverain」「手術」引文；死亡日 2月15日 改用含日期引文（OCR i5，已註記）",
+    "抽查重抓 kaowarsom PDF，一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者多處把 datePrecision 填在不含日期的引文上、或用不含年份／月份的引文支撐含日期子句（Q8／Q2），已改用同一原文含日期的片段",
+  "中文段落曾出現與引文相反的主語（白里安段3「激進社會黨」），英文正確而中文錯，需中英對照檢查",
+  "四部閣員因不連庫 regimeId=null 一律 R6（roleGap 含 regime），與前批一致；雅斯帕另缺 source（僅 1 筆 B）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

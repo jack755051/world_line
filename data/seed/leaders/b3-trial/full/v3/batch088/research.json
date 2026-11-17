@@ -1,0 +1,3291 @@
+{
+ "batch": "b3-full-v3-batch088",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式；三人的首相／總理任期皆已在名單 5442（leader_records）不重建；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md；T14 R0–R6 兩層互斥。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch088/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndb-marx": {
+   "title": "Marx, Wilhelm（Neue Deutsche Biographie 16）",
+   "authors": [
+    "Hugo Stehkämper"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften／Bayerische Staatsbibliothek（Deutsche Biographie）",
+   "published_text": "NDB 16 (1990), S. 348-350",
+   "url": "https://www.deutsche-biographie.de/gnd11873153X.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家級傳記辭典 Neue Deutsche Biographie，具名作者"
+  },
+  "lemo-marx": {
+   "title": "Wilhelm Marx 1863-1946（LeMO Biografie）",
+   "authors": [
+    "Andreas Michaelis"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO）",
+   "published_text": "Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/wilhelm-marx",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館 LeMO 人物條目，具名作者"
+  },
+  "gnd-marx": {
+   "title": "Marx, Wilhelm（GND 11873153X）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 權威記錄 JSON",
+   "url": "https://lobid.org/gnd/11873153X",
+   "archive_url": null,
+   "catalog_id": "GND 11873153X",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（德國國家圖書館 GND）"
+  },
+  "ndl-katsura": {
+   "title": "桂太郎｜近代日本人の肖像",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "電子展示会「近代日本人の肖像」",
+   "url": "https://www.ndl.go.jp/portrait/datas/52.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立国会図書館（日本國家圖書館）官方人物解說"
+  },
+  "kantei-k11": {
+   "title": "第11代 桂 太郎｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸ホームページ",
+   "published_text": "歴代内閣（第1次桂内閣）",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/011.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府（首相官邸）官方歷代內閣頁"
+  },
+  "kantei-k13": {
+   "title": "第13代 桂 太郎｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸ホームページ",
+   "published_text": "歴代内閣（第2次桂内閣）",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/013.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府（首相官邸）官方歷代內閣頁"
+  },
+  "kantei-k15": {
+   "title": "第15代 桂 太郎｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸ホームページ",
+   "published_text": "歴代内閣（第3次桂内閣）",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/015.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府（首相官邸）官方歷代內閣頁"
+  },
+  "gnd-katsura": {
+   "title": "Katsura, Taro（GND 122239075）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 權威記錄 JSON",
+   "url": "https://lobid.org/gnd/122239075",
+   "archive_url": null,
+   "catalog_id": "GND 122239075",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（德國國家圖書館 GND）"
+  },
+  "treccani-maura": {
+   "title": "MAURA y MONTANER, Antonio（Enciclopedia Italiana）",
+   "authors": [
+    "Nino Cortese"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana（Treccani）",
+   "published_text": "Enciclopedia Italiana (1934)，Treccani 線上版",
+   "url": "https://www.treccani.it/enciclopedia/maura-y-montaner-antonio_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Treccani 義大利百科全書具名條目（作者 Nino Cortese）"
+  },
+  "gnd-maura": {
+   "title": "Maura, Antonio（GND 118782614）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 權威記錄 JSON",
+   "url": "https://lobid.org/gnd/118782614",
+   "archive_url": null,
+   "catalog_id": "GND 118782614",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（德國國家圖書館 GND）"
+  },
+  "loc-maura": {
+   "title": "Maura, Antonio, 1853-1925（LC Name Authority File n86093774，檢索結果頁）",
+   "authors": [],
+   "publisher": "Library of Congress（id.loc.gov）",
+   "published_text": "LCNAF 檢索結果頁",
+   "url": "https://id.loc.gov/search/?q=Maura+y+Montaner%2C+Antonio&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+   "archive_url": null,
+   "catalog_id": "LCCN n86093774",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（美國國會圖書館 LCNAF）"
+  }
+ },
+ "people": [
+  {
+   "key": "katsura-taro",
+   "bioId": "cbfe0362-7a8d-4bb6-9b88-10626ae48fc8",
+   "name": "Katsura Taro",
+   "nameZh": "桂太郎",
+   "recordIds": [
+    "0ecb3671-1a09-45c4-92a3-3c6ca0527a3c",
+    "01a19eb7-b175-7196-9373-95774fde3ef2"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1848-01-04",
+      "end": "1879-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與留學",
+      "en": "Origins and study abroad"
+     },
+     "body": {
+      "zh-Hant": "桂太郎生於弘化4年11月28日（西曆1848年1月4日），山口縣出身，父親是萩藩士。他從軍參加戊辰戰爭，明治3年（1870年）赴德國留學；明治8年以德國公使館附武官身分再度赴歐，從事德國軍政的調查研究，明治11年回國。",
+      "en": "Katsura Taro was born on the 28th day of the 11th month of Koka 4 (4 January 1848 in the Western calendar) in Yamaguchi Prefecture; his father was a retainer of the Hagi domain. He served in the Boshin War, went to study in Germany in Meiji 3 (1870), returned to Europe in Meiji 8 as military attache at the German legation to study German military administration, and came home in Meiji 11."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "生没年",
+       "quote": "生没年 弘化4年11月28日 〜 大正2年10月10日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "生没年",
+       "quote": "1848 年1月4日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "出身地",
+       "quote": "出身地 山口県",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "父は萩藩士。戊辰戦争に従軍。明治3(1870)年ドイツ留学。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "8年ドイツ公使館付武官となり再び渡欧。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "11年に帰国後、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "ドイツの軍政の調査・研究に従事。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1886-01-01",
+      "end": "1901-06-02"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍軍人與陸相",
+      "en": "Army career and war minister"
+     },
+     "body": {
+      "zh-Hant": "回國後，桂太郎在山縣有朋之下推動兵制與陸軍官制改革；明治19年任陸軍次官，甲午戰爭時任第3師團長。其後歷任第2代臺灣總督、東京防禦總督，並在第3次伊藤內閣出任陸軍大臣，之後在第1次大隈、第2次山縣、第4次伊藤各內閣留任。1901年6月2日，他自己組閣出任首相。",
+      "en": "After returning home Katsura carried out reforms of the army system and army administration under Yamagata Aritomo, became vice-minister of the army in Meiji 19, and commanded the 3rd Division in the Sino-Japanese War. He then served as the second governor-general of Taiwan and as governor-general of Tokyo defence, became army minister in the third Ito cabinet and stayed on in the first Okuma, second Yamagata and fourth Ito cabinets. On 2 June 1901 he formed his own cabinet as prime minister."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "山県有朋 の下で兵制・陸軍官制の改革を行う。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "19年陸軍次官。日清戦争では第3師団長。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "第2代台湾総督、東京防禦総督を経て、第3次 伊藤 内閣の陸相となり、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "第1次 大隈 ・第2次山県・第4次伊藤各内閣でも留任した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k11",
+       "locator": "在職期間",
+       "quote": "在職期間 明治34年6月2日 ～明治39年1月7日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1901-06-02",
+      "end": "1912-12-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "桂園時代的首相",
+      "en": "Premier in the Katsura-Saionji era"
+     },
+     "body": {
+      "zh-Hant": "桂太郎與西園寺公望輪流擔任首相（桂園時代）：第1次桂內閣自1901年6月2日至1906年1月7日，第2次桂內閣自1908年7月14日至1911年8月30日。第2次內閣期間他自己兼任大藏大臣。國立國會圖書館的解說寫道，他主導了日英同盟的締結、日俄戰爭與日韓併合；之後以元老身分出任內大臣。",
+      "en": "Katsura alternated with Saionji Kinmochi as prime minister (the Katsura-Saionji era): his first cabinet ran from 2 June 1901 to 7 January 1906 and his second from 14 July 1908 to 30 August 1911. In the second cabinet he also held the finance portfolio concurrently. The National Diet Library note says he led the conclusion of the Anglo-Japanese Alliance, the Russo-Japanese War and the annexation of Korea, and later served as Lord Keeper of the Privy Seal as a genro."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "その後、 西園寺公望 と交代で首相をつとめ(桂園時代)、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k11",
+       "locator": "在職期間",
+       "quote": "在職期間 明治34年6月2日 ～明治39年1月7日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k13",
+       "locator": "在職期間",
+       "quote": "在職期間 明治41年7月14日 ～明治44年8月30日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k13",
+       "locator": "閣僚名簿",
+       "quote": "大蔵大臣 桂 太郎 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "日英同盟締結、日露戦争、日韓併合などを主導した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "元老として内大臣をつとめたのち、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1912-12-21",
+      "end": "1913-10-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第3次內閣與去世",
+      "en": "Third cabinet and death"
+     },
+     "body": {
+      "zh-Hant": "桂太郎於1912年12月21日組成第3次桂內閣，在職僅62天，至1913年2月20日；官邸頁面列他兼任外務大臣，1913年1月29日起由加藤高明接任。國立國會圖書館的解說稱，他再度出任首相後因憲政擁護運動而下臺。他於大正2年10月10日（1913年10月10日）去世。",
+      "en": "Katsura formed his third cabinet on 21 December 1912 and held office for only 62 days, until 20 February 1913; the cabinet page lists him as concurrent foreign minister, with Kato Takaaki taking over from 29 January 1913. The National Diet Library note says that after becoming prime minister again he fell because of the Constitutional Protection Movement. He died on 10 October 1913."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "在職期間",
+       "quote": "在職期間 大正元年12月21日 ～大正2年2月20日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "在職日数",
+       "quote": "在職日数 62日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "閣僚名簿",
+       "quote": "外務大臣 桂 太郎 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "閣僚名簿",
+       "quote": "外務大臣 大正2年1月29日～ 加藤 高明",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "再び首相となるが、憲政擁護運動により退陣した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "生没年",
+       "quote": "大正2年10月10日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "katsura-finance-1908",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國政府",
+      "en": "Government of the Empire of Japan"
+     },
+     "title": {
+      "orig": "大蔵大臣（兼）",
+      "zh-Hant": "大藏大臣（兼任）",
+      "en": "Minister of Finance (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-07-14",
+      "end": "1911-08-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei-k13",
+       "locator": "閣僚名簿",
+       "quote": "大蔵大臣 桂 太郎 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": "名簿未另列大藏大臣更替日，任期依內閣成立與總辭日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k13",
+       "locator": "在職期間",
+       "quote": "在職期間 明治41年7月14日 ～明治44年8月30日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "大藏部屬四部、正職；但名簿只列內閣期間、未逐人寫大藏大臣起訖，且 regimeId 未查（不連庫），無法證明門檻",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "katsura-foreign-1912",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國政府",
+      "en": "Government of the Empire of Japan"
+     },
+     "title": {
+      "orig": "外務大臣（兼）",
+      "zh-Hant": "外務大臣（兼任）",
+      "en": "Minister for Foreign Affairs (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1912-12-21",
+      "end": "1913-01-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "閣僚名簿",
+       "quote": "外務大臣 桂 太郎 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "成立",
+       "quote": "第3次桂内閣 大正元年12月21日成立",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k15",
+       "locator": "閣僚名簿",
+       "quote": "外務大臣 大正2年1月29日～ 加藤 高明",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "外務部屬四部，但兼任僅約 39 天，未達 R3③ 的 90 天，歸 R5"
+    },
+    {
+     "key": "katsura-interior-1903",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國政府",
+      "en": "Government of the Empire of Japan"
+     },
+     "title": {
+      "orig": "内務大臣（兼）",
+      "zh-Hant": "內務大臣（兼任）",
+      "en": "Minister of Home Affairs (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1903-10-12",
+      "end": "1904-02-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei-k11",
+       "locator": "閣僚名簿",
+       "quote": "内務大臣 明治36年10月12日～ 桂 太郎 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k11",
+       "locator": "閣僚名簿",
+       "quote": "内務大臣 明治37年2月20日～ 芳川 顯正",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "任期在 1908–1945 時間窗外，歸 R5"
+    },
+    {
+     "key": "katsura-education-1905",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大日本帝國政府",
+      "en": "Government of the Empire of Japan"
+     },
+     "title": {
+      "orig": "文部大臣（兼）",
+      "zh-Hant": "文部大臣（兼任）",
+      "en": "Minister of Education (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1905-12-14",
+      "end": "1906-01-07"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei-k11",
+       "locator": "閣僚名簿",
+       "quote": "文部大臣 明治38年12月14日～ 桂 太郎 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-k11",
+       "locator": "在職期間",
+       "quote": "在職期間 明治34年6月2日 ～明治39年1月7日",
+       "quoteLang": "ja",
+       "evidenceNote": "名簿無下一任，迄日依內閣總辭日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "任期在 1908–1945 時間窗外，非四部，歸 R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:katsura-war-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；陸軍大臣（第3次伊藤、第1次大隈、第2次山縣、第4次伊藤各內閣留任）。已查 NDL 近代日本人の肖像（只寫內閣名、未寫起迄日）、首相官邸歷代內閣（第1次桂內閣頁，只列桂內閣閣僚）、GND（無任期）。任期在 1908 年前（窗外）。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "第3次 伊藤 内閣の陸相となり、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "position:katsura-taiwan-governor-general",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第2代臺灣總督。已查 NDL 近代日本人の肖像（無日期）、GND（無任期）。窗外任期，僅寫正文。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "第2代台湾総督、東京防禦総督を経て、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "position:katsura-naidaijin",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；內大臣（元老身分，介於第2次與第3次內閣之間）。NDL 只寫「元老として内大臣をつとめた」，無日期；已查 NDL、首相官邸（只列內閣）、GND。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-katsura",
+       "locator": "解説",
+       "quote": "元老として内大臣をつとめたのち、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "field:birth_date",
+     "gapKind": "conflict",
+     "note": "GND 權威檔記生年 1847，NDL 記弘化4年11月28日（西曆 1848年1月4日）；正文採 NDL 明寫的西曆日期，GND 的 1847 與之不同。兩者皆為 A 級，故記 conflict 供審查。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "gnd-katsura",
+       "locator": "dateOfBirth",
+       "quote": "1847",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "field:political_party",
+     "gapKind": "not_found",
+     "note": "待查證：1913 年新黨（立憲同志會）籌組；已查 NDL、首相官邸、GND，均未寫黨職，未建黨職候選。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 桂太郎",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/index.html",
+     "result": "found_A",
+     "note": "curl；歷代內閣一覧，確認三次內閣期間"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "第2次桂内閣 閣僚名簿",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/013.html",
+     "result": "found_A",
+     "note": "curl；大藏大臣兼任"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "第1次桂内閣 閣僚名簿",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/011.html",
+     "result": "found_A",
+     "note": "curl；內務／文部兼任"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "第3次桂内閣 閣僚名簿",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/015.html",
+     "result": "found_A",
+     "note": "curl；外務大臣兼任"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Katsura Taro GND",
+     "url": "https://lobid.org/gnd/search?q=Katsura+Taro&format=json&size=5",
+     "result": "found_A",
+     "note": "curl；GND 122239075，生卒 1847–1913"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "lobid GND 122239075",
+     "url": "https://lobid.org/gnd/122239075.json",
+     "result": "found_A",
+     "note": "curl；僅身分資訊"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "近代日本人の肖像 桂太郎（ID 51 不符，改由山口縣出身者清單找到 ID 52）",
+     "url": "https://www.ndl.go.jp/portrait/datas/52.html",
+     "result": "found_A",
+     "note": "curl；NDL 解說、生沒年、經歷"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "近代日本人の肖像 桂太郎 檢索",
+     "url": "https://www.ndl.go.jp/portrait/search/index.php?q=桂太郎",
+     "result": "no_result",
+     "note": "404；改走出身地清單頁"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Katsura Taro Britannica",
+     "url": "https://www.britannica.com/biography/Katsura-Taro",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "桂太郎 WebSearch（NDL 人物頁）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度用盡，未執行"
+    }
+   ]
+  },
+  {
+   "key": "es-maura",
+   "bioId": "01a1b52a-6207-75ad-a1c4-6272c5f37970",
+   "name": "Antonio Maura y Montaner",
+   "nameZh": "安東尼奧·毛拉",
+   "recordIds": [
+    "618ab807-e5b1-4162-b591-e8a21e83bdfa",
+    "01a1aa4a-4858-7bda-95c5-32c623d3f9a4",
+    "01a1aa4a-4859-722f-9773-5cd4d168c3ce",
+    "01a1aa4a-4859-7e9e-ab38-cd637dcc6f0f"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1853-05-02",
+      "end": "1886-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "毛拉（Antonio Maura y Montaner）1853年5月2日生於馬約卡島的帕爾馬，1925年12月13日卒於馬德里。他到馬德里讀法律，結識加馬索（Gamazo），這份交情後來成為姻親，也幫他開啟律師與政治生涯。他26歲便以馬約卡代表身分進入議會，這個選區此後一直支持他；1886年任眾議院副議長。",
+      "en": "Antonio Maura y Montaner was born in Palma de Mallorca on 2 May 1853 and died in Madrid on 13 December 1925. He went to Madrid to study law and met Gamazo, a friendship that later became a family tie and eased the start of his legal and political career. At 26 he entered the Cortes for Mallorca, a constituency that stayed loyal to him, and in 1886 he became vice-president of the Congress."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "nato a Palma di Maiorca il 2 maggio 1853, morto a Madrid il 13 dicembre 1925",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "Recatosi a Madrid per studiarvi legge, ebbe la fortuna di conoscere il Gamazo;",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "questa amicizia, che poi trasformò in parentela,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "A 26 anni deputato di Maiorca alle Cortes",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "Vicepresidente del Congresso nel 1886,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-maura",
+       "locator": "dateOfBirth",
+       "quote": "1853",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "gli rese agevole l'inizio della carriera forense e politica.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "e questo collegio gli fu sempre favorevole",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1892-12-01",
+      "end": "1903-08-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "早期閣員任職",
+      "en": "First ministerial posts"
+     },
+     "body": {
+      "zh-Hant": "1892年12月，毛拉在薩加斯塔內閣出任殖民地（Ultramar）大臣，為古巴提出有限自治方案，但遭西班牙國內反對，薩加斯塔又未全力支持，他在1894年3月辭職。1894年底他重回內閣掌司法部，至1895年3月；1902年12月在西爾維拉（Silvela）的保守黨內閣任內政大臣，但在1903年7月離開政府。",
+      "en": "In December 1892 Maura took a portfolio in Sagasta's cabinet as minister for the colonies (Ultramar) and proposed limited autonomy for Cuba; the plan was opposed in Spain and Sagasta did not back him loyally, so he resigned in March 1894. At the end of that year he re-entered the cabinet as minister of justice, holding the post until March 1895, and in December 1902 he became interior minister in Silvela's conservative cabinet before leaving power in July 1903."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "accettò dal Sagasta un portafoglio soltanto quando questi aderì al programma",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "protezionista e di stretta economia del Gamazo (dicembre 1892).",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "Ministro d'Oltremare, affrontò la questione cubana,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "preferì dimettersi (marzo 1894).",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "con il portafoglio di Grazia e Giustizia, che tenne sino al marzo 1895.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "nel dicembre 1902 come ministro degl'Interni nel gabinetto conservatore",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "dovette lasciare il potere nel luglio 1903.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "proponendo la concessione di una relativa autonomia;",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "ma la sua idea fu avversata nella Spagna",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "poiché il Sagasta non lo sostenne lealmente,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "alla fine dell'anno, quando rientrò nel ministero",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "nel gabinetto conservatore del Silvela;",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1903-11-29",
+      "end": "1905-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "語言學院院長與首次任首相",
+      "en": "Royal Academy and first premiership"
+     },
+     "body": {
+      "zh-Hant": "1903年11月29日起毛拉擔任皇家語言學院院長。1903年底他再度執政並出任首相，任職到1904年12月。",
+      "en": "From 29 November 1903 Maura was president of the Royal Spanish Academy. At the end of 1903 he returned to power as president of the council, holding the post until December 1904."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目末段",
+       "quote": "Dal 29 novembre 1903 fu presidente della R. Accademia spagnola.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "Lo riassunse però alla fine dello stesso anno,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "come presidente del consiglio, per tenerlo sino al dicembre 1904.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1907-01-01",
+      "end": "1925-12-13"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1907年以後與晚年",
+      "en": "From 1907 to his last years"
+     },
+     "body": {
+      "zh-Hant": "1907年1月起，毛拉主持新的保守黨內閣：以行政改革回應地方分離傾向，準備海軍武備方案，並為壓制恐怖攻擊而加嚴既有法律。梅利利亞戰事失利與巴塞隆納「悲劇的一週」之後，他堅持處決費雷爾，議會轉而反對其政策，他便退出政壇。第一次世界大戰期間他重返首相職位，被稱為中立派政黨的首領（1917至1918年）；1921年再度執政。普里莫·德里維拉上臺後，他的政治生涯告終，1925年12月13日在馬德里去世。",
+      "en": "From January 1907 Maura led a new conservative ministry that answered separatist tendencies with administrative reform, prepared a naval armaments plan and made the existing laws stricter to suppress terrorist attacks. After the defeats at Melilla and the Tragic Week in Barcelona he insisted that Ferrer's death sentence be carried out; the Cortes turned against his policy and he withdrew from political life. During the world war he returned to the presidency of the council and was described as head of the neutralist party (1917-18); he governed again in 1921. Primo de Rivera's coming to power ended his political career, and he died in Madrid on 13 December 1925."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "nel seguente ministero conservatore che diresse dal gennaio 1907 in poi.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "si tentò di appagare le tendenze separatiste esistenti nel paese,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "si preparò un progetto di armamenti navali;",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "si resero più rigorose le leggi esistenti.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "si aggiunsero poi le dolorose sconfitte della guerra di Melilla.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "nella \"settimana tragica\" la rivoluzione dominò Barcellona.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "Il M. allora volle che fosse eseguita la condanna a morte del Ferrer.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "Ma le Cortes si dichiararono contrarie alla sua politica,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "tornando alla presidenza del consiglio durante la guerra mondiale,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "che lo vide capo del partito neutralista (1917-18).",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "ebbe di nuovo il governo nel 1921.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "Primo de Rivera segnò la fine della sua carriera politica.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目首段",
+       "quote": "morto a Madrid il 13 dicembre 1925",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "Con un nuovo progetto di riforma amministrativa",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "per soffocare gli attentati terroristici",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "e il M. si appartò dalla vita politica,",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "maura-ultramar-1892",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙王國政府",
+      "en": "Government of the Kingdom of Spain"
+     },
+     "title": {
+      "orig": "Ministro de Ultramar",
+      "zh-Hant": "殖民地大臣",
+      "en": "Minister for the Colonies (Ultramar)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1892-12-01",
+      "end": "1894-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "protezionista e di stretta economia del Gamazo (dicembre 1892).",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "preferì dimettersi (marzo 1894).",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "任期在 1908–1945 時間窗外；殖民地部非四部，歸 R5"
+    },
+    {
+     "key": "maura-interior-1902",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙王國政府",
+      "en": "Government of the Kingdom of Spain"
+     },
+     "title": {
+      "orig": "ministro degl'Interni",
+      "zh-Hant": "內政大臣",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1902-12-01",
+      "end": "1903-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "nel dicembre 1902 come ministro degl'Interni nel gabinetto conservatore",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "dovette lasciare il potere nel luglio 1903.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "內政部屬四部，但任期在 1908–1945 時間窗外，歸 R5"
+    },
+    {
+     "key": "maura-rae-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙皇家語言學院",
+      "en": "Royal Spanish Academy (Real Academia Española)"
+     },
+     "title": {
+      "orig": "presidente della R. Accademia spagnola",
+      "zh-Hant": "皇家語言學院院長",
+      "en": "President of the Royal Spanish Academy"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1903-11-29",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目末段",
+       "quote": "Dal 29 novembre 1903 fu presidente della R. Accademia spagnola.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非角色層類別（議員、其他職務或副職／非四部閣員），歸 R5 留經歷層"
+    },
+    {
+     "key": "maura-neutralist-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中立派（義大利百科全書稱「partito neutralista」）",
+      "en": "Neutralist party (per the Enciclopedia Italiana, 'partito neutralista')"
+     },
+     "title": {
+      "orig": "capo del partito neutralista",
+      "zh-Hant": "中立派政黨首領",
+      "en": "Head of the neutralist party"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1917-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "che lo vide capo del partito neutralista (1917-18).",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "來源只寫「中立派政黨首領」，未指明是哪個政黨或具體黨職，無法確認是否為黨職",
+     "t14Rule": "R5",
+     "t14Reason": "非角色層類別（議員、其他職務或副職／非四部閣員），歸 R5 留經歷層"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:maura-rae-president",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；皇家語言學院院長。Treccani 只寫「自 1903 年 11 月 29 日起」，未寫迄日；已查 Treccani、GND、LCNAF。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": []
+    },
+    {
+     "target": "position:maura-justice-1894",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；司法大臣（Grazia e Giustizia，至 1895 年 3 月）。Treccani 只寫「alla fine dell'anno」（1894 年底），無月日；已查 Treccani、GND、LCNAF；DBE（dbe.rah.es）為前端動態頁，curl 取不到內文。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-maura",
+       "locator": "條目",
+       "quote": "con il portafoglio di Grazia e Giustizia, che tenne sino al marzo 1895.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "待查證：議員（1879／1881 起）任期、1907 年前後各內閣任期的西班牙官方日期。DBE（dbe.rah.es，A）頁面為 JavaScript 動態載入，curl 無內文；Congreso 歷史資料頁、La Moncloa 歷任首相頁（連線逾時）、Britannica（Cloudflare 挑戰頁）、1914-1918-online（Anubis 挑戰頁）均未取得。首相任期（1907-1909、1917-1918、1921）已在名單 5442，不重建。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 4 段／中文 556 字，段數與字數已達標，但任期完整度未達最低標準：皇家語言學院院長（迄日）查無可抓原文的迄日（見 position gap）。本輪加強搜尋已查來源類型：權威檔、國家級傳記辭典、官方／議會／檔案館、具名百科、學術；可用來源：Treccani（B）、GND／LCNAF／BnF（A）、RAE、RAH DB~e、Congreso、Senado、BNE、Cervantes Virtual、Gallica（多數被擋或無內文）。",
+     "candidateCitations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Maura Montaner GND",
+     "url": "https://lobid.org/gnd/search?q=Maura+Montaner&format=json&size=5",
+     "result": "found_A",
+     "note": "curl；GND 118782614 Maura, Antonio 1853-1925"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 118782614",
+     "url": "https://lobid.org/gnd/118782614.json",
+     "result": "found_A",
+     "note": "curl；身分、出生地帕爾馬"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "LCNAF Maura y Montaner, Antonio",
+     "url": "https://id.loc.gov/search/?q=Maura+y+Montaner%2C+Antonio",
+     "result": "found_A",
+     "note": "curl；n86093774，1853-1925"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "BnF Maura y Montaner",
+     "url": "https://data.bnf.fr/fr/search?term=Maura+y+Montaner",
+     "result": "found_A",
+     "note": "curl；檢索摘要，僅權威檔，未採用"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "VIAF Maura y Montaner",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Maura+y+Montaner%22",
+     "result": "blocked_403",
+     "note": "Cloudflare 擋，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "DBE Antonio Maura y Montaner",
+     "url": "https://dbe.rah.es/biografias/6830/antonio-maura-y-montaner",
+     "result": "no_result",
+     "note": "curl 只得 JavaScript 殼頁，無內文"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Antonio Maura",
+     "url": "https://www.treccani.it/enciclopedia/maura-y-montaner-antonio_(Enciclopedia-Italiana)/",
+     "result": "found_B",
+     "note": "curl；Nino Cortese 具名條目，由頁面 __NEXT_DATA__ JSON 取出內文存為 treccani-maura.txt"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Antonio Maura y Montaner",
+     "url": "https://www.britannica.com/biography/Antonio-Maura-y-Montaner",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "1914-1918-online Maura y Montaner",
+     "url": "https://encyclopedia.1914-1918-online.net/article/maura_y_montaner_antonio",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Congreso de los Diputados histórico de presidentes",
+     "url": "https://www.congreso.es/es/historico-de-presidentes",
+     "result": "not_relevant",
+     "note": "curl；頁面無毛拉資料"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "La Moncloa presidentes del Gobierno historia",
+     "url": "https://www.lamoncloa.gob.es/presidente/historia/Paginas/index.aspx",
+     "result": "no_result",
+     "note": "連線逾時（60 與 100 秒）"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Auñamendi Maura Montaner",
+     "url": "https://aunamendi.eusko-ikaskuntza.eus/es/maura-montaner-antonio/ar-81021/",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Maura 西語／英語 WebSearch",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度用盡，未執行"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "RAE directores 頁",
+     "url": "https://www.rae.es/la-institucion/historia/directores",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "RAE académicos Maura",
+     "url": "https://www.rae.es/academicos/antonio-maura-y-montaner",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "RAH DB~e 6830 重抓",
+     "url": "https://dbe.rah.es/biografias/6830/antonio-maura-y-montaner",
+     "result": "no_result",
+     "note": "動態頁，無內文"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Congreso de los Diputados 搜尋 Maura",
+     "url": "https://www.congreso.es/es/busqueda-de-diputados",
+     "result": "not_relevant",
+     "note": "僅檢索殼"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Senado 歷史參議員",
+     "url": "https://www.senado.es/web/conocersenado/senadoreshistoricos/index.html",
+     "result": "blocked_403",
+     "note": "Access Denied，不繞過"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "La Moncloa 歷任首相",
+     "url": "https://www.lamoncloa.gob.es/presidente/historia/Paginas/index.aspx",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BNE datos.bne.es Maura",
+     "url": "https://datos.bne.es/persona/XX1049540.html",
+     "result": "blocked_403",
+     "note": "BNE 安全系統阻擋頁"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "RAE 歷史頁",
+     "url": "https://www.rae.es/la-institucion/historia",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Fundación MGM",
+     "url": "https://www.fundacionmgm.org/",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Biblioteca Virtual Miguel de Cervantes RAE directores",
+     "url": "https://www.cervantesvirtual.com/portales/real_academia_espanola/directores/",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "RAE rae/directores",
+     "url": "https://www.rae.es/rae/directores",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "Gallica 檢索 Maura Academia",
+     "url": "https://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&query=Maura",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BnF data Maura 頁",
+     "url": "https://data.bnf.fr/fr/12341237/antonio_maura_y_montaner/",
+     "result": "not_relevant",
+     "note": "無 RAE 任期資料"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "IdRef 027003965",
+     "url": "https://www.idref.fr/027003965",
+     "result": "not_relevant",
+     "note": "ID 對應他人"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Congreso 歷史議員檢索",
+     "url": "https://www.congreso.es/es/historico-de-diputados",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 29,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "RAE historia.pdf",
+     "url": "https://www.rae.es/sites/default/files/historia.pdf",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 30,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Cervantes Virtual obra-visor Antonio Maura",
+     "url": "https://www.cervantesvirtual.com/obra-visor/antonio-maura/",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 31,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BNE 目錄",
+     "url": "https://www.bne.es/es/catalogos",
+     "result": "blocked_403",
+     "note": "BNE 安全系統阻擋頁"
+    },
+    {
+     "step": 32,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Congreso 歷任議長",
+     "url": "https://www.congreso.es/es/historico-de-presidentes",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 33,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Senado 歷史 2",
+     "url": "https://www.senado.es/web/conocersenado/senadohistorico/index.html",
+     "result": "blocked_403",
+     "note": "Access Denied，不繞過"
+    },
+    {
+     "step": 34,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "RAE Directores_RAE.pdf",
+     "url": "https://www.rae.es/sites/default/files/Directores_RAE.pdf",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  },
+  {
+   "key": "de-marx-wilhelm",
+   "bioId": "01a19f15-380e-7eeb-8044-bb707caeae6d",
+   "name": "Wilhelm Marx",
+   "nameZh": "威廉·馬克思",
+   "recordIds": [
+    "01a19e05-fae6-7d9b-a476-15aac2105a96",
+    "01a19e05-faef-7338-8cc8-88aeb5873b0e"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1863-01-15",
+      "end": "1908-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與法官生涯",
+      "en": "Origins and judicial career"
+     },
+     "body": {
+      "zh-Hant": "威廉·馬克思（Wilhelm Marx）1863年1月15日生於科隆，信奉天主教。他1881至1884年在波昂讀法律，1888年通過第二次國家考試；1894年任埃爾伯費爾德地方法院法官，1904年升科隆地方法院法官，1907年任杜塞道夫高等法院法官。他在埃爾伯費爾德加入中央黨，1899至1904年主持該黨的地方組織。",
+      "en": "Wilhelm Marx was born in Cologne on 15 January 1863 and was a Catholic. He studied law in Bonn in 1881-84 and passed the second state examination in 1888; he became a regional court judge in Elberfeld in 1894, a regional court councillor in Cologne in 1904 and a higher regional court councillor in Düsseldorf in 1907. He joined the Centre Party in Elberfeld and chaired its local association in 1899-1904."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "標題行",
+       "quote": "Reichskanzler, * 15.1.1863 Köln, † 5.8.1946 Bonn, ⚰ Köln-Melaten. (katholisch)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "studierte M. 1881-84 in Bonn Rechtswissenschaften",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "legte 1888 die Zweite Juristische Staatsprüfung ab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "1894 wurde er Landrichter in Elberfeld,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "1904 Landgerichtsrat in Köln,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "1907 Oberlandesgerichtsrat in Düsseldorf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "M. trat in Elberfeld dem Zentrum bei; 1899-1904 stand er dem Ortsverband vor.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1921-09-27"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "議員與天主教學校運動",
+      "en": "Legislator and the Catholic school movement"
+     },
+     "body": {
+      "zh-Hant": "馬克思1899至1921年先後屬普魯士眾議院與邦議會，1910年起進入帝國議會，其後也是國民議會議員，直到1932年。1911年他創立跨黨派的天主教學校組織；1917年支持帝國議會的和平決議，1919年6月說服中央黨團接受凡爾賽條約，1921年7月15日的宗教子女教育法也是他在文化政策上的成果。",
+      "en": "Marx sat in the Prussian House of Deputies and later the Landtag in 1899-1921, and in the Reichstag and National Assembly from 1910 to 1932. In 1911 he founded the non-partisan Catholic School Organisation; in 1917 he backed the Reichstag peace resolution, in June 1919 he persuaded the Centre group to accept the Versailles treaty, and the law on the religious education of children of 15 July 1921 was the most visible result of his cultural-policy work."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Dem Preuß. Abgeordnetenhaus bzw. dem Landtag gehörte er 1899-1921,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "dem Reichstag bzw. der Nationalversammlung 1910-32 an.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Die von ihm 1911 gegründete überparteiliche „ Kath. Schulorganisation“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "1917 unterstützte er die Friedensresolution des Reichstags;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Am 23.6.1919 zögerte die Zentrumsfraktion",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "M. drang jedoch mit der Überzeugung durch,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "unter allen Umständen angenommen werden“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "das bis heute gültige Gesetz über die religiöse Kindererziehung vom 15.7.1921.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "dem Versailler Vertrag zuzustimmen;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "Augenfälligstes Ergebnis seines kulturpolitischen Einsatzes war",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-09-27",
+      "end": "1925-04-26"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "黨魁與首次出任總理",
+      "en": "Party leader and first chancellorship"
+     },
+     "body": {
+      "zh-Hant": "1921年9月27日馬克思成為中央黨國會黨團主席，1922年1月17日升任黨主席。1923年11月30日他接掌由人民黨、巴伐利亞人民黨、中央黨與民主黨組成的少數內閣，1923年12月8日取得授權法，貨幣改革創造了「地租馬克奇蹟」。1924年4月16日他的看守內閣接受道威斯專家報告。1925年他曾短暫出任普魯士總理；中央黨推他為總統候選人，他在4月26日以1370萬票對1460萬票輸給興登堡。",
+      "en": "On 27 September 1921 Marx became chairman of the Centre Party's Reichstag group and on 17 January 1922 chairman of the party. On 30 November 1923 he took over a minority cabinet of DVP, BVP, Centre and DDP, and an enabling act of 8 December 1923 gave him extraordinary powers; the currency reform brought the 'miracle of the Rentenmark'. On 16 April 1924 his caretaker cabinet accepted the Dawes experts' report. In 1925 he briefly served as Prussian minister-president; the Centre Party nominated him for Reich president and he lost to Hindenburg on 26 April by 13.7 to 14.6 million votes."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "an die Spitze der Reichstagsfraktion des Zentrums",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "brachte M. am 2 7.9.1921 an die Spitze",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "und am 17.1.1922 an die der Partei.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "übernahm M. am 30.11.1923 die Leitung eines Minderheitskabinetts",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Ein Ermächtigungsgesetz vom 8.12.1923 gab ihm außerordentliche Vollmachten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "gelang das „Wunder der Rentenmark“.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "hatte am 16.4.1924 – trotz schwerer Bedenken – das Sachverständigengutachten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "im Februar/März 1925 die Ministerpräsidentschaft in Preußen;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Am 18.3.1925 stellte ihn das Zentrum für die Nachfolge Eberts als Kandidaten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "M. unterlag am 26.4.1925 mit 13,7 gegen 14,6 Millionen Stimmen;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "eines Minderheitskabinetts aus DVP , BVP , Zentrum und DDP",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "Die vom Kabinett Stresemann vorbereitete Währungsreform",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "M. s geschäftsführendes Kabinett hatte am 16.4.1924",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "das Sachverständigengutachten des Amerikaners Charles Dawes",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1926-01-01",
+      "end": "1928-12-08"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "司法部長、再任總理與卸任黨魁",
+      "en": "Justice minister, second chancellorship and end of party leadership"
+     },
+     "body": {
+      "zh-Hant": "1926年1月，馬克思在第2次路德內閣出任司法與占領區部長。該內閣倒臺後，興登堡於1926年5月17日再度任命他為總理；1926年12月17日他因國會失敗而辭職，其後領導納入民族人民黨的右派內閣。興登堡於1928年6月29日解除他的總理職務；他在1928年12月8日辭去黨主席。",
+      "en": "In January 1926 Marx became Reich minister of justice and for the occupied territories in Luther's second cabinet. After that cabinet fell, Hindenburg appointed him chancellor again on 17 May 1926; he resigned on 17 December 1926 after a defeat in the Reichstag and then led a right-wing coalition that included the DNVP. Hindenburg relieved him of the chancellorship on 29 June 1928, and on 8 December 1928 he gave up the party chairmanship."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Reichsminister der Justiz und für die besetzten Gebiete im 2. Kabinett Luther",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1926",
+       "quote": "19. Januar: Im zweiten Kabinett von Hans Luther übernimmt Marx",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "ernannte M. am 17.5.1926 wieder zum Reichskanzler.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Er trat am 17.12.1926 aufgrund einer Reichstags-Niederlage",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1926",
+       "quote": "Aufnahme der Deutschnationalen Volkspartei (DNVP) in die Regierungskoalition.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "entband Hindenburg ihn am 29.6.1928 vom Kanzleramt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Am 8.12.1928 gab M. auch den Parteivorsitz ab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "Nach dessen Sturz nahm Hindenburg den von Stresemann ausgehenden Vorschlag",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "條目",
+       "quote": "nun Kanzler einer Rechtsregierung wurde",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1928-12-08",
+      "end": "1946-08-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年",
+      "en": "Later years"
+     },
+     "body": {
+      "zh-Hant": "卸下黨主席後，馬克思於1932年放棄國會議席，退出政壇；他在1925年曾獲波昂大學神學榮譽博士，1946年8月5日在波昂去世。",
+      "en": "After giving up the party chairmanship, Marx renounced his Reichstag seat in 1932 and retired from politics; he had received an honorary doctorate in theology from Bonn in 1925, and he died in Bonn on 5 August 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1932",
+       "quote": "Marx verzichtet auf sein Reichstagsmandat und zieht sich ins Privatleben zurück.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Auszeichnungen",
+       "quote": "Dr. theol. h. c. (Bonn 1925).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1946",
+       "quote": "5. August: Wilhelm Marx stirbt in Bonn.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "marx-zentrum-fraktion",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國中央黨國會黨團",
+      "en": "Centre Party parliamentary group in the Reichstag"
+     },
+     "title": {
+      "orig": "Vorsitzender der Zentrumsfraktion des Reichstags",
+      "zh-Hant": "中央黨帝國議會黨團主席",
+      "en": "Chairman of the Centre Party group in the Reichstag"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1921-09-27",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "brachte M. am 2 7.9.1921 an die Spitze",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "an die Spitze der Reichstagsfraktion des Zentrums",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "議會黨團主席：來源寫「Zentrumsfraktion」而非黨本部職務，是否算黨職無規則可依，故不猜，留在經歷層",
+     "t14Rule": "R5",
+     "t14Reason": "非角色層類別（議員、其他職務或副職／非四部閣員），歸 R5 留經歷層"
+    },
+    {
+     "key": "marx-prussian-landtag",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "普魯士眾議院／邦議會",
+      "en": "Prussian House of Deputies / Landtag"
+     },
+     "title": {
+      "orig": "Mitglied des Preußischen Abgeordnetenhauses bzw. Landtags",
+      "zh-Hant": "普魯士眾議院／邦議會議員",
+      "en": "Member of the Prussian House of Deputies / Landtag"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1899-01-01",
+      "end": "1922-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Dem Preuß. Abgeordnetenhaus bzw. dem Landtag gehörte er 1899-1921,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非角色層類別（議員、其他職務或副職／非四部閣員），歸 R5 留經歷層"
+    },
+    {
+     "key": "marx-reichstag",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志帝國議會／國民議會",
+      "en": "Reichstag / National Assembly"
+     },
+     "title": {
+      "orig": "Mitglied des Reichstags bzw. der Nationalversammlung",
+      "zh-Hant": "帝國議會／國民議會議員",
+      "en": "Member of the Reichstag / National Assembly"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1910-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "dem Reichstag bzw. der Nationalversammlung 1910-32 an.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1932",
+       "quote": "Marx verzichtet auf sein Reichstagsmandat und zieht sich ins Privatleben zurück.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非角色層類別（議員、其他職務或副職／非四部閣員），歸 R5 留經歷層"
+    },
+    {
+     "key": "marx-prussia-mp-1925",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "普魯士自由邦",
+      "en": "Free State of Prussia"
+     },
+     "title": {
+      "orig": "Preußischer Ministerpräsident",
+      "zh-Hant": "普魯士總理（邦部長會議主席）",
+      "en": "Minister-President of Prussia"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1925-02-01",
+      "end": "1925-05-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1925",
+       "quote": "Februar: Wahl zum preußischen Ministerpräsidenten.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1925",
+       "quote": "tritt bereits im April wieder zurück.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非角色層類別（議員、其他職務或副職／非四部閣員），歸 R5 留經歷層"
+    },
+    {
+     "key": "marx-reich-justice-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志國",
+      "en": "German Reich"
+     },
+     "title": {
+      "orig": "Reichsminister der Justiz und für die besetzten Gebiete",
+      "zh-Hant": "司法與占領區部長",
+      "en": "Reich Minister of Justice and for the Occupied Territories"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-01-01",
+      "end": "1926-05-17"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "nahm er am 26.1.1926 eine Berufung zum Reichsminister der Justiz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1926",
+       "quote": "19. Januar: Im zweiten Kabinett von Hans Luther übernimmt Marx",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "ernannte M. am 17.5.1926 wieder zum Reichskanzler.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依其再度出任總理日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "司法與占領區部非外交、國防、財政、內政四部，歸 R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "marx-zentrum-party-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國中央黨",
+      "en": "German Centre Party (Deutsche Zentrumspartei)"
+     },
+     "title": {
+      "orig": "Parteivorsitzender des Zentrums",
+      "zh-Hant": "中央黨黨主席",
+      "en": "Chairman of the Centre Party"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1922-01-17",
+      "end": "1928-12-08"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "und am 17.1.1922 an die der Partei.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Am 8.12.1928 gab M. auch den Parteivorsitz ab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1922",
+       "quote": "Marx wird Parteivorsitzender des Zentrums",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:marx-zentrum-fraktion",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；中央黨帝國議會黨團主席。NDB 只寫 1921-09-27 起，並提到 1928 年 1 月的黨團主席為 Guérard，未寫迄日；LeMO 同寫 1921 年起；已查 NDB、LeMO、GND。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "Theodor v. Guérard, Vorsitzender der Zentrumsfraktion im Reichstag,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "position:marx-reich-justice-1926",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源起日不同：NDB 寫 1926-01-26 接受任命，LeMO 寫 1926-01-19 就任；正文與職位期間只取月精度（1926-01）。迄日依再度出任總理日 1926-05-17 推得。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "nahm er am 26.1.1926 eine Berufung zum Reichsminister der Justiz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1926",
+       "quote": "19. Januar: Im zweiten Kabinett von Hans Luther übernimmt Marx",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "position:marx-prussia-mp-1925",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源對普魯士總理任期長短寫法不同：NDB 稱「Februar/März 1925」的插曲，LeMO 稱 2 月當選、4 月辭職；職位迄日取 LeMO（1925-04 月精度），NDB 的「3 月」未採。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Biographie",
+       "quote": "im Februar/März 1925 die Ministerpräsidentschaft in Preußen;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "position:marx-volksverein-chair",
+     "gapKind": "not_found",
+     "note": "待查證：缺起迄日；天主教德意志人民協會（Volksverein für das katholische Deutschland）主席。LeMO 只寫 1922 年起，GND 只寫曾任主席，均無迄日；是否算黨職不明，故未建職位。已查 LeMO、GND、NDB。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-marx",
+       "locator": "Zeittafel 1922",
+       "quote": "Vorsitzender des Volksvereins für das Katholische Deutschland.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 5 段／中文 705 字，段數與字數已達標，但任期完整度未達最低標準：中央黨帝國議會黨團主席（迄日）查無可抓原文的迄日（見 position gap）。本輪加強搜尋已查來源類型：權威檔、國家級傳記辭典、官方／議會／檔案館、具名百科、學術；可用來源：NDB（A）、GND（A）、LeMO（B）、Bundesarchiv、Reichstag 資料庫、HLS、KAS、LVR、KGParl、DDB（多數被擋或無關）。",
+     "candidateCitations": []
+    },
+    {
+     "target": "field:party_posts",
+     "gapKind": "not_found",
+     "note": "審查補記（2026-11-15）：NDB 另列窗內黨職——中央黨杜塞道夫地方主席（1907–19）、萊茵中央黨副主席（1906–19），依規則應進 roleCandidates（R1），研究者未收；審查不新增紀錄，留待下一輪核對建立。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Leben",
+       "quote": "des Zentrums in Düsseldorf 1907–19,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-marx",
+       "locator": "Leben",
+       "quote": "stellvertretender Vorsitzender der Rhein. Zentrumspartei 1906–19.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wilhelm Marx 1863 GND",
+     "url": "https://lobid.org/gnd/search?q=Wilhelm+Marx+1863&format=json&size=5",
+     "result": "found_A",
+     "note": "curl；GND 11873153X"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 11873153X",
+     "url": "https://lobid.org/gnd/11873153X.json",
+     "result": "found_A",
+     "note": "curl；生日、職業、Reichskanzler 1923-24／1926-28"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie Marx, Wilhelm NDB",
+     "url": "https://www.deutsche-biographie.de/gnd11873153X.html",
+     "result": "found_A",
+     "note": "curl；NDB 16 (1990) Stehkämper 全文"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie sfz58110（猜測的 ID）",
+     "url": "https://www.deutsche-biographie.de/sfz58110.html",
+     "result": "not_relevant",
+     "note": "curl；為他人條目（Marcus von Weida），不採"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Wilhelm Marx Biografie",
+     "url": "https://www.dhm.de/lemo/biografie/wilhelm-marx",
+     "result": "found_B",
+     "note": "curl；Andreas Michaelis 具名，年表"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO personen/wilhelm-marx（舊式網址）",
+     "url": "https://www.dhm.de/lemo/personen/wilhelm-marx",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Bundesarchiv Kabinette Marx",
+     "url": "https://www.bundesarchiv.de/DE/Content/Downloads/KFBG/ErsterWeltkrieg/kabinette-marx.html",
+     "result": "not_relevant",
+     "note": "curl；回傳網站首頁，無 Marx 內閣資料"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Wilhelm Marx",
+     "url": "https://www.britannica.com/biography/Wilhelm-Marx",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Wilhelm Marx Zentrum Parteivorsitzender WebSearch",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度用盡，未執行"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Kabinette Marx（Weimarer Republik 新路徑）",
+     "url": "https://www.bundesarchiv.de/DE/Content/Downloads/KFBG/Weimarer-Republik/kabinette-marx.html",
+     "result": "not_relevant",
+     "note": "200 但回傳首頁，無內閣資料"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Reichstag-Abgeordnetendatenbank Marx 11873153X",
+     "url": "https://www.reichstag-abgeordnetendatenbank.de/selectmaske.html?pnd=11873153X",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "BSB／bavarikon Wilhelm Marx",
+     "url": "https://www.bavarikon.de/search?q=Wilhelm+Marx",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO 重抓 Marx 傳記（確認黨團主席迄日）",
+     "url": "https://www.dhm.de/lemo/biografie/wilhelm-marx",
+     "result": "found_B",
+     "note": "與既有 lemo-marx 同內容：只寫 1928-12 辭黨主席，無黨團主席迄日"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "LeMO／HdG Marx 舊式網址",
+     "url": "https://www.hdg.de/lemo/biografie/wilhelm-marx.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "KAS Geschichte der CDU Wilhelm Marx",
+     "url": "https://www.kas.de/de/web/geschichte-der-cdu/personen/biogr/detail/-/content/wilhelm-marx",
+     "result": "blocked_403",
+     "note": "WAF 阻擋，不繞過"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Akten der Reichskanzlei Kabinette Marx 前言",
+     "url": "https://www.bundesarchiv.de/aktenreichskanzlei/1919-1933/0000/mxa/mxa1p/kap1_1/para2_1.html",
+     "result": "not_relevant",
+     "note": "僅 4 千字站台殼，無黨團主席資料"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Reichskanzler 名錄",
+     "url": "https://www.bundesarchiv.de/DE/Content/Downloads/KFBG/Weimarer-Republik/reichskanzler.html",
+     "result": "not_relevant",
+     "note": "回傳首頁"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon der Schweiz 搜尋 Wilhelm Marx",
+     "url": "https://hls-dhs-dss.ch/de/search/?text=Wilhelm+Marx",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesregierung Reichskanzler 頁",
+     "url": "https://www.bundesregierung.de/breg-de/bundesregierung/bundeskanzleramt/die-reichskanzler-der-weimarer-republik",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Reichskanzler Wilhelm Marx 專章",
+     "url": "https://www.dhm.de/lemo/kapitel/weimarer-republik/innenpolitik/reichskanzler-wilhelm-marx",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "LVR Portal Rheinische Geschichte Wilhelm Marx",
+     "url": "https://rheinische-geschichte.lvr.de/Persoenlichkeiten/wilhelm-marx/DE-2086/lido/57c6cb3fe3d4a8.42569453",
+     "result": "no_result",
+     "note": "404（猜測的 ID）"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "KGParl 歷史議會研究",
+     "url": "https://www.kgparl.de/",
+     "result": "not_relevant",
+     "note": "首頁，無 Marx 黨團主席資料"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "GND explore.gnd.network 11873153X",
+     "url": "https://explore.gnd.network/gnd/11873153X",
+     "result": "challenge_page",
+     "note": "Anubis，不繞過（lobid 已有 gnd-marx）"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "Deutsche Digitale Bibliothek person/gnd/11873153X",
+     "url": "https://www.deutsche-digitale-bibliothek.de/person/gnd/11873153X",
+     "result": "challenge_page",
+     "note": "Anubis，不繞過"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie pnd11873153X 頁重抓",
+     "url": "https://www.deutsche-biographie.de/pnd11873153X.html",
+     "result": "found_A",
+     "note": "與既有 ndb-marx 同文：只有 1921-09-27 起、1928-01 Guérard 為黨團主席，無迄日"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Haus der Bayerischen Geschichte",
+     "url": "https://www.hdbg.eu/",
+     "result": "not_relevant",
+     "note": "與 Marx 無關"
+    }
+   ]
+  }
+ ]
+}

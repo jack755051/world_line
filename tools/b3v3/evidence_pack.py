@@ -133,13 +133,37 @@ def build(research_path, text_limit=500):
     }
 
 
+def slice_person(pack, person_key):
+    """只留一個人的 claim，供審查 agent 讀，不要把整批證據包送進上下文。"""
+    claims = [claim for claim in pack.get("claims") or [] if claim.get("personKey") == person_key]
+    failed = [index for index, claim in enumerate(claims) if not (claim.get("verify") or {}).get("ok")]
+    sliced = dict(pack)
+    sliced["personKey"] = person_key
+    sliced["claims"] = claims
+    sliced["claimCount"] = len(claims)
+    sliced["failedClaimIndexes"] = failed
+    return sliced
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="產生審查用的短證據包")
     parser.add_argument("research")
     parser.add_argument("--out")
     parser.add_argument("--text-limit", type=int, default=500)
+    parser.add_argument("--person", help="只寫這個人的切片（person.key；找不到時改對 bioId）")
     args = parser.parse_args(argv)
     pack = build(args.research, args.text_limit)
+    if args.person:
+        sliced = slice_person(pack, args.person)
+        if not sliced["claims"]:
+            data = json.loads(Path(args.research).read_text(encoding="utf-8"))
+            key = next(
+                (person.get("key") for person in data.get("people") or [] if person.get("bioId") == args.person),
+                None,
+            )
+            if key:
+                sliced = slice_person(pack, key)
+        pack = sliced
     out = Path(args.out) if args.out else Path(args.research).parent / "evidence-pack.json"
     out.write_text(json.dumps(pack, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(

@@ -5,6 +5,9 @@
   "repo": "/Users/jack755051/Project/private/world_line-battle-demo",
   "resume": ".dev/b3v3/partial/chunk4-remaining.json",
   "concurrency": 3,
-  "dryRun": false,
-  "major": []
+  "researchModel": "sonnet",
+  "retryModel": "sonnet",
+  "reviewModel": "sonnet",
+  "escalateModel": "opus",
+  "note": "給人看的設定，不是 workflow args。主 session 用 claude --model sonnet。先跑 tools/b3v3/run_chunk.py dry-run，再重複 next。workflow 只用 next 印出的那一段 args。"
 }

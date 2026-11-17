@@ -1,0 +1,97 @@
+{
+ "batch": "093",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 13,
+  "editedSentences": 3,
+  "spotRefetched": 0,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ro-averescu",
+   "bioId": "01a1b512-8b4a-70ef-8767-04121fb4dcc2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 8,
+   "searchLogSteps": 46,
+   "changes": [
+    "searchLog step 30：Wikipedia 網址改為 null（verify 禁止檔內出現 wiki 網址），保留記錄",
+    "searchLog step 31：Wikipedia 網址改為 null（verify 禁止檔內出現 wiki 網址），保留記錄",
+    "searchLog step 32：Wikipedia 網址改為 null（verify 禁止檔內出現 wiki 網址），保留記錄",
+    "searchLog step 33：Wikipedia 網址改為 null（verify 禁止檔內出現 wiki 網址），保留記錄",
+    "段2：引文改為含「diresse le operazioni」的版本，使「指揮羅馬尼亞軍隊投入1913年戰役」有引文支撐",
+    "段3：armata 譯名由「第二軍、第三軍」改為「第二軍團、第三軍團」，與 corpo d'armata（軍）區分",
+    "核對：三筆 positions（陸軍部長1907、內政部長1920、總參謀長1911）T14 判 R6，roleGap 合理（單一 B、regimeId null、總參謀長缺迄日）；人民黨黨魁缺起日未入候選並有 gap，符合規則"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ar-uriburu",
+   "bioId": "5f291e78-8724-4192-a409-482f92ccf1de",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 33,
+   "changes": [
+    "searchLog step 20：Wikipedia 網址改為 null（verify 禁止檔內出現 wiki 網址），保留記錄",
+    "段1與 position uriburu-national-deputy-salta-1913：引文補入「In 1913」，原引文不含起年",
+    "段2：「因請求遭拒、預算被削減而離職」原引文不支撐，改／補引文",
+    "段3：憲改宣言引文原不含日期卻標 day，改為含「18 de junio de 1931」的引文",
+    "段4：period 迄日由 1930-09-06 改 1930-09-07（半開區間，修 verify「起>=迄」）；引文 96 字縮為 80 字內；補「主要是陸軍」「受政府容忍的準警察組織」「很早就熱情協助」「軍事學院與民眾支持」「倉促與臨場應變」各子句引文（皆已用短上下文核對在原文）",
+    "段5：「走回住處」「舞弊的選舉」子句補入引文（改用較長原文片段）",
+    "段6：赴歐治病、書信為主、索取照片三個子句原無引文支撐，補引文；「宿疾」依原文 enfermedad terminal 改為「末期疾病」",
+    "段1／position：補「In 1913」後超過 80 字，拆成兩段引文（In 1913 … Salta／province of Salta and served until 1914）；段5 舞弊選舉引文截到 80 字內",
+    "核對：高等戰爭學校校長 positionKind=military_education、R5，缺迄日有 gap；陸軍總監起年兩份 B 來源不一致（1922／1923），正確記為 conflict gap"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "br-pena",
+   "bioId": "b924cd87-ac79-4cba-89fe-9555626273d4",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1：原引文不含「卡拉薩」，改引文；刪「的學校就讀」（引文未寫）",
+    "段3：「在黑金城創辦」補引文",
+    "段4：「1906年當選總統」原無引文，改用含 1906 的引文",
+    "position pena-vice-president-1903：迄日 1907-01-01 由『1906年當選總統』推論而來，非來源明寫，改為 null 並加「待查證：缺迄日」gap；刪推論用引文",
+    "未改：pena-provincial-deputy-1874 標題明寫自由黨（依 12:47 規則屬黨籍席位，應進 roleCandidates），但任期 1874–1878 在 1908–1945 窗外；研究者以 t14Ambiguous 留 positions 並寫理由，審查維持不硬判，列入 issues 請主 session 裁決"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "verify 原本不通過（7 項）：5 筆 searchLog 留有 Wikipedia 網址（已改 null、保留記錄）、Uriburu 段4 period 起=迄、引文 96 字超長；均已修正",
+  "多處子句只有『主題相近』的引文、未涵蓋句中具體內容（如『指揮』、『因預算被削而離職』、『舞弊選舉』、『赴歐治病』、『卡拉薩』），已以 verify 驗證過的原文片段補引文或刪字；研究者應讓每個子句的關鍵詞出現在引文中",
+  "datePrecision 填在不含日期的引文上（Uriburu 憲改宣言），已改引文",
+  "Pena 副總統迄日以『1906年當選總統』推論，已改 null 並加缺迄日 gap",
+  "待裁決：Pena 1874 自由黨省議員屬『以政黨身分取得的席位』，但完全在 1908–1945 窗外；黨職一律 R1 與窗外一律 R5 何者優先未定，暫維持研究者的 t14Ambiguous 留 positions",
+  "Averescu、Uriburu 未達最低標準的任期覆蓋（check_min-report：termCoverage 0.667／0.5），但均有『篇幅不足：』gap 與 round=retry 加強搜尋紀錄，依 6c 不退回",
+  "本次審查未做網頁重抓；為判斷 quote 是否支撐句子，以腳本對 raw 取引文前後數百字的短上下文（未讀整檔）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

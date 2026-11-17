@@ -1,0 +1,8 @@
+[
+ {
+  "kind": "review",
+  "label": "review:122",
+  "phase": "Review",
+  "prompt": "你是審查者。規則檔 /Users/jack755051/Project/private/world_line-battle-demo/.dev/b3v3/prompts/review-122.md 的來源分級、T14、最低標準、Q1–Q10 全部仍適用。\n審查 batch122。\n逐字引文是否在原文，以 verify.py 為準。請讀 /Users/jack755051/Project/private/world_line-battle-demo/data/seed/leaders/b3-trial/full/v3/batch122/evidence-pack.json（每筆 claim 的段落文字、quote、sourceKey、verify）與 /Users/jack755051/Project/private/world_line-battle-demo/data/seed/leaders/b3-trial/full/v3/batch122/research.json。\n不要 Read 或 cat /Users/jack755051/wl-source-cache/b3full-v3/batch122/raw 的整檔，不要整批重抓網頁。全批最多 1 次抽查重抓，而且只能：\npython3 -I tools/b3v3/fetch_source.py fetch --rawdir /Users/jack755051/wl-source-cache/b3full-v3/batch122/raw --rawmap /Users/jack755051/Project/private/world_line-battle-demo/data/seed/leaders/b3-trial/full/v3/batch122/rawmap.json --source-key <sourceKey> --url <url> --keywords '<詞>'\n最低標準看 /Users/jack755051/Project/private/world_line-battle-demo/data/seed/leaders/b3-trial/full/v3/batch122/check_min-report.json，不要自己跑 check_min.py。\n改完 research.json 後跑 verify.py，只讀它印出的摘要，然後寫 /Users/jack755051/Project/private/world_line-battle-demo/data/seed/leaders/b3-trial/full/v3/batch122/review.json。\n工作目錄：/Users/jack755051/Project/private/world_line-battle-demo。只寫任務指定的 OUTDIR 與 RAWDIR。不要 git add／commit／push，不要寫任何資料庫，不要呼叫 5052 API，不要繞過 Cloudflare／Anubis／403，不要用 Wayback 代替被擋的頁。不要 Read、cat、head 整份 raw 原文，不要把整頁貼進上下文。"
+ }
+]

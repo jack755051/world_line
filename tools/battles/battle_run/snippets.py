@@ -369,3 +369,70 @@ def stats(items, corpus=None):
         "corpusChars": corp_chars,
         "ratio": (n_chars / corp_chars) if corp_chars else None,
     }
+
+
+# ---- 地名鄰近篩選（R3 用）------------------------------------------------
+# 片段只因部隊名命中、附近卻沒有任何地名時，模型也抄不出位置；這類片段在 Python 端就丟掉。
+LOC_NEAR = 150
+LOC_STOP = set(
+    "The A An His Its Their This That These Those It He They We On Of And But When By After Before "
+    "German Germans British English French Belgian Belgians Allied Allies Polish Chinese Japanese "
+    "Corps Division Divisions Army Armies Group Panzer Brigade Regiment Battalion Guards Fliegerkorps "
+    "General Lord Major Colonel Brigadier Lieutenant Captain Admiral Commander Commanders Chief Staff "
+    "Headquarters Command Admiralty Government Cabinet Ministry Navy Air Force Fighter Bomber "
+    "War Diary Diaries Appendix Chapter Note Map Sketch Page Volume Report Order Orders "
+    "January February March April May June July August September October November December "
+    "Monday Tuesday Wednesday Thursday Friday Saturday Sunday "
+    "France Belgium Holland Netherlands Germany England Britain Poland China Japan Europe "
+    "Flanders Artois Picardy Normandy Kent Silesia Prussia Pomerania".split()
+)
+LOC_RE = re.compile(
+    r"(?:\b(?i:at|near|around|in|into|reached|entered|outside|towards?|from|captured|took|occupied|held|defended|attacked|"
+    r"à|vers|devant|bei|nach|vor|pod|koło|nad|do|w)\s+(?:the\s+|de\s+|la\s+|le\s+)?)"
+    r"([A-ZÀ-ÖØ-ÞŁŚŻŹĆŃ][\w'’\-]{2,})"
+)
+
+
+def known_places(osm_places: dict | None):
+    """osm-places.json 的查詢名（≥ 3 字元或含漢字）去掉國家／地區停用字。"""
+    out = set()
+    for q in ((osm_places or {}).get("results") or {}):
+        if q in LOC_STOP:
+            continue
+        if len(q) >= 3 or re.search(r"[一-鿿]", q):
+            out.add(q)
+    return out
+
+
+def _place_near(text, spans, places):
+    for a, b in spans:
+        w = text[max(0, a - LOC_NEAR): b + LOC_NEAR]
+        for p in places:
+            if re.search(r"(?<!\w)" + re.escape(p) + r"(?!\w)", w):
+                return p
+        for m in LOC_RE.finditer(w):
+            if m.group(1) not in LOC_STOP:
+                return m.group(1)
+    return None
+
+
+def loc_filter(items, places, types=("R3",)):
+    """R3 缺口：片段裡部隊名前後 LOC_NEAR 字元內沒有已知地名、也沒有「介系詞＋專有名詞」就丟掉。
+    回傳 (items, dropped)；dropped 為 {gapId: 丟掉的片段數}。片段被丟光的缺口，snippets 會變空。"""
+    dropped = {}
+    for it in items:
+        if it["gap"].get("type") not in types or not it["snippets"]:
+            continue
+        kws = [kw_re(k) for k in it.get("keywords") or [] if k]
+        keep = []
+        for s in it["snippets"]:
+            t = s["text"]
+            spans = [(m.start(), m.end()) for r in kws for m in r.finditer(t)]
+            hit = _place_near(t, spans, places) if spans else None
+            if hit:
+                s["nearPlace"] = hit
+                keep.append(s)
+        if len(keep) < len(it["snippets"]):
+            dropped[it["gap"]["id"]] = len(it["snippets"]) - len(keep)
+        it["snippets"] = keep
+    return items, dropped

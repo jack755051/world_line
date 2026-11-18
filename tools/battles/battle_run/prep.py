@@ -24,12 +24,19 @@ def prompt_template_path():
     raise SystemExit("找不到 extract.md 提示詞，請確認 skill 已放到 .claude/skills/battle-run/prompts/")
 
 
-def prepare(repo, battle, stage, gaps, batch, *, win=240, mx=5, url_substr=None, source_key=None, urls=None, existing_keys=None):
+def prepare(repo, battle, stage, gaps, batch, *, win=240, mx=5, url_substr=None, source_key=None, urls=None, existing_keys=None, loc=True):
     stage = Path(stage)
     corp = snippets.corpus_from_cache(repo, battle, stage, paths, url_substr=url_substr, source_key=source_key, urls=urls)
     items = snippets.extract(gaps, corp, win=win, mx=mx, existing_keys=existing_keys)
     auto = [{"gapId": it["gap"]["id"], "why": "關鍵字在所有已快取原文中都沒有命中（Python 自動判定，未送 agent）"}
             for it in items if not it["snippets"]]
+    dropped = {}
+    if loc:
+        places = snippets.known_places(paths.load_battle(repo, battle, "osm-places.json", {}))
+        items, dropped = snippets.loc_filter(items, places)
+        auto += [{"gapId": gid, "why": f"命中的 {n} 段片段裡，部隊名前後 {snippets.LOC_NEAR} 字元內都沒有地名（Python 自動判定，未送模型）"}
+                 for gid, n in dropped.items()
+                 if not next(it for it in items if it["gap"]["id"] == gid)["snippets"]]
     items_ok = [it for it in items if it["snippets"]]
     paths.write_json(stage / "out" / f"{batch}-auto.json", {
         "battle": battle, "batch": batch + "-auto", "candidates": [], "noFind": auto,
@@ -76,5 +83,5 @@ def prepare(repo, battle, stage, gaps, batch, *, win=240, mx=5, url_substr=None,
     prompt_path.parent.mkdir(parents=True, exist_ok=True)
     prompt_path.write_text(tmpl, encoding="utf-8")
     st = snippets.stats(items, corp)
-    st.update({"batch": batch, "autoNoFind": len(auto), "prompt": str(prompt_path), "snip": str(snip_path), "out": str(out_path)})
+    st.update({"batch": batch, "autoNoFind": len(auto), "locDropped": sum(dropped.values()), "prompt": str(prompt_path), "snip": str(snip_path), "out": str(out_path)})
     return st

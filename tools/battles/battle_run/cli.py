@@ -24,7 +24,7 @@ _HERE = Path(__file__).resolve().parent
 if str(_HERE.parent) not in sys.path:
     sys.path.insert(0, str(_HERE.parent))
 
-from battle_run import context, fetch, paths, plan, prep, snippets, tokens, verify  # noqa: E402
+from battle_run import context, fetch, paths, plan, prep, run, snippets, tokens, verify  # noqa: E402
 
 
 def add_common(p):
@@ -120,9 +120,20 @@ def cmd_prep(args):
         source_key=args.source_key or pilot.get("source_key"),
         urls=args.url,
         existing_keys=set((paths.load_battle(repo, battle, "sources.json") or {})),
+        loc=not args.no_loc_filter,
     )
     print(json.dumps(st, ensure_ascii=False))
     return st
+
+
+def cmd_run(args):
+    repo, battle, stage = resolve(args)
+    bs = [b for x in args.batch for b in x.split(",") if b]
+    if not bs:
+        raise SystemExit("請加 --batch b03,b04")
+    u = run.run(repo, battle, stage, bs, model=args.model, name=args.name, dry=args.dry)
+    print(json.dumps(u, ensure_ascii=False))
+    return u
 
 
 def cmd_verify(args):
@@ -148,7 +159,13 @@ def cmd_fetch(args):
 
 def cmd_tokens(args):
     since = tokens.parse_since(args.since)
-    rep = tokens.report(since, stop_tokens=args.stop_tokens)
+    extra = []
+    try:
+        extra.append(paths.detect_repo(args.repo))
+    except SystemExit:
+        pass
+    extra += args.project_dir or []
+    rep = tokens.report(since, stop_tokens=args.stop_tokens, globs=tokens.default_globs(extra))
     print("\n".join(rep["lines"]))
     if rep["stop"]:
         sys.exit(2)
@@ -165,7 +182,11 @@ def cmd_dry_run(args):
         url_substr=url_substr, source_key=source_key, urls=args.url,
     )
     items = snippets.extract(out["gaps"], corp, win=args.win, mx=args.max)
+    dropped = {}
+    if not args.no_loc_filter:
+        items, dropped = snippets.loc_filter(items, snippets.known_places(paths.load_battle(repo, battle, "osm-places.json", {})))
     st = snippets.stats(items, corp)
+    st["locDropped"] = sum(dropped.values())
     paths.write_json(stage / "dry-run-snippets.json", {
         "battle": battle, "pilot": out.get("pilotLabel") or args.pilot,
         "urlSubstr": url_substr, "sourceKey": source_key,
@@ -187,7 +208,7 @@ def cmd_dry_run(args):
     # 也寫一份給人工看的摘要
     lines = [
         f"battle {battle}  pilot {out.get('pilotLabel') or args.pilot or '-'}",
-        f"gaps {st['gaps']}  with-snippets {st['gapsWithSnippets']}  without {st['gapsWithoutSnippets']}",
+        f"gaps {st['gaps']}  with-snippets {st['gapsWithSnippets']}  without {st['gapsWithoutSnippets']}  loc-dropped-snippets {st['locDropped']}",
         f"snippets {st['snippets']}  snippet-chars {st['snippetChars']}  corpus-chars {st['corpusChars']}  ratio {st['ratio']}",
         f"corpus docs {len(corp)}  batches {len(batches)}  stage {stage}",
         f"counts {json.dumps(out['counts'], ensure_ascii=False)}",
@@ -237,6 +258,7 @@ def build_parser():
         sp.add_argument("--source-key", dest="source_key", default=None)
         sp.add_argument("--url", action="append", default=[])
         sp.add_argument("--out", default=None)
+        sp.add_argument("--no-loc-filter", dest="no_loc_filter", action="store_true", help="不做 R3 地名鄰近篩選")
 
     sp = base("snippets", "從快取原文切片段")
     add_snip_opts(sp)
@@ -246,6 +268,13 @@ def build_parser():
     add_snip_opts(sp)
     sp.add_argument("--batch", default="b01")
     sp.set_defaults(func=cmd_prep)
+
+    sp = base("run", "一次 claude -p 處理一批或多批（片段放進提示詞、不給工具），寫 out/<name>.json")
+    sp.add_argument("--batch", action="append", default=[], help="可重複或用逗號：--batch b03,b04")
+    sp.add_argument("--model", default="sonnet", help="sonnet｜haiku｜opus")
+    sp.add_argument("--name", default=None, help="輸出檔名（預設 b03 或 b03-b06）")
+    sp.add_argument("--dry", action="store_true", help="只寫提示詞、印字數，不呼叫模型")
+    sp.set_defaults(func=cmd_run)
 
     sp = base("verify", "驗收 staging/out 候選，印一行摘要")
     sp.set_defaults(func=cmd_verify)
@@ -260,6 +289,7 @@ def build_parser():
     sp = base("tokens", "統計用量，超過門檻以結束碼 2 退出")
     sp.add_argument("--since", required=True)
     sp.add_argument("--stop-tokens", dest="stop_tokens", type=int, default=tokens.DEFAULT_STOP)
+    sp.add_argument("--project-dir", dest="project_dir", action="append", default=[], help="另外要統計的工作目錄")
     sp.set_defaults(func=cmd_tokens)
 
     sp = base("dry-run", "只跑計畫＋預篩，不啟動 agent")

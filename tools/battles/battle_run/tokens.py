@@ -22,13 +22,29 @@ def parse_since(s):
     return datetime.datetime.fromisoformat(s)
 
 
-def collect(since: datetime.datetime, globs=None):
-    """只讀 ~/.claude/projects 下與戰役 staging／本 skill 相關的 jsonl，不改檔。"""
-    patterns = globs or [
-        str(Path.home() / ".claude/projects/*wl-battle-staging*/**/*.jsonl"),
-        str(Path.home() / ".claude/projects/*wl-battle-skill*/**/*.jsonl"),
-        str(Path.home() / ".claude/projects/*battle-run*/**/*.jsonl"),
+def project_dir_name(path) -> str:
+    """Claude Code 把工作目錄的非英數字元換成「-」當作 ~/.claude/projects 下的資料夾名。"""
+    import re
+    return re.sub(r"[^A-Za-z0-9]", "-", str(Path(path).expanduser().resolve()))
+
+
+def default_globs(extra_dirs=()):
+    base = Path.home() / ".claude/projects"
+    pats = [
+        str(base / "*wl-battle-staging*/**/*.jsonl"),
+        str(base / "*wl-battle-skill*/**/*.jsonl"),
+        str(base / "*battle-run*/**/*.jsonl"),
     ]
+    # 戰役 repo 裡的主 session 與它派出的子 agent 也記在這裡（2026-11-18 試跑時漏算）
+    for d in extra_dirs:
+        if d:
+            pats.append(str(base / project_dir_name(d) / "**/*.jsonl"))
+    return pats
+
+
+def collect(since: datetime.datetime, globs=None):
+    """只讀 ~/.claude/projects 下與戰役 staging／本 skill／戰役 repo 相關的 jsonl，不改檔。"""
+    patterns = globs or default_globs()
     seen = set()
     agg = collections.defaultdict(lambda: [0, 0, 0, 0, 0])
     ts = since.timestamp() if since.tzinfo is None else since.timestamp()

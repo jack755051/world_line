@@ -1,6 +1,6 @@
 ---
 name: battle-run
-description: 便宜地跑戰役文字資料（部隊位置、前線城鎮、交戰與易手日期、指揮官就任日）。主 session 用 Sonnet，只調度；Python 規劃缺口並從已快取原文切片段；Sonnet 子 agent 只抄格式化紀錄；Python 驗收。核對失敗或兩個說法衝突才升級或列給 Tai。不讀圖。
+description: 便宜地跑戰役文字資料（部隊位置、前線城鎮、交戰與易手日期、指揮官就任日）。主 session 用 Sonnet，只調度；Python 規劃缺口並從已快取原文切片段；R3 先刷掉附近沒有地名的片段；一次 claude -p（不給工具）抄格式化紀錄；Python 驗收。核對失敗或兩個說法衝突才升級或列給 Tai。不讀圖。
 ---
 
 # 戰役文字流程（省 token）
@@ -36,22 +36,37 @@ dry-run 只跑 Python 規劃與片段預篩，寫 `gap-list.json`、`dry-run-sni
 
 ## 續跑一批
 
-參數與 dry-run 相同方向，改跑 `prep` 再派一個 Sonnet 子 agent，結束後跑 `verify`：
+先 `prep` 每一批，再用 `run` 把一批或幾批合成**一次 `claude -p` 呼叫**：
 
 ```bash
-python3 -I tools/battles/battle_run/cli.py prep \
-  --repo "$PWD" --battle dunkirk_1940 --batch b01 \
-  --stage "$HOME/wl-battle-staging/dunkirk_1940"
+for b in b03 b04 b05 b06; do
+  python3 -I tools/battles/battle_run/cli.py prep \
+    --repo "$PWD" --battle dunkirk_1940 --batch $b \
+    --stage "$HOME/wl-battle-staging/dunkirk_1940"
+done
 
-# 子 agent：只把 staging/prompts/b01.md 的路徑交給它，不要把提示詞或片段讀進主對話。
-# 模型 sonnet。Agent 自己 Read 片段檔、Write 候選檔，最後只回一行「候選幾筆、noFind 幾筆」。
+python3 -I tools/battles/battle_run/cli.py run \
+  --repo "$PWD" --battle dunkirk_1940 --batch b03,b04,b05,b06 --model sonnet \
+  --stage "$HOME/wl-battle-staging/dunkirk_1940"
 
 python3 -I tools/battles/battle_run/cli.py verify \
   --repo "$PWD" --battle dunkirk_1940 \
   --stage "$HOME/wl-battle-staging/dunkirk_1940"
 ```
 
-主 session 只看 verify 印出的那一行摘要。看到該看的批次都跑完、升級清單已列給 Tai，才停。
+- `prep` 對部隊位置（R3）多做一道**地名鄰近篩選**：片段裡部隊名前後 150 字元內沒有已知地名（`osm-places.json`）、也沒有「介系詞＋專有名詞」，就丟掉；片段被丟光的缺口直接記查無，不送模型。國名、地區名（France、Kent、Flanders…）不算地名。要關掉加 `--no-loc-filter`。
+- `run` 把片段直接放進提示詞，模型**不給任何工具、不載 MCP、不讀 CLAUDE.md**，只輸出 JSON，由 Python 寫 `out/<名稱>.json`，用量附加到 `usage.jsonl`。工作目錄設在 staging。印一行：缺口數、token、花費、候選、查無。
+- 一次合併多少批：以提示詞約 3 萬字元為上限（`run --dry` 只寫提示詞並印字數，不呼叫模型）。
+- 不要再用開完整子 agent 的做法（舊的 `prompts/<批>.md`）。2026-11-18 實測：子 agent 一批約 5 萬 token，九成是固定成本；`run` 合併四批只用 7.7 千 token。
+- 主 session 只看 `run` 與 `verify` 各印的一行。看到該看的批次都跑完、升級清單已列給 Tai，才停。
+
+### 模型
+
+預設 `--model sonnet`。`haiku` 約便宜十倍；引文逐字、地點是否為城鎮、座標都由 `verify` 驗收，模型只負責找出那一句。2026-11-18 拿 b03–b06 對照，兩者都判 5 個缺口查無、理由相同，但沒有產生任何候選，所以還不能確定 Haiku 抄引文的準確度。等第一批有候選的來源時，先兩個都跑一次比對，`verify` 失敗率相同再改預設。
+
+### 搜尋範圍
+
+`--pilot` 只搜一章（試跑用）。正式跑不要加 `--pilot`，預篩會搜 `sources.json`、既有引文網址與 fetch-status 裡全部已快取的原文。
 
 ## 哪一步用什麼
 
@@ -59,7 +74,8 @@ python3 -I tools/battles/battle_run/cli.py verify \
 | --- | --- |
 | 從名冊、gaps.json、匯入報告算出缺口並切批 | `tools/battles/battle_run` 的 `plan`（Python，不耗模型） |
 | 在已快取原文裡用部隊名、別名、日期搜尋，只交出命中段落 | `snippets`／`prep`（Python） |
-| 按格式抄錄：部隊代號、日期、地名、逐字引文、sourceKey | Sonnet，一個部隊或一章一個 agent；只寫 staging，不回傳原文 |
+| R3 片段部隊名附近沒有地名的，先刷掉 | `prep` 的地名鄰近篩選（Python） |
+| 按格式抄錄：部隊代號、日期、地名、逐字引文、sourceKey | `run`：一次 `claude -p`（Sonnet，不給工具），可合併多批；Python 寫 staging |
 | 引文逐字核對、跨頁檢查、地點是否為城鎮、座標對已有 osm-places、來源等級 | `verify`（Python）。主 session 只看一行摘要 |
 | 升較強模型，或列給 Tai | 該筆 verify 失敗，或兩筆來源說法衝突 |
 | 併入戰役資料、`verify_quotes.py`、`crosscheck.py`、缺的地名跑 `osm_lookup.py`、匯入展示頁 | 戰役 session。本技能不改 seed、不跑 `--apply` |
@@ -75,6 +91,8 @@ python3 -I tools/battles/battle_run/cli.py tokens \
   --since 2026-11-18T08:00:00+08:00 \
   --stop-tokens 5000000
 ```
+
+統計範圍包含 staging 資料夾，以及 `--repo` 指的戰役 repo（主 session 與它開的子 agent 都記在那裡；2026-11-18 以前漏算）。主 session 本身也算進去，所以數字會比 `run` 的總和大很多，這是正確的。別的工作目錄用 `--project-dir` 加。
 
 五小時額度約 68.75M tokens。預設停損 5M（約 7%）。超過就停，先回報，不要再開新 agent。門檻可用 `--stop-tokens` 改。
 

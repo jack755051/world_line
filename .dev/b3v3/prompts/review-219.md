@@ -1,7 +1,7 @@
 # B3 full v3 batch219：審查（Opus，新 session，勿 --resume）
 
 <!-- b3v3-token-2026-11-17 -->
-逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每個 claim 單位寫一次 text，其下 citations 逐筆含 index、quote、sourceKey、grade、verify），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。
 
 <!-- 佔位同 PROMPT_research.md：219、- 路易斯·拉雷亞·阿爾瓦｜Luis Larrea Alba｜01a1c3a5-f52a-70a8-bda8-ea29d9880cc8｜ecuador｜首任 1931-08-24｜薄（離線推定）｜ecuador head_of_government「Ministro de Gobierno y Previsión Social, encargado del Poder Ejecutivo」1931-08-24～1931-10-15（recordId 6deb701b-471b-4960-8f3a-de4d11726463）；ecuador head_of_state「Ministro de Gobierno y Previsión Social, encargado del Poder Ejecutivo」1931-08-24～1931-10-15（recordId 53ab12d0-3f90-42c3-8617-4dc832c56338）
 - 迭戈·馬丁內斯·巴里奧｜Diego Martínez Barrio｜01a1c3a5-f4be-7304-8f4c-f309657a14fe｜spanish-republic｜首任 1933-10-08｜中（離線推定）｜spanish-republic head_of_government「Presidente del Consejo de Ministros」1933-10-08～1933-12-16（recordId 01a1aa4a-4a49-7933-b031-ade7fd2d21d9）；spanish-republic head_of_state「Presidente de la República」1936-04-08～1936-05-11（recordId 01a1aa4a-4a46-78da-9fe7-1ca2a441e867）
@@ -17,11 +17,11 @@
 ## 必讀
 1. `ARCHITECTURE.md` §16.2、§16.3、§16.3.1、§16.3.2、§16.4 與 T11／T12／T14（只讀這幾節）。**與 `data/seed/leaders/b3-trial/ARCH_TODO.md` 所列新規則衝突處，以新規則為準**；另讀 `data/seed/leaders/b3-trial/T14_RECOMMENDATION.md` §1、§4。
 2. `data/seed/leaders/b3-trial/full/v3/PROMPT_research.md`（研究者收到的完整規則，**所有規則同樣適用於審查**）、`data/seed/leaders/b3-trial/ALIGN.md`、`data/seed/leaders/b3-trial/verify.py`。
-3. `data/seed/leaders/b3-trial/full/v3/batch219/research.json`、`data/seed/leaders/b3-trial/full/v3/batch219/rawmap.json`、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。
+3. `data/seed/leaders/b3-trial/full/v3/batch219/research.json`、`data/seed/leaders/b3-trial/full/v3/batch219/rawmap.json`、以及同目錄的 `evidence-pack.json`（每個 claim 單位的 text 只寫一次，citations 逐筆含 index、quote、sourceKey、grade、verify）。不要 Read／cat 整份 raw 原文。
 
 ## 審查項目（每段、每職位、每筆候選角色、每筆 citation）
 1. 出處：sourceKey 存在、URL 真實可開（全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘））、不是 Wikipedia／Wikidata／百度、不是用防機器人繞過取得。
-2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
+2. 引文逐字出現在已抓原文（逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用該 claim 單位只寫一次的 text 判斷 quote 是否支撐該句；**每個子句**都要有 quote 支撐，缺的刪子句或刪句，不要自己補新引文以外的內容）。
 3. 來源等級 A／B 合理（gradeBasis 說得通）；無具名作者的百科條目、無作者館藏圖說、私人彙編 → 降為未評等，只能在 gaps 候選。
 4. 無編造：日期、精度、半開區間、Q3 終點寫法、段落 period 迄點正確；datePrecision 只在 quote 含日期時填；conflict 只用於兩份已抓來源矛盾。
 5. **對齊格式**：`alignedTo`="b0b0e0f"；positions 用 positionKind（無 roleKind、無三種角色值、無 party）；元首／首腦／實際掌權者與**所有黨職**在 roleCandidates，`role_kind` 正確（黨職一律 de_facto_leader、t14Rule=R1，reason 註明 Tai 12:12；即使與 ARCHITECTURE §16.3.1 衝突也以此為準）；**職稱或來源明寫以某政黨身分取得的席位**也必須在 roleCandidates（de_facto_leader、originalPositionKind 照原性質，比照 Tai 12:47 薩拉查裁決），逐一檢查 legislator 類 positions 的標題與引文有沒有漏掉；不明確黨職留 positions 並有 partyPostAmbiguous＋理由（審查可把明確黨職改移候選、或把誤移的非黨職移回並標 ambiguous，但不可新增事實）。

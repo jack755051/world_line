@@ -3,7 +3,8 @@
 
 有 research.json 與 verify-report.json 就略過研究，除非 --force-research。
 --resume 決定哪些批要跑（已審查且不在 recheck_review 的批不列入）。
-每一個人另附 missingFields：可補的缺欄才重跑；篇幅不足或只差長度的人直接送審。
+每一個人另附 missingFields：可補的缺欄才重跑。已標「待查證：缺迄日」的缺迄日不重跑。
+篇幅不足、只差長度，或只剩這種缺迄日的人直接送審。
 
     python3 -I tools/b3v3/plan_work.py --repo "$PWD" ... --resume .dev/b3v3/partial/chunk4-remaining.json
     python3 -I tools/b3v3/plan_work.py --repo "$PWD" --out-root data/seed/leaders/b3-trial/full/v3 \\
@@ -115,15 +116,16 @@ def source_keys(obj, out=None):
     return out
 
 
-def _has_gap(person, target, prefix):
+def _has_gap(person, target, marker):
+    """同一 target 的 gap note 含 marker。研究已寫過「待查證：缺迄日」就不要再送去補。"""
     for gap in person.get("gaps") or []:
-        if gap.get("target") == target and (gap.get("note") or "").startswith(prefix):
+        if gap.get("target") == target and marker in (gap.get("note") or ""):
             return True
     return False
 
 
 def missing_fields(person, row):
-    """可補的缺欄（起迄日、引文）與不可補的篇幅。篇幅不拿去重跑。"""
+    """可補的缺欄（起日、未標註的迄日、引文）與不可補的篇幅、已標註缺迄日。後者不重跑。"""
     fields = []
     if row.get("paragraphs", 0) < 3:
         fields.append({
@@ -146,10 +148,13 @@ def missing_fields(person, row):
                 })
             if not period.get("end"):
                 noted = _has_gap(person, target, "待查證：缺迄日")
-                fields.append({
-                    "field": f"{target}.end", "kind": "missing-end", "fixable": True,
+                field = {
+                    "field": f"{target}.end", "kind": "missing-end", "fixable": not noted,
                     "detail": "缺迄日（已有待查證：缺迄日）" if noted else "缺迄日",
-                })
+                }
+                if noted:
+                    field["alreadyFlagged"] = True
+                fields.append(field)
             citations = item.get("citations") or []
             if not citations:
                 fields.append({
@@ -182,15 +187,21 @@ def missing_fields(person, row):
 
 
 def classify_person(person, row):
+    """可補的缺欄才重跑。已標註缺迄日不造成重跑；只剩它時直接送審，不標篇幅不足。"""
     fields = missing_fields(person, row)
     fixable = [field for field in fields if field["fixable"]]
-    length_only = bool(fields) and not fixable
+    has_length = any(field["kind"] in ("paragraphs", "zh-chars") for field in fields)
+    only_flagged_ends = bool(fields) and all(
+        field.get("kind") == "missing-end" and field.get("alreadyFlagged") for field in fields
+    )
     if row.get("meetsMinimum"):
         action = "pass"
-    elif row.get("documentedShortfall") or length_only:
+    elif row.get("documentedShortfall") or (has_length and not fixable):
         action = "shortfall"
     elif fixable:
         action = "retry"
+    elif only_flagged_ends:
+        action = "review"
     else:
         action = "shortfall"
     return {
@@ -491,8 +502,10 @@ def recompute_chunk(root, start=93, end=122, retry_done=RETRY_DONE_DEFAULT, rech
         "093 的佩納被審查拿掉推論迄日，現況是已標註缺迄日；本輪不重跑 093。"
         "122 試跑已做完研究與加強重跑，列入 retryDone，只審查。"
         "096 審查中斷，列入 recheck_review。"
-        "needs_retry_and_review 只留可補的缺欄（缺起迄日、缺引文或空白引文）。"
+        "needs_retry_and_review 只留可補的缺欄（缺起日、尚未標註的缺迄日、缺引文或空白引文）。"
+        "同一 target 的 gap 已含「待查證：缺迄日」的缺迄日不重跑；只剩這種缺迄日的人直接送審，不標篇幅不足。"
         "documentedShortfall 或只有篇幅不夠的人在 shortfall_review，直接送審並標篇幅不足，不再重跑。"
+        "已標註缺迄日再加上篇幅不足時也不重跑。"
         "已存原文在 ~/wl-source-cache/b3full-v3，不要重抓。"
     )
     return {

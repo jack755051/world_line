@@ -478,8 +478,123 @@ def _flat_pack(pack):
     }
 
 
+def _cited_paragraphs(count=3, chars=100):
+    return [
+        {
+            "ord": index + 1,
+            "body": {"zh-Hant": "字" * chars},
+            "citations": [{"sourceKey": "src", "quote": "quoted"}],
+        }
+        for index in range(count)
+    ]
+
+
+def _term(key, end):
+    return {
+        "key": key,
+        "period": {"start": "1908-01-01", "end": end},
+        "citations": [{"sourceKey": "src", "quote": "quoted"}],
+    }
+
+
+def _fixture_person(key, name, bio_id, positions, gaps=None, paragraphs=None):
+    return {
+        "key": key,
+        "name": name,
+        "nameZh": name,
+        "bioId": bio_id,
+        "paragraphs": _cited_paragraphs() if paragraphs is None else paragraphs,
+        "positions": positions,
+        "roleCandidates": [],
+        "gaps": gaps or [],
+    }
+
+
+def _write_prompt(directory, nn, people):
+    lines = ["## 本批"]
+    for person in people:
+        lines.append(f"- {person['nameZh']}｜{person['name']}｜{person['bioId']}｜1908")
+    lines.extend(["", "結束"])
+    (directory / f"research-{nn}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _write_batch(root, nn, people, review=False, errors=None):
+    out = root / f"batch{nn}"
+    out.mkdir(parents=True)
+    (out / "research.json").write_text(json.dumps({"people": people}, ensure_ascii=False), encoding="utf-8")
+    (out / "verify-report.json").write_text(
+        json.dumps({"errors": errors or []}, ensure_ascii=False), encoding="utf-8",
+    )
+    if review:
+        (out / "review.json").write_text("{}\n", encoding="utf-8")
+
+
+def build_end_date_fixture(tmp):
+    """三批合成資料：已標註缺迄日不重跑，未標註的仍重跑，兩者混在同一人時只重跑未標註的。"""
+    root = Path(tmp)
+    prompts = root / "prompts"
+    prompts.mkdir()
+    out = root / "out"
+    flagged = _fixture_person(
+        "flagged", "Flagged End", "bio-flagged",
+        [_term("job", None)],
+        gaps=[{"target": "position:job", "note": "待查證：缺迄日；已查 A/B"}],
+    )
+    open_end = _fixture_person(
+        "open", "Open End", "bio-open",
+        [_term("job", None)],
+    )
+    mixed = _fixture_person(
+        "mixed", "Mixed Ends", "bio-mixed",
+        [_term("open", None), _term("shut", None)],
+        gaps=[{"target": "position:shut", "note": "待查證：缺迄日；已查"}],
+    )
+    short = _fixture_person(
+        "short", "Short Flagged", "bio-short",
+        [_term("job", None)],
+        gaps=[
+            {"target": "position:job", "note": "待查證：缺迄日"},
+            {"target": "paragraph:length", "note": "篇幅不足：來源只有這些"},
+        ],
+        paragraphs=[{"ord": 1, "body": {"zh-Hant": "短"}, "citations": [{"sourceKey": "src", "quote": "quoted"}]}],
+    )
+    done_open = _fixture_person("would-retry", "Would Retry", "bio-would", [_term("job", None)])
+    done_flagged = _fixture_person(
+        "already-done", "Already Done", "bio-done",
+        [_term("job", None)],
+        gaps=[{"target": "position:job", "note": "待查證：缺迄日"}],
+    )
+    ok = _fixture_person("ok-person", "Ok Person", "bio-ok", [_term("job", "1910-01-01")])
+    only_flagged = _fixture_person(
+        "only-flagged", "Only Flagged", "bio-only",
+        [_term("job", None)],
+        gaps=[{"target": "position:job", "note": "待查證：缺迄日"}],
+    )
+    batch094 = [flagged, open_end, mixed, short]
+    batch095 = [ok]
+    batch096 = [done_open, done_flagged]
+    _write_batch(out, "094", batch094)
+    _write_batch(out, "095", batch095, review=True, errors=["ok-person quote failed"])
+    _write_batch(out, "096", batch096)
+    _write_batch(out, "097", [only_flagged])
+    for nn, people in (("094", batch094), ("095", batch095), ("096", batch096)):
+        _write_prompt(prompts, nn, people)
+    remaining = {
+        "reviewed": ["093"],
+        "needs_research": [],
+        "needs_retry_and_review": {"094": ["Open End", "Mixed Ends"]},
+        "needs_review_only": ["096"],
+        "recheck_review": ["095"],
+        "retryDone": ["096"],
+        "shortfall_review": {"094": ["Short Flagged"]},
+    }
+    resume = root / "remaining.json"
+    resume.write_text(json.dumps(remaining, ensure_ascii=False), encoding="utf-8")
+    return root
+
+
 class PlanTests(unittest.TestCase):
-    def test_resume_plan_matches_recomputed_list(self):
+    def test_resume_plan_schedules_saved_batches(self):
         proc = subprocess.run(
             [sys.executable, "-I", str(TOOLS / "plan_work.py"),
              "--repo", str(REPO),
@@ -499,14 +614,7 @@ class PlanTests(unittest.TestCase):
         self.assertFalse(by_nn["122"]["research"])
         self.assertEqual(by_nn["122"]["retry"]["mode"], "none")
         self.assertTrue(by_nn["122"]["review"])
-        self.assertIn("Johannes Schober", [person["name"] for person in by_nn["122"]["retrySkipped"]])
-        self.assertEqual(
-            [person["name"] for person in by_nn["094"]["retry"]["people"]],
-            ["Milan Hodža"],
-        )
-        fields = by_nn["094"]["retry"]["people"][0]["missingFields"]
-        self.assertEqual(fields[0]["field"], "role:hodza-sns-1906.end")
-        self.assertTrue(fields[0]["fixable"])
+        self.assertEqual(by_nn["122"]["retry"]["people"], [])
         self.assertEqual(by_nn["095"]["retry"]["mode"], "none")
         self.assertEqual(
             [person["name"] for person in by_nn["095"]["shortfall"]],
@@ -514,15 +622,6 @@ class PlanTests(unittest.TestCase):
         )
         self.assertTrue(by_nn["096"]["recheck"])
         self.assertFalse(by_nn["096"]["research"])
-        fresh = plan.recompute_chunk(REPO / "data/seed/leaders/b3-trial/full/v3")
-        on_disk = json.loads((REPO / ".dev/b3v3/partial/chunk4-remaining.json").read_text(encoding="utf-8"))
-        for key in (
-            "reviewed", "needs_retry_and_review", "shortfall_review", "needs_review_only",
-            "retryDone", "recheck_review", "needs_research",
-        ):
-            self.assertEqual(on_disk[key], fresh[key], key)
-        self.assertEqual(fresh["counts"]["retryPeople"], 16)
-        self.assertEqual(fresh["counts"]["shortfallPeople"], 12)
         trial = subprocess.run(
             [sys.executable, "-I", str(TOOLS / "plan_work.py"),
              "--repo", str(REPO),
@@ -536,6 +635,59 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(trial.returncode, 0, trial.stderr)
         trial_nns = [item["nn"] for item in json.loads(trial.stdout)["batches"]]
         self.assertEqual(trial_nns, ["094", "122", "096"])
+
+    def test_flagged_end_dates_skip_retry_round(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = build_end_date_fixture(tmp)
+            fresh = plan.recompute_chunk(root / "out", start=94, end=97, retry_done=("096",), recheck=("095",))
+            self.assertEqual(fresh["needs_retry_and_review"], {"094": ["Open End", "Mixed Ends"]})
+            self.assertEqual(fresh["shortfall_review"], {"094": ["Short Flagged"]})
+            self.assertEqual(fresh["needs_review_only"], ["096", "097"])
+            self.assertTrue(fresh["missingFields"]["097"]["only-flagged"][0]["alreadyFlagged"])
+            self.assertNotIn("Flagged End", fresh["needs_retry_and_review"]["094"])
+            self.assertNotIn("Already Done", json.dumps(fresh["needs_retry_and_review"]))
+            flagged_fields = fresh["missingFields"]["094"]["flagged"]
+            self.assertEqual(flagged_fields[0]["field"], "position:job.end")
+            self.assertFalse(flagged_fields[0]["fixable"])
+            self.assertTrue(flagged_fields[0]["alreadyFlagged"])
+            mixed_fields = {field["field"]: field for field in fresh["missingFields"]["094"]["mixed"]}
+            self.assertTrue(mixed_fields["position:open.end"]["fixable"])
+            self.assertFalse(mixed_fields["position:shut.end"]["fixable"])
+            self.assertTrue(mixed_fields["position:shut.end"]["alreadyFlagged"])
+            proc = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "plan_work.py"),
+                 "--repo", str(root),
+                 "--prompt-dir", "prompts",
+                 "--out-root", "out",
+                 "--raw-root", "raw",
+                 "--resume", "remaining.json"],
+                capture_output=True, text=True, cwd=root,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            by_nn = {item["nn"]: item for item in json.loads(proc.stdout)["batches"]}
+            self.assertEqual([item["nn"] for item in json.loads(proc.stdout)["batches"]], ["094", "096", "095"])
+            retry_people = by_nn["094"]["retry"]["people"]
+            self.assertEqual([person["name"] for person in retry_people], ["Open End", "Mixed Ends"])
+            mixed = next(person for person in retry_people if person["name"] == "Mixed Ends")
+            self.assertEqual([field["field"] for field in mixed["missingFields"]], ["position:open.end"])
+            self.assertTrue(mixed["missingFields"][0]["fixable"])
+            details = {person["name"]: person for person in by_nn["094"]["details"]}
+            self.assertEqual(details["Flagged End"]["action"], "review")
+            self.assertEqual(details["Flagged End"]["fixableFields"], [])
+            self.assertFalse(details["Flagged End"]["shortfallFlag"])
+            self.assertTrue(details["Flagged End"]["missingFields"][0]["alreadyFlagged"])
+            self.assertEqual(
+                [person["name"] for person in by_nn["094"]["shortfall"]],
+                ["Short Flagged"],
+            )
+            self.assertEqual(by_nn["096"]["retry"]["mode"], "none")
+            self.assertEqual(by_nn["096"]["retry"]["people"], [])
+            self.assertEqual(
+                [person["name"] for person in by_nn["096"]["retrySkipped"]],
+                ["Would Retry"],
+            )
+            self.assertTrue(by_nn["095"]["recheck"])
+            self.assertFalse(by_nn["095"]["research"])
 
     def test_prompt_patch_is_idempotent_on_disk(self):
         sample = (REPO / ".dev/b3v3/prompts/research-093.md").read_text(encoding="utf-8")
@@ -589,6 +741,130 @@ class CheckMinVerdictTests(unittest.TestCase):
         info = plan.classify_person(person, row)
         self.assertEqual(info["action"], "retry")
         self.assertEqual(info["fixableFields"][0]["field"], "position:job.end")
+        self.assertTrue(info["fixableFields"][0]["fixable"])
+        self.assertNotIn("alreadyFlagged", info["fixableFields"][0])
+
+    def test_flagged_missing_end_does_not_retry(self):
+        cited = [{"quote": "q", "sourceKey": "s"}]
+        paragraphs = [
+            {"ord": index + 1, "body": {"zh-Hant": "字" * 100}, "citations": cited}
+            for index in range(3)
+        ]
+        person = self._person(
+            paragraphs=paragraphs,
+            positions=[],
+            roleCandidates=[{
+                "key": "party",
+                "period": {"start": "1906-01-01", "end": None},
+                "citations": cited,
+            }],
+            gaps=[{"target": "role:party", "note": "待查證：缺迄日；已查 A/B 來源"}],
+        )
+        info = plan.classify_person(person, check_min.check(person))
+        self.assertEqual(info["action"], "review")
+        self.assertEqual(info["fixableFields"], [])
+        self.assertFalse(info["shortfallFlag"])
+        field = info["missingFields"][0]
+        self.assertEqual(field["field"], "role:party.end")
+        self.assertEqual(field["kind"], "missing-end")
+        self.assertFalse(field["fixable"])
+        self.assertTrue(field["alreadyFlagged"])
+        self.assertIn("待查證：缺迄日", field["detail"])
+
+        buried = self._person(
+            paragraphs=paragraphs,
+            positions=[{"key": "job", "period": {"start": "1908-01-01", "end": None}, "citations": cited}],
+            gaps=[{"target": "position:job", "note": "加強重跑後仍無迄日，維持待查證：缺迄日"}],
+        )
+        buried_info = plan.classify_person(buried, check_min.check(buried))
+        self.assertEqual(buried_info["action"], "review")
+        self.assertTrue(buried_info["missingFields"][0]["alreadyFlagged"])
+        self.assertFalse(buried_info["missingFields"][0]["fixable"])
+
+        other_target = self._person(
+            paragraphs=paragraphs,
+            positions=[{"key": "job", "period": {"start": "1908-01-01", "end": None}, "citations": cited}],
+            gaps=[{"target": "position:other", "note": "待查證：缺迄日"}],
+        )
+        other_info = plan.classify_person(other_target, check_min.check(other_target))
+        self.assertEqual(other_info["action"], "retry")
+        self.assertEqual(other_info["fixableFields"][0]["field"], "position:job.end")
+
+    def test_unflagged_missing_end_still_retries(self):
+        cited = [{"quote": "q", "sourceKey": "s"}]
+        paragraphs = [
+            {"ord": index + 1, "body": {"zh-Hant": "字" * 100}, "citations": cited}
+            for index in range(3)
+        ]
+        person = self._person(
+            paragraphs=paragraphs,
+            positions=[{"key": "job", "period": {"start": "1908-01-01", "end": None}, "citations": cited}],
+        )
+        info = plan.classify_person(person, check_min.check(person))
+        self.assertEqual(info["action"], "retry")
+        self.assertEqual(
+            [(field["field"], field["fixable"]) for field in info["fixableFields"]],
+            [("position:job.end", True)],
+        )
+
+        start = self._person(
+            paragraphs=paragraphs,
+            positions=[{
+                "key": "job",
+                "period": {"start": None, "end": "1910-01-01"},
+                "citations": [{"quote": "  ", "sourceKey": "s"}],
+            }],
+            gaps=[{"target": "position:job", "note": "待查證：缺起日；已查"}],
+        )
+        start_info = plan.classify_person(start, check_min.check(start))
+        self.assertEqual(start_info["action"], "retry")
+        by_kind = {field["kind"]: field for field in start_info["fixableFields"]}
+        self.assertTrue(by_kind["missing-start"]["fixable"])
+        self.assertEqual(by_kind["missing-start"]["field"], "position:job.start")
+        self.assertTrue(by_kind["empty-quote"]["fixable"])
+        self.assertNotIn("missing-end", by_kind)
+
+    def test_mixed_flagged_and_unflagged_ends(self):
+        cited = [{"quote": "q", "sourceKey": "s"}]
+        paragraphs = [
+            {"ord": index + 1, "body": {"zh-Hant": "字" * 100}, "citations": cited}
+            for index in range(3)
+        ]
+        person = self._person(
+            paragraphs=paragraphs,
+            positions=[
+                {"key": "open", "period": {"start": "1908-01-01", "end": None}, "citations": cited},
+                {"key": "shut", "period": {"start": "1910-01-01", "end": None}, "citations": cited},
+            ],
+            gaps=[{"target": "position:shut", "note": "待查證：缺迄日；已查"}],
+        )
+        info = plan.classify_person(person, check_min.check(person))
+        self.assertEqual(info["action"], "retry")
+        self.assertEqual(
+            [field["field"] for field in info["fixableFields"]],
+            ["position:open.end"],
+        )
+        flagged = [field for field in info["missingFields"] if field["field"] == "position:shut.end"]
+        self.assertEqual(len(flagged), 1)
+        self.assertFalse(flagged[0]["fixable"])
+        self.assertTrue(flagged[0]["alreadyFlagged"])
+
+        both = self._person(
+            paragraphs=[{"body": {"zh-Hant": "短"}, "citations": cited}],
+            positions=[{"key": "job", "period": {"start": "1908-01-01", "end": None}, "citations": cited}],
+            gaps=[
+                {"target": "position:job", "note": "待查證：缺迄日"},
+                {"target": "paragraph:length", "note": "篇幅不足：來源只有這些"},
+            ],
+        )
+        both_info = plan.classify_person(both, check_min.check(both))
+        self.assertEqual(both_info["action"], "shortfall")
+        self.assertTrue(both_info["shortfallFlag"])
+        self.assertEqual(both_info["fixableFields"], [])
+        self.assertTrue(any(field["kind"] == "paragraphs" for field in both_info["missingFields"]))
+        end = next(field for field in both_info["missingFields"] if field["kind"] == "missing-end")
+        self.assertFalse(end["fixable"])
+        self.assertTrue(end["alreadyFlagged"])
 
     def test_documented_shortfall_is_not_retried(self):
         person = self._person(
@@ -644,30 +920,43 @@ class DriverTests(unittest.TestCase):
         self.assertIn("checkMin", review)
         self.assertIn("text 只寫一次", review)
 
-    def test_dry_run_chunk4_models_and_counts(self):
-        proc = subprocess.run(
-            [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "dry-run",
-             "--repo", str(REPO),
-             "--prompt-dir", ".dev/b3v3/prompts",
-             "--out-root", "data/seed/leaders/b3-trial/full/v3",
-             "--raw-root", "/tmp/b3-raw",
-             "--resume", ".dev/b3v3/partial/chunk4-remaining.json",
-             "--concurrency", "3", "--json"],
-            capture_output=True, text=True, cwd=REPO,
-        )
-        self.assertEqual(proc.returncode, 0, proc.stderr)
-        data = json.loads(proc.stdout)
-        self.assertEqual(data["researchAgents"], 0)
-        self.assertEqual(data["retryAgents"], 16)
-        self.assertEqual(data["reviewAgents"], 75)
-        self.assertEqual(data["reviewModels"], {"sonnet": 72, "opus": 3})
-        self.assertEqual(data["shortfallPeople"], 12)
-        opus = [
-            agent for wave in data["waves"] if wave["phase"] == "review"
-            for agent in wave["agents"] if agent["model"] == "opus"
-        ]
-        self.assertEqual(sorted(agent["batch"] for agent in opus), ["122", "122", "122"])
-        self.assertNotIn("prompt", json.dumps(data["waves"][0]["agents"][0]))
+    def test_dry_run_skips_flagged_ends_and_keeps_models(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = build_end_date_fixture(tmp)
+            proc = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "dry-run",
+                 "--repo", str(root),
+                 "--prompt-dir", "prompts",
+                 "--out-root", "out",
+                 "--raw-root", "raw",
+                 "--resume", "remaining.json",
+                 "--concurrency", "3", "--json"],
+                capture_output=True, text=True, cwd=root,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            data = json.loads(proc.stdout)
+            self.assertEqual(data["researchAgents"], 0)
+            self.assertEqual(
+                [(agent["batch"], agent["name"], agent["fields"]) for agent in data["retryPeople"]],
+                [
+                    ("094", "Open End", ["position:job.end"]),
+                    ("094", "Mixed Ends", ["position:open.end"]),
+                ],
+            )
+            self.assertEqual(data["retryAgents"], 2)
+            self.assertEqual(data["shortfallPeople"], 1)
+            self.assertEqual(data["reviewAgents"], 7)
+            review_models = {
+                (agent["batch"], agent["name"]): agent["model"]
+                for wave in data["waves"] if wave["phase"] == "review"
+                for agent in wave["agents"]
+            }
+            self.assertEqual(review_models[("094", "Flagged End")], "sonnet")
+            self.assertEqual(review_models[("094", "Short Flagged")], "sonnet")
+            self.assertEqual(review_models[("094", "Open End")], "opus")
+            self.assertEqual(review_models[("095", "Ok Person")], "opus")
+            self.assertNotIn("Flagged End", [agent["name"] for agent in data["retryPeople"]])
+            self.assertNotIn("prompt", json.dumps(data["waves"][0]["agents"][0]))
 
     def test_show_prompt_prints_only_that_agent(self):
         with tempfile.TemporaryDirectory() as tmp:
